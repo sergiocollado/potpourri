@@ -1,0 +1,118 @@
+
+The analysis of the memory in the linux system, can be checked using the commands:
+
+
+1)
+
+reading the file: /proc/meminfo
+
+>> less /proc/meminfo
+or
+>> brteintern@inmaculada:/proc$ cat meminfo
+MemTotal:        8169924 kB
+MemFree:         7274872 kB
+Buffers:          154784 kB
+Cached:           213312 kB
+SwapCached:            0 kB
+Active:           265184 kB
+Inactive:         233264 kB
+Active(anon):     131196 kB
+Inactive(anon):     2956 kB
+Active(file):     133988 kB
+Inactive(file):   230308 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:       1046524 kB
+SwapFree:        1046524 kB
+Dirty:                60 kB
+Writeback:             0 kB
+AnonPages:        129588 kB
+Mapped:            47324 kB
+Shmem:              3804 kB
+Slab:             288172 kB
+SReclaimable:     251312 kB
+SUnreclaim:        36860 kB
+KernelStack:        4192 kB
+PageTables:        12756 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     5131484 kB
+Committed_AS:    1010244 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:      174216 kB
+VmallocChunk:   34359550136 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:     26624 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       91968 kB
+DirectMap2M:     3053568 kB
+DirectMap1G:     7340032 kB
+
+
+2)
+using the free command:
+
+
+>>brteintern@inmaculada:/$ free -m
+             total       used       free     shared    buffers     cached
+Mem:          7978        877       7100          3        151        208
+-/+ buffers/cache:        517       7460
+Swap:         1021          0       1021
+
+
+>>brteintern@inmaculada:/$ free -t -m
+             total       used       free     shared    buffers     cached
+Mem:          7978        883       7094          3        151        212
+-/+ buffers/cache:        519       7458
+Swap:         1021          0       1021
+Total:        9000        883       8116
+
+
+free commands options:
+  -b,-k,-m,-g show output in bytes, KB, MB, or GB
+  -l show detailed low and high memory statistics
+  -o use old format (no -/+buffers/cache line)
+  -t display total for RAM + swap
+  -s update every [delay] seconds
+  -c update [count] times
+
+3)
+using the vmstat -s
+
+brteintern@inmaculada:/$ vmstat -s
+      8169924 K total memory
+       904828 K used memory
+       272112 K active memory
+       235444 K inactive memory
+      7265096 K free memory
+       155472 K buffer memory
+       217684 K swap cache
+      1046524 K total swap
+            0 K used swap
+      1046524 K free swap
+        83855 non-nice user cpu ticks
+            0 nice user cpu ticks
+        24432 system cpu ticks
+      1546417 idle cpu ticks
+          452 IO-wait cpu ticks
+            0 IRQ cpu ticks
+          173 softirq cpu ticks
+            0 stolen cpu ticks
+       377179 pages paged in
+        30568 pages paged out
+            0 pages swapped in
+            0 pages swapped out
+      2092237 interrupts
+      4823867 CPU context switches
+   1486027825 boot time
+       147016 forks
+
+4)
+Use the top programm.
+There are also the atop, and htop, programs, that have increased functionalities, but they don't usually come preinstalled in linux distro.s
+
