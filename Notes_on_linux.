@@ -1,16 +1,19 @@
 
 The analysis of the memory in the linux system, can be checked using the commands:
 
-Of course the master refecernce will allways be our friend: https://linux.die.net/man/ 
+>> Of course the master refecernce will allways be our friend: https://linux.die.net/man/ 
+>> And ofcourse our battle-horse the HOWTOs: https://linux.die.net/HOWTO/HOWTO-INDEX/
 
 
 1)
+Remember that the '/proc' filesystem is a pseudo-filesystem whose files provide an interface to kernel data structures.
 
 reading the file: /proc/meminfo
 
 >> less /proc/meminfo
 or
->> brteintern@inmaculada:/proc$ cat meminfo
+>> cat /proc/meminfo
+
 MemTotal:        8169924 kB
 MemFree:         7274872 kB
 Buffers:          154784 kB
@@ -55,6 +58,7 @@ DirectMap4k:       91968 kB
 DirectMap2M:     3053568 kB
 DirectMap1G:     7340032 kB
 
+If you also need to check your CPU, then you can read the file as: >> cat /proc/cpuinfo
 
 2)
 using the 'free' command:
@@ -67,7 +71,7 @@ Opertators:
 -k : (default) gives you the memory in kibibytes (KiB)
 -m : gives you the memory in mebibytes (MiB)
 -t : displays a line containing the totals RAM + swap
--s : update every [delay] seconds.
+-s : update every [delay] seconds. So if you command: >>free -s 5 ; this will update the results everty 5 seconds.
 -c : use old format (no -/+buffers/cache line)
 -l : shows low and high memory statistics
 -V : displays version information.
@@ -122,4 +126,24 @@ brteintern@inmaculada:/$ vmstat -s
 4)
 Use the top programm.
 There are also the atop, and htop, programs, that have increased functionalities, but they don't usually come preinstalled in linux distro.s
+
+
+
+CHECKING WHAT IS IN YOUR CACHE AND BUFFER:
+
+Use 'linux-ftools', to check what files are in your CACHE.
+
+>> fincore [options] files ...
+
+Options:
+
+   --pages=false  Do no print pages.
+   --sumarize     Prints a summary report
+   --only-cached  Only prints stats, for files that actually are on the cache.
+   
+TODO: make example
+
+TODO:  complete with: -- > http://unix.stackexchange.com/questions/87908/how-do-you-empty-the-buffers-and-cache-on-a-linux-system
+
+
 
