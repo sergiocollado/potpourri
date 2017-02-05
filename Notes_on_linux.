@@ -57,6 +57,7 @@ DirectMap1G:     7340032 kB
 2)
 using the free command:
 
+Note: free command, only gives you info about the RAM memory.
 
 >>brteintern@inmaculada:/$ free -m
              total       used       free     shared    buffers     cached
