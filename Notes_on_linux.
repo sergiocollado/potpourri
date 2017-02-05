@@ -55,9 +55,20 @@ DirectMap1G:     7340032 kB
 
 
 2)
-using the free command:
+using the 'free' command:
 
 Note: free command, only gives you info about the RAM memory.
+
+Opertators:
+
+-b : gives you the memory in bytes
+-k : (default) gives you the memory in kibibytes (KiB)
+-m : gives you the memory in mebibytes (MiB)
+-t : displays a line containing the totals RAM + swap
+-s : update every [delay] seconds.
+-c : use old format (no -/+buffers/cache line)
+-l : shows low and high memory statistics
+-V : displays version information.
 
 >>brteintern@inmaculada:/$ free -m
              total       used       free     shared    buffers     cached
@@ -74,13 +85,6 @@ Swap:         1021          0       1021
 Total:        9000        883       8116
 
 
-free commands options:
-  -b,-k,-m,-g show output in bytes, KB, MB, or GB
-  -l show detailed low and high memory statistics
-  -o use old format (no -/+buffers/cache line)
-  -t display total for RAM + swap
-  -s update every [delay] seconds
-  -c update [count] times
 
 3)
 using the vmstat -s
