@@ -60,6 +60,10 @@ DirectMap1G:     7340032 kB
 
 If you also need to check your CPU, then you can read the file as: >> cat /proc/cpuinfo
 
+Or also there is the command: lscpu
+
+ref: http://man7.org/linux/man-pages/man1/lscpu.1.html
+
 2)
 using the 'free' command:
 
@@ -146,4 +150,10 @@ TODO: make example
 TODO:  complete with: -- > http://unix.stackexchange.com/questions/87908/how-do-you-empty-the-buffers-and-cache-on-a-linux-system
 
 
+5) 
+If you want to know how much free memory you have in your hard disk, you have to use the commands:
 
+· df command
+· du command
+
+TODO: COMPLETE
