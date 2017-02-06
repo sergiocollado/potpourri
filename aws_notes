@@ -1,8 +1,9 @@
 AWS: S3 - Simple Storage Service.
 
-REF: https://aws.amazon.com/es/documentation/s3/
+ref: https://aws.amazon.com/es/documentation/s3/
 
 INTRODUCTION:
+============
 
 you can put any data-
 they are organiced in Buckets
@@ -21,6 +22,8 @@ and include in the web, as:
 ...
 
 ACCES CONTROL:
+==============
+
 Objects, also have 4 types of access control:
  · IAM policies
  · Bucket policies
@@ -35,6 +38,7 @@ Objects, also have 4 types of access control:
  more info in: http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html
  
 STORING POLICIES:
+=================
 There are three ways to store policies:
  · Standard ( "11 9's") - that means that if you have 1 million files stored there, you will loose one, everty 10.000 years.
    · it comes at greatest cost, but is the default.
@@ -45,6 +49,7 @@ There are three ways to store policies:
    · But is cost is about the 10% of the standard option - which make a great choise for arcivals, and back-ups.
    
 PRICING:
+========
 
 Starts around 0.10$ per GB/month for "standard" S3 - the fee gets cheaper, if you use more.
 
@@ -55,5 +60,43 @@ Bandwith:
   REQUEST al also costy: (PUT, GET, POST, LIST) - Starts at 0.0055/1000 request.
    
    
+ADVANCED FEATURES OF S3
+=======================
+ S3 also allows for:
+ 
+  ·light, static, website hosting.
+  ·Object squeduled expiration.
+  ·Encryption Options
+  ·Versioning
+  ·Logging
+  ·"Direct from browser" upload to s3
+  ·Multipart files upload
+  ·Requested pays
+  ·BitTorrent Support
    
+- Simple static website hosting: You can rename to a domain you own  (Easy CNAMEd).
+- Index, and Error documents support.
+- key prefix routing rules.
+- Oject expiration squeduling -live cicle management- 
+- Encription options (SSE, SSL, or your own)
+- Versioning. Once is On, it can never can go back to Off, so you will be storing all your development. ##
+- Logging: you can get IP, operations, dates, . Can be On/Off anytime. Watch out! store the logs, in another Bucket!
+- Direct on brownser upload: You can grant users to directly upload to your bucket uses IAM/STS services to generate a url for
+the bucket object. 5GB limitation on file size. ref -> http://aws.amazon.com/articles/1434
+ If you want to upload more than 5GB, you have to use multi-part files upload, that is just limited to SDK(Java, iOs,PHP, Ruby); 
+ the client chuncks the file into pieces. Loads each piece separately. Client closes file. S3 reassembles the file. This also allows
+ stop/star partial uploads. With this method the max file size is 5TB.
+ ref: http://docs.aws.amazon.com/AmazonS3/latest/dev/uploadobjusingmpu.html
+ - Request payment. always if the client is a AWS registered partner/customer.
+ - Bittorret support (P2P protocoll) max file size 5GB
+ ref: http://docs.aws.amazon.com/AmazonS3/latest/dev/S3Torrent.html
+ 
+ 
+ First steps: 
+ 
+    the best is to migrate all static content to S3 (images, CSS, Javascript, HTML, etc...)- this reliebes the load on your
+   EBS, so it can do more important tasks, with this, the cost of the EBS, is much more lower, and gets more performance.
    
+   The second step, is set up Glacier for archival, Control access, set up Lyvecicle policies, Investigate advanced users: 
+   like Website hosting, direct to S3 uploads.
+ 
