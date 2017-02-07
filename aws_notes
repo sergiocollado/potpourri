@@ -5,12 +5,13 @@ ref: https://aws.amazon.com/es/documentation/s3/
 INTRODUCTION:
 ============
 
-you can put any data-
-they are organiced in Buckets
+you can put any data file in S3
+they are organiced in "Buckets".
+-Bucket names are globally unique, so you have to take one with a name non taken yet.
 
 easy to DNS CNAME a URL to your bucket.
 bucket name: sergio-images
-but my derised domein is sergio.collad.com 
+but my desired domein is sergio.collado.com 
 
 so: sergio.collado.com -> collado-images.s3.amazonaws.com
 
@@ -21,7 +22,7 @@ and include in the web, as:
 <img src="http://sergio.collado/path/to/logo" alt="AWS_lOGO">
 ...
 
-ACCES CONTROL:
+ACCESS CONTROL:
 ==============
 
 Objects, also have 4 types of access control:
@@ -39,6 +40,7 @@ Objects, also have 4 types of access control:
  
 STORING POLICIES:
 =================
+
 There are three ways to store policies:
  · Standard ( "11 9's") - that means that if you have 1 million files stored there, you will loose one, everty 10.000 years.
    · it comes at greatest cost, but is the default.
@@ -59,9 +61,12 @@ Bandwith:
        Out of region: Starts at 0.12$ GB/month.
   REQUEST al also costy: (PUT, GET, POST, LIST) - Starts at 0.0055/1000 request.
    
+ Just have in mind, that data trasnsfer inside your region is free!  
+   
    
 ADVANCED FEATURES OF S3
 =======================
+
  S3 also allows for:
  
   ·light, static, website hosting.
@@ -78,7 +83,7 @@ ADVANCED FEATURES OF S3
 - Index, and Error documents support.
 - key prefix routing rules.
 - Oject expiration squeduling -live cicle management- 
-- Encription options (SSE, SSL, or your own)
+- Encription options (SSE, SSL, or your own) [SSE: Server Side Encription]
 - Versioning. Once is On, it can never can go back to Off, so you will be storing all your development. ##
 - Logging: you can get IP, operations, dates, . Can be On/Off anytime. Watch out! store the logs, in another Bucket!
 - Direct on brownser upload: You can grant users to directly upload to your bucket uses IAM/STS services to generate a url for
@@ -92,11 +97,11 @@ the bucket object. 5GB limitation on file size. ref -> http://aws.amazon.com/art
  ref: http://docs.aws.amazon.com/AmazonS3/latest/dev/S3Torrent.html
  
  
- First steps: 
+ ·First steps: 
  
-    the best is to migrate all static content to S3 (images, CSS, Javascript, HTML, etc...)- this reliebes the load on your
-   EBS, so it can do more important tasks, with this, the cost of the EBS, is much more lower, and gets more performance.
+The best is to migrate all static content to S3 (images, CSS, Javascript, HTML, etc...)- this reliebes the load on your
+EBS, so it can do more important tasks, with this, the cost of the EBS, is much more lower, and gets more performance.
    
-   The second step, is set up Glacier for archival, Control access, set up Lyvecicle policies, Investigate advanced users: 
-   like Website hosting, direct to S3 uploads.
+The second step, is set up Glacier for archival, Control access, set up Livecicle policies, Investigate advanced users: 
+like Website hosting, direct to S3 uploads.
  
