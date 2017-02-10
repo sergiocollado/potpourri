@@ -105,3 +105,44 @@ EBS, so it can do more important tasks, with this, the cost of the EBS, is much 
 The second step, is set up Glacier for archival, Control access, set up Livecicle policies, Investigate advanced users: 
 like Website hosting, direct to S3 uploads.
  
+
+
+
+log in main server server:
+
+|___|  __|_  )
+|_|   (     /
+|___| ___||___|
+
+<< sudo su -
+cd /var/local/src
+
+Gon ; s3tools.org/download
+
+--íntasll from the commmand, get the link
+
+ wget http:.... (he link copied proivied)
+ 
+ >> mv download s3cmd.trg
+ 
+  tax -xcvzf s3cmd.tgz
+  
+  cd s3cmd-1.5.0-alphay/
+  
+  Less install
+  
+  easteisnt way to install is : python .py instals
+ 
+  s3cmd-1.5.0-alpha1
+  
+  
+  we have provide the kees> using > credential needed, > access credenctiasn "Aceess Keys´2"
+  
+  intall the keys. 
+  
+  w3cdmd --help 
+  s3cmd [feature] --help 
+  
+  
+  
+  
