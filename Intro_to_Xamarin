@@ -28,11 +28,11 @@ platfomrs, so you cannot take advantage of each platform features, or even last 
 
 - View: APACHE / CORDOVA.
 
-XAMARIN APPROACH: With Xamarin you develop in C# and .NET so you can take advante of all the lenguaje features (LINQ, Async Wait, Generics,
-Delegates, Tasks...) , and use all the specific features of each platform. 
+XAMARIN APPROACH: With Xamarin you develop in C# and .NET so you can take advante of all the lenguaje features (LINQ, Async Wait,
+Generics, Delegates, Tasks...) , and use all the specific features of each platform. 
 
-XAMARIN SOFTWARE DEVELOPENT LIVECYCLE (SDLC):
-============================================
+XAMARIN SOFTWARE TOOLS:
+=======================
 
 Developent:
     - Visual Studio
@@ -42,10 +42,20 @@ Testing:
     - Xamarin profiler (identify hotspots).
     - Xamarin Test Cloud (let you find bugs, by scripting automatic user interfaces, to run
       localy or upload them to the cloud and run them on hundreds of physical devices.
-      
+
 Monitoring:
     - Xamarin Insights: for real time application monitoring, and generation of crash reports.
-    
+
+START AND SETTING UP:
+=====================
+
+Go to Xamarin.com and dowload, go to the platform option 
+
+Xamarin.com > Products > Xamaring Platform > Download
+
+It will download the file: vstoolsforxamarin.exe
+
+
     
 
 
