@@ -4,11 +4,12 @@ INTRO TO XAMARIN by SERGIO GONZÁLEZ COLLADO
 ============================================
 
 FOREWORD:
-· This are my personal notes, on the EDX/MICROSOFT course: DEV215x Introduction to Xamarin.Forms- the finality of this docuent,
-is to clarify my ideas, and have a resource where quickly find answers to my doubs, based on my experience. 
+· This are my personal notes, on the EDX/MICROSOFT course: DEV215x Introduction to Xamarin.Forms- the aim of this docuent,
+is to clarify my ideas, by means of writting them down, and have a resource where quickly find answers to my doubs, based on
+my experience. 
 
 INTRO:
-  Xamarin, is platform, for cross-developing applications for iOS, Android, and Windows, based in .Net, and programmed in C#.
+  Xamarin, is platform, for cross-developing applications for iOS, Android, and Windows, based in .NET, and programmed in C#.
   
 NOTE: Is adviced knwoldege of C#, and XAML markup languaje.
 
@@ -33,7 +34,19 @@ Delegates, Tasks...) , and use all the specific features of each platform.
 XAMARIN SOFTWARE DEVELOPENT LIVECYCLE (SDLC):
 ============================================
 
+Developent:
+    - Visual Studio
+    - Xamarin Studio.
 
+Testing:
+    - Xamarin profiler (identify hotspots).
+    - Xamarin Test Cloud (let you find bugs, by scripting automatic user interfaces, to run
+      localy or upload them to the cloud and run them on hundreds of physical devices.
+      
+Monitoring:
+    - Xamarin Insights: for real time application monitoring, and generation of crash reports.
+    
+    
 
 
 
