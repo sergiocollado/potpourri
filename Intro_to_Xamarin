@@ -1,0 +1,41 @@
+
+
+INTRO TO XAMARIN by SERGIO GONZÁLEZ COLLADO
+============================================
+
+FOREWORD:
+· This are my personal notes, on the EDX/MICROSOFT course: DEV215x Introduction to Xamarin.Forms- the finality of this docuent,
+is to clarify my ideas, and have a resource where quickly find answers to my doubs, based on my experience. 
+
+INTRO:
+  Xamarin, is platform, for cross-developing applications for iOS, Android, and Windows, based in .Net, and programmed in C#.
+  
+NOTE: Is adviced knwoldege of C#, and XAML markup languaje.
+
+INTRODUCTION TO THE DIFFERENT WAYS TO BUILD MOBILE APPLICATIONS:
+================================================================
+
+SILO APPROACH: An application is written for multiple platforms, using the native development tools, that means, developing the same 
+application for each platform, as a pro: you can take advantage to all the properties of that platform, as a con: you are going to 
+generate different bugs in each platform. 
+
+- View: Android Studio.
+
+BLACK BOX APPROACH: You develop an application and somehow you produce native code for all the targeted plataforms. Pros: Usually the initial 
+application is done in HTML and JS, so a web developer can fill the bill. Cons: You can only access to the features common to all the 
+platfomrs, so you cannot take advantage of each platform features, or even last features.
+
+- View: APACHE / CORDOVA.
+
+XAMARIN APPROACH: With Xamarin you develop in C# and .NET so you can take advante of all the lenguaje features (LINQ, Async Wait, Generics,
+Delegates, Tasks...) , and use all the specific features of each platform. 
+
+XAMARIN SOFTWARE DEVELOPENT LIVECYCLE (SDLC):
+============================================
+
+
+
+
+
+
+
