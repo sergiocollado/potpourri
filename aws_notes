@@ -5,7 +5,7 @@ ref: https://aws.amazon.com/es/documentation/s3/
 INTRODUCTION:
 ============
 
-you can put any data file in S3
+you can put any data file in S3 (Simple Storage Service)
 they are organiced in "Buckets".
 -Bucket names are globally unique, so you have to take one with a name non taken yet.
 
@@ -138,11 +138,67 @@ Gon ; s3tools.org/download
   
   we have provide the kees> using > credential needed, > access credenctiasn "Aceess Keys´2"
   
+ 
+  
   intall the keys. 
   
   w3cdmd --help 
   s3cmd [feature] --help 
   
   
+INTRODUCTION TO CLOUD FRONT:
+============================
+
+-> Cloud Front is a CDN - Content Delivery Network.
+   It uses locations close to end user (Edges).
+   Other populars CDNs are Akamai, Level 3.
+
+DESCRIPTION:
+===========
+
+- Resources of static website assests: Images, CSS, JS, HTML, JSON.
+- Distributions: products, documents, data.
+- Streaming: audio, video.
+    Streaming uses propietary protocols, unlike http. Cloud Front uses Adobe/macromedia RTMP (Real Time Messaging Protocol), also the is
+    an encrypted version: RTMPE (Real Time Messaging Protocol Encrypted)
+    
+ This is natively integrated in AWS, you can specify S3 Buckets as origins. Its interface is very easy, also supports standard http/s
+ also streaming with RTMP/E, and is very cost effective: Contents are only cached, at edges, when there is a user request, and you can 
+ free that chache, on demand or on squedule.
+ 
+  Data can be "expired":
+     - On squedule
+     - On demand.
+ 
+ HOW TO SET A CLOUDFRONT:
+ ========================
+ 
+ First you have to define a "Distribution":
+    - you have to specify if this will be HTTP, or Streaming.
+    - Set an 'origin': any web-accesible web server will do: private server, EC2 or S3.
+    - You can also specify: 
+              - TTL (Time To Live)- this defines how often Cloud Front is going to check for a new version of the file.
+              - Path matches - this specifies what parts of your origin web server are going to be cached.
+              - Logging - allows log request to Cloud Front.
+              
+ At this time you have created a distribution domain, you can easily rename using CNAMEd "vanity URLs" - this is useful in cases as
+ Websites (CSS, JS, images references) or Applications (media players, web, mobile, or desktop apps).
+ 
+ FINAL USER ACCESS:
+ ==================
+ 
+ When a final user access to a CDN (Content Delivery Network) URL, CloudFront directs the user to the closes edje, so it serves
+ the data faster.
+ This is a pulling mechanism, so if the closes edje to a client, doesn't have the required data, that edje request the data to the
+ the origin edge, and pull that data down local, so next time a client request the data in that location, it will already stored 
+ in the closest edje, and serviced faster.
+ 
   
-  
+ 
+ 
+ 
+    
+
+
+
+
