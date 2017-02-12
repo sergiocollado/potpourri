@@ -118,7 +118,7 @@ log in main server server:
 cd /var/local/src
 
 Gon ; s3tools.org/download
-
+333
 --íntasll from the commmand, get the link
 
  wget http:.... (he link copied proivied)
@@ -195,7 +195,68 @@ DESCRIPTION:
  
   
  
+ INTRODUCTION TO ELASTIC CACHE:
+===============================
+
+- Elastic Cache is an in memory caching mechanism.
+- Is 100% Under the hood.
+  - 100% API compliant: User get, set, incr, decr, stats, the same way you do in mem cache.
+- More properly is mem cache cluster.
+
+
+ what is memcache/d ?
+ --------------------
  
+ is a very popular, open source in-memory chache. very fast reads and writes. Because results came from memory not form disk.
+ takes the burden from the back end resources and free them for more important work.
+ This can be:
+    - Databases.
+    - Disk heads.
+    - CPUs.
+    
+ The extra 'd' stands for deamon.
+ 
+ Anithing that is expensive to create and/or nood be in real time. as:
+    - Database query queues.
+    - Large disk of files of the disk.
+    - Computational expensive operations.
+ Or if you want sombething to be extremely fast, as:
+    - User sessions.
+    - Product catalogs.
+    
+· Memcache is actually a key-value store.
+Actually NoSQL is a memcache database.
+- The access method is a key - which returns the value. It has no "query" capabilites other than key lookup.
+
+ElasticCache is really a Memchache Cluster; is a distributed collection of cache nodes. This nodes are unfortunately abailable
+only in AZ. And that AZ can be a single qualifier, especially if you are using it for ussing sessions.
+
+Customers need multi-AZ HA (high Avaliability) must roll on their on.
+
+Cache nodes are used on their on.
+
+Cache nodes are used-specified types - Very much like EC2 instance types. they can be even been wreap with security groups, and can
+buy "capacity reservations". the are also resizable, which cna be doed, by addign / removing larger nodes.
+
+To set an Elastic Cache, you have to choose an AZ. choose a node type, and the number of nodes. Launch the cluster, Connect your
+application by pointng to the Elastic Cache endpoint. Then benchmark and resize if necesary. Once capacity is kown purchase reservations
+to save money. 
+
+Expiring keys is controlled via  the elastic ElasticCache API, (memcache commands):
+This can be done:
+  - squedule 
+  - on demand.
+  
+Elastic Cache, has an hourly charge: Reseverd or On demand. See "Pricingz model for EC2" for reference.
+
+There is also Bandwidth charges
+   - Free inside the AZ.
+   - And $0.1 GB, in and aout accross AZs.
+   
+
+INTRODUCTION TO VPC:
+====================
+
  
     
 
