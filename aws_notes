@@ -257,6 +257,38 @@ There is also Bandwidth charges
 INTRODUCTION TO VPC:
 ====================
 
+VPC stands for Virtual Private Cloud. VPC allows a logical isolation between your resources: From other constumers, and from internal 
+divisions or application tiers.
+It gives you control over:
+ - adress spaces.
+ - subnets.
+ - Route tables & NATs (Netword Address Translations)
+ - Network gateways (VPN and Internet).
+ - Ingress and Engress security groups.
+ - Multiple NICs (Elastic Network Interfaces or ENIs) on VPC EC2s.
+ - Dedicated Hardware (with EC2 only).
+ 
+Control over route tables & NATs
+ A route table, sets what traffic goes down which line. - Depends on sender and target - 
+ 
+NATs (Network Adress Trasnlation)- Lets machines "hide" on private network, but still be able to get out of the network. 
+AWS provides a NAT instance for that porpouse.
+
+VPC, also gives you control over Gateways; an Internet Gateway (IG), allows VPC resources to access Internet, is the only way for 
+the resources to connect to Internet. It can be connected/disconnected programmatically.- For example when you want to deploy patches
+in your EC2 isntances, you can put down you IG, pull down your patches, and then reconnect.
+
+There is also a VPN Gateway (VPG)- this is a Harware solution that mates with on-premise VPN. Your on-prem must obey Border Gateway 
+protocol o "BGP", most of the VPN appliances do. This can be used to treat VPC as an extension of corporate. This comes with an 
+additionally hourly cost. 
+
+Software VPN is also possible. You can use OpenVPN (free) is a popular solution.
+
+
+ 
+ 
+ 
+ 
  
     
 
