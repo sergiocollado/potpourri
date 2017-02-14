@@ -284,6 +284,43 @@ additionally hourly cost.
 
 Software VPN is also possible. You can use OpenVPN (free) is a popular solution.
 
+VPC allows a logical isolation of your resources:
+ - from other customers.
+ - from internal divisions/application tiers. Many time when you are developing applications, the security applications require that
+ the database is in a separate subnet. VPC allows for this, while amazon classic does not.
+ 
+ VPC allows control over address spaces:
+ - Provision an entire "B" Class of IP if you like (255.255.x.x) or "/16" - 65.000 ips
+ - Any adress space provided in VPC will be available in subnets.
+ - VPC adresses don't change when EC2 bounced.
+ - Public-facing IPs still need to be Internet routable.
+  + Can use Elastic IP.
+  + You must route through Internet Gateway.
+  
+VPC allows control over subnets
+ - Subnets provisioned in single AZ.
+ - Can have 200 subnets, per VPC.
+ - In VPC, think of subnets as AZs.
+   · Autoscaling groups can span VPC subnets.
+ - The Minimun size of a subnet must be a /28 (14 IP adresses)
+ - The Maximun size = size of the VPC.
+ - When sharing with the outside network (like bursting from corporate) watch out for IP conflicts.
+ 
+ VPC also gives you control over route table or NATs
+ - Route table: "what traffic goes down which line" - depends on sender and target.
+ NAT(Network Adress Trasnlation) lets machines "hide" on private network, but still be able to get out fo network.
+ AWS provides a NAT instance for this pourpouse.
+ 
+ VPC gaves you control over network gateways.
+ - Internet gateways (IG): Allows VPC resources to access the internet.
+ - And is the only way for this resources to access the internet.
+ - Can be connected/disconnected programatically (for example when you are doing patch updates on your EC2 servers, you can connect
+ your IG, pull down your patches, and then disconnect your IG.)
+ 
+ There is also a VPN Gataway or VPG: this is a hardware VPN solution mates with on-premise VPN. Your On-prem must obey BGP, or
+ Border Gate Protocol.
+ 
+ [5:13]
 
  
  
@@ -291,6 +328,7 @@ Software VPN is also possible. You can use OpenVPN (free) is a popular solution.
  
  
     
+
 
 
 
