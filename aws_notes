@@ -297,7 +297,7 @@ VPC allows a logical isolation of your resources:
   + Can use Elastic IP.
   + You must route through Internet Gateway.
   
-VPC allows control over subnets
+VPC(Virtual Private Cloud) allows control over subnets
  - Subnets provisioned in single AZ.
  - Can have 200 subnets, per VPC.
  - In VPC, think of subnets as AZs.
@@ -306,19 +306,95 @@ VPC allows control over subnets
  - The Maximun size = size of the VPC.
  - When sharing with the outside network (like bursting from corporate) watch out for IP conflicts.
  
- VPC also gives you control over route table or NATs
+ VPC(Virtual Private Cloud) also gives you control over route tables or NATs (Network Adress Translation)
  - Route table: "what traffic goes down which line" - depends on sender and target.
- NAT(Network Adress Trasnlation) lets machines "hide" on private network, but still be able to get out fo network.
+ NAT(Network Adress Translation) lets machines "hide" on private network, but still be able to get out fo network.
  AWS provides a NAT instance for this pourpouse.
  
- VPC gaves you control over network gateways.
+ VPC(Virtual Private Cloud) gaves you control over network gateways.
  - Internet gateways (IG): Allows VPC resources to access the internet.
  - And is the only way for this resources to access the internet.
  - Can be connected/disconnected programatically (for example when you are doing patch updates on your EC2 servers, you can connect
  your IG, pull down your patches, and then disconnect your IG.)
  
- There is also a VPN Gataway or VPG: this is a hardware VPN solution mates with on-premise VPN. Your On-prem must obey BGP, or
- Border Gate Protocol.
+ There is also a VPN Gateway or VPG: this is a hardware VPN solution which matches with on-premise VPN. Your On-prem must obey BGP, or
+ Border Gate Protocol (router protocol)
+ 
+ A software VPN(Virtual Private Cloud) is also possible. "OpenVPN" is a popular solution.
+ 
+ VPN(Virtual Private Cloud) also gives you control over ingress and egress security groups. This is only for EC2, but you can control 
+ both inbound (as EC2 Classic), and outbound. This can be used, for example, to allow EC2, to access a package repository, but don`t 
+ access anywhere else on the internet.
+ 
+ Additionally, network access control lists(NACLs) can allow or deny traffic in/out of your subnet.
+ 
+ VPC(Virtual Private Cloud) can control over multiple NICs (Network Interface Cards) -while a single EC2, can have now more than one
+ NIC card; this depends on the instance type - this is known as ENI(Elastic Network Interface). They can be added/removed from a running
+ intance and they come at no additional cost.
+ 
+ VPC(Virtual Private Cloud) have the option to run in dedicated hardware - this reserves the entire physical server for a single tenancy,
+ althoug is very costly. 
+ 
+ VPC(Virtual Private Cloud) comes with several shortcomings:
+ - only select resources can be launch on VPC: currently this includes ELB, with support to balance web/app tier, only in the VPC.
+ - EC2, and EBS, Autoscaling.
+ - RDS(Relational Database Service).
+ - ElasticCache.
+ - Provides not any broadcast or multicast support- the same as EC2_classic.
+ -You should launch all your desired resources, all of them toghether, either inside or outside of your VPC(Virtual Private Cloud).
+I f you try to put part in, and part out, you will have a network lag, that will slow down your app.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  [5:13]
 
