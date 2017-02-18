@@ -1,9 +1,14 @@
 AWS: S3 - Simple Storage Service.
+=================================
 
-ref: https://aws.amazon.com/es/documentation/s3/
+ref: 
+https://aws.amazon.com/es/documentation/s3/
+https://aws.amazon.com/sqs/
 
-INTRODUCTION:
-============
+
+
+INTRODUCTION TO S3(Simple Store Service):
+========================================
 
 you can put any data file in S3 (Simple Storage Service)
 they are organiced in "Buckets".
@@ -53,7 +58,7 @@ There are three ways to store policies:
 PRICING:
 ========
 
-Starts around 0.10$ per GB/month for "standard" S3 - the fee gets cheaper, if you use more.
+Starts around 0.X0$ per GB/month for "standard" S3 - the fee gets cheaper, if you use more.
 
 Bandwith:
   IN: FREE
@@ -105,8 +110,6 @@ EBS, so it can do more important tasks, with this, the cost of the EBS, is much 
 The second step, is set up Glacier for archival, Control access, set up Livecicle policies, Investigate advanced users: 
 like Website hosting, direct to S3 uploads.
  
-
-
 
 log in main server server:
 
@@ -254,8 +257,8 @@ There is also Bandwidth charges
    - And $0.1 GB, in and aout accross AZs.
    
 
-INTRODUCTION TO VPC:
-====================
+INTRODUCTION TO VPC(Virtual Private Cloud):
+===========================================
 
 VPC stands for Virtual Private Cloud. VPC allows a logical isolation between your resources: From other constumers, and from internal 
 divisions or application tiers.
@@ -377,13 +380,14 @@ Its very useful for notification, alerting, logging, and monitoring.
 
 SNS, have API & AWS_console support. So you can programmatically launch actions, and subscribe/unsubscribe from lists.
 
+Is based in a Push system, (contrary to a Pull system), so subscribers , get notifications when they are producced.
  
 SNS setup:
 ==========
 
 - First, you create, what is call: a Topic. -think of it as a mailbox or email alias.
 - then, you add subscribers.
-- subscribers, have to confirm (http, email, or SQS with permissions).
+- subscribers, have to confirm (http, email, or SQS(Amazon Simple Qeue Service) with permissions).
 - then you send messages to the Topic, and the subscribers, will receive the message.
 
 SNS subscriber types:
@@ -392,7 +396,47 @@ SNS subscriber types:
 - http/s: any http/s endpoint, doesn't matter if it belongs to AWS or not. this is really usefull for programmatically consume notifications.
 - emai/email-JSON: good for humans/ programmatically consumption.
 - SMS: good for humans- really good for ALERTS.
-- SQS: good for logging, and automation.
+- SQS: good for logging, and automation. [ref: https://aws.amazon.com/sqs/]
+
+SNS best practices:
+===================
+
+- Subscribe to a 2nd SQS service for http/sms/email notificqations; this allows workers, to get notifications from SQS(Amazon Simple
+Qeue Service) and logg the processes- if the primary subscriber, dont receive the message, you have a copy with the SQS, and can be
+inmediatly re-processed by workers, or for logging.
+
+Introduction to SES(Simple Email Service):
+==========================================
+
+SES(Simple Email Service) allows to send emails, to external users of AWS.
+Useful for bulk/marketing emails.
+
+PLEASE: check/comply with CAN-SPAM Compliance.
+
+SNS vs SES:
+===========
+
+-SNS emails/subscriptions must be confirmed.
+-SNS only supports plain text.
+-SNS cannot customize emails per customer.
+
+SES best practices:
+===================
+
+- Send emails directly from EC2 servers: It's best to create a EC2 role with SES capability.
+-You can directly launch that server into that role, and send over the SMPT relay- its also recommended to use SMPT, but not the API.
+-Comply with the CAN-SPAM rules.
+-Use SPF, Sender ID, and DKIM.
+
+INTRODUCTION TO SQS(Simple Qeue Service):
+=========================================
+
+- You can work with qeues, it check calls and posts. You can batch process the work.
+- Qeues or "posting notes" are efficient and scalable systems.
+   ·multiple outside callers can leave a message.
+   ·multiple workers can process though a message list.
+-Technically is defined as a "Loose Coupled" system -check/google about it-
+-This allows to scale in each tier- this is allows to SOA(Software Oriented Arquitecture).
 
 
 
