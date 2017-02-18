@@ -446,13 +446,16 @@ INTRODUCTION TO SQS(Simple Qeue Service):
 -Technically is defined as a "Loose Coupled" system -check/google about it-
 -This allows to scale in each tier- this is allows to SOA(Software Oriented Arquitecture).
 
-SQS(Simple Qeue Service) is usually used with SNS(Simple Notification Service), as a 2nd bucket for transitory messages.
+SQS(Simple Qeue Service):
 -Its have no limit to the number of messages in a qeue or the number of qeues.
 -Each SQS, can serve a different listener: database, processor, ...
 -SNS(Simple Notification System) can resort to SQS, and it recomended to use SQS to reconciliate http listeners.
+-SQS, usually is used with SNS(Simple Notification Service), as a 2nd bucket for transitory messages.
 -It have time-up support.
+-It have API & AWS_console support (you can automate it).
 
 SQS cons:
+-Its "Pull" based.
 -the order of messages is not guaranteed, -and you can end up with more than once delivery.- so the workers, need to be able, to
 run the same process/data process twice, and put out the same result (idempotent)- so you should consider SWF(Simple Work Flow), 
 that delivers exactly one delivery, if you have sensitive transactions/process (like finantial transactions)-
@@ -460,6 +463,7 @@ that delivers exactly one delivery, if you have sensitive transactions/process (
 messages out of the qeue.
 -it need explicit delete orders to the message. The SQS, doesnt know if the workers do something useful with the messages, so 
 it actually needs someone tells it to delete the messages.
+-As said first, is a "Pull" based systems, so messages are in the qeue until workers, pull it (and delete it), or the time-up runs.
 
 SQS setup:
 -Create a qeue.
@@ -467,6 +471,39 @@ SQS setup:
 -Make workers to poll the qeue.
 -Workers must delete the message from the qeue explicitly.
 -Old messages will fall off the qeue.
+
+SQS vs. SWF:
+-SWF is actually a full ent-to-end workflow engine.
+-SWF guarantees exactly one delivery.
+-SWF provides advanced features as: signaling, logging, markers, et cetera.
+
+SQS user cases:
+-SQS should be used as the interface between the layers of your app.
+·for example:
+   - AWS order processing.
+   - machine to machine messaging.
+   
+INTRODUCTION to IAM(Identity and Access Management):
+====================================================
+
+IAM, control access to AWS resources. each user gets it own set of cryptographic keys. It sets the users privileges to control actions.
+Accesses can be time controlled: permanent or short term.
+
+IAM, enables EC2 roles, that means, that EC2 instances, can get roles.
+
+It can handle MFA(Multy Factor Authentification). FOBs cost something, and there is also a virtual FOB for Android&iOS.
+
+It also have STS(Security Token Service), is somewhat similar to Kerberos, in the sense it can expire AWS resource access.
+
+Best Practices: 
+
+-Once you created the Master account, create an IAM_root_account, to access your thing, this is actually a safe/falloff
+measurement.
+-Create master accounts, for the groups: Production, Dev, Test.
+
+
+
+
 
 
 
