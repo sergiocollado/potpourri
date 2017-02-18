@@ -366,8 +366,39 @@ VPC(Virtual Private Cloud) allows control over subnets
  the IG.
  
  
+Introduction to SNS(Simple Notification Service):
+=================================================
+
+SNS(Simple Notification Service) is used to send internal notifications inside AWS: 
+-from an application or an user.
+-to an application or an user.
+
+Its very useful for notification, alerting, logging, and monitoring.
+
+SNS, have API & AWS_console support. So you can programmatically launch actions, and subscribe/unsubscribe from lists.
+
  
- 
+SNS setup:
+==========
+
+- First, you create, what is call: a Topic. -think of it as a mailbox or email alias.
+- then, you add subscribers.
+- subscribers, have to confirm (http, email, or SQS with permissions).
+- then you send messages to the Topic, and the subscribers, will receive the message.
+
+SNS subscriber types:
+=====================
+
+- http/s: any http/s endpoint, doesn't matter if it belongs to AWS or not. this is really usefull for programmatically consume notifications.
+- emai/email-JSON: good for humans/ programmatically consumption.
+- SMS: good for humans- really good for ALERTS.
+- SQS: good for logging, and automation.
+
+
+
+
+
+
  
  
 
