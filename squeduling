@@ -98,7 +98,35 @@ ones can be dependant of the results of others tastks.- This states the problem 
 problem of priority inversion :S ... if we are not careful.
 
 
+PRE-EMPTIVE SYSTESM:
 
+ In a Job is running, and is stoped, for running another job, and then it is call again, and it continues, where it have stoped, then
+ this schedule type is known as a pre-emptive system.
+ 
+ for a scheduler to be pre-emptive, the scheduler must be able to save the current statuts of the actual task, and then switch to another
+ task.
+ 
+ the process of switching context, usually is triggered by a timer, provided by de OS, when the timer triggers de interrupt, this makes
+ the OS, run a routine call, __IRS__(), first thing it does is block the interrupts, son nothing can alter its process. Then it stores
+ the regitsters, to the task stack -using architecture specific, assembly code- 
+ 
+ Void __ISR__(){
+ cli(); //disable interrupts
+ stores_context(); 
+ next_job();
+ load_context();
+ sei(); //enable interrupts
+ reti(); //return
+ }
+ 
+ Then the squedule decides on what will be the next task, and then loads the context backk to the new task, because this was saved
+ last time the task was interrumped. Now the system is ready to continue executing.the OS enables interrupts again, and then returns
+ from the ISR.
+ 
+ This procedure of context switch, takes some time, and is refered as the "Context Switch overhead", and must be taken into account,
+ when planning a real-time system and its timeline.
+ 
+ 
 
 
 
