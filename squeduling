@@ -8,7 +8,7 @@ The schedule orginaize the tastk for try to comply with the above requirements.
 So we can find, several task status:
 
 - Ready state: It's not executed at the moment, but it is such a state, that can start exectution, when the sckedule, signals it.
-
+  
 - Running state: When the sckquedule tast is Ready, and is selected for execution, it start its action, and now is Running.
 
 - Blocked state: When a Running Task is running, it can be blocked for several reasons. That means that this task is not running any
@@ -30,18 +30,30 @@ Scheduling example:
 0     1     2     3     4     5     6     7     8     9     10
 
 And three tasts: T1, T2 and T3:
+
+
+T - task
+T1 -task 1. time(T1) = 1
+T2 -task 2. time(T2) = 0.5
+T3 -task 3. time(T3) = 3
+
  ____    __     ________________
 |    |  |  |   |                |
 | T1 |  |T2|   |      T3        |
 |____|  |__|   |________________|
 
 
-With the deathlines acording to the figure below
+With the deathlines acording to the figure below:
 
+
+D - death-line
+D1 -death-line task1 = 2
+D2 -death-line tast2 = 2.5
+D3 -death-line tast3 = 5
 
            D1 D2             D3
             |  |              |
-            x  x              x
+            V  V              V
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|----->
 0     1     2     3     4     5     6     7     8     9     10
 
@@ -52,7 +64,7 @@ The schedule may want to allocate the T3, the first, because it might be the mos
 
            D1 D2             D3
             |  |              |
-            x  x              x
+            V  V              V
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|----->
 0     1     2     3     4     5     6     7     8     9     10
  ________________ ____ __  
@@ -66,13 +78,9 @@ This squeduler is not feaseble, even thougth Task3, might be the most important 
 
 But if we change the squedule, so it choose first T1, and then T2, and then T3, we see:
 
-T - task
-D - death-line
-
-
            D1 D2             D3
             |  |              |
-            x  x              x
+            V  V              V
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|----->
 0     1     2     3     4     5     6     7     8     9     10
  __________________________ 
