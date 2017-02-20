@@ -1,0 +1,57 @@
+squeduling for real-time systems:
+=================================
+
+we want to comply with time constrictions and functionality constrictions.
+
+The schedule orginaize the tastk for try to comply with the above requirements.
+
+So we can find, several task status:
+
+- Ready state: It's not executed at the moment, but it is such a state, that can start exectution, when the sckedule, signals it.
+
+- Running state: When the sckquedule tast is Ready, and is selected for execution, it start its action, and now is Running.
+
+- Blocked state: When a Running Task is running, it can be blocked for several reasons. That means that this task is not running any
+more, and cannot be squeduled at the next squeduling point. This can happen, when that Task is in a delay, waiting data to be send, or
+receiving data. When the delay runs out, then the Task, moves its state to Ready Task, and it can be scheduled again.
+
+¿Can a Task, put another Task in Blocked state? - Yes.
+
+-Suspensiton state: Another state, is the Suspension of a task, if the user or the systme, consider that this task should not be scheduled
+again. 
+
+
+A squedule that never looses a death line is call FEASEABLE, this depends on its squedule algoritm.
+
+Scheduling example:
+
+
+|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|----->
+0     1     2     3     4     5     6     7     8     9     10
+
+And three tasts: T1, T2 and T3:
+ ____    __     ________________
+|    |  |  |   |                |
+| T1 |  |T2|   |      T3        |
+|____|  |__|   |________________|
+
+
+With the deathlines acording to the figure below
+
+
+           T1 T2             T3
+            |  |              |
+            x  x              x
+|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|----->
+0     1     2     3     4     5     6     7     8     9     10
+
+
+
+
+
+
+
+
+
+
+
