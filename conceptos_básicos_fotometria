@@ -1,0 +1,28 @@
+TERMINOS y DEFINICIÓNES DE FOTOMETRIA:
+======================================
+
+FLUJO LUMINOSO (F): Es la medida de la potencia luminosa percibida. Y está ajustada para para reflejar la sensibilidad del ojo humano a las diferentes longitudes de onda (colores).
+Su unidad en SI, es el lumen(lm) [lm = cd.sr]
+
+EMITANCIA LUMINOSA(Mv): Es la cantidad de flujo luminoso que emite una superficie por unidad de área. Su unidad en SI, es el lux (lx).
+
+Mv = F/ S;
+
+ILUMINANCIA(Ev): Es la cantidad de flujo luminoso que incide sobre una superficie por unidad de área. Su unidad en SI, es el lux (lx).
+
+Ev = F / S ;
+
+
+INTENSIDAD LUMINOSA(Iv): Es la cantidad de flujo luminoso que emite una fuente por unidad de ángulo sólido. Su unidad en SI, es la candela (Cd).
+
+Iv = F / Ω = [cd · sr / sr= Cd]
+
+LUMINANCIA (Lv): Es la densidad angular, rectangular y superficial de flujo luminoso que atraviesa una superficie siguiendo una dirección determinada. Su unidad son cd/m^2
+
+
+Lx = lm/m^2 = [cd · sr = lm] = cd · sr / m^2 
+
+Referencia:
+
+Luminancia: https://es.wikipedia.org/wiki/Luminancia
+Ecuaciones: https://www.compuphase.com/electronics/candela_lumen.htm
