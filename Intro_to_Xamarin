@@ -61,6 +61,13 @@ Install when ready. The installation program requires 34,05 GB¡! - up to more t
     
 Xamarin.Forms is a software that allows to design at once a UI for Android, iOS, and MS.
 
+Additional info:
+https://developer.xamarin.com/guides/cross-platform/application_fundamentals/building_cross_platform_applications/
+https://developer.xamarin.com/guides/cross-platform/application_fundamentals/shared_projects/
+https://developer.xamarin.com/guides/cross-platform/application_fundamentals/pcl/introduction_to_portable_class_libraries/
+http://www.hanselman.com/blog/XamarinFormsWriteOnceRunEverywhereANDBeNative.aspx
+https://github.com/xamarin/xamarin-forms-samples
+
 
 
 
