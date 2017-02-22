@@ -501,9 +501,26 @@ Best Practices:
 measurement.
 -Create master accounts, for the groups: Production, Dev, Test.
 
+More info:
+http://aws.typepad.com/aws/2011/08/aws-identity-and-access-management-now-with-identify-federation.html
 
+INTRODUCTION TO ROUTE53:
+========================
 
+Route53, is the Amanzons distributed DNS for AWS.
 
+It supports all major record types
+ -A (address record)
+ -AAAA (IPv6 address record)
+ -CNAME (Canonical name record)
+ -MX (Mail Exchange Record)
+ -NS (Name Server)
+ -PTR (pointer record)
+ -SOA (Start of authority record)
+ -SPF (Sender Policy framework)
+ -SVR (service locator)
+ -TXT (text record)
+ 
 
 
 
