@@ -17,7 +17,8 @@ INTENSIDAD LUMINOSA(Iv): Es la cantidad de flujo luminoso que emite una fuente p
 
 Iv = F / Ω = [cd · sr / sr= Cd]
 
-LUMINANCIA (Lv): Es la densidad angular, rectangular y superficial de flujo luminoso que atraviesa una superficie siguiendo una dirección determinada. Su unidad son cd/m^2
+LUMINANCIA (Lv): Es la densidad angular, rectangular y superficial de flujo luminoso que atraviesa una superficie siguiendo una 
+dirección determinada. Su unidad son cd/m^2. Es la variable medible que más se acerca a la percepción de brillo de una persona.
 
 
 Lx = lm/m^2 = [cd · sr = lm] = cd · sr / m^2 
