@@ -10,9 +10,6 @@ AWS: S3 - Simple Storage Service.
 
 ref: 
 https://aws.amazon.com/es/documentation/s3/
-https://aws.amazon.com/certification/faqs/
-https://aws.amazon.com/sqs/
-
 
 
 INTRODUCTION TO S3(Simple Store Service):
@@ -523,8 +520,13 @@ It supports all major record types
  
 
 
-
-
+REFERENCES:
+https://aws.amazon.com/es/documentation/s3/
+https://aws.amazon.com/certification/faqs/
+https://aws.amazon.com/articles/
+https://aws.amazon.com/es/documentation/
+https://aws.amazon.com/sqs/
+https://aws.amazon.com/en/training/path-developing/
 
 
  
