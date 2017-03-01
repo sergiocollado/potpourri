@@ -45,13 +45,24 @@ In Linux, you have:
 
 ##Creating a server:
 
+To use a http server and client you need to define it with 'require(\'http'\)'
+The code-word 'require' is used to load module (kind of libraries).
+
 To create a server, you use the function 'createServer'
 
 ```javascript
 var http=require('http');
-var server=http.createServer(function(request,response))
+var server=http.createServer(function(request,response)
 {
  //data process goes here.
+});
+```
+If you want to implement as an event listener, you can do it like:
+
+```javascript
+var server=http.createServer();
+server.on('request',function(request,respon){
+//data process goes here.
 });
 ```
 
