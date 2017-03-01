@@ -5,15 +5,13 @@ FOREWORD:
 of writting them down, and have a resource where quickly find answers to my doubs, based on my experience. 
 
 
-AWS: S3 - Simple Storage Service.
-=================================
+#AWS: S3 - Simple Storage Service.
 
 ref: 
 https://aws.amazon.com/es/documentation/s3/
 
 
-INTRODUCTION TO S3(Simple Store Service):
-========================================
+##INTRODUCTION to S3(Simple Store Service):
 
 you can put any data file in S3 (Simple Storage Service)
 they are organiced in "Buckets".
@@ -27,19 +25,21 @@ so: sergio.collado.com -> collado-images.s3.amazonaws.com
 
 and include in the web, as:
 
+```html
 <html>
 <body>
 <img src="http://sergio.collado/path/to/logo" alt="AWS_lOGO">
 ...
+```
 
-ACCESS CONTROL:
-==============
+##ACCESS CONTROL:
+
 
 Objects, also have 4 types of access control:
- · IAM policies
- · Bucket policies
- · ACLs(Acess Control Lists) - AWS console
- · Query string autentification - gives expiring acess.
+ - IAM policies
+ - Bucket policies
+ - ACLs(Acess Control Lists) - AWS console
+ - Query string autentification - gives expiring acess.
  
  
  more info about Buckets in: http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucketPolicies.html
@@ -48,20 +48,18 @@ Objects, also have 4 types of access control:
  The bucket also saves some information about the files: type, creation date, ...
  more info in: http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html
  
-STORING POLICIES:
-=================
+##STORING POLICIES:
 
 There are three ways to store policies:
  · Standard ( "11 9's") - that means that if you have 1 million files stored there, you will loose one, everty 10.000 years.
    · it comes at greatest cost, but is the default.
- · Reduced Redundancy Storage (RRS) - is ("4 9s") - it means that if you have 10000 files there, you'll probable loose one every year.
+ · Reduced Redundancy Storage (RRS) - is ("4 9s") - it means that if you have 10000 files there, you'll probable lose one every year.
    · It cost is reduced about 20% / Great for reproducible assets
    · RRS, can trigger notifications, on "object missing". 
  · Glaciar it has ("11 9's), but is great draw back is queued retrieval -you cannot get it back in real time- 
-   · But is cost is about the 10% of the standard option - which make a great choise for arcivals, and back-ups.
+   · But is cost is about the 10% of the standard option - which make a great choise for archivals, and back-ups.
    
-PRICING:
-========
+##PRICING:
 
 Starts around 0.X0$ per GB/month for "standard" S3 - the fee gets cheaper, if you use more.
 
@@ -69,25 +67,25 @@ Bandwith:
   IN: FREE
   OUT: Same Region: free
        Out of region: Starts at 0.12$ GB/month.
-  REQUEST al also costy: (PUT, GET, POST, LIST) - Starts at 0.0055/1000 request.
+  REQUEST al also costy: (PUT, GET, POST, LIST) - Starts at 0.00xx/1000 request.
    
  Just have in mind, that data trasnsfer inside your region is free!  
    
    
-ADVANCED FEATURES OF S3
-=======================
+##ADVANCED FEATURES OF S3
+
 
  S3 also allows for:
  
-  ·light, static, website hosting.
-  ·Object squeduled expiration.
-  ·Encryption Options
-  ·Versioning
-  ·Logging
-  ·"Direct from browser" upload to s3
-  ·Multipart files upload
-  ·Requested pays
-  ·BitTorrent Support
+  - light, static, website hosting.
+  - Object squeduled expiration.
+  - Encryption Options
+  - Versioning
+  -Logging
+  - "Direct from browser" upload to s3
+  - Multipart files upload
+  - Requested pays
+  - BitTorrent Support
    
 - Simple static website hosting: You can rename to a domain you own  (Easy CNAMEd).
 - Index, and Error documents support.
@@ -107,7 +105,7 @@ the bucket object. 5GB limitation on file size. ref -> http://aws.amazon.com/art
  ref: http://docs.aws.amazon.com/AmazonS3/latest/dev/S3Torrent.html
  
  
- ·First steps: 
+ ##First steps: 
  
 The best is to migrate all static content to S3 (images, CSS, Javascript, HTML, etc...)- this reliebes the load on your
 EBS, so it can do more important tasks, with this, the cost of the EBS, is much more lower, and gets more performance.
