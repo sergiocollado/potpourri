@@ -36,8 +36,24 @@ In Linux, you have:
  + Get the source code, for example from its web: 'wget http://nodejs.org/dist/vx.xx.x/node-vx.xx.tar.gz
  + uncompress it.
  + Compile it:
-   -  './configure'
+   - './configure'
    - 'make'
    - 'make install'
+
+
+#Starting:
+
+##Creating a server:
+
+To create a server, you use the function 'createServer'
+
+'var http=require('http');
+var server=http.createServer(function(request,response))
+{
+ //data process goes here.
+});'
+
+
+
 
 
