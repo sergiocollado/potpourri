@@ -48,11 +48,11 @@ In Linux, you have:
 To create a server, you use the function 'createServer'
 
 ```javascript
-'var http=require(\'http\');
+var http=require('http');
 var server=http.createServer(function(request,response))
 {
  //data process goes here.
-});'
+});
 ```
 
 
