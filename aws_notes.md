@@ -525,7 +525,7 @@ https://aws.amazon.com/articles/
 https://aws.amazon.com/es/documentation/
 https://aws.amazon.com/sqs/
 https://aws.amazon.com/en/training/path-developing/
-
+https://aws.amazon.com/training/intro_series/
 
  
  
