@@ -6,6 +6,8 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 
 ### Markdown
 
+check: https://help.github.com/articles/basic-writing-and-formatting-syntax/#section-links
+
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
 ```markdown
@@ -28,6 +30,7 @@ Syntax highlighted code block
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
+More: https://help.github.com/articles/basic-writing-and-formatting-syntax/#section-links
 More on GFM https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
 
