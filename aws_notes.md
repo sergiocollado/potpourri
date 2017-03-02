@@ -1,15 +1,13 @@
 
-
 FOREWORD:
-· This are my personal notes, on the UDEMY AWS CLOUD course, the aim of this docuent,is to clarify my ideas, by means
-of writting them down, and have a resource where quickly find answers to my doubs, based on my experience. 
-
+· This are my personal notes, on the AWS Cloud. The aim of this docuent,is to clarify my ideas, by means
+of writting them down, and have a resource where quickly find answers to my doubts, based on my experience. 
 
 #AWS: S3 - Simple Storage Service.
 
 ref: 
 https://aws.amazon.com/es/documentation/s3/
-
+http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html
 
 ##INTRODUCTION to S3(Simple Store Service):
 
@@ -17,9 +15,21 @@ you can put any data file in S3 (Simple Storage Service)
 they are organiced in "Buckets".
 -Bucket names are globally unique, so you have to take one with a name non taken yet.
 
+You can have one, or more buckets, for each bucket you can manage its group access, 
+thus enable users, and rights to upload, delete, change ... also you will have access
+to the logs of those buckets.
+You can control the geographic zone, where AWS will store the buckets and its contents.
+
+Watch out, because each bucket name must be unique in AWS, and once you create it, 
+you can not change the name. Its recomended that buckets comply with DNS naming
+convections
+
+You can have, by default, up to 100 buckets in an account. You can request more, if you need them.
+By default, buckets are private, you have to edit the privileges if you need to.
+
 easy to DNS CNAME a URL to your bucket.
 bucket name: sergio-images
-but my desired domein is sergio.collado.com 
+but my desired domain is sergio.collado.com 
 
 so: sergio.collado.com -> collado-images.s3.amazonaws.com
 
@@ -30,23 +40,24 @@ and include in the web, as:
 <body>
 <img src="http://sergio.collado/path/to/logo" alt="AWS_lOGO">
 ...
+</body>
+</html>
 ```
 
 ##ACCESS CONTROL:
 
-
-Objects, also have 4 types of access control:
+Objects, also have types of access control:
  - IAM policies
  - Bucket policies
  - ACLs(Acess Control Lists) - AWS console
  - Query string autentification - gives expiring acess.
+ - AWS management console. (sign in: https://console.aws.amazon.com/s3.)
  
+More info about Buckets in: http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucketPolicies.html
+More info about ACLs in: http://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html
  
- more info about Buckets in: http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucketPolicies.html
- more info about ACLs in: http://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html
- 
- The bucket also saves some information about the files: type, creation date, ...
- more info in: http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html
+The bucket also saves some information about the files: type, creation date, ... (meta data)
+More info in: http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html
  
 ##STORING POLICIES:
 
@@ -61,7 +72,9 @@ There are three ways to store policies:
    
 ##PRICING:
 
-Starts around 0.X0$ per GB/month for "standard" S3 - the fee gets cheaper, if you use more.
+https://aws.amazon.com/s3/pricing/
+
+Starts around 0.0X$ per GB/month for "standard" S3 - the fee gets cheaper, if you use more.
 
 Bandwith:
   IN: FREE
@@ -71,9 +84,10 @@ Bandwith:
    
  Just have in mind, that data trasnsfer inside your region is free!  
    
+###AWS free usage tier
+As part of the AWS Free Usage Tier, you can get started with Amazon S3 for free. Upon sign-up, new AWS customers receive 5 GB of Amazon S3 standard storage, 20,000 Get Requests, 2,000 Put Requests, and 15GB of data transfer out each month for one year.
    
 ##ADVANCED FEATURES OF S3
-
 
  S3 also allows for:
  
@@ -81,7 +95,7 @@ Bandwith:
   - Object squeduled expiration.
   - Encryption Options
   - Versioning
-  -Logging
+  - Logging
   - "Direct from browser" upload to s3
   - Multipart files upload
   - Requested pays
@@ -95,19 +109,20 @@ Bandwith:
 - Versioning. Once is On, it can never can go back to Off, so you will be storing all your development. ##
 - Logging: you can get IP, operations, dates, . Can be On/Off anytime. Watch out! store the logs, in another Bucket!
 - Direct on brownser upload: You can grant users to directly upload to your bucket uses IAM/STS services to generate a url for
-the bucket object. 5GB limitation on file size. ref -> http://aws.amazon.com/articles/1434
- If you want to upload more than 5GB, you have to use multi-part files upload, that is just limited to SDK(Java, iOs,PHP, Ruby); 
- the client chuncks the file into pieces. Loads each piece separately. Client closes file. S3 reassembles the file. This also allows
- stop/star partial uploads. With this method the max file size is 5TB.
- ref: http://docs.aws.amazon.com/AmazonS3/latest/dev/uploadobjusingmpu.html
+
+The bucket object. 5GB limitation on file size. ref -> http://aws.amazon.com/articles/1434
+If you want to upload more than 5GB, you have to use multi-part files upload, that is just limited to SDK(Java, iOs,PHP, Ruby); 
+the client chuncks the file into pieces. Loads each piece separately. Client closes file. S3 reassembles the file. This also allows
+stop/star partial uploads. With this method the max file size is 5TB.
+
+ref: http://docs.aws.amazon.com/AmazonS3/latest/dev/uploadobjusingmpu.html
  - Request payment. always if the client is a AWS registered partner/customer.
- - Bittorret support (P2P protocoll) max file size 5GB
- ref: http://docs.aws.amazon.com/AmazonS3/latest/dev/S3Torrent.html
+ - Bittorret support (P2P protocoll) max file size 5GB- ref: http://docs.aws.amazon.com/AmazonS3/latest/dev/S3Torrent.html
  
  
  ##First steps: 
  
-The best is to migrate all static content to S3 (images, CSS, Javascript, HTML, etc...)- this reliebes the load on your
+The best is to migrate all static content to S3 (images, CSS, Javascript, HTML, etc...)- this relieves the load on your
 EBS, so it can do more important tasks, with this, the cost of the EBS, is much more lower, and gets more performance.
    
 The second step, is set up Glacier for archival, Control access, set up Livecicle policies, Investigate advanced users: 
@@ -143,9 +158,7 @@ Gon ; s3tools.org/download
   
   
   we have provide the kees> using > credential needed, > access credenctiasn "Aceess Keys´2"
-  
- 
-  
+    
   intall the keys. 
   
   w3cdmd --help 
@@ -168,16 +181,17 @@ DESCRIPTION:
     Streaming uses propietary protocols, unlike http. Cloud Front uses Adobe/macromedia RTMP (Real Time Messaging Protocol), also the is
     an encrypted version: RTMPE (Real Time Messaging Protocol Encrypted)
     
- This is natively integrated in AWS, you can specify S3 Buckets as origins. Its interface is very easy, also supports standard http/s
- also streaming with RTMP/E, and is very cost effective: Contents are only cached, at edges, when there is a user request, and you can 
- free that chache, on demand or on squedule.
+This is natively integrated in AWS, you can specify S3 Buckets as origins. Its interface is very easy, also supports standard http/s
+also streaming with RTMP/E, and is very cost effective: Contents are only cached, at edges, when there is a user request, and you can 
+free that chache, on demand or on squedule.
  
-  Data can be "expired":
-     - On squedule
-     - On demand.
+ Data can be "expired":
+ - On squedule
+ - On demand.
  
- HOW TO SET A CLOUDFRONT:
- ========================
+ 
+HOW TO SET A CLOUDFRONT:
+========================
  
  First you have to define a "Distribution":
     - you have to specify if this will be HTTP, or Streaming.
@@ -187,22 +201,22 @@ DESCRIPTION:
               - Path matches - this specifies what parts of your origin web server are going to be cached.
               - Logging - allows log request to Cloud Front.
               
- At this time you have created a distribution domain, you can easily rename using CNAMEd "vanity URLs" - this is useful in cases as
- Websites (CSS, JS, images references) or Applications (media players, web, mobile, or desktop apps).
+At this time you have created a distribution domain, you can easily rename using CNAMEd "vanity URLs" - this is useful in cases as
+Websites (CSS, JS, images references) or Applications (media players, web, mobile, or desktop apps).
  
- FINAL USER ACCESS:
- ==================
+FINAL USER ACCESS:
+==================
  
- When a final user access to a CDN (Content Delivery Network) URL, CloudFront directs the user to the closes edje, so it serves
- the data faster.
- This is a pulling mechanism, so if the closes edje to a client, doesn't have the required data, that edje request the data to the
- the origin edge, and pull that data down local, so next time a client request the data in that location, it will already stored 
- in the closest edje, and serviced faster.
+When a final user access to a CDN (Content Delivery Network) URL, CloudFront directs the user to the closes edje, so it serves
+the data faster.
+This is a pulling mechanism, so if the closes edje to a client, doesn't have the required data, that edje request the data to the
+the origin edge, and pull that data down local, so next time a client request the data in that location, it will already stored 
+in the closest edje, and serviced faster.
  
   
  
- INTRODUCTION TO ELASTIC CACHE:
-===============================
+INTRODUCTION TO ELASTIC CACHE:
+==============================
 
 - Elastic Cache is an in memory caching mechanism.
 - Is 100% Under the hood.
@@ -210,12 +224,12 @@ DESCRIPTION:
 - More properly is mem cache cluster.
 
 
- what is memcache/d ?
- --------------------
+what is memcache/d ?
+--------------------
  
- is a very popular, open source in-memory chache. very fast reads and writes. Because results came from memory not form disk.
- takes the burden from the back end resources and free them for more important work.
- This can be:
+Is a very popular, open source in-memory chache. very fast reads and writes. Because results came from memory not form disk.
+takes the burden from the back end resources and free them for more important work.
+This can be:
     - Databases.
     - Disk heads.
     - CPUs.
@@ -312,49 +326,50 @@ VPC(Virtual Private Cloud) allows control over subnets
  - The Maximun size = size of the VPC.
  - When sharing with the outside network (like bursting from corporate) watch out for IP conflicts.
  
- VPC(Virtual Private Cloud) also gives you control over route tables or NATs (Network Adress Translation)
+VPC(Virtual Private Cloud) also gives you control over route tables or NATs (Network Adress Translation)
  - Route table: "what traffic goes down which line" - depends on sender and target.
- NAT(Network Adress Translation) lets machines "hide" on private network, but still be able to get out fo network.
- AWS provides a NAT instance for this pourpouse.
+NAT(Network Adress Translation) lets machines "hide" on private network, but still be able to get out fo network.
+AWS provides a NAT instance for this pourpouse.
  
  VPC(Virtual Private Cloud) gaves you control over network gateways.
  - Internet gateways (IG): Allows VPC resources to access the internet.
  - And is the only way for this resources to access the internet.
  - Can be connected/disconnected programatically (for example when you are doing patch updates on your EC2 servers, you can connect
- your IG, pull down your patches, and then disconnect your IG.)
+your IG, pull down your patches, and then disconnect your IG.)
  
- There is also a VPN Gateway or VPG: this is a hardware VPN solution which matches with on-premise VPN. Your On-prem must obey BGP, or
- Border Gate Protocol (router protocol)
+There is also a VPN Gateway or VPG: this is a hardware VPN solution which matches with on-premise VPN. Your On-prem must obey BGP, or
+Border Gate Protocol (router protocol)
  
- A software VPN(Virtual Private Cloud) is also possible. "OpenVPN" is a popular solution.
+A software VPN(Virtual Private Cloud) is also possible. "OpenVPN" is a popular solution.
  
- VPN(Virtual Private Cloud) also gives you control over ingress and egress security groups. This is only for EC2, but you can control 
- both inbound (as EC2 Classic), and outbound. This can be used, for example, to allow EC2, to access a package repository, but don`t 
- access anywhere else on the internet.
+VPN(Virtual Private Cloud) also gives you control over ingress and egress security groups. This is only for EC2, but you can control 
+both inbound (as EC2 Classic), and outbound. This can be used, for example, to allow EC2, to access a package repository, but don't 
+access anywhere else on the internet.
  
- Additionally, network access control lists(NACLs) can allow or deny traffic in/out of your subnet.
+Additionally, network access control lists(NACLs) can allow or deny traffic in/out of your subnet.
  
- VPC(Virtual Private Cloud) can control over multiple NICs (Network Interface Cards) -while a single EC2, can have now more than one
- NIC card; this depends on the instance type - this is known as ENI(Elastic Network Interface). They can be added/removed from a running
- intance and they come at no additional cost.
+VPC(Virtual Private Cloud) can control over multiple NICs (Network Interface Cards) -while a single EC2, can have now more than one
+NIC card; this depends on the instance type - this is known as ENI(Elastic Network Interface). They can be added/removed from a running
+intance and they come at no additional cost.
  
- VPC(Virtual Private Cloud) have the option to run in dedicated hardware - this reserves the entire physical server for a single tenancy,
- althoug is very costly. 
+VPC(Virtual Private Cloud) have the option to run in dedicated hardware - this reserves the entire physical server for a single tenancy,
+althoug is very costly. 
  
- A very good point of AWS VPC, is that it allows compliance with very strict regulations as HIPPA, SOX, et cetera.
+A very good point of AWS VPC, is that it allows compliance with very strict regulations as HIPPA, SOX, et cetera.
  
  
- VPC cons:
- =========
- 
- VPC(Virtual Private Cloud) comes with several shortcomings:
+VPC cons:
+=========
+
+VPC(Virtual Private Cloud) comes with several shortcomings:
  - only select resources can be launch on VPC: currently this includes ELB, with support to balance web/app tier, only in the VPC.
  - EC2, and EBS, Autoscaling.
  - RDS(Relational Database Service).
  - ElasticCache.
  - Provides not any broadcast or multicast support- the same as EC2_classic.
  -You should launch all your desired resources, all of them toghether, either inside or outside of your VPC(Virtual Private Cloud).
-  If you try to put part in, and part out, you will have a network lag, that will slow down your app.
+
+If you try to put part in, and part out, you will have a network lag, that will slow down your app.
  -You can only have 5 VPC per account and per Region
  -You can only have 200 subnets per VPC. Subnets, can only be single AZ.
  -You can only have 1 IG(Internet Gateway) per VPC.
