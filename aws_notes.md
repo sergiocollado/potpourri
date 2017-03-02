@@ -5,15 +5,15 @@ of writting them down, and have a resource where quickly find answers to my doub
 
 #INDEX
 
- - [S3 - Simple Storage Service](S3 - Simple Storage Service.)
+ - [S3 - Simple Storage Service](s3 - simple storage service.)
  - [CLOUD FRONT](CLOUD FRONT)
 
 
 #S3 - Simple Storage Service.
 
-ref: 
-https://aws.amazon.com/es/documentation/s3/
-http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html
+references:
+- https://aws.amazon.com/es/documentation/s3/
+- http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html
 
 ##INTRODUCTION to S3(Simple Store Service):
 
