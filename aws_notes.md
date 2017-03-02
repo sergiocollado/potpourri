@@ -3,6 +3,13 @@ FOREWORD:
 · This are my personal notes, on the AWS Cloud. The aim of this docuent,is to clarify my ideas, by means
 of writting them down, and have a resource where quickly find answers to my doubts, based on my experience. 
 
+#INDEX
+
+ * [](#1)
+ * [](#2)
+
+
+
 #[AWS: S3 - Simple Storage Service.](#1)
 
 ref: 
@@ -163,18 +170,16 @@ Gon ; s3tools.org/download
   
   w3cdmd --help 
   s3cmd [feature] --help 
+
+#CLOUD FRONT
   
-  
-INTRODUCTION TO CLOUD FRONT:
-============================
+##INTRODUCTION to CLOUD FRONT:
 
--> Cloud Front is a CDN - Content Delivery Network.
-   It uses locations close to end user (Edges).
-   Other populars CDNs are Akamai, Level 3.
+Cloud Front is a CDN - Content Delivery Network.
+It uses locations close to end user (Edges).
+Other populars CDNs are Akamai, Level 3.
 
-DESCRIPTION:
-===========
-
+###DESCRIPTION:
 - Resources of static website assests: Images, CSS, JS, HTML, JSON.
 - Distributions: products, documents, data.
 - Streaming: audio, video.
@@ -190,16 +195,15 @@ free that chache, on demand or on squedule.
  - On demand.
  
  
-HOW TO SET A CLOUDFRONT:
-========================
+##HOW TO SET A CLOUDFRONT:
  
  First you have to define a "Distribution":
     - you have to specify if this will be HTTP, or Streaming.
     - Set an 'origin': any web-accesible web server will do: private server, EC2 or S3.
     - You can also specify: 
               - TTL (Time To Live)- this defines how often Cloud Front is going to check for a new version of the file.
-              - Path matches - this specifies what parts of your origin web server are going to be cached.
-              - Logging - allows log request to Cloud Front.
+              - Path matches; this specifies what parts of your origin web server are going to be cached.
+              - Logging; allows log request to Cloud Front.
               
 At this time you have created a distribution domain, you can easily rename using CNAMEd "vanity URLs" - this is useful in cases as
 Websites (CSS, JS, images references) or Applications (media players, web, mobile, or desktop apps).
