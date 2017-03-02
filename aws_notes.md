@@ -5,12 +5,11 @@ of writting them down, and have a resource where quickly find answers to my doub
 
 #INDEX
 
- * [](#1)
- * [](#2)
+ * [S3 - Simple Storage Service](#S3 - Simple Storage Service)
+ * [#CLOUD FRONT](##CLOUD FRONT)
 
 
-
-#[AWS: S3 - Simple Storage Service.](#1)
+#[S3 - Simple Storage Service.](#INDEX)
 
 ref: 
 https://aws.amazon.com/es/documentation/s3/
