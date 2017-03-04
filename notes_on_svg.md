@@ -1,7 +1,7 @@
 
-#ÑOTES SVG: Scalable Vector Graphics
+#NOTES SVG: Scalable Vector Graphics
 
-An example:
+An example of svg definition- the center of coordinates is top-left.
 
 ```html
 <svg version="1.1"
@@ -19,7 +19,37 @@ An example:
 ```
 
 The tag `<svg>` is the root tag.
+
 The background is set with: `<rect width="100%" height="100%" fill="red" />`
+
 We draw a circle with: `<circle cx="150" cy="100" r="80" fill="blue" />`
+
 We write a text with: `<text x="150" y="125" font-size="60" text-anchor="middle" fill="white">S</text>`
+
+##BASIC SHAPES
+
+Different tags, define diferent shapes and take different atributes.
+
+###Rectangles: 
+
+>`<rect x="60" y="10" rx="10" ry="10" width="30" height="30"/>`
+
+**x** <br \>
+The x position of the top left corner of the rectangle. <br \>
+**y**<br \>
+The y position of the top left corner of the rectangle.<br \>
+**width**<br \>
+The width of the rectangle<br \>
+**height**<br \>
+The height of the rectangle<br \>
+**rx**<br \>
+The x radius of the corners of the rectangle<br \>
+**ry**<br \>
+The y radius of the corners of the rectangle<br \>
+
+
+
+
+
+
 
