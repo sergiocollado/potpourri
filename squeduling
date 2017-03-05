@@ -27,6 +27,7 @@ Scheduling example:
 
 
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|----->
+
 0     1     2     3     4     5     6     7     8     9     10
 
 And three tasts: T1, T2 and T3:
@@ -214,6 +215,23 @@ terminated child processes of the calling process, excluding child processes whi
 **Portability Note**: The clock function described in CPU Time is specified by the ISO C standard. The times function is a feature of POSIX.1.
 On GNU systems, the CPU time is defined to be equivalent to the sum of the tms_utime and tms_stime fields returned by times.
 
+references:
+https://www.gnu.org/software/libc/manual/html_node/Time-Basics.html#Time-Basics </br>
+https://www.gnu.org/software/libc/manual/html_node/Processor-Time.html#Processor-Time </br>
+
+Supervision of programs:
+-----------------------
+
+It is easy to use an 'watchdog' daemon. The term 'watchdog' is usually refered and used to a mechanism that reset/reboots the
+process/progra/system if it detects that someaow is not running correctly or have stall at some point. Its a safe measurement.
+
+
+references:
+https://linux.die.net/man/8/watchdog
+https://linux.die.net/man/8/wd_keepalive
+https://linux.die.net/man/8/checkquorum
+https://linux.die.net/man/8/wdmd
+https://linux.die.net/man/8/wdmd_selinux
 
 
 
