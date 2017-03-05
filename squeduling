@@ -150,8 +150,9 @@ depends on the operating system process squeduler.
 If you want to check the time it takes a function from begining to end; then you can use the following `stdlib` function:
 
 With the header file **'times.h'** or **'sys/times.h'**, you can use the function **`'clock()'`**, this will return a struct with the 
-number of ticks of the clock for the current process. For using this function, you have to call it at the start of the period
-you want to measure, and at the end of it; Then, substract the **'start'** and **'end'** clocks, and ,divide it by the number of 
+number of ticks of the clock for the current proces: 'clock_t', it really is another name for a 'long integer'.
+For using this function, you have to call it at the start of the period
+that  you want to measure, and at the end of it; Then, substract the **'start'** and **'end'** clocks, and ,divide it by the number of 
 clock ticks per second (defined in the macro: **`CLOCKS_PER_SEC`**, or the 'sysconf' **`_SC_CLK_TCK_`**), to get the processor time.
 
 Example:
@@ -159,19 +160,21 @@ Example:
 ```C
 #include <time.h>
 
-clock_t start, end;
+clock_t start_tick, end_tack;
 double cpu_time_used;
 
 ...
 
-start = clock();
+start_tick = clock();
 
 ... // process data or else...
 
-end = clock();
+end_tack = clock();
 
-cpu_time_used = ((double)(end-start)/CLOCKS_PER_SEC);
+cpu_time_used = ((double)(end_tack-start_tick)/CLOCKS_PER_SEC);
 
+printf("cpu_time: %d sec", cpu_time_used);  //info we want.
+printf("CLOCKS_PER_SEC: %d\n", CLOCK_PER_SEC); //safety check
 ```
 
 Watch out: 
@@ -182,6 +185,8 @@ track time.
 If the clock() cant give you a result or it is not available, it returns the value '(clock_t)(-1)'.
 
 There is an old macro: `'int **CLK_TCK**'` - don't use it. Use a newer one.
+
+You should check the value of the clock_per_second constant that you system defines... just in case.
 
 Portability Note: The clock function described in CPU Time is specified by the ISO C standard. 
 clock() is standard C; it works "everywhere". There are system-specific functions, such as getrusage() on Unix-like systems.
