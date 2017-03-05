@@ -189,6 +189,7 @@ clock() is standard C; it works "everywhere". There are system-specific function
 reference: </br>
 https://www.gnu.org/software/libc/manual/html_node/Time-Basics.html#Time-Basics </br>
 https://www.gnu.org/software/libc/manual/html_node/CPU-Time.html#CPU-Time </br>
+http://stackoverflow.com/questions/5248915/execution-time-of-c-program </br>
 
 time interval measurement:
 -------------------------
