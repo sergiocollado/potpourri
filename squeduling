@@ -134,13 +134,24 @@ PRE-EMPTIVE SYSTESM:
 
 
 
-Poor mans profiler:
+Poor-mans profiler:
+-------------------
 
-If you want to check the time it takes a function from begning to end; then you can use the stdlib functions:
+Profile a program, means to measure it performance, that is to say, it time execution (mostly)
 
-With the header file 'times.h' you can use the function 'clock()', this will return a struct with number of ticks, of the clock.
-For using this function, you have to call it at the start of the period you want to measure, and at the end of it. Then, substract
-the 'start' and 'end' clocks, and divide it by the number of clock ticks per second, to get the processor time.
+CPU time measurement:
+---------------------
+
+CPU Time, is the CPU used time relative to a process, that is the amount of time that a certain process is using, of the CPU;
+take into account, that if several process, are running in parallel, each one will use the CPU certain amount of time, that
+depends on the operating system process squeduler.
+
+If you want to check the time it takes a function from begining to end; then you can use the following `stdlib` function:
+
+With the header file **'times.h'** or **'sys/times.h'**, you can use the function **`'clock()'`**, this will return a struct with the 
+number of ticks of the clock for the current process. For using this function, you have to call it at the start of the period
+you want to measure, and at the end of it; Then, substract the **'start'** and **'end'** clocks, and ,divide it by the number of 
+clock ticks per second (defined in the macro: **`CLOCKS_PER_SEC`**, or the 'sysconf' **`_SC_CLK_TCK_`**), to get the processor time.
 
 Example:
 
@@ -159,13 +170,49 @@ start = clock();
 end = clock();
 
 cpu_time_used = ((double)(end-start)/CLOCKS_PER_SEC);
+
 ```
 
+Watch out: 
 
+Take into account, that different computers, and operating systems have different resolutions, and different methods to 
+track time.
 
+If the clock() cant give you a result or it is not available, it returns the value '(clock_t)(-1)'.
 
+There is an old macro: `'int **CLK_TCK**'` - don't use it. Use a newer one.
 
+Portability Note: The clock function described in CPU Time is specified by the ISO C standard
 
+reference: </br>
+https://www.gnu.org/software/libc/manual/html_node/Time-Basics.html#Time-Basics </br>
+https://www.gnu.org/software/libc/manual/html_node/CPU-Time.html#CPU-Time </br>
+
+time interval measurement:
+-------------------------
+
+With the header file **'times.h'** or **'sys/times.h'**, if you want to measure some time interval, you can use the function:
+
+>'clock_t **times(struct tms *buffer)'
+
+The times function stores the processor time information for the calling process in buffer. Remeber 'clock_t' are the clock ticks.
+
+the tms struct, contains at least the following fields:
+
+- **clock_t tms_utime** - This is the total processor time the calling process has used in executing the instructions of its program.
+
+- **clock_t tms_stime** - This is the processor time the system has used on behalf of the calling process.
+
+- **clock_t tms_cutime** -In other words, it represents the total processor time used in executing the instructions of all the terminated child processes of the
+calling process, excluding child processes which have not yet been reported by `'wait'` or `'waitpid'`.
+
+- **clock_t tms_cstime** - This is similar to tms_cutime, but represents the total processor time the system has used on behalf of all the terminated child processes of the calling process.
+terminated child processes of the calling process, excluding child processes which have not yet been reported by wait or waitpid.
+
+**Macros**: defined in the macros: **`CLOCKS_PER_SEC`**, or the 'sysconf' **`_SC_CLK_TCK_`**. There is an old macro: `'int **CLK_TCK**'` - don't use it. Use a newer one.
+
+**Portability Note**: The clock function described in CPU Time is specified by the ISO C standard. The times function is a feature of POSIX.1.
+On GNU systems, the CPU time is defined to be equivalent to the sum of the tms_utime and tms_stime fields returned by times.
 
 
 
