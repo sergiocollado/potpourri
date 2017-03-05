@@ -183,7 +183,8 @@ If the clock() cant give you a result or it is not available, it returns the val
 
 There is an old macro: `'int **CLK_TCK**'` - don't use it. Use a newer one.
 
-Portability Note: The clock function described in CPU Time is specified by the ISO C standard
+Portability Note: The clock function described in CPU Time is specified by the ISO C standard. 
+clock() is standard C; it works "everywhere". There are system-specific functions, such as getrusage() on Unix-like systems.
 
 reference: </br>
 https://www.gnu.org/software/libc/manual/html_node/Time-Basics.html#Time-Basics </br>
