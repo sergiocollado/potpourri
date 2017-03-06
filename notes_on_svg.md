@@ -29,6 +29,7 @@ We write a text with: `<text x="150" y="125" font-size="60" text-anchor="middle"
 ##BASIC SHAPES
 
 Different tags, define diferent shapes and take different atributes.
+Remember that the center of coordenates is top-left, and increases from left to right and from top to bottom.
 
 ###Rectangles: 
 
@@ -48,7 +49,16 @@ The x radius of the corners of the rectangle<br \>
 The y radius of the corners of the rectangle<br \>
 
 
+###Circle:
 
+> `<circle cx="25" cy="75" r="20"/>`
+
+**r** </br>
+The radius of the circle.</br>
+**cx** </br>
+The x position of the center of the circle.</br>
+**cy** </br>
+The y position of the center of the circle. </br>
 
 
 
