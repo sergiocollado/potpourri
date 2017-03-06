@@ -33,7 +33,9 @@ Remember that the center of coordenates is top-left, and increases from left to 
 
 ###Rectangles: 
 
->`<rect x="60" y="10" rx="10" ry="10" width="30" height="30"/>`
+```svg
+`<rect x="60" y="10" rx="10" ry="10" width="30" height="30"/>`
+```
 
 **x** <br \>
 The x position of the top left corner of the rectangle. <br \>
@@ -51,7 +53,9 @@ The y radius of the corners of the rectangle<br \>
 
 ###Circle:
 
-> `<circle cx="25" cy="75" r="20"/>`
+```svg
+<circle cx="25" cy="75" r="20"/>`
+```
 
 **r** </br>
 The radius of the circle.</br>
@@ -60,6 +64,34 @@ The x position of the center of the circle.</br>
 **cy** </br>
 The y position of the center of the circle. </br>
 
+
+###Ellipse
+```svg
+<ellipse cx="75" cy="75" rx="20" ry="5"/>
+```
+**rx** </br>
+The x radius of the ellipse. </br>
+**ry** </br>
+The y radius of the ellipse. </br>
+**cx** </br>
+The x position of the center of the ellipse. </br>
+**cy** </br>
+The y position of the center of the ellipse. </br>
+
+
+###Line
+
+```svg
+<line x1="10" x2="50" y1="110" y2="150"/>
+```
+**x1** </br>
+The x position of point 1. </br>
+**y1** </br>
+The y position of point 1. </br>
+**x2** </br>
+The x position of point 2. </br>
+**y2** </br>
+The y position of point 2. </br>
 
 
 
