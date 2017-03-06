@@ -158,10 +158,14 @@ clock ticks per second (defined in the macro: **`CLOCKS_PER_SEC`**, or the 'sysc
 Example:
 
 ```C
-#include <time.h>
+#include <time.h> //needed for: CLOCKS_PER_SEC, clock().
 
-clock_t start_tick, end_tack;
-double cpu_time_used;
+printf("debug: init: CLOCKS_PER_SEC: %d\n", CLOCK_PER_SEC); //safety check
+
+. . .
+
+clock_t start_tick= (clock_t)(-1), end_tack=(clock_t)(-1); //tick(start) & tack(end) CPU-time-ticks.
+double cpu_time_used = 0; //measured used time. (check accuracy for the system)
 
 ...
 
@@ -171,10 +175,13 @@ start_tick = clock();
 
 end_tack = clock();
 
-cpu_time_used = ((double)(end_tack-start_tick)/(double)CLOCKS_PER_SEC);
+if( start_tick != (clock_t)(-1) || end_tack != (clock_t)(-1) )
+{
+   cpu_time_used = ((double)(end_tack-start_tick)/(double)CLOCKS_PER_SEC);
+   printf("debug:functionX cpu_time: %d sec\n", cpu_time_used);  //info we want.
+}else
+{  printf("error: functionX clock() function error: \ntick: %d\ntack: %d", start_tick, end_tack);}
 
-printf("cpu_time: %d sec\n", cpu_time_used);  //info we want.
-printf("CLOCKS_PER_SEC: %d\n", CLOCK_PER_SEC); //safety check
 ```
 
 Watch out!: 
@@ -305,9 +312,42 @@ TODO:
  [ ] http://www.tldp.org/LDP/Bash-Beginners-Guide/Bash-Beginners-Guide.pdf
  [ ] http://www.tldp.org/LDP/tlk/tlk.html
  [ ] preguntar documentación del último kernel
+ [ ] https://kukuruku.co/post/writing-a-file-system-in-linux-kernel/
+ [ ] http://stackoverflow.com/questions/4714056/how-to-implement-a-very-simple-filesystem
+ [ ] https://en.wikipedia.org/wiki/MINIX_file_system
+ [ ] http://linuxseekernel.blogspot.com.es/2014/06/create-simple-file-system.html
+ [ ] http://www.linuxjournal.com/article/4335?page=0,0
+http://www.linuxjournal.com/article/4395?page=0,0
+http://unix.stackexchange.com/questions/67462/linux-kernel-is-not-finding-the-initrd-correctly
+http://tr.opensuse.org/MicroSUSE_System_Builder's_Guide
+ [ ] https://github.com/libfuse/libfuse
+ [ ] http://elm-chan.org/fsw/ff/00index_e.html
+ [ ] http://www.minix3.org/theses/gerofi-minix-vfs.pdf
+ [ ] https://msdn.microsoft.com/en-us/library/aa363858(v=vs.85).aspx
+ [ ] https://cboard.cprogramming.com/linux-programming/122773-simple-file-system-c.html
+ [ ] http://www.flipcode.com/archives/Programming_a_Virtual_File_System-Part_I.shtml
+ [ ] http://www.flipcode.com/archives/articles.shtml
+ [ ] http://www.boost.org/doc/libs/1_57_0/libs/filesystem/doc/tutorial.html
+ [ ] http://www.nobius.org/~dbg/practical-file-system-design.pdf
+ [ ] https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html
+ [ ] https://www.le.ac.uk/users/rjm1/cotter/page_77.htm
+ [ ] http://www.geocities.ws/ravikiran_uvs/articles/rkfs-old.html
+ [ ] https://www.codeproject.com/Tips/1005166/A-Simple-File-System
+ [ ] https://www.quora.com/How-do-I-implement-a-basic-file-system-implementation-in-C-programming-using-inodes
+ [ ] https://psankar.blogspot.com.es/2013/08/introducing-simplefs-ridiculously.html
+ [ ] https://cboard.cprogramming.com/c-programming/95819-file-system-implementation.html
+ [ ] https://en.wikipedia.org/wiki/Unix_File_System
+ [ ] http://www.cs.cornell.edu/courses/cs4410/2010fa/CS4411/slides/project6/project6.pdf
+ [ ] http://www.geocities.ws/ravikiran_uvs/articles/rkfs-old.html
+ [ ] http://haifux.org/lectures/120/writing-linux-2.4-fs/writing-linux-2.4-fs.html
+ [ ] https://github.com/psankar/simplefs
+ [ ] http://www.cs.ucsb.edu/~chris/teaching/cs170/projects/proj5.html
+ [ ] http://web.mit.edu/6.033/1997/handouts/html/04sfs.html
+ [ ] http://pages.cs.wisc.edu/~remzi/OSTEP/file-implementation.pdf
  
  
  
+[
  
  
  
