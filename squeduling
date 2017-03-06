@@ -115,12 +115,12 @@ PRE-EMPTIVE SYSTESM:
  the regitsters, to the task stack -using architecture specific, assembly code- 
  
  Void __ISR__(){
- cli(); //disable interrupts
+ cli(); //disable interrupts - clear interrupts
  stores_context(); 
  next_job();
  load_context();
- sei(); //enable interrupts
- reti(); //return
+ sei(); //enable interrupts - set interrupts
+ reti(); //return - return from isr
  }
  
  Then the schedule decides on what will be the next task, and then loads the context back to the new task, because this was saved
