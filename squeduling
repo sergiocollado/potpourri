@@ -171,16 +171,16 @@ start_tick = clock();
 
 end_tack = clock();
 
-cpu_time_used = ((double)(end_tack-start_tick)/CLOCKS_PER_SEC);
+cpu_time_used = ((double)(end_tack-start_tick)/(double)CLOCKS_PER_SEC);
 
-printf("cpu_time: %d sec", cpu_time_used);  //info we want.
+printf("cpu_time: %d sec\n", cpu_time_used);  //info we want.
 printf("CLOCKS_PER_SEC: %d\n", CLOCK_PER_SEC); //safety check
 ```
 
-Watch out: 
+Watch out!: 
 
 Take into account, that different computers, and operating systems have different resolutions, and different methods to 
-track time.
+track time.`'clock()'` doesn't usually have more than some ms accuracy depending on the system.
 
 If the clock() cant give you a result or it is not available, it returns the value '(clock_t)(-1)'.
 
@@ -199,9 +199,9 @@ http://stackoverflow.com/questions/5248915/execution-time-of-c-program </br>
 time interval measurement:
 -------------------------
 
-With the header file **'times.h'** or **'sys/times.h'**, if you want to measure some time interval, you can use the function:
+With the header file **'sys/times.h'**, watch out: not **'time.h'!!**, if you want to measure some time interval, you can use the function:
 
->'clock_t **times(struct tms *buffer)'
+>'clock_t **times(struct tms *buffer)**'
 
 The times function stores the processor time information for the calling process in buffer. Remeber 'clock_t' are the clock ticks.
 
@@ -230,7 +230,7 @@ Supervision of programs:
 -----------------------
 
 It is easy to use an 'watchdog' daemon. The term 'watchdog' is usually refered and used to a mechanism that reset/reboots the
-process/progra/system if it detects that someaow is not running correctly or have stall at some point. Its a safe measurement.
+process/program/system if it detects that someaow is not running correctly or have stall at some point. Its a safe measurement.
 
 
 references:
@@ -241,6 +241,10 @@ https://linux.die.net/man/8/wdmd
 https://linux.die.net/man/8/wdmd_selinux
 
 
+INiT ScRiPT DEF:
+----------------
+
+printf("CLOCKS_PER_SEC: %d\n", CLOCK_PER_SEC); //safety check
 
 
 
@@ -249,12 +253,75 @@ https://linux.die.net/man/8/wdmd_selinux
 
 
 
+TODO:
+
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Overview-of-Syslog.html#Overview-of-Syslog
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Sysconf-Definition.html#Sysconf-Definition
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Backtraces.html#Backtraces
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Consistency-Checking.html#Consistency-Checking
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Error-Messages.html#Error-Messages
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Null-Pointer-Constant.html#Null-Pointer-Constant
+ [ ] https://www.gnu.org/software/libc/manual/html_node/index.html#toc-The-Basic-Program_002fSystem-Interface
+ [ ] https://www.gnu.org/software/libc/manual/html_node/index.html#toc-Debugging-support
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Error-Recovery.html#Error-Recovery
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Memory_002dmapped-I_002fO.html#Memory_002dmapped-I_002fO
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Resource-Usage-And-Limitation.html#Resource-Usage-And-Limitation
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Realtime-Scheduling.html#Realtime-Scheduling
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Basic-Scheduling-Functions.html#Basic-Scheduling-Functions
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Traditional-Scheduling.html#Traditional-Scheduling
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Program-Basics.html#Program-Basics
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Environment-Variables.html#Environment-Variables
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Processes.html#Processes
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Backtraces.html#Backtraces
+ [ ] http://www.list.org/mailman-member/node13.html
+ [ ] https://www.gnu.org/software/libc/
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Processes.html#Processes
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Program-Arguments.html#Program-Arguments
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html#Argument-Syntax
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Auxiliary-Vector.html#Auxiliary-Vector
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Environment-Variables.html#Environment-Variables
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Environment-Access.html#Environment-Access
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Standard-Environment.html#Standard-Environment
+ [ ] https://linux.die.net/man/8/wd_keepalive
+ [ ] https://linux.die.net/man/8/checkquorum
+ [ ] https://gcc.gnu.org/ml/gcc-help/2015-06/msg00071.html
+ [ ] https://solarianprogrammer.com/2012/10/14/cpp-11-timing-code-performance/
+ [ ] http://www.thegeekstuff.com/2012/08/gprof-tutorial
+ [ ] https://rusty.ozlabs.org/?p=330
+ [ ] http://www.drdobbs.com/embedded-systems/measuring-execution-time-and-real-time-p/193502123
+ [ ] http://stackoverflow.com/questions/5248915/execution-time-of-c-program
+ [ ] MinGW compiler. –/ decent libc library. /   Windows XP with cygwin gcc & Linux Ubuntu.
+ [ ] http://stackoverflow.com/questions/22387586/measuring-execution-time-of-a-function-in-c
+ [ ] http://courseweb.stthomas.edu/resmith/c/cisc130/c9sp/gcc-timing.html
+ [ ] https://www.gnu.org/software/libc/
+ [ ] https://gcc.gnu.org/onlinedocs/gcc-4.6.4/gcc/Optimize-Options.html#Optimize-Options
+ [ ] https://paolozaino.wordpress.com/2015/06/13/c-code-snippet-to-measure-function-execution-time-for-both-linux-and-mac-os-x/
+ [ ] http://stackoverflow.com/questions/5644730/c-measuring-computing-time
+ [ ] http://stackoverflow.com/questions/5644730/c-measuring-computing-time
+ [ ] http://stackoverflow.com/questions/68907/how-do-you-measure-the-time-a-function-takes-to-execute
+ [ ] http://stackoverflow.com/questions/68907/how-do-you-measure-the-time-a-function-takes-to-execute
+ [ ] https://www.gnu.org/software/libc/manual/html_node/CPU-Time.html
+ [ ] http://pcc.ludd.ltu.se/internals/
+ [ ] http://www.tldp.org/LDP/Bash-Beginners-Guide/Bash-Beginners-Guide.pdf
+ [ ] http://www.tldp.org/LDP/tlk/tlk.html
+ [ ] preguntar documentación del último kernel
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 
-
-
-
-
+  
 
 
 
