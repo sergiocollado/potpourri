@@ -30,8 +30,8 @@ Syntax highlighted code block
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-More: https://help.github.com/articles/basic-writing-and-formatting-syntax/#section-links
-More on GFM https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+More: https://help.github.com/articles/basic-writing-and-formatting-syntax/#section-links </br>
+More on GFM: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet </br>
 
 
 ### Jekyll Themes
