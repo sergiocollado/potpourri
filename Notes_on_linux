@@ -1,12 +1,12 @@
 
 
 REFERENCES:
->> Of course the master reference will allways be our friend: https://linux.die.net/man/ 
->> And ofcourse our battle-horse the HOWTOs: https://linux.die.net/HOWTO/HOWTO-INDEX/
->> Linux Documentation Project: https://github.com/tLDP/LDP/tree/master/LDP
->> For the linux kernel: https://www.kernel.org/
->> and for github:https://git.kernel.org/cgit/
->> also check: https://github.com/google/ktsan
+>> Of course the master reference will allways be our friend: https://linux.die.net/man/  </br>
+>> And certanly our battle-horse the HOWTOs: https://linux.die.net/HOWTO/HOWTO-INDEX/ </br>
+>> at Linux Documentation Project: https://github.com/tLDP/LDP/tree/master/LDP </br>
+>> For the linux kernel: https://www.kernel.org/ </br>
+>> and for github:https://git.kernel.org/cgit/ </br>
+>> also check: https://github.com/google/ktsan </br>
 
 The analysis of the memory in the linux system, can be checked using the commands:
 
