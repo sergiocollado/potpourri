@@ -1,9 +1,12 @@
 
-The analysis of the memory in the linux system, can be checked using the commands:
 
->> Of course the master refecernce will allways be our friend: https://linux.die.net/man/ 
+REFERENCES:
+>> Of course the master reference will allways be our friend: https://linux.die.net/man/ 
 >> And ofcourse our battle-horse the HOWTOs: https://linux.die.net/HOWTO/HOWTO-INDEX/
+>> Linux Documentation Project: https://github.com/tLDP/LDP/tree/master/LDP
 
+
+The analysis of the memory in the linux system, can be checked using the commands:
 
 1)
 Remember that the '/proc' filesystem is a pseudo-filesystem whose files provide an interface to kernel data structures.
