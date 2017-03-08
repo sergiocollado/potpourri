@@ -1,6 +1,11 @@
 
 #NOTES SVG: Scalable Vector Graphics
 
+#### **Foreword** </br>
+This are my personal notes on the svg specs, and are heavily based in the best resource:
+https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial
+
+
 An example of svg definition- the center of coordinates is top-left.
 
 ```html
@@ -119,7 +124,7 @@ A list of points, each number separated by a space, comma, EOL, or a line feed c
 
 ###Paths
 
-Paths, are the most flexible components of svg, in it you can draw lines, arcs, curves ...
+Paths, are the most flexible components of svg, with them you can draw lines, arcs, curves ...
 Paths, are defined by commands or directives (d). For example M 10 10, means go to point (10,10). The commands can be issued in two
 forms:
  · Uppercase letters: they use absolute coordinates. The origin of the coordenate systems is the top-left point.
@@ -128,7 +133,27 @@ forms:
 
 ####Line commands
 
+There are five commands, that move in lines:
 
+ - **'Move to'**: declared with the **'M'** or **'m'**,it doesn't draw anything, it just moves the drawing pointer.It is 
+ used at the beginnig of the paths to set the starting point.
+ - **'Line to'**: declared with the **'L'** or **'l'**, it draws a line from the current position to the new position.
+ - **'Horizontal line'**: declared with the **'H'** or **'h'**, it draws a horizontal line. It just have one parameter (x).
+ - **'Vertical line'**: declared with the **'V'** or **'v'**, it draws a vertical line. It just have one parameter (y).
+ - **'Back to origin'**: declared with the **'Z'** or **'z'**, there is no difference between upper or lower case. Usually is placed at the end of the path, if it is needed to be closed. It doen't have parameters.
+ 
+<!-- TODO: put examples-->
+
+An example of path:
+
+· In absolute coordenates:
+```svg
+<path d="M10 10 H 90 V 90 H 10 Z"/>
+```
+· In relative coordinates:
+```svg
+<path d="M10 10 h 80 v 80 h -80 Z"
+```
 
 
 
