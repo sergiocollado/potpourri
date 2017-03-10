@@ -17,8 +17,8 @@ references:
 
 ##INTRODUCTION to S3(Simple Store Service):
 
-you can put any data file in S3 (Simple Storage Service)
-they are organiced in "Buckets".
+In S3 (Simple Storage Service) you can put any data file.
+They are organiced in "Buckets".
 -Bucket names are globally unique, so you have to take one with a name non taken yet.
 
 You can have one, or more buckets, for each bucket you can manage its group access, 
@@ -43,10 +43,10 @@ and include in the web, as:
 
 ```html
 <html>
-<body>
-<img src="http://sergio.collado/path/to/logo" alt="AWS_lOGO">
-...
-</body>
+ <body>
+   <img src="http://sergio.collado/path/to/logo" alt="AWS_lOGO">
+   ...
+ </body>
 </html>
 ```
 
@@ -536,7 +536,7 @@ It supports all major record types
  
 
 
-REFERENCES:
+#REFERENCES:
 https://aws.amazon.com/es/documentation/s3/
 https://aws.amazon.com/certification/faqs/
 https://aws.amazon.com/articles/
@@ -544,11 +544,24 @@ https://aws.amazon.com/es/documentation/
 https://aws.amazon.com/sqs/
 https://aws.amazon.com/en/training/path-developing/
 https://aws.amazon.com/training/intro_series/
+https://aws.amazon.com/es/training/intro_series/
+ 
+#CERTIFICATIONS:
 
- 
- 
+The first certification is the:
+##AWS Certified Developer - Associate:
+Its a certification that evaluates the expertise in developing and manteining applications in the AWS platform.
 
- 
+- Understandin of core AWS services, use, best practices, and basic architecures
+- AWS S3, DinamoDB, SQS, SNS, SWS, EB, CF.
+- Choose the apropiate AWS services for a given application.
+- Kwnoledge AWS SDKs to interact with AWS services with you application
+- Profincy in deploying, developing and designing cloud based services of AWS.
+- Writing code that optimices performance of AWS services
+- Code-level application security( IAM, credentials, encription, ...)
+
+
+
  
  
  
