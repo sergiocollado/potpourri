@@ -9,58 +9,68 @@ of writting them down, and have a resource where quickly find answers to my doub
  - [CLOUD FRONT](CLOUD FRONT)
 
 
-#S3 - Simple Storage Service.
+# AWS S3 
+#   Simple Storage Service.
 
 references:
+- http://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html
 - https://aws.amazon.com/es/documentation/s3/
 - http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html
 
-##INTRODUCTION to S3(Simple Store Service):
+##INTRODUCTION TO S3(Simple Store Service):
 
-In S3 (Simple Storage Service) you can put any data file.
-They are organiced in "Buckets".
--Bucket names are globally unique, so you have to take one with a name non taken yet.
+In S3 (Simple Storage Service) you can put any data file. They are organiced in "Buckets".
+- Bucket names are globally unique, so you have to take one with a name non taken yet.
 
-You can have one, or more buckets, for each bucket you can manage its group access, 
+Buckets, are the containers for storing your objects (files), and all the objects, must be
+stored in a Bucket. 
+
+If you have the an object named: 'pics/sergio.jpg', and is stored in the bucket 'Haway_holidays',
+then you can address it with the URL: 'http://Haway_holidays.s3.amazonaws.com/pics/sergio.jpg'.
+
+You can configure also a Buckets, so every time an object is added, an unique ID is generated and
+assigned to the object.
+
+You can have one, or more buckets, for each bucket you can manage its groupaccess, 
 thus enable users, and rights to upload, delete, change ... also you will have access
-to the logs of those buckets.
+to the logs of those buckets. 
 You can control the geographic zone, where AWS will store the buckets and its contents.
 
 Watch out, because each bucket name must be unique in AWS, and once you create it, 
 you can not change the name. Its recomended that buckets comply with DNS naming
 convections
 
-You can have, by default, up to 100 buckets in an account. You can request more, if you need them.
 By default, buckets are private, you have to edit the privileges if you need to.
 
-easy to DNS CNAME a URL to your bucket.
-bucket name: sergio-images
-but my desired domain is sergio.collado.com 
-
-so: sergio.collado.com -> collado-images.s3.amazonaws.com
-
-and include in the web, as:
-
-```html
-<html>
- <body>
-   <img src="http://sergio.collado/path/to/logo" alt="AWS_lOGO">
-   ...
- </body>
-</html>
-```
+You can choose a geographical region where AWS S3, will store your Buckets. You
+should use a region, to optimize latency.
 
 ##ACCESS CONTROL:
 
 Objects, also have types of access control:
- - IAM policies
+
+ - IAM policies  (http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html)
  - Bucket policies
  - ACLs(Acess Control Lists) - AWS console
  - Query string autentification - gives expiring acess.
  - AWS management console. (sign in: https://console.aws.amazon.com/s3.)
  
-More info about Buckets in: http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucketPolicies.html
-More info about ACLs in: http://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html
+###POLICIES
+Bucket policies, provide a centraliced access control to buckets and objects based on a variety of conditions.
+For example it can create a policie that gives a user write access:
+
+ - To a certain bucket.
+ - From certain account's network
+ - During certains hours per day.
+ - From an accounts custom application (as identified by a user agent string)
+
+Unlike ACL(access control lists), that only grant permissions to a given object, policies can grant/deny
+permisions across all (or a subset) of objects within a bucket.
+
+Policies are defined in the access policy languaje.
+ 
+More info about Buckets: http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucketPolicies.html </br>
+More info about ACLs: http://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html </br>
  
 The bucket also saves some information about the files: type, creation date, ... (meta data)
 More info in: http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html
@@ -68,27 +78,34 @@ More info in: http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html
 ##STORING POLICIES:
 
 There are three ways to store policies:
- · Standard ( "11 9's") - that means that if you have 1 million files stored there, you will loose one, everty 10.000 years.
-   · it comes at greatest cost, but is the default.
- · Reduced Redundancy Storage (RRS) - is ("4 9s") - it means that if you have 10000 files there, you'll probable lose one every year.
-   · It cost is reduced about 20% / Great for reproducible assets
-   · RRS, can trigger notifications, on "object missing". 
- · Glaciar it has ("11 9's), but is great draw back is queued retrieval -you cannot get it back in real time- 
-   · But is cost is about the 10% of the standard option - which make a great choise for archivals, and back-ups.
+
+ - **Standard** ( "11 9's") - that means that if you have 1 million files stored there, you will loose one, everty 10.000 years.
+  - It comes at greatest cost, but is the default.
+  
+ - **Reduced Redundancy Storage (RRS)** - is ("4 9s") - that is 99.99% durability over a given year- it means that if you have 10000 files there, you'll probable lose one every year.
+  - It cost is reduced about 20% / Great for reproducible assets
+  - RRS, can trigger notifications, on "object missing". </br>
+  
+ - **Glaciar** it has ("11 9's), but is great draw back is queued retrieval -you cannot get it back in real time- 
+  - But is cost is about the 10% of the standard option - which make a great choise for archivals, and back-ups.
+  - Ref: http://docs.aws.amazon.com/amazonglacier/latest/dev/introduction.html </br>
+   
    
 ##PRICING:
 
 https://aws.amazon.com/s3/pricing/
+http://calculator.s3.amazonaws.com/index.html
 
 Starts around 0.0X$ per GB/month for "standard" S3 - the fee gets cheaper, if you use more.
 
-Bandwith:
-  IN: FREE
-  OUT: Same Region: free
-       Out of region: Starts at 0.12$ GB/month.
-  REQUEST al also costy: (PUT, GET, POST, LIST) - Starts at 0.00xx/1000 request.
+###Bandwith:
+
+ - IN: FREE
+ - OUT: Same Region: free
+  - Out of region: Starts at 0.0X$ GB/month.
+ - REQUEST al also costy: (PUT, GET, POST, LIST) - Starts at 0.00xx/1000 request.
    
- Just have in mind, that data trasnsfer inside your region is free!  
+Just have in mind, that data trasnsfer inside your region is **FREE!!!**
    
 ###AWS free usage tier
 As part of the AWS Free Usage Tier, you can get started with Amazon S3 for free. Upon sign-up, new AWS customers receive 5 GB of Amazon S3 standard storage, 20,000 Get Requests, 2,000 Put Requests, and 15GB of data transfer out each month for one year.
@@ -134,9 +151,9 @@ EBS, so it can do more important tasks, with this, the cost of the EBS, is much 
 The second step, is set up Glacier for archival, Control access, set up Livecicle policies, Investigate advanced users: 
 like Website hosting, direct to S3 uploads.
  
-
 log in main server server:
 
+```bash
 |___|  __|_  )
 |_|   (     /
 |___| ___||___|
@@ -161,7 +178,7 @@ Gon ; s3tools.org/download
   easteisnt way to install is : python .py instals
  
   s3cmd-1.5.0-alpha1
-  
+  ```
   
   we have provide the kees> using > credential needed, > access credenctiasn "Aceess Keys´2"
     
@@ -169,6 +186,15 @@ Gon ; s3tools.org/download
   
   w3cdmd --help 
   s3cmd [feature] --help 
+
+##RELATED SERVICES
+
+S3 can be used with other AWS services:
+
+- Elastic Compute Cloud: this service provides virtual compute resources in the cloud. Ref: https://aws.amazon.com/ec2/
+- EMR: this service provides easy and cost effective processing of vast amounts of data. It uses hadoop framework running  on EC2 and S3
+- AWS Import/Export: is a mail (not e-mail, it means mail, and actual envelop!)-  storage device, as RAID drive (Redundant Array of Independent Disks) so it can be uploaded in AWS. Ref: http://docs.aws.amazon.com/AWSImportExport/latest/DG/whatisdisk.html
+
 
 #CLOUD FRONT
   
@@ -223,7 +249,7 @@ INTRODUCTION TO ELASTIC CACHE:
 
 - Elastic Cache is an in memory caching mechanism.
 - Is 100% Under the hood.
-  - 100% API compliant: User get, set, incr, decr, stats, the same way you do in mem cache.
+ - 100% API compliant: User get, set, incr, decr, stats, the same way you do in mem cache.
 - More properly is mem cache cluster.
 
 
@@ -334,7 +360,7 @@ VPC(Virtual Private Cloud) also gives you control over route tables or NATs (Net
 NAT(Network Adress Translation) lets machines "hide" on private network, but still be able to get out fo network.
 AWS provides a NAT instance for this pourpouse.
  
- VPC(Virtual Private Cloud) gaves you control over network gateways.
+VPC(Virtual Private Cloud) gaves you control over network gateways.
  - Internet gateways (IG): Allows VPC resources to access the internet.
  - And is the only way for this resources to access the internet.
  - Can be connected/disconnected programatically (for example when you are doing patch updates on your EC2 servers, you can connect
@@ -515,6 +541,7 @@ measurement.
 -Create master accounts, for the groups: Production, Dev, Test.
 
 More info:
+http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html
 http://aws.typepad.com/aws/2011/08/aws-identity-and-access-management-now-with-identify-federation.html
 
 INTRODUCTION TO ROUTE53:
@@ -545,10 +572,13 @@ https://aws.amazon.com/sqs/
 https://aws.amazon.com/en/training/path-developing/
 https://aws.amazon.com/training/intro_series/
 https://aws.amazon.com/es/training/intro_series/
+http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html
+
  
 #CERTIFICATIONS:
 
 The first certification is the:
+
 ##AWS Certified Developer - Associate:
 Its a certification that evaluates the expertise in developing and manteining applications in the AWS platform.
 
@@ -561,8 +591,11 @@ Its a certification that evaluates the expertise in developing and manteining ap
 - Code-level application security( IAM, credentials, encription, ...)
 
 
+#AWS S3 APIs
 
- 
+Amazon S3 is designed to be languaje neutral, and to be used with the supported interfaces to store and retrieve objects.
+
+
  
  
  
