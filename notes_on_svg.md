@@ -157,12 +157,85 @@ An example of path:
 
 ####Curve commands
 
+#####Cubic Benzier Curve
+
+C x1 y1 x2 y2 x y
+
+**x1 y1** </br>
+first control point </br>
+**x2 y2** </br>
+second control point </br>
+**x y** </br>
+end point of the curve </br>
+
+```svg
+<svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 10 C 20 20, 40 20, 50 10" stroke="black" fill="transparent"/>
+</svg>
+```
+
+Also you can use the **S** command to concatenate benzier curves- but the **S** command must always follow another **C** or **S** command. It just reflex, the last control point of the previous curve, to be the first control point of the curve.
+
+S x2 y2 x y
 
 
+```svg
+<svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="transparent"/>
+</svg>
+```
+
+#####Cuadratic Benzier Curve
+
+Q x1 y1 x y 
+
+**x1 y1** </br>
+Control point that determines the slope of the curve at the starting and ending point. </br>
+**x y** </br>
+End point of the curve. </br>
 
 
+```svg
+<svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 80 Q 95 10 180 80" stroke="black" fill="transparent"/>
+</svg>
+```
+
+You can also concatenate cuadratic benzier curves, with the **T** command.
+
+T x y
+
+**x y** </br>
+Takes the slope of the previous curve, and **(x, y)** is the end point.
+
+```svg
+<svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 80 Q 52.5 10, 95 80 T 180 80" stroke="black" fill="transparent"/>
+</svg>
+```
+
+#####Arcs
+
+Arcs are sections of ellipses or circles. For a given x-radius and y-radius, there are two ellipses that connects any given two points, 
+for each ellipse there are two paths for connect those two points. So there are four possibilities.
 
 
+**```A rx ry x-axis-rotation large-arc-flag sweep-flag x y```**
 
 
-
+```svg
+<svg width="325" height="325" xmlns="http://www.w3.org/2000/svg">
+  <path d="M80 80
+           A 45 45, 0, 0, 0, 125 125
+           L 125 80 Z" fill="green"/>
+  <path d="M230 80
+           A 45 45, 0, 1, 0, 275 125
+           L 275 80 Z" fill="red"/>
+  <path d="M80 230
+           A 45 45, 0, 0, 1, 125 275
+           L 125 230 Z" fill="purple"/>
+  <path d="M230 230
+           A 45 45, 0, 1, 1, 275 275
+           L 275 230 Z" fill="blue"/>
+</svg>
+```
