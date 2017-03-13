@@ -1,7 +1,7 @@
-squeduling for real-time systems:
+Squeduling for real-time systems:
 =================================
 
-we want to comply with time constrictions and functionality constrictions.
+We want to comply with time constrictions and functionality constrictions.
 
 The schedule orginaize the tastk for try to comply with the above requirements.
 
@@ -131,6 +131,53 @@ PRE-EMPTIVE SYSTESM:
  when planning a real-time system and its timeline.
  
  
+TODO: FIXED SCHEDULING
+======================
+ 
+MONOTONIC SCHEDULING
+====================
+
+Monotonic scheduling have the advantge when scheduling periodic jobs, the monotonic scheduling, base the selection of tasks executions, 
+on the time to death line or periods. That implies that is easier to systematically plan the system.
+
+two monotonic scheduler will be study:
+- the rate monotonic scheduler (RM).
+- the deadline nonotonic scheduler (DM).
+
+RATE MONOTONIC SCHEDULER:
+=========================
+
+The rate monotonic scheduler sets the priority of the tasks acording to the period of the tasks, so those tasks with a shorten period,
+have a higher priority.
+
+|          |   P     |    e    |   D     |  
+------------------------------------------
+|   T1     |   4     |    1    |   4     |        
+------------------------------------------
+|   T2     |   5     |    2    |   3     |        
+------------------------------------------
+|   T3     |   20    |    5    |   20    |        
+------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
