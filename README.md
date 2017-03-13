@@ -34,7 +34,7 @@ https://help.github.com/articles/basic-writing-and-formatting-syntax/    </br>
 https://help.github.com/articles/working-with-advanced-formatting/       </br>
 https://help.github.com/articles/about-writing-and-formatting-on-github/      </br>
 https://guides.github.com/features/mastering-markdown/    </br>
-https://www.webpagefx.com/tools/emoji-cheat-sheet/   </br>
+https://www.webpagefx.com/tools/emoji-cheat-sheet/   :ok_hand:</br>
 https://guides.github.com/features/mastering-markdown/  </br>
 https://highlightjs.org/static/demo/ </br>
 More: https://help.github.com/articles/basic-writing-and-formatting-syntax/#section-links </br>
