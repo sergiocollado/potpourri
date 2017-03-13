@@ -49,9 +49,11 @@ Your Pages site will use the layout and styles from the Jekyll theme you have se
 
 Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
 
+```Bash
 echo "# ramblings" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
 git remote add origin git@github.com:sergiocollado/ramblings.git
 git push -u origin master
+```
