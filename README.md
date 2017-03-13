@@ -28,8 +28,15 @@ Syntax highlighted code block
 [Link](url) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/). </br>
 
+https://help.github.com/articles/basic-writing-and-formatting-syntax/    </br>
+https://help.github.com/articles/working-with-advanced-formatting/       </br>
+https://help.github.com/articles/about-writing-and-formatting-on-github/      </br>
+https://guides.github.com/features/mastering-markdown/    </br>
+https://www.webpagefx.com/tools/emoji-cheat-sheet/   </br>
+https://guides.github.com/features/mastering-markdown/  </br>
+https://highlightjs.org/static/demo/ </br>
 More: https://help.github.com/articles/basic-writing-and-formatting-syntax/#section-links </br>
 More on GFM: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet </br>
 
