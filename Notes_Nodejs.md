@@ -1,8 +1,8 @@
-Notes on Node.js
+# Notes on Node.js
 
 Node.js is a server-side framework, used to create intensive web applications (steamming, video, VoiP...), and is build on the Google's Chrome Javascript V8 engine. Node.js runs over a runtime environment.
 
-##Important features are:
+## Important features are:
 
 - Asincrhonous and event-driven.
 - Non blocking.
@@ -10,7 +10,7 @@ Node.js is a server-side framework, used to create intensive web applications (s
 - No buffering- Node.js doesn't buffer any data.
 - Ligthweight and efficient.
 
-##Node.js is best used in the following applications:
+## Node.js is best used in the following applications:
 
 - I/O applications
 - Data streamming applications
@@ -18,11 +18,11 @@ Node.js is a server-side framework, used to create intensive web applications (s
 - JSON API based applications.
 - Single page applications.
 
-##Node.js is best not used in:
+## Node.js is best not used in:
 
  - CPU intensive applications.
 
-##Installation
+## Installation
 
 Its reference website is: https://nodejs.org/
 
@@ -43,25 +43,31 @@ mv node-vx.xx.x-linux-x64/ /usr/local/nodejs
 ```
 
  + Compile it:
+ 
+ ```Bash
    - './configure'
    - 'make'
    - 'make install'
+```
 
+# Starting:
 
-#Starting:
-
-##Parts of an node.js applications
+## Parts of an node.js applications
 
  + **import required modules** -- We need to import the `http` module.
  + **create a server** -- a server objecto, that listen to client's requests (like a brownser).
  + **read request and respond** - return response according to request. 
  
-##Import required modules:
+## Import required modules:
 
 To use a http server and client you need to define it with 'require(\'http'\)'
-The code-word 'require' is used to load module (kind of libraries).
+The code-word 'require' is used to load module (sort of libraries).
 
-##Creating a server:
+```javascript
+var http=require('http');
+```
+
+## Creating a server:
 
 To create a server, you use the function 'createServer'
 
