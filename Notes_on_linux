@@ -8,6 +8,7 @@ REFERENCES:
 >> and for github:https://git.kernel.org/cgit/ </br>
 >> also check: https://github.com/google/ktsan </br>
 >> check the HOWTOs: http://tldp.org/en/Traffic-Control-HOWTO/
+>> also: http://www.linux-tutorial.info/modules.php?name=MContent&pageid=224
 
 The analysis of the memory in the linux system, can be checked using the commands:
 
