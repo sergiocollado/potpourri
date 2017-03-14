@@ -1,10 +1,9 @@
-
 #Notes on Node.js
 
-Node.js is a server-side framework, used to create intensive web applications (steamming, video, VoiP...), and is build on the Google's Chrome
-Javascript V8 engine. Node.js runs over a runtime environment.
+Node.js is a server-side framework, used to create intensive web applications (steamming, video, VoiP...), and is build on the Google's Chrome Javascript V8 engine. Node.js runs over a runtime environment.
 
 ##Important features are:
+
 - Asincrhonous and event-driven.
 - Non blocking.
 - Single threaded, but easily scalable.
@@ -29,12 +28,20 @@ Its reference website is: https://nodejs.org/
 
 From there you can download the last package- recomended the LTS(Long Term Support) release.
 
-In MS Windows, you just have to downloade the: nod-vx.xx.x-x64.msi
+In MS Windows, you just have to downloade the: nod-vx.xx.x-x64.msi run it, and follow the instructions.
 
 In Linux, you have:
  + Check you have the building tools: 'apt-get install build-essential'
- + Get the source code, for example from its web: 'wget http://nodejs.org/dist/vx.xx.x/node-vx.xx.tar.gz
- + uncompress it.
+ + Get the source code, for example from its web:
+ 
+```Bash
+cd /temp
+wget http://nodejs.org/dist/vx.xx.x/node-vx.xx.x-linux-x64.tar.gz
+tar xvfz node-vx.xx.x-linux-64.tar.gz
+mkdir -p /usr/local/nodejs
+mv node-vx.xx.x-linux-x64/ /usr/local/nodejs
+```
+
  + Compile it:
    - './configure'
    - 'make'
@@ -43,10 +50,18 @@ In Linux, you have:
 
 #Starting:
 
-##Creating a server:
+##Parts of an node.js applications
+
+ + **import required modules** -- We need to import the `http` module.
+ + **create a server** -- a server objecto, that listen to client's requests (like a brownser).
+ + **read request and respond** - return response according to request. 
+ 
+##Import required modules:
 
 To use a http server and client you need to define it with 'require(\'http'\)'
 The code-word 'require' is used to load module (kind of libraries).
+
+##Creating a server:
 
 To create a server, you use the function 'createServer'
 
