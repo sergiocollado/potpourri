@@ -44,6 +44,10 @@ More: https://help.github.com/articles/basic-writing-and-formatting-syntax/#sect
 More on GFM: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet </br>
 The best: https://blog.ghost.org/markdown/ </br>
 html -> markdown: http://domchristie.github.io/to-markdown/ </br>
+more tools: https://github.com/adam-p/markdown-here/wiki/Other-Markdown-Tools </br>
+tips and trics: https://github.com/adam-p/markdown-here/wiki/Tips-and-Tricks </br>
+more info: https://github.com/adam-p/markdown-here/wiki/Press,-Posts,-Reviews,-Etc. </br>
+troubleshooting: https://github.com/adam-p/markdown-here/wiki/Troubleshooting
 
 
 ### Jekyll Themes
