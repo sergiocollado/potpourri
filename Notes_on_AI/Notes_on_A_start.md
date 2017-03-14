@@ -1,4 +1,4 @@
-Notes on A* (A start) algorithm - Path finding algorithm-
+Notes on A* (A star) algorithm - Path finding algorithm-
 ====================================================================
 
 Lets assume we have an mapped area and we want to go from a starting point A, to a point B, and for simplicity, lets assume all,
