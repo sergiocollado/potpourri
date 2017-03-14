@@ -4,6 +4,9 @@ You can use the [editor on GitHub](https://github.com/sergiocollado/potpourri/ed
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
+### Toolbox: https://github.com/integrations/
+
+
 ### Markdown
 
 check: https://help.github.com/articles/basic-writing-and-formatting-syntax/#section-links
