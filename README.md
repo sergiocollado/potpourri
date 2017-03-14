@@ -40,6 +40,7 @@ https://highlightjs.org/static/demo/ </br>
 More: https://help.github.com/articles/basic-writing-and-formatting-syntax/#section-links </br>
 More on GFM: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet </br>
 The best: https://blog.ghost.org/markdown/ </br>
+html -> markdown: http://domchristie.github.io/to-markdown/ </br>
 
 
 ### Jekyll Themes
