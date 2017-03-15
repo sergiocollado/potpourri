@@ -54,6 +54,10 @@ troubleshooting: https://github.com/adam-p/markdown-here/wiki/Troubleshooting
 AsciiDoc, is also another markup lenguaje, and it has certain compatibility with Markdown. </br>
 :link: [AsciiDoc docs](http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/)
 
+### Web for your projects
+
+You can generate webs, for your projects, with :link: [github pages](https://pages.github.com/)
+
 ### Jekyll Themes
 
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sergiocollado/potpourri/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
