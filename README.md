@@ -1,15 +1,14 @@
 ## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/sergiocollado/potpourri/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+You can use the [editor on GitHub](./README.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Toolbox: https://github.com/integrations/
+### Toolboxes: https://github.com/integrations/
 
+### How to Git [:link:](https://git-scm.com/book/en/v2/Getting-Started-Git-Basics)
 
 ### Markdown
-
-check: https://help.github.com/articles/basic-writing-and-formatting-syntax/#section-links
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
@@ -33,6 +32,8 @@ Syntax highlighted code block
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/). </br>
 
+
+check: https://help.github.com/articles/basic-writing-and-formatting-syntax/#section-links </br>
 https://help.github.com/articles/basic-writing-and-formatting-syntax/    </br>
 https://help.github.com/articles/working-with-advanced-formatting/       </br>
 https://help.github.com/articles/about-writing-and-formatting-on-github/      </br>
