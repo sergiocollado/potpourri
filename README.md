@@ -10,7 +10,7 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 
 ### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for:
 
 ```markdown
 Syntax highlighted code block
@@ -49,6 +49,9 @@ more tools: https://github.com/adam-p/markdown-here/wiki/Other-Markdown-Tools </
 tips and trics: https://github.com/adam-p/markdown-here/wiki/Tips-and-Tricks </br>
 more info: https://github.com/adam-p/markdown-here/wiki/Press,-Posts,-Reviews,-Etc. </br>
 troubleshooting: https://github.com/adam-p/markdown-here/wiki/Troubleshooting
+
+**Markdown**, is based on the [:link: pagedown project](https://code.google.com/archive/p/pagedown/wikis/PageDown.wiki)
+
 
 ### AsciiDoc
 
