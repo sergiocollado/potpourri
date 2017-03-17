@@ -1,5 +1,3 @@
-
-
 # NOTES ON AIML
 
 AIML stands for Artificial Intelligence Markup Languaje, it was developed for a chat-bot named A.L.I.C.E (Artificial Linguistic Internet
