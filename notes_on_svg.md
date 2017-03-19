@@ -98,7 +98,7 @@ The x position of the center of the circle.</br>
 The y position of the center of the circle. </br>
 
 
-###Ellipse
+### Ellipse
 ```svg
 <ellipse cx="75" cy="75" rx="20" ry="5"/>
 ```
@@ -113,7 +113,7 @@ The y position of the center of the ellipse. </br>
 
 
 
-###Polygon
+### Polygon
 
 ```svg
 <polygon points="50 160, 55 180, 70 180, 60 190, 65 205, 50 195, 35 205, 40 190, 30 180, 45 180"/>
@@ -122,7 +122,7 @@ The y position of the center of the ellipse. </br>
 **points**
 A list of points, each number separated by a space, comma, EOL, or a line feed character. Each point must contain two numbers, an x coordinate and a y coordinate. So the list (0,0), (1,1) and (2,2) could be written: "0 0, 1 1, 2 2". The drawing then closes the path, so a final straight line would be drawn from (2,2) to (0,0).
 
-###Paths
+### Paths
 
 Paths, are the most flexible components of svg, with them you can draw lines, arcs, curves ...
 Paths, are defined by commands or directives (d). For example M 10 10, means go to point (10,10). The commands can be issued in two
@@ -131,7 +131,7 @@ forms:
  · Lowercase letters: they use relative coordinates from the last point
 
 
-####Line commands
+#### Line commands
 
 There are five commands, that move in lines:
 
@@ -241,7 +241,7 @@ for each ellipse there are two paths for connect those two points. So there are 
 ```
 
 
-### SVG ANIMATIONS:
+# JAVASCRIPT FOR CREATING SVGs:
 
 if in html, we have an structure as the following:
 
@@ -260,7 +260,40 @@ And we want to add some elements to the previous svg, and with aid of the DOM; w
 var svg1= document.getElementById('Intro').getElementsByTagName('svg');
 svg1[0].appendChild(element);//element like <line>, <circle>
 ```
+If you want to creatre a new element, you can always use: `document.createElement` function. SVG, uses namespaces, so you'll have to
+use 'document.createElementsNS' function.
 
+refernces:
+     + document.createElement    [:link:](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) </br>
+     + document.createElementNS  [:link:](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElementNS) </br>
+
+An example is the following code:
+
+```svg
+
+//Get svg element
+var svg = document.getElementsByTagName('svg')[0]; 
+
+//Create a path in SVG's namespace
+var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'path'); 
+
+//Set path's data
+newElement.setAttribute("d","M 0 0 L 10 10"); 
+
+//Set stroke width
+newElement.style.strokeWidth = "5px"; 
+
+//append to the svg.
+svg.appendChild(newElement);
+
+``` 
+And this code will produce something like this:
+
+```svg
+<svg>
+ <path d="M 0 0 L 10 10" style="stroke: #000; stroke-width: 5px;" />
+</svg>
+```
 
 
 
