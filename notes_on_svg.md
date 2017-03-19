@@ -70,12 +70,9 @@ A list of points, each number separated by a space, comma, EOL, or a line feed c
 `<rect x="60" y="10" rx="10" ry="10" width="30" height="30"/>`
 ```
 
-**x** <br \>
-The x position of the top left corner of the rectangle. <br \>
-**y**<br \>
-The y position of the top left corner of the rectangle.<br \>
-**width**<br \>
-The width of the rectangle<br \>
+**x** <t>The x position of the top left corner of the rectangle. <br \>
+**y** <t>The y position of the top left corner of the rectangle.<br \>
+**width**<t>The width of the rectangle<br \>
 **height**<br \>
 The height of the rectangle<br \>
 **rx**<br \>
@@ -220,7 +217,7 @@ Arcs are sections of ellipses or circles. For a given x-radius and y-radius, the
 for each ellipse there are two paths for connect those two points. So there are four possibilities.
 
 
-**```A rx ry x-axis-rotation large-arc-flag sweep-flag x y```**
+**`A rx ry x-axis-rotation large-arc-flag sweep-flag x y`**
 
 
 ```svg
@@ -263,7 +260,7 @@ svg1[0].appendChild(element);//element like <line>, <circle>
 If you want to creatre a new element, you can always use: `document.createElement` function. SVG, uses namespaces, so you'll have to
 use 'document.createElementsNS' function.
 
-refernces:
+refernces: </br>
      + document.createElement    [:link:](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) </br>
      + document.createElementNS  [:link:](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElementNS) </br>
 
