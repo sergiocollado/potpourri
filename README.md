@@ -4,6 +4,9 @@ You can use the [editor on GitHub](https://github.com/sergiocollado/potpourri/bl
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
+If you want a quick overview about now does this all work, the you can check the, [tutorial](https://guides.github.com/activities/hello-world/)  :link:
+
+
 ### Toolboxes: https://github.com/integrations/
 
 ### How to Git [:link:](https://git-scm.com/book/en/v2/Getting-Started-Git-Basics)
