@@ -3,6 +3,8 @@
 This are my personal notes on the svg specs, and are heavily based in the best resource:
 https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial
 
+The lead reference for SVGs is: https://www.w3.org/TR/SVG11/
+
 
 # NOTES SVG: Scalable Vector Graphics
 
@@ -298,7 +300,10 @@ And this code will produce something like this:
 
 
 
-
+TODO:
+[] https://www.w3.org/TR/SVG11/interact.html
+[] https://www.w3.org/TR/SVG11/linking.html
+[] https://www.w3.org/TR/SVG11/animate.html
 
 
 
