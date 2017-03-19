@@ -267,7 +267,6 @@ refernces: </br>
 An example is the following code:
 
 ```svg
-
 //Get svg element
 var svg = document.getElementsByTagName('svg')[0]; 
 
@@ -282,7 +281,6 @@ newElement.style.strokeWidth = "5px";
 
 //append to the svg.
 svg.appendChild(newElement);
-
 ``` 
 And this code will produce something like this:
 
