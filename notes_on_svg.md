@@ -1,10 +1,10 @@
 
-#NOTES SVG: Scalable Vector Graphics
-
 #### **Foreword** </br>
 This are my personal notes on the svg specs, and are heavily based in the best resource:
 https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial
 
+
+# NOTES SVG: Scalable Vector Graphics
 
 An example of svg definition- the center of coordinates is top-left.
 
@@ -31,13 +31,13 @@ We draw a circle with: `<circle cx="150" cy="100" r="80" fill="blue" />`
 
 We write a text with: `<text x="150" y="125" font-size="60" text-anchor="middle" fill="white">S</text>`
 
-##BASIC SHAPES
+## BASIC SHAPES
 
 Different tags, define diferent shapes and take different atributes.
 Remember that the center of coordenates is top-left, and increases from left to right and from top to bottom.
 
 
-###Line
+### Line
 
 ```svg
 <line x1="10" x2="50" y1="110" y2="150"/>
@@ -52,7 +52,7 @@ The x position of point 2. </br>
 The y position of point 2. </br>
 
 
-###Polyline
+### Polyline
 
 Polylines are groups of connected straight lines. Since that list can get quite long, all the points are included in one attribute:
 
@@ -64,7 +64,7 @@ Polylines are groups of connected straight lines. Since that list can get quite 
 A list of points, each number separated by a space, comma, EOL, or a line feed character. Each point must contain two numbers, an x coordinate and a y coordinate. So the list (0,0), (1,1) and (2,2) could be written: "0 0, 1 1, 2 2".
 
 
-###Rectangles: 
+### Rectangles: 
 
 ```svg
 `<rect x="60" y="10" rx="10" ry="10" width="30" height="30"/>`
@@ -84,7 +84,7 @@ The x radius of the corners of the rectangle<br \>
 The y radius of the corners of the rectangle<br \>
 
 
-###Circle:
+### Circle:
 
 ```svg
 <circle cx="25" cy="75" r="20"/>`
@@ -155,9 +155,9 @@ An example of path:
 <path d="M10 10 h 80 v 80 h -80 Z"
 ```
 
-####Curve commands
+#### Curve commands
 
-#####Cubic Benzier Curve
+#### Cubic Benzier Curve
 
 C x1 y1 x2 y2 x y
 
@@ -185,7 +185,7 @@ S x2 y2 x y
 </svg>
 ```
 
-#####Cuadratic Benzier Curve
+##### Cuadratic Benzier Curve
 
 Q x1 y1 x y 
 
@@ -214,7 +214,7 @@ Takes the slope of the previous curve, and **(x, y)** is the end point.
 </svg>
 ```
 
-#####Arcs
+##### Arcs
 
 Arcs are sections of ellipses or circles. For a given x-radius and y-radius, there are two ellipses that connects any given two points, 
 for each ellipse there are two paths for connect those two points. So there are four possibilities.
@@ -239,3 +239,55 @@ for each ellipse there are two paths for connect those two points. So there are 
            L 275 230 Z" fill="blue"/>
 </svg>
 ```
+
+
+### SVG ANIMATIONS:
+
+if in html, we have an structure as the following:
+
+
+```html
+<div id='intro'>
+  <svg>
+  // draw whatever
+  </svg>
+</div>
+```
+
+And we want to add some elements to the previous svg, and with aid of the DOM; what you need to do is:
+
+```svg
+var svg1= document.getElementById('Intro').getElementsByTagName('svg');
+svg1[0].appendChild(element);//element like <line>, <circle>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
