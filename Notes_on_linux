@@ -9,6 +9,7 @@ REFERENCES:
 >> also check: https://github.com/google/ktsan </br>
 >> check the HOWTOs: http://tldp.org/en/Traffic-Control-HOWTO/
 >> also: http://www.linux-tutorial.info/modules.php?name=MContent&pageid=224
+>> the linux device drivers book 3rd edition, is at: https://lwn.net/Kernel/LDD3/ 
 
 The analysis of the memory in the linux system, can be checked using the commands:
 
