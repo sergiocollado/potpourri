@@ -1,0 +1,146 @@
+#-- Synplicity, Inc.
+#-- Version 7.3.1     
+#-- Project file /home/yazhaz-3/smd152/lab4V3/proj_1.prj
+#-- Written on Fri Oct 10 03:17:41 2004
+
+
+#add_file options
+add_file -vhdl -lib work "Add32.vhd"
+add_file -vhdl -lib work "BargraphLed.vhd"
+add_file -vhdl -lib work "EnAdd32.vhd"
+add_file -vhdl -lib work "Filter.vhd"
+add_file -vhdl -lib work "OneShot.vhd"
+add_file -vhdl -lib work "PS2.vhd"
+add_file -vhdl -lib work "ParityChecker.vhd"
+add_file -vhdl -lib work "RSReceiver.vhd"
+add_file -vhdl -lib work "RSTransmitter.vhd"
+add_file -vhdl -lib work "ReceiverFSM.vhd"
+add_file -vhdl -lib work "ScanToASCII.vhd"
+add_file -vhdl -lib work "ShiftReg.vhd"
+add_file -vhdl -lib work "Timer.vhd"
+add_file -vhdl -lib work "jump32M.vhd"
+add_file -vhdl -lib work "smd152_pkg.vhd"
+add_file -edif "fifo.edn"
+add_file -vhdl -lib work "fifo.vhd"
+add_file -vhdl -lib work "Spartan.vhd"
+
+
+#implementation: "rev_3"
+impl -add rev_3
+
+#device options
+set_option -technology SPARTAN2E
+set_option -part XC2S50E
+set_option -package FT256
+set_option -speed_grade -7
+
+#compilation/mapping options
+set_option -default_enum_encoding default
+set_option -symbolic_fsm_compiler 1
+set_option -resource_sharing 1
+set_option -use_fsm_explorer 0
+
+#map options
+set_option -frequency 20.000
+set_option -fanout_limit 100
+set_option -disable_io_insertion 0
+set_option -pipe 0
+set_option -update_models_cp 0
+set_option -verification_mode 0
+set_option -fixgatedclocks 0
+set_option -modular 0
+set_option -retiming 0
+
+#simulation options
+set_option -write_verilog 0
+set_option -write_vhdl 0
+
+#automatic place and route (vendor) options
+set_option -write_apr_constraint 1
+
+#set result format/file last
+project -result_file "rev_3/Spartan.edf"
+
+
+#implementation: "rev_1"
+impl -add rev_1
+
+#device options
+set_option -technology SPARTAN2E
+set_option -part XC2S300E
+set_option -package PQ208
+set_option -speed_grade -6
+
+#compilation/mapping options
+set_option -default_enum_encoding default
+set_option -symbolic_fsm_compiler 1
+set_option -resource_sharing 1
+set_option -use_fsm_explorer 0
+set_option -top_module "Spartan"
+
+#map options
+set_option -frequency 20.000
+set_option -fanout_limit 100
+set_option -disable_io_insertion 0
+set_option -pipe 0
+set_option -update_models_cp 0
+set_option -verification_mode 0
+set_option -fixgatedclocks 0
+set_option -modular 0
+set_option -retiming 0
+
+#simulation options
+set_option -write_verilog 0
+set_option -write_vhdl 0
+
+#automatic place and route (vendor) options
+set_option -write_apr_constraint 1
+
+#set result format/file last
+project -result_file "rev_1/Spartan.edf"
+
+
+#implementation: "rev_2"
+impl -add rev_2
+
+#device options
+set_option -technology SPARTAN2E
+set_option -part XC2S300E
+set_option -package PQ208
+set_option -speed_grade -6
+
+#compilation/mapping options
+set_option -default_enum_encoding default
+set_option -symbolic_fsm_compiler 1
+set_option -resource_sharing 1
+set_option -use_fsm_explorer 0
+set_option -top_module "Spartan"
+
+#map options
+set_option -frequency 20.000
+set_option -fanout_limit 100
+set_option -disable_io_insertion 0
+set_option -pipe 0
+set_option -update_models_cp 0
+set_option -verification_mode 0
+set_option -fixgatedclocks 0
+set_option -modular 0
+set_option -retiming 0
+
+#simulation options
+set_option -write_verilog 0
+set_option -write_vhdl 0
+
+#automatic place and route (vendor) options
+set_option -write_apr_constraint 1
+
+#set result format/file last
+project -result_file "rev_2/Spartan.edf"
+
+#implementation attributes
+set_option -vlog_std v95
+set_option -num_critical_paths ""
+set_option -num_startend_points ""
+set_option -compiler_compatible 0
+set_option -auto_constrain_io 1
+impl -active "rev_2"
