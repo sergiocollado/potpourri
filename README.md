@@ -11,13 +11,13 @@ If you want a quick overview about now does this all work, the you can check the
 
 ### How to Git [:link:](https://git-scm.com/book/en/v2/Getting-Started-Git-Basics)
 
-To clone a repository
+#### To clone a repository
 
 ```Bash
 ~ $ git clone https://github.com/username/username.github.io
 ```
 
-To push your changes at your local copy:
+#### To push your changes at your local copy:
 
 ```Bash
 ~ $git add --all
@@ -25,7 +25,7 @@ To push your changes at your local copy:
 ~ $git push -u origin master
 ```
 
-to get help
+#### to get help
 
 ```Bash
 ~ $ git help
@@ -38,11 +38,22 @@ to get help
 ```Bash
 ~ $ git help <concept>
 ```
+#### to create a new repository.
 
+```Bash
+~ $ echo "# hello-wold" >> README.md
+~ $ git init
+~ $ git add README.md
+~ $ git commit -m "first commit"
+~ $ git remote add origin git@github.com:username/hello-world.git
+~ $ git push -u origin master
+```
 
-
-
-
+#### to push an existing repository.
+```Bash
+~ $ git remote add origin git@github.com:sergiocollado/hello-wold.git
+~ $ git push -u origin master
+```
 
 ### Markdown
 
