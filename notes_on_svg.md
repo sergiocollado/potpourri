@@ -69,24 +69,27 @@ A list of points, each number separated by a space, comma, EOL, or a line feed c
 ### Rectangles: 
 
 ```svg
-`<rect x="60" y="10" rx="10" ry="10" width="30" height="30"/>`
+<rect x="60" y="10" rx="10" ry="10" width="30" height="30"/>
 ```
 
-**x** <t>The x position of the top left corner of the rectangle. <br \>
-**y** <t>The y position of the top left corner of the rectangle.<br \>
-**width**<t>The width of the rectangle<br \>
-**height**<br \>
-The height of the rectangle<br \>
-**rx**<br \>
-The x radius of the corners of the rectangle<br \>
-**ry**<br \>
-The y radius of the corners of the rectangle<br \>
+**x** <br>
+The x position of the top left corner of the rectangle. <br>
+**y** <br>
+The y position of the top left corner of the rectangle.<br>
+**width**<br>
+The width of the rectangle<br>
+**height**<br>
+The height of the rectangle<br>
+**rx**<br>
+The x radius of the corners of the rectangle<br>
+**ry**<br>
+The y radius of the corners of the rectangle<br>
 
 
 ### Circle:
 
 ```svg
-<circle cx="25" cy="75" r="20"/>`
+<circle cx="25" cy="75" r="20" />
 ```
 
 **r** </br>
@@ -98,6 +101,7 @@ The y position of the center of the circle. </br>
 
 
 ### Ellipse
+
 ```svg
 <ellipse cx="75" cy="75" rx="20" ry="5"/>
 ```
@@ -146,10 +150,12 @@ There are five commands, that move in lines:
 An example of path:
 
 · In absolute coordenates:
+
 ```svg
 <path d="M10 10 H 90 V 90 H 10 Z"/>
 ```
 · In relative coordinates:
+
 ```svg
 <path d="M10 10 h 80 v 80 h -80 Z"
 ```
@@ -219,7 +225,7 @@ Arcs are sections of ellipses or circles. For a given x-radius and y-radius, the
 for each ellipse there are two paths for connect those two points. So there are four possibilities.
 
 
-**`A rx ry x-axis-rotation large-arc-flag sweep-flag x y`**
+**A rx ry x-axis-rotation large-arc-flag sweep-flag x y**
 
 
 ```svg
@@ -242,47 +248,32 @@ for each ellipse there are two paths for connect those two points. So there are 
 
 # JAVASCRIPT FOR CREATING SVGs:
 
-if in html, we have an structure as the following:
+## CREATING SVGs
 
-
-```html
-<div id='intro'>
-  <svg>
-  // draw whatever
-  </svg>
-</div>
-```
-
-And we want to add some elements to the previous svg, and with aid of the DOM; what you need to do is:
-
-```svg
-var svg1= document.getElementById('Intro').getElementsByTagName('svg');
-svg1[0].appendChild(element);//element like <line>, <circle>
-```
 If you want to creatre a new element, you can always use: `document.createElement` function. SVG, uses namespaces, so you'll have to
 use 'document.createElementsNS' function.
 
-refernces: </br>
-     + document.createElement    [:link:](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) </br>
-     + document.createElementNS  [:link:](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElementNS) </br>
+references: </br>
+- document.createElement    [:link:](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) </br>
+- document.createElementNS  [:link:](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElementNS) </br>
 
 An example is the following code:
 
-```svg
+```javascript
 //Get svg element
 var svg = document.getElementsByTagName('svg')[0]; 
 
 //Create a path in SVG's namespace
-var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'path'); 
+var SvgElement = document.createElementNS("http://www.w3.org/2000/svg", 'path'); 
 
 //Set path's data
-newElement.setAttribute("d","M 0 0 L 10 10"); 
+SvgElement.setAttributeNS(null,"d","M 0 0 L 10 10"); 
 
 //Set stroke width
-newElement.style.strokeWidth = "5px"; 
+SvgElement.style.strokeWidth = "5px"; 
 
 //append to the svg.
-svg.appendChild(newElement);
+svg.appendChild(SvgElement);
 ``` 
 And this code will produce something like this:
 
@@ -290,6 +281,32 @@ And this code will produce something like this:
 <svg>
  <path d="M 0 0 L 10 10" style="stroke: #000; stroke-width: 5px;" />
 </svg>
+```
+
+## ADDING TEXTS
+
+Adding text is tricky, because the text is an sub child node. So then you have to create it, and explicitly add it as a child of the text element:
+
+```javascript
+var txtElem = document.createElementNS("http://www.w3.org/2000/svg", "text");
+ 
+txtElem.setAttributeNS(null,"x",100);
+txtElem.setAttributeNS(null,"y",100);
+txtElem.setAttributeNS(null,"font-size",12);
+
+var helloTxt = document.createTextNode("Hello World!");
+
+txtElem.appendChild(helloTxt)
+ 
+document.documentElement.appendChild(txtElem);
+```
+
+### REMOVING NODES
+
+You just have to use the function:`removeChild()` <br>
+
+```javascript
+document.documentElement.removeChild(txtElem);
 ```
 
 
@@ -301,9 +318,11 @@ And this code will produce something like this:
 
 
 TODO:
-[] https://www.w3.org/TR/SVG11/interact.html
-[] https://www.w3.org/TR/SVG11/linking.html
-[] https://www.w3.org/TR/SVG11/animate.html
+<http://apike.ca/prog_svg_js_create.html>
+[] https://www.w3.org/TR/SVG11/interact.html <br>
+[] https://www.w3.org/TR/SVG11/linking.html  <br>
+[] https://www.w3.org/TR/SVG11/animate.html  <br>
+[] [DOM standard](https://dom.spec.whatwg.org/#dom-document-createelementns) <br>
 
 
 
@@ -311,8 +330,7 @@ TODO:
 
 
 
-
-
+ 
 
 
 
