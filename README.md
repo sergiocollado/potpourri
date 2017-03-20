@@ -11,6 +11,39 @@ If you want a quick overview about now does this all work, the you can check the
 
 ### How to Git [:link:](https://git-scm.com/book/en/v2/Getting-Started-Git-Basics)
 
+To clone a repository
+
+```Bash
+~ $ git clone https://github.com/username/username.github.io
+```
+
+To push your changes at your local copy:
+
+```Bash
+~ $git add --all
+~ $git commit -m "%commit comment"
+~ $git push -u origin master
+```
+
+to get help
+
+```Bash
+~ $ git help
+```
+
+```Bash
+~ $ git help <command>
+```
+
+```Bash
+~ $ git help <concept>
+```
+
+
+
+
+
+
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for:
