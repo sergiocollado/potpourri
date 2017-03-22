@@ -2,7 +2,8 @@
 
 Node.js is a server-side framework, used to create intensive web applications (steamming, video, VoiP...), and is build on the Google's Chrome Javascript V8 engine. Node.js runs over a runtime environment.
 
-The lead web reference for Node.js is: **https://nodejs.org**
+The lead web reference for Node.js is: **https://nodejs.org** <br>
+There are also availeble: Guides: [:link:](https://nodejs.org/en/docs/guides/)
 
 ## Important features are:
 
@@ -73,8 +74,14 @@ The code-word 'require' is used to load module (sort of libraries).
 ```javascript
 var http=require('http');
 ```
+there is another very used module called Express, you can load it wit:
 
-for example of an IoT application you may want to use:
+
+```javascript
+var express=require('express');
+```
+
+or for example of an IoT application you may want to use:
 
 ```javascript
 var http=require('mqtt');
@@ -100,21 +107,36 @@ server.on('request',function(request,respon){
 });
 ```
 
-If we want to implementt a server that always respond with an OK, then we would code:
+If we want to implement a server that always respond with an OK, then we would code:
 
 ```javascript
 http.createServer(function(requested, response) {
  //Send the HTTP header
- //HTTP Status: Allles gut: 200 OK
+ //HTTP Status: Alles gut: 200 OK
  //Content Type: text/plain
  
  //send the response body as "Hello World"
+ //listen(8081) means it listening to the 8081 port.
  response.end('Hello World!\n');
  }.listen(8081);
  
- //print alive message in the console.
+ //print log message in the console.
  console.log('Server running at http://127.0.01:8081/');
+ //or an alert
+ alert('Server running at http://127.0.01:8081/');
  ```
- 
+When a request arrives to the server then it outputs the programmed response.
 
+For processing the request you will need to process the method and the url. Also you may need the headers and user-agent:
+
+```javascript
+var method = request.method;
+var url = request.url;
+var headers= request.headers;
+var userAgent = headers['user-agent'];
+```
+
+If some headers are repeated, then their values are overwritten or joined together as comma-separated strings, depending on the header. In that case you can use `rawHeaders`.
+
+When receiving a 'POST' OR 'GET' request, needs a bit more of precission. The 'request' object implements the `RedableSteam`, this stream can be listened or piped.
 
