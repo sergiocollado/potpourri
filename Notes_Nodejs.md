@@ -2,6 +2,8 @@
 
 Node.js is a server-side framework, used to create intensive web applications (steamming, video, VoiP...), and is build on the Google's Chrome Javascript V8 engine. Node.js runs over a runtime environment.
 
+The lead web reference for Node.js is: **https://nodejs.org**
+
 ## Important features are:
 
 - Asincrhonous and event-driven.
@@ -41,6 +43,11 @@ tar xvfz node-vx.xx.x-linux-64.tar.gz
 mkdir -p /usr/local/nodejs
 mv node-vx.xx.x-linux-x64/ /usr/local/nodejs
 ```
+and set the enviromental variable:
+
+````Bash
+export PATH=$PATH:/usr/locla/nodejs/bin
+```` 
 
  + Compile it:
  
@@ -67,9 +74,15 @@ The code-word 'require' is used to load module (sort of libraries).
 var http=require('http');
 ```
 
+for example of an IoT application you may want to use:
+
+```javascript
+var http=require('mqtt');
+```
+
 ## Creating a server:
 
-To create a server, you use the function 'createServer'
+To create a server, you use the method `createServer()`
 
 ```javascript
 var http=require('http');
@@ -87,6 +100,21 @@ server.on('request',function(request,respon){
 });
 ```
 
+If we want to implementt a server that always respond with an OK, then we would code:
 
+```javascript
+http.createServer(function(requested, response) {
+ //Send the HTTP header
+ //HTTP Status: Allles gut: 200 OK
+ //Content Type: text/plain
+ 
+ //send the response body as "Hello World"
+ response.end('Hello World!\n');
+ }.listen(8081);
+ 
+ //print alive message in the console.
+ console.log('Server running at http://127.0.01:8081/');
+ ```
+ 
 
 
