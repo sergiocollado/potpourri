@@ -1,15 +1,33 @@
 
+SPOF - single point of failure
+ERC - Electrical Rule Check
+RAID - Redundant Array of Independent Disks
 URL - Uniform Resource Locator
 DNS - Domain Name System
 S3  - AWS Simple Storage System  
 ARN - Amazon Resource Names
 ACL - Access Control Lists
 IAM - Identity and Access Management
-RAID - Redundant Array of Independent Disks
 REST - Representational State Transfer
 NAT - Network Adress Trasnlation
 CSS - Cascade Style Sheet
 DIRT - Data Intensive Real-Time applications
 AIML - Artificial Intelligence Mark-up Languaje
 OAMA - Ostia A Mano Abierta
-
+CAN - Controller Area Network
+CLI - command line instruction
+HA - high availability
+MFA - multi factor authentication
+IDS - intrusion detection systems (as Snort, Tripwire, OSSEC…)
+SG - security group
+VM - virtual machine
+AZ - availability zone
+WIP - Work In Progress
+DMA - Direct Memory Access
+PTH - Plated Through Hole
+PCB - Printed Circuit Board
+DRC - Design Rule Check
+SSD
+IOPS
+AMI
+DR 
