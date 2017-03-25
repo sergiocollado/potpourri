@@ -27,6 +27,7 @@ DMA - Direct Memory Access
 PTH - Plated Through Hole
 PCB - Printed Circuit Board
 DRC - Design Rule Check
+FAT - File Allocation Table
 SSD
 IOPS
 AMI
