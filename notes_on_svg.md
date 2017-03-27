@@ -309,7 +309,47 @@ You just have to use the function:`removeChild()` <br>
 document.documentElement.removeChild(txtElem);
 ```
 
+## EXAMPLE OF CREATING A SVG PROGRAMMATICALY
 
+```html
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>SVG programming</title>
+	<link rel="stylesheet" href="mystyles.css" type="text/css">
+	<script type="text/javascript">
+	function myFunction() {
+	var root = document.getElementById('element');
+	console.log( "root" + root);
+	var elem = document.createElementNS('http://www.w3.org/2000/svg','svg'); 
+	
+	elem.setAttributeNS(null,'id','SVGsergio');	
+	elem.setAttributeNS(null,"x",50);
+	elem.setAttributeNS(null,"y",50);
+	elem.setAttributeNS(null,"width",640);
+	elem.setAttributeNS(null,"height",300);
+ 
+	root.appendChild(elem);
+	
+	console.log("svg created: " + document.getElementById('SVGsergio');
+	);	
+	}
+	</script>
+	
+  </head>
+  <body >
+<div>
+		<h1>SVG creation test</h1>
+		<div id='element'>
+
+		</div>
+		<button type="button" onclick="myFunction()">Try it: Create a SVG</button>
+
+  </body>
+</html>
+```
 
 
 
@@ -323,6 +363,7 @@ TODO:
 [] https://www.w3.org/TR/SVG11/linking.html  </br>
 [] https://www.w3.org/TR/SVG11/animate.html  </br>
 [] [DOM standard](https://dom.spec.whatwg.org/#dom-document-createelementns) </br>
+[] https://www.w3.org/TR/SVG/struct.html#InterfaceSVGSVGElemen </br>
 
 
 
@@ -331,11 +372,6 @@ TODO:
 
 
  
-
-
-
-
-
 
 
 
