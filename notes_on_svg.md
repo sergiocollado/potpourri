@@ -318,11 +318,11 @@ document.documentElement.removeChild(txtElem);
 
 
 TODO:
-<http://apike.ca/prog_svg_js_create.html>
-[] https://www.w3.org/TR/SVG11/interact.html <br>
-[] https://www.w3.org/TR/SVG11/linking.html  <br>
-[] https://www.w3.org/TR/SVG11/animate.html  <br>
-[] [DOM standard](https://dom.spec.whatwg.org/#dom-document-createelementns) <br>
+<http://apike.ca/prog_svg_js_create.html> </br>
+[] https://www.w3.org/TR/SVG11/interact.html </br>
+[] https://www.w3.org/TR/SVG11/linking.html  </br>
+[] https://www.w3.org/TR/SVG11/animate.html  </br>
+[] [DOM standard](https://dom.spec.whatwg.org/#dom-document-createelementns) </br>
 
 
 
