@@ -85,6 +85,7 @@ The x radius of the corners of the rectangle<br>
 **ry**<br>
 The y radius of the corners of the rectangle<br>
 
+ref: https://www.w3.org/TR/SVG/shapes.html#RectElement
 
 ### Circle:
 
