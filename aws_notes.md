@@ -573,7 +573,7 @@ https://aws.amazon.com/en/training/path-developing/
 https://aws.amazon.com/training/intro_series/
 https://aws.amazon.com/es/training/intro_series/
 http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html
-
+https://www.youtube.com/user/AmazonWebServices
  
 # CERTIFICATIONS:
 
