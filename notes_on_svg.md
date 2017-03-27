@@ -312,7 +312,6 @@ document.documentElement.removeChild(txtElem);
 ## EXAMPLE OF CREATING A SVG PROGRAMMATICALY
 
 ```html
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -333,19 +332,19 @@ document.documentElement.removeChild(txtElem);
  
 	root.appendChild(elem);
 	
-	console.log("svg created: " + document.getElementById('SVGsergio');
-	);	
+	elem.name = "SVG1";
+	
+	console.log("svg created: " + document.getElementById('SVGsergio'));	
 	}
 	</script>
 	
   </head>
   <body >
-<div>
 		<h1>SVG creation test</h1>
 		<div id='element'>
 
 		</div>
-		<button type="button" onclick="myFunction()">Try it: Create a SVG</button>
+		<button type="button" onclick="myFunction()">Try it</button>
 
   </body>
 </html>
