@@ -3,21 +3,21 @@ FOREWORD:
 · This are my personal notes, on the AWS Cloud. The aim of this docuent,is to clarify my ideas, by means
 of writting them down, and have a resource where quickly find answers to my doubts, based on my experience. 
 
-#INDEX
+# INDEX
 
  - [S3 - Simple Storage Service](s3 - simple storage service.)
  - [CLOUD FRONT](CLOUD FRONT)
 
 
 # AWS S3 
-#   Simple Storage Service.
+# Simple Storage Service.
 
 references:
 - http://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html
 - https://aws.amazon.com/es/documentation/s3/
 - http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html
 
-##INTRODUCTION TO S3(Simple Store Service):
+## INTRODUCTION TO S3(Simple Store Service):
 
 In S3 (Simple Storage Service) you can put any data file. They are organiced in "Buckets".
 - Bucket names are globally unique, so you have to take one with a name non taken yet.
@@ -45,7 +45,7 @@ By default, buckets are private, you have to edit the privileges if you need to.
 You can choose a geographical region where AWS S3, will store your Buckets. You
 should use a region, to optimize latency.
 
-##ACCESS CONTROL:
+## ACCESS CONTROL:
 
 Objects, also have types of access control:
 
@@ -55,7 +55,7 @@ Objects, also have types of access control:
  - Query string autentification - gives expiring acess.
  - AWS management console. (sign in: https://console.aws.amazon.com/s3.)
  
-###POLICIES
+### POLICIES
 Bucket policies, provide a centraliced access control to buckets and objects based on a variety of conditions.
 For example it can create a policie that gives a user write access:
 
@@ -75,7 +75,7 @@ More info about ACLs: http://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_Usi
 The bucket also saves some information about the files: type, creation date, ... (meta data)
 More info in: http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html
  
-##STORING POLICIES:
+## STORING POLICIES:
 
 There are three ways to store policies:
 
@@ -91,14 +91,14 @@ There are three ways to store policies:
   - Ref: http://docs.aws.amazon.com/amazonglacier/latest/dev/introduction.html </br>
    
    
-##PRICING:
+## PRICING:
 
 https://aws.amazon.com/s3/pricing/
 http://calculator.s3.amazonaws.com/index.html
 
 Starts around 0.0X$ per GB/month for "standard" S3 - the fee gets cheaper, if you use more.
 
-###Bandwith:
+### Bandwith:
 
  - IN: FREE
  - OUT: Same Region: free
@@ -107,10 +107,10 @@ Starts around 0.0X$ per GB/month for "standard" S3 - the fee gets cheaper, if yo
    
 Just have in mind, that data trasnsfer inside your region is **FREE!!!**
    
-###AWS free usage tier
+### AWS free usage tier
 As part of the AWS Free Usage Tier, you can get started with Amazon S3 for free. Upon sign-up, new AWS customers receive 5 GB of Amazon S3 standard storage, 20,000 Get Requests, 2,000 Put Requests, and 15GB of data transfer out each month for one year.
    
-##ADVANCED FEATURES OF S3
+## ADVANCED FEATURES OF S3
 
  S3 also allows for:
  
@@ -143,7 +143,7 @@ ref: http://docs.aws.amazon.com/AmazonS3/latest/dev/uploadobjusingmpu.html
  - Bittorret support (P2P protocoll) max file size 5GB- ref: http://docs.aws.amazon.com/AmazonS3/latest/dev/S3Torrent.html
  
  
- ##First steps: 
+## First steps: 
  
 The best is to migrate all static content to S3 (images, CSS, Javascript, HTML, etc...)- this relieves the load on your
 EBS, so it can do more important tasks, with this, the cost of the EBS, is much more lower, and gets more performance.
@@ -187,7 +187,7 @@ Gon ; s3tools.org/download
   w3cdmd --help 
   s3cmd [feature] --help 
 
-##RELATED SERVICES
+## RELATED SERVICES
 
 S3 can be used with other AWS services:
 
@@ -196,15 +196,15 @@ S3 can be used with other AWS services:
 - AWS Import/Export: is a mail (not e-mail, it means mail, and actual envelop!)-  storage device, as RAID drive (Redundant Array of Independent Disks) so it can be uploaded in AWS. Ref: http://docs.aws.amazon.com/AWSImportExport/latest/DG/whatisdisk.html
 
 
-#CLOUD FRONT
+# CLOUD FRONT
   
-##INTRODUCTION to CLOUD FRONT:
+## INTRODUCTION to CLOUD FRONT:
 
 Cloud Front is a CDN - Content Delivery Network.
 It uses locations close to end user (Edges).
 Other populars CDNs are Akamai, Level 3.
 
-###DESCRIPTION:
+### DESCRIPTION:
 - Resources of static website assests: Images, CSS, JS, HTML, JSON.
 - Distributions: products, documents, data.
 - Streaming: audio, video.
@@ -220,7 +220,7 @@ free that chache, on demand or on squedule.
  - On demand.
  
  
-##HOW TO SET A CLOUDFRONT:
+## HOW TO SET A CLOUDFRONT:
  
  First you have to define a "Distribution":
     - you have to specify if this will be HTTP, or Streaming.
@@ -563,7 +563,7 @@ It supports all major record types
  
 
 
-#REFERENCES:
+# REFERENCES:
 https://aws.amazon.com/es/documentation/s3/
 https://aws.amazon.com/certification/faqs/
 https://aws.amazon.com/articles/
@@ -575,11 +575,11 @@ https://aws.amazon.com/es/training/intro_series/
 http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html
 
  
-#CERTIFICATIONS:
+# CERTIFICATIONS:
 
 The first certification is the:
 
-##AWS Certified Developer - Associate:
+## AWS Certified Developer - Associate:
 Its a certification that evaluates the expertise in developing and manteining applications in the AWS platform.
 
 - Understandin of core AWS services, use, best practices, and basic architecures
@@ -591,7 +591,7 @@ Its a certification that evaluates the expertise in developing and manteining ap
 - Code-level application security( IAM, credentials, encription, ...)
 
 
-#AWS S3 APIs
+# AWS S3 APIs
 
 Amazon S3 is designed to be languaje neutral, and to be used with the supported interfaces to store and retrieve objects.
 
