@@ -3,6 +3,9 @@ FOREWORD:
 · This are my personal notes, on the AWS Cloud. The aim of this docuent,is to clarify my ideas, by means
 of writting them down, and have a resource where quickly find answers to my doubts, based on my experience. 
 
+Short Introductory videos: https://aws.amazon.com/es/training/intro_series/
+
+
 # INDEX
 
  - [S3 - Simple Storage Service](s3 - simple storage service.)
