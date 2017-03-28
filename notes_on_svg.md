@@ -366,7 +366,8 @@ TODO:
 [] [DOM standard](https://dom.spec.whatwg.org/#dom-document-createelementns) </br>
 [] https://www.w3.org/TR/SVG/struct.html#InterfaceSVGSVGElemen </br>
 [] http://stackoverflow.com/questions/6701705/programmatically-creating-an-svg-image-element-with-javascript </br>
-[] http://stackoverflow.com/questions/2753732/how-to-access-svg-elements-with-javascript?rq=1
+[] http://stackoverflow.com/questions/2753732/how-to-access-svg-elements-with-javascript?rq=1 </br>
+[] http://stackoverflow.com/questions/21800271/svg-display-text-description-on-click </br>
 
 
 
