@@ -3,7 +3,7 @@
 Node.js is a server-side framework, used to create intensive web applications (steamming, video, VoiP...), and is build on the Google's Chrome Javascript V8 engine. Node.js runs over a runtime environment.
 
 The lead web reference for Node.js is: **https://nodejs.org** <br>
-There are also availeble: Guides: [:link:](https://nodejs.org/en/docs/guides/)
+There are also available reference guides: [:link:](https://nodejs.org/en/docs/guides/)
 
 ## Important features are:
 
@@ -47,8 +47,8 @@ mv node-vx.xx.x-linux-x64/ /usr/local/nodejs
 and set the enviromental variable:
 
 ````Bash
-export PATH=$PATH:/usr/locla/nodejs/bin
-```` 
+export PATH=$PATH:/usr/local/nodejs/bin
+```
 
  + Compile it:
  
@@ -87,7 +87,10 @@ or for example of an IoT application you may want to use:
 var http=require('mqtt');
 ```
 
-## Creating a server:
+## Creating a server
+
+
+### Getting requests
 
 To create a server, you use the method `createServer()`
 
@@ -138,5 +141,139 @@ var userAgent = headers['user-agent'];
 
 If some headers are repeated, then their values are overwritten or joined together as comma-separated strings, depending on the header. In that case you can use `rawHeaders`.
 
-When receiving a 'POST' OR 'GET' request, needs a bit more of precission. The 'request' object implements the `RedableSteam`, this stream can be listened or piped.
+When receiving a **'POST'** OR **'GET'** request, needs a bit more of precission. The 'request' object implements the `RedableSteam`, this stream can be listened or piped. So you can parse the stream data listening to the stream `data` and `end` events. So the best action is to collect all the 'data' into an array, and at the 'end' event to stringfy it.
+
+```javascript
+var body = [];
+request.on('data', function(chunk) {
+  body.push(chunk);
+}).on('end', function() {
+  body = Buffer.concat(body).toString();
+  // at this point, `body` has the entire request body stored in it as a string
+});
+```
+
+Have in mind, that the `request` is an `ReadableStream` and is also an `EventEmitter`, and it emits an 'error', and in case you don't listen for it, that can cause the program to crash. So its recommended to handle that 'error' even in the case, you don't do anything, and just log it, and move on.
+
+```javascript
+request.on('error', function(err) {
+  // This prints the error message and stack trace to `stderr`.
+  console.error(err.stack);
+});
+```
+
+### Answering requests
+
+
+The `response` is an instance of `ServerResponse`that is an `WritableStream`. The default response code will be always 200 (OK), unless you modify it, for it you use the `statusCode` property.
+
+```javascript
+response.statusCode = 404; // resorce wasn't found
+```
+
+Headers, are set with the `SetHeader`:
+
+```javascript
+response.setHeader('Content-Type', 'application/json');
+```
+
+With the `statusCode` and `SetHeader` you set 'implicit headers', and you rely on Node.js to send the headers at the proper time. You can also 'explicity' set those headers writing them into the response stream with the method `writeHead`:
+
+```javascript
+response.writeHead(200, {
+  'Content-Type': 'application/json',
+  'X-Powered-By': 'bacon'
+});
+```
+For the body of the response, you can use normal write methods for a stream:
+
+```javascript
+response.write('<html>');
+response.write('<body>');
+response.write('<h1>Hello, World!</h1>');
+response.write('</body>');
+response.write('</html>');
+response.end();
+```
+or write it all at once, like:
+
+```javascript
+response.end('<html><body><h1>Hello, World!</h1></body></html>');
+```
+
+Watch out! because as it happened with the `request`, the `response` is an eventEmitter, an it also launch an `error` so you should handle it. 
+
+### Summing it up
+
+ If we put all the above together:
+
+
+```javascript 
+var http = require('http');
+
+http.createServer(function(request, response) {
+
+  var headers = request.headers;
+  var method = request.method;
+  var url = request.url;
+  
+  response.statusCode = 200; //ok
+      
+  var body = [];
+  
+  request.on('error', function(err) {
+    console.error(err);
+    response.statusCode = 400; //Bad request
+    response.end();
+  }).on('data', function(chunk) {
+    body.push(chunk);
+  }).on('end', function() {
+  
+    body = Buffer.concat(body).toString();
+    
+    // At this point, we have the headers, method, url and body, and can now
+    // do whatever we need to in order to respond to this request.
+
+    response.on('error', function(err) {
+      console.error(err); //to stderror
+      response.statusCode = 404; //error on request.
+    });
+
+
+    //response.statusCode = 200; //ok
+    response.setHeader('Content-Type', 'application/json');
+    // you can write it, all at once with:
+    // response.writeHead(200, {'Content-Type': 'application/json'})
+
+    var responseBody = {
+      headers: headers,
+      method: method,
+      url: url,
+      body: body
+    };
+
+    response.write(JSON.stringify(responseBody));
+    response.end();
+    // you can write it, all at once with:
+    // response.end(JSON.stringify(responseBody))
+
+  });
+}).listen(8080);
+```
+
+Remember that **`request`** is a `ReadableStream` and **`response`** is a `WritableStream`, so you can get advantage of **pipes** if you need them.
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
 
