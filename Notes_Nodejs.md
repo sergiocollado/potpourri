@@ -52,7 +52,7 @@ export PATH=$PATH:/usr/local/nodejs/bin
 
  + Compile it:
  
- ```Bash
+```Bash
    - './configure'
    - 'make'
    - 'make install'
