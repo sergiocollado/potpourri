@@ -46,7 +46,7 @@ mv node-vx.xx.x-linux-x64/ /usr/local/nodejs
 ```
 and set the enviromental variable:
 
-````Bash
+```Bash
 export PATH=$PATH:/usr/local/nodejs/bin
 ```
 
