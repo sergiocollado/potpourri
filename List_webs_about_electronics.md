@@ -56,6 +56,32 @@ and -> http://highlowtech.org/?p=5
 
 color led strip -> https://www.youtube.com/watch?v=mgOZzvSxUHI
 
+circuit pcb makers company -> http://www.lab-circuits.com/es/fabricacio.php
+
+rigiflex design guide -> http://www.lab-circuits.com/es/articles_detall.php?idioma=2&codi=15
+
+proceso de fabricación de un circuito impreso -> https://youtu.be/5Xd92df738I
+
+propiedades de los materiales de una pcb -> http://www.lab-circuits.com/es/propietats_laminats.php
+
+impedance calculation control -> http://www.polarinstruments.com/support/cits/Controlled%20impedance%20booklet%20586K.pdf
+
+impedance control -> http://lab-circuits.com/uploads/doc/tech/Articulo_impedancia_controlada_1.pdf
+
+ROHS directive -> http://www.lab-circuits.com/uploads/doc/Directiva_2011_65_EU_esp.pdf
+
+and -> http://www.lab-circuits.com/uploads/doc/RD_208_2005_RAEE.pdf
+
+REACH directive -> http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=OJ:L:2006:396:0001:0852:ES:PDF
+
+OLIMEX -> https://www.olimex.com/
+
+Arduino- stm32 -> http://www.emcu.it/ARDUINO-STM32/Arduino-and-STM32.html
+
+references arduino- st32 - maple project -> http://air.imag.fr/mediawiki/images/7/7d/RICM4-Arduino_Project-Report-FENG-GU-GUO.pdf
+
+
+
 
 
 
