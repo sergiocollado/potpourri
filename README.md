@@ -115,13 +115,14 @@ Also check this ->>  https://surge.sh </br>
 Also: [:link:][Creating and hosting a site on Github](http://jmcglone.com/guides/github-pages/) </br>
 
 
+
 ### Jekyll Themes
 
 **Jekyll site** [:link:](https://jekyllrb.com/) </br>
 
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sergiocollado/potpourri/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-( [:link:] Adding a Jekyl style to your github site)[https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site/] </br>
+Adding a Jekyll style to your github site: [:link:](https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site/) </br>
 
 
 ### Support or Contact
