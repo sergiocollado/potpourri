@@ -9,6 +9,8 @@ If you want a quick overview about now does this all work, the you can check the
 
 ### Toolboxes: [Pretty usefull tools](https://github.com/integrations/) :link:
 
+Travis [:link:](https://travis-ci.org/)
+
 ### How to Git [:link:](https://git-scm.com/book/en/v2/Getting-Started-Git-Basics)
 
 #### To clone a repository
@@ -109,7 +111,8 @@ AsciiDoc, is also another markup lenguaje, and it has certain compatibility with
 
 You can generate webs, for your projects, with :link: [github pages](https://pages.github.com/)
 
-Also check this ->>  https://surge.sh
+Also check this ->>  https://surge.sh </br>
+Also: [:link:][Creating and hosting a site on Github](http://jmcglone.com/guides/github-pages/) </br>
 
 
 ### Jekyll Themes
