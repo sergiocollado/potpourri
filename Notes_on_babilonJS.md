@@ -1,8 +1,8 @@
-# Notes on WebGL
+# Notes on BabylonJS
 
 IT uses GPU
 
-babilon.js
+babylon.js
 
 download from github.
 
@@ -27,7 +27,7 @@ for babilon.js, we need a canvas object.
 we need to create an initialization function:
 
 
-
+```javascript
 M3D.init = function () {
   
     //get canvas
@@ -39,8 +39,43 @@ M3D.init = function () {
     //create scene:
     var scene = new BABYLON.Scene(engine);
     
+    //add camera - the camera is the object that allows you to view the scene. Your view depends then on the camera position.
+    var camera = new BABYLON.FreeCamera('Freecamera', new BABYLON.Vector3(0,2,-15),scene);
     
+    //enviroment light from above. 'HemisphericLight' is a sort of general, natural ambient light.
+    var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0),scene); 
+    
+    //create something to see - objects are defined under 'Mesh', you need to define if its made of triangles, and how many.
+    var sphere = BABYLON.Mesh.CreateSphere('sphere1',16,2,scene);
+    // 16, is the segment of the sphere.
+    // 2, is the radius
+    
+    sphere.position.y=1;
+    shere.position = new BABYLON.Vector3(0,0,0);
+    
+    //create ground
+    var ground = BABYLON.Mesh.CreateGround('ground', 20,20, 2, scene);
+    
+    //render
+    engine.runRenderLoop(function(){
+      scene.render();
+      });
+}
+```
+But we will load it, just when all the content is loaded. So we have to listen for the event 
+
+```html
+<script> window.addEventListener('DOMContentLoaded', function (){
+         M3D.init();
+         });
+         </script>
+```
 
 
+we would like to control the camera:
+
+camera.attachControl(canvas) 
+
+You use 'setTarget' to define where the camera faces.
 
 
