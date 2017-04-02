@@ -22,7 +22,15 @@ var M3D = My3Dnamespacace;
 
 with this the code will have a limited scope in the code enviroment.
 
-for babilon.js, we need a canvas object.
+for babilon.js, we need a canvas object, so we have to define one:
+
+```html
+<div style="position:relative;"> 
+	<canvas  id="theCanvas" width="1400" height="900" style="position: absolute; left:100px; width:100%; top:30px">
+	Canvas not supported; please update your browser.
+	</canvas>
+</div>
+```
 
 we need to create an initialization function:
 
