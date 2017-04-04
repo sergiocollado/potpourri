@@ -80,6 +80,14 @@ Arduino- stm32 -> http://www.emcu.it/ARDUINO-STM32/Arduino-and-STM32.html
 
 references arduino- st32 - maple project -> http://air.imag.fr/mediawiki/images/7/7d/RICM4-Arduino_Project-Report-FENG-GU-GUO.pdf
 
+calculation tools -> http://www.cdt21.com/resources/siryo3.asp
+
+rf safety calculator -> http://www.wirelessconnections.net/calcs/rfsafety.asp
+
+antenna calculations -> http://www.66pacific.com/calculators/small-transmitting-loop-antenna-calculator.aspx
+
+https://supportforums.cisco.com/discussion/11271366/how-estimate-wifi-coverage-given-ap-and-antenna
+
 
 
 
