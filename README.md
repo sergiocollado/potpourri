@@ -113,7 +113,7 @@ You can generate webs, for your projects, with :link: [github pages](https://pag
 
 Also check this ->>  https://surge.sh </br>
 Also: [:link:][Creating and hosting a site on Github](http://jmcglone.com/guides/github-pages/) </br>
-
+more: [:link:][Configuring and publishing on Github](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/)
 
 
 ### Jekyll Themes
