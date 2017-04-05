@@ -2,17 +2,17 @@
 ## author unknown
 ---
 
-**ENGINEER IDENTIFICATION TEST**
-**SOCIAL SKILLS**
-**FASCINATION WITH GADGETS**
-**FASHION AND APPEARANCE**
-**LOVE OF "STAR TREK"**
-**DATING AND SOCIAL LIFE**
-**HONESTY**
-**FRUGALITY**
-**POWERS OF CONCENTRATION**
-**RISK**
-**EGO**
+**ENGINEER IDENTIFICATION TEST** </br>
+**SOCIAL SKILLS** </br>
+**FASCINATION WITH GADGETS** </br>
+**FASHION AND APPEARANCE** </br>
+**LOVE OF "STAR TREK"** </br>
+**DATING AND SOCIAL LIFE** </br>
+**HONESTY** </br>
+**FRUGALITY** </br>
+**POWERS OF CONCENTRATION** </br>
+**RISK** </br>
+**EGO** </br>
 
 People who work in the fields of science and technology are not like other people. This can be frustrating to the nontechnical people who have to deal with them. The secret to coping with technology-oriented people is to understand their motivations. This chapter will teach you everything you need to know. I learned their customs and mannerisms by observing them, much the way Jane Goodall learned about the great apes, but without the hassle of grooming.
 
@@ -32,15 +32,17 @@ The correct answer is "C" but partial credit can be given to anybody who writes 
 
 Engineers have different objectives when it comes to social interaction. "Normal" people expect to accomplish several unrealistic things from social interaction:
 
-Stimulating and thought-provoking conversation
-Important social contacts
-A feeling of connectedness with other humans
-In contrast to "normal" people, engineers have rational objectives for social interactions:
+- Stimulating and thought-provoking conversation
+- Important social contacts
+- A feeling of connectedness with other humans
 
-Get it over with as soon as possible.
-Avoid getting invited to something unpleasant.
-Demonstrate mental superiority and mastery of all subjects.
-FASCINATION WITH GADGETS
+In contrast to __"normal"__ people, engineers have rational objectives for social interactions:
+
+- Get it over with as soon as possible.
+- Avoid getting invited to something unpleasant.
+- Demonstrate mental superiority and mastery of all subjects.
+
+## FASCINATION WITH GADGETS
 
 To the engineer, all matter in the universe can be placed into one of two categories: (1)things that need to be fixed, and (2)things that will need to be fixed after you've had a few minutes to play with them. Engineers like to solve problems. If there are no problems handily available, they will create their own problems. Normal people don't understand this concept; they believe that if it ain't broke, don't fix it. Engineers believe that if it ain't broke, it doesn't have enough features yet.
 
@@ -62,9 +64,9 @@ Fortunately, engineers have an ace in the hole. They are widely recognized as su
 
 Male engineers reach their peak of sexual attractiveness later than normal men, becoming irresistible erotic dynamos in their mid thirties to late forties. Just look at these examples of sexually irresistible men in technical professions:
 
-Bill Gates.
-MacGyver.
-Etcetera.
+- Bill Gates.
+- MacGyver.
+- Etcetera.
 
 Female engineers become irresistible at the age of consent and remain that way until about thirty minutes after their clinical death. Longer if it's a warm day.
 
@@ -93,19 +95,21 @@ Engineers hate risk. They try to eliminate it whenever they can. This is underst
 
 ## EXAMPLES OF BAD PRESS FOR ENGINEERS
 
-Intel Inside / Can't Divide
-Hindenberg.
-Space Shuttle Challenger.
-SPANet(tm)
-Hubble space telescope.
-Apollo 13.
-Titanic.
-Ford Pinto.
-Corvair.
+Intel Inside / Can't Divide </br>
+Hindenberg. </br>
+Space Shuttle Challenger. </br>
+SPANet(tm) </br>
+Hubble space telescope. </br>
+Apollo 13. </br>
+Titanic. </br>
+Ford Pinto. </br>
+Corvair. </br>
+
+
 The risk/reward calculation for engineers looks something like this:
 
-**RISK**: Public humiliation and the death of thousands of innocent people.
-**REWARD**: A certificate of appreciation in a handsome plastic frame.
+**RISK**: Public humiliation and the death of thousands of innocent people. </br>
+**REWARD**: A certificate of appreciation in a handsome plastic frame. </br>
 
 Being practical people, engineers evaluate this balance of risks and rewards and decide that risk is not a good thing. The best way to avoid risk is by advising that any activity is technically impossible for reasons that are far too complicated to explain.
 
@@ -115,8 +119,8 @@ If that approach is not sufficient to halt a project, then the engineer will fal
 
 Ego-wise, two things are important to engineers:
 
-- How smart they are.
-- How many cool devices they own.
+- How smart they are. </br>
+- How many cool devices they own. </br>
 
 The fastest way to get an engineer to solve a problem is to declare that the problem is unsolvable. No engineer can walk away from an unsolvable problem until it's solved. No illness or distraction is sufficient to get the engineer off the case. These types of challenges quickly become personal -- a battle between the engineer and the laws of nature.
 
