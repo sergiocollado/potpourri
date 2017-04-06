@@ -2,8 +2,8 @@
 
 ## About me
 
-http://sergiocollado.github.io
-https://www.linkedin.com/in/sergiogonzalezcollado/
+http://sergiocollado.github.io </br>
+https://www.linkedin.com/in/sergiogonzalezcollado/ </br>
 
 
 ## Welcome to GitHub Pages
