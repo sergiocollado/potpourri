@@ -46,12 +46,12 @@ Travis [:link:](https://travis-ci.org/)
 #### to create a new repository.
 
 ```Bash
-~ $ echo "# hello-wold" >> README.md
-~ $ git init
-~ $ git add README.md
-~ $ git commit -m "first commit"
-~ $ git remote add origin git@github.com:username/hello-world.git
-~ $ git push -u origin master
+echo "# ramblings" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:sergiocollado/ramblings.git
+git push -u origin master
 ```
 
 #### to push an existing repository.
@@ -85,7 +85,8 @@ Syntax highlighted code block
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/). </br>
 
 
-check: https://help.github.com/articles/basic-writing-and-formatting-syntax/#section-links </br>
+check:</br>
+https://help.github.com/articles/basic-writing-and-formatting-syntax/#section-links </br>
 https://help.github.com/articles/basic-writing-and-formatting-syntax/    </br>
 https://help.github.com/articles/working-with-advanced-formatting/       </br>
 https://help.github.com/articles/about-writing-and-formatting-on-github/      </br>
@@ -128,15 +129,6 @@ Your Pages site will use the layout and styles from the Jekyll theme you have se
 Adding a Jekyll style to your github site: [:link:](https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site/) </br>
 
 
-### Support or Contact
+### Troubleshooting: Support or Contact
 
 Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
-
-```Bash
-echo "# ramblings" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin git@github.com:sergiocollado/ramblings.git
-git push -u origin master
-```
