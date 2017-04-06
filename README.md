@@ -1,5 +1,10 @@
 ![image](https://github.com/sergiocollado/potpourri/blob/master/image/me.png)
 
+## About me
+
+http://sergiocollado.github.io
+https://www.linkedin.com/in/sergiogonzalezcollado/
+
 
 ## Welcome to GitHub Pages
 
