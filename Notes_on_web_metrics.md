@@ -6,7 +6,7 @@ http://webapps.stackexchange.com/questions/66799/how-can-i-have-a-public-searcha
 
 You can actually request an indexing at: https://www.google.com/webmasters/tools/submit-url
 
-Then I found about the googles webmaster site:  http://www.google.com/webmasters/
+Then I found about the google's webmaster site:  http://www.google.com/webmasters/
 
 It recommended my to do the following actions:
 
@@ -18,8 +18,10 @@ It recommended my to do the following actions:
 
 One of the tasks to do is to generate a site-map. The main reference for doing this kind of file is at: https://www.sitemaps.org/protocol.html
 
-To conform a robot.txt, that is a file to inform also the webcrawlers, you have to reference to: http://www.robotstxt.org/
+To conform a robot.txt, that is a file to inform also the webcrawlers, you have to reference to: http://www.robotstxt.org/ </br>
+Robots database [:link:](http://www.robotstxt.org/db.html)
 Also [:link:](https://www.quora.com/What-is-the-best-open-source-web-crawler-and-why)
+and: [Google's Search Optimization Starting Guide](https://static.googleusercontent.com/media/www.google.com/es//webmasters/docs/search-engine-optimization-starter-guide.pdf)
 
 
 
