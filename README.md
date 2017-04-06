@@ -1,4 +1,4 @@
-!(image)[https://github.com/sergiocollado/potpourri/blob/master/images/me.png]
+![image)](https://github.com/sergiocollado/potpourri/blob/master/images/me.png)
 
 
 ## Welcome to GitHub Pages
