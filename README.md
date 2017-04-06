@@ -1,4 +1,4 @@
-!(me)[ ]
+!(me)[images/☆Sergio☆.png ]
 
 
 ## Welcome to GitHub Pages
