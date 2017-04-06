@@ -90,7 +90,9 @@ https://supportforums.cisco.com/discussion/11271366/how-estimate-wifi-coverage-g
 
 classical C programming- all I know, comes from this -> https://users.cs.cf.ac.uk/Dave.Marshall/C/
 
+pcb-tools -> http://pcb-tools.readthedocs.io/en/latest/index.html
 
+excellon- mounting -> www.excellon.com
 
 
 
