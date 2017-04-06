@@ -1,4 +1,4 @@
-!(./images/☆Sergio☆.png)[./images/☆Sergio☆.png]
+!(./images/me.png)[./images/me.png]
 
 
 ## Welcome to GitHub Pages
