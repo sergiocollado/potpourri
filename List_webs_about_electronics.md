@@ -88,6 +88,8 @@ antenna calculations -> http://www.66pacific.com/calculators/small-transmitting-
 
 https://supportforums.cisco.com/discussion/11271366/how-estimate-wifi-coverage-given-ap-and-antenna
 
+classical C programming- all I know, comes from this -> https://users.cs.cf.ac.uk/Dave.Marshall/C/
+
 
 
 
