@@ -94,6 +94,13 @@ pcb-tools -> http://pcb-tools.readthedocs.io/en/latest/index.html
 
 excellon- mounting -> www.excellon.com
 
+how to program stm32 -> http://www.emcu.it/STM32/What_should_I_use_to_develop_on_STM32/What_should_I_use_to_develop_on_STM32.html#Free_C_CompilerIDE
+
+blockchain automotive -> https://www.ibm.com/blogs/internet-of-things/blockchain-for-automotive/
+
+toolchain FreeRTOS -> http://www.stf12.org/developers/ODeV.html
+
+
 
 
 
