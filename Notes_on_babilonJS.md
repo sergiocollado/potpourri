@@ -89,4 +89,18 @@ camera.attachControl(canvas)
 
 You use 'setTarget' to define where the camera faces.
 
+var box = BABILON.Mesh.CreateBox('box', 1, scene);
+box.position =  new  BABYLON.Vector3(7,2,-5);
 
+var ciclinder =  BABILON.Mesh.CreateCylinderx('cyl', 5, 1, 3, 16, scene);
+
+var lines = BABILONS.Mesh.CreateLines('lines', [
+			new BABILON.Vector3(0,5,0),
+			new BABILON.Vector3(1,5,0),
+			new BABILON.Vector3(0,5,2),
+			new BABILON.Vector3(2,2,0),
+			new BABILON.Vector3(1,5,-5),
+			], scene);
+			
+			
+			
