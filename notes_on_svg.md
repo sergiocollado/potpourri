@@ -324,12 +324,12 @@ document.documentElement.removeChild(txtElem);
 	var root = document.getElementById('element');
 	console.log( "root" + root);
 	var elem = document.createElementNS('http://www.w3.org/2000/svg','svg'); 
-	
+	elem.setAttributeNS(null,'version','1.1');
 	elem.setAttributeNS(null,'id','SVGsergio');	
 	elem.setAttributeNS(null,"x",50);
 	elem.setAttributeNS(null,"y",50);
-	elem.setAttributeNS(null,"width",640);
-	elem.setAttributeNS(null,"height",300);
+	elem.setAttributeNS(null,"width",50%);
+	elem.setAttributeNS(null,"height",50%);
  
 	root.appendChild(elem);
 	
@@ -351,14 +351,63 @@ document.documentElement.removeChild(txtElem);
 </html>
 ```
 
+Authors should provide a ‘metadata’ child element to the outermost svg element within a stand-alone SVG document. The ‘metadata’ child element to an ‘svg’ element serves the purposes of identifying document-level metadata.
 
+As an example:
 
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>SVG programming</title>
+	<link rel="stylesheet" href="mystyles.css" type="text/css">
+	<script type="text/javascript">
+	function myFunction() 
+	{
+	var root = document.getElementById('element');
+	console.log( "root" + root);
+	
+	var elem = document.createElementNS('http://www.w3.org/2000/svg','svg'); 
+	
+	elem.setAttributeNS(null,'version','1.1');
+	elem.setAttributeNS(null,'id','SVGsergio');	
+	elem.setAttributeNS(null,"x",'50');
+	elem.setAttributeNS(null,"y",'50');
+	elem.setAttributeNS(null,"width",'50%');
+	elem.setAttributeNS(null,"height",'50%');
+ 
+	root.appendChild(elem);
+	
+	elem.name = "SVG1";
+	
+	elem.setAttrributeNS(null,'Metadata','Creator: Sergio_González_Collado'); (X)
+	
+	
+	console.log("svg created: " + document.getElementById('SVGsergio'));	
+	}
+	</script>
+	
+  </head>
+  <body>
+		<h1>SVG creation test</h1>
+		<div id='element'>
 
+		</div>
+		<button type="button" onclick="myFunction()">Try it</button>
+
+  </body>
+</html>
+```
 
 
 
 TODO:
-<http://apike.ca/prog_svg_js_create.html> </br>
+ </br>
+ 
+ >> https://www.w3.org/TR/SVG/struct.html <<
+ 
+ 
 [] https://www.w3.org/TR/SVG11/interact.html </br>
 [] https://www.w3.org/TR/SVG11/linking.html  </br>
 [] https://www.w3.org/TR/SVG11/animate.html  </br>
