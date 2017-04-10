@@ -419,7 +419,7 @@ TODO:
 [] http://stackoverflow.com/questions/21800271/svg-display-text-description-on-click </br>
 [] https://developer.mozilla.org/en-US/docs/Web/SVG/Element/desc </br>
 [] https://developer.mozilla.org/en-US/docs/Web/API
-
+[] About metadatas -> https://www.w3.org/TR/SVG11/metadata.html#InterfaceSVGMetadataElement
 
 
 
