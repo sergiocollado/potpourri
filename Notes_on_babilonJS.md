@@ -64,6 +64,9 @@ M3D.init = function () {
     //create ground
     var ground = BABYLON.Mesh.CreateGround('ground', 20,20, 2, scene);
     
+    //create a sphere: 
+    var sphere = new BABILON.Mesh.CreateSpehere('Sphere1',16,2,scene);
+    scene2.position = new BABILON.Vector3(3,3,3):
     //render
     engine.runRenderLoop(function(){
       scene.render();
