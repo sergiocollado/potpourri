@@ -8,17 +8,25 @@ download from github.
 
 we define in js, a 'namespace', so, we define:
 
+
+```javascritp
 var = My3Dnamespace
+```
 
 and if it has been allready defined, we use it
 
+```javascript
 var My3Dnamespace = My3Dnamespace ...
+```
 
 or if it hasn't been defined we use an empty object
 
+```javascript
 VAR My3Dnamespace = My3Dnamespace || {};
-
+```
+```javascript
 var M3D = My3Dnamespacace;
+```
 
 with this the code will have a limited scope in the code enviroment.
 
@@ -26,7 +34,8 @@ for babilon.js, we need a canvas object, so we have to define one:
 
 ```html
 <div style="position:relative;"> 
-	<canvas  id="theCanvas" width="1400" height="900" style="position: absolute; left:100px; width:100%; top:30px">
+	<canvas  id="theCanvas" width="1400" height="900" style="position:
+	absolute; left:100px; width:100%; top:30px">
 	Canvas not supported; please update your browser.
 	</canvas>
 </div>
@@ -85,10 +94,12 @@ But we will load it, just when all the content is loaded. So we have to listen f
 
 we would like to control the camera:
 
+```javascript
 camera.attachControl(canvas) 
-
+```
 You use 'setTarget' to define where the camera faces.
 
+```javascript
 var box = BABILON.Mesh.CreateBox('box', 1, scene);
 box.position =  new  BABYLON.Vector3(7,2,-5);
 box.scaling.y = 2;
@@ -102,9 +113,13 @@ var lines = BABILONS.Mesh.CreateLines('lines', [
 			new BABILON.Vector3(2,2,0),
 			new BABILON.Vector3(1,5,-5),
 			], scene);
-			
+
+//in case the nav window is resized, we handle it with:
+
 addEventListener('resize',function(){
 	engine.resize();
 	});
-			
+```
+
+
 			
