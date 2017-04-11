@@ -3,7 +3,8 @@
 This are my personal notes on the svg specs, and are heavily based in the best resource:
 https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial
 
-The lead reference for SVGs is: https://www.w3.org/TR/SVG11/
+The lead reference for SVGs is: https://www.w3.org/TR/SVG11/ </br>
+also check: https://code.google.com/archive/p/svgweb/ </br>
 
 
 # NOTES SVG: Scalable Vector Graphics
