@@ -165,3 +165,24 @@ If you want to know how much free memory you have in your hard disk, you have to
 · du command
 
 TODO: COMPLETE
+
+
+
+
+- If you want to have updated all the references to yor database repository, you should install mlocate, it will update the db once a day.
+
+> sudo apt-get install mlocate
+
+if it fails at start, try to 
+
+> sudo updatedb
+
+
+
+
+
+
+
+
+
+
