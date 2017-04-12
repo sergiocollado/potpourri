@@ -36,3 +36,6 @@ SPA - Single Page Application
 FMECA - Failure mode, effects and critical analysis
 SMD - Surface Mount Device
 SO - Small Outline
+ABI - Aplication Binary Interface
+EABI - Extended Aplication Binary Interface
+OABI - Old Aplication Binary Interface.
