@@ -24,17 +24,17 @@ just store the Hash of the file, and supouse that if we find another file, with 
 We can concatenate x with r (r|x), that is, r is from a probability distribution very spread out. So given H(r|x) is infeasible to find x.
 
 ### Commitment
-Its usefull to check the validity of a message:
+Its usefull to check the validity of a message: </br>
 
-First we use a publication function, 'commit message':
+First we use a publication function, 'commit message': </br>
 (com,msg) := com := commit(msg) := (H(key|msg),key) //'key' is a random 256 value.
 
-The we have a verification function 'verify':
+The we have a verification function 'verify': </br>
 match (true or false) := verify(com, key, msg) := [H(key|msg) == com]
 
 Security propierties:
 
-Hiding: Given a commintment, H(key|msg) is infeaseble to find msg.
-Binding: is infeaseble to finde a msg\'!= msg that: H(key,msg) == H(key,msg\')
+Hiding: Given a commintment, H(key|msg) is infeaseble to find msg. </br>
+Binding: is infeaseble to finde a msg\'!= msg that: H(key,msg) == H(key,msg\') </br>
 Puzzle-friendly: For every possible output value y, if a random input k is chosen from a very spread out distribution,
 then it is infeasible to find x, such H(key,x) = y.
