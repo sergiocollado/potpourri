@@ -39,3 +39,6 @@ SO - Small Outline
 ABI - Aplication Binary Interface
 EABI - Extended Aplication Binary Interface
 OABI - Old Aplication Binary Interface.
+BSP - Board Support Package
+HAL - Hardware Abstraction Layer
+SDK - Software Development Kit
