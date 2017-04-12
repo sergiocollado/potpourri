@@ -1,4 +1,11 @@
 
+In any case, always have a try with:
+
+> sudo apt-get update
+
+> sudo apt-get upgrade
+
+
 
 REFERENCES:
 >> Of course the master reference will allways be our friend: https://linux.die.net/man/  </br>
@@ -176,6 +183,11 @@ TODO: COMPLETE
 if it fails at start, try to 
 
 > sudo updatedb
+
+> sudo apt-get update
+
+> sudo apt-get upgrade
+
 
 
 
