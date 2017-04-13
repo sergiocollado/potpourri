@@ -1,5 +1,7 @@
 # Notes on BabylonJS
 
+main reference: www.doc.babylonjs.com
+
 IT uses GPU
 
 babylon.js
@@ -107,11 +109,11 @@ box.scaling.y = 2;
 var ciclinder =  BABILON.Mesh.CreateCylinderx('cyl', 5, 1, 3, 16, scene);
 
 var lines = BABILONS.Mesh.CreateLines('lines', [
-			new BABILON.Vector3(0,5,0),
-			new BABILON.Vector3(1,5,0),
-			new BABILON.Vector3(0,5,2),
-			new BABILON.Vector3(2,2,0),
-			new BABILON.Vector3(1,5,-5),
+			new BABYLON.Vector3(0,5,0),
+			new BABYLON.Vector3(1,5,0),
+			new BABYLON.Vector3(0,5,2),
+			new BABYLON.Vector3(2,2,0),
+			new BABYLON.Vector3(1,5,-5),
 			], scene);
 
 //in case the nav window is resized, we handle it with:
@@ -119,6 +121,18 @@ var lines = BABILONS.Mesh.CreateLines('lines', [
 addEventListener('resize',function(){
 	engine.resize();
 	});
+```
+You can create other basic shapes apart from the sphere, as example:
+
+```javascript
+var box = BABYLONS.Mesh.CreateBox('box',1,scene);
+box.position = new BABYLON.Vector3(10,2,-5);
+
+var cylinder = BABYLON.Mesh.CreateCylinder('cyl',5,1,3,5,scene);
+
+var lines = BABYLON.Mesh.CreateLines('lines', [ new BABYLON.Vector3(0,5,0),
+						new BABYLON.Vector3(0,5,0),
+						new BABYLON.Vector3(0,5,0) ], scene);
 ```
 
 
