@@ -100,8 +100,7 @@ blockchain automotive -> https://www.ibm.com/blogs/internet-of-things/blockchain
 
 toolchain FreeRTOS -> http://www.stf12.org/developers/ODeV.html
 
-
-
+acustic levitation -> https://youtu.be/SbUsGnMUH2Y?t=3030
 
 
 
