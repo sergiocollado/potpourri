@@ -1,6 +1,6 @@
 
-SPOF - single point of failure
-ERC - Electrical Rule Check
+SPOF - Single point of failure
+ERC  -  Electrical Rule Check
 RAID - Redundant Array of Independent Disks
 URL - Uniform Resource Locator
 DNS - Domain Name System
@@ -9,19 +9,19 @@ ARN - Amazon Resource Names
 ACL - Access Control Lists
 IAM - Identity and Access Management
 REST - Representational State Transfer
-NAT - Network Adress Trasnlation
-CSS - Cascade Style Sheet
+NAT  - Network Adress Trasnlation
+CSS  - Cascade Style Sheet
 DIRT - Data Intensive Real-Time applications
 AIML - Artificial Intelligence Mark-up Languaje
 OAMA - Ostia A Mano Abierta
 CAN - Controller Area Network
-CLI - command line instruction
-HA - high availability
+CLI - Command line instruction
+HA  -  High availability
 MFA - multi factor authentication
 IDS - intrusion detection systems (as Snort, Tripwire, OSSEC…)
-SG - security group
-VM - virtual machine
-AZ - availability zone
+SG  - Security group
+VM  - Virtual machine
+AZ  - Availability zone
 WIP - Work In Progress
 DMA - Direct Memory Access
 PTH - Plated Through Hole
@@ -42,3 +42,13 @@ OABI - Old Aplication Binary Interface.
 BSP - Board Support Package
 HAL - Hardware Abstraction Layer
 SDK - Software Development Kit
+V2I - [Vehicle to Infraestructure](https://www.its.dot.gov/v2i/) /https://www.pcb.its.dot.gov/t3_webinars.aspx
+AI -  Artificial Intellignece
+ITS - Intelligent Transport System.
+DSRC - Dedicated Short Range Comunications
+AES - Advanced Encription Standard
+
+
+
+
+
