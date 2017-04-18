@@ -317,6 +317,7 @@ document.documentElement.removeChild(txtElem);
 Authors should provide a ‘metadata’ child element to the outermost svg element within a stand-alone SVG document. The ‘metadata’ child element to an ‘svg’ element serves the purposes of identifying document-level metadata.
 
 As an example:
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -340,7 +341,7 @@ As an example:
 	elem.setAttributeNS(null,'baseProfile','1.1');
 	<!-- WRONG: - elem.setAttributeNS(null,'xlink:href','http://www.w3.org/2000/svg'); -->
 	elem.setAttributeNS(null,'Metadata',
-		'<rdf:RDF  xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"  xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#"xmlns:dc = "http://purl.org/dc/elements/1.1/" >  <rdf:Description dc:format="image/svg+xml" > creator> Sergio González Collado</dc:creator> </rdf:Description> </rdf:RDF>');
+		'<rdf:RDF  xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"  xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#"xmlns:dc = "http://purl.org/dc/elements/1.1/" >  <rdf:Description dc:format="image/svg+xml" > creator> Sergio González Collado<\/dc:creator> <\/rdf:Description> <\/rdf:RDF>');
 		
 	root.appendChild(elem);
 	
@@ -352,10 +353,7 @@ As an example:
 	var x = document.getElementById('SVGsergio');
 	console.log(x);
 	-->
-	
-	
 	</script>
-
 	
   </head>
   <body>
