@@ -313,50 +313,10 @@ document.documentElement.removeChild(txtElem);
 
 ## EXAMPLE OF CREATING A SVG PROGRAMMATICALY
 
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8"/>
-    <title>SVG programming</title>
-	<link rel="stylesheet" href="mystyles.css" type="text/css">
-	<script type="text/javascript">
-	function myFunction() {
-	var root = document.getElementById('element');
-	console.log( "root" + root);
-	var elem = document.createElementNS('http://www.w3.org/2000/svg','svg'); 
-	elem.setAttributeNS(null,'version','1.1');
-	elem.setAttributeNS(null,'id','SVGsergio');	
-	elem.setAttributeNS(null,"x",50);
-	elem.setAttributeNS(null,"y",50);
-	elem.setAttributeNS(null,"width",50%);
-	elem.setAttributeNS(null,"height",50%);
- 
-	root.appendChild(elem);
-	
-	elem.name = "SVG1";
-	
-	console.log("svg created: " + document.getElementById('SVGsergio'));	
-	}
-	</script>
-	
-  </head>
-  <body >
-		<h1>SVG creation test</h1>
-		<div id='element'>
-
-		</div>
-		<button type="button" onclick="myFunction()">Try it</button>
-
-  </body>
-</html>
-```
 
 Authors should provide a ‘metadata’ child element to the outermost svg element within a stand-alone SVG document. The ‘metadata’ child element to an ‘svg’ element serves the purposes of identifying document-level metadata.
 
 As an example:
-
-```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -367,7 +327,7 @@ As an example:
 	function myFunction() 
 	{
 	var root = document.getElementById('element');
-	console.log( "root" + root);
+	console.log( "root: " + root);
 	
 	var elem = document.createElementNS('http://www.w3.org/2000/svg','svg'); 
 	
@@ -377,23 +337,31 @@ As an example:
 	elem.setAttributeNS(null,"y",'50');
 	elem.setAttributeNS(null,"width",'50%');
 	elem.setAttributeNS(null,"height",'50%');
- 
+	elem.setAttributeNS(null,'baseProfile','1.1');
+	<!-- WRONG: - elem.setAttributeNS(null,'xlink:href','http://www.w3.org/2000/svg'); -->
+	elem.setAttributeNS(null,'Metadata',
+		'<rdf:RDF  xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"  xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#"xmlns:dc = "http://purl.org/dc/elements/1.1/" >  <rdf:Description dc:format="image/svg+xml" > creator> Sergio González Collado</dc:creator> </rdf:Description> </rdf:RDF>');
+		
 	root.appendChild(elem);
-	
-	elem.name = "SVG1";
-	
-	elem.setAttrributeNS(null,'Metadata','Creator: Sergio_González_Collado'); (X)
-	
 	
 	console.log("svg created: " + document.getElementById('SVGsergio'));	
 	}
+	
+	<!-- in the console you can check this, with -->
+	<!-- 
+	var x = document.getElementById('SVGsergio');
+	console.log(x);
+	-->
+	
+	
 	</script>
+
 	
   </head>
   <body>
 		<h1>SVG creation test</h1>
 		<div id='element'>
-
+			<!-- the created svg, will be placed here -->
 		</div>
 		<button type="button" onclick="myFunction()">Try it</button>
 
@@ -401,10 +369,53 @@ As an example:
 </html>
 ```
 
+Most common svg attributes are:
+
+
+
+version = "<number>"
+Indicates the SVG language version to which this document fragment conforms.
+In SVG 1.0 [SVG10], this attribute was fixed to the value '1.0'. For SVG 1.1, the attribute should have the value '1.1'.
+
+baseProfile = profile-name
+Describes the minimum SVG language profile that the author believes is necessary to correctly render the content. The attribute does not specify any processing restrictions; It can be considered metadata. For example, the value of the attribute could be used by an authoring tool to warn the user when they are modifying the document beyond the scope of the specified base profile. Each SVG profile should define the text that is appropriate for this attribute.
+If the attribute is not specified, the effect is as if a value of 'none' were specified.
+
+x = "<coordinate>"
+(Has no meaning or effect on outermost svg elements.)
+The x-axis coordinate of one corner of the rectangular region into which an embedded ‘svg’ element is placed.
+If the attribute is not specified, the effect is as if a value of '0' were specified.
+
+y = "<coordinate>"
+(Has no meaning or effect on outermost svg elements.)
+The y-axis coordinate of one corner of the rectangular region into which an embedded ‘svg’ element is placed.
+If the attribute is not specified, the effect is as if a value of '0' were specified.
+
+width = "<length>"
+For outermost svg elements, the intrinsic width of the SVG document fragment. For embedded ‘svg’ elements, the width of the rectangular region into which the ‘svg’ element is placed.
+A negative value is an error (see Error processing). A value of zero disables rendering of the element.
+If the attribute is not specified, the effect is as if a value of '100%' were specified.
+
+height = "<length>"
+For outermost svg elements, the intrinsic height of the SVG document fragment. For embedded ‘svg’ elements, the height of the rectangular region into which the ‘svg’ element is placed.
+A negative value is an error (see Error processing). A value of zero disables rendering of the element.
+If the attribute is not specified, the effect is as if a value of '100%' were specified.
+
+preserveAspectRatio = "[defer] <align> [<meetOrSlice>]"
+
+contentScriptType = "content-type"
+
+contentStyleType = "content-type"
+
+zoomAndPan = "disable | magnify"
+
 
 
 TODO:
  </br>
+ new standard comming: https://www.w3.org/TR/2016/CR-SVG2-20160915/ </br>
+ its github: https://github.com/w3c/svgwg/
+ 
  
  >> https://www.w3.org/TR/SVG/struct.html <<
  
