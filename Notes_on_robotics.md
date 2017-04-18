@@ -56,4 +56,4 @@ Also other techniques should be used, planning trajectory, or other algorithms a
 # HISTORICAL EVOLUTION
 Robots inherits its design basically from the evolution of CNC systems (Computer Numeric Control), and also from mechanical handling material devices as cranes.
 
- ![Dock_Crane](potpourri/image/mechanical_grua_de_pico_de_pato_crane.jpg)
+ ![Dock_Crane](https://github.com/sergiocollado/potpourri/blob/master/image/mechanical_grua_de_pico_de_pato_crane.jpg)
