@@ -1,24 +1,24 @@
-#NOTES ON ROBOTICS
+# NOTES ON ROBOTICS
 
-#DEFINITION:
+# DEFINITION:
 In the production/industrial context, a Robot, is a reprogrammable machine that can be multifunctional and do diverse specified tasks.
 
 The word "Robot", was coined by the Czech novelist Karel Capek, and it refers to a "servant" or "slave". 
 
 Robotics engineering is a branch of engineering that englobe mechanical, electrical, electronics, control theory, measurement systems (sensor theory, filtering, amplification ...), programming and even artificial intelligence. 
 
-#ROBOT ELEMENTS
+# ROBOT ELEMENTS
 
-##Mechanical Design:
+## Mechanical Design:
 
  Mechanical structure, linkage, joins, mechanical design (stresses, forces, critical sections, fatigue limits, inertias, deformations, elasticity, gears/reductions, grips,  ... )
 
-##Sensors:
+## Sensors:
 
 Accelerometers, gyroscopes, pressure, forces, torques, tilt, distance, proximity, optics, cameras, 3D vision, computer vision, infrared ... 
 If needed apply amplification, filters on hardware, software, FIR, IIR, Kalman .... or even sensor fusion.
 
-##Actuators:
+## Actuators:
 
  - Servo motors
  - Brushless motor
@@ -30,15 +30,17 @@ If needed apply amplification, filters on hardware, software, FIR, IIR, Kalman .
  - Pneumatic motor
  - Pneumatic cylinders
 
-##Control:
+## Control:
+
 Good control design is mandatory, for that you have to apply control theory. You have to process the sensor data, and feed to the actuators, until the specified tasks are done.
 
 Also other techniques should be used, planning trajectory, or other algorithms are commonly used.
 
-##Electronics:
+## Electronics:
+
  Most of the system that is not mechanical, will be developed into electronics, that means, the control systems, with a CPU, and memory systems, the design and amplification of sensors, and also telecommunication and interface systems.
 
-##APPLICATIONS
+# APPLICATIONS
 
  - Material Handling
  - Material transfer
@@ -51,5 +53,5 @@ Also other techniques should be used, planning trajectory, or other algorithms a
  - Hazard tasks for humans (harmful environments, as contaminated places (nuclear plants), or with extreme conditions (blast furnaces))
  - Pnp (pick and place)
 
-#HISTORICAL EVOLUTION
+# HISTORICAL EVOLUTION
 Robots inherits its design basically from the evolution of CNC systems (Computer Numeric Control), and also from mechanical handling material devices as cranes.
