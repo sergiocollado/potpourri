@@ -60,12 +60,13 @@ Robots inherits its design basically from the evolution of CNC systems (Computer
 
 
 # Top robot companies in the world – robot install base worldwide
-Fanuc – 400,000.
-Yaskawa – 300,000.
-ABB – 300,000.
-Kawasaki – 110,000.
-Nachi – 100,000.
-Kuka – 80,000.
-Denso – 80,000.
-Mitsubishi – 70,000.
+
+ - Fanuc / 400,000.
+ - Yaskawa / 300,000.
+ - ABB / 300,000.
+ - Kawasaki / 110,000.
+ - Nachi / 100,000.
+ - Kuka / 80,000.
+ - Denso / 80,000.
+ - Mitsubishi / 70,000.
 
