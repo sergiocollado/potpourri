@@ -48,7 +48,15 @@ ITS - Intelligent Transport System.
 DSRC - Dedicated Short Range Comunications
 AES - Advanced Encription Standard
 ISR - Interrupted Service Routine
-
+SVC - Supervisor Call
+IVC - Interrupt Vector Table
+ISR - Interrupt Service Routine
+NVIC - Nested Vector Interrupt Controller
+LR - Link Register
+IV - Initialization Vector
+FIFO - First In First Out
+SISO - Single Input Single Output
+MIMO - Multiple Input Multiple Output
 
 
 
