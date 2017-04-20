@@ -1,3 +1,5 @@
+EMBEDDED SYSTEM: An embedded system is a system, that combines software and hardware, either fixed in capabilities or programmable, that
+is designed for a specified function or functions. Common examples are industrial equiments and machines, agricultural, automotive, medical, aeronautical or space systems, or even household apliances, toys or vending machines...
 
 ACCIDENT: The action of causing/receiving damage of some kind: equipment damage, human injuries or even deaths.
 
