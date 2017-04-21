@@ -102,5 +102,10 @@ toolchain FreeRTOS -> http://www.stf12.org/developers/ODeV.html
 
 acustic levitation -> https://youtu.be/SbUsGnMUH2Y?t=3030
 
+awesome tools -> http://stefanstools.sourceforge.net/
+
+awesome upcoming techs -> http://ec.europa.eu/transport/themes/its/road/initiatives_en
+
+
 
 
