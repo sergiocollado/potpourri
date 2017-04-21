@@ -106,6 +106,8 @@ awesome tools -> http://stefanstools.sourceforge.net/
 
 awesome upcoming techs -> http://ec.europa.eu/transport/themes/its/road/initiatives_en
 
+european standards: https://ec.europa.eu/digital-single-market/
+
 
 
 
