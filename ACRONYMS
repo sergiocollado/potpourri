@@ -58,10 +58,13 @@ FIFO - First In First Out
 SISO - Single Input Single Output
 MIMO - Multiple Input Multiple Output
 ITS - Intelligent Transport Systems
-V2I - vehicle to infraestructure
+V2I - vehicle to infraestructure [Vehicle to Infraestructure](https://www.its.dot.gov/v2i/) /https://www.pcb.its.dot.gov/t3_webinars.aspx
 V2V - vehicle to vehicle
 V2X - vehicle to others
-
-
+FTA - Fault Tree Analisys
+FMECA - Failure Mode Effects and Critical Analysis
+LCD - Liquid Crystal Display
+PHA - Preliminar Hazard Analysis
+THR - Tolerable Hazard Rate
 
 
