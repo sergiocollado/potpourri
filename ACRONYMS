@@ -58,6 +58,9 @@ FIFO - First In First Out
 SISO - Single Input Single Output
 MIMO - Multiple Input Multiple Output
 ITS - Intelligent Transport Systems
+V2I - vehicle to infraestructure
+V2V - vehicle to vehicle
+V2X - vehicle to others
 
 
 
