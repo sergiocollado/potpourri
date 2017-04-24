@@ -130,10 +130,61 @@ box.position = new BABYLON.Vector3(10,2,-5);
 
 var cylinder = BABYLON.Mesh.CreateCylinder('cyl',5,1,3,5,scene);
 
+var sphere = BABYLON.Mesh.CreateSphere('spher1',16,4,scene);
+
 var lines = BABYLON.Mesh.CreateLines('lines', [ new BABYLON.Vector3(0,5,0),
 						new BABYLON.Vector3(0,5,0),
 						new BABYLON.Vector3(0,5,0) ], scene);
+						
+//listen for resize event
+window.addEventListener('resize',function() {
+  engine.resize();
+});
 ```
+if I wanted to scalate a mesh in an axis, I would code it as:
+
+```javascript
+box.position.y = 3;
+```
+
+the scaling ocours outwards, and centered in the middle, so it grows up and down.
+
+You can do it also with a vector:
+
+```javascript
+sphere.scaling = new BABYLON.Vector(1,1,3);
+``` 
+
+Rotations are also possible, you specify them in degrees
+
+```javascript
+box.rotation.x = 45
+```
+You can also create materials
+
+```javascript
+var sphereMaterial = new BABYLON.StandardMaterial('sphereMat',scene);
+
+sphere.material = sphereMaterial;
+
+sphereMaterial.diffuseColor = new BABYLON.Color3(0,0,1) //rgb(0-1.0);
+sphereMaterial.alpha = 0.5;
+```
+
+for founding textures you can go to: www.texturelib.com
+
+```javascript
+
+var grass = new BABYLON.Texture('img/grass.png','scene');
+grass.diffuseTexture.uScale = 2;
+grass.diffuseTexture.vScale = 5;
+
+ground.material = grass
+```
+
+
+
+
 
 
 			
