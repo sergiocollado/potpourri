@@ -108,6 +108,6 @@ awesome upcoming techs -> http://ec.europa.eu/transport/themes/its/road/initiati
 
 european standards: https://ec.europa.eu/digital-single-market/
 
-
+Darpa-urban-challenge: http://archive.darpa.mil/grandchallenge/
 
 
