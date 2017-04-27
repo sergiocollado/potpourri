@@ -116,5 +116,6 @@ incremental encoders: http://es.rs-online.com/web/p/products/7967806/?grossPrice
 
 radar chipset: http://www.nxp.com/applications/solutions-for-the-iot-and-adas/internet-of-things/smart-things/smart-mobility/77-ghz-radar-system:APLADDRAS#community-demo
 
+MIFARE webminars: http://www.nxp.com/support/training-events/online-academy/mifare-webinars:MIFARE-WEBINARS
 
 
