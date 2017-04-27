@@ -110,4 +110,11 @@ european standards: https://ec.europa.eu/digital-single-market/
 
 Darpa-urban-challenge: http://archive.darpa.mil/grandchallenge/
 
+radar open course-ware: https://ocw.mit.edu/resources/res-ll-003-build-a-small-radar-system-capable-of-sensing-range-doppler-and-synthetic-aperture-radar-imaging-january-iap-2011/index.htm
+
+incremental encoders: http://es.rs-online.com/web/p/products/7967806/?grossPrice=Y&cm_mmc=ES-GDN-_-google-_-Dynamic+Remarketing_ES_ES-_-Product+Abandoners&mkwid=c_dc|pcrid|157012440460|pkw||pmt||prd|&gclid=COyh8I29xNMCFUu6Gwod3ZMGHA
+
+radar chipset: http://www.nxp.com/applications/solutions-for-the-iot-and-adas/internet-of-things/smart-things/smart-mobility/77-ghz-radar-system:APLADDRAS#community-demo
+
+
 
