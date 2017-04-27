@@ -118,4 +118,5 @@ radar chipset: http://www.nxp.com/applications/solutions-for-the-iot-and-adas/in
 
 MIFARE webminars: http://www.nxp.com/support/training-events/online-academy/mifare-webinars:MIFARE-WEBINARS
 
+nxp webminars: https://training.nxp.com/courses
 
