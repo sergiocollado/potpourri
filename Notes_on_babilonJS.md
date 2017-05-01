@@ -183,7 +183,25 @@ ground.material = grass
 ```
 
 
+Colors and textures have other properties as well:
+ - **specularColor** specular color (how light is reflected in the object)
+ - **specularPower** specular power reflection (how much light reflect)
+ 
+```javascript
+grass.specularColor = new BABILON.Color3(0,0,0); //no refection
+```
+ 
+Or you can make objects, sources of light, coding it as:
 
+```javascript
+var emissiveMaterial = new BABYLON.Material('emmissiveMat', scene);
+emissiveMaterial.emissiveColor = new BABYLON.Color3(0,0,1);
+```
+ 
+ 
+ cilinder.material = emissiveMaterial
+ 
+ 
 
 
 
