@@ -155,9 +155,18 @@ PRE-EMPTIVE SYSTESM:
  This procedure of context switch, takes some time, and is refered as the "Context Switch overhead", and must be taken into account,
  when planning a real-time system and its timeline.
  
+TODO: STATIC SCHEDULER:
+=======================
  
 TODO: FIXED SCHEDULING
 ======================
+
+
+
+
+
+
+
  
 MONOTONIC SCHEDULING
 ====================
