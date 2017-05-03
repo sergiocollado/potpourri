@@ -121,3 +121,7 @@ MIFARE webminars: http://www.nxp.com/support/training-events/online-academy/mifa
 nxp webminars: https://training.nxp.com/courses
 
 components and electronics shop + blog: https://www.westfloridacomponents.com/blog/stamp-sized-radar-sensor-nxp/
+
+about NET: https://www.youtube.com/watch?v=6tQBCNHWtAU
+
+
