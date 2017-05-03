@@ -5,7 +5,10 @@ is designed for a specified function or functions. Common examples are industria
 
 **RISK**: Combination of the likehood on an accident and its severity.   Risk = p(accident) * severity(accident)
 
-**HAZARD**: Set of combinations or requisites or events that lead to an accident.
+**HAZARD**: Set of combinations or requisites or events that lead to an accident
+
+**ERROR/MISTAKE**: A human being can make an error(mistake), with procudes a defect (fault, bug) in the program or code, or in a document.  If a defect in code is executed, the system amy fail to do what it shoud do, what it should do (or do something it shouldnt)
+causing a failure. Defects in software, systms or documnets may result in failures, bot no all defects do.
 
 **FAILURE**: Is the misperformance of a system or component
   
@@ -27,11 +30,11 @@ Availability is often quantified by 1-MTTR / MTTF
 
 where:
 
-MTTR stands for Mean Time To Repair the system
+**MTTR** stands for Mean Time To Repair the system
 
 and 
 
-MTTF stands for Mean Time To Failure
+**MTTF** stands for Mean Time To Failure
 
 **FAILURE**: A failure is misperformance or lack of hability of a component to comply with its designed function, during certain
 time, or under specified enviromental system conditions.
