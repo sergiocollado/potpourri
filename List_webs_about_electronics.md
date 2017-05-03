@@ -124,4 +124,8 @@ components and electronics shop + blog: https://www.westfloridacomponents.com/bl
 
 about NET: https://www.youtube.com/watch?v=6tQBCNHWtAU
 
+BADGUYS: http://www.fomento.gob.es/MFOM/LANG_CASTELLANO/PLANES/PESUB_MFOM_20142017/
 
+SMARTCHITIESCHALLENGE -> http://smartcitiesconnect.com/start-up_challenge.html
+
+ms courses: https://mva.microsoft.com/
