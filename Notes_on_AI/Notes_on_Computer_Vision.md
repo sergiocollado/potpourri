@@ -44,3 +44,5 @@ Forall pixeles (u,v) in I do:
               0 otherwise
 end for
 ```
+
+![Caballos](../images/threshold_segmentation.PNG)
