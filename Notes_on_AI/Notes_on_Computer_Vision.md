@@ -19,4 +19,16 @@ I_G (u,v) = 0.299·r + 0.587·g + 0.114·b  Forall (r,g,b):= I_RGB(u,v)
 
 note that the reason, all the factors aren't equal, is due that the human eye, doesn't sense all the colors equally.
 
+Continuing with the problem, for a given image in gray scale and a defined threshold t e (0,..q) a second imagen I' binarized can be
+processed with the following algorithm. In that image the pixeles with intensity I'(u,v) = 0 represent the background of the scene. The pixels I'(u,v) = q represent the foreground.
 
+
+```C
+ALGORITHM 1: Threshold Segmentation:
+===================================
+Forall pixeles (u,v) in I do:
+  I'(u,v) := 
+               q if I(u,v)>=t
+               0 otherwise
+end for
+```
