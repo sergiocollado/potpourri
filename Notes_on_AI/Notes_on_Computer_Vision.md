@@ -45,4 +45,4 @@ Forall pixeles (u,v) in I do:
 end for
 ```
 
-![Caballos](../images/threshold_segmentation.PNG)
+![Caballos](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_AI/images/threshold_segmentation.PNG)
