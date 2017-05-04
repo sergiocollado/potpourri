@@ -28,7 +28,16 @@ ALGORITHM 1: Threshold Segmentation:
 ===================================
 Forall pixeles (u,v) in I do:
   I'(u,v) := 
-               q if I(u,v)>=t
+               q if I(u,v)>=t (threshold)
                0 otherwise
+end for
+```
+The algorithm can be also implemented the otherway arround: 
+
+```
+Forall pixeles (u,v) in I do:
+  I'(u,v) :=
+              q if I(u,v)<= t (threshold)
+              0 otherwise
 end for
 ```
