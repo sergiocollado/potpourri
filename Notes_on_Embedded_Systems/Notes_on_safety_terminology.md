@@ -20,6 +20,11 @@ and the probability (p) that lost happens.
 
 Ri = Li * p(Li);
 
+ISO 31000 - standards for risk management:
+ - ISO 31000 - Principles and guide lines for implementation.
+ - ISO 31010 - Risk management, and risk assesment techniques. 
+ - ISO Guide 73 - Vocabulary
+
 **RELIABILITY**: Is the probability that a piece of equipment or component or component will perform correctly its intended goal, inside the defined time, and under the correct enviroment.
 
 Reliability is often quantified with the merit figure of MTBF (Mean Time Between Failures) 
@@ -41,13 +46,10 @@ time, or under specified enviromental system conditions.
 
 **ERROR**: An error is a desing flaw or desviation from an intended or designed state.
 
+>__A word about SW context__
+> A human bein cam make an error (mistak), wihch procudes a defect (fault, bug) in the program, cod, or in a document. If a defect in > > code is executed, the system may fail to do wahat it shoud do (or something it shouldn't) causing a failure. 
 
 
 
 
 
-
-ISO 31000 - standards for risk management:
- - ISO 31000 - Principles and guide lines for implementation.
- - ISO 31010 - Risk management, and risk assesment techniques. 
- - ISO Guide 73 - Vocabulary
