@@ -23,7 +23,7 @@ Continuing with the problem, for a given image in gray scale and a defined thres
 processed with the following algorithm. In that image the pixeles with intensity I'(u,v) = 0 represent the background of the scene. The pixels I'(u,v) = q represent the foreground.
 
 
-```C
+```
 ALGORITHM 1: Threshold Segmentation:
 ===================================
 Forall pixeles (u,v) in I do:
@@ -35,6 +35,9 @@ end for
 The algorithm can be also implemented the otherway arround: 
 
 ```
+ALGORITHM 2: Inverse Threshold Segmentation
+===========================================
+
 Forall pixeles (u,v) in I do:
   I'(u,v) :=
               q if I(u,v)<= t (threshold)
