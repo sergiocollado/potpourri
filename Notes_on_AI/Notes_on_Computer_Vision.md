@@ -10,6 +10,13 @@ common methods for 2D segmentation will be introduced.
 
 # Threshold segmentation
 
+A plausible option to discriminate the image of an object from its background, is taking into account the intensity of the light in the 
+grey scale. 
 
+In the case you have a color image, in a RGB format, you can actually calculate its intensity in gray scale, with the formula:
+
+I_G (u,v) = 0.299·r + 0.587·g + 0.114·b  Forall (r,g,b):= I_RGB(u,v)
+
+note that the reason, all the factors aren't equal, is due that the human eye, doesn't sense all the colors equally.
 
 
