@@ -23,17 +23,16 @@ ISO 31000 - standards for risk management:
  - ISO 31010 - Risk management, and risk assesment techniques. 
  - ISO Guide 73 - Vocabulary
 
-**RA**: Risk Assestment: Is the analisys to identify and determine the possible situations or conditions that may end in an accident, thus 
-there is a thread(hazard). If the risk assesment is quantitative, it needs two factors: the Risk(R) = magnitude of the potencial lost (L) and the probability (p) that lost happens.
+**RA** - **Risk Assestment**: Is the analisys to identify and determine the possible situations or conditions that may end in an accident, thus there is a thread(hazard). If the risk assesment is quantitative, it needs two factors: the Risk(R) = magnitude of the potencial lost (L) and the probability (p) that lost happens.
 
 Ri = Li * p(Li);
 
-**HAZARD**: Set of combinations or requisites or events that lead to an accident
+**HAZARD**: Set of combinations of conditions or requisites or events that lead to an accident
 
-**ERROR/MISTAKE**: A human being can make an error(mistake), with procudes a defect (fault, bug) in the program or code, or in a document.  If a defect in code is executed, the system amy fail to do what it shoud do, what it should do (or do something it shouldnt)
+**ERROR/MISTAKE**: A human being can make an error(mistake), with produces a defect (fault, bug) in the program or code, or in a document.  If a defect in code is executed, the system amy fail to do what it shoud do, what it should do (or do something it shouldnt)
 causing a failure. Defects in software, systms or documnets may result in failures, bot no all defects do.
 
-**FAILURE**: A failure is misperformance or lack of hability of a component to comply with its designed function, during certain
+**FAILURE**: A failure is the misperformance or lack of hability of a component to comply with its designed function, during certain
 time, or under specified enviromental system conditions.
 
 **ERROR**: An error is a desing flaw or desviation from an intended or designed state.
