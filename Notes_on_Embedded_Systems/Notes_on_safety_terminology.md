@@ -1,9 +1,22 @@
-**EMBEDDED SYSTEM**: An embedded system is a system, that combines software and hardware, either fixed in capabilities or programmable, that
-is designed for a specified function or functions. Common examples are industrial equiments and machines, agricultural, automotive, medical, aeronautical or space systems, or even household apliances, toys or vending machines...
+**EMBEDDED SYSTEM**: An embedded system is a system, that combines software and hardware, either fixed in capabilities or programmable, that is designed for a specified function or functions. Common examples are industrial equiments and machines, agricultural, automotive, medical, aeronautical or space systems, or even household apliances, toys or vending machines...
 
-**ACCIDENT**: The action of causing/receiving damage of some kind: equipment damage, human injuries or even deaths.
+**SAFETY**: Is the propierty of a system that evaluates the risk of the ocurrence of an accident.
 
-**RISK**: Combination of the likehood on an accident and its severity.   Risk = p(accident) * severity(accident)
+**FUNCTIONAL SAFETY** Is the safety of a system that correspond to the correct actions acording to the system inputs, it also includes
+detection of potential dangerous states, and activation of protective, corrective or mitigation measures.
+
+Functional safety implies active measures, as an example is the airbag systems in vehicles, when a crash is detected, a safety system
+is triggered. On the other hand, a helmet that protects the driver, is a passive system; passive systems are not functional safety.
+
+The leading standard for functional safety is the IEC 61508
+
+**SECURITY**: Is the propierty of a system that evaluates its ability to deal with malicious actions or attacks.
+
+Take into account, that there is a significance difference between the concepts of safety and security, both terms account protection against a damage, but security implies a malicious or intended action to do a damage, while safete relates to an unintended situation.
+
+**ACCIDENT**: The event of causing/receiving damage of any kind (either directly or indirectly): equipment damage, human injuries or even deaths, property damage, or damage to the enviroment.
+
+**RISK**: Combination of the likehood on an accident and its severity.   Risk = probability(accident) * severity(accident)
 
 ISO 31000 - standards for risk management:
  - ISO 31000 - Principles and guide lines for implementation.
@@ -26,10 +39,11 @@ time, or under specified enviromental system conditions.
 **ERROR**: An error is a desing flaw or desviation from an intended or designed state.
 
 >__A word about SW context__
-> A human bein cam make an error (mistak), wihch procudes a defect (fault, bug) in the program, cod, or in a document. If a defect in > > code is executed, the system may fail to do wahat it shoud do (or something it shouldn't) causing a failure. 
+> A human being can make an error (mistake), wich produces a defect (fault, bug) in the program, code, or in a document. If a defect in the
+> code is executed, the system may fail to do what it must do (or do something it shouldn't) causing a failure. 
 
 
-**RELIABILITY**: Is the probability that a piece of equipment or component or component will perform correctly its intended goal, inside the defined time, and under the correct enviroment.
+**RELIABILITY**: Is the probability that a piece of equipment or component will perform correctly its intended goal, inside the defined time, and under the correct enviroment.
 
 Reliability is often quantified with the merit figure of MTBF (Mean Time Between Failures) 
 
@@ -46,5 +60,12 @@ and
 **MTTF** stands for Mean Time To Failure
 
 
+**DEPENDABILITY**: Is the truthworthiness of a system so the is a justified confidence in the tasks it must perform.
+
+Dependability is a concept that includes:
+- Reliability
+- Availability
+- Safety
+- Security 
 
 
