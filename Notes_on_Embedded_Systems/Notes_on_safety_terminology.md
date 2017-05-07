@@ -67,4 +67,5 @@ Dependability is a concept that includes:
 - Safety
 - Security 
 
-
+**FAULT TOLERANT SYSTEM**: Is a system that performs correctly, although might have some errors in it. Usually this is
+achieved by means of repeated computations, monitoring data, and redundant systems.
