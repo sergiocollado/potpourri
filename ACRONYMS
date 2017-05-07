@@ -64,6 +64,7 @@ V2X - vehicle to others
 FTA - Fault Tree Analisys
 FMECA - Failure Mode Effects and Critical Analysis
 LCD - Liquid Crystal Display
+LED - Light Emitting Diode
 PHA - Preliminar Hazard Analysis
 THR - Tolerable Hazard Rate
 ROS - Robotic Operating System
@@ -79,7 +80,12 @@ SMPS - Switch Mode Power Supply
 MTTR - Mean Time To Repair
 MTTF - Mean Time To Failure
 FTA - Fault Tree Analysis
-
+TSC - Thermal Shutdown Circuit
+OCP - Over Current Protection Circuit
+UVLO - Under Voltage Lock Out Circuit
+OVLO - Over Voltage Lock Out Circuit
+PPC - Plain Paper Copier
+PWM - Pulse Width Modulation
 
 
 
