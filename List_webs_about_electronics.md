@@ -129,3 +129,20 @@ BADGUYS: http://www.fomento.gob.es/MFOM/LANG_CASTELLANO/PLANES/PESUB_MFOM_201420
 SMARTCHITIESCHALLENGE -> http://smartcitiesconnect.com/start-up_challenge.html
 
 ms courses: https://mva.microsoft.com/
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Learn electronics with application notes:
+
+thermal resistence in Integrated Circuits:  http://rohmfs.rohm.com/en/products/databook/applinote/ic/power/switching_regulator/thermal_resistance_appli-e.pdf
+
