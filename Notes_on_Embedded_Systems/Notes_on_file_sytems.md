@@ -23,7 +23,17 @@ Disks/memory that uses FAT uses the following areas:
 | File data area | The rest of the disk | 
 
 
+## Boot Block
 
+The **Boot Block** uses the first sector of the storage system, and in it resides the *__Bootloader Program__*, the program that
+launches the operating system. It also contains other information, that describes the file system organization:
+
+| Offset from start | Length (in Bytes) | Description |
+|---|---|---|
+| 0x00 | 3 | Part of the bootloader |
+| 0x03 | 8 | Optional manufacturer description |
+| 0x0b | 2 | Number of bytes per block |
+| 0x0d | 1 | Number of blocks per allocation unit |
 
 
 References:
