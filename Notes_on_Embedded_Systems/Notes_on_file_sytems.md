@@ -16,7 +16,7 @@ blocks are agroupated in pairs of two, four, ... and each group is called and __
 Disks/memory that uses FAT uses the following areas:
 
 | Area description | Area size |
---------------------------------
+|---|---|
 | Boot Block | 1 block | 
 | File Allocation Table | depends on file system |
 | Disk root directory | Variable (selected when the disk is formatted) |
