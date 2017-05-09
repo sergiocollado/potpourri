@@ -1,4 +1,5 @@
-**EMBEDDED SYSTEM**: An embedded system is a system, that combines software and hardware, either fixed in capabilities or programmable, that is designed for a specified function or functions. Common examples are industrial equiments and machines, agricultural, automotive, medical, aeronautical or space systems, or even household apliances, toys or vending machines...
+**EMBEDDED SYSTEM**: An embedded system is a system, that combines software and hardware, although is also common that they have some  kind of HMI (human machine interface). Embedded systems have fixed capabilities but are programmable, and they are designed for a specific function or functions. 
+Examples are: industrial equipments and machines, agricultural, automotive, medical, aeronautical or space systems, telecomunication systems or even household apliances, toys or vending machines...
 
 **SAFETY**: Is the propierty of a system that evaluates the risk of the ocurrence of an accident.
 
@@ -14,7 +15,7 @@ The leading standard for functional safety is the IEC 61508
 
 Take into account, that there is a significance difference between the concepts of safety and security, both terms account protection against a damage, but security implies a malicious or intended action to do a damage, while safete relates to an unintended situation.
 
-**ACCIDENT**: The event of causing/receiving damage of any kind (either directly or indirectly): equipment damage, human injuries or even deaths, property damage, or damage to the enviroment.
+**ACCIDENT**: The event of causing/receiving damage of any kind (either directly or indirectly): equipment damage, property damage, or damage to the enviroment, and human injuries or even deaths.
 
 **RISK**: Combination of the likehood on an accident and its severity.   Risk = probability(accident) * severity(accident)
 
@@ -23,7 +24,7 @@ ISO 31000 - standards for risk management:
  - ISO 31010 - Risk management, and risk assesment techniques. 
  - ISO Guide 73 - Vocabulary
 
-**RA** - **Risk Assestment**: Is the analisys to identify and determine the possible situations or conditions that may end in an accident, thus there is a thread(hazard). If the risk assesment is quantitative, it needs two factors: the Risk(R) = magnitude of the potencial lost (L) and the probability (p) that lost happens.
+**Risk Assestment**: Is the analisys to identify and determine the possible situations or conditions that may end in an accident, thus there is a thread(hazard). If the risk assesment is quantitative, it needs two factors: the Risk(R) = magnitude of the potencial lost (L) and the probability (p) that lost happens.
 
 Ri = Li * p(Li);
 
@@ -40,7 +41,6 @@ time, or under specified enviromental system conditions.
 >__A word about SW context__
 > A human being can make an error (mistake), wich produces a defect (fault, bug) in the program, code, or in a document. If a defect in the
 > code is executed, the system may fail to do what it must do (or do something it shouldn't) causing a failure. 
-
 
 **RELIABILITY**: Is the probability that a piece of equipment or component will perform correctly its intended goal, inside the defined time, and under the correct enviroment.
 
