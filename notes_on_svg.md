@@ -6,6 +6,7 @@ https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial
 The lead reference for SVGs is: https://www.w3.org/TR/SVG11/ </br>
 also check: https://code.google.com/archive/p/svgweb/ </br>
 comparation between SVG and canvas: https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/ </br>
+upcomming standard SVG 2: https://svgwg.org/svg2-draft/Overview.html
 
 
 
