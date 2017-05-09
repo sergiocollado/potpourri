@@ -5,6 +5,8 @@ https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial
 
 The lead reference for SVGs is: https://www.w3.org/TR/SVG11/ </br>
 also check: https://code.google.com/archive/p/svgweb/ </br>
+comparation between SVG and canvas: https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/ </br>
+
 
 
 # NOTES SVG: Scalable Vector Graphics
@@ -430,6 +432,8 @@ TODO:
 [] https://developer.mozilla.org/en-US/docs/Web/SVG/Element/desc </br>
 [] https://developer.mozilla.org/en-US/docs/Web/API
 [] About metadatas -> https://www.w3.org/TR/SVG11/metadata.html#InterfaceSVGMetadataElement
+[] Comparation between SVG and canvas: https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/
+
 
 
 
