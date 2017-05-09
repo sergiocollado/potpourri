@@ -132,10 +132,9 @@ SMARTCHITIESCHALLENGE -> http://smartcitiesconnect.com/start-up_challenge.html
 
 ms courses: https://mva.microsoft.com/
 
+Wanit: https://www.xilinx.com/products/boards-and-kits/arty.html#overview
 
-
-
-
+reverse engineering bamboo: http://www.touchuserinterface.com/2010/08/photos-wacom-bamboo-fun-pen-multi-touch.html
 
 
 
