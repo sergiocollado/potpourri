@@ -136,9 +136,23 @@ Wanit: https://www.xilinx.com/products/boards-and-kits/arty.html#overview
 
 reverse engineering bamboo: http://www.touchuserinterface.com/2010/08/photos-wacom-bamboo-fun-pen-multi-touch.html
 
+Babylon js playground: http://www.babylonjs-playground.com/?1
 
+Babylon js tutorials: http://doc.babylonjs.com/tutorials/cameras
 
+Intro to .NET core: https://www.youtube.com/watch?v=6tQBCNHWtAU
 
+.NET core plain concepts: https://www.youtube.com/watch?v=c5reS7QrEAo
+
+course in RT: http://www.math.unipd.it/~tullio/RTS/2011/
+
+other course in RT: https://www.csee.umbc.edu/~younis/Real-Time/CMSC691S.htm
+
+another: http://user.it.uu.se/~yi/courses/rts/dvp-rts-07/07.html
+
+and another: http://www.die.upm.es/node/3808
+
+ppt RT: http://www.inf.ufrgs.br/~flavio/ensino/cmp502/TutorialRammig.pdf
 
 
 
