@@ -46,3 +46,19 @@ end for
 ```
 
 ![Caballos](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_AI/images/threshold_segmentation.PNG)
+
+
+The selection of the threshold t, can be at your own criteria, or automatically selected, usually the percentiles
+10% and 90% give us robusts values for estimating the threshold t.
+
+```
+ALGORITHM 3: Threshold estimation (I, pmin, pmax)
+==================================================
+H := Calculate the histogram in grey scale (I) 
+H := Calculate the accumulated histogram
+min := calculate the percentile(Ha, pmin)
+max := calculate the percentile(Ha, pmax)
+t := (min+max)/2
+```
+
+
