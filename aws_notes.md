@@ -567,16 +567,16 @@ It supports all major record types
 
 
 # REFERENCES:
-https://aws.amazon.com/es/documentation/s3/
-https://aws.amazon.com/certification/faqs/
-https://aws.amazon.com/articles/
-https://aws.amazon.com/es/documentation/
-https://aws.amazon.com/sqs/
-https://aws.amazon.com/en/training/path-developing/
-https://aws.amazon.com/training/intro_series/
-https://aws.amazon.com/es/training/intro_series/
-http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html
-https://www.youtube.com/user/AmazonWebServices
+https://aws.amazon.com/es/documentation/s3/ </br>
+https://aws.amazon.com/certification/faqs/ </br>
+https://aws.amazon.com/articles/ </br>
+https://aws.amazon.com/es/documentation/ </br>
+https://aws.amazon.com/sqs/ </br>
+https://aws.amazon.com/en/training/path-developing/ </br>
+https://aws.amazon.com/training/intro_series/ </br>
+https://aws.amazon.com/es/training/intro_series/ </br>
+http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html </br>
+https://www.youtube.com/user/AmazonWebServices </br>
  
 # CERTIFICATIONS:
 
