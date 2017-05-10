@@ -1,8 +1,10 @@
 # Notes on BabylonJS
 
-main reference: www.doc.babylonjs.com
+main reference: www.doc.babylonjs.com </br>
+tutorials: http://doc.babylonjs.com/tutorials/cameras </br>
+playground: http://www.babylonjs-playground.com/?1
 
-IT uses GPU
+It uses GPU
 
 babylon.js
 
