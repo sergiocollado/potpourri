@@ -154,7 +154,7 @@ and another: http://www.die.upm.es/node/3808
 
 ppt RT: http://www.inf.ufrgs.br/~flavio/ensino/cmp502/TutorialRammig.pdf
 
-
+luv it: https://www.crowdsupply.com/inverse-path/usb-armory
 
 
 # Learn electronics with application notes:
