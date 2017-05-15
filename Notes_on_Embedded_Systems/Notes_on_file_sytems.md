@@ -2,9 +2,9 @@
 
 FAT file system used to be very popular for hard-disks, and even nowadays is common to use it.
 
-There are 12-bit, 16-bit and 32-bit versions.
+There are 12-bit(FAT12), 16-bit(FAT16) and 32-bit(FAT32) versions.
 
-An overview of the 16-bit version is commented below:
+# An overview of the 16-bit version
 
 A disk is made of __surfaces__ (one for each head), __tracks__, and __sectors__; but for simplifications we can consider it just a number
 of sectors, first one numbered 0, second one numbered 1 and so on... actual location of each sector is irrelevant because, each sector
@@ -51,6 +51,23 @@ launches the operating system. It also contains other information, that describe
 |  0x36    | 8  |   File system identifier                             |
 |  0x3e     | 0x1c0   |   The remainder of the Boostrap program                           |
 |  0x1fe    | 2  |  Boot block 'signature' (0x55 followed by 0xaa)                          |
+
+## The Media descriptor
+
+Previosly it was dificult for de operating system to detect the size and type of a disk just by its hardware. So the 'Media descriptor' was used to classify disks. As today is rarely used, and most of the hard-disks set it to 0xf0.
+
+## FAT - File Allocation Table
+
+The FAT uses one or more blocks inmediately following the Boot Block. Commonly, part of its last block will remain unused. and its ulikely that the required number of entries will exactly fill a complete number of blocks. If there is a second  FAT, this inmediately follow the first one (but starting at a new block) ... and this is repeated for any number of FATs.
+
+In the case of FAT16, each entry in the FAT uses two bytes in lenght (i.e. 16 bits) The disk data area is divided into clusters-- that are the same as allocation units, but with a different numeration (isntead of being numbered from the start of the disk, clusters are numberated from the start of the disk data area). So, the cluster number is the the allocation unit number, minus a constant value which is the size of the areas in between the start of the disk and the start of the data area. 
+
+**Warn for the adventurer** The clusters start its numbering at 2, not at 0!! So the above calculations need to have 2 added to get the cluster of a given allocation unit. And a cluster number is converted to an allocation unit number by substracting 2 ... !!
+
+
+
+
+
 
 References:
 
