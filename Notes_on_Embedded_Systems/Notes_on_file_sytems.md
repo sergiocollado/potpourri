@@ -34,7 +34,23 @@ launches the operating system. It also contains other information, that describe
 | 0x03 | 8 | Optional manufacturer description |
 | 0x0b | 2 | Number of bytes per block |
 | 0x0d | 1 | Number of blocks per allocation unit |
-
+| 0x0e     | 2  |  Number of reserved blocks that are in the disk and are not actually part of the file system. In most cases is just 1, being the allowance the Boot Block |
+| 0x10     |  1 | Number of File Allocation Tables |
+| 0x11  | 2  |   Number of root directory entries (even unused ones) |
+| 0x13    | 2  | Total number of blocks in the entire disk. If the disk happens to be larger that 65535 blocks -- then this number cannot be stored at this fiel, because it wouldn't fit - you would need more than two bytes to represent it-- In this case the value of this field is set to zero; and the true number of blocks in the entire disk, is stored at position offset 0x20. |
+|  0x15    |  1 |   Media descriptor                             |
+|  0x16   | 2  |  The number of blocks used by one copy of the File Allocation Table |
+|  0x18    | 2  |  The numbero of blocks per track. This information is for the use of the Bootstrap program.                       |
+|  0x1a    |  2 |   Number of heads(disk surfaces). This information is for the use of the Boostrap program                            |
+|  0x1c   |  4 |  The numbero of hidden blocks. This is a legacy field, and usually is set to 0. It can be ignored  |
+|  0x20    | 4  | Total number of blocks in the entire disk - review field offset 0x13                          |
+|  0x24   |  2 |  Physical drive number. This info is for the use of the Boostrap programm |
+|  0x26    |  1 |  Extended boot record signature. This info is for the use of the Boostrap programm                               |
+|  0x27    |  4 |  Volumen serial number. Unique number used for identification of a particular disk  |
+|  0x2b    | 11  | Volumen Label. This is a string of characters for human-readeable identification of the disk- this is selected when the disk is formatted  |
+|  0x36    | 8  |   File system identifier                             |
+|  0x3e     | 0x1c0   |   The remainder of the Boostrap program                           |
+|  0x1fe    | 2  |  Boot block 'signature' (0x55 followed by 0xaa)                          |
 
 References:
 
