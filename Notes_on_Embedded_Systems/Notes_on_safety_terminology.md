@@ -69,3 +69,74 @@ Dependability is a concept that includes:
 
 **FAULT TOLERANT SYSTEM**: Is a system that performs correctly, although might have some errors in it. Usually this is
 achieved by means of repeated computations, monitoring data, and redundant systems.
+
+For recoverign from errors there are two aproaches:
+ - roll forward
+ - roll back
+
+When the systems detects an error, the *roll forward* recovery takes the system state at that point and corrects it, to be able to move forward. *Roll back* recovery revert the system state back to some earlier correct state (i.e. last checkpoint) and moves forward from there.
+
+References:
+https://en.wikipedia.org/wiki/Fault-tolerant_computer_system </br>
+
+**ROBUST SYSTEMS** Robust systems are those in which the computer system has the ability to cope with errors during execution and cope with erroneous inputs. Usually you test those systems with the technique of *Fault Injection*, other techniques are for example *Fuzzy testing* that involves invalid or unexpected inputs. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# PROGRAMMING TECHNIQUES:
+
+## Robust programming
+
+Robust programming is a style of programming that focus on handling unexpected terminations and unexpected actions. The code should handle those events gracefully and log or display accurate and unambigous **error mensages**, this will allow to detect and correct
+much easily the pernicious event.
+
+### Principles:
+
+#### Paranoia
+ The programmmer must undestand that its code can produce bug, that make the system fail or work incorrectly. Also that the users are there to break their code. - You know the saying: *--Even paranoids have enemies--*
+#### Stupity
+ The programmers assumes that the user at some point will use incorrect, malformed, and bogus inputs. So he has to code error-proof inputs, and emit **error mesages**, that are clear, intuitive, unambigous, and that don't require to look up error codes. The message should be as accurate as possible, to the problem can be detected and corrected with ease.
+#### Dangerous implementations
+ Users should not gain access to the inners of the system/program - that is: libraries, internal states, internal values, or pointer to data structures ... The interfece with the user should be that, and be probed against loopholes.
+ 
+References:
+https://en.wikipedia.org/wiki/Robustness_(computer_science)#Robust_programming </br>
+http://nob.cs.ucdavis.edu/bishop/secprog/robust.html </br>
+
+## Defensive programming
+
+Defensive programming is a defensive coding style intended to ensure the continuing function of a program under unforeseen circunstances. This code style is usually used in systems with need high availability, safety and security.
+
+### Techniques:
+
+#### Intelligent code reuse:
+Existing code is tested and is knwon to work. reuse of it may reduce the chance of new bugs. 
+
+ - [ ] TODO: complete this.
+
+References: 
+https://en.wikipedia.org/wiki/Defensive_programming </br>
+
+####
