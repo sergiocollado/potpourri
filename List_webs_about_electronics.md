@@ -156,8 +156,20 @@ ppt RT: http://www.inf.ufrgs.br/~flavio/ensino/cmp502/TutorialRammig.pdf
 
 luv it: https://www.crowdsupply.com/inverse-path/usb-armory
 
+CERT coding standard: SECURE PROGRAMMING: https://www.securecoding.cert.org/confluence/display/seccode/SEI+CERT+Coding+Standards
+
+
+
+
 
 # Learn electronics with application notes:
 
 thermal resistence in Integrated Circuits:  http://rohmfs.rohm.com/en/products/databook/applinote/ic/power/switching_regulator/thermal_resistance_appli-e.pdf
+
+MCU vs EMC
+http://www.st.com/content/ccc/resource/technical/document/application_note/1c/6c/02/93/79/c8/4e/32/CD00004037.pdf/files/CD00004037.pdf/jcr:content/translations/en.CD00004037.pdf
+
+https://web.archive.org/web/20110524052840/http://www.conformity.com/artman/publish/printer_214.shtml
+
+http://www.nxp.com/assets/documents/data/en/application-notes/AN2764.pdf
 
