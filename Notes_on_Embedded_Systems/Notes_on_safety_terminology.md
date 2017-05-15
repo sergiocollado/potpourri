@@ -70,14 +70,37 @@ Dependability is a concept that includes:
 **FAULT TOLERANT SYSTEM**: Is a system that performs correctly, although might have some errors in it. Usually this is
 achieved by means of repeated computations, monitoring data, and redundant systems.
 
+RECOVERING FROM ERRORS:
 For recoverign from errors there are two aproaches:
  - roll forward
  - roll back
 
 When the systems detects an error, the *roll forward* recovery takes the system state at that point and corrects it, to be able to move forward. *Roll back* recovery revert the system state back to some earlier correct state (i.e. last checkpoint) and moves forward from there.
 
+N-VERSION SOFTWARE:
+N-version programming (NVP) or multiversion programming or multiple version dissimilar software, is a method where multiple equivalent functional programs are generated from the same especifications. The goal of this methodology is that with this the probability of identical software faulst is greatly reduced. 
+
+- [] todo: finish this
+
+References:
+https://en.wikipedia.org/wiki/N-version_programming </br>
+http://ieeexplore.ieee.org/document/532621/ </br>
+
+
+SELF-CHECKING SOFTWARE - Built In Self Test (BIST)
+Usually an internal check of the components of the systems, helps to prevent further errors, in case some component doesn't comply with an optimal state. Thus preventing us an upcomming failure during operation of the system.
+
+Is very common, that some hardware components include these techniques embedded in them.
+
+http://www.eventhelix.com/RealtimeMantra/FaultHandling/hardware_diagnostics.htm#.WRoST2jyjIU </br>
+
+
+
 References:
 https://en.wikipedia.org/wiki/Fault-tolerant_computer_system </br>
+https://en.wikipedia.org/wiki/Software_fault_tolerance </br>
+https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
+
 
 **ROBUST SYSTEMS** Robust systems are those in which the computer system has the ability to cope with errors during execution and cope with erroneous inputs. Usually you test those systems with the technique of *Fault Injection*, other techniques are for example *Fuzzy testing* that involves invalid or unexpected inputs. 
 
@@ -139,4 +162,31 @@ Existing code is tested and is knwon to work. reuse of it may reduce the chance 
 References: 
 https://en.wikipedia.org/wiki/Defensive_programming </br>
 
-####
+## Inmunity-aware programming
+
+When writing code for an embedded system, inmunity-aware programming, refers to programming techniques which improve tolerance of transient errors in the program counter or in other modules that may lead to a failure. Transient errors usually are cause for single events, as a micro-cut in the power supply or a strong electromagnetic event, trasnmitted from another source to our device. 
+
+Inmunity-aware programming is an example of defensive programming and EMC-aware programming. The techniques usually are applied to the 'victim' of the emmision, to make it more reliable. 
+
+
+References:
+https://en.wikipedia.org/wiki/Immunity-aware_programming </br>
+http://www.st.com/content/ccc/resource/technical/document/application_note/1c/6c/02/93/79/c8/4e/32/CD00004037.pdf/files/CD00004037.pdf/jcr:content/translations/en.CD00004037.pdf </br>
+
+https://web.archive.org/web/20110524052840/http://www.conformity.com/artman/publish/printer_214.shtml </br>
+http://www.nxp.com/assets/documents/data/en/application-notes/AN2764.pdf </br>
+
+
+## Failure mode and effects analysis (FMEA)
+
+ - [ ] todo: complete
+ 
+References: 
+https://en.wikipedia.org/wiki/Failure_mode_and_effects_analysis </br>
+ 
+ 
+
+
+
+
+
