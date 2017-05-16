@@ -162,6 +162,8 @@ SC: http://www.etsi.org/index.php/news-events/news/1195-2017-05-news-making-smar
 
 SC: http://www.etsi.org/index.php/news-events/news/1152-2017-01-news-etsi-launches-new-group-on-context-information-management-for-smart-city-interoperability
 
+SC: http://www.etsi.org/technologies-clusters/technologies/smart-cities
+
 
 
 # Learn electronics with application notes:
