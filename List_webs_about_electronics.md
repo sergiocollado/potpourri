@@ -164,6 +164,7 @@ SC: http://www.etsi.org/index.php/news-events/news/1152-2017-01-news-etsi-launch
 
 SC: http://www.etsi.org/technologies-clusters/technologies/smart-cities
 
+SC: http://www.libelium.com/resources/case-studies/
 
 
 # Learn electronics with application notes:
