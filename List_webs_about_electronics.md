@@ -158,7 +158,9 @@ luv it: https://www.crowdsupply.com/inverse-path/usb-armory
 
 CERT coding standard: SECURE PROGRAMMING: https://www.securecoding.cert.org/confluence/display/seccode/SEI+CERT+Coding+Standards
 
+SC: http://www.etsi.org/index.php/news-events/news/1195-2017-05-news-making-smart-cities-sustainable-etsi-workshop-agenda-now-available
 
+SC: http://www.etsi.org/index.php/news-events/news/1152-2017-01-news-etsi-launches-new-group-on-context-information-management-for-smart-city-interoperability
 
 
 
