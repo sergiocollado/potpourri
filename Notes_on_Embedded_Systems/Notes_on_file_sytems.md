@@ -4,7 +4,7 @@ FAT file system used to be very popular for hard-disks, and even nowadays is com
 
 There are 12-bit(FAT12), 16-bit(FAT16) and 32-bit(FAT32) versions.
 
-# An overview of the 16-bit version
+# An overview of the 16-bit version: FAT16
 
 A disk is made of __surfaces__ (one for each head), __tracks__, and __sectors__; but for simplifications we can consider it just a number
 of sectors, first one numbered 0, second one numbered 1 and so on... actual location of each sector is irrelevant because, each sector
@@ -63,6 +63,14 @@ The FAT uses one or more blocks inmediately following the Boot Block. Commonly, 
 In the case of FAT16, each entry in the FAT uses two bytes in lenght (i.e. 16 bits) The disk data area is divided into clusters-- that are the same as allocation units, but with a different numeration (isntead of being numbered from the start of the disk, clusters are numberated from the start of the disk data area). So, the cluster number is the the allocation unit number, minus a constant value which is the size of the areas in between the start of the disk and the start of the data area. 
 
 **Warn for the adventurer** The clusters start its numbering at 2, not at 0!! So the above calculations need to have 2 added to get the cluster of a given allocation unit. And a cluster number is converted to an allocation unit number by substracting 2 ... !!
+
+So, how does FAT16 work? - There is an entry in the FAT filesystem for each cluster (data area block) on the disk. Entry _N_ relates to cluster _N_. Have in mind the warning above: Cluster _0_ and _1_ don't exists -- Those FAT entries are special. The first byte of the
+first entry is a copy of the _media descriptor byte_, and the seconde one is set to 0xFF, -- both bytes in the second entry are set to
+0xFF.
+
+So, what does a normal FAT, entry for a cluster contain? It has the _sucessor cluster number_, - that is the number of the cluster, that
+follows, the current one, in the file to which the current cluster belongs to. -- The last cluster of a file has the value 0xFFFF in its 
+FAT, entry, to point that there are no more clusters in the file system.
 
 
 
