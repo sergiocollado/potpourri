@@ -94,8 +94,12 @@ Is very common, that some hardware components include these techniques embedded 
 
 http://www.eventhelix.com/RealtimeMantra/FaultHandling/hardware_diagnostics.htm#.WRoST2jyjIU </br>
 
+EXAMPLE:
 
-
+ Suppouse, you have a sistem, in which two task/phreatds/programs ... are working togeder, one of them, task_1 - senses, gadthers and updates data in real time. task_2: request that data, and do some kind of that processing. 
+ In the event, that for whatever reason, maybe some bug, or that there arent enough memory..., the task_1 stops on working, or performing ok, may be it reports the dreaded: segmentation fault... at that point, the task_2, should be able to detect the problem, - there are some methods to do this - and it should try to fix the system, for example, relaunching, the task_1, or reseting the whole system in the wort case.
+ 
+ 
 References:
 https://en.wikipedia.org/wiki/Fault-tolerant_computer_system </br>
 https://en.wikipedia.org/wiki/Software_fault_tolerance </br>
