@@ -182,3 +182,9 @@ http://www.nxp.com/assets/documents/data/en/application-notes/AN2764.pdf
 # Building linux systems
 
 [Easy Intro to Linux Kernel Programming](https://www.youtube.com/watch?v=TCY8WPwBMa0)
+
+
+# 3D Models
+
+https://www.blendswap.com/blends/staffpicks
+
