@@ -189,8 +189,31 @@ References:
 https://en.wikipedia.org/wiki/Failure_mode_and_effects_analysis </br>
  
  
+ 
+# MORE ON PROGRAMMING TECHNIQUES
 
+**OPERATIONAL SEMANTICS**: are a category of formal programming lenguaje semantics, in which certain desired propierties of a program, such correctness, safety or security are verified by proofs of logical statements about its execution and procedures, 
 
+**TRANSITION SYSTEM**: In computer science, a transition system is used to describe the potential of a discrete system. It consists in states, and trasitions between states.
+
+Transitions systems differs from *Finite State Automata* in several ways:
+- The set of states, is not necessarily finite, but it must be contable.
+- The set of transitions, is not necessarily finite, or even countable
+- Not *Start* state, or *End* state, are given.
+
+Reference: https://en.wikipedia.org/wiki/Transition_system </br>
+
+Formal definition:
+
+## Transition system:
+Is a pair (S,->), where S, is a set of states, and -> is a set of transitions. The case, where there is a transition from state *p* to state *q*, is written as: *p->q*.
+
+## Labelled transition system:
+Is a tuple (S,\mu,->), where S, is a set of states, \mu is a set of labels, and -> is a set of labelled transitions.
+
+Labels, can represent different things, depending of the context, usually they are the representation of th einput expected, or the conditions that must comply to trigger the transition. 
+
+If for any given state *p*, and label *\alpha*, only exits one tuple *(p,\alpha,q)*, then it is said, that *\alpha*, is **_deterministic_** for *p*.
 
 
 
