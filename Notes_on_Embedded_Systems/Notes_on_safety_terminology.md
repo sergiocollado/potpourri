@@ -72,13 +72,14 @@ achieved by means of repeated computations, monitoring data, and redundant syste
 
 RECOVERING FROM ERRORS:
 For recoverign from errors there are two aproaches:
+
  - roll forward
  - roll back
 
 When the systems detects an error, the *roll forward* recovery takes the system state at that point and corrects it, to be able to move forward. *Roll back* recovery revert the system state back to some earlier correct state (i.e. last checkpoint) and moves forward from there.
 
 N-VERSION SOFTWARE:
-N-version programming (NVP) or multiversion programming or multiple version dissimilar software, is a method where multiple equivalent functional programs are generated from the same especifications. The goal of this methodology is that with this the probability of identical software faulst is greatly reduced. 
+N-version programming (NVP) or multiversion programming or multiple version dissimilar software, is a method where multiple equivalent functional programs are generated from the same especifications. The goal of this methodology is that with this the probability of identical software faults is greatly reduced. 
 
 - [] todo: finish this
 
@@ -206,14 +207,43 @@ Reference: https://en.wikipedia.org/wiki/Transition_system </br>
 Formal definition:
 
 ## Transition system:
-Is a pair (S,->), where S, is a set of states, and -> is a set of transitions. The case, where there is a transition from state *p* to state *q*, is written as: *p->q*.
+Is a pair (S,→), where S, is a set of states, and → is a set of transitions. The case, where there is a transition from state **p** to state **q**, is written as: **p→q**.
 
-## Labelled transition system:
-Is a tuple (S,\mu,->), where S, is a set of states, \mu is a set of labels, and -> is a set of labelled transitions.
+## Labelled transition system (LTS):
+Is a tuple (S,Λ,→), where S, is a set of states, Λ is a set of labels, and → is a set of labelled transitions.
 
 Labels, can represent different things, depending of the context, usually they are the representation of th einput expected, or the conditions that must comply to trigger the transition. 
 
-If for any given state *p*, and label *\alpha*, only exits one tuple *(p,\alpha,q)*, then it is said, that *\alpha*, is **_deterministic_** for *p*.
+If for any given state *p*, and label *α*, only exits one tuple *(p,α,q)*, then it is said, that *α*, is **_deterministic_** for *p*.
+
+## Bisimulation
+Bisimulation is a relationship between state transition systems, that associates systems that behaves in the same way in the sense
+that one system simulates the other and vice versa.
+
+Formal definition:
+Given a LTS (S,Λ,→) a bisimulation relation is a binary relation **R**, over **S**, i.e.( R belongs to S x S) such both R and its inverse R^-1 are simulations
+
+Equivalently **R** is a bisimulation if for every pair of elements **p**,**q** in the space of states **S**, with (p,q) in **R**, ∀ α in Λ:
+
+for all **p'** in **S**: p  → (α) → p'
+implies that there is a **q'** in **S**, that: q  → (α) → q 
+and (p',q') ∈ **R**
+
+and, simetrically: for all **q'** in **S**:  q  → (α) → q'
+implies that there is a **p'** in **S**, that: p  → (α) → p'
+and (p',q')  ∈ **R**
+
+So given two states **p** and **q** that belong to the state space **S**, **p** is _**bisimilar**_ to **q**, and is writen as: **p ~ q**, if there is a bisimulation **R** such that **(p,q)** are in **R**.
 
 
 
+
+Reference: https://en.wikipedia.org/wiki/Bisimulation
+
+
+
+
+
+
+
+TODO: Check and elavorate: https://en.wikipedia.org/wiki/Calculus_of_communicating_systems
