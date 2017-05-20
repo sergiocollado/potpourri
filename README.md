@@ -3,7 +3,7 @@
 ## About me
 
 My web in git hub
--  [[git_image](./image/git.png)](http://sergiocollado.github.io)  
+-  [![git_image](./image/git.png)](http://sergiocollado.github.io)  
 
 My CV in linkedin
 - https://www.linkedin.com/in/sergiogonzalezcollado/
