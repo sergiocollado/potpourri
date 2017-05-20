@@ -1,4 +1,4 @@
-![image](./../image/me.png)
+![image](https://github.com/sergiocollado/potpourri/blob/master/image/me.png)
 
 ## About me
 
