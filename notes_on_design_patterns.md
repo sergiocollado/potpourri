@@ -19,7 +19,6 @@ How do OBJECTS OF A CLASS behave and interact with each other
 - Command
 - Memento
 - Visitor
-
 - State
 - Mediator
 - Observer
@@ -49,4 +48,6 @@ there is a need to use families of related objects together. And another reason,
 - Singeton
 - Builder
 - Prototype
+
+
 
