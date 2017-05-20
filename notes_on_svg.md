@@ -2,7 +2,7 @@
 #### **Foreword** 
 
 This are my personal notes on the svg specs, and are heavily based in the best resource:
-[MDN](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial)
+[Modzilla Development Network](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial)
 
 - The lead reference for SVGs is: [ref SVG11](https://www.w3.org/TR/SVG11/)
 - also check: [google svgweb](https://code.google.com/archive/p/svgweb/) 
@@ -49,7 +49,7 @@ Remember that the center of coordenates is top-left, and increases from left to 
 ```svg
 <line x1="10" x2="50" y1="110" y2="150"/>
 ```
-</br>
+
 
 
 | Line |    |
