@@ -1,4 +1,4 @@
-![image](../tree/master/image)
+![image](../tree/master/image/me.png)
 
 ## About me
 
