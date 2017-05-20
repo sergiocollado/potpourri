@@ -7,7 +7,7 @@ This are my personal notes on the svg specs, and are heavily based in the best r
 - The lead reference for SVGs is: [ref SVG11](https://www.w3.org/TR/SVG11/)
 - also check: [google svgweb](https://code.google.com/archive/p/svgweb/) 
 - comparation between SVG and canvas: [link](https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/)
-- upcomming standard SVG 2: [ref SVG2]https://svgwg.org/svg2-draft/Overview.html
+- upcomming standard SVG 2: [ref SVG2](https://svgwg.org/svg2-draft/Overview.html)
 
 
 
@@ -50,6 +50,7 @@ Remember that the center of coordenates is top-left, and increases from left to 
 <line x1="10" x2="50" y1="110" y2="150"/>
 ```
 
+<br>
 
 
 | Line |    |
@@ -421,19 +422,19 @@ TODO:
  >> https://www.w3.org/TR/SVG/struct.html <<
  
  
-[] https://www.w3.org/TR/SVG11/interact.html </br>
-[] https://www.w3.org/TR/SVG11/linking.html  </br>
-[] https://www.w3.org/TR/SVG11/animate.html  </br>
-[] https://www.w3.org/TR/SVG/script.html#ScriptElement </br>
-[] [DOM standard](https://dom.spec.whatwg.org/#dom-document-createelementns) </br>
-[] https://www.w3.org/TR/SVG/struct.html#InterfaceSVGSVGElemen </br>
-[] http://stackoverflow.com/questions/6701705/programmatically-creating-an-svg-image-element-with-javascript </br>
-[] http://stackoverflow.com/questions/2753732/how-to-access-svg-elements-with-javascript?rq=1 </br>
-[] http://stackoverflow.com/questions/21800271/svg-display-text-description-on-click </br>
-[] https://developer.mozilla.org/en-US/docs/Web/SVG/Element/desc </br>
-[] https://developer.mozilla.org/en-US/docs/Web/API
-[] About metadatas -> https://www.w3.org/TR/SVG11/metadata.html#InterfaceSVGMetadataElement
-[] Comparation between SVG and canvas: https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/
+- [] https://www.w3.org/TR/SVG11/interact.html </br>
+- [] https://www.w3.org/TR/SVG11/linking.html  </br>
+- [] https://www.w3.org/TR/SVG11/animate.html  </br>
+- [] https://www.w3.org/TR/SVG/script.html#ScriptElement </br>
+- [] [DOM standard](https://dom.spec.whatwg.org/#dom-document-createelementns) </br>
+- [] https://www.w3.org/TR/SVG/struct.html#InterfaceSVGSVGElemen </br>
+- [] http://stackoverflow.com/questions/6701705/programmatically-creating-an-svg-image-element-with-javascript </br>
+- [] http://stackoverflow.com/questions/2753732/how-to-access-svg-elements-with-javascript?rq=1 </br>
+- [] http://stackoverflow.com/questions/21800271/svg-display-text-description-on-click </br>
+- [] https://developer.mozilla.org/en-US/docs/Web/SVG/Element/desc </br>
+- [] https://developer.mozilla.org/en-US/docs/Web/API
+- [] About metadatas -> https://www.w3.org/TR/SVG11/metadata.html#InterfaceSVGMetadataElement
+- [] Comparation between SVG and canvas: https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/
 
 
 
