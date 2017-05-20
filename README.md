@@ -1,4 +1,4 @@
-![image](https://github.com/sergiocollado/potpourri/blob/master/image/me.png)
+![image](./blob/master/image/me.png)
 
 ## About me
 
