@@ -4,10 +4,10 @@
 This are my personal notes on the svg specs, and are heavily based in the best resource:
 [MDN](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial)
 
-- The lead reference for SVGs is: (https://www.w3.org/TR/SVG11/)
-- also check: (https://code.google.com/archive/p/svgweb/) 
-- comparation between SVG and canvas: (https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/)
-- upcomming standard SVG 2: https://svgwg.org/svg2-draft/Overview.html
+- The lead reference for SVGs is: [ref SVG11](https://www.w3.org/TR/SVG11/)
+- also check: [google svgweb](https://code.google.com/archive/p/svgweb/) 
+- comparation between SVG and canvas: [link](https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/)
+- upcomming standard SVG 2: [ref SVG2]https://svgwg.org/svg2-draft/Overview.html
 
 
 
@@ -49,6 +49,7 @@ Remember that the center of coordenates is top-left, and increases from left to 
 ```svg
 <line x1="10" x2="50" y1="110" y2="150"/>
 ```
+</br>
 
 
 | Line |    |
