@@ -2,8 +2,15 @@
 
 ## About me
 
-http://sergiocollado.github.io </br>
-https://www.linkedin.com/in/sergiogonzalezcollado/ </br>
+My web in git hub
+- http://sergiocollado.github.io  
+
+My CV in linkedin
+- https://www.linkedin.com/in/sergiogonzalezcollado/
+
+
+
+
 
 
 ## Welcome to GitHub Pages
