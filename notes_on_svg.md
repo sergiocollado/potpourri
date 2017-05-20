@@ -1,12 +1,13 @@
 
-#### **Foreword** </br>
-This are my personal notes on the svg specs, and are heavily based in the best resource:
-https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial
+#### **Foreword** 
 
-The lead reference for SVGs is: https://www.w3.org/TR/SVG11/ </br>
-also check: https://code.google.com/archive/p/svgweb/ </br>
-comparation between SVG and canvas: https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/ </br>
-upcomming standard SVG 2: https://svgwg.org/svg2-draft/Overview.html
+This are my personal notes on the svg specs, and are heavily based in the best resource:
+[MDN](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial)
+
+- The lead reference for SVGs is: https://www.w3.org/TR/SVG11/
+- also check: https://code.google.com/archive/p/svgweb/ 
+- comparation between SVG and canvas: https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/ </br>
+- upcomming standard SVG 2: https://svgwg.org/svg2-draft/Overview.html
 
 
 
@@ -48,14 +49,20 @@ Remember that the center of coordenates is top-left, and increases from left to 
 ```svg
 <line x1="10" x2="50" y1="110" y2="150"/>
 ```
-**x1** </br>
-The x position of point 1. </br>
-**y1** </br>
-The y position of point 1. </br>
-**x2** </br>
-The x position of point 2. </br>
-**y2** </br>
-The y position of point 2. </br>
+**x1** 
+
+The x position of point 1. 
+
+**y1** 
+
+The y position of point 1. 
+
+**x2** 
+
+The x position of point 2. 
+
+**y2** 
+The y position of point 2. 
 
 
 ### Polyline
@@ -66,7 +73,8 @@ Polylines are groups of connected straight lines. Since that list can get quite 
 <polyline points="60 110, 65 120, 70 115, 75 130, 80 125, 85 140, 90 135, 95 150, 100 145"/>
 ```
 
-**points** </br>
+**points** 
+
 A list of points, each number separated by a space, comma, EOL, or a line feed character. Each point must contain two numbers, an x coordinate and a y coordinate. So the list (0,0), (1,1) and (2,2) could be written: "0 0, 1 1, 2 2".
 
 
@@ -76,18 +84,29 @@ A list of points, each number separated by a space, comma, EOL, or a line feed c
 <rect x="60" y="10" rx="10" ry="10" width="30" height="30"/>
 ```
 
-**x** <br>
-The x position of the top left corner of the rectangle. <br>
-**y** <br>
-The y position of the top left corner of the rectangle.<br>
-**width**<br>
-The width of the rectangle<br>
-**height**<br>
-The height of the rectangle<br>
-**rx**<br>
-The x radius of the corners of the rectangle<br>
-**ry**<br>
-The y radius of the corners of the rectangle<br>
+**x**
+
+The x position of the top left corner of the rectangle. 
+
+**y**
+
+The y position of the top left corner of the rectangle.
+
+**width**
+
+The width of the rectangle
+
+**height**
+
+The height of the rectangle
+
+**rx**
+
+The x radius of the corners of the rectangle
+
+**ry**
+
+The y radius of the corners of the rectangle
 
 ref: https://www.w3.org/TR/SVG/shapes.html#RectElement
 
