@@ -91,7 +91,7 @@ MSL - Moisture Sensitivity Level
 JEDEC - Joint Electron Device Engineering Council 
 PSAP - Public Safety Answering Point
 EROs - Emergency Response Organizations
-KPI - Key Performance Indicatorsç
+KPI - Key Performance Indicators
 IVE - In-Vehicle Equipment
 TPSP - Third Party Service Providers
 MNO - Mobile Network Operantion
@@ -99,7 +99,16 @@ MSD - Minimun Set of Data
 LTS - Labelled Trasition Systems
 LTS - Long Term Support
 IETF - Internet Engineering Task Force
-
+SPI - Serial Peripherical Interface
+UART - 
+CPU - Central Processing Unit
+PE - Processing Element
+MCU - Micro Controller Unit
+uC  - Micro Controller
+MPU - Micro Processing Unit
+GPIO - General Pin Input/Output
+ADC - Analog to Digital Converter
+DAC - Digital to Analog Converter
 
 
 
