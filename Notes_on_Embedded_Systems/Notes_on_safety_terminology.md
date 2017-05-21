@@ -221,7 +221,7 @@ Bisimulation is a relationship between state transition systems, that associates
 that one system simulates the other and vice versa.
 
 Formal definition:
-Given a LTS (S,Λ,→) a bisimulation relation is a binary relation **R**, over **S**, i.e.( R belongs to S x S) such both R and its inverse R^-1 are simulations
+Given a LTS (S,Λ,→) a bisimulation relation is a binary relation **R**, over **S**, i.e.( **R ⊆ to S x S**) such both **R** and its inverse **R^-1** are simulations.
 
 Equivalently **R** is a bisimulation if for every pair of elements **p**,**q** in the space of states **S**, with (p,q) in **R**, ∀ α in Λ:
 
@@ -236,9 +236,15 @@ and (p',q')  ∈ **R**
 So given two states **p** and **q** that belong to the state space **S**, **p** is _**bisimilar**_ to **q**, and is writen as: **p ~ q**, if there is a bisimulation **R** such that **(p,q)** are in **R**.
 
 
+!if two process are bisimulation equivalents, they are equivalents from any perspective you can think of!
+
 
 
 Reference: https://en.wikipedia.org/wiki/Bisimulation
+
+Reference: http://theory.stanford.edu/~rvg/abstracts.html#45
+
+Reference: http://theory.stanford.edu/~rvg/abstracts.html
 
 
 
