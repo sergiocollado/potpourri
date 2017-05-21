@@ -2,6 +2,8 @@
 
 Examples are: industrial equipments, machine's controllers, agricultural, automotive, medical, aeronautical or space systems, telecomunication systems or even household apliances, enterntaiment systems, toys, vending machines, measurent systems, security and identity checks, robotics, logistics, production lines ...
 
+Most of the times, embedded systems are reactive, that means, they wait for an input, when they have it, they perform some computation, and then it generates an output. Than means they can be modelled as an Automata.
+
 **SAFETY**: Is the propierty of a system that evaluates the risk of the ocurrence of an accident.
 
 **FUNCTIONAL SAFETY** Is the safety of a system that correspond to the correct actions acording to the system inputs, it also includes
@@ -193,6 +195,8 @@ https://en.wikipedia.org/wiki/Failure_mode_and_effects_analysis </br>
  
  
 # MORE ON PROGRAMMING TECHNIQUES
+
+As stated previously, most of the times, embedded systems are reactive, that means, they wait for an input, when they have it, they perform some computation, and then it generates an output. Than means they can be modelled as an Automata.
 
 **OPERATIONAL SEMANTICS**: are a category of formal programming lenguaje semantics, in which certain desired propierties of a program, such correctness, safety or security are verified by proofs of logical statements about its execution and procedures, 
 
