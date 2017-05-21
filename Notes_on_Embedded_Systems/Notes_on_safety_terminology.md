@@ -1,6 +1,6 @@
 **EMBEDDED SYSTEM**: An embedded system is a system, that combines software and hardware, although is also common that they have some  kind of HMI (human machine interface). Embedded systems have fixed capabilities but are programmable, and they are designed for a specific function or functions. 
 
-Examples are: industrial equipments, machine's controllers, agricultural, automotive, medical, aeronautical or space systems, telecomunication systems or even household apliances, enterntaiment systems, toys, vending machines...
+Examples are: industrial equipments, machine's controllers, agricultural, automotive, medical, aeronautical or space systems, telecomunication systems or even household apliances, enterntaiment systems, toys, vending machines, measurent systems ...
 
 **SAFETY**: Is the propierty of a system that evaluates the risk of the ocurrence of an accident.
 
@@ -14,7 +14,7 @@ The leading standard for functional safety is the IEC 61508
 
 **SECURITY**: Is the propierty of a system that evaluates its ability to deal with malicious actions or attacks.
 
-Take into account, that there is a significance difference between the concepts of safety and security, both terms account protection against a damage, but security implies a malicious or intended action to do a damage, while safete relates to an unintended situation.
+Take into account, that there is a significance difference between the concepts of safety and security, both terms account protection against a damage, but security implies a malicious or intended action to do a damage, while safety relates to an unintended situation.
 
 **ACCIDENT**: The event of causing/receiving damage of any kind (either directly or indirectly): equipment damage, property damage, or damage to the enviroment, and human injuries or even deaths.
 
