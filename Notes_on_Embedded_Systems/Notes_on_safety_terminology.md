@@ -1,6 +1,6 @@
 **EMBEDDED SYSTEM**: An embedded system is a system, that combines software and hardware, although is also common that they have some  kind of HMI (human machine interface). Embedded systems have fixed capabilities but are programmable, and they are designed for a specific function or functions. 
 
-Examples are: industrial equipments, machine's controllers, agricultural, automotive, medical, aeronautical or space systems, telecomunication systems or even household apliances, enterntaiment systems, toys, vending machines, measurent systems ...
+Examples are: industrial equipments, machine's controllers, agricultural, automotive, medical, aeronautical or space systems, telecomunication systems or even household apliances, enterntaiment systems, toys, vending machines, measurent systems, security and identity checks, robotics, logistics, production lines ...
 
 **SAFETY**: Is the propierty of a system that evaluates the risk of the ocurrence of an accident.
 
