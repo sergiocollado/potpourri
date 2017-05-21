@@ -236,6 +236,7 @@ and (p',q')  ∈ **R**
 So given two states **p** and **q** that belong to the state space **S**, **p** is _**bisimilar**_ to **q**, and is writen as: **p ~ q**, if there is a bisimulation **R** such that **(p,q)** are in **R**.
 
 
+
 !if two process are bisimulation equivalents, they are equivalents from any perspective you can think of!
 
 ![bisimulation.png](./image/bisimulation.png)
