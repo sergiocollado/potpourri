@@ -238,7 +238,7 @@ So given two states **p** and **q** that belong to the state space **S**, **p** 
 
 !if two process are bisimulation equivalents, they are equivalents from any perspective you can think of!
 
-
+![bisimulation.png](./image/bisimulation.png)
 
 Reference: https://en.wikipedia.org/wiki/Bisimulation
 
