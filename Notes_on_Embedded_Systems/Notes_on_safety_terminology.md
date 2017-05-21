@@ -67,6 +67,7 @@ and
 Dependability is a concept that includes:
 - Reliability
 - Availability
+- Maintanability
 - Safety
 - Security 
 
