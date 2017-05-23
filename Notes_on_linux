@@ -18,6 +18,7 @@ REFERENCES:
 >> also: http://www.linux-tutorial.info/modules.php?name=MContent&pageid=224
 >> the linux device drivers book 3rd edition, is at: https://lwn.net/Kernel/LDD3/ 
 >> Embedded linux website: http://www.elinux.org/
+>> Buildroot manual: https://buildroot.org/downloads/manual/manual.html
 
 
 The analysis of the memory in the linux system, can be checked using the commands:
@@ -206,6 +207,8 @@ http://www.amazon.com/The-Linux-Programming-Interface-Handbook/dp/1593272200
 https://lwn.net/
 http://www.linuxtoday.com/
 http://www.ssc.com/lg/
+https://buildroot.org/downloads/manual/manual.html
+
 
 
 
