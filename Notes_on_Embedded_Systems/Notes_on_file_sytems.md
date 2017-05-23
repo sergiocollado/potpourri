@@ -72,6 +72,56 @@ So, what does a normal FAT, entry for a cluster contain? It has the _sucessor cl
 follows, the current one, in the file to which the current cluster belongs to. -- The last cluster of a file has the value 0xFFFF in its 
 FAT, entry, to point that there are no more clusters in the file system.
 
+## Root Directory
+
+The root directory is the root of the tree of the file system.
+
+The format for the directories is always the same, each entry is 32 bytes (0x20) in size
+
+| Length (in Bytes) | Description |
+|---|---|
+| 8 | Filename |
+| 3 | File extension | 
+| 1 | File attributes |
+| 10 | Reserved |
+| 2 | Time of creation or last update |
+| 2 | Date of creation or last update |
+| 2 | Starting cluster number for file |
+| 4 | File size in bytes |
+
+
+### Filename
+
+There are some special values for the first byte of the filename, which indicates the status of the file:
+
+- 0x00 - Filename never used
+- 0xe5 - Filename used, but file deleted
+- 0x05 - The fist character of the file name is actually '0xe5'
+- 0x2e - The entry is for a directory. In the case the second byte is also 0x2e, the cluster number contains the cluster number of theis directory's parent. In the case it is the root directory its value will be 0x0000.
+- Any other value - Its the first character of the file name. In the case the filename length is less that eight character length, the file name is padded with space characters.
+
+
+### Filename extension
+
+Three characters indicate the file extension. The 'dot', that separates the filename and the file extension is not stored anywhere, is implicit. 
+
+### File attributes
+
+Contains information about the file and its permissions. Flags are single bits. 
+
+- 0x01 - File is read only
+- 0x02 - Hidden file
+- 0x04 - System file - these are hidden too.
+- 0x08 - Indicates a special case, in which it a special entry containing the disk's volume label- so it's not a file descriptor - This entry appears only in the root directory.
+- 0x10 - The entry specifies a subdirectory.
+- 0x20 - the archive flag. It is allways set, when the file is modified. It is used by backup programs.
+- 0x40 - not used. must be set to 0
+- 0x80 - not used. must be set to 0
+
+
+
+
+
 
 
 
