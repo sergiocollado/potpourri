@@ -2,7 +2,7 @@
 #### **Foreword** 
 
 This are my personal notes on the svg specs, and are heavily based in the best resource:
-[Modzilla Development Network](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial)
+[Mozilla Development Network](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial)
 
 - The lead reference for SVGs is: [ref SVG11](https://www.w3.org/TR/SVG11/)
 - also check: [google svgweb](https://code.google.com/archive/p/svgweb/) 
