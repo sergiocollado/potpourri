@@ -109,7 +109,11 @@ MPU - Micro Processing Unit
 GPIO - General Pin Input/Output
 ADC - Analog to Digital Converter
 DAC - Digital to Analog Converter
-
+API - Application Program Interface
+SDK - Software Development Kit
+BSP - Board Support Package
+BTLE - BlueTooth Low Energy
+NG - Next Generation
 
 
 
