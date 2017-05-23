@@ -185,6 +185,8 @@ http://www.nxp.com/assets/documents/data/en/application-notes/AN2764.pdf
 
 glibc code: https://sourceware.org/git/?p=glibc.git;a=tree;hb=HEAD
 
+build root tutorial: https://buildroot.org/downloads/manual/manual.html
+
 
 # 3D Models
 
