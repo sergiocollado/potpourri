@@ -183,6 +183,8 @@ http://www.nxp.com/assets/documents/data/en/application-notes/AN2764.pdf
 
 [Easy Intro to Linux Kernel Programming](https://www.youtube.com/watch?v=TCY8WPwBMa0)
 
+glibc code: https://sourceware.org/git/?p=glibc.git;a=tree;hb=HEAD
+
 
 # 3D Models
 
