@@ -8,7 +8,7 @@ You can actually request an indexing at: https://www.google.com/webmasters/tools
 
 Then I found about the google's webmaster site:  http://www.google.com/webmasters/
 
-It recommended my to do the following actions:
+It recommended me, to do the following actions:
 
 1- add website versions, that is: www http https </br>
 2- select your preferred version </br>
