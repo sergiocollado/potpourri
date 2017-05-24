@@ -215,3 +215,5 @@ https://www.blendswap.com/blends/staffpicks
 
 http://www.allegromicro.com/
 
+https://www.nordicsemi.com/
+
