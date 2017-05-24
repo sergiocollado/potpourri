@@ -179,6 +179,11 @@ https://web.archive.org/web/20110524052840/http://www.conformity.com/artman/publ
 http://www.nxp.com/assets/documents/data/en/application-notes/AN2764.pdf
 
 
+# Reference designs
+
+arrow: https://www.arrow.com/es-mx/reference-designs
+
+
 # Building linux systems
 
 [Easy Intro to Linux Kernel Programming](https://www.youtube.com/watch?v=TCY8WPwBMa0)
