@@ -113,6 +113,7 @@ MPU - Micro Processing Unit
 GPIO - General Pin Input/Output
 RTC - Real Time Clock
 RAM - Random Access Memory
+SRAM - Static Random Access Memory
 ROM - Read Only Memory
 EEPROM - Electrical Erasable Read Only Memory
 ADC - Analog to Digital Converter
@@ -126,6 +127,12 @@ NG - Next Generation
 CFD - Computed Fluid Dinamics
 FEA - Finite Element Analisys
 ARM - Advanced Risc Machine
+FPGA - Field Programmable Gate Arrays
+LUT - Look Up Tables
+SoC - System On Chip
+HPC - High Performance Computing
+DSP - Digital Signal Processor
+
 
 
 
