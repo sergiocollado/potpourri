@@ -102,6 +102,9 @@ IETF - Internet Engineering Task Force
 SPI - Serial Peripherical Interface
 UART - 
 CPU - Central Processing Unit
+ALU - Arithmetic Processing Unit
+CISC - Complex Instruction Set Computer
+RISC - Reduced Instruction Set Computer
 PE - Processing Element
 MCU - Micro Controller Unit
 uC  - Micro Controller
@@ -116,8 +119,6 @@ BTLE - BlueTooth Low Energy
 NG - Next Generation
 CFD - Computed Fluid Dinamics
 FEA - Finite Element Analisys
-CISC - Complex Instruction Set Computer
-RISC - Reduced Instruction Set Computer
 
 
 
