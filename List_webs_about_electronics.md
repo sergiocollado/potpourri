@@ -166,6 +166,12 @@ SC: http://www.etsi.org/technologies-clusters/technologies/smart-cities
 
 SC: http://www.libelium.com/resources/case-studies/
 
+tool: http://www.pcbweb.com/
+
+more tools: https://www.eeweb.com/toolbox
+
+be cool: http://aavidgenie.com/
+
 
 # Learn electronics with application notes:
 
