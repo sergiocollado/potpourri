@@ -1,6 +1,6 @@
-**EMBEDDED SYSTEM**: An embedded system is a system, that combines software and hardware, although is also common that they have some  kind of HMI (human machine interface). Embedded systems have fixed capabilities but are programmable, and they are designed for a specific function or functions. 
+**EMBEDDED SYSTEM**: An embedded system is a system, that combines software and hardware, and is also common that they have some  kind of HMI (human machine interface) or UI (User Interface) as displays, keyboards, et cetera. Embedded systems have fixed capabilities but are programmable, and they are designed for a specific function or functions. 
 
-Examples are: industrial equipments, machine's controllers, agricultural, automotive, medical, aeronautical or space systems, telecomunication systems or even household apliances, enterntaiment systems, toys, vending machines, measurent systems, security and identity checks, robotics, logistics, production lines ...
+Examples are: industrial equipments, machine's controllers, agricultural, automotive, medical, aeronautical, space systems, telecomunication systems, household apliances, enterntaiment systems, toys, vending machines, measurent systems, security and identity checks, robotics, logistics, production lines ...
 
 Most of the times, embedded systems are reactive, that means, they wait for an input, when they have it, they perform some computation, and then it generates an output. Than means they can be modelled as an Automata.
 
@@ -173,7 +173,7 @@ https://en.wikipedia.org/wiki/Defensive_programming </br>
 
 ## Inmunity-aware programming
 
-When writing code for an embedded system, inmunity-aware programming, refers to programming techniques which improve tolerance of transient errors in the program counter or in other modules that may lead to a failure. Transient errors usually are cause for single events, as a micro-cut in the power supply or a strong electromagnetic event, trasnmitted from another source to our device. 
+When writing code for an embedded system, inmunity-aware programming, refers to programming techniques which improve tolerance of transient errors in the program counter or in other modules that may lead to a failure. Transient errors usually are cause for single events, as a micro-cut in the power supply or a strong electromagnetic event, transmitted from another source to our device. 
 
 Inmunity-aware programming is an example of defensive programming and EMC-aware programming. The techniques usually are applied to the 'victim' of the emmision, to make it more reliable. 
 
@@ -241,11 +241,24 @@ and (p',q')  ∈ **R**
 
 So given two states **p** and **q** that belong to the state space **S**, **p** is _**bisimilar**_ to **q**, and is writen as: **p ~ q**, if there is a bisimulation **R** such that **(p,q)** are in **R**.
 
-
-
-!if two process are bisimulation equivalents, they are equivalents from any perspective you can think of!
+¡if two process are bisimulation equivalents, they are equivalents from any perspective you can think of!
 
 ![bisimulation.png](./image/bisimulation.png)
+
+## Trace equivalence
+Two Transitions systems are trace equivalent if they have the same set of traces.
+
+### Properties of trace equivalences:
+
+watch out! because the trace equivalence, don't conserve deadlocks.
+
+If two states are bisimilar, then they are also trace equivalent
+
+For deterministic trasnsition systems bisimulation and trace equivalence coincide.
+
+
+
+
 
 Reference: https://en.wikipedia.org/wiki/Bisimulation
 
