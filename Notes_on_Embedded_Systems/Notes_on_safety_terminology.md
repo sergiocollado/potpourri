@@ -273,3 +273,9 @@ Reference: http://theory.stanford.edu/~rvg/abstracts.html
 
 
 TODO: Check and elavorate: https://en.wikipedia.org/wiki/Calculus_of_communicating_systems
+
+
+Check, the methods, for testing: ccpcheck, vera ++, RATS, Jeckins, SonarQube, 
+Test Unitarios: XUnit, CppUTest
+Other sys: lcov, valgrind, ltrace, strace....
+
