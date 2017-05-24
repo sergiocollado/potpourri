@@ -172,12 +172,14 @@ more tools: https://www.eeweb.com/toolbox
 
 be cool: http://aavidgenie.com/
 
+MISRA guide: http://www.techonline.com/electrical-engineers/education-training/tech-papers/4458213/A-Guide-to-the-MISRA-Coding-Standard-What-you-need-to-know
+
 
 # Learn electronics with application notes:
 
 thermal resistence in Integrated Circuits:  http://rohmfs.rohm.com/en/products/databook/applinote/ic/power/switching_regulator/thermal_resistance_appli-e.pdf
 
-MCU vs EMC
+MCU vs EMC: 
 http://www.st.com/content/ccc/resource/technical/document/application_note/1c/6c/02/93/79/c8/4e/32/CD00004037.pdf/files/CD00004037.pdf/jcr:content/translations/en.CD00004037.pdf
 
 https://web.archive.org/web/20110524052840/http://www.conformity.com/artman/publish/printer_214.shtml
@@ -186,10 +188,14 @@ http://www.nxp.com/assets/documents/data/en/application-notes/AN2764.pdf
 
 indigogo: https://www.arrow.com/en/indiegogo/program-overview
 
+http://www.allegromicro.com/en/Design-Center/Technical-Documents.aspx
+
 
 # Reference designs
 
 arrow: https://www.arrow.com/es-mx/reference-designs
+
+
 
 
 # Building linux systems
@@ -204,4 +210,8 @@ build root tutorial: https://buildroot.org/downloads/manual/manual.html
 # 3D Models
 
 https://www.blendswap.com/blends/staffpicks
+
+# firms
+
+http://www.allegromicro.com/
 
