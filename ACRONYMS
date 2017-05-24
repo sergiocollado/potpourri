@@ -52,6 +52,7 @@ SVC - Supervisor Call
 IVC - Interrupt Vector Table
 ISR - Interrupt Service Routine
 NVIC - Nested Vector Interrupt Controller
+PC - Program Counter
 LR - Link Register
 IV - Initialization Vector
 FIFO - First In First Out
@@ -110,6 +111,10 @@ MCU - Micro Controller Unit
 uC  - Micro Controller
 MPU - Micro Processing Unit
 GPIO - General Pin Input/Output
+RTC - Real Time Clock
+RAM - Random Access Memory
+ROM - Read Only Memory
+EEPROM - Electrical Erasable Read Only Memory
 ADC - Analog to Digital Converter
 DAC - Digital to Analog Converter
 API - Application Program Interface
