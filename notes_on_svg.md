@@ -8,6 +8,7 @@ This are my personal notes on the svg specs, and are heavily based in the best r
 - also check: [google svgweb](https://code.google.com/archive/p/svgweb/) 
 - comparation between SVG and canvas: [link](https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/)
 - upcomming standard SVG 2: [ref SVG2](https://svgwg.org/svg2-draft/Overview.html)
+- awesome: https://es.scribd.com/doc/58271695/Learn-SVG
 
 
 
