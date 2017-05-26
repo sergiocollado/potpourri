@@ -132,6 +132,15 @@ LUT - Look Up Tables
 SoC - System On Chip
 HPC - High Performance Computing
 DSP - Digital Signal Processor
+CAD - Computed Aided Design
+CCF - Common Cause Failure
+DC - Diagnostics Coverage
+DC_avg - average Diagnostic Coverage
+ECU - Electronic Control Unit
+ETA - Even Tree Analysis
+E/E/PES - Electrical/Electronic/programmable electronics systems.
+EMC - Electromagnetic Compatibility
+EUC - Equipment Under Control
 
 
 
