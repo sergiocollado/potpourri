@@ -73,9 +73,33 @@ Supports low power operations.
 
 # RIOT OS
 
-It is a embedded IoT OS, 
+It is a embedded IoT OS, based on a microkernel design inherit from Fire-kernel.
 
+low power network systems devices. 
 
+written in ANSI-C. but it allows use of c++.
+
+has TCP/IP stack. IPv4, IPv6, UDP and TCP. 
+
+designed for nerwork and memory constrain systems.
+
+Is designed in modular way. 
+
+Is uses a tick-less scheduler.-  so it can switch to the idle-thread, and reduce energy consumption.
+
+Small footprint.
+
+It uses native features in processors.
+
+It separates CPU code, and kernel implementation.
+
+It supports zero latency interrupt handlers, and uses a minimun context-switching times with threads priorities.
+
+Supports multi-threading and C++
+
+support common wireless protocols for constrained resourced systems as: 6LoWPAN and RPL. A layer that supports IEEE 802.15.4.
+
+distributed systems can be easily implemented using the kernel system API.
 
 
 
