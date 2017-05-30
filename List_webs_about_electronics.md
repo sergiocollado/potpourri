@@ -14,6 +14,12 @@ http://www.electronicshub.org/arduino-rf-transmitter-receiver-module/
 
 https://easyeda.com/
 
+resources about electronics: https://www.allaboutcircuits.com/
+
+tool EDA: https://www.schematics.io/
+
+tool EDA: https://www.snapeda.com/
+
 motor supplier: http://www.qxmotor.com.hk/frame.html?QXRS360.html
 
 battery sizes: https://en.wikipedia.org/wiki/List_of_battery_sizes#Cylindrical_cells
