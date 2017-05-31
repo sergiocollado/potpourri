@@ -182,6 +182,8 @@ MISRA guide: http://www.techonline.com/electrical-engineers/education-training/t
 
 TI design tool WEBENCH: http://www.ti.com/lsds/ti/analog/webench/overview.page
 
+TI wifi SoC: http://www.ti.com/tool/cc3220s-launchxl?hqs=epd-mcu-ecs-slmcu-bs-evm-AdRoll-wwe&DCM=yes
+
 
 # Learn electronics with application notes:
 
