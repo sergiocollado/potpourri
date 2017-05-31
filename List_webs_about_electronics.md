@@ -180,6 +180,8 @@ be cool: http://aavidgenie.com/
 
 MISRA guide: http://www.techonline.com/electrical-engineers/education-training/tech-papers/4458213/A-Guide-to-the-MISRA-Coding-Standard-What-you-need-to-know
 
+TI design tool WEBENCH: http://www.ti.com/lsds/ti/analog/webench/overview.page
+
 
 # Learn electronics with application notes:
 
@@ -223,3 +225,4 @@ http://www.allegromicro.com/
 
 https://www.nordicsemi.com/
 
+http://www.ti.com/
