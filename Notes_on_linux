@@ -192,7 +192,13 @@ if it fails at start, try to
 > sudo apt-get upgrade
 
 
+## HOW DO I KNOW WHAT MODULES HAS MY LINUX
 
+You can use the **lsmod** command, and it will give you the status of the present linux.
+
+It reads from the file `proc/modules`, so you can also read it as: `cat /proc/modules`.
+
+more on: https://www.computerhope.com/unix/lsmod.htm
 
 
 
@@ -208,6 +214,9 @@ https://lwn.net/
 http://www.linuxtoday.com/
 http://www.ssc.com/lg/
 https://buildroot.org/downloads/manual/manual.html
+http://www.tldp.org/LDP/LGNET/archives.html
+https://www.tux.org/
+http://www.dit.upm.es/~jmseyas/linux/kernel/hackers-docs.html
 
 
 
