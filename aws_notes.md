@@ -9,6 +9,8 @@ Short Introductory videos: https://aws.amazon.com/es/training/intro_series/
 
 Amazon Web Services.
 
+AWS free tier: https://aws.amazon.com/free/
+
 # INDEX
 
  - [S3 - Simple Storage Service](s3 - simple storage service.)
