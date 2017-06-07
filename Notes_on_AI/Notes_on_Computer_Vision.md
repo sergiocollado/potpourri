@@ -62,3 +62,24 @@ t := (min+max)/2
 ```
 
 
+Another strategy for the binarization of an image, is to use a different threshold for each pixel based in it color value, this is mainly a work based on the algorithms developed by Niblack and Sauvola, commonly used in OCR (Optical Character Recognition) applications. 
+
+Niblack binarization threshold:
+
+threshold(u,v) = M_w(u,v) + k·S_w(u,v)
+
+Sauvola binarization threshold:
+
+threshold(u,v) = M(u,v)·( 1 - k·( 1- (S_w(u,v)/R)))
+
+Where the parameters are defined as:
+
+ - threshold: local threshold at that grey scale value, for position pixel (u,v)
+ - w: size of the evaluation window. It's actual size depends on the image size.
+ - M_w: average value in the window w.
+ - V_w: local variace in the window w.
+ - S_w: Tipical desviation on window w.
+ - k: constant value. For Niblack usually a value in the range [-1, -0.4]. For Sauvola around 0.5
+ - R: dinamic range of the standar desviation. Sometimes is given the fixed value 128. Other times a better result is obtained with the value R=max(S_w(u,v)).
+ 
+ 
