@@ -24,7 +24,7 @@ processed with the following algorithm. In that image the pixeles with intensity
 
 
 ```
-ALGORITHM 1: Threshold Segmentation:
+ALGORITHM 1: Threshold Segmentation
 ===================================
 Forall pixeles (u,v) in I do:
   I'(u,v) := 
@@ -82,4 +82,61 @@ Where the parameters are defined as:
  - k: constant value. For Niblack usually a value in the range [-1, -0.4]. For Sauvola around 0.5
  - R: dinamic range of the standar desviation. Sometimes is given the fixed value 128. Other times a better result is obtained with the value R=max(S_w(u,v)).
  
- 
+# Color Segmentation
+
+When working on color images, not only the intensity, but also the color information can be used. For color segmentation, there are
+several algorithms that take into account different factors, as the color model. Next a few algorithms are reviewed, they are simple,
+and can be implemented with little effort, but they can give very good results.
+
+The easiest idea, consists in define different fixed limits, in an HSV image, for the different channels. In a HSV image, the color information, is independent form the saturation or bright, so the definition of different ranges for each color is easy achivable, and returns a good result.
+
+For the H channel, you should have into account, that it is defined as the angle in the range [0º,360º), so the start and end of the 
+range, can be connected. That means that we can have two scenarios, i.e.:
+
+```
+    |  min->xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<-max |
+ 0º |-----------------------------------------------------------------| 360º
+    |xxxxxxx<- min                                       max ->xxxxxxx|
+```
+
+
+```
+ALGORITHM 4: HSV color segmentation:
+====================================
+
+If h_max > h_min : then 
+
+   For_all pixels(u,v) in I do:
+                   /    
+                   |     q  if:  h > h_min  AND  h < h_max AND s > s_min AND s < s_max AND v > v_min AND v < v_max
+       I'(u,v):=  <
+                   |     0  otherwise
+                   \ 
+   End For
+   
+Else
+
+   For_all pixels(u,v) in I do:
+      (h,s,v):= I(u,v)
+                   /    
+                   |     q  if:  (h > h_min OR h < h_max) AND s > s_min AND s < s_max AND v > v_min AND v < v_max
+       I'(u,v):=  <
+                   |     0  otherwise
+                   \ 
+   End For
+
+End If
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
