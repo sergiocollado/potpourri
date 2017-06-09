@@ -372,52 +372,50 @@ As an example:
 </html>
 ```
 
-Most common svg attributes are:
+## Most common svg attributes are:
 
-
-
-version = "<number>"
+**version** = "<number>"
 Indicates the SVG language version to which this document fragment conforms.
 In SVG 1.0 [SVG10], this attribute was fixed to the value '1.0'. For SVG 1.1, the attribute should have the value '1.1'.
 
-baseProfile = profile-name
+**baseProfile** = profile-name
 Describes the minimum SVG language profile that the author believes is necessary to correctly render the content. The attribute does not specify any processing restrictions; It can be considered metadata. For example, the value of the attribute could be used by an authoring tool to warn the user when they are modifying the document beyond the scope of the specified base profile. Each SVG profile should define the text that is appropriate for this attribute.
 If the attribute is not specified, the effect is as if a value of 'none' were specified.
 
-x = "<coordinate>"
+**x** = "<coordinate>"
 (Has no meaning or effect on outermost svg elements.)
 The x-axis coordinate of one corner of the rectangular region into which an embedded ‘svg’ element is placed.
 If the attribute is not specified, the effect is as if a value of '0' were specified.
 
-y = "<coordinate>"
+**y** = "<coordinate>"
 (Has no meaning or effect on outermost svg elements.)
 The y-axis coordinate of one corner of the rectangular region into which an embedded ‘svg’ element is placed.
 If the attribute is not specified, the effect is as if a value of '0' were specified.
 
-width = "<length>"
+**width** = "<length>"
 For outermost svg elements, the intrinsic width of the SVG document fragment. For embedded ‘svg’ elements, the width of the rectangular region into which the ‘svg’ element is placed.
-A negative value is an error (see Error processing). A value of zero disables rendering of the element.
+A negative value is an error. A value of zero disables rendering of the element.
 If the attribute is not specified, the effect is as if a value of '100%' were specified.
 
-height = "<length>"
+**height** = "<length>"
 For outermost svg elements, the intrinsic height of the SVG document fragment. For embedded ‘svg’ elements, the height of the rectangular region into which the ‘svg’ element is placed.
-A negative value is an error (see Error processing). A value of zero disables rendering of the element.
+A negative value is an error. A value of zero disables rendering of the element.
 If the attribute is not specified, the effect is as if a value of '100%' were specified.
 
-preserveAspectRatio = "[defer] <align> [<meetOrSlice>]"
+**preserveAspectRatio** = "[defer] <align> [<meetOrSlice>]"
 
-contentScriptType = "content-type"
+**contentScriptType** = "content-type"
 
-contentStyleType = "content-type"
+**contentStyleType** = "content-type"
 
-zoomAndPan = "disable | magnify"
+**zoomAndPan** = "disable | magnify"
 
 
 
-TODO:
- </br>
- new standard comming: https://www.w3.org/TR/2016/CR-SVG2-20160915/ </br>
- its github: https://github.com/w3c/svgwg/
+TODO: </br>
+
+- new standard comming: https://www.w3.org/TR/2016/CR-SVG2-20160915/ </br>
+- its github: https://github.com/w3c/svgwg/
  
  
  >> https://www.w3.org/TR/SVG/struct.html <<
