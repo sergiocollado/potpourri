@@ -10,5 +10,5 @@ My CV in linkedin   [![linkedin_image](./image/linkedin.png)](https://www.linked
 
 ## Notes
 
-- [notes on svg](./notes_on_svg.md)
+- [notes on SVG](./notes_on_svg.md)
 - [notes on Node.js](./Notes_Nodejs.md)
