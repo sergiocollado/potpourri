@@ -1,5 +1,7 @@
 # List of webs about electronics/electronics circuits/electronic design
 
+https://www.britannica.com/science/electricity
+
 https://circuits.io/
 
 https://circuits.io/pcb/gallery
@@ -201,6 +203,10 @@ indigogo: https://www.arrow.com/en/indiegogo/program-overview
 http://www.allegromicro.com/en/Design-Center/Technical-Documents.aspx
 
 
+
+
+
+
 # Reference designs
 
 arrow: https://www.arrow.com/es-mx/reference-designs
@@ -228,3 +234,19 @@ http://www.allegromicro.com/
 https://www.nordicsemi.com/
 
 http://www.ti.com/
+
+
+
+
+
+
+# characters and html5-utf-8
+
+https://dev.w3.org/html5/html-author/charref
+
+https://en.wikipedia.org/wiki/Mathematical_Alphanumeric_Symbols
+
+https://www.utf8icons.com/
+
+to the radar:  https://www.utf8icons.com/character/9992/airplane
+
