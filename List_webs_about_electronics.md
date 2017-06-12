@@ -250,3 +250,6 @@ https://www.utf8icons.com/
 
 to the radar:  https://www.utf8icons.com/character/9992/airplane
 
+test bench for webs: https://jsfiddle.net/
+
+as CODEPEN
