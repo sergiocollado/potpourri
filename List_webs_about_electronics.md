@@ -240,7 +240,7 @@ http://www.ti.com/
 
 
 
-# characters and html5-utf-8
+# Internet, Web, ... characters and html5-utf-8
 
 https://dev.w3.org/html5/html-author/charref
 
@@ -253,3 +253,12 @@ to the radar:  https://www.utf8icons.com/character/9992/airplane
 test bench for webs: https://jsfiddle.net/
 
 as CODEPEN
+
+
+For Validating CSS, use this tool: http://jigsaw.w3.org/css-validator/#validate_by_uri+with_options
+
+You can also use the following tools:
+
+- [jsbin](http://jsbin.com/?html,output)
+- [thimble](https://thimble.mozilla.org/)
+
