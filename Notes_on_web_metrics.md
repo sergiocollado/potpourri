@@ -27,4 +27,9 @@ and: [Google's Search Optimization Starting Guide](https://static.googleusercont
 
 For Validating CSS, use this tool: http://jigsaw.w3.org/css-validator/#validate_by_uri+with_options
 
+You can also use the following tools:
+
+- [jsbin](http://jsbin.com/?html,output)
+- [thimble](https://thimble.mozilla.org/)
+
 
