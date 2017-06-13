@@ -424,7 +424,7 @@ Since U>= URM, but U =< 1, neither feaseability nor overloading can be guarantee
 Poor-mans profiler:
 -------------------
 
-Profile a program, means to measure it performance, that is to say, it time execution (mostly)
+Profile a program, means to measure its performance, that is to say, it time execution (mostly)
 
 CPU time measurement:
 ---------------------
@@ -520,11 +520,21 @@ references:
 https://www.gnu.org/software/libc/manual/html_node/Time-Basics.html#Time-Basics </br>
 https://www.gnu.org/software/libc/manual/html_node/Processor-Time.html#Processor-Time </br>
 
-Supervision of programs:
------------------------
+Supervision of programs in Linux:
+---------------------------------
 
 It is easy to use an 'watchdog' daemon. The term 'watchdog' is usually refered and used to a mechanism that reset/reboots the
 process/program/system if it detects that someahow is not running correctly or have stall at some point. Its a safe measurement.
+
+
+Other tools in linux:
+--------------------
+
+You can use the Cyclictest program, it is used to measure performance of a system. Reference: https://rt.wiki.kernel.org/index.php/Cyclictest
+Also you can monitor system calls with the **ltrace** and **strace** commands.
+
+
+
 
 
 references:
@@ -549,112 +559,90 @@ printf("CLOCKS_PER_SEC: %d\n", CLOCK_PER_SEC); //safety check
 
 TODO:
 
- [ ] https://www.gnu.org/software/libc/manual/html_node/Overview-of-Syslog.html#Overview-of-Syslog
- [ ] https://www.gnu.org/software/libc/manual/html_node/Sysconf-Definition.html#Sysconf-Definition
- [ ] https://www.gnu.org/software/libc/manual/html_node/Backtraces.html#Backtraces
- [ ] https://www.gnu.org/software/libc/manual/html_node/Consistency-Checking.html#Consistency-Checking
- [ ] https://www.gnu.org/software/libc/manual/html_node/Error-Messages.html#Error-Messages
- [ ] https://www.gnu.org/software/libc/manual/html_node/Null-Pointer-Constant.html#Null-Pointer-Constant
- [ ] https://www.gnu.org/software/libc/manual/html_node/index.html#toc-The-Basic-Program_002fSystem-Interface
- [ ] https://www.gnu.org/software/libc/manual/html_node/index.html#toc-Debugging-support
- [ ] https://www.gnu.org/software/libc/manual/html_node/Error-Recovery.html#Error-Recovery
- [ ] https://www.gnu.org/software/libc/manual/html_node/Memory_002dmapped-I_002fO.html#Memory_002dmapped-I_002fO
- [ ] https://www.gnu.org/software/libc/manual/html_node/Resource-Usage-And-Limitation.html#Resource-Usage-And-Limitation
- [ ] https://www.gnu.org/software/libc/manual/html_node/Realtime-Scheduling.html#Realtime-Scheduling
- [ ] https://www.gnu.org/software/libc/manual/html_node/Basic-Scheduling-Functions.html#Basic-Scheduling-Functions
- [ ] https://www.gnu.org/software/libc/manual/html_node/Traditional-Scheduling.html#Traditional-Scheduling
- [ ] https://www.gnu.org/software/libc/manual/html_node/Program-Basics.html#Program-Basics
- [ ] https://www.gnu.org/software/libc/manual/html_node/Environment-Variables.html#Environment-Variables
- [ ] https://www.gnu.org/software/libc/manual/html_node/Processes.html#Processes
- [ ] https://www.gnu.org/software/libc/manual/html_node/Backtraces.html#Backtraces
- [ ] http://www.list.org/mailman-member/node13.html
- [ ] https://www.gnu.org/software/libc/
- [ ] https://www.gnu.org/software/libc/manual/html_node/Processes.html#Processes
- [ ] https://www.gnu.org/software/libc/manual/html_node/Program-Arguments.html#Program-Arguments
- [ ] https://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html#Argument-Syntax
- [ ] https://www.gnu.org/software/libc/manual/html_node/Auxiliary-Vector.html#Auxiliary-Vector
- [ ] https://www.gnu.org/software/libc/manual/html_node/Environment-Variables.html#Environment-Variables
- [ ] https://www.gnu.org/software/libc/manual/html_node/Environment-Access.html#Environment-Access
- [ ] https://www.gnu.org/software/libc/manual/html_node/Standard-Environment.html#Standard-Environment
- [ ] https://linux.die.net/man/8/wd_keepalive
- [ ] https://linux.die.net/man/8/checkquorum
- [ ] https://gcc.gnu.org/ml/gcc-help/2015-06/msg00071.html
- [ ] https://solarianprogrammer.com/2012/10/14/cpp-11-timing-code-performance/
- [ ] http://www.thegeekstuff.com/2012/08/gprof-tutorial
- [ ] https://rusty.ozlabs.org/?p=330
- [ ] http://www.drdobbs.com/embedded-systems/measuring-execution-time-and-real-time-p/193502123
- [ ] http://stackoverflow.com/questions/5248915/execution-time-of-c-program
- [ ] MinGW compiler. –/ decent libc library. /   Windows XP with cygwin gcc & Linux Ubuntu.
- [ ] http://stackoverflow.com/questions/22387586/measuring-execution-time-of-a-function-in-c
- [ ] http://courseweb.stthomas.edu/resmith/c/cisc130/c9sp/gcc-timing.html
- [ ] https://www.gnu.org/software/libc/
- [ ] https://gcc.gnu.org/onlinedocs/gcc-4.6.4/gcc/Optimize-Options.html#Optimize-Options
- [ ] https://paolozaino.wordpress.com/2015/06/13/c-code-snippet-to-measure-function-execution-time-for-both-linux-and-mac-os-x/
- [ ] http://stackoverflow.com/questions/5644730/c-measuring-computing-time
- [ ] http://stackoverflow.com/questions/5644730/c-measuring-computing-time
- [ ] http://stackoverflow.com/questions/68907/how-do-you-measure-the-time-a-function-takes-to-execute
- [ ] http://stackoverflow.com/questions/68907/how-do-you-measure-the-time-a-function-takes-to-execute
- [ ] https://www.gnu.org/software/libc/manual/html_node/CPU-Time.html
- [ ] http://pcc.ludd.ltu.se/internals/
- [ ] http://www.tldp.org/LDP/Bash-Beginners-Guide/Bash-Beginners-Guide.pdf
- [ ] http://www.tldp.org/LDP/tlk/tlk.html
- [ ] preguntar documentación del último kernel
- [ ] https://kukuruku.co/post/writing-a-file-system-in-linux-kernel/
- [ ] http://stackoverflow.com/questions/4714056/how-to-implement-a-very-simple-filesystem
- [ ] https://en.wikipedia.org/wiki/MINIX_file_system
- [ ] http://linuxseekernel.blogspot.com.es/2014/06/create-simple-file-system.html
- [ ] http://www.linuxjournal.com/article/4335?page=0,0
-  http://www.linuxjournal.com/article/4395?page=0,0
-  http://unix.stackexchange.com/questions/67462/linux-kernel-is-not-finding-the-initrd-correctly
-  http://tr.opensuse.org/MicroSUSE_System_Builder's_Guide
- [ ] https://github.com/libfuse/libfuse
- [ ] http://elm-chan.org/fsw/ff/00index_e.html
- [ ] http://www.minix3.org/theses/gerofi-minix-vfs.pdf
- [ ] https://msdn.microsoft.com/en-us/library/aa363858(v=vs.85).aspx
- [ ] https://cboard.cprogramming.com/linux-programming/122773-simple-file-system-c.html
- [ ] http://www.flipcode.com/archives/Programming_a_Virtual_File_System-Part_I.shtml
- [ ] http://www.flipcode.com/archives/articles.shtml
- [ ] http://www.boost.org/doc/libs/1_57_0/libs/filesystem/doc/tutorial.html
- [ ] http://www.nobius.org/~dbg/practical-file-system-design.pdf
- [ ] https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html
- [ ] https://www.le.ac.uk/users/rjm1/cotter/page_77.htm
- [ ] http://www.geocities.ws/ravikiran_uvs/articles/rkfs-old.html
- [ ] https://www.codeproject.com/Tips/1005166/A-Simple-File-System
- [ ] https://www.quora.com/How-do-I-implement-a-basic-file-system-implementation-in-C-programming-using-inodes
- [ ] https://psankar.blogspot.com.es/2013/08/introducing-simplefs-ridiculously.html
- [ ] https://cboard.cprogramming.com/c-programming/95819-file-system-implementation.html
- [ ] https://en.wikipedia.org/wiki/Unix_File_System
- [ ] http://www.cs.cornell.edu/courses/cs4410/2010fa/CS4411/slides/project6/project6.pdf
- [ ] http://www.geocities.ws/ravikiran_uvs/articles/rkfs-old.html
- [ ] http://haifux.org/lectures/120/writing-linux-2.4-fs/writing-linux-2.4-fs.html
- [ ] https://github.com/psankar/simplefs
- [ ] http://www.cs.ucsb.edu/~chris/teaching/cs170/projects/proj5.html
- [ ] http://web.mit.edu/6.033/1997/handouts/html/04sfs.html
- [ ] http://pages.cs.wisc.edu/~remzi/OSTEP/file-implementation.pdf
- [ ] http://www.tldp.org/pub/Linux/docs/ldp-archived/linuxfocus/Castellano/September2001/article198.shtml </br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Overview-of-Syslog.html#Overview-of-Syslog  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Sysconf-Definition.html#Sysconf-Definition  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Backtraces.html#Backtraces  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Consistency-Checking.html#Consistency-Checking  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Error-Messages.html#Error-Messages  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Null-Pointer-Constant.html#Null-Pointer-Constant  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/index.html#toc-The-Basic-Program_002fSystem-Interface  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/index.html#toc-Debugging-support  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Error-Recovery.html#Error-Recovery  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Memory_002dmapped-I_002fO.html#Memory_002dmapped-I_002fO  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Resource-Usage-And-Limitation.html#Resource-Usage-And-Limitation  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Realtime-Scheduling.html#Realtime-Scheduling  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Basic-Scheduling-Functions.html#Basic-Scheduling-Functions  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Traditional-Scheduling.html#Traditional-Scheduling  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Program-Basics.html#Program-Basics  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Environment-Variables.html#Environment-Variables  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Processes.html#Processes  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Backtraces.html#Backtraces  <br>
+ [ ] http://www.list.org/mailman-member/node13.html  <br>
+ [ ] https://www.gnu.org/software/libc/  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Processes.html#Processes  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Program-Arguments.html#Program-Arguments  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html#Argument-Syntax  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Auxiliary-Vector.html#Auxiliary-Vector  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Environment-Variables.html#Environment-Variables  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Environment-Access.html#Environment-Access  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/Standard-Environment.html#Standard-Environment  <br>
+ [ ] https://linux.die.net/man/8/wd_keepalive  <br>
+ [ ] https://linux.die.net/man/8/checkquorum  <br>
+ [ ] https://gcc.gnu.org/ml/gcc-help/2015-06/msg00071.html  <br>
+ [ ] https://solarianprogrammer.com/2012/10/14/cpp-11-timing-code-performance/  <br>
+ [ ] http://www.thegeekstuff.com/2012/08/gprof-tutorial  <br>
+ [ ] https://rusty.ozlabs.org/?p=330  <br>
+ [ ] http://www.drdobbs.com/embedded-systems/measuring-execution-time-and-real-time-p/193502123  <br>
+ [ ] http://stackoverflow.com/questions/5248915/execution-time-of-c-program  <br>
+ [ ] MinGW compiler. –/ decent libc library. /   Windows XP with cygwin gcc & Linux Ubuntu.  <br>
+ [ ] http://stackoverflow.com/questions/22387586/measuring-execution-time-of-a-function-in-c  <br>
+ [ ] http://courseweb.stthomas.edu/resmith/c/cisc130/c9sp/gcc-timing.html  <br>
+ [ ] https://www.gnu.org/software/libc/  <br>
+ [ ] https://gcc.gnu.org/onlinedocs/gcc-4.6.4/gcc/Optimize-Options.html#Optimize-Options  <br>
+ [ ] https://paolozaino.wordpress.com/2015/06/13/c-code-snippet-to-measure-function-execution-time-for-both-linux-and-mac-os-x/  <br>
+ [ ] http://stackoverflow.com/questions/5644730/c-measuring-computing-time  <br>
+ [ ] http://stackoverflow.com/questions/5644730/c-measuring-computing-time  <br>
+ [ ] http://stackoverflow.com/questions/68907/how-do-you-measure-the-time-a-function-takes-to-execute  <br>
+ [ ] http://stackoverflow.com/questions/68907/how-do-you-measure-the-time-a-function-takes-to-execute  <br>
+ [ ] https://www.gnu.org/software/libc/manual/html_node/CPU-Time.html  <br>
+ [ ] http://pcc.ludd.ltu.se/internals/  <br>
+ [ ] http://www.tldp.org/LDP/Bash-Beginners-Guide/Bash-Beginners-Guide.pdf  <br>
+ [ ] http://www.tldp.org/LDP/tlk/tlk.html  <br>
+ [ ] preguntar documentación del último kernel  <br>
+ [ ] https://kukuruku.co/post/writing-a-file-system-in-linux-kernel/  <br>
+ [ ] http://stackoverflow.com/questions/4714056/how-to-implement-a-very-simple-filesystem  <br>
+ [ ] https://en.wikipedia.org/wiki/MINIX_file_system  <br>
+ [ ] http://linuxseekernel.blogspot.com.es/2014/06/create-simple-file-system.html  <br>
+ [ ] http://www.linuxjournal.com/article/4335?page=0,0  <br>
+  http://www.linuxjournal.com/article/4395?page=0,0  <br>
+  http://unix.stackexchange.com/questions/67462/linux-kernel-is-not-finding-the-initrd-correctly  <br>
+  http://tr.opensuse.org/MicroSUSE_System_Builder's_Guide  <br>
+ [ ] https://github.com/libfuse/libfuse  <br>
+ [ ] http://elm-chan.org/fsw/ff/00index_e.html  <br>
+ [ ] http://www.minix3.org/theses/gerofi-minix-vfs.pdf  <br>
+ [ ] https://msdn.microsoft.com/en-us/library/aa363858(v=vs.85).aspx  <br>
+ [ ] https://cboard.cprogramming.com/linux-programming/122773-simple-file-system-c.html  <br>
+ [ ] http://www.flipcode.com/archives/Programming_a_Virtual_File_System-Part_I.shtml  <br>
+ [ ] http://www.flipcode.com/archives/articles.shtml  <br>
+ [ ] http://www.boost.org/doc/libs/1_57_0/libs/filesystem/doc/tutorial.html  <br>
+ [ ] http://www.nobius.org/~dbg/practical-file-system-design.pdf  <br>
+ [ ] https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html  <br>
+ [ ] https://www.le.ac.uk/users/rjm1/cotter/page_77.htm  <br>
+ [ ] http://www.geocities.ws/ravikiran_uvs/articles/rkfs-old.html  <br>
+ [ ] https://www.codeproject.com/Tips/1005166/A-Simple-File-System  <br>
+ [ ] https://www.quora.com/How-do-I-implement-a-basic-file-system-implementation-in-C-programming-using-inodes  <br>
+ [ ] https://psankar.blogspot.com.es/2013/08/introducing-simplefs-ridiculously.html  <br>
+ [ ] https://cboard.cprogramming.com/c-programming/95819-file-system-implementation.html  <br>
+ [ ] https://en.wikipedia.org/wiki/Unix_File_System  <br>
+ [ ] http://www.cs.cornell.edu/courses/cs4410/2010fa/CS4411/slides/project6/project6.pdf  <br>
+ [ ] http://www.geocities.ws/ravikiran_uvs/articles/rkfs-old.html  <br>
+ [ ] http://haifux.org/lectures/120/writing-linux-2.4-fs/writing-linux-2.4-fs.html  <br>
+ [ ] https://github.com/psankar/simplefs  <br>
+ [ ] http://www.cs.ucsb.edu/~chris/teaching/cs170/projects/proj5.html  <br>
+ [ ] http://web.mit.edu/6.033/1997/handouts/html/04sfs.html  <br>
+ [ ] http://pages.cs.wisc.edu/~remzi/OSTEP/file-implementation.pdf  <br>
+ [ ] http://www.tldp.org/pub/Linux/docs/ldp-archived/linuxfocus/Castellano/September2001/article198.shtml <br>
+ [ ] https://rt.wiki.kernel.org/index.php/Cyclictest <br>
+ [ ] Real-Time Linux Wiki: https://rt.wiki.kernel.org/index.php/Main_Page
  [ ] comment on linux panic!!
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
