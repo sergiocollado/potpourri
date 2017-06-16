@@ -8,7 +8,7 @@ This are my personal notes on the svg specs, and are heavily based in the best r
 - also check: [google svgweb](https://code.google.com/archive/p/svgweb/) 
 - comparation between SVG and canvas: [link](https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/)
 - upcomming standard SVG 2: [ref SVG2](https://svgwg.org/svg2-draft/Overview.html)
-- awesome: https://es.scribd.com/doc/58271695/Learn-SVG
+- best progamm evaaa: https://inkscape.org/
 
 
 
@@ -434,7 +434,13 @@ TODO: </br>
 - [] https://developer.mozilla.org/en-US/docs/Web/API
 - [] About metadatas -> https://www.w3.org/TR/SVG11/metadata.html#InterfaceSVGMetadataElement
 - [] Comparation between SVG and canvas: https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/
-
+- [] Inkscape galleries: http://wiki.inkscape.org/wiki/index.php/Galleries
+- https://inkscape.org/en/gallery/
+- Wiki Inkscape: http://wiki.inkscape.org/wiki/index.php/Inkscape
+- book: https://es.scribd.com/doc/58271695/Learn-SVG
+- Animation examples: http://srufaculty.sru.edu/david.dailey/svg/SVGAnimations.htm#JSAnim
+- more awesome examples: http://srufaculty.sru.edu/david.dailey/art.html
+- http://srufaculty.sru.edu/david.dailey/svg/bucketful.htm
 
 
 
