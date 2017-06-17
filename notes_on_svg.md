@@ -11,6 +11,7 @@ This are my personal notes on the svg specs, and are heavily based in the best r
 - best progamm evaaa: https://inkscape.org/
 - svg testing: https://github.com/w3c/svgwg/wiki/Testing
 - the SVG working group: https://www.w3.org/Graphics/SVG/
+- more about it: https://inkscape.org/en/develop/about-svg/
 
 
 
