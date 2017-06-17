@@ -227,7 +227,13 @@ build root tutorial: https://buildroot.org/downloads/manual/manual.html
 
 https://www.blendswap.com/blends/staffpicks
 
-# firms
+http://www.openscad.org/gallery.html
+
+https://clara.io/library
+
+
+
+# firms & Semiconductors companies
 
 http://www.allegromicro.com/
 
