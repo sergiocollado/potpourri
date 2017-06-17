@@ -12,5 +12,5 @@ My CV in linkedin   [![linkedin_image](./image/linkedin.png)](https://www.linked
 
 ## Notes
 
-- [notes on SVG](./notes_on_svg.md)
-- [notes on Node.js](./Notes_Nodejs.md)
+- [notes on SVG](https://sergiocollado.github.io/potpourri/notes_on_svg.html)
+- [notes on Node.js](https://sergiocollado.github.io/potpourri/Notes_Nodejs.html)
