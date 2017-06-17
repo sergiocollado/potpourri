@@ -55,6 +55,22 @@ Una conexión se gestiona al nivel de la capa de trasnporte, y por tanto queda f
 
 La versión del protocolo HTTP/1.0 habría una conexión TPC por cada peticion/respuesta intercabiada, presentando esto dos grandes inconvenientes: abrir y crar una conexion, requiere varias rondas de mensajes, y por lo tanto resultaba lento, esto sería más eficiente si se mandaran varios mensajes.
 
-Para atenuar estos inconvenientes, la versión del protocolo HTTP/1.1 presentó el 'pipelining'  y las conexiones persistentes: el protocolo TPC que lo trasnmitia en la capa inferior se podia controlar parcialmente, mediante la cabecera 'Conexión'. La version del protocolo HTTP/2  fue más allá y multiplexa mensajes sobre un única conexión, siendo así una comunicaición más eficiente.
+Para atenuar estos inconvenientes, la versión del protocolo HTTP/1.1 presentó el 'pipelining'  y las conexiones persistentes: el protocolo TPC que lo trasnmitia en la capa inferior se podia controlar parcialmente, mediante la cabecera 'Conection'. La version del protocolo HTTP/2 va más allá y multiplexa mensajes sobre un única conexión, siendo así una comunicaición más eficiente.
 
-Todavia se sigue desarrollando para conseguir una protocolo de trasnporte más conveniente para el HTTP. Por ejemplo Google está experimentado con QUIC, que se apoya en el protocolo QUIC y presenta mejoras en la fiabilidad y eficiencia de la comunicación. 
+Todavia se sigue desarrollando para conseguir una protocolo de trasnporte más conveniente para el HTTP. Por ejemplo Google está experimentado con QUIC, que se apoya en el protocolo UDP y presenta mejoras en la fiabilidad y eficiencia de la comunicación. 
+
+
+# ¿Qué se puede controlar con HTTP?
+La característica del protocolo HTTP, de ser ampliable, ha permitido que durante su desarrollo, se hayan implementado más funciones pde control y funcionalidad sobre la Web: cache o métodos de identificación o autentificación fueron temas que se abordaron pronto en su historia. Al contrario la relajación de la restricción de origen solo se ha abordado en los años de la década de 2010.
+
+Se presenta a continuación una lista con los elementos que se pueden controlar con el protocolo HTTP:
+
+Cache
+El como se almacenan los documentos en la cache, puede ser especificado por HTTP. El servidor puede indicar a los proxies, y clientes, que quiere almacenar y durante cuanto tiempo. Aunque el cliente, también puede indicar a los proxies de cache intermedios que ignoren el documento almacenado.
+
+
+
+
+
+
+
