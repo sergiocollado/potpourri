@@ -60,7 +60,7 @@ export PATH=$PATH:/usr/local/nodejs/bin
 
 # Starting:
 
-## Parts of an node.js applications
+## Parts of a node.js applications
 
  + **import required modules** -- We need to import the `http` module.
  + **create a server** -- a server objecto, that listen to client's requests (like a brownser).
