@@ -125,9 +125,8 @@ more: [:link:][Configuring and publishing on Github](https://help.github.com/art
 
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sergiocollado/potpourri/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-Adding a Jekyll style to your github site: [:link:](https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site/) </br>
+Adding a Jekyll style to your github site: [:link:](https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site/)
 
+Jeckyll Directory structure [:link:](http://jekyllrb.com/docs/structure/)
 
-### Troubleshooting: Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support]( https://github.com/contact) and we’ll help you sort it out.
+Jeckyll Extras [:link:](http://jekyllrb.com/docs/extras/)
