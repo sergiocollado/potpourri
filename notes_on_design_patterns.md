@@ -45,7 +45,7 @@ there is a need to use families of related objects together. And another reason,
 
 - Factory & Abstract
 - Factory
-- Singeton
+- Singelton
 - Builder
 - Prototype
 
