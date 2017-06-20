@@ -88,7 +88,11 @@ Arduino- stm32 -> http://www.emcu.it/ARDUINO-STM32/Arduino-and-STM32.html
 
 references arduino- st32 - maple project -> http://air.imag.fr/mediawiki/images/7/7d/RICM4-Arduino_Project-Report-FENG-GU-GUO.pdf
 
+https://community.arm.com/
+
 calculation tools -> http://www.cdt21.com/resources/siryo3.asp
+
+http://www.digikey.com/videos/en/v/eDesignSuite/5285544300001
 
 rf safety calculator -> http://www.wirelessconnections.net/calcs/rfsafety.asp
 
