@@ -4,6 +4,19 @@ Examples are: industrial equipments, machine's controllers, agricultural, automo
 
 Most of the times, embedded systems are reactive, that means, they wait for an input, when they have it, they perform some computation, and then it generates an output. Than means they can be modelled as an Automata.
 
+Key points in an embedded system:
+- Dedicated functionality
+- Limited resources.
+- Performance and efficiency.
+- Real-time constrains.
+- Interaction with the enviroment.
+- Dependability:
+ - Availability.
+ - Reliability.
+ - Safety.
+ - Integrity.
+ - Mantenebility.
+
 **SAFETY**: Is the propierty of a system that evaluates the risk of the ocurrence of an accident.
 
 **FUNCTIONAL SAFETY** Is the safety of a system that correspond to the correct actions acording to the system inputs, it also includes
