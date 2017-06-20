@@ -11,11 +11,11 @@ Key points in an embedded system:
 - Real-time constrains.
 - Interaction with the enviroment.
 - Dependability:
- - Availability.
- - Reliability.
- - Safety.
- - Integrity.
- - Mantenebility.
+  - Availability.
+  - Reliability.
+  - Safety.
+  - Integrity.
+  - Mantenebility.
 
 **SAFETY**: Is the propierty of a system that evaluates the risk of the ocurrence of an accident.
 
