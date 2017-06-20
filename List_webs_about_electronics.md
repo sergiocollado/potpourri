@@ -264,6 +264,7 @@ test bench for webs: https://jsfiddle.net/
 
 as CODEPEN
 
+awesome tutorials: https://webplatform.github.io/#docs
 
 For Validating CSS, use this tool: http://jigsaw.w3.org/css-validator/#validate_by_uri+with_options
 
