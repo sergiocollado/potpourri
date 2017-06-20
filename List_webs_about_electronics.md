@@ -206,7 +206,7 @@ indigogo: https://www.arrow.com/en/indiegogo/program-overview
 
 http://www.allegromicro.com/en/Design-Center/Technical-Documents.aspx
 
-
+Esential guide to data conversion (ADC/DAC) : http://www.analog.com/media/en/technical-documentation/technical-articles/ADI-data-conversion.pdf 
 
 
 
