@@ -72,6 +72,8 @@ proceso de fabricación de un circuito impreso -> https://youtu.be/5Xd92df738I
 
 propiedades de los materiales de una pcb -> http://www.lab-circuits.com/es/propietats_laminats.php
 
+small overflow oven: http://www.whizoo.com/
+
 impedance calculation control -> http://www.polarinstruments.com/support/cits/Controlled%20impedance%20booklet%20586K.pdf
 
 impedance control -> http://lab-circuits.com/uploads/doc/tech/Articulo_impedancia_controlada_1.pdf
@@ -137,6 +139,8 @@ NXP reference designs: http://www.nxp.com/products/reference-designs:REFDSGNHOME
 components and electronics shop + blog: https://www.westfloridacomponents.com/blog/stamp-sized-radar-sensor-nxp/
 
 about NET: https://www.youtube.com/watch?v=6tQBCNHWtAU
+
+SMD PCB stencils: https://www.oshstencils.com/#
 
 BADGUYS: http://www.fomento.gob.es/MFOM/LANG_CASTELLANO/PLANES/PESUB_MFOM_20142017/
 
@@ -272,4 +276,7 @@ You can also use the following tools:
 
 - [jsbin](http://jsbin.com/?html,output)
 - [thimble](https://thimble.mozilla.org/)
+
+
+Online dissasembler: https://www.onlinedisassembler.com/static/home/
 
