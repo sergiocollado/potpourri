@@ -110,6 +110,13 @@ troubleshooting: https://github.com/adam-p/markdown-here/wiki/Troubleshooting
 AsciiDoc, is also another markup lenguaje, and it has certain compatibility with Markdown. </br>
 :link: [AsciiDoc docs](http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/)
 
+### SVG in MD
+
+Put your source file in [Rawgithub.com](https://rawgit.com/) and it will provide you with a link with the proper headers.
+
+(reference in StackOverflow)[https://stackoverflow.com/questions/13808020/include-an-svg-hosted-on-github-in-markdown]
+
+
 ### Web for your projects
 
 You can generate webs, for your projects, with :link: [github pages](https://pages.github.com/)
