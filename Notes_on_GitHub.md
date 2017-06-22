@@ -114,7 +114,7 @@ AsciiDoc, is also another markup lenguaje, and it has certain compatibility with
 
 Put your source file in [Rawgithub.com](https://rawgit.com/) and it will provide you with a link with the proper headers.
 
-(reference in StackOverflow)[https://stackoverflow.com/questions/13808020/include-an-svg-hosted-on-github-in-markdown]
+[:link:][reference in StackOverflow](https://stackoverflow.com/questions/13808020/include-an-svg-hosted-on-github-in-markdown)
 
 
 ### Web for your projects
