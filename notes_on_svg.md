@@ -81,18 +81,14 @@ Polylines are groups of connected straight lines. Since that list can get quite 
 ```svg
 <rect x="60" y="10" rx="10" ry="10" width="30" height="30"/>
 ```
-
-**x** - The x position of the top left corner of the rectangle. 
-
-**y** - The y position of the top left corner of the rectangle.
-
-**width** - The width of the rectangle
-
-**height** - The height of the rectangle
-
-**rx** - The x radius of the corners of the rectangle
-
-**ry** - The y radius of the corners of the rectangle
+| **Rectangle** |    |
+|---|---|
+|**x**| The x position of the top left corner of the rectangle. |
+|**y** | The y position of the top left corner of the rectangle.|
+|**width** | The width of the rectangle |
+|**height** | The height of the rectangle |
+|**rx** | The x radius of the corners of the rectangle |
+|**ry** | The y radius of the corners of the rectangle |
 
 ref: (https://www.w3.org/TR/SVG/shapes.html#RectElement)
 
