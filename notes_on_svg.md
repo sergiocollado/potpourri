@@ -40,6 +40,8 @@ We draw a circle with: `<circle cx="150" cy="100" r="80" fill="yellow" />`
 We write a text with: `<text x="150" y="125" font-size="60" text-anchor="middle" fill="white">SVG</text>`
 
 
+![first_example_svg](./image/svg_001.svg)
+
 ## BASIC SHAPES
 
 Different tags, define diferent shapes and take different atributes.
@@ -51,8 +53,6 @@ Remember that the center of coordenates is top-left, and increases from left to 
 ```svg
 <line x1="10" x2="50" y1="110" y2="150"/>
 ```
-
-<br>
 
 
 | Line |    |
