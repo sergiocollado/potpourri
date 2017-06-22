@@ -79,7 +79,12 @@ Polylines are groups of connected straight lines. Since that list can get quite 
 ### Rectangles: 
 
 ```svg
-<rect x="60" y="10" rx="10" ry="10" width="30" height="30"/>
+<svg version="1.1"
+     baseProfile="full"
+     width="300" height="200"
+     xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" r1="10" ry="30" fill="lightblue" />
+</svg>
 ```
 | **Rectangle** |    |
 |---|---|
@@ -89,6 +94,9 @@ Polylines are groups of connected straight lines. Since that list can get quite 
 |**height** | The height of the rectangle |
 |**rx** | The x radius of the corners of the rectangle |
 |**ry** | The y radius of the corners of the rectangle |
+|**fill** | The filling of the rectangle |
+
+![svg rectangle example](https://rawgit.com/sergiocollado/potpourri/master/image/svg_002_rectangle.svg)
 
 ref: (https://www.w3.org/TR/SVG/shapes.html#RectElement)
 
