@@ -2,5 +2,5 @@
      baseProfile="full"
      width="300" height="200"
      xmlns="http://www.w3.org/2000/svg">
-  <rect width="100%" height="100%" r1="10" ry="30" fill="lightblue" />
+  <rect width="100%" height="100%" rx="10" ry="30" fill="lightblue" />
 </svg>
