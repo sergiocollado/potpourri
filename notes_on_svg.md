@@ -451,7 +451,7 @@ TODO: </br>
 - Animation examples: http://srufaculty.sru.edu/david.dailey/svg/SVGAnimations.htm#JSAnim
 - more awesome examples: http://srufaculty.sru.edu/david.dailey/art.html
 - http://srufaculty.sru.edu/david.dailey/svg/bucketful.htm
-
+- really good tutorial: http://tutorials.jenkov.com/svg/index.html
 
 
 
