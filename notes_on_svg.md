@@ -87,14 +87,14 @@ Polylines are groups of connected straight lines. Since that list can get quite 
 </svg>
 ```
 | **Rectangle** |    |
-|---|---|
-|**x**| The x position of the top left corner of the rectangle. |
-|**y** | The y position of the top left corner of the rectangle.|
-|**width** | The width of the rectangle |
-|**height** | The height of the rectangle |
-|**rx** | The x radius of the corners of the rectangle |
-|**ry** | The y radius of the corners of the rectangle |
-|**fill** | The filling of the rectangle |
+| --- | --- |
+|**x**		| The x position of the top left corner of the rectangle. |
+|**y** 		| The y position of the top left corner of the rectangle.|
+|**width** 	| The width of the rectangle. |
+|**height** 	| The height of the rectangle. |
+|**rx** 	| The x radius of the corners of the rectangle. |
+|**ry** 	| The y radius of the corners of the rectangle. |
+|**fill** 	| The filling of the rectangle. |
 
 ![svg rectangle example](https://rawgit.com/sergiocollado/potpourri/master/image/svg_002_rectangle.svg)
 
