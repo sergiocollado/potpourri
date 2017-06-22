@@ -40,7 +40,9 @@ We draw a circle with: `<circle cx="150" cy="100" r="80" fill="yellow" />`
 We write a text with: `<text x="150" y="125" font-size="60" text-anchor="middle" fill="white">SVG</text>`
 
 
-![first_example_svg](./image/svg_001.svg)
+![first_example_svg](https://rawgit.com/sergiocollado/potpourri/master/image/svg_001.svg)
+
+<br>
 
 ## BASIC SHAPES
 
