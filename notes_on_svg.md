@@ -86,7 +86,9 @@ Polylines are groups of connected straight lines. Since that list can get quite 
   <rect width="100%" height="100%" r1="10" ry="30" fill="lightblue" />
 </svg>
 ```
-| **Rectangle** |    |
+
+
+| Rectangle |    |
 | --- | --- |
 |**x**		| The x position of the top left corner of the rectangle. |
 |**y** 		| The y position of the top left corner of the rectangle.|
@@ -450,13 +452,6 @@ TODO: </br>
 - more awesome examples: http://srufaculty.sru.edu/david.dailey/art.html
 - http://srufaculty.sru.edu/david.dailey/svg/bucketful.htm
 
-
-
-
-
-
-
- 
 
 
 
