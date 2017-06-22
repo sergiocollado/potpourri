@@ -134,6 +134,10 @@ Your Pages site will use the layout and styles from the Jekyll theme you have se
 
 Adding a Jekyll style to your github site: [:link:](https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site/)
 
+Customizing themes in Jeckyll [:link:](https://help.github.com/articles/customizing-css-and-html-in-your-jekyll-theme/)
+
 Jeckyll Directory structure [:link:](http://jekyllrb.com/docs/structure/)
+
+Working with Jeckyll themes [:ling:](https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site/)
 
 Jeckyll Extras [:link:](http://jekyllrb.com/docs/extras/)
