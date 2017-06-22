@@ -96,6 +96,7 @@ Polylines are groups of connected straight lines. Since that list can get quite 
 |**ry** 	| The y radius of the corners of the rectangle. |
 |**fill** 	| The filling of the rectangle. |
 
+
 ![svg rectangle example](https://rawgit.com/sergiocollado/potpourri/master/image/svg_002_rectangle.svg)
 
 ref: (https://www.w3.org/TR/SVG/shapes.html#RectElement)
