@@ -231,6 +231,8 @@ http://www.keil.com/boards2/stmicroelectronics/stm32f429i_discovery/
 
 https://community.arm.com/p/register
 
+http://www.romux.com/tutorials/embedded-system/real-world-examples
+
 
 
 # Building linux systems
