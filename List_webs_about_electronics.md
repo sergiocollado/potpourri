@@ -219,6 +219,17 @@ Esential guide to data conversion (ADC/DAC) : http://www.analog.com/media/en/tec
 
 arrow: https://www.arrow.com/es-mx/reference-designs
 
+https://ez.analog.com/welcome
+
+http://www.keil.com/links/
+
+http://www.keil.com/appnotes/list/arm.htm
+
+http://www.keil.com/links/tpl/forums.asp
+
+http://www.keil.com/boards2/stmicroelectronics/stm32f429i_discovery/
+
+https://community.arm.com/p/register
 
 
 
