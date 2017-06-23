@@ -42,7 +42,6 @@ We write a text with: `<text x="150" y="125" font-size="60" text-anchor="middle"
 
 ![first_example_svg](https://rawgit.com/sergiocollado/potpourri/master/image/svg_001.svg)
 
-<br>
 
 ## BASIC SHAPES
 
@@ -52,7 +51,7 @@ Remember that the center of coordenates is top-left, and increases from left to 
 
 ### Line
 
-```svg
+```xml
 <line x1="10" x2="50" y1="110" y2="150"/>
 ```
 
@@ -69,7 +68,7 @@ Remember that the center of coordenates is top-left, and increases from left to 
 
 Polylines are groups of connected straight lines. Since that list can get quite long, all the points are included in one attribute:
 
-```svg
+```xml
 <polyline points="60 110, 65 120, 70 115, 75 130, 80 125, 85 140, 90 135, 95 150, 100 145"/>
 ```
 
@@ -78,7 +77,7 @@ Polylines are groups of connected straight lines. Since that list can get quite 
 
 ### Rectangles: 
 
-```svg
+```xml
 <svg version="1.1"
      baseProfile="full"
      width="300" height="200"
