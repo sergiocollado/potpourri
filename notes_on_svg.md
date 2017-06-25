@@ -107,13 +107,11 @@ ref: (https://www.w3.org/TR/SVG/shapes.html#RectElement)
 ```svg
 <circle cx="25" cy="75" r="20" />
 ```
-
-**r** </br>
-The radius of the circle.</br>
-**cx** </br>
-The x position of the center of the circle.</br>
-**cy** </br>
-The y position of the center of the circle. </br>
+| Circle |  |
+| --- | --- |
+|**r** | The radius of the circle.|
+|**cx** | The x position of the center of the circle.|
+|**cy** | The y position of the center of the circle.|
 
 
 ### Ellipse
