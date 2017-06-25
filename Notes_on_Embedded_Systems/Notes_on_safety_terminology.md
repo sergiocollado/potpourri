@@ -150,7 +150,7 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 
 **Error**: is a systematic fault, thus a design flaw. ERRORS ARE STATES.
 
-
+**Fault**: A fault is either a failure or an error.
 
 
 
