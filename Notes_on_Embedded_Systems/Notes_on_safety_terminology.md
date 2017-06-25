@@ -17,7 +17,7 @@ Key points in an embedded system:
   - Integrity.
   - Mantenebility.
 
-**SAFETY**: Is the propierty of a system that evaluates the risk of the ocurrence of an accident.
+**SAFETY**: Is the propierty of a system that evaluates the risk of the ocurrence of an accident or material losses.
 
 **FUNCTIONAL SAFETY** Is the safety of a system that correspond to the correct actions acording to the system inputs, it also includes
 detection of potential dangerous states, and activation of protective, corrective or mitigation measures.
@@ -50,9 +50,9 @@ Ri = Li * p(Li);
 causing a failure. Defects in software, systms or documnets may result in failures, bot no all defects do.
 
 **FAILURE**: A failure is the misperformance or lack of hability of a component to comply with its designed function, during certain
-time, or under specified enviromental system conditions.
+time, or under specified enviromental system conditions. 
 
-**ERROR**: An error is a desing flaw or desviation from an intended or designed state.
+**ERROR**: An error is a systematic fault: An error is a desing flaw or desviation from an intended or designed state.
 
 >__A word about SW context__
 > A human being can make an error (mistake), wich produces a defect (fault, bug) in the program, code, or in a document. If a defect in the
@@ -115,7 +115,7 @@ http://www.eventhelix.com/RealtimeMantra/FaultHandling/hardware_diagnostics.htm#
 EXAMPLE:
 
  Suppouse, you have a sistem, in which two task/phreatds/programs ... are working togeder, one of them, task_1 - senses, gadthers and updates data in real time. task_2: request that data, and do some kind of that processing. 
- In the event, that for whatever reason, maybe some bug, or that there arent enough memory..., the task_1 stops on working, or performing ok, may be it reports the dreaded: segmentation fault... at that point, the task_2, should be able to detect the problem, - there are some methods to do this - and it should try to fix the system, for example, relaunching, the task_1, or reseting the whole system in the wort case.
+ In the event, that for whatever reason, maybe some bug, or that there aren't enough memory..., the task_1 stops on working, or performing ok, may be it reports the threaded: segmentation fault... at that point, the task_2, should be able to detect the problem, - there are some methods to do this - and it should try to fix the system, for example, relaunching, the task_1, or reseting the whole system in the wort case.
  
  
 References:
@@ -127,6 +127,28 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 **ROBUST SYSTEMS** Robust systems are those in which the computer system has the ability to cope with errors during execution and cope with erroneous inputs. Usually you test those systems with the technique of *Fault Injection*, other techniques are for example *Fuzzy testing* that involves invalid or unexpected inputs. 
 
 
+
+## SOME CLARIFICATIONS:
+
+**Safety** is the freedom from accidents and material losses.
+
+**Safety** is not **Reliability**!! Reliability is the correctness of a system performing it's intended duty/function.
+
+**Safety** is not **Security**!! Security is the defence or agains intended damages.
+
+## SAFETY RELATED CONCEPTS:
+
+**Accident**: It's the situation in which there is a loss of some kind: death or material damage.
+
+**Risk**: It's the likehood of an accident and its severity. -> R(a) = p(a) * s(a);
+
+**Hazard**: The set of conditions or enviromental variables, that will lead or result in an accident.
+
+## FAILURES vs ERRORS:
+
+**Failure**: is the non-performance of the system or component, at random. Thus, it can be estimated from a pdf (probability density function). FAILURES ARE EVENTS.
+
+**Error**: is a systematic fault, thus a design flaw. ERRORS ARE STATES.
 
 
 
