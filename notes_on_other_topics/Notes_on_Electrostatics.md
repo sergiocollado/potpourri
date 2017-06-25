@@ -1,4 +1,7 @@
 
+## **Electric Charge:**
+The electric charge is a fundamental magnitude, as for example the longidude (SI unit: Meter), or the force (SI unit: Newton). 
+The electric charge cuantifies the defect of electrons (by convection this is known as *Positive charge*), or the excess of electrons (by convection this is known as *negative charge*) in a body, and its unit in SI is the *Coulomb*.
 
 ## **ℰlectricity**: 
 Electricity is an energy asociated with the phenomenon of the flow and accumulation of electrons (negative charged particles)
