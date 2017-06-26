@@ -33,6 +33,17 @@ From there you can download the last package- recomended the LTS(Long Term Suppo
 
 In MS Windows, you just have to downloade the: nod-vx.xx.x-x64.msi run it, and follow the instructions.
 
+
+![image_001](./image/imgNode_001.JPG)
+![image_001](./image/imgNode_002.JPG)
+![image_001](./image/imgNode_003.JPG)
+![image_001](./image/imgNode_004.JPG)
+![image_001](./image/imgNode_005.JPG)
+![image_001](./image/imgNode_006.JPG)
+![image_001](./image/imgNode_007.JPG)
+![image_001](./image/imgNode_008.JPG)
+![image_001](./image/imgNode_009.JPG)
+
 In Linux, you have:
  + Check you have the building tools: 'apt-get install build-essential'
  + Get the source code, for example from its web:
