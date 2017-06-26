@@ -194,6 +194,21 @@ TI design tool WEBENCH: http://www.ti.com/lsds/ti/analog/webench/overview.page
 
 TI wifi SoC: http://www.ti.com/tool/cc3220s-launchxl?hqs=epd-mcu-ecs-slmcu-bs-evm-AdRoll-wwe&DCM=yes
 
+magazine about electronics: http://www.ee.co.za/
+
+web with electrical topics: http://electricaltopics.blogspot.com.es/2015/02/working-principle-of-earth-resistance-tester.html
+
+radar suppliers: https://www.yourlevelexperts.com/level-measurement/113-ghz-your-wavelength/
+
+tech-notes on electrotecnic: http://www.dranetz.com/technical-support-request/technical-documents/
+
+web about electrotecnics: http://www.electricneutron.com/
+
+Reevee observatory Alaska: http://www.reeve.com/Documents/
+
+shop RF elements: https://www.ondamania.com/b2c/inicio.php
+
+
 
 # Learn electronics with application notes:
 
