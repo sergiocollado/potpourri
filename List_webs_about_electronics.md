@@ -250,6 +250,12 @@ https://community.arm.com/p/register
 
 http://www.romux.com/tutorials/embedded-system/real-world-examples
 
+https://www.semikron.com/applications/motor-drives/application-examples.html
+
+https://www.semikron.com/applications/power-quality/application-examples.html
+
+https://www.semikron.com/applications/utility-vehicles/application-examples.html
+
 
 
 # Building linux systems
@@ -278,6 +284,8 @@ http://www.allegromicro.com/
 https://www.nordicsemi.com/
 
 http://www.ti.com/
+
+https://www.semikron.com
 
 
 
