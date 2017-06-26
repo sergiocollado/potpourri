@@ -210,7 +210,7 @@ Reevee observatory Alaska: http://www.reeve.com/Documents/
 
 shop RF elements: https://www.ondamania.com/b2c/inicio.php
 
-
+about thermodinamics, thermal engines... http://technicaltheory.blogspot.com.es/
 
 # Learn electronics with application notes:
 
