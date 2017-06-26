@@ -1,7 +1,12 @@
 
 ## **Electric Charge:**
-The electric charge is a fundamental magnitude, as for example the longidude (SI unit: Meter), or the force (SI unit: Newton). 
+The electric charge, represented by its symbol Q,  is a fundamental magnitude, as for example the longidude (SI unit: Meter), or the force (SI unit: Newton). Its a fundamental magnitude, as it cannot be deduced from the others: mass(M), Lenght(L), and ...
+
 The electric charge cuantifies the defect of electrons (by convection this is known as *Positive charge*), or the excess of electrons (by convection this is known as *negative charge*) in a body, and its unit in SI is the *Coulomb*.
+
+The Coulomb (C) is the amount of electrical charge that have 6.241x10^18 electrons.
+
+The number of Coulobs per second (C/s)= Ampere (A), which is the unit of the electric current, so current is the amount of electric charge that goes through a body per unit time.
 
 ## **ℰlectricity**: 
 Electricity is an energy asociated with the phenomenon of the flow and accumulation of electrons (negative charged particles)
