@@ -204,6 +204,8 @@ tech-notes on electrotecnic: http://www.dranetz.com/technical-support-request/te
 
 web about electrotecnics: http://www.electricneutron.com/
 
+a site about electric engineering: http://www.electrotechnik.net/
+
 Reevee observatory Alaska: http://www.reeve.com/Documents/
 
 shop RF elements: https://www.ondamania.com/b2c/inicio.php
