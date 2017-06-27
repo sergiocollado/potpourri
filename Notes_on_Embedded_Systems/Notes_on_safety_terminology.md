@@ -261,18 +261,23 @@ If for any given state *p*, and label *α*, only exits one tuple *(p,α,q)*, the
 Bisimulation is a relationship between state transition systems, that associates systems that behaves in the same way in the sense
 that one system simulates the other and vice versa.
 
+Bisimulation is important because if two systems comply with bisimulation, then it is safe to consider them as equivalent. Bisimulation
+is always the safe choice.
+
 Formal definition:
 Given a LTS (S,Λ,→) a bisimulation relation is a binary relation **R**, over **S**, i.e.( **R ⊆ to S x S**) such both **R** and its inverse **R^-1** are simulations.
 
 Equivalently **R** is a bisimulation if for every pair of elements **p**,**q** in the space of states **S**, with (p,q) in **R**, ∀ α in Λ:
 
-for all **p'** in **S**: p  → (α) → p'
-implies that there is a **q'** in **S**, that: q  → (α) → q 
-and (p',q') ∈ **R**
+  for all **p'** in **S**: p  → (α) → p'
+  implies that there is a **q'** in **S**, that: q  → (α) → q 
+  and (p',q') ∈ **R**
 
-and, simetrically: for all **q'** in **S**:  q  → (α) → q'
-implies that there is a **p'** in **S**, that: p  → (α) → p'
-and (p',q')  ∈ **R**
+  and, simetrically:
+  
+  for all **q'** in **S**:  q  → (α) → q'
+  implies that there is a **p'** in **S**, that: p  → (α) → p'
+  and (p',q')  ∈ **R**
 
 So given two states **p** and **q** that belong to the state space **S**, **p** is _**bisimilar**_ to **q**, and is writen as: **p ~ q**, if there is a bisimulation **R** such that **(p,q)** are in **R**.
 
@@ -280,8 +285,16 @@ So given two states **p** and **q** that belong to the state space **S**, **p** 
 
 ![bisimulation.png](./image/bisimulation.png)
 
+
+**THEOREM:**
+Every trasition system has a _**unique**_ minimal transition system that is bisimulation equivalent to it.
+
+
+## Trace of a system:
+Traces are a sequence of actions that can be executed in that system.
+
 ## Trace equivalence
-Two Transitions systems are trace equivalent if they have the same set of traces.
+Two Transitions systems are trace equivalent if they have the same **set** of traces.
 
 ### Properties of trace equivalences:
 
@@ -301,6 +314,9 @@ Reference: http://theory.stanford.edu/~rvg/abstracts.html#45
 
 Reference: http://theory.stanford.edu/~rvg/abstracts.html
 
+Ref: http://ai.cs.unibas.ch/papers/theses/scherrer-bachelor-12.pdf
+
+Ref: https://www.cs.ox.ac.uk/files/6715/ICFEM%202014%20Version%2010.pdf
 
 
 
