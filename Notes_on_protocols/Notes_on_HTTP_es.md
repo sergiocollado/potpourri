@@ -65,8 +65,61 @@ La característica del protocolo HTTP, de ser ampliable, ha permitido que durant
 
 Se presenta a continuación una lista con los elementos que se pueden controlar con el protocolo HTTP:
 
-Cache
+## Cache
 El como se almacenan los documentos en la cache, puede ser especificado por HTTP. El servidor puede indicar a los proxies, y clientes, que quiere almacenar y durante cuanto tiempo. Aunque el cliente, también puede indicar a los proxies de cache intermedios que ignoren el documento almacenado.
+
+## Flexibilidad del requisito de origen
+Para prevenir invasiones de la privacidad de los usuarios, los navegadores Web, solamente permiten a páginas del mismo origen, compartir la información o datos. Esto es una complicación para el servidor, asi que mediante cabeceras HTTP, se puede flexibilizar o relajar esta división entre cliente y servidor
+
+## Autentificación
+Hay páginas Web, que pueden estar protegidas, de manera que solo los usuarios autorizados puedan acceder. HTTP provee de servicios básicos de autentificación, por ejemplo mediante el uso de cabeceras como:  WWW-Authenticate, o estableciendo una sesión especifica mediante el uso de  HTTP cookies. 
+
+## Proxies y  tunneling
+Servidores y/o clientes pueden estar en intranets y esconder asi su verdadera dirección IP a otros. Las peticiones HTTP, utilizan los proxies para acceder  a ellos. Pero no todos los proxies son HTTP proxies. El protocolo SOCKS, por ejemplo, opera a un nivel más bajo. Otros protocolos, como el FTP, pueden ser servidos mediante estos proxies.
+
+## Sesiones
+El uso de HTTP cookies, permite relacionar peticiones con el estado del servidor. Esto define las sesiones, a pesar de que por definición el protocolo HTTP, es un protocolo sin estado. Esto es muy útil, no solo para aplicaciones de comercio electrónico, sino también para cualquier sitio que permita configuración al usuario.
+
+## Flujo de HTTP
+Cuando el cliente quiere comunicarse con el servidor, tanto si es directamente con él, o a través de un proxy intermedio, realiza los siguientes pasos:
+
+- Abre una conexión TPC: la conexión TPC se usará para hacer una petición, o varias, y recibir la respuesta. El cliente pude abrir una conexión nueva, reusar una existente, o abrir varias a la vez hacia el servidor.
+- Hacer una petición HTTP: Los mensajes HTTP (previos a HTTP/2) son legibles en texto plano. A partir de la versión del protocolo     HTTP/2, los mensajes se encapsulan en franjas, haciendo que no sean directamente interpretables, aunque el principio de operación es el  mismo.
+- Leer la respuesta enviada por el servidor.
+- Cierre o  reciclado de la conexión para futuras peticiones.
+
+Si está activado el HTTP pipelining, varias peticiones pueden enviarse sin tener que esperar que la primera respuesta haya sido satisfecha. Este procedimiento es difícil de implementar en las redes de computadores actuales, donde se mezclan software antiguos y modernos. Así que el HTTP pipelining  ha sido substituido en HTTP/2 por el multiplexado de varias peticiones en una sola trama.
+
+# Mensajes HTTP
+En las versiones del protocolo HTTP/1.1 y anteriores los mensajes eran de formato texto y eran totalmente comprensibles directamente por una persona. En HTTP/2, los mensajes tenían un formato binario y las trama permitían la compresión de las cabeceras y su multiplexación. Así pues incuso si solamente parte del mensaje original en HTTP se envía en este formato, la sematica de cada mensaje es la misma y el cliente puede formar el mensaje original en HTTP/1.1. Luego es posible interpretar los mensajes HTTP/2, en el formato de HTTP/1.1.
+
+Existen dos tipos de mensajes HTTP: peticiones y respuestas, cada uno sigue su propio formato.
+
+## Peticiones
+
+Una petición de HTTP, está formado  por los siguientes campos:
+
+- Un método HTTP,  normalmente pueden ser un verbo, como: GET, POST o un nombre como: OPTIONS o HEAD, que defina la operación que el cliente quiera realizar. El objetivo de un cliente, suele ser una petición de recursos, usando GET, o presentar un valor de un formulario HTML, usando POST, aunque en otras ocasiones puede hacer otros tipos de peticiones. 
+- La dirección del recurso pedido; la URL del recurso, sin los elementos obvios por el contexto, como pueden ser: sin el  protocolo (http://),  el dominio (aquí developer.mozilla.org), o el puerto TCP (aquí el 80). 
+- La versión del protocolo HTTP.
+- Cabeceras HTTP opcionales, que pueden aportar información adicional a los servidores.
+- O un cuerpo de mensaje, en algún método, como puede ser POST, en el cual envía la información para el servidor.
+
+## Respuestas
+
+Las respuestas están formadas por los siguentes campos:
+
+- La versión del protocolo HTTP que están usando.
+- Un código de estado, indicando si la petición ha sido exitosa, o no, y debido a que.
+- Un mensaje de estado, una breve descriptión del código de estado. 
+- Cabeceras HTTP, como las de las peticiones.
+- Opcionalmente, el recurso que se ha pedido.
+
+# Conclusión
+
+El protocólo HTTP es un protocolo ampliable y facil de usar. Su estructura cliente-servidor, junto con la capacidad para usar cabeceras, permite a este protolo evolucionar con las nuevas y futuras aplicaciones en Internet.
+
+Aunque la versión del protocolo HTTP/2 añade algo de complejidad, al utilizar un formato en binario, esto aumenta su rendimiento, y la estructura y semantica de los mensajes es la misma desde la versión HTTP/1.0. El flujo de comunicaciones en una sesión es sencillo y puede ser facilmente estudiado e investigado con un simple monitor de mensajes HTTP.
 
 
 
