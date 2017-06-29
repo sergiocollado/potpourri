@@ -324,3 +324,25 @@ Online dissasembler: https://www.onlinedisassembler.com/static/home/
 
 https://www.hindawi.com/journals/isrn/2013/953792/
 
+
+
+
+## Programming Jargon:
+
+https://blog.codinghorror.com/new-programming-jargon/
+
+
+## On-line compilers:
+
+https://wandbox.org/
+
+http://webcompiler.cloudapp.net/
+
+https://gcc.godbolt.org/
+
+http://coliru.stacked-crooked.com/
+
+http://rextester.com/l/cpp_online_compiler_gcc
+
+http://ideone.com/
+
