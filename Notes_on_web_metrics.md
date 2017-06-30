@@ -33,3 +33,5 @@ You can also use the following tools:
 - [thimble](https://thimble.mozilla.org/)
 
 
+Also check the meta-tags: http://www.metatags.org/meta_name_robots
+
