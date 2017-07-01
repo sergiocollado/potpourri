@@ -257,9 +257,9 @@ Labels, can represent different things, depending of the context, usually they a
 
 If for any given state *p*, and label *α*, only exits one tuple *(p,α,q)*, then it is said, that *α*, is **_deterministic_** for *p*.
 
-## Bisimulation
+## Bisimulation (or Strong Bisimulation)
 Bisimulation is a relationship between state transition systems, that associates systems that behaves in the same way in the sense
-*that one system simulates the other and vice versa.
+*that one system simulates the other and vice versa*.
 
 Bisimulation is important because if two systems comply with bisimulation, then it is safe to consider them as equivalent. Bisimulation
 is always the safe choice.
@@ -291,10 +291,10 @@ Every trasition system has a _**unique**_ minimal transition system that is bisi
 
 
 ## Trace of a system:
-Traces are a sequence of actions that can be executed in that system.
+Traces, are the sequence of actions that can be executed in that system.
 
 ## Trace equivalence
-Two Transitions systems are trace equivalent if they have the same **set** of traces.
+Two Transitions systems are trace equivalent if they have the same _**set**_ of traces.
 
 ### Properties of trace equivalences:
 
@@ -304,9 +304,16 @@ If two states are bisimilar, then they are also trace equivalent
 
 For deterministic trasnsition systems bisimulation and trace equivalence coincide.
 
+### Branching bisimulation: 
+
+-> is a bisimulation that takes hidden actions into account.
 
 
-### Branching bisimulation: is a bisimulation that takes hidden actions into account.
+## Weak trace equivalence:
+
+Two systems are weak trace equivalens, if they have the same set of traces, where invisible actions (tau) are ommited.
+
+- It's advantage is that this equivalence remove all the invisible actions, making an equivalent system smaller, thus easier to work with.
 
 
 
