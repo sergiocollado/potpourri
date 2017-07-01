@@ -259,7 +259,7 @@ If for any given state *p*, and label *α*, only exits one tuple *(p,α,q)*, the
 
 ## Bisimulation
 Bisimulation is a relationship between state transition systems, that associates systems that behaves in the same way in the sense
-that one system simulates the other and vice versa.
+*that one system simulates the other and vice versa.
 
 Bisimulation is important because if two systems comply with bisimulation, then it is safe to consider them as equivalent. Bisimulation
 is always the safe choice.
@@ -306,6 +306,8 @@ For deterministic trasnsition systems bisimulation and trace equivalence coincid
 
 
 
+### Branching bisimulation: is a bisimulation that takes hidden actions into account.
+
 
 
 Reference: https://en.wikipedia.org/wiki/Bisimulation
@@ -318,12 +320,14 @@ Ref: http://ai.cs.unibas.ch/papers/theses/scherrer-bachelor-12.pdf
 
 Ref: https://www.cs.ox.ac.uk/files/6715/ICFEM%202014%20Version%2010.pdf
 
+Ref: http://theory.stanford.edu/~rvg/
 
 
 
 
 
-TODO: Check and elavorate: https://en.wikipedia.org/wiki/Calculus_of_communicating_systems
+
+**TODO**: Check and elavorate: https://en.wikipedia.org/wiki/Calculus_of_communicating_systems
 
 
 Check, the methods, for testing: ccpcheck, vera ++, RATS, Jeckins, SonarQube, 
