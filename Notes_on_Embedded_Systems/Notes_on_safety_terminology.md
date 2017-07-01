@@ -308,6 +308,14 @@ For deterministic trasnsition systems bisimulation and trace equivalence coincid
 
 -> is a bisimulation that takes hidden actions into account.
 
+Branching bisimulation eliminates divergencies.
+
+- All states in an invisible action (tau) loop, will be removed.
+
+
+## Divergence preserving branching bisimulation.
+
+In a state that is followed by invisible actions, its equivalent state in its bisimulated system, also will be followed by invisible actions.
 
 ## Weak trace equivalence:
 
@@ -315,7 +323,9 @@ Two systems are weak trace equivalens, if they have the same set of traces, wher
 
 - It's advantage is that this equivalence remove all the invisible actions, making an equivalent system smaller, thus easier to work with.
 
+- It remove all the invisible actions of the behavior of the system.
 
+- A disadvantage is that the branching structure of the system is not conserved.
 
 Reference: https://en.wikipedia.org/wiki/Bisimulation
 
