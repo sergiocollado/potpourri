@@ -351,3 +351,4 @@ Check, the methods, for testing: ccpcheck, vera ++, RATS, Jeckins, SonarQube,
 Test Unitarios: XUnit, CppUTest
 Other sys: lcov, valgrind, ltrace, strace....
 
+Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https://www2.opengroup.org/ogsys/catalog/C13F
