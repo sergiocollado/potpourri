@@ -108,6 +108,8 @@ pcb-tools -> http://pcb-tools.readthedocs.io/en/latest/index.html
 
 excellon- mounting -> www.excellon.com
 
+part selection: http://parts.io/search/Class-Regulator%20Circuits/Category-Switching%20Regulator%20or%20Controller?utm_source=pa&utm_medium=728x90&utm_campaign=schematic
+
 how to program stm32 -> http://www.emcu.it/STM32/What_should_I_use_to_develop_on_STM32/What_should_I_use_to_develop_on_STM32.html#Free_C_CompilerIDE
 
 blockchain automotive -> https://www.ibm.com/blogs/internet-of-things/blockchain-for-automotive/
@@ -256,7 +258,7 @@ https://www.semikron.com/applications/power-quality/application-examples.html
 
 https://www.semikron.com/applications/utility-vehicles/application-examples.html
 
-
+SENSORLESS FOC - http://www.ti.com/tool/tida-00916?HQS=sys-ind-md-drones-bs-rd-tida00916-wwe&DCM=yes
 
 # Building linux systems
 
