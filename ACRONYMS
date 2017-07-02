@@ -1,10 +1,11 @@
 
 SPOF - Single point of failure
 ERC  -  Electrical Rule Check
-RAID - Redundant Array of Independent Disks
-URL - Uniform Resource Locator
+RAID - Redundant Array of Independent Disks.
+URL - Uniform Resource Locator.
 DNS - Domain Name System
-S3  - AWS Simple Storage System  
+S3  - AWS Simple Storage System.
+E2C - AWS Elastic Cloud Computing.
 ARN - Amazon Resource Names
 ACL - Access Control Lists
 IAM - Identity and Access Management
@@ -170,9 +171,8 @@ AJAX - Asynchronous Javascript and XML.
 WHO - World Health Organization.
 DSL - Damn Small Linux.
 DIY - Do It Yourself.
-
-
-
+HAL - Hardware Abstraction Layer.
+BSP - Board Support Package.
 
 
 
