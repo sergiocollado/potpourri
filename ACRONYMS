@@ -139,8 +139,11 @@ DC_avg - average Diagnostic Coverage
 ECU - Electronic Control Unit
 ETA - Even Tree Analysis
 E/E/PES - Electrical/Electronic/programmable electronics systems.
-EMC - Electromagnetic Compatibility
+EMC - Electromagnetic Compatibility.
+EMP - Electromagnetic Pulse.
+EOS - Electric Over Stress.
 EUC - Equipment Under Control
+DUT - Device Under Testing.
 ANSI - American Nationals Standards Institute.
 PAN - Personal Area Network.
 HDP - Health Device Profile.
@@ -164,8 +167,9 @@ ICDI - In-Circuit Debug Interface.
 TCP - Trasnfer Control Protocol
 IP - Internet Protocol.
 AJAX - Asynchronous Javascript and XML.
-WHO - World Health Organization
-
+WHO - World Health Organization.
+DSL - Damn Small Linux.
+DIY - Do It Yourself.
 
 
 
