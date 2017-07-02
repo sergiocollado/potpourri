@@ -260,6 +260,10 @@ https://www.semikron.com/applications/utility-vehicles/application-examples.html
 
 SENSORLESS FOC - http://www.ti.com/tool/tida-00916?HQS=sys-ind-md-drones-bs-rd-tida00916-wwe&DCM=yes
 
+https://order.universitywafer.com/default.aspx?cat=Silicon
+
+
+
 # Building linux systems
 
 [Easy Intro to Linux Kernel Programming](https://www.youtube.com/watch?v=TCY8WPwBMa0)
@@ -277,7 +281,7 @@ http://www.openscad.org/gallery.html
 
 https://clara.io/library
 
-
+https://sketchfab.com/
 
 # firms & Semiconductors companies
 
@@ -307,6 +311,14 @@ to the radar:  https://www.utf8icons.com/character/9992/airplane
 test bench for webs: https://jsfiddle.net/
 
 as CODEPEN
+
+INFOGRAFICS: GoJS
+
+INFOGRAFICS: https://infogram.com
+
+AND: draw.io
+
+
 
 awesome tutorials: https://webplatform.github.io/#docs
 
