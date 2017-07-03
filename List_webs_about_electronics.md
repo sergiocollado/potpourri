@@ -233,6 +233,21 @@ Esential guide to data conversion (ADC/DAC) : http://www.analog.com/media/en/tec
 
 Standards: http://www.opengroup.org/
 
+DAB: Emergency Warning System [EWS](https://worlddabeureka.org/2012/10/25/emergency-warning-systems-in-dab/)
+
+DAB: Fast Information Channel [FIC](https://www.worlddab.org/technology-rollout/standards/features-of-dab-dab-plus)
+
+DAB [normative](http://www.etsi.org/technologies-clusters/technologies/broadcast/dab) and [:link:](http://www.etsi.org/deliver/etsi_en/300400_300499/300401/02.01.01_60/en_300401v020101p.pdf)
+
+
+
+Emergency Alert System [EAS](http://www.sigidwiki.com/wiki/Emergency_Alert_System_(EAS))
+
+TPEG [:link:](http://tisa.org/technologies/tpeg/) - Transport Protocol Expert Group: TTI [Traffic and Travel Information](https://www.worlddab.org/technology-rollout/standards/features-of-dab-dab-plus)
+
+TMC [Traffic Message Channel](http://tisa.org/technologies/tpeg/) - [TMC coverage](http://tisa.org/technologies/coverage/)
+
+DAB: [capabiliteis](https://worlddabeureka.org/2013/09/05/so-you-think-it-is-only-radio/)
 
 # Reference designs
 
@@ -317,6 +332,22 @@ INFOGRAFICS: GoJS
 INFOGRAFICS: https://infogram.com
 
 AND: draw.io
+
+DAB [EWS](https://www.itu.int/en/ITU-D/Emergency-Telecommunications/Documents/2016/GET/D3S2/D3S1-GET2016-zink.pdf) Emergency Warnnign System
+
+DAB [EAS](http://www.sigidwiki.com/wiki/Emergency_Alert_System_(EAS)) Emergency Alert System
+
+DAB [capabilities](https://worlddabeureka.org/2013/09/05/so-you-think-it-is-only-radio/)
+
+DAB [TPEG](http://www.worlddab.org/technology-rollout/digital-radio-in-car/traffic-and-travel) 
+
+DAB [TMC](http://www.worlddab.org/technology-rollout/digital-radio-in-car/traffic-and-travel) Traffic Message Channel
+
+DAB [ETSI standards](https://www.worlddab.org/public_document/file/434/23.WDMB_GA_2012_Cornell_BBC_Service_Following.pdf?1389783281)
+
+DAB [ETSI standards](http://www.etsi.org/technologies-clusters/technologies/broadcast/dab)
+
+DRM & DAB [:link:](http://www.drm-radio-kl.eu/symposium2014/PDF/FhG-DRM-DAB-Features.pdf)
 
 
 
