@@ -313,7 +313,7 @@ https://www.semikron.com
 
 
 
-# Internet, Web, ... characters and html5-utf-8
+# Internet, Web, ... characters and html5-utf-8, protocols, standardas and recomendations.
 
 https://dev.w3.org/html5/html-author/charref
 
@@ -361,6 +361,39 @@ You can also use the following tools:
 - [thimble](https://thimble.mozilla.org/)
 
 
+RFC3629 - UTF-8
+
+RFC5246 - tls (Trasnporter Layer security) v1.2
+
+RFC6455 - Websocket Protocol
+
+RFC793 - tcp (Transmision Control Protocol) 
+
+AES - Advanced Encription Standard 
+
+DES - Data Encription Standard 
+
+FIPS1402- Security requirements for cryptographic modules
+
+ISO29192 - - Security techniques -- Lightweight cryptography -
+
+[NISTCSF] --Improving Critical Infrastructure Cybersecurity Executive Order 13636
+
+[NIST7628] -- NISTIR 7628 Guidelines for Smart Grid Cyber Security
+
+PCIDSS] -- PCI-DSS Payment Card Industry Data Security Standard
+
+[NSAB] -- NSA Suite B Cryptography
+
+MQTT- --> http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.pdf
+
+
+
+
+
+
+
+# Online dissasembler
 Online dissasembler: https://www.onlinedisassembler.com/static/home/
 
 
