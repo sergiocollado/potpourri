@@ -101,8 +101,6 @@ MSD - Minimun Set of Data
 LTS - Labelled Trasition Systems
 LTS - Long Term Support
 IETF - Internet Engineering Task Force
-SPI - Serial Peripherical Interface
-UART - 
 CPU - Central Processing Unit
 ALU - Arithmetic Processing Unit
 CISC - Complex Instruction Set Computer
@@ -111,6 +109,7 @@ PE - Processing Element
 MCU - Micro Controller Unit
 uC  - Micro Controller
 MPU - Micro Processing Unit
+CU - Control Unit.
 GPIO - General Pin Input/Output
 RTC - Real Time Clock
 RAM - Random Access Memory
@@ -180,7 +179,8 @@ NFS - Network File System
 UPS - Uninterrumpible Power Supply.
 RWD - Responsibe Web Design
 UART - Universal Asynchronous Receiver Transveiver
-SPI - Serial Periferical Interface
+SPI - Serial Peripheral Interface.
+SSI - Synchronous serial interface.
 I2C - Inter Integragated Circuit communication.
 PWM - Pulse Width Modulation.
 LCD - Liquid Cristal Display.
