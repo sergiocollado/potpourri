@@ -128,7 +128,11 @@ Else
 End If
 ```
 
+![COLOR SEGMENTATION BLUE](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_AI/images/Color_Segmentation_Matlab_BLUE.PNG)
 
+![COLOR SEGMENTATION GREEN](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_AI/images/Color_Segmentation_Matlab_GREEN.PNG)
+
+![COLOR SEMENTATION RED](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_AI/images/Color_Segmentation_Matlab_RED.PNG)
 
 
 
