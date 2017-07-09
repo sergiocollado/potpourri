@@ -182,6 +182,7 @@ UART - Universal Asynchronous Receiver Transveiver
 SPI - Serial Peripheral Interface.
 SSI - Synchronous serial interface.
 I2C - Inter Integragated Circuit communication.
+USB - Universal Serial Bus.
 PWM - Pulse Width Modulation.
 LCD - Liquid Cristal Display.
 LED - Light emitting Diode.
