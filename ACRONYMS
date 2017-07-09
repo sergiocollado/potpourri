@@ -179,4 +179,8 @@ RMS - root mean square
 NFS - Network File System
 UPS - Uninterrumpible Power Supply.
 RWD - Responsibe Web Design
-
+UART - Universal Asynchronous Receiver Transveiver
+SPI - Serial Periferical Interface
+I2C - Inter Integragated Circuit communication.
+PWM - Pulse Width Modulation.
+uC - Micro Controller
