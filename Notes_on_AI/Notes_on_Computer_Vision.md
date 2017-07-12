@@ -136,7 +136,22 @@ End If
 
 
 
+Another possibility for color segmentation is based in the density function of a gaussian probability distribution of order _m_, whith 
+**μ**, as the average value, and the covariance matrix **C**.
 
+f(**x**) = ( 1 / ((2·Π)^(m/2))·sart(det(C)) ) · exp( -1/2 · (**x** - **μ**)^T · C^(-1) ·  (**x** - **μ**) ) 
+
+for the case of m = 3 dimensions, -- red, green and blue -- and a trainning set of _n_ pixeles, **x_i** for all i ∈ {0,1, ... n}, and those pixeles, can be manually hand-picked to correspond to the desired color to be segemented; then the expected value **μ**, is the
+arithmentic average of the trainnig set.
+
+averg(**x**) = 1/n ∑ **x_n**
+
+and the covariance matrix is:
+
+**C** = 1/(n-1) · ∑  (**x_i** - avrg(**x**)) ·  (**x_i** - avrg(**x**))^T
+
+When implementing this algorithm, in practice, the factor of the exponential function is ommited, and the value of the function
+is checked against a threshold value, that have that factor implicit in it. 
 
 
 
