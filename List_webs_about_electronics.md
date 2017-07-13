@@ -308,6 +308,12 @@ http://www.ti.com/
 
 https://www.semikron.com
 
+http://es.rs-online.com/web/generalDisplay.html?id=new
+
+intersil
+
+renersas
+
 
 
 
