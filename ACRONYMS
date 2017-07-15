@@ -106,12 +106,12 @@ LTS - Long Term Support
 IETF - Internet Engineering Task Force
 CPU - Central Processing Unit
 ALU - Arithmetic Processing Unit
-CISC - Complex Instruction Set Computer
-RISC - Reduced Instruction Set Computer
-PE - Processing Element
-MCU - Micro Controller Unit
-uC  - Micro Controller
-MPU - Micro Processing Unit
+CISC - Complex Instruction Set Computer.
+RISC - Reduced Instruction Set Computer.
+PE - Processing Element.
+MCU - Micro Controller Unit.
+uC  - Micro Controller.
+MPU - Micro Processing Unit.
 CU - Control Unit.
 GPIO - General Pin Input/Output
 RTC - Real Time Clock
