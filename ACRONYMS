@@ -1,6 +1,7 @@
 
 SPOF - Single point of failure
-ERC  -  Electrical Rule Check
+ERC  -  Electrical Rule Check.
+DRC - Design Rule Checker.
 RAID - Redundant Array of Independent Disks.
 URL - Uniform Resource Locator.
 DNS - Domain Name System
@@ -10,7 +11,7 @@ ARN - Amazon Resource Names
 ACL - Access Control Lists
 IAM - Identity and Access Management
 REST - Representational State Transfer
-NAT  - Network Adress Trasnlation
+NAT  - Network Adress Translation
 CSS  - Cascade Style Sheet
 DIRT - Data Intensive Real-Time applications
 AIML - Artificial Intelligence Mark-up Languaje
@@ -72,9 +73,10 @@ THR - Tolerable Hazard Rate
 ROS - Robotic Operating System
 ADAS - Advanced Driving Assistance Systems.
 TMC - Traffic Message Channel
-DARPA - Defense Advanced Research Projects Agency
+DARPA - Defense Advanced Research Projects Agency.
+UML - Unified Modeling Language.
 mCRL2 - micro common representation languaje (version2) - a simple process representation program languaje.
-TSMC - Taiwan Semiconductors Manufacturing Co. (silocon foundry)
+TSMC - Taiwan Semiconductors Manufacturing Co. (silicon foundry)
 SMIC - Semiconductors Manufacturing Internacional Corp. (China silicon foundry)
 UPS - Uninterrumplible Power System
 PFC - Power Factor Correction
@@ -86,6 +88,7 @@ TSC - Thermal Shutdown Circuit
 OCP - Over Current Protection Circuit
 UVLO - Under Voltage Lock Out Circuit
 OVLO - Over Voltage Lock Out Circuit
+EOS - Electrical Over Stress.
 PPC - Plain Paper Copier
 PWM - Pulse Width Modulation
 ASO - Area Of Safe Operation
@@ -127,9 +130,9 @@ NG - Next Generation
 CFD - Computed Fluid Dinamics
 FEA - Finite Element Analisys
 ARM - Advanced Risc Machine
-FPGA - Field Programmable Gate Arrays
+FPGA - Field Programmable Gate Array.
 LUT - Look Up Tables
-SoC - System On Chip
+SoC - System-On-a-Chip
 HPC - High Performance Computing
 DSP - Digital Signal Processor
 CAD - Computed Aided Design
@@ -174,6 +177,7 @@ HAL - Hardware Abstraction Layer.
 BSP - Board Support Package.
 RDS - Radio Data System.
 DAB - Digital Audio Broadcasting.
+DAB - Dual Active Bridge.
 RMS - root mean square
 NFS - Network File System
 UPS - Uninterrumpible Power Supply.
@@ -188,6 +192,20 @@ LCD - Liquid Cristal Display.
 LED - Light emitting Diode.
 AES - Advanced Encription Standard.
 DES - Data Encryption Standard.
+AMD - Advanced Micro Devices.
+TI - Texas Instruments.
+ADI - Analog Devices Integrated.
+EDA - Electronic Design Automation.
+CAD - Computer Aided Design.
+IDM - Integrated Devices Manufacturer.
+IP - Intellectual Propierty.
+EOL - End of Line.
+LSI - Large Scale of Integration.
+VLSI - Very Large Scale of Integration.
+ASIC - Application Specific Integrated Circuit.
+COT - Customer Owned Tooling.
+FSB - Functional System Block.
+
 
 
 
