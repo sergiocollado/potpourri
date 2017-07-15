@@ -45,7 +45,7 @@ BSP - Board Support Package
 HAL - Hardware Abstraction Layer
 SDK - Software Development Kit
 V2I - [Vehicle to Infraestructure](https://www.its.dot.gov/v2i/) /https://www.pcb.its.dot.gov/t3_webinars.aspx
-AI -  Artificial Intellignece
+AI -  Artificial Intelligence.
 ITS - Intelligent Transport System.
 DSRC - Dedicated Short Range Comunications
 AES - Advanced Encription Standard
@@ -60,7 +60,7 @@ IV - Initialization Vector
 FIFO - First In First Out
 SISO - Single Input Single Output
 MIMO - Multiple Input Multiple Output
-ITS - Intelligent Transport Systems
+ITS - Intelligent Transport Systems.
 V2I - vehicle to infraestructure [Vehicle to Infraestructure](https://www.its.dot.gov/v2i/) /https://www.pcb.its.dot.gov/t3_webinars.aspx
 V2V - vehicle to vehicle
 V2X - vehicle to others
@@ -205,7 +205,8 @@ VLSI - Very Large Scale of Integration.
 ASIC - Application Specific Integrated Circuit.
 COT - Customer Owned Tooling.
 FSB - Functional System Block.
-
+LTI - Lineal Time Invariant (systems).
+FS - Functional Safety.
 
 
 
