@@ -130,7 +130,10 @@ NG - Next Generation
 CFD - Computed Fluid Dinamics
 FEA - Finite Element Analisys
 ARM - Advanced Risc Machine.
-AAPCS - Arm Architecture Procedure Call Standard.
+AAPCS - ARM Architecture Procedure Call Standard.
+SP - Stack Pointer.
+MSP - Main Stack Pointer.
+PSP - Process Stack Pointer.
 FPGA - Field Programmable Gate Array.
 LUT - Look Up Tables
 SoC - System-On-a-Chip
