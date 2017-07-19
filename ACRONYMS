@@ -129,7 +129,8 @@ BTLE - BlueTooth Low Energy
 NG - Next Generation
 CFD - Computed Fluid Dinamics
 FEA - Finite Element Analisys
-ARM - Advanced Risc Machine
+ARM - Advanced Risc Machine.
+AAPCS - Arm Architecture Procedure Call Standard.
 FPGA - Field Programmable Gate Array.
 LUT - Look Up Tables
 SoC - System-On-a-Chip
