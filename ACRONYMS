@@ -38,9 +38,6 @@ SPA - Single Page Application
 FMECA - Failure mode, effects and critical analysis
 SMD - Surface Mount Device
 SO - Small Outline
-ABI - Aplication Binary Interface
-EABI - Extended Aplication Binary Interface
-OABI - Old Aplication Binary Interface.
 BSP - Board Support Package
 HAL - Hardware Abstraction Layer
 SDK - Software Development Kit
@@ -134,7 +131,11 @@ AAPCS - ARM Architecture Procedure Call Standard.
 SP - Stack Pointer.
 MSP - Main Stack Pointer.
 PSP - Process Stack Pointer.
+ABI - Aplication Binary Interface
+EABI - Extended Aplication Binary Interface
+OABI - Old Aplication Binary Interface.
 FPGA - Field Programmable Gate Array.
+ASIC - Application Specific Integrated Circuit.
 LUT - Look Up Tables
 SoC - System-On-a-Chip
 HPC - High Performance Computing
