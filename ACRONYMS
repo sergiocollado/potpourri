@@ -134,6 +134,7 @@ PSP - Process Stack Pointer.
 ABI - Aplication Binary Interface
 EABI - Extended Aplication Binary Interface
 OABI - Old Aplication Binary Interface.
+CMSIS - (ARM) Cortex Microcontroller Software Interface Standard.
 FPGA - Field Programmable Gate Array.
 ASIC - Application Specific Integrated Circuit.
 LUT - Look Up Tables
