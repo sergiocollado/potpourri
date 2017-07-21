@@ -10,6 +10,7 @@ http://www.autodesk.com/products/fusion-360/overview
 
 http://fritzing.org/home/
 
+
 hw simulation of fritzing: https://hci.rwth-aachen.de/spritzer
 
 http://www.electronicshub.org/arduino-rf-transmitter-receiver-module/
@@ -241,6 +242,7 @@ DAB [normative](http://www.etsi.org/technologies-clusters/technologies/broadcast
 
 https://wiki.analog.com/university/courses/electronics/text/chapter-11
 
+http://smithsonianchips.si.edu/augarten/index.htm
 
 Emergency Alert System [EAS](http://www.sigidwiki.com/wiki/Emergency_Alert_System_(EAS))
 
