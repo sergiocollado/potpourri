@@ -239,6 +239,7 @@ DAB: Fast Information Channel [FIC](https://www.worlddab.org/technology-rollout/
 
 DAB [normative](http://www.etsi.org/technologies-clusters/technologies/broadcast/dab) and [:link:](http://www.etsi.org/deliver/etsi_en/300400_300499/300401/02.01.01_60/en_300401v020101p.pdf)
 
+https://wiki.analog.com/university/courses/electronics/text/chapter-11
 
 
 Emergency Alert System [EAS](http://www.sigidwiki.com/wiki/Emergency_Alert_System_(EAS))
@@ -248,6 +249,8 @@ TPEG [:link:](http://tisa.org/technologies/tpeg/) - Transport Protocol Expert Gr
 TMC [Traffic Message Channel](http://tisa.org/technologies/tpeg/) - [TMC coverage](http://tisa.org/technologies/coverage/)
 
 DAB: [capabiliteis](https://worlddabeureka.org/2013/09/05/so-you-think-it-is-only-radio/)
+
+
 
 # Reference designs
 
