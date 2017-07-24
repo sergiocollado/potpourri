@@ -414,7 +414,7 @@ TLS 1.0 transpor layer security protocol : https://tools.ietf.org/html/rfc2246
 
 TLS 1.2 https://tools.ietf.org/html/rfc5246
 
-
+About Microsoft Windows:  https://www.lifewire.com/windows-key-concepts-4102717
 
 
 
