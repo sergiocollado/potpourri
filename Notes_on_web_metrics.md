@@ -35,3 +35,32 @@ You can also use the following tools:
 
 Also check the meta-tags: http://www.metatags.org/meta_name_robots
 
+# STYLING AND CSS
+
+## display
+
+'display' propierty - it indicates how an element will be displayed. - Its the most important propierty for controlling the layout.
+
+values are: 
+
+- block: the element starts always in a new line. Common cases are <div> <h1> <h2> ... <header> <footer> <p> <section>.
+- inline: the element doesn't start in a new line, and only takes as much space as required, common cases are <a> <span> <img>.
+- none: the element is not displayed, and its space is not reserved also. as example the <script> is display:none. This is opposed for example to the propierty: visibility:hidden, in which the element is not displayed, but it space is reserverd.
+- inline-block: displays the element as an inline-block containter
+- list-item: behaves as an <li> element.
+- run-in: behaves as an inline or block, depending on the context.
+- flex: [CSS3] element displayed as a block-level flex container.
+- inline-flex [CSS3] the element is displayed as an inline-level flex container.
+
+##  box-sizing:
+
+values are:
+- content-box: specifies the size of the box, but it doen't include border, padding or margin. It only defines the content.
+- border-box: specifies the size (width and height) and includes content, padding, and border, but not the margin!
+
+
+
+
+
+
+- 
