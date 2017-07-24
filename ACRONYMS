@@ -220,7 +220,9 @@ wrt - with respect to.
 DSS - Digital Signature Standard.
 TLS - Trasport Layer Security (protocol).
 OEM - Original Equipment Manufacturer.
-
+CLK - Clock
+CW  - Clock Wise.
+CCW - Counter Clock Wise.
 
 
 
