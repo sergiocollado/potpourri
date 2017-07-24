@@ -10,7 +10,6 @@ http://www.autodesk.com/products/fusion-360/overview
 
 http://fritzing.org/home/
 
-
 hw simulation of fritzing: https://hci.rwth-aachen.de/spritzer
 
 http://www.electronicshub.org/arduino-rf-transmitter-receiver-module/
@@ -42,6 +41,8 @@ http://www.electronicshub.org/arduino-rf-transmitter-receiver-module/
 http://doradioamad.dominiotemporario.com/index.html
 
 check books of Newton C. Braga
+
+nestC language:  http://dl.acm.org/citation.cfm?id=781133
 
 audio youtube channel - > https://www.youtube.com/channel/UCOuow_HIYmeaIqi42zVs3qg
 
@@ -198,6 +199,16 @@ TI design tool WEBENCH: http://www.ti.com/lsds/ti/analog/webench/overview.page
 TI wifi SoC: http://www.ti.com/tool/cc3220s-launchxl?hqs=epd-mcu-ecs-slmcu-bs-evm-AdRoll-wwe&DCM=yes
 
 magazine about electronics: http://www.ee.co.za/
+
+another magazine about u_electronics:  http://imapsource.org/doi/abs/10.4071/2380-4491.2017.HiTEN.31?code=imap-site
+
+IEEE: http://ieeexplore.ieee.org/abstract/document/7958499/?reload=true
+
+science_direct:  http://www.sciencedirect.com/science/article/pii/S0950584917304469
+
+IEEE_2: http://ieeexplore.ieee.org/abstract/document/7959113/
+
+IEEE_3: http://ieeexplore.ieee.org/abstract/document/7463065/
 
 web with electrical topics: http://electricaltopics.blogspot.com.es/2015/02/working-principle-of-earth-resistance-tester.html
 
@@ -359,7 +370,6 @@ DAB [ETSI standards](https://www.worlddab.org/public_document/file/434/23.WDMB_G
 DAB [ETSI standards](http://www.etsi.org/technologies-clusters/technologies/broadcast/dab)
 
 DRM & DAB [:link:](http://www.drm-radio-kl.eu/symposium2014/PDF/FhG-DRM-DAB-Features.pdf)
-
 
 
 awesome tutorials: https://webplatform.github.io/#docs
