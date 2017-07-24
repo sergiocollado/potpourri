@@ -398,6 +398,14 @@ PCIDSS] -- PCI-DSS Payment Card Industry Data Security Standard
 
 MQTT- --> http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.pdf
 
+WebCryptoAPI: https://www.w3.org/TR/WebCryptoAPI/#RandomSource-method-getRandomValues
+
+TLS 1.0 transpor layer security protocol : https://tools.ietf.org/html/rfc2246
+
+TLS 1.2 https://tools.ietf.org/html/rfc5246
+
+
+
 
 
 
