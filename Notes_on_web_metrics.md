@@ -43,7 +43,7 @@ Also check the meta-tags: http://www.metatags.org/meta_name_robots
 
 values are: 
 
-- block: the element starts always in a new line. Common cases are <div> <h1> <h2> ... <header> <footer> <p> <section>.
+- block: the element starts always in a new line. Common cases are \<div\> \<h1\> \<h2\> ... \<header\> \<footer\> \<p\> \<section\>.
 - inline: the element doesn't start in a new line, and only takes as much space as required, common cases are <a> <span> <img>.
 - none: the element is not displayed, and its space is not reserved also. as example the <script> is display:none. This is opposed for example to the propierty: visibility:hidden, in which the element is not displayed, but it space is reserverd.
 - inline-block: displays the element as an inline-block containter
