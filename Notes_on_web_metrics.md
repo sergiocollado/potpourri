@@ -35,7 +35,7 @@ You can also use the following tools:
 
 Also check the meta-tags: http://www.metatags.org/meta_name_robots
 
-# STYLING AND CSS
+# Styling and CSS
 
 ## display
 
@@ -52,6 +52,8 @@ values are:
 - flex: [CSS3] element displayed as a block-level flex container.
 - inline-flex [CSS3] the element is displayed as an inline-level flex container.
 
+Also for position an element at the center of something, many times is resolved with just: `margin:auto`
+
 ##  box-sizing:
 
 values are:
@@ -59,8 +61,3 @@ values are:
 - border-box: specifies the size (width and height) and includes content, padding, and border, but not the margin!
 
 
-
-
-
-
-- 
