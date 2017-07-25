@@ -115,12 +115,55 @@ Las respuestas están formadas por los siguentes campos:
 - Cabeceras HTTP, como las de las peticiones.
 - Opcionalmente, el recurso que se ha pedido.
 
-# Conclusión
+# Resumen
 
 El protocólo HTTP es un protocolo ampliable y facil de usar. Su estructura cliente-servidor, junto con la capacidad para usar cabeceras, permite a este protolo evolucionar con las nuevas y futuras aplicaciones en Internet.
 
 Aunque la versión del protocolo HTTP/2 añade algo de complejidad, al utilizar un formato en binario, esto aumenta su rendimiento, y la estructura y semantica de los mensajes es la misma desde la versión HTTP/1.0. El flujo de comunicaciones en una sesión es sencillo y puede ser facilmente estudiado e investigado con un simple monitor de mensajes HTTP.
 
+
+# Desarrollo de HTTP
+
+
+HTTP es el protocolo en el que se basa la Web. Fue inventado por Tim Berners-Lee entre los años 1989-1991, HTTP ha visto muchos cambios, manteniendo la mayor parte de su simplicidad y desarrollando su flexibilidad. HTTP ha evolucionado, desde un protocolo destinado al intercambio de archivos en un entorno de un laboratorio semi-seguro, al actual laberinto de Internet, sirviendo ahora para el intercambio de imágenes, vídeos en alta resolución y en 3D.
+Invención de la World Wide Web
+
+En 1989, mientras trabajaba en el CERN, Tim Berners-Lee escribió una propuesta para desarrollar un sistema de hipertexto sobre Internet. Inicialmente lo llamó: 'Mesh' (malla, en inglés), y posteriormente se renombró como World Wide Web (red mundial), durante su implementación en 1990. Desarrollado sobre los protocolos existentes TCP e IP, está basado en cuatro bloques:
+Un formato de texto para representar documentos de hyper-texto: HyperText Markup Language (HTML).
+Un protocolo sencillo para el intercambio de esos documentos,  en inglés: HypertText Transfer Protocol (HTTP).
+Un cliente que muestre (e incluso pueda editar) esos documentos. El primer navegador Web, llamado: WorldWideWeb.
+Un servidor para dar acceso a los documentos, una versión temprana: httpd.
+
+Estos cuatro bloques fundamentales se finalizaron para finales de 1990, y los primeros servidores estaban ya funcionando fuera del CERN a principios del 1991. El 6 de Agosto de 1991, el post de Tim Berners-Lee, se considera actualmente como el inicio oficial de la Web como proyecto público. 
+
+La versión del protocolo HTTP usada en aquel momento, era realmente muy sencilla, posteriormente pasó a HTTP/0.9, referido algunas veces, como el protocolo de una sola línea.
+
+## HTTP/0.9 – El protocolo de una sola línea
+
+La versión inicial de HTTP, no tenía número de versión; aunque posteriormente se la denominó como 0.9 para distingirla de las versiones siguientes. HTTP/0.9 es un protocolo extremadamente sencillo: una petición consiste simplemente en una única linea, que comienza por el único método posible GET, seguido por la dirección del recurso a pedir (no la URL, ya que tanto el protocolo, el servidor y el puerto, no son necesarios una vez ya se ha conectado al servidor).
+
+> GET /mypage.html
+
+La respuesta también es muy sencilla: solamente consiste el archivo pedido.
+
+> \<HTML\>
+> A very simple HTML page
+> \<\/HTML\>
+
+Al contrario que sus posteriores evoluciones, el protocolo HTTP/0.9 no usa cabeceras HTTP, con lo cual únicamente es posible transmitir archivos HTML, y ningún otro tipo de archivos. Tampoco habia información del estado ni códigos de error: en el caso un problema, el archivo HTML pedido, era devuelto con una descripción del problema dentro de él, para que una persona pudiera analizarlo.
+
+
+## HTTP/1.0 – Desarrollando extensibilidad
+
+La versión HTTP/0.9 era ciertamente limitada y tanto los navegadores como los servidores, pronto ampliaron el protocolo para que fuera más flexible.
+
+La versión del protocolo se envia con cada petición: HTTP/1.0 se añade a la línea de la petición GET.
+
+Se envía también un código de estado al comienzo de la respuesta, permitiendo así que el navegador pueda responder al exito o fracaso de la petición realizada, y actuar en consecuencia (como actualizar el archivo o usar la caché local de algún modo).
+
+El concepto de cabeceras de HTTP, se presentó tanto para las peticiones como para las respuestas, permitiendo la trasmisión de metadata y conformando un protocolo muy versatil y ampliable. 
+
+Con el uso de las cabeceras de HTTP, se pudieron transmitir otros documentos además de HTML, mediante la cabecera "Content-Type".
 
 
 
