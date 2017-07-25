@@ -314,6 +314,10 @@ https://clara.io/library
 
 https://sketchfab.com/
 
+http://edge.cs.drexel.edu/repository/
+
+http://shape.cs.princeton.edu/search.html
+
 
 # firms & Semiconductors companies
 
@@ -417,6 +421,8 @@ TLS 1.0 transpor layer security protocol : https://tools.ietf.org/html/rfc2246
 TLS 1.2 https://tools.ietf.org/html/rfc5246
 
 About Microsoft Windows:  https://www.lifewire.com/windows-key-concepts-4102717
+
+IBM research:  http://www.research.ibm.com/featured/whats-new.shtml
 
 
 
