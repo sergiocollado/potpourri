@@ -314,6 +314,7 @@ https://clara.io/library
 
 https://sketchfab.com/
 
+
 # firms & Semiconductors companies
 
 http://www.allegromicro.com/
@@ -330,7 +331,7 @@ intersil
 
 renersas
 
-
+eSilicon
 
 
 
@@ -371,6 +372,7 @@ DAB [ETSI standards](http://www.etsi.org/technologies-clusters/technologies/broa
 
 DRM & DAB [:link:](http://www.drm-radio-kl.eu/symposium2014/PDF/FhG-DRM-DAB-Features.pdf)
 
+WIFI-PLANNING-TOOL:  http://www.aerohive.com/planner/
 
 awesome tutorials: https://webplatform.github.io/#docs
 
@@ -427,10 +429,15 @@ Online dissasembler: https://www.onlinedisassembler.com/static/home/
 
 
 
-## Peer review journal
+## Journals:
 
 https://www.hindawi.com/journals/isrn/2013/953792/
 
+Association for Computing Machinery: http://www.acm.org
+
+The SAO/NASA Astrophysics Data system:  http://www.adsabs.harvard.edu/
+
+Reevee observatory Alaska: http://www.reeve.com/Documents/
 
 
 
