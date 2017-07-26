@@ -23,9 +23,12 @@ Robots database [:link:](http://www.robotstxt.org/db.html)
 Also [:link:](https://www.quora.com/What-is-the-best-open-source-web-crawler-and-why)
 and: [Google's Search Optimization Starting Guide](https://static.googleusercontent.com/media/www.google.com/es//webmasters/docs/search-engine-optimization-starter-guide.pdf)
 
-
-
 For Validating CSS, use this tool: http://jigsaw.w3.org/css-validator/#validate_by_uri+with_options
+
+Also use:  http://validator.w3.org/#validate_by_uri+with_options
+
+It can be also downloaded;  http://jigsaw.w3.org/css-validator/DOWNLOAD.html
+
 
 You can also use the following tools:
 
