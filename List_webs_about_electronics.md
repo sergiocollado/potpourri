@@ -164,6 +164,8 @@ Intro to .NET core: https://www.youtube.com/watch?v=6tQBCNHWtAU
 
 .NET core plain concepts: https://www.youtube.com/watch?v=c5reS7QrEAo
 
+https://www.gitbook.com/book/programmingblockchain/programmingblockchain/details
+
 course in RT: http://www.math.unipd.it/~tullio/RTS/2011/
 
 other course in RT: https://www.csee.umbc.edu/~younis/Real-Time/CMSC691S.htm
