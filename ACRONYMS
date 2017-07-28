@@ -17,6 +17,12 @@ DIRT - Data Intensive Real-Time applications
 AIML - Artificial Intelligence Mark-up Languaje
 OAMA - Ostia A Mano Abierta
 CAN - Controller Area Network
+ECU - Electronic Control Unit.
+BCM - Body Control Module.
+DTC - Diagnostic Trouble Code.
+SAE - Society Automotive Engineers.
+OSEK - 
+ISO - International Standards Organization.
 CLI - Command line instruction
 HA  -  High availability
 MFA - multi factor authentication
@@ -236,7 +242,7 @@ MSB - Most Significant Bit.
 LSB - Less Significant Bit.
 OCR - Opticall Character Recognition.
 PCA - Principal Component Analysis.
-
+BFS - Breath First Seach.
 
 
 
