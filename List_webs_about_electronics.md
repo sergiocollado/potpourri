@@ -22,7 +22,7 @@ tool EDA: https://www.schematics.io/
 
 tool EDA: https://www.snapeda.com/
 
-motor supplier: http://www.qxmotor.com.hk/frame.html?QXRS360.html
+Electric motor supplier: http://www.qxmotor.com.hk/frame.html?QXRS360.html
 
 battery sizes: https://en.wikipedia.org/wiki/List_of_battery_sizes#Cylindrical_cells
 
@@ -149,6 +149,8 @@ SMD PCB stencils: https://www.oshstencils.com/#
 BADGUYS: http://www.fomento.gob.es/MFOM/LANG_CASTELLANO/PLANES/PESUB_MFOM_20142017/
 
 SMARTCHITIESCHALLENGE -> http://smartcitiesconnect.com/start-up_challenge.html
+
+http://www.innovationworldcup.com/iot-wt/
 
 ms courses: https://mva.microsoft.com/
 
