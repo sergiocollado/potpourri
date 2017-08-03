@@ -309,6 +309,8 @@ glibc code: https://sourceware.org/git/?p=glibc.git;a=tree;hb=HEAD
 
 build root tutorial: https://buildroot.org/downloads/manual/manual.html
 
+yocto-trainning:  https://community.nxp.com/docs/DOC-94849
+
 
 # 3D Models
 
@@ -457,6 +459,8 @@ Reevee observatory Alaska: http://www.reeve.com/Documents/
 https://arxiv.org/
 
 http://onlinelibrary.wiley.com/
+
+https://authorservices.wiley.com/author-resources/book-authors/index.html
 
 
 
