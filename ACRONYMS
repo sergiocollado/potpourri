@@ -128,9 +128,9 @@ DAC - Digital to Analog Converter
 API - Application Program Interface
 IDE - Integrated Development Enviroment
 SDK - Software Development Kit
-BSP - Board Support Package
+BSP - Board Support Package.
 BTLE - BlueTooth Low Energy
-NG - Next Generation
+NG - Next Generation.
 CFD - Computed Fluid Dinamics
 FEA - Finite Element Analisys
 ARM - Advanced Risc Machine.
@@ -138,20 +138,22 @@ AAPCS - ARM Architecture Procedure Call Standard.
 SP - Stack Pointer.
 MSP - Main Stack Pointer.
 PSP - Process Stack Pointer.
-ABI - Aplication Binary Interface
-EABI - Extended Aplication Binary Interface
+ABI - Aplication Binary Interface.
+EABI - Extended Aplication Binary Interface.
 OABI - Old Aplication Binary Interface.
 CMSIS - (ARM) Cortex Microcontroller Software Interface Standard.
 FPGA - Field Programmable Gate Array.
 ASIC - Application Specific Integrated Circuit.
-LUT - Look Up Tables
-SoC - System-On-a-Chip
-HPC - High Performance Computing
-DSP - Digital Signal Processor
-CAD - Computed Aided Design
-CCF - Common Cause Failure
-DC - Diagnostics Coverage
-DC_avg - average Diagnostic Coverage
+LUT - Look Up Tables.
+SoC - System-On-a-Chip.
+HPC - High Performance Computing.
+DSP - Digital Signal Processor.
+CAD - Computed Aided Design.
+CCF - Common Cause Failure.
+DC - Diagnostics Coverage.
+DC_avg - average Diagnostic Coverage.
+DC - Direct Current.
+AC - Altenating Current.
 ECU - Electronic Control Unit
 ETA - Even Tree Analysis
 E/E/PES - Electrical/Electronic/programmable electronics systems.
