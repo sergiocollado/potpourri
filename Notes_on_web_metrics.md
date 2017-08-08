@@ -89,4 +89,40 @@ values are:
     xhttp.setRequestHeader('Expires','Wed, 21 Oct 2015 07:28:00 GMT'); //date in the past.
     xhttp.send();	
     return xhttp.responseXML; 
-    ```
+ ```
+
+## jQuery no-cache call
+
+
+```javascritp
+jQueryGET(dname){
+	var result = "";
+
+	$.ajax({
+        url: dname,
+        tySpe: "GET",
+        dataType: 'xml',
+		cache: false, 
+        async: false, //false is for sync calls
+		headers: { 'pragma':'no-cache',
+				   'Cache-Control':'no-cache, no-store, must-revalidate',
+				   'Expires':'Wed, 21 Oct 2015 07:28:00 GMT',
+				   },
+        success: function(xmldata){
+			if(!xmldata) {console.log("AnSwer wrong!"); }
+            console.log("file " + dname + " loaded OK");
+		    result = xmldata;
+        },
+        error: function(jqXHR,Status, error_string){
+            console.log ("file " + dname + " loaded KO");
+			console.log ("STATUS: " + Status);
+			console.log ("Error: " + error_string);
+        }
+    });
+    
+    return result;
+}
+``` 
+
+Reference: https://stackoverflow.com/questions/5316697/jquery-return-data-after-ajax-call-success
+
