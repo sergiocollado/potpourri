@@ -64,3 +64,29 @@ values are:
 - border-box: specifies the size (width and height) and includes content, padding, and border, but not the margin!
 
 
+
+
+## Ajax no-cache call
+
+```javascript
+    var dname = %name of the file location.
+    var xhttp = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+    xhttp.open("GET",dname,false); //true: async ; false:sync.
+	xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200)
+	{
+		console.log("load XML OK: " + dname);
+		return xhttp.responseXML;
+	}
+	else if (xhttp.readyState == 4 && xhttp.status == 404)
+	{
+		console.log("XML NOT FOUND 404: " + dname);
+		alert("XML NOT FOUND 404: " + dname);
+	}
+    };	
+    xhttp.setRequestHeader('Pragma','no-cache');
+    xhttp.setRequestHeader('Cache-Control','no-cache, no-store, must-revalidate');
+    xhttp.setRequestHeader('Expires','Wed, 21 Oct 2015 07:28:00 GMT'); //date in the past.
+    xhttp.send();	
+    return xhttp.responseXML; 
+    ```
