@@ -20,6 +20,16 @@ REFERENCES:
 >> Embedded linux website: http://www.elinux.org/
 >> Buildroot manual: https://buildroot.org/downloads/manual/manual.html
 
+>> Reference: man pages:
+  >> User commands: [:link:](http://man7.org/linux/man-pages/dir_section_1.html)
+  >> System calls: [:link:](http://man7.org/linux/man-pages/dir_section_2.html)
+  >> Library standard C: [:link:](http://man7.org/linux/man-pages/dir_section_3.html)
+  >> Devices [:link:](http://man7.org/linux/man-pages/dir_section_4.html)
+  >> Files systems [:link:](http://man7.org/linux/man-pages/dir_section_5.html)
+  >> Conventions & miscellaneous [:link:](http://man7.org/linux/man-pages/dir_section_7.html)
+  >> system Administration [:link:](http://man7.org/linux/man-pages/dir_section_8.html)
+  
+  
 
 The analysis of the memory in the linux system, can be checked using the commands:
 
