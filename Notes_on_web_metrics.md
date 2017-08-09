@@ -34,6 +34,7 @@ You can also use the following tools:
 
 - [jsbin](http://jsbin.com/?html,output)
 - [thimble](https://thimble.mozilla.org/)
+- [JSfiddle](https://jsfiddle.net/)
 
 
 Also check the meta-tags: http://www.metatags.org/meta_name_robots
