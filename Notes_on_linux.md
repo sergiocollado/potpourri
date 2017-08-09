@@ -20,6 +20,9 @@ REFERENCES:
 >> Embedded linux website: http://www.elinux.org/
 >> Buildroot manual: https://buildroot.org/downloads/manual/manual.html
 >> https://www.linux.com/ <br>
+>> https://www.linux.com/tutorials <br>
+
+
 
 >> Reference: man pages:
   >> User commands: [:link:](http://man7.org/linux/man-pages/dir_section_1.html)
@@ -230,34 +233,34 @@ https://www.tux.org/<br>
 http://www.dit.upm.es/~jmseyas/linux/kernel/hackers-docs.html<br>
 https://www.gnu.org/manual/blurbs.html<br>
 POSIX_SPEC: https://www2.opengroup.org/ogsys/catalog/t101<br>
-POSIX_SPEC: http://pubs.opengroup.org/onlinepubs/9699919799/
-http://www.linuxhowtos.org**
+POSIX_SPEC: http://pubs.opengroup.org/onlinepubs/9699919799/     <br>
+http://www.linuxhowtos.org    <br>
 
 <hr>
 <br>
 # UTILITIES.
 
-https://www.gnu.org/software/gnu-c-manual/
-https://www.gnu.org/software/indent/
-https://www.gnu.org/software/inetutils/
-https://www.gnu.org/software/libc/
-https://gnupg.org/related_software/libgcrypt/
-https://www.gnu.org/software/make/
-http://www.gnu.org.ua/software/pies/
-http://sqltutor.fsv.cvut.cz/cgi-bin/sqltutor
-https://www.gnu.org/software/termutils/
-https://www.gnu.org/software/time/
-https://www.gnu.org/software/alive/
-https://www.gnu.org/software/automake/
-https://www.gnu.org/software/bash/
-https://www.gnu.org/software/binutils/
-https://www.gnu.org/software/c-graph/
-http://twysf.users.sourceforge.net/
-https://www.dwheeler.com/flawfinder/
-https://www.gnu.org/software/cflow/
-https://www.gnu.org/software/cgicc/
-https://www.gnu.org/software/coreutils/coreutils.html
-
+https://www.gnu.org/software/gnu-c-manual/    <br>
+https://www.gnu.org/software/indent/    <br>
+https://www.gnu.org/software/inetutils/    <br>
+https://www.gnu.org/software/libc/    <br>
+https://gnupg.org/related_software/libgcrypt/    <br>
+https://www.gnu.org/software/make/    <br>
+http://www.gnu.org.ua/software/pies/    <br>
+http://sqltutor.fsv.cvut.cz/cgi-bin/sqltutor    <br>
+https://www.gnu.org/software/termutils/    <br>
+https://www.gnu.org/software/time/    <br>
+https://www.gnu.org/software/alive/    <br>
+https://www.gnu.org/software/automake/    <br>
+https://www.gnu.org/software/bash/    <br>
+https://www.gnu.org/software/binutils/    <br>
+https://www.gnu.org/software/c-graph/    <br>
+http://twysf.users.sourceforge.net/    <br>
+https://www.dwheeler.com/flawfinder/    <br>
+https://www.gnu.org/software/cflow/    <br>
+https://www.gnu.org/software/cgicc/    <br>
+https://www.gnu.org/software/coreutils/coreutils.html    <br>
+https://www.linux.com/learn/limit-cpu-usage-process-linux-cpulimit-tool    <br>
 
 
 
