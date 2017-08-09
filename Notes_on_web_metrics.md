@@ -66,6 +66,31 @@ values are:
 
 
 <hr>
+## \<pictures\> tag RWD- 
+
+The pictures tag, allows you to present different images sources according to a media query.
+so the \<pictures\> tag, needs at two other tags at least: \<src\> and \<img\>
+ - \<img\> is for backwards compatibility, for those browsers  that don't support the \<pictures\> tag
+ - \<src\> will indcate what source to get, according to a media query.
+ 
+The \<src\> tag, will have the following attributes:
+- srcset : url of the source
+- media : media query to apply
+- sizes : a width descriptor.
+- type : the MIME type.
+
+Example:
+
+```html
+<picture>
+  <source media="(min-width: 650px)" srcset="img_medium_car.jpg">
+  <source media="(min-width: 465px)" srcset="img_small_car.jpg">
+  <img src="img_car.jpg" alt="car" style="width:auto;">
+</picture>
+```
+
+<hr>
+
 
 ## Ajax no-cache request
 
