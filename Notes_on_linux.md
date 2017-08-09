@@ -8,7 +8,7 @@ In any case, always have a try with:
 
 
 REFERENCES:
->> Of course the master reference will allways be our friend: https://linux.die.net/man/  </br>
+>> Of course the master reference will be: https://linux.die.net/man/  </br>
 >> And certanly our battle-horse the HOWTOs: https://linux.die.net/HOWTO/HOWTO-INDEX/ </br>
 >> at Linux Documentation Project: https://github.com/tLDP/LDP/tree/master/LDP </br>
 >> For the linux kernel: https://www.kernel.org/ </br>
@@ -19,6 +19,7 @@ REFERENCES:
 >> the linux device drivers book 3rd edition, is at: https://lwn.net/Kernel/LDD3/ 
 >> Embedded linux website: http://www.elinux.org/
 >> Buildroot manual: https://buildroot.org/downloads/manual/manual.html
+>> https://www.linux.com/ <br>
 
 >> Reference: man pages:
   >> User commands: [:link:](http://man7.org/linux/man-pages/dir_section_1.html)
@@ -230,8 +231,12 @@ http://www.dit.upm.es/~jmseyas/linux/kernel/hackers-docs.html<br>
 https://www.gnu.org/manual/blurbs.html<br>
 POSIX_SPEC: https://www2.opengroup.org/ogsys/catalog/t101<br>
 POSIX_SPEC: http://pubs.opengroup.org/onlinepubs/9699919799/
-http://www.linuxhowtos.org
-==========================================<br>
+http://www.linuxhowtos.org**
+
+<hr>
+<br>
+# UTILITIES.
+
 https://www.gnu.org/software/gnu-c-manual/
 https://www.gnu.org/software/indent/
 https://www.gnu.org/software/inetutils/
