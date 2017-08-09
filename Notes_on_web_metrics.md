@@ -64,9 +64,9 @@ values are:
 - border-box: specifies the size (width and height) and includes content, padding, and border, but not the margin!
 
 
+<hr>
 
-
-## Ajax no-cache call
+## Ajax no-cache request
 
 ```javascript
     var dname = %name of the file location.
@@ -90,8 +90,9 @@ values are:
     xhttp.send();	
     return xhttp.responseXML; 
  ```
+<hr>
 
-## jQuery no-cache call
+## jQuery no-cache request
 
 
 ```javascritp
@@ -102,16 +103,16 @@ jQueryGET(dname){
         url: dname,
         tySpe: "GET",
         dataType: 'xml',
-		cache: false, 
+	cache: false,  //this is for control the browser cache.
         async: false, //false is for sync calls
-		headers: { 'pragma':'no-cache',
-				   'Cache-Control':'no-cache, no-store, must-revalidate',
-				   'Expires':'Wed, 21 Oct 2015 07:28:00 GMT',
-				   },
+	headers: { 'pragma':'no-cache',
+		   'Cache-Control':'no-cache, no-store, must-revalidate',
+		   'Expires':'Wed, 21 Oct 2015 07:28:00 GMT',
+		   },
         success: function(xmldata){
-			if(!xmldata) {console.log("AnSwer wrong!"); }
-            console.log("file " + dname + " loaded OK");
-		    result = xmldata;
+		if(!xmldata) {console.log("AnSwer wrong!"); }
+            	console.log("file " + dname + " loaded OK");
+		result = xmldata;
         },
         error: function(jqXHR,Status, error_string){
             console.log ("file " + dname + " loaded KO");
@@ -125,4 +126,44 @@ jQueryGET(dname){
 ``` 
 
 Reference: https://stackoverflow.com/questions/5316697/jquery-return-data-after-ajax-call-success
+
+<hr>
+
+## vanilla-JS for Scripting at \<head\> for dynamically adding CSS and JS files
+
+```javascript
+//this file is to force a cache-burst, and so force the server to no use cache for those files.
+//var file_name = "";
+//var init_file; 
+//var rand_num = Math.floor(100000*Math.random()+1); //this is not needed anymore because I force the cache-burst using jQuery.
+
+/*
+file_name = 'whateverlib.js';
+init_file = document.createElement("SCRIPT");
+init_file.setAttribute("src",  file_name + "?" + rand_num );
+document.head.appendChild(init_file);*/
+
+function Load_head_script_cache_burst(filename){
+var add_script =  document.createElement("SCRIPT");
+add_script.setAttribute("src",  file_name + "?" + rand_num );
+document.head.appendChild(add_script);
+return;
+};
+```
+<hr>
+
+## jQuery for Scripting at \<head\> for dynamically adding JS files
+
+```javascript
+//ref: https://api.jquery.com/jQuery.getScript/
+$.getScript('lib1.js').then(
+$.getScript('lib2.js')).then(
+$.getScript('lib3.js')).then(
+$.getScript('lib4.js')).then(
+$.getScript("lib5.js")).then(
+$.getScript("lib6.js")).then(
+$.getScript("lib7.js")).then(
+$.getScript("lib8.js"));
+```
+
 
