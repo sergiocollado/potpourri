@@ -133,9 +133,9 @@ Reference: https://stackoverflow.com/questions/5316697/jquery-return-data-after-
 
 ```javascript
 //this file is to force a cache-burst, and so force the server to no use cache for those files.
-//var file_name = "";
-//var init_file; 
-//var rand_num = Math.floor(100000*Math.random()+1); //this is not needed anymore because I force the cache-burst using jQuery.
+var file_name = "";
+var init_file; 
+var rand_num = Math.floor(100000*Math.random()+1);  //adding "?%random_number", we mislead the server.
 
 /*
 file_name = 'whateverlib.js';
