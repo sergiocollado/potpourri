@@ -21,6 +21,7 @@ REFERENCES:
 >> Buildroot manual: https://buildroot.org/downloads/manual/manual.html
 >> https://www.linux.com/ <br>
 >> https://www.linux.com/tutorials <br>
+>> to made an USB live LINUX, check: http://www.linuxliveusb.com/en/features <br>
 
 
 
