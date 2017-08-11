@@ -81,6 +81,10 @@ Binding: is infeaseble to find a msg'!= msg that: H(key,msg) == H(key,msg\').
 Puzzle-friendly: For every possible output value _y_, if a random input _k_ is chosen from a very spread out distribution,
 then it is infeasible to find _x_, such H(key,_x_) = _y_.
 
+# Commonly use hashes:
+
+- SHA: Secure Hash Algorithm
+- MD5: 
 
 # Some libraries for C programming that implement Hash:
 
