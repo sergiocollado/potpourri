@@ -72,7 +72,6 @@ This holds to the 'Binding' security propierty: It is infeasible to find another
 the commintment is the same with the same key: H(key|msg') == H(key|msg).
 
 
-
 #### Security propierties:
 
 Hiding: Given a commintment, H(key|msg) is infeaseble to find msg. 
@@ -81,3 +80,12 @@ Binding: is infeaseble to find a msg'!= msg that: H(key,msg) == H(key,msg\').
 
 Puzzle-friendly: For every possible output value _y_, if a random input _k_ is chosen from a very spread out distribution,
 then it is infeasible to find _x_, such H(key,_x_) = _y_.
+
+
+# Some libraries for C programming that implement Hash:
+
+- uthash [:link:](http://troydhanson.github.io/uthash/index.html)
+- Judy [:link:](http://judy.sourceforge.net/)
+- SGLIB [:link:](http://judy.sourceforge.net/)
+
+
