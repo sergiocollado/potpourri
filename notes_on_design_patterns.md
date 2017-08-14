@@ -29,13 +29,13 @@ How do OBJECTS OF A CLASS behave and interact with each other
 
 How do CLASSES behave and interact with each other
 
-- Decorator
-- Adapter
-- Facade
-- Composite
-- Flyweight
-- Bridge
-- Proxy
+- **Decorator**: adds features to objects dynamically, this provides a sort of 'sub-classing' mechanism that is able to expend funcitonalities.
+- **Adapter**: Converts the interfece of an interface into another interface that the user expects, this allows for using different classes with the same interface.
+- **Facade**: A simple class that represents the whole system.
+- **Composite**: Compose objects into structures (as trees, Binary-trees, graphs ...)
+- **Flyweight**: a fine-grained instance used for efficient sharing.
+- **Bridge**: Separationg of objects abstractions from its implementations.
+- **Proxy**: An object, representing another object.
 
 ## Creational
 
