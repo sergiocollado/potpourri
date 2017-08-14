@@ -2,9 +2,9 @@
 
 Usually design patterns are classified into three categories:
 
-- Behavioral
-- Structural
-- Creational
+- **Behavioral** 
+- **Structural**
+- **Creational**
 
 
 They are:
@@ -13,15 +13,17 @@ They are:
 
 How do OBJECTS OF A CLASS behave and interact with each other
 
-- Strategy
-- Iterator
-- Template
-- Command
-- Memento
-- Visitor
-- State
-- Mediator
-- Observer
+- **Strategy**: defines a family of algorithms, encapsulates them, in such a way that they are interchangeable.
+- **Iterator**: defines a sequential access to an element collection
+- **Template**: defines an squeleton of an algorthim, data process, or class, deferring some steps to some subclasses.
+- **Command**: encapsulates a request in an object, then it is possible to parametizer clients with different requests, and order them, or qeue them, or support unloadable operations.
+- **Memento**: capture or record an object internal state or status.
+- **Visitor**: defines a new operation class without change.
+- **State**: alters o redefines an object behavior, when its state changes.
+- **Mediator**: defines a simple comunication between classes
+- **Observer**: defines a one-to-many dependency, so when one object changes state, all its dependencies are notified and updated.
+- **Chain of responsability**: defines a way to pass request in a chain of objects.
+- **Interpreter**: defines a way to include language elements in a program.
 
 ## Structural
 
