@@ -13,7 +13,7 @@ They are:
 
 How do OBJECTS OF A CLASS behave and interact with each other
 
-- **Strategy**: defines a family of algorithms, encapsulates them, in such a way that they are interchangeable.
+- **Strategy**: defines a family of algorithms or data processes, and encapsulates them, in such a way that they are interchangeable.
 - **Iterator**: defines a sequential access to an element collection
 - **Template**: defines an squeleton of an algorthim, data process, or class, deferring some steps to some subclasses.
 - **Command**: encapsulates a request in an object, then it is possible to parametizer clients with different requests, and order them, or qeue them, or support unloadable operations.
