@@ -29,6 +29,7 @@ Also use:  http://validator.w3.org/#validate_by_uri+with_options
 
 It can be also downloaded;  http://jigsaw.w3.org/css-validator/DOWNLOAD.html
 
+Also: http://www.html-tidy.org/
 
 You can also use the following tools:
 
