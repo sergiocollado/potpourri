@@ -462,6 +462,7 @@ http://onlinelibrary.wiley.com/
 
 https://authorservices.wiley.com/author-resources/book-authors/index.html
 
+https://www.omicsonline.org/engineering-journals.php
 
 
 ## Programming Jargon:
