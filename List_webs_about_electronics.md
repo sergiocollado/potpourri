@@ -436,8 +436,9 @@ About Microsoft Windows:  https://www.lifewire.com/windows-key-concepts-4102717
 IBM research:  http://www.research.ibm.com/featured/whats-new.shtml
 
 
+# It's Magic!!
 
-
+http://kripken.github.io/emscripten-site/index.html
 
 
 
