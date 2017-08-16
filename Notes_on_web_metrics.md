@@ -67,7 +67,9 @@ values are:
 
 
 <hr>
-## \<pictures\> tag RWD- 
+<br>
+<br>
+## RWD- \<pictures\> tag 
 
 The pictures tag, allows you to present different images sources according to a media query.
 so the \<pictures\> tag, needs at two other tags at least: \<src\> and \<img\>
@@ -156,7 +158,7 @@ Reference: https://stackoverflow.com/questions/5316697/jquery-return-data-after-
 
 <hr>
 
-## vanilla-JS for Scripting at \<head\> for dynamically adding CSS and JS files
+## JS-vanillafor Scripting at \<head\> for dynamically adding CSS and JS files
 
 ```javascript
 //this file is to force a cache-burst, and so force the server to no use cache for those files.
@@ -194,3 +196,13 @@ $.getScript("lib8.js"));
 ```
 
 
+# Element queries
+
+Element queries are similar to media queries, but, it allows you to apply stiles depending on the propierties of its element, and for example give different styles accordint to its width, it number of children, ....
+
+EQCSS is a JavaScript library developed by Tommy Hodgins. 
+
+Elements queries are an expansion to CSS, so you have to include its scritp:
+```html
+https://cdnjs.cloudflare.com/ajax/libs/eqcss/1.7.0/EQCSS.min.js
+```
