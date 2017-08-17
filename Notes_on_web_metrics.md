@@ -270,7 +270,7 @@ $(document).ready( function() {
 
 Events are user actions, as for example:
 
-document/window events: load, resize, scroll, unload.
+document/window events: load, ready, resize, scroll, unload.
 form events: submit, change, focus, blur.
 keyboard events: keypress, keydown, keyup
 mouse: mouseenter, mouseleave, hover ....
@@ -283,6 +283,8 @@ events, are defined as described above:
 ```javascript
 $(selector).action();
 ```
+
+
 
 there is also the `on` event, that allows you to define actions, for several events:
 
@@ -300,8 +302,34 @@ $("#my_element").on( {
 	});
 ```
 
+## Callbacks
+
+Callbacks are functions, that are passed as parmeters to other funtions, for example, I will perform an acction with a function `foo` but it will perform a certain filtering with another function that will be passed to it, lets say: function `filter_1` but, there can be 
+other situations, that will requiere to perform function `foo` but this time, based on another function `filter_2`... so, then,
+the point is to invoque the family of function `filter_x`, as a parameter of functionoo `foo`.
+
+these calls can be passed with  or without parameters:
+
+without parameters:
+
+```javascript
+$.get( "my_web", my_callback_1);
+```
+
+this code, will execute the function my_callback_1().
+
+with parameters:
+
+```javascript
+$.get( "my_web", function () {
+ my_callback_1(param1, param2);
+});
+```
 
 
 
 
+
+
+Reference: [:link:](https://learn.jquery.com/about-jquery/how-jquery-works/)
 
