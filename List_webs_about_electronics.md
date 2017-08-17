@@ -487,3 +487,99 @@ http://ideone.com/
 
 http://compilers.fresh2refresh.com/
 
+
+# List of RFCs
+
+[RFC2119] - "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, March 1997. - http://www.ietf.org/rfc/rfc2119.txt
+
+[RFC3629]
+Yergeau, F., "UTF-8, a transformation format of ISO 10646", STD 63, RFC 3629, November 2003 
+http://www.ietf.org/rfc/rfc3629.txt
+ 
+[RFC5246]
+Dierks, T. and E. Rescorla, "The Transport Layer Security (TLS) Protocol Version 1.2", RFC 5246, August 2008.
+http://www.ietf.org/rfc/rfc5246.txt
+ 
+[RFC6455]
+Fette, I. and A. Melnikov, "The WebSocket Protocol", RFC 6455, December 2011.
+http://www.ietf.org/rfc/rfc6455.txt
+ 
+[Unicode]
+The Unicode Consortium. The Unicode Standard.
+http://www.unicode.org/versions/latest/
+
+[RFC793]
+Postel, J. Transmission Control Protocol. STD 7, IETF RFC 793, September 1981.
+http://www.ietf.org/rfc/rfc793.txt
+ 
+[AES]
+Advanced Encryption Standard (AES) (FIPS PUB 197).
+http://csrc.nist.gov/publications/fips/fips197/fips-197.pdf
+ 
+[DES]
+Data Encryption Standard (DES).
+http://csrc.nist.gov/publications/fips/fips46-3/fips46-3.pdf
+ 
+[FIPS1402]
+Security Requirements for Cryptographic Modules (FIPS PUB 140-2)
+http://csrc.nist.gov/publications/fips/fips140-2/fips1402.pdf
+ 
+[IEEE 802.1AR]
+IEEE Standard for Local and metropolitan area networks - Secure Device Identity
+http://standards.ieee.org/findstds/standard/802.1AR-2009.html
+ 
+[ISO29192]
+ISO/IEC 29192-1:2012 Information technology -- Security techniques -- Lightweight cryptography -- Part 1: General
+http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=56425
+ 
+[MQTT NIST]
+MQTT supplemental publication, MQTT and the NIST Framework for Improving Critical Infrastructure Cybersecurity
+http://docs.oasis-open.org/mqtt/mqtt-nist-cybersecurity/v1.0/mqtt-nist-cybersecurity-v1.0.html
+ 
+[MQTTV31]
+MQTT V3.1 Protocol Specification.
+http://public.dhe.ibm.com/software/dw/webservices/ws-mqtt/mqtt-v3r1.html
+ 
+[NISTCSF]
+Improving Critical Infrastructure Cybersecurity Executive Order 13636
+http://www.nist.gov/itl/upload/preliminary-cybersecurity-framework.pdf
+ 
+[NIST7628]
+NISTIR 7628 Guidelines for Smart Grid Cyber Security
+http://www.nist.gov/smartgrid/upload/nistir-7628_total.pdf
+ 
+[NSAB]
+NSA Suite B Cryptography
+http://www.nsa.gov/ia/programs/suiteb_cryptography/
+ 
+[PCIDSS]
+PCI-DSS Payment Card Industry Data Security Standard
+https://www.pcisecuritystandards.org/security_standards/
+ 
+[RFC1928]
+"SOCKS Protocol Version 5", RFC 1928, March 1996.
+http://www.ietf.org/rfc/rfc1928.txt
+ 
+[RFC4511]
+"Lightweight Directory Access Protocol (LDAP): The Protocol", RFC 4511, June 2006.
+http://www.ietf.org/rfc/rfc4511.txt
+ 
+[RFC5077]
+ "Transport Layer Security (TLS) Session Resumption without Server-Side State", RFC 5077, January 2008.
+http://www.ietf.org/rfc/rfc5077.txt
+ 
+[RFC5280]
+"Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile", RFC 5280, May 2008.
+http://www.ietf.org/rfc/rfc5280.txt
+ 
+[RFC6066]
+Eastlake 3rd, D., "Transport Layer Security (TLS) Extensions: Extension Definitions", RFC 6066, January 2011.
+http://www.ietf.org/rfc/rfc6066.txt
+ 
+[RFC6749]
+"The OAuth 2.0 Authorization Framework", RFC 6749, October 2012.
+http://www.ietf.org/rfc/rfc6749.txt
+ 
+[RFC6960]
+"X.509 Internet Public Key Infrastructure Online Certificate Status Protocol - OCSP", RFC 6960, June 2013.
+http://www.ietf.org/rfc/rfc6960.txt
