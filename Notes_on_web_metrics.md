@@ -206,3 +206,102 @@ Elements queries are an expansion to CSS, so you have to include its scritp:
 ```html
 https://cdnjs.cloudflare.com/ajax/libs/eqcss/1.7.0/EQCSS.min.js
 ```
+
+<hr>
+<br>
+
+# jQuery
+
+jQuery is a javascript library that simplifies the sintaxis and add funticonality.
+
+You can add this library from a CDN, with:
+
+```javascript 
+<script src=""https://ajax.googleapis.com/ajax/libs/jquery-x.y.z.min.js"></script>
+```
+
+## syntaxis
+
+To work with this, the structure, is first select an element, and then indacte an action; it is done in this way:
+
+```javascript
+$(selector).action();
+```
+
+for example to make an action at the document load, it is expressed as:
+
+```javascript
+$(document).ready( function() { 
+	alert("Hello Wold!");
+	});
+```
+
+## selectors
+
+This are as follows:
+
+```javascript
+$("identifier")
+```
+
+so to select all the parragraphs in a documento, it would be like:
+
+```javascript
+$("p")
+```
+
+To select a certain element with a given **id**, it would be expressed as:
+
+```javascript
+$("#my_element_id")
+```
+
+so if we want to hide that element when a button is clicked, it would be defined as:
+
+```javascript
+$(document).ready( function() {
+    $("button").click( function () {
+       $("#my_element_id").hide();
+    )};
+ )};
+```
+
+# events
+
+Events are user actions, as for example:
+
+document/window events: load, resize, scroll, unload.
+form events: submit, change, focus, blur.
+keyboard events: keypress, keydown, keyup
+mouse: mouseenter, mouseleave, hover ....
+
+...
+
+events, are defined as described above:
+
+
+```javascript
+$(selector).action();
+```
+
+there is also the `on` event, that allows you to define actions, for several events:
+
+```javascript
+$("#my_element").on( {
+	focus: function() {
+		$(this).css("color", "lightblue");
+		},
+	blur: function() {
+		$(this).css("color", "gray");
+		},
+	hover: function() {
+		$(this).css("font-size", "1.2em");
+		}
+	});
+```
+
+
+
+
+
+
