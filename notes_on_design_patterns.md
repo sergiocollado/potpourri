@@ -51,4 +51,56 @@ let's the sub-classes to decide what subclass it belogns to. So the factory meth
 - **Prototype** creates objects according to a prototype/template, and creates new objects using this prototype.
 
 
+<br>
+<hr>
+<br>
+<br>
+<hr>
+<br>
+<br>
+
+# Singleton
+
+Imagin you have a program, or a system object, general class,  you only want to instance once... this would be useful, in cases where you want to protec its working, or data process. For doing that, we need a private constructor, so it is not allowed to access to it from other points, and we need a reference to acces that object at any time. 
+
+
+```C++
+
+#include <iostream>
+
+using namespace std;
+
+class mySingletonClass {
+ public:
+  static mySingletonClass *getInstance(); //access to unique instance
+ 
+ private:
+  mySingletonClass(){};  //constructor
+  static mySingletonClass* myPointerReferenceInstance; //refence to instance
+};
+
+mySingletonClass* mySingletonClass::myPointerReferenceInstance = 0;
+mySingletonClass* mySingletonClass::getInstance(){
+  if(instance == 0)
+  {
+    myPointerReferenceInstance = new mySingletonClass();
+    cout << "Creation of the Object"<< std::endl;
+    return myPointerReferenceInstance;
+  }
+  else
+  {
+     cout << "Getting reference to the object" << std::endl;
+     return myPointerReferenceInstance;
+  }
+}
+
+
+int main()
+{
+  mySingletonClass* O1 = mySingletonClass::getInstance();
+  mySingletonClass* O2 = mySingletonClass::getInstance();
+  return 0;
+}
+```
+
 
