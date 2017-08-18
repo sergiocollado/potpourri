@@ -30,12 +30,12 @@ How do OBJECTS OF A CLASS behave and interact with each other
 How do CLASSES behave and interact with each other
 
 - **Decorator**: adds features to objects dynamically, this provides a sort of 'sub-classing' mechanism that is able to expend funcitonalities.
-- **Adapter**: Converts the interfece of an interface into another interface that the user expects, this allows for using different classes with the same interface.
-- **Facade**: A simple class that represents the whole system.
-- **Composite**: Compose objects into structures (as trees, Binary-trees, graphs ...)
+- **Adapter**: converts the interfece of an interface into another interface that the user expects, this allows for using different classes with the same interface.
+- **Facade**: a simple class that represents the whole system.
+- **Composite**: compose objects into structures (as trees, Binary-trees, graphs ...)
 - **Flyweight**: a fine-grained instance used for efficient sharing.
-- **Bridge**: Separationg of objects abstractions from its implementations.
-- **Proxy**: An object, representing another object.
+- **Bridge**: separation of objects abstractions from its implementations.
+- **Proxy**: an object, representing another object.
 
 ## Creational
 
@@ -44,12 +44,11 @@ implementation of an object, from its use, and only reveal its interface. Other 
 there is a need to use families of related objects together. And another reason, is to limit the number of objects that are created.
 
 
-
-- Factory & Abstract
-- Factory
-- Singelton
-- Builder
-- Prototype
+- **Factory:** defines an interface for creating a general construction method for a class that have severla sub-classes, and it 
+let's the sub-classes to decide what subclass it belogns to. So the factory method, defers the construction to the sub-classes.
+- **Singelton:** ensures that a certain class, is only instantiated once. 
+- **Builder:** disacoplates the object construction of a complex object, from its representation.
+- **Prototype** creates objects according to a prototype/template, and creates new objects using this prototype.
 
 
 
