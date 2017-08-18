@@ -61,8 +61,10 @@ let's the sub-classes to decide what subclass it belogns to. So the factory meth
 
 # Singleton
 
-Imagin you have a program, or a system object, general class,  you only want to instance once... this would be useful, in cases where you want to protec its working, or data process. For doing that, we need a private constructor, so it is not allowed to access to it from other points, and we need a reference to acces that object at any time. 
+Imagine you have a program, or a system object, general class,  you only want to instance once... this would be useful, in cases where you want to protec the system working, or data process, for safety or other reasons, or for controlling the memory usage ... . For doing that, we need a private constructor, so it is not allowed to access to it from other points in the code, or other classes; and we need a reference to acces that object at any time. 
 
+So the idea is to made function of the class in such a way, that if it is the first time it is call, it creates the object, it calls a
+private constructor, and in sucesive calls, it just returns a reference to the already unique created object.
 
 ```C++
 
@@ -79,11 +81,14 @@ class mySingletonClass {
   static mySingletonClass* myPointerReferenceInstance; //refence to instance
 };
 
-mySingletonClass* mySingletonClass::myPointerReferenceInstance = 0;
+mySingletonClass* mySingletonClass::myPointerReferenceInstance = null;
 mySingletonClass* mySingletonClass::getInstance(){
-  if(instance == 0)
+  if(instance == null)
   {
     myPointerReferenceInstance = new mySingletonClass();
+    // when the object if first instantiated, it changes the value of its reference,
+    // so it will not pass thru this case again.
+    
     cout << "Creation of the Object"<< std::endl;
     return myPointerReferenceInstance;
   }
