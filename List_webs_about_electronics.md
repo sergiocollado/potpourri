@@ -493,7 +493,7 @@ http://coliru.stacked-crooked.com/
 
 http://code.runnable.com/
 
-# List of RFCs
+# List of RFCs, standards and normatives.
 
 [RFC2119] - "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, March 1997. - http://www.ietf.org/rfc/rfc2119.txt
 
@@ -588,3 +588,5 @@ http://www.ietf.org/rfc/rfc6749.txt
 [RFC6960]
 "X.509 Internet Public Key Infrastructure Online Certificate Status Protocol - OCSP", RFC 6960, June 2013.
 http://www.ietf.org/rfc/rfc6960.txt
+
+RDS- Radio Data System - EN50067.
