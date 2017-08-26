@@ -8,7 +8,7 @@ Ref: https://xmpp.org/about/standards-process.html <br>
 Ref: https://www.linux.com/news/mqtt-iot-communication <br>
 Ref: http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html <br>
 
-## Main actors
+## Main elements of the communication
 
 **Client** 
 
@@ -25,7 +25,7 @@ Ref: http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html <br>
 
 ## underlying protocol:
 
-The protocol MQTT/3.1 is a protocol, that must be build on top of another delivery protocols, that handle for him, the following topics:
+The protocol MQTT/3.1 is a protocol, that must be build on top of another delivery protocols, that handle for him the lower details of the comunication, as for example: the following topics:
 
 - order of messages
 - lossless transmission.
@@ -60,6 +60,27 @@ There are defined the following levels of QoS:
 - [QoS 2]: Exactly once delivery.
 
 The definition says it all.
+
+
+### Control packets - packet idenitifer
+
+
+| CONTROL PACKET | PACKET ID FIELD| PAYLOAD | VALUE | DIRECTION | DESCRIPTION
+| --- | --- | --- | --- |--- | --- | --- |
+| CONNECT | NO | Required | 1 | C -> S | Client request a connection to the Server |
+| CONNACK | NO | None | --- |
+| PUBLISH | YES id QoS>0 | Optional | --- |
+| PUBACK | YES | none | --- |
+| PUBREC | YES | none | --- |
+| PUBREL | YES | none | --- |
+| PUBCOMP | YES | none | --- |
+| SUBSCRIBE | YES | Required | --- |
+| SUBACK | YES | Required | --- |
+| UNSUBSCRIBE | YES | Required | --- |
+| UNSUBACK | YES | none | --- |
+| PINGREQ | NO | none | --- |
+| PINGRESP | NO | none | --- |
+| DISCONNECT | NO | none | --- |
 
 
 
