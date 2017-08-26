@@ -1,12 +1,12 @@
  # NOTES ON EMBEDDED SYSTEMS SAFETY
 
-**EMBEDDED SYSTEM**: An embedded system, is a system, that combines software and hardware, also is common that they have some kind of HMI (human machine interface) or UI (User Interface) as displays, keyboards, et cetera. Embedded systems have fixed capabilities but are programmable, and they are designed for a specific function or functions. 
+**EMBEDDED SYSTEM**: An embedded system, is a system, that combines software and hardware, and also is common, that they have some kind of HMI (human machine interface) or UI (User Interface) as displays, keyboards, et cetera. Embedded systems have fixed capabilities but are programmable, and they are designed for a specific function or functions. 
 
-Examples are: industrial equipments, machine's controllers, agricultural, automotive, medical, aeronautical, space systems, telecomunication systems, household apliances, enterntaiment systems, toys, vending machines, measurent systems, security and identity checks, robotics, logistics, production lines ...
+Examples are: industrial equipments, machine's controllers, agricultural, automotive, medical, aeronautical, space and telecomunication systems, household apliances, enterntaiment systems, toys, vending machines, measurent systems, security and identity checks, robotics, logistics, production lines ...
 
-Most of the times, embedded systems are reactive, that means, they wait for an input, when they have it, they perform some computation, and then it generates an output. Than means they can be modelled as an Automata.
+Most of the times, embedded systems are reactive, that means, they wait for an input, or measure some propierty or signal, and when they have it, they perform some computation, and then it generates an output. Than means they can be modelled as an Automata.
 
-Key design points in an embedded system are:
+Key propierties to take into account into an embedded system are:
 
 - Dedicated functionality
 - Limited resources.
@@ -61,13 +61,17 @@ time, or under specified enviromental system conditions.
 > A human being can make an error (mistake), wich produces a defect (fault, bug) in the program, code, or in a document. If a defect in the
 > code is executed, the system may fail to do what it must do (or do something it shouldn't) causing a failure. 
 
-**RELIABILITY**: Is the probability that a piece of equipment or component will perform correctly its intended goal, inside the defined time, and under the correct enviroment.
+**RELIABILITY**: Is the probability that a piece of equipment or component will perform correctly its intended goal, inside the defined time, and under the correct enviroment. So Reliability is defined by the probability that for an given time interval [0,t], the systems performs ok, during all the time interval up to time t, starting working at time t=0. 
 
-Reliability is often quantified with the merit figure of MTBF (Mean Time Between Failures) 
+This has significative importance to systems, that must perform without manteinance, for example: inner reactor nuclear systems, systems controlling a blast furnace, or satellite systems, ....
 
-**AVAILABILITY**: Is the probability that the system will be working/performing as expected at any given time. When calculating this parameter, it has to be taken into account, both maintenace times, and reparation times.
+Reliability is often quantified with the merit figure of **MTBF** (Mean Time Between Failures) 
 
-So availability is often quantified by the merit figure of: 1-MTTR / MTTF 
+**AVAILABILITY**: Is the probability that the system will be working/performing as expected at any given time. When calculating this parameter, it has to be taken into account, both maintenace times, preventive mantenaice times, and reparation times.
+
+Availabilty is commonly meanfully for evaluating those systems, where its functions can be delayed or denied for a short time period, without serius consequences.
+
+Aailability is often quantified by the merit figure of: 1-MTTR / MTTF 
 
 where:
 
@@ -129,16 +133,17 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 
 
 **ROBUST SYSTEMS** Robust systems are those in which the computer system has the ability to cope with errors during execution and cope with erroneous inputs. Usually you test those systems with the technique of *Fault Injection*, other techniques are for example *Fuzzy testing* that involves invalid or unexpected inputs. 
+<br>
+<br>
 
+## SOME CLARIFICATIONS on the CONCEPTS:
 
+**Safety** is related to freedom from accidents and material losses.
 
-## SOME CLARIFICATIONS:
+**Safety** is NOT **Reliability**!! Reliability is the correctness of a system performing it's intended duty/function during a consecutive period.
 
-**Safety** is the freedom from accidents and material losses.
-
-**Safety** is not **Reliability**!! Reliability is the correctness of a system performing it's intended duty/function.
-
-**Safety** is not **Security**!! Security is the defence or agains intended damages.
+**Safety** is NOT **Security**!! Security is the ability to defence against intended damages and malicious actions.
+<br>
 
 ## SAFETY RELATED CONCEPTS:
 
@@ -147,6 +152,7 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 **Risk**: It's the likehood of an accident and its severity. -> R(a) = p(a) * s(a);
 
 **Hazard**: The set of conditions or enviromental variables, that will lead or result in an accident.
+<br>
 
 ## FAILURES vs ERRORS:
 
