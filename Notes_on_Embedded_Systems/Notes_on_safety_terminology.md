@@ -63,7 +63,7 @@ time, or under specified enviromental system conditions.
 
 **RELIABILITY**: Is the probability that a piece of equipment or component will perform correctly its intended goal, inside the defined time, and under the correct enviroment. So Reliability is defined by the probability that for an given time interval [0,t], the systems performs ok, during all the time interval up to time t, starting working at time t=0. 
 
-This has significative importance to systems, that must perform without manteinance, for example: inner reactor nuclear systems, systems controlling a blast furnace, or satellite systems, ....
+This has significative importance to systems, that perform a critical action, and cannot be in any case replaced as could be an aircraft computer. And also in systems that must work without manteinance, or cannot be easily or ever replaced, as for example: inner reactor nuclear systems, systems controlling/monitoring a blast furnace, or satellite systems, .... 
 
 Reliability is often quantified with the merit figure of **MTBF** (Mean Time Between Failures) 
 
@@ -71,7 +71,7 @@ Reliability is often quantified with the merit figure of **MTBF** (Mean Time Bet
 
 Availabilty is commonly meanfully for evaluating those systems, where its functions can be delayed or denied for a short time period, without serius consequences.
 
-Aailability is often quantified by the merit figure of: 1-MTTR / MTTF 
+Availability is often quantified by the merit figure of: 1-MTTR / MTTF 
 
 where:
 
@@ -138,7 +138,7 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 
 ## SOME CLARIFICATIONS on the CONCEPTS:
 
-**Safety** is related to freedom from accidents and material losses.
+**Safety** is related to freedom from accidents and material damages and looses.
 
 **Safety** is NOT **Reliability**!! Reliability is the correctness of a system performing it's intended duty/function during a consecutive period.
 
@@ -211,7 +211,7 @@ Defensive programming is a defensive coding style intended to ensure the continu
 ### Techniques:
 
 #### Intelligent code reuse:
-Existing code is tested and is knwon to work. reuse of it may reduce the chance of new bugs. 
+Existing code is tested and is knwon to work. Reuse of it may reduce the chance of new bugs. 
 
  - [ ] TODO: complete this.
 
