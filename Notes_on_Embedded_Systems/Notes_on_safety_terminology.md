@@ -1,10 +1,13 @@
-**EMBEDDED SYSTEM**: An embedded system is a system, that combines software and hardware, and is also common that they have some  kind of HMI (human machine interface) or UI (User Interface) as displays, keyboards, et cetera. Embedded systems have fixed capabilities but are programmable, and they are designed for a specific function or functions. 
+ # NOTES ON EMBEDDED SYSTEMS SAFETY
+
+**EMBEDDED SYSTEM**: An embedded system, is a system, that combines software and hardware, also is common that they have some kind of HMI (human machine interface) or UI (User Interface) as displays, keyboards, et cetera. Embedded systems have fixed capabilities but are programmable, and they are designed for a specific function or functions. 
 
 Examples are: industrial equipments, machine's controllers, agricultural, automotive, medical, aeronautical, space systems, telecomunication systems, household apliances, enterntaiment systems, toys, vending machines, measurent systems, security and identity checks, robotics, logistics, production lines ...
 
 Most of the times, embedded systems are reactive, that means, they wait for an input, when they have it, they perform some computation, and then it generates an output. Than means they can be modelled as an Automata.
 
-Key points in an embedded system:
+Key design points in an embedded system are:
+
 - Dedicated functionality
 - Limited resources.
 - Performance and efficiency.
@@ -62,9 +65,9 @@ time, or under specified enviromental system conditions.
 
 Reliability is often quantified with the merit figure of MTBF (Mean Time Between Failures) 
 
-**AVAILABILITY**: Is the probability that the system will be working/performing as expected at any given time.
+**AVAILABILITY**: Is the probability that the system will be working/performing as expected at any given time. When calculating this parameter, it has to be taken into account, both maintenace times, and reparation times.
 
-Availability is often quantified by 1-MTTR / MTTF 
+So availability is often quantified by the merit figure of: 1-MTTR / MTTF 
 
 where:
 
@@ -75,9 +78,10 @@ and
 **MTTF** stands for Mean Time To Failure
 
 
-**DEPENDABILITY**: Is the truthworthiness of a system so the is a justified confidence in the tasks it must perform.
+**DEPENDABILITY**: Is the truthworthiness of a system so there is a justified confidence in the tasks it must perform.
 
 Dependability is a concept that includes:
+
 - Reliability
 - Availability
 - Maintanability
@@ -114,9 +118,9 @@ http://www.eventhelix.com/RealtimeMantra/FaultHandling/hardware_diagnostics.htm#
 
 EXAMPLE:
 
- Suppouse, you have a sistem, in which two task/phreatds/programs ... are working togeder, one of them, task_1 - senses, gadthers and updates data in real time. task_2: request that data, and do some kind of that processing. 
- In the event, that for whatever reason, maybe some bug, or that there aren't enough memory..., the task_1 stops on working, or performing ok, may be it reports the threaded: segmentation fault... at that point, the task_2, should be able to detect the problem, - there are some methods to do this - and it should try to fix the system, for example, relaunching, the task_1, or reseting the whole system in the wort case.
+ Suppouse, you have a system, in which two tasks are working togeder, one of them, task_1 - senses, gadthers and updates data in real time. task_2: request that data, and do some data processing algorithm. 
  
+ In the event, that for whatever reason, maybe some bug, as could be: that there aren't enough memory..., the task_1 stops on working, or performing properly, so it may report the unfriendly: segmentation fault... at that point, the task_2, should be able to detect the problem, - there are some methods to do this - and it should try to fix the system, for example, re-launching, the task_1, or reseting/rebooting the whole system in the worst case.
  
 References:
 https://en.wikipedia.org/wiki/Fault-tolerant_computer_system </br>
@@ -182,9 +186,11 @@ much easily the pernicious event.
 ### Principles:
 
 #### Paranoia
- The programmmer must undestand that its code can produce bug, that make the system fail or work incorrectly. Also that the users are there to break their code. - You know the saying: *--Even paranoids have enemies--*
-#### Stupity
- The programmers assumes that the user at some point will use incorrect, malformed, and bogus inputs. So he has to code error-proof inputs, and emit **error mesages**, that are clear, intuitive, unambigous, and that don't require to look up error codes. The message should be as accurate as possible, to the problem can be detected and corrected with ease.
+ The programmer must undestand that its code can produce bug, that make the system fail or work incorrectly. Also that the users are there to break their code. - You know the saying: *--Even paranoids have enemies--*
+ 
+#### User proof stupity/genius.
+ The programmers assumes that the user at some point will use incorrect, malformed, and bogus inputs. So he has to code error-proof inputs, and emit **error mesages**, that must be: clear, specific, intuitive, unambigous, effective, detailed, explicit and that don't require to look up error codes. The message must be as accurate as possible, to the problem, so it can be detected and corrected with ease.
+ 
 #### Dangerous implementations
  Users should not gain access to the inners of the system/program - that is: libraries, internal states, internal values, or pointer to data structures ... The interfece with the user should be that, and be probed against loopholes.
  
