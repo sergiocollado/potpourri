@@ -589,4 +589,5 @@ http://www.ietf.org/rfc/rfc6749.txt
 "X.509 Internet Public Key Infrastructure Online Certificate Status Protocol - OCSP", RFC 6960, June 2013.
 http://www.ietf.org/rfc/rfc6960.txt
 
-RDS- Radio Data System - EN50067.
+RDS- Radio Data System - EN50067.(April 1998) - ISO 14819
+
