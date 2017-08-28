@@ -68,19 +68,19 @@ The definition says it all.
 | CONTROL PACKET | PACKET ID FIELD| PAYLOAD | VALUE | DIRECTION | DESCRIPTION
 | --- | --- | --- | --- |--- | --- | --- |
 | CONNECT | NO | Required | 1 | C -> S | Client request a connection to the Server |
-| CONNACK | NO | None | --- |
-| PUBLISH | YES id QoS>0 | Optional | --- |
-| PUBACK | YES | none | --- |
-| PUBREC | YES | none | --- |
-| PUBREL | YES | none | --- |
-| PUBCOMP | YES | none | --- |
-| SUBSCRIBE | YES | Required | --- |
-| SUBACK | YES | Required | --- |
-| UNSUBSCRIBE | YES | Required | --- |
-| UNSUBACK | YES | none | --- |
-| PINGREQ | NO | none | --- |
-| PINGRESP | NO | none | --- |
-| DISCONNECT | NO | none | --- |
+| CONNACK | NO | None | 2 | S -> C | Server acknoledge connection |
+| PUBLISH | YES id QoS>0 | Optional | 3 | C <-> S | message publish |
+| PUBACK | YES | none | 4  | C <-> S | publish acknoledgment |
+| PUBREC | YES | none | 5 | C <-> S | publish received |
+| PUBREL | YES | none | 6 | C <-> S | publish released |
+| PUBCOMP | YES | none | 7 | C <-> S | publish complete |
+| SUBSCRIBE | YES | Required | 8 | C -> S | client subscribe request | 
+| SUBACK | YES | Required | 9 | C <- S | Subscribe acknoledgement |
+| UNSUBSCRIBE | YES | Required | 10 | C -> S | Unsubscribe request |
+| UNSUBACK | YES | none | --- | 11 | C -> S | Unsubscribe acknoledgement |
+| PINGREQ | NO | none | --- | 12 | C -> S | Ping request |
+| PINGRESP | NO | none | --- | 13 | C <- S | Ping response |
+| DISCONNECT | NO | none | --- | 14 | C -> S | Client is disconnecting |
 
 
 
