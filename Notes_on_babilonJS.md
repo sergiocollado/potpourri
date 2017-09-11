@@ -10,26 +10,29 @@ babylon.js
 
 download from github.
 
+Or you have to define the script:
+
+```javascript
+	<script src="https://cdn.babylonjs.com/babylon.js"></script>
+```
+
 we define in js, a 'namespace', so, we define:
 
 
 ```javascritp
-var = My3Dnamespace
+var M3D;
 ```
 
-and if it has been allready defined, we use it
+and if it has been already defined, we use it
 
 ```javascript
-var My3Dnamespace = My3Dnamespace ...
+var M3D = M3D ...
 ```
 
 or if it hasn't been defined we use an empty object
 
 ```javascript
-VAR My3Dnamespace = My3Dnamespace || {};
-```
-```javascript
-var M3D = My3Dnamespacace;
+var M3D = M3D || {};
 ```
 
 with this the code will have a limited scope in the code enviroment.
@@ -38,7 +41,7 @@ for babilon.js, we need a canvas object, so we have to define one:
 
 ```html
 <div style="position:relative;"> 
-	<canvas  id="theCanvas" width="1400" height="900" style="position:
+	<canvas  id="mycanvas" width="1400" height="900" style="position:
 	absolute; left:100px; width:100%; top:30px">
 	Canvas not supported; please update your browser.
 	</canvas>
@@ -77,9 +80,10 @@ M3D.init = function () {
     //create ground
     var ground = BABYLON.Mesh.CreateGround('ground', 20,20, 2, scene);
     
-    //create a sphere: 
-    var sphere = new BABILON.Mesh.CreateSpehere('Sphere1',16,2,scene);
-    scene2.position = new BABILON.Vector3(3,3,3):
+    //create a second sphere: 
+    var sphere2 = new BABYLON.Mesh.CreateSpehere('Sphere1',16,2,scene);
+    sphere2.position = new BABYLON.Vector3(3,3,3);
+    
     //render
     engine.runRenderLoop(function(){
       scene.render();
@@ -104,13 +108,13 @@ camera.attachControl(canvas)
 You use 'setTarget' to define where the camera faces.
 
 ```javascript
-var box = BABILON.Mesh.CreateBox('box', 1, scene);
+var box = BABYLON.Mesh.CreateBox('box', 1, scene);
 box.position =  new  BABYLON.Vector3(7,2,-5);
 box.scaling.y = 2;
 
-var ciclinder =  BABILON.Mesh.CreateCylinderx('cyl', 5, 1, 3, 16, scene);
+var ciclinder =  BABYLON.Mesh.CreateCylinderx('cyl', 5, 1, 3, 16, scene);
 
-var lines = BABILONS.Mesh.CreateLines('lines', [
+var lines = BABYLON.Mesh.CreateLines('lines', [
 			new BABYLON.Vector3(0,5,0),
 			new BABYLON.Vector3(1,5,0),
 			new BABYLON.Vector3(0,5,2),
@@ -127,7 +131,7 @@ addEventListener('resize',function(){
 You can create other basic shapes apart from the sphere, as example:
 
 ```javascript
-var box = BABYLONS.Mesh.CreateBox('box',1,scene);
+var box = BABYLON.Mesh.CreateBox('box',1,scene);
 box.position = new BABYLON.Vector3(10,2,-5);
 
 var cylinder = BABYLON.Mesh.CreateCylinder('cyl',5,1,3,5,scene);
