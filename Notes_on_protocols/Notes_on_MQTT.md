@@ -62,7 +62,7 @@ There are defined the following levels of QoS:
 The definition says it all.
 
 
-### Control packets - packet idenitifer
+### Control packets - packet identifer
 
 
 | CONTROL PACKET | PACKET ID FIELD | PAYLOAD | VALUE | DIRECTION | DESCRIPTION |
@@ -82,5 +82,23 @@ The definition says it all.
 | PINGRESP | NO | none |  13 | C <- S | Ping response |
 | DISCONNECT | NO | none |  14 | C -> S | Client is disconnecting |
 
+The **value** field is an identifier, defined as a 4 bits (nibble) unsigned integer (range is 0-15)
+
+## Data structure Rules
+
+### Bits
+The bits, are defined from 7 to 0, being 7 the most significant one, and 0 the least significant one.
+
+### Integer data values
+Integer data values are defined as 16 bit Big Endian. So the MSB (Most Significant Byte) is presented before the LSB (Least Significant Byte).
+
+### Encoded Strings
+Strings are encoded following the UTF-8 standard [RFC3629], which is an efficient implementation of Unicode standard.
+Each String is prefixed with two bytes expresed in UTF-8 itself, that define the length of the UTF-8 string. As a result this give us
+a maximum load of 65535 bytes.
+
+The character data must be a UTF-8 compliant. Any mis-formed data will force the server or the client, to close the connection.
+Characters must not include encodings between U+D800 to U+DFFF. Also the codes between: U+0001..U+001F, and U+007F..U+009F (which are
+used as control characters), may cause to close the network connection.
 
 
