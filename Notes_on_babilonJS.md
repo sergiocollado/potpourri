@@ -286,6 +286,19 @@ The source code of the loaders is here: https://github.com/BabylonJS/Babylon.js/
 	};
 	
 	robotMesh.onError = function (e) {
+		var mymesh=e.loadedMeshes[0];
+		mymesh.position = BABYLON.Vector3.Zero();
+		mymesh.sideOrientation = BABYLON.Mesh.FRONTSIDE;
+		//mymesh.rotation.y = Math.PI/2;
+		mymesh.position.y -= 100;
+		camera.setTarget(mymesh, true, true);
+		camera.radius = 150;
+		camera.keysUp = '38';
+		camera.keysDown = '40';
+	
+		console.log("error loading Meshes");
+		console.log(e);
+		mycamera = camera;
 		console.log("error loading Meshes");
 		console.log(e);
 	};
