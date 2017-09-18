@@ -213,6 +213,8 @@ emissiveMaterial.emissiveColor = new BABYLON.Color3(0,0,1);
 
 It is possible to import 3d models. As example:
 
+The source code of the loaders is here: https://github.com/BabylonJS/Babylon.js/tree/master/loaders/src
+
 ```html
 <!DOCTYPE html>
 <html>
