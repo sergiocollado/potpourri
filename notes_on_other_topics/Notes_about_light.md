@@ -26,3 +26,41 @@ through, then three things can happen:
 
 ![Reflection](../image/light.PNG)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+𝓢ℯ𝓇ℊ𝒾ℴ 𝓖. 𝓒ℴ𝓁𝓁𝒶𝒹ℴ
