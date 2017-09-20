@@ -332,7 +332,9 @@ https://3djuump.com/en/
 
 https://grabcad.com/library
 
+http://www.solidworks.com/sw/support/solidworks-certification.htm
 
+http://www.edrawingsviewer.com/ed/download.htm
 # firms & Semiconductors companies
 
 http://www.allegromicro.com/
