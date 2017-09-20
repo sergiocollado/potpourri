@@ -330,6 +330,8 @@ https://brlcad.org/
 
 https://3djuump.com/en/
 
+https://grabcad.com/library
+
 
 # firms & Semiconductors companies
 
