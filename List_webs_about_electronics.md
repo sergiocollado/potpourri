@@ -64,6 +64,8 @@ electronic pop-up book -> http://makezine.com/2009/12/11/electronically-enhanced
 
 and -> http://highlowtech.org/?p=5
 
+Sensei: http://users.ece.utexas.edu/~valvano/index.html
+
 color led strip -> https://www.youtube.com/watch?v=mgOZzvSxUHI
 
 circuit pcb makers company -> http://www.lab-circuits.com/es/fabricacio.php
