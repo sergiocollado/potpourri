@@ -1,3 +1,4 @@
+ICANN - Internet Corporation for Assigned Names and Numbers
 LDAP - Lightweight Directory Access Protocol.
 NTP - Network Time Protocol.
 ITSEC - Information Technology Security Evaluation Criteria.
@@ -184,7 +185,7 @@ DC_avg - average Diagnostic Coverage.
 DC - Direct Current.
 AC - Altenating Current.
 ECU - Electronic Control Unit
-ETA - Even Tree Analysis
+ETA - Event Tree Analysis
 E/E/PES - Electrical/Electronic/programmable electronics systems.
 EMC - Electromagnetic Compatibility.
 EMP - Electromagnetic Pulse.
