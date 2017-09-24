@@ -166,7 +166,60 @@ El concepto de cabeceras de HTTP, se presentó tanto para las peticiones como pa
 Con el uso de las cabeceras de HTTP, se pudieron transmitir otros documentos además de HTML, mediante la cabecera "Content-Type".
 
 
+Los mensajes HTTP, son los medios por los cuales se intercambian datos entre servidores y clientes. Hay dos tipos de mensajes: peticiones, enviadas por el cliente al servidor, para pedir el inicio de una acción; y respuestas, que son la respuesta del servidor. 
 
+Los mensajes HTTP están compuestos de texto, codificado en ASCII, y pueden comprender múltiples lineas. En HTTP/1.1, y versiones previas del protocolo, estos mensajes eran enviados de forma abierta a través de la conexión. En HTTP/2.0 los mensajes, que anteriormente eran legibles directamente, se conforman mediante tramas binarias codificadas para aumentar la optimización y rendimiento de la transmisión.
+
+Los desarrolladores de páginas Web, o administradores de sitios Web, desarrolladores... raramente codifican directamente estos mensajes HTTP. Normalmente especifican estos mensajes HTTP, mediante archivos de configuración (para proxies, y servidores), APIs (para navegadores) y otros medios.
+
+
+
+El mecanismo de tramas binarias de HTTP/2 ha sido diseñado para que no necesite ninguna modificación de las APIs o archivos de configuración utilizados: es totalmente transparente para el usuario.
+
+Las peticiones y respuestas HTTP, comparten una estructura similar, compuesta de:
+
+Una línea de inicio ('start-line' en inglés) describiendo la petición a ser implementada, o su estado, sea de exito o fracaso. Esta línea de comienzo, es siempre una única línea. 
+Un grupo opcional de cabeceras HTTP, indicando la petición o describiendo el cuerpo ('body' en inglés) que se incluye en el mensaje. 
+Una línea vacía ('empty-line' en inglés) indicando toda la meta-información ha sido enviada.
+Un campo de cuerpo de mensaje opcional ('body' en inglés) que lleva los datos asociados con la petición (como contenido de un formulario HTML), o los archivos o documentos asociados a una respuesta (como una página HTML, o un archivo de audio, video ... ) . La presencia del cuerpo y su tamaño es indicada en la línea de inicio y las cabeceras HTTP.
+La línea de inicio y las cabeceras HTTP, del mensaje, son conocidas como la cabeza de la peticiones, mientras que su contenido en datos se conoce como el cuerpo del mensaje.
+
+
+
+Peticiones HTTP
+
+Linea de inicio
+Las peticiones HTTP son mensajes enviados por un cliente, para iniciar una acción en el servidor. Su línea de inicio está formada por tres elementos: 
+
+Un método HTTP, un verbo como: {{HTTPMethod("GET")}}, {{HTTPMethod("PUT")}} o {{HTTPMethod("POST")}}) o un nombre como: {{HTTPMethod("HEAD")}} o  {{HTTPMethod("OPTIONS")}}), que describan la acción que se pide sea realizada. Por ejemplo, GET indica que un archivo ha de ser enviado hacia el cliente, o POST indica que hay datos que van a ser enviados hacia el servidor (creando o modificando un recurso, o gnerando un documento temporal para ser enviado).
+El objetivo de una petición, normalmente es una {{glossary("URL")}}, o la dirección completa del protocolo, puerto y dominio también sulen ser epecificados por el contexto de la petición. El formato del objetivo de la petición varia según los distintos métodos HTTP. Puede ser: 
+Una dirección absoluta, seguida de a '?' y un texto de consulta. Este es el formato más comun, conocido como el formato original ('origin form' en inglés), se usa en los métodos GET, POST, HEAD, y OPTIONS . 
+POST / HTTP 1.1
+GET /background.png HTTP/1.0
+HEAD /test.html?query=alibaba HTTP/1.1
+OPTIONS /anypage.html HTTP/1.0
+Una URL completa; conocido como el formato absoluto, usado mayormente con GET cuando se conecta a un proxy. 
+GET http://developer.mozilla.org/en-US/docs/Web/HTTP/Messages HTTP/1.1
+El componente de autoriade de una URL, formado por el nombre del domínio y opcionalmente el puerto (el puerto precedido por el simbolo ':' ), se denomina a este formato como el formato de autoridad. Unicamente se usa con  CONNECT cuando se establece un tunel HTTP.
+CONNECT developer.mozilla.org:80 HTTP/1.1
+El formato de asterisco, se utliza un asterisco ('*')  junto con las opciones: OPTIONS , representando al servidor entero en conjunto.  
+OPTIONS * HTTP/1.1
+la versión de HTTP, la cual define la estructura de los mensajes, actuando como indicador, de la versión que espera que se use para la respuesta.T
+Cabeceras
+Las cabeceras HTTP  de una petición siguen la misma estructura que la de una cabecera HTTP. Una cadena de caracteres, que no diferencia mayusculas ni minusculas, seguida por dos puntos  (':')  y un valor cuya estructura depende de la cabecera. La cabecera completa, incluido el valor, ha de ser formada en una única linea, y pude ser bastante larga. 
+
+Hay bastantes cabeceras posibles. Estas se pueden clasificar en varios grupos: 
+
+Cabeceras generales, ('Request headers' en inglés), como Via,  afectan al mensaje como una unidad completa.
+Cabeceras de petición, ('General headers' en inglés), como User-Agent, {{HTTPHeader("Accept-Type")}}, modifican la petición especificandola en mayor detalle ( como: Accept-Language, o dándole un contexto, como:  {{HTTPHeader("Referer")}}, o restringiendola condicionalmente, como: "If-None".
+Cabeceras de entidad, ('Entity headers' en ingles), como Content-Length las cuales se aplican al cuerpo de la petición. Por supuesto, esta cabecera no necesita 
+ser transmitida si el mensaje no tiene cuerpo ('body' en inglés). 
+
+
+Cuerpo
+La parte final de la petición el el cuerpo. No todas las peticiones llevan uno: las peticiones que reclaman datos, como GET, HEAD, DELETE, o OPTIONS, normalmente, no necesitan ningún cuerpo. Algunas peticiones pueden mandar peticiones al servidor con el fin de actualizarlo: como es el caso con la petición POST  (que contiene datos de un formulario HTML). 
+
+Bodies can be broadly divided into two ca
 
 
 
