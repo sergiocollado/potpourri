@@ -20,6 +20,8 @@ through, then three things can happen:
 
 # Absortion:
 
+![Absortion](../image/Absortion.PNG)
+
 
 # Reflection:
 
