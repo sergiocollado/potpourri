@@ -11,3 +11,31 @@ There are several common methods to use:
 - Depth limited search (DLS) - Depth-first search with depth limit. 
 - Uniform cost search - expands the less expensive node.
 
+## BFS - BREADTH FIRST SEARCH
+
+```
+ALGORITHM BRADTH FIRST SEARCH:
+=============================
+
+function BFS(initial_state, goal)
+
+  frontier = new Queue();
+  frontier.enqueue(initial_state);
+  
+  explored = new Set();
+  
+  WHILE NOT frontier.IsEmpty():
+       state = frontier.dequeue();
+       explorer.add_nodes(state);
+       
+        IF goal = state.IsGoal();
+             return SUCCEED(state)
+             
+        
+        FORALL neighbour IN state.neighbours():
+           IF neighbour (NOT_IN frontier) AND (NOT_IN explored):
+               frontier.enqueue(state)
+
+  return FAILURE
+```
+
