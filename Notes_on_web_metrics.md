@@ -69,7 +69,26 @@ values are:
 <hr>
 <br>
 <br>
-## RWD- \<pictures\> tag 
+
+## FlexBox
+
+Defines a flexible box in CSS3, this a container that resizes itself according to the screen size.
+
+Flexboxes are made of: 
+ - Flex containers
+ 	-> display: flex --> rendered as flex block.
+	-> display: flex-inline --> rendered as a flex inline block
+ - Flex items.
+ 
+ 
+
+
+
+
+<hr>
+<br>
+<br>
+## RWD <pictures> tag 
 
 The pictures tag, allows you to present different images sources according to a media query.
 so the \<pictures\> tag, needs at two other tags at least: \<src\> and \<img\>
