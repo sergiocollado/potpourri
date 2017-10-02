@@ -109,3 +109,13 @@ int main()
 ```
 
 
+
+
+
+## Other tricks of the trade
+
+### Memoization
+ The term 'Memoization' was coined by Donald Michie in 1968, it comes from the Latin 'memorandum' which stands for the meaning
+ 'to be remebered'. It is a technique for speeding up mathematical aproximation/iterative/heuristic calculations.
+ 
+ 
