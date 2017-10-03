@@ -173,7 +173,6 @@ Los mensajes HTTP están compuestos de texto, codificado en ASCII, y pueden comp
 Los desarrolladores de páginas Web, o administradores de sitios Web, desarrolladores... raramente codifican directamente estos mensajes HTTP. Normalmente especifican estos mensajes HTTP, mediante archivos de configuración (para proxies, y servidores), APIs (para navegadores) y otros medios.
 
 
-
 El mecanismo de tramas binarias de HTTP/2 ha sido diseñado para que no necesite ninguna modificación de las APIs o archivos de configuración utilizados: es totalmente transparente para el usuario.
 
 Las peticiones y respuestas HTTP, comparten una estructura similar, compuesta de:
@@ -186,14 +185,16 @@ La línea de inicio y las cabeceras HTTP, del mensaje, son conocidas como la ca
 
 
 
-Peticiones HTTP
+# Peticiones HTTP
 
 Linea de inicio
 Las peticiones HTTP son mensajes enviados por un cliente, para iniciar una acción en el servidor. Su línea de inicio está formada por tres elementos: 
 
-Un método HTTP, un verbo como: {{HTTPMethod("GET")}}, {{HTTPMethod("PUT")}} o {{HTTPMethod("POST")}}) o un nombre como: {{HTTPMethod("HEAD")}} o  {{HTTPMethod("OPTIONS")}}), que describan la acción que se pide sea realizada. Por ejemplo, GET indica que un archivo ha de ser enviado hacia el cliente, o POST indica que hay datos que van a ser enviados hacia el servidor (creando o modificando un recurso, o gnerando un documento temporal para ser enviado).
-El objetivo de una petición, normalmente es una {{glossary("URL")}}, o la dirección completa del protocolo, puerto y dominio también sulen ser epecificados por el contexto de la petición. El formato del objetivo de la petición varia según los distintos métodos HTTP. Puede ser: 
+Un método HTTP, un verbo como: "GET", "PUT" o "POST" o un nombre como: "HEAD" o  "OPTIONS", que describan la acción que se pide sea realizada. Por ejemplo, GET indica que un archivo ha de ser enviado hacia el cliente, o POST indica que hay datos que van a ser enviados hacia el servidor (creando o modificando un recurso, o gnerando un documento temporal para ser enviado).
+El objetivo de una petición, normalmente es una {{glossary("URL")}}, o la dirección completa del protocolo, puerto y dominio también sulen ser epecificados por el contexto de la petición. El formato del objetivo de la petición varia según los distintos métodos HTTP. Puede ser:
+
 Una dirección absoluta, seguida de a '?' y un texto de consulta. Este es el formato más comun, conocido como el formato original ('origin form' en inglés), se usa en los métodos GET, POST, HEAD, y OPTIONS . 
+
 POST / HTTP 1.1
 GET /background.png HTTP/1.0
 HEAD /test.html?query=alibaba HTTP/1.1
@@ -201,6 +202,7 @@ OPTIONS /anypage.html HTTP/1.0
 Una URL completa; conocido como el formato absoluto, usado mayormente con GET cuando se conecta a un proxy. 
 GET http://developer.mozilla.org/en-US/docs/Web/HTTP/Messages HTTP/1.1
 El componente de autoriade de una URL, formado por el nombre del domínio y opcionalmente el puerto (el puerto precedido por el simbolo ':' ), se denomina a este formato como el formato de autoridad. Unicamente se usa con  CONNECT cuando se establece un tunel HTTP.
+
 CONNECT developer.mozilla.org:80 HTTP/1.1
 El formato de asterisco, se utliza un asterisco ('*')  junto con las opciones: OPTIONS , representando al servidor entero en conjunto.  
 OPTIONS * HTTP/1.1
@@ -219,7 +221,28 @@ ser transmitida si el mensaje no tiene cuerpo ('body' en inglés). 
 Cuerpo
 La parte final de la petición el el cuerpo. No todas las peticiones llevan uno: las peticiones que reclaman datos, como GET, HEAD, DELETE, o OPTIONS, normalmente, no necesitan ningún cuerpo. Algunas peticiones pueden mandar peticiones al servidor con el fin de actualizarlo: como es el caso con la petición POST  (que contiene datos de un formulario HTML). 
 
-Bodies can be broadly divided into two ca
+Una típica sesión de HTTP
+En los protocolos basados en el modelo cliente-servidor, como es el caso del HTTP, una sesión consta de tres fases:
 
+El cliente establece una conexión TCP (o la conexión correspondiente si la capa de transporte corresponde a otro protocolo).
+El cliente manda su petición, y espera por la respuesta. 
+El servidor procesa la petición, y responde con un código de estado y los datos correspondientes.
+A partir del protocolo HTTP/1.1 la conexión, no se cierra al finalizar la tercera fase, y el cliente puede continuar realizando peticiones. Esto significa que la segunda y tercera fase, pueden repetirse cualquier número de veces.
 
+# Estableciendo una conexión
+
+En un protocolo cliente servidor, es siempre el cliente el que establece la conexión. Iniciar una conexión en HTTP, implica iniciar una conexión en el protocolo correspondiente a la capa de comunicación subyacente, que normalmente es TCP. 
+
+En TCP el puerto por defecto, para un servidor HTTP en un computador, es el puerto 80. Se pueden usar otros puertos como el 800 o el 8080. La URL de la página pedida contiene tanto el nombre del dominio, como el número de puerto, aunque este puede ser omitido, si se trata del puerto 80.  Vease la referencia de Identificación derecurson en la Web para más detalles.
+
+Nota: El modelo cliente-servidor no permite que el servidor mande datos al cliente sin una petición explicita. Como solución parcial a esteproblema, los desarrolladores web, usan varias técnicas, como hacer un ping al servidor periodicamente, mediante {{domxref("XMLHTTPRequest")}}, {{domxref("Fetch")}} APIs, o usar la HTML  WebSockets API o protocolos similares.
+Mandando una petición
+
+Una vez la conexión está establecida, el cliente, puede mandar una petición de datos (normalente es un navegador, u otra cosa, como un 'crawler', un sistema de indexación automático de páginas web). La  petición de datos de un cliente HTTP, consiste en directivas de texto, separadas mediante CRLF (retorno de carro, y cambio de linea), y se divide en tres partes:
+
+- La primera parte, consiste en una linea, que contiene un método, seguido de sus parámetros:
+  - la dirección del documento pedido: por ejemplo su URL completa, sin indicar el protocolo o el nombre del dominio.
+  - la versión del protocolo HTTP
+- La siguente parte, está formada por un bloque de líneas consecutivas, que represetan las cabeceras de la petición HTTP, y dan información al servidor, sobre que tipo de datos es apropiado (como qué lenguaje usar, o el tipo MIME a usar), u otros datos que modifiquen su comportamiento (como que no envie la respuesta si ya está cacheada). Estas cabeceras HTTP forman un bloque que acaba con una línea en blanco. 
+- La parte final es un bloque de datos opcional, que puede contener más datos para ser usados por el método POST.
 
