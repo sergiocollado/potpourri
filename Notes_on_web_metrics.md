@@ -75,14 +75,14 @@ values are:
 Defines a flexible box in CSS3, this a container that resizes itself according to the screen size.
 
 Flexboxes are made of: 
+
  - Flex containers
- 	-> display: flex --> rendered as flex block.
-	-> display: flex-inline --> rendered as a flex inline block
- - Flex items.
+	 - display: flex --> rendered as flex block.
+ 	 - display: flex-inline --> rendered as a flex inline block
+	 
+ - Flex items: those are the elements inside the flex container, normally arranged in a row.
  
  
-
-
 
 
 <hr>
