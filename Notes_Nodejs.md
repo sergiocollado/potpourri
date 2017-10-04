@@ -86,6 +86,13 @@ The code-word 'require' is used to load module (sort of libraries).
 ```javascript
 var http=require('http');
 ```
+although it can be:
+
+```javascript
+const http=require('http');
+```
+actually the last option, is the best one.
+
 there is another very used module called Express, you can load it wit:
 
 
@@ -127,11 +134,11 @@ If we want to implement a server that always respond with an OK, then we would c
 ```javascript
 http.createServer(function(requested, response) {
  //Send the HTTP header
- //HTTP Status: Alles gut: 200 OK
+ //HTTP Status: everything is ok: 200 OK
  //Content Type: text/plain
  
  //send the response body as "Hello World"
- //listen(8081) means it listening to the 8081 port.
+ //listen(8081) means it listening to the 8081 port.; the default port for servers is 80, or 8080, but you can use whatever you want.
  response.end('Hello World!\n');
  }.listen(8081);
  
