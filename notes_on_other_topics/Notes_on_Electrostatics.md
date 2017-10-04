@@ -8,17 +8,17 @@ The Coulomb (C) is the amount of electrical charge that have 6.241x10^18 electro
 
 The number of Coulobs per second (C/s)= Ampere (A), which is the unit of the electric current, so current is the amount of electric charge that goes through a body per unit time.
 
-## **ℰlectricity**: 
+## **Electricity**: 
 Electricity is an energy asociated with the phenomenon of the flow and accumulation of electrons (negative charged particles)
 oposed to protons (positive charged particles).
 
-## **ℰlectrostatics**:
+## **Electrostatics**:
 Is the study of the electric phenomenon, when the different charges: electrons (by convention, negatively charged)
 and protons (by convention, positive charged) are in an static equilibrium - that is: they are not moving with respect each others.
 
 Electrostatics is govern by _**𝒞oulomb's Law**_ that enunciates as folows:
 
-## _**𝒞oulomb's Law**_  
+## _**Coulomb's Law**_  
 
 The force **F** between two charged particles (Q_1 and Q_2) in static equilibrium, in a given medium,
 is proportional to the product of it's charges, and inversely proportional o the square of it's distance (R^2). 
@@ -51,6 +51,18 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
 
 
 <br>
+
+## Electric Field
+
+ Once we know the forces that electric charges exert one on each others, the concept of a force field is develop. 
+ 
+ Force field: 
+ Is the map of forces (as a vector magnitude), over a given particle, and wich is not enough as to modify the rest of the system. 
+ 
+ Electric Force field:
+ Is the force field caused by Coulomb forces.
+ 
+ 
 <br>
 <br>
 <br>
