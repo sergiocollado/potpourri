@@ -7,6 +7,7 @@ There are also available reference guides: [:link:](https://nodejs.org/en/docs/g
 
 ## Important features are:
 
+- Designed for server applications
 - Asincrhonous and event-driven.
 - Non blocking.
 - Single threaded, but easily scalable.
