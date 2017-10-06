@@ -364,3 +364,27 @@ Test Unitarios: XUnit, CppUTest
 Other sys: lcov, valgrind, ltrace, strace....
 
 Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https://www2.opengroup.org/ogsys/catalog/C13F
+
+
+
+## TESTING METHODOLOGY AND PROCESS
+
+ The most important pearl of wisdom to take into account, is that is not the development process the one that assures quality of
+ the system, is the testing process.
+ 
+  Testing of a system is the action of evaluating it to attain its true capabilities and to check its conformance with the design requisites, and to find bug/erroes or other defect. Summing up the quality of the Product. 
+  
+  >> Testing of a system is of main importance, due it asures the quality of the system.
+  
+  One topic that always pops up is: how much testing is needed?
+  
+  The number of test you can possibli plan for most of the systems tends to infinity. The stop point is that in which, the asurance of the quality of the procudt, has been reached and probed by the tests. Of course this level is different depending on the nature of the projet. Design of a video streamming home-appliance, usually doesn't need as much testing as the design of an emergency train brake system. 
+ 
+ ### TESTING METHODS
+ 
+  Specificaions/requirements testing, checks the desing is compliant with the stackholders idea (expected work). This often is done by means of 'test cases', where the 'tester' evaluates the action of the system for certain inputs, and compares the system outputs with respect the expected outputs.
+  
+  The specifications include all the 'functional' aspects of the system, but they can also include non-functional requiremets, as performance, usability, scalability ...
+  
+  Specification testing is necesry to asure proper funtion. But for complex or high-risk projects, it may be not nearly enoght. For example it doesnt cover a 'foul' user. 
+  
