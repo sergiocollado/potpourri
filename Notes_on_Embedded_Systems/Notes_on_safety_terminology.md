@@ -367,7 +367,7 @@ Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https
 
 
 
-## TESTING METHODOLOGY AND PROCESS
+# TESTING METHODOLOGY AND PROCESS
 
  The most important pearl of wisdom to take into account, is that is not the development process the one that assures quality of
  the system, is the testing process.
@@ -380,7 +380,7 @@ Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https
   
   The number of test you can possibli plan for most of the systems tends to infinity. The stop point is that in which, the asurance of the quality of the procudt, has been reached and probed by the tests. Of course this level is different depending on the nature of the projet. Design of a video streamming home-appliance, usually doesn't need as much testing as the design of an emergency train brake system. 
  
- ### TESTING METHODS
+ ## TESTING METHODS
  
   Specificaions/requirements testing, checks the desing is compliant with the stackholders idea (expected work). This often is done by means of 'test cases', where the 'tester' evaluates the action of the system for certain inputs, and compares the system outputs with respect the expected outputs.
   
@@ -388,3 +388,14 @@ Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https
   
   Specification testing is necesry to asure proper funtion. But for complex or high-risk projects, it may be not nearly enoght. For example it doesnt cover a 'foul' user. 
   
+
+### Dinamic vs Static testing
+
+When a test case of a system involves the actual run of the system, this is known as 'dinamic testing', on the other hand when it doens't inolve the run of the sysem is known as 'static testing'.
+
+ Dinamic testing usually makes us of stubs/driviers, execution from a debugger enviroment.And is also common to automate it.
+ 
+ Static testing, is referred to thos evaluations that don't need the system to be running. Those are techniques as: code review, revision, walkthoruhgs, inspection, and alsouse of programs that automatically ckeck the code propierties (as could be: detection of 'dead code' (code that will never execute)unused varialbles, mising pointers, out of bound arrays, wrong types varaible asignations, lost of precission in mathematical operations, ...) 
+ 
+ 
+ 
