@@ -50,3 +50,46 @@ def foo(parameter_lit):
 
 ### OPTIONAL PARAMETERS and DEFAULT VALUES
 
+
+
+## Execution of a python file, giving parameters:
+
+You need to define the system library for that:
+
+```python
+import sys
+```
+
+then define the function:
+
+```python
+def hello(a,b):
+    print 'hello and thats your sum:'
+    sum=a+b
+    print sum
+```
+
+and to take the arguments:
+
+```
+if __name__ == "__main__":
+    hello(sys.argv[1], sys.argv[2])
+```
+
+so all the file is like:
+
+```python
+import sys
+
+def hello(a,b):
+    print 'hello and thats your sum:'
+    sum=a+b
+    print sum
+
+if __name__ == "__main__":
+    hello(sys.argv[1], sys.argv[2])
+```
+
+You can call the file inside the python IDE, but if you call it from a console, you have to call th epython intepreter previously liek:
+
+$C:\python> python hello.py 1,1
