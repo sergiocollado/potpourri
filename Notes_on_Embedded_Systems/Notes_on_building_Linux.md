@@ -44,3 +44,6 @@ GNU ARM TOOLCHAIN: https://developer.arm.com/open-source/gnu-toolchain/gnu-rm
 developers: https://launchpad.net/~gcc-arm-embedded-developers
 
 gcc: http://gcc.gnu.org/
+
+https://launchpadlibrarian.net/287100910/How-to-build-toolchain.pdf
+
