@@ -313,6 +313,20 @@ build root tutorial: https://buildroot.org/downloads/manual/manual.html
 
 yocto-trainning:  https://community.nxp.com/docs/DOC-94849
 
+renesas:   https://gcc-renesas.com/
+
+GNU ARM embedded toolchain:  https://launchpad.net/gcc-arm-embedded
+
+C library for embedded systems:  https://sourceware.org/newlib/
+
+binutils:  http://www.gnu.org/software/binutils/
+
+GNU ARM TOOLCHAIN: https://developer.arm.com/open-source/gnu-toolchain/gnu-rm
+
+developers: https://launchpad.net/~gcc-arm-embedded-developers
+
+gcc: http://gcc.gnu.org/
+
 
 # 3D Models
 
