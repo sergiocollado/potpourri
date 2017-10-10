@@ -1,16 +1,19 @@
-CMSIS - Cortex Microcontroller Software Interface Standard
-FOC - Field Oriented Control
-DMA - Direct Memory Access
-VFD - Variable Frequency Drives
-DVR - Digital Video Recorder
-BT - Bluetooth
-PoE - Power Over Ethernet
-IMEI - International Mobile Equipment Identity
-NPM - Node.js Package Modules
-JS - Javascript
-EKG - ElektroCardioGram (Deustch)
-ECG - ElectroCardioGram
-PIR - Passive Infra Red sensor.
+
+BAS - Building Automation System.
+HVAC - Heating, Ventilation and Air Conditioning.
+CMSIS - Cortex Microcontroller Software Interface Standard.
+FOC - Field Oriented Control.
+DMA - Direct Memory Access.
+VFD - Variable Frequency Drives.
+DVR - Digital Video Recorder.
+BT - Bluetooth.
+PoE - Power Over Ethernet.
+IMEI - International Mobile Equipment Identity.
+NPM - Node.js Package Modules.
+JS - Javascript.
+EKG - ElektroCardioGram (Deustch).
+ECG - ElectroCardioGram.
+PIR - Passive Infra Red sensor..
 MSA - Microservice Architecture.
 HALT - Highly Accelerated Life Testing.
 HASS- Highly Accelerated Stess Screening.
@@ -262,6 +265,7 @@ EDA - Electronic Design Automation.
 CAD - Computer Aided Design.
 IDM - Integrated Devices Manufacturer.
 IP - Intellectual Propierty.
+FOL - Front of Line.
 EOL - End of Line.
 LSI - Large Scale of Integration.
 VLSI - Very Large Scale of Integration.
