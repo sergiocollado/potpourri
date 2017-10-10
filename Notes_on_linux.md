@@ -22,6 +22,20 @@ REFERENCES:
 >> https://www.linux.com/ <br>
 >> https://www.linux.com/tutorials <br>
 >> to made an USB live LINUX, check: http://www.linuxliveusb.com/en/features <br>
+GNU ARM embedded toolchain:  https://launchpad.net/gcc-arm-embedded
+
+C library for embedded systems:  https://sourceware.org/newlib/
+
+binutils:  http://www.gnu.org/software/binutils/
+
+GNU ARM TOOLCHAIN: https://developer.arm.com/open-source/gnu-toolchain/gnu-rm
+
+developers: https://launchpad.net/~gcc-arm-embedded-developers
+
+gcc: http://gcc.gnu.org/
+
+
+
 
 
 
@@ -263,6 +277,17 @@ https://www.gnu.org/software/cgicc/    <br>
 https://www.gnu.org/software/coreutils/coreutils.html    <br>
 https://www.linux.com/learn/limit-cpu-usage-process-linux-cpulimit-tool    <br>
 
+GNU ARM embedded toolchain:  https://launchpad.net/gcc-arm-embedded
+
+C library for embedded systems:  https://sourceware.org/newlib/
+
+binutils:  http://www.gnu.org/software/binutils/
+
+GNU ARM TOOLCHAIN: https://developer.arm.com/open-source/gnu-toolchain/gnu-rm
+
+developers: https://launchpad.net/~gcc-arm-embedded-developers
+
+gcc: http://gcc.gnu.org/
 
 
 
