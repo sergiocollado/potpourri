@@ -20,3 +20,27 @@ You will need the following components:
 to re-index inmediatetly use:
 
 >sudo updatedb
+
+
+
+
+
+
+
+
+
+
+
+REFERENCES AND USEFUL LINKS.
+
+GNU ARM embedded toolchain:  https://launchpad.net/gcc-arm-embedded
+
+C library for embedded systems:  https://sourceware.org/newlib/
+
+binutils:  http://www.gnu.org/software/binutils/
+
+GNU ARM TOOLCHAIN: https://developer.arm.com/open-source/gnu-toolchain/gnu-rm
+
+developers: https://launchpad.net/~gcc-arm-embedded-developers
+
+gcc: http://gcc.gnu.org/
