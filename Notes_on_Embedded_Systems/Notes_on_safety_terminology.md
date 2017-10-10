@@ -28,7 +28,7 @@ detection of potential dangerous states, and activation of protective, correctiv
 Functional safety implies active measures, as an example is the airbag systems in vehicles, when a crash is detected, a safety system
 is triggered. On the other hand, a helmet that protects the driver, is a passive system; passive systems are not functional safety.
 
-The leading standard for functional safety is the IEC 61508
+The leading standard for functional safety is the IEC 61508.
 
 **SECURITY**: Is the propierty of a system that evaluates its ability to deal with malicious actions or attacks.
 
