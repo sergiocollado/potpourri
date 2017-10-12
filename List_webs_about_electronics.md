@@ -428,6 +428,24 @@ RFC6455 - Websocket Protocol
 
 RFC793 - tcp (Transmision Control Protocol) 
 
+RFC 4632 — Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan
+
+RFC 1918 — Address Allocation for Private Internets
+
+RFC 5737 — IPv4 Address Blocks Reserved for Documentation
+
+RFC 4291 — Internet Protocol Version 6 (IPv6) Addressing Architecture
+
+RFC 3587 — IPv6 Global Unicast Address Format
+
+RFC 6177 — IPv6 Address Assignment to End Sites
+
+RFC 6890 — Special-Purpose IP Address Registries
+
+RFC 7020 — The Internet Numbers Registry System
+
+RFC 7249 — Internet Numbers Registries
+
 AES - Advanced Encription Standard 
 
 DES - Data Encription Standard 
@@ -455,6 +473,15 @@ TLS 1.2 https://tools.ietf.org/html/rfc5246
 About Microsoft Windows:  https://www.lifewire.com/windows-key-concepts-4102717
 
 IBM research:  http://www.research.ibm.com/featured/whats-new.shtml
+
+
+
+
+
+
+
+
+
 
 
 # It's Magic!!
