@@ -16,9 +16,14 @@ oposed to protons (positive charged particles).
 Is the study of the electric phenomenon, when the different charges: electrons (by convention, negatively charged)
 and protons (by convention, positive charged) are in an static equilibrium - that is: they are not moving with respect each others.
 
+## Charge conservation's Law:
+The net amount of charge is consereved, that is to say, that is the amount of positive charge, minus the net amount of negative charge
+is always conserved. This implies that electric charge cannot be created nor destroyed.
+
+
 Electrostatics is govern by _**𝒞oulomb's Law**_ that enunciates as folows:
 
-## _**Coulomb's Law**_  
+## **Coulomb's Law**
 
 The force **F** between two charged particles (Q_1 and Q_2) in static equilibrium, in a given medium,
 is proportional to the product of it's charges, and inversely proportional o the square of it's distance (R^2). 
