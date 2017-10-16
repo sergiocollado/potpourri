@@ -397,5 +397,27 @@ When a test case of a system involves the actual run of the system, this is know
  
  Static testing, is referred to thos evaluations that don't need the system to be running. Those are techniques as: code review, revision, walkthoruhgs, inspection, and alsouse of programs that automatically ckeck the code propierties (as could be: detection of 'dead code' (code that will never execute)unused varialbles, mising pointers, out of bound arrays, wrong types varaible asignations, lost of precission in mathematical operations, ...) 
  
- 
+## The seven principles of testing
+
+over time, testing has learned important leasons, these concepts are the followings:
+
+**1- Testing shows presence of defects** testing, shows defects, but it cannot proof that there are not defects. Testing
+increases the asurance over the system, because when a bug is found and corrected, the chance that would be remaining 
+bugs is less likely. So even in the case, that no defects can be found any further, that there is no proof that there aren't any.
+
+**2- Exhaustive testing is impossible**
+
+**3- Early testing**
+
+**4- Defect clustering**
+
+**5- Pesticide paradox**
+
+**6- Testing is context dependant**
+
+**7- Absence of errors falacy**
+
+
+
+
  
