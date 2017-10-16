@@ -57,6 +57,10 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
 
 <br>
 
+![cases of forces on electrostatic charges](../image/charges.png)
+
+<br>
+
 ## Electric Field
 
  Once we know the forces that electric charges exert one on each others, the concept of a force field is develop. 
