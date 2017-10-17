@@ -110,7 +110,20 @@ troubleshooting: https://github.com/adam-p/markdown-here/wiki/Troubleshooting
 AsciiDoc, is also another markup lenguaje, and it has certain compatibility with Markdown. </br>
 :link: [AsciiDoc docs](http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/)
 
-### SVG in MD
+### Formulas as SVG's
+
+There are tools for convert formulas in latex to SVG's
+give a try to:
+
+http://www.codecogs.com/latex/eqneditor.php
+
+also if you are fond in node.js
+
+https://www.npmjs.com/package/tex-equation-to-svg
+
+
+
+### SVG in github with markdown language
 
 Put your source file in [Rawgithub.com](https://rawgit.com/) and it will provide you with a link with the proper headers.
 
