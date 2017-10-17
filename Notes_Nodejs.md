@@ -129,7 +129,7 @@ server.on('request',function(request,respon){
 });
 ```
 
-If we want to implement a server that always respond with an OK, then we would code:
+If we want to implement a server that always replies with an OK status code, then we would write it as:
 
 ```javascript
 http.createServer(function(requested, response) {
@@ -137,8 +137,8 @@ http.createServer(function(requested, response) {
  //HTTP Status: everything is ok: 200 OK
  //Content Type: text/plain
  
- //send the response body as "Hello World"
- //listen(8081) means it listening to the 8081 port.; the default port for servers is 80, or 8080, but you can use whatever you want.
+ //send the response body as "Hello World!"
+ //listen(8081) means it listening to the 8081 port.; the default port for servers is 80, 8000 or 8080, but you can use whatever you want.
  response.end('Hello World!\n');
  }.listen(8081);
  
@@ -280,7 +280,7 @@ http.createServer(function(request, response) {
 }).listen(8080);
 ```
 
-Remember that **`request`** is a `ReadableStream` and **`response`** is a `WritableStream`, so you can get advantage of **pipes** if you need them.
+For reference, note that **`request`** is a `ReadableStream` and **`response`** is a `WritableStream`, so you can get advantage of **pipes** if you need them.
 
 
  
