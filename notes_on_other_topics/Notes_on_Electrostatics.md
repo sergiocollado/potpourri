@@ -56,6 +56,7 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
 
 <br>
 ![equation of coulomb forces](https://rawgit.com/sergiocollado/potpourri/master/image/Coulomb_formula.svg)
+<img src="https://rawgit.com/sergiocollado/potpourri/master/image/Coulomb_formula.svg?sanitize=true">
 <br>
 
 <br>
