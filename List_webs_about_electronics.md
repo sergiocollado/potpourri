@@ -232,6 +232,12 @@ shop RF elements: https://www.ondamania.com/b2c/inicio.php
 
 about thermodinamics, thermal engines... http://technicaltheory.blogspot.com.es/
 
+tiny AVR simulator:  https://sourceforge.net/projects/avrsimu/
+
+cool site about electronics: https://www.mikrocontroller.net
+
+
+
 # Learn electronics with application notes:
 
 thermal resistence in Integrated Circuits:  http://rohmfs.rohm.com/en/products/databook/applinote/ic/power/switching_regulator/thermal_resistance_appli-e.pdf
