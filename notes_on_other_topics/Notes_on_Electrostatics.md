@@ -58,6 +58,8 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
 <img src="https://rawgit.com/sergiocollado/potpourri/master/image/Coulomb_formula.svg?sanitize=true">
 <br>
 <br>
+<img src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_eq.svg?sanitize=true">
+<br>
 
 ![cases of forces on electrostatic charges](../image/charges.png)
 
