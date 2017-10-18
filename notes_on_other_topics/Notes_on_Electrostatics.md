@@ -52,14 +52,10 @@ So for free space, the relative permittivity is ε_r = 1.
 
 Then the force between the two charges Q_1 and Q_2, is defined by:
 
- _**F**_ = k_e·Q_1·Q_2·_**r**_/(R^2)   [Newtons]
+<br>
+<img style="border:1px solid black;" src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_eq.svg?sanitize=true">
+<br>
 
-<br>
-<img src="https://rawgit.com/sergiocollado/potpourri/master/image/Coulomb_formula.svg?sanitize=true">
-<br>
-<br>
-<img src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_eq.svg?sanitize=true">
-<br>
 
 ![cases of forces on electrostatic charges](../image/charges.png)
 
