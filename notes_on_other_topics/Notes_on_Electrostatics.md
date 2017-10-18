@@ -53,9 +53,10 @@ So for free space, the relative permittivity is ε_r = 1.
 Then the force between the two charges Q_1 and Q_2, is defined by:
 
 <br>
-<img style="border:1px solid black;" src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_eq.svg?sanitize=true">
+<img style="border: 1px solid black;" src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_eq.svg?sanitize=true">
 <br>
-
+<img src="https://github.com/sergiocollado/potpourri/blob/master/image/charges_schematic.png" alt="force between charges schematic">
+<br>
 
 ![cases of forces on electrostatic charges](../image/charges.png)
 
