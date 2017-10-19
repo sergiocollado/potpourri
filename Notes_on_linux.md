@@ -1,5 +1,27 @@
+`***********************************************************************************************************************`
+`***********************************************************************************************************************`
 
-In any case, always have a try with:
+>> Reference: man pages:
+
+  >> User commands: [:link:](http://man7.org/linux/man-pages/dir_section_1.html)
+  
+  >> System calls: [:link:](http://man7.org/linux/man-pages/dir_section_2.html)
+  
+  >> Library standard C: [:link:](http://man7.org/linux/man-pages/dir_section_3.html)
+  
+  >> Devices [:link:](http://man7.org/linux/man-pages/dir_section_4.html)
+  
+  >> Files systems [:link:](http://man7.org/linux/man-pages/dir_section_5.html)
+  
+  >> Conventions & miscellaneous [:link:](http://man7.org/linux/man-pages/dir_section_7.html)
+  
+  >> system Administration [:link:](http://man7.org/linux/man-pages/dir_section_8.html)
+  
+`***********************************************************************************************************************`  
+`***********************************************************************************************************************`
+
+
+In case something is not working properly, always have a go with with the following:
 
 > sudo apt-get update
 
@@ -34,20 +56,12 @@ developers: https://launchpad.net/~gcc-arm-embedded-developers
 
 gcc: http://gcc.gnu.org/
 
+journal: http://www.linuxjournal.com
 
 
 
 
 
->> Reference: man pages:
-  >> User commands: [:link:](http://man7.org/linux/man-pages/dir_section_1.html)
-  >> System calls: [:link:](http://man7.org/linux/man-pages/dir_section_2.html)
-  >> Library standard C: [:link:](http://man7.org/linux/man-pages/dir_section_3.html)
-  >> Devices [:link:](http://man7.org/linux/man-pages/dir_section_4.html)
-  >> Files systems [:link:](http://man7.org/linux/man-pages/dir_section_5.html)
-  >> Conventions & miscellaneous [:link:](http://man7.org/linux/man-pages/dir_section_7.html)
-  >> system Administration [:link:](http://man7.org/linux/man-pages/dir_section_8.html)
-  
   
 
 The analysis of the memory in the linux system, can be checked using the commands:
