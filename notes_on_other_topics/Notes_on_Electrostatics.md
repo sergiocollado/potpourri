@@ -53,10 +53,12 @@ So for free space, the relative permittivity is ε_r = 1.
 Then the force between the two charges Q_1 and Q_2, is defined by:
 
 <br>
-<img style="border:1px solid" src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_eq.svg?sanitize=true">
+<img style="border:1px solid" width="300" src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_eq.svg?sanitize=true">
 <br>
-<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/charges_schematic.png" width="400" style="border:1px solid" alt="force between charges schematic">
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/charges_schematic.png" width="400" style="border:1px solid black" alt="force between charges schematic">
 <br>
+
+From this concept it can be easily seen the **law of attraction and repulsion**: Two charges of equal sign, repulse each other, and two charges of opposite sign attract each other.
 
 ![cases of forces on electrostatic charges](../image/charges.png)
 
