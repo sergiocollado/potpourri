@@ -6,7 +6,7 @@ The electric charge cuantifies the defect of electrons (by convection this is kn
 
 The Coulomb (C) is the amount of electrical charge that have 6.241x10^18 electrons.
 
-The number of Coulobs per second (C/s)= Ampere (A), which is the unit of the electric current, so current is the amount of electric charge that goes through a body per unit time.
+The number of Coulobs per second (C/s) = Ampere (A), which is the unit of the electric current, so current is the amount of electric charge that goes through a body per unit time.
 
 ## **Electricity**: 
 Electricity is an energy asociated with the phenomenon of the flow and accumulation of electrons (negative charged particles)
@@ -42,8 +42,8 @@ call _**permittivity**_, for short); the absolutely permittivity value is given 
     
 where:
 
-- **ε_r** is a dimension less quantity, that is known as the _**relative permittivity**_ of also as the _**dielectric constant**
-_ of the medium.
+- **ε_r** is a dimension-less quantity, that is known as the **relative permittivity** or also as the **dielectric constant**
+ of the medium.
 - **ε_0** is the permittivity of free space (vacuum) - and its value is:
 
 >  **ε_0= 10^(-9)/(36·π)**
@@ -53,7 +53,7 @@ So for free space, the relative permittivity is ε_r = 1.
 Then the force between the two charges Q_1 and Q_2, is defined by:
 
 <br>
-<img style="border:1px solid" width="300" src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_eq.svg?sanitize=true">
+<img style="border:1px solid" width="200" src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_eq.svg?sanitize=true">
 <br>
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/charges_schematic.png" width="400" style="border:1px solid black" alt="force between charges schematic">
 <br>
