@@ -57,7 +57,8 @@ where:
  of the medium.
 - **ε_0** is the permittivity of free space (vacuum) - and its value is:
 
-<br>https://rawgit.com/sergiocollado/potpourri/master/image/epsion_cero.svg" style="border:1px solid black" alt="permittivity of free space">
+<br>
+<img src="https://rawgit.com/sergiocollado/potpourri/master/image/epsion_cero.svg" style="border:1px solid black" alt="permittivity of free space">
 <br>
 
 So for free space, the relative permittivity is ε_r = 1.
