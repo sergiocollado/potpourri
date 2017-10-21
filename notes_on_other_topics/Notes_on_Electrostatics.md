@@ -77,10 +77,20 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
  Once we know the forces that electric charges exert one on each others, the concept of a force field is develop. 
  
  Force field: 
- Is the map of forces (as a vector magnitude), over a given particle, and which is not enough as to modify the rest of the system. 
+ Is the map of forces (as a vector magnitude), over a given particle, and which is not enough as to modify the rest of the system -so
+ its influence is infinitesimal-
  
  Electric Force field:
- Is the force field caused by Coulomb forces.
+ Is the force field over the space, caused by Coulomb forces (electrostatic forces), over a charge of value the unit  1 Coulomb. This
+ is the same as the force per unit of charge.
+ 
+ So according to this definition we can consider the Electric Field, represented by **E**, for a given point charge, of value Q as:
+ 
+ 
+
+
+ 
+ 
  
  
 <br> 
