@@ -40,7 +40,7 @@ Q_1 and Q_2 (vector r). That force will be also proportional to a constant **k_e
 System of units, **SI**, it has the value:
 
 <br>
-<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_constant.svg" width="400" style="border:1px solid black" alt="coulomb constant">
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_constant.svg" style="border:1px solid black" alt="coulomb constant">
 <br>
      
 Where **ε** is the absolutely permittivity of the medium (althought for symplicity many times is just 
