@@ -1,6 +1,6 @@
 
 ## **Electric Charge:**
-The electric charge, represented by its symbol Q,  is a fundamental magnitude, as for example the longidude (SI unit: Meter), or the force (SI unit: Newton). Its a fundamental magnitude, as it cannot be deduced from the others: Mass(M), Lenght(L), and time(T) ...
+The electric charge, represented by its symbol **Q**,  is a fundamental magnitude, as for example the longidude (SI unit: Meter), or the force (SI unit: Newton). Its a fundamental magnitude, as it cannot be deduced from the others: Mass(M), Lenght(L), and time(T) ...
 
 The electric charge cuantifies the defect of electrons (by convection this is known as *Positive charge*), or the excess of electrons (by convection this is known as *negative charge*) in a body, and its unit in SI is the *Coulomb*.
 
@@ -39,7 +39,9 @@ That force will act always along the line that is defined by the position of bot
 Q_1 and Q_2 (vector r). That force will be also proportional to a constant **k_e**, in the Internationa
 System of units, **SI**, it has the value:
 
->   **k_e = 1 / (4·π·ε)**
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_constant.svg" width="400" style="border:1px solid black" alt="coulomb constant">
+<br>
      
 Where **ε** is the absolutely permittivity of the medium (althought for symplicity many times is just 
 call _**permittivity**_, for short); the absolutely permittivity value is given by:
