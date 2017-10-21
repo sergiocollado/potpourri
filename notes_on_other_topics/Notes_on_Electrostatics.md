@@ -17,7 +17,7 @@ Is the study of the electric phenomenon, when the different charges: electrons (
 and protons (by convention, positive charged) are in an static equilibrium - that is: they are not moving with respect each others.
 
 ## Charge conservation's Law:
-The net amount of charge is consereved, that is to say, that is the amount of positive charge, minus the net amount of negative charge
+The net amount of charge is conserved, that is to say, that is the amount of positive charge, minus the net amount of negative charge
 is always conserved. This implies that electric charge cannot be created nor destroyed.
 
 ## Law of attraction and repulsion:
