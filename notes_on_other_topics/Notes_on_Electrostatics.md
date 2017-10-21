@@ -90,7 +90,11 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
 <img src="https://rawgit.com/sergiocollado/potpourri/master/image/Electric_field_eq.svg?sanitize=true" style="border:1px solid black" alt="equation of the electric field">
 <br>
 
+The units of the Electric Field are Newtons per Coulomb [N/C].
 
+A nice thing, is that the electric field, allows us to use the superposition principle.
+
+E_total = S Ei
  
  
  
@@ -145,3 +149,5 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
 
 
 𝓢ℯ𝓇ℊ𝒾ℴ 𝓖. 𝓒ℴ𝓁𝓁𝒶𝒹ℴ
+
+
