@@ -20,7 +20,7 @@ and protons (by convention, positive charged) are in an static equilibrium - tha
 The net amount of charge is consereved, that is to say, that is the amount of positive charge, minus the net amount of negative charge
 is always conserved. This implies that electric charge cannot be created nor destroyed.
 
-##Law of attraction and repulsion:
+## Law of attraction and repulsion:
 Two charges of equal sign, repulse each other, and two charges of opposite sign attract each other.
 <br>
 ![cases of forces on electrostatic charges](../image/charges.png)
