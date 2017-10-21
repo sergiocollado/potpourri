@@ -1,5 +1,5 @@
-`***********************************************************************************************************************`
-`***********************************************************************************************************************`
+`******************************************************************************************************************`
+`******************************************************************************************************************`
 
 >> Reference: man pages:
 
@@ -71,55 +71,62 @@ Remember that the '/proc' filesystem is a pseudo-filesystem whose files provide 
 
 reading the file: /proc/meminfo
 
+```bash
 >> less /proc/meminfo
 or
 >> cat /proc/meminfo
 
-MemTotal:        8169924 kB
-MemFree:         7274872 kB
-Buffers:          154784 kB
-Cached:           213312 kB
-SwapCached:            0 kB
-Active:           265184 kB
-Inactive:         233264 kB
-Active(anon):     131196 kB
-Inactive(anon):     2956 kB
-Active(file):     133988 kB
-Inactive(file):   230308 kB
-Unevictable:           0 kB
-Mlocked:               0 kB
-SwapTotal:       1046524 kB
-SwapFree:        1046524 kB
-Dirty:                60 kB
-Writeback:             0 kB
-AnonPages:        129588 kB
-Mapped:            47324 kB
-Shmem:              3804 kB
-Slab:             288172 kB
-SReclaimable:     251312 kB
-SUnreclaim:        36860 kB
-KernelStack:        4192 kB
-PageTables:        12756 kB
-NFS_Unstable:          0 kB
-Bounce:                0 kB
-WritebackTmp:          0 kB
-CommitLimit:     5131484 kB
-Committed_AS:    1010244 kB
-VmallocTotal:   34359738367 kB
-VmallocUsed:      174216 kB
-VmallocChunk:   34359550136 kB
-HardwareCorrupted:     0 kB
-AnonHugePages:     26624 kB
-HugePages_Total:       0
-HugePages_Free:        0
-HugePages_Rsvd:        0
-HugePages_Surp:        0
-Hugepagesize:       2048 kB
-DirectMap4k:       91968 kB
-DirectMap2M:     3053568 kB
-DirectMap1G:     7340032 kB
+MemTotal:        8169924 kB<br>
+MemFree:         7274872 kB<br>
+Buffers:          154784 kB<br>
+Cached:           213312 kB<br>
+SwapCached:            0 kB<br>
+Active:           265184 kB<br>
+Inactive:         233264 kB<br>
+Active(anon):     131196 kB<br>
+Inactive(anon):     2956 kB<br>
+Active(file):     133988 kB<br>
+Inactive(file):   230308 kB<br>
+Unevictable:           0 kB<br>
+Mlocked:               0 kB<br>
+SwapTotal:       1046524 kB<br>
+SwapFree:        1046524 kB<br>
+Dirty:                60 kB<br>
+Writeback:             0 kB<br>
+AnonPages:        129588 kB<br>
+Mapped:            47324 kB<br>
+Shmem:              3804 kB<br>
+Slab:             288172 kB<br>
+SReclaimable:     251312 kB<br>
+SUnreclaim:        36860 kB<br>
+KernelStack:        4192 kB<br>
+PageTables:        12756 kB<br>
+NFS_Unstable:          0 kB<br>
+Bounce:                0 kB<br>
+WritebackTmp:          0 kB<br>
+CommitLimit:     5131484 kB<br>
+Committed_AS:    1010244 kB<br>
+VmallocTotal:   34359738367 kB<br>
+VmallocUsed:      174216 kB<br>
+VmallocChunk:   34359550136 kB<br>
+HardwareCorrupted:     0 kB<br>
+AnonHugePages:     26624 kB<br>
+HugePages_Total:       0<br>
+HugePages_Free:        0<br>
+HugePages_Rsvd:        0<br>
+HugePages_Surp:        0<br>
+Hugepagesize:       2048 kB<br>
+DirectMap4k:       91968 kB<br>
+DirectMap2M:     3053568 kB<br>
+DirectMap1G:     7340032 kB<br>
+```
 
-If you also need to check your CPU, then you can read the file as: >> cat /proc/cpuinfo
+If you also need to check your CPU, then you can read the file as:
+<br>
+```bash
+>> cat /proc/cpuinfo
+```
+<br>
 
 Or also there is the command: lscpu
 
@@ -141,26 +148,27 @@ Opertators:
 -l : shows low and high memory statistics
 -V : displays version information.
 
->>brteintern@inmaculada:/$ free -m
+```bash
+>>:/$ free -m
              total       used       free     shared    buffers     cached
 Mem:          7978        877       7100          3        151        208
 -/+ buffers/cache:        517       7460
 Swap:         1021          0       1021
 
-
->>brteintern@inmaculada:/$ free -t -m
+>>/$ free -t -m
              total       used       free     shared    buffers     cached
 Mem:          7978        883       7094          3        151        212
 -/+ buffers/cache:        519       7458
 Swap:         1021          0       1021
 Total:        9000        883       8116
-
+```
 
 
 3)
-using the vmstat -s
+using the `vmstat -s`
 
-brteintern@inmaculada:/$ vmstat -s
+```bash
+>>:/$ vmstat -s
       8169924 K total memory
        904828 K used memory
        272112 K active memory
@@ -187,10 +195,12 @@ brteintern@inmaculada:/$ vmstat -s
       4823867 CPU context switches
    1486027825 boot time
        147016 forks
+```
+
 
 4)
-Use the top programm.
-There are also the atop, and htop, programs, that have increased functionalities, but they don't usually come preinstalled in linux distro.s
+Use the **top** programm.
+There are also the **atop**, and **htop** programs, that have increased functionalities, but they don't usually come preinstalled in linux distros.
 
 
 
@@ -198,7 +208,7 @@ CHECKING WHAT IS IN YOUR CACHE AND BUFFER:
 
 Use 'linux-ftools', to check what files are in your CACHE.
 
->> fincore [options] files ...
+`>> fincore [options] files ...`
 
 Options:
 
@@ -214,8 +224,8 @@ TODO:  complete with: -- > http://unix.stackexchange.com/questions/87908/how-do-
 5) 
 If you want to know how much free memory you have in your hard disk, you have to use the commands:
 
-· df command
-· du command
+· **df** command
+· **du** command
 
 TODO: COMPLETE
 
