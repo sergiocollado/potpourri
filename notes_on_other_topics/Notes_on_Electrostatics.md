@@ -66,7 +66,7 @@ So for free space, the relative permittivity is ε_r = 1.
 Then the force between the two charges Q_1 and Q_2, is defined by:
 
 <br>
-<img style="border:1px solid" width="200" src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_eq.svg?sanitize=true">
+<img style="border:1px solid" width="200" src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_eq_2.svg?sanitize=true">
 <br>
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/charges_schematic.png" width="400" style="border:1px solid black" alt="force between charges schematic">
 <br>
@@ -87,7 +87,7 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
  So according to this definition we can consider the Electric Field, represented by **E**, for a given point charge, of value Q as:
  
 <br>
-<img src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_eq.svg?sanitize=true" style="border:1px solid black" alt="equation of the electric field">
+<img src="https://rawgit.com/sergiocollado/potpourri/master/image/Electric_field_eq.svg?sanitize=true" style="border:1px solid black" alt="equation of the electric field">
 <br>
 
 
