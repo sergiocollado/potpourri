@@ -86,8 +86,8 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
  
  So according to this definition we can consider the Electric Field, represented by **E**, for a given point charge, of value Q as:
  
- <br>
-<img src=" ?sanitize=true" style="border:1px solid black" alt="equation of the electric field">
+<br>
+<img src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_eq.svg?sanitize=true" style="border:1px solid black" alt="equation of the electric field">
 <br>
 
 
