@@ -20,6 +20,12 @@ and protons (by convention, positive charged) are in an static equilibrium - tha
 The net amount of charge is consereved, that is to say, that is the amount of positive charge, minus the net amount of negative charge
 is always conserved. This implies that electric charge cannot be created nor destroyed.
 
+##Law of attraction and repulsion:
+Two charges of equal sign, repulse each other, and two charges of opposite sign attract each other.
+<br>
+![cases of forces on electrostatic charges](../image/charges.png)
+<br>
+<br>
 
 Electrostatics is govern by _**Coulomb's Law**_ that enunciates as folows:
 
@@ -58,11 +64,6 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/charges_schematic.png" width="400" style="border:1px solid black" alt="force between charges schematic">
 <br>
 
-From this concept it can be easily seen the **law of attraction and repulsion**: Two charges of equal sign, repulse each other, and two charges of opposite sign attract each other.
-
-![cases of forces on electrostatic charges](../image/charges.png)
-
-<br>
 
 ## Electric Field
 
