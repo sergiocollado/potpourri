@@ -46,7 +46,10 @@ System of units, **SI**, it has the value:
 Where **ε** is the absolutely permittivity of the medium (althought for symplicity many times is just 
 call _**permittivity**_, for short); the absolutely permittivity value is given by:
 
->   **ε= ε_r·ε_0**
+
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/epsion.svg" style="border:1px solid black" alt="permittivity">
+<br>
     
 where:
 
