@@ -83,7 +83,7 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
  Is the force field caused by Coulomb forces.
  
  
-<br>
+<br> 
 <br>
 <br>
 <br>
