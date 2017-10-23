@@ -135,7 +135,24 @@ reference: https://www.python-course.eu/python3_variables.php
 #### Lists
 
 Lists in python are a sequenced and ordered group of objects, they can be of any type, and even is possible, that they can be nestested
-lists as elements of lists. Those elements can be edited, and changed in value, and they are accessed through its index.
+lists (or sublists) as elements of lists. Those elements can be edited, and changed in value, and they are accessed through its index.
+
+they are defined, as follows:
+
+```python
+numberlist = [ 'one' , 2 , '3']
+```
+
+#### Tuples
+
+Tuples are inmutable lists, once they are defined its elements cannot be changed. They are defined as the lists, but with parenthesis.
+
+tuples are defined as follows:
+```python
+numbertuple = ('one' , 2 , '3')
+```
+
+
 
 
 
