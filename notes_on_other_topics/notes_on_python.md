@@ -132,6 +132,13 @@ remember You can check the object referenced by a variable with the `id()` funct
  
 reference: https://www.python-course.eu/python3_variables.php
 
+#### Lists
+
+Lists in python are a sequenced and ordered group of objects, they can be of any type, and even is possible, that they can be nestested
+lists as elements of lists. Those elements can be edited, and changed in value, and they are accessed through its index.
+
+
+
 ## FUNCTIONS
 
 Functions are defined by the keyword `def`
