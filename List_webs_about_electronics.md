@@ -359,6 +359,15 @@ https://grabcad.com/library
 http://www.solidworks.com/sw/support/solidworks-certification.htm
 
 http://www.edrawingsviewer.com/ed/download.htm
+
+https://free3d.com/
+
+
+
+
+
+
+
 # firms & Semiconductors companies
 
 http://www.allegromicro.com/
@@ -481,6 +490,8 @@ TLS 1.2 https://tools.ietf.org/html/rfc5246
 About Microsoft Windows:  https://www.lifewire.com/windows-key-concepts-4102717
 
 IBM research:  http://www.research.ibm.com/featured/whats-new.shtml
+
+web to check regular expressions: https://regex101.com/
 
 
 
