@@ -195,8 +195,10 @@ ADC - Analog to Digital Converter
 DAC - Digital to Analog Converter
 API - Application Program Interface
 IDE - Integrated Development Enviroment
-PSR - Processor Specific Registers
-APSR - Application Processor Specific Register
+PSR - Processor Status Registers
+APSR - Application Processor Status Register [N, Z, C, V, Q]
+EPSR - Execution Processor Status Register 
+IPSR -  I Processor Status Register
 SDK - Software Development Kit
 BSP - Board Support Package.
 BTLE - BlueTooth Low Energy
