@@ -8,6 +8,8 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 
 If you want a quick overview about now does this all work, the you can check the, [tutorial](https://guides.github.com/activities/hello-world/)  :link:
 
+The Github desktop application can be found at: https://desktop.github.com/
+
 
 ### Toolboxes: [Pretty usefull tools](https://github.com/integrations/) :link:
 
