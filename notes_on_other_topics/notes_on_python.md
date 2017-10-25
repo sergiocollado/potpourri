@@ -83,26 +83,26 @@ my_string = 'Hello Wold!'
  
 ##### basic string functions     
 
- - concatenation: the + operator
+ - **concatenation**: the + operator
  ```python
  message = 'Hello' + 'World!'
 'HelloWold!' //you should had written and space ;)
 ```
 
- - repetition: the * (number) operator
+ - **repetition**: the * (number) operator
  ```python
  message_2 = 'tic tac ' * 4 
  tic tac tic tac tic tac tic tac
 ```
 
- - slicing: the [ num1 : num2 ] operator. The characters from num1 to num2, the num2 character is not included.
+ - **slicing**: the [ num1 : num2 ] operator. The characters from num1 to num2, the num2 character is not included.
 ```python
 >>>message_3 = 'Hello Wold!'
  >>>message_3[0:5] //the 5 is not included. 
  'Hello' 
 ```
 
- - lenght of the string: len(string)
+ - **lenght of the string**: len(string)
  ```python
  >>> len('hello')
  5
@@ -140,7 +140,53 @@ lists (or sublists) as elements of lists. Those elements can be edited, and chan
 they are defined, as follows:
 
 ```python
-numberlist = [ 'one' , 2 , '3']
+>>numberlist = [ 'one' , 2 , '3']
+```
+
+ - **slicing**
+ 
+```python
+>>first_two = numberlist[0:2]
+>>print(first_two)
+>>['one', 2]
+>>last_two = numberlist[:-2]
+>>print(last_two)
+>>[2,'3']
+```
+
+you can also jump every other step according to the structure: list[start:end:step]
+
+ - **length**
+ 
+```python
+>> len(numberlist)
+>> 3
+```
+
+ - **concatenations**: is possible to concatenate list with the '+' operator
+ 
+ ```python
+ >> list_concatenated = list_one + list_two
+ ```
+ 
+  - **element existence**: to check if an element is contained in a list or not, the operators 'in' and 'not in' are used.
+  
+  ```python
+ >>names = ['John', 'Seamus', 'Richard']
+ >> 'John' in names
+ >> True
+ >> 'Anne' not in names
+ >> True
+ >> Silvie in names
+ >> False
+ ```
+ - **repetitions**: Is possible the repetition with the operator '*'
+ 
+```python
+>>clock = ['tick', 'tack']
+>>two_clocks = clock*2
+>>print(two_clocks)
+>>['tick', 'tack','tick', 'tack']
 ```
 
 #### Tuples
@@ -151,10 +197,6 @@ tuples are defined as follows:
 ```python
 numbertuple = ('one' , 2 , '3')
 ```
-
-
-
-
 
 ## FUNCTIONS
 
