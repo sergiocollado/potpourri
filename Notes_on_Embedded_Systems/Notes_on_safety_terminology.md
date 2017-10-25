@@ -395,21 +395,27 @@ When a test case of a system involves the actual run of the system, this is know
 
  Dinamic testing usually makes us of stubs/driviers, execution from a debugger enviroment.And is also common to automate it.
  
- Static testing, is referred to thos evaluations that don't need the system to be running. Those are techniques as: code review, revision, walkthoruhgs, inspection, and alsouse of programs that automatically ckeck the code propierties (as could be: detection of 'dead code' (code that will never execute)unused varialbles, mising pointers, out of bound arrays, wrong types varaible asignations, lost of precission in mathematical operations, ...) 
+ Static testing, is referred to those evaluations that don't need the system to be running. Those are techniques as: code review, revision, walkthoruhgs, inspection, and alsouse of programs that automatically ckeck the code propierties (as could be: detection of 'dead code' (code that will never execute)unused varialbles, mising pointers, out of bound arrays, wrong types varaible asignations, lost of precission in mathematical operations, ...) 
  
 ## The seven principles of testing
 
 over time, testing has learned important leasons, these concepts are the followings:
 
-**1- Testing shows presence of defects** testing, shows defects, but it cannot proof that there are not defects. Testing
+**1- Testing shows presence of defects** <br>
+Testing, shows defects, but it cannot proof that there are not defects. Testing
 increases the asurance over the system, because when a bug is found and corrected, the chance that would be remaining 
 bugs is less likely. So even in the case, that no defects can be found any further, that there is no proof that there aren't any.
 
-**2- Exhaustive testing is impossible**
+**2- Exhaustive testing is impossible** <br>
+test of all the possible combinations of a system is impossible. So to determine how much testing should be dont, an 
+estimation of the risks, risk analysys and priorities, must be done. The testing will stop, when there is certainty that the systems complies.
 
-**3- Early testing**
+**3- Early testing** <br>
+Testing activities should be started as soon as possible in the system development live.
 
-**4- Defect clustering**
+**4- Defect clustering** <br>
+As following the pareto law, in many cases some components have most of the defect density. Testing should be focus to them,
+to maximice the effectiveness of the testing efforts.
 
 **5- Pesticide paradox**
 
