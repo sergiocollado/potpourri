@@ -200,6 +200,8 @@ PSR - Processor Status Registers
 APSR - Application Processor Status Register [N, Z, C, V, Q]
 EPSR - Execution Processor Status Register 
 IPSR -  I Processor Status Register
+MSP - Main Stack Pointer
+PSP - Process Stack Pointer
 SDK - Software Development Kit
 BSP - Board Support Package.
 BTLE - BlueTooth Low Energy
