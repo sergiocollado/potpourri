@@ -213,6 +213,8 @@ AAPCS - ARM Architecture Procedure Call Standard.
 SP - Stack Pointer.
 MSP - Main Stack Pointer.
 PSP - Process Stack Pointer.
+LR - Link Register
+PC - Program Counter
 ABI - Aplication Binary Interface.
 EABI - Extended Aplication Binary Interface.
 OABI - Old Aplication Binary Interface.
