@@ -428,6 +428,8 @@ Testing depends on the context. A safe-critical system test is not at all the sa
 Even if no defects are found, it doesn't proof that the system is usable, or complies with the end-user expectations.
 
 
+## Test Planning for a System
+
 
 
 
