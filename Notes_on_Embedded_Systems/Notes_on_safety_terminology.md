@@ -417,11 +417,17 @@ Testing activities should be started as soon as possible in the system developme
 As following the pareto law, in many cases some components have most of the defect density. Testing should be focus to them,
 to maximice the effectiveness of the testing efforts.
 
-**5- Pesticide paradox**
+**5- Pesticide paradox** <br>
+Running the same test again and again, makes that eventually the same set of test don't find any defect at all. Having into account that some schools of thought consider a succesfull test, that one that find defects ... it's a bit, like that set of test loses "effect". 
+The set of test, needs to be reviewed and updated, to exercice different parts of the system, and in different ways.
 
-**6- Testing is context dependant**
+**6- Testing is context dependant** <br>
+Testing depends on the context. A safe-critical system test is not at all the same that the test of a video streamming appliance.
 
-**7- Absence of errors falacy**
+**7- Absence of errors falacy** <br>
+Even if no defects are found, it doesn't proof that the system is usable, or complies with the end-user expectations.
+
+
 
 
 
