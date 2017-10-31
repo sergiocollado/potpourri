@@ -36,7 +36,7 @@ This dynamic casting is done by means of defining objects. You can check the obj
 #### Numbers
 
 - **integers** (base 10): 16
-- **octals** (base 8): 0o100 (this is 16 in decimal
+- **octals** (base 8): 0o100 (this is 16 in decimal)
 - **hexadecimal** (base 16): 0x10 
 - **binary** (base 2): 0b00010000
 - **floating point**: 3.14159
@@ -108,7 +108,7 @@ my_string = 'Hello Wold!'
  5
 ```
 
-##### Inmutable strings
+##### Strings are inmutable
 
 Like in java or c# strings cannot be edited. so I you try to reasignate it, you will get an error
 
@@ -163,10 +163,23 @@ you can also jump every other step according to the structure: list[start:end:st
 >> 3
 ```
 
- - **concatenations**: is possible to concatenate list with the '+' operator
+ - **concatenations**: is possible to concatenate list with the '+' operator. the '+=' operator also works.
  
  ```python
  >> list_concatenated = list_one + list_two
+ ```
+ 
+ - **extensions**: is possible also to use the method '.extend()' to expand a list.
+ 
+  ```python
+ >> male_names = ['John', 'Seamus', 'Richard']
+ >> female_names =  ['Carol', 'Ameee', 'Leanne']
+ >> names = female_names
+ >> names 
+ >> ['Carol', 'Amee', 'Leanne']
+ >> names.extend(male_names)
+ >> names
+ >> ['Carol', 'Amee', 'Leanne', 'John', 'Seamus', 'Richard']
  ```
  
   - **element existence**: to check if an element is contained in a list or not, the operators 'in' and 'not in' are used.
@@ -188,6 +201,63 @@ you can also jump every other step according to the structure: list[start:end:st
 >>print(two_clocks)
 >>['tick', 'tack','tick', 'tack']
 ```
+ - **append elements**: to append a new element to the list, the .append() method is used:
+ 
+ ```python
+  >>names = ['John', 'Seamus', 'Richard']
+  >>names.append('James')
+  >>names
+  >> ['John', 'Seamus', 'Richard', 'James']
+  ```
+  Watch out! if you append a list to a list, it will be added as a sublist. If it is what you were looking for, thats good, but,
+  if you wanted to just add the two list, you should had used the .extend() method or the '+' operator.
+  
+  - **inserting elements**: is possible to insert a new element at a given position with the method: .insert(index, element)
+  
+   ```python
+  >>names = ['John', 'Seamus', 'Richard']
+  >>names.insert(1,'Charles')
+  >>names
+  >> ['John','Charles', 'Seamus', 'Richard', 'James']
+  ```
+  
+  - **retrieving the ith element**: for getting the ith element of the list, 'pop()' is used. It returns the ith element, and removes it from the list.
+  
+  ```python
+  >>names = ['John', 'Seamus', 'Richard']
+  >>names.pop(0)
+  >> 'John'
+  >> names
+  ['Seamus', 'Richard']
+  ``` 
+  
+ In case the element of that index don't exists, or the list is empty, then and IndexErrorException is raised.
+ 
+ In case .pop() is called without an argument, it returns the last element in the list. 
+ 
+ In case is called with .pop(-1) also the last element of the list is returned, as negative indexing is used.
+ 
+- **removing** it is possible to remove an element, without knowing its index, as:
+
+```python
+>> names =  ['Carol', 'Amee', 'Leanne', 'John', 'Seamus', 'Richard']
+>> names.remove('Leanne')
+>> names
+>>  ['Carol', 'Ameee', 'John', 'Seamus', 'Richard']
+```
+
+If the value doen't exist you will get a ValueError.
+
+- **index of an element** to get the index of a given element, with the method '.index(element, start_index, end_index)'
+
+```python
+>> names =  ['Carol', 'Amee', 'Leanne', 'John', 'Seamus', 'Richard']
+>> names.index('Amee')
+>> 1
+```
+
+An ValueError will be raised if the element is not present.
+
 
 #### Tuples
 
