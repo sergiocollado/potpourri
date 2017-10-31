@@ -48,9 +48,9 @@ Also check the meta-tags: http://www.metatags.org/meta_name_robots
 
 values are: 
 
+- none: the element is not displayed, and its space is not reserved also. as example the <script> is display:none. This is opposed for example to the propierty: visibility:hidden, in which the element is not displayed, but it space is reserverd.
 - block: the element starts always in a new line. Common cases are \<div\> \<h1\> \<h2\> ... \<header\> \<footer\> \<p\> \<section\>.
 - inline: the element doesn't start in a new line, and only takes as much space as required, common cases are <a> <span> <img>.
-- none: the element is not displayed, and its space is not reserved also. as example the <script> is display:none. This is opposed for example to the propierty: visibility:hidden, in which the element is not displayed, but it space is reserverd.
 - inline-block: displays the element as an inline-block containter
 - list-item: behaves as an <li> element.
 - run-in: behaves as an inline or block, depending on the context.
@@ -88,7 +88,7 @@ Flexboxes are made of:
 <hr>
 <br>
 <br>
-## RWD <pictures> tag 
+## RWD \<pictures\> tag 
 
 The pictures tag, allows you to present different images sources according to a media query.
 so the \<pictures\> tag, needs at two other tags at least: \<src\> and \<img\>
@@ -177,7 +177,7 @@ Reference: https://stackoverflow.com/questions/5316697/jquery-return-data-after-
 
 <hr>
 
-## JS-vanillafor Scripting at \<head\> for dynamically adding CSS and JS files
+## JS-vanilla for Scripting at \<head\> for dynamically adding CSS and JS files
 
 ```javascript
 //this file is to force a cache-burst, and so force the server to no use cache for those files.
@@ -263,7 +263,7 @@ This are as follows:
 $("identifier")
 ```
 
-so to select all the parragraphs in a documento, it would be like:
+so to select all the paragraphs in a documento, it would be done like:
 
 ```javascript
 $("p")
