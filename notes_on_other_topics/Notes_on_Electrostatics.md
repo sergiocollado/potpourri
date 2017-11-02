@@ -70,7 +70,7 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
 <br>
 
 <br>
-<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/position_vector_2.svg.svg?sanitize=true">
+<img src="https://rawgit.com/sergiocollado/potpourri/master/image/position_vector_2.svg?sanitize=true">
 <br>
 
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/charges_schematic.png" width="400" style="border:1px solid black" alt="force between charges schematic">
