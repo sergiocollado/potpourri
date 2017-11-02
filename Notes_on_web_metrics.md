@@ -149,7 +149,7 @@ jQueryGET(dname){
 
 	$.ajax({
         url: dname,
-        tySpe: "GET",
+        type: "GET",
         dataType: 'xml',
 	cache: false,  //this is for control the browser cache.
         async: false, //false is for sync calls
