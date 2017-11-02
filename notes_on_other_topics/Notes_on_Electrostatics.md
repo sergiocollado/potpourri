@@ -72,6 +72,12 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
 <br>
 
 
+A good point, is that is possible to use the superposition with the force, that meaning that the total force is the sum of all the forces in the object.
+
+<br>
+<img style="border:1px solid" width="200" src="https://rawgit.com/sergiocollado/potpourri/master/image/sum_forces.svg?sanitize=true">
+<br>
+
 ## Electric Field
 
  Once we know the forces that electric charges exert one on each others, the concept of a force field is develop. 
