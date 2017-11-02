@@ -68,6 +68,11 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
 <br>
 <img style="border:1px solid" width="200" src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_eq_2.svg?sanitize=true">
 <br>
+
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/position_vector_2.svg.svg?sanitize=true">
+<br>
+
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/charges_schematic.png" width="400" style="border:1px solid black" alt="force between charges schematic">
 <br>
 
