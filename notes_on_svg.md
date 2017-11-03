@@ -120,20 +120,20 @@ ref: (https://www.w3.org/TR/SVG/shapes.html#RectElement)
 ```xml
 <ellipse cx="75" cy="75" rx="20" ry="5"/>
 ```
-**rx** </br>
-The x radius of the ellipse. </br>
-**ry** </br>
-The y radius of the ellipse. </br>
-**cx** </br>
-The x position of the center of the ellipse. </br>
-**cy** </br>
-The y position of the center of the ellipse. </br>
+**rx** <br>
+The x radius of the ellipse. <br>
+**ry** <br>
+The y radius of the ellipse. <br>
+**cx** <br>
+The x position of the center of the ellipse. <br>
+**cy** <br>
+The y position of the center of the ellipse. <br>
 
 
 
 ### Polygon
 
-```svg
+```xml
 <polygon points="50 160, 55 180, 70 180, 60 190, 65 205, 50 195, 35 205, 40 190, 30 180, 45 180"/>
 ```
 
@@ -166,12 +166,12 @@ An example of path:
 
 · In absolute coordenates:
 
-```svg
+```xml
 <path d="M10 10 H 90 V 90 H 10 Z"/>
 ```
 · In relative coordinates:
 
-```svg
+```xml
 <path d="M10 10 h 80 v 80 h -80 Z"
 ```
 
@@ -181,14 +181,14 @@ An example of path:
 
 C x1 y1 x2 y2 x y
 
-**x1 y1** </br>
+**x1 y1** <br>
 first control point </br>
-**x2 y2** </br>
+**x2 y2** <br>
 second control point </br>
-**x y** </br>
+**x y** <br>
 end point of the curve </br>
 
-```svg
+```xml
 <svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
     <path d="M10 10 C 20 20, 40 20, 50 10" stroke="black" fill="transparent"/>
 </svg>
@@ -199,7 +199,7 @@ Also you can use the **S** command to concatenate benzier curves- but the **S** 
 S x2 y2 x y
 
 
-```svg
+```xml
 <svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
   <path d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="transparent"/>
 </svg>
@@ -209,13 +209,13 @@ S x2 y2 x y
 
 Q x1 y1 x y 
 
-**x1 y1** </br>
+**x1 y1** <br>
 Control point that determines the slope of the curve at the starting and ending point. </br>
-**x y** </br>
-End point of the curve. </br>
+**x y** <br>
+End point of the curve. <br>
 
 
-```svg
+```xml
 <svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
   <path d="M10 80 Q 95 10 180 80" stroke="black" fill="transparent"/>
 </svg>
@@ -228,7 +228,7 @@ T x y
 **x y** <br>
 Takes the slope of the previous curve, and **(x, y)** is the end point.
 
-```svg
+```xml
 <svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
   <path d="M10 80 Q 52.5 10, 95 80 T 180 80" stroke="black" fill="transparent"/>
 </svg>
@@ -243,7 +243,7 @@ for each ellipse there are two paths for connect those two points. So there are 
 **A rx ry x-axis-rotation large-arc-flag sweep-flag x y**
 
 
-```svg
+```xml
 <svg width="325" height="325" xmlns="http://www.w3.org/2000/svg">
   <path d="M80 80
            A 45 45, 0, 0, 0, 125 125
