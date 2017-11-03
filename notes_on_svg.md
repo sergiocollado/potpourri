@@ -104,10 +104,11 @@ ref: (https://www.w3.org/TR/SVG/shapes.html#RectElement)
 
 ### Circle:
 
-```svg
+```xml
 <circle cx="25" cy="75" r="20" />
 ```
-| Circle |  |
+
+| Circle |    |
 | --- | --- |
 |**r** | The radius of the circle.|
 |**cx** | The x position of the center of the circle.|
@@ -116,7 +117,7 @@ ref: (https://www.w3.org/TR/SVG/shapes.html#RectElement)
 
 ### Ellipse
 
-```svg
+```xml
 <ellipse cx="75" cy="75" rx="20" ry="5"/>
 ```
 **rx** </br>
@@ -224,7 +225,7 @@ You can also concatenate cuadratic benzier curves, with the **T** command.
 
 T x y
 
-**x y** </br>
+**x y** <br>
 Takes the slope of the previous curve, and **(x, y)** is the end point.
 
 ```svg
