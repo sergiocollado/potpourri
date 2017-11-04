@@ -46,13 +46,13 @@ Also check the meta-tags: http://www.metatags.org/meta_name_robots
 
 'display' propierty - it indicates how an element will be displayed. - Its the most important propierty for controlling the layout.
 
-values are: 
+Allowed values are: 
 
 - none: the element is not displayed, and its space is not reserved also. as example the <script> is display:none. This is opposed for example to the propierty: visibility:hidden, in which the element is not displayed, but it space is reserverd.
 - block: the element starts always in a new line. Common cases are \<div\> \<h1\> \<h2\> ... \<header\> \<footer\> \<p\> \<section\>.
 - inline: the element doesn't start in a new line, and only takes as much space as required, common cases are <a> <span> <img>.
 - inline-block: displays the element as an inline-block containter
-- list-item: behaves as an <li> element.
+- list-item: behaves as an \<li\> element.
 - run-in: behaves as an inline or block, depending on the context.
 - flex: [CSS3] element displayed as a block-level flex container.
 - inline-flex [CSS3] the element is displayed as an inline-level flex container.
@@ -82,13 +82,12 @@ Flexboxes are made of:
 	 
  - Flex items: those are the elements inside the flex container, normally arranged in a row.
  
- 
-
-
+<br>
+<br>
 <hr>
 <br>
 <br>
-## RWD \<pictures\> tag 
+## RWD \<pictures>\> tag 
 
 The pictures tag, allows you to present different images sources according to a media query.
 so the \<pictures\> tag, needs at two other tags at least: \<src\> and \<img\>
@@ -111,122 +110,11 @@ Example:
 </picture>
 ```
 
+<br>
+<br>
 <hr>
-
-
-## Ajax no-cache request
-
-```javascript
-    var dname = %name of the file location.
-    var xhttp = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-    xhttp.open("GET",dname,false); //true: async ; false:sync.
-	xhttp.onreadystatechange = function() {
-    if (xhttp.readyState == 4 && xhttp.status == 200)
-	{
-		console.log("load XML OK: " + dname);
-		return xhttp.responseXML;
-	}
-	else if (xhttp.readyState == 4 && xhttp.status == 404)
-	{
-		console.log("XML NOT FOUND 404: " + dname);
-		alert("XML NOT FOUND 404: " + dname);
-	}
-    };	
-    xhttp.setRequestHeader('Pragma','no-cache');
-    xhttp.setRequestHeader('Cache-Control','no-cache, no-store, must-revalidate');
-    xhttp.setRequestHeader('Expires','Wed, 21 Oct 2015 07:28:00 GMT'); //date in the past.
-    xhttp.send();	
-    return xhttp.responseXML; 
- ```
 <hr>
-
-## jQuery no-cache request
-
-
-```javascritp
-jQueryGET(dname){
-	var result = "";
-
-	$.ajax({
-        url: dname,
-        type: "GET",
-        dataType: 'xml',
-	cache: false,  //this is for control the browser cache.
-        async: false, //false is for sync calls
-	headers: { 'pragma':'no-cache',
-		   'Cache-Control':'no-cache, no-store, must-revalidate',
-		   'Expires':'Wed, 21 Oct 2015 07:28:00 GMT',
-		   },
-        success: function(xmldata){
-		if(!xmldata) {console.log("AnSwer wrong!"); }
-            	console.log("file " + dname + " loaded OK");
-		result = xmldata;
-        },
-        error: function(jqXHR,Status, error_string){
-            console.log ("file " + dname + " loaded KO");
-			console.log ("STATUS: " + Status);
-			console.log ("Error: " + error_string);
-        }
-    });
-    
-    return result;
-}
-``` 
-
-Reference: https://stackoverflow.com/questions/5316697/jquery-return-data-after-ajax-call-success
-
-<hr>
-
-## JS-vanilla for Scripting at \<head\> for dynamically adding CSS and JS files
-
-```javascript
-//this file is to force a cache-burst, and so force the server to no use cache for those files.
-var file_name = "";
-var init_file; 
-var rand_num = Math.floor(100000*Math.random()+1);  //adding "?%random_number", we mislead the server.
-
-/*
-file_name = 'whateverlib.js';
-init_file = document.createElement("SCRIPT");
-init_file.setAttribute("src",  file_name + "?" + rand_num );
-document.head.appendChild(init_file);*/
-
-function Load_head_script_cache_burst(filename){
-var add_script =  document.createElement("SCRIPT");
-add_script.setAttribute("src",  file_name + "?" + rand_num );
-document.head.appendChild(add_script);
-return;
-};
-```
-<hr>
-
-## jQuery for Scripting at \<head\> for dynamically adding JS files
-
-```javascript
-//ref: https://api.jquery.com/jQuery.getScript/
-$.getScript('lib1.js').then(
-$.getScript('lib2.js')).then(
-$.getScript('lib3.js')).then(
-$.getScript('lib4.js')).then(
-$.getScript("lib5.js")).then(
-$.getScript("lib6.js")).then(
-$.getScript("lib7.js")).then(
-$.getScript("lib8.js"));
-```
-
-
-# Element queries
-
-Element queries are similar to media queries, but, it allows you to apply stiles depending on the propierties of its element, and for example give different styles accordint to its width, it number of children, ....
-
-EQCSS is a JavaScript library developed by Tommy Hodgins. 
-
-Elements queries are an expansion to CSS, so you have to include its scritp:
-```html
-https://cdnjs.cloudflare.com/ajax/libs/eqcss/1.7.0/EQCSS.min.js
-```
-
-<hr>
+<br>
 <br>
 
 # jQuery
@@ -344,11 +232,123 @@ $.get( "my_web", function () {
  my_callback_1(param1, param2);
 });
 ```
-
-
-
-
-
-
+<br>
 Reference: [:link:](https://learn.jquery.com/about-jquery/how-jquery-works/)
+<br>
+<hr>
+<br>
+## Ajax no-cache request
+
+```javascript
+    var dname = %name of the file location.
+    var xhttp = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+    xhttp.open("GET",dname,false); //true: async ; false:sync.
+	xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200)
+	{
+		console.log("load XML OK: " + dname);
+		return xhttp.responseXML;
+	}
+	else if (xhttp.readyState == 4 && xhttp.status == 404)
+	{
+		console.log("XML NOT FOUND 404: " + dname);
+		alert("XML NOT FOUND 404: " + dname);
+	}
+    };	
+    xhttp.setRequestHeader('Pragma','no-cache');
+    xhttp.setRequestHeader('Cache-Control','no-cache, no-store, must-revalidate');
+    xhttp.setRequestHeader('Expires','Wed, 21 Oct 2015 07:28:00 GMT'); //date in the past.
+    xhttp.send();	
+    return xhttp.responseXML; 
+ ```
+<hr>
+
+## jQuery no-cache request
+
+
+```javascritp
+jQueryGET(dname){
+	var result = "";
+
+	$.ajax({
+        url: dname,
+        type: "GET",
+        dataType: 'xml',
+	cache: false,  //this is for control the browser cache.
+        async: false, //false is for sync calls
+	headers: { 'pragma':'no-cache',
+		   'Cache-Control':'no-cache, no-store, must-revalidate',
+		   'Expires':'Wed, 21 Oct 2015 07:28:00 GMT',
+		   },
+        success: function(xmldata){
+		if(!xmldata) {console.log("AnSwer wrong!"); }
+            	console.log("file " + dname + " loaded OK");
+		result = xmldata;
+        },
+        error: function(jqXHR,Status, error_string){
+            console.log ("file " + dname + " loaded KO");
+			console.log ("STATUS: " + Status);
+			console.log ("Error: " + error_string);
+        }
+    });
+    
+    return result;
+}
+``` 
+
+Reference: https://stackoverflow.com/questions/5316697/jquery-return-data-after-ajax-call-success
+
+<hr>
+
+## JS-vanilla for Scripting at \<head\> for dynamically adding CSS and JS files
+
+```javascript
+//this file is to force a cache-burst, and so force the server to no use cache for those files.
+var file_name = "";
+var init_file; 
+var rand_num = Math.floor(100000*Math.random()+1);  //adding "?%random_number", we mislead the server.
+
+/*
+file_name = 'whateverlib.js';
+init_file = document.createElement("SCRIPT");
+init_file.setAttribute("src",  file_name + "?" + rand_num );
+document.head.appendChild(init_file);*/
+
+function Load_head_script_cache_burst(filename){
+var add_script =  document.createElement("SCRIPT");
+add_script.setAttribute("src",  file_name + "?" + rand_num );
+document.head.appendChild(add_script);
+return;
+};
+```
+<hr>
+
+## jQuery for Scripting at \<head\> for dynamically adding JS files
+
+```javascript
+//ref: https://api.jquery.com/jQuery.getScript/
+$.getScript('lib1.js').then(
+$.getScript('lib2.js')).then(
+$.getScript('lib3.js')).then(
+$.getScript('lib4.js')).then(
+$.getScript("lib5.js")).then(
+$.getScript("lib6.js")).then(
+$.getScript("lib7.js")).then(
+$.getScript("lib8.js"));
+```
+
+
+# Element queries
+
+Element queries are similar to media queries, but, it allows you to apply stiles depending on the propierties of its element, and for example give different styles accordint to its width, it number of children, ....
+
+EQCSS is a JavaScript library developed by Tommy Hodgins. 
+
+Elements queries are an expansion to CSS, so you have to include its scritp:
+```html
+https://cdnjs.cloudflare.com/ajax/libs/eqcss/1.7.0/EQCSS.min.js
+```
+
+<hr>
+<br>
 
