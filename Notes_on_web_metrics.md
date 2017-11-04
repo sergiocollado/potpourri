@@ -87,7 +87,7 @@ Flexboxes are made of:
 <hr>
 <br>
 <br>
-## RWD \<pictures\> tag 
+## RWD  \<picture\> tag 
 
 The pictures tag, allows you to present different images sources according to a media query.
 so the \<pictures\> tag, needs at two other tags at least: \<src\> and \<img\>
@@ -328,13 +328,13 @@ return;
 ```javascript
 //ref: https://api.jquery.com/jQuery.getScript/
 $.getScript('lib1.js').then(
-$.getScript('lib2.js')).then(
-$.getScript('lib3.js')).then(
-$.getScript('lib4.js')).then(
-$.getScript("lib5.js")).then(
-$.getScript("lib6.js")).then(
-$.getScript("lib7.js")).then(
-$.getScript("lib8.js"));
+		$.getScript('lib2.js')).then(
+		$.getScript('lib3.js')).then(
+		$.getScript('lib4.js')).then(
+		$.getScript("lib5.js")).then(
+		$.getScript("lib6.js")).then(
+		$.getScript("lib7.js")).then(
+		$.getScript("lib8.js"));
 ```
 
 
