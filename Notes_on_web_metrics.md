@@ -87,7 +87,7 @@ Flexboxes are made of:
 <hr>
 <br>
 <br>
-## RWD \<pictures>\> tag 
+## RWD \<pictures\> tag 
 
 The pictures tag, allows you to present different images sources according to a media query.
 so the \<pictures\> tag, needs at two other tags at least: \<src\> and \<img\>
