@@ -428,7 +428,31 @@ Testing depends on the context. A safe-critical system test is not at all the sa
 Even if no defects are found, it doesn't proof that the system is usable, or complies with the end-user expectations.
 
 
-## Test Planning for a System
+## Development of the Test Plan for a System:
+
+The first point in a system development, at the testing context, is to define the **Testing Plan** for that, several key points have to
+be defined:
+
+ - Test planning and control
+ - Test analisis and design
+ - Test implementation and execution
+ - Evaluating exit criteria and reporting
+ - Test clousure and activities.
+ 
+ 
+### Test planning and control 
+
+ **Test planning** is to define the objectives of the testing, and the needed action to meet those objectives.
+ 
+ **Test control**: Testing activities should be monitored through the project. is the comparation ot the state of the project, against the planned expected result. And report its status, including desviations from the plan. Also include proposals to the actions that need to be done, in order to meet again the goals, and expectations of the project. 
+ 
+So **test control** is related to guide the corrective actions taken as a result of informantion or metrics. These actions can be applied to any part of the system.
+
+Examples of test control actions are:
+- Take decisions based on the information from test monitoring:
+- Repriorinzing tests, and identify risks.
+- Change of the test schedule, based on the abailability of equipmento or facilities.
+- Setting criterion about re-testing issues, for including those modifications into the system build.
 
 
 
