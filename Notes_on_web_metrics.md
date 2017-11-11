@@ -99,15 +99,8 @@ It can also have defined the following propierties:
 ### Child elements (Items)
 Children elements of a flex parent ctainer, inmediatry turn into flexible items.
 Their propierties are:
- - order
- - flex-grown
- - flex-shrink
- - flex-basis
- - flex
- - align-self
  
- 
- | Propierty  | explanation | possible values |
+| Propierty  | explanation | possible values |
 | :---         |     :---:      |  :---      |
 | order   |  sorts the items in the specified oreder  |  integer (0 default) |
 | flex-grown    | specifies how much that item will grow relative to the rest of the flex items |  Number (0 default)   |
