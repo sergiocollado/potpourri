@@ -468,7 +468,7 @@ This include go through the following points.
 - Create a method to a bidirectional traceability between test basis and test cases.
 
  
-**Test implementation and execution **
+## Test implementation and execution
 
 The designed test procedures are implemented, a certain order has to be stablish, in order to execute the set of test (usually according to priority), the test enviroment is set up, and the test cases are run.
 
