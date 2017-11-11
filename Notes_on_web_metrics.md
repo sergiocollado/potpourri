@@ -96,8 +96,8 @@ It can also have defined the following propierties:
 
 
 
-### Child elements (Items)
-Children elements of a flex parent ctainer, inmediatry turn into flexible items.
+### Child elements (flex items)
+Children elements of a flex parent container, inmediatry turn into flexible items.
 Their propierties are:
  
 | Propierty  | explanation | possible values |
