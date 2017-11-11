@@ -65,18 +65,51 @@ values are:
 - content-box: specifies the size of the box, but it doen't include border, padding or margin. It only defines the content.
 - border-box: specifies the size (width and height) and includes content, padding, and border, but not the margin!
 
-
+Is recomended the use of the 'box-sizing:border-box' 
 <hr>
 <br>
 <br>
 
 ## FlexBox
 
-Defines a flexible box in CSS3, this a container that resizes itself according to the screen size.
+Defines a flexible box in CSS3, this a container that resizes itself according to the screen size. It make easiest to re-adapt the
+layout of a webpage, for diferent view sizes.
 
 Flexboxes are made of: 
+  - a parent element
+  - two or more child elements.
+  
+  
+### Parent element (Flexbox)
+Flex containers (the parent). It becames a flex container, declaring the propierty display as: 'diplay:flex'.
+It can also have defined the following propierties:
+  
+  
+| Propierty  | explanation | possible values |
+| :---         |     :---:      |  :---      |
+| flex-direction   | defines in what direction the <br> container will stack the items    |column<br>column-reverse<br>row (default)<br>row reverse    |
+| flex-wrap     | defines if, and how the<br> childrens will wrap | nowrap(default)<br>wrap<br>wrap-reverse      |
+| flex-flow   | is a shortcut to set <br> flex-direction and flex-wrap | flex-direction + flex-wrap  |
+| justify-content     | sets the alineation of the items      |  center<br>flex-start(default)<br>flex-end<br>space-around<br>space-between     |
+| align-items   | aligns items in the opposite direction that the justify-content direction     | baseline<br>center<br>flex-start<br>flex-end<br>stretch(default)    |
+| align-content     | aligns the children rows       | center<br>flex-start<br>flex-end<br>space-around<br>space-between<br>stretch(default)    |
 
- - Flex containers
+
+
+### Child elements (Items)
+Children elements of a flex parent ctainer, inmediatry turn into flexible items.
+Their propierties are:
+ - order
+ - flex-grown
+ - flex-shrink
+ - flex-basis
+ - flex
+ - align-self
+ 
+ 
+  
+ 
+ 
 	 - display: flex --> rendered as flex block.
  	 - display: flex-inline --> rendered as a flex inline block
 	 
