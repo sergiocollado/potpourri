@@ -1,5 +1,13 @@
 # Notes on web metrics
 
+
+iF HELP IS NEEDED GO TO THE FOLLOWING LINKS:
+
+https://caniuse.com/
+
+
+
+
 I wanted my [website](https://sergiocollado.github.io/) indexed at google, so i found this reference:
 
 http://webapps.stackexchange.com/questions/66799/how-can-i-have-a-public-searchable-github-account
@@ -69,6 +77,54 @@ Is recomended the use of the 'box-sizing:border-box'
 <hr>
 <br>
 <br>
+
+## Media Queries
+
+Media queries is a method for presenting different elements depending on the capabilities of the viewer device.
+
+Media queries can identify:
+ - width and height of the view port.
+ - width and height of the device.
+ - orientation (if applicable, as in tables and phones: portrait or landscape mode)
+ - resolution
+ 
+ Media queries are a smart way to control the apearance of a web site, on diferent devices.
+ 
+### Media Queries basic sintaxis
+
+A media querie (MQ) consist on one or more expressions, that can be evaluated to either TRUE or FALSE.
+
+```CSS
+@media  [not][only] mediatype and ( expression ) {
+
+  ... <!-- here goes the CSS definition -->
+}
+```
+
+#### Media types
+
+| Value  | Description | 
+| :---         |     :---:      |  
+| all   | used for all media devices   |    
+|  print  |  used for printers  |    
+|  screen  |  used for screen devices  |    
+|  speech  |  used for screen readers  |    
+    
+
+### example 
+
+```CSS
+
+@media screen and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
+    #nav li a {
+        padding-left: 30px;
+        background: url(email-icon.png) left center no-repeat;
+    }
+}
+
+```
+
+
 
 ## FlexBox
 
