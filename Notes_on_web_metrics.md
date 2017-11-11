@@ -107,6 +107,14 @@ Their propierties are:
  - align-self
  
  
+ | Propierty  | explanation | possible values |
+| :---         |     :---:      |  :---      |
+| order   |  sorts the items in the specified oreder  |  integer (0 default) |
+| flex-grown    | specifies how much that item will grow relative to the rest of the flex items |  Number (0 default)   |
+| flex-shrink   | specifies how much that item will schrink relative to the rest of the flex items | Number (1 default) |
+| flex-basics     |  specifies the width and height of a flex item  | default: auto    |
+| flex  |  is a shortform for _flex-grow_, _flex-schrink_ and _flex-basics_  |  default: 0 1 auto   |
+| align-self     | overwrites the default aligment from the parent flex container  | auto(default)<br>baseline<br>center<br>flex-start<br>flex-end<br>stretch    |
   
  
  
