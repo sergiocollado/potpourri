@@ -36,7 +36,12 @@ is proportional to the product of it's charges, and inversely proportional o the
 If Q_1 and Q_2 have the same sign, that is: both positive or both negative, the force will be of
 repulsion, driving them appart. If Q_1 and Q_2 have opposite signs, the force will be of attraction. 
 That force will act always along the line that is defined by the position of both charged particles
-Q_1 and Q_2 (vector r). That force will be also proportional to a constant **k_e**, in the Internationa
+Q_1 and Q_2 (vector r).
+
+
+
+<br>
+That force will be also proportional to a constant **k_e**, in the Internationa
 System of units, **SI**, it has the value:
 
 <br>
