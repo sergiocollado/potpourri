@@ -476,16 +476,16 @@ The objetive and aim of the text execution is:
 
 - Implement and prioritaze the test cases.
 - develop test procedures, create test data, optionally preparing test hardeness and writting automating test scripts.
-- creation of test suits, for efficient test execution
-- verification that the test enviroment has been set up properly
+- creation of test suits, for efficient test execution.
+- verification that the test enviroment has been set up properly.
 - verification and update if needed, of bi-directional trazability between the test cases and requeriments.
 - Execution of the test, according to the test procedure. Log of the test execution relevant information, as identification of the
 different elements involved, as software version, prototype, tools, device under test, execution time, software and hardware version.
 - Comparation with the expected results.
-- Report discrepancies, or outliers as incidents, and analyce them in order to identify a possible rootcause. (defect in the code implementation, data out of bountds, damaged equipment, wrong procedure, ...)
+- Report discrepancies, or outliers as incidents, and analyce them in order to identify a possible rootcause. (defect in the code implementation, data out of bounds, damaged equipment, wrong procedure, ...)
 - Repeat test that falled out of the expected results to confirm the issue, and gather new information details if possible. check if the 
 efect is always reproducible, or it is sporadic....
-- If new issues are found, _regression testing_ (test all the system to asure that new code or components haven't affected the rest of the developed system)  may be advisable, to check that new issues has not appear in other stable parts of the systems.
+- If new issues are found, _regression testing_ (test all the system to asure that new code or components haven't affected the rest of the developed system) may be advisable, to check that new issues has not appear in other stable parts of the systems.
 
 
 
