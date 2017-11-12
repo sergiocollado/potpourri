@@ -1,4 +1,10 @@
 
+SCALAR COULOMB FORCE EQUATION
+
+```latex
+F = k_e \cdot \frac{Q_1 \cdot Q_2}{r^2}
+```
+
 RACIONALIZATION OF COULOMB FORCE
 
 ```latex
