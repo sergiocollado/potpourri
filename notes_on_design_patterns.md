@@ -49,6 +49,7 @@ let's the sub-classes to decide what subclass it belogns to. So the factory meth
 - **Singelton:** ensures that a certain class, is only instantiated once. 
 - **Builder:** disacoplates the object construction of a complex object, from its representation.
 - **Prototype** creates objects according to a prototype/template, and creates new objects using this prototype.
+- **Object Pool** ...
 
 
 <br>
@@ -108,7 +109,7 @@ int main()
 }
 ```
 
-## Factory Pattens
+## Factory Pattern
 
 A factory pattern is best use, when the program has a super-class, with differtent subclasses, which are based on the input creation parameters. Then, the reponsability of the Factory class, is to correctly instantiate at run time, the subclass that corresponds to that input.
 
