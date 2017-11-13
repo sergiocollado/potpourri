@@ -130,32 +130,37 @@ class myMatrixFactory {
  uint columns;
 };
 
-class sparceMatrid : public myMatrixFactory 
+class generalMatrix: public myMatrixFactory
 {
 
-}
+};
 
-class vandermondeMatrid: public myMatrixFactory
+class sparseMatrix : public myMatrixFactory 
 {
 
-}
+};
+
+class vandermondeMatrix: public myMatrixFactory
+{
+
+};
 
 class diagonalMatrix: public myMatrixFactory 
 {
 
 
-}
+};
 
 class triangularMatrix: public myMatrixFactory{
 {
 
 
-}
+};
 
 class jordanMatrix: public myMatrixFactory
 {
 
-}
+};
 
 
 
@@ -170,6 +175,8 @@ int main()
 
 ### Memoization
  The term 'Memoization' was coined by Donald Michie in 1968, it comes from the Latin 'memorandum' which stands for the meaning
- 'to be remebered'. It is a technique for speeding up mathematical aproximation/iterative/heuristic calculations.
+ 'to be remebered'. It is a technique for speeding up mathematical aproximation/iterative/heuristic calculations. The general
+ idea, is that when a process or a function is called with previously used parameters, the previous stored results can be used
+ again, and the process calculation avoided.
  
  
