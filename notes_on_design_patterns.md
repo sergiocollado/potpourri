@@ -101,7 +101,7 @@ mySingletonClass* mySingletonClass::getInstance(){
 }
 
 
-int main()
+int main(int argc, char *argv[])
 {
   mySingletonClass* O1 = mySingletonClass::getInstance();
   mySingletonClass* O2 = mySingletonClass::getInstance();
@@ -164,7 +164,7 @@ class jordanMatrix: public myMatrixFactory
 
 
 
-int main()
+int main(int argc, char *argv[])
 {
 ....
 }
