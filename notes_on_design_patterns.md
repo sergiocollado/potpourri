@@ -108,8 +108,61 @@ int main()
 }
 ```
 
+## Factory Pattens
+
+A factory pattern is best use, when the program has a super-class, with differtent subclasses, which are based on the input creation parameters. Then, the reponsability of the Factory class, is to correctly instantiate at run time, the subclass that corresponds to that input.
+
+Using a bit of pseudo code, we can ilustrate the concept
+```C++
+
+#include <iostream>
+
+using namespace std;
+
+class myMatrixFactory {
+ public:
+  static myMatrixFactory(); 
+  ~myMatrixFactory();
+  
+ private:
+ uint rows;
+ uint columns;
+};
+
+class sparceMatrid : public myMatrixFactory 
+{
+
+}
+
+class vandermondeMatrid: public myMatrixFactory
+{
+
+}
+
+class diagonalMatrix: public myMatrixFactory 
+{
 
 
+}
+
+class triangularMatrix: public myMatrixFactory{
+{
+
+
+}
+
+class jordanMatrix: public myMatrixFactory
+{
+
+}
+
+
+
+int main()
+{
+....
+}
+```
 
 
 ## Other tricks of the trade
