@@ -42,7 +42,7 @@ Q_1 and Q_2 (vector r).
 
 <br>
 That force will be also proportional to a constant **k_e**, in the Internationa
-System of units, **SI**, it has the value:
+System of units, **SI** , it has the value:
 
 <br>
 <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_constant.svg" style="border:1px solid black" alt="coulomb constant">
@@ -78,11 +78,28 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
 <img src="https://rawgit.com/sergiocollado/potpourri/master/image/position_vector_2.svg?sanitize=true">
 <br>
 
+
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/charges_schematic.png" width="400" style="border:1px solid black" alt="force between charges schematic">
 <br>
 
+One thing about this formula, is that it depends on an irrational number 'pi', a simplification exists that allows us to 'rationalize' this formula:
 
-A good point, is that is possible to use the superposition principle with the forces, that meaning that the total force is the sum of all the forces in the object.
+<br>
+<img src="https://rawgit.com/sergiocollado/potpourri/master/image/racionalization_of_electrostatic_force.svg?sanitize=true">
+<br>
+
+So in practice the following formula is used:
+
+<br>
+<img src="https://rawgit.com/sergiocollado/potpourri/master/image/simplified_coulomb_f.svg?sanitize=true">
+<br>
+
+
+A good point, is that is possible to use the superposition principle with the forces, that meaning that the total force is the sum of all the forces in the object. 
+
+
+
+
 
 <br>
 <img src="https://rawgit.com/sergiocollado/potpourri/master/image/sum_forces.svg?sanitize=true">
