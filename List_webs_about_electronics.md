@@ -392,6 +392,13 @@ renersas
 eSilicon
 
 
+# MATHS
+
+
+http://www.mpfr.org/
+
+http://herbie.uwplse.org/
+
 
 
 # Internet, Web, ... characters and html5-utf-8, protocols, standardas and recomendations.
