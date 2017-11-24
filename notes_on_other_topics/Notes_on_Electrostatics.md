@@ -78,11 +78,20 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
 <img src="https://rawgit.com/sergiocollado/potpourri/master/image/position_vector_2.svg?sanitize=true">
 <br>
 
+ - vector **r_1** is the position vector of Q_1
+ - vector **r_2** is the position vector of Q_2
+ - vector **r** is the relative positon of Q_2 related to Q_1
+ - and the unitary vector in the vector **r** direction is:
+<br>
+<img src="https://rawgit.com/sergiocollado/potpourri/master/image/position_unitary_vector.svg?sanitize=true">
+<br>
+ 
 
+<br>
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/charges_schematic.png" width="400" style="border:1px solid black" alt="force between charges schematic">
 <br>
 
-One thing about this formula, is that it depends on an irrational number 'pi', a simplification exists that allows us to 'rationalize' this formula:
+One point to notice about this formula, is that it depends on an irrational number 'pi', a simplification exists that allows us to 'rationalize' this formula:
 
 <br>
 <img src="https://rawgit.com/sergiocollado/potpourri/master/image/racionalization_of_electrostatic_force.svg?sanitize=true">
@@ -95,10 +104,7 @@ So in practice the following formula is used:
 <br>
 
 
-A good point, is that is possible to use the superposition principle with the forces, that meaning that the total force is the sum of all the forces in the object. 
-
-
-
+A good point, is that is possible to use the superposition principle with these forces, that meaning: that the total force is the sum of all the forces in the object. 
 
 
 <br>
