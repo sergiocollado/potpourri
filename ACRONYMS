@@ -18,6 +18,9 @@ HSS - Home Subscriber Server.
 LHP - Left Hand Plane.
 RHP - Right Hand Plane.
 MA - Managing Authority.
+LLC - Logic Layer Control.
+MAC - Media Access Control.
+MAC - Message Authentification Code.
 eNodeB - Evolved Node Base Station.
 MSIN - Mobile Subscriber Identification Number.
 MNC - Mobile Network Code.
