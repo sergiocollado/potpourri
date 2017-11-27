@@ -1,3 +1,5 @@
+SQN - Sequence Number.
+AUTN - Authentification Token.
 LTE - Long Term Evolution.
 HSDPA - High Speed Data Packet Access.
 UMTS - Universal Mobile Telecomunication System.
@@ -17,6 +19,10 @@ LHP - Left Hand Plane.
 RHP - Right Hand Plane.
 MA - Managing Authority.
 eNodeB - Evolved Node Base Station.
+MSIN - Mobile Subscriber Identification Number.
+MNC - Mobile Network Code.
+MCC - Mobile Country Code.
+IMSI - International Mobile Subscriber Identity.
 SIM - Subscriber Identity Module.
 UE - User Equipement.
 SOP - Start Of Production.
@@ -28,6 +34,7 @@ FTP - File Transfer Protocol
 PTC - Positive Temperature Coefficient.
 NTC - Negative Temperature Coefficient.
 UTC - Coordinated Universal Time.
+APN - Access Point Name.
 AP - Access Point.
 P2P  - Peer to Peer.
 ASIL - Automotive Safety Integrity Level.
