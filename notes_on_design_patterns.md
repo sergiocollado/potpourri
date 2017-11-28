@@ -113,7 +113,9 @@ int main(int argc, char *argv[])
 
 A factory pattern is best use, when the program has a super-class, with differtent subclasses, which are based on the input creation parameters. Then, the reponsability of the Factory class, is to correctly instantiate at run time, the subclass that corresponds to that input.
 
-Using a bit of pseudo code, we can ilustrate the concept
+**advantage**: The complexity of creation of similar subclasses is hided under a common interface (the Factory creator).
+
+Using a bit of  code, we can ilustrate the concept
 ```C++
 
 #include <iostream>
@@ -148,19 +150,13 @@ class vandermondeMatrix: public myMatrixFactory
 class diagonalMatrix: public myMatrixFactory 
 {
 
-
 };
 
 class triangularMatrix: public myMatrixFactory{
 {
 
-
 };
 
-class jordanMatrix: public myMatrixFactory
-{
-
-};
 
 
 
