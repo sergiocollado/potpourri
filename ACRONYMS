@@ -1,3 +1,10 @@
+RB - Resource Block.
+RE - Resource Element.
+MCS - Modulation Coding Scheme.
+FECC - Fordware Error Correction Codes.
+ECC - Error Correction Codes.
+QPSK - Quaternary Phase Shift Keying.
+BPSK - Binary Phase Shift Keying.
 GUTI - Globally Unique Temporary Identity.
 TMSI - Temporary Mobile Subscriber Identity.
 NAS - Network Attached Storage.
@@ -33,6 +40,7 @@ MCC - Mobile Country Code.
 IMSI - International Mobile Subscriber Identity.
 SIM - Subscriber Identity Module.
 UE - User Equipement.
+E-UTRA - Evolved Universal Terrestrial Radio Access.(www.3gpp.org).
 SOP - Start Of Production.
 PKCS - Public Key Criptographic Standard.
 CAPT - Concurrent Assigment and Planning of Trajectories. a problem in swarm intelligence.
