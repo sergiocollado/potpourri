@@ -3,19 +3,19 @@
 
 >> Reference: man pages:
 
-  >> User commands: [:link:](http://man7.org/linux/man-pages/dir_section_1.html)
+ >> User commands: [:link:](http://man7.org/linux/man-pages/dir_section_1.html)
+ 
+ >> System calls: [:link:](http://man7.org/linux/man-pages/dir_section_2.html)
+ 
+ >> Library standard C: [:link:](http://man7.org/linux/man-pages/dir_section_3.html)
   
-  >> System calls: [:link:](http://man7.org/linux/man-pages/dir_section_2.html)
+ >> Devices [:link:](http://man7.org/linux/man-pages/dir_section_4.html)
   
-  >> Library standard C: [:link:](http://man7.org/linux/man-pages/dir_section_3.html)
+ >> Files systems [:link:](http://man7.org/linux/man-pages/dir_section_5.html)
   
-  >> Devices [:link:](http://man7.org/linux/man-pages/dir_section_4.html)
+ >> Conventions & miscellaneous [:link:](http://man7.org/linux/man-pages/dir_section_7.html)
   
-  >> Files systems [:link:](http://man7.org/linux/man-pages/dir_section_5.html)
-  
-  >> Conventions & miscellaneous [:link:](http://man7.org/linux/man-pages/dir_section_7.html)
-  
-  >> system Administration [:link:](http://man7.org/linux/man-pages/dir_section_8.html)
+ >> system Administration [:link:](http://man7.org/linux/man-pages/dir_section_8.html)
   
 `***********************************************************************************************************************`  
 `***********************************************************************************************************************`
@@ -313,6 +313,9 @@ developers: https://launchpad.net/~gcc-arm-embedded-developers
 
 gcc: http://gcc.gnu.org/
 
+high-performance network programming in c.  http://www.linuxjournal.com/article/9815
+
+FIO : flexible I/o testing: https://linux.die.net/man/1/fio
 
 
 
