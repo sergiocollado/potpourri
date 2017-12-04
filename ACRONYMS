@@ -1,7 +1,7 @@
 QoS - Quality of Services.
 PDU - Protocol Data Unit.
 SDU - Service Data Unit.
-HARQ - Hybrid ARQ. (messages). - missed messages are accumulated, and more info can be used to infere the correct message.
+HARQ - Hybrid ARQ. (messages). - missed messages are accumulated, and more info can be used to infere the correct message.-> Increase Error Correction Performance.
 ARQ - Automatic Repeat Request. (messages).
 NACK - No Acknoledgment (message).
 ACK - Acknoledment (message).
