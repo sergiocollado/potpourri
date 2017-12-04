@@ -1,3 +1,5 @@
+PDU - Protocol Data Unit.
+SDU - Service Data Unit.
 HARQ - Hybrid ARQ. (messages). - missed messages are accumulated, and more info can be used to infere the correct message.
 ARQ - Automatic Repeat Request. (messages).
 NACK - No Acknoledgment (message).
