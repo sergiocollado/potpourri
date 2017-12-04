@@ -1,3 +1,5 @@
+ARQ - Automatic Repeat Request. (messages).
+NACK - No Acknoledgment (message).
 ACK - Acknoledment (message).
 CRC - Cyclic Redundancy Check.
 BER - Bit Error Ratio.
