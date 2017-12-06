@@ -62,7 +62,7 @@ Remember that the center of coordenates is top-left, and increases from left to 
 
 
 | Line |    |
-| --- | --- |
+| ---  | --- |
 |  **x1**   | The x position of point 1.     |
 |  **y1**   | The y position of point 1.    |
 |  **x2**   | The x position of point 2.     |
