@@ -159,7 +159,7 @@ as example for CSS3:
 so in the html code, it will be used as:
 
 ```html
-<div id=flex_parent class=flex_parent>
+<div id=flex_parent class="flex_parent">
 	<div> Child 1 </div>
 	<div> Child 2 </div>
 	<div> Child 3 </div>
