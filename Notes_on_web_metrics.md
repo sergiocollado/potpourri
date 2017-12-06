@@ -140,7 +140,32 @@ Flexboxes are made of:
 Flex containers (the parent). It becames a flex container, declaring the propierty display as: 'diplay:flex'.
 It can also have defined the following propierties:
   
-  
+As an html example:
+```html
+<div id=flex_parent style="display:flex">
+	<div> Child 1 </div>
+	<div> Child 2 </div>
+	<div> Child 3 </div>
+</div>
+```
+
+as example for CSS3:
+
+```CSS
+.flex_parent {
+	display:flex;
+}
+```
+so in the html code, it will be used as:
+
+```html
+<div id=flex_parent class=flex_parent>
+	<div> Child 1 </div>
+	<div> Child 2 </div>
+	<div> Child 3 </div>
+</div>
+```
+
 | Propierty  | explanation | possible values |
 | :---         |     :---:      |  :---      |
 | flex-direction   | defines in what direction the <br> container will stack the items    |column<br>column-reverse<br>row (default)<br>row reverse    |
@@ -178,7 +203,7 @@ Their propierties are:
 <br>
 <br>
 
-# RWD picture tag 
+# RWD -Responsive Web Design - picture tag 
 
 The \<picture\> tag, allows you to present different images sources according to a media query.
 so the \<pictures\> tag, needs at two other tags at least: \<src\> and \<img\>
