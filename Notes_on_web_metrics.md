@@ -175,6 +175,19 @@ so in the html code, it will be used as:
 | align-items   | aligns items in the opposite direction that the justify-content direction     | baseline<br>center<br>flex-start<br>flex-end<br>stretch(default)    |
 | align-content     | aligns the children rows       | center<br>flex-start<br>flex-end<br>space-around<br>space-between<br>stretch(default)    |
 
+So a good definition could be:
+
+```CSS
+.flex_parent {
+   display: flex;
+   flex-direction: row-reverse;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   align-items: baseline;
+   align-content:space-around;
+}
+```
+
 
 
 ### Child elements (flex items)
