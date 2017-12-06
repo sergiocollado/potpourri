@@ -47,6 +47,51 @@ From this example we can draw some conclusions:
 1. the figures are rendered as they are defined. First at the bottom, and the last at the top of the image.
 2. **fill** fills the interior of its graphical element
 3. **stroke** paints the aoutline of its graphical element.
+4. Colors have short-names according to CSS3; as example:
+ - black
+ - silver
+ - gray
+ - white
+ - maroon
+ - red
+ - fuchsia
+ - green 
+ - lime
+ - olive
+ - navy
+ - blue
+ - teal
+ - aqua
+ 
+ and many more.
+ 
+ For a exact definition of a color is used:
+ 
+ RGB, RGBa
+
+```
+em { color: rgb(255,0,0) }      /* integer range 0 - 255 */
+em { color: rgba(255,0,0,1)     /* the same, with explicit opacity of 1 */
+em { color: rgb(100%,0%,0%) }   /* float range 0.0% - 100.0% */
+em { color: rgba(100%,0%,0%,1) } /* the same, with explicit opacity of 1 */
+p { color: rgba(0,0,255,0.5) }        /* semi-transparent solid blue */
+p { color: rgba(100%, 50%, 0%, 0.1) } /* very transparent solid orange */
+```
+
+ HSL, HSLa
+```
+* { color: hsl(0, 100%, 50%) }   /* red */
+* { color: hsl(120, 100%, 50%) } /* lime */ 
+* { color: hsl(120, 100%, 25%) } /* dark green */ 
+* { color: hsl(120, 100%, 75%) } /* light green */ 
+* { color: hsl(120, 75%, 75%) }  /* pastel green, and so on */
+em { color: hsl(120, 100%, 50%) }     /* green */
+em { color: hsla(120, 100%, 50%, 1) } /* the same, with explicit opacity of 1 */
+p { color: hsla(240, 100%, 50%, 0.5) } /* semi-transparent solid blue */
+p { color: hsla(30, 100%, 50%, 0.1) }  /* very transparent solid orange */
+```
+
+[reference](https://www.w3.org/TR/css-color-3/)
 
 ## BASIC SHAPES
 
