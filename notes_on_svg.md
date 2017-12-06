@@ -8,6 +8,7 @@ This are my personal notes on the svg specs, and are heavily based in the best r
 - also check: [google svgweb](https://code.google.com/archive/p/svgweb/) 
 - comparation between SVG and canvas: [link](https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/)
 - upcomming standard SVG 2: [ref SVG2](https://svgwg.org/svg2-draft/Overview.html)
+- candidate release svg2 [link](https://www.w3.org/TR/SVG2/)
 - best progamm evaaa: https://inkscape.org/
 - svg testing: https://github.com/w3c/svgwg/wiki/Testing
 - the SVG working group: https://www.w3.org/Graphics/SVG/
