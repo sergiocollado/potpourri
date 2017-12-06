@@ -26,7 +26,7 @@ An example of svg definition- the center of coordinates is top-left.
      width="300" height="200"
      xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" fill="lightblue" />
-  <circle cx="150" cy="100" r="80" fill="yellow" />
+  <circle cx="150" cy="100" r="80" fill="yellow" stroke="orange" />
   <text x="150" y="120" font-size="40" text-anchor="middle" fill="blue">SVG</text>
 </svg>
 ```
@@ -42,6 +42,12 @@ We write a text with: `<text x="150" y="125" font-size="60" text-anchor="middle"
 
 ![first_example_svg](https://rawgit.com/sergiocollado/potpourri/master/image/svg_001.svg)
 
+
+From this example we can draw some conclusions:
+
+1. the figures are rendered as they are defined. First at the bottom, and the last at the top of the image.
+2. **fill** fills the interior of its graphical element
+3. **stroke** paints the aoutline of its graphical element.
 
 ## BASIC SHAPES
 
