@@ -1,4 +1,9 @@
 
+<!---EQ LATEX 2 SVG EDITOR:  http://www.codecogs.com/latex/eqneditor.php -->
+<!--- rawgit:   https://rawgit.com/  -->
+<!--- template: --->
+<!--- <br> <img  src="https:/   .svg?sanitize=true" alt="Alterantive_description"> <br> --->
+
 SCALAR COULOMB FORCE EQUATION
 
 ```latex
@@ -33,10 +38,18 @@ A VECTOR:
 ```latex
 \vec{A} = A_x \cdot \vec{i} + A_y \cdot \vec{j} + A_z \cdot \vec{k}
 ```
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/A_vector.svg?sanitize=true" alt="A vector">
+<br>
+
 
 B VECTOR:
 
 ```latex
 \vec{B} = B_x \cdot \vec{i} + B_y \cdot \vec{j} + B_z \cdot \vec{k}
 ```
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/B_vector.svg?sanitize=true" alt="B vector">
+<br>
+
 
