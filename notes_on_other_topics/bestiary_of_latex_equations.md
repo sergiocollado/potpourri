@@ -27,3 +27,16 @@ POSITION UNITARY VECTOR
 ```latex
 \hat{r} = \frac{\vec{r}}{ \mid \vec{r}\mid }
 ```
+
+A VECTOR:
+
+```latex
+\vec{A} = A_x \cdot \vec{i} + A_y \cdot \vec{j} + A_z \cdot \vec{k}
+```
+
+B VECTOR:
+
+```latex
+\vec{B} = B_x \cdot \vec{i} + B_y \cdot \vec{j} + B_z \cdot \vec{k}
+```
+
