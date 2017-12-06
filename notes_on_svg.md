@@ -42,7 +42,6 @@ We write a text with: `<text x="150" y="125" font-size="60" text-anchor="middle"
 
 ![first_example_svg](https://rawgit.com/sergiocollado/potpourri/master/image/svg_001.svg)
 
-
 From this example we can draw some conclusions:
 
 1. the figures are rendered as they are defined. First at the bottom, and the last at the top of the image.
