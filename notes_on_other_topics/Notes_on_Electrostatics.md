@@ -4,7 +4,7 @@ The electric charge, represented by its symbol **Q**,  is a fundamental magnitud
 
 The electric charge cuantifies the defect of electrons (by convention this is known as *Positive charge*), or the excess of electrons (by convection this is known as *negative charge*) in a body, and its unit in SI is the *Coulomb*.
 
-The Coulomb (C) is the amount of electrical charge that have 6.241x10^18 electrons.
+The Coulomb (C) is the amount of electrical charge that have 6.241x10<sup>18</sup> electrons.
 
 The number of Coulobs per second (C/s) = Ampere (A), which is the unit of the electric current, so current is the amount of electric charge that goes through a body per unit time.
 
@@ -31,17 +31,17 @@ Electrostatics is govern by _**Coulomb's Law**_ that enunciates as folows:
 
 ## **Coulomb's Law**
 
-The force **F** between two charged particles (Q_1 and Q_2) in static equilibrium, in a given medium,
-is proportional to the product of it's charges, and inversely proportional o the square of it's distance (R^2). 
-If Q_1 and Q_2 have the same sign, that is: both positive or both negative, the force will be of
-repulsion, driving them appart. If Q_1 and Q_2 have opposite signs, the force will be of attraction. 
+The force **F** between two charged particles (Q <sub>1</sub> and Q <sub>2</sub>) in static equilibrium, in a given medium,
+its proportional to the product of their charges, and inversely proportional o the square of their distance (R<sup>2</sup>). 
+If Q <sub>1</sub> and Q <sub>2</sub> have the same sign, that is: both positive or both negative, the force will be of
+repulsion, driving them appart. If Q <sub>1</sub>  and Q_2 have opposite signs, the force will be of attraction. 
 That force will act always along the line that is defined by the position of both charged particles
-Q_1 and Q_2 (vector r).
+Q <sub>1</sub> and Q <sub>2</sub> (vector **r**).
 
 
 
 <br>
-That force will be also proportional to a constant **k_e**, in the Internationa
+That force will be also proportional to a constant <b>k <sub>e</sub></b>, in the Internationa
 System of units, **SI** , it has the value:
 
 <br>
@@ -58,17 +58,17 @@ call _**permittivity**_, for short); the absolutely permittivity value is given 
     
 where:
 
-- **ε_r** is a dimension-less quantity, that is known as the **relative permittivity** or also as the **dielectric constant**
+- **ε <sub>r</sub>** is a dimension-less quantity, that is known as the **relative permittivity** or also as the **dielectric constant**
  of the medium.
-- **ε_0** is the permittivity of free space (vacuum) - and its value is:
+- **ε <sub>0</sub>** is the permittivity of free space (vacuum) - and its value is:
 
 <br>
 <img src="https://rawgit.com/sergiocollado/potpourri/master/image/epsion_cero.svg" style="border:1px solid black" alt="permittivity of free space">
 <br>
 
-So for free space, the relative permittivity is ε_r = 1.
+So for free space, the relative permittivity is ε <sub>r</sub> = 1.
 
-Then the force between the two charges Q_1 and Q_2, is defined by:
+Then the force between the two charges Q <sub>1</sub> and Q <sub>2</sub>, is defined by:
 
 <br>
 <img style="border:1px solid" width="200" src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_eq_2.svg?sanitize=true">
@@ -78,9 +78,9 @@ Then the force between the two charges Q_1 and Q_2, is defined by:
 <img src="https://rawgit.com/sergiocollado/potpourri/master/image/position_vector_2.svg?sanitize=true">
 <br>
 
- - vector **r_1** is the position vector of Q_1
- - vector **r_2** is the position vector of Q_2
- - vector **r** is the relative positon of Q_2 related to Q_1
+ - vector **r <sub>1</sub>** is the position vector of Q <sub>1</sub>
+ - vector **r <sub>2</sub>** is the position vector of Q <sub>2</sub>
+ - vector **r** is the relative positon of Q <sub>2</sub> related to Q <sub>1</sub>
  - and the unitary vector in the vector **r** direction is:
 <br>
 <img src="https://rawgit.com/sergiocollado/potpourri/master/image/position_unitary_vector.svg?sanitize=true">
