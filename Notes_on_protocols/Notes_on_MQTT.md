@@ -7,6 +7,7 @@ MQTT/3.1 is publish/subscribe messaging transport protocol. Its light, open, sim
 Ref: https://xmpp.org/about/standards-process.html <br>
 Ref: https://www.linux.com/news/mqtt-iot-communication <br>
 Ref: http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html <br>
+Ref: https://www.hivemq.com/blog/how-to-get-started-with-mqtt <br>
 
 ## Main elements of the communication
 
