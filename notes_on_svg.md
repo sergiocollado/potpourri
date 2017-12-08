@@ -18,7 +18,8 @@ and others:
 - more about it: https://inkscape.org/en/develop/about-svg/
 - super examples: http://codinginparadise.org/projects/svgweb/samples/demo.html?name=undefined&svg.render.forceflash=false
 - other nice one: http://codinginparadise.org/projects/svgweb/docs/QuickStart.html
-
+- another: http://srufaculty.sru.edu/david.dailey/svg/SVGAnimations.htm
+- really fine stuff: http://srufaculty.sru.edu/david.dailey/svg/createElementBrowser.html
 
 
 # NOTES SVG: Scalable Vector Graphics
@@ -326,6 +327,7 @@ use 'document.createElementsNS' function.
 references: </br>
 - document.createElement    [:link:](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) </br>
 - document.createElementNS  [:link:](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElementNS) </br>
+- http://srufaculty.sru.edu/david.dailey/svg/createElementBrowser.html
 
 An example is the following code:
 
@@ -436,6 +438,8 @@ As an example:
 ```
 
 More on the ref: http://codinginparadise.org/projects/svgweb/docs/QuickStart.html
+
+Also check: http://srufaculty.sru.edu/david.dailey/svg/createElementBrowser.html
 
 
 
