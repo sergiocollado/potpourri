@@ -1,6 +1,4 @@
-`******************************************************************************************************************`
-`******************************************************************************************************************`
-
+<hr>
 >> Reference: man pages:
 
  >> User commands: [:link:](http://man7.org/linux/man-pages/dir_section_1.html)
@@ -17,9 +15,7 @@
   
  >> system Administration [:link:](http://man7.org/linux/man-pages/dir_section_8.html)
   
-`***********************************************************************************************************************`  
-`***********************************************************************************************************************`
-
+<hr>
 
 In case something is not working properly, always have a go with with the following:
 
@@ -316,6 +312,9 @@ gcc: http://gcc.gnu.org/
 high-performance network programming in c.  http://www.linuxjournal.com/article/9815
 
 FIO : flexible I/o testing: https://linux.die.net/man/1/fio
+
+Linux Drivers for ADIC ICs: https://wiki.analog.com/resources/tools-software/linux-drivers-all
+
 
 
 
