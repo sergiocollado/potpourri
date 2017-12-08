@@ -15,7 +15,7 @@ This are my personal notes on the svg specs, and are heavily based in the best r
 - the SVG working group: https://www.w3.org/Graphics/SVG/
 - more about it: https://inkscape.org/en/develop/about-svg/
 - super examples: http://codinginparadise.org/projects/svgweb/samples/demo.html?name=undefined&svg.render.forceflash=false
-
+- other nice one: http://codinginparadise.org/projects/svgweb/docs/QuickStart.html
 
 
 
@@ -433,6 +433,10 @@ As an example:
 </html>
 ```
 
+More on the ref: http://codinginparadise.org/projects/svgweb/docs/QuickStart.html
+
+
+
 ## Most common svg attributes are:
 
 **version** = "<number>"
@@ -504,6 +508,7 @@ TODO: </br>
 - http://srufaculty.sru.edu/david.dailey/svg/bucketful.htm
 - really good tutorial: http://tutorials.jenkov.com/svg/index.html
 - super examples: http://codinginparadise.org/projects/svgweb/samples/demo.html?name=undefined&svg.render.forceflash=false
+- notes on quick start and scripting svg's: http://codinginparadise.org/projects/svgweb/docs/QuickStart.html
 
 
 
