@@ -14,6 +14,7 @@ This are my personal notes on the svg specs, and are heavily based in the best r
 - more no svg testing: http://codinginparadise.org/projects/svgweb/tests/
 - the SVG working group: https://www.w3.org/Graphics/SVG/
 - more about it: https://inkscape.org/en/develop/about-svg/
+- super examples: http://codinginparadise.org/projects/svgweb/samples/demo.html?name=undefined&svg.render.forceflash=false
 
 
 
@@ -502,6 +503,7 @@ TODO: </br>
 - more awesome examples: http://srufaculty.sru.edu/david.dailey/art.html
 - http://srufaculty.sru.edu/david.dailey/svg/bucketful.htm
 - really good tutorial: http://tutorials.jenkov.com/svg/index.html
+- super examples: http://codinginparadise.org/projects/svgweb/samples/demo.html?name=undefined&svg.render.forceflash=false
 
 
 
