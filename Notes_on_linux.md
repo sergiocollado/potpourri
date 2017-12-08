@@ -315,8 +315,7 @@ FIO : flexible I/o testing: https://linux.die.net/man/1/fio
 
 Linux Drivers for ADIC ICs: https://wiki.analog.com/resources/tools-software/linux-drivers-all
 
-
-
+Independent magazine for Ubuntu users: https://fullcirclemagazine.org/
 
 
 
