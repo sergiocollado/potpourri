@@ -167,12 +167,13 @@ int main(int argc, char *argv[])
 ```
 
 
-## Other tricks of the trade
+## Other patterns
 
 ### Memoization
- The term 'Memoization' was coined by Donald Michie in 1968, it comes from the Latin 'memorandum' which stands for the meaning
+ The term 'Memoization' was coined by Donald Michie, it comes from the Latin 'memorandum' which stands for the meaning
  'to be remebered'. It is a technique for speeding up mathematical aproximation/iterative/heuristic calculations. The general
  idea, is that when a process or a function is called with previously used parameters, the previous stored results can be used
  again, and the process calculation avoided.
  
- 
+ For example in C this can be implemented easily using 'static' variables, these are initialiced once in a function, but its value
+ is kept in each call to the function, this work fine for herustic processes/algorithms. 
