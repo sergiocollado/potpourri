@@ -43,6 +43,8 @@ Reference: http://www.contiki-os.org/
 
 Reference: http://internetofthingsagenda.techtarget.com/feature/The-Contiki-IoT-OS-is-the-calm-in-the-storm-of-IoT-OSes?utm_content=control&utm_medium=EM&asrc=EM_ERU_77935633&utm_campaign=20170601_ERU%20Transmission%20for%2006/01/2017%20(UserUniverse:%202383547)&utm_source=ERU&src=5639188
 
+hands-on into it: https://github.com/contiki-os/contiki/wiki
+
 # TinyOS
 
 Is another Iot embedded OS. It is open-source. It has a monolitic kernel.
