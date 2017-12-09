@@ -9,6 +9,8 @@ components, their relationships to one another and the environment, and the prin
 ## System design
 > Process of defining the hardware and Software architecture, components, modules, interfaces and data for a system to satisfy specified requirements (ISO/IEC 2382:2015, Information technology -- Vocabulary) 
 
+ISO/IEC/IEE 24765 - Vocabulary - avaliable freely at: http://www.computer.org/sevocab
+
 # Notes on design patterns
 
 Usually design patterns are classified into three categories:
