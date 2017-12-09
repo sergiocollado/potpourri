@@ -101,7 +101,7 @@ A media querie (MQ) consist on one or more expressions, that can be evaluated to
 ```
 example:
 ```CSS
-@media  print {
+@media  only print {
   body{
   	background-image: none;
   	background-color: white;
@@ -134,14 +134,14 @@ and (max-width : 320px) {
 /* Styles */
 }
 
-/* iPads (portrait and landscape) ----------- */
+/* Tablts (portrait and landscape) ----------- */
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) {
 /* Styles */
 }
 
-/* iPads (landscape) ----------- */
+/* Tablets (landscape) ----------- */
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
@@ -149,7 +149,7 @@ and (orientation : landscape) {
 /* Styles */
 }
 
-/* iPads (portrait) ----------- */
+/* Tablets (portrait) ----------- */
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
@@ -169,7 +169,7 @@ and (min-width : 1824px) {
 /* Styles */
 }
 
-/* iPhone 4 ----------- */
+/* iPhones----------- */
 @media
 only screen and (-webkit-min-device-pixel-ratio : 1.5),
 only screen and (min-device-pixel-ratio : 1.5) {
@@ -267,7 +267,6 @@ So a good start point definition could be:
 ```
 
 
-
 ### Child elements (flex items)
 Children elements of a flex parent container, inmediatry turn into flexible items.
 Their propierties are:
@@ -325,7 +324,7 @@ Example:
 
 # jQuery
 
-jQuery is a javascript library that simplifies the sintaxis and add funticonality.
+jQuery is a javascript library that simplifies the sintaxis and adds funtionality.
 
 You can add this library from a CDN, with:
 
@@ -558,3 +557,20 @@ https://cdnjs.cloudflare.com/ajax/libs/eqcss/1.7.0/EQCSS.min.js
 <hr>
 <br>
 
+# Managing the unexpected!
+
+Use the **onerror** event!
+
+It can be something as simple as:
+
+```javascript
+onerror='this.display=none;'
+```
+
+Use the **noscript** tag:
+
+```javascript
+<noscript>Your browser does not support JavaScript!</noscript>
+```
+
+Use the **alt** tag. 
