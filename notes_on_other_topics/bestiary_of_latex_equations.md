@@ -59,3 +59,8 @@ SIN THEOREM:
 2·R = \frac{a}{\sin(A)} = \frac{b}{\sin(B)} = \frac{c}{\sin(C)}
 ```
 
+COS THEOREM:
+
+```latex
+c^{2} = a^{2} + b^{2} - 2·a·b·\cos (C)
+```
