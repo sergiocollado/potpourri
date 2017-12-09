@@ -2,10 +2,12 @@
 
 According to the IEEE definition:
 
+## System Architecture
 > A system architecture is the fundamental organization of a system, embodied in  embodied in its
 components, their relationships to one another and the environment, and the principles governing its design and evolution.
- 
 
+## System design
+> Process of defining the hardware and Software architecture, components, modules, interfaces and data for a system to satisfy specified requirements (ISO/IEC 2382:2015, Information technology -- Vocabulary) 
 
 # Notes on design patterns
 
