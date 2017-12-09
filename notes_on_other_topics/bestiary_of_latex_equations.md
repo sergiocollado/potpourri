@@ -53,3 +53,9 @@ B VECTOR:
 <br>
 
 
+SIN THEOREM:
+
+```latex
+2·R = \frac{a}{\sin(A)} = \frac{b}{\sin(B)} = \frac{c}{\sin(C)}
+```
+
