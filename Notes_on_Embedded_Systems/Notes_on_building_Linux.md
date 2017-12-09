@@ -11,16 +11,25 @@ The standard GNU toolchain consist on:
 - GCC (GNU Compiler Collection)
 - C library
 
-As wel you'll need a copy of the linux kernel headers:
+Check you have the building tools: 
+
+```bash
+sudo apt-get install build-essential
+```
+
+As well, you'll need a copy of the linux kernel headers:
 
 You will need the following components:
 
+```bash
 >root@user:/home/usr# sudo apt-get install mlocate 
+```
 
 to re-index inmediatetly use:
 
+```bash
 >sudo updatedb
-
+```
 
 
 
