@@ -1,3 +1,12 @@
+# What is a System Architecture?
+
+According to the IEEE definition:
+
+> A system architecture is the fundamental organization of a system, embodied in  embodied in its
+components, their relationships to one another and the environment, and the principles governing its design and evolution.
+ 
+
+
 # Notes on design patterns
 
 Usually design patterns are classified into three categories:
