@@ -185,6 +185,12 @@ The x position of the center of the ellipse. <br>
 **cy** <br>
 The y position of the center of the ellipse. <br>
 
+| Ellipse |    |
+| --- | --- |
+|**rx**		| The x radius of the ellipse. |
+|**ry** 	| The y radius of the ellipse.|
+|**cx** 	| The x position of the center of the ellipse. |
+|**cy** 	| The y position of the center of the ellipse. |
 
 
 ### Polygon
