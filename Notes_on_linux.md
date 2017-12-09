@@ -23,6 +23,9 @@ In case something is not working properly, always have a go with with the follow
 
 > sudo apt-get upgrade
 
+maybe even re-index inmediatetly use:
+
+>sudo updatedb
 
 
 REFERENCES:
@@ -241,7 +244,7 @@ if it fails at start, try to
 > sudo apt-get upgrade
 
 
-## HOW DO I KNOW WHAT MODULES HAS MY LINUX
+## HOW DO I KNOW WHAT MODULES HAS MY LINUX SYSTEM
 
 You can use the **lsmod** command, and it will give you the status of the present linux.
 
