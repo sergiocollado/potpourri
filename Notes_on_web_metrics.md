@@ -1,7 +1,7 @@
 # Notes on web metrics
 
 
-iF HELP IS NEEDED GO TO THE FOLLOWING LINKS:
+In case its is needed to check the implementation of any atributte, is ease to check it at the site:
 
 https://caniuse.com/
 
@@ -95,11 +95,89 @@ Media queries can identify:
 A media querie (MQ) consist on one or more expressions, that can be evaluated to either TRUE or FALSE.
 
 ```CSS
-@media  [not][only] mediatype and ( expression ) {
-
+@media  [not|only|and] mediatype and ( expression ) {
   ... <!-- here goes the CSS definition -->
 }
 ```
+example:
+```CSS
+@media  print {
+  body{
+  	background-image: none;
+  	background-color: white;
+	}
+}
+```
+
+One Tip! - when defining the media queries, start defining the smaller ones, lets say for moviles devices, because, this will make,
+that they will use less data bandwith.
+
+Other Tip! - from the following reference, ( https://stackoverflow.com/questions/12045893/which-are-the-most-important-media-queries-to-use-in-creating-mobile-responsive ) I would go for it's proposed generalistic media query.
+
+```CSS
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+/* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+/* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+}
+
+```
+
 
 #### Media types
 
@@ -175,7 +253,7 @@ so in the html code, it will be used as:
 | align-items   | aligns items in the opposite direction that the justify-content direction     | baseline<br>center<br>flex-start<br>flex-end<br>stretch(default)    |
 | align-content     | aligns the children rows       | center<br>flex-start<br>flex-end<br>space-around<br>space-between<br>stretch(default)    |
 
-So a good definition could be:
+So a good start point definition could be:
 
 ```CSS
 .flex_parent {
@@ -203,7 +281,6 @@ Their propierties are:
 | flex  |  is a shortform for _flex-grow_, _flex-schrink_ and _flex-basics_  |  default: 0 1 auto   |
 | align-self     | overwrites the default aligment from the parent flex container  | auto(default)<br>baseline<br>center<br>flex-start<br>flex-end<br>stretch    |
   
- 
  
 	 - display: flex --> rendered as flex block.
  	 - display: flex-inline --> rendered as a flex inline block
@@ -467,7 +544,7 @@ $.getScript('lib1.js').then(
 ```
 
 
-# Element queries
+# Element queries 
 
 Element queries are similar to media queries, but, it allows you to apply stiles depending on the propierties of its element, and for example give different styles accordint to its width, it number of children, ....
 
