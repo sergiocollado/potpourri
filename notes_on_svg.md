@@ -176,14 +176,7 @@ ref: (https://www.w3.org/TR/SVG/shapes.html#RectElement)
 ```xml
 <ellipse cx="75" cy="75" rx="20" ry="5"/>
 ```
-**rx** <br>
-The x radius of the ellipse. <br>
-**ry** <br>
-The y radius of the ellipse. <br>
-**cx** <br>
-The x position of the center of the ellipse. <br>
-**cy** <br>
-The y position of the center of the ellipse. <br>
+
 
 | Ellipse |    |
 | --- | --- |
