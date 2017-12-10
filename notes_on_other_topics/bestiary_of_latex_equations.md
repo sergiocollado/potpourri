@@ -64,3 +64,14 @@ COS THEOREM:
 ```latex
 c^{2} = a^{2} + b^{2} - 2·a·b·\cos (C)
 ```
+
+LORENTZ TRANSFORMATION
+
+```latex
+{x}' = \frac{x -  v·t}{\sqrt{1-\frac{v^{2}}{c^{2}} }}
+```
+
+```latex
+{t}' = \frac{t -  x·\frac{v}{c^{2}}}{\sqrt{1-\frac{v^{2}}{c^{2}} }}
+```
+
