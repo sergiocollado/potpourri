@@ -52,6 +52,9 @@ B VECTOR:
 <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/B_vector.svg?sanitize=true" alt="B vector">
 <br>
 
+SCALAR PRODUCT:
+
+\vec{A} = A_x \cdot \vec{i} + A_y \cdot \vec{j} + A_z \cdot \vec{k}
 
 SIN THEOREM:
 
