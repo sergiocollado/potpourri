@@ -20,6 +20,9 @@ and others:
 - other nice one: http://codinginparadise.org/projects/svgweb/docs/QuickStart.html
 - another: http://srufaculty.sru.edu/david.dailey/svg/SVGAnimations.htm
 - really fine stuff: http://srufaculty.sru.edu/david.dailey/svg/createElementBrowser.html
+- svg authoring guidelines: https://jwatt.org/svg/authoring/
+- svg test demo:  https://jwatt.org/svg/demos/path-tester.xml
+
 
 
 # NOTES SVG: Scalable Vector Graphics
@@ -47,6 +50,7 @@ We write a text with: `<text x="150" y="125" font-size="60" text-anchor="middle"
 
 
 ![first_example_svg](https://rawgit.com/sergiocollado/potpourri/master/image/svg_001.svg?sanitize=true)
+
 
 From this example we can draw some conclusions: 
 
@@ -97,6 +101,14 @@ p { color: hsla(240, 100%, 50%, 0.5) } /* semi-transparent solid blue */
 p { color: hsla(30, 100%, 50%, 0.1) }  /* very transparent solid orange */
 ```
 
+5. Is required to include the following three attributes on the root <svg> tag in your SVG documents:
+
+```xml
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events">
+```
+     
 [reference](https://www.w3.org/TR/css-color-3/)
 
 ## BASIC SHAPES
@@ -318,6 +330,24 @@ for each ellipse there are two paths for connect those two points. So there are 
 
 # JAVASCRIPT FOR CREATING SVGs:
 
+With the DOM2, the following funtions are available:
+
+ - createAttributeNS
+ - createElementNS
+ - getAttributeNodeNS
+ - getAttributeNS
+ - getElementsByTagNameNS (also added to Element)
+ - getNamedItemNS
+ - hasAttributeNS
+ - removeAttributeNS
+ - removeNamedItemNS
+ - setAttributeNS
+ - setAttributeNodeNS
+ - setNamedItemNS
+ 
+ 
+
+
 ## CREATING SVGs
 
 If you want to creatre a new element, you can always use: `document.createElement` function. SVG, uses namespaces, so you'll have to
@@ -378,6 +408,14 @@ You just have to use the function:`removeChild()` <br>
 
 ```javascript
 document.documentElement.removeChild(txtElem);
+```
+
+### RETRIEVING ATRIBUTES
+
+To retrieve the value of the 'x' attribute on an SVG 'rect' element you must write:
+
+```javascript
+getAttributeNS(null, 'x');
 ```
 
 ## EXAMPLE OF CREATING A SVG PROGRAMMATICALY
@@ -514,7 +552,7 @@ TODO: </br>
 - really good tutorial: http://tutorials.jenkov.com/svg/index.html
 - super examples: http://codinginparadise.org/projects/svgweb/samples/demo.html?name=undefined&svg.render.forceflash=false
 - notes on quick start and scripting svg's: http://codinginparadise.org/projects/svgweb/docs/QuickStart.html
-
+- cool examlple of bubble-menus: http://starkravingfinkle.org/projects/demo/svg-bubblemenu-in-html.xml
 
 
 
