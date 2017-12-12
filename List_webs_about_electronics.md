@@ -248,6 +248,8 @@ PCB supplier: http://www.allpcb.com/
 
 general radio electronics stuff:   http://www.radio-electronics.com/
 
+electronic kits: https://www.todoelectronica.com/es/249-kits-electronicos-para-montar
+
 
 # Learn electronics with application notes:
 
