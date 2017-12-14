@@ -72,6 +72,9 @@ and the kernel sources:
 # apt-get install linux-headers-$(uname -r)
 ```
 
+If you are going to build a system, for another device diferent that the one you are using, I mean another architecture, you will
+need the linux sources that fit that architecture. When you build a system for another architecure, that is different that the one
+you are using, is call 'Crosscompiling'.
 
 You will need the following components:
 
