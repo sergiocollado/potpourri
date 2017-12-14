@@ -38,11 +38,40 @@ Real-Time Extensions
 
 Check you have the building tools: 
 
+it is recomended update all:
+
+```bash
+apt-get update && apt-get upgrade
+```
+
+to re-index, use:
+
+```bash
+>sudo updatedb
+```
+
+
 ```bash
 sudo apt-get install build-essential
 ```
 
-As well, you'll need a copy of the linux kernel headers:
+for make:
+
+```bash
+sudo apt-get install build-essential
+```
+for gcc:
+
+```bash
+sudo apt-get install gcc
+```
+
+and the kernel sources:
+
+```bash
+# apt-get install linux-headers-$(uname -r)
+```
+
 
 You will need the following components:
 
@@ -50,11 +79,6 @@ You will need the following components:
 >root@user:/home/usr# sudo apt-get install mlocate 
 ```
 
-to re-index inmediatetly use:
-
-```bash
->sudo updatedb
-```
 
 
 
