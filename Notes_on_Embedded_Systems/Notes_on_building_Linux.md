@@ -1,6 +1,7 @@
 
 
-There are four main players for building a custom linux system.
+There are four main elements, needed for building a custom linux system.
+
 - Toolchain
 - Bootloader
 - Kernel 
@@ -10,7 +11,6 @@ The standard GNU toolchain consist on:
 - Binutils: assembler, linker, ...
 - GCC (GNU Compiler Collection)
 - C library
-
 
 <!--
 for custom real-time oriented systems, you will have to cosider the following
