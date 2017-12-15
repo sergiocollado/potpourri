@@ -60,7 +60,28 @@ journal: http://www.linuxjournal.com
 
 
 
+## Linux File System
 
+The linux file system usually has the following structure:
+
+ - **/**
+  - **/bin** user binaries
+  - **/sbin** system binaries
+  - **/etc** configuration files
+  - **/dev** device files
+  - **/proc** processes information
+  - **/var** variable files (as logs)
+  - **/tmp** temporary files
+  - **/usr** user programms
+  - **/home** home directorie
+  - **/boot** bootloader files
+  - **/lib** system libraries
+  - **/opt** optional add-ons
+  - **/mnt** mount directories
+  - **/media** removable devices
+  - **/srv** service data
+  
+  
   
 
 The analysis of the memory in the linux system, can be checked using the commands:
