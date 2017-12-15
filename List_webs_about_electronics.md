@@ -234,6 +234,8 @@ a site about electric engineering: http://www.electrotechnik.net/
 
 Reevee observatory Alaska: http://www.reeve.com/Documents/
 
+Italian observatory: http://www.astrogeo.va.it/
+
 http://space.skyrocket.de/
 
 shop RF elements: https://www.ondamania.com/b2c/inicio.php
