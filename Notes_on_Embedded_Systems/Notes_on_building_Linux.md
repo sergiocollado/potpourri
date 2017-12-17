@@ -1,4 +1,25 @@
 
+# key caracteristics and propierties for embedded systems:
+
+  - Dedicated functionality
+  - Limited resources
+  - performance and eficiency
+  - Real time constrains
+  - Interaction with the enviroment.
+  - Dependavilitie
+      - Availability.
+      - Reliability.
+      - Safety.
+      - Security.
+      - Integrity (¿?)
+      - Mantanability (?¿)
+
+ When testing this system, the following aspects must be considered:
+ 
+ - Code coverage.
+ - Decidison coverage.
+ - Complejidad ciclomaática.
+
 
 There are four main elements, needed for building a custom linux system.
 
@@ -6,6 +27,14 @@ There are four main elements, needed for building a custom linux system.
 - Bootloader
 - Kernel 
 - RootFileSystem
+
+| Element | Description of the element |
+| --- | --- |
+| toolchain | Collection of tools for builiding the system, copiler, libaries, assemblers, linkers... |
+| bootloader | Routine for start/reset  the microprocesor, that will launch the system configuration process |
+| kernel | heart of the operating system |
+| Rootfilesysten | the file system for our desinged system. |
+
 
 The standard GNU toolchain consist on:
 - Binutils: assembler, linker, ...
@@ -83,8 +112,25 @@ You will need the following components:
 ```
 
 
+# Check list for robustness systems:
 
+ - Inexperienced & foul user.
+ - the message protocol used, is acknoledged?
+ - there is any kind of protection against message interrumption?
+ - there is any kind of protecion against lost messages?
+ - the max lenght of any message has been properly defined?
+ - there is any kinde of defense agains file corruption? as  md5, or checksums?
+ - there are any kind of keep alive messages?
+ - there are any ICT (In circuit test) or BIST (Build In Circuit Test)?
+ - there is any implementation of FCE (Fordward Correction Errors), or ECC (Error Correction Codes)?
+ - Whats the hammingdistance for messages mcomunications.
+ - The z-impedance has been defined in comunication lines?
+ - Max transmission/reception performace, and average transmission/reception performace, has ben defined, deteermined and tested.
+ - Are we keeping track of the REC (Recedived Error Count) or of the TEC (Transmition Error Code).
+ - Memory has any kind of ckeching scheduled in it's util live?
+ - Memory or the file system, have integrated any kind of ECC (Error Correction Codes)?
 
+ 
 
 
 
