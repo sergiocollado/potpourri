@@ -57,33 +57,38 @@ gcc: http://gcc.gnu.org/
 
 journal: http://www.linuxjournal.com
 
+## Starting with a Linux Sytem.
 
+Most probabliy if you have get a already designed Linux systems, there are many chances that lenguaje is set to english, and you must change it to you keyboard cofingurations. For datat you should just, run the following command:
 
+```bash
+$> del lang=es
+```
+You should change the 'es' to your langauge code. And rememember than in an english keyboard, the 'equal sign' is next to the back space key.
 
 ## Linux File System
 
 The linux file system usually has the following structure:
 
  - **/**
-  - **/bin** user binaries
-  - **/sbin** system binaries
-  - **/etc** configuration files
-  - **/dev** device files
-  - **/proc** processes information
-  - **/var** variable files (as logs)
-  - **/tmp** temporary files
-  - **/usr** user programms
-  - **/home** home directorie
-  - **/boot** bootloader files
-  - **/lib** system libraries
-  - **/opt** optional add-ons
-  - **/mnt** mount directories
-  - **/media** removable devices
-  - **/srv** service data
+    - **/bin** user binaries
+    - **/sbin** system binaries
+    - **/etc** configuration files
+    - **/dev** device files
+    - **/proc** processes information
+    - **/var** variable files (as logs)
+    - **/tmp** temporary files
+    - **/usr** user programms
+    - **/home** home directorie
+    - **/boot** bootloader files
+    - **/lib** system libraries
+    - **/opt** optional add-ons
+    - **/mnt** mount directories
+    - **/media** removable devices
+    - **/srv** service data
   
-  
-  
-
+### Memory análisis in linux systems
+ 
 The analysis of the memory in the linux system, can be checked using the commands:
 
 1)
@@ -96,49 +101,49 @@ reading the file: /proc/meminfo
 or
 >> cat /proc/meminfo
 
-MemTotal:        8169924 kB<br>
-MemFree:         7274872 kB<br>
-Buffers:          154784 kB<br>
-Cached:           213312 kB<br>
-SwapCached:            0 kB<br>
-Active:           265184 kB<br>
-Inactive:         233264 kB<br>
-Active(anon):     131196 kB<br>
-Inactive(anon):     2956 kB<br>
-Active(file):     133988 kB<br>
-Inactive(file):   230308 kB<br>
-Unevictable:           0 kB<br>
-Mlocked:               0 kB<br>
-SwapTotal:       1046524 kB<br>
-SwapFree:        1046524 kB<br>
-Dirty:                60 kB<br>
-Writeback:             0 kB<br>
-AnonPages:        129588 kB<br>
-Mapped:            47324 kB<br>
-Shmem:              3804 kB<br>
-Slab:             288172 kB<br>
-SReclaimable:     251312 kB<br>
-SUnreclaim:        36860 kB<br>
-KernelStack:        4192 kB<br>
-PageTables:        12756 kB<br>
-NFS_Unstable:          0 kB<br>
-Bounce:                0 kB<br>
-WritebackTmp:          0 kB<br>
-CommitLimit:     5131484 kB<br>
-Committed_AS:    1010244 kB<br>
-VmallocTotal:   34359738367 kB<br>
-VmallocUsed:      174216 kB<br>
-VmallocChunk:   34359550136 kB<br>
-HardwareCorrupted:     0 kB<br>
-AnonHugePages:     26624 kB<br>
-HugePages_Total:       0<br>
-HugePages_Free:        0<br>
-HugePages_Rsvd:        0<br>
-HugePages_Surp:        0<br>
-Hugepagesize:       2048 kB<br>
-DirectMap4k:       91968 kB<br>
-DirectMap2M:     3053568 kB<br>
-DirectMap1G:     7340032 kB<br>
+MemTotal:        8169924 kB
+MemFree:         7274872 kB
+Buffers:          154784 kB
+Cached:           213312 kB
+SwapCached:            0 kB
+Active:           265184 kB
+Inactive:         233264 kB
+Active(anon):     131196 kB
+Inactive(anon):     2956 kB
+Active(file):     133988 kB
+Inactive(file):   230308 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:       1046524 kB
+SwapFree:        1046524 kB
+Dirty:                60 kB
+Writeback:             0 kB
+AnonPages:        129588 kB
+Mapped:            47324 kB
+Shmem:              3804 kB
+Slab:             288172 kB
+SReclaimable:     251312 kB
+SUnreclaim:        36860 kB
+KernelStack:        4192 kB
+PageTables:        12756 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     5131484 kB
+Committed_AS:    1010244 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:      174216 kB
+VmallocChunk:   34359550136 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:     26624 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       91968 kB
+DirectMap2M:     3053568 kB
+DirectMap1G:     7340032 kB
 ```
 
 If you also need to check your CPU, then you can read the file as:
@@ -153,7 +158,7 @@ Or also there is the command: lscpu
 ref: http://man7.org/linux/man-pages/man1/lscpu.1.html
 
 2)
-using the 'free' command:
+using the **'free'** command:
 
 Note: free command, only gives you info about the RAM memory.
 
@@ -223,10 +228,9 @@ Use the **top** programm.
 There are also the **atop**, and **htop** programs, that have increased functionalities, but they don't usually come preinstalled in linux distros.
 
 
+## Checking what is in your Cache and buffer
 
-CHECKING WHAT IS IN YOUR CACHE AND BUFFER:
-
-Use 'linux-ftools', to check what files are in your CACHE.
+Use **'linux-ftools'**, to check what files are in your CACHE.
 
 `>> fincore [options] files ...`
 
@@ -265,7 +269,7 @@ if it fails at start, try to
 > sudo apt-get upgrade
 
 
-## HOW DO I KNOW WHAT MODULES HAS MY LINUX SYSTEM
+## How do I know what modules my linux system has:
 
 You can use the **lsmod** command, and it will give you the status of the present linux.
 
