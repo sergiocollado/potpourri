@@ -557,6 +557,13 @@ https://cdnjs.cloudflare.com/ajax/libs/eqcss/1.7.0/EQCSS.min.js
 <hr>
 <br>
 
+# web apis 
+
+Here is the Valhala:  https://cdnjs.com/libraries#
+
+
+
+
 # Managing the unexpected!
 
 Use the **onerror** event!
