@@ -428,13 +428,13 @@ Testing depends on the context. A safe-critical system test is not at all the sa
 Even if no defects are found, it doesn't proof that the system is usable, or complies with the end-user expectations.
 
 
-## Development of the Test Plan for a System:
+## Development of the Test Plan
 
 The first point in a system development, at the testing context, is to define the **Testing Plan** for that, several key points have to
 be defined:
 
  - Test planning and control
- - Test analisis and design
+ - Test analysis and design
  - Test implementation and execution
  - Evaluating exit criteria and reporting
  - Test clousure and activities.
@@ -442,13 +442,14 @@ be defined:
  
 ### Test planning and control 
 
- **Test planning** is to define the objectives of the testing, and the needed action to meet those objectives.
+ **Test planning** is the document that aims to define the objectives of the testing, and the needed action to achieve those objectives.
  
- **Test control**: Testing activities should be monitored through the project. is the comparation ot the state of the project, against the planned expected result. And report its status, including desviations from the plan. Also include proposals to the actions that need to be done, in order to meet again the goals, and expectations of the project. 
+ **Test control**: Testing activities should be monitored through the project. It is the comparation between the state of the project, against the expected planned result. It also covers the report of the testing status, including desviations from the plan. Also include proposals to the actions that need to be done, in order to meet again the goals, and expectations of the project. 
  
 So **test control** is related to guide the corrective actions taken as a result of informantion or metrics. These actions can be applied to any part of the system.
 
 Examples of test control actions are:
+
 - Take decisions based on the information from test monitoring:
 - Repriorinzing tests, and identify risks.
 - Change of the test schedule, based on the abailability of equipmento or facilities.
@@ -457,12 +458,12 @@ Examples of test control actions are:
 **Test design and analysis**
 At this step, the real tests are designed,(actions, contexts, expected results)  and defined the objetives they want to ckeck.
 
-This include go through the following points.
+This include go through the following points:
 
 - Review requirements, software integrity level (that is compliance with some system parameters previously defined as software complexity, risk assesment, safety and security level, performance, reliability, cost ... Usualy these points are defined by the stakeholders):
 - Evaluation the testability of the test basis and test objects.
 - Identify and priority test conditions based on the overal project.
-- Design and prioritaze highl level tests.
+- Design and prioritaze high level tests.
 - Identify necessary test data and resources. 
 - Design the test enviroment, platform, and required infraestructures and materials.
 - Create a method to a bidirectional traceability between test basis and test cases.
@@ -470,7 +471,7 @@ This include go through the following points.
  
 ## Test implementation and execution
 
-The designed test procedures are implemented, a certain order has to be stablish, in order to execute the set of test (usually according to priority), the test enviroment is set up, and the test cases are run.
+The designed test procedures are implemented, and a certain execution order has to be stablish, in order to run the set of test (usually according to priority). When the test enviroment is set up, the test cases are run.
 
 The objetive and aim of the text execution is:
 
