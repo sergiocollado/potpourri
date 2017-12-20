@@ -483,10 +483,14 @@ The objetive and aim of the text execution is:
 - Execution of the test, according to the test procedure. Log of the test execution relevant information, as identification of the
 different elements involved, as software version, prototype, tools, device under test, execution time, software and hardware version.
 - Comparation with the expected results.
-- Report discrepancies, or outliers as incidents, and analyce them in order to identify a possible rootcause. (defect in the code implementation, data out of bounds, damaged equipment, wrong procedure, ...)
-- Repeat test that falled out of the expected results to confirm the issue, and gather new information details if possible. check if the 
+- Report discrepancies, or outliers as incidents, and analyse them in order to identify a possible root-cause. (defect in the code implementation, data out of bounds, damaged equipment, wrong procedure, ...)
+- Repeat test that failed out of the expected results to confirm the issue, and gather new information details if possible. check if the 
 efect is always reproducible, or it is sporadic....
+- Record and logging of the tests results, significant test conditions and enviroments.
 - If new issues are found, _regression testing_ (test all the system to asure that new code or components haven't affected the rest of the developed system) may be advisable, to check that new issues has not appear in other stable parts of the systems.
+
+## Exit criteria evaluation and report
+
 
 
 
