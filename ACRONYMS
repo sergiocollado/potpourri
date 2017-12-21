@@ -1,3 +1,4 @@
+RE - Reverse Engineering.
 UAS - User Authorizations System.
 RMS - Root Mean Squared.
 EGM - Externally Guided Motion. (robotics).
@@ -246,11 +247,12 @@ PFC - Power Factor Correction
 SMPS - Switch Mode Power Supply
 MTTR - Mean Time To Repair
 MTTF - Mean Time To Failure
-FTA - Fault Tree Analysis
-TSC - Thermal Shutdown Circuit
-OCP - Over Current Protection Circuit
-UVLO - Under Voltage Lock Out Circuit
-OVLO - Over Voltage Lock Out Circuit
+FTA - Fault Tree Analysis.
+TSC - Thermal Shutdown Circuit.
+POST - Power On Reset System Test?
+OCP - Over Current Protection Circuit.
+UVLO - Under Voltage Lock Out Circuit.
+OVLO - Over Voltage Lock Out Circuit.
 EOS - Electrical Over Stress.
 PPC - Plain Paper Copier
 PWM - Pulse Width Modulation
