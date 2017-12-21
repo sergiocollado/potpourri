@@ -489,7 +489,22 @@ efect is always reproducible, or it is sporadic....
 - Record and logging of the tests results, significant test conditions and enviroments.
 - If new issues are found, _regression testing_ (test all the system to asure that new code or components haven't affected the rest of the developed system) may be advisable, to check that new issues has not appear in other stable parts of the systems.
 
-## Exit criteria evaluation and report
+### Test results (evaluation and exit criteria).
+
+- The data obtained from the test should be compared with the expected results.
+- Report of the failed test!!!
+- Modification over the test, or expected results should be planned.
+- Reports should be done for the stackholders.
+
+### Test plan clousure activities.
+ 
+At the end of the project, or at significant project milestones, certain activites are observed.
+ 
+ - Report of the system acceptance.
+ - review and learned lessons.
+ - project metrics, and evaluation of the testware.
+ 
+
 
 
 
