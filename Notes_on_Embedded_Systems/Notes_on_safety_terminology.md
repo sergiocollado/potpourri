@@ -204,6 +204,16 @@ References:
 https://en.wikipedia.org/wiki/Robustness_(computer_science)#Robust_programming </br>
 http://nob.cs.ucdavis.edu/bishop/secprog/robust.html </br>
 
+#### Coding standards and best practices
+
+Follow recomendations for implementing the system.
+
+- Always define the variable types.
+- Never ever programm an infinite loop.
+- Write modular systems.
+- Design self-tests.
+- Test, test, test.
+
 ## Defensive programming
 
 Defensive programming is a defensive coding style intended to ensure the continuing function of a program under unforeseen circunstances. This code style is usually used in systems with need high availability, safety and security.
