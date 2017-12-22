@@ -1,34 +1,31 @@
-<hr>
->> Reference: man pages:
+ # Reference: man pages:
 
- >> User commands: [:link:](http://man7.org/linux/man-pages/dir_section_1.html)
- 
- >> System calls: [:link:](http://man7.org/linux/man-pages/dir_section_2.html)
- 
- >> Library standard C: [:link:](http://man7.org/linux/man-pages/dir_section_3.html)
-  
- >> Devices [:link:](http://man7.org/linux/man-pages/dir_section_4.html)
-  
- >> Files systems [:link:](http://man7.org/linux/man-pages/dir_section_5.html)
-  
- >> Conventions & miscellaneous [:link:](http://man7.org/linux/man-pages/dir_section_7.html)
-  
- >> system Administration [:link:](http://man7.org/linux/man-pages/dir_section_8.html)
+ - User commands: [:link:](http://man7.org/linux/man-pages/dir_section_1.html)
+ - System calls: [:link:](http://man7.org/linux/man-pages/dir_section_2.html)
+ - Library standard C: [:link:](http://man7.org/linux/man-pages/dir_section_3.html)
+ - Devices [:link:](http://man7.org/linux/man-pages/dir_section_4.html)
+ - Files systems [:link:](http://man7.org/linux/man-pages/dir_section_5.html)
+ - Conventions & miscellaneous [:link:](http://man7.org/linux/man-pages/dir_section_7.html)
+ - system Administration [:link:](http://man7.org/linux/man-pages/dir_section_8.html)
   
 <hr>
 
 In case something is not working properly, always have a go with with the following:
 
+```bash
 > sudo apt-get update
-
 > sudo apt-get upgrade
+```
 
 maybe even re-index inmediatetly use:
 
+```bash
 >sudo updatedb
+```
 
 
 REFERENCES:
+
 >> Of course the master reference will be: https://linux.die.net/man/  </br>
 >> And certanly our battle-horse the HOWTOs: https://linux.die.net/HOWTO/HOWTO-INDEX/ </br>
 >> at Linux Documentation Project: https://github.com/tLDP/LDP/tree/master/LDP </br>
