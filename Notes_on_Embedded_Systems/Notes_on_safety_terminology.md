@@ -215,12 +215,14 @@ Follow recomendations for implementing the system.
     - Always define the variable types.
     - Never ever programm an infinite loop.
 - Write modular systems.
-- Design self-tests.
+- Design self-tests (for hardware control).
+- Use watchdog's (sw and/or hw implemented).
 - Follow Design and architecture patterns
     - SOLID principles
          - Single responsability principle.
          - Open - Closed principle.
     - HW patterns: ie. pulsed sources induce more EMC problems, ...
+- Implement a logging mechanism in the system.
 - Test, test, test.
 
 ## Defensive programming
@@ -369,8 +371,6 @@ Ref: http://ai.cs.unibas.ch/papers/theses/scherrer-bachelor-12.pdf
 Ref: https://www.cs.ox.ac.uk/files/6715/ICFEM%202014%20Version%2010.pdf
 
 Ref: http://theory.stanford.edu/~rvg/
-
-
 
 
 
