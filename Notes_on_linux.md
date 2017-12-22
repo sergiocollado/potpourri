@@ -345,8 +345,12 @@ Linux Drivers for ADIC ICs: https://wiki.analog.com/resources/tools-software/lin
 
 Independent magazine for Ubuntu users: https://fullcirclemagazine.org/
 
+For building distros:
 
-
+HLFS - Hardened Linux From Scratch.
+CLFS - Cross Linux From Scratch.
+BLFS - Beyond Linux From Scratch.
+LFS - Linux From Scratch. [http://www.linuxfromscratch.org/]
 
 
 
