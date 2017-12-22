@@ -130,3 +130,10 @@ Contains information about the file and its permissions. Flags are single bits.
 References:
 
 [A tutorial on the FAT file system](http://www.tavi.co.uk/phobos/fat.html)
+
+
+Other file systems:
+
+http://web.mit.edu/tytso/www/linux/ext2intro.html
+
+MINIX FS.
