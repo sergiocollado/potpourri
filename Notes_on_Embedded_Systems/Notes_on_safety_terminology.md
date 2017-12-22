@@ -211,12 +211,15 @@ http://nob.cs.ucdavis.edu/bishop/secprog/robust.html </br>
 
 Follow recomendations for implementing the system.
 
-- Always define the variable types.
-- Never ever programm an infinite loop.
+- Use coding standards and recomendations:
+    - Always define the variable types.
+    - Never ever programm an infinite loop.
 - Write modular systems.
 - Design self-tests.
 - Follow Design and architecture patterns
-    - SOLID principles, MISRA-C ...
+    - SOLID principles
+         - Single responsability principle.
+         - Open - Closed principle.
     - HW patterns: ie. pulsed sources induce more EMC problems, ...
 - Test, test, test.
 
