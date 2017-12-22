@@ -223,7 +223,7 @@ Follow recomendations for implementing the system.
          - Single responsability principle.
          - Open - Closed principle.
     - HW patterns: ie. pulsed sources induce more EMC problems, ...
-- Implement a logging mechanism in the system.
+- Implement a logging-mechanisms/error stacks in the system.
 - Test, test, test.
 
 ## Defensive programming
