@@ -197,8 +197,11 @@ much easily the pernicious event.
 #### User proof stupity/genius.
  The programmers assumes that the user at some point will use incorrect, malformed, and bogus inputs. So he has to code error-proof inputs, and emit **error mesages**, that must be: clear, specific, intuitive, unambigous, effective, detailed, explicit and that don't require to look up error codes. The message must be as accurate as possible, to the problem, so it can be detected and corrected with ease.
  
-#### Dangerous implementations
+#### Avoid Dangerous implementations
+
  Users should not gain access to the inners of the system/program - that is: libraries, internal states, internal values, or pointer to data structures ... The interfece with the user should be that, and be probed against loopholes.
+ 
+ Avoid anti-patters, ie: for concurrent systems, take special care with racing conditions...
  
 References:
 https://en.wikipedia.org/wiki/Robustness_(computer_science)#Robust_programming </br>
@@ -212,6 +215,9 @@ Follow recomendations for implementing the system.
 - Never ever programm an infinite loop.
 - Write modular systems.
 - Design self-tests.
+- Follow Design and architecture patterns
+    - SOLID principles, MISRA-C ...
+    - HW patterns: ie. pulsed sources induce more EMC problems, ...
 - Test, test, test.
 
 ## Defensive programming
