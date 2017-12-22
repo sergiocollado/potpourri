@@ -14,11 +14,11 @@ Key propierties to take into account into an embedded system are:
 - Real-time constrains.
 - Interaction with the enviroment.
 - Dependability:
-  - Availability.
-  - Reliability.
-  - Safety.
-  - Integrity.
-  - Mantenebility.
+     - Availability.
+     - Reliability.
+     - Safety.
+     - Integrity.
+     - Mantenebility.
 
 **SAFETY**: Is the propierty of a system that evaluates the risk of the ocurrence of an accident or material losses.
 
@@ -84,7 +84,7 @@ and
 
 **DEPENDABILITY**: Is the truthworthiness of a system so there is a justified confidence in the tasks it must perform.
 
-Dependability is a concept that includes:
+Dependability is a concept that usually refers to a figure of merit that is based on:
 
 - Reliability
 - Availability
@@ -194,7 +194,7 @@ much easily the pernicious event.
 #### Paranoia
  The programmer must undestand that its code can produce bug, that make the system fail or work incorrectly. Also that the users are there to break their code. - You know the saying: *--Even paranoids have enemies--*
  
-#### User proof stupity/genius.
+#### User proof
  The programmers assumes that the user at some point will use incorrect, malformed, and bogus inputs. So he has to code error-proof inputs, and emit **error mesages**, that must be: clear, specific, intuitive, unambigous, effective, detailed, explicit and that don't require to look up error codes. The message must be as accurate as possible, to the problem, so it can be detected and corrected with ease.
  
 #### Avoid Dangerous implementations
