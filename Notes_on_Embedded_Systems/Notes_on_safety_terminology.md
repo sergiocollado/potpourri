@@ -217,6 +217,7 @@ Follow recomendations for implementing the system.
 - Write modular systems.
 - Design self-tests (for hardware control).
 - Use watchdog's (sw and/or hw implemented).
+- Implementation of recovery systems.
 - Follow Design and architecture patterns
     - SOLID principles
          - Single responsability principle.
