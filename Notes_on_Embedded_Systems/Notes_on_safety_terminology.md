@@ -122,7 +122,7 @@ http://www.eventhelix.com/RealtimeMantra/FaultHandling/hardware_diagnostics.htm#
 
 EXAMPLE:
 
- Suppouse, you have a system, in which two tasks are working togeder, one of them, task_1 - senses, gadthers and updates data in real time. task_2: request that data, and do some data processing algorithm. 
+ Suppouse, you have a system, in which two tasks are working together, one of them, task_1 - senses, gadthers and updates data in real time. task_2: request that data, and do some data processing algorithm. 
  
  In the event, that for whatever reason, maybe some bug, as could be: that there aren't enough memory..., the task_1 stops on working, or performing properly, so it may report the unfriendly: segmentation fault... at that point, the task_2, should be able to detect the problem, - there are some methods to do this - and it should try to fix the system, for example, re-launching, the task_1, or reseting/rebooting the whole system in the worst case.
  
