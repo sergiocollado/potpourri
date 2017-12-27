@@ -48,6 +48,21 @@ You can also use the following tools:
 
 Also check the meta-tags: http://www.metatags.org/meta_name_robots
 
+
+# Open Grahph protocols
+
+ There are some meta tags, to use in social media. Reference at: http://ogp.me/
+
+The basic ones are:
+
+```html
+<meta property="og:title" content="Ur title here" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://www.imdb.com/title/urURL/" />
+<meta property="og:image" content="http://ia.media-imdb.com/images/UrImage.jpg" />
+```
+
+
 # Styling and CSS
 
 ## display
