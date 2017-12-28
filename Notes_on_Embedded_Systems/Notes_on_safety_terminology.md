@@ -218,11 +218,12 @@ Follow recomendations for implementing the system.
 - Design self-tests (for hardware control).
 - Use watchdog's (sw and/or hw implemented), and/or functions/devices heartbeats.
 - Implementation of recovery systems.
-- Follow Design and architecture patterns
+- Follow design and architecture patterns
     - SOLID principles
          - Single responsability principle.
          - Open - Closed principle.
          - Liskov substitution principle.
+         - Segregation principle.
     - HW patterns: ie. pulsed sources induce more EMC problems, ...
 - Implement a logging-mechanisms/error stacks in the system.
 - Test, test, test.
