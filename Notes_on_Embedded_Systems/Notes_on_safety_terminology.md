@@ -222,6 +222,7 @@ Follow recomendations for implementing the system.
     - SOLID principles
          - Single responsability principle.
          - Open - Closed principle.
+         - Liskov substitution principle.
     - HW patterns: ie. pulsed sources induce more EMC problems, ...
 - Implement a logging-mechanisms/error stacks in the system.
 - Test, test, test.
