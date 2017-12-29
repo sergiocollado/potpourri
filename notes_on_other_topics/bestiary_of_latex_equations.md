@@ -70,6 +70,14 @@ COS THEOREM:
 c^{2} = a^{2} + b^{2} - 2·a·b·\cos (C)
 ```
 
+TANG THEOREM
+
+
+```latex
+\frac{a - b}{a + b} = \frac{ \tan{ \left( \frac{1}{2} (A-B) \right)}}{ \tan{ \left( \frac{1}{2} (A+B) \right)}}
+```
+
+
 LORENTZ TRANSFORMATION
 
 ```latex
