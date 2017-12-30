@@ -20,7 +20,7 @@ Key propierties to take into account into an embedded system are:
      - Integrity.
      - Mantenebility.
 
-**SAFETY**: Is the propierty of a system that evaluates the risk of the ocurrence of an accident or material losses.
+**SAFETY**: Is the propierty of a system that evaluates the risk of the ocurrence of an accident (injury or death of people), material damage or losses, or enviromental degradation or damage.
 
 **FUNCTIONAL SAFETY** Is the safety of a system that correspond to the correct actions acording to the system inputs, it also includes
 detection of potential dangerous states, and activation of protective, corrective or mitigation measures.
@@ -92,8 +92,131 @@ Dependability is a concept that usually refers to a figure of merit that is base
 - Safety
 - Security 
 
+
+
+**CRITICAL SYSTEM** Is a system that must be highly reliable, and keep this reliability even when it is developed, and evolves. 
+Usually, these systems are classified into the following groups:
+
+ - safety critical : the misperformance of the system would mean, personal damage or loss, or material or enviromental damages. examples: control in energy plants, control in transportations systems, chemical reactors ...
+ - mission critical: designed to avoid total misfunction of the designed function or objective. example: navigation systems.
+ - bussines critical: designed to avoid a misfunctions that would imply economic/bussines impact, usually as a result of a service interruption. example: accounting systems, stock-trading systems.
+ - security critical: designed to protect data or sensible information. example: medical databases
+
+Reference:
+
+https://en.wikipedia.org/wiki/Critical_system
+
+https://en.wikipedia.org/wiki/Reliability_engineering
+
+https://en.wikipedia.org/wiki/Redundancy_(engineering)
+
+https://en.wikipedia.org/wiki/Factor_of_safety
+
+https://en.wikipedia.org/wiki/Formal_methods
+
+https://en.wikipedia.org/wiki/Z_notation
+
+https://en.wikipedia.org/wiki/Verification_and_validation
+
+http://czt.sourceforge.net/
+
+https://en.wikipedia.org/wiki/Design_by_contract
+
+https://en.wikipedia.org/wiki/Defensive_design
+
+https://en.wikipedia.org/wiki/Fail-safe
+
+https://en.wikipedia.org/wiki/Idiot-proof
+
+https://en.wikipedia.org/wiki/Inherent_safety
+
+https://en.wikipedia.org/wiki/Poka-yoke
+
+https://en.wikipedia.org/wiki/Usability_testing
+
+https://en.wikipedia.org/wiki/Defensive_programming
+
+https://en.wikipedia.org/wiki/Offensive_programming
+
+https://ulir.ul.ie/bitstream/handle/10344/2085/2010_Hinchey,M.pdf?sequence=2
+
+https://en.wikipedia.org/wiki/Formal_verification
+
+https://en.wikipedia.org/wiki/List_of_model_checking_tools
+
+https://mcc.lip6.fr/
+
+https://en.wikipedia.org/wiki/Test-driven_development
+
+https://en.wikipedia.org/wiki/Extreme_programming
+
+https://en.wikipedia.org/wiki/Pair_programming
+
+https://en.wikipedia.org/wiki/Product_lifecycle
+
+https://www.crcpress.com/Design-and-Safety-Assessment-of-Critical-Systems/Bozzano-Villafiorita/p/book/9781439803318
+
+https://www.crcpress.com/Practical-UML-Statecharts-in-CC-Event-Driven-Programming-for-Embedded/Samek/p/book/9780750687065?source=igodigital
+
+https://www.crcpress.com/Practical-UML-Statecharts-in-CC-Event-Driven-Programming-for-Embedded/Samek/p/book/9780750687065?source=igodigital
+
+https://www.micrium.com/books/ucosii/
+
+http://www.omg.org/news/meetings/workshops/RT_2002_Workshop_Presentations/01-3_Douglass_Safety_Critical_Systems_Design.pdf
+
+https://en.wikipedia.org/wiki/Capability_Maturity_Model
+
+http://pubs.opengroup.org/architecture/togaf8-doc/arch/chap27.html
+
+https://en.wikipedia.org/wiki/Testing_Maturity_Model
+
+https://en.wikipedia.org/wiki/List_of_software_reliability_models
+
+http://www.softrel.com/truth.html
+
+https://www.techstreet.com/ieee/standards/ieee-p1633?product_id=1914936
+
+https://en.wikipedia.org/wiki/Quality_assurance
+
+https://www.crcpress.com/Practical-UML-Statecharts-in-CC-Event-Driven-Programming-for-Embedded/Samek/p/book/9780750687065?source=igodigital
+
+https://www.crcpress.com/Math-Toolkit-for-Real-Time-Programming/Crenshaw/p/book/9781929629091?source=igodigital
+
+https://www.crcpress.com/Handbook-of-Real-Time-and-Embedded-Systems/Lee-Leung-Son/p/book/9781584886785
+
+https://www.crcpress.com/Handbook-of-Scheduling-Algorithms-Models-and-Performance-Analysis/Leung/p/book/9781584883975
+
+https://www.crcpress.com/Designing-Complex-Systems-Foundations-of-Design-in-the-Functional-Domain/Aslaksen/p/book/9781420087536
+
+https://www.crcpress.com/The-Practical-Handbook-of-Genetic-Algorithms-Applications-Second-Edition/Chambers/p/book/9781584882404
+
+https://www.crcpress.com/Differential-Equations-with-Applications-and-Historical-Notes-Third-Edition/Simmons/p/book/9781498702591?source=igodigital
+
+https://www.crcpress.com/Introduction-to-High-Performance-Computing-for-Scientists-and-Engineers/Hager-Wellein/p/book/9781439811924?source=igodigital
+
+https://www.crcpress.com/Embedded-Systems-Building-Blocks-Complete-and-Ready-to-Use-Modules-in-C/Labrosse/p/book/9780879306045?source=igodigital
+
+https://www.micrium.com/books/ucosii/
+
+http://www.sohar.com/proj_pub/download/y2ktest.pdf
+
+**SAFE-CRITICAL SYSTEM** Is a system that under malfunction, can result in an injury or loss of a peoples life, a damage to a material propierty, or an enviroment harm.
+
+ Safety-critical systems design involves: software, hardware and human factors.
+ 
+ According to its reliability regimes, there are the following classifications:
+ 
+ - Fail-operational systems: They continue to operate even when their control systems fail. Examples are: elevators, automotive electronic throttle control, braking systems, circuit-breakers, ..
+ - Fail-soft systems: they continue operation with a reduced efficiency even in the presence of a failure.
+ - Fail-safe systems: they become safe when they cannot perform its function. Medical devices, usually are found in this category, for example a heart-pump: when it cannot work, it warns the medical personal, as the safety interval, is long enough, the live of the patient is not in thread.
+ - Fail-Passive systems: 
+ - Fault-tolerant sytems: they continue to operate even when faults are present on the system. 
+ 
+ Reference: https://en.wikipedia.org/wiki/Safety-critical_system
+ 
+
 **FAULT TOLERANT SYSTEM**: Is a system that performs correctly, although might have some errors in it. Usually this is
-achieved by means of repeated computations, monitoring data, and redundant systems.
+achieved by means of repeated computations (repetition in time), monitoring data, and redundant systems (repetition in components).
 
 RECOVERING FROM ERRORS:
 For recoverign from errors there are two aproaches:
@@ -156,9 +279,9 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 
 ## FAILURES vs ERRORS:
 
-**Failure**: is the non-performance of the system or component, at random. Thus, it can be estimated from a pdf (probability density function). FAILURES ARE EVENTS.
+**Failure**: is the non-performance of the system or component, AT RANDOM. Thus, it can be estimated from a pdf (probability density function). FAILURES ARE EVENTS.
 
-**Error**: is a systematic fault, thus a design flaw. ERRORS ARE STATES.
+**Error**: is a systematic fault, thus a design flaw, thus repetible. ERRORS ARE STATES.
 
 **Fault**: A fault is either a failure or an error.
 
@@ -194,7 +317,7 @@ much easily the pernicious event.
 #### Paranoia
  The programmer must undestand that its code can produce bug, that make the system fail or work incorrectly. Also that the users are there to break their code. - You know the saying: *--Even paranoids have enemies--*
  
-#### User proof
+#### User proof (aka fool-proof)
  The programmers assumes that the user at some point will use incorrect, malformed, and bogus inputs. So he has to code error-proof inputs, and emit **error mesages**, that must be: clear, specific, intuitive, unambigous, effective, detailed, explicit and that don't require to look up error codes. The message must be as accurate as possible, to the problem, so it can be detected and corrected with ease.
  
 #### Avoid Dangerous implementations
@@ -527,7 +650,166 @@ At the end of the project, or at significant project milestones, certain activit
  - project metrics, and evaluation of the testware.
  
 
+https://en.wikipedia.org/wiki/Testing_Maturity_Model
+
+
+
+Also check the following topics:
+
+
+http://www.sohar.com/proj_pub/download/
+
+https://en.wikipedia.org/wiki/Testing_Maturity_Model
+
+
+LIABILITY:
+
+
+address any legal and regulatory requirements, such as FAA requirements for aviation. By setting a standard for which a system is required to be developed under, it forces the designers to stick to the requirements. The avionics industry has succeeded in producing standard methods for producing life-critical avionics software. Similar standards exist for automotive (ISO 26262), Medical (IEC 62304) and nuclear (IEC 61513) industries. The standard approach is to carefully code, inspect, document, test, verify and analyze the system. Another approach is to certify a production system, a compiler, and then generate the system's code from specifications. Another approach uses formal methods to generate proofs that the code meets requirements.[8] All of these approaches improve the software quality in safety-critical systems by testing or eliminating manual steps in the development process, because people make mistakes, and these mistakes are the most common cause of potential life-threatening errors.
+
+FROM:  https://en.wikipedia.org/wiki/Safety-critical_system
+
+
+https://www.mddionline.com/medical-device-safety-system-design-systematic-approach
+
+
+JP Rankin, “Sneak Circuit Analysis,” 
+
+http://klabs.org/DEI/References/design_guidelines/analysis_series/1314msfc.pdf
 
 
 
 
+
+Examples of safety-critical systems[edit]
+Infrastructure[edit]
+Circuit breaker
+Emergency services dispatch systems
+Electricity generation, transmission and distribution
+Fire alarm
+Fire sprinkler
+Fuse (electrical)
+Fuse (hydraulic)
+Telecommunications
+Burner Control systems
+Medicine[9][edit]
+The technology requirements can go beyond avoidance of failure, and can even facilitate medical intensive care (which deals with healing patients), and also life support (which is for stabilizing patients).
+
+Heart-lung machines
+Mechanical ventilation systems
+Infusion pumps and Insulin pumps
+Radiation therapy machines
+Robotic surgery machines
+Defibrillator machines
+Dialysis machines
+Devices that electronically monitor vital functions (electrography; especially, electrocardiography, ECG or EKG, and electroencephalography, EEG)
+Medical imaging devices (X ray, computerized tomography- CT or CAT, different magnetic resonance imaging- MRI- techniques, positron emission tomography- PET)
+Nuclear engineering[10][edit]
+Nuclear reactor control systems
+Recreation[edit]
+Amusement rides
+Climbing equipment
+Parachutes
+SCUBA Equipment
+Transport[edit]
+Railway[11][edit]
+Railway signalling and control systems
+Platform detection to control train doors[12]
+Automatic train stop[12]
+Automotive[13][edit]
+Airbag systems
+Braking systems
+Seat belts
+Power Steering systems
+Advanced driver-assistance systems
+Electronic throttle control
+Battery management system for hybrids and electric vehicles
+Electric park brake
+Shift by wire systems
+Drive by wire systems
+Park by wire
+Aviation[14][edit]
+Air traffic control systems
+Avionics, particularly fly-by-wire systems
+Radio navigation RAIM
+Engine control systems
+Aircrew life support systems
+Flight planning to determine fuel requirements for a flight
+Spaceflight[15][edit]
+Human spaceflight vehicles
+Rocket range launch safety systems
+Launch vehicle safety
+Crew rescue systems
+Crew transfer systems
+See also[edit]
+
+
+
+https://www.crcpress.com/Design-and-Safety-Assessment-of-Critical-Systems/Bozzano-Villafiorita/p/book/9781439803318
+
+
+Complex Safety-Critical Systems 
+Dealing with Failures: A Short History of Safety Engineering 
+The Role of Formal Methods 
+A Case Study: Three Mile Island 
+References
+
+Dependability, Reliability, and Safety Assessment 
+Concepts 
+Classification of Faults
+Fault Models 
+Managing Faults
+Fault Detection
+Fault Prediction
+Fault Tolerance
+Fault Coverage 
+Reliability Modeling
+System Reliability
+
+Techniques for Safety Assessment 
+Hazard Analysis
+Risk Analysis 
+Risk Measures
+
+Development of Safety-Critical Applications 
+What Makes a System Complex 
+What Makes the Development Complex
+Measuring the Impact of Complexity 
+From System to Process
+A General Development Framework
+Development Workflow
+Testing Workflow
+Safety Assessment Workflow
+Certification Management Workflow
+Project Management Workflow
+Tool Support
+Improving the Process: Maturity Models
+
+Formal Methods for Safety Assessment 
+Advantages of Formal Methods 
+Formal Methods in the Development Process 
+Problems and Limitations
+History of Formal Methods
+Formal Models and Specification
+Formal Methods for Verification and Validation
+Formal Safety Analysis
+Industrial Applications of Formal Methods
+Conclusions and Future Directions
+
+Formal Methods for Certification 
+Certification of Avionic Systems
+So Many Standards, So Little Time
+The ECSS System of Standards 
+Avionics Reference Standards 
+ARP 4754
+ARP 4761 
+DO-178B
+The Case for the Safety Case 
+Formal Methods and Certification 
+References
+
+Appendices:
+The NuSMV Model Checker
+The FSAP Safety Analysis Platform
+Some Regulatory Bodies and Regulations
+Index
