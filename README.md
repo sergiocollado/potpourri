@@ -1,4 +1,4 @@
-# 𝓢ℯ𝓇ℊ𝒾ℴ 𝓖. 𝓒ℴ𝓁𝓁𝒶𝒹ℴ
+# SERGIO GONZÁLEZ COLLADO
 
 ![image](./image/me.png)
 
