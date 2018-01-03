@@ -38,8 +38,14 @@ or with:
 
 this at least tells us that the command is there and finds itself : )
 
+If you want to be sure that a module is or isn't insalled you can use the following:
 
+```bash
+> cat /proc/modules | grep "gcc"
+>
+```
 
+Actually the no-response, means, it is not present in the system.
 
 
 
