@@ -23,6 +23,25 @@ maybe even re-index inmediatetly use:
 >sudo updatedb
 ```
 
+if you want to identify your system, you can try for:
+
+```bash
+> uname -a
+```
+
+or with:
+
+```bash
+>which wich
+>/usr/bin/which
+``` 
+
+this at least tells us that the command is there and finds itself : )
+
+
+
+
+
 
 REFERENCES:
 
