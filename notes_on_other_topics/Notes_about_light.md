@@ -15,8 +15,6 @@ through, then three things can happen:
 - absortion: the light diffusses through the material.
 - reflection: the light "bounces", at the new material.
 
-# Transmission:
-
 
 # Absortion:
 
@@ -31,8 +29,20 @@ through, then three things can happen:
 
 
 
+Wherever there is an interface between two different materials, we have to take into account, what is know as _**index of refraction**_,  usually represented by the letter _**n**_ This index of refractions tell us the relationtship between the speed of light in vacuum, with
+respect to the speed of light in that medium. In for of equation is:
 
+[equation of index of refraction]
 
+where:
+ - c: speed of light in free space (vacuum)
+ - v: speed of light in the medium of study.
+ - n: index of refraction of the medium.
+ 
+ 
+´from that relationship, is obvious, that the index of refration for light in free space is exactly 1. 
+
+ So from that mathematical expresion is easy to see that the biger it is its value for certain medium, it means, the light is slower at that given medium.
 
 
 
