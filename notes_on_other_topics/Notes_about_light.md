@@ -65,4 +65,4 @@ through, then three things can happen:
 
 
 
-𝓢ℯ𝓇ℊ𝒾ℴ 𝓖. 𝓒ℴ𝓁𝓁𝒶𝒹ℴ
+SERGIO GONZALEZ COLLADO
