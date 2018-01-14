@@ -97,7 +97,8 @@ Dependability is a concept that usually refers to a figure of merit that is base
 **CRITICAL SYSTEM** Is a system that must be highly reliable, and keep this reliability even when it is developed, and evolves. 
 Usually, these systems are classified into the following groups:
 
- - safety critical : the misperformance of the system would mean, personal damage or loss, or material or enviromental damages. examples: control in energy plants, control in transportations systems, chemical reactors ...
+ - safety critical : the misperformance of the system would mean, personal damage or loss, or material or enviromental damages. examples: control in energy plants, control in transportations systems, chemical reactors, medical devices (as heart-lung assistance
+ systems) ...
  - mission critical: designed to avoid total misfunction of the designed function or objective. example: navigation systems.
  - bussines critical: designed to avoid a misfunctions that would imply economic/bussines impact, usually as a result of a service interruption. example: accounting systems, stock-trading systems.
  - security critical: designed to protect data or sensible information. example: medical databases
