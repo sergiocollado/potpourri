@@ -88,3 +88,12 @@ LORENTZ TRANSFORMATION
 {t}' = \frac{t -  x·\frac{v}{c^{2}}}{\sqrt{1-\frac{v^{2}}{c^{2}} }}
 ```
 
+FUNDAMENTAL TRIGONOMETRY EQUATIONS:
+
+```latex
+\sin ^{2} + \cos ^{2} = 1
+```
+
+
+
+
