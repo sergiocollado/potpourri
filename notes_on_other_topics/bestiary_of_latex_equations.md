@@ -94,21 +94,24 @@ FUNDAMENTAL TRIGONOMETRY EQUATIONS:
 \sin ^{2} + \cos ^{2} = 1
 ```
 
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/trig_fundamental_eq.svg?sanitize=true" alt="fundamental equation of trigonometry">
+<br>
+
 
 ```latex
 1 + \tan^{2} = \sec^{2}
 ```
-
-
-```latex
-1 + \tan^{2} = \sec^{2}
-```
-
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/tang_eq.svg?sanitize=true" alt="fundamental equation squared tangent">
+<br>
 
 ```latex
 1 + \cot^{2} = \csc^{2}
 ```
-
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/cotang_eq.svg?sanitize=true" alt="fundamental equation squared contangent">
+<br>
 
 
 
