@@ -10,6 +10,8 @@ SCALAR COULOMB FORCE EQUATION
 F = k_e \cdot \frac{Q_1 \cdot Q_2}{r^2}
 ```
 
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/escalar_coulomb_force_eq.svg.svg?sanitize=true" alt="escalar coulomb equation"> <br>
+
 RACIONALIZATION OF COULOMB FORCE
 
 ```latex
