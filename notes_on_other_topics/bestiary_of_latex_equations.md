@@ -116,4 +116,8 @@ FUNDAMENTAL TRIGONOMETRY EQUATIONS:
 <br>
 
 
+CONICS:
 
+```latex
+( x- x_{0})^{2} + (y - y_{0})^{2} = R^{2}
+```
