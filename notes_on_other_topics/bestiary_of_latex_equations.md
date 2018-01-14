@@ -95,5 +95,20 @@ FUNDAMENTAL TRIGONOMETRY EQUATIONS:
 ```
 
 
+```latex
+1 + \tan^{2} = \sec^{2}
+```
+
+
+```latex
+1 + \tan^{2} = \sec^{2}
+```
+
+
+```latex
+1 + \cot^{2} = \csc^{2}
+```
+
+
 
 
