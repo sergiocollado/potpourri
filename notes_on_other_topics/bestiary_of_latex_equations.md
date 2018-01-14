@@ -121,3 +121,7 @@ CONICS:
 ```latex
 ( x- x_{0})^{2} + (y - y_{0})^{2} = R^{2}
 ```
+
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/circunf_eq.svg?sanitize=true" alt="circunference equation">
+<br>
