@@ -680,6 +680,12 @@ http://klabs.org/DEI/References/design_guidelines/analysis_series/1314msfc.pdf
 
 
 
+TODO:  
+
+- STAMP - Systems Theoretic Accident Model&Processes
+
+<!-- https://macsphere.mcmaster.ca/bitstream/11375/11867/1/fulltext.pdf -->
+
 
 
 Examples of safety-critical systems[edit]
