@@ -515,6 +515,29 @@ TODO:
 
 - Integrated Circuits reliability models. aging (e.g. HCI, NBTI etc) and transient (e.g. SEU, EMI etc).
 
+<!-- 
+
+http://ewh.ieee.org/r5/denver/sscs/Presentations/2005_02_Eaton.pdf
+
+
+https://www.embedded.com/design/other/4018055/HCI-and-NBTI-Reliability-Impact-on-Submicron-IC-Design
+
+
+https://www.dfrsolutions.com/hubfs/Resources/sherlock/IC-Reliability-Prediction-based-on-PoF-Models-Field-Return-Study.pdf?t=1513360245287
+
+
+http://ceur-ws.org/Vol-1566/Paper1.pdf
+
+http://www.mos-ak.org/washington_dc_2015/presentations/T05_Mohamed_Selim_MOS-AK_Washington_DC_2015.pdf
+
+https://www.keysight.com/upload/cmc_upload/All/4-20170705.pdf
+
+-->
+
+
+
+
+
 
 
 Check, the methods, for testing: ccpcheck, vera ++, RATS, Jeckins, SonarQube, 
