@@ -505,6 +505,18 @@ Ref: http://theory.stanford.edu/~rvg/
 **TODO**: Check and elavorate: https://en.wikipedia.org/wiki/Calculus_of_communicating_systems
 
 
+TODO:  
+
+- STAMP - Systems Theoretic Accident Model&Processes
+
+<!-- https://macsphere.mcmaster.ca/bitstream/11375/11867/1/fulltext.pdf -->
+
+TODO:
+
+- Integrated Circuits reliability models. aging (e.g. HCI, NBTI etc) and transient (e.g. SEU, EMI etc).
+
+
+
 Check, the methods, for testing: ccpcheck, vera ++, RATS, Jeckins, SonarQube, 
 Test Unitarios: XUnit, CppUTest
 Other sys: lcov, valgrind, ltrace, strace....
@@ -677,14 +689,6 @@ https://www.mddionline.com/medical-device-safety-system-design-systematic-approa
 JP Rankin, “Sneak Circuit Analysis,” 
 
 http://klabs.org/DEI/References/design_guidelines/analysis_series/1314msfc.pdf
-
-
-
-TODO:  
-
-- STAMP - Systems Theoretic Accident Model&Processes
-
-<!-- https://macsphere.mcmaster.ca/bitstream/11375/11867/1/fulltext.pdf -->
 
 
 
