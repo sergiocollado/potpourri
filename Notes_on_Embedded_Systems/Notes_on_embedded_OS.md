@@ -52,6 +52,10 @@ Tutorials and more:
  - http://anrg.usc.edu/contiki/index.php/Broadcast_Example
  - http://anrg.usc.edu/contiki/index.php/Contiki_tutorials
  
+Cooja manual:
+
+ - https://www.researchgate.net/publication/304572240_Cooja_Simulator_Manual
+ 
 # TinyOS
 
 Is another Iot embedded OS. It is open-source. It has a monolitic kernel.
