@@ -1,18 +1,21 @@
  # NOTES ON EMBEDDED SYSTEMS SAFETY
 
-**EMBEDDED SYSTEM**: An embedded system, is a system, that combines software and hardware, and also is common, that they have some kind of HMI (human machine interface) or UI (User Interface) as displays, keyboards, et cetera. Embedded systems have fixed capabilities but are programmable, and they are designed for a specific function or functions. 
 
-Examples are: industrial equipments, machine's controllers, agricultural, automotive, medical, aeronautical, space and telecomunication systems, household apliances, enterntaiment systems, toys, vending machines, measurent systems, security and identity checks, robotics, logistics, production lines ...
+ # BASIC CONCEPTS and DEFINITIONS:
+ 
+**EMBEDDED SYSTEM**: An embedded system, is a system, that combines software and hardware designs. It is common, that they have some kind of HMI (human machine interface) or UI (User Interface) as displays, keyboards, et cetera. Also is quite common, at least use of one network communication protocol. Embedded systems have fixed capabilities but are programmable, and they are designed for a specific function or functions. 
 
-Most of the times, embedded systems are reactive, that means, they wait for an input, or measure some propierty or signal, and when they have it, they perform some computation, and then it generates an output. Than means they can be modelled as an Automata.
+Examples are: industrial equipments and control systems, production lines, machine's controllers, agricultural, automotive, train, railway, aeronautical, avionic, space and comunication systems, medical systems, household apliances, entertaiment devices, toys, vending machines, measurement/sensor and monitoring systems, security sytems, identity checks, access controls, robotics, logistics ...
 
-Key propierties to take into account into an embedded system are:
+Most of the times, embedded systems are **reactive**, that means that they wait for an input, or measure some propierty or signal, and when they have it, they perform some computation, or check a defined threashold or condition; and then it generates a defined output: as could be: activation of a motor, a brake, or an alarm, triggers another system, send a message ... **Than means they can be modelled as an Automata**. 
+
+Key propierties to take into account for an embedded system are:
 
 - Dedicated functionality
-- Limited resources.
-- Performance and efficiency.
-- Real-time constrains.
+- Limited resources (the system cannot be easily expanded).
 - Interaction with the enviroment.
+- Performance and efficiency. (definition of the maximum work load capabilities)
+- Real-time constrains (definition of the maximum reaction/response/actuation time, it also includes start-up times).
 - Dependability:
      - Availability.
      - Reliability.
@@ -20,19 +23,23 @@ Key propierties to take into account into an embedded system are:
      - Integrity.
      - Mantenebility.
 
-**SAFETY**: Is the propierty of a system that evaluates the risk of the ocurrence of an accident (injury or death of people), material damage or losses, or enviromental degradation or damage.
+**DEDICATED FUNCTIONALITY** An embedded system usually must perform a very specific function, or maybe a set of specific functions, but its design is so, that its performance is maximized for given system components, usually that implies, that it is unable to be a generalistic function system, as opposed to PC and laptops, that may do quite a big variety of functions, at the cost of being over designed. 
 
-**FUNCTIONAL SAFETY** Is the safety of a system that correspond to the correct actions acording to the system inputs, it also includes
-detection of potential dangerous states, and activation of protective, corrective or mitigation measures.
+**LIMITED RESOURCES** An embedded system is designed to achive only the defined functions and requirements; the system only needs a certain number of resources and no more. That means in most cases, that the harware cannot be upgraded or expanded. As such, it's is also very rare that an embedded system can be designed for increase its hardware dependant capabilities, functions, or it is possible to expand its systems parts or modules. On the other hand, most of the embedded systems can be re-programmed, so its software can be changed and upgraded, that means thatt it is possible to improve the system, or adapt it to new requirements or new cases, as far as it is possible with the designed hardware.
 
-Functional safety implies active measures, as an example is the airbag systems in vehicles, when a crash is detected, a safety system
-is triggered. On the other hand, a helmet that protects the driver, is a passive system; passive systems are not functional safety.
+**SAFETY**: Is the propierty of a system that evaluates the risk of the ocurrence of an accident (injury or death of people), material, propierty, equipment or resources damage or losses, also enviromental degradation.
+
+**FUNCTIONAL SAFETY** Is propierty of a systems that evaluates the safety of a system that correspond the correct actions according to the system inputs, this also includes detection of potential dangerous states or actions, and activation of protecttion, corrective or mitigation measures.
+
+Functional safety implies _**active measures**_, an example is the airbag systems in automotive vehicles, when a crash is detected, the safety system is triggered. On the other hand, a helmet that protects the driver, is a passive system; passive systems do not comply with the functional safety concept.
 
 The leading standard for functional safety is the IEC 61508.
 
+The safety of a system usually is evaluated with a figure of merit, named **SIL** (Safety Integrity Level):
+
 **SECURITY**: Is the propierty of a system that evaluates its ability to deal with malicious actions or attacks.
 
-Take into account, that there is a significance difference between the concepts of safety and security, both terms account protection against a damage, but security implies a malicious or intended action to do a damage, while safety relates to an unintended situation.
+Take into account, that there is a significative difference between the concepts of safety and security, both terms account protection against a damage, but security implies a malicious or intended action to do a damage, while safety relates to an unintended situation.
 
 **ACCIDENT**: The event of causing/receiving damage of any kind (either directly or indirectly): equipment damage, property damage, or damage to the enviroment, and human injuries or even deaths.
 
@@ -49,21 +56,23 @@ Ri = Li * p(Li);
 
 **HAZARD**: Set of combinations of conditions or requisites or events that lead to an accident
 
-**ERROR/MISTAKE**: A human being can make an error(mistake), with produces a defect (fault, bug) in the program or code, or in a document.  If a defect in code is executed, the system amy fail to do what it shoud do, what it should do (or do something it shouldnt)
-causing a failure. Defects in software, systms or documnets may result in failures, bot no all defects do.
+**ERROR/MISTAKE**: A human being can make an error(mistake), with results in a defect in the system(fault, bug) in the program or code, or in a document. The defect in the system, might never be noticed, or can result in the case that the system might fail its expected function (or do something it shouldnt) causing a failure. Defects in software, systems or documents can result in failures, but no all defects do.
 
-**FAILURE**: A failure is the misperformance or lack of hability of a component to comply with its designed function, during certain
+</br>
+**(human) ERROR -> (code) DEFECT -> (system) FAILURE**
+</br>
+
+**FAILURE**: A failure is the misperformance or lack of ?h?ability of a component to comply with its designed function, during certain
 time, or under specified enviromental system conditions. 
 
 **ERROR**: An error is a systematic fault: An error is a desing flaw or desviation from an intended or designed state.
 
 >__A word about SW context__
-> A human being can make an error (mistake), wich produces a defect (fault, bug) in the program, code, or in a document. If a defect in the
-> code is executed, the system may fail to do what it must do (or do something it shouldn't) causing a failure. 
+> A human being can make an error (mistake), wich produces a defect (fault,bug) in the program, code, or in a document. If a defect in the code is executed, the system may fail to do what it must do (or do something it shouldn't) causing a failure. 
 
 **RELIABILITY**: Is the probability that a piece of equipment or component will perform correctly its intended goal, inside the defined time, and under the correct enviroment. So Reliability is defined by the probability that for an given time interval [0,t], the systems performs ok, during all the time interval up to time t, starting working at time t=0. 
 
-This has significative importance to systems, that perform a critical action, and cannot be in any case replaced as could be an aircraft computer. And also in systems that must work without manteinance, or cannot be easily or ever replaced, as for example: inner reactor nuclear systems, systems controlling/monitoring a blast furnace, or satellite systems, .... 
+This has significative importance to systems, that perform a critical functions, or cannot be in any case replaced during service, as could be an aircraft computer. Also in systems that must work without manteinance, or cannot be easily or ever replaced, as for example: inner reactor nuclear systems, systems controlling/monitoring a blast furnace, or aerospace or satellite systems, .... 
 
 Reliability is often quantified with the merit figure of **MTBF** (Mean Time Between Failures) 
 
@@ -93,17 +102,15 @@ Dependability is a concept that usually refers to a figure of merit that is base
 - Security 
 
 
-
 **CRITICAL SYSTEM** Is a system that must be highly reliable, and keep this reliability even when it is developed, and evolves. 
 Usually, these systems are classified into the following groups:
 
- - safety critical : the misperformance of the system would mean, personal damage or loss, or material or enviromental damages. examples: control in energy plants, control in transportations systems, chemical reactors, medical devices (as heart-lung assistance
- systems) ...
- - mission critical: designed to avoid total misfunction of the designed function or objective. example: navigation systems.
- - bussines critical: designed to avoid a misfunctions that would imply economic/bussines impact, usually as a result of a service interruption. example: accounting systems, stock-trading systems.
- - security critical: designed to protect data or sensible information. example: medical databases
+ - safety critical : the misperformance of the system would mean, personal damage or loss, or material/propierty/resources or enviromental damages. Examples: Energy systes (as nuclear plants), control in transportations systems, chemical reactors, medical devices (as heart-lung assistance systems) ...
+ - mission critical: designed to avoid total misfunction of the designed functionality or objective. example: navigation systems.
+ - bussines critical: designed to avoid a misfunctions that would result or imply economic/bussines impact, usually as a result of a service interruption. example: bank, accounting and payment systems, stock-trading systems.
+ - security critical: designed to protect data or sensible information. example: medical databases, customers data ...
 
-Reference:
+References:
 
 https://en.wikipedia.org/wiki/Critical_system
 
@@ -120,6 +127,9 @@ https://en.wikipedia.org/wiki/Z_notation
 https://en.wikipedia.org/wiki/Verification_and_validation
 
 http://czt.sourceforge.net/
+
+
+
 
 https://en.wikipedia.org/wiki/Design_by_contract
 
@@ -216,11 +226,11 @@ http://www.sohar.com/proj_pub/download/y2ktest.pdf
  Reference: https://en.wikipedia.org/wiki/Safety-critical_system
  
 
-**FAULT TOLERANT SYSTEM**: Is a system that performs correctly, although might have some errors in it. Usually this is
-achieved by means of repeated computations (repetition in time), monitoring data, and redundant systems (repetition in components).
+**FAULT TOLERANT SYSTEM**: Is a system that performs correctly, although might have some errors or faults in it. Usually this is
+achieved by means of repeated computations (repetition in time), redundant systems (repetition in components), and monitoring data.
 
 RECOVERING FROM ERRORS:
-For recoverign from errors there are two aproaches:
+For recovering from errors there are two aproaches:
 
  - roll forward
  - roll back
@@ -260,14 +270,16 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 <br>
 <br>
 
-## SOME CLARIFICATIONS on the CONCEPTS:
+## SOME CONCEPTS CLARIFICATIONS:
 
-**Safety** is related to freedom from accidents and material damages and looses.
+**Safety** is related to freedom from accidents and material/propierties/equipment damage and looses.
 
 **Safety** is NOT **Reliability**!! Reliability is the correctness of a system performing it's intended duty/function during a consecutive period.
 
 **Safety** is NOT **Security**!! Security is the ability to defence against intended damages and malicious actions.
 <br>
+
+**Safety** and **Availability** are DO NOT imply each other: the safest airplane, is that one never takes off... A system that is working at a given moment, doesn't imply it is safe. The other way around, also don't mean it is true. An airbag for an automotive system, can be very safe, but once it is triggered, it is not available anymore. 
 
 ## SAFETY RELATED CONCEPTS:
 
@@ -298,8 +310,14 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 
 
 
+# SYSTEM DEVELOPMENT LIFE CICLE
 
+There are quite a few paths for the usual system development of a proyect, although at least the following steps always should be considered:
 
+ - **Analysis**: what's the problem to solve? Has it be done before? What's the function to perform? Other required consideration needed in the system? (as user interfaces, safety, security, scalability, performance, robustness ...), what the stackholders are expecting? Specification of the system? Time-line of the project?  Whats is the budget? Expected costs? How many people does the project need to achieve the requested specifications, results and objectives? Normative and laws to comply with? Write requirements of the system. 
+ - **Design**: Reasoning, evaluation and design for the most fitting solution to achieve the specification and requirements of the system. Design of the system architecture: the different parts or modules of the system. Comunications and interface between the different parts of the system. Consideration of problems to overcome. 
+ - **Development**: Implementation of the system, commonly: hardware, software, ... user interface, communication protocols, power supplies, logging system, metrics of the system, project documentation, release notes, use instructions, manuals and learning lessons.
+ - **Testing**: Check the performance of the systems, for the needed cases, so it achieve the stackholders expectatives. Validation, verification and reports.
 
 
 
@@ -307,6 +325,8 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 
 
 # PROGRAMMING TECHNIQUES:
+
+TODO: Desing for testeability.... write it!
 
 ## Robust programming
 
@@ -342,15 +362,18 @@ Follow recomendations for implementing the system.
 - Design self-tests (for hardware control).
 - Use watchdog's (sw and/or hw implemented), and/or functions/devices heartbeats.
 - Implementation of recovery systems.
-- Follow design and architecture patterns
+- Follow design and architecture patterns:
     - SOLID principles
          - Single responsability principle.
          - Open - Closed principle.
          - Liskov substitution principle.
          - Segregation principle.
-    - HW patterns: ie. pulsed sources induce more EMC problems, ...
-- Implement a logging-mechanisms/error stacks in the system.
-- Test, test, test.
+    - DRY : Don't Repeat Yourself - don't write the same code blocks over and over again, just once, and call it when needed.
+    - White and black lists.
+    - safety and security recomendations and techniques.
+    - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances ... 
+- Implement a log mechanism in the system.
+- Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities). 
 
 ## Defensive programming
 
@@ -394,9 +417,9 @@ https://en.wikipedia.org/wiki/Failure_mode_and_effects_analysis </br>
 
 As stated previously, most of the times, embedded systems are reactive, that means, they wait for an input, when they have it, they perform some computation, and then it generates an output. Than means they can be modelled as an Automata.
 
-**OPERATIONAL SEMANTICS**: are a category of formal programming lenguaje semantics, in which certain desired propierties of a program, such correctness, safety or security are verified by proofs of logical statements about its execution and procedures, 
+**OPERATIONAL SEMANTICS**: Is a category of formal programming lenguaje semantics, in which certain desired propierties of a program, such correctness, safety or security are verified by proofs of logical statements about its execution and procedures, 
 
-**TRANSITION SYSTEM**: In computer science, a transition system is used to describe the potential of a discrete system. It consists in states, and trasitions between states.
+**TRANSITION SYSTEM**: In computer science, a transition system is used to describe the different status of a discrete system. It consists in states, and trasitions between states.
 
 Transitions systems differs from *Finite State Automata* in several ways:
 - The set of states, is not necessarily finite, but it must be contable.
@@ -552,42 +575,40 @@ Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https
 
 # TESTING METHODOLOGY AND PROCESS
 
- The most important pearl of wisdom to take into account, is that is not the development process the one that assures quality of
- the system, is the testing process.
+ Testing a system is the action and process of evaluating and attain the true capabilities of the system and to check its conformance with the design requisites, and to find failuers(bugs)/errors or other faults or defects.
  
-  Testing of a system is the action of evaluating it to attain its true capabilities and to check its conformance with the design requisites, and to find bug/erroes or other defect. Summing up the quality of the Product. 
+ The most important pearl of wisdom to take into account is that: **It is not the development process the one that increases the asurance of the quality of the system, is the testing process the one that does it.**
+ 
+  >> Testing of a system is of main importance, due it increases the asurence on the quality of the system, and give the stackholders, and the involved team, a sense of the expected confidence in the system.
   
-  >> Testing of a system is of main importance, due it asures the quality of the system.
+  One topic that always pops up is: **How much testing is needed?**
   
-  One topic that always pops up is: how much testing is needed?
-  
-  The number of test you can possibli plan for most of the systems tends to infinity. The stop point is that in which, the asurance of the quality of the procudt, has been reached and probed by the tests. Of course this level is different depending on the nature of the projet. Design of a video streamming home-appliance, usually doesn't need as much testing as the design of an emergency train brake system. 
+  The number of test you can possibly plan for most of the systems tends to infinity. The stop point is that in which, the asurance of the quality of the product, has been reached and checked satisfactory by the tests. Of course this level is different depending on the nature of the projet: the design of a video streamming home-appliance, usually doesn't need as much testing as the design of an emergency train brake system. 
  
  ## TESTING METHODS
  
-  Specificaions/requirements testing, checks the desing is compliant with the stackholders idea (expected work). This often is done by means of 'test cases', where the 'tester' evaluates the action of the system for certain inputs, and compares the system outputs with respect the expected outputs.
+  Specifications/requirements testing, checks the desing is compliant with the stackholders idea (expected work). This often is done by means of 'test cases', where the 'tester' evaluates the action of the system for certain inputs, and compares the system outputs with respect the expected outputs.
   
   The specifications include all the 'functional' aspects of the system, but they can also include non-functional requiremets, as performance, usability, scalability ...
   
   Specification testing is necesry to asure proper funtion. But for complex or high-risk projects, it may be not nearly enoght. For example it doesnt cover a 'foul' user. 
   
 
-### Dinamic vs Static testing
+### Software Dinamic vs Static testing
 
 When a test case of a system involves the actual run of the system, this is known as 'dinamic testing', on the other hand when it doens't inolve the run of the sysem is known as 'static testing'.
 
- Dinamic testing usually makes us of stubs/driviers, execution from a debugger enviroment.And is also common to automate it.
+ Dinamic testing usually makes us of stubs/drivers, execution from a debugger enviroment. And is also quite common to automate it.
  
- Static testing, is referred to those evaluations that don't need the system to be running. Those are techniques as: code review, revision, walkthoruhgs, inspection, and alsouse of programs that automatically ckeck the code propierties (as could be: detection of 'dead code' (code that will never execute)unused varialbles, mising pointers, out of bound arrays, wrong types varaible asignations, lost of precission in mathematical operations, ...) 
+ Static testing, is referred to those evaluations that don't need the system to be running. Those are techniques as: code review, revision, walkthoruhgs, inspection, and alsouse of programs that automatically ckeck the code propierties (as could be: detection of 'dead code' (code that will never execute)unused variables, missing pointers, out of bound arrays, wrong types varaible asignations, lost of precission in mathematical operations, ...) 
  
 ## The seven principles of testing
 
-over time, testing has learned important leasons, these concepts are the followings:
+Over time, testing teams have take notice of important learned leasons, those concepts are the followings:
 
 **1- Testing shows presence of defects** <br>
 Testing, shows defects, but it cannot proof that there are not defects. Testing
-increases the asurance over the system, because when a bug is found and corrected, the chance that would be remaining 
-bugs is less likely. So even in the case, that no defects can be found any further, that there is no proof that there aren't any.
+increases the asurance over the system, because when a bug is found and it corrected, the chance that remaining bugs may exist, is less likely. But even in the case, that no defects can be found any further, that there is no proof that there aren't any.
 
 **2- Exhaustive testing is impossible** <br>
 test of all the possible combinations of a system is impossible. So to determine how much testing should be dont, an 
@@ -597,7 +618,7 @@ estimation of the risks, risk analysys and priorities, must be done. The testing
 Testing activities should be started as soon as possible in the system development live.
 
 **4- Defect clustering** <br>
-As following the pareto law, in many cases some components have most of the defect density. Testing should be focus to them,
+As following the pareto law, (around 80% of the faults, are caused by a 20% of the design) in many cases some components have most of the defect density. Testing should be focus to them,
 to maximice the effectiveness of the testing efforts.
 
 **5- Pesticide paradox** <br>
@@ -611,77 +632,85 @@ Testing depends on the context. A safe-critical system test is not at all the sa
 Even if no defects are found, it doesn't proof that the system is usable, or complies with the end-user expectations.
 
 
-## Development of the Test Plan
+## Test Activities
 
-The first point in a system development, at the testing context, is to define the **Testing Plan** for that, several key points have to
+At the testing context, the first action to do, is to define the **Test Plan** for that, several key points have to
 be defined:
 
  - Test planning and control
  - Test analysis and design
  - Test implementation and execution
- - Evaluating exit criteria and reporting
+ - Exit criteria, evaluation and reports.
  - Test clousure and activities.
  
  
 ### Test planning and control 
 
- **Test planning** is the document that aims to define the objectives of the testing, and the needed action to achieve those objectives.
+ **Test planning** Definition and plan of the actions to perform, time-line, team, equipment, facilities and tools needed, that aims to define the objectives of the testing, and the needed actions and resources to achieve those objectives.
  
- **Test control**: Testing activities should be monitored through the project. It is the comparation between the state of the project, against the expected planned result. It also covers the report of the testing status, including desviations from the plan. Also include proposals to the actions that need to be done, in order to meet again the goals, and expectations of the project. 
+ </br> </br>
  
-So **test control** is related to guide the corrective actions taken as a result of informantion or metrics. These actions can be applied to any part of the system.
-
-Examples of test control actions are:
-
-- Take decisions based on the information from test monitoring:
-- Repriorinzing tests, and identify risks.
-- Change of the test schedule, based on the abailability of equipmento or facilities.
-- Setting criterion about re-testing issues, for including those modifications into the system build.
-
-**Test design and analysis**
-At this step, the real tests are designed,(actions, contexts, expected results)  and defined the objetives they want to ckeck.
+ **Test design and analysis**
+At this step, tests for evaluation of the system are designed,(actions, contexts, enviroments and expected results) and defined the objetives they want to ckeck.
 
 This include go through the following points:
 
-- Review requirements, software integrity level (that is compliance with some system parameters previously defined as software complexity, risk assesment, safety and security level, performance, reliability, cost ... Usualy these points are defined by the stakeholders):
+- Review requirements, system integrity level (that is compliance with some system parameters previously defined as software complexity, risk assesment, safety and security level, performance, reliability, cost ... Usually these points are defined by the stakeholders):
 - Evaluation the testability of the test basis and test objects.
-- Identify and priority test conditions based on the overal project.
+- Identify and priority test conditions based on the overall project.
 - Design and prioritaze high level tests.
 - Identify necessary test data and resources. 
-- Design the test enviroment, platform, and required infraestructures and materials.
-- Create a method to a bidirectional traceability between test basis and test cases.
+- Design the test enviroment, platform, equipment, tools and required infraestructures and materials.
+- Create a method to a bidirectional traceability between test basis and test cases and requirements.
 
+ </br> </br>
+ 
+ **Test control**: Testing activities must be monitored through the project. It is the comparation between the state of the project, against the expected planned result. It also covers the **report** of the testing status, including desviations and non-conformances  from the plan. Also include proposals to the actions that need to be done, in order to meet again the goals, and expectations of the project. 
+ 
+So **test control** is related to guide the corrective actions taken as a result of information or metrics. These actions can be applied to any part of the system.
+
+Examples of test control actions are:
+
+- Take decisions based on the information from test monitoring, evaluation and test results:
+- Repriorinzing tests, and identification of potential risks (need of more team members, need of more equipment, or additional tools ...)
+- Change of the test squedule, based on the abailability of equipment or facilities.
+- Setting the criteria about re-testing issues, for including those modifications into the system build.
+
+ </br> </br>
  
 ## Test implementation and execution
 
-The designed test procedures are implemented, and a certain execution order has to be stablish, in order to run the set of test (usually according to priority). When the test enviroment is set up, the test cases are run.
+The designed test procedures are implemented, and a certain execution sequence for the tests has to be defined in order to run the set of test (usually according to priority). When the test platform and enviroment is set up, the test cases are run, executed, and evaluated.
 
 The objetive and aim of the text execution is:
 
-- Implement and prioritaze the test cases.
+- Implementation, and definition of the expected results, and execution order and priority of the test cases.
 - develop test procedures, create test data, optionally preparing test hardeness and writting automating test scripts.
 - creation of test suits, for efficient test execution.
 - verification that the test enviroment has been set up properly.
 - verification and update if needed, of bi-directional trazability between the test cases and requeriments.
 - Execution of the test, according to the test procedure. Log of the test execution relevant information, as identification of the
-different elements involved, as software version, prototype, tools, device under test, execution time, software and hardware version.
-- Comparation with the expected results.
-- Report discrepancies, or outliers as incidents, and analyse them in order to identify a possible root-cause. (defect in the code implementation, data out of bounds, damaged equipment, wrong procedure, ...)
+different elements involved, as system version: , software and hardware version, prototype identification, tools, device under test, execution time, and other significant data needed.
+- Definition of the criteria for comparation and evaluation of the test with the expected results.
 - Repeat test that failed out of the expected results to confirm the issue, and gather new information details if possible. check if the 
 efect is always reproducible, or it is sporadic....
-- Record and logging of the tests results, significant test conditions and enviroments.
+- Record and logging of the tests results, significant test conditions, enviroment or other data that may be userful. 
 - If new issues are found, _regression testing_ (test all the system to asure that new code or components haven't affected the rest of the developed system) may be advisable, to check that new issues has not appear in other stable parts of the systems.
+- Report discrepancies with the expected results, outliers, incidents, and misperformances, or unexpected issues and analyse them in order to identify a possible root-cause. (defect in the code implementation, invalid input data or conditions (as could be: data out of bounds, damaged equipment, wrong procedure, ...)
 
-### Test results (evaluation and exit criteria).
+ </br> </br>
+ 
+ 
+### Test results (Exit criteria, evaluation and reports.).
 
-- The data obtained from the test should be compared with the expected results.
+- Evaluation: the data obtained from the test should be compared with the expected results.
 - Report of the failed test!!!
 - Modification over the test, or expected results should be planned.
-- Reports should be done for the stackholders.
+- Reports should be done for the stackholders, and system team members.
 
 ### Test plan clousure activities.
  
-At the end of the project, or at significant project milestones, certain activites are observed.
+At the end of the project, or at project milestones, certain activites are to be observed:
  
  - Report of the system acceptance.
  - review and learned lessons.
@@ -718,9 +747,9 @@ http://klabs.org/DEI/References/design_guidelines/analysis_series/1314msfc.pdf
 
 
 Examples of safety-critical systems[edit]
-Infrastructure[edit]
+critical infrastructures monitoring systems[edit]
 Circuit breaker
-Emergency services dispatch systems
+Emergency services dispatch systems (e-call)
 Electricity generation, transmission and distribution
 Fire alarm
 Fire sprinkler
@@ -757,7 +786,7 @@ Airbag systems
 Braking systems
 Seat belts
 Power Steering systems
-Advanced driver-assistance systems
+Advanced driver-assistance systems (ADAS).
 Electronic throttle control
 Battery management system for hybrids and electric vehicles
 Electric park brake
