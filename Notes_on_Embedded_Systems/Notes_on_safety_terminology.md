@@ -301,23 +301,21 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 
 
 
-
-
-
-
-
-
-
-
-
 # SYSTEM DEVELOPMENT LIFE CICLE
 
-There are quite a few paths for the usual system development of a proyect, although at least the following steps always should be considered:
+There are quite a few ways for a system development project; although at least the following steps always should be considered:
 
- - **Analysis**: what's the problem to solve? Has it be done before? What's the function to perform? Other required consideration needed in the system? (as user interfaces, safety, security, scalability, performance, robustness ...), what the stackholders are expecting? Specification of the system? Time-line of the project?  Whats is the budget? Expected costs? How many people does the project need to achieve the requested specifications, results and objectives? Normative and laws to comply with? Write requirements of the system. 
- - **Design**: Reasoning, evaluation and design for the most fitting solution to achieve the specification and requirements of the system. Design of the system architecture: the different parts or modules of the system. Comunications and interface between the different parts of the system. Consideration of problems to overcome. 
- - **Development**: Implementation of the system, commonly: hardware, software, ... user interface, communication protocols, power supplies, logging system, metrics of the system, project documentation, release notes, use instructions, manuals and learning lessons.
- - **Testing**: Check the performance of the systems, for the needed cases, so it achieve the stackholders expectatives. Validation, verification and reports.
+ - **Analysis**:This step looks to answer and evaluate the following questions:
+ 
+What's the problem to solve? Has it be done before? What's the function to perform? there are other non-functional features needed in the system (as user interfaces, usability, safety, security, scalability, performance, robustness ...)?, what the stackholders and interested parties expectations? What will be system enviroment? Specification and requirement of the system? Time-line and squedule of the project? Expected problems or issues that may come up? How many people does the project need to achieve the requested specifications, results, timing and goals? Evaluation of the expected project risks? Expected costs? What is the budget? Normative, contract, legal issues and laws to comply with? Do I have the skills, people and resources to do it?  
+
+If there is significant confidence to overcome all those challenges, the the following step is -->  Definition of requirements and specifications of the system. 
+ 
+ - **Design**: Reasoning, evaluation and design for the most fitting solution to achieve the specification, requirements and goals of the system. Consideration of problems and issues to overcome. Design of the system architecture: the different parts, modules, elements of the system. Comunications and interface between the different parts of the system. 
+ 
+ - **Development**: Implementation of the system, an the different modules it is made of: hardware, software, ... user interface, communication protocols, power supplies, logging system, metrics of the system. Also includes the project documentation, release notes, use instructions, manuals and learning lessons.
+ 
+ - **Testing**: Evaluation of the performance of the systems, so it can be determined if it reaches the expected goals. Validation, verification and test, riks and acceptance reports. 
 
 
 
@@ -345,7 +343,8 @@ much easily the pernicious event.
 
  Users should not gain access to the inners of the system/program - that is: libraries, internal states, internal values, or pointer to data structures ... The interfece with the user should be that, and be probed against loopholes.
  
- Avoid anti-patters, ie: for concurrent systems, take special care with racing conditions...
+ Avoid anti-patters, ie: for concurrent systems, take special care with racing conditions, priority inversions, death-locks, ... other usual suspects are architectures that relay in heabily coupled components, as oppoused to modular architectures. 
+
  
 References:
 https://en.wikipedia.org/wiki/Robustness_(computer_science)#Robust_programming </br>
@@ -527,6 +526,7 @@ Ref: http://theory.stanford.edu/~rvg/
 
 **TODO**: Check and elavorate: https://en.wikipedia.org/wiki/Calculus_of_communicating_systems
 
+TODO: BER- Byte Error Rate --- add info.
 
 TODO:  
 
@@ -562,9 +562,6 @@ https://es.cs.uni-kl.de/publications/data/Kolh15.pdf
 
 
 
-
-
-
 Check, the methods, for testing: ccpcheck, vera ++, RATS, Jeckins, SonarQube, 
 Test Unitarios: XUnit, CppUTest
 Other sys: lcov, valgrind, ltrace, strace....
@@ -572,40 +569,36 @@ Other sys: lcov, valgrind, ltrace, strace....
 Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https://www2.opengroup.org/ogsys/catalog/C13F
 
 
-# TESTING PROCESS AND METHODOLOGIES:
+# TESTING PROCESS:
 
-The test of a system is the process of evaluating and attain the real capabilities of the system related with its desired goal, and to check it's conformance with the design requisites. Also an important part is to find and pin-point failuress(bugs)/errors or other faults or defects, significant issues that may apppear during the project, even detect situations or cases left out of the system requirements that may be needed to take into account (actually this event happens quite a lot, and is quite a hot topic: not-good enought systems requirements or definitions, that don't take into account or define major points in the system).
- 
-The most important pearl of wisdom to take into account is that: **It is not the development process the one that increases the asurance of the quality of the system, is the testing process the one that does it.**
+The test of a system is the process of evaluating the real capabilities of the system related with its desired performance, and to check it complies with the design requisites.
 
-**By testing the system, non-compliant performance or behavior with the intended or expected final goal of the system may appear, and thus corrected, so the system is improved. As a consequence, also the probability that new issues appear is reduced.**
- 
->> Testing of a system is of main importance, due it increases the asurence on the quality of the system, and give the stackholders, and the involved team, a sense of the expected confidence in the system.
-  
-One topic that always pops up is: **How much testing is needed?**
-  
-The number of test you can possibly plan for most of the systems tends to infinity. The stop point is that in which, the asurance of the quality of the product, has been reached and checked satisfactory by the tests. Of course this level is different depending on the nature of the projet: the design of a video streamming home-appliance, usually doesn't need as much testing as the design of an emergency train brake system. 
- 
- ## TESTING METHODS
- 
-  Specifications/requirements testing, checks the desing is compliant with the stackholders or interested group concept (expected work). This often is done by means of 'test cases', where the 'tester' evaluates the action of the system for certain inputs, and compares the system outputs with respect the expected outputs.
-  
-  The specifications include all the 'functional' aspects of the system, but they can also include non-functional requiremets, as performance, usability, scalability ...
-  
-  Specification testing is necesary to asure proper funtionality and behavior. But for complex or high-risk projects, it may be not nearly enoght. For example it doesnt cover a 'fool-user'. 
-  
+Another important aspect, is that the test process helps to find and pin-point issues, bugs, faults or defects that may apppear in the system. the test proces is even helpful for identification of major cases or points in the system, that have been left out of the specifications or requirements, an actually need to be taken into account.
 
-### Software Dinamic vs Static testing
+A key concept to realice is: that **it is not the development process what asures of the quality of the system** (of course, it helps quite a lot) **, is the testing process what confirms and asures the quality of the project**
 
-When a test case of a system involves the actual run of the system, this is known as 'dinamic testing', on the other hand when it doens't inolve the run of the sysem is known as 'static testing'.
+## WHY IS TESTING IMPORTANT?
 
- Dinamic testing usually makes us of stubs/drivers, execution from a debugger enviroment. And is also quite common to automate it.
+**By testing the system performance against its expected result, issues or faults may be identified, and thus corrected. So in that case, the system is improved. As a consequence, the chance that unknown issues remain in the system is reduced, and the confidence on the system is increased.**
  
- Static testing, is referred to those evaluations that don't need the system to be running. Those are techniques as: code review, revision, walkthoruhgs, inspection, and alsouse of programs that automatically ckeck the code propierties (as could be: detection of 'dead code' (code that will never execute)unused variables, missing pointers, out of bound arrays, wrong types varaible asignations, lost of precission in mathematical operations, ...) 
+The test process is of main importance in the project, due it evaluates the quality of the system, and give the stackholders, and the involved team, a sense of the expected confidence and risk level of the project.
+  
+## HOW MUCH TESTING IS NEEDED?
+
+The number of test you can possibly plan for most of the systems tends to infinity. The stop point is that, in which, the asurance of the quality of the product, has been reached and checked satisfactory by the tests. Of course this level is different depending on the nature of the projet: the design of a video streamming home-appliance, usually doesn't need as much testing as the design of an emergency train brake system. 
+ 
+ 
+ ## TESTING GOALS
+ 
+  Specifications/requirements test, checks the design is compliant with the stackholders or interested groups expectations. This often is done by means of 'test cases', where the 'tester' evaluates the action of the system for certain inputs, and compares the system outputs, actions and behavior with regart to the expected outputs.
+  
+  The specifications include all the 'functional' features of the system, but they can also include non-functional requiremets, as performance, usability, scalability ...
+  
+  Specification testing is necesary to asure proper funtionality and behavior. But for complex or high-risk projects, it may be not nearly enoght. For example it doesn't cover a 'fool-user'. 
  
 ## The seven principles of testing
 
-Over time, testing teams have take notice of important learned leasons, those concepts are the followings:
+Over time, testing teams have take notice of important learned leasons, those concepts known as follows:
 
 **1- Testing shows presence of defects** <br>
 Testing, shows defects, but it cannot proof that there are not defects. Testing
@@ -616,7 +609,7 @@ test of all the possible combinations of a system is impossible. So to determine
 estimation of the risks, risk analysys and priorities, must be done. The testing will stop, when there is certainty that the systems complies.
 
 **3- Early testing** <br>
-Testing activities should be started as soon as possible in the system development live.
+Testing activities should be started as soon as possible in the system development live. (TDD - explain this!!!)
 
 **4- Defect clustering** <br>
 As following the pareto law, (around 80% of the faults, are caused by a 20% of the design) in many cases some components have most of the defect density. Testing should be focus to them,
@@ -633,7 +626,7 @@ Testing depends on the context. A safe-critical system test is not at all the sa
 Even if no defects are found, it doesn't proof that the system is usable, or complies with the end-user expectations.
 
 
-## Test Activities
+## Test process steps and activities.
 
 At the testing context, the first action to do, is to define the **Test Plan** for that, several key points have to
 be defined:
@@ -660,8 +653,8 @@ This include go through the following points:
 - Evaluation the testability of the test basis and test objects.
 - Identify and priority test conditions based on the overall project.
 - Design and prioritaze high level tests.
-- Identify necessary test data and resources. 
-- Design the test enviroment, platform, equipment, tools and required infraestructures and materials.
+- Identify necessary test data and resources. (who provides correct input data?)
+- Design and define the test enviroment, platform, equipment, tools and required infraestructures and materials.
 - Create a method to a bidirectional traceability between test basis and test cases and requirements.
 
  </br> </br>
@@ -721,6 +714,42 @@ At the end of the project, or at project milestones, certain activites are to be
 https://en.wikipedia.org/wiki/Testing_Maturity_Model
 
 
+
+### Test plan document index example guide:
+
+ - Date of release, document version, document owner, approvals
+ - Overview of the project
+ - Document identification, objetives, goals, scope (this is the test plan document for XX project, and it explains the test plan for YY, intended for the system version ZZ, according to requirements version RR ...) and document history, and related needed documents (as normative, release notes, system version, system documentation, requirements document version).
+ - Testing team, responsabilities and roles
+ - Test goals and tasks
+ - Asumptions
+ - Test strategy
+ - Test process squedule (timeline, deliverables, current and future needs)
+ - Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it goot enought data?)
+ - Unit tests
+ - Integration tests
+ - System test
+ - Non-functional test (performance, interface, usability ...)
+ - Traceability test-requirements
+ - Minimun test set to execute to evaluate viability of a new version release (test basic functions and safety/security concerns).
+ - Automated testing
+ - Batch testing (automated regression testing)
+ - Regression testing
+ - Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests)
+ - Features to be tested
+ - Features to not be tested
+ - Dependencies and resposabilites
+ - Risks (possible risks for the project, as lack of resources, time deliveries overdue  ...)
+ - Tools, equipment, software, resources and facilities
+
+ 
+ 
+ <!-- http://www.softwaretestinghelp.com/test-plan-sample-softwaretesting-and-quality-assurance-templates/  -->
+
+
+
+
+
 ## TEST LEVELS
 
 The different test at different architectural system levels, are known by different names, and its objective evaluates different system levels. The concept of the different test levels follows below. Is important to take into account, that the actual test may differ quite a lot, regarding the understanding of the system concept: for example, in an aircraft desing the system is the aeroplane, and one of its componets may be the landing system. On the other hand the landing system, is also a system by itself, and it depends on other severals components. So the key point, is that their actual test are going to be quite different, but the following descriptions, are related
@@ -763,6 +792,16 @@ Beta testing is a test done by the customer, client or interested parties at the
 
 
 
+Check, the methods, for testing: ccpcheck, vera ++, RATS, Jeckins, SonarQube, 
+Test Unitarios: XUnit, CppUTest
+Other sys: lcov, valgrind, ltrace, strace....
+
+Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https://www2.opengroup.org/ogsys/catalog/C13F
+
+
+
+
+
 
 
 
@@ -778,6 +817,38 @@ Also check the following topics:
 http://www.sohar.com/proj_pub/download/
 
 https://en.wikipedia.org/wiki/Testing_Maturity_Model
+
+
+
+
+  
+
+### Software Dinamic vs Static testing
+
+When a test case of a system involves the actual run of the system, this is known as 'dinamic testing', on the other hand when it doens't inolve the run of the sysem is known as 'static testing'.
+
+ Dinamic testing usually makes us of stubs/drivers, execution from a debugger enviroment. And is also quite common to automate it.
+ 
+ Static testing, is referred to those evaluations that don't need the system to be running. Those are techniques as: code review, revision, walkthoruhgs, inspection, and alsouse of programs that automatically ckeck the code propierties (as could be: detection of 'dead code' (code that will never execute)unused variables, missing pointers, out of bound arrays, wrong types varaible asignations, lost of precission in mathematical operations, ...) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 LIABILITY:
@@ -929,3 +1000,21 @@ The NuSMV Model Checker
 The FSAP Safety Analysis Platform
 Some Regulatory Bodies and Regulations
 Index
+
+
+
+
+
+
+
+
+
+ACRONYMS:
+
+UAT - User Acceptance Test
+COTS -Comertial Of The Shexxcf (software, hardware or device)
+DUT - Device Under Test
+TDD - Test Driven Development.
+sloc - source lines of code.
+BER - byte error Rate
+STAMP - Systems Theoretic Accident Model&Processes
