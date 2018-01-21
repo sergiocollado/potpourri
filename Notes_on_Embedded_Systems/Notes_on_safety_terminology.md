@@ -222,14 +222,15 @@ http://www.sohar.com/proj_pub/download/y2ktest.pdf
  
  According to its reliability regimes, there are the following classifications:
  
- - Fail-operational systems: They continue to operate even when their control systems fail. Examples are: elevators, automotive electronic throttle control, braking systems, circuit-breakers, ..
- - Fail-soft systems: they continue operation with a reduced efficiency even in the presence of a failure.
- - Fail-safe systems: they become safe when they cannot perform its function. Medical devices, usually are found in this category, for example a heart-pump: when it cannot work, it warns the medical personal, as the safety interval, is long enough, the live of the patient is not in thread.
- - Fail-Passive systems: 
- - Fault-tolerant sytems: they continue to operate even when faults are present on the system. 
+ - **Fail-operational systems**: They continue to operate even when their control systems fail. Examples are: elevators, automotive electronic throttle control, braking systems, circuit-breakers, ..
+ - **Fail-soft systems**: they continue operation with a reduced efficiency even in the presence of a failure.
+ - **Fail-safe systems**: they become safe when they cannot perform its function. Medical devices, usually are found in this category, for example a heart-pump: when it cannot work, it warns the medical personal, as the safety interval, is long enough, the live of the patient is not in thread.
+ - **Fail-Passive systems**: 
+ - **Fault-tolerant sytems**: they continue to operate even when faults are present on the system. 
  
  Reference: https://en.wikipedia.org/wiki/Safety-critical_system
  
+ TODO: SOTIF - Safety of the Intended Functionality -- ADD INFO
 
 **FAULT TOLERANT SYSTEM**: Is a system that performs correctly, although might have some errors or faults in it. Usually this is
 achieved by means of repeated computations (repetition in time), redundant systems (repetition in components), and monitoring data.
@@ -302,7 +303,6 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 **Error**: is a systematic fault, thus a design flaw, thus repetible. ERRORS ARE STATES.
 
 **Fault**: A fault is either a failure or an error.
-
 
 
 
@@ -1025,3 +1025,4 @@ BER - byte error Rate
 STAMP - Systems Theoretic Accident Model&Processes
 SLA - Service Level Agreement. (to check the availability of the system).
 HA - High Availability (system)
+SOTIF - Safety of the Intended Functionality
