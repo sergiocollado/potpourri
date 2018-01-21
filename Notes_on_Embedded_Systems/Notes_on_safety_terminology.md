@@ -572,26 +572,27 @@ Other sys: lcov, valgrind, ltrace, strace....
 Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https://www2.opengroup.org/ogsys/catalog/C13F
 
 
+# TESTING PROCESS AND METHODOLOGIES:
 
-# TESTING METHODOLOGY AND PROCESS
+The test of a system is the process of evaluating and attain the real capabilities of the system related with its desired goal, and to check it's conformance with the design requisites. Also an important part is to find and pin-point failuress(bugs)/errors or other faults or defects, significant issues that may apppear during the project, even detect situations or cases left out of the system requirements that may be needed to take into account (actually this event happens quite a lot, and is quite a hot topic: not-good enought systems requirements or definitions, that don't take into account or define major points in the system).
+ 
+The most important pearl of wisdom to take into account is that: **It is not the development process the one that increases the asurance of the quality of the system, is the testing process the one that does it.**
 
- Testing a system is the action and process of evaluating and attain the true capabilities of the system and to check its conformance with the design requisites, and to find failuers(bugs)/errors or other faults or defects.
+**By testing the system, non-compliant performance or behavior with the intended or expected final goal of the system may appear, and thus corrected, so the system is improved. As a consequence, also the probability that new issues appear is reduced.**
  
- The most important pearl of wisdom to take into account is that: **It is not the development process the one that increases the asurance of the quality of the system, is the testing process the one that does it.**
- 
-  >> Testing of a system is of main importance, due it increases the asurence on the quality of the system, and give the stackholders, and the involved team, a sense of the expected confidence in the system.
+>> Testing of a system is of main importance, due it increases the asurence on the quality of the system, and give the stackholders, and the involved team, a sense of the expected confidence in the system.
   
-  One topic that always pops up is: **How much testing is needed?**
+One topic that always pops up is: **How much testing is needed?**
   
-  The number of test you can possibly plan for most of the systems tends to infinity. The stop point is that in which, the asurance of the quality of the product, has been reached and checked satisfactory by the tests. Of course this level is different depending on the nature of the projet: the design of a video streamming home-appliance, usually doesn't need as much testing as the design of an emergency train brake system. 
+The number of test you can possibly plan for most of the systems tends to infinity. The stop point is that in which, the asurance of the quality of the product, has been reached and checked satisfactory by the tests. Of course this level is different depending on the nature of the projet: the design of a video streamming home-appliance, usually doesn't need as much testing as the design of an emergency train brake system. 
  
  ## TESTING METHODS
  
-  Specifications/requirements testing, checks the desing is compliant with the stackholders idea (expected work). This often is done by means of 'test cases', where the 'tester' evaluates the action of the system for certain inputs, and compares the system outputs with respect the expected outputs.
+  Specifications/requirements testing, checks the desing is compliant with the stackholders or interested group concept (expected work). This often is done by means of 'test cases', where the 'tester' evaluates the action of the system for certain inputs, and compares the system outputs with respect the expected outputs.
   
   The specifications include all the 'functional' aspects of the system, but they can also include non-functional requiremets, as performance, usability, scalability ...
   
-  Specification testing is necesry to asure proper funtion. But for complex or high-risk projects, it may be not nearly enoght. For example it doesnt cover a 'foul' user. 
+  Specification testing is necesary to asure proper funtionality and behavior. But for complex or high-risk projects, it may be not nearly enoght. For example it doesnt cover a 'fool-user'. 
   
 
 ### Software Dinamic vs Static testing
@@ -718,6 +719,56 @@ At the end of the project, or at project milestones, certain activites are to be
  
 
 https://en.wikipedia.org/wiki/Testing_Maturity_Model
+
+
+## TEST LEVELS
+
+The different test at different architectural system levels, are known by different names, and its objective evaluates different system levels. The concept of the different test levels follows below. Is important to take into account, that the actual test may differ quite a lot, regarding the understanding of the system concept: for example, in an aircraft desing the system is the aeroplane, and one of its componets may be the landing system. On the other hand the landing system, is also a system by itself, and it depends on other severals components. So the key point, is that their actual test are going to be quite different, but the following descriptions, are related
+to the hieraquical structure of system in hands.
+
+### UNIT TEST aka COMPONENT TESTS:
+
+At the software level, the **unit test** is understood as a test to a basic function, algorithm or class. Its fundamental task is evaluated, not only its corretness but it can also cover not functional aspects, as performance, robustness, usability, ... 
+Unlikely the following test, this test usually is done by a developer, and it's record tends to be quite informal.
+At the hardware level, it is understand as a test to determine or clarify hardware components performance.
+
+### INTEGRATION TESTS:
+The **integration test**, are understand as a test that looks for assesment of the performance between diferent modules, functions, classes, or componets in a system. 
+
+### SYSTEM TEST:
+The **systems test** goal is to ascertain fulfilment of the system expected functions, and other non-functional requirments, as security, safety, ...
+
+### ACCEPTANCE TEST: 
+The aceptance test usually is done by the client that requested the system design or similar stackhorlders, an outside of the desing 
+team labs or place. The objetive of this test, is independent evaluation of the system regarding to its designers. Usually is also quite 
+useful to define functions that are outside of the defined or specified requirements. It also have a very important role, for following up and check the project milestones. 
+
+This type of test can have serveral faces:
+
+#### UAT: USER ACCEPTANCE TEST
+Evaluates the correct behavior of the system by a bussines user. As may be the case that a data system user interfece is correct for a person that is going to use it in a bank or similar.
+
+#### OAT: OPERATIONAL ACCEPTANCE TEST
+Evaluates that the system correctly performs it's defined function.
+
+#### REGULATION AND CONTRACT ACCEPTANCE TEST
+Evaluates that the system complies and achieves acceptance criteria with legal issues (govern, law, contractual, materials, safety, enviromental, emitions ...)
+
+#### ALPHA AND BETA TESTS:
+Alpha testing is understand as a test done at the design team organization, but for colleages outside that team or project.
+Beta testing is a test done by the customer, client or interested parties at their own locations.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
