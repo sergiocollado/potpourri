@@ -76,9 +76,11 @@ This has significative importance to systems, that perform a critical functions,
 
 Reliability is often quantified with the merit figure of **MTBF** (Mean Time Between Failures) 
 
-**AVAILABILITY**: Is the probability that the system will be working/performing as expected at any given time. When calculating this parameter, it has to be taken into account, both maintenace times, preventive mantenaice times, and reparation times.
+**AVAILABILITY**: Is the probability that the system will be working/performing as expected at any given time. When calculating this parameter, it has to be taken into account: maintenace times, preventive mantenaice times and estimated time for repair (ETR).
 
-Availabilty is commonly meanfully for evaluating those systems, where its functions can be delayed or denied for a short time period, without serius consequences.
+Availability is commonly meanfully for those systems, where its functions can be delayed or denied for a short time period, without serius consequences.
+
+An example of a high availability (HA) system is the electric power distribution grid (Hospitals have emergency power generation systems... just in case you were worried).
 
 Availability is often quantified by the merit figure of: 1-MTTR / MTTF 
 
@@ -89,6 +91,9 @@ where:
 and 
 
 **MTTF** stands for Mean Time To Failure
+
+Is also common to express availability as percentage between uptime and downtime of the system. For example a system availability 
+referred as a 99% (two nines) means that over a year its downtime is 3.65 days.
 
 
 **DEPENDABILITY**: Is the truthworthiness of a system so there is a justified confidence in the tasks it must perform.
@@ -1018,3 +1023,5 @@ TDD - Test Driven Development.
 sloc - source lines of code.
 BER - byte error Rate
 STAMP - Systems Theoretic Accident Model&Processes
+SLA - Service Level Agreement. (to check the availability of the system).
+HA - High Availability (system)
