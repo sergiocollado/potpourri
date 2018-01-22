@@ -590,7 +590,7 @@ A key concept to realice is: that **it is not the development process what asure
 
 ## WHY IS TESTING IMPORTANT?
 
-**By testing the system performance against its expected result, issues or faults may be identified, and thus corrected. So in that case, the system is improved. As a consequence, the chance that unknown issues remain in the system is reduced, and the confidence on the system is increased.**
+**By testing a system behavior against its expected behavior, allows the identification of issues in the system implementation. Once an issue is pin-pointed is then analized, corrected or fixed. As result of this action, the system is improved. Also, as a consequence, the chance that unknown issues or unexpected behaviors, remain in the system is reduced, and thus the confidence on the system is increased.**
  
 The test process is of main importance in the project, due it evaluates the quality of the system, and give the stackholders, and the involved team, a sense of the expected confidence and risk level of the project.
   
