@@ -1,16 +1,17 @@
-SMP architecture - Shared Memory Parallel architecture
-QED - Quod Erat Demonstrandum
-ITIL - Information Technology Infrastructure Library
-ALM - Application Lifecicle Management (project monitoring)
+GCD - Greatest Common Divisor (euclids algorithm) [maths]
+SMP architecture - Shared Memory Parallel architecture [computers]
+QED - Quod Erat Demonstrandum [latin]
+ITIL - Information Technology Infrastructure Library [computers]
+ALM - Application Lifecicle Management (project monitoring) [computers]
 ESA - European Space Agency
 NASA - National Aeronautics and Space Administration
 SLA - Service Level Agreement
-HA - High Availability (system)
-SOTIF - Safety of the Intended Functionality
-POP - Power-On Password
-SVP - SuperVisor Password
-STAMP - Systems Theoretic Accident Model&Processes
-FDD - Fault Detection and Diagnostics.
+HA - High Availability (system) [computers]
+SOTIF - Safety of the Intended Functionality [safety]
+POP - Power-On Password [security]
+SVP - SuperVisor Password [security]
+STAMP - Systems Theoretic Accident Model&Processes [safety]
+FDD - Fault Detection and Diagnostics. [safety]
 MIPS - Million Instructions Per Second. [computer science]
 FLOPS - Floating Point Operations Per Second [computer science]
 DIP - Dual In-line Package [hardware]
@@ -148,11 +149,11 @@ HVAC - Heating, Ventilation and Air Conditioning.
 CMSIS - Cortex Microcontroller Software Interface Standard.
 FOC - Field Oriented Control.
 DMA - Direct Memory Access.
-VFD - Variable Frequency Drives.
-DVR - Digital Video Recorder.
-BT - Bluetooth.
-BLE - Bluetooh Low Energy.
-PoE - Power Over Ethernet.
+VFD - Variable Frequency Drives. [power electronics]
+DVR - Digital Video Recorder. [electronics]
+BT - Bluetooth [protocols]
+BLE - Bluetooh Low Energy [protocols]
+PoE - Power Over Ethernet. [protocols]
 IMEI - International Mobile Equipment Identity.
 NPM - Node.js Package Modules.
 JS - Javascript.
