@@ -366,9 +366,12 @@ http://nob.cs.ucdavis.edu/bishop/secprog/robust.html </br>
 Follow recomendations for implementing the system.
 
 - Use coding standards and recomendations:
-    - Always define the variable types.
+    - Always define the variable inizialization values
+    - Use indentation, and meanful comments
     - Never ever programm an infinite loop.
+    - Never ever use magic numbers.
 - Write modular systems.
+- Implentent and use configuration files for the system (this will provide a flexible configuration for the future).
 - Design self-tests (for hardware control).
 - Use watchdog's (sw and/or hw implemented), and/or functions/devices heartbeats.
 - Implementation of recovery systems.
@@ -383,7 +386,7 @@ Follow recomendations for implementing the system.
     - safety and security recomendations and techniques.
     - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances ... 
 - Implement a log mechanism in the system.
-- Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities). 
+- Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). 
 
 ## Defensive programming
 
