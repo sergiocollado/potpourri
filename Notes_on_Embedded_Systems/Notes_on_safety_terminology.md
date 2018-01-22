@@ -110,10 +110,10 @@ Dependability is a concept that usually refers to a figure of merit that is base
 **CRITICAL SYSTEM** Is a system that must be highly reliable, and keep this reliability even when it is developed, and evolves. 
 Usually, these systems are classified into the following groups:
 
- - safety critical : the misperformance of the system would mean, personal damage or loss, or material/propierty/resources or enviromental damages. Examples: Energy systes (as nuclear plants), control in transportations systems, chemical reactors, medical devices (as heart-lung assistance systems) ...
- - mission critical: designed to avoid total misfunction of the designed functionality or objective. example: navigation systems.
- - bussines critical: designed to avoid a misfunctions that would result or imply economic/bussines impact, usually as a result of a service interruption. example: bank, accounting and payment systems, stock-trading systems.
- - security critical: designed to protect data or sensible information. example: medical databases, customers data ...
+ - **safety critical** : the misperformance of the system would mean, personal damage or loss, or material/propierty/resources or enviromental damages. Examples: Energy systes (as nuclear plants), control in transportations systems, chemical reactors, medical devices (as heart-lung assistance systems) ...
+ - **mission critical**: designed to avoid total misfunction of the designed functionality or objective. example: navigation systems.
+ - **bussines critical**: designed to avoid a misfunctions that would result or imply economic/bussines impact, usually as a result of a service interruption. example: bank, accounting and payment systems, stock-trading systems.
+ - **security critical**: designed to protect data or sensible information. example: medical databases, customers data ...
 
 References:
 
@@ -285,15 +285,23 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 **Safety** is NOT **Security**!! Security is the ability to defence against intended damages and malicious actions.
 <br>
 
-**Safety** and **Availability** are DO NOT imply each other: the safest airplane, is that one never takes off... A system that is working at a given moment, doesn't imply it is safe. The other way around, also don't mean it is true. An airbag for an automotive system, can be very safe, but once it is triggered, it is not available anymore. 
+**Safety** and **Availability** are DO NOT imply each other: the safest airplane, is that one never takes off... A system that is working at a given moment, doesn't imply it is safe. The opposite case, the lack of availability, also doesn't need to be true: an airbag for an automotive system, can be very safe, but once it is triggered, it is not available anymore; the triggering of the airbag, can even result on the system fallback, to block the car, due it is not safe; that is: entering a safe operation mode status, after an unexpected event that compromises the system safety. 
 
 ## SAFETY RELATED CONCEPTS:
 
 **Accident**: It's the situation in which there is a loss of some kind: death or material damage.
 
-**Risk**: It's the likehood of an accident and its severity. -> R(a) = p(a) * s(a);
-
 **Hazard**: The set of conditions or enviromental variables, that will lead or result in an accident.
+<br>
+
+**Risk**: It's the likehood of an accident and its severity. In other words: is the figure of merit that provides a meaningful value, that allows the comparation of the risk on different cases. Its mathematical expressionn is:
+
+R(a) = p(a) * s(a);
+
+- R(a) is the risk of an accident 'a'
+- p(a) is the probability an accident 'a' happen.
+- s(a) is a factor that evaluates the overall damage, harm or loss in case on an accident 'a'. Usually the s(x) factor is defined by legal, customer or stackhorlders specifications. 
+
 <br>
 
 ## FAILURES vs ERRORS:
@@ -325,8 +333,6 @@ If there is significant confidence to overcome all those challenges, the the fol
 
 
 
-
-
 # PROGRAMMING TECHNIQUES:
 
 TODO: Desing for testeability.... write it!
@@ -341,7 +347,7 @@ much easily the pernicious event.
 #### Paranoia
  The programmer must undestand that its code can produce bug, that make the system fail or work incorrectly. Also that the users are there to break their code. - You know the saying: *--Even paranoids have enemies--*
  
-#### User proof (aka fool-proof)
+#### User-proof (aka fool-proof)
  The programmers assumes that the user at some point will use incorrect, malformed, and bogus inputs. So he has to code error-proof inputs, and emit **error mesages**, that must be: clear, specific, intuitive, unambigous, effective, detailed, explicit and that don't require to look up error codes. The message must be as accurate as possible, to the problem, so it can be detected and corrected with ease.
  
 #### Avoid Dangerous implementations
@@ -435,7 +441,7 @@ Reference: https://en.wikipedia.org/wiki/Transition_system </br>
 Formal definition:
 
 ## Transition system:
-Is a pair (S,→), where S, is a set of states, and → is a set of transitions. The case, where there is a transition from state **p** to state **q**, is written as: **p→q**.
+Is a pair (S,→), where S, is a set of states, and → is a set of transitions. Event where there is a transition from state **p** to state **q**, is written as: **p→q**.
 
 ## Labelled transition system (LTS):
 Is a tuple (S,Λ,→), where S, is a set of states, Λ is a set of labels, and → is a set of labelled transitions.
