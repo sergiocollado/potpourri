@@ -582,14 +582,13 @@ Other sys: lcov, valgrind, ltrace, strace....
 
 Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https://www2.opengroup.org/ogsys/catalog/C13F
 
+# OVERVIEW OF THE TESTING PROCESS:
 
-# TESTING PROCESS:
+The test of a system is the process of evaluating the real capabilities of the system related with its desired/expected performance/behavior, and check it complies with the design requisites.
 
-The test of a system is the process of evaluating the real capabilities of the system related with its desired performance, and to check it complies with the design requisites.
+Another important point, is that the test process helps to find and pin-point issues, bugs, faults or defects that may apppear in the system. the test proces is even helpful for identification of major cases or points in the system, that have been left out of the specifications or requirements, an actually need to be taken into account.
 
-Another important aspect, is that the test process helps to find and pin-point issues, bugs, faults or defects that may apppear in the system. the test proces is even helpful for identification of major cases or points in the system, that have been left out of the specifications or requirements, an actually need to be taken into account.
-
-A key concept to realice is: that **it is not the development process what asures of the quality of the system** (of course, it helps quite a lot) **, is the testing process what confirms and asures the quality of the project**
+A key concept to realice is: that **it is not the development process what asures of the quality of the system** (of course, it helps quite a lot), **is the testing process what confirms and asures the quality of the project**
 
 ## WHY IS TESTING IMPORTANT?
 
@@ -601,12 +600,11 @@ The test process is of main importance in the project, due it evaluates the qual
 
 The number of test you can possibly plan for most of the systems tends to infinity. The stop point is that, in which, the asurance of the quality of the product, has been reached and checked satisfactory by the tests. Of course this level is different depending on the nature of the projet: the design of a video streamming home-appliance, usually doesn't need as much testing as the design of an emergency train brake system. 
  
- 
- ## TESTING GOALS
- 
-  Specifications/requirements test, checks the design is compliant with the stackholders or interested groups expectations. This often is done by means of 'test cases', where the 'tester' evaluates the action of the system for certain inputs, and compares the system outputs, actions and behavior with regart to the expected outputs.
+## TESTING GOALS
+
+Specifications/requirements test, checks the design is compliant with the stackholders or interested groups expectations. This often is done by means of 'test cases', where the 'tester' evaluates the action of the system for certain inputs, and compares the system outputs, actions and behavior with regart to the expected outputs.
   
-  The specifications include all the 'functional' features of the system, but they can also include non-functional requiremets, as performance, usability, scalability ...
+  The specifications include all the 'functional' features of the system, but they can also include non-functional requiremets, as performance, usability, scalability, safety, security, availability,manteneability ...
   
   Specification testing is necesary to asure proper funtionality and behavior. But for complex or high-risk projects, it may be not nearly enoght. For example it doesn't cover a 'fool-user'. 
  
@@ -830,12 +828,26 @@ Reference to check: Dependability through Assuredness™ (O-DA) Framework: https
 Functinal testing focus on the correctness of the system in perfom its expected task. 
  
 ### Testing on Non-functional characteristics
-There are things aside the main functionality that also are required, those migth be: data or communitcations throughput. User interfaces, performance, memory use, scalability, safety, security, robustnes, avalibility, manteanability ..
+There are things aside the main functionality that also are required, those migth be: data or communitcations throughput. User interfaces, performance, usability, scalability, safety, security, robustnes, avalibility, manteanability ..
+
+## Structure or Architectural Testing. 
+Is the evaluation of some parameters of stadistics of the system, as for example how complex it is (ciclomatix complexity), the number of control flow structures (if, else, for, while)... and evaluation of the system, with the knoledge of its inner workings. 
+
+## Testing related with changes: Re-testing and Regression testing.
+When doing the test sets, failded test, must be repeated to assert them, and exclude the possibility of a  possible error due to the context, conditions, equipment used, ....  
+On the other had, when a new part of the system is added to the development, some times happen, that this new code, or component, affects other parts of the system, in the worst case, making the to fail its pourpose.... to check this possibility, a set of test, 
+is runned that checks previous functionalitites, in order to verify the rest of the system, keeps workfing fine. 
 
 
+## TEST TECHNIQUES:
+  
+### Software: Dinamic vs Static testing
 
+When a test case of a system involves the actual run of the system, this is known as 'dinamic testing', on the other hand when it doens't inolve the run of the sysem is known as 'static testing'.
 
-
+Dinamic testing usually makes us of stubs/drivers, execution from a debugger enviroment. And is also quite common to automate it.
+ 
+Static testing, is referred to those evaluations that don't need the system to be running. Those are techniques as: code review, revision, walkthoruhgs, inspection, and alsouse of programs that automatically ckeck the code propierties (as could be: detection of 'dead code' (code that will never execute)unused variables, missing pointers, out of bound arrays, wrong types varaible asignations, lost of precission in mathematical operations, ...) 
 
 
 
@@ -850,17 +862,6 @@ http://www.sohar.com/proj_pub/download/
 https://en.wikipedia.org/wiki/Testing_Maturity_Model
 
 
-
-
-  
-
-### Software Dinamic vs Static testing
-
-When a test case of a system involves the actual run of the system, this is known as 'dinamic testing', on the other hand when it doens't inolve the run of the sysem is known as 'static testing'.
-
- Dinamic testing usually makes us of stubs/drivers, execution from a debugger enviroment. And is also quite common to automate it.
- 
- Static testing, is referred to those evaluations that don't need the system to be running. Those are techniques as: code review, revision, walkthoruhgs, inspection, and alsouse of programs that automatically ckeck the code propierties (as could be: detection of 'dead code' (code that will never execute)unused variables, missing pointers, out of bound arrays, wrong types varaible asignations, lost of precission in mathematical operations, ...) 
 
 
 
