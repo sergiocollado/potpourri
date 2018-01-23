@@ -1,4 +1,5 @@
-CSMA/CD - Carrier Sense Multiple Access / Collition Detection [protocols]
+RDC - Radio Duty Cycling [protocols] [radio]
+CSMA/CD - Carrier Sense Multiple Access / Collition Detection [protocols] [radio]
 TDL - To-Do-List [computers]
 MA - Moving Average [maths]
 EMA - Exponential Moving Average [maths]
@@ -439,23 +440,21 @@ FS - Functional Safety.
 HFT - High Frequency Trading.
 LFT - Low Frequency Trading.
 CSG - Constructive Solid Geometry.
-wrt - with respect to.
-DSS - Digital Signature Standard.
-TLS - Trasport Layer Security (protocol).
-OEM - Original Equipment Manufacturer.
-CLK - Clock
-CW  - Clock Wise.
-CCW - Counter Clock Wise.
-CW - Calendar Week.
-KW - Kalendar Woche.
-PSU - Power Supply Unit.
-PC  - Personal Computer.
-PDF - Portable Document Format.
-pdf - Probability Density Function.
-BIOS - Basic Input Output System.
-OS - Operating System.
+DSS - Digital Signature Standard [crypto]
+TLS - Trasport Layer Security (protocol) [protocols]
+OEM - Original Equipment Manufacturer [automotive]
+CLK - Clock [electronics]
+CW  - Clock Wise [physics]
+CCW - Counter Clock Wise [physics]
+CW - Calendar Week [slang]
+KW - Kalendar Woche [german]
+PSU - Power Supply Unit [electronics]
+PC  - Personal Computer [computers]
+PDF - Portable Document Format [computers]
+pdf - Probability Density Function [math]
+BIOS - Basic Input Output System [computes]
+OS - Operating System [computers]
 BSOD - Blue Screen Of Death.
-B2B - Bussiness to Bussiness.
 HD - Hard Drive.
 MSB - Most Significant Bit.
 LSB - Less Significant Bit.
@@ -468,13 +467,17 @@ IF - Impact Factor.
 JIF - Journal Impact Factor.
 NIST - National Institute for Standards and Technology. [http://csrc.nist.gov/]
 SHA - Secure Hash Standard [::link::](http://csrc.nist.gov/publications/PubsFIPS.html#fips180-4).
-CRM - Customer Relationship Management.
-CSS - Cascade Style Sheet.
-CSV - Commma Separated Values.
-DNS - Domain Name Service.
-FAQ - Frequently Asked Questions.
-ECN - Engineering Change Notification
-
-
-
+CSS - Cascade Style Sheet [protocols]
+CSV - Commma Separated Values [data]
+DNS - Domain Name Service. [protocols]
+FAQ - Frequently Asked Questions [slang]
+ECN - Engineering Change Notification [slang]
+FYI - For Your Interest [slang]
+AFK - Away From Keyboard [slang]
+AKA - Also Knwon As [slang]
+TBD - To Be Defined [slang]
+EBD - End of Bussines Day [slang]
+CRM - Customer Relationship Management [slang]
+B2B - Bussiness to Bussiness  [slang]
+wrt - with respect to [slang]
 
