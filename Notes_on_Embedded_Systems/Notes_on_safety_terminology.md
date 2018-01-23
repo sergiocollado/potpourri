@@ -80,7 +80,7 @@ Reliability is often quantified with the merit figure of **MTBF** (Mean Time Bet
 
 Availability is commonly meanfully for those systems, where its functions can be delayed or denied for a short time period, without serius consequences.
 
-An example of a high availability (HA) system is the electric power distribution grid (Hospitals have emergency power generation systems... just in case you were worried).
+An example of a high availability (HA) system is the electric power distribution grid (Hospitals have emergency power generation systems... just in case you were worried). The GPS system, was designed as a zero-down-time system.
 
 Availability is often quantified by the merit figure of: 1-MTTR / MTTF 
 
@@ -593,7 +593,7 @@ A key concept to realice is: that **it is not the development process what asure
 
 ## WHY IS TESTING IMPORTANT?
 
-**By testing a system behavior against its expected behavior, allows the identification of issues in the system implementation. Once an issue is pin-pointed is then analized, corrected or fixed. As result of this action, the system is improved. Also, as a consequence, the chance that unknown issues or unexpected behaviors, remain in the system is reduced, and thus the confidence on the system is increased.**
+**By testing a system behavior against its expected behavior, allows the identification of a defect in the system implementation. Once an defect is pin-pointed is then analized, corrected or fixed. As result of this action, the system is improved. Also, as a consequence, the chance that other defects, unknown issues or unexpected behaviors, remain in the system is reduced, and thus the confidence on the system is increased.**
  
 The test process is of main importance in the project, due it evaluates the quality of the system, and give the stackholders, and the involved team, a sense of the expected confidence and risk level of the project.
   
@@ -815,19 +815,22 @@ Evaluates that the system complies and achieves acceptance criteria with legal i
 Alpha testing is understand as a test done at the design team organization, but for colleages outside that team or project.
 Beta testing is a test done by the customer, client or interested parties at their own locations.
 
-
-
-
-
+TODO:
 
 Check, the methods, for testing: ccpcheck, vera ++, RATS, Jeckins, SonarQube, 
 Test Unitarios: XUnit, CppUTest
 Other sys: lcov, valgrind, ltrace, strace....
 
-Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https://www2.opengroup.org/ogsys/catalog/C13F
+Reference to check: Dependability through Assuredness™ (O-DA) Framework: https://www2.opengroup.org/ogsys/catalog/C13F
 
 
+## TEST TYPES:
 
+### Functional testing
+Functinal testing focus on the correctness of the system in perfom its expected task. 
+ 
+### Testing on Non-functional characteristics
+There are things aside the main functionality that also are required, those migth be: data or communitcations throughput. User interfaces, performance, memory use, scalability, safety, security, robustnes, avalibility, manteanability ..
 
 
 
