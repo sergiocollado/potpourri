@@ -766,20 +766,34 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 
 ## TEST LEVELS
 
-The different test at different architectural system levels, are known by different names, and its objective evaluates different system levels. The concept of the different test levels follows below. Is important to take into account, that the actual test may differ quite a lot, regarding the understanding of the system concept: for example, in an aircraft desing the system is the aeroplane, and one of its componets may be the landing system. On the other hand the landing system, is also a system by itself, and it depends on other severals components. So the key point, is that their actual test are going to be quite different, but the following descriptions, are related
-to the hieraquical structure of system in hands.
+The different test at different architectural system levels, are known by different names, and its objective evaluates different system levels. The concept of the different test levels follows below. Is important to take into account, that the actual test may differ quite a lot, regarding the understanding of the system concept: for example, in an aircraft desing the system is the aeroplane, and one of its componets may be the landing system. On the other hand the landing system, is also a system by itself, and it depends on other severals components. So the key point, is that their actual test are going to be quite different, but the following descriptions, are related to the hieraquical structure of system in hands.
 
 ### UNIT TEST aka COMPONENT TESTS:
 
-At the software level, the **unit test** is understood as a test to a basic function, algorithm or class. Its fundamental task is evaluated, not only its corretness but it can also cover not functional aspects, as performance, robustness, usability, ... 
+At the software level, the **unit test** is understood as a test to a basic function, algorithm, class or component. Usually the smallest unit on the system architecture. Its fundamental function and behavior is evaluated, not only its corretness but it can also cover not functional aspects, as performance, robustness, usability, ... 
 Unlikely the following test, this test usually is done by a developer, and it's record tends to be quite informal.
 At the hardware level, it is understand as a test to determine or clarify hardware components performance.
 
 ### INTEGRATION TESTS:
-The **integration test**, are understand as a test that looks for assesment of the performance between diferent modules, functions, classes, or componets in a system. 
+The **integration test**, are understand as a test that looks for assesment of the performance and correct behavior between diferent modules, functions, classes, or componets in a system. It usually check the interfaces between components, and the data workflow between them.
+
+ Usually the following are tested at the software level
+ - Interface between componets
+ - Possible configurations and behavior on those configuration
+ - The data workflows
+ 
+ Once the integration level for software is done, the system integration test with the hardware platform takes place:
+ 
+ Different strategies can be followd: Top-down, bottom-Up, functional tasks, user cases, ...
+ 
+ The integration test, is better done incrementatlly, firstly, testing the intefeace between pair components, and increasing the number of elements/modules tested, up the point that all the componentes/modules are tested together. This allows, to identify more easily the source of a failure, due it tends to appear before, and the number of components at play, is not all the whole system.
+ 
+ Non-functionoal characteristics, have to be tested also: as performance, ...
 
 ### SYSTEM TEST:
-The **systems test** goal is to ascertain fulfilment of the system expected functions, and other non-functional requirments, as security, safety, ...
+The **systems test** goal is to ascertain fulfilment of the system expected functions as a whole element, and also the non-functional requirements, as performance, security, safety, ... In the system test, the enviroment, condition and test should be as close as possible to its expected real function. So usually, the test are of the types: bussines cases, user cases.
+
+**Important** An independen test team, should carry the system tests.
 
 ### ACCEPTANCE TEST: 
 The aceptance test usually is done by the client that requested the system design or similar stackhorlders, an outside of the desing 
@@ -792,7 +806,7 @@ This type of test can have serveral faces:
 Evaluates the correct behavior of the system by a bussines user. As may be the case that a data system user interfece is correct for a person that is going to use it in a bank or similar.
 
 #### OAT: OPERATIONAL ACCEPTANCE TEST
-Evaluates that the system correctly performs it's defined function.
+Evaluates that the system correctly performs it's defined function by the system adimistrators.
 
 #### REGULATION AND CONTRACT ACCEPTANCE TEST
 Evaluates that the system complies and achieves acceptance criteria with legal issues (govern, law, contractual, materials, safety, enviromental, emitions ...)
