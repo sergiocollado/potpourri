@@ -626,8 +626,7 @@ estimation of the risks, risk analysys and priorities, must be done. The testing
 Testing activities should be started as soon as possible in the system development live. (TDD - explain this!!!)
 
 **4- Defect clustering** <br>
-As following the pareto law, (around 80% of the faults, are caused by a 20% of the design) in many cases some components have most of the defect density. Testing should be focus to them,
-to maximice the effectiveness of the testing efforts.
+As following the pareto law, (it is said, that around 80% of the system faults, are caused by a 20% of the design) in many cases some components have most of the defect density. Testing should be focus to them, to maximice the effectiveness of the testing efforts.
 
 **5- Pesticide paradox** <br>
 Running the same test again and again, makes that eventually the same set of test don't find any defect at all. Having into account that some schools of thought consider a succesfull test, that one that find defects ... it's a bit, like that set of test loses "effect". 
@@ -755,6 +754,7 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
  - Dependencies and resposabilites
  - Risks (possible risks for the project, as lack of resources, time deliveries overdue  ...)
  - Tools, equipment, software, resources and facilities
+ - References (list of normative elements, manuals, procedures, application notes, agreements, notes, ...)
 
  
  
