@@ -384,6 +384,7 @@ Follow recomendations for implementing the system.
     - DRY : Don't Repeat Yourself - don't write the same code blocks over and over again, just once, and call it when needed.
     - White and black lists.
     - safety and security recomendations and techniques.
+    - use lint programs that advice about the coding.
     - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances ... 
 - Implement a log mechanism in the system.
 - Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). 
@@ -1034,8 +1035,35 @@ Some Regulatory Bodies and Regulations
 Index
 
 
-
-
+MORE TOPICS TO CHECK.
+1.	Quantitative Methods
+System Safety Fundamentals
+Set/Probability Theories
+Bernoulli Process and Binomial Distribution
+Poisson Analysis
+Series/Parallel Networks
+Fault Tree Analysis
+Event Tree Approach
+Boolean Algebra
+Failure Data Analysis
+Decision Theory
+Risk Ranking
+2.	Management
+System and System Safety Life Cycle
+Hazard Analysis Techniques including
+	Logic/Change Analysis
+	Energy/Trace
+	FHA/FMECA
+	FTA
+	SCA
+Hazard Analysis Types including
+	PHA/SSHA, SHA and O & SHA
+System Safety Order of Precedence
+Amelioration
+System Safety Management Tasks
+Objectives/Life Cycles
+System Safety Program Plan
+Types of Risks/Assumption of Risks
 
 
 
