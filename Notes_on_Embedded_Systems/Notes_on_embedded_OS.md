@@ -49,6 +49,9 @@ hands-on into it: https://github.com/contiki-os/contiki/wiki
 
 All the documentation: http://contiki.sourceforge.net/docs/2.6/
 
+for energy estimations: https://github.com/mzimmerling/ptunes/blob/master/contiki/examples/energest-demo/contiki-sky-main.c
+
+
 Tutorials and more:
 
  - http://anrg.usc.edu/contiki/index.php/Broadcast_Example
@@ -59,6 +62,7 @@ Tutorials and more:
 Cooja manual:
 
  - https://www.researchgate.net/publication/304572240_Cooja_Simulator_Manual
+ 
  
 # TinyOS
 
