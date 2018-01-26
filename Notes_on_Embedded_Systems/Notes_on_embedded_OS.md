@@ -86,6 +86,8 @@ The main code of TinyOS consists on 401 components.
 
 Supports low power operations.
 
+tool for energy estimation: http://tinyos.stanford.edu/tinyos-wiki/index.php/Avrora
+
 Safe-tinyOS: http://tinyos.stanford.edu/tinyos-wiki/index.php/Safe_TinyOS
 
 ## Basics concepts of nesC
