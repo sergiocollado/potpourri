@@ -63,6 +63,9 @@ Cooja manual:
 
  - https://www.researchgate.net/publication/304572240_Cooja_Simulator_Manual
  
+Some cool demos:
+
+ - http://ai.vub.ac.be/Robotics/wiki/index.php/Some_cool_demos
  
 # TinyOS
 
