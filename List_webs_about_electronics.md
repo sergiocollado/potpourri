@@ -513,6 +513,8 @@ About Microsoft Windows:  https://www.lifewire.com/windows-key-concepts-4102717
 
 IBM research:  http://www.research.ibm.com/featured/whats-new.shtml
 
+SD card standards:  https://www.sdcard.org/developers/overview/index.html
+
 web to check regular expressions: https://regex101.com/
 
 
