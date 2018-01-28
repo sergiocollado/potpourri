@@ -1,3 +1,4 @@
+IP - Intellectual Propierty [electronics]
 ESR - Equivalent Series Resistance [power electronics]
 LPM - Low Power Mode [electronics]
 RDC - Radio Duty Cycling [protocols] [radio]
@@ -252,7 +253,6 @@ SO - Small Outline
 BSP - Board Support Package
 HAL - Hardware Abstraction Layer
 SDK - Software Development Kit
-
 V2I - [Vehicle to Infraestructure](https://www.its.dot.gov/v2i/) /https://www.pcb.its.dot.gov/t3_webinars.aspx
 AI -  Artificial Intelligence.
 ITS - Intelligent Transport System.
