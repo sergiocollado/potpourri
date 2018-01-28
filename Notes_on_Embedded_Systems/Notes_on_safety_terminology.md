@@ -734,31 +734,31 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 
 | iNDEX  | . | Description|
 | :---:|     :---:      |          :--- |
-| g   | g     |  Date of release, document version, document owner, approvals    |
-| g   | g     | Overview of the project    |
-| g   | g     | Document identification, objetives, goals, scope (this is the test plan document for XX project, and it explains the test plan for YY, intended for the system version ZZ, according to requirements version RR ...) and document history, and related needed documents (as normative, release notes, system version, system documentation, requirements document version).    |
-| g   | g     | Testing team, responsabilities and roles    |
-| g   | g     | Test goals and tasks   |
-| g   | g     | Asumptions   |
-| g   | g     | Test strategy    |
-| g   | g     | Test process squedule (timeline, deliverables, current and future needs)   |
-| g   | g     | Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it goot enought data?)    |
-| g   | g     | Unit tests    |
-| g   | g     | Integration tests    |
-| g   | g     | System test    |
-| g   | g     | Non-functional test (performance, interface, usability ...)   |
-| g   | g     | Traceability test-requirements    |
-| g   | g     | Minimun test set to execute to evaluate viability of a new version release (test basic functions and safety/security concerns).    |
-| g   | g     | Automated testing    |
-| g   | g     | Batch testing (automated regression testing)   |
-| g   | g     | Regression testing    |
-| g   | g     | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests   |
-| g   | g     | Features to be tested   |
-| g   | g     | Features to not be tested    |
-| g   | g     | Dependencies and resposabilites    |
-| g   | g     | Risks (possible risks for the project, as lack of resources, time deliveries overdue  ...)    |
-| g   | g     | Tools, equipment, software, resources and facilities    |
-| g   | g     | References (list of normative elements, manuals, procedures, application notes, agreements, notes, ...)   |
+| 1   | Presentation    |  Date of release, document version, document owner, approvals    |
+| 2   |      | Overview of the project    |
+| 3   |      | Document identification, objetives, goals, scope (this is the test plan document for XX project, and it explains the test plan for YY, intended for the system version ZZ, according to requirements version RR ...) and document history, and related needed documents (as normative, release notes, system version, system documentation, requirements document version).    |
+| 4   |      | Testing team, responsabilities and roles    |
+| 5   | Test Process      | Test goals and tasks   |
+| 6   |       | Asumptions   |
+| 7   |      | Features to be tested   |
+| 8   |      | Features to not be tested    |
+| 9   |      | Dependencies and resposabilites    |
+| 10   |      | Risks (possible risks for the project, as lack of resources, time deliveries overdue  ...)    |
+| 11   |      | Tools, equipment, software, resources and facilities    |
+| 12   |       | Test strategy    |
+| 13  |       | Test process squedule (timeline, deliverables, current and future needs)   |
+| 14   |       | Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it goot enought data?)    |
+| 15   |       | Unit tests  (procedures, cases, objetives, goals, requirements)  |
+| 16   |       | Integration tests  (procedures, cases, objetives, goals, requirements)  |
+| 17   |       | System test (procedures, cases, objetives, goals, requirements)   |
+| 18   |       | Non-functional test (performance, interface, usability ...)   |
+| 19   |       | Traceability test-requirements    |
+| 20   |       | Minimun set of test to execute to evaluate viability of a new version release (test basic functions and safety/security concerns).    |
+| 21   |       | Automated testing    |
+| 22  |       | Regression testing    |
+| 23  |       | Batch testing (automated regression testing)   |
+| 24  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests   |
+| 25  |      | References (list of normative elements, manuals, procedures, application notes, agreements, notes, ...)   |
 
  
  
