@@ -740,25 +740,28 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 | 4   |      | Testing team, responsabilities and roles    |
 | 5  |      | References (list of normative elements, manuals, procedures, application notes, agreements, notes, ...)   |
 | 6   | Test Process      | Test goals and tasks   |
-| 7   |       | Asumptions   |
-| 8   |      | Features to be tested   |
-| 9   |      | Features to not be tested    |
-| 10   |      | Dependencies and resposabilites    |
-| 11   |      | Risks (possible risks for the project, as lack of resources, time deliveries overdue  ...)    |
-| 12   |      | Tools, equipment, software, resources and facilities    |
-| 13   |       | Test strategy    |
-| 14|       | Test process squedule (timeline, deliverables, current and future needs)   |
-| 15   |       | Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it goot enought data?)    |
-| 16   |       | Unit tests  (procedures, cases, objetives, goals, requirements)  |
-| 17   |       | Integration tests  (procedures, cases, objetives, goals, requirements)  |
-| 18   |       | System test (procedures, cases, objetives, goals, requirements)   |
-| 19   |       | Non-functional test (performance, interface, usability ...)   |
-| 20   |       | Traceability test-requirements    |
-| 21   |       | Minimun set of test to execute to evaluate viability of a new version release (test basic functions and safety/security concerns).    |
-| 22   |       | Automated testing    |
-| 23  |       | Regression testing    |
-| 24  |       | Batch testing (automated regression testing)   |
-| 25  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests   |
+| 7 |        | list of documents, description and formats to use at the test process |
+| 8  |       | Asumptions   |
+| 9  |      | Features to be tested   |
+| 10  |      | Features to not be tested    |
+| 11   |      | Dependencies and resposabilites    |
+| 12   |      | Risks (possible risks for the project, as lack of resources, time deliveries overdue, lack of man-power, lack of quality test data  ...)    |
+| 13   |      | Tools, equipment, software, resources and facilities    |
+| 14   |       | Test strategy    |
+| 15|       | Test process squedule (timeline, deliverables, current and future needs)   |
+| 16   |       | Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it goot enought data?)    |
+| 17   |       | Unit tests  (procedures, cases, objetives, goals, requirements)  |
+| 18   |       | Integration tests  (procedures, cases, objetives, goals, requirements)  |
+| 19   |       | System test (procedures, cases, objetives, goals, requirements)   |
+| 20   |       | Non-functional test (performance, interface, usability ...)   |
+| 21   |       | Traceability test-requirements    |
+| 22   |       | Minimun set of test to execute to evaluate viability of a new version release (test basic functions and safety/security concerns).    |
+| 23   |       | Automated testing    |
+| 24  |       | Regression testing    |
+| 25  |       | Batch testing (automated regression testing)   |
+| 26  |       | Metrics to take into account  |
+| 27  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests   |
+
 
  
  
