@@ -748,7 +748,7 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 | 12   |      | Risks (possible risks for the project, as lack of resources, time deliveries overdue, lack of man-power, lack of quality test data  ...)    |
 | 13   |      | Tools, equipment, software, resources and facilities    |
 | 14   |       | Test strategy    |
-| 15|       | Test process squedule (timeline, deliverables, current and future needs)   |
+| 15|       | Test process squedule (timeline, control points, deliverables, current and future needs)   |
 | 16   |       | Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it goot enought data?)    |
 | 17   |       | Unit tests  (procedures, cases, objetives, goals, requirements)  |
 | 18   |       | Integration tests  (procedures, cases, objetives, goals, requirements)  |
@@ -760,7 +760,7 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 | 24  |       | Regression testing    |
 | 25  |       | Batch testing (automated regression testing)   |
 | 26  |       | Metrics to take into account  |
-| 27  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests   |
+| 27  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests; future preditions, problems to overcome or concerns   |
 
 
  
