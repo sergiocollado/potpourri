@@ -860,6 +860,47 @@ Static testing, is referred to those evaluations that don't need the system to b
 #### Review Process:
 There are several levels of review procoess depending on how formal they are done. the way the revision is carried out depends on its objectives: gain understanding of the system, presentation of the sistem, introduction to new team mebers to the system, or even an auditory.
 
+
+##### Types of review
+
+##### Informal review
+- There is no formal process
+- May be part of pair programming, or technical review of design, code, or architecture
+- Results may be documented
+- Varies in usefulness depending on the reviewers
+
+##### Walkthorugh
+- Led by the author
+- open-ended sessions. 
+  - optional pre-meeting work.
+  - optional report with findings.
+- may vary form very incormal to very formal.
+- main goal: gainning understanding, learning, finding defects.
+
+##### Technical review
+ - documented, defined formal defect-detection process.
+ - includes team members, colleages, technical experts, and optionally managers.
+ - may be performed by peer review.
+ - ideally led by trained moderator (not the author)
+ - pre-meeting preparation by the reviewers.
+ - optional use of checklists.
+ - includes a list of findings, notes, recommendations and veredict if the product meets the requirements.
+ - main goal: discuss, plan, make decissions, evaluate alternatives, find defects, solve technical problems, check conformace to requirements and specifications, regulations, standards,
+ 
+ ##### Inspections
+  - Led by a trainned moderator (not the author)
+  - usually conducted as a peer examination
+  - defined roles for the participants
+  - includes, metrics gatherings
+  - formal process based on rules and checklists
+  - defined entry and exit criteria for acceptace of the product
+  - pre-meeting preparation.
+  - documented by an inspection report, that includes findings.
+  - formall follow-up process.
+  - main goal: findign defects.
+  
+ 
+
 ##### Activities for a formal review
 
 The following activities use to be followed for a formal review.
@@ -890,7 +931,33 @@ The following activities use to be followed for a formal review.
      - Gather metrics
      - Checking exit criteria. (on formal reviews
      
-     
+TIP: Taking different points of view during a review, use of check lists, may made the review process more productive.
+    
+    
+##### Roles and responsabilities
+
+
+- **Manager** decides on the execution of reviews, allocates or reallocates project squedules and resources.
+- **Moderator** leds the meeting, the review of documents, planns the reviw process and its follow-up activities. the sucess of the review use to fall on him.
+- **Author** person with the final responsability of the document o set of documents to review.
+- **Reviewers** people with technical or bussiness background, who after the pre-meeting preparation, may identify and describe findigs or defects, under the product review. Reviewers should be chosen to represent differnet points of view, perspectives and roles in the process.
+- **Recorder** (Scribe) document all the relevant points, issues, questions, doubts, advices and considerations, identified during the meeting.
+
+##### Success factors for a review:
+
+- Each review has a definite objective
+- the right people takes part in the review
+- testers are valued reviewers who contribute to the review, who also learn from it, and helps them to start working on the test process earlier.
+- findings, even defects, are expected to be found, welcomed, and expressed objectively.
+- the review must take place in an athmosphere of trust; the outcome will no be used as an evaluation of the participants.
+- review techinques and activities are done, according to the level of the project and objectives.
+- Roles and checklist are used to increase effectiveness
+- Trainning is given for the more challenging and formal review process, as could be the inspection.
+- Management should suppor the review process, as for example allocating correct time for the review activities.
+- There is always and emphasis, in learning  and process improvement in the reviews processes.
+
+
+
 
 
 
@@ -903,18 +970,6 @@ Also check the following topics:
 http://www.sohar.com/proj_pub/download/
 
 https://en.wikipedia.org/wiki/Testing_Maturity_Model
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
