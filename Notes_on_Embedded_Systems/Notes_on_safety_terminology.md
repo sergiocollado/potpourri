@@ -745,23 +745,22 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 | 9  |      | Features to be tested   |
 | 10  |      | Features to not be tested    |
 | 11   |      | Dependencies and resposabilites    |
-| 12   |      | Risks (possible risks for the project, as lack of resources, time deliveries overdue, lack of man-power, lack of quality test data  ...)    |
-| 13   |      | Tools, equipment, software, resources and facilities    |
-| 14   |       | Test strategy    |
-| 15|       | Test process squedule (timeline, control points, deliverables, current and future needs)   |
-| 16   |       | Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it goot enought data?)    |
-| 17   |       | Unit tests  (procedures, cases, objetives, goals, requirements)  |
-| 18   |       | Integration tests  (procedures, cases, objetives, goals, requirements)  |
-| 19   |       | System test (procedures, cases, objetives, goals, requirements)   |
-| 20   |       | Non-functional test (performance, interface, usability ...)   |
-| 21   |       | Traceability test-requirements    |
-| 22   |       | Minimun set of test to execute to evaluate viability of a new version release (test basic functions and safety/security concerns).    |
-| 23   |       | Automated testing    |
-| 24  |       | Regression testing    |
-| 25  |       | Batch testing (automated regression testing)   |
-| 26  |       | Metrics to take into account  |
-| 27  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests; future preditions, problems to overcome or concerns   |
-
+| 12   |      | Tools, equipment, software, resources and facilities    |
+| 13   |       | Test strategy    |
+| 14|       | Test process squedule (timeline, control points, deliverables, current and future needs)   |
+| 15   |       | Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it goot enought data?)    |
+| 16   |       | Unit tests  (procedures, cases, objetives, goals, requirements)  |
+| 17   |       | Integration tests  (procedures, cases, objetives, goals, requirements)  |
+| 18   |       | System test (procedures, cases, objetives, goals, requirements)   |
+| 19  |       | Non-functional test (performance, interface, usability ...)   |
+| 20   |       | Traceability test-requirements    |
+| 21   |       | Minimun set of test to execute to evaluate viability of a new version release (test basic functions and safety/security concerns).    |
+| 22   |       | Automated testing    |
+| 23  |       | Regression testing    |
+| 24  |       | Batch testing (automated regression testing)   |
+| 25  |       | Metrics to take into account  |
+| 26  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests.  |
+| 27   |      | Risks (possible risks for the project, as lack of resources, time deliveries overdue, lack of man-power, lack of quality test data, future preditions, problems to overcome or concerns   ...)    |
 
  
  
