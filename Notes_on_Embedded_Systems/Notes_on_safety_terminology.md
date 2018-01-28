@@ -735,30 +735,30 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 | iNDEX  | . | Description|
 | :---:|     :---:      |          :--- |
 | 1   | Presentation    |  Date of release, document version, document owner, approvals    |
-| 2   |      | Overview of the project    |
+| 2   |      | introduction and overview of the project    |
 | 3   |      | Document identification, objetives, goals, scope (this is the test plan document for XX project, and it explains the test plan for YY, intended for the system version ZZ, according to requirements version RR ...) and document history, and related needed documents (as normative, release notes, system version, system documentation, requirements document version).    |
 | 4   |      | Testing team, responsabilities and roles    |
-| 5   | Test Process      | Test goals and tasks   |
-| 6   |       | Asumptions   |
-| 7   |      | Features to be tested   |
-| 8   |      | Features to not be tested    |
-| 9   |      | Dependencies and resposabilites    |
-| 10   |      | Risks (possible risks for the project, as lack of resources, time deliveries overdue  ...)    |
-| 11   |      | Tools, equipment, software, resources and facilities    |
-| 12   |       | Test strategy    |
-| 13  |       | Test process squedule (timeline, deliverables, current and future needs)   |
-| 14   |       | Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it goot enought data?)    |
-| 15   |       | Unit tests  (procedures, cases, objetives, goals, requirements)  |
-| 16   |       | Integration tests  (procedures, cases, objetives, goals, requirements)  |
-| 17   |       | System test (procedures, cases, objetives, goals, requirements)   |
-| 18   |       | Non-functional test (performance, interface, usability ...)   |
-| 19   |       | Traceability test-requirements    |
-| 20   |       | Minimun set of test to execute to evaluate viability of a new version release (test basic functions and safety/security concerns).    |
-| 21   |       | Automated testing    |
-| 22  |       | Regression testing    |
-| 23  |       | Batch testing (automated regression testing)   |
-| 24  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests   |
-| 25  |      | References (list of normative elements, manuals, procedures, application notes, agreements, notes, ...)   |
+| 5  |      | References (list of normative elements, manuals, procedures, application notes, agreements, notes, ...)   |
+| 6   | Test Process      | Test goals and tasks   |
+| 7   |       | Asumptions   |
+| 8   |      | Features to be tested   |
+| 9   |      | Features to not be tested    |
+| 10   |      | Dependencies and resposabilites    |
+| 11   |      | Risks (possible risks for the project, as lack of resources, time deliveries overdue  ...)    |
+| 12   |      | Tools, equipment, software, resources and facilities    |
+| 13   |       | Test strategy    |
+| 14|       | Test process squedule (timeline, deliverables, current and future needs)   |
+| 15   |       | Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it goot enought data?)    |
+| 16   |       | Unit tests  (procedures, cases, objetives, goals, requirements)  |
+| 17   |       | Integration tests  (procedures, cases, objetives, goals, requirements)  |
+| 18   |       | System test (procedures, cases, objetives, goals, requirements)   |
+| 19   |       | Non-functional test (performance, interface, usability ...)   |
+| 20   |       | Traceability test-requirements    |
+| 21   |       | Minimun set of test to execute to evaluate viability of a new version release (test basic functions and safety/security concerns).    |
+| 22   |       | Automated testing    |
+| 23  |       | Regression testing    |
+| 24  |       | Batch testing (automated regression testing)   |
+| 25  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests   |
 
  
  
