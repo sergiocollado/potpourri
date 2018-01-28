@@ -826,13 +826,13 @@ Reference to check: Dependability through Assuredness™ (O-DA) Framework: https
 ## TEST TYPES:
 
 ### Functional testing
-Functinal testing focus on the correctness of the system in perfom its expected task. 
+Functinal testing focus on the correctness of the system, and that it perfom as expected. 
  
 ### Testing on Non-functional characteristics
 There are things aside the main functionality that also are required, those migth be: data or communitcations throughput. User interfaces, performance, usability, scalability, safety, security, robustnes, avalibility, manteanability ..
 
 ## Structure or Architectural Testing. 
-Is the evaluation of some parameters of stadistics of the system, as for example how complex it is (ciclomatix complexity), the number of control flow structures (if, else, for, while)... and evaluation of the system, with the knoledge of its inner workings. 
+It is also knwon as a **white-box** testing. Is the evaluation of some parameters of stadistics of the system, as for example how complex it is (ciclomatix complexity), the number of control flow structures (if, else, for, while)... and evaluation of the system, with the knoledge of its inner workings. 
 
 ## Testing related with changes: Re-testing and Regression testing.
 When doing the test sets, failded test, must be repeated to assert them, and exclude the possibility of a  possible error due to the context, conditions, equipment used, ....  
@@ -849,6 +849,48 @@ When a test case of a system involves the actual run of the system, this is know
 Dinamic testing usually makes us of stubs/drivers, execution from a debugger enviroment. And is also quite common to automate it.
  
 Static testing, is referred to those evaluations that don't need the system to be running. Those are techniques as: code review, revision, walkthoruhgs, inspection, and alsouse of programs that automatically ckeck the code propierties (as could be: detection of 'dead code' (code that will never execute)unused variables, missing pointers, out of bound arrays, wrong types varaible asignations, lost of precission in mathematical operations, ...) 
+
+### Static Techniques:
+
+ Static techniques are based on the evaluation and analysis of the code, of the system, documentation, requirements or desing especifications, test plan, test cases, test scripts, without the execution of the code, also any other related work can be evaluated as, the  This is opposed to the dynamic testing, which relates to the actual run of the system and code. For example: a revision can find requirements issues, that are much more harder to pinpoint in dynamic testing.
+ 
+ This is an important medhod and can be done well before the dynamic test execution.The advantages of the defect detectections at an early point in the project live include early correction, increase of productivity, reduction of development times, cost of testing, 
+
+
+#### Review Process:
+There are several levels of review procoess depending on how formal they are done. the way the revision is carried out depends on its objectives: gain understanding of the system, presentation of the sistem, introduction to new team mebers to the system, or even an auditory.
+
+##### Activities for a formal review
+
+The following activities use to be followed for a formal review.
+
+ 1 Planning
+     - Definition of the documents to review.
+     - Definition of the review criteria
+     - Selection of the team personnel
+     - Definition of roles.
+     - Definition of entry and exit criterias (on formal review types: as inspections)
+     - Selection of the documents and parts to review.
+     - Check entry crietera.
+ 2 Kick-off
+     - Distribution of the documentos
+     - Explanation of the objetives, processes and documents to the team that is going to do the review.
+ 3 Individual work
+     - Prepare the meeting tasts: as the review of the documents.
+     - Annotate potential issues, defects, notes, open points and questions.
+ 4 Examination/Evaluation/record of the result (actual review meeting)
+     - open discussion or evaluation about the findings. 
+     - keep track of the defects found, make recomendations for handling them, and decisions. 
+     - record of minutes of the meeeting, in the case it is a formal review.
+ 5 Rework
+     - Fix the issues or topics found (usually done by the author)
+     - Record status of the update of the defects (on formal reviews)
+ 6 Follow-up
+     - Check the defects that have been adressed
+     - Gather metrics
+     - Checking exit criteria. (on formal reviews
+     
+     
 
 
 
