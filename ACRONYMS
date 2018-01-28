@@ -1,3 +1,8 @@
+SDLC - Software Development Live Cycle.
+TEC - Transmission Error Count [protocols]
+REC - Received Error Count [protocols]
+EOF - End of frame [protocols]
+SOF - Start of Frame [protocols]
 LVS - Layout Versus Schematics. [electronics]
 DRC - Design Check Rules [electronics]
 COT - Customer-Owned-Tooling [electronics]
