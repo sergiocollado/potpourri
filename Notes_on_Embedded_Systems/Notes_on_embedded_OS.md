@@ -134,3 +134,6 @@ support common wireless protocols for constrained resourced systems as: 6LoWPAN 
 distributed systems can be easily implemented using the kernel system API.
 
 
+ACRONYMS:
+
+WCET - Worst Case Execution Time
