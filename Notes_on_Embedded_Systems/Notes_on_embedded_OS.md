@@ -137,3 +137,4 @@ distributed systems can be easily implemented using the kernel system API.
 ACRONYMS:
 
 WCET - Worst Case Execution Time
+CFG - Control Flow Graph
