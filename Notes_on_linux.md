@@ -79,13 +79,14 @@ gcc: http://gcc.gnu.org/
 
 journal: http://www.linuxjournal.com
 
-## Starting with a Linux Sytem.
+## Starting with a Linux System.
 
-Most probabliy if you have get a already designed Linux systems, there are many chances that lenguaje is set to english, and you must change it to you keyboard cofingurations. For datat you should just, run the following command:
+Most commonly you would use an already designed Linux system, there are many chances that lenguage is set to english, and you must change it to you keyboard cofingurations. Just for reference: u should  run the following command:
 
 ```bash
 $> del lang=es
 ```
+
 You should change the 'es' to your langauge code. And rememember than in an english keyboard, the 'equal sign' is next to the back space key.
 
 ## Linux File System
@@ -96,7 +97,7 @@ The linux file system usually has the following structure:
     - **/bin** user binaries
     - **/sbin** system binaries
     - **/etc** configuration files
-    - **/dev** device files
+    - **/dev** device files*
     - **/proc** processes information
     - **/var** variable files (as logs)
     - **/tmp** temporary files
@@ -366,6 +367,8 @@ FIO : flexible I/o testing: https://linux.die.net/man/1/fio
 Linux Drivers for ADIC ICs: https://wiki.analog.com/resources/tools-software/linux-drivers-all
 
 Independent magazine for Ubuntu users: https://fullcirclemagazine.org/
+
+bactraces:   https://www.gnu.org/software/libc/manual/html_node/Backtraces.html
 
 For building distros:
 
