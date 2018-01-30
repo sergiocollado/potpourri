@@ -752,7 +752,7 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 | 16   |       | Unit tests  (procedures, cases, objetives, goals, requirements)  |
 | 17   |       | Integration tests  (procedures, cases, objetives, goals, requirements)  |
 | 18   |       | System test (procedures, cases, objetives, goals, requirements)   |
-| 19  |       | Non-functional test (performance, interface, usability ...)   |
+| 19  |       | Non-functional test (performance, escalability, interface, usability, safety, robustness, availability,  ...)   |
 | 20   |       | Traceability test-requirements    |
 | 21   |       | Minimun set of test to execute to evaluate viability of a new version release (test basic functions and safety/security concerns).    |
 | 22   |       | Automated testing    |
