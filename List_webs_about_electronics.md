@@ -238,6 +238,8 @@ Italian observatory: http://www.astrogeo.va.it/
 
 http://space.skyrocket.de/
 
+nasa files :    https://www.nasa.gov/missions
+
 optics and tutorils on microscopy: http://zeiss-campus.magnet.fsu.edu/tutorials/index.html
 
 shop RF elements: https://www.ondamania.com/b2c/inicio.php
@@ -291,7 +293,11 @@ TMC [Traffic Message Channel](http://tisa.org/technologies/tpeg/) - [TMC coverag
 
 DAB: [capabiliteis](https://worlddabeureka.org/2013/09/05/so-you-think-it-is-only-radio/)
 
-Way_Back_Machiine:  http://archive.org/web/web.php
+Way_Back_Machine:  http://archive.org/web/web.php
+
+Reference programming functions for Arduino:   https://www.arduino.cc/reference/en/
+
+Delay/Disruption Tolerant Networking:   https://www.nasa.gov/content/dtn
 
 
 
@@ -400,6 +406,13 @@ intersil
 renersas
 
 eSilicon
+
+Hitachi
+
+Toshiva
+
+NXP
+
 
 
 # MATHS
