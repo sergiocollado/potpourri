@@ -138,3 +138,52 @@ extern const input_signal;  //treated as a READ-ONLY variable.
 ```
 
 
+ ## FAST APROXIMATION  -	Other tricks of the trade:
+
+I will just expose some other math ‘tricks’, just in case, but of course, they all imply the trade between performance and accuracy. Then for that reason, I don’t consider to use them at this moment.
+
+ ### 	Simple-Precision Divide:
+ 
+To compute: 
+
+
+Z[i]=A[i]/B[i] 
+
+
+On a large vector of single-precision numbers, Z[i] can be calculated by a divide operation, or by multiplying 1/B[i] by A[i]. Denoting B[i] by N, it is possible to calculate 1/N using the (V)RCPPS instruction, achieving approximately 11-bit precision. 
+For better accuracy, you can use the one Newton-Raphson iteration:
+
+
+X_(0 ) ~= 1/N ; //Initial estimation, rcp(N)
+
+X_(0 ) = 1/N*(1-E)
+
+E=1-N*X_0; //E ~= 2^ (-11) 
+
+X_1=X_0*(1+E) =1/N*(1-E^2); //E^2 ~= 2^(-22)
+
+X_1=X_0*(1+1-N*X_0) =2 *X_0 - N*X_0^2
+
+ X_1 approximates 1/N with approximately 22-bit precision.
+
+### Single Precision Reciprocal Square Root.
+
+To compute Z[i]=1/ (A[i]) ^0.5 on a large vector of single-precision numbers, denoting A[i] by N, it is possible to calculate 1/N using the (V)RSQRTPS instruction. For better accuracy you can use one Newton-Raphson iteration: 
+
+
+X_0 ~=1/N ; Initial estimation RCP(N) 
+
+E=1-N*X_0^2 X_0= (1/N)^0.5 * ((1-E)^0.5 ) = (1/N)^0.5 * (1-E/2) ; E/2~= 2^(-11) 
+
+X_1=X_0*(1+E/2) ~= (1/N)^0.5 * (1-E^2/4) ; E^2/4?2^(-22) 
+
+X_1=X_0*(1+1/2-1/2*N*X_0^2 )= 1/2*X_0*(3-N*X_0^2)
+
+ X1 is an approximation of (1/N)^0.5 with approximately 22-bit precision.
+
+ ###	Single precision square root
+
+To compute Z[i]= (A[i])^0.5 on a large vector of single-precision numbers, denoting A[i] by N, the approximation for N^0.5 is N multiplied by (1/N)^0.5 , where the approximation for (1/N)^0.5 is described in the previous section. 
+To get approximately 22-bit precision of N^0.5, use the following calculation: 
+
+N^0.5 = X_1*N = 1/2*N*X_0*(3-N*X_0^2)
