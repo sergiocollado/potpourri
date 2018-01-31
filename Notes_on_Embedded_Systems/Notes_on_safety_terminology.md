@@ -313,6 +313,19 @@ R(a) = p(a) * s(a);
 **Fault**: A fault is either a failure or an error.
 
 
+# OTHER CONCEPTS:
+
+**DEBUGING**: locate and correct a defect.
+
+
+# STANDARDS AND NORMATIVES:
+
+ISO 31000 - standards for risk management:
+ - ISO 31000 - Principles and guide lines for implementation.
+ - ISO 31010 - Risk management, and risk assesment techniques. 
+ - ISO Guide 73 - Vocabulary
+ 
+
 
 # SYSTEM DEVELOPMENT LIFE CICLE
 
@@ -377,7 +390,7 @@ Follow recomendations for implementing the system.
 - Implementation of recovery systems.
 - Follow design and architecture patterns:
     - SOLID principles
-         - Single responsability principle.
+         - Single responsability principle. (SRP).
          - Open - Closed principle.
          - Liskov substitution principle.
          - Segregation principle.
@@ -385,8 +398,9 @@ Follow recomendations for implementing the system.
     - White and black lists.
     - safety and security recomendations and techniques.
     - use lint programs that advice about the coding.
-    - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances ... 
+    - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances, use DRC (design rule checks), , simulate the hardware, run montecarlo simulation analysis on the hardware.
 - Implement a log mechanism in the system.
+- Have a method to identify the software, and version of the system.
 - Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). 
 
 ## Defensive programming
@@ -762,13 +776,7 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 | 26  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests.  |
 | 27   |      | Risks (possible risks for the project, as lack of resources, time deliveries overdue, lack of man-power, lack of quality test data, future preditions, problems to overcome or concerns   ...)    |
 
- 
- 
  <!-- http://www.softwaretestinghelp.com/test-plan-sample-softwaretesting-and-quality-assurance-templates/  -->
-
-
-
-
 
 ## TEST LEVELS
 
@@ -824,7 +832,7 @@ Beta testing is a test done by the customer, client or interested parties at the
 TODO:
 
 Check, the methods, for testing: ccpcheck, vera ++, RATS, Jeckins, SonarQube, 
-Test Unitarios: XUnit, CppUTest
+Test Unitarios: XUnit (C# .NET) , CppUTest
 Other sys: lcov, valgrind, ltrace, strace....
 
 Reference to check: Dependability through Assuredness™ (O-DA) Framework: https://www2.opengroup.org/ogsys/catalog/C13F
@@ -833,18 +841,26 @@ Reference to check: Dependability through Assuredness™ (O-DA) Framework: https
 ## TEST TYPES:
 
 ### Functional testing
-Functinal testing focus on the correctness of the system, and that it perfom as expected. 
+Functinal testing focus on the correctness of the system, and that it perfoms and behaves as expected. It is applied to all the different test levels: unit, component, integration, system. Its usually is done by means of requirement and specification checks, but also to user cases. Is also common that it uses the black-block testing methodology.
  
 ### Testing on Non-functional characteristics
-There are things aside the main functionality that also are required, those migth be: data or communitcations throughput. User interfaces, performance, usability, scalability, safety, security, robustnes, avalibility, manteanability ..
+There are things aside the main functionality that also are required, those migth be: data or communitcations throughput. User interfaces, performance, usability, scalability, safety, security, robustnes, avalibility, manteanability, stress testing, portability,  .. Non-functional testing can be done at all test levels: unit, component, integration, and system. 
+
+Sometimes, this the non-functioal characteristics, are mapped to the ISO 9126 - Software Quality Product.
 
 ## Structure or Architectural Testing. 
-It is also knwon as a **white-box** testing. Is the evaluation of some parameters of stadistics of the system, as for example how complex it is (ciclomatix complexity), the number of control flow structures (if, else, for, while)... and evaluation of the system, with the knoledge of its inner workings. 
+It is also knwon as a **white-box** testing. Is the evaluation of some parameters of stadistics of the system behavior, as for example how complex it is (ciclomatix complexity), the number of control flow structures (if, else, for, while) and the overall of the tested code...  with the kwnoledge of its inner workings.
+
+It is best used after the black-box techniques, to assert the throuroghness of the testing.
+
+It can be used at all the testing levels: unit, component, integration and system levels.
 
 ## Testing related with changes: Re-testing and Regression testing.
-When doing the test sets, failded test, must be repeated to assert them, and exclude the possibility of a  possible error due to the context, conditions, equipment used, ....  
-On the other had, when a new part of the system is added to the development, some times happen, that this new code, or component, affects other parts of the system, in the worst case, making the to fail its pourpose.... to check this possibility, a set of test, 
-is runned that checks previous functionalitites, in order to verify the rest of the system, keeps workfing fine. 
+When doing the test sets, failded test, must be repeated to assert them, and exclude the possibility of a  possible error due to the context, conditions, enviroment, equipment used or other causes. 
+
+On the other had, when a new part of the system is added to the development, some times that  new code, function, or component, affects other element of the system; and in the worst case, making the to fail its pourpose or expected function .... to check this possibility, a set of test, is done, so it checks previous functionalitites, in order to verify the rest of the system, keeps working fine. 
+
+This type of testing, is usually good candidate for automation.
 
 
 ## TEST TECHNIQUES:
@@ -903,8 +919,8 @@ There are several levels of review procoess depending on how formal they are don
   - defined entry and exit criteria for acceptace of the product
   - pre-meeting preparation.
   - documented by an inspection report, that includes findings.
-  - formall follow-up process.
-  - main goal: findign defects.
+  - formal follow-up process.
+  - main goal: findiNG defects.
   
  
 
@@ -977,12 +993,6 @@ Also check the following topics:
 http://www.sohar.com/proj_pub/download/
 
 https://en.wikipedia.org/wiki/Testing_Maturity_Model
-
-
-
-
-
-
 
 
 
@@ -1170,18 +1180,28 @@ System Safety Program Plan
 Types of Risks/Assumption of Risks
 
 
-
-
-
 ACRONYMS:
 
 UAT - User Acceptance Test
+
 COTS -Comertial Of The Shexxcf (software, hardware or device)
+
 DUT - Device Under Test
+
 TDD - Test Driven Development.
+
 sloc - source lines of code.
+
 BER - byte error Rate
+
 STAMP - Systems Theoretic Accident Model&Processes
+
 SLA - Service Level Agreement. (to check the availability of the system).
+
 HA - High Availability (system)
+
 SOTIF - Safety of the Intended Functionality
+
+ISO 9126 - Software Product Quality.
+
+
