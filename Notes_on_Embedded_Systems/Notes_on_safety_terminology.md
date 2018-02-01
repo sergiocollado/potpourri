@@ -320,12 +320,22 @@ R(a) = p(a) * s(a);
 
 # STANDARDS AND NORMATIVES:
 
-ISO 31000 - standards for risk management:
+
+ 
+ IEC 61508 - standard for functional safety in electric and electronic systems
+ 
+ ISO 31000 - standards for risk management:
  - ISO 31000 - Principles and guide lines for implementation.
  - ISO 31010 - Risk management, and risk assesment techniques. 
  - ISO Guide 73 - Vocabulary
  
-
+ IEC 62061 - ISO 13849 - specific aplication of the 61508 standard for manufacturing industry
+ 
+ (EMC) Directive 2014/30/EU   - https://ec.europa.eu/growth/sectors/electrical-engineering/emc-directive_en
+ 
+ Low Voltage Directive (LVD) (2014/35/EU) - https://ec.europa.eu/growth/sectors/electrical-engineering/lvd-directive_en
+ 
+ Radio Equipment Directive (2014/53/EU) - https://ec.europa.eu/growth/sectors/electrical-engineering/red-directive_en
 
 # SYSTEM DEVELOPMENT LIFE CICLE
 
@@ -1000,6 +1010,7 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 
 LIABILITY:
 
+As far as the manufacturer complies with the required standards, it is assumed that it did not act negligently. Therefore, the legal consecuences in case of an issue, will be reduced to the minimum.
 
 address any legal and regulatory requirements, such as FAA requirements for aviation. By setting a standard for which a system is required to be developed under, it forces the designers to stick to the requirements. The avionics industry has succeeded in producing standard methods for producing life-critical avionics software. Similar standards exist for automotive (ISO 26262), Medical (IEC 62304) and nuclear (IEC 61513) industries. The standard approach is to carefully code, inspect, document, test, verify and analyze the system. Another approach is to certify a production system, a compiler, and then generate the system's code from specifications. Another approach uses formal methods to generate proofs that the code meets requirements.[8] All of these approaches improve the software quality in safety-critical systems by testing or eliminating manual steps in the development process, because people make mistakes, and these mistakes are the most common cause of potential life-threatening errors.
 
