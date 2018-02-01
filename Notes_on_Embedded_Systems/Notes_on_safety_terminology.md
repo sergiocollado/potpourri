@@ -320,22 +320,44 @@ R(a) = p(a) * s(a);
 
 # STANDARDS AND NORMATIVES:
 
+ ## BASIC REGULATIONS:
 
- 
- IEC 61508 - standard for functional safety in electric and electronic systems
- 
- ISO 31000 - standards for risk management:
- - ISO 31000 - Principles and guide lines for implementation.
- - ISO 31010 - Risk management, and risk assesment techniques. 
- - ISO Guide 73 - Vocabulary
- 
- IEC 62061 - ISO 13849 - specific aplication of the 61508 standard for manufacturing industry
- 
  (EMC) Directive 2014/30/EU   - https://ec.europa.eu/growth/sectors/electrical-engineering/emc-directive_en
  
  Low Voltage Directive (LVD) (2014/35/EU) - https://ec.europa.eu/growth/sectors/electrical-engineering/lvd-directive_en
  
  Radio Equipment Directive (2014/53/EU) - https://ec.europa.eu/growth/sectors/electrical-engineering/red-directive_en
+
+
+ ## BASIC FOR SAFETY:
+
+IEC 61508 - standard for functional safety in electric and electronic systems
+ 
+EN ISO 12100 - Concepts and principles for risck assesment.
+ 
+ISO 31000 - standards for risk management:
+ - ISO 31000 - Principles and guide lines for implementation.
+ - ISO 31010 - Risk management, and risk assesment techniques. 
+ - ISO Guide 73 - Vocabulary
+ 
+EN 60204-1 - Safety on Machinery - electrical equipment of machines. Part 1 : General Requirements.
+ 
+ ## SAFETY STANDARDS:
+
+ISO 26262 - Automotive
+ISO 25119 - Agriculture
+ISO 13849 & IEC 62061 - Machinery
+IEC 60601 - Medical
+DO-178B - Aviation
+EN 50126 - 50128 - 50129 Railway
+IEC 61513 - Nuclear Power
+IEC 50156 - Furnaces 
+IEC 60335 - Hosehold Appliances
+IEC 61511 - Industrial Processes
+IEC 62061 & ISO 13849 - Manufacturing industry
+
+
+
 
 # SYSTEM DEVELOPMENT LIFE CICLE
 
@@ -352,7 +374,6 @@ If there is significant confidence to overcome all those challenges, the the fol
  - **Development**: Implementation of the system, an the different modules it is made of: hardware, software, ... user interface, communication protocols, power supplies, logging system, metrics of the system. Also includes the project documentation, release notes, use instructions, manuals and learning lessons.
  
  - **Testing**: Evaluation of the performance of the systems, so it can be determined if it reaches the expected goals. Validation, verification and test, riks and acceptance reports. 
-
 
 
 
