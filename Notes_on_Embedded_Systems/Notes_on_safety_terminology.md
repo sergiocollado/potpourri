@@ -328,12 +328,15 @@ R(a) = p(a) * s(a);
  
  Radio Equipment Directive (2014/53/EU) - https://ec.europa.eu/growth/sectors/electrical-engineering/red-directive_en
 
+ Standard for Software Test documentation: IEEE STD 829-1998.
+ 
+ Software Quality Product -  ISO 9126 - Software Quality Product.
 
  ## BASIC FOR SAFETY:
 
 IEC 61508 - standard for functional safety in electric and electronic systems
  
-EN ISO 12100 - Concepts and principles for risck assesment.
+EN ISO 12100 - Concepts and principles for risk assesment.
  
 ISO 31000 - standards for risk management:
  - ISO 31000 - Principles and guide lines for implementation.
@@ -752,10 +755,10 @@ Functinal testing focus on the correctness of the system, and that it perfoms an
 
   Some possible methods are:
   
-  SIL: software in the Loop
+  **SIL**: software in the Loop
    The software is tested against a model, that model reflets the requirements and specifications. Is a methodology based on simulation. This method is best used at integration or system level, because with the models (logical, mathematic or physic ...) we can simulate the rest of the modules, or system elements, which makes the testing somehow easier and faster. Of course the models must be accurate, otherwise, false positives or negatives can be obtained in the test results. 
    
-  HIL: hardware in the Loop
+  **HIL**: hardware in the Loop
   The hardware under test is tested, but the remain of the system or signals, or elements external to that hardware can be simulated, according to fitting models of elements. The advantage is that only the harware we are interest it is needed and the other elements of the system don't need to physically be in the test lab/facility.
   This is a simulation methodology, and best used at integration and system level. As with all the simulation methodologies the model must be significative enought. At the hardware level, it represents, signal propierties, response and reaction times, ...
   
@@ -845,6 +848,7 @@ Examples of test control actions are:
 - Repriorinzing tests, and identification of potential risks (need of more team members, need of more equipment, or additional tools ...)
 - Change of the test squedule, based on the abailability of equipment or facilities.
 - Setting the criteria about re-testing issues, for including those modifications into the system build.
+- trace test done versus the requirements they check.
 
  </br> </br>
  
@@ -852,7 +856,7 @@ Examples of test control actions are:
 
 The designed test procedures are implemented, and a certain execution sequence for the tests has to be defined in order to run the set of test (usually according to priority). When the test platform and enviroment is set up, the test cases are run, executed, and evaluated.
 
-The objetive and aim of the text execution is:
+The objetive and goals of the text execution is:
 
 - Implementation, and definition of the expected results, and execution order and priority of the test cases.
 - develop test procedures, create test data, optionally preparing test hardeness and writting automating test scripts.
@@ -861,12 +865,14 @@ The objetive and aim of the text execution is:
 - verification and update if needed, of bi-directional trazability between the test cases and requeriments.
 - Execution of the test, according to the test procedure. Log of the test execution relevant information, as identification of the
 different elements involved, as system version: , software and hardware version, prototype identification, tools, device under test, execution time, and other significant data needed.
+- definition of the test trazability to the requirements it checks.
 - Definition of the criteria for comparation and evaluation of the test with the expected results.
 - Repeat test that failed out of the expected results to confirm the issue, and gather new information details if possible. check if the 
 efect is always reproducible, or it is sporadic....
 - Record and logging of the tests results, significant test conditions, enviroment or other data that may be userful. 
 - If new issues are found, _regression testing_ (test all the system to asure that new code or components haven't affected the rest of the developed system) may be advisable, to check that new issues has not appear in other stable parts of the systems.
 - Report discrepancies with the expected results, outliers, incidents, and misperformances, or unexpected issues and analyse them in order to identify a possible root-cause. (defect in the code implementation, invalid input data or conditions (as could be: data out of bounds, damaged equipment, wrong procedure, ...)
+- the test documentatinos must be according to the "Standard for Software Test documentation": IEEE STD 829-1998.
 
  </br> </br>
  
@@ -877,6 +883,7 @@ efect is always reproducible, or it is sporadic....
 - Report of the failed test!!!
 - Modification over the test, or expected results should be planned.
 - Reports should be done for the stackholders, and system team members.
+- The test documentatinos must be according to the "Standard for Software Test documentation": IEEE STD 829-1998.
 
 ### Test plan clousure activities.
  
@@ -893,7 +900,7 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 
 ### Test plan document index example guide:
 
-
+As always, the test documentation must be according to the "Standard for Software Test documentation": IEEE STD 829-1998.
 
 
 | iNDEX  | . | Description|
