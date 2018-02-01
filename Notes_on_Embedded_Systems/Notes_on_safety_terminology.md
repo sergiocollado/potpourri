@@ -755,6 +755,25 @@ There are things aside the main functionality that also are required, those migt
 
 Sometimes, this the non-functioal characteristics, are mapped to the ISO 9126 - Software Quality Product.
 
+a list of possible non-functional characteristics:
+
+ - data processing volume & load stress: performance under peaks of data
+ - usability: how easy it is to use
+ - security: security evaluation
+ - safety: safety evaluation
+ - performance: if it complies with responses times and data throughput
+ - memory & storage: amount of memory needed
+ - configuration: check behavior under defined configurations
+ - compatibility: compatibility with defined versions
+ - installation: evaluation methods
+ - reliability: evaluation on the trusth of the proper behavior of the sw. 
+ - availabilty: evaluation of the up time and down time of the system (MTBF)
+ - recovery: evaluation of recovery methods
+ - maintenance: evaluation of maintenance methods.
+ - documentation: evaluation of documentation of the system.
+ 
+ 
+
 ## Structure or Architectural Testing. 
 It is also knwon as a **white-box** testing. Is the evaluation of some parameters of stadistics of the system behavior, as for example how complex it is (ciclomatix complexity), the number of control flow structures (if, else, for, while) and the overall of the tested code...  with the kwnoledge of its inner workings.
 
@@ -762,7 +781,7 @@ It is best used after the black-box techniques, to assert the throuroghness of t
 
 It can be used at all the testing levels: unit, component, integration and system levels.
 
-## Testing related with changes: Re-testing and Regression testing.
+## Testing related with changes: Re-testing and Regression testing (also Maintenance testing)
 When doing the test sets, failded test, must be repeated to assert them, and exclude the possibility of a  possible error due to the context, conditions, enviroment, equipment used or other causes. 
 
 On the other had, when a new part of the system is added to the development, some times that  new code, function, or component, affects other element of the system; and in the worst case, making the to fail its pourpose or expected function .... to check this possibility, a set of test, is done, so it checks previous functionalitites, in order to verify the rest of the system, keeps working fine. 
@@ -873,14 +892,14 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 | 3   |      | Document identification, objetives, goals, scope (this is the test plan document for XX project, and it explains the test plan for YY, intended for the system version ZZ, according to requirements version RR ...) and document history, and related needed documents (as normative, release notes, system version, system documentation, requirements document version).    |
 | 4   |      | Testing team, responsabilities and roles    |
 | 5  |      | References (list of normative elements, manuals, procedures, application notes, agreements, notes, ...)   |
-| 6   | Test Process      | Test goals and tasks   |
+| 6   | Test Process      | Test goals and tasks  |
 | 7 |        | List of documents, description and formats to use at the test process |
 | 8  |       | Asumptions   |
 | 9  |      | Features to be tested   |
 | 10  |      | Features to not be tested    |
 | 11   |      | Dependencies and resposabilites    |
 | 12   |      | Tools, equipment, software, resources and facilities    |
-| 13   |       | Test strategy    |
+| 13   |       | Test strategy  (how are de test cases are designed)   |
 | 14|       | Test process squedule (timeline, control points, deliverables, current and future needs)   |
 | 15   |       | Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it goot enought data?)    |
 | 16   |       | Unit tests  (procedures, cases, objetives, goals, requirements)  |
@@ -1253,3 +1272,5 @@ CENELEC - European Committee for electrotechnical Standarization
 IEC - International Electrotechnical Commision
 
 ISO - Internationale Organization for Standarization
+
+SRS - System requirements specification
