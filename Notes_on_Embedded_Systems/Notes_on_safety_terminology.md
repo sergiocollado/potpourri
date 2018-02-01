@@ -910,24 +910,24 @@ As always, the test documentation must be according to the "Standard for Softwar
 | 3   |      | Document identification, objetives, goals, scope (this is the test plan document for XX project, and it explains the test plan for YY, intended for the system version ZZ, according to requirements version RR ...) and document history, and related needed documents (as normative, release notes, system version, system documentation, requirements document version).    |
 | 4   |      | Testing team, responsabilities and roles    |
 | 5  |      | References (list of normative elements, manuals, procedures, application notes, agreements, notes, ...)   |
-| 6   | Test Process      | Test goals and tasks  |
+| 6 |      Test Process      | Test goals and tasks  |
 | 7 |        | List of documents, description and formats to use at the test process |
-| 8  |       | Asumptions   |
+| 8  |       | Asumptions and enviroments (hardware platform, operating system, applications, ...)   |
 | 9  |      | Features to be tested   |
 | 10  |      | Features to not be tested    |
 | 11   |      | Dependencies and resposabilites    |
-| 12   |      | Tools, equipment, software, resources and facilities    |
+| 12   |      | test Tools, equipment, software, resources and facilities    |
 | 13   |       | Test strategy  (how are de test cases are designed)   |
-| 14|       | Test process squedule (timeline, control points, deliverables, current and future needs)   |
-| 15   |       | Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it goot enought data?)    |
-| 16   |       | Unit tests  (procedures, cases, objetives, goals, requirements)  |
-| 17   |       | Integration tests  (procedures, cases, objetives, goals, requirements)  |
-| 18   |       | System test (procedures, cases, objetives, goals, requirements)   |
+| 14|       | Test process squedule (time for analysis and design, timeline test process, control points, deliverables, current and future expected events or needs)   |
+| 15   |       | Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it good enought data (relevant, accurate and significative) ?)    |
+| 16   |       | Unit tests  (procedures, cases, objetives, goals, requirements, trazability, input data, **expected data**)  |
+| 17   |       | Integration tests   (procedures, cases, objetives, goals, requirements, trazability, input data, **expected data**)  |
+| 18   |       | System test  (procedures, cases, objetives, goals, requirements, trazability, input data, **expected data**)   |
 | 19  |       | Non-functional test (performance, escalability, interface, usability, safety, robustness, availability,  ...)   |
-| 20   |       | Traceability test-requirements    |
+| 20   |       | Traceability test-requirements and specifications |
 | 21   |       | Minimun set of test to execute to evaluate viability of a new version release (test basic functions and safety/security concerns).    |
-| 22   |       | Automated testing    |
-| 23  |       | Regression testing    |
+| 22   |      | Regression testing    |
+| 23  |       | Automated testing   |
 | 24  |       | Batch testing (automated regression testing)   |
 | 25  |       | Metrics to take into account  |
 | 26  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests.  |
