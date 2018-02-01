@@ -315,7 +315,7 @@ R(a) = p(a) * s(a);
 
 # OTHER CONCEPTS:
 
-**DEBUGING**: locate and correct a defect.
+**DEBUGING**: locate, pin-point the root-cause and correct a defect.
 
 
 # STANDARDS AND NORMATIVES:
@@ -683,6 +683,95 @@ Testing depends on the context. A safe-critical system test is not at all the sa
 Even if no defects are found, it doesn't proof that the system is usable, or complies with the end-user expectations.
 
 
+
+
+## TEST LEVELS
+
+The different test at different architectural system levels, are known by different names, and its objective evaluates different system levels. The concept of the different test levels follows below. Is important to take into account, that the actual test may differ quite a lot, regarding the understanding of the system concept: for example, in an aircraft desing the system is the aeroplane, and one of its componets may be the landing system. On the other hand the landing system, is also a system by itself, and it depends on other severals components. So the key point, is that their actual test are going to be quite different, but the following descriptions, are related to the hieraquical structure of system in hands.
+
+### UNIT TEST aka MODULE TEST also COMPONENT TESTS:
+
+At the software level, the **unit test** is understood as a test to a basic function, algorithm, class or component. Usually the smallest unit on the system architecture. Its fundamental function and behavior is evaluated, not only its corretness but it can also cover not functional aspects, as performance, robustness, usability, ... 
+Unlikely the following test, this test usually is done by a developer, and it's record tends to be quite informal.
+At the hardware level, it is understand as a test to determine or clarify hardware components performance.
+
+### INTEGRATION TESTS:
+The **integration test**, are understand as a test that looks for assesment of the performance and correct behavior between diferent modules, functions, classes, or componets in a system. It usually check the interfaces between components, and the data workflow between them.
+
+ Usually the following are tested at the software level
+ - Interface between componets
+ - Possible configurations and behavior on those configuration
+ - The data workflows
+ 
+ Once the integration level for software is done, the system integration test with the hardware platform takes place:
+ 
+ Different strategies can be followd: Top-down, bottom-Up, functional tasks, user cases, ...
+ 
+ The integration test, is better done incrementatlly, firstly, testing the intefeace between pair components, and increasing the number of elements/modules tested, up the point that all the componentes/modules are tested together. This allows, to identify more easily the source of a failure, due it tends to appear before, and the number of components at play, is not all the whole system.
+ 
+ Non-functionoal characteristics, have to be tested also: as performance, ...
+
+### SYSTEM TEST:
+The **systems test** goal is to ascertain fulfilment of the system expected functions as a whole element, and also the non-functional requirements, as performance, security, safety, ... In the system test, the enviroment, condition and test should be as close as possible to its expected real function. So usually, the test are of the types: bussines cases, user cases.
+
+**Important** An independen test team, should carry the system tests.
+
+### ACCEPTANCE TEST: 
+The aceptance test usually is done by the client that requested the system design or similar stackhorlders, an outside of the desing 
+team labs or place. The objetive of this test, is independent evaluation of the system regarding to its designers. Usually is also quite 
+useful to define functions that are outside of the defined or specified requirements. It also have a very important role, for following up and check the project milestones. 
+
+This type of test can have serveral faces:
+
+#### UAT: USER ACCEPTANCE TEST
+Evaluates the correct behavior of the system by a bussines user. As may be the case that a data system user interfece is correct for a person that is going to use it in a bank or similar.
+
+#### OAT: OPERATIONAL ACCEPTANCE TEST
+Evaluates that the system correctly performs it's defined function by the system adimistrators.
+
+#### REGULATION AND CONTRACT ACCEPTANCE TEST
+Evaluates that the system complies and achieves acceptance criteria with legal issues (govern, law, contractual, materials, safety, enviromental, emitions ...)
+
+#### ALPHA AND BETA TESTS:
+Alpha testing is understand as a test done at the design team organization, but for colleages outside that team or project.
+Beta testing is a test done by the customer, client or interested parties at their own locations.
+
+TODO:
+
+Check, the methods, for testing: ccpcheck, vera ++, RATS, Jeckins, SonarQube, 
+Test Unitarios: XUnit (C# .NET) , CppUTest
+Other sys: lcov, valgrind, ltrace, strace....
+
+Reference to check: Dependability through Assuredness™ (O-DA) Framework: https://www2.opengroup.org/ogsys/catalog/C13F
+
+
+## TEST TYPES:
+
+### Functional testing
+Functinal testing focus on the correctness of the system, and that it perfoms and behaves as expected. It is applied to all the different test levels: unit, component, integration, system. Its usually is done by means of requirement and specification checks, but also to user cases. Is also common that it uses the black-block testing methodology.
+ 
+### Testing on Non-functional characteristics
+There are things aside the main functionality that also are required, those migth be: data or communitcations throughput. User interfaces, performance, usability, scalability, safety, security, robustnes, avalibility, manteanability, stress testing, portability,  .. Non-functional testing can be done at all test levels: unit, component, integration, and system. 
+
+Sometimes, this the non-functioal characteristics, are mapped to the ISO 9126 - Software Quality Product.
+
+## Structure or Architectural Testing. 
+It is also knwon as a **white-box** testing. Is the evaluation of some parameters of stadistics of the system behavior, as for example how complex it is (ciclomatix complexity), the number of control flow structures (if, else, for, while) and the overall of the tested code...  with the kwnoledge of its inner workings.
+
+It is best used after the black-box techniques, to assert the throuroghness of the testing.
+
+It can be used at all the testing levels: unit, component, integration and system levels.
+
+## Testing related with changes: Re-testing and Regression testing.
+When doing the test sets, failded test, must be repeated to assert them, and exclude the possibility of a  possible error due to the context, conditions, enviroment, equipment used or other causes. 
+
+On the other had, when a new part of the system is added to the development, some times that  new code, function, or component, affects other element of the system; and in the worst case, making the to fail its pourpose or expected function .... to check this possibility, a set of test, is done, so it checks previous functionalitites, in order to verify the rest of the system, keeps working fine. 
+
+This type of testing, is usually good candidate for automation.
+
+
+
+
 ## Test process steps and activities.
 
 At the testing context, the first action to do, is to define the **Test Plan** for that, several key points have to
@@ -785,7 +874,7 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 | 4   |      | Testing team, responsabilities and roles    |
 | 5  |      | References (list of normative elements, manuals, procedures, application notes, agreements, notes, ...)   |
 | 6   | Test Process      | Test goals and tasks   |
-| 7 |        | list of documents, description and formats to use at the test process |
+| 7 |        | List of documents, description and formats to use at the test process |
 | 8  |       | Asumptions   |
 | 9  |      | Features to be tested   |
 | 10  |      | Features to not be tested    |
@@ -808,91 +897,6 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 | 27   |      | Risks (possible risks for the project, as lack of resources, time deliveries overdue, lack of man-power, lack of quality test data, future preditions, problems to overcome or concerns   ...)    |
 
  <!-- http://www.softwaretestinghelp.com/test-plan-sample-softwaretesting-and-quality-assurance-templates/  -->
-
-## TEST LEVELS
-
-The different test at different architectural system levels, are known by different names, and its objective evaluates different system levels. The concept of the different test levels follows below. Is important to take into account, that the actual test may differ quite a lot, regarding the understanding of the system concept: for example, in an aircraft desing the system is the aeroplane, and one of its componets may be the landing system. On the other hand the landing system, is also a system by itself, and it depends on other severals components. So the key point, is that their actual test are going to be quite different, but the following descriptions, are related to the hieraquical structure of system in hands.
-
-### UNIT TEST aka COMPONENT TESTS:
-
-At the software level, the **unit test** is understood as a test to a basic function, algorithm, class or component. Usually the smallest unit on the system architecture. Its fundamental function and behavior is evaluated, not only its corretness but it can also cover not functional aspects, as performance, robustness, usability, ... 
-Unlikely the following test, this test usually is done by a developer, and it's record tends to be quite informal.
-At the hardware level, it is understand as a test to determine or clarify hardware components performance.
-
-### INTEGRATION TESTS:
-The **integration test**, are understand as a test that looks for assesment of the performance and correct behavior between diferent modules, functions, classes, or componets in a system. It usually check the interfaces between components, and the data workflow between them.
-
- Usually the following are tested at the software level
- - Interface between componets
- - Possible configurations and behavior on those configuration
- - The data workflows
- 
- Once the integration level for software is done, the system integration test with the hardware platform takes place:
- 
- Different strategies can be followd: Top-down, bottom-Up, functional tasks, user cases, ...
- 
- The integration test, is better done incrementatlly, firstly, testing the intefeace between pair components, and increasing the number of elements/modules tested, up the point that all the componentes/modules are tested together. This allows, to identify more easily the source of a failure, due it tends to appear before, and the number of components at play, is not all the whole system.
- 
- Non-functionoal characteristics, have to be tested also: as performance, ...
-
-### SYSTEM TEST:
-The **systems test** goal is to ascertain fulfilment of the system expected functions as a whole element, and also the non-functional requirements, as performance, security, safety, ... In the system test, the enviroment, condition and test should be as close as possible to its expected real function. So usually, the test are of the types: bussines cases, user cases.
-
-**Important** An independen test team, should carry the system tests.
-
-### ACCEPTANCE TEST: 
-The aceptance test usually is done by the client that requested the system design or similar stackhorlders, an outside of the desing 
-team labs or place. The objetive of this test, is independent evaluation of the system regarding to its designers. Usually is also quite 
-useful to define functions that are outside of the defined or specified requirements. It also have a very important role, for following up and check the project milestones. 
-
-This type of test can have serveral faces:
-
-#### UAT: USER ACCEPTANCE TEST
-Evaluates the correct behavior of the system by a bussines user. As may be the case that a data system user interfece is correct for a person that is going to use it in a bank or similar.
-
-#### OAT: OPERATIONAL ACCEPTANCE TEST
-Evaluates that the system correctly performs it's defined function by the system adimistrators.
-
-#### REGULATION AND CONTRACT ACCEPTANCE TEST
-Evaluates that the system complies and achieves acceptance criteria with legal issues (govern, law, contractual, materials, safety, enviromental, emitions ...)
-
-#### ALPHA AND BETA TESTS:
-Alpha testing is understand as a test done at the design team organization, but for colleages outside that team or project.
-Beta testing is a test done by the customer, client or interested parties at their own locations.
-
-TODO:
-
-Check, the methods, for testing: ccpcheck, vera ++, RATS, Jeckins, SonarQube, 
-Test Unitarios: XUnit (C# .NET) , CppUTest
-Other sys: lcov, valgrind, ltrace, strace....
-
-Reference to check: Dependability through Assuredness™ (O-DA) Framework: https://www2.opengroup.org/ogsys/catalog/C13F
-
-
-## TEST TYPES:
-
-### Functional testing
-Functinal testing focus on the correctness of the system, and that it perfoms and behaves as expected. It is applied to all the different test levels: unit, component, integration, system. Its usually is done by means of requirement and specification checks, but also to user cases. Is also common that it uses the black-block testing methodology.
- 
-### Testing on Non-functional characteristics
-There are things aside the main functionality that also are required, those migth be: data or communitcations throughput. User interfaces, performance, usability, scalability, safety, security, robustnes, avalibility, manteanability, stress testing, portability,  .. Non-functional testing can be done at all test levels: unit, component, integration, and system. 
-
-Sometimes, this the non-functioal characteristics, are mapped to the ISO 9126 - Software Quality Product.
-
-## Structure or Architectural Testing. 
-It is also knwon as a **white-box** testing. Is the evaluation of some parameters of stadistics of the system behavior, as for example how complex it is (ciclomatix complexity), the number of control flow structures (if, else, for, while) and the overall of the tested code...  with the kwnoledge of its inner workings.
-
-It is best used after the black-box techniques, to assert the throuroghness of the testing.
-
-It can be used at all the testing levels: unit, component, integration and system levels.
-
-## Testing related with changes: Re-testing and Regression testing.
-When doing the test sets, failded test, must be repeated to assert them, and exclude the possibility of a  possible error due to the context, conditions, enviroment, equipment used or other causes. 
-
-On the other had, when a new part of the system is added to the development, some times that  new code, function, or component, affects other element of the system; and in the worst case, making the to fail its pourpose or expected function .... to check this possibility, a set of test, is done, so it checks previous functionalitites, in order to verify the rest of the system, keeps working fine. 
-
-This type of testing, is usually good candidate for automation.
-
 
 ## TEST TECHNIQUES:
   
