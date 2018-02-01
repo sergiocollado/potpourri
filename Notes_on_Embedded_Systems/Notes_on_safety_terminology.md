@@ -1215,4 +1215,16 @@ SOTIF - Safety of the Intended Functionality
 
 ISO 9126 - Software Product Quality.
 
+SIL - SOFTWARE IN THE LOOP
 
+SIL - SAFETY INTEGRITY LEVEL
+
+HIL - HARDWARE IN THE LOOP
+
+CEN - European Comitee for Standarizacion 
+
+CENELEC - European Committee for electrotechnical Standarization 
+
+IEC - International Electrotechnical Commision
+
+ISO - Internationale Organization for Standarization
