@@ -749,6 +749,17 @@ Reference to check: Dependability through Assuredness™ (O-DA) Framework: https
 
 ### Functional testing
 Functinal testing focus on the correctness of the system, and that it perfoms and behaves as expected. It is applied to all the different test levels: unit, component, integration, system. Its usually is done by means of requirement and specification checks, but also to user cases. Is also common that it uses the black-block testing methodology.
+
+  Some possible methods are:
+  
+  SIL: software in the Loop
+   The software is tested against a model, that model reflets the requirements and specifications. Is a methodology based on simulation. This method is best used at integration or system level, because with the models (logical, mathematic or physic ...) we can simulate the rest of the modules, or system elements, which makes the testing somehow easier and faster. Of course the models must be accurate, otherwise, false positives or negatives can be obtained in the test results. 
+   
+  HIL: hardware in the Loop
+  The hardware under test is tested, but the remain of the system or signals, or elements external to that hardware can be simulated, according to fitting models of elements. The advantage is that only the harware we are interest it is needed and the other elements of the system don't need to physically be in the test lab/facility.
+  This is a simulation methodology, and best used at integration and system level. As with all the simulation methodologies the model must be significative enought. At the hardware level, it represents, signal propierties, response and reaction times, ...
+  
+  In both previous simulation techniques the model used, must be such that it can reproduce accuratly all the significant and relevant behaviours of the system.
  
 ### Testing on Non-functional characteristics
 There are things aside the main functionality that also are required, those migth be: data or communitcations throughput. User interfaces, performance, usability, scalability, safety, security, robustnes, avalibility, manteanability, stress testing, portability,  .. Non-functional testing can be done at all test levels: unit, component, integration, and system. 
