@@ -1,6 +1,5 @@
  # NOTES ON EMBEDDED SYSTEMS SAFETY
 
-
  # BASIC CONCEPTS and DEFINITIONS:
  
 **EMBEDDED SYSTEM**: An embedded system, is a system, that combines software and hardware designs. It is common, that they have some kind of HMI (human machine interface) or UI (User Interface) as displays, keyboards, et cetera. Also is quite common, at least use of one network communication protocol. Embedded systems have fixed capabilities but are programmable, and they are designed for a specific function or functions. 
@@ -330,7 +329,7 @@ R(a) = p(a) * s(a);
 
  Standard for Software Test documentation: IEEE STD 829-1998.
  
- Software Quality Product -  ISO 9126 - Software Quality Product.
+ Software Quality Product -  ISO 9126
 
  ## BASIC FOR SAFETY:
 
@@ -413,10 +412,10 @@ http://nob.cs.ucdavis.edu/bishop/secprog/robust.html </br>
 Follow recomendations for implementing the system.
 
 - Use coding standards and recomendations:
-    - meanful comments
-    - Always define the variable inizialization values
-    - Use indentation, and meanful comments
-    - Never ever programm an infinite loop.
+    - meanfully comments.
+    - Always define the variable inizialization values.
+    - Use indentation.
+    - Never ever programm an infinite loop. (under a wort case design it will block execution)
     - Never ever use magic numbers.
     - implement error handling in their own functions (so they done use up cache memory).
 - Write modular systems (loose dependancy)
@@ -441,7 +440,7 @@ Follow recomendations for implementing the system.
 
 ## Defensive programming
 
-Defensive programming is a defensive coding style intended to ensure the continuing function of a program under unforeseen circunstances. This code style is usually used in systems with need high availability, safety and security.
+Defensive programming is a defensive coding style intended to ensure the continuing function of a program under unforeseen circunstances. This code style is usually used in systems with need high availability, safety and security. Techniques include error function handling for as much error types as possible and the use of exeptions.
 
 ### Techniques:
 
@@ -770,7 +769,7 @@ A list of possible non-functional characteristics:
  - security: security evaluation
  - safety: safety evaluation
  - robustness: 
- - fail-tolerant: 
+ - faull-tolerant: 
  - availabilty: evaluation of the up time and down time of the system (MTBF)
  - documentation: evaluation of documentation of the system.
  - dependability:
@@ -805,17 +804,27 @@ This type of testing, is usually good candidate for automation.
 ## TEST METHODOLOGIES AND DESIGN TECHNIQUES:
 
 
-### BLACK-BOX TECHINIQUES:
+### BLACK-BOX TECHNIQUES:
 
 Black-box techinques, refers to those test methods, that don't need to known the inner workings of the device under test. 
 its is named: black-box ... because you can't see what is inside. Usually they are based and designed to evaluate the compliement of the requirements and specifications.
+
+The most common black-box techniques are:
+- Equivalence partitioning
+- Boundary value analysis
+- States and transition testing
+- User-case testing
+
+Also common techniques for implementing the previous tests are:
+ - SIL: Software in a loop
+ - HIL: Harware in a loop
 
 #### EQUIVALENCE PARTITIONING:
 The inputs to the sistem are classified into groups or value ranges, that have and expected equivalent response, so they are expected to be processed in the same way. This groups of values, can be for example: group of correct or valid inputs or data, group of incorrect (or not valid) inputs or data. These ranges of values, are kwnown as 'partitions'. This way the test, are designed so the check the behavior of the system for every partition. 
 
 - Equivalence partitioning can be used in any test level. (unit, component, integration, system ...)
 
-### BOUNDARY VALUE ANALYSIS:
+#### BOUNDARY VALUE ANALYSIS:
 
 Many times, for the input partitioning, the edge value, that limits between partitions, may have an incorrect behavior with respect its expected response. So the boundary values of the partitions are tested to look for defects. The boundary values of valid and invalid inputs must be tested. This methodology usually is tested at the same time that the equivalence partitioning, as they are very closely related.
 
@@ -827,34 +836,54 @@ Equivalence partitioning and boundary values analysis are methods, that evaluate
 The degin of equivalence partitioning tests, and boundary test analysis, starts from the analysys of the requirement and specifications of the system.
 
 
-### DECISION TESTING and STATE TRANSITION TESTING:
+#### STATES and TRANSITION TESTING:
 When the system under test has to behave according to state machines or transition systems, or other similar logical or sequencial behaviors, decision tables are a good option to check that the system complies with its expected behavior. So the decision tables, specifie the triggering condition or actions that imply a state change, then all the combination of this action or events are tested. This methodolgy, often is combined, with others as: **code coverage** and **decision coverage** (these are described later in the text). 
 
 
-### USER-CASE TESTS:
-A test that mimics a real user scenario, is kwnow as user case test. A user-case test, aims to emulate the interaction, and common action and situations of the system under test and a normal user. User-case tests, check the data-flow and the process-flow, and how the system is likely to work. 
+#### USER-CASE TESTS:
+A test that mimics a real user scenario, is kwnow as user case test. A user-case test, aims to emulate the interaction, and common action and situations of the system under test and a normal user. User-case tests, check the data-flow and the process-flow, and how the system is likely to work.
 
 User-cases test are specially useful to discover integration and sytem defect, because they exercice the behavior of the overall system. Also they are commonly used for acceptance tests by stackholders of the project. 
 
 The design of the user-case test, starts **from gathering information from the stackhoders or final user**, of the expected common user interactions with the system under design.
 
 #### SIL: Software in the Loop
-   The software is tested against a model, that model reflets the requirements and specifications. Is a methodology based on simulation. This method is best used at integration or system level, because with the models (logical, mathematic or physic ...) we can simulate the rest of the modules, or system elements, which makes the testing somehow easier and faster. Of course the models must be accurate, otherwise, false positives or negatives can be obtained in the test results. 
+   The software is tested against a model, that model reflects the requirements, specifications and expected behavior of the system. Is a method based on simulation. This method is best used at integration or system level, because with the models (logical, mathematic or physic ...) we can simulate the rest of the modules, or system elements, which makes the testing somehow easier and faster. Of course the models must be accurate, otherwise, false positives or negatives can be obtained in the test results. 
    
 #### HIL: Hardware in the Loop
   The hardware under test is tested, but the remain of the system or signals, or elements external to that hardware can be simulated, according to fitting models of elements. The advantage is that only the harware we are interest it is needed and the other elements of the system don't need to physically be in the test lab/facility.
+  
   This is a simulation methodology, and best used at integration and system level. As with all the simulation methodologies the model must be significative enought. At the hardware level, it represents, signal propierties, response and reaction times, ...
   
-  In both previous simulation techniques the model used, must be such that it can reproduce accuratly all the significant and relevant behaviours of the system.
+  In both previous simulation techniques, a system model is used, so it must be such that it can reproduce accurately all the significant and relevant behaviours of the system.
+
+
+### WHITE-BOX TECHNIQUES:
+
+White-box techniques are those that require the kwnoledge of the inner workings of the system under test. 
+
+For software the most common are:
+ - Statement testing and statement coverage
+ - Decision testing and decision coverage
+
+#### STATEMENT COVERAGE:
+Is the evaluation of the percentage of all statemenst (lines of code) which have been exercised by the testing. Usually test are designed so different code blocks can be executed, so the test suits will aim to cover and exercite as much code as possible. The account of the code executed is done by code instrumentation by means of auxiliar libraries. 
+
+#### DECISION TESTING and COVERAGE:
+This test accounts the percentage over all of different branchs exercised in the code execution (at the control flow structures: if, else, for, while ...). Tests are desiged, so different conditions are met at the different branch evaluation points. The aim is to account for as much program possible flows as possible. 
+
+**NOTE**: A 100% decision coverage implies a 100% code coverage, but the other way around is not true: a 100% does not guarantee a 100% decision coverage.
 
 
 
-### WHITE-BOX TECHINIQUES:
+### EXPERIENCED BASED TECHNIQUES:
 
 
 
 
-## Test process steps and activities.
+
+
+## TEST PROCESS STEPS and ACTIVITIES
 
 At the testing context, the first action to do, is to define the **Test Plan** for that, several key points have to
 be defined:
@@ -1044,7 +1073,6 @@ There are several levels of review procoess depending on how formal they are don
   - main goal: findiNG defects.
   
  
-
 ##### Activities for a formal review
 
 The following activities use to be followed for a formal review.
@@ -1099,12 +1127,6 @@ The following activities use to be followed for a formal review.
 - Trainning is given for the more challenging and formal review process, as could be the inspection.
 - Management should suppor the review process, as for example allocating correct time for the review activities.
 - There is always and emphasis, in learning  and process improvement in the reviews processes.
-
-
-
-
-
-
 
 
 
