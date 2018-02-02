@@ -1292,3 +1292,7 @@ IEC - International Electrotechnical Commision
 ISO - Internationale Organization for Standarization
 
 SRS - System requirements specification
+
+SQI - Software Quality Institute.
+
+SPICE - International Standard for Software Process Assesment.
