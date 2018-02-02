@@ -647,7 +647,7 @@ A key concept to take into account is: that **it is not the development process 
 
 **By testing a system behavior against its expected behavior, allows the identification of a defect in the system implementation. Once an defect is pin-pointed is then analized, corrected or fixed. As result of this action, the system is improved. Also, as a consequence, the chance that other defects, unknown issues or unexpected behaviors, remain in the system is reduced, and thus the confidence on the system is increased.**
  
-The test process is of main importance in the project, due it evaluates the quality of the system, and give the stackholders, and the involved team, a sense of the expected confidence and risk level of the project.
+The test process is of main importance in the project, due it evaluates the quality of the system, and give the stackholders, and the involved team, a sense of the expected confidence and risk level of the project. **This allows to take informed decisions and choices on the project execution, effort estimation, timelines and other project activities.**
   
 ## HOW MUCH TESTING IS NEEDED?
 
