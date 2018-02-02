@@ -40,11 +40,10 @@ Q <sub>1</sub> and Q <sub>2</sub> (vector **r**).
 
 
 
-<br>
-That force will be also proportional to a constant <b>k <sub>e</sub></b>, in the Internationa
-System of units, **SI** , it has the value:
-
-<br>
+</br>
+That force will be also proportional to a constant k <sub>e</sub>, in the International System of units (SI), it has the value:
+</br>
+</br>
 <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/coulomb_constant.svg" style="border:1px solid black" alt="coulomb constant">
 <br>
      
@@ -115,13 +114,11 @@ A good point, is that is possible to use the superposition principle with these 
 
  Once we know the forces that electric charges exert one on each others, the concept of a force field is develop. 
  
- Force field: 
- Is the map of forces (as a vector magnitude), over a given particle, and which is not enough as to modify the rest of the system -so
- its influence is infinitesimal-
+ ### Force field: 
+ Is the region of the space where forces can be perceived. Usually a force field is represented visually as a map of forces (as a vector magnitude). A force field can be expressed mathematically as the vector function of the forces over an element for a given position.
  
- Electric Force field:
- Is the force field over the space, caused by Coulomb forces (electrostatic forces), over a charge of value the unit  1 Coulomb. This
- is the same as the force per unit of charge.
+ ### Electric Force field:
+Is the force field over the space, caused by Coulomb forces (electrostatic forces), over a charge of value the unit 1 Coulomb. The 1 Coulmb charge definition is due this is the same as consider the force per unit of charge.
  
  So according to this definition we can consider the Electric Field, represented by **E**, for a given point charge, of value Q as:
  
