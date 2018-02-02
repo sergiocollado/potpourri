@@ -717,7 +717,7 @@ The **integration test**, are understand as a test that looks for assesment of t
 ### SYSTEM TEST:
 The **systems test** goal is to ascertain fulfilment of the system expected functions as a whole element, and also the non-functional requirements, as performance, security, safety, ... In the system test, the enviroment, condition and test should be as close as possible to its expected real function. So usually, the test are of the types: bussines cases, user cases.
 
-**Important** An independen test team, should carry the system tests.
+**Important** An independent test team, should carry the system tests.
 
 ### ACCEPTANCE TEST: 
 The aceptance test usually is done by the client that requested the system design or similar stackhorlders, an outside of the desing 
@@ -799,6 +799,8 @@ This type of testing, is usually good candidate for automation.
 
 ### BLACK-BOX TECHINIQUES:
 
+Black-box techinques, refers to those test methods, that don't need to known the inner workings of the device under test. 
+its is named: black-box ... because you can't see what is inside. Usually they are based and designed to evaluate the compliement of the requirements and specifications.
 
 #### EQUIVALENCE PARTITIONING:
 The inputs to the sistem are classified into groups or value ranges, that have and expected equivalent response, so they are expected to be processed in the same way. This groups of values, can be for example: group of correct or valid inputs or data, group of incorrect (or not valid) inputs or data. These ranges of values, are kwnown as 'partitions'. This way the test, are designed so the check the behavior of the system for every partition. 
@@ -807,13 +809,31 @@ The inputs to the sistem are classified into groups or value ranges, that have a
 
 ### BOUNDARY VALUE ANALYSIS:
 
+Many times, for the input partitioning, the edge value, that limits between partitions, may have an incorrect behavior with respect its expected response. So the boundary values of the partitions are tested to look for defects. The boundary values of valid and invalid inputs must be tested. This methodology usually is tested at the same time that the equivalence partitioning, as they are very closely related.
+
+- Equivalence partitioning can be used in any test level. (unit, component, integration, system ...)
 
 
+Equivalence partitioning and boundary values analysis are methods, that evaluate the correct behavior of the device under test, according to the input and expected outputs. 
 
-  #### SIL: software in the Loop
+The degin of equivalence partitioning tests, and boundary test analysis, starts from the analysys of the requirement and specifications of the system.
+
+
+### DECISION TESTING and STATE TRANSITION TESTING:
+When the system under test has to behave according to state machines or transition systems, or other similar logical or sequencial behaviors, decision tables are a good option to check that the system complies with its expected behavior. So the decision tables, specifie the triggering condition or actions that imply a state change, then all the combination of this action or events are tested. This methodolgy, often is combined, with others as: **code coverage** and **decision coverage** (these are described later in the text). 
+
+
+### USER-CASE TESTS:
+A test that mimics a real user scenario, is kwnow as user case test. A user-case test, aims to emulate the interaction, and common action and situations of the system under test and a normal user. User-case tests, check the data-flow and the process-flow, and how the system is likely to work. 
+
+User-cases test are specially useful to discover integration and sytem defect, because they exercice the behavior of the overall system. Also they are commonly used for acceptance tests by stackholders of the project. 
+
+The design of the user-case test, starts **from gathering information from the stackhoders or final user**, of the expected common user interactions with the system under design.
+
+#### SIL: Software in the Loop
    The software is tested against a model, that model reflets the requirements and specifications. Is a methodology based on simulation. This method is best used at integration or system level, because with the models (logical, mathematic or physic ...) we can simulate the rest of the modules, or system elements, which makes the testing somehow easier and faster. Of course the models must be accurate, otherwise, false positives or negatives can be obtained in the test results. 
    
-  #### HIL: hardware in the Loop
+#### HIL: Hardware in the Loop
   The hardware under test is tested, but the remain of the system or signals, or elements external to that hardware can be simulated, according to fitting models of elements. The advantage is that only the harware we are interest it is needed and the other elements of the system don't need to physically be in the test lab/facility.
   This is a simulation methodology, and best used at integration and system level. As with all the simulation methodologies the model must be significative enought. At the hardware level, it represents, signal propierties, response and reaction times, ...
   
@@ -821,12 +841,7 @@ The inputs to the sistem are classified into groups or value ranges, that have a
 
 
 
-
-
-
-
-
-
+### WHITE-BOX TECHINIQUES:
 
 
 
