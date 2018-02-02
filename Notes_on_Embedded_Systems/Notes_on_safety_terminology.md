@@ -639,7 +639,10 @@ Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https
 
 Another important point, is that the test process helps to find and discover issues, bugs, faults or defects that may apppear in the system. The test process is even helpful for identification of major cases or points in the system, that have been left out of the specifications or requirements, an actually need to be taken into account.
 
-A key concept to realice is: that **it is not the development process what asures of the quality of the system** (of course, it helps quite a lot), **is the testing process what confirms and asures the quality of the project**
+A key concept to take into account is: that **it is not the development process what asures of the quality of the system** (of course, it helps quite a lot), **is the testing process what confirms and asures the quality of the project**
+
+-- As a disambiguation, 'test' and 'debug' are different concepts. Usually the developers are the ones that debug the system. While testers identify issues and deffects. 
+**What is debuging?":** is the location, root-cause identification and fix of a defect or issue.
 
 ## WHY IS TESTING IMPORTANT?
 
