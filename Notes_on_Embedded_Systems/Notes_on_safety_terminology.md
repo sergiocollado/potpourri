@@ -762,7 +762,6 @@ There are things aside the main functionality that also are required, those migt
 
 A list of possible non-functional characteristics:
 
- - data processing volume & load stress: performance under peaks of data
  - usability: how easy it is to use
  - performance: if it complies with responses times and data throughput
  - security: security evaluation
@@ -770,15 +769,17 @@ A list of possible non-functional characteristics:
  - robustness: 
  - fail-tolerant: 
  - availabilty: evaluation of the up time and down time of the system (MTBF)
+ - documentation: evaluation of documentation of the system.
  - dependability:
+ - scalability:
  - memory & storage: amount of memory needed
+ - data processing volume & load stress: performance under peaks of data
  - configuration: check behavior under defined configurations
  - compatibility: compatibility with defined versions
  - installation: evaluation methods
  - reliability: evaluation on the trusth of the proper behavior of the sw. 
  - recovery: evaluation of recovery methods
  - maintenance: evaluation of maintenance methods.
- - documentation: evaluation of documentation of the system.
 
  
  
