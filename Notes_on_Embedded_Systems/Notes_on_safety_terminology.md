@@ -413,11 +413,13 @@ http://nob.cs.ucdavis.edu/bishop/secprog/robust.html </br>
 Follow recomendations for implementing the system.
 
 - Use coding standards and recomendations:
+    - meanful comments
     - Always define the variable inizialization values
     - Use indentation, and meanful comments
     - Never ever programm an infinite loop.
     - Never ever use magic numbers.
-- Write modular systems.
+    - implement error handling in their own functions (so they done use up cache memory).
+- Write modular systems (loose dependancy)
 - Implentent and use configuration files for the system (this will provide a flexible configuration for the future).
 - Design self-tests (for hardware control).
 - Use watchdog's (sw and/or hw implemented), and/or functions/devices heartbeats.
@@ -429,11 +431,11 @@ Follow recomendations for implementing the system.
          - Liskov substitution principle.
          - Segregation principle.
     - DRY : Don't Repeat Yourself - don't write the same code blocks over and over again, just once, and call it when needed.
-    - White and black lists.
+    - White and black lists (for input data parsing).
     - safety and security recomendations and techniques.
     - use lint programs that advice about the coding.
-    - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances, use DRC (design rule checks), , simulate the hardware, run montecarlo simulation analysis on the hardware.
-- Implement a log mechanism in the system.
+    - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances, use DRC (design rule checks),  simulate the hardware, run montecarlo simulation analysis on the hardware.
+- Implement a log or trace mechanism in the system.
 - Have a method to identify the software, and version of the system.
 - Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). 
 
@@ -633,9 +635,9 @@ Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https
 
 # OVERVIEW OF THE TESTING PROCESS:
 
-The test of a system is the process of evaluating the real capabilities of the system related with its desired/expected performance/behavior, and check it complies with the design requisites.
+**What is testing?:"** The test of a system is the process of evaluating the real capabilities of the system related with its desired/expected performance/behavior, and check it complies with the design requisites and expected behavior.
 
-Another important point, is that the test process helps to find and pin-point issues, bugs, faults or defects that may apppear in the system. the test proces is even helpful for identification of major cases or points in the system, that have been left out of the specifications or requirements, an actually need to be taken into account.
+Another important point, is that the test process helps to find and discover issues, bugs, faults or defects that may apppear in the system. The test process is even helpful for identification of major cases or points in the system, that have been left out of the specifications or requirements, an actually need to be taken into account.
 
 A key concept to realice is: that **it is not the development process what asures of the quality of the system** (of course, it helps quite a lot), **is the testing process what confirms and asures the quality of the project**
 
@@ -684,8 +686,6 @@ Testing depends on the context. A safe-critical system test is not at all the sa
 
 **7- Absence of errors falacy** <br>
 Even if no defects are found, it doesn't proof that the system is usable, or complies with the end-user expectations.
-
-
 
 
 ## TEST LEVELS
@@ -751,40 +751,44 @@ Reference to check: Dependability through Assuredness™ (O-DA) Framework: https
 ## TEST TYPES:
 
 ### Functional testing
-Functinal testing focus on the correctness of the system, and that it perfoms and behaves as expected. It is applied to all the different test levels: unit, component, integration, system. Its usually is done by means of requirement and specification checks, but also to user cases. Is also common that it uses the black-block testing methodology.
+Functional testing  is focus on evaluation of the correctness of the system behavior, and that it perfoms as expected. It is applied to all the different test levels: unit, component, integration, system. Its usually is done by means of requirement and specification checks, but also to user cases. Is also common that it uses the black-block testing methodology.
 
 
  
-### Testing on Non-functional characteristics
+### Non-functional testing
 There are things aside the main functionality that also are required, those migth be: data or communitcations throughput. User interfaces, performance, usability, scalability, safety, security, robustnes, avalibility, manteanability, stress testing, portability,  .. Non-functional testing can be done at all test levels: unit, component, integration, and system. 
 
-Sometimes, this the non-functioal characteristics, are mapped to the ISO 9126 - Software Quality Product.
+ - Sometimes, this the non-functioal propierties, are mapped to the ISO 9126 - Software Quality Product.
 
-a list of possible non-functional characteristics:
+A list of possible non-functional characteristics:
 
  - data processing volume & load stress: performance under peaks of data
  - usability: how easy it is to use
+ - performance: if it complies with responses times and data throughput
  - security: security evaluation
  - safety: safety evaluation
- - performance: if it complies with responses times and data throughput
+ - robustness: 
+ - fail-tolerant: 
+ - availabilty: evaluation of the up time and down time of the system (MTBF)
+ - dependability:
  - memory & storage: amount of memory needed
  - configuration: check behavior under defined configurations
  - compatibility: compatibility with defined versions
  - installation: evaluation methods
  - reliability: evaluation on the trusth of the proper behavior of the sw. 
- - availabilty: evaluation of the up time and down time of the system (MTBF)
  - recovery: evaluation of recovery methods
  - maintenance: evaluation of maintenance methods.
  - documentation: evaluation of documentation of the system.
+
  
  
 
 ## Structure or Architectural Testing. 
 It is also knwon as a **white-box** testing. Is the evaluation of some parameters of stadistics of the system behavior, as for example how complex it is (ciclomatix complexity), the number of control flow structures (if, else, for, while) and the overall of the tested code...  with the kwnoledge of its inner workings.
 
-It is best used after the black-box techniques, to assert the throuroghness of the testing.
+ - It is best used after the black-box techniques, to assert the throuroghness of the testing.
 
-It can be used at all the testing levels: unit, component, integration and system levels.
+ - It can be used at all the testing levels: unit, component, integration and system levels.
 
 ## Testing related with changes: Re-testing and Regression testing (also Maintenance testing)
 When doing the test sets, failded test, must be repeated to assert them, and exclude the possibility of a  possible error due to the context, conditions, enviroment, equipment used or other causes. 
@@ -982,7 +986,7 @@ As always, the test documentation must be according to the "Standard for Softwar
 
 When a test case of a system involves the actual run of the system, this is known as 'dinamic testing', on the other hand when it doens't inolve the run of the sysem is known as 'static testing'.
 
-Dinamic testing usually makes us of stubs/drivers, execution from a debugger enviroment. And is also quite common to automate it.
+ - Dinamic testing usually makes us of stubs/drivers, execution from a debugger enviroment. And is also quite common to automate it.
  
 Static testing, is referred to those evaluations that don't need the system to be running. Those are techniques as: code review, revision, walkthoruhgs, inspection, and alsouse of programs that automatically ckeck the code propierties (as could be: detection of 'dead code' (code that will never execute)unused variables, missing pointers, out of bound arrays, wrong types varaible asignations, lost of precission in mathematical operations, ...) 
 
@@ -1067,7 +1071,7 @@ The following activities use to be followed for a formal review.
      - Gather metrics
      - Checking exit criteria. (on formal reviews
      
-TIP: Taking different points of view during a review, use of check lists, may made the review process more productive.
+**ADVICE**: Taking different points of view during a review, use of check lists, may made the review process more productive.
     
     
 ##### Roles and responsabilities
