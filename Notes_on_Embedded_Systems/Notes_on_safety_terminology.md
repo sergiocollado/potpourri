@@ -772,6 +772,7 @@ A list of possible non-functional characteristics:
  - faull-tolerant: 
  - availabilty: evaluation of the up time and down time of the system (MTBF)
  - documentation: evaluation of documentation of the system.
+ - portability:
  - dependability:
  - scalability:
  - memory & storage: amount of memory needed
