@@ -696,3 +696,10 @@ http://www.ietf.org/rfc/rfc6960.txt
 RDS- Radio Data System - EN50067.(April 1998) - ISO 14819
 
 [RFC 7230] - URI.
+
+
+IEEE 802.3 - Ethernet 10Mbps
+IEEE 802.3U - Fast Ethernet 100Mbps
+
+
+
