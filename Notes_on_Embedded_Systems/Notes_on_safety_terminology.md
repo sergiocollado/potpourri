@@ -734,10 +734,10 @@ Evaluates the correct behavior of the system by a bussines user. As may be the c
 #### OAT: OPERATIONAL ACCEPTANCE TEST
 Evaluates that the system correctly performs it's defined function by the system adimistrators.
 
-#### REGULATION AND CONTRACT ACCEPTANCE TEST
+#### REGULATION and CONTRACT ACCEPTANCE TEST
 Evaluates that the system complies and achieves acceptance criteria with legal issues (govern, law, contractual, materials, safety, enviromental, emitions ...)
 
-#### ALPHA AND BETA TESTS:
+#### ALPHA and BETA TESTS:
 Alpha testing is understand as a test done at the design team organization, but for colleages outside that team or project.
 Beta testing is a test done by the customer, client or interested parties at their own locations.
 
