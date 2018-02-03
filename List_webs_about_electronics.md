@@ -234,11 +234,15 @@ a site about electric engineering: http://www.electrotechnik.net/
 
 Reevee observatory Alaska: http://www.reeve.com/Documents/
 
-Italian observatory: http://www.astrogeo.va.it/
+Italian observatory: http://www.astrogeo.va.it/ 
 
 http://space.skyrocket.de/
 
 nasa files :    https://www.nasa.gov/missions
+
+Delay/Disruption Tolerant Networking:   https://www.nasa.gov/content/dtn
+
+Dynamic Earth (Geology site): https://pubs.usgs.gov/gip/dynamic/dynamic.html
 
 optics and tutorils on microscopy: http://zeiss-campus.magnet.fsu.edu/tutorials/index.html
 
@@ -252,9 +256,15 @@ cool site about electronics: https://www.mikrocontroller.net
 
 PCB supplier: http://www.allpcb.com/
 
+Other PCB supplier: https://www.multi-circuit-boards.eu/en/index.html
+
 general radio electronics stuff:   http://www.radio-electronics.com/
 
 electronic kits: https://www.todoelectronica.com/es/249-kits-electronicos-para-montar
+
+radium natural spring fountains ?=? :
+  - https://en.wikipedia.org/wiki/Radium_Hot_Springs
+  - http://www.hotsprings.ca/
 
 
 # Learn electronics with application notes:
@@ -297,7 +307,6 @@ Way_Back_Machine:  http://archive.org/web/web.php
 
 Reference programming functions for Arduino:   https://www.arduino.cc/reference/en/
 
-Delay/Disruption Tolerant Networking:   https://www.nasa.gov/content/dtn
 
 
 
