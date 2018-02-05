@@ -840,6 +840,8 @@ The degin of equivalence partitioning tests, and boundary test analysis, starts 
 #### STATES and TRANSITION TESTING:
 When the system under test has to behave according to state machines or transition systems, or other similar logical or sequencial behaviors, decision tables are a good option to check that the system complies with its expected behavior. So the decision tables, specifie the triggering condition or actions that imply a state change, then all the combination of this action or events are tested. This methodolgy, often is combined, with others as: **code coverage** and **decision coverage** (these are described later in the text). 
 
+Remember, that an Automata model, that is a state machine, can be ot two types: combinational or sequential. A combinational system, has a defined output, for the given inputs. A sequential system, uses a memory, to keep an state. More elaborate models, are the LTS systems (Lineal transition systems):
+
 
 #### USER-CASE TESTS:
 A test that mimics a real user scenario, is kwnow as user case test. A user-case test, aims to emulate the interaction, and common action and situations of the system under test and a normal user. User-case tests, check the data-flow and the process-flow, and how the system is likely to work.
@@ -879,7 +881,7 @@ This test accounts the percentage over all of different branchs exercised in the
 
 ### EXPERIENCED BASED TECHNIQUES:
 
-
+In experienced based tecniques, the test are done based on the previus project experiences or knwoledge of similar systems to the one is under test. Similar systems and previus experience on them, allow the testers to have an intuition on the weak and strong points at the system development. 
 
 
 
@@ -1016,7 +1018,7 @@ As always, the test documentation must be according to the "Standard for Softwar
 
 ## TEST TECHNIQUES:
   
-### Software: Dinamic vs Static testing
+### Software: Dynamic vs Static testing
 
 When a test case of a system involves the actual run of the system, this is known as 'dinamic testing', on the other hand when it doens't inolve the run of the sysem is known as 'static testing'.
 
