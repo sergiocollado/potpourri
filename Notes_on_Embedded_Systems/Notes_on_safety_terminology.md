@@ -1141,8 +1141,7 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 
 ## TEST TEAM: ROLES and RESPONSABILITIES.
 
-### Test Coordinator (aka test leader9: 
-The tasks for the Test coordinator are:
+### Test Coordinator (aka test leader) tasks: 
  - Coordinate the test stategy with the management and development team.
  - Write and/or review the test strategy.
  - Plan the tests and re-adjust it as needed.
@@ -1151,9 +1150,19 @@ The tasks for the Test coordinator are:
  - Define test tools.
  - Report test plan status, controls ...
  
- 
 
+### Tester tasks:
+ - Review and contribute to test plans.
+ - Analyze, review  requirements, specifications and models.
+ - Create test specifications.
+ - Set up test enviroment, prepare and gather test data, implement, automate and execute and record tests.
+ - Review test wrote by others.
 
+## TEST PLANNING and ESTIMATION:
+
+### TEST PLANNING:
+
+....
 
 
 LIABILITY:
