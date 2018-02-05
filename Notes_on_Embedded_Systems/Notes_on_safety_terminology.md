@@ -433,7 +433,7 @@ Follow recomendations for implementing the system.
     - White and black lists (for input data parsing).
     - safety and security recomendations and techniques.
     - use lint programs that advice about the coding.
-    - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances, use DRC (design rule checks),  simulate the hardware, run montecarlo simulation analysis on the hardware.
+    - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances, use DRC (design rule checks),  simulate the hardware, run montecarlo simulation analysis on the hardware, choose wisely the memory type (remember Flash, writes in blocks, and the number of writings is lower than for a EEPROM memory):
 - Implement a log or trace mechanism in the system.
 - Have a method to identify the software, and version of the system.
 - Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). 
@@ -885,7 +885,6 @@ In experienced based tecniques, the test are done based on the previus project e
 
 
 
-
 ## TEST PROCESS STEPS and ACTIVITIES
 
 At the testing context, the first action to do, is to define the **Test Plan** for that, several key points have to
@@ -1140,6 +1139,19 @@ http://www.sohar.com/proj_pub/download/
 
 https://en.wikipedia.org/wiki/Testing_Maturity_Model
 
+## TEST TEAM: ROLES and RESPONSABILITIES.
+
+### Test Coordinator (aka test leader9: 
+The tasks for the Test coordinator are:
+ - Coordinate the test stategy with the management and development team.
+ - Write and/or review the test strategy.
+ - Plan the tests and re-adjust it as needed.
+ - Lead tests especifications, implementation, execution, and test automatization.
+ - Monitoring and control of the test plan, gather the necessary metrics, and evaluations.
+ - Define test tools.
+ - Report test plan status, controls ...
+ 
+ 
 
 
 
