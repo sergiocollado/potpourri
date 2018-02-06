@@ -10,6 +10,18 @@
   
 <hr>
 
+At the console, is easy to get help if needed, checking the manual pages: for it the 'man' command is used:
+
+```bash
+> man pwd
+```
+
+well, this is actually a method from long ago, ... today it might just be easier to google it : )
+
+
+
+
+
 In case something is not working properly, always have a go with with the following:
 
 ```bash
