@@ -432,6 +432,7 @@ Follow recomendations for implementing the system.
     - Never ever programm an infinite loop. (under a wort case design it will block execution)
     - Never ever use magic numbers.
     - implement error handling in their own functions (so they done use up cache memory).
+    - always handle input invalid values or input excptions.
 - Write modular systems (loose dependancy)
 - Implentent and use configuration files for the system (this will provide a flexible configuration for the future).
 - Design self-tests (for hardware control).
