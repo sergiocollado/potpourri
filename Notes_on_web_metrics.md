@@ -1,11 +1,13 @@
 # Notes on web metrics
 
-
 In case its is needed to check the implementation of any atributte, is ease to check it at the site:
 
 https://caniuse.com/
 
 
+the reference for HTTP/1.1 is at:   https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.21
+
+> to improve a web loading time, check the toos: tcpdump, ngrep or ethereal, also Firebug, and YSlow. Also try to control the Cache, for example, setting the "expire" header, in a distant future. Also turn-on the "keep-alives", ... this will set a persistent conection, for http/1.0 clients this feature is not the default, and will only be used if the client specifically defines it. In http/1.1 the persistant conections are the default.
 
 
 I wanted my [website](https://sergiocollado.github.io/) indexed at google, so i found this reference:
@@ -49,7 +51,7 @@ You can also use the following tools:
 Also check the meta-tags: http://www.metatags.org/meta_name_robots
 
 
-# Open Grahph protocols
+# Open Graph protocols
 
  There are some meta tags, to use in social media. Reference at: http://ogp.me/
 
