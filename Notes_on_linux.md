@@ -20,8 +20,6 @@ well, this is actually a method from long ago, ... today it might just be easier
 
 
 
-
-
 In case something is not working properly, always have a go with with the following:
 
 ```bash
@@ -170,7 +168,9 @@ file1  rwxr-x^-x
 
 ### Processes
 
-To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**
+To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
+
+
 
   
 ### Memory análisis in linux systems
@@ -338,8 +338,6 @@ If you want to know how much free memory you have in your hard disk, you have to
 · **du** command
 
 TODO: COMPLETE
-
-
 
 
 - If you want to have updated all the references to yor database repository, you should install mlocate, it will update the db once a day.
