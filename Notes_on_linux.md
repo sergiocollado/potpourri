@@ -125,16 +125,52 @@ The linux file system usually has the following file hierarchy structure:
 
 Depending on the linux version, the list of the filesystem, may be different. 
     
-### commands to navigate through the file system.
+### Commands to navigate through the file system.
 
 - **pwd** command: identifie what is the current working directory.
 - **cd** commands: it stands for 'change directory'. If 'cd' is used without arguments, it changes to the home/defaul directory. To move one step up in the file system hierarchy, the command 'cd ..' is used.
 - **ls** command: it is teh 'listing' command, it enumerates all the files inside the current directory. When used with the parameter '-l', that stands for "long", it will define the files, with a lot of information about them ( permission, creation date, last used date ...) There are many options, for getting info about them, just type: 'man ls'. 
 - **mkdir** command: creates a directory. (Make directory)
 - **rmdir** command: removes a directory. (remove directory). **Note** rmdir only works, if the directory is empty. This is as a safety mechanisms.
+- **cat** command: Output a file to the terminal.
+- **head** command: Prints to the terminal the first 10 lines of a file.
+- **last** and **tail** commands: print the last 10 lines of a file to the terminal.
+- **cp** command: It copies a file.
+- **mv** command: It moves a file (to another directory), also can be used to change the name of a file.
+
+### Permisions
+
+Files have owners (the user who created the file), and also access permissions.
+ - read **r**
+ - write **w**
+ - execute **x**
+ 
+So different permissions are defined for different users, or groups of users, so there are the following scope of permissions.
+- user
+- groups
+- others (all users)
+
+To view the permissions, usually the **ls -l** command is used.
+
+```bash
+$> ls -l 
+file1  rwxr-x^-x 
+```
+
+- The first 3 characters are the user permissions: rwx
+- The following 3 characters are the group permissions: r-x
+- the last 3 characters are the permissions for all users.
+
+### Root user
+
+- the root account has the highest permission level, and it has access to everything.
+
+- Sometimes it is needed to get all the permissions, for example when we want to install a program. For doing this we use the **sudo** command, it stands for "Switch User DO". Each process has an unique 
 
 
+### Processes
 
+To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**
 
   
 ### Memory análisis in linux systems
