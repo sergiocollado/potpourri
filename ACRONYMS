@@ -1,3 +1,7 @@
+CE - (SPI) Chip Enable [protocols]
+SCLK - (SPI) Serial Clock [protocols]
+MISO - Master In Slave Out (SPI) [protocols]
+MOSI - Master Out Slave In (SPI) [protocols]
 SDA - Serial Data (I2C) [protocols]
 SCL - Serial Clock (I2C) [protocols]
 OTA - Over-the-Air (programming) [electronics]
