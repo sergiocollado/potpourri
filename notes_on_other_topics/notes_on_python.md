@@ -270,7 +270,7 @@ numbertuple = ('one' , 2 , '3')
 
 ## FUNCTIONS
 
-Functions are defined by the keyword `def`
+Functions are defined by the keyword `def` followed by the functions name, the parameters list, and a colon. The code that is the function, must be indented.
 
 ```python
 def foo(parameter_lit):
