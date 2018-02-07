@@ -1,3 +1,5 @@
+SDA - Serial Data (I2C) [protocols]
+SCL - Serial Clock (I2C) [protocols]
 OTA - Over-the-Air (programming) [electronics]
 GPL - General Public License.
 SSID - Service Set idetifier (wifi) [protocols]
