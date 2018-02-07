@@ -134,8 +134,7 @@ reference: https://www.python-course.eu/python3_variables.php
 
 #### Lists
 
-Lists in python are a sequenced and ordered group of objects, they can be of any type, and even is possible, that they can be nestested
-lists (or sublists) as elements of lists. Those elements can be edited, and changed in value, and they are accessed through its index.
+Lists in python are a sequenced and **ordered** group of objects, they can be of any type, and even is possible, that they can be nestested lists (or sublists) as elements of lists. Those elements can be edited, and changed in value, and they are accessed through its index.
 
 they are defined, as follows:
 
@@ -326,5 +325,12 @@ You can call the file inside the python IDE, but if you call it from a console, 
 
 ```python
 >>> python hello.py 1,1
+```
+## USING LIBRARIES
+
+For using libraries, it is need to declare it with the code word: **import** ... **as**
+
+```python
+import Super_library as lib
 ```
 
