@@ -103,9 +103,9 @@ You should change the 'es' to your langauge code. And rememember than in an engl
 
 ## Linux File System
 
-The linux file system usually has the following structure:
+The linux file system usually has the following file hierarchy structure:
 
- - **/**
+ - **/** (top level directory, that is referenced as **'backslash'**)
     - **/bin** user binaries
     - **/sbin** system binaries
     - **/etc** configuration files
@@ -121,6 +121,21 @@ The linux file system usually has the following structure:
     - **/mnt** mount directories
     - **/media** removable devices
     - **/srv** service data
+    
+
+Depending on the linux version, the list of the filesystem, may be different. 
+    
+### commands to navigate through the file system.
+
+- **pwd** command: identifie what is the current working directory.
+- **cd** commands: it stands for 'change directory'. If 'cd' is used without arguments, it changes to the home/defaul directory. To move one step up in the file system hierarchy, the command 'cd ..' is used.
+- **ls** command: it is teh 'listing' command, it enumerates all the files inside the current directory. When used with the parameter '-l', that stands for "long", it will define the files, with a lot of information about them ( permission, creation date, last used date ...) There are many options, for getting info about them, just type: 'man ls'. 
+- **mkdir** command: creates a directory. (Make directory)
+- **rmdir** command: removes a directory. (remove directory). **Note** rmdir only works, if the directory is empty. This is as a safety mechanisms.
+
+
+
+
   
 ### Memory análisis in linux systems
  
