@@ -163,7 +163,7 @@ file1  rwxr-x^-x
 
 - the root account has the highest permission level, and it has access to everything.
 
-- Sometimes it is needed to get all the permissions, for example when we want to install a program. For doing this we use the **sudo** command, it stands for "Switch User DO". Each process has an unique 
+- Sometimes it is needed to get all the permissions, for example when we want to install a program. For doing this we use the **sudo** command, it stands for "Switch User DO". To be possible to used the **sudo** command, the user must belong to the group: 'sudoers'.
 
 
 ### Processes
