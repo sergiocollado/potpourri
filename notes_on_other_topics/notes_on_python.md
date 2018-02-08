@@ -5,6 +5,30 @@
 
 If help or reference is needed, you can type: `help()` -- dont forget the parenthesys.
 
+```python
+>>> help()
+
+Welcome to Python 3.6's help utility!
+
+If this is your first time using Python, you should definitely check out
+the tutorial on the Internet at http://docs.python.org/3.6/tutorial/.
+
+Enter the name of any module, keyword, or topic to get help on writing
+Python programs and using Python modules.  To quit this help utility and
+return to the interpreter, just type "quit".
+
+To get a list of available modules, keywords, symbols, or topics, type
+"modules", "keywords", "symbols", or "topics".  Each module also comes
+with a one-line summary of what it does; to list the modules whose name
+or summary contain a given string such as "spam", type "modules spam".
+
+help> 
+```
+
+
+Also there is great documentation at:  https://docs.python.org/3/library/index.html
+
+
 ## BLOCKS
 
 Blocks of code are indicated in python by means of indentation. Blocks of code, are, what is inside the curly braces in C/C++
@@ -346,12 +370,12 @@ You can call the file inside the python IDE, but if you call it from a console, 
 For using libraries, it is need to declare it with the code word: **import** ... **as**
 
 ```python
-import Super_library as lib
+import Super_library as S_lib
 ```
 
 ## WRITTING SCRIPTS
 
-You have to put in the first line:
+At leat in linux, you have to put in the first line:
 
 ```bash
 #!/usr/bin/env python
