@@ -14,6 +14,9 @@ Tools to check performance:
 - https://www.giftofspeed.com/
 - https://www.giftofspeed.com/check-keep-alive/
 
+List of meta tags:
+
+- https://www.metatags.org/all_metatags
 
 I wanted my [website](https://sergiocollado.github.io/) indexed at google, so i found this reference:
 
