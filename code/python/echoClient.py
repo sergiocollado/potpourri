@@ -1,6 +1,13 @@
 import socket
 import sys
 
+
+""""
+C:\Users\Sergio\Documents\myPython>python myClient.py "HEllo World!!"
+Sent:     HEllo World!!
+Received: HELLO WORLD!!
+"""
+
 HOST, PORT = "localhost", 9999
 data = " ".join(sys.argv[1:])
 
@@ -21,3 +28,4 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
 
 print("Sent:     {}".format(data))
 print("Received: {}".format(received))
+
