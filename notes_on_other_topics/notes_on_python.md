@@ -349,3 +349,10 @@ For using libraries, it is need to declare it with the code word: **import** ...
 import Super_library as lib
 ```
 
+## WRITTING SCRIPTS
+
+You have to put in the first line:
+
+```bash
+#!/usr/bin/env python
+```
