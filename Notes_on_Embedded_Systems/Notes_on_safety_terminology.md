@@ -436,7 +436,7 @@ Follow recomendations for implementing the system.
     - always handle input invalid values or input excptions.
 - Write modular systems (loose dependancy)
 - Implentent and use configuration files for the system (this will provide a flexible configuration for the future).
-- Design self-tests (for hardware control).
+- Design self checking tests (for hardware control).
 - Use watchdog's (sw and/or hw implemented), and/or functions/devices heartbeats.
 - Implementation of recovery systems.
 - Follow design and architecture patterns:
@@ -791,7 +791,7 @@ A list of possible non-functional characteristics:
  - portability:
  - dependability:
  - scalability:
- - memory & storage: amount of memory needed
+ - memory & storage: amount of memory needed, types of memory in hw (flass, eeprom, volatie)
  - data processing volume & load stress: performance under peaks of data
  - configuration: check behavior under defined configurations
  - compatibility: compatibility with defined versions
