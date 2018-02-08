@@ -102,6 +102,21 @@ my_string = 'Hello Wold!'
  'Hello' 
 ```
 
+
+  - **spliting**:  It is possible to siplit strings
+  
+```python
+>>myString="hello world"
+>>myString.split(' ')
+>>['hello', 'world']
+```
+this answer is idexed, so it is possible to do:
+
+```python
+>>myString="hello world"
+>>myString.split(' ')[1]
+>>'hello'
+```
  - **lenght of the string**: len(string)
  ```python
  >>> len('hello')
@@ -152,7 +167,7 @@ they are defined, as follows:
 >>print(last_two)
 >>[2,'3']
 ```
-
+  
 you can also jump every other step according to the structure: list[start:end:step]
 
  - **length**
