@@ -15,3 +15,6 @@ There are some standards, that shoud be considered:
 - ISO/IEC 15504: Information Technology - Process assesment, also refered as **Software Process Improvement and Capability Determination** (SPICE)
   - Recomendations for the computer software development process and related bussines management fuctions. This standard is derived from 
   the ISO/IEC 12207, and madurity models as CMM (Capability Madurity Model).
+
+- Preview and basic concepts of standards at:   https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-4:v1:en:term:3.6.8
+
