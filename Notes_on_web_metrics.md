@@ -9,7 +9,10 @@ the reference for HTTP/1.1 is at:   https://www.w3.org/Protocols/rfc2616/rfc2616
 
 > to improve a web loading time, check the toos: tcpdump, ngrep or ethereal, also Firebug, and YSlow. Also try to control the Cache, for example, setting the "expire" header, in a distant future. Also turn-on the "keep-alives", ... this will set a persistent conection, for http/1.0 clients this feature is not the default, and will only be used if the client specifically defines it. In http/1.1 the persistant conections are the default.
 
-Tools to check performance: https://www.tunetheweb.com/performance/measuring-tools/
+Tools to check performance: 
+- https://www.tunetheweb.com/performance/measuring-tools/
+- https://www.giftofspeed.com/
+- https://www.giftofspeed.com/check-keep-alive/
 
 
 I wanted my [website](https://sergiocollado.github.io/) indexed at google, so i found this reference:
