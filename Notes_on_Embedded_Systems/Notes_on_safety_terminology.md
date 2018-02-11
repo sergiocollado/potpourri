@@ -434,6 +434,7 @@ Follow recomendations for implementing the system.
     - Never ever use magic numbers.
     - implement error handling in their own functions (so they done use up cache memory).
     - always handle input invalid values or input excptions.
+    - the readability of code is important, so other people can easily understand the code, expressions as a\*b+c/d are a NO NO, the operators precedence is complicated, and parentesis shoud be used to clarify the operation: a\*(b+c)/d
 - Write modular systems (loose dependancy)
 - Implentent and use configuration files for the system (this will provide a flexible configuration for the future).
 - Design self checking tests (for hardware control).
@@ -712,16 +713,16 @@ The different test at different architectural system levels, are known by differ
 
 ### UNIT TEST aka MODULE TEST also COMPONENT TESTS:
 
-At the software level, the **unit test** is understood as a test to a basic function, algorithm, class or component. Usually the smallest unit on the system architecture. Its fundamental function and behavior is evaluated, not only its corretness but it can also cover not functional aspects, as performance, robustness, usability, ... 
+At the software level, the **unit test** is understood as a test to all the  basic functions, algorithms, classes or componentes, which checks all the possible test cases positive and negative. Usually the lowest level unit on the system architecture. Its fundamental function and behavior is evaluated, not only its corretness but it can also cover not functional aspects, as performance, robustness, usability, ... 
 Unlikely the following test, this test usually is done by a developer, and it's record tends to be quite informal.
 At the hardware level, it is understand as a test to determine or clarify hardware components performance.
 
 ### INTEGRATION TESTS:
-The **integration test**, are understand as a test that looks for assesment of the performance and correct behavior between diferent modules, functions, classes, or componets in a system. It usually check the interfaces between components, and the data workflow between them.
+The **integration test**, are understand as a test that looks for assesment of the performance and correct behavior between different modules, libraries or other componets in a system. It usually check the interfaces and the data workflows between them.
 
  Usually the following are tested at the software level
  - Interface between componets
- - Possible configurations and behavior on those configuration
+ - Possible configurations and behavior on those configurations
  - The data workflows
  
  Once the integration level for software is done, the system integration test with the hardware platform takes place:
@@ -733,7 +734,7 @@ The **integration test**, are understand as a test that looks for assesment of t
  Non-functionoal characteristics, have to be tested also: as performance, ...
 
 ### SYSTEM TEST:
-The **systems test** goal is to ascertain fulfilment of the system expected functions as a whole element, and also the non-functional requirements, as performance, security, safety, ... In the system test, the enviroment, condition and test should be as close as possible to its expected real function. So usually, the test are of the types: bussines cases, user cases.
+The **systems test** goal is to ascertain fulfillment of the system expected functions as a whole element, and also the non-functional requirements, as performance, security, safety, ... System testing checks all the external interfaces of the system under development, which is a sub-system of another system.  In the system test, the enviroment, condition and test should be as close as possible to its expected real function. So usually, the test are of the types: bussines cases, user cases.
 
 **Important** An independent test team, should carry the system tests.
 
@@ -1408,3 +1409,11 @@ SRS - System requirements specification
 SQI - Software Quality Institute.
 
 SPICE - International Standard for Software Process Assesment.
+
+
+
+BOOKS:
+
+KENT BECK - Test Driven Development: BY EXAMPLE 
+
+ROBERT MARTIN - CLEAN CODE: A HANDBOOK OF AGILE SOFTWARE CRAFTMANSHIP
