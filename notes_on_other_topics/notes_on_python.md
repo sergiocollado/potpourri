@@ -59,6 +59,7 @@ This dynamic casting is done by means of defining objects. You can check the obj
 
 #### Numbers
 
+- **booleans**: **True** and **False**
 - **integers** (base 10): 16
 - **octals** (base 8): 0o100 (this is 16 in decimal)
 - **hexadecimal** (base 16): 0x10 
@@ -69,6 +70,8 @@ This dynamic casting is done by means of defining objects. You can check the obj
 With the functions: **bin(), oct(), hex()** - you can convert the numbers to its string representation.
 
 With the function: **int()** - you can convert a string into its corresponding number.
+
+With the function: **str()** - you can convert a number to a string type.
 
 #### Strings
 
