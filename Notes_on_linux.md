@@ -371,6 +371,16 @@ $> sudo /etc/init.d/nginx
 ```
 reference for nginx:   nginx.org
 
+for nginx configuration check:
+
+https://www.nginx.com/resources/wiki/start
+
+https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls
+
+https://wiki.debian.org/Nginx/DirectoryStructure
+
+
+
 # INSTALLING VIRTUAL ENVIROMENT:
 
 this is like a chroot.- 
