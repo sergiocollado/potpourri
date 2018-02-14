@@ -18,6 +18,8 @@ There are some standards, that shoud be considered:
 
 - Preview and basic concepts of standards at:   https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-4:v1:en:term:3.6.8
 
+
+CHECK: IEEE 829 - Standard for Incident Reports.
 -------------
 
 Others:
