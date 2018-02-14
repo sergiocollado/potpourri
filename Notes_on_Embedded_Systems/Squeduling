@@ -646,3 +646,29 @@ TODO:
  [ ] Real-Time Linux Wiki: https://rt.wiki.kernel.org/index.php/Main_Page
  [ ] comment on linux panic!!
  
+
+
+C and C++ programming notes:
+==============================
+
+
+> A nice way to hardcore a string is the following. It should compute and allocate the memory automatically.
+
+```c
+char *str = "Hello World!";
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
