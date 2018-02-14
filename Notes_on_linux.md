@@ -362,6 +362,14 @@ It reads from the file `proc/modules`, so you can also read it as: `cat /proc/mo
 more on: https://www.computerhope.com/unix/lsmod.htm
 
 
+# INSTALLING NGINX
+
+```bash
+$> sudo apt-get install nginx
+... 
+$> sudo /etc/init.d/nginx
+```
+reference for nginx:   nginx.org
 
 
 Links:
