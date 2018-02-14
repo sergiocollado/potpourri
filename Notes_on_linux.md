@@ -371,6 +371,25 @@ $> sudo /etc/init.d/nginx
 ```
 reference for nginx:   nginx.org
 
+# INSTALLING VIRTUAL ENVIROMENT:
+
+this is like a chroot.- 
+
+```bash
+$>sudo pip3 install virtual env
+...
+```
+to run the virtual enviroment
+
+```bash
+$>sudo . /var/www/app/venv/bin/activate
+```
+
+# INSTALLING FLASK
+```bash
+(vevn)$: sudo pip3install flask
+```
+
 
 Links:
 
