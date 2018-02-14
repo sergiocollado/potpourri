@@ -369,7 +369,7 @@ $> sudo apt-get install nginx
 ... 
 $> sudo /etc/init.d/nginx
 ```
-reference for nginx:   nginx.org
+reference for nginx:  http://nginx.org/en/docs/
 
 for nginx configuration check:
 
