@@ -400,6 +400,10 @@ $>sudo . /var/www/app/venv/bin/activate
 (vevn)$: sudo pip3install flask
 ```
 
+# INSTALLING uWSGI
+
+reference: https://uwsgi-docs.readthedocs.io/en/latest/
+
 
 Links:
 
