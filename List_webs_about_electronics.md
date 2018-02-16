@@ -315,6 +315,8 @@ satellites: https://www.hisdesat.es/
 
 argos satellite system: http://www.argos-system.org/
 
+electronic signatures standard: ETSI TS 102 042
+
 # Reference designs
 
 arrow: https://www.arrow.com/es-mx/reference-designs
