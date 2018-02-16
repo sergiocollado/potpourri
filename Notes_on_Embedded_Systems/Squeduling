@@ -554,7 +554,10 @@ printf("CLOCKS_PER_SEC: %d\n", CLOCK_PER_SEC); //safety check
 
 
 
+TOOLS:
 
+ logration:  https://www.shellhacks.com/logrotate-force-log-rotation/
+ 
 
 
 TODO:
