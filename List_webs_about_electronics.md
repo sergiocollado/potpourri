@@ -545,8 +545,12 @@ SD card standards:  https://www.sdcard.org/developers/overview/index.html
 
 web to check regular expressions: https://regex101.com/
 
-
-
+Patents and IP % digital rigths 
+ - http://www.wipo.int/portal/en/
+ - http://www.wipo.int/patentscope/en/webinar/
+ - https://www.newmediarights.org/guide/legal/copyright/citizens_legal_guide_digital_millenium_copyright_act_dmca
+ - https://www.eff.org/
+ 
 
 
 
