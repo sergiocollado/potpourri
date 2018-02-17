@@ -103,6 +103,19 @@ Is recomended the use of the 'box-sizing:border-box'
 <br>
 <br>
 
+# CSS units.
+
+ ## absolute units
+ 
+ - cm, mm, in (inches: 1 in ~ aprox 96 pixeles ~ 2.45 cm)
+<hr>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Media Queries
 
 Media queries is a method for presenting different elements depending on the capabilities of the viewer device.
