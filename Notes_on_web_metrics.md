@@ -244,8 +244,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
 ## FlexBox
 
-Defines a flexible box in CSS3, this a container that resizes itself according to the screen size. It make easiest to re-adapt the
-layout of a webpage, for diferent view sizes.
+Defines a flexible box in CSS3, so a FlexBox element is a container that resizes itself according to the screen size. It make easiest to re-adapt the layout of a webpage, for different view sizes.
 
 Flexboxes are made of: 
   - a parent element
