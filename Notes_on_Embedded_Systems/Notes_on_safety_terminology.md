@@ -409,7 +409,7 @@ much easily the pernicious event.
  The programmer must undestand that its code can produce bug, that make the system fail or work incorrectly. Also that the users are there to break their code. - You know the saying: *--Even paranoids have enemies--*
  
 #### User-proof (aka fool-proof)
- The programmers assumes that the user at some point will use incorrect, malformed, and bogus inputs. So he has to code error-proof inputs, and emit **error mesages**, that must be: clear, specific, intuitive, unambigous, effective, detailed, explicit and that don't require to look up error codes. The message must be as accurate as possible, to the problem, so it can be detected and corrected with ease.
+ The programmers assumes that the user at some point will use incorrect, malformed, and bogus inputs. So he has to code error-proof inputs, and emit **error mesages**, that must be: clear, specific, intuitive, unambigous, effective, detailed, explicit and that don't require to look up error codes. The message must be as accurate as possible, to the problem, so it can be detected and corrected with ease. Wrong input to the system must be always tested: the system must behave sensible even if the user don't.
  
 #### Avoid Dangerous implementations
 
@@ -453,6 +453,7 @@ Follow recomendations for implementing the system.
     - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances, use DRC (design rule checks),  simulate the hardware, run montecarlo simulation analysis on the hardware, choose wisely the memory type (remember Flash, writes in blocks, and the number of writings is lower than for a EEPROM memory):
 - Implement a log or trace mechanism in the system.
 - Have a method to identify the software, and version of the system.
+- Test functions (unit testing) with wrong, and bad data- a program should behave sensibly even if the user don't.
 - Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). 
 
 ## Defensive programming
