@@ -1219,6 +1219,101 @@ Test planning is one of the activities that must be updated during all the proje
 ....
 
 
+
+
+
+ # IEEE 829 Overview:
+
+Test plan template:
+
+## test plan identifier: 
+Unique identifier to user for reference to this test plan
+
+## references
+list of documents that support this test plan document:
+
+- project overview and description
+- project plan 
+- requirements and specification
+- high level design overview and reference
+- detailed reference and documentation
+- methodology descrition and examples
+- general, corporative and specifica standards that apply
+- communication protocos used, its descrition, and examples.
+
+## introduction aka "Executive summary"
+ Description, scope and goals of the test plan.
+ 
+## Test items
+ - List of the things that are going to be tested in this plan. 
+ - Overview and descrition of the configuration management if one is used: version numbers, prototpes.
+ - Squedule
+ - Test and results to be reported and other deliverables (as for example metrics to be considered)
+
+## Risks
+
+Identification of risk areas for the software:
+
+ - use and delivery with third party products.
+ - new inteface versions
+ - understanding of the project, and tools
+ - system complexity
+ - poorly documentation
+ - requirements misunderstandings
+ - lack of requirements or non defined situations
+ 
+And system risks as:
+ - impact on the client
+ - compliement with standards, regulations and rules
+ - safety
+ - expected schedule
+ 
+ ## features not to be tested
+ List of things not to be tested and why
+ 
+ ## test strategy
+ - tools to be used (is it trainning needed)
+ - metrics to be collected and level of detail (mtbf, ciclomatic complexitiy, decision and coverage percentage...)
+ - configuration management (version identification)
+ - how many versions will be tested
+ - software
+ - hardware
+ - combination of sw/hw
+ - third party software or elements (COTS) (components of the shelf...)
+ - regression testing
+ - level of test defect severities
+ 
+ ## item pass/fail criteria
+ 
+ 
+ # test deliverables
+  - test plan document
+  - test cases
+  - test design specification
+  - tools
+  - static and dynamic testing
+  - error logs and execution logs
+  - problem reports and corrective actions
+ 
+ 
+# test team
+ - staff, trainning, roles and responsabilites.
+
+the responsabilites for example are:
+ - setting, definition and risk evaluation
+ - selection of features to be testested and not to be tested
+ - definition of the overall strategy
+ - resolucion of conflics
+ - planniong of squedules
+ - who takes the critical decisions.
+ 
+ # approvals
+ 
+ who can approve the complete process 
+ 
+ # glossary, acronyms and abreviations
+
+
 LIABILITY:
 
 As far as the manufacturer complies with the required standards, it is assumed that it did not act negligently. Therefore, the legal consecuences in case of an issue, will be reduced to the minimum.
