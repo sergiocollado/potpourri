@@ -802,11 +802,7 @@ A list of possible non-functional characteristics:
  - reliability: evaluation on the trusth of the proper behavior of the sw. 
  - recovery: evaluation of recovery methods
  - maintenance: evaluation of maintenance methods. 
- - readbility: how easy is the code to read and understand (this is quite subjetive)
-
-
- 
- 
+ - readability: how easy is the code to read and understand (this is quite subjetive)
 
 ## Structure or Architectural Testing. 
 It is also knwon as a **white-box** testing. Is the evaluation of some parameters of stadistics of the system behavior, as for example how complex it is (ciclomatix complexity), the number of control flow structures (if, else, for, while) and the overall of the tested code...  with the kwnoledge of its inner workings.
@@ -842,9 +838,19 @@ Also common techniques for implementing the previous tests are:
  - HIL: Harware in a loop
 
 #### EQUIVALENCE PARTITIONING:
-The inputs to the sistem are classified into groups or value ranges, that have and expected equivalent response, so they are expected to be processed in the same way. This groups of values, can be for example: group of correct or valid inputs or data, group of incorrect (or not valid) inputs or data. These ranges of values, are kwnown as 'partitions'. This way the test, are designed so the check the behavior of the system for every partition. 
+The inputs to the system are classified into groups or value ranges, that have and expected equivalent response, so they are expected to be processed in the same way. This groups of values, can be for example: group of correct or valid inputs or data, group of incorrect (or not valid) inputs or data. These ranges of values, are kwnown as 'partitions'. This way the test, are designed so the check the behavior of the system for every partition. 
 
 - Equivalence partitioning can be used in any test level. (unit, component, integration, system ...)
+
+EXAMPLE:
+A system has a integer numeric input and only data betwen 50 and 100 (both numbers included) is accepted as a valid data. How shoud be an equivalence partitining test designed?
+
+The valid data is only the integer numbers that belong to [50,100], otherwise is an invalid data. Thus there is three intervals:
+
+ - [0, 50): first partition- invalid data
+ - [50, 100]:second partition- valid data
+ - over 100: third partion- invalid data
+
 
 #### BOUNDARY VALUE ANALYSIS:
 
@@ -852,10 +858,13 @@ Many times, for the input partitioning, the edge value, that limits between part
 
 - Equivalence partitioning can be used in any test level. (unit, component, integration, system ...)
 
-
 Equivalence partitioning and boundary values analysis are methods, that evaluate the correct behavior of the device under test, according to the input and expected outputs. 
 
-The degin of equivalence partitioning tests, and boundary test analysis, starts from the analysys of the requirement and specifications of the system.
+The design of equivalence partitioning tests, and boundary test analysis, starts from the analysys of the requirement and specifications of the system.
+
+
+EXAMPLE:
+
 
 
 #### STATES and TRANSITION TESTING:
