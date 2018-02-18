@@ -851,6 +851,13 @@ The valid data is only the integer numbers that belong to [50,100], otherwise is
  - [50, 100]:second partition- valid data
  - over 100: third partion- invalid data
 
+So a possible test design would be to test the values: 25, 75 and 150.
+
+The expected test results would be:
+
+input: 25 - output: invalid
+input: 75 - output: valid
+input: 150 - output: invalid
 
 #### BOUNDARY VALUE ANALYSIS:
 
@@ -864,8 +871,24 @@ The design of equivalence partitioning tests, and boundary test analysis, starts
 
 
 EXAMPLE:
+Following with the previos example: 
 
+A system has a integer numeric input and only data betwen 50 and 100 (both numbers included) is accepted as a valid data. How shoud be an equivalence partitining test designed?
 
+The valid data is only the integer numbers that belong to [50,100], otherwise is an invalid data. Thus there is three intervals:
+
+ - [0, 50): first partition- invalid data: - 50 is not included
+ - [50, 100]:second partition- valid data - 50 and 100 are included
+ - over 100: third partion- invalid data - 100 is not included
+
+For testing the boundary values, a possible test would be: 49, 50, 100, 101
+
+The expected test results would be:
+
+input: 49  - output: invalid
+input: 50  - output: valid
+input: 100 - output: valid
+input: 101 - output: invalid
 
 #### STATES and TRANSITION TESTING:
 When the system under test has to behave according to state machines or transition systems, or other similar logical or sequencial behaviors, decision tables are a good option to check that the system complies with its expected behavior. So the decision tables, specifie the triggering condition or actions that imply a state change, then all the combination of this action or events are tested. This methodolgy, often is combined, with others as: **code coverage** and **decision coverage** (these are described later in the text). 
