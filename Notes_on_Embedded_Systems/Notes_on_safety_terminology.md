@@ -334,7 +334,7 @@ R(a) = p(a) * s(a);
  ## BASIC FOR SAFETY:
 
 IEC 61508 - standard for functional safety in electric and electronic systems
- 
+
 EN ISO 12100 - Concepts and principles for risk assesment.
  
 ISO 31000 - standards for risk management:
@@ -346,17 +346,17 @@ EN 60204-1 - Safety on Machinery - electrical equipment of machines. Part 1 : Ge
  
  ## SAFETY STANDARDS:
 
-ISO 26262 - Automotive
-ISO 25119 - Agriculture
-ISO 13849 & IEC 62061 - Machinery
-IEC 60601 - Medical
-DO-178B - Aviation
-EN 50126 - 50128 - 50129 Railway
-IEC 61513 - Nuclear Power
-IEC 50156 - Furnaces 
-IEC 60335 - Hosehold Appliances
-IEC 61511 - Industrial Processes
-IEC 62061 & ISO 13849 - Manufacturing industry
+- ISO 26262 - Automotive
+- ISO 25119 - Agriculture
+- ISO 13849 & IEC 62061 - Machinery
+- IEC 60601 - Medical
+- DO-178B - Aviation
+- EN 50126 - 50128 - 50129 Railway
+- IEC 61513 - Nuclear Power
+- IEC 50156 - Furnaces 
+- IEC 60335 - Hosehold Appliances
+- IEC 61511 - Industrial Processes
+- IEC 62061 & ISO 13849 - Manufacturing industry
 
 ## Others
 
@@ -374,6 +374,7 @@ Recomendations to define all the tasks required for and mantaining software.
 - IPC-7351: Generic Requirements for Surface Mount Design and Land Pattern Standard.
 - ISO/IEC 15504: Information Technology - Process assesment, also refered as Software Process Improvement and Capability Determination (SPICE)
 - Recomendations for the computer software development process and related bussines management fuctions. This standard is derived from the ISO/IEC 12207, and madurity models as CMM (Capability Madurity Model).
+- IEEE 829 - software test doucmentation
 
 
 # SYSTEM DEVELOPMENT LIFE CICLE
@@ -427,7 +428,7 @@ http://nob.cs.ucdavis.edu/bishop/secprog/robust.html </br>
 Follow recomendations for implementing the system.
 
 - Use coding standards and recomendations:
-    - meanfully comments.
+    - meanfully comments. the code must have a good 'readability'.
     - Always define the variable inizialization values.
     - Use indentation.
     - Never ever programm an infinite loop. (under a wort case design it will block execution)
@@ -454,7 +455,7 @@ Follow recomendations for implementing the system.
 - Implement a log or trace mechanism in the system.
 - Have a method to identify the software, and version of the system.
 - Test functions (unit testing) with wrong, and bad data- a program should behave sensibly even if the user don't.
-- Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). 
+- Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). (test documentation must comply wit the ieee 829 standard)
 
 ## Defensive programming
 
@@ -762,7 +763,7 @@ Beta testing is a test done by the customer, client or interested parties at the
 TODO:
 
 Check, the methods, for testing: ccpcheck, vera ++, RATS, Jeckins, SonarQube, 
-Test Unitarios: XUnit (C# .NET) , CppUTest
+Test Unitarios: XUnit (C# .NET) , CppUTest, googletest ...
 Other sys: lcov, valgrind, ltrace, strace....
 
 Reference to check: Dependability through Assuredness™ (O-DA) Framework: https://www2.opengroup.org/ogsys/catalog/C13F
@@ -800,7 +801,9 @@ A list of possible non-functional characteristics:
  - installation: evaluation methods
  - reliability: evaluation on the trusth of the proper behavior of the sw. 
  - recovery: evaluation of recovery methods
- - maintenance: evaluation of maintenance methods.
+ - maintenance: evaluation of maintenance methods. 
+ - readbility: how easy is the code to read and understand (this is quite subjetive)
+
 
  
  
