@@ -40,7 +40,7 @@
  *      
  *      
  *      
- * \author
+ * \modified by
  *         Sergio Gonzalez Collado
  */
 
