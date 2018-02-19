@@ -359,6 +359,16 @@ Example:
 <br>
 <br>
 
+# embedding images
+
+Images can be embedded into the html, usign the <img> tab, and the image codification in base64
+
+An easy way to encode the images, is use for example:  https://www.base64-image.de/
+
+```html
+	<img alt="Embedded Image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAisAAAErCAIAAACQJFTiAAAABGdBT.......VZtiC" />
+```
+
 # jQuery
 
 jQuery is a javascript library that simplifies the sintaxis and adds funtionality.
