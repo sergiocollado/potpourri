@@ -403,7 +403,6 @@ PSP - Process Stack Pointer
 SDK - Software Development Kit
 BSP - Board Support Package.
 BTLE - BlueTooth Low Energy
-NG - Next Generation.
 CFD - Computed Fluid Dinamics
 FEA - Finite Element Analisys
 ARM - Advanced Risc Machine.
@@ -422,6 +421,8 @@ ASIC - Application Specific Integrated Circuit.
 LUT - Look Up Tables.
 SoC - System-On-a-Chip.
 HPC - High Performance Computing.
+HPC - High Power Compressor [mechanics] [aeronautics]
+LPC - Low Power Compressor [mechanics] [aeronautics]
 DSP - Digital Signal Processor.
 CAD - Computed Aided Design.
 CCF - Common Cause Failure.
@@ -533,6 +534,7 @@ SHA - Secure Hash Standard [::link::](http://csrc.nist.gov/publications/PubsFIPS
 CSS - Cascade Style Sheet [protocols]
 CSV - Commma Separated Values [data]
 DNS - Domain Name Service. [protocols]
+NG - Next Generation. [slang]
 FAQ - Frequently Asked Questions [slang]
 ECN - Engineering Change Notification [slang]
 FYI - For Your Interest [slang]
@@ -545,3 +547,5 @@ CRM - Customer Relationship Management [slang]
 B2B - Bussiness to Bussiness  [slang]
 wrt - with respect to [slang]
 aka - also known as [slang]
+DAFACK - WTF[slang]
+
