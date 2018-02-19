@@ -362,6 +362,69 @@ It reads from the file `proc/modules`, so you can also read it as: `cat /proc/mo
 more on: https://www.computerhope.com/unix/lsmod.htm
 
 
+
+
+# Nmap
+
+Nmap is the abreviation of Net Mapping an is a tool for network explorations, thus I is heavily used also to check network scanning and security.
+
+the following stands for IPv4:
+
+#### for scanning an IP:
+
+```bash
+$>nmap 192.168.0.15
+```
+
+to identify the OS 
+
+```bash
+$>nmap -v -A 192.168.0.15
+```
+to detect if the host is behind a firewall
+
+```bash
+$>nmap -sA 192.168.0.15
+```
+
+to 'have a peak' for a host behind a firewall
+
+```bash
+$>nmap -PN 192.168.0.15
+```
+
+#### for scanning with a host name
+
+```bash
+$>nmap -v host_name
+```
+
+#### for scanning within an IP range
+
+```bash
+$> nmap192.168.0.1-10
+```
+
+or using a wild card
+
+```bash
+$>nmap 192.168.0*
+```
+to exclude a given:
+
+```bash
+$>nmap 192.168.0*  --exclude 192.168.1.5
+```
+
+
+#### ping discovery
+
+```bash
+nmap -sP 192.168.1.0/24
+```
+
+
+
 # INSTALLING NGINX
 
 ```bash
