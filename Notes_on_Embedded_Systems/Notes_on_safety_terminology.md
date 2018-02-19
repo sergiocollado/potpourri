@@ -1084,6 +1084,11 @@ Static testing, is referred to those evaluations that don't need the system to b
  
  This is an important medhod and can be done well before the dynamic test execution.The advantages of the defect detectections at an early point in the project live include early correction, increase of productivity, reduction of development times, cost of testing, 
 
+A very common tool for static checking is the program "cppcheck". that is open source and also can check for CERT and MISRA standards.
+
+references:
+- https://sourceforge.net/projects/cppcheck/
+- http://cppcheck.sourceforge.net/manual.pdf
 
 #### Review Process:
 There are several levels of review procoess depending on how formal they are done. the way the revision is carried out depends on its objectives: gain understanding of the system, presentation of the sistem, introduction to new team mebers to the system, or even an auditory.
