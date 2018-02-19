@@ -842,6 +842,7 @@ The inputs to the system are classified into groups or value ranges, that have a
 
 - Equivalence partitioning can be used in any test level. (unit, component, integration, system ...)
 
+```
 EXAMPLE:
 A system has a integer numeric input and only data betwen 50 and 100 (both numbers included) is accepted as a valid data. How shoud be an equivalence partitining test designed?
 
@@ -858,6 +859,8 @@ The expected test results would be:
 input: 25 - output: invalid
 input: 75 - output: valid
 input: 150 - output: invalid
+```
+
 
 #### BOUNDARY VALUE ANALYSIS:
 
@@ -869,9 +872,9 @@ Equivalence partitioning and boundary values analysis are methods, that evaluate
 
 The design of equivalence partitioning tests, and boundary test analysis, starts from the analysys of the requirement and specifications of the system.
 
-
+```
 EXAMPLE:
-Following with the previos example: 
+Following with the previous example: 
 
 A system has a integer numeric input and only data betwen 50 and 100 (both numbers included) is accepted as a valid data. How shoud be an equivalence partitining test designed?
 
@@ -885,10 +888,11 @@ For testing the boundary values, a possible test would be: 49, 50, 100, 101
 
 The expected test results would be:
 
-input: 49  - output: invalid
-input: 50  - output: valid
-input: 100 - output: valid
-input: 101 - output: invalid
+- input: 49  - output: invalid
+- input: 50  - output: valid
+- input: 100 - output: valid
+- input: 101 - output: invalid
+```
 
 #### STATES and TRANSITION TESTING:
 When the system under test has to behave according to state machines or transition systems, or other similar logical or sequencial behaviors, decision tables are a good option to check that the system complies with its expected behavior. So the decision tables, specifie the triggering condition or actions that imply a state change, then all the combination of this action or events are tested. This methodolgy, often is combined, with others as: **code coverage** and **decision coverage** (these are described later in the text). 
@@ -1226,6 +1230,7 @@ Test planning is one of the activities that must be updated during all the proje
 
 
 
+<hr>
 
  # IEEE 829 Overview:
 
@@ -1246,7 +1251,7 @@ list of documents that support this test plan document:
 - general, corporative and specifica standards that apply
 - communication protocos used, its descrition, and examples.
 
-## introduction aka "Executive summary"
+## introduction aka "executive summary"
  Description, scope and goals of the test plan.
  
 ## Test items
