@@ -39,6 +39,8 @@ It was created by Adam Dunkels  in 2002, and its Open Source. It is specifically
 
 - It has a Command Line Shell suitable for debugging applications.
 
+Quick start reference guide:  http://www.contiki-os.org/start.html
+
 Reference: http://www.contiki-os.org/
 
 Reference updated: http://contiki-iot.blogspot.com.es/2016/07/how-to-set-up-contiki-os-communication_11.html
@@ -51,6 +53,9 @@ All the documentation: http://contiki.sourceforge.net/docs/2.6/
 
 for energy estimations: https://github.com/mzimmerling/ptunes/blob/master/contiki/examples/energest-demo/contiki-sky-main.c
 
+To change the network stack:  https://github.com/contiki-os/contiki/wiki/Change-mac-or-radio-duty-cycling-protocols
+
+Articles: http://dunkels.com/adam/dunkels11contikimac.pdf
 
 Tutorials and more:
 
