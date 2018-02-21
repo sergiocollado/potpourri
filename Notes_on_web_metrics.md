@@ -103,18 +103,24 @@ Is recomended the use of the 'box-sizing:border-box'
 <br>
 <br>
 
+
+
 # CSS units.
+
+A reference to understand web typography is:
+
+https://www.smashingmagazine.com/2014/09/balancing-line-length-font-size-responsive-web-design/
+
+key points,
+
+- aligned to left, -- it helps when reading throgh several linest.
+- lines around 40-55 characters, spaces and puntuation included 
 
  ## absolute units
  
  - cm, mm, in (inches: 1 in ~ aprox 96 pixeles ~ 2.45 cm)
 <hr>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 
 ## Media Queries
 
