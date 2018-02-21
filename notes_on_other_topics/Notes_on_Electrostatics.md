@@ -1,4 +1,13 @@
 
+## What are things made of?
+### ... or what is the structure of matter
+
+This is quite a topic, through history there has been several theories that tried to explain what the matter is made of. For the moment, is enought to understand the moment, whit the theory know as the Bohr's model. This theory states that matter is made of atoms, and atoms are made of two parts, a nucleus: made by two particles: protons and neutrons, and kind of 'orbiting' around the nucleus, a 'cloud' of electrons. 
+
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/atomic_model.png" width="600" style="border:1px solid black" alt="Bohr's atom model">
+<br>
+
 ## **Electric Charge:**
 The electric charge, represented by its symbol **Q**,  is a fundamental magnitude, as for example the longidude (SI unit: Meter), or the force (SI unit: Newton). Its a fundamental magnitude, as it cannot be deduced from the others: Mass(M), Lenght(L), and time(T) ...
 
