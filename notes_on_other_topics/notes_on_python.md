@@ -378,6 +378,9 @@ For using libraries, it is need to declare it with the code word: **import** ...
 import Super_library as S_lib
 ```
 
+reference: https://docs.python.org/3.0/library/index.html
+
+
 some frequently used, are:
 
 <hr>
