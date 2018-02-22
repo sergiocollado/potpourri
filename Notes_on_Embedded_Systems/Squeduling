@@ -52,6 +52,10 @@ there are some tasks parameters:
 - e: execution time of the task.
 - D: Dead-line of the task - the time goal at which the task must be finished.
 
+The hyperperiod is the smallest common multiple of all the tasks periods.
+
+
+
 Scheduling for real-time systems:
 =================================
 
