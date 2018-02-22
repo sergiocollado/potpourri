@@ -378,9 +378,48 @@ For using libraries, it is need to declare it with the code word: **import** ...
 import Super_library as S_lib
 ```
 
+some frequently used, are:
+
+<hr>
+
+```python
+import sys
+```
+reference:  https://docs.python.org/3.0/library/sys.html
+
+this module, adds functions to interact with the python interpreter, as:
+
+```python
+sys.arg 
+```
+returns the number of parameters passed to the python script
+
+```python
+sys.exc_info()
+```
+returns info about the triggered exception
+
+```python
+sys.path
+```
+a list that points to the location path of modules
+
+```python
+sys.platform
+```
+returns identification about the system platform (window, mac, linux)
+
+```python
+sys.settrace(function)
+```
+usefull to work out a debugger
+<hr>
+
+
+
 ## WRITTING SCRIPTS
 
-At leat in linux, you have to put in the first line:
+At least in linux, you have to put in the first line:
 
 ```bash
 #!/usr/bin/env python
