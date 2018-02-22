@@ -429,6 +429,10 @@ Toshiva
 NXP
 
 
+# ASTRONOMY
+
+https://www.windows2universe.org/?page=/citizen_science/myw/w2u_eratosthenes_calc_earth_size.html
+
 
 # MATHS
 
@@ -436,6 +440,8 @@ NXP
 http://www.mpfr.org/
 
 http://herbie.uwplse.org/
+
+https://www.windows2universe.org/?page=/citizen_science/myw/w2u_eratosthenes_calc_earth_size.html
 
 
 
