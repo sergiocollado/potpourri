@@ -21,6 +21,8 @@ The prevalence of multi-core processors has resulted in a surge of interest in d
 of non-determinism have been well documented.[1][2] A number of tools to help deal with the challenges have been
 proposed[3][4][5][6] to deal with deadlocks and race conditions.
 
+ The time peridod, after which the scheduling pattern repits itself is known as: hyperperiod-
+
 Morfology of tasks
 
 A defined function is defined by a Task. The tasks consists on some data, and a continuos execution of a process, usually this is named
