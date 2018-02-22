@@ -24,7 +24,7 @@ F  &= k_e \cdot \frac{Q_1 \cdot Q_2}{r^2}
 \end{align*}
 ```
 
-SIMPLIFIED EQUATION OF COULOMB FORCE
+RACIONALICED EQUATION OF COULOMB FORCE
 
 ```latex
 F  =   \frac{9 \cdot 10^{9}}{ \varepsilon_r } \cdot \frac{Q_1 \cdot Q_2}{r^2}
@@ -33,8 +33,15 @@ F  =   \frac{9 \cdot 10^{9}}{ \varepsilon_r } \cdot \frac{Q_1 \cdot Q_2}{r^2}
 ELECTROSTATIC FIELD
 
 ```latex
+\overrightarrow{E} =  \frac{\overrightarrow{F}}{ q }
+```
+
+
+```latex
 \overrightarrow{F}= q \cdot  \overrightarrow{E}
 ```
+
+
 
 POSITION UNITARY VECTOR
 
