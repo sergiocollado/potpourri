@@ -1,4 +1,17 @@
 
+# Basics of network protocols
+
+A network protocol is build up in different communications layers, from the transmission media (wires, air, fiber optic ...)  to the top application level (email, http, html, ...) . 
+
+The lowest layer is known as the link layer (media/physical), and sets the rules to that communication level (as 0V in the wire is a logic 0, 5V in the layer is a logic 1, ...). 
+
+Next is the Internet layer, that follows the IP (Internet Protocol), this gathers the data into data packages, and by different possible methods routes the data, through the network, to its destination (the destination IP address). 
+
+Then is the transport layer, this layer TCP (transport control protocol) adds robustness to the communication, it adds methods to check the data integrity (as CRC), also verifies that the data has reached its destination, and in the proper order. 
+
+Above it is the application layer, that provides an interface to different functions: web pages (http), email (IMAP), data (FTP), ...
+
+
 # Fundamentos del protocolo HTTP:
 
 HTTP, de sus siglas en inglés: "Hypertext Transfer Protocol"; es el nombre de un protocolo el cual nos permite realizar la petición de datos y recursos, como pueden ser documentos HTML. Es la base de cualquier intercambio de datos en la Web, y un protocolo de estructura cliente-servidor, esto quiere decir que una petición de datos es iniciada, por el agente que recibirá los datos; normalmente un navegador Web. Así una página web completa, resulta de la unión de distintos sub-documentos recibidos, como por ejemplo un documento que especifique la maquetación de la página web (CSS), el texto, las imágenes, vídeos, scripts ...    
