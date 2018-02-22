@@ -530,7 +530,7 @@ Bisimulation is important because if two systems comply with bisimulation, then 
 is always the safe choice.
 
 Formal definition:
-Given a LTS (S,Λ,→) a bisimulation relation is a binary relation **R**, over **S**, i.e.( **R ⊆ to S x S**) such both **R** and its inverse **R^-1** are simulations.
+Given a LTS (labelled transition system): (S,Λ,→) a bisimulation relation is a binary relation **R**, over **S**, i.e.( **R ⊆ to S x S**) such both **R** and its inverse **R^-1** are simulations.
 
 Equivalently **R** is a bisimulation if for every pair of elements **p**,**q** in the space of states **S**, with (p,q) in **R**, ∀ α in Λ:
 
@@ -557,6 +557,26 @@ Every trasition system has a _**unique**_ minimal transition system that is bisi
 
 ## Trace of a system:
 Traces, are the sequence of actions that can be executed in that system.
+
+### Operators
+
+- Sequence: p (dot) q or p · q ->  first p and then q
+- Alternative composition: p + q -> it can happen p or q.
+
+it is possible to combinate actios, so:  a·b + c·d
+
+```
+       / a ---> b ---> \
+init <                  > --> end
+       \ c ---> d ---> /
+```
+ - dead-lock or inaction: \delta  - it represents an action that doesn't do anything at all, and it doens't end
+   - so in the case a trace is:  a · \delta -- it performs a and then \delta exectutes forever without ending
+   - in the case a trace is: \delta · a -- the dead-lock stays forever and the action a never is started.
+ 
+ - multi-actions or simultaneous actions: those are actions that happen at the same time: a | b
+   - multi-actions are conmutative: a | b = b | a
+
 
 ## Trace equivalence
 Two Transitions systems are trace equivalent if they have the same _**set**_ of traces.
