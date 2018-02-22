@@ -21,7 +21,31 @@ The prevalence of multi-core processors has resulted in a surge of interest in d
 of non-determinism have been well documented.[1][2] A number of tools to help deal with the challenges have been
 proposed[3][4][5][6] to deal with deadlocks and race conditions.
 
+Morfology of tasks
 
+A defined function is defined by a Task. The tasks consists on some data, and a continuos execution of a process, usually this is named
+a Job.
+
+```
+function Task()
+{
+ int data;
+ int period=1000; //ms.
+ int job_number=0;
+ while(1)
+  {
+    Job(data);
+    job_number++;
+    sleep(period);
+  }
+}
+```
+
+there are some tasks parameters:
+
+- P: period of the task
+- e: execution time of the task.
+- D: Dead-line of the task - the time goal at which the task must be finished.
 
 Scheduling for real-time systems:
 =================================
