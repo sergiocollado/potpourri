@@ -696,6 +696,25 @@ C and C++ programming notes:
 char *str = "Hello World!";
 ```
 
+> never ever write an infinite loop, without a break condition- it may be loop forever.
+
+> always include system identification (hw and sw) methods.
+
+> always include parameters files
+
+> in swithc-case loops always include a default condition.
+
+> in switch-case loop always include a break condition, the only excetpion is when doing 'cases' fall.
+
+> in a 'for' loop (and in the 'while' loop if needed) never ever modify the counter varible inside the loop.
+
+> error-handling methods should be handled by a custom function, because it take less space in the cache, thus increasing the memory usage performance. 
+
+> watch out for asignations as conditions (ex: if(x=0) ) -- in most cases this is an semantic error (the desired instruction would be: if(i==0) ) 
+
+
+
+
 
 
 
