@@ -9,13 +9,13 @@ This is quite a topic, through history there has been several theories that trie
 <br>
 
 ## **Electric Charge:**
-The electric charge, represented by its symbol **Q**,  is a fundamental magnitude, as for example the longidude (SI unit: Meter), or the force (SI unit: Newton). Its a fundamental magnitude, as it cannot be deduced from the others: Mass(M), Lenght(L), and time(T) ...
+The electric charge, represented by its symbol **Q**, it is a fundamental magnitude, as for example the longidude (SI unit: Meter), or the force (SI unit: Newton). Its a fundamental magnitude because it cannot be deduced from the others: Mass(M), Lenght(L), and time(T) ...
 
-The electric charge cuantifies the defect of electrons (by convention this is known as *Positive charge*), or the excess of electrons (by convection this is known as *negative charge*) in a body, and its unit in SI is the *Coulomb*.
+The electric charge cuantifies the **defect** of electrons (by convention this is known as *Positive charge*), or the **excess** of electrons (by convection this is known as *negative charge*) in a body, and its unit in international system of units is the _**Coulomb**_.
 
-The Coulomb (C) is the amount of electrical charge that have 6.241x10<sup>18</sup> electrons.
+The Coulomb (C) is defined as the amount of electrical charge that have 6.241x10<sup>18</sup> electrons.
 
-The number of Coulobs per second (C/s) = Ampere (A), which is the unit of the electric current, so current is the amount of electric charge that goes through a body per unit time.
+The number of Coulombs per second (C/s) is known as the **Ampere** (A), which is the unit of the electric current. The electric current is the amount of electric charges that goes through a body per unit time - this is same as say: the flow of electric charges.
 
 ## **Electricity**: 
 Electricity is an energy asociated with the phenomenon of the flow and accumulation of electrons (negative charged particles)
@@ -40,13 +40,13 @@ Electrostatics is govern by _**Coulomb's Law**_ that enunciates as folows:
 
 ## **Coulomb's Law**
 
+
 The force **F** between two charged particles (Q <sub>1</sub> and Q <sub>2</sub>) in static equilibrium, in a given medium,
 its proportional to the product of their charges, and inversely proportional o the square of their distance (R<sup>2</sup>). 
 If Q <sub>1</sub> and Q <sub>2</sub> have the same sign, that is: both positive or both negative, the force will be of
 repulsion, driving them appart. If Q <sub>1</sub>  and Q_2 have opposite signs, the force will be of attraction. 
 That force will act always along the line that is defined by the position of both charged particles
 Q <sub>1</sub> and Q <sub>2</sub> (vector **r**).
-
 
 
 </br>
