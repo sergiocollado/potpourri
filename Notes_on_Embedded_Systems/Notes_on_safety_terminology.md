@@ -1102,7 +1102,7 @@ As always, the test documentation must be according to the "Standard for Softwar
 | 13   |       | Test strategy  (how are de test cases are designed)   |
 | 14|       | Test process squedule (time for analysis and design, timeline test process, control points, deliverables, current and future expected events or needs)   |
 | 15   |       | Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it good enought data (relevant, accurate and significative) ?)    |
-| 16   |       | Unit tests  (procedures, cases, objetives, goals, requirements, trazability, input data, **expected data**)  |
+| 16   |       | Unit tests  (procedures, cases, objetives, goals, requirements, trazability, input data, **expected data**): functionalities tested, and its associated requirements. Positive and negative input value data and ranges. Code and condition coverage. |
 | 17   |       | Integration tests   (procedures, cases, objetives, goals, requirements, trazability, input data, **expected data**)  |
 | 18   |       | System test  (procedures, cases, objetives, goals, requirements, trazability, input data, **expected data**)   |
 | 19  |       | Non-functional test (performance, escalability, interface, usability, safety, robustness, availability,  ...)   |
