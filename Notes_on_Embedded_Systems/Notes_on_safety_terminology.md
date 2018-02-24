@@ -680,8 +680,6 @@ https://es.cs.uni-kl.de/publications/data/Kolh15.pdf
 -->
 
 
-
-
 Check, the methods, for testing: ccpcheck, vera ++, RATS, Jeckins, SonarQube, 
 Test Unitarios: XUnit, CppUTest
 Other sys: lcov, valgrind, ltrace, strace....
@@ -753,9 +751,19 @@ The different test at different architectural system levels, are known by differ
 ### UNIT TEST aka MODULE TEST also COMPONENT TESTS:
 
 At the software level, the **unit test** is understood as a test to all the  basic functions, algorithms, classes or componentes, which checks all the possible test cases positive and negative. Usually the lowest level unit on the system architecture. Its fundamental function and behavior is evaluated, not only its corretness but it can also cover not functional aspects, as performance, robustness, usability, ... 
-Unlikely the following test, this test usually is done by a developer, and it's record tends to be quite informal.
+
+Unlikely the following test descriptions, this test usually is done by a developer, and it's record tends to be quite informal.
 At the hardware level, it is understand as a test to determine or clarify hardware components performance.
 
+It will be explained later in the text, bus as reference is just annotaded here. In the units test, must be covered at least:
+ - correct functionallity
+ - positive and negative test with valid and invalid data
+ - data ranges and boundaries
+ - code coverage  (percentage of the overall code in the function tested)
+ - decision coverage (the flow of the program trough conditional statems, as: if, else, for, switch-case ...)
+ 
+Depending on the system, even more things will need to be evaluated and tested.
+ 
 ### INTEGRATION TESTS:
 The **integration test**, are understand as a test that looks for assesment of the performance and correct behavior between different modules, libraries or other componets in a system. It usually check the interfaces and the data workflows between them.
 
