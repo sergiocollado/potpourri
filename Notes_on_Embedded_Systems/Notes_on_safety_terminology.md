@@ -971,16 +971,19 @@ In experienced based tecniques, the test are done based on the previus project e
 
 ## HARDWARE TESTING
 
-There are testing methods, that share the same concept for hardware and software. And there are test methods, that are specific for hardware. From those, significant methods that aim to increase the reliability of the system are:
+There are test methodologies that are only applicable to the hardware of the system. Those methods aim to increase the reliability and confidence on the hardware components and subcomponets of the system.
 
  - HALT: Higly Accelerated life testing.
  - HASS: Higly Accelerated stress screening.
  
-These two methods are complementary of each other: HALT is exerted during the development phase, and aims to clearly identify the hardware operating limits and fault modes at its material level. HASS takes place in the industrialization phase, to screen hardware
-components, to indentify possible unidentified or lattent faults  - in practice it might just happen that a batch of a certain element, might be out of its specs, for wathever reason, ... if this is not detecter in the fabrication stage, the proble will most possibly surface at the end user end, ...  As a reference is possible to look for the case of the Samsung Galaxy Note 7, that under some cases, was known to explode, allegedy due to irregularities in its batteries. It is estimated that this issues costed the firm around $5 billion. 
+These two methods are complementary of each other.
 
+HALT is used during early desing and development phases, and aims to clearly identify the hardware operating limits and fault modes at its material level. 
 
+HASS takes place in the industrialization phase, to screen hardware
+components, to indentify possible unidentified or lattent faults  - in practice it might just happen that a batch of a certain element, might be out of its specs, for wathever reason, ... if this is not detected in the fabrication stage, the proble will most possibly surface at the end user end, ...  As a reference is possible to look for the case of the Samsung Galaxy Note 7, that under some cases, was known to explode, allegedy due to irregularities in its batteries. It is estimated that this issues costed the firm around $5 billion. 
 
+These methods are used to IDENTIFICATION and CORRECTION of possible or eventual faults at the hardware component level.
 
 
 
