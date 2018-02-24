@@ -271,7 +271,7 @@ https://en.wikipedia.org/wiki/Software_fault_tolerance </br>
 https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 
 
-**ROBUST SYSTEMS** Robust systems are those in which the computer system has the ability to cope with errors during execution and cope with erroneous inputs. Usually you test those systems with the technique of *Fault Injection*, other techniques are for example *Fuzzy testing* that involves invalid or unexpected inputs. 
+**ROBUST SYSTEMS** Robust systems are those, in which the computer system has the ability to cope with errors during execution and cope with erroneous inputs. Usually you test those systems with the technique of *Fault Injection*, other techniques are for example *Fuzzy testing* that involves invalid or unexpected inputs. 
 <br>
 <br>
 
@@ -389,6 +389,9 @@ RTCA DO-331, Model-Based Development and Verification Supplement to DO-178C and 
 RTCA DO-332, Object-Oriented Technology and Related Techniques Supplement to DO-178C and DO-278A
 
 RTCA DO-333, Formal Methods Supplement to DO-178C and DO-278A
+
+http://listofavailabledocs.realviewdigital.com/?i=List%20of%20Available%20Documents-December%202017#folio=40
+
 
 
 # SYSTEM DEVELOPMENT LIFE CICLE
