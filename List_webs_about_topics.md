@@ -352,6 +352,9 @@ https://order.universitywafer.com/default.aspx?cat=Silicon
 
 https://www.fujielectric.com/products/semiconductor/technical/index.html
 
+https://www.onsemi.com/PowerSolutions/supportDoc.do?type=manuals
+
+
 # Building linux systems
 
 [Easy Intro to Linux Kernel Programming](https://www.youtube.com/watch?v=TCY8WPwBMa0)
