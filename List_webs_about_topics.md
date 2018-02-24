@@ -350,7 +350,7 @@ SENSORLESS FOC - http://www.ti.com/tool/tida-00916?HQS=sys-ind-md-drones-bs-rd-t
 
 https://order.universitywafer.com/default.aspx?cat=Silicon
 
-
+https://www.fujielectric.com/products/semiconductor/technical/index.html
 
 # Building linux systems
 
@@ -432,6 +432,15 @@ Hitachi
 Toshiva
 
 NXP
+
+Mitshubisy
+
+RHOM
+
+Lineal Technology
+
+Fujitsu
+
 
 
 # ASTRONOMY
