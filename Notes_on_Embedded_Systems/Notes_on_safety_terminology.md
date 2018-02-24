@@ -376,6 +376,20 @@ Recomendations to define all the tasks required for and mantaining software.
 - Recomendations for the computer software development process and related bussines management fuctions. This standard is derived from the ISO/IEC 12207, and madurity models as CMM (Capability Madurity Model).
 - IEEE 829 - software test doucmentation
 
+### Aircraft systems
+
+AC 20-115C "Airborne Software Assurance" 
+
+RTCA DO-178C, Software Considerations in Airborne Systems and Equipment Certification
+
+RTCA DO-330, Software Tool Qualification Considerations
+
+RTCA DO-331, Model-Based Development and Verification Supplement to DO-178C and DO-278A
+
+RTCA DO-332, Object-Oriented Technology and Related Techniques Supplement to DO-178C and DO-278A
+
+RTCA DO-333, Formal Methods Supplement to DO-178C and DO-278A
+
 
 # SYSTEM DEVELOPMENT LIFE CICLE
 
