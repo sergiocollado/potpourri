@@ -26,11 +26,11 @@ Key propierties to take into account for an embedded system are:
 
 **LIMITED RESOURCES** An embedded system is designed to achive only the defined functions and requirements; the system only needs a certain number of resources and no more. That means in most cases, that the harware cannot be upgraded or expanded. As such, it's is also very rare that an embedded system can be designed for increase its hardware dependant capabilities, functions, or it is possible to expand its systems parts or modules. On the other hand, most of the embedded systems can be re-programmed, so its software can be changed and upgraded, that means thatt it is possible to improve the system, or adapt it to new requirements or new cases, as far as it is possible with the designed hardware.
 
-**SAFETY**: Is the propierty of a system that evaluates the risk of the ocurrence of an accident (injury or death of people), material, propierty, equipment or resources damage or losses, also enviromental degradation.
+**SAFETY**: Is the propierty of a system that evaluates, weight and analyze the risk of the ocurrence of an accident (injury or death of people), material, propierty, equipment or resources damage or losses, also enviromental degradation.
 
 **FUNCTIONAL SAFETY** Is propierty of a systems that evaluates the safety of a system that correspond the correct actions according to the system inputs, this also includes detection of potential dangerous states or actions, and activation of protecttion, corrective or mitigation measures.
 
-Functional safety implies _**active measures**_, an example is the airbag systems in automotive vehicles, when a crash is detected, the safety system is triggered. On the other hand, a helmet that protects the driver, is a passive system; passive systems do not comply with the functional safety concept.
+Functional safety implies _**active measures**_, as an example: the airbag systems in automotive vehicles, when a crash is detected, the safety system is triggered. On the other hand, a helmet that protects the driver, is a passive system; passive systems do not comply with the functional safety concept.
 
 The leading standard for functional safety is the IEC 61508.
 
@@ -49,11 +49,11 @@ ISO 31000 - standards for risk management:
  - ISO 31010 - Risk management, and risk assesment techniques. 
  - ISO Guide 73 - Vocabulary
 
-**Risk Assestment**: Is the analisys to identify and determine the possible situations or conditions that may end in an accident, thus there is a thread(hazard). If the risk assesment is quantitative, it needs two factors: the Risk(R) = magnitude of the potencial lost (L) and the probability (p) that lost happens.
+**RISK ASSESMENT**: Is the analisys to identify and determine the possible situations or conditions that may end in an accident, thus there is a thread(hazard). If the risk assesment is quantitative, it needs two factors: the Risk(R) = magnitude of the potencial lost (L) and the probability (p) that lost happens.
 
 Ri = Li * p(Li);
 
-**HAZARD**: Set of combinations of conditions or requisites or events that lead to an accident
+**HAZARD**: Set of combinations of conditions or requisites or enviroments or events that lead to an accident
 
 **ERROR/MISTAKE**: A human being can make an error(mistake), with results in a defect in the system(fault, bug) in the program or code, or in a document. The defect in the system, might never be noticed, or can result in the case that the system might fail its expected function (or do something it shouldnt) causing a failure. Defects in software, systems or documents can result in failures, but no all defects do.
 
@@ -75,11 +75,11 @@ This has significative importance to systems, that perform a critical functions,
 
 Reliability is often quantified with the merit figure of **MTBF** (Mean Time Between Failures) 
 
-**AVAILABILITY**: Is the probability that the system will be working/performing as expected at any given time. When calculating this parameter, it has to be taken into account: maintenace times, preventive mantenaice times and estimated time for repair (ETR).
+**AVAILABILITY**: Is the probability that the system will be working/performing as expected at any given time. When calculating this parameter, it has to be taken into account: maintenace times, preventive mantenaice times and estimated time for repair (**ETR**).
 
 Availability is commonly meanfully for those systems, where its functions can be delayed or denied for a short time period, without serius consequences.
 
-An example of a high availability (HA) system is the electric power distribution grid (Hospitals have emergency power generation systems... just in case you were worried). The GPS system, was designed as a zero-down-time system.
+An example of a high availability (HA) system is the electric power distribution grid (anyway hospitals, airports ... have emergency power generation systems- as fail-safe measurements because the need to be a high avaliability facilites... just in case you were worried). The GPS system, for example, is an outstandig system, as it was designed as a **zero-down-time** system.
 
 Availability is often quantified by the merit figure of: 1-MTTR / MTTF 
 
@@ -1536,6 +1536,8 @@ STAMP - Systems Theoretic Accident Model&Processes
 SLA - Service Level Agreement. (to check the availability of the system).
 
 HA - High Availability (system)
+
+ETR - Estimated Time for Repair 
 
 SOTIF - Safety of the Intended Functionality
 
