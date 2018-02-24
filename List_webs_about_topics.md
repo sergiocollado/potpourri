@@ -282,6 +282,11 @@ indigogo: https://www.arrow.com/en/indiegogo/program-overview
 
 http://www.allegromicro.com/en/Design-Center/Technical-Documents.aspx
 
+http://www.linear.com/doclist/design_note
+
+http://www.linear.com/designtools/app_notes.php
+
+
 Esential guide to data conversion (ADC/DAC) : http://www.analog.com/media/en/technical-documentation/technical-articles/ADI-data-conversion.pdf 
 
 Standards: http://www.opengroup.org/
@@ -435,9 +440,16 @@ https://www.windows2universe.org/?page=/citizen_science/myw/w2u_eratosthenes_cal
 
 https://www.windows2universe.org/
 
+Reevee observatory Alaska: http://www.reeve.com/Documents/
+
+Italian observatory: http://www.astrogeo.va.it/ 
+
+http://space.skyrocket.de/
+
+nasa files :    https://www.nasa.gov/missions
+
 
 # MATHS
-
 
 http://www.mpfr.org/
 
@@ -728,5 +740,15 @@ RDS- Radio Data System - EN50067.(April 1998) - ISO 14819
 IEEE 802.3 - Ethernet 10Mbps
 IEEE 802.3U - Fast Ethernet 100Mbps
 
+AC 20-115C "Airborne Software Assurance" 
 
+RTCA DO-178C, Software Considerations in Airborne Systems and Equipment Certification
+
+RTCA DO-330, Software Tool Qualification Considerations
+
+RTCA DO-331, Model-Based Development and Verification Supplement to DO-178C and DO-278A
+
+RTCA DO-332, Object-Oriented Technology and Related Techniques Supplement to DO-178C and DO-278A
+
+RTCA DO-333, Formal Methods Supplement to DO-178C and DO-278A
 
