@@ -1,4 +1,7 @@
  # NOTES ON EMBEDDED SYSTEMS SAFETY
+## CODE WARRIORS, TESTING MONKS, AND MANAGER ONIs
+<hr>
+
 
  # BASIC CONCEPTS and DEFINITIONS:
  
@@ -109,7 +112,7 @@ Usually, these systems are classified into the following groups:
 
  - **safety critical** : the misperformance of the system would mean, personal damage or loss, or material/propierty/resources or enviromental damages Examples: Energy systes (as nuclear plants), control in transportations systems, chemical reactors, medical devices (as heart-lung assistance systems) ...
  - **mission critical**: designed to avoid total misfunction of the designed functionality or objective. example: navigation systems.
- - **bussines critical**: designed to avoid a misfunctions that would result or imply economic/bussines impact, usually as a result of a service interruption. example: bank, accounting and payment systems, stock-trading systems.
+ - **bussines critical**: designed to avoid a missfunctions that would result or imply huge economic/bussines impact or material losses, usually as a result of a service interruption. Example: bank, accounting and payment systems, stock-trading systems.
  - **security critical**: designed to protect data or sensible information. example: medical databases, customers data ...
 
 References:
@@ -705,9 +708,9 @@ Specifications/requirements test, checks the design is compliant with the stackh
   
   Specification testing is necesary to asure proper funtionality and behavior. But for complex or high-risk projects, it may be not nearly enoght. For example it doesn't cover a 'fool-user'. 
  
-## The seven principles of testing
+## The seven principles of testing aka the testing paradigs:
 
-Over time, testing teams have take notice of important learned leasons, those concepts known as follows:
+Over time, testing 'sages' have take notice of important learned leassons, and key-points to keep in mind in the test development. Those concepts are known as follows:
 
 **1- Testing shows presence of defects** <br>
 Testing, shows defects, but it cannot proof that there are not defects. Testing
@@ -967,7 +970,8 @@ This test accounts the percentage over all of different branchs exercised in the
 
 ### EXPERIENCED BASED TECHNIQUES:
 
-In experienced based tecniques, the test are done based on the previus project experiences or knwoledge of similar systems to the one is under test. Similar systems and previus experience on them, allow the testers to have an intuition on the weak and strong points at the system development. 
+In experienced based tecniques, the test are done based on the previus project experiences or knwoledge of similar systems to the one 
+is under test. Similar systems and previus experience on them, allow the testers to have an intuition on the weak and strong points at the system development. 
 
 
 ## HARDWARE TESTING
@@ -983,6 +987,8 @@ HALT is used during early desing and development phases, and aims to clearly ide
 
 HASS takes place in the industrialization phase, to screen hardware
 components, to indentify possible unidentified or lattent faults  - in practice it might just happen that a batch of a certain element, might be out of its specs, for wathever reason, ... if this is not detected in the fabrication stage, the proble will most possibly surface at the end user end, ...  As a reference is possible to look for the case of the Samsung Galaxy Note 7, that under some cases, was known to explode, allegedy due to irregularities in its batteries. It is estimated that this issues costed the firm around $5 billion. 
+
+reference: https://www.techradar.com/news/samsung-galaxy-note-7-battery-fires-heres-why-they-exploded
 
 These methods are used for IDENTIFICATION and CORRECTION of possible or eventual faults at the hardware component level.
 
