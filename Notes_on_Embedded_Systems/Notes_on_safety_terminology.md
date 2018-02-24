@@ -107,7 +107,7 @@ Dependability is a concept that usually refers to a figure of merit that is base
 **CRITICAL SYSTEM** Is a system that must be highly reliable, and keep this reliability even when it is developed, and evolves. 
 Usually, these systems are classified into the following groups:
 
- - **safety critical** : the misperformance of the system would mean, personal damage or loss, or material/propierty/resources or enviromental damages. Examples: Energy systes (as nuclear plants), control in transportations systems, chemical reactors, medical devices (as heart-lung assistance systems) ...
+ - **safety critical** : the misperformance of the system would mean, personal damage or loss, or material/propierty/resources or enviromental damages Examples: Energy systes (as nuclear plants), control in transportations systems, chemical reactors, medical devices (as heart-lung assistance systems) ...
  - **mission critical**: designed to avoid total misfunction of the designed functionality or objective. example: navigation systems.
  - **bussines critical**: designed to avoid a misfunctions that would result or imply economic/bussines impact, usually as a result of a service interruption. example: bank, accounting and payment systems, stock-trading systems.
  - **security critical**: designed to protect data or sensible information. example: medical databases, customers data ...
@@ -820,9 +820,10 @@ A list of non-functional characteristics:
  - security: security evaluation
  - safety: safety evaluation
  - robustness: 
- - faull-tolerant: 
+ - fault-tolerance: 
  - availabilty: evaluation of the up time and down time of the system (MTBF)
  - documentation: evaluation of documentation of the system.
+ - testeability: evaluation of the easiness to test the system. 
  - portability:
  - dependability:
  - scalability:
@@ -983,8 +984,7 @@ HALT is used during early desing and development phases, and aims to clearly ide
 HASS takes place in the industrialization phase, to screen hardware
 components, to indentify possible unidentified or lattent faults  - in practice it might just happen that a batch of a certain element, might be out of its specs, for wathever reason, ... if this is not detected in the fabrication stage, the proble will most possibly surface at the end user end, ...  As a reference is possible to look for the case of the Samsung Galaxy Note 7, that under some cases, was known to explode, allegedy due to irregularities in its batteries. It is estimated that this issues costed the firm around $5 billion. 
 
-These methods are used to IDENTIFICATION and CORRECTION of possible or eventual faults at the hardware component level.
-
+These methods are used for IDENTIFICATION and CORRECTION of possible or eventual faults at the hardware component level.
 
 
 ## TEST PROCESS STEPS and ACTIVITIES
