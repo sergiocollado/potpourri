@@ -34,7 +34,7 @@ Functional safety implies _**active measures**_, an example is the airbag system
 
 The leading standard for functional safety is the IEC 61508.
 
-The safety of a system usually is evaluated with a figure of merit, named **SIL** (Safety Integrity Level):
+The funtional safety level of a system is evaluated with a figure of merit, known as **SIL** (Safety Integrity Level):
 
 **SECURITY**: Is the propierty of a system that evaluates its ability to deal with malicious actions or attacks.
 
@@ -94,7 +94,6 @@ and
 Is also common to express availability as percentage between uptime and downtime of the system. For example a system availability 
 referred as a 99% (two nines) means that over a year its downtime is 3.65 days.
 
-
 **DEPENDABILITY**: Is the truthworthiness of a system so there is a justified confidence in the tasks it must perform.
 
 Dependability is a concept that usually refers to a figure of merit that is based on:
@@ -104,7 +103,6 @@ Dependability is a concept that usually refers to a figure of merit that is base
 - Maintanability
 - Safety
 - Security 
-
 
 **CRITICAL SYSTEM** Is a system that must be highly reliable, and keep this reliability even when it is developed, and evolves. 
 Usually, these systems are classified into the following groups:
@@ -131,8 +129,6 @@ https://en.wikipedia.org/wiki/Z_notation
 https://en.wikipedia.org/wiki/Verification_and_validation
 
 http://czt.sourceforge.net/
-
-
 
 
 https://en.wikipedia.org/wiki/Design_by_contract
@@ -410,8 +406,6 @@ If there is significant confidence to overcome all those challenges, the the fol
  
  - **Testing**: Evaluation of the performance of the systems, so it can be determined if it reaches the expected goals. Validation, verification and test, riks and acceptance reports. 
 
-
-
 # PROGRAMMING TECHNIQUES:
 
 TODO: Desing for testeability.... write it!
@@ -509,9 +503,8 @@ http://www.nxp.com/assets/documents/data/en/application-notes/AN2764.pdf </br>
  
 References: 
 https://en.wikipedia.org/wiki/Failure_mode_and_effects_analysis </br>
- 
- 
- 
+
+
 # MORE ON PROGRAMMING TECHNIQUES
 
 As stated previously, most of the times, embedded systems are reactive, that means, they wait for an input, when they have it, they perform some computation, and then it generates an output. Than means they can be modelled as an Automata.
@@ -642,8 +635,6 @@ Ref: https://www.cs.ox.ac.uk/files/6715/ICFEM%202014%20Version%2010.pdf
 Ref: http://theory.stanford.edu/~rvg/
 
 
-
-
 **TODO**: Check and elavorate: https://en.wikipedia.org/wiki/Calculus_of_communicating_systems
 
 TODO: BER- Byte Error Rate --- add info.
@@ -678,7 +669,6 @@ https://www.keysight.com/upload/cmc_upload/All/4-20170705.pdf
 https://es.cs.uni-kl.de/publications/data/Kolh15.pdf
 
 -->
-
 
 Check, the methods, for testing: ccpcheck, vera ++, RATS, Jeckins, SonarQube, 
 Test Unitarios: XUnit, CppUTest
@@ -813,20 +803,17 @@ Other sys: lcov, valgrind, ltrace, strace....
 
 Reference to check: Dependability through Assuredness™ (O-DA) Framework: https://www2.opengroup.org/ogsys/catalog/C13F
 
-
 ## TEST TYPES:
 
 ### Functional testing
 Functional testing  is focus on evaluation of the correctness of the system behavior, and that it perfoms as expected. It is applied to all the different test levels: unit, component, integration, system. Its usually is done by means of requirement and specification checks, but also to user cases. Is also common that it uses the black-block testing methodology.
-
-
  
 ### Non-functional testing
 There are things aside the main functionality that also are required, those migth be: data or communitcations throughput. User interfaces, performance, usability, scalability, safety, security, robustnes, avalibility, manteanability, stress testing, portability,  .. Non-functional testing can be done at all test levels: unit, component, integration, and system. 
 
  - Sometimes, this the non-functioal propierties, are mapped to the ISO 9126 - Software Quality Product.
 
-A list of possible non-functional characteristics:
+A list of non-functional characteristics:
 
  - usability: how easy it is to use
  - performance: if it complies with responses times and data throughput
@@ -848,13 +835,14 @@ A list of possible non-functional characteristics:
  - recovery: evaluation of recovery methods
  - maintenance: evaluation of maintenance methods. 
  - readability: how easy is the code to read and understand (this is quite subjetive)
-
+ 
 ## Structure or Architectural Testing. 
 It is also knwon as a **white-box** testing. Is the evaluation of some parameters of stadistics of the system behavior, as for example how complex it is (ciclomatix complexity), the number of control flow structures (if, else, for, while) and the overall of the tested code...  with the kwnoledge of its inner workings.
 
  - It is best used after the black-box techniques, to assert the throuroghness of the testing.
 
  - It can be used at all the testing levels: unit, component, integration and system levels.
+
 
 ## Testing related with changes: Re-testing and Regression testing (also Maintenance testing)
 When doing the test sets, failded test, must be repeated to assert them, and exclude the possibility of a  possible error due to the context, conditions, enviroment, equipment used or other causes. 
@@ -863,9 +851,7 @@ On the other had, when a new part of the system is added to the development, som
 
 This type of testing, is usually good candidate for automation.
 
-
 ## TEST METHODOLOGIES AND DESIGN TECHNIQUES:
-
 
 ### BLACK-BOX TECHNIQUES:
 
@@ -905,7 +891,6 @@ input: 25 - output: invalid
 input: 75 - output: valid
 input: 150 - output: invalid
 ```
-
 
 #### BOUNDARY VALUE ANALYSIS:
 
@@ -954,6 +939,7 @@ The design of the user-case test, starts **from gathering information from the s
 
 #### SIL: Software in the Loop
    The software is tested against a model, that model reflects the requirements, specifications and expected behavior of the system. Is a method based on simulation. This method is best used at integration or system level, because with the models (logical, mathematic or physic ...) we can simulate the rest of the modules, or system elements, which makes the testing somehow easier and faster. Of course the models must be accurate, otherwise, false positives or negatives can be obtained in the test results. 
+   [NOTE]... Although they have the same achronym, don't missunderstand with SIL, when it stands for: Safety Integrity Level.
    
 #### HIL: Hardware in the Loop
   The hardware under test is tested, but the remain of the system or signals, or elements external to that hardware can be simulated, according to fitting models of elements. The advantage is that only the harware we are interest it is needed and the other elements of the system don't need to physically be in the test lab/facility.
@@ -961,7 +947,6 @@ The design of the user-case test, starts **from gathering information from the s
   This is a simulation methodology, and best used at integration and system level. As with all the simulation methodologies the model must be significative enought. At the hardware level, it represents, signal propierties, response and reaction times, ...
   
   In both previous simulation techniques, a system model is used, so it must be such that it can reproduce accurately all the significant and relevant behaviours of the system.
-
 
 ### WHITE-BOX TECHNIQUES:
 
@@ -979,13 +964,9 @@ This test accounts the percentage over all of different branchs exercised in the
 
 **NOTE**: A 100% decision coverage implies a 100% code coverage, but the other way around is not true: a 100% does not guarantee a 100% decision coverage.
 
-
-
 ### EXPERIENCED BASED TECHNIQUES:
 
 In experienced based tecniques, the test are done based on the previus project experiences or knwoledge of similar systems to the one is under test. Similar systems and previus experience on them, allow the testers to have an intuition on the weak and strong points at the system development. 
-
-
 
 ## TEST PROCESS STEPS and ACTIVITIES
 
@@ -1075,10 +1056,7 @@ At the end of the project, or at project milestones, certain activites are to be
  - review and learned lessons.
  - project metrics, and evaluation of the testware.
  
-
 https://en.wikipedia.org/wiki/Testing_Maturity_Model
-
-
 
 ### Test plan document index example guide:
 
@@ -1088,7 +1066,7 @@ As always, the test documentation must be according to the "Standard for Softwar
 | iNDEX  | . | Description|
 | :---:|     :---:      |          :--- |
 | 1   | Presentation    |  Date of release, document version, document owner, approvals    |
-| 2   |      | Introduction and overview of the project and system architecture    |
+| 2   |      | Introduction, presentation, motivations, overview and background of the project and the system |
 | 3   |      | Document identification, objetives, goals, scope (this is the test plan document for XX project, and it explains the test plan for YY, intended for the system version ZZ, according to requirements version RR ...) and document history, and related needed documents (as normative, release notes, system version, system documentation, requirements document version).    |
 | 4   |      | Testing team, responsabilities and roles    |
 | 5  |      | References (list of normative elements, manuals, procedures, application notes, agreements, notes, ...)   |
@@ -1142,7 +1120,6 @@ references:
 #### Review Process:
 There are several levels of review procoess depending on how formal they are done. the way the revision is carried out depends on its objectives: gain understanding of the system, presentation of the sistem, introduction to new team mebers to the system, or even an auditory.
 
-
 ##### Types of review
 
 ##### Informal review
@@ -1181,7 +1158,6 @@ There are several levels of review procoess depending on how formal they are don
   - formal follow-up process.
   - main goal: findiNG defects.
   
- 
 ##### Activities for a formal review
 
 The following activities use to be followed for a formal review.
@@ -1217,7 +1193,6 @@ The following activities use to be followed for a formal review.
     
 ##### Roles and responsabilities
 
-
 - **Manager** decides on the execution of reviews, allocates or reallocates project squedules and resources.
 - **Moderator** leds the meeting, the review of documents, planns the reviw process and its follow-up activities. the sucess of the review use to fall on him.
 - **Author** person with the final responsability of the document o set of documents to review.
@@ -1237,10 +1212,7 @@ The following activities use to be followed for a formal review.
 - Management should suppor the review process, as for example allocating correct time for the review activities.
 - There is always and emphasis, in learning  and process improvement in the reviews processes.
 
-
-
 Also check the following topics:
-
 
 http://www.sohar.com/proj_pub/download/
 
@@ -1257,7 +1229,6 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
  - Define test tools.
  - Report test plan status, controls ...
  
-
 ### Tester tasks:
  - Review and contribute to test plans.
  - Analyze, review  requirements, specifications and models.
@@ -1271,9 +1242,6 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 
 Test planning is one of the activities that must be updated during all the project, due new information and situations arise. So one of the goals, is clearly identify possible risks to the project, so the project plann can be updated accordingly.
 ....
-
-
-
 
 <hr>
 
@@ -1449,10 +1417,7 @@ Crew rescue systems
 Crew transfer systems
 See also[edit]
 
-
-
 https://www.crcpress.com/Design-and-Safety-Assessment-of-Critical-Systems/Bozzano-Villafiorita/p/book/9781439803318
-
 
 Complex Safety-Critical Systems 
 Dealing with Failures: A Short History of Safety Engineering 
