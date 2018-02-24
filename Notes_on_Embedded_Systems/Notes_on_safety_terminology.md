@@ -1080,7 +1080,7 @@ As always, the test documentation must be according to the "Standard for Softwar
 | iNDEX  | . | Description|
 | :---:|     :---:      |          :--- |
 | 1   | Presentation    |  Date of release, document version, document owner, approvals    |
-| 2   |      | introduction and overview of the project    |
+| 2   |      | Introduction and overview of the project and system architecture    |
 | 3   |      | Document identification, objetives, goals, scope (this is the test plan document for XX project, and it explains the test plan for YY, intended for the system version ZZ, according to requirements version RR ...) and document history, and related needed documents (as normative, release notes, system version, system documentation, requirements document version).    |
 | 4   |      | Testing team, responsabilities and roles    |
 | 5  |      | References (list of normative elements, manuals, procedures, application notes, agreements, notes, ...)   |
