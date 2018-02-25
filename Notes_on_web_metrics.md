@@ -116,6 +116,15 @@ key points,
 - aligned to left, -- it helps when reading throgh several linest.
 - lines around 40-55 characters, spaces and puntuation included 
 
+for example a trick to set the proper type font size, would be:
+
+```css
+:root  {
+	font-size: calc(100vw/40);
+	}
+```
+	
+	
  ## absolute units
  
  - cm, mm, in (inches: 1 in ~ aprox 96 pixeles ~ 2.45 cm)
