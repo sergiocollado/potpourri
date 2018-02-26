@@ -266,6 +266,9 @@ radium natural spring fountains ?=? :
   - https://en.wikipedia.org/wiki/Radium_Hot_Springs
   - http://www.hotsprings.ca/
 
+java man:  https://docs.oracle.com/javase/tutorial/
+
+
 
 # Learn electronics with application notes:
 
