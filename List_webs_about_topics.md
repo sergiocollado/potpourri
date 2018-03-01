@@ -755,6 +755,12 @@ RDS- Radio Data System - EN50067.(April 1998) - ISO 14819
 IEEE 802.3 - Ethernet 10Mbps
 IEEE 802.3U - Fast Ethernet 100Mbps
 
+RFC 768 User Data Protocol
+RFC 793 Transmission Control Protocol
+RFC 791 Internet Protocol
+RFC 792 Internet Control Message Protocol
+RFC 826 Adress Resolution Protocol
+
 AC 20-115C "Airborne Software Assurance" 
 
 RTCA DO-178C, Software Considerations in Airborne Systems and Equipment Certification
