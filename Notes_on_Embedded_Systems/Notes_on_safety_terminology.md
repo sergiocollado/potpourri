@@ -991,6 +991,10 @@ HASS takes place in the industrialization phase, to screen hardware components, 
 
 reference: https://www.techradar.com/news/samsung-galaxy-note-7-battery-fires-heres-why-they-exploded
 
+![battery_issue.JPG](https://github.com/sergiocollado/potpourri/blob/master/image/battery_issue.JPG)
+
+
+
 Some times, the hardware supplier, might by error provide components out of its specification, ... for reasons that it cannot handle directly, it might be and innadecuate storage, or the use of base materials under its prime performane. For example during the 2010s the gold rised to a very high value, and some foundries hat to resort to other materials to make the bondings of the chips, just for these reason, the skew of the electric signals was different, and all those components hat to be re-evaluated and characterized. 
 
 reference: https://www.eetimes.com/document.asp?doc_id=1257340
