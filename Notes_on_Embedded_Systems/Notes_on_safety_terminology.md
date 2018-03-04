@@ -999,6 +999,9 @@ Some times, the hardware supplier, might by error provide components out of its 
 
 reference: https://www.eetimes.com/document.asp?doc_id=1257340
 
+![copper_turns_gold.JPG](https://github.com/sergiocollado/potpourri/blob/master/image/copper_turns_gold.JPG)
+
+
 These methods are used for IDENTIFICATION and CORRECTION of possible or eventual faults at the hardware component level.
 
 
