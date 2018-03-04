@@ -1,17 +1,20 @@
 
 ## What are things made of?
-### ... or what is the structure of matter
+### ... or: what is the structure of matter?
 
-This is quite a topic, through history there has been several theories that tried to explain what the matter is made of. For the moment, is enought to understand the moment, whit the theory know as the Bohr's model. This theory states that matter is made of atoms, and atoms are made of two parts, a nucleus: made by two particles: protons and neutrons, and kind of 'orbiting' around the nucleus, a 'cloud' of electrons. 
+ -- This is quite a topic!; through history there has been several theories that tried to explain what the matter is made of. For the moment, is enought to consider the theory known as the _**Bohr's model**_. This theory states that matter is ultimately made of particles known as **atoms**. And atoms are made of two parts: a _nucleus_ - made by two kinds of sub-particles: **protons** and **neutrons**; and kind of 'cloud' 'orbiting' around the nucleus, made of another kind of sub-particles, known as **electrons**. 
 
 <br>
-<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/atomic_model.png" width="600" style="border:1px solid black" alt="Bohr's atom model">
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/atomic_model.png" width="500" style="border:1px solid black" alt="Bohr's atom model">
 <br>
+
+That means, that all the different elements known, are made of protons, neutrons and electrons, and they only differ in the number of protons, neutrons and electrons, their atoms are made of. 
+
 
 ## **Electric Charge:**
-The electric charge, represented by its symbol **Q**, it is a fundamental magnitude, as for example the longidude (SI unit: Meter), or the force (SI unit: Newton). Its a fundamental magnitude because it cannot be deduced from the others: Mass(M), Lenght(L), and time(T) ...
+The electric charge,usually represented by its symbol **Q**, it is what in physics is refered as a **fundamental magnitude**, as for example are: the _longidude_ (SI unit: Meter), or the _force_ (SI unit: Newton) or the _mass_ (SI unit: Kg). It is a fundamental magnitude because it cannot be deduced from the others: Mass(M), Lenght(L), and time(T) ...
 
-The electric charge cuantifies the **defect** of electrons (by convention this is known as *Positive charge*), or the **excess** of electrons (by convection this is known as *negative charge*) in a body, and its unit in international system of units is the _**Coulomb**_.
+The electric charge cuantifies the **defect** of electrons (by convention this is known as *Positive charge*), or the **excess** of electrons (by convection this is known as *negative charge*) in a body, and it's unit in international system of units is the _**Coulomb**_, which is abbreviated with: **C**.
 
 The Coulomb (C) is defined as the amount of electrical charge that have 6.241x10<sup>18</sup> electrons.
 
@@ -137,11 +140,24 @@ Is the force field over the space, caused by Coulomb forces (electrostatic force
 
 The units of the Electric Field are Newtons per Coulomb [N/C].
 
-A nice thing, is that the electric field, allows us to use the superposition principle.
+It is easy to calculate the electric field due to charge **q**, if we know the force in that charge.
 
-E_total = S Ei
+<br>
+<img src="https://rawgit.com/sergiocollado/potpourri/master/image/electrositatic_field_2.svg?sanitize=true" style="border:1px solid black" alt="equation of the electric field 1">
+<br>
+
+The other way around is also frequent, if the electric field is known, to deduce the force in a charge **q**, is done by appling:
+
+<br>
+<img src="https://rawgit.com/sergiocollado/potpourri/master/image/Force_from_an_electric_field.svg?sanitize=true" style="border:1px solid black" alt="equation of the electric field 2">
+<br>
+
+
+A nice thing, is that the electric field, allows us to use the superposition principle.
  
- 
+ <br>
+<img src="https://rawgit.com/sergiocollado/potpourri/master/image/sum_electric_field.svg?sanitize=true" style="border:1px solid black" alt="Sumatory of the electric fields">
+<br>
  
  
 <br> 
