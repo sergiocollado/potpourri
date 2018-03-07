@@ -429,3 +429,14 @@ At least in linux, you have to put in the first line:
 ```bash
 #!/usr/bin/env python
 ```
+
+
+## installing mqtt
+
+```
+$ pip3 install paho-mqtt
+Collecting paho-mqtt
+  Downloading https://www.piwheels.hostedpi.com/simple/paho-mqtt/paho_mqtt-1.3.1-py3-none-any.whl (57kB)
+Installing collected packages: paho-mqtt
+Successfully installed paho-mqtt-1.3.1
+```
