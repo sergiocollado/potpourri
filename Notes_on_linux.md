@@ -446,6 +446,17 @@ https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls
 https://wiki.debian.org/Nginx/DirectoryStructure
 
 
+# INSTALLING NODE.JS
+
+```bash
+pi@raspberrypi:~ $ sudo apt-get install nodejs
+Lleendo llista de paquetes... Fecho
+Creando árbol de dependencies
+Lleendo información d'estáu... Fecho
+nodejs is already the newest version (4.8.2~dfsg-1).
+nodejs axustáu como instaláu manualmente.
+0 actualizaos, 0 nuevos instalaos, 0 para desaniciar y 1 nun actualizaos.
+```
 
 # INSTALLING VIRTUAL ENVIROMENT:
 
