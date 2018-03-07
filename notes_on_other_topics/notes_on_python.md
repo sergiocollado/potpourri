@@ -435,6 +435,8 @@ At least in linux, you have to put in the first line:
 
 reference: https://pypi.python.org/pypi/paho-mqtt/1.1
 
+reference: http://www.steves-internet-guide.com/into-mqtt-python-client/
+
 ```
 $ pip3 install paho-mqtt
 Collecting paho-mqtt
