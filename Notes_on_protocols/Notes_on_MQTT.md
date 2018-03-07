@@ -9,6 +9,8 @@ Ref: https://www.linux.com/news/mqtt-iot-communication <br>
 Ref: http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html <br>
 Ref: https://www.hivemq.com/blog/how-to-get-started-with-mqtt <br>
 
+ref: http://www.steves-internet-guide.com/into-mqtt-python-client/
+
 ## Main elements of the communication
 
 **Client** 
