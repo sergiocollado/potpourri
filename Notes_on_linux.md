@@ -463,9 +463,19 @@ nodejs axustáu como instaláu manualmente.
 this is like a chroot.- 
 
 ```bash
-$>sudo pip3 install virtual env
-...
+$>sudo apt-get install python-virtualenv
 ```
+
+then we have to set up the folder for our virtualenv
+
+```bash
+$ourpath>virtualevn myvirtualenv
+```
+
+```bash
+$>sudo pip3 install virtual env
+```
+
 to run the virtual enviroment
 
 ```bash
