@@ -3,6 +3,8 @@
 
 The main reference is:  https://docs.python.org/3/library/index.html
 
+Other reference: http://docs.python-guide.org/en/
+
 ## Looking for help()
 
 If help or reference is needed, you can type: `help()` -- dont forget the parenthesys.
