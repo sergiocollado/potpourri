@@ -496,6 +496,7 @@ and falstad :)
 
 http://www.rodenburg.org/index.html
 
+http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html
 
 # Internet, Web, ... characters and html5-utf-8, protocols, standardas and recomendations.
 
