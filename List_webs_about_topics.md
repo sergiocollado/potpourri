@@ -453,6 +453,7 @@ Lineal Technology
 
 Fujitsu
 
+Seiko semiconductors
 
 
 # ASTRONOMY
@@ -492,6 +493,7 @@ http://www1.phys.vt.edu/~takeuchi/relativity/
 http://www.sc.ehu.es/sbweb/fisica/default.htm
 
 and falstad :)
+
 
 # Internet, Web, ... characters and html5-utf-8, protocols, standardas and recomendations.
 
