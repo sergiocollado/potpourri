@@ -411,6 +411,12 @@ https://free3d.com/
 
 
 
+# trading
+
+https://www.dukascopy.com
+
+http://fxhistoricaldata.com/
+
 
 
 
@@ -479,6 +485,13 @@ http://herbie.uwplse.org/
 https://www.windows2universe.org/?page=/citizen_science/myw/w2u_eratosthenes_calc_earth_size.html
 
 
+# PHYSICS
+
+http://www1.phys.vt.edu/~takeuchi/relativity/
+
+http://www.sc.ehu.es/sbweb/fisica/default.htm
+
+and falstad :)
 
 # Internet, Web, ... characters and html5-utf-8, protocols, standardas and recomendations.
 
