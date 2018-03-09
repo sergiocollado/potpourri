@@ -362,6 +362,18 @@ It reads from the file `proc/modules`, so you can also read it as: `cat /proc/mo
 more on: https://www.computerhope.com/unix/lsmod.htm
 
 
+# Run a script as a background daemon
+
+it is possible with:
+
+```bash
+nohup node myscript.js > /dev/null 2>1 &
+```
+
+nohup:  doesn't allow termination of the process even in the event the stty is finished (the console/shell) 
+/dev/null : the output of the process goes to the null-device (shinkhole).
+2>&1 : stderr is redirected to stdout -- in this case stdout already is redirected to /dev/null --
+& : run the process in the background (as a daemon)
 
 
 # Nmap
