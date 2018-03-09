@@ -21,8 +21,7 @@ The Coulomb (C) is defined as the amount of electrical charge that have 6.241x10
 The number of Coulombs per second (C/s) is known as the **Ampere** (A), which is the unit of the electric current. The electric current is the amount of electric charges that goes through a body per unit time - this is same as say: the flow of electric charges.
 
 ## **Electricity**: 
-Electricity is an energy asociated with the phenomenon of the flow and accumulation of electrons (negative charged particles)
-oposed to protons (positive charged particles).
+Electricity is an energy asociated with the phenomenon of the flow and/or accumulation of electric charges (excess or defect of electrons)
 
 ## **Electrostatics**:
 Is the study of the electric phenomenon, when the different charges: electrons (by convention, negatively charged)
@@ -52,9 +51,6 @@ Two charges of equal sign, repulse each other, and two charges of opposite sign 
 ![cases of forces on electrostatic charges](../image/charges.png)
 <br>
 <br>
-
-
-
 
 
 Electrostatics are govern by _**Coulomb's Law**_ that enunciates as folows:
