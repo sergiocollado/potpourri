@@ -643,3 +643,15 @@ Use the **noscript** tag:
 ```
 
 Use the **alt** tag. 
+
+
+
+
+# OPEN DATA.
+
+ Thats data made public for its free reuse.
+ 
+ for example in the Climatic Spanish Agency: https://opendata.aemet.es/centrodedescargas/productosAEMET?
+ 
+ 
+ 
