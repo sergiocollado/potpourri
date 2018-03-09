@@ -206,3 +206,6 @@ A nice thing, is that the electric field, allows us to use the superposition pri
 𝓢ℯ𝓇ℊ𝒾ℴ 𝓖. 𝓒ℴ𝓁𝓁𝒶𝒹ℴ
 
 
+REFERENCES:
+
+https://courses.lumenlearning.com/physics/chapter/19-5-capacitors-and-dielectrics/
