@@ -209,3 +209,7 @@ A nice thing, is that the electric field, allows us to use the superposition pri
 REFERENCES:
 
 https://courses.lumenlearning.com/physics/chapter/19-5-capacitors-and-dielectrics/
+
+https://www.doitpoms.ac.uk/tlplib/thermal_electrical/printall.php
+
+http://demoweb.physics.ucla.edu/content/experiment-3-electrostatics
