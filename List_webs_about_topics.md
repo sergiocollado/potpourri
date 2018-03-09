@@ -451,7 +451,7 @@ RHOM
 
 Lineal Technology
 
-Fujitsu
+Fujitsu  https://www.fujielectric.com/products/semiconductor/technical/index.html
 
 Seiko semiconductors
 
