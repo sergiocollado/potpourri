@@ -28,6 +28,20 @@ oposed to protons (positive charged particles).
 Is the study of the electric phenomenon, when the different charges: electrons (by convention, negatively charged)
 and protons (by convention, positive charged) are in an static equilibrium - that is: they are not moving with respect each others.
 
+## Types of materials:
+
+ According how electric charges (the defect or excess of electrons) behave in a given material, it is possible to differentiate two classes of materials: conductor and non-conductors.
+ 
+### Conductor materials
+ 
+The electric charges, can move fairly easily in the material, that means that they will distribute themselves.
+ 
+### Non-conductor materials
+  
+The electric charges, can not easily move in the material, as consecuence the electric charges will tend to be concentrated (due its lack of movement).
+
+
+
 ## Charge conservation's Law:
 The net amount of charge is conserved, that is to say, that is the amount of positive charge, minus the net amount of negative charge
 is always conserved. This implies that electric charge cannot be created nor destroyed.
@@ -39,7 +53,11 @@ Two charges of equal sign, repulse each other, and two charges of opposite sign 
 <br>
 <br>
 
-Electrostatics is govern by _**Coulomb's Law**_ that enunciates as folows:
+
+
+
+
+Electrostatics are govern by _**Coulomb's Law**_ that enunciates as folows:
 
 ## **Coulomb's Law**
 
