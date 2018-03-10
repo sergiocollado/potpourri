@@ -474,9 +474,6 @@ https://www.eutelsat.com/en/home.html
 
 
 
-
-
-
 # MATHS
 
 http://www.mpfr.org/
@@ -484,6 +481,10 @@ http://www.mpfr.org/
 http://herbie.uwplse.org/
 
 https://www.windows2universe.org/?page=/citizen_science/myw/w2u_eratosthenes_calc_earth_size.html
+
+http://www-groups.dcs.st-and.ac.uk/~history/index.html
+
+http://www-groups.dcs.st-and.ac.uk/~history/Curves/Curves.html
 
 
 # PHYSICS
@@ -497,6 +498,8 @@ and falstad :)
 http://www.rodenburg.org/index.html
 
 http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html
+
+http://www-groups.dcs.st-and.ac.uk/~history/index.html
 
 # Internet, Web, ... characters and html5-utf-8, protocols, standardas and recomendations.
 
