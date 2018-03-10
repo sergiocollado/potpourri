@@ -486,6 +486,7 @@ http://www-groups.dcs.st-and.ac.uk/~history/index.html
 
 http://www-groups.dcs.st-and.ac.uk/~history/Curves/Curves.html
 
+http://www.2dcurves.com/
 
 # PHYSICS
 
@@ -500,6 +501,14 @@ http://www.rodenburg.org/index.html
 http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html
 
 http://www-groups.dcs.st-and.ac.uk/~history/index.html
+
+http://xahlee.info/SpecialPlaneCurves_dir/_curves_robert_yates/ry_001_astroid.html
+
+http://xahlee.info/SpecialPlaneCurves_dir/Inversion_dir/inversion.html
+
+http://xahlee.info/SpecialPlaneCurves_dir/specialPlaneCurves.html
+
+dipole curve:  http://xahlee.info/SpecialPlaneCurves_dir/Inversion_dir/inversion.html
 
 # Internet, Web, ... characters and html5-utf-8, protocols, standardas and recomendations.
 
