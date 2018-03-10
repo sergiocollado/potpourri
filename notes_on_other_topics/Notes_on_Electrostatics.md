@@ -10,7 +10,7 @@
 
 That means, that all the different elements known, are made of protons, neutrons and electrons, and they only differ in the number of protons, neutrons and electrons, their atoms are made of. 
 
-The existence of atoms, was first considered by the experiments of J.J. Thompson while working with cathodic rays.
+_NOTE_ The existence of atoms, was first considered by the experiments of J.J. Thompson while working with cathodic rays and Crookes tubes.
 
 
 ## **Electric Charge:**
@@ -218,8 +218,24 @@ https://www.doitpoms.ac.uk/tlplib/thermal_electrical/printall.php
 
 http://demoweb.physics.ucla.edu/content/experiment-3-electrostatics
 
+https://courses.lumenlearning.com/physics/
+
 http://web.lemoyne.edu/~GIUNTA/papers.html
 
 TODO:
 
 Check:  The Geiger-Marsden experiment
+
+Check: https://en.wikipedia.org/wiki/Crookes_tube
+
+
+out Einstein's theoretical explanation for the observed Brownian motion and the observed Perrin experiments on it are quite valid.
+
+
+Rutherford's alpha particle scattering experiments
+
+Rutherford and Rayleigh and Einstein--Perrin and the Millikan oil-drop experiment might be the best experimental verification of atomic theory.
+
+here is an experiment by Perrin related to this which has been pivotal in the acceptance of the atomic hypothesis. I think Perrin got the Nobel Prize
+
+
