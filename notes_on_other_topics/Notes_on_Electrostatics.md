@@ -2,13 +2,15 @@
 ## What are things made of?
 ### ... or: what is the structure of matter?
 
- -- This is quite a topic! through history there has been several theories that tried to explain what the matter is made of. For the moment, is enought to consider the theory known as the _**Bohr's model**_. This theory states that matter is ultimately made of particles known as **atoms**. And atoms are made of two parts: a _nucleus_ - made by two kinds of sub-particles: **protons** and **neutrons**; and kind of 'cloud' 'orbiting' around the nucleus, made of another kind of sub-particles, known as **electrons**. 
+ -- This is quite a topic! through history there has been several theories that tried to explain what the matter is made of. For the moment, is enought to consider the theory known as the **Atomic model** or  _**Bohr's model**_. This theory states that matter is ultimately made of particles known as **atoms**. Being the atoms:_the smallest elemental unit of matter_. And atoms are made of two parts: a _nucleus_ - made by two kinds of sub-particles: **protons** and **neutrons**; and kind of 'cloud' 'orbiting' around the nucleus, made of another kind of sub-particles, known as **electrons**. 
 
 <br>
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/atomic_model.png" width="500" style="border:1px solid black" alt="Bohr's atom model">
 <br>
 
 That means, that all the different elements known, are made of protons, neutrons and electrons, and they only differ in the number of protons, neutrons and electrons, their atoms are made of. 
+
+The existence of atoms, was first considered by the experiments of J.J. Thompson while working with cathodic rays.
 
 
 ## **Electric Charge:**
@@ -215,3 +217,9 @@ https://courses.lumenlearning.com/physics/chapter/19-5-capacitors-and-dielectric
 https://www.doitpoms.ac.uk/tlplib/thermal_electrical/printall.php
 
 http://demoweb.physics.ucla.edu/content/experiment-3-electrostatics
+
+http://web.lemoyne.edu/~GIUNTA/papers.html
+
+TODO:
+
+Check:  The Geiger-Marsden experiment
