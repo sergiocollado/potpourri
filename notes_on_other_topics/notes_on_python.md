@@ -392,7 +392,7 @@ if __name__ == "__main__":
     hello(sys.argv[1], sys.argv[2])
 ```
 
-You can call the file inside the python IDE, but if you call it from a console, you have to call th epython intepreter previously like:
+You can call the file inside the python IDE, but if you call it from a console, you have to call the python intepreter previously like:
 
 ```python
 >>> python hello.py 1,1
