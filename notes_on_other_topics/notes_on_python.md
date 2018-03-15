@@ -395,9 +395,11 @@ reference:  https://docs.python.org/3.0/library/sys.html
 this module, adds functions to interact with the python interpreter, as:
 
 ```python
-sys.arg 
+sys.argv 
 ```
-returns the number of parameters passed to the python script
+'sys.argv' returns as a lits the parameters passed to the script. 'sys.arvg[0]' is the name of the script. It may or maynot include the path depending on the platfomr.
+
+To know the number of arguments passed to the script, is easy to use: 'len(sys.argv)'
 
 ```python
 sys.exc_info()
