@@ -429,25 +429,47 @@ sys.argv
 
 To know the number of arguments passed to the script, is easy to use: 'len(sys.argv)'
 
+An example as how to check arguments follows:
+
+```python
+if __name__ == "__main__":
+  if len(sys.argv) < 3:
+      print("this script needs at least 2 arguments")
+      exit();
+  elif len(sys.argv) > 3:
+      print("... there are too many arguments. this scripts need 2 arguments")
+      exit();
+  else:
+      if sys.argv[1] not in ['arg1','arg2','arg3']:
+          print("The selected method is not correct. It must be: arg1 or arg2 or arg3");
+      else:
+         print("all good")
+```
+
+
+To get information about a triggered exception, is used:
+
 ```python
 sys.exc_info()
 ```
-returns info about the triggered exception
+
+To get a list that points to the location path of modules:
 
 ```python
 sys.path
 ```
-a list that points to the location path of modules
+
+To identificate the system platform (window, mac, linux)
 
 ```python
 sys.platform
 ```
-returns identification about the system platform (window, mac, linux)
+To debug:
 
 ```python
 sys.settrace(function)
 ```
-usefull to work out a debugger
+
 <hr>
 
 
