@@ -1,9 +1,13 @@
 
 # NOTES ON PYTHON
 
+Basic tutorial: https://docs.python.org/3/tutorial/index.html
+
 The main reference is:  https://docs.python.org/3/library/index.html
 
 Other reference: http://docs.python-guide.org/en/
+
+
 
 ## Looking for help()
 
@@ -71,11 +75,35 @@ This dynamic casting is done by means of defining objects. You can check the obj
 - **floating point**: 3.14159
 - **complex numbers**: 1 + j
 
-With the functions: **bin(), oct(), hex()** - you can convert the numbers to its string representation.
+With the functions: **bin(), oct(), hex()** - you can convert the numbers to its binary, octal, or hexadecimal string representation.
+
+```python
+>>> dec_number = 12
+>>> bin(dec_number)
+'0b1100'
+>>> oct(dec_number)
+'0o14'
+>>> hex(dec_number)
+'0xc'
+```
 
 With the function: **int()** - you can convert a string into its corresponding number.
 
+```python
+>>> ask_value = input("please, enter a value:   ")
+please, enter a value:   123
+>>> ask_value
+'123'
+>>> int(ask_value)
+123
+```
+
 With the function: **str()** - you can convert a number to a string type.
+
+```python
+>>> str(int(ask_value))
+'123'
+```
 
 #### Strings
 
