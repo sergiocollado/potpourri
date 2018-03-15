@@ -5,9 +5,6 @@ Basic tutorial: https://docs.python.org/3/tutorial/index.html
 
 The main reference is:  https://docs.python.org/3/library/index.html
 
-Other reference: http://docs.python-guide.org/en/
-
-
 
 ## Looking for help()
 
