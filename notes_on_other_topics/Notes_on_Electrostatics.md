@@ -2,7 +2,7 @@
 ## What are things made of?
 ### ... or: what is the structure of matter?
 
- -- This is quite a topic! through history there has been several theories that tried to explain what the matter is made of. For the moment, is enought to consider the theory known as the **Atomic model** or  _**Bohr's model**_. This theory states that matter is ultimately made of particles known as **atoms**. Being the atoms:_the smallest elemental unit of matter_. And atoms are made of two parts: a _nucleus_ - made by two kinds of sub-particles: **protons** and **neutrons**; and kind of 'cloud' 'orbiting' around the nucleus, made of another kind of sub-particles, known as **electrons**. 
+ -- This is quite a topic! through history there has been several theories that tried to explain what the matter is made of. For the moment, is enought to consider the theory known as the **Atomic model** or  _**Bohr's model**_. This theory states that matter is ultimately made of particles known as **atoms**. Being the atoms:_the smallest elemental unit of matter_. And atoms are made of two parts: a _nucleus_ - made by two kinds of sub-particles: **protons** and **neutrons**; and kind of 'orbiting' 'cloud' around the nucleus, made of another kind of sub-particles, known as **electrons**. 
 
 <br>
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/atomic_model.png" width="500" style="border:1px solid black" alt="Bohr's atom model">
@@ -46,7 +46,7 @@ Two charges of equal sign, repulse each other, and two charges of opposite sign 
  
 ### Conductor materials
  
-In Conductor materials the unions or bonds between atoms are such that they share electrons. Due to this the electric charges, can move fairly easily in the material, that means that they will distribute themselves evenly in the material.
+In Conductor materials the unions or bonds between atoms are such that they share the outmost 'orbiting' electrons. Due to this the electric charges, can move fairly easily in the material, that means that they will distribute themselves evenly in the material.
 
 Due to the fact that electric charges with the same sign repulse each other, in a given charged body, its electric charges will place themselves in it's outer surface, as result of repelling each other, and being in its out-most surface is the placement in which the charges are most distanced one of each other.
 
@@ -55,9 +55,6 @@ Due to the fact that electric charges with the same sign repulse each other, in 
 ### Non-conductor materials
   
 In non-conductor materials, the electrons are tightly bond to their nucleus. As such, the electric charges, can not easily move in the material, as consecuence, the electric charges will tend to be concentrated on a point or small region (due its lack of movement).
-
-![non-conductor_materials](https://github.com/sergiocollado/potpourri/blob/master/image/non-conductor_material.png)
-
 
 Electrostatics are govern by _**Coulomb's Law**_ that enunciates as folows:
 
