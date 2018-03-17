@@ -58,6 +58,8 @@ In non-conductor materials, the electrons are tightly bond to their nucleus. As 
 
 Electrostatics are govern by _**Coulomb's Law**_ that enunciates as folows:
 
+![non-conductor_materials](https://github.com/sergiocollado/potpourri/blob/master/image/non-conductor_material.png)
+
 ## **Coulomb's Law**
 
 
