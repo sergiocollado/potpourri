@@ -49,6 +49,8 @@ Two charges of equal sign, repulse each other, and two charges of opposite sign 
 In Conductor materials the unions or bonds between atoms are such that they share electrons. Due to this the electric charges, can move fairly easily in the material, that means that they will distribute themselves evenly in the material.
 
 Due to the fact that electric charges with the same sign repulse each other, in a given charged body, its electric charges will place themselves in it's outer surface, as result of repelling each other, and being in its out-most surface is the placement in which the charges are most distanced one of each other.
+
+![conductor_materials](https://github.com/sergiocollado/potpourri/blob/master/image/conductor_material.png)
  
 ### Non-conductor materials
   
