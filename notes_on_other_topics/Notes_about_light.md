@@ -26,6 +26,7 @@ through, then three things can happen:
 
 ![Reflection](../image/light.PNG)
 
+![reflection](https://github.com/sergiocollado/potpourri/blob/master/image/light_reflection.png)
 
 
 
