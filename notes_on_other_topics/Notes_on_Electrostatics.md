@@ -56,9 +56,11 @@ Due to the fact that electric charges with the same sign repulse each other, in 
   
 In non-conductor materials, the electrons are tightly bond to their nucleus. As such, the electric charges, can not easily move in the material, as consecuence, the electric charges will tend to be concentrated on a point or small region (due its lack of movement).
 
+![non-conductor_materials](https://github.com/sergiocollado/potpourri/blob/master/image/non-conductor_material.png)
+
+
 Electrostatics are govern by _**Coulomb's Law**_ that enunciates as folows:
 
-![non-conductor_materials](https://github.com/sergiocollado/potpourri/blob/master/image/non-conductor_material.png)
 
 ## **Coulomb's Law**
 
