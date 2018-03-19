@@ -512,6 +512,10 @@ http://xahlee.info/SpecialPlaneCurves_dir/specialPlaneCurves.html
 
 dipole curve:  http://xahlee.info/SpecialPlaneCurves_dir/Inversion_dir/inversion.html
 
+# digital manuscripts
+
+http://www.digipal.eu/digipal/page/
+
 # Internet, Web, ... characters and html5-utf-8, protocols, standardas and recomendations.
 
 https://dev.w3.org/html5/html-author/charref
