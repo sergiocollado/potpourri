@@ -1004,6 +1004,13 @@ reference: https://www.eetimes.com/document.asp?doc_id=1257340
 ![copper_turns_gold.JPG](https://github.com/sergiocollado/potpourri/blob/master/image/copper_turns_gold.JPG)
 
 
+Other times a natural disaster, might force to change the production locations, and due to this, the components, might be also sligthly out of specs, because the production is not fine-tunned.
+
+reference: https://www.theguardian.com/technology/2011/oct/25/thailand-floods-hard-drive-shortage
+
+![thai_floods](https://github.com/sergiocollado/potpourri/blob/master/image/Thailand_floods.PNG)
+
+
 These methods are used for IDENTIFICATION and CORRECTION of possible or eventual faults at the hardware component level.
 
 
