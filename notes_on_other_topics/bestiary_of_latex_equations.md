@@ -151,3 +151,26 @@ CONICS:
 <br>
 <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/circunf_eq.svg?sanitize=true" alt="circunference equation">
 <br>
+
+
+
+ASTROID:
+
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/astroid_eq_2.svg?sanitize=true" alt="circunference equation">
+<br>
+
+```latex
+\begin{matrix}
+\textrm{cartesian} & \begin{matrix}
+x^{\frac{2}{3}} + y^{\frac{2}{3}} = a^{\frac{2}{3}}
+\\ 
+\end{matrix}
+\\ 
+\textrm{polar} & \left\{\begin{matrix}
+ x = a \cos^3(t)
+\\ y = a \sin^3(t)
+\end{matrix}\right.
+\end{matrix}
+```
+
