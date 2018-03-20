@@ -70,6 +70,10 @@ B VECTOR:
 
 DOT  PRODUCT:
 
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/Dot_product.svg?sanitize=true" alt="B vector">
+<br>
+
 ```latex
 \vec{A} \cdot \vec{B} = A_x \cdot B_x + A_y \cdot B_y + A_z \cdot B_z
 ```
