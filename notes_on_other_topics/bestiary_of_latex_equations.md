@@ -78,6 +78,15 @@ DOT  PRODUCT:
 \vec{A} \cdot \vec{B} = A_x \cdot B_x + A_y \cdot B_y + A_z \cdot B_z
 ```
 
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/Dot_product.2svg.svg?sanitize=true" alt="B vector">
+<br>
+
+```latex
+\vec{A} \bullet  \vec{B} = \left |\vec{A}  \right | \cdot \left |  \vec{B}  \right | \cdot \cos (\hat{AB})
+```
+
+
 SIN THEOREM:
 
 ```latex
