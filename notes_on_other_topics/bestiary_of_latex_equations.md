@@ -162,10 +162,8 @@ ASTROID:
 
 ```latex
 \begin{matrix}
-\textrm{cartesian} & \begin{matrix}
+\textrm{cartesian} & 
 x^{\frac{2}{3}} + y^{\frac{2}{3}} = a^{\frac{2}{3}}
-\\ 
-\end{matrix}
 \\ 
 \textrm{polar} & \left\{\begin{matrix}
  x = a \cos^3(t)
