@@ -19,7 +19,7 @@ RACIONALIZATION OF COULOMB FORCE
 F  &= k_e \cdot \frac{Q_1 \cdot Q_2}{r^2} 
 \\ &= \frac{1}{4 \cdot \pi \cdot \varepsilon } \cdot \frac{Q_1 \cdot Q_2}{r^2}
 \\ &= \frac{1}{4 \cdot \pi \cdot \varepsilon_r \cdot \varepsilon_0 } \cdot \frac{Q_1 \cdot Q_2}{r^2}
-\\ &= \frac{1}{4 \cdot \pi \cdot \varepsilon_r \cdot \frac{10^{-9}}{36 \cdot \pi }} \cdot \frac{Q_1 \cdot Q_2}{r^2}
+\\ &=\frac{1}{4\cdot\pi\cdot\varepsilon_r\cdot\frac{10^{-9}}{36\cdot\pi}}\cdot\frac{Q_1\cdot Q_2}{r^2}
 \\ &= \frac{9 \cdot 10^{9}}{ \varepsilon_r } \cdot \frac{Q_1 \cdot Q_2}{r^2}
 \end{align*}
 ```
