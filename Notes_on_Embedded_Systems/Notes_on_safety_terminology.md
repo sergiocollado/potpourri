@@ -374,7 +374,16 @@ Recomendations to define all the tasks required for and mantaining software.
 - ISO/IEC 15504: Information Technology - Process assesment, also refered as Software Process Improvement and Capability Determination (SPICE)
 - Recomendations for the computer software development process and related bussines management fuctions. This standard is derived from the ISO/IEC 12207, and madurity models as CMM (Capability Madurity Model).
 - IEEE 829 - software test doucmentation
-- ISO/IEC 27000 - Information securty management systems.
+- ISO/IEC 27000 - Information security management systems.
+- IEC 60812:1985 Analysis techniques for system reliability - FEMA: procedures for failure mode effect and analysis
+- IEC 61025:1990 Fault Tree Analysis (FTA)
+- IEC 61713:2000
+- IEEE Std 1044-1993, Standard Classification of Software Anomalies
+- IEEE Std 1012-1998, Standard for Software Validation and Verification Plans.
+
+
+
+
 
 
 ### Aircraft systems
