@@ -172,7 +172,7 @@ x^{\frac{2}{3}} + y^{\frac{2}{3}} = a^{\frac{2}{3}}
 \end{matrix}
 ```
 
-MATRIX SCALE
+MATRIX TRANSFORMATION
 
 <br>
 <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/2dmatrixScale.svg?sanitize=true" alt="2D matrix scale operation">
@@ -194,5 +194,12 @@ S_x & 0 \\
 S^{-1}= \begin{pmatrix}
 S_x^{-1} & 0 \\ 
 0 & S_y^{-1}
+\end{pmatrix}
+```
+
+```latex
+\mathrm{2D\:  Shear:\; \; }   \; \; Shear= \begin{pmatrix}
+1 & a \\ 
+0 & 1
 \end{pmatrix}
 ```
