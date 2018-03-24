@@ -197,6 +197,11 @@ S_x^{-1} & 0 \\
 \end{pmatrix}
 ```
 
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/2dmatrixShear.svg?sanitize=true" alt="2D shear matrix">
+<br>
+
+
 ```latex
 \mathrm{2D\:  Shear:\; \; }   \; \; Shear= \begin{pmatrix}
 1 & a \\ 
