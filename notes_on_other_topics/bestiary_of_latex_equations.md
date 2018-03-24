@@ -174,6 +174,10 @@ x^{\frac{2}{3}} + y^{\frac{2}{3}} = a^{\frac{2}{3}}
 
 MATRIX SCALE
 
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/2dmatrixScale.svg?sanitize=true" alt="circunference equation">
+<br>
+
 ```latex
 \mathrm{2D\:  Scale:\; \; }   \; \; S= \begin{pmatrix}
 S_x & 0 \\ 
