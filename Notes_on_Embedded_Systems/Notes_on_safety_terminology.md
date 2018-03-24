@@ -1409,6 +1409,18 @@ JP Rankin, “Sneak Circuit Analysis,”
 http://klabs.org/DEI/References/design_guidelines/analysis_series/1314msfc.pdf
 
 
+### Learn from others mistakes
+
+#### Genesis Solar Wind Probe:
+Went to Space, took samples of the solar wind, come back to Earth, but failed to open the parachutes : S
+the MIB, resolved that the accelerometer sensor that was supposed to trigger the parachutes was mounted upside-down...  yahpp!
+The reviews, didn't catch that mistake
+
+ref: https://genesismission.jpl.nasa.gov/educate/kitchen/resource/factsheets/missionoverview.pdf
+
+ref: https://en.wikipedia.org/wiki/Genesis_(spacecraft)
+
+
 
 Examples of safety-critical systems[edit]
 critical infrastructures monitoring systems[edit]
@@ -1618,7 +1630,7 @@ SQI - Software Quality Institute.
 
 SPICE - International Standard for Software Process Assesment.
 
-
+MIB - Mishap Investigation Board
 
 BOOKS:
 
