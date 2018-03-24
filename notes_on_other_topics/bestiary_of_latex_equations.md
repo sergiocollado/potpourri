@@ -215,9 +215,16 @@ Shear^{-1}= \begin{pmatrix}
 0 & 1
 \end{pmatrix}
 ```
+
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/2dmatrixRotation.svg?sanitize=true" alt="2D Rotation matrix">
+<br>
+
 ```latex
 \mathrm{2D\:  Rotation:\; \; }   \; \; R= \begin{pmatrix}
 \cos(\theta)  & -\sin(\theta) \\ 
 \sin(\theta) & \cos(\theta)
 \end{pmatrix}
 ```
+
+
