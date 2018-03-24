@@ -172,3 +172,11 @@ x^{\frac{2}{3}} + y^{\frac{2}{3}} = a^{\frac{2}{3}}
 \end{matrix}
 ```
 
+MATRIX SCALE
+
+```latex
+\mathrm{2D\:  Scale:\; \; }   \; \; S= \begin{pmatrix}
+S_x & 0 \\ 
+0 & S_y
+\end{pmatrix}
+```
