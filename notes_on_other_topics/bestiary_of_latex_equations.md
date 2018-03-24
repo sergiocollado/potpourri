@@ -180,3 +180,11 @@ S_x & 0 \\
 0 & S_y
 \end{pmatrix}
 ```
+
+
+```latex
+S^{-1}= \begin{pmatrix}
+S_x^{-1} & 0 \\ 
+0 & S_y^{-1}
+\end{pmatrix}
+```
