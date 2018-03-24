@@ -227,4 +227,20 @@ Shear^{-1}= \begin{pmatrix}
 \end{pmatrix}
 ```
 
+```latex
+\begin{align*}
+M &= M_1 M_2 M_3\\ 
+M^{-1} &= M_3^{-1} M_2^{-1} M_1^{-1}
+\\ 
+M^{-1} M &= M_3^{-1} ( M_2^{-1} ( M_1^{-1} M_1) M_2) M_3
+\end{align*}
+```
 
+```latex
+\begin{matrix}
+M = M_1 M_2 M_3\\ 
+M^{-1} = M_3^{-1} M_2^{-1} M_1^{-1}
+\\ 
+M^{-1} M = M_3^{-1} ( M_2^{-1} ( M_1^{-1} M_1) M_2) M_3
+\end{matrix}
+```
