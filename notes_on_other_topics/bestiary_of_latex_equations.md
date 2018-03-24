@@ -203,3 +203,10 @@ S_x^{-1} & 0 \\
 0 & 1
 \end{pmatrix}
 ```
+
+```latex
+Shear^{-1}= \begin{pmatrix}
+1 & -a \\ 
+0 & 1
+\end{pmatrix}
+```
