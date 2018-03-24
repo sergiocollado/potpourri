@@ -215,3 +215,9 @@ Shear^{-1}= \begin{pmatrix}
 0 & 1
 \end{pmatrix}
 ```
+```latex
+\mathrm{2D\:  Rotation:\; \; }   \; \; R= \begin{pmatrix}
+\cos(\theta)  & -\sin(\theta) \\ 
+\sin(\theta) & \cos(\theta)
+\end{pmatrix}
+```
