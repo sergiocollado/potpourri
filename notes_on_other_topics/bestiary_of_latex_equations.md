@@ -227,6 +227,11 @@ Shear^{-1}= \begin{pmatrix}
 \end{pmatrix}
 ```
 
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/2dmatrixPropierties2.svg?sanitize=true" alt="2D propierties matrix">
+<br>
+
+
 ```latex
 \begin{align*}
 M &= M_1 M_2 M_3\\ 
