@@ -175,7 +175,7 @@ x^{\frac{2}{3}} + y^{\frac{2}{3}} = a^{\frac{2}{3}}
 MATRIX SCALE
 
 <br>
-<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/2dmatrixScale.svg?sanitize=true" alt="circunference equation">
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/2dmatrixScale.svg?sanitize=true" alt="2D matrix scale operation">
 <br>
 
 ```latex
@@ -185,6 +185,10 @@ S_x & 0 \\
 \end{pmatrix}
 ```
 
+
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/2dmatrixScaleInv.svg?sanitize=true" alt="2D Scale matrix inverse">
+<br>
 
 ```latex
 S^{-1}= \begin{pmatrix}
