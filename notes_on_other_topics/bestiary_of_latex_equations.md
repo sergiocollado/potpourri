@@ -276,7 +276,7 @@ cos\theta &\0 &\sin\theta \\
 ```
 
 <br>
-<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixRZ.svg.svg?sanitize=true" alt="3D Rotation z matrix">
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixRZ.svg?sanitize=true" alt="3D Rotation z matrix">
 <br>
 
 ```latex
@@ -288,7 +288,7 @@ cos\theta &\0 &\sin\theta \\
 ```
 
 <br>
-<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/orthogonal_matrixes.svg?sanitize=true" alt="3D Rotation z matrix">
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/orthogonal_matrixes.svg?sanitize=true" alt="Orthogonal mtrix eq">
 <br>
 
 ```latex
