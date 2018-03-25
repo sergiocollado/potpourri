@@ -343,30 +343,15 @@ z_p
 <br>
 
 ```latex
-\begin{pmatrix}
-x'\\ 
-y'\\ 
-z'\\ 
-w'
-\end{pmatrix} = \begin{pmatrix}
+\begin{pmatrix} x'\\ y'\\ z'\\ w' \end{pmatrix} = \begin{pmatrix}
 \1 &0 &0  &k\\
 \0 &1 &0  &0\\
 \0 &0 &1  &0\\
 \0 &0 &0  &1
 \end{pmatrix} 
 \cdot 
-\begin{pmatrix}
-x\\ 
-y\\ 
-z\\ 
-1
-\end{pmatrix}
+\begin{pmatrix} x\\ y\\ z\\ 1\end{pmatrix}
 = 
-\begin{pmatrix}
-x+k\\ 
-y\\ 
-z\\ 
-w
-\end{pmatrix}
+\begin{pmatrix} x+k\\ y\\ z\\ w \end{pmatrix}
 ```
 
