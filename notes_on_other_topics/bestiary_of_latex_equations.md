@@ -264,7 +264,7 @@ M^{-1} M = M_3^{-1} ( M_2^{-1} ( M_1^{-1} M_1) M_2) M_3
 ```
 
 <br>
-<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixRY.svg?sanitize=true" alt="2D Rotation matrix">
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixRY.svg?sanitize=true" alt="3D Rotation y matrix">
 <br>
 
 ```latex
@@ -273,4 +273,24 @@ cos\theta &\0 &\sin\theta \\
 \0 &1 &0 \\
 -\sin\theta &0 &\cos\theta
 \end{pmatrix}
+```
+
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixRZ.svg.svg?sanitize=true" alt="3D Rotation z matrix">
+<br>
+
+```latex
+\mathrm{3D \; \; y\; \;  Rotation:} \; \; \; \; R_y= \begin{pmatrix}
+cos\theta &\0 &\sin\theta \\ 
+\0 &1 &0 \\
+-\sin\theta &0 &\cos\theta
+\end{pmatrix}
+```
+
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/orthogonal_matrixes.svg?sanitize=true" alt="3D Rotation z matrix">
+<br>
+
+```latex
+\mathrm{Orthogonal \; matrix:\: \: \: } \; \; R^T \cdot R = I
 ```
