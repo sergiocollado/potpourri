@@ -18,4 +18,4 @@ ref: https://mars.nasa.gov/programmissions/missions/past/globalsurveyor/
 ref: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.734.4980&rep=rep1&type=pdf
 ref: http://sci.esa.int/mars-express/58555-crustal-fields-on-mars/
 
-![mars_crustal_magnetism](http://sci.esa.int/jump.cfm?oid=58555)
+![mars_crustal_magnetism](http://sci.esa.int/science-e-media/img/bb/135896main_pnas_102_42_connerney_fig1_625w.jpg)
