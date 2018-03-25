@@ -337,13 +337,16 @@ z_p
 \end{pmatrix}
 ```
 
+3D TRANSLATION: HOMOGENEUS COORDENATES
 
 <br>
 <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixHomogeneusCoord.svg?sanitize=true" alt="3d Point rotation">
 <br>
 
 ```latex
-\begin{pmatrix} x'\\ y'\\ z'\\ w' \end{pmatrix} = \begin{pmatrix}
+\begin{pmatrix} x'\\ y'\\ z'\\ w' \end{pmatrix} 
+= 
+\begin{pmatrix}
 \1 &0 &0  &k\\
 \0 &1 &0  &0\\
 \0 &0 &1  &0\\
