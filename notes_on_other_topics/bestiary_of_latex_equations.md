@@ -252,7 +252,7 @@ M^{-1} M = M_3^{-1} ( M_2^{-1} ( M_1^{-1} M_1) M_2) M_3
 \end{matrix}
 ```
 <br>
-<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixRX.svg?sanitize=true" alt="2D Rotation matrix">
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixRX.svg?sanitize=true" alt="3D Rotation Y axis matrix">
 <br>
 
 ```latex
@@ -260,5 +260,17 @@ M^{-1} M = M_3^{-1} ( M_2^{-1} ( M_1^{-1} M_1) M_2) M_3
 \1 &\0 &\0 \\
 \0 &\cos(\theta)  &-\sin(\theta) \\ 
 \0 &\sin(\theta) & \cos(\theta) 0
+\end{pmatrix}
+```
+
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixRY.svg?sanitize=true" alt="2D Rotation matrix">
+<br>
+
+```latex
+\mathrm{3D \; \; y\; \;  Rotation:} \; \; \; \; R_y= \begin{pmatrix}
+cos\theta &\0 &\sin\theta \\ 
+\0 &1 &0 \\
+-\sin\theta &0 &\cos\theta
 \end{pmatrix}
 ```
