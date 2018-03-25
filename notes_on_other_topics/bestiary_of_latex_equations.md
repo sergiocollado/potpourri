@@ -357,7 +357,7 @@ z_p
 = 
 \begin{pmatrix} x+k\\ y\\ z\\ w \end{pmatrix}
 ```
-
+GENERAL TRANSLATION
 
 <br>
 <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixHomogeneusCoordTrasnslation.svg?sanitize=true" alt="3d general translation">
@@ -375,11 +375,46 @@ z_p
 = 
 \begin{pmatrix} x+Tx\\ y+Ty\\ z+Tz\\ 1 \end{pmatrix}
 ```
+COMBINATION OF ROTATONS, AND TRANSLATIONS
+
+R·T != T·R 
+
+P'=(T·R)P = M·P = R·P + T
+
+P'=(R·T)P = M·P = R·(P+T) = R·P + R·T
 
 
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixTR.svg?sanitize=true" alt="3d general translation">
+<br>
 
-
-
+```latex
+\begin{matrix}
+ P' = (T\cdot R)\cdot P = M\cdot P = R\cdot P + T  \\
+\\
+M = 
+\begin{pmatrix}
+\1 &0 &0  &Tx\\
+\0 &1 &0  &Ty\\
+\0 &0 &1  &Tz\\
+\0 &0 &0  &1
+\end{pmatrix} 
+\cdot 
+\begin{pmatrix}
+\ R_{11} &R_{12} &R_{13}  &0\\
+\ R_{21} &R_{22} &R_{23}  &0\\
+\ R_{31} &R_{32} &R_{33}  &0\\
+\0 &0 &0  &1
+\end{pmatrix} 
+= 
+\begin{pmatrix}
+\ R_{11} &R_{12} &R_{13}  &Tx\\
+\ R_{21} &R_{22} &R_{23}  &Ty\\
+\ R_{31} &R_{32} &R_{33}  &Tz\\
+\0 &0 &0  &1
+\end{pmatrix} 
+\end{matrix}
+```
 
 
 
