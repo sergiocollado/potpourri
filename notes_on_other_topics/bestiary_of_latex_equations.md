@@ -336,3 +336,37 @@ z_p
 \vec{w} \cdot p
 \end{pmatrix}
 ```
+
+
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixHomogeneusCoord.svg?sanitize=true" alt="3d Point rotation">
+<br>
+
+```latex
+\begin{pmatrix}
+x'\\ 
+y'\\ 
+z'\\ 
+w'
+\end{pmatrix} = \begin{pmatrix}
+\1 &0 &0  &k\\
+\0 &1 &0  &0\\
+\0 &0 &1  &0\\
+\0 &0 &0  &1
+\end{pmatrix} 
+\cdot 
+\begin{pmatrix}
+x\\ 
+y\\ 
+z\\ 
+1
+\end{pmatrix}
+= 
+\begin{pmatrix}
+x+k\\ 
+y\\ 
+z\\ 
+w
+\end{pmatrix}
+```
+
