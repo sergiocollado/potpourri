@@ -5,7 +5,9 @@
 
  # BASIC CONCEPTS and DEFINITIONS:
  
-**EMBEDDED SYSTEM**: An embedded system, is a system, that combines software and hardware designs. It is common, that they have some kind of HMI (human machine interface) or UI (User Interface) as displays, keyboards, et cetera. Also is quite common, at least use of one network communication protocol. Embedded systems have fixed capabilities but are programmable, and they are designed for a specific function or functions. 
+**EMBEDDED SYSTEM**: An embedded system, is a system, that combines software and hardware designs. It is common, that they have some kind of HMI (human machine interface) or UI (User Interface) as displays, keyboards, et cetera. Also is quite common, at least use of one network communication protocol. Embedded systems have fixed capab
+
+ilities but are programmable, and they are designed for a specific function or functions. 
 
 Examples are: industrial equipments and control systems, production lines, machine's controllers,safety mechanism in heavy machinery, agricultural, automotive, train, railway, aeronautical, avionic, space and comunication systems, medical systems, household apliances, entertaiment devices, toys, vending machines, measurement/sensor and monitoring systems, security sytems, identity checks, access controls, robotics, logistics ...
 
@@ -453,7 +455,8 @@ http://nob.cs.ucdavis.edu/bishop/secprog/robust.html </br>
 Follow recomendations for implementing the system.
 
 - Use coding standards and recomendations:
-    - meanfully comments. the code must have a good 'readability'.
+    - meanfuly comments. the code must have a good 'readability'.
+    - work on define good baselines and documentation.
     - Always define the variable inizialization values.
     - Use indentation.
     - Never ever programm an infinite loop. (under a wort case design it will block execution)
@@ -476,7 +479,7 @@ Follow recomendations for implementing the system.
     - White and black lists (for input data parsing).
     - safety and security recomendations and techniques.
     - use lint programs that advice about the coding.
-    - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances, use DRC (design rule checks),  simulate the hardware, run montecarlo simulation analysis on the hardware, choose wisely the memory type (remember Flash, writes in blocks, and the number of writings is lower than for a EEPROM memory):
+    - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances, use DRC (design rule checks),  simulate the hardware, run montecarlo simulation analysis on the hardware, choose wisely the memory type (remember Flash, writes in blocks, and the number of writings is lower than for a EEPROM memory). Use poke-yoke connectors.
 - Implement a log or trace mechanism in the system.
 - Have a method to identify the software, and version of the system.
 - Test functions (unit testing) with wrong, and bad data- a program should behave sensibly even if the user don't.
