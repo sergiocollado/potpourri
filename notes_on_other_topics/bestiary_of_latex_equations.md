@@ -314,3 +314,25 @@ cos\theta &\0 &\sin\theta \\
 \vec{w} = ( x_w, y_w, z_w)
 \end{matrix}\right.
 ```
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixPointRotation.svg?sanitize=true" alt="3d Point rotation">
+<br>
+
+```latex
+R_p = \begin{pmatrix}
+x_u &y_u  &z_u \\ 
+x_v &y_v  &z_v \\ 
+x_w &y_w  &z_w
+\end{pmatrix}
+\cdot 
+\begin{pmatrix}
+x_p\\ 
+y_p\\ 
+z_p
+\end{pmatrix}
+= \begin{pmatrix}
+\vec{u} \cdot p\\ 
+\vec{v} \cdot p\\
+\vec{w} \cdot p
+\end{pmatrix}
+```
