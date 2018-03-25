@@ -231,6 +231,8 @@ Shear^{-1}= \begin{pmatrix}
 <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/2dmatrixPropierties2.svg?sanitize=true" alt="2D propierties matrix">
 <br>
 
+R is orthogonal, meaning: R^T · R = I
+
 
 ```latex
 \begin{align*}
