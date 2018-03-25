@@ -7,9 +7,9 @@
  
 **EMBEDDED SYSTEM**: An embedded system, is a system, that combines software and hardware designs. It is common, that they have some kind of HMI (human machine interface) or UI (User Interface) as displays, keyboards, et cetera. Also is quite common, at least use of one network communication protocol. Embedded systems have fixed capabilities but are programmable, and they are designed for a specific function or functions. 
 
-Examples are: industrial equipments and control systems, production lines, machine's controllers, agricultural, automotive, train, railway, aeronautical, avionic, space and comunication systems, medical systems, household apliances, entertaiment devices, toys, vending machines, measurement/sensor and monitoring systems, security sytems, identity checks, access controls, robotics, logistics ...
+Examples are: industrial equipments and control systems, production lines, machine's controllers,safety mechanism in heavy machinery, agricultural, automotive, train, railway, aeronautical, avionic, space and comunication systems, medical systems, household apliances, entertaiment devices, toys, vending machines, measurement/sensor and monitoring systems, security sytems, identity checks, access controls, robotics, logistics ...
 
-Most of the times, embedded systems are **reactive**, that means that they wait for an input, or measure some propierty or signal, and when they have it, they perform some computation, or check a defined threashold or condition; and then it generates a defined output: as could be: activation of a motor, a brake, or an alarm, triggers another system, send a message ... **Than means they can be modelled as an Automata**. 
+Most of the times, embedded systems are **reactive**, that means that they wait for an input, or they keep on measure some propierty or signal, and when they have it, they perform some computation, or check a defined threashold or condition; and then it generates a defined output: as could be: activation or triggering of an acutator, as: a motor, a brake, or an alarm, triggers another system, send a message ... **Than means they can be modelled as an Automata**. 
 
 Key propierties to take into account for an embedded system are:
 
@@ -1419,6 +1419,9 @@ The reviews, didn't catch that mistake
 ref: https://genesismission.jpl.nasa.gov/educate/kitchen/resource/factsheets/missionoverview.pdf
 
 ref: https://en.wikipedia.org/wiki/Genesis_(spacecraft)
+
+### Mars rover pathfinder pitfail:
+... almost lost it... because a priority inversion pitfall... :S
 
 
 
