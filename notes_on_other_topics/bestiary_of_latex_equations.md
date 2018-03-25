@@ -295,14 +295,22 @@ cos\theta &\0 &\sin\theta \\
 \mathrm{Orthogonal \; matrix:\: \: \: } \; \; R^T \cdot R = I
 ```
 
-
-
-
-
 <br>
 <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixRotLinear.svg?sanitize=true" alt="Orthogonal mtrix eq">
 <br>
 
 ```latex
 \mathrm{Rotation \;is  \; linear:\: \: \: } \; \; R\cdot ( X + Y ) = R \cdot X + R \cdot Y
+```
+
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dnewCoorSys.svg?sanitize=true" alt="New coord system">
+<br>
+
+```latex
+\left\{\begin{matrix}
+\vec{u} = ( x_u, y_u, z_u)\\ 
+\vec{v} = ( x_v, y_v, z_v)\\ 
+\vec{w} = ( x_w, y_w, z_w)
+\end{matrix}\right.
 ```
