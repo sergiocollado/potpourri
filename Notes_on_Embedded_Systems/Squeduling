@@ -24,6 +24,9 @@ The prevalence of multi-core processors has resulted in a surge of interest in d
 of non-determinism have been well documented. A number of tools to help deal with the challenges have been
 proposed to deal with deadlocks and race conditions.
 
+As a note to this topic, many times the use of cache memories in real-time sistems in not encoraged due they make more difficult to
+calculate the memory access time, and then make all the system much harder to consider as deterministic and repeateable.
+
 
 Morfology of tasks
 ==================
