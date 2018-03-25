@@ -358,3 +358,71 @@ z_p
 \begin{pmatrix} x+k\\ y\\ z\\ w \end{pmatrix}
 ```
 
+
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixHomogeneusCoordTrasnslation.svg?sanitize=true" alt="3d general translation">
+<br>
+
+```latex
+\begin{pmatrix} x'\\ y'\\ z'\\ w' \end{pmatrix} = \begin{pmatrix}
+\1 &0 &0  &Tx\\
+\0 &1 &0  &Ty\\
+\0 &0 &1  &Tz\\
+\0 &0 &0  &1
+\end{pmatrix} 
+\cdot 
+\begin{pmatrix} x\\ y\\ z\\ 1\end{pmatrix}
+= 
+\begin{pmatrix} x+Tx\\ y+Ty\\ z+Tz\\ 1 \end{pmatrix}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```latex
+\begin{matrix}
+y= u \pm v \pm w\cdots  \;\;\;\;&y'= u' \pm v' \pm w' \cdots \\ 
+y= u\cdot v \;\;\;\;&y' = u'\cdot v + u\cdot v' \\ 
+y= \frac{u}{v} \;\;\;\;&y=\frac{u'\cdot v - u\cdot v}{v^2} \\ 
+y= c\cdot u \;\;\;\;&y'=c\cdot u' \\ 
+ \;\;\;\;& \\ 
+ \;\;\;\;& \\ 
+ \;\;\;\;& \\ 
+ \;\;\;\;& \\ 
+ \;\;\;\;& \\  
+ \;\;\;\;& \\ 
+ \;\;\;\;& \\ 
+ \;\;\;\;& \\ 
+ \;\;\;\;& \\ 
+ \;\;\;\;& 
+\end{matrix}
+```
