@@ -294,3 +294,15 @@ cos\theta &\0 &\sin\theta \\
 ```latex
 \mathrm{Orthogonal \; matrix:\: \: \: } \; \; R^T \cdot R = I
 ```
+
+
+
+
+
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixRotLinear.svg?sanitize=true" alt="Orthogonal mtrix eq">
+<br>
+
+```latex
+\mathrm{Rotation \;is  \; linear:\: \: \: } \; \; R\cdot ( X + Y ) = R \cdot X + R \cdot Y
+```
