@@ -15,3 +15,4 @@ magnetized by a electromagnetic field... that is no-more nowadays, so it can be 
 field.
 
 ref: https://mars.nasa.gov/programmissions/missions/past/globalsurveyor/
+ref: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.734.4980&rep=rep1&type=pdf
