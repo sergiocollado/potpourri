@@ -375,7 +375,7 @@ GENERAL TRANSLATION
 = 
 \begin{pmatrix} x+Tx\\ y+Ty\\ z+Tz\\ 1 \end{pmatrix}
 ```
-COMBINATION OF ROTATONS, AND TRANSLATIONS
+COMBINATION OF ROTATiONS, AND TRANSLATIONS
 
 R·T != T·R 
 
@@ -417,9 +417,35 @@ M =
 ```
 
 
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/3dmatrixRT.svg?sanitize=true" alt="3d general translation">
+<br>
 
-
-
+```latex
+\begin{matrix}
+ P' = (R\cdot T)\cdot P = M\cdot P = R\cdot( P + T ) = R \cdot P + R \cdot T \\
+\\
+M = 
+\begin{pmatrix}
+\ R_{11} &R_{12} &R_{13}  &0\\
+\ R_{21} &R_{22} &R_{23}  &0\\
+\ R_{31} &R_{32} &R_{33}  &0\\
+\0 &0 &0  &1
+\end{pmatrix} 
+\cdot 
+\begin{pmatrix}
+\1 &0 &0  &Tx\\
+\0 &1 &0  &Ty\\
+\0 &0 &1  &Tz\\
+\0 &0 &0  &1
+\end{pmatrix} 
+= 
+\begin{pmatrix}
+\ R_{3x3} &R_{3x3} \cdot T_{3x1}\\
+\ 0_{1x3} &1 
+\end{pmatrix} 
+\end{matrix}
+```
 
 
 
