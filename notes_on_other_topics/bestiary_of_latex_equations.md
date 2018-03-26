@@ -172,6 +172,18 @@ x^{\frac{2}{3}} + y^{\frac{2}{3}} = a^{\frac{2}{3}}
 \end{matrix}
 ```
 
+TALBOT:
+
+```latex
+\left\{\begin{matrix}
+x = \big(k^2  + f^2· \sin (t) \big) \cdot \frac{  \cos (t) }{k}  \\ 
+y = \big(  k^2 - 2·f^2 + f^2· \sin (t)  \big)  \cdot \frac{ sin(t) }{b}
+\end{matrix}\right.
+```
+
+
+
+
 MATRIX TRANSFORMATION
 
 <br>
