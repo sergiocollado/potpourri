@@ -34,6 +34,24 @@ help>
 Also there is great documentation at:  https://docs.python.org/3/library/index.html
 
 
+![https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_01.PNG](python shell console help)
+<br>
+![https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_02.PNG](python shell console help)
+<br>
+![https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_03.PNG](python shell console help)
+<br>
+![https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_04.PNG](python shell console help)
+<br>
+![https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_05.PNG](python shell console help)
+<br>
+![https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_06.PNG](python shell console help)
+<br>
+![https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_07.PNG](python shell console help)
+<br>
+![https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_08.PNG](python shell console help)
+<br>
+![https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_09.PNG](python shell console help)
+<br>
 ## BLOCKS
 
 Blocks of code are indicated in python by means of indentation. Blocks of code, are, what is inside the curly braces in C/C++
