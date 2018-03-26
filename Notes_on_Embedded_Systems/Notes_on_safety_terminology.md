@@ -695,13 +695,13 @@ Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https
 
 # OVERVIEW OF THE TESTING PROCESS:
 
-**What is testing?:"** The test of a system is the process of evaluating the real capabilities of the system related with its desired/expected performance/behavior, and check it complies with the design requisites and expected behavior.
+**What is testing?:"** The test of a system is the process of evaluating the real capabilities of the system related with its desired/expected performance/behavior, and check it complies with the design requisites, expected behavior and desired capabilites.
 
 Another important point, is that the test process helps to find and discover issues, bugs, faults or defects that may apppear in the system. The test process is even helpful for identification of major cases or points in the system, that have been left out of the specifications or requirements, an actually need to be taken into account.
 
 A key concept to take into account is: that **it is not the development process what asures of the quality of the system** (of course, it helps quite a lot), **is the testing process what confirms and asures the quality of the project**
 
--- As a disambiguation, 'test' and 'debug' are different concepts. Usually the developers are the ones that debug the system. While testers identify issues and deffects. 
+-- As a disambiguation, 'test' and 'debug' are different concepts. Usually the developers are the ones that debug the system. While testers identify issues and defects. 
 **What is debuging?":** is the location, root-cause identification and fix of a defect or issue.
 
 ## WHY IS TESTING IMPORTANT?
@@ -833,26 +833,34 @@ There are things aside the main functionality that also are required, those migt
 A list of non-functional characteristics:
 
  - usability: how easy it is to use
- - performance: if it complies with responses times and data throughput
+ - performance: evaluation of the system with regard to responses times and data throughput
  - security: security evaluation
  - safety: safety evaluation
- - robustness: 
- - fault-tolerance: 
- - availabilty: evaluation of the up time and down time of the system (MTBF)
+ - robustness: evaluation of the behavior of the system related to outside mis-happenings.
+ - fault-tolerance: evaluation of the behavior of the system related to inner happenings.
+ - predictivity: how much, and up to what point you can predict in advance the response or behavior of a system (just remember
+ that for example cache-memories are bad for predictivility...)
+ - repeativility: how much is the repeativility of the system (time responses, skews, ...)
+ - availabilty: evaluation of the up time and down time of the system (MTBF) (due to failures or maintenance stops...)
  - documentation: evaluation of documentation of the system.
  - testeability: evaluation of the easiness to test the system. 
  - portability:
- - dependability:
+ - reliability: evaluation on the trusth of the proper behavior of the system
+ - dependability: evaluation of the dependability of the system (let's say this is: how much confidence you can have in it)
  - scalability:
  - memory & storage: amount of memory needed, types of memory in hw (flass, eeprom, volatie)
  - data processing volume & load stress: performance under peaks of data
  - configuration: check behavior under defined configurations
  - compatibility: compatibility with defined versions
- - installation: evaluation methods
- - reliability: evaluation on the trusth of the proper behavior of the sw. 
+ - installation: evaluation of the methods and easianess to install the system.
  - recovery: evaluation of recovery methods
  - maintenance: evaluation of maintenance methods. 
  - readability: how easy is the code to read and understand (this is quite subjetive)
+ - interconnectivity: the ability to work with diferent related systems. For example a system might work only withy
+ a propietary protocol that prevents it to work with equivalent systems from other manufacturers, thus
+ having a low interconnectivity. A system that performs equally, and that uses an open protocol has higher
+ interconnectivity, because it can be used with different manufacturer equipments/systems.
+ - expanseability: is the ability to increase or modify the functionality or propierties of a system.
  
 ## Structure or Architectural Testing: White-box test
 It is also knwon as a **white-box** testing. Is the evaluation of some parameters of stadistics of the system behavior, as for example how complex it is (ciclomatix complexity), the number of control flow structures (if, else, for, while) and the overall of the tested code...  with the kwnoledge of its inner workings.
