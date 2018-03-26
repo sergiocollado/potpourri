@@ -174,6 +174,12 @@ x^{\frac{2}{3}} + y^{\frac{2}{3}} = a^{\frac{2}{3}}
 
 TALBOT:
 
+
+
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/curve_talbot.svg?sanitize=true" alt="circunference equation">
+<br>
+
 ```latex
 \left\{\begin{matrix}
 x = \big(k^2  + f^2· \sin (t) \big) \cdot \frac{  \cos (t) }{k}  \\ 
