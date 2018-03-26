@@ -42,21 +42,27 @@ Also there is great documentation at:  https://docs.python.org/3/library/index.h
 
 ![Python Shell help](https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_01.PNG)
 <br>
+<br>
 ![Python Shell help](https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_02.PNG)
+<br>
 <br>
 ![Python Shell help](https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_03.PNG)
 <br>
+<br>
 ![Python Shell help](https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_04.PNG)
+<br>
 <br>
 ![Python Shell help](https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_05.PNG)
 <br>
-![Python Shell help](https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_06.PNG)
 <br>
 ![Python Shell help](https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_07.PNG)
 <br>
+<br>
 ![Python Shell help](https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_08.PNG)
 <br>
+<br>
 ![Python Shell help](https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_09.PNG)
+<br>
 <br>
 
 
