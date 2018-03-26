@@ -362,6 +362,64 @@ If the value doen't exist you will get a ValueError.
 An ValueError will be raised if the element is not present.
 
 
+
+In case on need, you can always ask for help:
+
+```python
+>>> help(list)
+Help on class list in module builtins:
+
+class list(object)
+ |  list() -> new empty list
+ |  list(iterable) -> new list initialized from iterable's items
+ |  
+ |  Methods defined here:
+ # ... boring stuff removed here!
+ |  
+ |  append(...)
+ |      L.append(object) -> None -- append object to end
+ |  
+ |  clear(...)
+ |      L.clear() -> None -- remove all items from L
+ |  
+ |  copy(...)
+ |      L.copy() -> list -- a shallow copy of L
+ |  
+ |  count(...)
+ |      L.count(value) -> integer -- return number of occurrences of value
+ |  
+ |  extend(...)
+ |      L.extend(iterable) -> None -- extend list by appending elements from the iterable
+ |  
+ |  index(...)
+ |      L.index(value, [start, [stop]]) -> integer -- return first index of value.
+ |      Raises ValueError if the value is not present.
+ |  
+ |  insert(...)
+ |      L.insert(index, object) -- insert object before index
+ |  
+ |  pop(...)
+ |      L.pop([index]) -> item -- remove and return item at index (default last).
+ |      Raises IndexError if list is empty or index is out of range.
+ |  
+ |  remove(...)
+ |      L.remove(value) -> None -- remove first occurrence of value.
+ |      Raises ValueError if the value is not present.
+ |  
+ |  reverse(...)
+ |      L.reverse() -- reverse *IN PLACE*
+ |  
+ |  sort(...)
+ |      L.sort(key=None, reverse=False) -> None -- stable sort *IN PLACE*
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  __hash__ = None
+
+```
+
+
 #### Tuples
 
 Tuples are inmutable lists, once they are defined its elements cannot be changed. They are defined as the lists, but with parenthesis.
