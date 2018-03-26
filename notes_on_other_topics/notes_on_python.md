@@ -368,7 +368,8 @@ In case on need, you can always ask for help:
 ```python
 >>> help(list)
 Help on class list in module builtins:
-
+```
+```
 class list(object)
  |  list() -> new empty list
  |  list(iterable) -> new list initialized from iterable's items
