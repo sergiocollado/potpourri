@@ -1,4 +1,10 @@
 
+. .  .
+
+
+![python][https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg]
+
+
 # NOTES ON PYTHON
 
 Basic tutorial: https://docs.python.org/3/tutorial/index.html
