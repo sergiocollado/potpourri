@@ -585,3 +585,9 @@ Collecting paho-mqtt
 Installing collected packages: paho-mqtt
 Successfully installed paho-mqtt-1.3.1
 ```
+
+
+
+# ramdom help
+
+![randomhelp](https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_random.PNG)
