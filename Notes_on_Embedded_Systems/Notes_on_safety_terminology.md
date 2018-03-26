@@ -854,7 +854,7 @@ A list of non-functional characteristics:
  - maintenance: evaluation of maintenance methods. 
  - readability: how easy is the code to read and understand (this is quite subjetive)
  
-## Structure or Architectural Testing. 
+## Structure or Architectural Testing: White-box test
 It is also knwon as a **white-box** testing. Is the evaluation of some parameters of stadistics of the system behavior, as for example how complex it is (ciclomatix complexity), the number of control flow structures (if, else, for, while) and the overall of the tested code...  with the kwnoledge of its inner workings.
 
  - It is best used after the black-box techniques, to assert the throuroghness of the testing.
@@ -924,9 +924,11 @@ The design of equivalence partitioning tests, and boundary test analysis, starts
 EXAMPLE:
 Following with the previous example: 
 
-A system has a integer numeric input and only data betwen 50 and 100 (both numbers included) is accepted as a valid data. How shoud be an equivalence partitining test designed?
+A system has a integer numeric input and only data betwen 50 and 100 (both numbers included)
+is accepted as a valid data. How shoud be an equivalence partitining test designed?
 
-The valid data is only the integer numbers that belong to [50,100], otherwise is an invalid data. Thus there is three intervals:
+The valid data is only the integer numbers that belong to [50,100], 
+otherwise is an invalid data. Thus there is three intervals:
 
  - [0, 50): first partition- invalid data: - 50 is not included
  - [50, 100]:second partition- valid data - 50 and 100 are included
