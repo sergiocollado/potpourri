@@ -1664,6 +1664,8 @@ MIB - Mishap Investigation Board
 
 SOP - Standard Operation Procedures
 
+WKI - Working Instructions
+
 BOOKS:
 
 KENT BECK - Test Driven Development: BY EXAMPLE 
