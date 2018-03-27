@@ -1422,6 +1422,15 @@ JP Rankin, “Sneak Circuit Analysis,”
 http://klabs.org/DEI/References/design_guidelines/analysis_series/1314msfc.pdf
 
 
+## TECHNIQUES FOR IMPROVEMENT
+
+8D
+5whys
+RootCause Analysis
+CAPA- Corrective Action / Preventive Actions -methodology to process improvement.  ref:L https://en.wikipedia.org/wiki/Corrective_and_preventive_action
+
+
+
 ### Learn from others mistakes
 
 #### Genesis Solar Wind Probe:
