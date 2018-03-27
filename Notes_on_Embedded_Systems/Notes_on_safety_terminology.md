@@ -331,6 +331,8 @@ R(a) = p(a) * s(a);
  Standard for Software Test documentation: IEEE STD 829-1998.
  
  Software Quality Product -  ISO 9126
+ 
+ ISO 9001
 
  ## BASIC FOR SAFETY:
 
@@ -464,7 +466,7 @@ Follow recomendations for implementing the system.
     - implement error handling in their own functions (so they done use up cache memory).
     - always handle input invalid values or input excptions.
     - the readability of code is important, so other people can easily understand the code, expressions as a\*b+c/d are a NO NO, the operators precedence is complicated, and parentesis shoud be used to clarify the operation: a\*(b+c)/d
-    - Clear and defined SOP (Standard Operation Procedures)
+    - Clear and defined SOP (Standard Operation Procedures) - Plus this point is related to compliance with the ISO 9001
 - Write modular systems (loose dependancy)
 - Implentent and use configuration files for the system (this will provide a flexible configuration for the future).
 - Design self checking tests (for hardware control).
