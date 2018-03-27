@@ -845,6 +845,7 @@ A list of non-functional characteristics:
  that for example cache-memories are bad for predictivility...)
  - repeativility: how much is the repeativility of the system (time responses, skews, ...)
  - availabilty: evaluation of the up time and down time of the system (MTBF) (due to failures or maintenance stops...)
+ - requirements trazability: how easy is to track down the systems requirements to its actual implementation.
  - documentation: evaluation of documentation of the system.
  - testeability: evaluation of the easiness to test the system. 
  - portability:
@@ -863,7 +864,7 @@ A list of non-functional characteristics:
  a propietary protocol that prevents it to work with equivalent systems from other manufacturers, thus
  having a low interconnectivity. A system that performs equally, and that uses an open protocol has higher
  interconnectivity, because it can be used with different manufacturer equipments/systems.
- - expanseability: is the ability to increase or modify the functionality or propierties of a system.
+ - expanseability: is the ability to increase the functionality or propierties of a system. (architecture evaluation).
  
 ## Structure or Architectural Testing: White-box test
 It is also knwon as a **white-box** testing. Is the evaluation of some parameters of stadistics of the system behavior, as for example how complex it is (ciclomatix complexity), the number of control flow structures (if, else, for, while) and the overall of the tested code...  with the kwnoledge of its inner workings.
