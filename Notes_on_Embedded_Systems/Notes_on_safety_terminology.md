@@ -464,6 +464,7 @@ Follow recomendations for implementing the system.
     - implement error handling in their own functions (so they done use up cache memory).
     - always handle input invalid values or input excptions.
     - the readability of code is important, so other people can easily understand the code, expressions as a\*b+c/d are a NO NO, the operators precedence is complicated, and parentesis shoud be used to clarify the operation: a\*(b+c)/d
+    - Clear and defined SOP (Standard Operation Procedures)
 - Write modular systems (loose dependancy)
 - Implentent and use configuration files for the system (this will provide a flexible configuration for the future).
 - Design self checking tests (for hardware control).
@@ -1429,6 +1430,8 @@ http://klabs.org/DEI/References/design_guidelines/analysis_series/1314msfc.pdf
 RootCause Analysis
 CAPA- Corrective Action / Preventive Actions -methodology to process improvement.  ref:L https://en.wikipedia.org/wiki/Corrective_and_preventive_action
 
+SOP - Standard Operation Procedures - these are the documents developed by an organization that describes the procedures, checklist,
+steps, and instructions to perform a certain task. the acronym also stands for Start of Procduction (watch out!)
 
 
 ### Learn from others mistakes
@@ -1656,6 +1659,8 @@ SQI - Software Quality Institute.
 SPICE - International Standard for Software Process Assesment.
 
 MIB - Mishap Investigation Board
+
+SOP - Standard Operation Procedures
 
 BOOKS:
 
