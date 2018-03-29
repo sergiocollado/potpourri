@@ -83,7 +83,10 @@ receiving data. When the delay runs out, then the Task, moves its state to Ready
 
 
 WHAT IS A FEASEABLE SCHEDULE:
-A squedule that never looses a death line is call FEASEABLE, this depends on its schedule algorithm.
+==============================
+
+
+A squedule that never loses a death line is call FEASEABLE, this depends on its schedule algorithm.
 
 a set of tasks is said to be scheaduable if at least it is possible to implement a feaseble schedule for that group of tasks.
 
@@ -211,13 +214,69 @@ PRE-EMPTIVE SYSTEMS:
  when planning a real-time system and its timeline. Also preentive systems, will need at least a little bit more of memory with 
  regard with a non-preentive systes, due they need to store the state of the tasks.
  
-TODO: STATIC SCHEDULER:
-=======================
+ STATIC SCHEDULER:
+===================
+
+An static scheduler, is simple and predictable, and these are two very appropiated properties.
+
+The scheduling of the tasks is defined off-line, so this means less over-head time when switching the tasks. Oh the adder hand
+the static scheduler is not flexible. 
+
+The static scheduler is defined in a table, with 't' and 'T'. 
+
+t - is the scheduling time
+T - is the Task
+
+The scheduling policy is the one that defines the tasks in the timeline in a way thata any dead-line is violated.
+
+An easy test to verify that a schedulig policy is feaseble, is by means of calculating the utilization of the system: that means
+to calculate how much time the CPU needs to for each task, whith how much time is left without performing tasks, (this is known
+as 'holes' in the scheduling timeline). For this, we need to know, the execution time of each task, and how often the tasks re-occour, 
+that is the period of the task.
+
+the utilization is the sum of all the task's execution times, divided by their periods.
+
+U = S(1->n) e_i/P_i
+
+In the case the utilization is bigger or equal to 1, then we can conclude that the system is NOT feaseble.
+
+Example:
+
+
+
+ ·    P      e      D
+ 
+ T1   3      1      3
+ T2   4      1      4
+ T3   10     2      10
+ 
+ 
+ So the Utilization is:   U = 1/3 + 1/4  + 2/10 = 0.78
+ 
+ Anyway, what this means is that we cannot guarantee that this schedule is NOT feaseable, ... but this cannot also, 
+ guarantee us that the schedule is feaseable.
+ 
+ To clarify, the utilization test can proof somethis is not feasible, so we can role it out. ... but it cannot proof
+ somethig is feaseble... there may be cases, that make the schedule also unfieaseble. 
+
+
  
 TODO: FIXED SCHEDULING
 ======================
 
 
+
+ 
+TODO: ROUND-ROBIN SCHEDULING
+=============================
+
+Round-robin scheduling is based on the time-sharing policy. The tasks are ordered in a FIFO fashion, and the tasks are removed
+when they are executed, the tasks is run for a given fixed time, and if the task wasn't finished, 
+then it is put back at the last place in the FIFO queue. So, the response time to schedule a  task, depends on the lenght 
+of the task queue.
+
+As a downside, this policy, dont uses priorities to consider the schedule of tasks, so a low priority tasks, actually gets the
+same exection time as a high priority task. this can be improved, with ...
 
 
 
@@ -234,7 +293,7 @@ are simple jet effective because they can addapt the priorities of the tasks imp
 The advantage of monotonic scheduling systems is the system verification. There are verification methods that allows us to say if
 a monotonic scheduling is feasible, based on periods, execution time, and tasks deadlines.
 
-two monotonic scheduler will be study:
+two monotonic scheduler will be covered:
 - the rate monotonic scheduler (RM).
 - the deadline monotonic scheduler (DM).
 
