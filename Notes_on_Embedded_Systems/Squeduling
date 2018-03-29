@@ -275,8 +275,9 @@ when they are executed, the tasks is run for a given fixed time, and if the task
 then it is put back at the last place in the FIFO queue. So, the response time to schedule a  task, depends on the lenght 
 of the task queue.
 
-As a downside, this policy, dont uses priorities to consider the schedule of tasks, so a low priority tasks, actually gets the
-same exection time as a high priority task. this can be improved, with ...
+As a downside, this policy, don't uses priorities to consider the schedule of tasks, so a low priority tasks, actually gets the
+same exection time as a high priority task. this can be improved, taking into account the 'weigths' of each tasks, so the tasks
+will take more or less, execution time, depending into it's execution time.
 
 
 
