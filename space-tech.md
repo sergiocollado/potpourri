@@ -25,8 +25,8 @@ TES - Therma Spectrometer System
 
 mossbauer espectrograph -- emits and read gamma rays, each element absorbs and re-emits different versins of gamma rays.
 
-- voyayer mission.
-- Galileo mission
+- voyager mission -> study of outer planets
+- Galileo mission -> Jupiter
 - Galileo probe
 - Mariner Mission
 - Juno spacecraft
