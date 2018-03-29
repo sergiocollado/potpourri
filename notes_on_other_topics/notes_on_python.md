@@ -66,8 +66,8 @@ Also there is great documentation at:  https://docs.python.org/3/library/index.h
 <br>
 
 
-<br>
-## BLOCKS
+
+ ## BLOCKS
 
 Blocks of code are indicated in python by means of indentation. Blocks of code, are, what is inside the curly braces in C/C++
 
@@ -561,6 +561,19 @@ sys.settrace(function)
 
 <hr>
 
+## EXCEPTION HANDLING
+
+Excptions are run-time errors:
+
+```
+try:
+  #do something
+  #do something else
+  return True
+except:
+  #handle error
+  return False
+```
 
 
 ## WRITTING SCRIPTS
