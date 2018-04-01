@@ -716,6 +716,35 @@ Ref: https://www.cs.ox.ac.uk/files/6715/ICFEM%202014%20Version%2010.pdf
 Ref: http://theory.stanford.edu/~rvg/
 
 
+## RECUSIVE STATES.
+
+
+This is done by means of process equations. 'X' is known as a process variable.
+
+'X= a·X'
+
+'X=a·X & Y=a·b·Y+c·d·X'
+
+A process variable is called __guarded__ if it is preceded by at least a single action.
+
+for example the expression 'X+a·Y', is not guarded in 'X'
+
+If the recursive state equations have all its process variable guarded, then then recursive especification is guarded.
+
+### RSP Recursive Specification Principle
+
+At recusive specification if it is guarded, has AT MOST one solution... it has exactly ONE solution.
+
+
+
+
+
+
+
+
+
+
+
 **TODO**: Check and elavorate: https://en.wikipedia.org/wiki/Calculus_of_communicating_systems
 
 TODO: BER- Byte Error Rate --- add info.
