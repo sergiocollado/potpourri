@@ -600,12 +600,73 @@ it is possible to combinate actios, so:  a·b + c·d
 init <                  > --> end
        \ c ---> d ---> /
 ```
- - dead-lock or inaction: \delta  - it represents an action that doesn't do anything at all, and it doens't end
-   - so in the case a trace is:  a · \delta -- it performs a and then \delta exectutes forever without ending
-   - in the case a trace is: \delta · a -- the dead-lock stays forever and the action a never is started.
+ - dead-lock or inaction: δ  - it represents an action that doesn't do anything at all, and it doens't end
+   - so in the case a trace is:  a · δ -- it performs a and then \delta exectutes forever without ending
+   - in the case a trace is: δ · a -- the dead-lock stays forever and the action a never is started.
  
  - multi-actions or simultaneous actions: those are actions that happen at the same time: a | b
    - multi-actions are conmutative: a | b = b | a
+
+### PROPIETIES:
+
+- Conmutativity: ' x + y = y + x'. In strong bisimulation, the order of the processes doesn't matter.
+- Associativity of '+': '(x+y)+z = x+(y+z)' . the brackets are not meanfully for '+' operation in strong bisimulation. Brackets
+can be dropt.
+- Idempotence: 'x+x=x'
+- Right distributivity: '(x+y)·z=x·z+y·z'
+
+WATCH OUT with Left distribution:  'x·(y+z) = x·y + x·z' this equivalence is NOT valid with strong bisimulation!!!
+
+- Associativity of '·': 'x·(y·z) = (x·y)·z'
+- dead-lock equivalence 'x+δ = x' - dead-lock is not possible.
+- dead-lock block: 'δ · x = δ' - there cannot be any action that follows delta
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+EXAMPLE: Can it be proof that the following process are equivalent: '(a+b)·c·(d+d) ?=? (b·c+a·c)·d'
+
+Proof:
+
+'(a+b)·c·(d+d)' use of idempotence propierty with '(d+d) = d', and we get
+
+'(a+b)·c·d'use the associativity of '·', we can write, we can assure the sequencial execution
+
+'((a+b)·c)·d', use of the right distributivity with '(a+b)', so we get
+
+'(a·c+b·c)·d', we reorder the actions, with the conmutativity propierty:
+
+'(b·c+a·c)·d'. we proof the estatement. -QED.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+EXAMPLE: Prove the strong bisimulation of: '(a·b+a·δ)·(δ+a) = (a·δ+a)·b·a'
+
+Proof:
+
+Start on the expression:  (a+b+a·δ)·(δ+a) 
+
+Use of dead-lock equivalence 'x+δ = x', and the expresion results in: '(a·b+a·δ)·a'
+
+use of dead-lock block: 'δ · x = δ' , as 'δ= δ·b', and results as: '(a·b + a·δ·b)·a'
+
+use of the right distributivity: 'x·z+y·z=(x+y)·z', as: 'a· b + a·δ· b= (a + a·δ)· b', results as: '(a+a·δ)·b·a'
+
+use of the conmutative propierty, results in: '(a·δ+a)·b·a' - QED.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+EXAMPLE: For a given processes, where 'x+y=δ'; prove that 'x=δ'
+
+Proof:
+
+Accoding to dead-lock equivalence 'x+δ = x', so in the other way around we have: 'x=x+δ'. We follow from here.
+
+we were given that: 'x+y=δ' so it follows that 'δ=x+y' , so appling this: 'x+(x+y)=δ', and we have:'x= x+δ= x+(x+y)'
+
+using the associativity and idempotence propierties, results in:  'x+(x+y)= x+y', so the overall expression is:'x= x+δ= x+(x+y)=x+y'
+
+so with the given data: 'x+y=δ', the result is: 'x= x+δ= x+(x+y)=x+y=δ' - QED.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 
 ## Trace equivalence
