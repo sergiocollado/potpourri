@@ -591,6 +591,7 @@ Traces, are the sequence of actions that can be executed in that system.
 ### Operators
 
 - Sequence: p (dot) q or p · q ->  first p and then q
+
 - Alternative composition: p + q -> it can happen p or q.
 
 it is possible to combinate actios, so:  a·b + c·d
@@ -606,6 +607,13 @@ init <                  > --> end
  
  - multi-actions or simultaneous actions: those are actions that happen at the same time: a | b
    - multi-actions are conmutative: a | b = b | a
+   
+ - Conditional operator: 
+     - condition:  ( n> 0)
+     - if:            ->
+     - else:          <>
+     
+     example:  (n>0) n-> n++  <> n--
 
 ### PROPIETIES:
 
