@@ -1253,7 +1253,7 @@ As always, the test documentation must be according to the "Standard for Softwar
 | 24  |       | Batch testing (automated regression testing)   |
 | 25  |       | Metrics to take into account  |
 | 26  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests.  |
-| 27   |      | Risks (possible risks for the project, as lack of resources, time deliveries overdue, lack of man-power, lack of quality test data, future preditions, problems to overcome or concerns   ...)    |
+| 27   |      | Risks: identification, evaluation and responses (possible risks for the project, as lack of resources, time deliveries overdue, lack of man-power, lack of quality test data, future preditions, problems to overcome or concerns   ...)    |
 
  <!-- http://www.softwaretestinghelp.com/test-plan-sample-softwaretesting-and-quality-assurance-templates/  -->
 
@@ -1762,3 +1762,134 @@ BOOKS:
 KENT BECK - Test Driven Development: BY EXAMPLE 
 
 ROBERT MARTIN - CLEAN CODE: A HANDBOOK OF AGILE SOFTWARE CRAFTMANSHIP
+
+
+## Draft on project risks
+
+MANAGEMENT 
+
+1. The project management fail to support the project.
+The managements fails to support the project. Someone must rise and be up to the task. 
+
+2. Management is disregarded with the project.
+The monitoring of the project is not followed. 
+
+3. Management turnover disrupts the project.
+A key management position on the project is empty.
+
+4. Management underestimate the project.
+The project needs more attention and support than estimated.
+
+5. Failure to follow methodology 
+Management don't follow the SOP (Standard Organization Procedures). Watch out: Lack of SOP (Standard Organization Procedures) does not comply with ISO 9001-
+
+6. Lack of management or control 
+A lack of project management should be documented as a risk. For example, if resource constraints cause the project to skip certain project management best practices. Watch out: Lack of SOP (Standard Organization Procedures) does not comply with ISO 9001-
+
+7. Errors in key project management processes 
+Errors in project management such as schedule errors, inaccurate objetives, inadequate decisions, or lack to manage the project team.
+
+8. Management procedures overhead
+Too much procedures or tasks, may cause a significant toll or over-head on the project. It may be for example, required administrative
+procedures that need to much time, or documentation/paper-work or other limited resources.
+
+DEFINITION and GOALS OF THE PROJECT 
+
+8. Scope and objetives of the project are ill defined 
+The overall objetive of the project is poorly defined.
+
+9. Scope creep inflates scope 
+Uncontrolled changes and continuous growth of scope. 
+
+10. Over-design: Chase of perfection inflates scope 
+The project team add their own features that aren't in requirements or change requests. 
+
+11. Estimates are inaccurate 
+Inaccurate estimates is a common project risk. 
+
+12. Dependencies are inaccurate 
+Dependencies impact the project schedule and costs. A wrong dependencies tree, directly impact on the critical path of the
+project(Gantt).
+
+13. Activities are missing from scope 
+Required activities are missing or are not took into account for the scope definition and project planning.
+
+
+PLANNING 
+
+14. Forecasts and estimations are inaccurate, and/or underestimated.
+
+16. Unrealistic planning
+the planning and time-line are way too optimistic.
+
+15. Monopoly dependency
+The project depends on only one key supplier or partner. This is a strategic short-come that should be avoided.
+ 
+
+ 
+COMMUNICATIONS. 
+
+15. Project team misunderstand requirements 
+When requirements are misinterpreted or misunderstood by the project team. There is a significant gap between expectations, requirements and project planning. 
+
+16. Communication overhead 
+The communication effort needed for the project succeed is out of the common. 
+
+17. Under communication 
+key people is not being informed and missing information. this situation has many risks. 
+
+18. Inaccurate expectations 
+End-users or stack-holders or involved people don't understand the product real capabilities.
+
+19. Confusion / poor communication / poor understanding.
+key people who must be involved can not grasp the meaning or implications of the project communications.
+
+20. Too much time for an answer.
+When requesting any information or data critical to the project, an answer that takes too much time my stall the project and jeopardize it.
+For example: a requirement clarifications, a technical review, or a law compliance consultation... 
+
+REQUIREMENTS
+
+21. Requirements fail to align with other systems 
+The requirements fail to align with other systems (e.g. they duplicate functionality). 
+
+22. Requirements have compliance issues 
+If you have any doubt that requirements comply with the law list it as a risk. 
+
+23. Requirements are ambiguous 
+Requirements are unclear and open to interpretation. 
+
+24. Requirements are low quality 
+Requirements aren't fit for purpose. 
+
+25. Requirements are incomplete 
+You can spot obvious holes in the requirements. 
+
+SYSTEM ARCHITECTURE and DESIGN
+
+26. Architecture or design lacks flexibility 
+The architecture is incapable of supporting change requests and needs to be reworked. 
+
+27. Architecture or design is not fit for purpose 
+The architecture is low quality. 
+
+28. Architecture or design is infeasible 
+The architecture is impossible to implement, excessively costly or doesn't support the requirements. 
+
+29. Architecture or design fails peer review 
+It's a good idea to have peers or architectural experts review your designs. 
+
+LEADERSHIP, DECISIONS AND RESOLUTIONS 
+
+30. Decision delays impact project 
+Establish guidelines for decision turnaround time (as a max answer time-limit). Identify the risk that guidelines will be exceeded. 
+
+31. Decisions are ambiguous 
+People may have a tendency to make decisions that are intentionally ambiguous (a responsibility avoidance technique), as 
+for example: the resolution to optimice two parameters that are in opposition. This can be identified as a risk and managed. 
+
+32. Decisions are low quality 
+Decisions aren't fit for purpose. 
+
+33. Decisions are incomplete 
+Issue resolutions that don't address the issue or create more issues. 
