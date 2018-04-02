@@ -214,8 +214,8 @@ PRE-EMPTIVE SYSTEMS:
  when planning a real-time system and its timeline. Also preentive systems, will need at least a little bit more of memory with 
  regard with a non-preentive systes, due they need to store the state of the tasks.
  
- STATIC SCHEDULER:
-===================
+STATIC SCHEDULER:
+==================
 
 An static scheduler, is simple and predictable, and these are two very appropiated properties.
 
@@ -261,14 +261,8 @@ Example:
 
 
  
-TODO: FIXED SCHEDULING
+ROUND-ROBIN SCHEDULING
 ======================
-
-
-
- 
-TODO: ROUND-ROBIN SCHEDULING
-=============================
 
 Round-robin scheduling is based on the time-sharing policy. The tasks are ordered in a FIFO fashion, and the tasks are removed
 when they are executed, the tasks is run for a given fixed time, and if the task wasn't finished, 
@@ -280,7 +274,9 @@ same exection time as a high priority task. this can be improved, taking into ac
 will take more or less, execution time, depending into it's execution time.
 
 
-
+ 
+TODO: FIXED SCHEDULING
+======================
 
 
  
@@ -297,6 +293,7 @@ a monotonic scheduling is feasible, based on periods, execution time, and tasks 
 two monotonic scheduler will be covered:
 - the rate monotonic scheduler (RM).
 - the deadline monotonic scheduler (DM).
+
 
 RATE MONOTONIC SCHEDULER:
 =========================
