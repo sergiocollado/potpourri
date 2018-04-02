@@ -1,6 +1,6 @@
 DETERMINISTIC SYSTEMS:
 =====================
-a deterministic system is a system in which no randomness is involved in the development of future states of the system. A deterministic
+A deterministic system is a system in which no randomness is involved in the development of future states of the system. A deterministic
 model will thus always produce the same output from a given starting condition or initial state.
 
 The time peridod, after which the scheduling pattern repits itself is known as: hyperperiod (H)
@@ -214,13 +214,26 @@ PRE-EMPTIVE SYSTEMS:
  when planning a real-time system and its timeline. Also preentive systems, will need at least a little bit more of memory with 
  regard with a non-preentive systes, due they need to store the state of the tasks.
  
-STATIC SCHEDULER:
-==================
+ 
+ SCHEDULER TYPES:
+ ===============
+ 
+ According to the factor that drives the scheduler, there is two tipes:
+ 
+ - CLOCK DRIVEN SCHEDULERS: The tasks are scheduled according to systems ticks.
+ 
+ - EVENT DRIVEN SCHEDULERS: The tasks are scheduled according to events, like: a timer timeout, the end of a task, an interruption...
+ 
+
+ 
+OFFLINE - STATIC SCHEDULER:
+============================
 
 An static scheduler, is simple and predictable, and these are two very appropiated properties.
 
 The scheduling of the tasks is defined off-line, so this means there is no over-head time when switching the tasks. Oh the adder hand
-the static scheduler is not flexible, as the schedule is fixed. 
+the static scheduler is not flexible, as the schedule is fixed, so it is not possible to remove or add tasks to the system. Also,
+if the code of a task is modified, the schedule must be re-calculated, because the duration of the task, has been modifed.
 
 The static scheduler is defined in a table, with 't' and 'T'. 
 
@@ -275,8 +288,20 @@ will take more or less, execution time, depending into it's execution time.
 
 
  
-TODO: FIXED SCHEDULING
-======================
+FIXED PRIORITY SCHEDULING
+========================
+
+In the fixed priority schedule, the priority of the taks is what drives the scheduling policy
+
+There are many tipes to schedule taks, some strategies are:
+ - FIFO: first in first out
+ - LIFO: last in first out
+ - SETF: shortest execution time first
+ - LETF: longest execution time first
+ - Priority based
+ 
+ 
+ 
 
 
  
