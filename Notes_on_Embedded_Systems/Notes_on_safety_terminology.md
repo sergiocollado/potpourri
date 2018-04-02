@@ -1543,7 +1543,7 @@ SOP - Standard Operation Procedures - these are the documents developed by an or
 steps, and instructions to perform a certain task. the acronym also stands for Start of Procduction (watch out!)
 
 
-### Learn from others mistakes
+### Lessons learned: Learn from mistakes
 
 #### Genesis Solar Wind Probe:
 Went to Space, took samples of the solar wind, come back to Earth, but failed to open the parachutes : S
@@ -1557,7 +1557,7 @@ ref: https://en.wikipedia.org/wiki/Genesis_(spacecraft)
 ### Mars rover pathfinder pitfail:
 ... almost lost it... because a priority inversion pitfall... :S
 
-
+### MARS CLIMATE... 
 
 Examples of safety-critical systems[edit]
 critical infrastructures monitoring systems[edit]
@@ -1773,12 +1773,16 @@ SOP - Standard Operation Procedures
 
 WKI - Working Instructions
 
-BOOKS:
+
+BOOKS and REFERENCES
+=======================
+
 
 KENT BECK - Test Driven Development: BY EXAMPLE 
 
 ROBERT MARTIN - CLEAN CODE: A HANDBOOK OF AGILE SOFTWARE CRAFTMANSHIP
 
+JOINT SYSTEM SAFETY COMMITTEE  - SOFTWARE SYSTEM SAFETY HANDBOOK - A TECHNICAL & MANAGERIAL TEAM APPROACH-
 
 ## Draft on project risks
 
