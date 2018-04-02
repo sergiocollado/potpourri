@@ -86,7 +86,7 @@ WHAT IS A FEASEABLE SCHEDULE:
 ==============================
 
 
-A squedule that never loses a death line is call FEASEABLE, this depends on its schedule algorithm.
+A schedule that never loses a death line is call FEASEABLE, this depends on its schedule algorithm.
 
 a set of tasks is said to be scheaduable if at least it is possible to implement a feaseble schedule for that group of tasks.
 
@@ -219,8 +219,8 @@ PRE-EMPTIVE SYSTEMS:
 
 An static scheduler, is simple and predictable, and these are two very appropiated properties.
 
-The scheduling of the tasks is defined off-line, so this means less over-head time when switching the tasks. Oh the adder hand
-the static scheduler is not flexible. 
+The scheduling of the tasks is defined off-line, so this means there is no over-head time when switching the tasks. Oh the adder hand
+the static scheduler is not flexible, as the schedule is fixed. 
 
 The static scheduler is defined in a table, with 't' and 'T'. 
 
@@ -256,8 +256,8 @@ Example:
  Anyway, what this means is that we cannot guarantee that this schedule is NOT feaseable, ... but this cannot also, 
  guarantee us that the schedule is feaseable.
  
- To clarify, the utilization test can proof somethis is not feasible, so we can role it out. ... but it cannot proof
- somethig is feaseble... there may be cases, that make the schedule also unfieaseble. 
+ To clarify, the utilization test can prove that a schedule is not feasible, ... but it cannot prove
+ that a schedule is feasible... there may be cases, that make the schedule also unfeasible. 
 
 
  
