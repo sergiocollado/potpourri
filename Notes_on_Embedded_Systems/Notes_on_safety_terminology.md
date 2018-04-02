@@ -463,6 +463,13 @@ Follow recomendations for implementing the system.
     - Use indentation.
     - Never ever programm an infinite loop. (under a wort case design it will block execution)
     - Never ever use magic numbers.
+    - two persons rule: at least two persons must be familiar with the overall design, arquitecture, configuration, software and hardware.
+    - input/output records, data and logs.
+    - system error log
+    - Positive correct working report: the sistem must report that it is working as expected and correctly.
+    - At least one safe state.
+    - Unused memory: all the unused memory must be fill with such a patter, that forces the restart of the system if it is readed 
+    by error.
     - implement error handling in their own functions (so they done use up cache memory).
     - always handle input invalid values or input excptions.
     - the readability of code is important, so other people can easily understand the code, expressions as a\*b+c/d are a NO NO, the operators precedence is complicated, and parentesis shoud be used to clarify the operation: a\*(b+c)/d
@@ -472,6 +479,7 @@ Follow recomendations for implementing the system.
 - Design self checking tests (for hardware control).
 - Use watchdog's (sw and/or hw implemented), and/or functions/devices heartbeats.
 - Implementation of recovery systems.
+- the software must indentify itself and its version, as a response of a command, or at reset of the system.
 - Follow design and architecture patterns:
     - SOLID principles
          - Single responsability principle. (SRP).
