@@ -1,4 +1,4 @@
- # NOTES ON EMBEDDED SYSTEMS SAFETY
+# NOTES ON EMBEDDED SYSTEMS SAFETY
 ## CODE WARRIORS, TESTING MONKS, AND MANAGER ONIs
 <hr>
 
@@ -385,7 +385,9 @@ Recomendations to define all the tasks required for and mantaining software.
 - IEEE Std 1044-1993, Standard Classification of Software Anomalies
 - IEEE Std 1012-1998, Standard for Software Validation and Verification Plans.
 
+## HAZARD ANALYSIS
 
+FMEA, FMECA, HAZOP, ETA, FTA...
 
 
 
