@@ -1556,6 +1556,9 @@ ref: https://genesismission.jpl.nasa.gov/educate/kitchen/resource/factsheets/mis
 
 ref: https://en.wikipedia.org/wiki/Genesis_(spacecraft)
 
+### Asta railway accident
+...
+
 ### Mars rover pathfinder pitfail:
 ... almost lost it... because a priority inversion pitfall... :S
 
