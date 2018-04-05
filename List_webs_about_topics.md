@@ -36,6 +36,8 @@ PCB design: http://www.electronpcb.es/es/disenoIPC.html
 
 PCB manufacturer: https://www.pcbway.com/orderonline.aspx
 
+PCB manufacturer: https://www.wellpcb.com/
+
 https://diyhacking.com/arduino-hall-effect-sensor-tutorial/
 
 https://www.riyas.org/search/label/radio
