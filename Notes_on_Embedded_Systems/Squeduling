@@ -226,8 +226,8 @@ PRE-EMPTIVE SYSTEMS:
  
 
  
-OFFLINE - STATIC SCHEDULER:
-============================
+STATIC SCHEDULER:
+=================
 
 An static scheduler, is simple and predictable, and these are two very appropiated properties.
 
@@ -237,13 +237,16 @@ if the code of a task is modified, the schedule must be re-calculated, because t
 
 The static scheduler is defined in a table, with 't' and 'T'. 
 
-t - is the scheduling time
+t - is the scheduling time (trigger time of the job)
 T - is the Task
+d - death-lines
 
-The scheduling policy is the one that defines the tasks in the timeline in a way thata any dead-line is violated.
+The scheduling policy is the one that defines the tasks in the timeline in a way that no dead-line is violated. 
 
-An easy test to verify that a schedulig policy is feaseble, is by means of calculating the utilization of the system: that means
-to calculate how much time the CPU needs to for each task, whith how much time is left without performing tasks, (this is known
+A drawback of this scheudling policy, is that the tasks order, cannot be modified.
+
+An easy test to verify that a schedulig policy is feaseble, this is done by means of calculating the utilization of the system: that 
+is: to calculate how much time the CPU needs to for each task, whith how much time is left without performing tasks, (this is known
 as 'holes' in the scheduling timeline). For this, we need to know, the execution time of each task, and how often the tasks re-occour, 
 that is the period of the task.
 
@@ -251,11 +254,10 @@ the utilization is the sum of all the task's execution times, divided by their p
 
 U = S(1->n) e_i/P_i
 
-In the case the utilization is bigger or equal to 1, then we can conclude that the system is NOT feaseble.
+In the case the utilization is bigger or equal to 1, then we can conclude that the system is NOT feaseble. In that case, a task
+should be removed, and a new schedule must be develop.
 
 Example:
-
-
 
  ·    P      e      D
  
@@ -273,18 +275,59 @@ Example:
  that a schedule is feasible... there may be cases, that make the schedule also unfeasible. 
 
 
+TICK SCHEDULER
+==============
+
+The system, recalculates the best task to be run, at constant intervals, fixed when a given timer runs-out, so an interruption 
+is triggered, and the next job, that fits the task with the highest priority, can be launched. The period of interruption and 
+scheduling is named as the 'tick' of the system. So the tasks are always scheduled at regular times when the 'tick' interrups
+the execution flow. 
+
+The drawback of this scheme, is that with frequent context and task wwitches, the scheduling overhead is
+increased. If a high priority task is running and it is interrupted at the 'tick' time, but as it is the highest priority task
+and it is not blocked, it will be selected again as the task to be executed, so in this event, the context switch caused by
+the scheduling policy was completelly unnecesary.
+
+There is another drawback, a 'ready' task, must wait for a new 'tick' to be scheduled, so this also can cause a delay on
+the system. In the worst case, the whole 'tick' period. How ever, this scheduling method is very popular (i.e: it is used in
+FreeRTOS)
+
  
 ROUND-ROBIN SCHEDULING
 ======================
 
 Round-robin scheduling is based on the time-sharing policy. The tasks are ordered in a FIFO fashion, and the tasks are removed
 when they are executed, the tasks is run for a given fixed time, and if the task wasn't finished, 
-then it is put back at the last place in the FIFO queue. So, the response time to schedule a  task, depends on the lenght 
-of the task queue.
+then it is put back at the last place in the FIFO queue. So, the response time to schedule a task, depends on the lenght 
+of the task queue, but not on the needed execution time of each task.
 
-As a downside, this policy, don't uses priorities to consider the schedule of tasks, so a low priority tasks, actually gets the
+As a downside is that this policy don't uses priorities to consider the schedule of tasks, so a low priority tasks, actually gets the
 same exection time as a high priority task. this can be improved, taking into account the 'weigths' of each tasks, so the tasks
-will take more or less, execution time, depending into it's execution time.
+will take more or less execution time, depending into it's execution time.
+
+CYCLIC SCHEDULING
+=================
+
+The cyclic structure scheduler, aims to get the best of the flexibility of a tick scheduler, with the performance of the 
+static scheduler. This policy uses fix periods for schedule the tasks, so it removes all the unnecesary interruptions not needed,
+it removes all the no needed ticks, and the remaining interruption periods, is know as a frame, only at this points, the scheduling
+will take place. At the beginning of the frame, the scheduler decides the jobs to be done in the NEXT frame. It can also try to
+predict dead-line misses at the beginning of the frame, an try to have an error correction action or mitigation. 
+
+So the key question, is to define the best frame length. If the frame is too short, the context swicth overhead will penalice the system
+performance, on the other hand a small frame is better to ensure the feaseability of the system. If the frame too big, will mean less scheduling points, this reduces the penalty of the context switch, but the death-lines
+might not be guaranteed. So the goal, is to get the largest frame possible that can guarantee the dead-lines for the jobs.
+
+Calculation of the frame size:
+
+The Hiper-period (H) (this is the time at witch the schedule starts to repeat it-self), is divided in equal sizes 'f'.
+So the number of frames (F) in H is F = H/f
+the goal is to get the biggest f that complies with:
+
+1- All the jobs must be able to fit into one frame so: f >= max(ei) forall i
+
+2-  ... 
+
 
 
  
@@ -300,10 +343,6 @@ There are many tipes to schedule taks, some strategies are:
  - LETF: longest execution time first
  - Priority based
  
- 
- 
-
-
  
 MONOTONIC SCHEDULING
 ====================
