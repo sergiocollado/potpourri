@@ -34,6 +34,8 @@ http://www.cnx-software.com/2016/05/17/bluepill-is-a-2-arduino-compatible-develo
 
 PCB design: http://www.electronpcb.es/es/disenoIPC.html
 
+PCB manufacturer: https://www.pcbway.com/orderonline.aspx
+
 https://diyhacking.com/arduino-hall-effect-sensor-tutorial/
 
 https://www.riyas.org/search/label/radio
@@ -131,8 +133,6 @@ acustic levitation -> https://youtu.be/SbUsGnMUH2Y?t=3030
 awesome tools -> http://stefanstools.sourceforge.net/
 
 awesome upcoming techs -> http://ec.europa.eu/transport/themes/its/road/initiatives_en
-
-european standards: https://ec.europa.eu/digital-single-market/
 
 Darpa-urban-challenge: http://archive.darpa.mil/grandchallenge/
 
@@ -233,18 +233,6 @@ tech-notes on electrotecnic: http://www.dranetz.com/technical-support-request/te
 web about electrotecnics: http://www.electricneutron.com/
 
 a site about electric engineering: http://www.electrotechnik.net/
-
-Reevee observatory Alaska: http://www.reeve.com/Documents/
-
-Italian observatory: http://www.astrogeo.va.it/ 
-
-http://space.skyrocket.de/
-
-nasa files :    https://www.nasa.gov/missions
-
-Delay/Disruption Tolerant Networking:   https://www.nasa.gov/content/dtn
-
-Dynamic Earth (Geology site): https://pubs.usgs.gov/gip/dynamic/dynamic.html
 
 optics and tutorils on microscopy: http://zeiss-campus.magnet.fsu.edu/tutorials/index.html
 
@@ -422,7 +410,6 @@ http://fxhistoricaldata.com/
 
 
 
-
 # firms & Semiconductors companies
 
 http://www.allegromicro.com/
@@ -451,6 +438,8 @@ Mitshubisy
 
 RHOM
 
+Vishay
+
 Lineal Technology
 
 Fujitsu  https://www.fujielectric.com/products/semiconductor/technical/index.html
@@ -459,6 +448,19 @@ Seiko semiconductors
 
 
 # ASTRONOMY
+
+
+Reevee observatory Alaska: http://www.reeve.com/Documents/
+
+Italian observatory: http://www.astrogeo.va.it/ 
+
+http://space.skyrocket.de/
+
+nasa files :    https://www.nasa.gov/missions
+
+Delay/Disruption Tolerant Networking:   https://www.nasa.gov/content/dtn
+
+Dynamic Earth (Geology site): https://pubs.usgs.gov/gip/dynamic/dynamic.html
 
 https://www.windows2universe.org/?page=/citizen_science/myw/w2u_eratosthenes_calc_earth_size.html
 
@@ -492,6 +494,7 @@ http://www-groups.dcs.st-and.ac.uk/~history/index.html
 http://www-groups.dcs.st-and.ac.uk/~history/Curves/Curves.html
 
 http://www.2dcurves.com/
+
 
 # PHYSICS
 
@@ -568,6 +571,7 @@ You can also use the following tools:
 - [jsbin](http://jsbin.com/?html,output)
 - [thimble](https://thimble.mozilla.org/)
 
+european standards: https://ec.europa.eu/digital-single-market/
 
 RFC3629 - UTF-8
 
