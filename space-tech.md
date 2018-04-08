@@ -56,3 +56,5 @@ INSTRUMENTS:
 TES - Thermal Emission Spectrocopy-
 
 Mossbauer Spectrograph
+
+QMS - Quadrupole Mass spectrometer
