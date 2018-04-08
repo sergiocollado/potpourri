@@ -44,7 +44,7 @@ check:  http://exoplanets.org/
 ROVERS:
 
 - Pathfinder
-- Opportunity
+- Opportunity (2004)
 - Curiosity
 
 
