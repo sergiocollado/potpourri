@@ -41,6 +41,14 @@ Mössbauer espectrograph -- emits and read gamma rays, each element absorbs and 
    
 check:  http://exoplanets.org/
 
+ROVERS:
+
+- Pathfinder
+- Opportunity
+- Curiosity
+
+
+
 INSTRUMENTS:
 
 TES - Thermal Emission Spectrocopy-
