@@ -23,6 +23,7 @@ ref: http://sci.esa.int/mars-express/58555-crustal-fields-on-mars/
 
 Meridiani planum is an acidic enviroment like rio tinto.
 
+Atacama desert, next to Andes mountains (driest place on earth)
 
 TES - Therma Spectrometer System
 
