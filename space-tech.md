@@ -30,6 +30,7 @@ mossbauer espectrograph -- emits and read gamma rays, each element absorbs and r
 - Galileo probe
 - Cassini space-craft -> study of Saturn over a decade
 - Mariner Mission
+- Opportunity Mars rober -> https://youtu.be/XRCIzZHpFtY?t=189
 - Juno spacecraft
 - ESA Mars Express
 - NASA Mars Recononance Orbiter
