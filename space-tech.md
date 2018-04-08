@@ -31,6 +31,7 @@ Mössbauer espectrograph -- emits and read gamma rays, each element absorbs and 
 - voyager mission -> study of outer planets
 - Galileo mission -> study of Jupiter
 - Galileo probe
+- Viking
 - Cassini space-craft -> study of Saturn over a decade
 - Mariner Mission
 - Opportunity Mars rober -> https://youtu.be/XRCIzZHpFtY?t=189
