@@ -179,9 +179,17 @@ x^{\frac{2}{3}} + y^{\frac{2}{3}} = a^{\frac{2}{3}}
 \end{matrix}
 ```
 
+CICLOID:
+
+```latex
+\mathrm{ordinary  \; \;cicloid  \; \;(a=1)} \; \; \; \;
+\left\{\begin{matrix}
+x =& t- a \sin t  \\ 
+y =& 1 - a \cos t
+\end{matrix}\right.
+```
+
 TALBOT:
-
-
 
 <br>
 <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/curve_talbot.svg?sanitize=true" alt="circunference equation">
