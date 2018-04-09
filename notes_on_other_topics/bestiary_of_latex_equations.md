@@ -4,6 +4,13 @@
 <!--- template: --->
 <!--- <br> <img  src="https:/   .svg?sanitize=true" alt="Alterantive_description"> <br> --->
 
+
+SNELL EQUATION
+
+```latex
+\frac{\sin\theta_{1} }{\sin\theta_2} = \frac{ n_1 }{ n_2 }
+```
+
 SCALAR COULOMB FORCE EQUATION
 
 ```latex
