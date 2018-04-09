@@ -321,12 +321,16 @@ might not be guaranteed. So the goal, is to get the largest frame possible that 
 Calculation of the frame size:
 
 The Hiper-period (H) (this is the time at witch the schedule starts to repeat it-self), is divided in equal sizes 'f'.
-So the number of frames (F) in H is F = H/f
+So the number of frames (F) in  the hiper-period: H; this is F = H/f
 the goal is to get the biggest f that complies with:
 
 1- All the jobs must be able to fit into one frame so: f >= max(ei) forall i
 
-2-  ... 
+2- In case the size of the frame (f) divides the hiperperiod (H) evenly, we don't need to consider other sizes, due all tasks
+will fit in every frame period.
+
+3- We think of: candidate frames: which are all the possible frame sizes that comply whit the previous rule (2), one of this
+candidate frames will be the best fitted for our schedule.
 
 
 
@@ -501,7 +505,7 @@ COMPARATION BETWEEN DM AND RM:
 
 
 
-VERIFIEN MONOTONIC SCHEDULERS:
+VERIFIED MONOTONIC SCHEDULERS:
 =============================
 
 We must assume that the number of tasks is constant, that jobs are independent, periodic and preemptable and all the jobs are 
