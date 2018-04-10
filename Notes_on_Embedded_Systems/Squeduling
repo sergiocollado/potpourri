@@ -862,7 +862,45 @@ char *str = "Hello World!";
 
 
 
+Notes on various time functions:
+===============================
 
+    The current (2008/13) POSIX recommendation to find the calendar
+    time is to call clock_gettime(), defined in <time.h>.  This may
+    also be used to find the time since some unspecified starting
+    point (e.g. machine reboot), but is not currently so used in R.
+    It returns in second and nanoseconds, although not necessarily to
+    more than clock-tick accuracy.
+
+    C11 adds 'struct timespec' to <time.h>.  And timespec_get() which
+    can get the current time or interval after a base time.
+
+    The previous POSIX recommendation was gettimeofday(), defined in
+    <sys/time.h>.  This returns in seconds and microseconds (with
+    unspecified granularity).
+
+    Many systems (including AIX, FreeBSD, Linux, Solaris) have
+    clock_gettime(): it appeared in macOS 10.12.  macOS and Cygwin
+    have gettimeofday().
+
+    Function time() is C99 and defined in <time.h>.  C99 does not
+    mandate the units, but POSIX does (as the number of seconds since
+    the epoch: although not mandated, time_t seems always to be an
+    integer type).
+
+    Function clock() is C99 and defined in <time.h>.  It measures CPU
+    time at CLOCKS_PER_SEC: there is a small danger of integer
+    overflow.
+
+    Function times() is POSIX and defined in <sys/times.h>.  It
+    returns the elapsed time in clock ticks, plus CPU times in a
+    struct tms* argument (also in clock ticks).
+
+    More precise information on CPU times may be available from the
+    POSIX function getrusage() defined in <sys/resource.h>.  This
+    returns the same time structure as gettimeofday() and on some
+    systems offers millisecond resolution.
+    It is available on Cygwin, FreeBSD, macOS, Linux and Solaris.
 
 
 
