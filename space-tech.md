@@ -43,6 +43,7 @@ Mössbauer espectrograph -- emits and read gamma rays, each element absorbs and 
 - Juno spacecraft
 - ESA Mars Express
 - NASA Mars Recononance Orbiter
+- Spitzer Space Telescope
 
    
 check:  http://exoplanets.org/
