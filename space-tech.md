@@ -8,6 +8,8 @@ ref: https://mars.nasa.gov/insight/
 
 ref: http://www.asc-csa.gc.ca/eng/default.asp+
 
+ref: http://exoplanets.org/
+
 
 Phoenix lander:  
 
@@ -45,7 +47,7 @@ Mössbauer espectrograph -- emits and read gamma rays, each element absorbs and 
 - NASA Mars Recononance Orbiter
 - Spitzer Space Telescope
 - TESS -Transiting Exoplanet Survey Satellite
-- James Webb Space Telescope
+- JWST -James Webb Space Telescope
 
    
 check:  http://exoplanets.org/
