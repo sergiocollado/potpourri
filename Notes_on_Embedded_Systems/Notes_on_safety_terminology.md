@@ -1732,6 +1732,10 @@ Objectives/Life Cycles
 System Safety Program Plan
 Types of Risks/Assumption of Risks
 
+### Interesting links
+
+http://www.rvs.uni-bielefeld.de/research/WBA/
+
 
 ACRONYMS:
 
