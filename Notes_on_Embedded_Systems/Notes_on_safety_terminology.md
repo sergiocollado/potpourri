@@ -1735,7 +1735,7 @@ Types of Risks/Assumption of Risks
 ### Interesting links
 
 http://www.rvs.uni-bielefeld.de/research/WBA/
-
+www.rvs.uni-bielefeld.de/publications/compendium/
 
 ACRONYMS:
 
