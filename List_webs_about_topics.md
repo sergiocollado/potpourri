@@ -309,13 +309,11 @@ Reference programming functions for Arduino:   https://www.arduino.cc/reference/
 
 About Optics:   https://micro.magnet.fsu.edu/optics/index.html
 
-Radioastronomy club:   https://public.nrao.edu/
-
-satellites: https://www.hisdesat.es/
-
-argos satellite system: http://www.argos-system.org/
-
 electronic signatures standard: ETSI TS 102 042
+
+# INDUSTRIAL PRODUCERS
+
+http://www.apator.com/en
 
 # Reference designs
 
@@ -484,6 +482,11 @@ https://depts.washington.edu/naivpl/content/welcome-virtual-planetary-laboratory
 
 http://www.noaa.gov/research
 
+Radioastronomy club:   https://public.nrao.edu/
+
+satellites: https://www.hisdesat.es/
+
+argos satellite system: http://www.argos-system.org/
 
 # MATHS
 
