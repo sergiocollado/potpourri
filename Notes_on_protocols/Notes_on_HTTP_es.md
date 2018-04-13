@@ -155,13 +155,17 @@ La versión del protocolo HTTP usada en aquel momento, era realmente muy sencill
 
 La versión inicial de HTTP, no tenía número de versión; aunque posteriormente se la denominó como 0.9 para distingirla de las versiones siguientes. HTTP/0.9 es un protocolo extremadamente sencillo: una petición consiste simplemente en una única linea, que comienza por el único método posible GET, seguido por la dirección del recurso a pedir (no la URL, ya que tanto el protocolo, el servidor y el puerto, no son necesarios una vez ya se ha conectado al servidor).
 
+```
 > GET /mypage.html
+```
 
 La respuesta también es muy sencilla: solamente consiste el archivo pedido.
 
+```
 > \<HTML\>
 > A very simple HTML page
 > \<\/HTML\>
+```
 
 Al contrario que sus posteriores evoluciones, el protocolo HTTP/0.9 no usa cabeceras HTTP, con lo cual únicamente es posible transmitir archivos HTML, y ningún otro tipo de archivos. Tampoco habia información del estado ni códigos de error: en el caso un problema, el archivo HTML pedido, era devuelto con una descripción del problema dentro de él, para que una persona pudiera analizarlo.
 
@@ -204,16 +208,19 @@ Linea de inicio
 Las peticiones HTTP son mensajes enviados por un cliente, para iniciar una acción en el servidor. Su línea de inicio está formada por tres elementos: 
 
 Un método HTTP, un verbo como: "GET", "PUT" o "POST" o un nombre como: "HEAD" o  "OPTIONS", que describan la acción que se pide sea realizada. Por ejemplo, GET indica que un archivo ha de ser enviado hacia el cliente, o POST indica que hay datos que van a ser enviados hacia el servidor (creando o modificando un recurso, o gnerando un documento temporal para ser enviado).
-El objetivo de una petición, normalmente es una {{glossary("URL")}}, o la dirección completa del protocolo, puerto y dominio también sulen ser epecificados por el contexto de la petición. El formato del objetivo de la petición varia según los distintos métodos HTTP. Puede ser:
+El objetivo de una petición, normalmente es una URL, o la dirección completa del protocolo, puerto y dominio también sulen ser epecificados por el contexto de la petición. El formato del objetivo de la petición varia según los distintos métodos HTTP. Puede ser:
 
 Una dirección absoluta, seguida de a '?' y un texto de consulta. Este es el formato más comun, conocido como el formato original ('origin form' en inglés), se usa en los métodos GET, POST, HEAD, y OPTIONS . 
 
+```
 POST / HTTP 1.1
 GET /background.png HTTP/1.0
 HEAD /test.html?query=alibaba HTTP/1.1
 OPTIONS /anypage.html HTTP/1.0
 Una URL completa; conocido como el formato absoluto, usado mayormente con GET cuando se conecta a un proxy. 
 GET http://developer.mozilla.org/en-US/docs/Web/HTTP/Messages HTTP/1.1
+```
+
 El componente de autoriade de una URL, formado por el nombre del domínio y opcionalmente el puerto (el puerto precedido por el simbolo ':' ), se denomina a este formato como el formato de autoridad. Unicamente se usa con  CONNECT cuando se establece un tunel HTTP.
 
 CONNECT developer.mozilla.org:80 HTTP/1.1
@@ -225,10 +232,9 @@ Las cabeceras HTTP  de una petición siguen la misma estructura que la de una c
 
 Hay bastantes cabeceras posibles. Estas se pueden clasificar en varios grupos: 
 
-Cabeceras generales, ('Request headers' en inglés), como Via,  afectan al mensaje como una unidad completa.
-Cabeceras de petición, ('General headers' en inglés), como User-Agent, {{HTTPHeader("Accept-Type")}}, modifican la petición especificandola en mayor detalle ( como: Accept-Language, o dándole un contexto, como:  {{HTTPHeader("Referer")}}, o restringiendola condicionalmente, como: "If-None".
-Cabeceras de entidad, ('Entity headers' en ingles), como Content-Length las cuales se aplican al cuerpo de la petición. Por supuesto, esta cabecera no necesita 
-ser transmitida si el mensaje no tiene cuerpo ('body' en inglés). 
+ - Cabeceras generales, ('Request headers' en inglés), como Via,  afectan al mensaje como una unidad completa.
+ - Cabeceras de petición, ('General headers' en inglés), como User-Agent, {{HTTPHeader("Accept-Type")}}, modifican la petición especificandola en mayor detalle ( como: Accept-Language, o dándole un contexto, como:  {{HTTPHeader("Referer")}}, o restringiendola condicionalmente, como: "If-None".
+ - Cabeceras de entidad, ('Entity headers' en ingles), como Content-Length las cuales se aplican al cuerpo de la petición. Por supuesto, esta cabecera no necesitaser transmitida si el mensaje no tiene cuerpo ('body' en inglés). 
 
 
 Cuerpo
@@ -266,7 +272,7 @@ El cliente manda su petición, y espera por la respuesta.
 El servidor procesa la petición, y responde con un código de estado y los datos correspondientes.
 A partir del protocolo HTTP/1.1 la conexión, no se cierra al finalizar la tercera fase, y el cliente puede continuar realizando peticiones. Esto significa que la segunda y tercera fase, pueden repetirse cualquier número de veces.
 
-Estableciendo una conexión
+## Estableciendo una conexión
 
 En un protocolo cliente servidor, es siempre el cliente el que establece la conexión. Iniciar una conexión en HTTP, implica iniciar una conexión en el protocolo correspondiente a la capa de comunicación subyacente, que normalmente es TCP. 
 
@@ -275,7 +281,7 @@ En TCP el puerto por defecto, para un servidor HTTP en un computador, es el puer
 Nota: El modelo cliente-servidor no permite que el servidor mande datos al cliente sin una petición explicita. Como solución parcial a este problema, los desarrolladores web, usan varias técnicas, como hacer un ping al servidor periódicamente, mediante XMLHTTPRequest, Fetch APIs, o usar la HTML  WebSockets API o protocolos similares.
 Mandando una petición
 
-Una vez la conexión está establecida, el cliente, puede mandar una petición de datos (normalmente es un navegador, u otra cosa, como una 'araña' ( o 'crawler' en inglés), un sistema de indexación automático de páginas web). La  petición de datos de un cliente HTTP, consiste en directivas de texto, separadas mediante CRLF (retorno de carro, y cambio de linea), y se divide en tres partes:
+Una vez la conexión está establecida, el cliente, puede mandar una petición de datos (normalmente es un navegador, u otra cosa, como una 'araña' ( o 'crawler' en inglés) o un 'robot web', un sistema de indexación automático de páginas web). La  petición de datos de un cliente HTTP, consiste en directivas de texto, separadas mediante CRLF (retorno de carro, y cambio de linea), y se divide en tres partes:
 
 La primera parte, consiste en una linea, que contiene un método, seguido de sus parámetros:
 la dirección del documento pedido: por ejemplo su URL completa, sin indicar el protocolo o el nombre del dominio.
@@ -285,21 +291,25 @@ La parte final es un bloque de datos opcional, que puede contener más datos par
 Ejemplo de peticiones
 Si queremos una página web, como por ejemplo: http://developer.mozilla.org/, y además le indicamos al servidor que se preferiría la página en Francés, si fuera posible:
 
+```
 GET / HTTP/1.1
 Host: developer.mozilla.org
 Accept-Language: fr
- 
+```
+
 Observe la línea vacía al final, que separa el bloque de datos, del bloque de cabecera. Como no existe el campo Content-Length en la cabecera de HTTP, el bloque de datos está vacío, y ahí está el fin de la cabecera, permitiendo al servidor procesar la petición en el momento que recibe la línea vacía.
 
 Otro ejemplo, en el caso del envío de los datos de un formulario, la trama es:
 
+```
 POST /contact_form.php HTTP/1.1
 Host: developer.mozilla.org
 Content-Length: 64
 Content-Type: application/x-www-form-urlencoded
-
 name=Juan%20Garcia&request=Envieme%20uno%20de%20sus%20catalogos
-Métodos de peticiones
+```
+
+## Métodos de peticiones
 HTTP define un conjunto de métodos de peticiones  en los que se indican las acciones que se piden realizar al recibir un conjunto de datos. A pesar de que pueden referirse como 'nombres', estos métodos de petición, son denominados a veces como 'verbos' de HTTP.  La peticiones más comunes son  GET y POST:
 
 El método GET hace una petición de un recurso específico. Las peticiones con GET unicamente hacen peticiones de datos.
@@ -314,6 +324,7 @@ El bloque final, es el bloque que puede contener opcionalmente los datos.
 Ejemplos de respuestas
 La respuesta correcta de una página web, es como sigue: 
 
+```
 HTTP/1.1 200 OK
 Date: Sat, 09 Oct 2010 14:28:02 GMT
 Server: Apache
@@ -325,44 +336,4 @@ Content-Type: text/html
 
 <!DOCTYPE html... (aquí estarían los 29769 bytes de la página web pedida)
 La respuesta para la petición de datos que han sido movidos permanentemente, sería: 
-
-HTTP/1.1 301 Moved Permanently
-Server: Apache/2.2.3 (Red Hat)
-Content-Type: text/html; charset=iso-8859-1
-Date: Sat, 09 Oct 2010 14:30:24 GMT
-Location: https://developer.mozilla.org/ (este es el nuevo enlace a los datos; se espera que el agente de usuario lo pida a continuación)
-Keep-Alive: timeout=15, max=98
-Accept-Ranges: bytes
-Via: Moz-Cache-zlb05
-Connection: Keep-Alive
-X-Cache-Info: caching
-X-Cache-Info: caching
-Content-Length: 325 (se da una página por defecto para mostrar en el caso de que el agente de usuario no sea capaz de seguir el enlace)
-
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<html><head>
-<title>301 Movido permanentemente</title>
-</head><body>
-<h1>Movido de forma permanente</h1>
-<p>El documento ha sido movido <a href="https://developer.mozilla.org/">aquí</a>.</p>
-<hr>
-<address>Apache/2.2.3 (Red Hat) Servidor en: developer.mozilla.org Port 80</address>
-</body></html>
-Una notificación de que los datos pedidos no existen:
-
-HTTP/1.1 404 Not Found
-Date: Sat, 09 Oct 2010 14:33:02 GMT
-Server: Apache
-Last-Modified: Tue, 01 May 2007 14:24:39 GMT
-ETag: "499fd34e-29ec-42f695ca96761;48fe7523cfcc1"
-Accept-Ranges: bytes
-Content-Length: 10732
-Content-Type: text/html
-
-<!DOCTYPE html... (contiene una página personalizada de ayuda al usuario para que pueda encontrar los datos que busca)
-Códigos de estado de las respuestas
-Los códigos de estado de las respuestas indican si una petición HTTP ha sido finalizada correctamente. Las respuestas se agrupan en cinco clases: respuestas informativas, respuestas de finalización correcta, redirecciones, errores del cliente y errores del servidor.
-
-200: OK. La petición ha sido procesada correctamente
-301: Datos movidos permanentemente. Este código de respuesta indica que la URI de los datos pedidos ha cambiado.
-404: Datos no encontrados. El servidor no puede localizar los datos pedidos. 
+```
