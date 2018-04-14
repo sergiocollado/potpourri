@@ -225,6 +225,9 @@ https://courses.lumenlearning.com/physics/
 
 http://web.lemoyne.edu/~GIUNTA/papers.html
 
+https://www.doitpoms.ac.uk/tlplib/dielectrics/intro.php
+
+
 TODO:
 
 Check:  The Geiger-Marsden experiment
