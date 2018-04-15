@@ -675,6 +675,11 @@ https://authorservices.wiley.com/author-resources/book-authors/index.html
 
 https://www.omicsonline.org/engineering-journals.php
 
+https://www.semanticscholar.org/
+
+# Unis
+
+https://www.brown.edu/academics/engineering/
 
 ## Programming Jargon:
 
