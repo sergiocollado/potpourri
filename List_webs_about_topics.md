@@ -58,7 +58,7 @@ electronics on paper -> https://www.crowdsupply.com/chibitronics/circuit-sticker
 
 robots shop - > http://www.robotshop.com/ca/en/electronic-kits.html
 
-circuit papar sketch-book -> http://bunniefoo.com/chibi/sketchbook-en-v1.pdf
+circuit paper sketch-book -> http://bunniefoo.com/chibi/sketchbook-en-v1.pdf
 
 sparkfun- guide to paper circuits -> https://learn.sparkfun.com/tutorials/the-great-big-guide-to-paper-circuits
 
@@ -236,7 +236,7 @@ web about electrotecnics: http://www.electricneutron.com/
 
 a site about electric engineering: http://www.electrotechnik.net/
 
-optics and tutorils on microscopy: http://zeiss-campus.magnet.fsu.edu/tutorials/index.html
+optics and tutorials on microscopy: http://zeiss-campus.magnet.fsu.edu/tutorials/index.html
 
 shop RF elements: https://www.ondamania.com/b2c/inicio.php
 
@@ -260,6 +260,7 @@ radium natural spring fountains ?=? :
 
 java man:  https://docs.oracle.com/javase/tutorial/
 
+https://www.electroschematics.com/
 
 
 # Learn electronics with application notes:
@@ -346,6 +347,8 @@ https://order.universitywafer.com/default.aspx?cat=Silicon
 https://www.fujielectric.com/products/semiconductor/technical/index.html
 
 https://www.onsemi.com/PowerSolutions/supportDoc.do?type=manuals
+
+https://www.electroschematics.com/
 
 
 # Building linux systems
