@@ -856,6 +856,8 @@ char *str = "Hello World!";
 
 > in a 'for' loop (and in the 'while' loop if needed) never ever modify the counter varible inside the loop.
 
+> Error-detection methods must be handledn inside the called function. If w r using c++ include always a try-catch clause.
+
 > error-handling methods should be handled by a custom function, because it take less space in the cache, thus increasing the memory usage performance. 
 
 > watch out for asignations as conditions (ex: if(x=0) ) -- in most cases this is an semantic error (the desired instruction would be: if(i==0) ) 
@@ -905,9 +907,16 @@ Notes on various time functions:
 
 
 
+Challenges:
 
-
-
+find the bug in this c++ code:
+```c++
+vector<int> v;   //vector of integers
+for(int i; cin>>i; )   //get values
+    v.push_back(i);
+for(int i; i<=v.size(); ++)  //print values
+    cout<<"v["<<i<<"]== "<<v[i]<<'\n'; 
+```
 
 
 
