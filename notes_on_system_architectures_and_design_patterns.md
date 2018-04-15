@@ -180,7 +180,7 @@ int main(int argc, char *argv[])
 ```
 
 
-## Other patterns
+## Other patterns, strategies or tricks.
 
 ### Memoization
  The term 'Memoization' was coined by Donald Michie, it comes from the Latin 'memorandum' which stands for the meaning
@@ -190,3 +190,13 @@ int main(int argc, char *argv[])
  
  For example in C this can be implemented easily using 'static' variables, these are initialiced once in a function, but its value
  is kept in each call to the function, this work fine for herustic processes/algorithms. 
+
+
+### Fluent interface 
+When a class has a method or function that returns a reference to itself ('return this*') it is know as a "fluent interface", this
+allows for concatenation of the operations or funtions on it: 'myobject(0).add(1).add(1).add(3).substrat(2)' equals 3... 
+
+
+
+
+
