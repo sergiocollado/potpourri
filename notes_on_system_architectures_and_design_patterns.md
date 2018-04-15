@@ -124,9 +124,12 @@ int main(int argc, char *argv[])
 
 ## Factory Pattern
 
+Some objetc classes cannot be known up until the program exectuion, so in this case, there must be something that choose the most 
+fitting sub-class to apply...
+
 A factory pattern is best use, when the program has a super-class, with differtent subclasses, which are based on the input creation parameters. Then, the reponsability of the Factory class, is to correctly instantiate at run time, the subclass that corresponds to that input.
 
-**advantage**: The complexity of creation of similar subclasses is hided under a common interface (the Factory creator).
+**advantage**: The complexity of creation of similar subclasses is hidded under a common interface (the Factory creator).
 
 Using a bit of  code, we can ilustrate the concept
 ```C++
