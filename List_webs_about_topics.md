@@ -262,6 +262,8 @@ java man:  https://docs.oracle.com/javase/tutorial/
 
 https://www.electroschematics.com/
 
+http://www.electronicecircuits.com
+
 
 # Learn electronics with application notes:
 
