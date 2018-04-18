@@ -177,7 +177,16 @@ A nice thing, is that the electric field, allows us to use the superposition pri
 <img src="https://rawgit.com/sergiocollado/potpourri/master/image/sum_electric_field.svg?sanitize=true" style="border:1px solid black" alt="Sumatory of the electric fields">
 <br>
  
- 
+Here, is the strong point of the concept of "force field", given a chage distribution, it's electric field is easily known as it is
+the sum of all the electric fields of each individual charge. And thus it is easy to calculate the net force exerted at any point, due
+to the definition of electric field is equal to **q** times the electric force field at that point.
+
+<br>
+<img src="https://rawgit.com/sergiocollado/potpourri/master/image/Force_from_an_electric_field.svg?sanitize=true" style="border:1px solid black" alt="equation of the electric field 2">
+<br>
+
+
+
 <br> 
 <br>
 <br>
