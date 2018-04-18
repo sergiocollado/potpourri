@@ -239,6 +239,11 @@ https://www.doitpoms.ac.uk/tlplib/dielectrics/intro.php
 
 TODO:
 
+Seminar work of Michael Faraday:
+
+https://en.wikisource.org/wiki/Experimental_researches_in_electricity
+
+
 Check:  The Geiger-Marsden experiment
 
 Check: https://en.wikipedia.org/wiki/Crookes_tube
