@@ -105,3 +105,10 @@ Characters must not include encodings between U+D800 to U+DFFF. Also the codes b
 used as control characters), may cause to close the network connection.
 
 
+Interesting Links
+
+https://www.eclipse.org/paho/
+
+https://www.hivemq.com/
+
+https://www.cloudmqtt.com/
