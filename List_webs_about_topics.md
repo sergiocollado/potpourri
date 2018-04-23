@@ -40,6 +40,8 @@ PCB manufacturer: https://www.pcbway.com/orderonline.aspx
 
 PCB manufacturer: https://www.wellpcb.com/
 
+PCB manufacturer: https://de.beta-layout.com/leiterplatten/brd-to-3d/
+
 https://diyhacking.com/arduino-hall-effect-sensor-tutorial/
 
 https://www.riyas.org/search/label/radio
@@ -454,6 +456,7 @@ Fujitsu  https://www.fujielectric.com/products/semiconductor/technical/index.htm
 
 Seiko semiconductors
 
+ARROW -although it is a distributor
 
 # ASTRONOMY
 
