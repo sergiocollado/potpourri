@@ -42,6 +42,8 @@ PCB manufacturer: https://www.wellpcb.com/
 
 PCB manufacturer: https://de.beta-layout.com/leiterplatten/brd-to-3d/
 
+PCB manufacturer: http://www.safe-pcb.com/
+
 https://diyhacking.com/arduino-hall-effect-sensor-tutorial/
 
 https://www.riyas.org/search/label/radio
