@@ -503,6 +503,7 @@ Follow recomendations for implementing the system.
 - Have a method to identify the software, and version of the system.
 - Test functions (unit testing) with wrong, and bad data- a program should behave sensibly even if the user don't.
 - Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). (test documentation must comply wit the ieee 829 standard)
+- CSP: Concurrent Sequence Programming.
 
 ## Defensive programming
 
