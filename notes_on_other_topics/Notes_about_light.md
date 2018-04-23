@@ -35,6 +35,10 @@ respect to the speed of light in that medium. In for of equation is:
 
 [equation of index of refraction]
 
+
+ <br> <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/snell_eq.svg?sanitize=true" alt="snell equation"> <br> 
+
+
 where:
  - c: speed of light in free space (vacuum)
  - v: speed of light in the medium of study.
