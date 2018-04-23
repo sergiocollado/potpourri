@@ -7,6 +7,9 @@
 
 SNELL EQUATION
 
+ <br> <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/snell_eq.svg?sanitize=true" alt="snell equation"> <br> 
+
+
 ```latex
 \frac{\sin\theta_{1} }{\sin\theta_2} = \frac{ n_1 }{ n_2 }
 ```
