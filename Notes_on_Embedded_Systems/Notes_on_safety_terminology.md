@@ -287,6 +287,9 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 
 **Safety** and **Availability** are DO NOT imply each other: the safest airplane, is that one never takes off... A system that is working at a given moment, doesn't imply it is safe. The opposite case, the lack of availability, also doesn't need to be true: an airbag for an automotive system, can be very safe, but once it is triggered, it is not available anymore; the triggering of the airbag, can even result on the system fallback, to block the car, due it is not safe; that is: entering a safe operation mode status, after an unexpected event that compromises the system safety. 
 
+**working** is NOT the same as **safe**
+
+
 ## SAFETY RELATED CONCEPTS:
 
 **Accident**: It's the situation in which there is a loss of some kind: death or material damage.
@@ -468,10 +471,13 @@ Follow recomendations for implementing the system.
     - two persons rule: at least two persons must be familiar with the overall design, arquitecture, configuration, software and hardware.
     - input/output records, data and logs.
     - system error log
+    - checking of system correctness.
     - Positive correct working report: the sistem must report that it is working as expected and correctly.
     - At least one safe state.
     - Unused memory: all the unused memory must be fill with such a patter, that forces the restart of the system if it is readed 
     by error.
+    - evaluate the need for back-up systems
+    - evaluate the need for fail-safe systems, sub-systems or measures.
     - implement error handling in their own functions (so they done use up cache memory).
     - always handle input invalid values or input excptions.
     - the readability of code is important, so other people can easily understand the code, expressions as a\*b+c/d are a NO NO, the operators precedence is complicated, and parentesis shoud be used to clarify the operation: a\*(b+c)/d
