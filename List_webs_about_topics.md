@@ -361,6 +361,7 @@ https://www.onsemi.com/PowerSolutions/supportDoc.do?type=manuals
 
 https://www.electroschematics.com/
 
+https://www.digikey.com/reference-designs/en
 
 # Building linux systems
 
@@ -451,6 +452,8 @@ NXP
 Mitshubisy
 
 RHOM
+
+OnSemiconductors
 
 Vishay
 
