@@ -44,6 +44,8 @@ PCB manufacturer: https://de.beta-layout.com/leiterplatten/brd-to-3d/
 
 PCB manufacturer: http://www.safe-pcb.com/
 
+PCB manufacturer: http://www.we-online.com/web/en/leiterplatten/produkte_/Produktspektrum_3.php
+
 PCBA manufacturer: http://www.wells-pcba.com/
 
 https://diyhacking.com/arduino-hall-effect-sensor-tutorial/
@@ -250,6 +252,10 @@ shop RF elements: https://www.ondamania.com/b2c/inicio.php
 
 about thermodinamics, thermal engines... http://technicaltheory.blogspot.com.es/
 
+enclosures: Hammond manufacturings. https://www.hammfg.com/
+
+trafos: https://www.hammfg.com/electronics/transformers
+
 tiny AVR simulator:  https://sourceforge.net/projects/avrsimu/
 
 cool site about electronics: https://www.mikrocontroller.net
@@ -273,6 +279,8 @@ java man:  https://docs.oracle.com/javase/tutorial/
 https://www.electroschematics.com/
 
 http://www.electronicecircuits.com
+
+components: http://www.we-online.com/web/en/wuerth_elektronik/start.php
 
 
 # Learn electronics with application notes:
@@ -514,6 +522,8 @@ argos satellite system: http://www.argos-system.org/
 
 http://www.stsci.edu/
 
+
+
 # MATHS
 
 http://www.mpfr.org/
@@ -550,6 +560,8 @@ http://xahlee.info/SpecialPlaneCurves_dir/Inversion_dir/inversion.html
 http://xahlee.info/SpecialPlaneCurves_dir/specialPlaneCurves.html
 
 dipole curve:  http://xahlee.info/SpecialPlaneCurves_dir/Inversion_dir/inversion.html
+
+
 
 # digital manuscripts
 
