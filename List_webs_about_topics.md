@@ -451,6 +451,12 @@ NXP
 
 Mitshubisy
 
+omron
+
+oSram
+
+AllegroMicro
+
 RHOM
 
 OnSemiconductors
