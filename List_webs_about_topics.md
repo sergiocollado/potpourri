@@ -453,6 +453,8 @@ http://es.rs-online.com/web/generalDisplay.html?id=new
 
 intersil
 
+Murata  https://www.murata.com/en-global/
+
 renersas
 
 eSilicon
