@@ -50,6 +50,7 @@ PCBA manufacturer: http://www.wells-pcba.com/
 
 PCB manufacturer: https://www.multi-circuit-boards.eu/en/index.html?gclid=EAIaIQobChMIuZHrw8zV2gIVlhHTCh3T-AOQEAEYASAAEgLzrPD_BwE
 
+CIRCUIT PRINTER: https://www.voltera.io/
 
 https://diyhacking.com/arduino-hall-effect-sensor-tutorial/
 
