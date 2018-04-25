@@ -258,6 +258,8 @@ about thermodinamics, thermal engines... http://technicaltheory.blogspot.com.es/
 
 enclosures: Hammond manufacturings. https://www.hammfg.com/
 
+enclosures: http://www.takachi-enclosure.com/
+
 trafos: https://www.hammfg.com/electronics/transformers
 
 tiny AVR simulator:  https://sourceforge.net/projects/avrsimu/
