@@ -490,6 +490,14 @@ ARROW -although it is a distributor
 # ASTRONOMY
 
 
+http://irsa.ipac.caltech.edu/docs/howto/tutorials.html
+
+http://ads.harvard.edu/
+
+https://nssdc.gsfc.nasa.gov/
+
+https://www.cosmos.esa.int/web/psa/psa-introduction
+
 Reevee observatory Alaska: http://www.reeve.com/Documents/
 
 Italian observatory: http://www.astrogeo.va.it/ 
