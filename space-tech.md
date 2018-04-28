@@ -40,7 +40,7 @@ Mössbauer espectrograph -- emits and read gamma rays, each element absorbs and 
 - Viking
 - Cassini space-craft -> study of Saturn over a decade
 - Mariner Mission
-- New Horizonts space-craft -> Pluto
+- New Horizonts space-craft -> Pluto : )
 - Opportunity Mars rober -> https://youtu.be/XRCIzZHpFtY?t=189
 - Kepler mission
 - Juno spacecraft
