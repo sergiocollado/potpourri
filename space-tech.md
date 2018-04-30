@@ -7,7 +7,7 @@ acronym stand for: Interior  Sismic investigatation Geodesy and heat transport.-
 ref: https://mars.nasa.gov/insight/
 
 ref: http://www.asc-csa.gc.ca/eng/default.asp+
-
+E
 ref: http://exoplanets.org/e
 
 
@@ -75,3 +75,4 @@ QMS - Quadrupole Mass spectrometer
 - Kuiper belt
 - Trojan asteroids
 - Twin Keck Telescopes
+- Subaro Telescope
