@@ -8,7 +8,7 @@ ref: https://mars.nasa.gov/insight/
 
 ref: http://www.asc-csa.gc.ca/eng/default.asp+
 
-ref: http://exoplanets.org/
+ref: http://exoplanets.org/e
 
 
 Phoenix lander:  
@@ -74,3 +74,4 @@ QMS - Quadrupole Mass spectrometer
 
 - Kuiper belt
 - Trojan asteroids
+- Twin Keck Telescopes
