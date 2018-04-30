@@ -666,9 +666,9 @@ Use the **alt** tag.
  
  
  ```javascript
- function Particula(mass) {
+ function Particle(mass) {
  
-  if(typeof(mass)=='undefined) mass=1;
+  if(typeof(mass)=='undefined') mass=1;
   
   this.mass=1;
   this.x=0;
