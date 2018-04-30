@@ -660,4 +660,23 @@ Use the **alt** tag.
  https://webhooks.pbworks.com/w/page/13385124/FrontPage
  
  
+ # Javascript
+ 
+ To define a class:
+ 
+ 
+ ```javascript
+ function Particula(mass) {
+ 
+  if(typeof(mass)=='undefined) mass=1;
+  
+  this.mass=1;
+  this.x=0;
+  this.y=0;
+  this.vx=0;
+  this.vy=0;
+ }
+ ```
+ 
+  
  
