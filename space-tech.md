@@ -7,7 +7,8 @@ acronym stand for: Interior  Sismic investigatation Geodesy and heat transport.-
 ref: https://mars.nasa.gov/insight/
 
 ref: http://www.asc-csa.gc.ca/eng/default.asp+
-E
+
+
 ref: http://exoplanets.org/e
 
 
@@ -38,6 +39,7 @@ Mössbauer espectrograph -- emits and read gamma rays, each element absorbs and 
 - Galileo mission -> study of Jupiter
 - Galileo probe
 - Viking
+- Viking Lander 1976
 - Cassini space-craft -> study of Saturn over a decade
 - Mariner Mission
 - New Horizonts space-craft -> Pluto : )
