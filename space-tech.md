@@ -40,6 +40,7 @@ Mössbauer espectrograph -- emits and read gamma rays, each element absorbs and 
 - Galileo probe
 - Viking
 - Viking Lander 1976
+- Phoenix Lander at North pole of Mars (found sub-surface ice)
 - Cassini space-craft -> study of Saturn over a decade
 - Mariner Mission
 - New Horizonts space-craft -> Pluto : )
