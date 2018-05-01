@@ -259,3 +259,6 @@ Rutherford and Rayleigh and Einstein--Perrin and the Millikan oil-drop experimen
 here is an experiment by Perrin related to this which has been pivotal in the acceptance of the atomic hypothesis. I think Perrin got the Nobel Prize
 
 
+## Why water is so good disolvent?
+
+It happens thgat the water molecule h_2 O is a polar molecule, that means that it has polarities .. the same as a battery....
