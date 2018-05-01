@@ -81,3 +81,9 @@ where:
 
 
 SERGIO GONZALEZ COLLADO
+
+
+
+todo & reference:
+
+![why sky is blue](http://www.lpl.arizona.edu/~griffith/PTYS517/RT6-scattering1.pdf)
