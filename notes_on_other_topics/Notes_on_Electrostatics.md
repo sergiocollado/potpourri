@@ -248,6 +248,7 @@ Check:  The Geiger-Marsden experiment
 
 Check: https://en.wikipedia.org/wiki/Crookes_tube
 
+Check: Harriot Cell, on spectroscopy as in the Mars Curiosity rober.
 
 out Einstein's theoretical explanation for the observed Brownian motion and the observed Perrin experiments on it are quite valid.
 
