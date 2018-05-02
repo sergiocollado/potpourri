@@ -293,6 +293,14 @@ check example of how a printer works...
 ref:  http://physics.bu.edu/~duffy/PY106/Charge.html
 
 
+## Why shocks and sparks of electrostatic electricity are more notable in winter?
+
+Mostly because the air is much drier in winter that in summer. The dry air is a better isolator that air wit more humidity, so f something is charged, it tends to stay charged, as it is not able to discharge. In an air with more humiditi, 6that is wter, that is a polar molecule, it much easier to discharge the static electricity in our bodies. 
+
+There are other factors, as for example in winter we use to wear more clothes and put the on, and remove then, this usually increase our charge ty means of trivoelectric effect. Also the type of shoes affets us, usually boots with rubber soles, isolates our body much better. ...
+
+
+
 ## Why water is so good disolvent?
 
 It happens thgat the water molecule h_2 O is a polar molecule, that means that it has polarities .. the same as a battery....
