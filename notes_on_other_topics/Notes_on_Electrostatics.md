@@ -42,7 +42,7 @@ Two charges of equal sign, repulse each other, and two charges of opposite sign 
 
 ## Types of materials:
 
- According how electric charges (the defect or excess of electrons) behave in a given material, it is possible to differentiate two classes of materials: conductor and non-conductors.
+ According how electric charges (the defect or excess of electrons) behave in a given material, it is possible to differentiate two classes of materials: conductor,  non-conductors and semi-conductors.
  
 ### Conductor materials
  
@@ -51,12 +51,40 @@ In Conductor materials the unions or bonds between atoms are such that they shar
 Due to the fact that electric charges with the same sign repulse each other, in a given charged body, its electric charges will place themselves in it's outer surface, as result of repelling each other, and being in its out-most surface is the placement in which the charges are most distanced one of each other.
 
 ![conductor_materials](https://github.com/sergiocollado/potpourri/blob/master/image/conductor_material.png)
+
+Most common conductor materials are: metals.
  
-### Non-conductor materials
+### Non-conductor materials: Insulators
   
 In non-conductor materials, the electrons are tightly bond to their nucleus. As such, the electric charges, can not easily move in the material, as consecuence, the electric charges will tend to be concentrated on a point or small region (due its lack of movement).
 
+Most common non-conductor materials are: plastics, rubbers and wood (dry).
+
+
+### Semi-conductors
+
+There is another type of material related to its classification according to the behavior of electric charges in it: the semi-conductors, these materials change its conductivity, that is the easiness which the elecytric charges move throught it, depending
+on certain conditios.... the most common example of this type of material is the Silicon.
+
+
+
 Electrostatics are govern by _**Coulomb's Law**_ that enunciates as folows:
+
+
+## How things can get electrically charged
+
+there are three main ways:
+
+- by friction: (- triboelectricity) this is usually a process to charge non-conductive materials or insulators. 
+
+- by conduction: this usually works fine with conductive materials... if an object touch something that is already charged, that
+charge is distributed between the two objects, due the charge is transferred and distributed.
+
+- by induction: a charged objet is used, and a not charged object is presented close to it, but with-out touching it...
+
+- also useful for charging metals and other conductors. Again, a charged object is used, but this time it is only brought close to the conductor, and does not touch it. If the conductor is connected to ground (ground is basically anything neutral that can give up electrons to, or take electrons from, an object), electrons will either flow on to it or away from it. When the ground connection is removed , the conductor will have a charge opposite in sign to that of the charged object.
+
+
 
 
 ## **Coulomb's Law**
@@ -258,6 +286,11 @@ Rutherford's alpha particle scattering experiments
 Rutherford and Rayleigh and Einstein--Perrin and the Millikan oil-drop experiment might be the best experimental verification of atomic theory.
 
 here is an experiment by Perrin related to this which has been pivotal in the acceptance of the atomic hypothesis. I think Perrin got the Nobel Prize
+
+check example of how a printer works...
+
+
+ref:  http://physics.bu.edu/~duffy/PY106/Charge.html
 
 
 ## Why water is so good disolvent?
