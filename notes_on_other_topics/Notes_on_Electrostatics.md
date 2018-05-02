@@ -36,7 +36,7 @@ is always conserved. This implies that electric charge cannot be created nor des
 ## Law of attraction and repulsion:
 Two charges of equal sign, repulse each other, and two charges of opposite sign attract each other.
 <br>
-![cases of forces on electrostatic charges](../image/charges.png)
+![cases of forces on electrostatic charges](../image/charges_reactions.png)
 <br>
 <br>
 
