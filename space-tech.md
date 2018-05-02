@@ -45,7 +45,7 @@ Mössbauer espectrograph -- emits and read gamma rays, each element absorbs and 
 - Mariner Mission
 - New Horizonts space-craft -> Pluto : )
 - Opportunity Mars rober -> https://youtu.be/XRCIzZHpFtY?t=189
-- Kepler mission
+- Kepler mission - Keppler Space-craft -> look for habitable planets
 - Juno spacecraft
 - ESA Mars Express
 - NASA Mars Recononance Orbiter
