@@ -377,6 +377,8 @@ https://www.electroschematics.com/
 
 https://www.digikey.com/reference-designs/en
 
+
+
 # Building linux systems
 
 [Easy Intro to Linux Kernel Programming](https://www.youtube.com/watch?v=TCY8WPwBMa0)
@@ -542,6 +544,9 @@ http://www.stsci.edu/
 
 
 # MATHS
+
+GPL MATHS:  https://glm.g-truc.net/0.9.8/index.html
+
 
 http://www.mpfr.org/
 
