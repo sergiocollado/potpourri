@@ -26,7 +26,7 @@ They are:
 
 ## Behavioral
 
-How do OBJECTS OF A CLASS behave and interact with each other, in the work and taks distributions.
+How do OBJECTS OF A CLASS behave and interact with each other, in the work and taks distributions, roles and responsabilities of each class.
 
 - **Strategy**: defines a family of algorithms or data processes, and encapsulates them, in such a way that they are interchangeable.
 - **Iterator**: defines a sequential access to an element collection
