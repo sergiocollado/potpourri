@@ -26,7 +26,7 @@ They are:
 
 ## Behavioral
 
-How do OBJECTS OF A CLASS behave and interact with each other
+How do OBJECTS OF A CLASS behave and interact with each other, in the work and taks distributions.
 
 - **Strategy**: defines a family of algorithms or data processes, and encapsulates them, in such a way that they are interchangeable.
 - **Iterator**: defines a sequential access to an element collection
@@ -42,7 +42,7 @@ How do OBJECTS OF A CLASS behave and interact with each other
 
 ## Structural
 
-How do CLASSES behave and interact with each other. That is how classes are connected with each other.
+That is how classes are connected with each other.
 
 - **Decorator**: adds features to objects dynamically, this provides a sort of 'sub-classing' mechanism that is able to expend funcitonalities.
 - **Adapter**: converts the interfece of an interface into another interface that the user expects, this allows for using different classes with the same interface.
