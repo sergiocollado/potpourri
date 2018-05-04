@@ -126,6 +126,12 @@ int main(int argc, char *argv[])
 }
 ```
 
+## Singelton disadvantages
+
+In a multi-threading program, having only one object may generate issues when different tasks try to access to the object, and it my 
+result in the blocking of one tasks to others... 
+
+
 ## Factory Pattern
 
 Some objetc classes cannot be known up until the program exectuion, so in this case, there must be something that choose the most 
