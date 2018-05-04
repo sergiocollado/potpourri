@@ -204,6 +204,8 @@ When a class has a method or function that returns a reference to itself ('retur
 allows for concatenation of the operations or funtions on it: 'myobject(0).add(1).add(1).add(3).substrat(2)' equals 3... 
 
 
+### Lazy Creation
 
+An object is not created, until it is needed. This can be and advantage, because the resources are more efficiently used. 
 
 
