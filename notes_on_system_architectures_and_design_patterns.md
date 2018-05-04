@@ -13,6 +13,8 @@ ISO/IEC/IEE 24765 - Vocabulary - avaliable freely at: http://www.computer.org/se
 
 # Notes on design patterns
 
+A design pattern is a proven, by experience, optimal solution for a recurring programing problem.
+
 Usually design patterns are classified into three categories:
 
 - **Behavioral** 
