@@ -42,7 +42,7 @@ How do OBJECTS OF A CLASS behave and interact with each other
 
 ## Structural
 
-How do CLASSES behave and interact with each other
+How do CLASSES behave and interact with each other. That is how classes are connected with each other.
 
 - **Decorator**: adds features to objects dynamically, this provides a sort of 'sub-classing' mechanism that is able to expend funcitonalities.
 - **Adapter**: converts the interfece of an interface into another interface that the user expects, this allows for using different classes with the same interface.
