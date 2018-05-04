@@ -90,36 +90,38 @@ using namespace std;
 
 class mySingletonClass {
  public:
-  static mySingletonClass *getInstance(); //access to unique instance
+  static mySingletonClass *getInstance(); //public access to unique instance, like it is public, it can be called globally
  
  private:
-  mySingletonClass(){};  //constructor
-  static mySingletonClass* myPointerReferenceInstance; //refence to instance
+  mySingletonClass(){};  //private constructor - it can only be used by a class instance.
+  static mySingletonClass* myUniqueReferenceInstance; //pointer refence to instance
 };
 
 mySingletonClass* mySingletonClass::myPointerReferenceInstance = null;
+
 mySingletonClass* mySingletonClass::getInstance(){
-  if(instance == null)
+
+  if(myUniqueReferenceInstance == null) //checks if the instace has already being declared.
   {
-    myPointerReferenceInstance = new mySingletonClass();
+    myUniqueReferenceInstance = new mySingletonClass();
     // when the object if first instantiated, it changes the value of its reference,
     // so it will not pass thru this case again.
     
     cout << "Creation of the Object"<< std::endl;
-    return myPointerReferenceInstance;
+    return myUniqueReferenceInstance;
   }
   else
   {
      cout << "Getting reference to the object" << std::endl;
-     return myPointerReferenceInstance;
+     return myUniqueReferenceInstance;
   }
 }
 
 
 int main(int argc, char *argv[])
 {
-  mySingletonClass* O1 = mySingletonClass::getInstance();
-  mySingletonClass* O2 = mySingletonClass::getInstance();
+  mySingletonClass* Object1 = mySingletonClass::getInstance();
+  mySingletonClass* Object2 = mySingletonClass::getInstance();
   return 0;
 }
 ```
