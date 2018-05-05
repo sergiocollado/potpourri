@@ -12,13 +12,15 @@ finds a change in the enviroment it moves, as when it goes through air, and then
 through, then three things can happen:
 
 - transmission: the light travels through the new material
-- absortion: the light diffusses through the material.
 - reflection: the light "bounces", at the new material.
+- absortion: the light diffusses through the material.
 
 
 # Absortion:
 
 ![Absortion](../image/Absortion.PNG)
+
+
 
 
 # Reflection:
@@ -27,7 +29,6 @@ through, then three things can happen:
 ![Reflection](../image/light.PNG)
 
 ![reflection](https://github.com/sergiocollado/potpourri/blob/master/image/light_reflection.png)
-
 
 
 Wherever there is an interface between two different materials, we have to take into account, what is know as _**index of refraction**_,  usually represented by the letter _**n**_ This index of refractions tell us the relationtship between the speed of light in vacuum, with
@@ -59,7 +60,7 @@ where:
 
 
 
-
+# Transmitted (Refraction):
 
 
 
