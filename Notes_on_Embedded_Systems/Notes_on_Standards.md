@@ -78,5 +78,5 @@ RTCA DO-333, Formal Methods Supplement to DO-178C and DO-278A
 
 
 	
-Directive 2014/32/EU  - Measurement Instruments.
+Directive 2014/32/EU  - Measurement Instruments (MID)
 
