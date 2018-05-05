@@ -75,3 +75,8 @@ RTCA DO-331, Model-Based Development and Verification Supplement to DO-178C and 
 RTCA DO-332, Object-Oriented Technology and Related Techniques Supplement to DO-178C and DO-278A
 
 RTCA DO-333, Formal Methods Supplement to DO-178C and DO-278A
+
+
+	
+Directive 2014/32/EU  - Measurement Instruments.
+
