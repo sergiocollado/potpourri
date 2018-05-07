@@ -262,6 +262,8 @@ enclosures: Hammond manufacturings. https://www.hammfg.com/
 
 enclosures: http://www.takachi-enclosure.com/
 
+more electric equipment: ww.phoenixcontact.com
+
 trafos: https://www.hammfg.com/electronics/transformers
 
 tiny AVR simulator:  https://sourceforge.net/projects/avrsimu/
