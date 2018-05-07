@@ -136,7 +136,9 @@ excellon- mounting -> www.excellon.com
 
 circuits collection: http://danyk.cz/index_en.html
 
-mastero of supercircuits:  http://www.talkingelectronics.com/te_interactive_index.html
+masteo of supercircuits:  http://www.talkingelectronics.com/te_interactive_index.html
+
+circuits: https://circuitglobe.com/
 
 part selection: http://parts.io/search/Class-Regulator%20Circuits/Category-Switching%20Regulator%20or%20Controller?utm_source=pa&utm_medium=728x90&utm_campaign=schematic
 
