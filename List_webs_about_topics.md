@@ -136,6 +136,8 @@ excellon- mounting -> www.excellon.com
 
 circuits collection: http://danyk.cz/index_en.html
 
+mastero of supercircuits:  http://www.talkingelectronics.com/te_interactive_index.html
+
 part selection: http://parts.io/search/Class-Regulator%20Circuits/Category-Switching%20Regulator%20or%20Controller?utm_source=pa&utm_medium=728x90&utm_campaign=schematic
 
 how to program stm32 -> http://www.emcu.it/STM32/What_should_I_use_to_develop_on_STM32/What_should_I_use_to_develop_on_STM32.html#Free_C_CompilerIDE
