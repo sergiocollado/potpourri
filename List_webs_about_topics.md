@@ -489,6 +489,8 @@ Seiko semiconductors
 
 ARROW -although it is a distributor
 
+Lapis http://www.lapis-semi.com/en/index.html
+
 # ASTRONOMY
 
 solar system simulator: https://space.jpl.nasa.gov/
