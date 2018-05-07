@@ -380,5 +380,7 @@ It happens thgat the water molecule h_2 O is a polar molecule, that means that i
 - Electrostatic precipitation
 - Xerography
 - Ion motors
-- Electrostatic deflection http://chair.pa.msu.edu/applets/E-Deflection/a.htm
+- Electrostatic deflection 
+   - http://chair.pa.msu.edu/applets/E-Deflection/a.htm
+   - https://circuitglobe.com/electrostatic-deflection-in-crt.html
 
