@@ -78,19 +78,19 @@ Electrostatics are govern by _**Coulomb's Law**_ that enunciates as folows:
 
 there are three main ways:
 
-- by friction: (- triboelectricity) this is usually a process to charge non-conductive materials or insulators. 
+- by **friction**: **triboelectricity** this is usually a process to charge non-conductive materials or insulators. 
 
-- by conduction: this usually works fine with conductive materials... if an object touch something that is already charged, that
+- by **conduction**: this usually works fine with conductive materials... if an object touch something that is already charged, that
 charge is distributed between the two objects, due the charge is transferred and distributed.
 
-- by induction: a charged objet is used, and a not charged object is presented close to it, but with-out touching it...
+- by **induction**: a charged objet is used, and a not charged object is presented close to it, but with-out touching it...
 
 - also useful for charging metals and other conductors. Again, a charged object is used, but this time it is only brought close to the conductor, and does not touch it. If the conductor is connected to ground (ground is basically anything neutral that can give up electrons to, or take electrons from, an object), electrons will either flow on to it or away from it. When the ground connection is removed , the conductor will have a charge opposite in sign to that of the charged object.
 
 
 
 
-## **Coulomb's Law**
+## **Electrotaic Force: the Coulomb's Law**
 
 
 The force **F** between two charged particles (Q <sub>1</sub> and Q <sub>2</sub>) in static equilibrium, in a given medium,
@@ -163,6 +163,8 @@ So in practice the following formula is used:
 <img src="https://rawgit.com/sergiocollado/potpourri/master/image/simplified_coulomb_f.svg?sanitize=true">
 <br>
 
+k <sub>e</sub> has units of: N·m2/C2.
+
 
 A good point, is that is possible to use the superposition principle with these forces, that meaning: that the total force is the sum of all the forces in the object. 
 
@@ -170,6 +172,61 @@ A good point, is that is possible to use the superposition principle with these 
 <br>
 <img src="https://rawgit.com/sergiocollado/potpourri/master/image/sum_forces.svg?sanitize=true">
 <br>
+<hr>
+
+### Example calculation
+
+#### 1
+We are given a charge Q <sub>1</sub> of +1C value and another charge Q <sub>2</sub> of +2C at 1m at its right. What is the force at Q <sub>2</sub>.
+
+F = K · Q <sub>1</sub> · Q <sub>2</sub>/ d1^2 = 9· 10^9 · 1C · 2C / 1m^2 = 18 · 10^9 Newtons (the force is of repulsion due the charges
+have the same sign)
+
+#### 2
+If the distance is doubled between Q <sub>1</sub> and Q<sub>2</sub>, how much will be the force:
+
+F = k · Q <sub>1</sub> · Q <sub>2</sub> / (2·d1)^2 = 900 · 1C · 2C / (2m)^2 = 9· 10^9 · 1C · 2C / 4 =  18· 10^9 /4 = 4.8 · 10^9
+
+(the force is of repulsion due the charges have the same sign)
+
+... We can obvserve that the force strengh has been reduced by a factor of 4, when the distance is just doubled. ... of course
+this is due, that the strenght of the force is inverse proportional to the square of the distance between charges
+
+#### 3
+What would happend if we were to triple the distance between charges?
+
+then the force would be 9 times the first force due that the force is inverse to the squared distance. F3 = 1/9 · F1
+
+F = k · Q <sub>1</sub> · Q <sub>2</sub> / (3·d1)^2 = 900 · 1C · 2C / (3m)^2 = 9· 10^9 · 1C · 2C / 9 =  18· 10^9 / 9 = 2 · 10^9 
+
+
+**Note:** Actually 1Coulomb is a really big amount of electric charge, it has been used here, to illustratate the concepts and 
+nature of coulomb forces, without including more challenging numbers.
+
+
+the Hidrogen [H] is the simplest element, is is made from a Proton (mass= 1.7·10^-27 kg) and an orbiting electron (mass=9.1·10^-31) 
+both of them have a charge of aprox: 1.6·10-19 C. And its average distance is around 5.3·10^-11 m. What is the electrostatic
+force between them?
+
+F_c = k_e · Qp · Qe / d^2 = 9·10^9 · 1.6·10^-19 · (-1)·1.6·10^-19 / (5.3·10^-11)^2 = ... = -8.2 · 10-8 N (Attractive)
+
+If we calculate its gravitational pull, what would be the force between them:
+
+F_g = G · Mp · Me / d^2 = 6.67·10^-11 · 1.7·10^-27 · 9.1·10^31 / (5.3·10^-11)^2 = 3.6·10-47 N 
+
+If we compare the ratio, we can see that the electrostatic force significant bigger.
+
+[the neutron has been left out, in the gravity force calculation]
+
+
+
+
+
+<hr>
+
+TODO: NOTES ON ESPECTROSCOPE...
+
+
 
 ## Electric Field
 
@@ -256,7 +313,6 @@ to the definition of electric field is equal to **q** times the electric force f
 REFERENCES:
 
 https://courses.lumenlearning.com/physics/chapter/19-5-capacitors-and-dielectrics/
-
 https://www.doitpoms.ac.uk/tlplib/thermal_electrical/printall.php
 
 http://demoweb.physics.ucla.edu/content/experiment-3-electrostatics
@@ -267,6 +323,15 @@ http://web.lemoyne.edu/~GIUNTA/papers.html
 
 https://www.doitpoms.ac.uk/tlplib/dielectrics/intro.php
 
+http://www.cabrillo.edu/~jmccullough/Physics/Electric_Forces_Fields.html
+
+https://kaiserscience.wordpress.com/physics/electromagnetism/electrostatics/
+
+https://www.norwellschools.org/cms/lib02/MA01001453/Centricity/Domain/63/Electrostatics%20-%20Coulombs%20Law%20period%206.pdf
+
+http://www.physics.usyd.edu.au/super/life_sciences/E/E-all.pdf
+
+http://www.physicstutorials.org/home/electrostatics/electrical-forces-coulombs-law/99-electroscope
 
 TODO:
 
@@ -307,3 +372,11 @@ There are other factors, as for example in winter we use to wear more clothes an
 ## Why water is so good disolvent?
 
 It happens thgat the water molecule h_2 O is a polar molecule, that means that it has polarities .. the same as a battery....
+
+
+## Electrostatic applications
+
+- Electrostatic spray painting
+- Electrostatic precipitation
+- Xerography
+- Ion motors
