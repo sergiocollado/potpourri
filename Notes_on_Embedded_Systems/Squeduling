@@ -862,7 +862,14 @@ char *str = "Hello World!";
 
 > watch out for asignations as conditions (ex: if(x=0) ) -- in most cases this is an semantic error (the desired instruction would be: if(i==0) ) 
 
+> functions should never return 'void', ... at least, if not a result the can return a 0 if the funtion was OK, or !0 if an error,
+also a numeric value could represent the kind of error, that way, the error could be handled like:
 
+```c
+if( my_function() ) {
+  error_my_function();
+}
+```
 
 Notes on various time functions:
 ===============================
@@ -917,6 +924,7 @@ for(int i; cin>>i; )   //get values
 for(int i; i<=v.size(); ++)  //print values
     cout<<"v["<<i<<"]== "<<v[i]<<'\n'; 
 ```
+
 
 
 
