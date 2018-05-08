@@ -504,6 +504,13 @@ $>sudo . /var/www/app/venv/bin/activate
 reference: https://uwsgi-docs.readthedocs.io/en/latest/
 
 
+# how to list all installed programs
+
+```bash
+$: dpkg -l
+```
+
+
 Links:
 
 http://www.linux.org/ <br>
