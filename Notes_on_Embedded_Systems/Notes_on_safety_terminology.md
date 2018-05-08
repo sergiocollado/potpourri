@@ -765,7 +765,11 @@ At recusive specification if it is guarded, has AT MOST one solution... it has e
 
 
 
+TODO: tools to study systems 
 
+https://workcraft.org/
+
+http://www.es.ele.tue.nl/sdf3/
 
 
 
@@ -1577,6 +1581,9 @@ ref: https://en.wikipedia.org/wiki/Genesis_(spacecraft)
 
 
 ### MARS CLIMATE... 
+
+### Mariner1
+
 
 Examples of safety-critical systems[edit]
 critical infrastructures monitoring systems[edit]
