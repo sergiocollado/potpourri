@@ -117,7 +117,10 @@ Usually, these systems are classified into the following groups:
  - **bussines critical**: designed to avoid a missfunctions that would result or imply huge economic/bussines impact or material losses, usually as a result of a service interruption. Example: bank, accounting and payment systems, stock-trading systems.
  - **security critical**: designed to protect data or sensible information. example: medical databases, customers data ...
 
-References:
+Critical systems must always pinpoint the worst case escenario, and also data throuputs and latencies.!!
+
+
+Referencess:
 
 https://en.wikipedia.org/wiki/Critical_system
 
@@ -227,6 +230,7 @@ http://www.sohar.com/proj_pub/download/y2ktest.pdf
  - **Fail-safe systems**: they become safe when they cannot perform its function. Medical devices, usually are found in this category, for example a heart-pump: when it cannot work, it warns the medical personal, as the safety interval, is long enough, the live of the patient is not in thread.
  - **Fail-Passive systems**: 
  - **Fault-tolerant sytems**: they continue to operate even when faults are present on the system. 
+ 
  
  Reference: https://en.wikipedia.org/wiki/Safety-critical_system
  
@@ -955,7 +959,7 @@ There are things aside the main functionality that also are required, those migt
 A list of non-functional characteristics:
 
  - usability: how easy it is to use
- - performance: evaluation of the system with regard to responses times and data throughput
+ - performance: evaluation of the system with regard to responses times and data throughput, latency, measurement of response times, transaction rates, respose to many transactions, or simulation of many users.
  - security: security evaluation
  - safety: safety evaluation
  - robustness: evaluation of the behavior of the system related to outside mis-happenings.
