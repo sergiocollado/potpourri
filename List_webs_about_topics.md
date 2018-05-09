@@ -294,6 +294,8 @@ http://www.electronicecircuits.com
 
 http://www.circuitstoday.com/
 
+about radios: http://www.sengpielaudio.com/calculator-volt.htm
+
 components: http://www.we-online.com/web/en/wuerth_elektronik/start.php
 
 
@@ -905,3 +907,9 @@ RTCA DO-332, Object-Oriented Technology and Related Techniques Supplement to DO-
 RTCA DO-333, Formal Methods Supplement to DO-178C and DO-278A
 
 European Law: http://eur-lex.europa.eu/e-learning/index.html
+
+
+## UNIVERSITIES:
+
+https://www.uvic.ca/engineering/
+
