@@ -1287,6 +1287,7 @@ As always, the test documentation must be according to the "Standard for Softwar
 | 25  |       | Metrics to take into account  |
 | 26  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests.  |
 | 27   |      | Risks: identification, evaluation and responses (possible risks for the project, as lack of resources, time deliveries overdue, lack of man-power, lack of quality test data, future preditions, problems to overcome or concerns   ...)    |
+| 28 |   | Test completion criteria definition- definition of conditions to halt the testing.. to know when to stop of testing |
 
  <!-- http://www.softwaretestinghelp.com/test-plan-sample-softwaretesting-and-quality-assurance-templates/  -->
 
