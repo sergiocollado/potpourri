@@ -1300,12 +1300,12 @@ As always, the test documentation must be according to the "Standard for Softwar
 | 4   |      | Testing team, responsabilities and roles    |
 | 5  |      | References (list of normative elements, manuals, procedures, application notes, agreements, notes, ...)   |
 | 6 |      Test Process      | Test goals and tasks  |
-| 7 |        | List of documents, description and formats to use at the test process |
+| 7 |        | List of documents, description and formats or templates to use at the test process |
 | 8  |       | Asumptions and enviroments (hardware platform, operating system, applications, ...)   |
 | 9  |      | Features to be tested   |
 | 10  |      | Features to not be tested    |
 | 11   |      | Dependencies and resposabilites    |
-| 12   |      | test Tools, equipment, software, resources and facilities    |
+| 12   |      | test Tools (multimeters, debuggers ...) , equipment (data loggers, oscilloscopes, power-supplies ...) , software (protocol simulators, testware, test management tool, automation ...), resources and facilities    |
 | 13   |       | Test strategy  (how are de test cases are designed)   |
 | 14|       | Test process squedule (time for analysis and design, timeline test process, control points, deliverables, current and future expected events or needs)   |
 | 15   |       | Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it good enought data (relevant, accurate and significative) ?)    |
@@ -1318,7 +1318,7 @@ As always, the test documentation must be according to the "Standard for Softwar
 | 22   |      | Regression testing    |
 | 23  |       | Automated testing   |
 | 24  |       | Batch testing (automated regression testing)   |
-| 25  |       | Metrics to take into account  |
+| 25  |       | Metrics to take into account (sloc, ciclomatic complexity, code coverage, decision coverage)  |
 | 26  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests.  |
 | 27   |      | Risks: identification, evaluation and responses (possible risks for the project, as lack of resources, time deliveries overdue, lack of man-power, lack of quality test data, future preditions, problems to overcome or concerns   ...)    |
 | 28 |   | Test completion criteria definition- definition of conditions to halt the testing.. to know when to stop of testing |
@@ -1429,7 +1429,7 @@ The following activities use to be followed for a formal review.
 ##### Roles and responsabilities
 
 - **Manager** decides on the execution of reviews, allocates or reallocates project squedules and resources.
-- **Moderator** leds the meeting, the review of documents, planns the reviw process and its follow-up activities. the sucess of the review use to fall on him.
+- **Moderator** leads the meeting, the review of documents, planns the reviw process and its follow-up activities. the sucess of the review use to fall on him.
 - **Author** person with the final responsability of the document o set of documents to review.
 - **Reviewers** people with technical or bussiness background, who after the pre-meeting preparation, may identify and describe findigs or defects, under the product review. Reviewers should be chosen to represent differnet points of view, perspectives and roles in the process.
 - **Recorder** (Scribe) document all the relevant points, issues, questions, doubts, advices and considerations, identified during the meeting.
