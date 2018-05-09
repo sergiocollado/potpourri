@@ -78,16 +78,16 @@ Electrostatics are govern by _**Coulomb's Law**_ that enunciates as folows:
 
 there are three main ways:
 
-- by **friction**: **triboelectricity** this is usually a process to charge non-conductive materials or insulators. 
+- by **contact** or **friction**: this is known as **triboelectric effect**, this is usually a process to charge non-conductive materials or insulators. 
 
 - by **conduction**: this usually works fine with conductive materials... if an object touch something that is already charged, that
 charge is distributed between the two objects, due the charge is transferred and distributed.
 
-- by **induction**: a charged objet is used, and a not charged object is presented close to it, but with-out touching it...
+- by **induction**: a charged objet is used, and a not charged object is presented close to it, but with-out touching it... also useful for charging metals and other conductors. Again, a charged object is used, but this time it is only brought close to the conductor, and does not touch it. If the conductor is connected to ground (ground is basically anything neutral that can give up electrons to, or take electrons from, an object), electrons will either flow on to it or away from it. When the ground connection is removed , the conductor will have a charge opposite in sign to that of the charged object.
 
-- also useful for charging metals and other conductors. Again, a charged object is used, but this time it is only brought close to the conductor, and does not touch it. If the conductor is connected to ground (ground is basically anything neutral that can give up electrons to, or take electrons from, an object), electrons will either flow on to it or away from it. When the ground connection is removed , the conductor will have a charge opposite in sign to that of the charged object.
+- **Piezoelectric effect**: wip..
 
-
+- **Pieroelectric effect**: wip...
 
 
 ## **Electrotaic Force: the Coulomb's Law**
@@ -365,19 +365,21 @@ ref:  http://physics.bu.edu/~duffy/PY106/Charge.html
 
 Mostly because the air is much drier in winter that in summer. The dry air is a better isolator that air wit more humidity, so f something is charged, it tends to stay charged, as it is not able to discharge. In an air with more humiditi, 6that is wter, that is a polar molecule, it much easier to discharge the static electricity in our bodies. 
 
-There are other factors, as for example in winter we use to wear more clothes and put the on, and remove then, this usually increase our charge ty means of trivoelectric effect. Also the type of shoes affets us, usually boots with rubber soles, isolates our body much better. ...
+There are other factors, as for example in winter we use to wear more clothes and put the on, and remove then, this usually increase our charge ty means of triboelectric effect. Also the type of shoes affets us, usually boots with rubber soles, isolates our body much better. ...
 
 
 
 ## Why water is so good disolvent?
 
-It happens thgat the water molecule h_2 O is a polar molecule, that means that it has polarities .. the same as a battery....
+It happens that the water molecule H <sub>2</sub> Om, is a polar molecule, that means that it has polarities .. the same as a battery. the water molecule overall electrostatic charge is zero, but at one side it has the possitive charge, and at other the negative charge.
+
 
 
 ## Electrostatic applications
 
 - Electrostatic spray painting
 - Electrostatic precipitation
+- Electrostatic Mics and loudspeakers
 - Xerography
 - Ion motors
 - Electrostatic deflection 
@@ -390,3 +392,12 @@ It happens thgat the water molecule h_2 O is a polar molecule, that means that i
  
  https://en.wikipedia.org/wiki/Triboelectric_effect  
 
+more resources to check:
+
+https://www.school-for-champions.com/science/static_resources.htm#.WvNiH4jRDIU
+
+https://www.school-for-champions.com/science/static_resources.htm#.WvNiH4jRDIU
+
+https://www.amazon.com/Science-Wiz-ScienceWiz-Charge-Activity/dp/B00HFGJATE/ref=sr_1_7?s=books&ie=UTF8&qid=1525899874&sr=8-7&keywords=Static+Shock+ring
+
+https://www.amazon.com/gp/search?ie=UTF8&camp=1789&creative=9325&index=books&keywords=Electrostatics&linkCode=ur2&tag=schoolforchampio
