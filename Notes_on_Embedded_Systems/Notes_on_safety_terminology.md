@@ -372,7 +372,6 @@ EN 60204-1 - Safety on Machinery - electrical equipment of machines. Part 1 : Ge
 
 - ISO/IEC 15288: Systems life cycle process.
 - ISO/IEC 12207: - IEEE Std 12207 - Systems and software engineering - Software life cycle processes.
-
 Recomendations to define all the tasks required for and mantaining software.
 - ISO/IEC/IEE 14764 - Software maintenance
 - ISO/IEC/IEE 15026 - Software assurance
@@ -380,6 +379,7 @@ Recomendations to define all the tasks required for and mantaining software.
 - ISO/IEC/IEE 15939 - Measurement
 - ISO/IEC/IEE 16085 - Risk management
 - ISO/IEC/IEE 16326 - Project management
+- ISO/IEC 9126 - overseed by ISO/IEC 25010 is quality product for sw systems.
 - ISO/IEC/IEE 24765 - Vocabulary - avaliable freely at: http://www.computer.org/sevocab
 - IPC-7351: Generic Requirements for Surface Mount Design and Land Pattern Standard.
 - ISO/IEC 15504: Information Technology - Process assesment, also refered as Software Process Improvement and Capability Determination (SPICE)
@@ -1466,7 +1466,7 @@ Test planning is one of the activities that must be updated during all the proje
 ### Test tools
 
 **Test management tool**: a tool that supports traceability, recording of incidents, or test scheduling and results.
-
+**Catch and replay tool**: a tool to capture a user interaction with a system to evaluate it user interface.
 
  # IEEE 829 Overview:
 
