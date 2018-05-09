@@ -1,5 +1,5 @@
 # NOTES ON EMBEDDED SYSTEMS SAFETY
-## CODE WARRIORS, TESTING MONKS, AND MANAGER ONIs
+## CODE WARRIORS, TEST MONKS, AND MANAGER ONIs
 <hr>
 
 
@@ -137,7 +137,6 @@ https://en.wikipedia.org/wiki/Z_notation
 https://en.wikipedia.org/wiki/Verification_and_validation
 
 http://czt.sourceforge.net/
-
 
 https://en.wikipedia.org/wiki/Design_by_contract
 
@@ -634,7 +633,7 @@ init <                  > --> end
      
      example:  (n>0) n-> n++  <> n--
 
-### PROPIETIES:
+### PROPIERTIES:
 
 - Conmutativity: ' x + y = y + x'. In strong bisimulation, the order of the processes doesn't matter.
 - Associativity of '+': '(x+y)+z = x+(y+z)' . the brackets are not meanfully for '+' operation in strong bisimulation. Brackets
@@ -972,7 +971,7 @@ A list of non-functional characteristics:
  - portability: evaluation of the easines of the translation of the code to other posible platforms or architectures.
  - reliability: evaluation on the trusth of the proper behavior of the system
  - dependability: evaluation of the dependability of the system (let's say this is: how much confidence you can have in it)
- - scalability:
+ - scalability: ability to add elements to the system.
  - memory & storage: amount of memory needed, types of memory in hw (flass, eeprom, volatie)
  - data processing volume & load stress: performance under peaks of data
  - configuration: check behavior under defined configurations
@@ -980,7 +979,7 @@ A list of non-functional characteristics:
  - installation: evaluation of the methods and easianess to install the system.
  - recovery: evaluation of recovery methods
  - maintenance: evaluation of maintenance methods. 
- - readability: how easy is the code to read and understand (this is quite subjetive)
+ - code readability: how easy is the code to read and understand (this is quite subjetive)
  - interconnectivity: the ability to work with diferent related systems. For example a system might work only withy
  a propietary protocol that prevents it to work with equivalent systems from other manufacturers, thus
  having a low interconnectivity. A system that performs equally, and that uses an open protocol has higher
@@ -1611,7 +1610,13 @@ SOP - Standard Operation Procedures - these are the documents developed by an or
 steps, and instructions to perform a certain task. the acronym also stands for Start of Procduction (watch out!)
 
 
-### Lessons learned: Learn from mistakes
+### Learn from mistakes
+
+https://aviation-safety.net/  
+
+#### Hinderburg 
+
+wip....
 
 #### Genesis Solar Wind Probe:
 Went to Space, took samples of the solar wind, come back to Earth, but failed to open the parachutes : S
@@ -1622,10 +1627,10 @@ ref: https://genesismission.jpl.nasa.gov/educate/kitchen/resource/factsheets/mis
 
 ref: https://en.wikipedia.org/wiki/Genesis_(spacecraft)
 
-### Asta railway accident
+#### Asta railway accident
 ...
 
-### Lufthansa Flight 2904
+#### Lufthansa Flight 2904
 
 ...
 
@@ -1858,6 +1863,10 @@ SOP - Standard Operation Procedures
 
 WKI - Working Instructions
 
+ETSI
+
+ITU
+
 
 BOOKS and REFERENCES
 =======================
@@ -1900,17 +1909,17 @@ procedures that need to much time, or documentation/paper-work or other limited 
 
 DEFINITION and GOALS OF THE PROJECT 
 
-8. Scope and objetives of the project are ill defined 
-The overall objetive of the project is poorly defined.
+8. Scope and goals of the project are poor defined 
+The overall goal of the project is poorly defined.
 
-9. Scope creep inflates scope 
+9. Scope runaway
 Uncontrolled changes and continuous growth of scope. 
 
 10. Over-design: Chase of perfection inflates scope 
 The project team add their own features that aren't in requirements or change requests. 
 
-11. Estimates are inaccurate 
-Inaccurate estimates is a common project risk. 
+11. Estimations are not accurate 
+Inaccurate estimations are a common project risk.
 
 12. Dependencies are inaccurate 
 Dependencies impact the project schedule and costs. A wrong dependencies tree, directly impact on the critical path of the
@@ -1930,7 +1939,6 @@ the planning and time-line are way too optimistic.
 15. Monopoly dependency
 The project depends on only one key supplier or partner. This is a strategic short-come that should be avoided.
  
-
  
 COMMUNICATIONS. 
 
@@ -1949,14 +1957,13 @@ End-users or stack-holders or involved people don't understand the product real 
 19. Confusion / poor communication / poor understanding.
 key people who must be involved can not grasp the meaning or implications of the project communications.
 
-20. Too much time for an answer.
-When requesting any information or data critical to the project, an answer that takes too much time my stall the project and jeopardize it.
-For example: a requirement clarifications, a technical review, or a law compliance consultation... 
+20. Communication latency: Too much time for an answer or decision.
+When requesting any information or data critical to the project, an answer that takes too much time my stall the project and jeopardize it. For example: a requirement clarifications, a technical review, or a law compliance consultation... 
 
 REQUIREMENTS
 
 21. Requirements fail to align with other systems 
-The requirements fail to align with other systems (e.g. they duplicate functionality). 
+The requirements fail to align with other systems (e.g. they duplicate functionality, or block or monopolize a common communication system with another component/module/... ).
 
 22. Requirements have compliance issues 
 If you have any doubt that requirements comply with the law list it as a risk. 
@@ -1965,21 +1972,25 @@ If you have any doubt that requirements comply with the law list it as a risk.
 Requirements are unclear and open to interpretation. 
 
 24. Requirements are low quality 
-Requirements aren't fit for purpose. 
+Requirements aren't fit for purpose. Eg. a 1GH dual-core processor is requested, but it should actually specify this in terms
+of MFLOPS or MIPS, or data-prosseing throughput.
 
 25. Requirements are incomplete 
-You can spot obvious holes in the requirements. 
+You can spot obvious (or not) holes in the requirements. 
 
 SYSTEM ARCHITECTURE and DESIGN
 
 26. Architecture or design lacks flexibility 
-The architecture is incapable of supporting change requests and needs to be reworked. 
+The architecture is incapable of supporting change requests and needs to be reworked. For example: in a computer system a Round-robin
+schecdule is a very neat architecture, and really good in some ways: as predictability and time estimation, but if lacks flexibility
+when the system needs to include new functionality.
 
 27. Architecture or design is not fit for purpose 
-The architecture is low quality. 
+The architecture is low quality. Don't use anti-patterns.
 
 28. Architecture or design is infeasible 
-The architecture is impossible to implement, excessively costly or doesn't support the requirements. 
+The architecture is impossible to implement, excessively costly or doesn't support the requirements. For example: the data-processing
+requirements are impossible to achieve for the requested system.
 
 29. Architecture or design fails peer review 
 It's a good idea to have peers or architectural experts review your designs. 
