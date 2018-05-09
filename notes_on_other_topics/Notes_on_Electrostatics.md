@@ -383,4 +383,10 @@ It happens thgat the water molecule h_2 O is a polar molecule, that means that i
 - Electrostatic deflection 
    - http://chair.pa.msu.edu/applets/E-Deflection/a.htm
    - https://circuitglobe.com/electrostatic-deflection-in-crt.html
+- Safety: Hindernburg 
+   - https://en.wikipedia.org/wiki/Hindenburg_disaster
+   - ESD
+- Storms: https://www.school-for-champions.com/science/static_lightning.htm#.WvNgT4jRDIU
+ 
+ https://en.wikipedia.org/wiki/Triboelectric_effect  
 
