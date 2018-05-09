@@ -1441,6 +1441,11 @@ Test planning is one of the activities that must be updated during all the proje
 
 <hr>
 
+### Test tools
+
+**Test management tool**: a tool that supports traceability, recording of incidents, or test scheduling and results.
+
+
  # IEEE 829 Overview:
 
 Test plan template:
