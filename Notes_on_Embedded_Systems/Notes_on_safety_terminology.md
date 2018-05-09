@@ -397,8 +397,6 @@ Recomendations to define all the tasks required for and mantaining software.
 FMEA, FMECA, HAZOP, ETA, FTA...
 
 
-
-
 ### Aircraft systems
 
 AC 20-115C "Airborne Software Assurance" 
@@ -898,7 +896,7 @@ It will be explained later in the text, bus as reference is just annotaded here.
 Depending on the system, even more things will need to be evaluated and tested.
  
 ### INTEGRATION TESTS:
-The **integration test**, are understand as a test that looks for assesment of the performance and correct behavior between different modules, libraries or other componets in a system. It usually check the interfaces and the data workflows between them.
+The **integration test**, are understand as a test that looks for assesment of the performance and correct behavior between different **modules**, libraries or other componets in a system. It usually check the interfaces and the data workflows between them.
 
  Usually the following are tested at the software level
  - Interface between componets
@@ -971,7 +969,7 @@ A list of non-functional characteristics:
  - requirements trazability: how easy is to track down the systems requirements to its actual implementation.
  - documentation: evaluation of documentation of the system.
  - testeability: evaluation of the easiness to test the system. 
- - portability:
+ - portability: evaluation of the easines of the translation of the code to other posible platforms or architectures.
  - reliability: evaluation on the trusth of the proper behavior of the system
  - dependability: evaluation of the dependability of the system (let's say this is: how much confidence you can have in it)
  - scalability:
@@ -987,7 +985,7 @@ A list of non-functional characteristics:
  a propietary protocol that prevents it to work with equivalent systems from other manufacturers, thus
  having a low interconnectivity. A system that performs equally, and that uses an open protocol has higher
  interconnectivity, because it can be used with different manufacturer equipments/systems.
- - expanseability: is the ability to increase the functionality or propierties of a system. (architecture evaluation).
+ - expanseability: is the ability to increase the functionality or propierties of a system. (architecture evaluation). for example if the system has a plug-in engine or similar.
  
 ## Structure or Architectural Testing: White-box test
 It is also knwon as a **white-box** testing. Is the evaluation of some parameters of stadistics of the system behavior, as for example how complex it is (ciclomatix complexity), the number of control flow structures (if, else, for, while) and the overall of the tested code...  with the kwnoledge of its inner workings.
@@ -1114,10 +1112,29 @@ For software the most common are:
 #### STATEMENT COVERAGE:
 Is the evaluation of the percentage of all statemenst (lines of code) which have been exercised by the testing. Usually test are designed so different code blocks can be executed, so the test suits will aim to cover and exercite as much code as possible. The account of the code executed is done by code instrumentation by means of auxiliar libraries. 
 
-#### DECISION TESTING and COVERAGE:
+#### DECISION TESTING aka BRANCH COVERAGE:
 This test accounts the percentage over all of different branchs exercised in the code execution (at the control flow structures: if, else, for, while ...). Tests are desiged, so different conditions are met at the different branch evaluation points. The aim is to account for as much program possible flows as possible. 
 
 **NOTE**: A 100% decision coverage implies a 100% code coverage, but the other way around is not true: a 100% does not guarantee a 100% decision coverage.
+
+```
+EXAMPLE:
+
+how many tests are needed to cover the 100% statement coverage and decision coverage of the following pseudo-code:
+
+IF A > B THEN
+C = A – B
+ELSE
+C = A + B
+ENDIF
+Read D
+IF C = D Then
+Print “Error”
+ENDIF
+
+>> 2 tests for SC and 2 test for DC....  of course this can be evaluated at the same time.
+
+```
 
 ### EXPERIENCED BASED TECHNIQUES:
 
