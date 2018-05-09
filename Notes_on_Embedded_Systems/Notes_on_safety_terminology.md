@@ -956,7 +956,7 @@ There are things aside the main functionality that also are required, those migt
 
 A list of non-functional characteristics:
 
- - usability: how easy it is to use
+ - usability: how easy it is to use. This may also include some aspects as the learning curve, User interface, ... 
  - performance: evaluation of the system with regard to responses times and data throughput, latency, measurement of response times, transaction rates, respose to many transactions, or simulation of many users.
  - security: security evaluation
  - safety: safety evaluation
@@ -1026,7 +1026,7 @@ The inputs to the system are classified into groups or value ranges, that have a
 
 ```
 EXAMPLE:
-A system has a integer numeric input and only data betwen 50 and 100 (both numbers included) is accepted as a valid data. How shoud be an equivalence partitining test designed?
+A system has an integer numeric input and only data betwen 50 and 100 (both numbers included) is accepted as a valid data. How shoud be an equivalence partitining test designed?
 
 The valid data is only the integer numbers that belong to [50,100], otherwise is an invalid data. Thus there is three intervals:
 
@@ -1053,6 +1053,22 @@ Equivalence partitioning and boundary values analysis are methods, that evaluate
 
 The design of equivalence partitioning tests, and boundary test analysis, starts from the analysys of the requirement and specifications of the system.
 
+
+
+
+```
+EXAMPLE:
+In a form, a input field is intended for a data that represents a year. The field accepts, 
+years from 1900 to 2035, both included. 
+
+What would be the boundary values to test the input acceptance?
+
+>> 1899, 1999, 2035, 2036
+
+```
+
+
+
 ```
 EXAMPLE:
 Following with the previous example: 
@@ -1076,6 +1092,8 @@ The expected test results would be:
 - input: 100 - output: valid
 - input: 101 - output: invalid
 ```
+
+
 
 #### STATES and TRANSITION TESTING:
 When the system under test has to behave according to state machines or transition systems, or other similar logical or sequencial behaviors, decision tables are a good option to check that the system complies with its expected behavior. So the decision tables, specifie the triggering condition or actions that imply a state change, then all the combination of this action or events are tested. This methodolgy, often is combined, with others as: **code coverage** and **decision coverage** (these are described later in the text). 
@@ -1463,12 +1481,12 @@ Test planning is one of the activities that must be updated during all the proje
 
 <hr>
 
-### Test tools
+### Test tools 
 
 **Test management tool**: a tool that supports traceability, recording of incidents, or test scheduling and results.
 **Catch and replay tool**: a tool to capture a user interaction with a system to evaluate it user interface.
 
- # IEEE 829 Overview:
+ # IEEE 829 Overview - Standard test documentation
 
 Test plan template:
 
