@@ -1913,13 +1913,13 @@ DEFINITION and GOALS OF THE PROJECT
 The overall goal of the project is poorly defined.
 
 9. Scope runaway
-Uncontrolled changes and continuous growth of scope. 
+Uncontrolled changes and continuous growth of scope. For example: Cabbage mechanical calculation machine.
 
 10. Over-design: Chase of perfection inflates scope 
 The project team add their own features that aren't in requirements or change requests. 
 
 11. Estimations are not accurate 
-Inaccurate estimations are a common project risk.
+Inaccurate estimations are a common project risk. For example: the estimated effort needed for the project to succed.
 
 12. Dependencies are inaccurate 
 Dependencies impact the project schedule and costs. A wrong dependencies tree, directly impact on the critical path of the
@@ -1943,69 +1943,87 @@ The project depends on only one key supplier or partner. This is a strategic sho
 COMMUNICATIONS. 
 
 15. Project team misunderstand requirements 
+
 When requirements are misinterpreted or misunderstood by the project team. There is a significant gap between expectations, requirements and project planning. 
 
 16. Communication overhead 
+
 The communication effort needed for the project succeed is out of the common. 
 
 17. Under communication 
+
 key people is not being informed and missing information. this situation has many risks. 
 
 18. Inaccurate expectations 
+
 End-users or stack-holders or involved people don't understand the product real capabilities.
 
 19. Confusion / poor communication / poor understanding.
+
 key people who must be involved can not grasp the meaning or implications of the project communications.
 
 20. Communication latency: Too much time for an answer or decision.
-When requesting any information or data critical to the project, an answer that takes too much time my stall the project and jeopardize it. For example: a requirement clarifications, a technical review, or a law compliance consultation... 
+
+When requesting any information or data critical to the project, an answer that takes too much time my stall the project and jeopardize it. For example: a requirement clarifications, a technical review, or a law compliance consultation...  (The approval of the boss is needed, and he just went on vacations....) 
 
 REQUIREMENTS
 
 21. Requirements fail to align with other systems 
+
 The requirements fail to align with other systems (e.g. they duplicate functionality, or block or monopolize a common communication system with another component/module/... ).
 
 22. Requirements have compliance issues 
+
 If you have any doubt that requirements comply with the law list it as a risk. 
 
 23. Requirements are ambiguous 
 Requirements are unclear and open to interpretation. 
 
 24. Requirements are low quality 
+
 Requirements aren't fit for purpose. Eg. a 1GH dual-core processor is requested, but it should actually specify this in terms
 of MFLOPS or MIPS, or data-prosseing throughput.
 
 25. Requirements are incomplete 
+
 You can spot obvious (or not) holes in the requirements. 
 
 SYSTEM ARCHITECTURE and DESIGN
 
 26. Architecture or design lacks flexibility 
+
 The architecture is incapable of supporting change requests and needs to be reworked. For example: in a computer system a Round-robin
 schecdule is a very neat architecture, and really good in some ways: as predictability and time estimation, but if lacks flexibility
 when the system needs to include new functionality.
 
 27. Architecture or design is not fit for purpose 
+
 The architecture is low quality. Don't use anti-patterns.
 
 28. Architecture or design is infeasible 
+
 The architecture is impossible to implement, excessively costly or doesn't support the requirements. For example: the data-processing
 requirements are impossible to achieve for the requested system.
 
 29. Architecture or design fails peer review 
-It's a good idea to have peers or architectural experts review your designs. 
+
+It's a good idea to have peers or architectural experts that review your designs. 
 
 LEADERSHIP, DECISIONS AND RESOLUTIONS 
 
 30. Decision delays impact project 
+
 Establish guidelines for decision turnaround time (as a max answer time-limit). Identify the risk that guidelines will be exceeded. 
 
 31. Decisions are ambiguous 
+
 People may have a tendency to make decisions that are intentionally ambiguous (a responsibility avoidance technique), as 
-for example: the resolution to optimice two parameters that are in opposition. This can be identified as a risk and managed. 
+for example: the resolution to optimice two parameters that are in opposition (For example: I want to do a lot with very little and very fast). This can be identified as a risk and managed. 
 
 32. Decisions are low quality 
+
 Decisions aren't fit for purpose. 
 
 33. Decisions are incomplete 
+
 Issue resolutions that don't address the issue or create more issues. 
