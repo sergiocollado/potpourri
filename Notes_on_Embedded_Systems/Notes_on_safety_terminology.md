@@ -1255,7 +1255,7 @@ https://en.wikipedia.org/wiki/Testing_Maturity_Model
 
 ### Test plan document index example guide:
 
-As always, the test documentation must be according to the "Standard for Software Test documentation": IEEE STD 829-1998.
+As always, the test documentation must be according to the "Standard for Software Test documentation": IEEE STD 829.
 
 
 | iNDEX  | . | Description|
@@ -1366,19 +1366,24 @@ The following activities use to be followed for a formal review.
      - Definition of entry and exit criterias (on formal review types: as inspections)
      - Selection of the documents and parts to review.
      - Check entry crietera.
+     
  2 Kick-off
      - Distribution of the documentos
      - Explanation of the objetives, processes and documents to the team that is going to do the review.
+     
  3 Individual work
      - Prepare the meeting tasts: as the review of the documents.
      - Annotate potential issues, defects, notes, open points and questions.
+     
  4 Examination/Evaluation/record of the result (actual review meeting)
      - open discussion or evaluation about the findings. 
      - keep track of the defects found, make recomendations for handling them, and decisions. 
      - record of minutes of the meeeting, in the case it is a formal review.
+     
  5 Rework
      - Fix the issues or topics found (usually done by the author)
      - Record status of the update of the defects (on formal reviews)
+     
  6 Follow-up
      - Check the defects that have been adressed
      - Gather metrics
@@ -1536,6 +1541,11 @@ the responsabilites for example are:
  who can approve the complete process 
  
  # glossary, acronyms and abreviations
+
+
+... to be done.
+
+
 
 
 LIABILITY:
