@@ -11,6 +11,7 @@ There are some standards, that shoud be considered:
 - ISO/IEC/IEE 16085 - Risk management
 - ISO/IEC/IEE 16326 - Project management
 - ISO/IEC/IEE 24765 - Vocabulary - avaliable freely at: http://www.computer.org/sevocab
+- Dictionary:   http://www.electropedia.org/
 - IPC-7351: Generic Requirements for Surface Mount Design and Land Pattern Standard.
 - ISO/IEC 15504: Information Technology - Process assesment, also refered as **Software Process Improvement and Capability Determination** (SPICE)
   - Recomendations for the computer software development process and related bussines management fuctions. This standard is derived from 
