@@ -1248,7 +1248,7 @@ Examples of test control actions are:
 
 The designed test procedures are implemented, and a certain execution sequence for the tests has to be defined in order to run the set of test (usually according to priority). When the test platform and enviroment is set up, the test cases are run, executed, and evaluated.
 
-The objetive and goals of the text execution is:
+The objetive and goals of the test execution is:
 
 - Implementation, and definition of the expected results, and execution order and priority of the test cases.
 - develop test procedures, create test data, optionally preparing test hardeness and writting automating test scripts.
@@ -1348,7 +1348,9 @@ references:
 - http://cppcheck.sourceforge.net/manual.pdf
 
 #### Review Process:
-There are several levels of review procoess depending on how formal they are done. the way the revision is carried out depends on its objectives: gain understanding of the system, presentation of the sistem, introduction to new team mebers to the system, or even an auditory.
+There are several levels of review process depending on how formal they are done. the way the revision is carried out depends on its objectives: gain understanding of the system, presentation of the sistem, introduction to new team mebers to the system, or even an auditory.
+
+**The review process can be and should be applied at different activities, as: system design, hw and sw design, sw code, requirements and specifications, tests, plannifications, ...**
 
 ##### Types of review
 
