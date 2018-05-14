@@ -503,6 +503,8 @@ ARROW -although it is a distributor
 
 Lapis http://www.lapis-semi.com/en/index.html
 
+
+
 # ASTRONOMY
 
 http://www.stsci.edu/
@@ -601,7 +603,19 @@ http://xahlee.info/SpecialPlaneCurves_dir/specialPlaneCurves.html
 
 dipole curve:  http://xahlee.info/SpecialPlaneCurves_dir/Inversion_dir/inversion.html
 
+ESRF - European Synchrotron Radiation Facility, Grenoble, France
+SOLEIL - Soleil Synchrotron, Paris, France
+ELETTRA - Elettra Synchrotron, Trieste, Italy
+ALBA - Alba Synchrotron, Barcelona, Spain
+DESY - Petra III Synchrotron, Hamburg, Germany
+MAXIV - MAXIV Synchrotron, Lund, Sweden
+FRMII - FRMII neutron source, Munich, Germany
+SOLARIS - National Synchrotron Radiation Centre SOLARIS, Kraków, Poland
+ANKA - ANKA Synchrotron, Karlsruhe, Germany
 
+TANGO- free open source control system.
+EPICS—Experimental Physics and Industrial Control System
+SCADA—Supervisory Control And Data Acquisition
 
 # digital manuscripts
 
