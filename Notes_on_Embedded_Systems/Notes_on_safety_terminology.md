@@ -1324,6 +1324,23 @@ As always, the test documentation must be according to the "Standard for Softwar
 | 28 |   | Test completion criteria definition- definition of conditions to halt the testing.. to know when to stop of testing |
 
  <!-- http://www.softwaretestinghelp.com/test-plan-sample-softwaretesting-and-quality-assurance-templates/  -->
+ 
+### Test Case description template example
+
+| iNDEX  | . | Description|
+| :---:|     :---:      |     :--- |
+| Test case ID  | "   "   | Test case identification number   |
+| Test case title  | "   "      |  tittle or summary of the test case    |
+| Test case description  | "   "  | description of the test case    |
+| Test case type | "   "      | test case type: white-box, black-box, user case, user acceptance...   |
+| Test case requirements | "   "  | list of the requirmentst that the test case exercices  |
+| prerequisites | "   "      | list of prerequisites to launch the test case	   |
+| data | "   "      | identification of the data to be used in the test   |
+| expected result  | "   "  | description of the expected value to consider the test ok |
+
+### Test Case execution template example
+
+WIP: ...
 
 ## TEST TECHNIQUES:
   
