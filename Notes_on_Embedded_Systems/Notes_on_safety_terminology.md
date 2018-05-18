@@ -1179,7 +1179,6 @@ reference: https://www.techradar.com/news/samsung-galaxy-note-7-battery-fires-he
 ![battery_issue.JPG](https://github.com/sergiocollado/potpourri/blob/master/image/battery_issue.JPG)
 
 
-
 Some times, the hardware supplier, might by error provide components out of its specification, ... for reasons that it cannot handle directly, it might be and innadecuate storage, or the use of base materials under its prime performane. For example during the 2010s the gold rised to a very high value, and some foundries hat to resort to other materials to make the bondings of the chips, just for these reason, the skew of the electric signals was different, and all those components hat to be re-evaluated and characterized. 
 
 reference: https://www.eetimes.com/document.asp?doc_id=1257340
@@ -1195,6 +1194,11 @@ reference: https://www.theguardian.com/technology/2011/oct/25/thailand-floods-ha
 
 
 These methods are used for IDENTIFICATION and CORRECTION of possible or eventual faults at the hardware component level.
+
+### Fault injection techniques
+
+Fault injection is the way to assert the grade of fault-tolerance or dependability of a system. It is usually related to the harware testing. The actual way to inject faults on the system may differ related to the phase on the development of the project. In a design phase, the fault injection may be just evaluated with a simulation. Later on the life cycle, fault injections is  actually done in prototypes.
+
 
 
 ## TEST PROCESS STEPS and ACTIVITIES
