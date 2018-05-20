@@ -497,32 +497,19 @@ M =
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```latex
 \begin{matrix}
+y= Cte  \;\;\;\; &y'= 0  \\ 
+y= Cte \cdot u \;\;\;\;&y'= Cte \cdot u' \\ 
+y = f(u)\;\;and\;\; u = g(x) \;\;\;\;&  y' = \frac{dy}{dx} = \frac{df}{du} \cdot \frac{du}{dx}\\ 
 y= u \pm v \pm w\cdots  \;\;\;\;&y'= u' \pm v' \pm w' \cdots \\ 
 y= u\cdot v \;\;\;\;&y' = u'\cdot v + u\cdot v' \\ 
 y= \frac{u}{v} \;\;\;\;&y=\frac{u'\cdot v - u\cdot v}{v^2} \\ 
-y= c\cdot u \;\;\;\;&y'=c\cdot u' \\ 
- \;\;\;\;& \\ 
+y= Cte \cdot x^{n} \;\;\;\;&y' = Cte \cdot n \cdot x^{n-1} \\ 
+y= Cte \cdot e^{n} \;\;\;\;&y' = Cte \cdot e^{n} \\ 
+y= Ln(x) \;\;\;\;&  y' = \frac{1}{x} \\ 
+y= \sin{x} \;\;\;\;&  y' = \cos{x} \\ 
+y= \cos{x} \;\;\;\;&  y' = -\sin{x} \\ 
+ \;\;\;\;& \\ \sin 
  \;\;\;\;& \\ 
  \;\;\;\;& \\ 
  \;\;\;\;& \\ 
@@ -533,4 +520,3 @@ y= c\cdot u \;\;\;\;&y'=c\cdot u' \\
  \;\;\;\;& \\ 
  \;\;\;\;& 
 \end{matrix}
-```
