@@ -10,6 +10,8 @@ BAYES THEOREM
 P(A|B)= \frac{P(B|A) \cdot P(A)}{P(B)}
 ```
 
+<br> <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/Bayes.svg?sanitize=true" alt="Bayes theorem equation"> <br>
+
 SNELL EQUATION
 
  <br> <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/snell_eq.svg?sanitize=true" alt="snell equation"> <br> 
