@@ -4,6 +4,11 @@
 <!--- template: --->
 <!--- <br> <img  src="https:/   .svg?sanitize=true" alt="Alterantive_description"> <br> --->
 
+BAYES THEOREM
+
+```latex
+P(A|B)= \frac{P(B|A) \cdot P(A)}{P(B)}
+```
 
 SNELL EQUATION
 
