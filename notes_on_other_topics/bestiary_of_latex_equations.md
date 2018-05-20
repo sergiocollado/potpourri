@@ -496,7 +496,7 @@ M =
 
 
 
-
+```latex
 \begin{matrix}
 y= Cte  \;\;\;\; &y'= 0  \\ 
 y= Cte \cdot u \;\;\;\;&y'= Cte \cdot u' \\ 
@@ -520,3 +520,4 @@ y= \cos{x} \;\;\;\;&  y' = -\sin{x} \\
  \;\;\;\;& \\ 
  \;\;\;\;& 
 \end{matrix}
+```
