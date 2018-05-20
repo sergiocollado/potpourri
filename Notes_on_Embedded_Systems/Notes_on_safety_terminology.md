@@ -893,6 +893,8 @@ It will be explained later in the text, bus as reference is just annotaded here.
  - decision coverage (the flow of the program trough conditional statems, as: if, else, for, switch-case ...)
  
 Depending on the system, even more things will need to be evaluated and tested.
+
+The element **componet test** remains the same meaning as the unit test, but is more likely to be used with harware components.
  
 ### INTEGRATION TESTS:
 The **integration test**, are understand as a test that looks for assesment of the performance and correct behavior between different **modules**, libraries or other componets in a system. It usually check the interfaces and the data workflows between them.
@@ -2050,3 +2052,13 @@ Decisions aren't fit for purpose.
 33. Decisions are incomplete 
 
 Issue resolutions that don't address the issue or create more issues. 
+
+https://pascal.computer.org/sev_display/index.action
+
+**Real-time**. (1) problem, system, or application that is concurrent and has timing constraints whereby incoming events must be processed within a given timeframe (ISO/IEC/IEEE 24765:2017 Systems and software engineering-Vocabulary) (2) pertaining to a system or mode of operation in which computation is performed during the actual time that an external process occurs, in order that the computation results can be used to control, monitor, or respond in a timely manner to the external process (ISO/IEC/IEEE 24765:2017 Systems and software engineering-Vocabulary)
+
+**Latency**. (1) time interval between the instant at which an instruction control unit issues a call for data and the instant at which the transfer of data is started (ISO/IEC/IEEE 24765:2017 Systems and software engineering-Vocabulary)." Copyright©, 2018, IEEE. Used by permission."
+
+**Throughput**. (1) amount of work that can be performed by a computer system or component in a given period of time (ISO/IEC/IEEE 24765:2017 Systems and software engineering-Vocabulary) (2) rate (i.e., the average number per time unit with respect to the rating interval) of all tasks of a task type submitted to the SUT (ISO/IEC 14756:1999 Information technology -- Measurement and rating of performance of computer-based software systems, 4.24) Note: Usually throughput is defined by the rate of terminated tasks during a period of time. " Copyright©, 2018, IEEE. Used by permission."
+
+**Test Plan** (1) document that describes the technical and management approach to be followed to test a system or component (IEEE 1012-2017 IEEE Standard for System, Software, and Hardware Verification and Validation, 3.1) (2) document describing the scope, approach, resources, and schedule of intended testing activities (IEEE 1012-2017 IEEE Standard for System, Software, and Hardware Verification and Validation) (ISO/IEC 25051:2014 Software engineering -- Software product Quality Requirements and Evaluation (SQuaRE) -- Requirements for quality of Ready to Use Software Product (RUSP) and instructions for testing, 4.1) (ISO/IEC 25062:2006 Software engineering -- Software product Quality Requirements and Evaluation (SQuaRE) -- Common Industry Format (CIF) for usability test reports, 4.1) (3) plan that establishes detailed requirements, criteria, general methodology, responsibilities, and general planning for test and evaluation of a system (ISO/IEC 2382:2015, Information technology -- Vocabulary) (4) detailed description of test objectives to be achieved and the means and schedule for achieving them, organized to coordinate testing activities for some test item or set of test items (ISO/IEC/IEEE 29119-1:2013 Software and systems engineering--Software testing--Part 1: Concepts and definitions, 4.75) Example: a project test plan (also known as a master test plan) that encompasses all testing activities on the project; further detail of particular test activities can be defined in one or more test sub-process plans (i.e. a system test plan or a performance test plan) Note: It identifies test items, the features to be tested, the testing tasks, who will do each task, and any risks requiring contingency planning. Typical contents identify the items to be tested, tasks to be performed, responsibilities, schedules, and required resources for the testing activity. " Copyright©, 2018, IEEE. Used by permission."
