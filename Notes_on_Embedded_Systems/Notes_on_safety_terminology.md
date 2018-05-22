@@ -2062,3 +2062,14 @@ https://pascal.computer.org/sev_display/index.action
 **Throughput**. (1) amount of work that can be performed by a computer system or component in a given period of time (ISO/IEC/IEEE 24765:2017 Systems and software engineering-Vocabulary) (2) rate (i.e., the average number per time unit with respect to the rating interval) of all tasks of a task type submitted to the SUT (ISO/IEC 14756:1999 Information technology -- Measurement and rating of performance of computer-based software systems, 4.24) Note: Usually throughput is defined by the rate of terminated tasks during a period of time. " Copyright©, 2018, IEEE. Used by permission."
 
 **Test Plan** (1) document that describes the technical and management approach to be followed to test a system or component (IEEE 1012-2017 IEEE Standard for System, Software, and Hardware Verification and Validation, 3.1) (2) document describing the scope, approach, resources, and schedule of intended testing activities (IEEE 1012-2017 IEEE Standard for System, Software, and Hardware Verification and Validation) (ISO/IEC 25051:2014 Software engineering -- Software product Quality Requirements and Evaluation (SQuaRE) -- Requirements for quality of Ready to Use Software Product (RUSP) and instructions for testing, 4.1) (ISO/IEC 25062:2006 Software engineering -- Software product Quality Requirements and Evaluation (SQuaRE) -- Common Industry Format (CIF) for usability test reports, 4.1) (3) plan that establishes detailed requirements, criteria, general methodology, responsibilities, and general planning for test and evaluation of a system (ISO/IEC 2382:2015, Information technology -- Vocabulary) (4) detailed description of test objectives to be achieved and the means and schedule for achieving them, organized to coordinate testing activities for some test item or set of test items (ISO/IEC/IEEE 29119-1:2013 Software and systems engineering--Software testing--Part 1: Concepts and definitions, 4.75) Example: a project test plan (also known as a master test plan) that encompasses all testing activities on the project; further detail of particular test activities can be defined in one or more test sub-process plans (i.e. a system test plan or a performance test plan) Note: It identifies test items, the features to be tested, the testing tasks, who will do each task, and any risks requiring contingency planning. Typical contents identify the items to be tested, tasks to be performed, responsibilities, schedules, and required resources for the testing activity. " Copyright©, 2018, IEEE. Used by permission."
+
+
+software managemente tools
+
+https://trac.edgewall.org/
+redmine
+jira
+
+requirements
+
+DOORS
