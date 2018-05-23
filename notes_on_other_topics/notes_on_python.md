@@ -608,15 +608,10 @@ Successfully installed paho-mqtt-1.3.1
 
 # pytube
 
-``` 
-$>> C:\winuser\> py -m pip install pytube
-$>> C:\winsuer\> python -m pip install --upgrade pip
 ```
-
-``` 
-$>> C:\winuser\> py -m pip install pytube
 $>> C:\winsuer\> python -m pip install --upgrade pip
-``` 
+$>> C:\winuser\> py -m pip install pytube
+```
 
 ``` python
 >>> from pytube import YouTube
