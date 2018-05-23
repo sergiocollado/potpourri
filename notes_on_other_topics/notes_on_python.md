@@ -604,3 +604,22 @@ Successfully installed paho-mqtt-1.3.1
 # ramdom help
 
 ![randomhelp](https://github.com/sergiocollado/potpourri/blob/master/image/pythonshell_help_random.PNG)
+
+
+# pytube
+
+``` 
+$>> C:\winuser\> py -m pip install pytube
+$>> C:\winsuer\> python -m pip install --upgrade pip
+```
+
+``` 
+$>> C:\winuser\> py -m pip install pytube
+$>> C:\winsuer\> python -m pip install --upgrade pip
+``` 
+
+``` python
+>>> from pytube import YouTube
+>>> yt = YouTube('https://youtu.be/whaterveristhere-xyz')
+>>> yt.streams.filter(progressive=True, file_extension='mp4').first().download('C:/Users/sgonzalezc/Downloads')
+```
