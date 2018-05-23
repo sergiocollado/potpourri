@@ -48,7 +48,9 @@ PCB manufacturer: http://www.we-online.com/web/en/leiterplatten/produkte_/Produk
 
 PCBA manufacturer: http://www.wells-pcba.com/
 
-PCB manufacturer: https://www.multi-circuit-boards.eu/en/index.html
+PCB manufacturer: https://www.multi-circuit-boards.eu/en/index.
+
+electonic components: https://product.tdk.com/info/en/products/index.html
 
 CIRCUIT PRINTER: https://www.voltera.io/
 
