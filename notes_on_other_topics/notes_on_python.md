@@ -623,3 +623,9 @@ $>> C:\winsuer\> python -m pip install --upgrade pip
 >>> yt = YouTube('https://youtu.be/whaterveristhere-xyz')
 >>> yt.streams.filter(progressive=True, file_extension='mp4').first().download('C:/Users/sgonzalezc/Downloads')
 ```
+
+```python
+>>> from pytube import Playlist
+>>> pl = Playlist('https://www.youtube.com/playlist?list=PLw27-q1234-w343450-xyz')
+>>> pl.download_all()
+```
