@@ -50,7 +50,9 @@ PCBA manufacturer: http://www.wells-pcba.com/
 
 PCB manufacturer: https://www.multi-circuit-boards.eu/en/index.
 
-electonic components: https://product.tdk.com/info/en/products/index.html
+electronic components: https://product.tdk.com/info/en/products/index.html
+
+electronic components: http://www.kemet.com/Products
 
 CIRCUIT PRINTER: https://www.voltera.io/
 
