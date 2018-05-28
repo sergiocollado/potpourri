@@ -438,6 +438,8 @@ GPIO - General Pin Input/Output
 RTC - Real Time Clock
 RAM - Random Access Memory
 SRAM - Static Random Access Memory
+DRAM - Dinamic RAM
+SDRAM - Sycronous Dram
 ROM - Read Only Memory
 EEPROM - Electrical Erasable Read Only Memory
 ADC - Analog to Digital Converter
