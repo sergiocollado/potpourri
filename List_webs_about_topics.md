@@ -507,6 +507,8 @@ ARROW -although it is a distributor
 
 Lapis http://www.lapis-semi.com/en/index.html
 
+Flextronics https://flex.com/
+
 
 
 # ASTRONOMY
