@@ -569,6 +569,9 @@ http://www.stsci.edu/
 
 http://www.josefrancisco.org/
 
+https://www.die.net/earth/
+
+
 # MATHS
 
 GPL MATHS:  https://glm.g-truc.net/0.9.8/index.html
