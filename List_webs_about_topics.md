@@ -938,3 +938,8 @@ European Law: http://eur-lex.europa.eu/e-learning/index.html
 
 https://www.uvic.ca/engineering/
 
+
+
+## Testing Skills
+
+https://www.testdome.com/tests/cpp-online-test/34
