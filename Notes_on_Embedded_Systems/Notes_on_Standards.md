@@ -25,8 +25,6 @@ CHECK: IEEE 829 - Standard for Incident Reports.
 
 Others:
 
-
-
  - ISO 704:2009, Terminology work — Principles and methods
  - ISO 1087-1:2000, Terminology work — Vocabulary — Part 1: Theory and application
  - ISO 3534-2, Statistics — Vocabulary and symbols — Part 2: Applied statistics
@@ -63,8 +61,6 @@ Others:
  Quality management principles1
 
 
-
-
 AC 20-115C "Airborne Software Assurance" 
 
 RTCA DO-178C, Software Considerations in Airborne Systems and Equipment Certification
@@ -77,7 +73,10 @@ RTCA DO-332, Object-Oriented Technology and Related Techniques Supplement to DO-
 
 RTCA DO-333, Formal Methods Supplement to DO-178C and DO-278A
 
-
 	
 Directive 2014/32/EU  - Measurement Instruments (MID)
+
+- IEC 60204 - Electrical Machinery Safet
+- IEC 60950 - Safety for IT equipment
+
 
