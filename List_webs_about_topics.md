@@ -140,7 +140,7 @@ excellon- mounting -> www.excellon.com
 
 circuits collection: http://danyk.cz/index_en.html
 
-masteo of supercircuits:  http://www.talkingelectronics.com/te_interactive_index.html
+master of supercircuits:  http://www.talkingelectronics.com/te_interactive_index.html
 
 circuits: https://circuitglobe.com/
 
@@ -421,6 +421,8 @@ gcc: http://gcc.gnu.org/
 
 
 # 3D Models
+
+https://www.freecadweb.org/wiki/Tutorials
 
 https://www.blendswap.com/blends/staffpicks
 
