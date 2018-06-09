@@ -67,7 +67,12 @@ there are some tasks definitions:
 - r: release time of a task- the time point at which a task can be scheduled for execution. 
 Any previous time point to r, is suppoused that the given task cannot be executed for whatever reason.
 
-The "hyper-period" is the name give to the smallest common multiple of all the tasks periods.
+The term: "hyper-period" is the name give to the smallest common multiple of all the tasks periods.
+
+the term: "feasability window" is the time between the release time of a task, and its dead-line.
+
+the term: "jitter", is the variation in time, between the expected time at which an event should take place and the real time
+at which it takes place... It can be expressed as an average, or as a maximum variation.
 
 
 
