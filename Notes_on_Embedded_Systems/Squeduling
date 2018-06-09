@@ -245,7 +245,8 @@ PRE-EMPTIVE SYSTEMS:
  
  This procedure of context switch, takes some time, and is refered as the "Context Switch overhead", and must be taken into account,
  when planning a real-time system and its timeline. Also preentive systems, will need at least a little bit more of memory with 
- regard with a non-preentive systes, due they need to store the state of the tasks.
+ regard with a non-preentive systems, due they need to store the state and the context in the switching of the tasks.
+ 
  
  
  SCHEDULER TYPES:
