@@ -58,7 +58,7 @@ function Task()
 }
 ```
 
-there are some tasks parameters:
+there are some tasks definitions:
 
 - P: period of the task
 - e: execution time of the task.
