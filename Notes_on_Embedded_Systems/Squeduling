@@ -93,14 +93,15 @@ the term: "jitter", is the variation in time, or the uncernainity on the time be
 at which it takes place... It can be expressed as an average, or as a maximum variation.
 
 
-Scheduling for real-time systems:
-=================================
+Scheduling tasks for real-time systems:
+======================================
 
 We want to comply with time constrictions and functionality constrictions.
 
-The schedule orginaize the tastk for try to comply with the above requirements.
+A schedule algorithm, is the method used to make a decision on the execution order of taks. In real time systems the goal of the
+scheduling method it to handle all the tasks of the system in such a way that all the dead lines for each task are met.
 
-So we can find, several task status:
+According to this concept, several task statuses can be defined:
 
 - Ready state: It's not executed at the moment, it is in standby, ready to start execution, when the squedule, signals it.
   
@@ -111,8 +112,6 @@ Blocked, like when it need to way for some data)
 more, and cannot be squeduled at the next squeduling point. This can happen, when that Task is in a delay, waiting data to be send, or
 receiving data. When the delay runs out, then the Task, moves its state to Ready Task, and it can be scheduled again.
 
-¿Can a Task, put another Task in Blocked state? - Yes.
-
 -Suspension state: If the logic of the system consider that this task should not be scheduled again. 
 
 
@@ -120,7 +119,7 @@ WHAT IS A FEASEABLE SCHEDULE:
 ==============================
 
 
-A schedule that never loses a death line is call FEASEABLE, this depends on its schedule algorithm.
+A schedule that never loses a death line is called FEASEABLE, this depends on its schedule algorithm.
 
 a set of tasks is said to be scheaduable if at least it is possible to implement a feaseble schedule for that group of tasks.
 
