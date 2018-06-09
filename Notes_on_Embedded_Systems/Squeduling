@@ -99,20 +99,20 @@ Scheduling tasks for real-time systems:
 We want to comply with time constrictions and functionality constrictions.
 
 A schedule algorithm, is the method used to make a decision on the execution order of taks. In real time systems the goal of the
-scheduling method it to handle all the tasks of the system in such a way that all the dead lines for each task are met.
+scheduling method it to handle all the tasks of the system in such a way that all the dead-lines for each task are met.
 
 According to this concept, several task statuses can be defined:
 
-- Ready state: It's not executed at the moment, it is in standby, ready to start execution, when the squedule, signals it.
+- READY STATE: It's not executed at the moment, it is in standby, ready to start execution, when the squedule, signals it.
   
-- Running state: When the squedule task is Ready, and is selected for execution, it start its action, and now is Running. (it can be 
+- RUNNING STATE: When the squedule task is Ready, and is selected for execution, it start its action, and now is Running. (it can be 
 Blocked, like when it need to way for some data)
 
-- Blocked state: When a Running Task is running, it can be blocked for several reasons. That means that this task is not running any
+- BLOCKED STATE: When a Running Task is running, it can be blocked for several reasons. That means that this task is not running any
 more, and cannot be squeduled at the next squeduling point. This can happen, when that Task is in a delay, waiting data to be send, or
 receiving data. When the delay runs out, then the Task, moves its state to Ready Task, and it can be scheduled again.
 
--Suspension state: If the logic of the system consider that this task should not be scheduled again. 
+- SUSPENSION STATE: If the logic of the system evaluates that this task should not be scheduled again. 
 
 
 WHAT IS A FEASEABLE SCHEDULE:
@@ -123,7 +123,7 @@ A schedule that never loses a death line is called FEASEABLE, this depends on it
 
 a set of tasks is said to be scheaduable if at least it is possible to implement a feaseble schedule for that group of tasks.
 
-A scheduling algorithm is OPTIMA SCHEDULING ALGORITHM it if alwais generates a FEASEBLE schedule.
+A scheduling algorithm is OPTIMUN SCHEDULING ALGORITHM it if always generates a FEASEABLE schedule.
 
 Scheduling example:
 
@@ -192,13 +192,13 @@ But if we change the squedule, so it choose first T1, and then T2, and then T3, 
 |____|__|__________________|
 
  
-Then all three task meet their deathlines. :v: </br>
+Then all three task meet their deathlines. 
 
-So now our sistema has became feaseble!!  :ok_hand: </br> 
+So now our sistem has became feasible!!  
 
-In many sistems, is not just order the possible tast, but you have to take into account the relationship between tasks, because 
-ones can be dependant of the results of others tastks.- This states the problem of priority of tasks, - and sometime we found the 
-problem of priority inversion :S ... if we are not careful.
+In many systems, is not just order of the next possible task, but you have to take into account the relationship between tasks, because 
+ones can be dependent of the results of others tasks.- This states the problem of priority of tasks, - and sometimes we found the 
+problem of priority inversion, if we are not careful.
 
 
 innter-TASKS DEPENDENCE:
@@ -392,7 +392,7 @@ There are many tipes to schedule taks, some strategies are:
 MONOTONIC SCHEDULING
 ====================
 
-Monotonic scheduling have the advantge when scheduling periodic jobs, becase they  base the selection of tasks executions, 
+Monotonic scheduling has the advantge when scheduling periodic jobs, becase they  base the selection of tasks executions, 
 on the time to death line or periods. That implies that is easier to systematically plan the system. So monotonic schedulers
 are simple jet effective because they can addapt the priorities of the tasks implicity during runtime.
 
