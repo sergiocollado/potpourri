@@ -96,6 +96,10 @@ and
 
 **MTTF** stands for Mean Time To Failure
 
+and
+
+**MTBM** stands ofr Mean Time Between Maintenace - this also impacts the availability of the system.
+
 Is also common to express availability as percentage between uptime and downtime of the system. For example a system availability 
 referred as a 99% (two nines) means that over a year its downtime is 3.65 days.
 
