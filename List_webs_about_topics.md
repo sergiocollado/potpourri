@@ -50,6 +50,8 @@ PCBA manufacturer: http://www.wells-pcba.com/
 
 PCB manufacturer: https://www.multi-circuit-boards.eu/en/index.
 
+PCB manufacturer: https://www.ninjacircuits.com/
+
 electronic components: https://product.tdk.com/info/en/products/index.html
 
 electronic components: http://www.kemet.com/Products
