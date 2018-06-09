@@ -1176,6 +1176,7 @@ During the design and development phase is the best change to modify the design 
 
 HASS takes place in the industrialization phase, to screen hardware components, to indentify possible unidentified or lattent faults  - in practice it might just happen that a batch of a certain element, might be out of its specs, for wathever reason, ... if this is not detected in the fabrication stage, the proble will most possibly surface at the end user end, ...  As a reference is possible to look for the case of the Samsung Galaxy Note 7, that under some cases, was known to explode, allegedy due to irregularities in its batteries. It is estimated that this issues costed the firm around $5 billion. 
 
+
 reference: https://www.techradar.com/news/samsung-galaxy-note-7-battery-fires-heres-why-they-exploded
 
 ![battery_issue.JPG](https://github.com/sergiocollado/potpourri/blob/master/image/battery_issue.JPG)
@@ -1202,8 +1203,15 @@ These methods are used for IDENTIFICATION and CORRECTION of possible or eventual
 Fault injection is the way to assert the grade of fault-tolerance or dependability of a system. It is usually related to the harware testing. The actual way to inject faults on the system may differ related to the phase on the development of the project. In a design phase, the fault injection may be just evaluated with a simulation. Later on the life cycle, fault injections is  actually done in prototypes.
 
 
+## Design for Testeability (DFT)
+
+Design for Testeability is the concept of including at the **design phase**, resources or methods to speed and improve the testeability
+of the system... as the most clear example is the inclusion of test points or test traces or test-connection headers at the PCB.
+
+reference: https://www.edn.com/electronics-blogs/all-aboard-/4434254/Designing-testability-into-a-PCB
 
 ## TEST PROCESS STEPS and ACTIVITIES
+
 
 At the testing context, the first action to do, is to define the **Test Plan** for that, several key points have to
 be defined:
@@ -2052,6 +2060,22 @@ Decisions aren't fit for purpose.
 33. Decisions are incomplete 
 
 Issue resolutions that don't address the issue or create more issues. 
+
+## list of possible technical issues
+
+1. Accuracy/precission of the element is not enought
+
+2. Aging of the element is not enougth
+
+3. Robustness of the element is not enougth
+
+4. reliability of the element is not enought
+
+5. sensibility of the component is not enoght. 
+
+6. working range of the component is not enoght.
+
+
 
 https://pascal.computer.org/sev_display/index.action
 
