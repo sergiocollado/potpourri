@@ -8,12 +8,28 @@
 
 **jitter**. 
 
+
+
+What is known as a real-time system:
+=====================================
+
+In everyday life, a real-time system can be thought, quite obviously, as a system that performs in real-time... However,
+in the domain of embedded systems, this definition is lacking a bit... A real-time system is defined as a system that
+can react and perform inside a defined time-window or elapsed time, might be that time, seconds, milli-seconds, micro-senconds or
+minutes or any time ... what is the key-point is inside a defined time period. That comes to mean, that whatever function, it
+will be done, inside a bounded time.
+
+
+
 DETERMINISTIC SYSTEMS:
 =====================
 A deterministic system is a system in which no randomness is involved in the development of future states of the system. A deterministic
 model will thus always produce the same output from a given starting condition or initial state.
 
 The time peridod, after which the scheduling pattern repits itself is known as: hyperperiod (H)
+
+To define and work with a deterministic system, is what we want when developing real-time systems, that is due that if we are 
+sure how the system is going to behave, then it is easier to proof that it is real-time system with bounded response times.
  
  
 What makes algorithms non-deterministic?
@@ -34,8 +50,10 @@ The prevalence of multi-core processors has resulted in a surge of interest in d
 of non-determinism have been well documented. A number of tools to help deal with the challenges have been
 proposed to deal with deadlocks and race conditions.
 
-As a note to this topic, many times the use of cache memories in real-time sistems in not encoraged due they make more difficult to
-calculate the memory access time, and then make all the system much harder to consider as deterministic and repeateable.
+As a note to this topic, many times the use of cache memories in real-time systems in not encoraged due they make more difficult to
+calculate the memory access time, and then make all the system much harder to consider as deterministic and repeateable. As a workaround, 
+you can always identify the worst case scenario, that in this case means, that no memory cache is used, in that case you are not
+taking into account the advantage of the cache memory when identifing memory access/read/write times.
 
 
 Morfology of tasks
@@ -73,7 +91,6 @@ the term: "feasability window" is the time between the release time of a task, a
 
 the term: "jitter", is the variation in time, or the uncernainity on the time between the expected time at which an event should take place and the real time
 at which it takes place... It can be expressed as an average, or as a maximum variation.
-
 
 
 Scheduling for real-time systems:
@@ -606,13 +623,6 @@ U = 1 / 4 + 1 / 6 + 1 / 2 = 0.917
 URM(3) = 3 * (2^(1/3) -1) = 0.779
 
 Since U>= URM, but U =< 1, neither feaseability nor overloading can be guaranteed. We should apply more tests to verify the system.
-
-
-
-
-
-
-
 
 
 
