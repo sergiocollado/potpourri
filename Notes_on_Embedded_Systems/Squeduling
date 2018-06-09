@@ -50,7 +50,7 @@ The prevalence of multi-core processors has resulted in a surge of interest in d
 of non-determinism have been well documented. A number of tools to help deal with the challenges have been
 proposed to deal with deadlocks and race conditions.
 
-As a note to this topic, many times the use of cache memories in real-time systems in not encoraged due they make more difficult to
+As a side note to this topic, many times the use of cache memories in real-time systems in not encoraged due they make more difficult to
 calculate the memory access time, and then make all the system much harder to consider as deterministic and repeateable. As a workaround, 
 you can always identify the worst case scenario, that in this case means, that no memory cache is used, in that case you are not
 taking into account the advantage of the cache memory when identifing memory access/read/write times.
@@ -204,15 +204,21 @@ problem of priority inversion :S ... if we are not careful.
 innter-TASKS DEPENDENCE:
 
 Sometimes, is usual, that some tasks (jobs) depend on others, because the need to keep a precedence, or because, the
-need some data to be processed by previous tasks. This is expressed as: Ja > Jb > Jc
+need some data to be processed by previous tasks. This is expressed as: Ja > Jb > Jc. 
+
+a note of caution: When this tasks dependences is not-handled properly, in the worst case, the system may fail due what it is known 
+as race conditions, or priority inversions ... this is a topic to be aware of, an to handle with care, its efects might results 
+cathastrophyc... as reference check for the famous error with the priority-inversion of the Mars rover.
 
 
 NON-PREENTIVE SYSTEMS:
+======================
 
-A sistem which schedule always executes a job until completion and then schedules the next job, is refered as NON-PREENTIVE system
+A system which runs jobs until its completion and then schedules the next job, is refered as NON-PREENTIVE system
 
 
 PRE-EMPTIVE SYSTEMS:
+====================
 
  In a Job is running, and is stopped, for running another job, and then it is call again, and it continues, where it have stoped, then
  this schedule type is known as a pre-emptive system.
@@ -227,7 +233,7 @@ PRE-EMPTIVE SYSTEMS:
  (the line of the code), the status of the processor, and the value of the variables (registers).
  
  The process of switching context, usually is triggered by a timer, provided by de OS, when the timer triggers the interrupt, this makes
- the OS, run a routine call, __IRS__(), first thing it does is block the interrupts, so nothing can change its process. Then it stores
+ the OS, run a routine call, __IRS__(), (ISR stands for Interruption Routine Service), first thing it does is block the interrupts, so nothing can change its process. Then it stores
  the regitsters, to the task stack -using architecture specific, assembly code- 
  
  Void __ISR__(){
@@ -239,13 +245,14 @@ PRE-EMPTIVE SYSTEMS:
  reti(); //return - return from isr
  }
  
- Then the schedule decides on what will be the next task, and then loads the context back to the new task, because this was saved
- last time the task was interrumped. Now the system is ready to continue executing.the OS enables interrupts again, and then returns
- from the ISR.
+ Then the schedule algorithm decides on what will be the next task, and then loads the context back to the new task, because this
+ was saved last time the task was interrumped. Now the system is ready to continue executing. The OS enables interrupts again, and 
+ then returns from the ISR.
  
- This procedure of context switch, takes some time, and is refered as the "Context Switch overhead", and must be taken into account,
- when planning a real-time system and its timeline. Also preentive systems, will need at least a little bit more of memory with 
- regard with a non-preentive systems, due they need to store the state and the context in the switching of the tasks.
+ A side note to this topic: This procedure of context switch, takes some time, and is refered as the "Context Switch overhead",
+ and must be taken into account, when planning a real-time system and its timeline. Too much context switching may also cause a
+ penalty in the system performance. Also note, that preentive systems, will need at least a little bit more of memory with regard with 
+ a non-preentive systems, due they need to store the state and the context in the switching of the tasks.
  
  
  
