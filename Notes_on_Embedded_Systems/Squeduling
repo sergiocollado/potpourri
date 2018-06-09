@@ -60,8 +60,8 @@ function Task()
 
 there are some tasks definitions:
 
-- P: period of the task
-- e: execution time of the task.
+- P: period of the task - the time it takes between two consecutive executions of the taks
+- e: execution time of the task.- how long does it take the job execution of a task.
 - D: Dead-line of the task - the time goal at which the task must be finished.
 
 The "hyper-period" is the name give to the smallest common multiple of all the tasks periods.
