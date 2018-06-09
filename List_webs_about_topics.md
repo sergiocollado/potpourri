@@ -426,6 +426,8 @@ gcc: http://gcc.gnu.org/
 
 https://www.freecadweb.org/wiki/Tutorials
 
+https://www.youtube.com/playlist?list=PL6fZ68Cq3L8k0JhxnIVjZQN26cn9idJrj
+
 https://www.blendswap.com/blends/staffpicks
 
 http://www.openscad.org/gallery.html
@@ -949,3 +951,10 @@ https://www.uvic.ca/engineering/
 https://www.testdome.com/tests/cpp-online-test/34
 
 https://cppinstitute.org/certification
+
+
+## Dictionaries
+
+Leo
+
+https://forvo.com/
