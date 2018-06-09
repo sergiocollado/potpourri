@@ -2065,21 +2065,38 @@ Decisions aren't fit for purpose.
 
 Issue resolutions that don't address the issue or create more issues. 
 
-## list of possible technical issues
+SUPPLIERS
 
-1. Accuracy/precission of the element is not enought
+34. Suppliers fail to meet the needed quantities
 
-2. Aging of the element is not enougth
+35. Suppliers fail to meet the expected quality.
 
-3. Robustness of the element is not enougth
+36. Suppliers don't meet a fitting price for the project.
 
-4. reliability of the element is not enought
-
-5. sensibility of the component is not enoght. 
-
-6. working range of the component is not enoght.
+37. Supply time don't meet the timeline needs for the project.
 
 
+## list of possible technical issues with general elements.
+ 
+1. Accuracy/precission of the element don't achieve the design goals
+
+2. Aging of the element don't achieve the design goals
+
+3. Robustness of the element don't achieve the design goals
+
+4. reliability of the element is doesn't achieve the design goals
+
+5. sensibility of the component doesn't achieve the design goals
+
+6. working range of the component is not enoght for the design goals
+
+7. elements wears-out and don't achieve the design goals
+
+8. element doesn't meet design goals under defined enviroment conditions.
+
+9. thermal performance don't achieve the design goals.
+
+10. mechanical performance don't achieve the design goals. (fatigue, resilience, rupture strength, rupture stress.... there are several factors to take into account).
 
 https://pascal.computer.org/sev_display/index.action
 
