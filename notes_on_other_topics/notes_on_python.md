@@ -624,3 +624,15 @@ $>> C:\winuser\> py -m pip install pytube
 >>> pl = Playlist('https://www.youtube.com/playlist?list=PLw27-q1234-w343450-xyz')
 >>> pl.download_all()
 ```
+
+
+# oter packages
+
+http://www.numpy.org/
+
+https://www.scipy.org/
+
+http://scikit-learn.org/stable/
+
+https://matplotlib.org/
+
