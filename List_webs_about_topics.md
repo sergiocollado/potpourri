@@ -306,6 +306,8 @@ components: http://www.we-online.com/web/en/wuerth_elektronik/start.php
 
 about batteries: http://batteryuniversity.com/learn/
 
+http://aima.cs.berkeley.edu/
+
 
 # Learn electronics with application notes:
 
