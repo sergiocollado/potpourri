@@ -33,7 +33,8 @@ The time peridod, after which the scheduling pattern repits itself is known as: 
 To define and work with a deterministic system, is what we want when developing real-time systems, that is due that if we are 
 sure how the system is going to behave, then it is easier to proof that it is real-time system with bounded response times.
 
-
+The opposite of a deterministic system is knwons as a non-deterministic system or also as a stocastic system, and in it the outcome of 
+the next system state is modeled as a probabilistic distribution function.
  
  
 What makes algorithms non-deterministic?
