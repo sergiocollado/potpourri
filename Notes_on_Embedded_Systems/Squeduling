@@ -24,12 +24,16 @@ will be done, inside a bounded time.
 DETERMINISTIC SYSTEMS:
 =====================
 A deterministic system is a system in which no randomness is involved in the development of future states of the system. A deterministic
-model will thus always produce the same output from a given starting condition or initial state.
+model will thus always produce the same output from a given starting condition or initial state. A system is deterministic when it 
+is always possible to know in advance what will be the next state of the sytem, for the given state, the action and the enviroment of
+the system. 
 
 The time peridod, after which the scheduling pattern repits itself is known as: hyperperiod (H)
 
 To define and work with a deterministic system, is what we want when developing real-time systems, that is due that if we are 
 sure how the system is going to behave, then it is easier to proof that it is real-time system with bounded response times.
+
+
  
  
 What makes algorithms non-deterministic?
