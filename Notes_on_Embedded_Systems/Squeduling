@@ -58,7 +58,9 @@ proposed to deal with deadlocks and race conditions.
 As a side note to this topic, many times the use of cache memories in real-time systems in not encoraged due they make more difficult to
 calculate the memory access time, and then make all the system much harder to consider as deterministic and repeateable. As a workaround, 
 you can always identify the worst case scenario, that in this case means, that no memory cache is used, in that case you are not
-taking into account the advantage of the cache memory when identifing memory access/read/write times.
+taking into account the advantage of the cache memory when identifing memory access/read/write times. Also the dynamic allocation
+of memory is non-deterministic (the use of malloc(), new(), free() and delete()...) this is due depending on the amount of free memory
+the memory algorithm allocation can take and indefined time to find a big enought memory position. 
 
 
 Morfology of tasks
