@@ -666,15 +666,18 @@ Use the **alt** tag.
  
  
  ```javascript
- function Particle(mass) {
- 
-  if(typeof(mass)=='undefined') mass=1;
+ function Particle(mass, x, y, vx, vy, color) {
   
-  this.mass=1;
-  this.x=0;
-  this.y=0;
-  this.vx=0;
-  this.vy=0;
+  this.mass=mass;
+  
+  if(typeof(mass)=='undefined')
+      this.mass = 1
+ 
+  this.x=x;
+  this.y=y;
+  this.vx=vx;
+  this.vy=vy;
+  this.color=color;
  }
  ```
  
