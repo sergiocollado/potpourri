@@ -268,14 +268,14 @@ PRE-EMPTIVE SYSTEMS:
  
  According to the factor that drives the scheduler, there is two tipes:
  
- - CLOCK DRIVEN SCHEDULERS: The tasks are scheduled according to systems ticks.
+ - STATIC DRIVEN SCHEDULERS: The tasks are scheduled according to system clock. The schedule is inmutable, it means is always the same.
  
  - EVENT DRIVEN SCHEDULERS: The tasks are scheduled according to events, like: a timer timeout, the end of a task, an interruption...
  
 
  
-STATIC SCHEDULER:
-=================
+STATIC SCHEDULER ( aka CLOCK DRIVEN SCHEDULER):
+==============================================
 
 An static scheduler, is simple and predictable, and these are two very appropiated properties.
 
@@ -287,7 +287,7 @@ The static scheduler is defined in a table, with 't' and 'T'.
 
 t - is the scheduling time (trigger time of the job)
 T - is the Task
-d - death-lines
+D - death-lines
 
 The scheduling policy is the one that defines the tasks in the timeline in a way that no dead-line is violated. 
 
