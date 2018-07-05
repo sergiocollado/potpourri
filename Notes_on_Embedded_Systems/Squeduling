@@ -272,16 +272,18 @@ PRE-EMPTIVE SYSTEMS:
  
  - EVENT DRIVEN SCHEDULERS: The tasks are scheduled according to events, like: a timer timeout, the end of a task, an interruption...
  
+Some schedulers perform better that others depending on the given tasks. To decide what scheduler is the best option, you 
+have to understand the differences between each scheduler strategies and how they work.
 
  
 STATIC SCHEDULER ( aka CLOCK DRIVEN SCHEDULER):
 ==============================================
 
-An static scheduler, is simple and predictable, and these are two very appropiated properties.
+An static scheduler, is simple and predictable, and these are two very appropiated and desirable properties for real-time systems.
 
-The scheduling of the tasks is defined off-line, so this means there is no over-head time when switching the tasks. Oh the adder hand
+The scheduling of the tasks is defined off-line, this means there is no over-head time when switching the tasks. On the other hand
 the static scheduler is not flexible, as the schedule is fixed, so it is not possible to remove or add tasks to the system. Also,
-if the code of a task is modified, the schedule must be re-calculated, because the duration of the task, has been modifed.
+if the code of a task is modified, the scheduler must be re-calculated, because the execution time of the task, has been modifed.
 
 The static scheduler is defined in a table, with 't' and 'T'. 
 
@@ -291,7 +293,7 @@ D - death-lines
 
 The scheduling policy is the one that defines the tasks in the timeline in a way that no dead-line is violated. 
 
-A drawback of this scheudling policy, is that the tasks order, cannot be modified.
+A drawback of this scheudling policy, is that the tasks order, cannot be modified in execution time. 
 
 An easy test to verify that a schedulig policy is feaseble, this is done by means of calculating the utilization of the system: that 
 is: to calculate how much time the CPU needs to for each task, whith how much time is left without performing tasks, (this is known
@@ -302,8 +304,9 @@ the utilization is the sum of all the task's execution times, divided by their p
 
 U = S(1->n) e_i/P_i
 
-In the case the utilization is bigger or equal to 1, then we can conclude that the system is NOT feaseble. In that case, a task
-should be removed, and a new schedule must be develop.
+This is an exclusion rule: in the case the utilization is bigger or equal to 1, then we can conclude that the system is NOT feaseble. In that case, a task
+should be removed, and a new schedule must be develop. But in the case the utilization is lower than one, that doesn't prove that
+the schedule is feaseable, because for example, some tasks can collide, or the death-lines cannot be fulfilled.
 
 Example:
 
@@ -316,7 +319,7 @@ Example:
  
  So the Utilization is:   U = 1/3 + 1/4  + 2/10 = 0.78
  
- Anyway, what this means is that we cannot guarantee that this schedule is NOT feaseable, ... but this cannot also, 
+ Remember, what this means is that we cannot guarantee that this schedule is NOT feaseable, ... but this cannot also
  guarantee us that the schedule is feaseable.
  
  To clarify, the utilization test can prove that a schedule is not feasible, ... but it cannot prove
