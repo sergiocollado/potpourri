@@ -22,6 +22,9 @@ and others:
 - really fine stuff: http://srufaculty.sru.edu/david.dailey/svg/createElementBrowser.html
 - svg authoring guidelines: https://jwatt.org/svg/authoring/
 - svg test demo:  https://jwatt.org/svg/demos/path-tester.xml
+- web based svg editor: http://www.drawsvg.org/drawsvg.html
+- other: https://www.janvas.com/v6.1/janvas_app_6.1_public/index.html
+- other: http://editor.method.ac/
 
 
 
