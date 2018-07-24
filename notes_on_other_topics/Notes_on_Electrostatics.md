@@ -33,7 +33,7 @@ and protons (by convention, positive charged) are in an static equilibrium - tha
 The net amount of charge is conserved, that is to say, that is the amount of positive charge, minus the net amount of negative charge
 is always conserved. This implies that electric charge cannot be created nor destroyed.
 
-## Law of attraction and repulsion:
+## Law of attraction and repulsion: forces between charges
 Two charges of equal sign, repulse each other, and two charges of opposite sign attract each other.
 <br>
 <br>
@@ -67,11 +67,8 @@ Most common non-conductor materials are: plastics, rubbers and wood (dry).
 ### Semi-conductors
 
 There is another type of material related to its classification according to the behavior of electric charges in it: the semi-conductors, these materials change its conductivity, that is the easiness which the elecytric charges move throught it, depending
-on certain conditios.... the most common example of this type of material is the Silicon.
+on certain conditions.... the most common example of this type of material is the Silicon.
 
-
-
-Electrostatics are govern by _**Coulomb's Law**_ that enunciates as folows:
 
 
 ## How things can get electrically charged
@@ -90,8 +87,9 @@ charge is distributed between the two objects, due the charge is transferred and
 - **Pieroelectric effect**: wip...
 
 
-## **Electrotaic Force: the Coulomb's Law**
+## **Electrostatics Force: the Coulomb's Law**
 
+Electrostatics are govern by _**Coulomb's Law**_ that enunciates as folows:
 
 The force **F** between two charged particles (Q <sub>1</sub> and Q <sub>2</sub>) in static equilibrium, in a given medium,
 its proportional to the product of their charges, and inversely proportional o the square of their distance (R<sup>2</sup>). 
@@ -193,17 +191,17 @@ F = k · Q <sub>1</sub> · Q <sub>2</sub> / (2·d1)^2 = 900 · 1C · 2C / (2m)^2
 this is due, that the strenght of the force is inverse proportional to the square of the distance between charges
 
 #### 3
-What would happend if we were to triple the distance between charges?
+What would happen if we were to triple the distance between charges?
 
 then the force would be 9 times the first force due that the force is inverse to the squared distance. F3 = 1/9 · F1
 
 F = k · Q <sub>1</sub> · Q <sub>2</sub> / (3·d1)^2 = 900 · 1C · 2C / (3m)^2 = 9· 10^9 · 1C · 2C / 9 =  18· 10^9 / 9 = 2 · 10^9 
 
 
-**Note:** Actually 1Coulomb is a really big amount of electric charge, it has been used here, to illustratate the concepts and 
+**Note:** Actually 1 Coulomb is a really big amount of electric charge, it has been used here, to easily illustratate the concepts and 
 nature of coulomb forces, without including more challenging numbers.
 
-
+#### 4
 the Hidrogen [H] is the simplest element, is is made from a Proton (mass= 1.7·10^-27 kg) and an orbiting electron (mass=9.1·10^-31) 
 both of them have a charge of aprox: 1.6·10-19 C. And its average distance is around 5.3·10^-11 m. What is the electrostatic
 force between them?
@@ -233,10 +231,10 @@ TODO: NOTES ON ESPECTROSCOPE...
  Once we know the forces that electric charges exert one on each others, the concept of a force field is develop. 
  
  ### Force field: 
- Is the region of the space where forces can be perceived. Usually a force field is represented visually as a map of forces (as a vector magnitude). A force field can be expressed mathematically as the vector function of the forces over an element for a given position.
+ Is the region of the space where forces can be perceived. Usually a force field is represented visually as a map of forces (as a vector). A force field can be expressed mathematically as the vector function of the forces over an element for a given position.
  
  ### Electric Force field:
-Is the force field over the space, caused by Coulomb forces (electrostatic forces), over a charge of value the unit 1 Coulomb. The 1 Coulmb charge definition is due this is the same as consider the force per unit of charge.
+Is the force field over the space, caused by Coulomb forces (electrostatic forces), over a charge of value the unit 1 Coulomb. The 1 Coulomb charge definition is due this is the same as using the force per unit of charge.
  
  So according to this definition we can consider the Electric Field, represented by **E**, for a given point charge, of value Q as:
  
@@ -401,3 +399,7 @@ https://www.school-for-champions.com/science/static_resources.htm#.WvNiH4jRDIU
 https://www.amazon.com/Science-Wiz-ScienceWiz-Charge-Activity/dp/B00HFGJATE/ref=sr_1_7?s=books&ie=UTF8&qid=1525899874&sr=8-7&keywords=Static+Shock+ring
 
 https://www.amazon.com/gp/search?ie=UTF8&camp=1789&creative=9325&index=books&keywords=Electrostatics&linkCode=ur2&tag=schoolforchampio
+
+https://www.bbc.com/education/examspecs/zwtp6fr
+
+
