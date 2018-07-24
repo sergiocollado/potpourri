@@ -380,6 +380,7 @@ It happens that the water molecule H <sub>2</sub> Om, is a polar molecule, that 
 - Electrostatic Mics and loudspeakers
 - Xerography
 - Ion motors
+- Pararayos
 - Electrostatic deflection 
    - http://chair.pa.msu.edu/applets/E-Deflection/a.htm
    - https://circuitglobe.com/electrostatic-deflection-in-crt.html
