@@ -6,10 +6,10 @@ For representing the searching space, usually a tree structure (root, branches a
 
 There are several common methods to use:
 
-- Breath first search (BFS) - expands the shallowest node
-- Depth-first search (DFS) - expands the deepest node
+- Breath first search (BFS) - seach advances on the shallowest node
+- Depth-first search (DFS) - searhc advances on the deepest node
 - Depth limited search (DLS) - Depth-first search with depth limit. 
-- Uniform cost search - expands the less expensive node.
+- Uniform cost search - seach advances on less expensive node. this assumes the edges of a tree have different costs.
 
 ## BFS - BREADTH FIRST SEARCH
 
