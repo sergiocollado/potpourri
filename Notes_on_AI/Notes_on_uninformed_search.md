@@ -19,23 +19,36 @@ ALGORITHM BRADTH FIRST SEARCH:
 
 function BFS(initial_state, goal)
 
+  //the 'frontier' set is the groups of nodes pending to search/explore.
   frontier = new Queue();
   frontier.enqueue(initial_state);
   
+  //the 'explored' set is the nodes already checked.
   explored = new Set();
   
-  WHILE NOT frontier.IsEmpty():
-       state = frontier.dequeue();
-       explorer.add_nodes(state);
+  //the search will go on until all the nodes are checked
+  WHILE NOT( frontier.IsEmpty() ):
+  
+       //we take out one of the frontier nodes
+       current_node = frontier.dequeue();
        
-        IF goal = state.IsGoal();
-             return SUCCEED(state)
+       //we add to the 'explored' set, the current selected node
+       explorer.add_nodes(current_node);
+       
+       //we check if the selected node is the goal.
+        IF goal == current_node.IsGoal();
+             return SUCCEED(current_node) //the search has succesfully finished.
              
+        //in the case the selected node is not the goal, then
+        //we add all its neigbours to the 'frontier' set, only
+        //if they haven't been already visited.
         
-        FORALL neighbour IN state.neighbours():
+        FORALL neighbour IN current_node.neighbours():
            IF neighbour (NOT_IN frontier) AND (NOT_IN explored):
-               frontier.enqueue(state)
+               frontier.enqueue(current_node)
 
+  //if we have searched all the nodes, and the goals hasn't been found
+  //we return failure in the search
   return FAILURE
 ```
 
