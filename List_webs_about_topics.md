@@ -52,6 +52,8 @@ PCB manufacturer: https://www.multi-circuit-boards.eu/en/index.
 
 PCB manufacturer: https://www.ninjacircuits.com/
 
+Electronics components supplier: http://www.stock-point.com/
+
 electronic components: https://product.tdk.com/info/en/products/index.html
 
 electronic components: http://www.kemet.com/Products
