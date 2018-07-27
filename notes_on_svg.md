@@ -6,6 +6,7 @@ This are my personal notes on the svg specs, and are heavily based in the best r
 
 and others:
 
+- online svg text editor: https://www.freecodeformat.com/svg-editor.php
 - The lead reference for SVGs is: [ref SVG11](https://www.w3.org/TR/SVG11/)
 - also check: [google svgweb](https://code.google.com/archive/p/svgweb/) 
 - comparation between SVG and canvas: [link](https://www.sitepoint.com/canvas-vs-svg-choosing-the-right-tool-for-the-job/)
