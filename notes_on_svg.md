@@ -38,7 +38,7 @@ An example of svg definition- the center of coordinates is top-left.
      baseProfile="full"
      width="300" height="200"
      xmlns="http://www.w3.org/2000/svg">
-  <rect width="100%" height="100%" fill="lightblue" />
+  <rect width="100%" height="100%" fill="ligthblue" />
   <circle cx="150" cy="100" r="80" fill="yellow" stroke="orange" />
   <text x="150" y="120" font-size="40" text-anchor="middle" fill="blue">SVG</text>
 </svg>
@@ -74,6 +74,7 @@ From this example we can draw some conclusions:
  - olive
  - navy
  - blue
+ - lightblue
  - teal
  - aqua
  
