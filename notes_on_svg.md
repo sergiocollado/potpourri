@@ -247,6 +247,18 @@ An example of path:
 <path d="M10 10 h 80 v 80 h -80 Z"
 ```
 
+Example:
+
+```xml
+<svg version="1.1"
+     baseProfile="full"
+     width="100" height="100"
+     xmlns="http://www.w3.org/2000/svg">
+ <rect width="100%" height="100%" stroke="yellow" fill="transparent" />
+  <path d="M 0 50 h 10 l 7.5 15 l 15 -30 l 15 30 l 15 -30 l 15 30  l 7.5 -15 h15" stroke="black" fill="transparent" />
+</svg>
+```
+
 #### Curve commands
 
 #### Cubic Benzier Curve
