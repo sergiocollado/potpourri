@@ -255,9 +255,25 @@ Example:
      width="100" height="100"
      xmlns="http://www.w3.org/2000/svg">
  <rect width="100%" height="100%" stroke="yellow" fill="transparent" />
-  <path d="M 0 50 h 10 l 7.5 15 l 15 -30 l 15 30 l 15 -30 l 15 30  l 7.5 -15 h15" stroke="black" fill="transparent" />
+  <path d="M 0 50 h 10 l 7.5 15 l 15 -30 l 15 30 l 15 -30 l 15 30 
+	l 7.5 -15 h15" stroke="black" fill="transparent" />
 </svg>
 ```
+
+Another Example
+
+```xml
+<svg version="1.1"
+     baseProfile="full"
+     width="80" height="100"
+     xmlns="http://www.w3.org/2000/svg">
+ <rect width="100%" height="100%" stroke="yellow" fill="lightblue" />
+ <circle cx="40" cy="50" r="35" stroke="black" fill="transparent" />
+ <path d="M 0 50 h 30 m 0 -20 v 40 m 0 -5 l 20 20 l -10 -15 l
+	-5 5 l 15 10 v 15 M 30 35 l 20 -20  v -20" stroke="black" fill="transparent" />
+</svg>
+```xml
+
 
 #### Curve commands
 
