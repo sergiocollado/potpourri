@@ -7,7 +7,7 @@ For representing the searching space, usually a tree structure (root, branches a
 There are several common methods to use:
 
 - Breath first search (BFS) - seach advances on the shallowest node
-- Depth-first search (DFS) - searhc advances on the deepest node
+- Depth-first search (DFS) - search advances on the deepest node
 - Depth limited search (DLS) - Depth-first search with depth limit. 
 - Uniform cost search - seach advances on less expensive node. this assumes the edges of a tree have different costs.
 
@@ -20,6 +20,7 @@ ALGORITHM BRADTH FIRST SEARCH:
 function BFS(initial_state, goal)
 
   //the 'frontier' set is the groups of nodes pending to search/explore.
+  //the 'frontier' set needs to be a FIFO (Firt-In, First-Out), thus a queue structure.
   frontier = new Queue();
   frontier.enqueue(initial_state);
   
