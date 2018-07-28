@@ -150,6 +150,8 @@ circuits: https://circuitglobe.com/
 
 part selection: http://parts.io/search/Class-Regulator%20Circuits/Category-Switching%20Regulator%20or%20Controller?utm_source=pa&utm_medium=728x90&utm_campaign=schematic
 
+circuits collections & ideas: https://www.open-electronics.org/
+
 how to program stm32 -> http://www.emcu.it/STM32/What_should_I_use_to_develop_on_STM32/What_should_I_use_to_develop_on_STM32.html#Free_C_CompilerIDE
 
 blockchain automotive -> https://www.ibm.com/blogs/internet-of-things/blockchain-for-automotive/
