@@ -107,6 +107,7 @@ function UCS(initial_node, goal)
 
   //the 'frontier' set is the groups of nodes pending to search/explore.
   //the 'frontier' set needs to a set ordered by priority of the cost: Cost=f(node)
+  //so the 'frontier' set for UCS is a qeue ordered by cost. Minimun cost goes first.
   
   frontier = new Heap();
   frontier.add(initial_node);
