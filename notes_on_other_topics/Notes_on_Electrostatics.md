@@ -403,4 +403,11 @@ https://www.amazon.com/gp/search?ie=UTF8&camp=1789&creative=9325&index=books&key
 
 https://www.bbc.com/education/examspecs/zwtp6fr
 
+Simulation
+
+- http://mw.concord.org/modeler/showcase/index.html
+
+- http://mw.concord.org/modeler1.3/mirror/electrostatics/electroscope.html
+
+
 
