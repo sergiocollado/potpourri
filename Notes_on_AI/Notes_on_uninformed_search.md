@@ -95,3 +95,50 @@ function DFS(initial_node, goal)
   //we return failure in the search
   return FAILURE
 ```
+
+## UCS - UNIFORM COST SEARCH
+
+
+```
+ALGORITHM  UNIFORM-COST-SEARCH
+=============================
+
+function UCS(initial_node, goal)
+
+  //the 'frontier' set is the groups of nodes pending to search/explore.
+  //the 'frontier' set needs to a set ordered by priority of the cost: Cost=f(node)
+  
+  frontier = new Heap();
+  frontier.add(initial_node);
+  
+  //the 'explored' set is the nodes already checked.
+  explored = new Set();
+  
+  //the search will go on until all the nodes are checked
+  WHILE NOT( frontier.IsEmpty() ):
+  
+       //we take out one of the node with minimun cost
+       current_node = frontier.DeleteMinCostNode()
+       
+       //we add to the 'explored' set, the current selected node
+       explorer.add_nodes(current_node);
+       
+       //we check if the selected node is the goal.
+        IF goal == current_node.IsGoal();
+             return SUCCEED(current_node) //the search has succesfully finished.
+             
+        //in the case the selected node is not the goal, then
+        //we add all its neigbours to the 'frontier' set, only
+        //if they haven't been already visited.
+        
+        FORALL neighbour IN current_node.neighbours():
+           IF neighbour (NOT_IN frontier) AND (NOT_IN explored):
+               frontier.insert(current_node)
+           ELSE-IF neighbour IN frontier
+               frontier.decreaseKey(neigbour)
+          
+
+  //if we have searched all the nodes, and the goals hasn't been found
+  //we return failure in the search
+  return FAILURE
+```
