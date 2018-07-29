@@ -44,7 +44,13 @@ An example of svg definition- the center of coordinates is top-left.
 </svg>
 ```
 
-The tag `<svg>` is the root tag.
+The tag `<svg>` is the root tag, and the definition of an SVG element
+
+the `version="1.1"` defines the version of the SVG standard
+
+the `width="300" height="200"`defines the size of the SVG drawing.
+
+Then follows the actual drawing (remember that the center of coordenates is at the top-left)
 
 The background is set with: `<rect width="100%" height="100%" fill="ligthblue" />`
 
