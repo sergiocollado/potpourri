@@ -306,9 +306,9 @@ end point of the curve </br>
 </svg>
 ```
 
-Also you can use the **S** command to concatenate benzier curves- but the **S** command must always follow another **C** or **S** command. It just reflex, the last control point of the previous curve, to be the first control point of the curve.
+Also you can use the **S** command to concatenate benzier curves- but the **S** command must always follow another **C** or **S** command. It just means that the last control point of the previous curve,  will be the first control point of the following curve.
 
-S x2 y2 x y
+**S x2 y2 x y**
 
 
 ```xml
@@ -372,6 +372,38 @@ for each ellipse there are two paths for connect those two points. So there are 
 </svg>
 ```
 
+### Grouping of elements
+
+The ‘g’ element is a container element for grouping together related graphics elements.
+
+A group of elements, as well as individual objects, can be given a name using the ‘id’ attribute. Named groups are needed for several purposes such as animation and re-usable objects.
+
+An example:
+
+```xml
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     version="1.1" width="5cm" height="5cm">
+  <desc>Two groups, each of two rectangles</desc>
+  <g id="group1" fill="red">
+    <rect x="1cm" y="1cm" width="1cm" height="1cm"/>
+    <rect x="3cm" y="1cm" width="1cm" height="1cm"/>
+  </g>
+  <g id="group2" fill="blue">
+    <rect x="1cm" y="3cm" width="1cm" height="1cm"/>
+    <rect x="3cm" y="3cm" width="1cm" height="1cm"/>
+  </g>
+
+  <!-- Show outline of viewport using 'rect' element -->
+  <rect x=".01cm" y=".01cm" width="4.98cm" height="4.98cm"
+        fill="none" stroke="blue" stroke-width=".02cm"/>
+</svg>
+```
+
+A ‘g’ element can contain other ‘g’ elements nested within it, to an arbitrary depth.
+
+
+hr 
 
 # JAVASCRIPT FOR CREATING SVGs:
 
