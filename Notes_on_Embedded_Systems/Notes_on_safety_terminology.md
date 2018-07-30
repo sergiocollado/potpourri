@@ -977,6 +977,7 @@ A list of non-functional characteristics:
  - portability: evaluation of the easines of the translation of the code to other posible platforms or architectures.
  - reliability: evaluation on the trusth of the proper behavior of the system
  - dependability: evaluation of the dependability of the system (let's say this is: how much confidence you can have in it)
+ - grade of loose coupling: evaluation of the structure of the code implementation. 
  - scalability: ability to add elements to the system.
  - memory & storage: amount of memory needed, types of memory in hw (flass, eeprom, volatie)
  - data processing volume & load stress: performance under peaks of data
@@ -1950,7 +1951,8 @@ DEFINITION and GOALS OF THE PROJECT
 The overall goal of the project is poorly defined.
 
 9. Scope runaway
-Uncontrolled changes and continuous growth of scope. For example: Cabbage mechanical calculation machine.
+Uncontrolled changes and continuous growth of scope. For example: Cabbage mechanical calculation machine. This can be
+also result of an energetic customer, that keeps on asking for more functions.
 
 10. Over-design: Chase of perfection inflates scope 
 The project team add their own features that aren't in requirements or change requests. 
@@ -2025,55 +2027,63 @@ of MFLOPS or MIPS, or data-prosseing throughput.
 
 You can spot obvious (or not) holes in the requirements. 
 
+26. Requirements gathering.
+Poor communication between client, or stakeholders might result in that the requirements fail to reflect its expectation.
+
+27. Requirements runaway
+Requirements constantly increase its number, and the requested features may not be implemented in the allocated time for the project.
+
+
+
 SYSTEM ARCHITECTURE and DESIGN
 
-26. Architecture or design lacks flexibility 
+28. Architecture or design lacks flexibility 
 
 The architecture is incapable of supporting change requests and needs to be reworked. For example: in a computer system a Round-robin
 schecdule is a very neat architecture, and really good in some ways: as predictability and time estimation, but if lacks flexibility
 when the system needs to include new functionality.
 
-27. Architecture or design is not fit for purpose 
+29. Architecture or design is not fit for purpose 
 
 The architecture is low quality. Don't use anti-patterns.
 
-28. Architecture or design is infeasible 
+30. Architecture or design is infeasible 
 
 The architecture is impossible to implement, excessively costly or doesn't support the requirements. For example: the data-processing
 requirements are impossible to achieve for the requested system.
 
-29. Architecture or design fails peer review 
+31. Architecture or design fails peer review 
 
 It's a good idea to have peers or architectural experts that review your designs. 
 
 LEADERSHIP, DECISIONS AND RESOLUTIONS 
 
-30. Decision delays impact project 
+32. Decision delays impact project 
 
 Establish guidelines for decision turnaround time (as a max answer time-limit). Identify the risk that guidelines will be exceeded. 
 
-31. Decisions are ambiguous 
+33. Decisions are ambiguous 
 
 People may have a tendency to make decisions that are intentionally ambiguous (a responsibility avoidance technique), as 
 for example: the resolution to optimice two parameters that are in opposition (For example: I want to do a lot with very little and very fast). This can be identified as a risk and managed. 
 
-32. Decisions are low quality 
+34. Decisions are low quality 
 
 Decisions aren't fit for purpose. 
 
-33. Decisions are incomplete 
+35. Decisions are incomplete 
 
 Issue resolutions that don't address the issue or create more issues. 
 
 SUPPLIERS
 
-34. Suppliers fail to meet the needed quantities
+36. Suppliers fail to meet the needed quantities
 
-35. Suppliers fail to meet the expected quality.
+37. Suppliers fail to meet the expected quality.
 
-36. Suppliers don't meet a fitting price for the project.
+38. Suppliers don't meet a fitting price for the project.
 
-37. Supply time don't meet the timeline needs for the project.
+39. Supply time don't meet the timeline needs for the project.
 
 
 ## list of possible technical issues with general elements.
