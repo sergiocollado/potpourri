@@ -194,6 +194,11 @@ int main(int argc, char *argv[])
 }
 ```
 
+## Adapter pattern
+
+This pattern is basically a wrapper (the adapter), that updates a data o protocols structure (the adaptee), so a previous system, or library or interface, so the target system, can work with an updraged version of that previous adaptee.
+
+
 
 ## Other patterns, strategies or tricks.
 
