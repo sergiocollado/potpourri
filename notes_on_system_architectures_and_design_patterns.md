@@ -77,7 +77,7 @@ let's the sub-classes to decide what subclass it belogns to. So the factory meth
 <br>
 <br>
 
-# Singleton
+# Singelton
 
 Imagine you have a program, or a system object, general class,  you only want to instance once... this would be useful, in cases where you want to protec the system working, or data process, for safety or other reasons, or for controlling the memory usage ... . For doing that, we need a private constructor, so it is not allowed to access to it from other points in the code, or other classes; and we need a reference to acces that object at any time. 
 
@@ -136,10 +136,10 @@ result in the blocking of one tasks to others...
 
 ## Factory Pattern
 
-Some objetc classes cannot be known up until the program exectuion, so in this case, there must be something that choose the most 
-fitting sub-class to apply...
+Some object classes cannot be known up until the program execution, so in this case, there must be something that chooses the most 
+fitting or the correct sub-class to apply...
 
-A factory pattern is best use, when the program has a super-class, with differtent subclasses, which are based on the input creation parameters. Then, the reponsability of the Factory class, is to correctly instantiate at run time, the subclass that corresponds to that input.
+A factory pattern is best use, when the program has a super-class, with different sub-classes, which are based on the input creation parameters. Then, the reponsability of the Factory class, is to correctly instantiate at run time, the subclass that corresponds to that input.
 
 **advantage**: The complexity of creation of similar subclasses is hidded under a common interface (the Factory creator).
 
