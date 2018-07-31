@@ -6,6 +6,30 @@
  - Microkernel
  - Modular
  
+ ## Monolitic kernel
+ 
+ In a monolitik kernel the main function and services of the OS, such: file systems, device drivers ... are executed in kernel mode,
+ this means that the kernel usually is quite big.
+ 
+ ## Microkernel
+ 
+ A microkernel, most of the main functions and services of the OS, are not inside the kernel, so they don't run in kernel mode, instead
+ those are located and run in the user mode. For example it separates the kernel, from the hardware control, and devices. As consecuence
+ the kernel size, is much smaller as compared with a monolitic kernel.
+ 
+ In a microkernel, it only keeps the most basics needed tasks, as:
+ - Interrupt handling
+ - low-level processes management
+ - message passing and control (IPC -inter processes comunication: a method to commincation and data sharing between processes)
+ 
+ As a result, there is an improvement in the stability and reliability of the kernel, due in the case a process crashes, it will not affect the kernel, making it crash also. 
+
+ As drawbacks of the microkernels, one is that the context stching is quite much expensive than in a monolitic kernel, due most of the
+ functions are in the user space, and then it needs to call many more functions. Also another drawback is that the overall system responses or hardware responses are slower, due to the more expensive context switch.
+ 
+ Examples of microkernel OS are: GNU/Hurd, Minix, QNX.
+ 
+ 
 
 # [CONTIKI](http://www.contiki-os.org/)
 
