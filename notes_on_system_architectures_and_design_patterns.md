@@ -199,6 +199,10 @@ int main(int argc, char *argv[])
 This pattern is basically a wrapper (the adapter), that updates a data o protocols structure (the adaptee), so a previous system, or library or interface, so the target system, can work with an upgraded version of the interface (the desired interface), while 
 under the hood, the old interface (the adaptee), is used by means of the whapper (the addapter), using the adapted patten (the adapter or whapper).
 
+## Facade pattern
+
+The facade pattern is a wrapper class, that simplifies the use of the target system to be used. So the facade, work as a simplified
+interface between the client-user and the underlying (more complex) system.
 
 
 ## Other patterns, strategies or tricks.
