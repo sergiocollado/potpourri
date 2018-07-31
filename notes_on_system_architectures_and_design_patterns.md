@@ -204,6 +204,11 @@ under the hood, the old interface (the adaptee), is used by means of the whapper
 The facade pattern is a wrapper class, that simplifies the use of the target system to be used. So the facade, work as a simplified
 interface between the client-user and the underlying (more complex) system.
 
+The facade pattern uses the principle of information hiding, to ease the use of the underlying target system, and
+its complexity. This is done by means of encapsulating the underliyign system class, thus hidding its complexity.
+So, the facade pattern, removes the need of the user or client class to manage by their own the complexities of the target system,
+resulting in less coupling between the target system, and the user-client class.
+
 
 ## Other patterns, strategies or tricks.
 
