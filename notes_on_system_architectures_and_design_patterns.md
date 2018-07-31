@@ -210,7 +210,7 @@ So, the facade pattern, removes the need of the user or client class to manage b
 resulting in less coupling between the target system, and the user-client class.
 
 
-## Other patterns, strategies or tricks.
+## Other patterns, strategies & tricks of the trade
 
 ### Memoization
  The term 'Memoization' was coined by Donald Michie, it comes from the Latin 'memorandum' which stands for the meaning
