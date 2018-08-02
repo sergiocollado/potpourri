@@ -370,6 +370,7 @@ EN 60204-1 - Safety on Machinery - electrical equipment of machines. Part 1 : Ge
 - IEC 60335 - Hosehold Appliances
 - IEC 61511 - Industrial Processes
 - IEC 62061 & ISO 13849 - Manufacturing industry
+- EN 60950-1:200 + A2:2013 - Information technology equipment. Safety general Standards.
 
 ## Others
 
@@ -965,8 +966,8 @@ A list of non-functional characteristics:
  - performance: evaluation of the system with regard to responses times and data throughput, latency, measurement of response times, transaction rates, respose to many transactions, or simulation of many users.
  - security: security evaluation
  - safety: safety evaluation
- - robustness: evaluation of the behavior of the system related to outside mis-happenings.
- - fault-tolerance: evaluation of the behavior of the system related to inner happenings.
+ - robustness: evaluation of the behavior of the system related to out of the system, or external mis-happenings. 
+ - fault-tolerance: evaluation of the behavior of the system related to inner happenings, or inner faults.
  - predictivity: how much, and up to what point you can predict in advance the response or behavior of a system (just remember
  that for example cache-memories are bad for predictivility...)
  - repeativility: how much is the repeativility of the system (time responses, skews, ...)
