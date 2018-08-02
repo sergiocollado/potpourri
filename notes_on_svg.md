@@ -304,8 +304,8 @@ Other: mosfet
      width="80" height="100"
      xmlns="http://www.w3.org/2000/svg">
  <rect width="100%" height="100%" stroke="yellow" fill="lightblue" />
- <path d="M 0 75 h 30 M 30 30  v 50 M 35 25 v 15 v -7.5 h 35 V100  M 35 47.5 v 15 v -7.5 h 35 
-   M 35 77.5  h 35  M 35 70 v 15  M 35 25   M 35 54.5 l 15 5  l 0 -10 l -15 5" 
+ <path d="M 0 75 h 30 M 30 30  v 50 M 35 25 v 15 v -7.5 h 35 V 0   M 35 47.5 v 15 v -7.5 h 35 V100
+   M 35 77.5  h 35  M 35 70 v 15    M 35 54.5 l 15 5  l 0 -10 l -15 5" 
    stroke="black"  fill="transparent"  stroke-width="2.5%" />
 </svg>
 ```
