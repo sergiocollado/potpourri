@@ -1412,7 +1412,13 @@ Static testing, is referred to those evaluations that don't need the system to b
  
  This is an important medhod and can be done well before the dynamic test execution.The advantages of the defect detectections at an early point in the project live include early correction, increase of productivity, reduction of development times, cost of testing, 
 
-A very common tool for static checking is the program "cppcheck". that is open source and also can check for CERT and MISRA standards.
+A common tool for static checking is the program "cppcheck". that is open source and also can check for CERT and MISRA standards.
+
+A list of statics techniques are:
+ - Review process (requirements, hazard, risks, architecture, design, components, code ...)
+ - System analysis (as define the worst case scenario)
+ - Code automated analysis.
+ - Code complexity evaluation.
 
 references:
 - https://sourceforge.net/projects/cppcheck/
