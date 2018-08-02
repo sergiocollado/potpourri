@@ -5,9 +5,7 @@
 
  # BASIC CONCEPTS and DEFINITIONS:
  
-**EMBEDDED SYSTEM**: An embedded system, is a system, that combines software and hardware designs. It is common, that they have some kind of HMI (human machine interface) or UI (User Interface) as displays, keyboards, et cetera. Also is quite common, at least use of one network communication protocol. Embedded systems have fixed capab
-
-ilities but are programmable, and they are designed for a specific function or functions. 
+**EMBEDDED SYSTEM**: An embedded system, is a system, that combines software and hardware designs. It is common, that they have some kind of HMI (human machine interface) or UI (User Interface) as displays, keyboards, et cetera. Also is quite common, at least use of one network communication protocol. Embedded systems have fixed capabilities but are programmable, and they are designed for a specific function or functions. 
 
 Examples are: industrial equipments and control systems, production lines, machine's controllers,safety mechanism in heavy machinery, agricultural, automotive, train, railway, aeronautical, avionic, space and comunication systems, medical systems, household apliances, entertaiment devices, toys, vending machines, measurement/sensor and monitoring systems, security sytems, identity checks, access controls, robotics, logistics ...
 
@@ -60,7 +58,7 @@ Ri = Li * p(Li);
 
 **HAZARD**: Set of combinations of conditions or requisites or enviroments or events that lead to an accident
 
-**ERROR/MISTAKE**: A human being can make an error(mistake), with results in a defect in the system(fault, bug) in the program or code, or in a document. The defect in the system, might never be noticed, or can result in the case that the system might fail its expected function (or do something it shouldnt) causing a failure. Defects in software, systems or documents can result in failures, but no all defects do.
+**ERROR/MISTAKE**: A human being can make an error(mistake), with results in a **defect** in the system (fault, bug) in the program or code, or in a document. The defect in the system, might never be noticed, or can result in the case that the system might fail its expected function (or do something it shouldn't) causing a failure. Defects in software, systems or documents can result in failures, but no all defects do.
 
 </br>
 **(human) ERROR -> (code) DEFECT -> (system) FAILURE**
@@ -69,7 +67,7 @@ Ri = Li * p(Li);
 **FAILURE**: A failure is the misperformance or lack of ?h?ability of a component to comply with its designed function, during certain
 time, or under specified enviromental system conditions. 
 
-**ERROR**: An error is a systematic fault: An error is a desing flaw or desviation from an intended or designed state.
+**FAULT**: An error is a systematic fault: An error is a desing flaw or desviation from an intended or designed state.
 
 >__A word about SW context__
 > A human being can make an error (mistake), wich produces a defect (fault,bug) in the program, code, or in a document. If a defect in the code is executed, the system may fail to do what it must do (or do something it shouldn't) causing a failure. 
@@ -98,10 +96,10 @@ and
 
 and
 
-**MTBM** stands ofr Mean Time Between Maintenace - this also impacts the availability of the system.
+**MTBM** stands for Mean Time Between Maintenace - this also impacts the availability of the system.
 
 Is also common to express availability as percentage between uptime and downtime of the system. For example a system availability 
-referred as a 99% (two nines) means that over a year its downtime is 3.65 days.
+referred as a 99% (two nines) means that over a year its downtime is 3.65 days. A system reliability with 99.999% is refered as five nines. 
 
 **DEPENDABILITY**: Is the truthworthiness of a system so there is a justified confidence in the tasks it must perform.
 
@@ -121,7 +119,7 @@ Usually, these systems are classified into the following groups:
  - **bussines critical**: designed to avoid a missfunctions that would result or imply huge economic/bussines impact or material losses, usually as a result of a service interruption. Example: bank, accounting and payment systems, stock-trading systems.
  - **security critical**: designed to protect data or sensible information. example: medical databases, customers data ...
 
-Critical systems must always pinpoint the worst case escenario, and also data throuputs and latencies.!!
+**Critical systems must always pin-point the worst case escenario, and also data throuputs and latencies!!**
 
 
 Referencess:
@@ -222,7 +220,7 @@ https://www.micrium.com/books/ucosii/
 
 http://www.sohar.com/proj_pub/download/y2ktest.pdf
 
-**SAFE-CRITICAL SYSTEM** Is a system that under malfunction, can result in an injury or loss of a peoples life, a damage to a material propierty, or an enviroment harm.
+**SAFE-CRITICAL SYSTEM** Is a system that under misfunction, can result in an injury or loss of a peoples life, a damage to a material propierty, or an enviroment harm.
 
  Safety-critical systems design involves: software, hardware and human factors.
  
@@ -231,7 +229,7 @@ http://www.sohar.com/proj_pub/download/y2ktest.pdf
  - **Fail-operational systems**: They continue to operate even when their control systems fail. Examples are: elevators, automotive electronic throttle control, braking systems, circuit-breakers, ..
  - **Fail-soft systems**: they continue operation with a reduced efficiency even in the presence of a failure.
  - **Fail-safe systems**: they become safe when they cannot perform its function. Medical devices, usually are found in this category, for example a heart-pump: when it cannot work, it warns the medical personal, as the safety interval, is long enough, the live of the patient is not in thread.
- - **Fail-Passive systems**: 
+ - **Fail-Passive systems**: As a helmet or shield.
  - **Fault-tolerant sytems**: they continue to operate even when faults are present on the system. 
  
  
@@ -269,7 +267,7 @@ http://www.eventhelix.com/RealtimeMantra/FaultHandling/hardware_diagnostics.htm#
 
 EXAMPLE:
 
- Suppouse, you have a system, in which two tasks are working together, one of them, task_1 - senses, gadthers and updates data in real time. task_2: request that data, and do some data processing algorithm. 
+ Suppose, you have a system, in which two tasks are working together, one of them, task_1 - senses, gadthers and updates data in real time. task_2: request that data, and do some data processing algorithm. 
  
  In the event, that for whatever reason, maybe some bug, as could be: that there aren't enough memory..., the task_1 stops on working, or performing properly, so it may report the unfriendly: segmentation fault... at that point, the task_2, should be able to detect the problem, - there are some methods to do this - and it should try to fix the system, for example, re-launching, the task_1, or reseting/rebooting the whole system in the worst case.
  
@@ -279,30 +277,39 @@ https://en.wikipedia.org/wiki/Software_fault_tolerance </br>
 https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 
 
-**ROBUST SYSTEMS** Robust systems are those, in which the computer system has the ability to cope with errors during execution and cope with erroneous inputs. Usually you test those systems with the technique of *Fault Injection*, other techniques are for example *Fuzzy testing* that involves invalid or unexpected inputs. 
+**ROBUST SYSTEMS** Robust systems are those, in which the system has the ability to cope with errors during execution and cope with erroneous inputs. Usually you test those systems with the technique of *Fault Injection*, other techniques are for example *Fuzzy testing* that involves invalid or unexpected inputs. 
 <br>
 <br>
 
 ## SOME CONCEPTS CLARIFICATIONS:
 
-**Safety** is related to freedom from accidents and material/propierties/equipment damage and looses.
+**Safety** is the concept related to freedom from accidents and material/propierties/equipment damage and looses from the given system.
 
 **Safety** is NOT **Reliability**!! Reliability is the correctness of a system performing it's intended duty/function during a consecutive period.
 
 **Safety** is NOT **Security**!! Security is the ability to defence against intended damages and malicious actions.
-<br>
 
 **Safety** and **Availability** are DO NOT imply each other: the safest airplane, is that one never takes off... A system that is working at a given moment, doesn't imply it is safe. The opposite case, the lack of availability, also doesn't need to be true: an airbag for an automotive system, can be very safe, but once it is triggered, it is not available anymore; the triggering of the airbag, can even result on the system fallback, to block the car, due it is not safe; that is: entering a safe operation mode status, after an unexpected event that compromises the system safety. 
 
 **working** is NOT the same as **safe**
+
+**Safety** is build-in in the system as when it is designed... a system that aims to achieve safety through building outer layers, is not a good design.
+
+**Safety** involves the **whole lifecycle of the system**: not only maintenace must be observed as defined, or redefined in case or need. Methods to evaluate, record, and log normal work of the system, and of course failures of the system must be present for study and evaluation.
+
+A **Non-secure** system is also a **Non-safety** system, as it is susceptible of malicious intends and actions.
 
 
 ## SAFETY RELATED CONCEPTS:
 
 **Accident**: It's the situation in which there is a loss of some kind: death or material damage.
 
-**Hazard**: The set of conditions or enviromental variables, that will lead or result in an accident.
-<br>
+**Hazard**: The set of conditions or enviromental variables, that will lead or result in an accident. injury or loss (people, material, financial or enviromental
+
+**Hazard log** Is the document that lists the potential hazards for a system. Also records experience for previous similar or significant systems, previous experiences, and lessson learned from previous projects, even new data or knowledge to take into account.
+the 'Hazard log' is a life document: initialy the hazards are defined by means of analisys, usually by the method HAZOP (Hazard and Operability study) or similar: FMEA, FMECA, HAZOP, ETA, FTA.... Later in the lifecycle, also records from field experience and system evaluation must be added to the document.
+
+reference: https://en.wikipedia.org/wiki/Hazard_and_operability_study
 
 **Risk**: It's the likehood of an accident and its severity. In other words: is the figure of merit that provides a meaningful value, that allows the comparation of the risk on different cases. Its mathematical expressionn is:
 
@@ -310,9 +317,10 @@ R(a) = p(a) * s(a);
 
 - R(a) is the risk of an accident 'a'
 - p(a) is the probability an accident 'a' happen.
-- s(a) is a factor that evaluates the overall damage, harm or loss in case on an accident 'a'. Usually the s(x) factor is defined by legal, customer or stackhorlders specifications. 
+- s(a) is the severity of this accident. This is a factor that evaluates the overall damage, harm or loss in case on an accident 'a'. Usually the s(x) factor is defined by legal, customer or stackhorlders specifications. 
 
-<br>
+In practice this formula is difficult to apply, as the probablities and damage evaluation are dificult to pin-point with an exact number, so it is common to apply categories to the probability and severity, so instead of numbers they are classified in ranges as:
+Very low, low, medium, high, very high. With this classification then it is possible to make what is refered to, as a risk matrix, or risk table. 
 
 ## FAILURES vs ERRORS:
 
@@ -330,20 +338,7 @@ R(a) = p(a) * s(a);
 
 # STANDARDS AND NORMATIVES:
 
- ## BASIC REGULATIONS:
-
- (EMC) Directive 2014/30/EU   - https://ec.europa.eu/growth/sectors/electrical-engineering/emc-directive_en
  
- Low Voltage Directive (LVD) (2014/35/EU) - https://ec.europa.eu/growth/sectors/electrical-engineering/lvd-directive_en
- 
- Radio Equipment Directive (2014/53/EU) - https://ec.europa.eu/growth/sectors/electrical-engineering/red-directive_en
-
- Standard for Software Test documentation: IEEE STD 829-1998.
- 
- Software Quality Product -  ISO 9126
- 
- ISO 9001
-
  ## BASIC FOR SAFETY:
 
 IEC 61508 - standard for functional safety in electric and electronic systems
@@ -359,18 +354,36 @@ EN 60204-1 - Safety on Machinery - electrical equipment of machines. Part 1 : Ge
  
  ## SAFETY STANDARDS:
 
+- IEC 61508 - General standard
 - ISO 26262 - Automotive
 - ISO 25119 - Agriculture
 - ISO 13849 & IEC 62061 - Machinery
 - IEC 60601 - Medical
-- DO-178B - Aviation
-- EN 50126 - 50128 - 50129 Railway
+- DO-178 - Aircrafts
+- EN 50126 - 50126/8/9 Railway
 - IEC 61513 - Nuclear Power
 - IEC 50156 - Furnaces 
-- IEC 60335 - Hosehold Appliances
+- IEC 60335 - Household Appliances
 - IEC 61511 - Industrial Processes
 - IEC 62061 & ISO 13849 - Manufacturing industry
+- MIL-STD 882 - Combat systems
+- IEC 60703 - Consumer products
 - EN 60950-1:200 + A2:2013 - Information technology equipment. Safety general Standards.
+
+
+## RELATED REGULATIONS:
+
+ (EMC) Directive 2014/30/EU   - https://ec.europa.eu/growth/sectors/electrical-engineering/emc-directive_en
+ 
+ Low Voltage Directive (LVD) (2014/35/EU) - https://ec.europa.eu/growth/sectors/electrical-engineering/lvd-directive_en
+ 
+ Radio Equipment Directive (2014/53/EU) - https://ec.europa.eu/growth/sectors/electrical-engineering/red-directive_en
+
+ Standard for Software Test documentation: IEEE STD 829-1998.
+ 
+ Software Quality Product -  ISO 9126
+ 
+ ISO 9001
 
 ## Others
 
@@ -417,6 +430,17 @@ RTCA DO-333, Formal Methods Supplement to DO-178C and DO-278A
 
 http://listofavailabledocs.realviewdigital.com/?i=List%20of%20Available%20Documents-December%202017#folio=40
 
+## Common points of the safety standards
+
+Each application specific safety standard has its own characteristics, but all the safety standards share some key points:
+
+ - Identfication of hazards and risks for the system. A SIL (Safety Integrity level) is assigned based on the severity of the risk. A risk that has a great severity is assigned with a higher SIL level.
+ 
+ - The SIL grade implies the effort o engineering effort for working with that risk. According to the SIL level, the higher it is, it will imply more effor, the use of more analisys techniques, and the use of more mitigation actions or functions.
+
+- The safety evaluation is whole life-cycle work, that must be present and evaluated at all the stages of the life-cycle, and that 
+requires of analisys, records and feedback of the development, testing and field experience on the system use. This is to obtain a continous feedback on the system that allows to ensure its safety.
+
 
 
 # SYSTEM DEVELOPMENT LIFE CICLE
@@ -427,13 +451,19 @@ There are quite a few ways for a system development project; although at least t
  
 What's the problem to solve? Has it be done before? What's the function to perform? there are other non-functional features needed in the system (as user interfaces, usability, safety, security, scalability, performance, robustness ...)?, what the stackholders and interested parties expectations? What will be system enviroment? Specification and requirement of the system? Time-line and squedule of the project? Expected problems or issues that may come up? How many people does the project need to achieve the requested specifications, results, timing and goals? Evaluation of the expected project risks? Expected costs? What is the budget? Normative, contract, legal issues and laws to comply with? Do I have the skills, people and resources to do it?  
 
-If there is significant confidence to overcome all those challenges, the the following step is -->  Definition of requirements and specifications of the system. 
+If there is significant confidence to overcome all those challenges, the the following step is -->  Definition of requirements and specifications of the system. **In a safety system the first step is allways to define the hazard and risk requirements;** for this methodologies as FMEA, FMECA, HAZOP, ETA, FTA. ... can be used.
  
  - **Design**: Reasoning, evaluation and design for the most fitting solution to achieve the specification, requirements and goals of the system. Consideration of problems and issues to overcome. Design of the system architecture: the different parts, modules, elements of the system. Comunications and interface between the different parts of the system. 
  
  - **Development**: Implementation of the system, an the different modules it is made of: hardware, software, ... user interface, communication protocols, power supplies, logging system, metrics of the system. Also includes the project documentation, release notes, use instructions, manuals and learning lessons.
  
  - **Testing**: Evaluation of the performance of the systems, so it can be determined if it reaches the expected goals. Validation, verification and test, riks and acceptance reports. 
+ 
+ 
+  
+ 
+ 
+ 
 
 # PROGRAMMING TECHNIQUES:
 
@@ -450,7 +480,7 @@ much easily the pernicious event.
  The programmer must undestand that its code can produce bug, that make the system fail or work incorrectly. Also that the users are there to break their code. - You know the saying: *--Even paranoids have enemies--*
  
 #### User-proof (aka fool-proof)
- The programmers assumes that the user at some point will use incorrect, malformed, and bogus inputs. So he has to code error-proof inputs, and emit **error mesages**, that must be: clear, specific, intuitive, unambigous, effective, detailed, explicit and that don't require to look up error codes. The message must be as accurate as possible, to the problem, so it can be detected and corrected with ease. Wrong input to the system must be always tested: the system must behave sensible even if the user don't.
+ A system must behave sensibly even if the user doesn't. Designers assume that the user at some point will use incorrect, malformed, and bogus inputs. So he has to code error-proof inputs, and emit **error mesages**, that must be: clear, specific, intuitive, unambigous, effective, detailed, explicit and that don't require to look up error codes. The message must be as accurate as possible, to the problem, so it can be detected and corrected with ease. Wrong input to the system must be always tested.
  
 #### Avoid Dangerous implementations
 
@@ -509,7 +539,7 @@ Follow recomendations for implementing the system.
 - Have a method to identify the software, and version of the system.
 - Test functions (unit testing) with wrong, and bad data- a program should behave sensibly even if the user don't.
 - Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). (test documentation must comply wit the ieee 829 standard)
-- CSP: Concurrent Sequence Programming.
+- CSP: Concurrent Sequence Programming (techniques)
 
 ## Defensive programming
 
@@ -850,7 +880,7 @@ Specifications/requirements test, checks the design is compliant with the stackh
   
   Specification testing is necesary to asure proper funtionality and behavior. But for complex or high-risk projects, it may be not nearly enoght. For example it doesn't cover a 'fool-user'. 
  
-## The seven principles of testing aka the testing paradigs:
+## The seven principles of testing aka the testing paradigms:
 
 Over time, testing 'sages' have take notice of important learned leassons, and key-points to keep in mind in the test development. Those concepts are known as follows:
 
@@ -859,7 +889,7 @@ Testing, shows defects, but it cannot proof that there are not defects. Testing
 increases the asurance over the system, because when a bug is found and it corrected, the chance that remaining bugs may exist, is less likely. But even in the case, that no defects can be found any further, that there is no proof that there aren't any.
 
 **2- Exhaustive testing is impossible** <br>
-test of all the possible combinations of a system is impossible. So to determine how much testing should be dont, an 
+Testing of all the possible combinations of a system is impossible. So to determine how much testing should be dont, an 
 estimation of the risks, risk analysys and priorities, must be done. The testing will stop, when there is certainty that the systems complies.
 
 **3- Early testing** <br>
@@ -875,8 +905,8 @@ The set of test, needs to be reviewed and updated, to exercice different parts o
 **6- Testing is context dependant** <br>
 Testing depends on the context. A safe-critical system test is not at all the same that the test of a video streamming appliance.
 
-**7- Absence of errors falacy** <br>
-Even if no defects are found, it doesn't proof that the system is usable, or complies with the end-user expectations.
+**7- Absence of errors falacy: Failure-free test doesn't proof failure-free system** <br>
+Even if no defects are found, it doesn't proof that the system is usable, or complies with the end-user expectations. As previously stated testing only increases the asurance of less possible errors.
 
 
 ## TEST LEVELS
@@ -891,7 +921,7 @@ Unlikely the following test descriptions, this test usually is done by a develop
 At the hardware level, it is understand as a test to determine or clarify hardware components performance.
 
 It will be explained later in the text, bus as reference is just annotaded here. In the units test, must be covered at least:
- - correct functionallity
+ - correct functionality
  - positive and negative test with valid and invalid data
  - data ranges and boundaries
  - code coverage  (percentage of the overall code in the function tested)
@@ -918,7 +948,8 @@ The **integration test**, are understand as a test that looks for assesment of t
  Non-functionoal characteristics, have to be tested also: as performance, ...
 
 ### SYSTEM TEST:
-The **systems test** goal is to ascertain fulfillment of the system expected functions as a whole element, and also the non-functional requirements, as performance, security, safety, ... System testing checks all the external interfaces of the system under development, which is a sub-system of another system.  In the system test, the enviroment, condition and test should be as close as possible to its expected real function. So usually, the test are of the types: bussines cases, user cases.
+
+The **systems test** goal is to asure the fulfillment of the system expected functions as a whole element, and also the non-functional requirements, as performance, security, safety, ... System testing checks all the external interfaces of the system under development, which is a sub-system of another system.  In the system test, the enviroment, condition and test should be as close as possible to its expected real function. So usually, the test are of the types: bussines cases, user cases.
 
 **Important** An independent test team, should carry the system tests.
 
@@ -1060,9 +1091,6 @@ Equivalence partitioning and boundary values analysis are methods, that evaluate
 
 The design of equivalence partitioning tests, and boundary test analysis, starts from the analysys of the requirement and specifications of the system.
 
-
-
-
 ```
 EXAMPLE:
 In a form, a input field is intended for a data that represents a year. The field accepts, 
@@ -1101,14 +1129,15 @@ The expected test results would be:
 ```
 
 
-
 #### STATES and TRANSITION TESTING:
+
 When the system under test has to behave according to state machines or transition systems, or other similar logical or sequencial behaviors, decision tables are a good option to check that the system complies with its expected behavior. So the decision tables, specifie the triggering condition or actions that imply a state change, then all the combination of this action or events are tested. This methodolgy, often is combined, with others as: **code coverage** and **decision coverage** (these are described later in the text). 
 
 Remember, that an Automata model, that is a state machine, can be ot two types: combinational or sequential. A combinational system, has a defined output, for the given inputs. A sequential system, uses a memory, to keep an state. More elaborate models, are the LTS systems (Lineal transition systems):
 
 
-#### USER-CASE TESTS:
+#### USER-CASE TESTS aka USER-STORIES:
+
 A test that mimics a real user scenario, is kwnow as user case test. A user-case test, aims to emulate the interaction, and common action and situations of the system under test and a normal user. User-case tests, check the data-flow and the process-flow, and how the system is likely to work.
 
 User-cases test are specially useful to discover integration and sytem defect, because they exercice the behavior of the overall system. Also they are commonly used for acceptance tests by stackholders of the project. 
@@ -1135,9 +1164,11 @@ For software the most common are:
  - Decision testing and decision coverage
 
 #### STATEMENT COVERAGE:
+
 Is the evaluation of the percentage of all statemenst (lines of code) which have been exercised by the testing. Usually test are designed so different code blocks can be executed, so the test suits will aim to cover and exercite as much code as possible. The account of the code executed is done by code instrumentation by means of auxiliar libraries. 
 
 #### DECISION TESTING aka BRANCH COVERAGE:
+
 This test accounts the percentage over all of different branchs exercised in the code execution (at the control flow structures: if, else, for, while ...). Tests are desiged, so different conditions are met at the different branch evaluation points. The aim is to account for as much program possible flows as possible. 
 
 **NOTE**: A 100% decision coverage implies a 100% code coverage, but the other way around is not true: a 100% does not guarantee a 100% decision coverage.
@@ -1330,7 +1361,7 @@ As always, the test documentation must be according to the "Standard for Softwar
 | 14|       | Test process squedule (time for analysis and design, timeline test process, control points, deliverables, current and future expected events or needs)   |
 | 15   |       | Test data generation (where the test data is comming from, does the customer or an specialist provide it? is it good enought data (relevant, accurate and significative) ?)    |
 | 16   |       | Unit tests  (procedures, cases, objetives, goals, requirements, trazability, input data, **expected data**): functionalities tested, and its associated requirements. Positive and negative input value data and ranges. Code and condition coverage. |
-| 17   |       | Integration tests   (procedures, cases, objetives, goals, requirements, trazability, input data, **expected data**)  |
+| 17   |       | Integration tests (procedures, cases, objetives, goals, requirements, trazability, input data, **expected data**)  |
 | 18   |       | System test  (procedures, cases, objetives, goals, requirements, trazability, input data, **expected data**)   |
 | 19  |       | Non-functional test (performance, escalability, interface, usability, safety, robustness, availability,  ...)   |
 | 20   |       | Traceability test-requirements and specifications |
@@ -1342,6 +1373,9 @@ As always, the test documentation must be according to the "Standard for Softwar
 | 26  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests.  |
 | 27   |      | Risks: identification, evaluation and responses (possible risks for the project, as lack of resources, time deliveries overdue, lack of man-power, lack of quality test data, future preditions, problems to overcome or concerns   ...)    |
 | 28 |   | Test completion criteria definition- definition of conditions to halt the testing.. to know when to stop of testing |
+| 29 |   | Test execution order- the order of the test execution is defined by the risks levels that each test evaluates.  |
+
+
 
  <!-- http://www.softwaretestinghelp.com/test-plan-sample-softwaretesting-and-quality-assurance-templates/  -->
  
@@ -1391,7 +1425,7 @@ There are several levels of review process depending on how formal they are done
 
 ##### Types of review
 
-##### Informal review
+##### Informal review (Peer review)
 - There is no formal process
 - May be part of pair programming, or technical review of design, code, or architecture
 - Results may be documented
@@ -1574,7 +1608,7 @@ And system risks as:
  List of things not to be tested and why
  
  ## test strategy
- - tools to be used (is it trainning needed)
+ - tools to be used (is it trainning needed?)
  - metrics to be collected and level of detail (mtbf, ciclomatic complexitiy, decision and coverage percentage...)
  - configuration management (version identification)
  - how many versions will be tested
@@ -1917,7 +1951,7 @@ ROBERT MARTIN - CLEAN CODE: A HANDBOOK OF AGILE SOFTWARE CRAFTMANSHIP
 
 JOINT SYSTEM SAFETY COMMITTEE  - SOFTWARE SYSTEM SAFETY HANDBOOK - A TECHNICAL & MANAGERIAL TEAM APPROACH-
 
-## Draft on project risks
+## Draft on GENERAL PROJECT RISKS
 
 MANAGEMENT 
 
@@ -2099,15 +2133,23 @@ SUPPLIERS
 
 5. sensibility of the component doesn't achieve the design goals
 
-6. working range of the component is not enoght for the design goals
+6. working range of the component is not enought for the design goals
 
 7. elements wears-out and don't achieve the design goals
 
-8. element doesn't meet design goals under defined enviroment conditions.
+8. element doesn't meet design goals under defined enviroment or expected work conditions.
 
 9. thermal performance don't achieve the design goals.
 
 10. mechanical performance don't achieve the design goals. (fatigue, resilience, rupture strength, rupture stress.... there are several factors to take into account).
+
+11. dielectric isolation of components fails
+
+12. EMC problems that don't achieve standards.
+
+13. Supplied elements are out of the expected/negotiated specs.
+
+
 
 https://pascal.computer.org/sev_display/index.action
 
@@ -2129,3 +2171,14 @@ jira
 requirements
 
 DOORS
+
+
+
+https://en.wikipedia.org/wiki/Hazard_and_operability_study
+
+http://www.hse.gov.uk/research/hsl_pdf/2005/hsl0558.pdf
+
+http://www.planning.nsw.gov.au/Policy-and-Legislation/~/media/C9CC2DA7E9B947C78C7C1355AD5B4B15.ashx
+
+https://cdn.auckland.ac.nz/assets/ecm/documents/example-of-hazop.pdf
+
