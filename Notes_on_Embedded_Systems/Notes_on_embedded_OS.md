@@ -163,6 +163,13 @@ support common wireless protocols for constrained resourced systems as: 6LoWPAN 
 distributed systems can be easily implemented using the kernel system API.
 
 
+
+# QNX
+
+QNX is a comertial embedded real-time system, that complies with the POSIX specs. It uses a microkernel, and the processes managmement if fully controlled by means of messages. QNX features several scheduling algorithms: FIFO, Round-Robin, adaptative & sporadic, periodig, and of course priority based scheduling, also have preentive multitasking. This makes it very good option to mission critical systems. 
+
+Qnx has a common message system for IPC (inter process communications) and also used to handle the computer networks communications. 
+
 ACRONYMS:
 
 WCET - Worst Case Execution Time
