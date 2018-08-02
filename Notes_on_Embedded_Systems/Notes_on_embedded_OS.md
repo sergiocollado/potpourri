@@ -11,6 +11,8 @@
  In a monolitik kernel the main function and services of the OS, such: file systems, device drivers ... are executed in kernel mode,
  this means that the kernel usually is quite big.
  
+ Examples of monolitic kernels are: MS windows, linux, unix, Mac OS.
+ 
  ## Microkernel
  
  A microkernel, most of the main functions and services of the OS, are not inside the kernel, so they don't run in kernel mode, instead
@@ -41,7 +43,9 @@
  
  In case of memory fragmentation, the stability of the system cannot be guaranteed. 
  
+An example of a modular kernel: contiki.
 
+<hr>
 
 # [CONTIKI](http://www.contiki-os.org/)
 
