@@ -29,7 +29,19 @@
  
  Examples of microkernel OS are: GNU/Hurd, Minix, QNX.
  
+ ## Modular kernel
  
+ A modular kernel is a combination of the two previous concepts: monolitic and microkernel, and its goal is to have the best features of both types. It aims to perform sytem tasks as good as a monolitic kernel, while retaining the good stability of a microkernel.
+ 
+ A modular kernel is made of different modules, and each modules focus on doing only one specific system task. A key point in this architecture, is that modules, are only loaded when needed. Another good thing, about the capability of loading modules as needed, is that the OS system footprint is reduced. 
+ 
+ drawbacks of the modular kernels: 
+ 
+ Of course, care has to be taken when loading and unloading modules, because this action takes a fair amount of time. So contantly loading and unloading modules is not recommended.
+ 
+ In case of memory fragmentation, the stability of the system cannot be guaranteed. 
+ 
+
 
 # [CONTIKI](http://www.contiki-os.org/)
 
