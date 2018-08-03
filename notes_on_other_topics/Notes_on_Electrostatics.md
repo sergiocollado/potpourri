@@ -272,6 +272,10 @@ to the definition of electric field is equal to **q** times the electric force f
 <br>
 
 
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/field_linespng.png"  alt="field lines image">
+<br>
+
 
 <br> 
 <br>
