@@ -401,13 +401,14 @@ Recomendations to define all the tasks required for and mantaining software.
 - IPC-7351: Generic Requirements for Surface Mount Design and Land Pattern Standard.
 - ISO/IEC 15504: Information Technology - Process assesment, also refered as Software Process Improvement and Capability Determination (SPICE)
 - Recomendations for the computer software development process and related bussines management fuctions. This standard is derived from the ISO/IEC 12207, and madurity models as CMM (Capability Madurity Model).
-- IEEE 829 - software test doucmentation
+- IEEE 829 - software test documentation
 - ISO/IEC 27000 - Information security management systems.
 - IEC 60812:1985 Analysis techniques for system reliability - FEMA: procedures for failure mode effect and analysis
 - IEC 61025:1990 Fault Tree Analysis (FTA)
 - IEC 61713:2000
 - IEEE Std 1044-1993, Standard Classification of Software Anomalies
 - IEEE Std 1012-1998, Standard for Software Validation and Verification Plans.
+- IEC 60287 - current capacity in cables.
 
 ## HAZARD ANALYSIS
 
@@ -1373,7 +1374,7 @@ As always, the test documentation must be according to the "Standard for Softwar
 | 26  |       | Control and monitoring points, milestones and procedures (report formats and expected information and data, risks reports and change requests.  |
 | 27   |      | Risks: identification, evaluation and responses (possible risks for the project, as lack of resources, time deliveries overdue, lack of man-power, lack of quality test data, future preditions, problems to overcome or concerns   ...)    |
 | 28 |   | Test completion criteria definition- definition of conditions to halt the testing.. to know when to stop of testing |
-| 29 |   | Test execution order- the order of the test execution is defined by the risks levels that each test evaluates.  |
+| 29 |   | Test executionUpriority order- the order of the test execution is defined by the risks levels that each test evaluates.  |
 
 
 
@@ -1385,10 +1386,11 @@ As always, the test documentation must be according to the "Standard for Softwar
 | :---:|     :---:      |     :--- |
 | Test case ID  | "   "   | Test case identification number   |
 | Test case title  | "   "      |  tittle or summary of the test case    |
+| Test case priority | "   "      |  priority of the test case based on the risks it evaluates   |
 | Test case description  | "   "  | description of the test case    |
 | Test case type | "   "      | test case type: white-box, black-box, user case, user acceptance...   |
-| Test case requirements | "   "  | list of the requirmentst that the test case exercices  |
-| prerequisites | "   "      | list of prerequisites to launch the test case	   |
+| Test case requirements | "   "  | list of the requirments that the test case exercices  |
+| prerequisites | "   "      | list of prerequisites or previous steps to launch the test case	   |
 | data | "   "      | identification of the data to be used in the test   |
 | expected result  | "   "  | description of the expected value to consider the test ok |
 
