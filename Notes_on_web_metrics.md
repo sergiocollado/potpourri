@@ -4,6 +4,7 @@ In case its is needed to check the implementation of any atributte, is ease to c
 
 https://caniuse.com/
 
+a good tutorial on Js: https://javascript.info/
 
 the reference for HTTP/1.1 is at:   https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.21
 
