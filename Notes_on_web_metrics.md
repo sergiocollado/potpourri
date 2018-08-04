@@ -687,7 +687,7 @@ if you want to add a method, it should be done by adding it to the prototype
  Particle.prototype.setColor( mycolor) = function {
   return this.color = mycolor; 
  }; 
- ´´´
+```
  
  to instantiate the class you do it by:
 
