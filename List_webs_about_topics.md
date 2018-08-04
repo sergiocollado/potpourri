@@ -100,7 +100,7 @@ PCB manufacturer: http://www.dicoel.es/
 
 PCB manufacturer: http://www.tefmontajes.com/
 
-
+Thermal calculators: http://www.novelconceptsinc.com/calculators.htm
 
 Electronics components supplier: http://www.stock-point.com/
 
@@ -355,6 +355,8 @@ http://www.electronicecircuits.com
 http://www.circuitstoday.com/
 
 http://www.learningaboutelectronics.com/Projects/
+
+circuits collection: https://www.smps.us/topologies.html
 
 about radios: http://www.sengpielaudio.com/calculator-volt.htm
 
