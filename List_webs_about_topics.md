@@ -52,6 +52,56 @@ PCB manufacturer: https://www.multi-circuit-boards.eu/en/index.
 
 PCB manufacturer: https://www.ninjacircuits.com/
 
+PCB manufacturer: www.saturnpcb.com
+
+PCB manufacturer: http://www.sunstone.com/
+
+PCB manufacturer: https://www.eurocircuits.com/
+
+PCB manufacturer: http://www.macelca.com/
+
+PCB manufacturer: http://www.2cisa.com/
+
+PCB manufacturer: https://elatesa.com/
+
+PCB manufacturer: http://www.futurlec.com/
+
+PCB manufacturer: https://www.multi-circuit-boards.eu/en/index.html
+
+PCB manufacturer: https://www.olimex.com/
+
+PCB manufacturer: https://www.ourpcb.com/
+
+PCB manufacturer: http://insyte-electronics.es/
+
+PCB manufacturer: http://www.surtel.es/index.php/es/
+
+PCB manufacturer: http://www.arteixotelecom.com
+
+PCB manufacturer: http://www.madritonic.es/
+
+PCB manufacturer: https://www.circuitosimpresos.net/
+
+PCB manufacturer: http://www.goiker.com/
+
+PCB manufacturer: http://www.p4q.com/
+
+PCB manufacturer: http://www.aperton.com/
+
+PCB manufacturer: http://www.kepar.es/
+
+PCB manufacturer: http://www.electronicacerler.com/
+
+PCB manufacturer: http://www.folegax.com/
+
+PCB manufacturer: http://www.sipel.es/
+
+PCB manufacturer: http://www.dicoel.es/
+
+PCB manufacturer: http://www.tefmontajes.com/
+
+
+
 Electronics components supplier: http://www.stock-point.com/
 
 electronic components: https://product.tdk.com/info/en/products/index.html
@@ -303,6 +353,8 @@ https://www.electroschematics.com/
 http://www.electronicecircuits.com
 
 http://www.circuitstoday.com/
+
+http://www.learningaboutelectronics.com/Projects/
 
 about radios: http://www.sengpielaudio.com/calculator-volt.htm
 
