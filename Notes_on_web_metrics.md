@@ -680,6 +680,22 @@ Use the **alt** tag.
   this.color=color;
  }
  ```
+if you want to add a method, it should be done by adding it to the prototype
+
+```javascript
+ Particle.prototype.setColor( mycolor) = function {
+  return this.color = mycolor; 
+ }; 
+ ´´´
  
+ to instantiate the class you do it by:
+
+```javascript
+var myMass = 5, myX= 3, myY= 10, myVx = 0, myVy=3, myColor= "blue"; 
+
+//instantiation of Particle classw:
+var myparticle= new Particle( myMass, myX, myY, myVx, myVy, myColor);
+```
+
   
  
