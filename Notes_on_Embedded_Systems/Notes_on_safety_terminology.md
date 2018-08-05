@@ -1635,7 +1635,7 @@ And system risks as:
   - test plan document
   - test cases
   - test design specification
-  - tools
+  - tools & testware
   - static and dynamic testing
   - error logs and execution logs
   - problem reports and corrective actions
