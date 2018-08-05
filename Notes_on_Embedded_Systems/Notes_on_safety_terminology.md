@@ -461,8 +461,6 @@ If there is significant confidence to overcome all those challenges, the the fol
  - **Testing**: Evaluation of the performance of the systems, so it can be determined if it reaches the expected goals. Validation, verification and test, riks and acceptance reports. 
  
  
-  
- 
  
  
 
@@ -541,6 +539,7 @@ Follow recomendations for implementing the system.
 - Test functions (unit testing) with wrong, and bad data- a program should behave sensibly even if the user don't.
 - Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). (test documentation must comply wit the ieee 829 standard)
 - CSP: Concurrent Sequence Programming (techniques)
+- poka yoke
 
 ## Defensive programming
 
@@ -909,6 +908,10 @@ Testing depends on the context. A safe-critical system test is not at all the sa
 **7- Absence of errors falacy: Failure-free test doesn't proof failure-free system** <br>
 Even if no defects are found, it doesn't proof that the system is usable, or complies with the end-user expectations. As previously stated testing only increases the asurance of less possible errors.
 
+## THE DEVELOPMENT - TESTING RATIO
+
+ ... Work in progres .. but the recommendation is... two hours testing per each development hour.
+ 
 
 ## TEST LEVELS
 
@@ -1103,8 +1106,6 @@ What would be the boundary values to test the input acceptance?
 
 ```
 
-
-
 ```
 EXAMPLE:
 Following with the previous example: 
@@ -1248,8 +1249,14 @@ of the system... as the most clear example is the inclusion of test points or te
 
 reference: https://www.edn.com/electronics-blogs/all-aboard-/4434254/Designing-testability-into-a-PCB
 
-## TEST PROCESS STEPS and ACTIVITIES
+## Poka yoke
 
+Poka yoke means "error-proof" in japanese. ... this technique, stands for example on settng different (not-compatible) connectors
+in the electronic-design/hardware of the system, so it is impossible to wire the hardware in a incorrect way. 
+
+reference: https://toughnickel.com/industries/Poka-Yokemistakeproofing
+
+## TEST PROCESS STEPS and ACTIVITIES
 
 At the testing context, the first action to do, is to define the **Test Plan** for that, several key points have to
 be defined:
@@ -1259,7 +1266,6 @@ be defined:
  - Test implementation and execution
  - Exit criteria, evaluation and reports.
  - Test clousure and activities.
- 
  
 ### Test planning and control 
 
