@@ -407,6 +407,8 @@ https://www.amazon.com/gp/search?ie=UTF8&camp=1789&creative=9325&index=books&key
 
 https://www.bbc.com/education/examspecs/zwtp6fr
 
+https://web.pa.msu.edu/courses/2000fall/phy232/lectures/index.html
+
 Simulation
 
 - http://mw.concord.org/modeler/showcase/index.html
