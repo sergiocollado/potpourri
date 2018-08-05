@@ -481,7 +481,7 @@ much easily the pernicious event.
 #### User-proof (aka fool-proof)
  A system must behave sensibly even if the user doesn't. Designers assume that the user at some point will use incorrect, malformed, and bogus inputs. So he has to code error-proof inputs, and emit **error mesages**, that must be: clear, specific, intuitive, unambigous, effective, detailed, explicit and that don't require to look up error codes. The message must be as accurate as possible, to the problem, so it can be detected and corrected with ease. Wrong input to the system must be always tested.
  
-#### Avoid Dangerous implementations
+#### Avoid dangerous implementations
 
  Users should not gain access to the inners of the system/program - that is: libraries, internal states, internal values, or pointer to data structures ... The interfece with the user should be that, and be probed against loopholes.
  
@@ -1252,7 +1252,7 @@ reference: https://www.edn.com/electronics-blogs/all-aboard-/4434254/Designing-t
 ## Poka yoke
 
 Poka yoke means "error-proof" in japanese. ... this technique, stands for example on settng different (not-compatible) connectors
-in the electronic-design/hardware of the system, so it is impossible to wire the hardware in a incorrect way. 
+in the electronic-design/hardware of the system, so it is impossible to wire the hardware in a incorrect way. For example: a SD memory card only has a position that fits, so actually it is not possible to put it wrong without realsize of the mistake (at least it should be pretty difficult... ) 
 
 reference: https://toughnickel.com/industries/Poka-Yokemistakeproofing
 
