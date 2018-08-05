@@ -220,25 +220,24 @@ https://www.micrium.com/books/ucosii/
 
 http://www.sohar.com/proj_pub/download/y2ktest.pdf
 
-**SAFE-CRITICAL SYSTEM** Is a system that under misfunction, can result in an injury or loss of a peoples life, a damage to a material propierty, or an enviroment harm.
+**SAFE-CRITICAL SYSTEM** Is a system that under misfunction, can result in an injury or loss of people's life, a damage to material or propierty, or an enviroment harm.
 
  Safety-critical systems design involves: software, hardware and human factors.
  
  According to its reliability regimes, there are the following classifications:
  
- - **Fail-operational systems**: They continue to operate even when their control systems fail. Examples are: elevators, automotive electronic throttle control, braking systems, circuit-breakers, ..
+ - **Fail-operational systems**: They continue to operate even when their control systems fail. Examples are: elevators, automotive electronic throttle control, braking systems, circuit-breakers  ...
  - **Fail-soft systems**: they continue operation with a reduced efficiency even in the presence of a failure.
  - **Fail-safe systems**: they become safe when they cannot perform its function. Medical devices, usually are found in this category, for example a heart-pump: when it cannot work, it warns the medical personal, as the safety interval, is long enough, the live of the patient is not in thread.
- - **Fail-Passive systems**: As a helmet or shield.
- - **Fault-tolerant sytems**: they continue to operate even when faults are present on the system. 
+ - **Fail-Passive systems**: As a helmet or a shield.
+ - **Fault-tolerant sytems**: they continue to operate even when faults are present in the system. 
  
  
  Reference: https://en.wikipedia.org/wiki/Safety-critical_system
  
  TODO: SOTIF - Safety of the Intended Functionality -- ADD INFO
 
-**FAULT TOLERANT SYSTEM**: Is a system that performs correctly, although might have some errors or faults in it. Usually this is
-achieved by means of repeated computations (repetition in time), redundant systems (repetition in components), and monitoring data.
+**FAULT TOLERANT SYSTEM**: Is a system that performs correctly, although might have some internal errors or faults in it. Usually this is achieved by means of repeated computations (repetition in time), redundant systems (repetition in components), and monitoring the system and the system data.
 
 RECOVERING FROM ERRORS:
 For recovering from errors there are two aproaches:
@@ -283,6 +282,11 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 
 ## SOME CONCEPTS CLARIFICATIONS:
 
+
+**Safety** is build-in in the system as first step, when it is designed... a system that aims to achieve safety through building outer layers, is not a good design.
+
+**Safety** involves the **whole lifecycle of the system**: not only maintenace must be observed as defined, or redefined in case or need. Methods to evaluate, record, and log normal work of the system, and of course failures of the system must be present for study and evaluation. An in event of unsafety is detected even recalls must be done. 
+
 **Safety** is the concept related to freedom from accidents and material/propierties/equipment damage and looses from the given system.
 
 **Safety** is NOT **Reliability**!! Reliability is the correctness of a system performing it's intended duty/function during a consecutive period.
@@ -292,10 +296,6 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 **Safety** and **Availability** are DO NOT imply each other: the safest airplane, is that one never takes off... A system that is working at a given moment, doesn't imply it is safe. The opposite case, the lack of availability, also doesn't need to be true: an airbag for an automotive system, can be very safe, but once it is triggered, it is not available anymore; the triggering of the airbag, can even result on the system fallback, to block the car, due it is not safe; that is: entering a safe operation mode status, after an unexpected event that compromises the system safety. 
 
 **working** is NOT the same as **safe**
-
-**Safety** is build-in in the system as when it is designed... a system that aims to achieve safety through building outer layers, is not a good design.
-
-**Safety** involves the **whole lifecycle of the system**: not only maintenace must be observed as defined, or redefined in case or need. Methods to evaluate, record, and log normal work of the system, and of course failures of the system must be present for study and evaluation.
 
 A **Non-secure** system is also a **Non-safety** system, as it is susceptible of malicious intends and actions.
 
@@ -442,8 +442,6 @@ Each application specific safety standard has its own characteristics, but all t
 - The safety evaluation is whole life-cycle work, that must be present and evaluated at all the stages of the life-cycle, and that 
 requires of analisys, records and feedback of the development, testing and field experience on the system use. This is to obtain a continous feedback on the system that allows to ensure its safety.
 
-
-
 # SYSTEM DEVELOPMENT LIFE CICLE
 
 There are quite a few ways for a system development project; although at least the following steps always should be considered:
@@ -459,10 +457,7 @@ If there is significant confidence to overcome all those challenges, the the fol
  - **Development**: Implementation of the system, an the different modules it is made of: hardware, software, ... user interface, communication protocols, power supplies, logging system, metrics of the system. Also includes the project documentation, release notes, use instructions, manuals and learning lessons.
  
  - **Testing**: Evaluation of the performance of the systems, so it can be determined if it reaches the expected goals. Validation, verification and test, riks and acceptance reports. 
- 
- 
- 
- 
+  
 
 # PROGRAMMING TECHNIQUES:
 
@@ -1731,7 +1726,6 @@ ref: https://en.wikipedia.org/wiki/Genesis_(spacecraft)
 
 ### Mariner1
 
-
 Examples of safety-critical systems[edit]
 critical infrastructures monitoring systems[edit]
 Circuit breaker
@@ -1912,7 +1906,7 @@ sloc - source lines of code.
 
 BER - byte error Rate
 
-STAMP - Systems Theoretic Accident Model&Processes
+STAMP - Systems Theoretic Accident Model & Processes
 
 SLA - Service Level Agreement. (to check the availability of the system).
 
@@ -1958,6 +1952,7 @@ ITU
 BOOKS and REFERENCES
 =======================
 
+safeware -
 
 KENT BECK - Test Driven Development: BY EXAMPLE 
 
