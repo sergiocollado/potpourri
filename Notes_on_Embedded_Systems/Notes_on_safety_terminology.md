@@ -536,6 +536,18 @@ Follow recomendations for implementing the system.
 - CSP: Concurrent Sequence Programming (techniques)
 - poka yoke
 
+references and further readings:
+
+B. Stroustrup, Herb Sutter, and G. Dos Reis: A brief introduction to C++’s model for type- and resource-safety.
+
+
+D. Abrahams. Exception-Safety in Generic Components.  https://www.boost.org/community/exception_safety.html
+
+
+H. Sutter and A. Alexandrescu. C++ Coding Standards. Addison-Wesley 2005.
+
+
+
 ## Defensive programming
 
 Defensive programming is a defensive coding style intended to ensure the continuing function of a program under unforeseen circunstances. This code style is usually used in systems with need high availability, safety and security. Techniques include error function handling for as much error types as possible and the use of exeptions.
