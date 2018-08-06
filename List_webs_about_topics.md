@@ -100,6 +100,12 @@ PCB manufacturer: http://www.dicoel.es/
 
 PCB manufacturer: http://www.tefmontajes.com/
 
+PCB manufacturer: https://www.firstpcb.com
+
+PCB supplier: http://www.allpcb.com/   ... a bit strange this one..
+
+Other PCB supplier: https://www.multi-circuit-boards.eu/en/index.html
+
 Thermal calculators: http://www.novelconceptsinc.com/calculators.htm
 
 Electronics components supplier: http://www.stock-point.com/
@@ -332,11 +338,6 @@ tiny AVR simulator:  https://sourceforge.net/projects/avrsimu/
 
 cool site about electronics: https://www.mikrocontroller.net
 
-PCB supplier: http://www.allpcb.com/
-
-Other PCB supplier: https://www.multi-circuit-boards.eu/en/index.html
-
-and other, ..  https://www.allpcb.com/  ... a bit strange this one..
 
 general radio electronics stuff:   http://www.radio-electronics.com/
 
