@@ -536,6 +536,30 @@ Follow recomendations for implementing the system.
 - CSP: Concurrent Sequence Programming (techniques)
 - poka yoke
 
+
+ACcording to Straoup Book:
+
+"tricky as error recovery.
+Successful fault-tolerant systems are multilevel. Each level copes with as many errors as it can
+without getting too contorted and leaves the rest to higher levels. Exceptions support that view.
+Furthermore, terminate() supports this view by providing an escape if the exception-handling mechanism
+itself is corrupted or if it has been incompletely used, thus leaving exceptions uncaught.
+Similarly, noexcept provides a simple escape for errors where trying to recover seems infeasible.
+Not every function should be a firewall. That is, not every function can test its preconditions
+well enough to ensure that no errors could possibly stop it from meeting its postcondition. The reasons
+that this will not work vary from program to program and from programmer to programmer.
+However, for larger programs:
+[1] The amount of work needed to ensure this notion of ‘‘reliability’’ is too great to be done
+consistently.
+[2] The overhead in time and space is too great for the system to run acceptably (there will be
+a tendency to check for the same errors, such as invalid arguments, over and over again).
+[3] Functions written in other languages won’t obey the rules.
+[4] This purely local notion of ‘‘reliability’’ leads to complexities that actually become a burden
+to overall system reliability.
+However, separating the program into distinct subsystems that either complete successfully or fail
+in well-defined ways is essential, feasible, and economical."
+
+
 references and further readings:
 
 B. Stroustrup, Herb Sutter, and G. Dos Reis: A brief introduction to C++’s model for type- and resource-safety.
