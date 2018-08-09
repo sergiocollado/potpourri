@@ -271,7 +271,18 @@ to the definition of electric field is equal to **q** times the electric force f
 <img src="https://rawgit.com/sergiocollado/potpourri/master/image/Force_from_an_electric_field.svg?sanitize=true" style="border:1px solid black" alt="equation of the electric field 2">
 <br>
 
+## Field lines
 
+ Is common to represent the influence of a electric field by a drawing of its 'field lines', those lines represent the direction in which a positive field charge would if placed in that electric field.
+ 
+ The electric lines always comply with: 
+  - They always start in positive charged particles (sources)
+  - They always end in negative charged particles (sinks)
+  - Electric lines never cross each other
+  - The density of the electric lines is proportional to the strengh of the electric field
+  - The field lines are always tangent to the electric field at each of their points.x
+  
+  
 <br>
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/field_linespng.png"  alt="field lines image">
 <br>
