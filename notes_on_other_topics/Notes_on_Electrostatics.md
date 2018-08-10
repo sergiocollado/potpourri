@@ -428,5 +428,61 @@ Simulation
 
 - http://mw.concord.org/modeler1.3/mirror/electrostatics/electroscope.html
 
+references:
+
+https://web.archive.org/web/20060406230926/http://physics.nad.ru/Physics/English/top10.htm
+
+https://es.wikipedia.org/wiki/Experimento_de_Millikan
+
+http://muchomas.lassp.cornell.edu/8.04/Lecs/lec_Millikan/Mill.html
+
+
+## HOW WAS KNOWN THE ELECTRIC CHARGE ON AN ELECTRON?: THE MILLIKAN EXPERIMENT
+
+This experiment, done in1909 by Robert Millikan and Harvey Fletcher, was the basis to calculate the electric charge on an electron. Millikan was awarded the Novel
+price in 1923
+
+The basis of the experiment was to evaluate the forces in action at small oil drops, taking into account its gravitional pull (downwards), its bouyancy (upwards), 
+and the electric charges, when the oil drops were in between two electrodes that generated a known uniform electric field. The oil drops were charged by friction, when
+they were spryed.
+
+The experiment went as follows: 
+
+* The oil drops were spryed in the space between the electrodes, but with the electric field off.
+
+* During the falling of the oil drops, they would soon reach their terminal speed (the equilibrium speed between the falling and the air friction of the oild drops)
+At the moment the terminal speed is reached, the oil particle don't have any aceleration, so the forces on it are in equilibrium, balacing each others. 
+
+The friction force due to the air, can be calculated, according to de stokes law as:
+
+Fd= 6 · pi · radius · velocity · air_viscosity
+
+- the velocity, stands for the terminal velocity of the oil drop.
+- the radius is the radius of the oil drop
+- the viscosity is the viscoity of the air
+
+* The falling force would be the combined effect of the gravity (downwards) and the bouyancy of the oil drop in the air (upthrust) 
+
+ - the gravity force is equal to the volume of the oil drop times its densitsy, times the gravity constant
+ F_g = 4/3 · pi · radius^3 · g · oil_density
+
+- the bouyancy force is equal to the volume of air displaced by the oil drop. The minus signs represents the force is in upward direction
+ F_b = -  4/3 · pi · radius^3 · g · air_density
+
+The overall force of those two effects is:
+
+ F_gb= 4/3 · pi · radius^3 · g · (oil_density - air_density)
+
+So at this point, without electric field, and once reached the terminal velocity, thus the acceleration is null, as a result of the forces are balacing each other.
+
+So: 
+
+   Fd = F_gb
+
+Fd= 6 · pi · radius · terminal_velocity · viscosity  =  4/3 · pi · radius^3 · g · (oil_density - air_density)
+
+radius^2 =  6·3/4 (=9/2) · terminal_velocity · viscosity  / g /  (oil_density - air_density)
+
+once the radius is calculated, is easy to calculate F_gb
 
 
