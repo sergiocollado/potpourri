@@ -442,7 +442,12 @@ def foo(parameter_lit):
    operation_n
 ```
 
-### OPTIONAL PARAMETERS and DEFAULT VALUES
+Is common that the first line after the function definitions is what is known as **docstring**, it usually is a string that
+explains the goal, use and other notes about the function. It can be accessed by means of `functionName.__doc__' 
+
+
+### dEFAULT VALUES
+
 
 
 
