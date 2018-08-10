@@ -497,6 +497,11 @@ For using libraries, it is need to declare it with the code word: **import** ...
 import Super_library as S_lib
 ```
 
+
+```python
+import numpy as np
+```
+
 reference: https://docs.python.org/3.0/library/index.html
 
 
