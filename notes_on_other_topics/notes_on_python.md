@@ -636,7 +636,7 @@ $>> C:\winuser\> py -m pip install pytube
 ```
 
 
-# oter packages
+# OtHer packages
 
 http://www.numpy.org/
 
@@ -645,4 +645,31 @@ https://www.scipy.org/
 http://scikit-learn.org/stable/
 
 https://matplotlib.org/
+
+# ANACONDA INSTALATION
+
+
+![anaconda_install_01](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
+
+
+![anaconda_install_02](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
+
+
+![anaconda_install_03](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
+
+
+![anaconda_install_04](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
+
+
+![anaconda_install_05](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
+
+
+![anaconda_install_06](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
+
+
+![anaconda_install_07](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
+
+
+![anaconda_install_08](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
+
 
