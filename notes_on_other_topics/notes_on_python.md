@@ -649,27 +649,24 @@ https://matplotlib.org/
 # ANACONDA INSTALATION
 
 
-![anaconda_install_01](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
+![anaconda_install_01](https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_001.PNG)
 
 
-![anaconda_install_02](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
+![anaconda_install_02](https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_002.PNG)
 
 
-![anaconda_install_03](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
+![anaconda_install_03](https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_003.PNG)
 
 
-![anaconda_install_04](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
+![anaconda_install_04](https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_004.PNG)
 
 
-![anaconda_install_05](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
+![anaconda_install_05](https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_005.PNG)
 
 
-![anaconda_install_06](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
+![anaconda_install_06](https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_006.PNG)
 
 
-![anaconda_install_07](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
-
-
-![anaconda_install_08](https://github.com/sergiocollado/potpourri/blob/master/image/and-now-for-something-completely-different-1.jpg)
+![anaconda_install_07](https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_007.PNG)
 
 
