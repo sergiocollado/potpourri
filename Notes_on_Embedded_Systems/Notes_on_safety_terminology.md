@@ -119,7 +119,7 @@ Usually, these systems are classified into the following groups:
  - **bussines critical**: designed to avoid a missfunctions that would result or imply huge economic/bussines impact or material losses, usually as a result of a service interruption. Example: bank, accounting and payment systems, stock-trading systems.
  - **security critical**: designed to protect data or sensible information. example: medical databases, customers data ...
 
-**Critical systems must always pin-point the worst case escenario, and also data throuputs and latencies!!**
+**Critical systems must always identify and pin-point the worst case escenario, and also data throuputs and latencies!!**
 
 
 Referencess:
@@ -430,6 +430,21 @@ RTCA DO-332, Object-Oriented Technology and Related Techniques Supplement to DO-
 RTCA DO-333, Formal Methods Supplement to DO-178C and DO-278A
 
 http://listofavailabledocs.realviewdigital.com/?i=List%20of%20Available%20Documents-December%202017#folio=40
+
+
+## relevant literature with software development
+
+Understanding and controlling software costs  --Published in: IEEE Transactions on Software Engineering ( Volume: 14, Issue: 10, Oct 1988 )
+
+
+Measuring software failure risk: Methodology and an example -- https://www.sciencedirect.com/science/article/pii/0164121294900345
+
+
+Software Reliability Handbook -- https://books.google.dk/books?id=K7n52MOlDQsC&pg=PA520&lpg=PA520&dq=boehm+and+papaccio&source=bl&ots=BLsBcBQGpK&sig=Al0R1Vp0NeIdFxjzbiMSnjXHCEQ&hl=en&sa=X&ved=2ahUKEwiqlPP_s-TcAhWLKlAKHRZsB7YQ6AEwCHoECAMQAQ#v=onepage&q=boehm%20and%20papaccio&f=false
+
+Making Software: What Really Works, and Why We Believe It -- https://books.google.dk/books?id=DxuGi5h2-HEC&pg=PA573&lpg=PA573&dq=boehm+and+papaccio&source=bl&ots=0WswskO6lT&sig=XXnHQR66VsnNthS9EYi8IrgJtak&hl=en&sa=X&ved=2ahUKEwiqlPP_s-TcAhWLKlAKHRZsB7YQ6AEwCXoECAEQAQ#v=onepage&q=boehm%20and%20papaccio&f=false
+
+
 
 ## Common points of the safety standards
 
