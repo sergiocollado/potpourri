@@ -591,6 +591,20 @@ H. Sutter and A. Alexandrescu. C++ Coding Standards. Addison-Wesley 2005.
 
 Defensive programming is a defensive coding style intended to ensure the continuing function of a program under unforeseen circunstances. This code style is usually used in systems with need high availability, safety and security. Techniques include error function handling for as much error types as possible and the use of exeptions.
 
+Example of safe funtion:
+
+```c
+int16 safeSum ( int16 a, int16 b)
+{
+ //protection for overflow results
+    if (((int)a + (int)b) > 32767)
+        return 32767;
+    if (((int)a + (int)b) < -32768)
+        return -32768;
+    return a+b;
+}
+```
+
 ### Techniques:
 
 #### Intelligent code reuse:
