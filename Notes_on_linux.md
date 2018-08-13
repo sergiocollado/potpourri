@@ -112,11 +112,11 @@ The linux file system usually has the following file hierarchy structure:
     - **/sbin** system binaries
     - **/etc** configuration files
     - **/dev** device files*
-    - **/proc** processes information
+    - **/proc** information about the system and running processes
     - **/var** variable files (as logs)
     - **/tmp** temporary files
     - **/usr** user programms
-    - **/home** home directorie
+    - **/home** home directory
     - **/boot** bootloader files
     - **/lib** system libraries
     - **/opt** optional add-ons
@@ -513,6 +513,26 @@ reference: https://uwsgi-docs.readthedocs.io/en/latest/
 ```bash
 $: dpkg -l
 ```
+
+## How to instal ncurses
+
+```bash
+Z>sudo apt-get install libcurses5-dev libcurses5w-dev
+```
+
+
+## How to install qt4
+
+```bash
+$> sudo apt-get install qt4-qmake libqt4-dev
+```
+
+http://doc.qt.io/archives/qt-4.8/install-x11.html
+
+or 
+
+https://stackoverflow.com/questions/47465878/install-qt-4-ubuntu-17-04
+
 
 
 Links:
