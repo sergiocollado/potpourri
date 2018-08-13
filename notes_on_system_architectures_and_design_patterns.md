@@ -209,6 +209,23 @@ its complexity. This is done by means of encapsulating the underliyign system cl
 So, the facade pattern, removes the need of the user or client class to manage by their own the complexities of the target system,
 resulting in less coupling between the target system, and the user-client class.
 
+## Observer pattern - (publish-subscribe pattern)
+
+In the case of a data that needs to be followed and updated, insted of polling the data at certains time intervals.
+
+There will be two classes involved in this pattern: the observer and the subscriber.
+
+the observer is the class in in charge to communicate the interested parties about the new datas. For that a subject observer interface is needed, that have three methods:
+
+- Subscribe(): allow a new obeserver to subscribe 
+- Unsubscribe(): allow an observer to unsubscribe
+- Notify post(): notify all the observers a new data
+
+Of course this observer superclass will have means to keep track of all the observers.
+
+Between the observer and the subscriber, can exists another class: the observer interface, that makes sure that all the observers, 
+behave in the correct way. Only one method is needed: Update(). This method, makes sure that when the data changes all the observers
+are reported
 
 ## Other patterns, strategies & tricks of the trade
 
