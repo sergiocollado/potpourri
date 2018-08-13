@@ -161,37 +161,27 @@ class myMatrixFactory {
 };
 
 class generalMatrix: public myMatrixFactory
-{
-
-};
+{ /* ... */  };
 
 class sparseMatrix : public myMatrixFactory 
-{
+{ /* ... */  };
 
-};
 
 class vandermondeMatrix: public myMatrixFactory
-{
+{ /* ... */  };
 
-};
 
 class diagonalMatrix: public myMatrixFactory 
-{
+{ /* ... */  };
 
-};
 
 class triangularMatrix: public myMatrixFactory{
-{
-
-};
-
-
+{ /* ... */  };
 
 
 int main(int argc, char *argv[])
-{
-....
-}
+{ /* ... */  };
+
 ```
 
 ## Adapter pattern
