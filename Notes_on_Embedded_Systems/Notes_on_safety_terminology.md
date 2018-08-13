@@ -1,7 +1,10 @@
 # NOTES ON EMBEDDED SYSTEMS SAFETY
 ## CODE WARRIORS, TEST MONKS, AND MANAGER ONIs
-<hr>
+### Unselected readings
+#### Read at your own risk
 
+<hr>
+<hr>
 
  # BASIC CONCEPTS and DEFINITIONS:
  
@@ -220,6 +223,9 @@ https://www.micrium.com/books/ucosii/
 
 http://www.sohar.com/proj_pub/download/y2ktest.pdf
 
+https://www.drexelbrook.com/support/faq/what-are-safety-systems
+
+
 **SAFE-CRITICAL SYSTEM** Is a system that under misfunction, can result in an injury or loss of people's life, a damage to material or propierty, or an enviroment harm.
 
  Safety-critical systems design involves: software, hardware and human factors.
@@ -232,10 +238,30 @@ http://www.sohar.com/proj_pub/download/y2ktest.pdf
  - **Fail-Passive systems**: As a helmet or a shield.
  - **Fault-tolerant sytems**: they continue to operate even when faults are present in the system. 
  
- 
  Reference: https://en.wikipedia.org/wiki/Safety-critical_system
  
  TODO: SOTIF - Safety of the Intended Functionality -- ADD INFO
+ 
+ **Safety Instrumented function** the task that needs to achieve a safe state for the given equipment, EUC (Equipment under control), in regards with a hazarous event.
+ 
+ **Safety Integrity** Is the probability that a safety instrumented function (SIF) performs satisfactorily the required safety functions under all the stated conditions within a stated period of time.
+ 
+ So, this means, the probability the safety function will work as expected when it is needed!!
+ 
+ **Safety Integrity Level** it is a discrete level (one out of a possible four) for specifying the safety integrity requirements of the safety functions to be allocated to the E/E/PE safety-related systems
+ 
+ So, this means, safety Integrity level is a qualification measure of the performance required from a safety instrumented system to maintain or achieve the required safety state
+
+There are two basic elements associated with this measure:
+
+Hardware safety integrity: which is typically based upon random hardware failures can normally be estimated to a reasonable level of accuracy via probability of failure on demand (PFD).
+
+Systematic safety integrity: systematic integrity tends to be harder to quantify. This is due to the diversity of causes of failures; systematic failures may be introduced during the specification, design, implementation, operational and modification phase and may affect hardware as well as software
+
+ 
+ https://blogs.dnvgl.com/software/2017/05/what-is-safety-integrity-level-sil/
+ https://www.drexelbrook.com/support/faq/what-are-safety-systems
+ https://www.drexelbrook.com/learningzone/articles/what-is-sil-certification
 
 **FAULT TOLERANT SYSTEM**: Is a system that performs correctly, although might have some internal errors or faults in it. Usually this is achieved by means of repeated computations (repetition in time), redundant systems (repetition in components), and monitoring the system and the system data.
 
@@ -280,8 +306,7 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 <br>
 <br>
 
-## SOME CONCEPTS CLARIFICATIONS:
-
+## CONCEPTS CLARIFICATIONS:
 
 **Safety** is build-in in the system as first step, when it is designed... a system that aims to achieve safety through building outer layers, is not a good design.
 
@@ -338,10 +363,26 @@ Very low, low, medium, high, very high. With this classification then it is poss
 
 # STANDARDS AND NORMATIVES:
 
- 
- ## BASIC FOR SAFETY:
+  ## BASIC FOR SAFETY:
 
 IEC 61508 - standard for functional safety in electric and electronic systems
+
+IEC 61508 has several parts:
+
+ - Part 1: General requirements
+ - Part 2: Requirements for E/E/E safety related systems
+ - Part 3: software requirements
+ - Part 4: definitions and abreviations
+ - Part 5: Examples for determining safety integrity levels (SILs)
+ - Part 7: guidelines of application of parts 2 and 3
+ - Part 8: overview of tecniques and measures
+ 
+ 
+EN 60204-1 - Safety on Machinery - electrical equipment of machines. 
+
+IEC 62061 - Safety of machinery – functional safety of electrical, electronic and programmable control systems for machinery
+
+ANSI/ISA S84.01 Safety Instrumented Systems for the Process Industry Sector (Parts 1, 2 and 3)
 
 EN ISO 12100 - Concepts and principles for risk assesment.
  
@@ -349,9 +390,7 @@ ISO 31000 - standards for risk management:
  - ISO 31000 - Principles and guide lines for implementation.
  - ISO 31010 - Risk management, and risk assesment techniques. 
  - ISO Guide 73 - Vocabulary
- 
-EN 60204-1 - Safety on Machinery - electrical equipment of machines. Part 1 : General Requirements.
- 
+
  ## SAFETY STANDARDS:
 
 - IEC 61508 - General standard
@@ -369,9 +408,21 @@ EN 60204-1 - Safety on Machinery - electrical equipment of machines. Part 1 : Ge
 - MIL-STD 882 - Combat systems
 - IEC 60703 - Consumer products
 - EN 60950-1:200 + A2:2013 - Information technology equipment. Safety general Standards.
+- ISO 14118 - Safety on Machinery - prevention of unexpected start-up
 
 
-## RELATED REGULATIONS:
+## Common points of the safety standards
+
+Each application specific safety standard has its own characteristics, but all the safety standards share some key points:
+
+ - Identfication of hazards and risks for the system. A SIL (Safety Integrity level) is assigned based on the severity of the risk. A risk that has a great severity is assigned with a higher SIL level.
+ 
+ - The SIL grade implies the effort o engineering effort for working with that risk. According to the SIL level, the higher it is, it will imply more effor, the use of more analisys techniques, and the use of more mitigation actions or functions.
+
+- The safety evaluation is whole life-cycle work, that must be present and evaluated at all the stages of the life-cycle, and that 
+requires of analisys, records and feedback of the development, testing and field experience on the system use. This is to obtain a continous feedback on the system that allows to ensure its safety.
+
+## Related standards:
 
  (EMC) Directive 2014/30/EU   - https://ec.europa.eu/growth/sectors/electrical-engineering/emc-directive_en
  
@@ -385,7 +436,7 @@ EN 60204-1 - Safety on Machinery - electrical equipment of machines. Part 1 : Ge
  
  ISO 9001
 
-## Others
+## Other stadards to observe
 
 - ISO/IEC 15288: Systems life cycle process.
 - ISO/IEC 12207: - IEEE Std 12207 - Systems and software engineering - Software life cycle processes.
@@ -439,23 +490,13 @@ Understanding and controlling software costs  --Published in: IEEE Transactions 
 
 Measuring software failure risk: Methodology and an example -- https://www.sciencedirect.com/science/article/pii/0164121294900345
 
+safeware
 
 Software Reliability Handbook -- https://books.google.dk/books?id=K7n52MOlDQsC&pg=PA520&lpg=PA520&dq=boehm+and+papaccio&source=bl&ots=BLsBcBQGpK&sig=Al0R1Vp0NeIdFxjzbiMSnjXHCEQ&hl=en&sa=X&ved=2ahUKEwiqlPP_s-TcAhWLKlAKHRZsB7YQ6AEwCHoECAMQAQ#v=onepage&q=boehm%20and%20papaccio&f=false
 
 Making Software: What Really Works, and Why We Believe It -- https://books.google.dk/books?id=DxuGi5h2-HEC&pg=PA573&lpg=PA573&dq=boehm+and+papaccio&source=bl&ots=0WswskO6lT&sig=XXnHQR66VsnNthS9EYi8IrgJtak&hl=en&sa=X&ved=2ahUKEwiqlPP_s-TcAhWLKlAKHRZsB7YQ6AEwCXoECAEQAQ#v=onepage&q=boehm%20and%20papaccio&f=false
 
 
-
-## Common points of the safety standards
-
-Each application specific safety standard has its own characteristics, but all the safety standards share some key points:
-
- - Identfication of hazards and risks for the system. A SIL (Safety Integrity level) is assigned based on the severity of the risk. A risk that has a great severity is assigned with a higher SIL level.
- 
- - The SIL grade implies the effort o engineering effort for working with that risk. According to the SIL level, the higher it is, it will imply more effor, the use of more analisys techniques, and the use of more mitigation actions or functions.
-
-- The safety evaluation is whole life-cycle work, that must be present and evaluated at all the stages of the life-cycle, and that 
-requires of analisys, records and feedback of the development, testing and field experience on the system use. This is to obtain a continous feedback on the system that allows to ensure its safety.
 
 # SYSTEM DEVELOPMENT LIFE CICLE
 
@@ -516,6 +557,7 @@ Follow recomendations for implementing the system.
     - two persons rule: at least two persons must be familiar with the overall design, arquitecture, configuration, software and hardware.
     - input/output records, data and logs.
     - system error log
+    - use systems and sw watchdogs, heart-beats, and system memory & resources monitors for detection of faults on the system.
     - checking of system correctness.
     - Positive correct working report: the sistem must report that it is working as expected and correctly.
     - At least one safe state.
