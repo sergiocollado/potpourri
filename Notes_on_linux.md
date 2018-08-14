@@ -517,8 +517,10 @@ $: dpkg -l
 ## How to instal ncurses
 
 ```bash
-Z>sudo apt-get install libcurses5-dev libcurses5w-dev
+Z>sudo apt-get install libcurses5-dev libcursesw5-dev
 ```
+
+ref: https://www.cyberciti.biz/faq/linux-install-ncurses-library-headers-on-debian-ubuntu-centos-fedora/
 
 
 ## How to install qt4
@@ -533,6 +535,9 @@ or
 
 https://stackoverflow.com/questions/47465878/install-qt-4-ubuntu-17-04
 
+# BUILDROOT
+
+http://buildroot.net/downloads/manual/manual.html#_advanced_usage
 
 
 Links:
