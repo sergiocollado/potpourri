@@ -658,12 +658,27 @@ http://www.2dcurves.com/
 
 http://www.random-art.org/about/
 
+http://math.mit.edu/classes/18.013A/HTML/index.html
+
+https://mysite.du.edu/~jcalvert/railway/degcurv.htm
+
+http://euclidsmuse.com/
+
+https://www.intmath.com/applications-differentiation/8-radius-curvature.php
+
+http://tutorial.math.lamar.edu/Classes/CalcIII/Curvature.aspx
 
 # PHYSICS
+
+https://www.chegg.com/homework-help/engineering
+
+http://www.a-levelphysicstutor.com/optics-concav-mirrs.php
 
 http://www1.phys.vt.edu/~takeuchi/relativity/
 
 http://www.sc.ehu.es/sbweb/fisica/default.htm
+
+https://mysite.du.edu/~jcalvert/railway/degcurv.htm
 
 and falstad :)
 
