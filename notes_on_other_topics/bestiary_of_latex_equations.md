@@ -4,6 +4,12 @@
 <!--- template: --->
 <!--- <br> <img  src="https:/   .svg?sanitize=true" alt="Alterantive_description"> <br> --->
 
+Sigmoid function
+
+```latex
+f(x) =  \frac{1}{1 + e^{-x}}
+```
+
 BAYES THEOREM
 
 ```latex
