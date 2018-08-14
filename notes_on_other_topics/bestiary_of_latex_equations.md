@@ -10,6 +10,8 @@ Sigmoid function
 f(x) =  \frac{1}{1 + e^{-x}}
 ```
 
+<br> <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/sigmoid.svg?sanitize=true" alt="sigmoid function"> <br> 
+
 BAYES THEOREM
 
 ```latex
