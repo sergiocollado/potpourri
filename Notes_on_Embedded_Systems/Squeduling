@@ -969,9 +969,25 @@ for(int i; i<=v.size(); ++)  //print values
     cout<<"v["<<i<<"]== "<<v[i]<<'\n'; 
 ```
 
+LAMDA EXPRESSIONS 
+=================
+
+Lamda expressions are just a fitting way to express functors. 
+
+Parts:
+
+[capture] - identifies externals variables that will be possible to read. also if those variables will be passed by value or by 
+reference.
+
+(parameters) - parameters passed to the lambda function
+
+-> returntype declaration -- this specifies the return type
+
+{ lambda_function_statements; }
 
 
-
+you most probably want to store the function, the easyest way is to use the 'auto' keyword, to automatically asing the type to
+the lambda expression return
 
 
 
