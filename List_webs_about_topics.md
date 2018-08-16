@@ -643,6 +643,7 @@ https://www.die.net/earth/
 
 GPL MATHS:  https://glm.g-truc.net/0.9.8/index.html
 
+https://mcc.lip6.fr/bibliography.php
 
 http://www.mpfr.org/
 
@@ -678,6 +679,8 @@ http://www1.phys.vt.edu/~takeuchi/relativity/
 
 http://www.sc.ehu.es/sbweb/fisica/default.htm
 
+http://spiff.rit.edu/classes/
+
 https://mysite.du.edu/~jcalvert/railway/degcurv.htm
 
 and falstad :)
@@ -693,6 +696,10 @@ http://xahlee.info/SpecialPlaneCurves_dir/_curves_robert_yates/ry_001_astroid.ht
 http://xahlee.info/SpecialPlaneCurves_dir/Inversion_dir/inversion.html
 
 http://xahlee.info/SpecialPlaneCurves_dir/specialPlaneCurves.html
+
+http://spiff.rit.edu/classes/phys213/lectures/magwire/magwire_long_long.html
+
+http://www1.phys.vt.edu/~takeuchi/relativity/
 
 dipole curve:  http://xahlee.info/SpecialPlaneCurves_dir/Inversion_dir/inversion.html
 
@@ -715,6 +722,8 @@ SCADA—Supervisory Control And Data Acquisition
 http://www.digipal.eu/digipal/page/
 
 http://darwin-online.org.uk/manuscripts.html
+
+http://pares.mcu.es/
 
 # Internet, Web, ... characters and html5-utf-8, protocols, standardas and recomendations.
 
