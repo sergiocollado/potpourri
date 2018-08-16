@@ -669,6 +669,8 @@ https://www.intmath.com/applications-differentiation/8-radius-curvature.php
 
 http://tutorial.math.lamar.edu/Classes/CalcIII/Curvature.aspx
 
+http://spiff.rit.edu/classes/
+
 # PHYSICS
 
 https://www.chegg.com/homework-help/engineering
