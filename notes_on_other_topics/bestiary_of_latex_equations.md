@@ -234,7 +234,7 @@ FUNCTION CURVATURE
 ```
 
 <br>
-<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/curvature.svg.svg?sanitize=true" alt="curvature of a function">
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/curvature.svg?sanitize=true" alt="curvature of a function">
 <br>
 
 
