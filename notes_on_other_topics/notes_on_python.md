@@ -686,7 +686,12 @@ https://matplotlib.org/
 
 ![anaconda_install_13](https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_013.PNG)
 
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_010.PNG' alt='anaconda instal pic 14' width='400' >
 
-![anaconda_install_14](https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_014.PNG)
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_011.PNG' alt='anaconda instal pic 14' width='400' >
 
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_012.PNG' alt='anaconda instal pic 14' width='400' >
 
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_013.PNG' alt='anaconda instal pic 14' width='400' >
+
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_014.PNG' alt='anaconda instal pic 14' width='400' >
