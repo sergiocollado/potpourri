@@ -227,6 +227,18 @@ y =& \big(  k^2 - 2·f^2 + f^2· \sin (t)  \big)  \cdot \frac{ sin(t) }{b}
 \end{matrix}\right.
 ```
 
+FUNCTION CURVATURE
+
+```latex
+\frac{1}{R} = \frac{ \left | f{(x)}'' \right | }{\left (1 +   \left [ f{(x)}' \right ]^{2}  \right )^{\frac{3}{2}}}
+```
+
+<br>
+<img  src="https://rawgit.com/sergiocollado/potpourri/master/image/curvature.svg.svg?sanitize=true" alt="curvature of a function">
+<br>
+
+
+
 MATRIX TRANSFORMATION
 
 <br>
