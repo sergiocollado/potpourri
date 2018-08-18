@@ -48,7 +48,9 @@ Take into account, that there is a significative difference between the concepts
 
 **ACCIDENT**: The event of causing/receiving damage of any kind (either directly or indirectly): equipment damage, property damage, or damage to the enviroment, and human injuries or even deaths.
 
-**RISK**: Combination of the likehood on an accident and its severity.   Risk = probability(accident) * severity(accident)
+**RISK**: Is the combination of the likehood on an accident and its severity. That is to say, the chances of an accident to happen,  evaluated according of the potenctial damage that risk can do. As a mathematical expression it is usually evaluated as:
+
+Risk = probability(accident) * severity(accident)
 
 ISO 31000 - standards for risk management:
  - ISO 31000 - Principles and guide lines for implementation.
@@ -2304,3 +2306,13 @@ https://cdn.auckland.ac.nz/assets/ecm/documents/example-of-hazop.pdf
 BIBLIOGRAPHY:
 
 - Reliability Engineering Handbook; Kececioglu,Dimitri; Prentice-Hall, 1991.
+
+B. Stroustrup, Herb Sutter, and G. Dos Reis: A brief introduction to C++’s model for type- and resource-safety.
+
+
+D. Abrahams. Exception-Safety in Generic Components.  https://www.boost.org/community/exception_safety.html
+
+
+H. Sutter and A. Alexandrescu. C++ Coding Standards. Addison-Wesley 2005.
+
+
