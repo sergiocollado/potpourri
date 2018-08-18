@@ -649,30 +649,17 @@ https://matplotlib.org/
 # ANACONDA INSTALATION
 
 
-<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_001.PNG' alt='anaconda instal pic 1' width='35%' >
-
-<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_002.PNG' alt='anaconda instal pic 2' width='35%' >
-
-<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_003.PNG' alt='anaconda instal pic 3' width='35%' >
-
-<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_004.PNG' alt='anaconda instal pic 4' width='35%' >
-
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_001.PNG' alt='anaconda instal pic 1' width='375' >
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_002.PNG' alt='anaconda instal pic 2'  width='375'>
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_003.PNG' alt='anaconda instal pic 3' width='375' >
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_004.PNG' alt='anaconda instal pic 4'  width='375' >
 <img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_005.PNG' alt='anaconda instal pic 5' width='375' >
-
 <img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_006.PNG' alt='anaconda instal pic 6' width='375' >
-
 <img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_007.PNG' alt='anaconda instal pic 7' width='375' >
-
 <img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_008.PNG' alt='anaconda instal pic 8' width='375' >
-
 <img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_009.PNG' alt='anaconda instal pic 9' width='375' >
-
 <img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_010.PNG' alt='anaconda instal pic 10' width='375' >
-
 <img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_011.PNG' alt='anaconda instal pic 11' width='375' >
-
 <img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_012.PNG' alt='anaconda instal pic 12' width='375' >
-
 <img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_013.PNG' alt='anaconda instal pic 13' width='375' >
-
 <img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_014.PNG' alt='anaconda instal pic 14' width='375' >
