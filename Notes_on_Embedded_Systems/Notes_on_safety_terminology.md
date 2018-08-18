@@ -48,7 +48,7 @@ Take into account, that there is a significative difference between the concepts
 
 **ACCIDENT**: The event of causing/receiving damage of any kind (either directly or indirectly): equipment damage, property damage, or damage to the enviroment, and human injuries or even deaths.
 
-**RISK**: Is the combination of the likehood on an accident and its severity. That is to say, the chances of an accident to happen,  evaluated according of the potenctial damage that risk can do. As a mathematical expression it is usually evaluated as:
+**RISK**: Is the combination of the likehood on an accident and its severity. That is to say, the chances of an accident to happen,  evaluated according of the potenctial damage that risk can do. As a mathematical expression it is usually evaluated with the following formula:
 
 Risk = probability(accident) * severity(accident)
 
@@ -56,18 +56,22 @@ ISO 31000 - standards for risk management:
  - ISO 31000 - Principles and guide lines for implementation.
  - ISO 31010 - Risk management, and risk assesment techniques. 
  - ISO Guide 73 - Vocabulary
+ 
+ 
+**RISK ASSESMENT**: Is the analisys to identify and determine the possible situations or conditions that may end in an accident, thus there is a thread(hazard). If the risk assesment is quantitative, it needs two factors: the Risk(R) = magnitude of the potencial lost, the severity (s) and the probability (p) that lost happens.
 
-**RISK ASSESMENT**: Is the analisys to identify and determine the possible situations or conditions that may end in an accident, thus there is a thread(hazard). If the risk assesment is quantitative, it needs two factors: the Risk(R) = magnitude of the potencial lost (L) and the probability (p) that lost happens.
+R(accident_i) = P(accident_i) · Severity(accident_i)
 
-Ri = Li * p(Li);
+ **Risk matrix**: In practice the risk formula is difficult to apply, due the probablities of given accident are difficult to pin-point with an exact number, so it is common to apply categories to the probability and severity, so instead of numbers they are classified in ranges, for example is common to evaluate: Very low, low, medium, high, very high. With this classification then it is possible to make what is refered to, as a risk matrix, or risk table. 
+
 
 **HAZARD**: Set of combinations of conditions or requisites or enviroments or events that lead to an accident
 
 **ERROR/MISTAKE**: A human being can make an error(mistake), with results in a **defect** in the system (fault, bug) in the program or code, or in a document. The defect in the system, might never be noticed, or can result in the case that the system might fail its expected function (or do something it shouldn't) causing a failure. Defects in software, systems or documents can result in failures, but no all defects do.
 
-</br>
+<br>
 **(human) ERROR -> (code) DEFECT -> (system) FAILURE**
-</br>
+<br>
 
 **FAILURE**: A failure is the misperformance or lack of ?h?ability of a component to comply with its designed function, during certain
 time, or under specified enviromental system conditions. 
