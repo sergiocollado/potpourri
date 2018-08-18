@@ -83,6 +83,13 @@ Schema.org is a collaborative, community activity with a mission to create, main
 https://schema.org/
 
 
+to get custom search from google you can use:
+
+http://www.google.com/search?q=soccer
+
+Replace the search term in the URL with %s.
+For example, if you were using the Google search results URL, your search engine address would be http://www.google.com/search?q=%s.
+
 # Styling and CSS
 
 ## display
