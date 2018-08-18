@@ -655,8 +655,7 @@ https://matplotlib.org/
 
 <img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_003.PNG' alt='anaconda instal pic 3' width='35%' >
 
-<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_004.PNG' alt='anaconda instal pic 4' width='35%' 
->
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_004.PNG' alt='anaconda instal pic 4' width='35%' >
 
 <img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_005.PNG' alt='anaconda instal pic 5' width='375' >
 
