@@ -74,6 +74,14 @@ The basic ones are:
 <meta property="og:image" content="http://ia.media-imdb.com/images/UrImage.jpg" />
 ```
 
+# For search engines
+
+Custom search: https://support.google.com/customsearch/answer/4513751?hl=en&ref_topic=4513742#
+
+Schema.org is a collaborative, community activity with a mission to create, maintain, and promote schemas for structured data on the Internet, on web pages, in email messages, and beyond.
+
+https://schema.org/
+
 
 # Styling and CSS
 
