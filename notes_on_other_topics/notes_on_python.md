@@ -686,12 +686,21 @@ https://matplotlib.org/
 
 ![anaconda_install_13](https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_013.PNG)
 
-<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_010.PNG' alt='anaconda instal pic 14' width='400' >
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_006.PNG' alt='anaconda instal pic 6' width='400' >
 
-<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_011.PNG' alt='anaconda instal pic 14' width='400' >
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_006.PNG' alt='anaconda instal pic 6' width='400' >
 
-<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_012.PNG' alt='anaconda instal pic 14' width='400' >
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_007.PNG' alt='anaconda instal pic 7' width='400' >
 
-<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_013.PNG' alt='anaconda instal pic 14' width='400' >
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_008.PNG' alt='anaconda instal pic 8' width='400' >
+
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_009.PNG' alt='anaconda instal pic 9' width='400' >
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_010.PNG' alt='anaconda instal pic 10' width='400' >
+
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_011.PNG' alt='anaconda instal pic 11' width='400' >
+
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_012.PNG' alt='anaconda instal pic 12' width='400' >
+
+<img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_013.PNG' alt='anaconda instal pic 13' width='400' >
 
 <img src='https://github.com/sergiocollado/potpourri/blob/master/image/anaconda_install_014.PNG' alt='anaconda instal pic 14' width='400' >
