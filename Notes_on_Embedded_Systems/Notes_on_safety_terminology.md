@@ -572,7 +572,7 @@ Follow recomendations for implementing the system.
 - Write modular systems (loose dependancy)
 - Implentent and use configuration files for the system (this will provide a flexible configuration for the future).
 - Design self checking tests (for hardware control).
-- Use watchdog's (sw and/or hw implemented), and/or functions/devices heartbeats.
+- Use watchdog's (sw and/or hw implemented), and/or sw/functions/processes/threads/devices heartbeats.
 - Implementation of recovery systems.
 - the software must indentify itself and its version, as a response of a command, or at reset of the system.
 - Follow design and architecture patterns:
@@ -592,6 +592,8 @@ Follow recomendations for implementing the system.
 - Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). (test documentation must comply wit the ieee 829 standard)
 - CSP: Concurrent Sequence Programming (techniques)
 - poka yoke
+- design and implementation of a recovery/reboot safety process, and recovery safe state.
+- try to include random test checks.
 
 
 ACcording to Straoup Book:
