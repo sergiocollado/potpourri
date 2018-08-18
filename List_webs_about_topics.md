@@ -416,7 +416,7 @@ About Optics:   https://micro.magnet.fsu.edu/optics/index.html
 
 electronic signatures standard: ETSI TS 102 042
 
-# INDUSTRIAL PRODUCERS
+# INDUSTRIAL manufacturers
 
 http://www.apator.com/en
 
@@ -674,6 +674,8 @@ http://tutorial.math.lamar.edu/Classes/CalcIII/Curvature.aspx
 http://spiff.rit.edu/classes/
 
 # PHYSICS
+
+http://www.feynmanlectures.caltech.edu/
 
 https://www.chegg.com/homework-help/engineering
 
