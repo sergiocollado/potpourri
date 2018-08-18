@@ -2300,3 +2300,7 @@ http://www.planning.nsw.gov.au/Policy-and-Legislation/~/media/C9CC2DA7E9B947C78C
 
 https://cdn.auckland.ac.nz/assets/ecm/documents/example-of-hazop.pdf
 
+
+BIBLIOGRAPHY:
+
+- Reliability Engineering Handbook; Kececioglu,Dimitri; Prentice-Hall, 1991.
