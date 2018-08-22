@@ -517,7 +517,7 @@ $: dpkg -l
 ## How to instal ncurses
 
 ```bash
-Z>sudo apt-get install libcurses5-dev libcursesw5-dev
+Z>sudo apt-get install libncurses5-dev libncursesw5-dev
 ```
 
 ref: https://www.cyberciti.biz/faq/linux-install-ncurses-library-headers-on-debian-ubuntu-centos-fedora/
