@@ -95,6 +95,12 @@ for gcc:
 sudo apt-get install gcc
 ```
 
+maybe remove the stuff you don't need:
+
+```bash
+sudo apt autoremove
+```
+
 and the kernel sources:
 
 ```bash
