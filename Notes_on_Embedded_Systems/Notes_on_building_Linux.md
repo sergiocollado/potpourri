@@ -146,6 +146,12 @@ http://buildroot.net/downloads/manual/manual.html#_advanced_usage
 
 
 
+# system boot time analysis
+
+use the command:
+
+systemd-analyze - Analyze system boot-up performance
+
 # Check list for robustness systems:
 
  - Inexperienced & foul user.
