@@ -118,6 +118,34 @@ You will need the following components:
 ```
 
 
+
+## How to instal ncurses
+
+```bash
+Z>sudo apt-get install libcurses5-dev libcursesw5-dev
+```
+
+ref: https://www.cyberciti.biz/faq/linux-install-ncurses-library-headers-on-debian-ubuntu-centos-fedora/
+
+
+## How to install qt4
+
+```bash
+$> sudo apt-get install qt4-qmake libqt4-dev
+```
+
+http://doc.qt.io/archives/qt-4.8/install-x11.html
+
+or 
+
+https://stackoverflow.com/questions/47465878/install-qt-4-ubuntu-17-04
+
+# BUILDROOT
+
+http://buildroot.net/downloads/manual/manual.html#_advanced_usage
+
+
+
 # Check list for robustness systems:
 
  - Inexperienced & foul user.
@@ -126,7 +154,7 @@ You will need the following components:
  - there is any kind of protecion against lost messages?
  - the max lenght of any message has been properly defined?
  - there is any kinde of defense agains file corruption? as  md5, or checksums?
- - there are any kind of keep alive messages?
+ - there are any kind of keep alive messages, heatbeat, watchdogs?
  - there are any ICT (In circuit test) or BIST (Build In Circuit Test)?
  - there is any implementation of FCE (Fordward Correction Errors), or ECC (Error Correction Codes)?
  - Whats the hammingdistance for messages mcomunications.
