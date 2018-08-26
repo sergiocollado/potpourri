@@ -217,6 +217,9 @@ Between the observer and the subscriber, can exists another class: the observer 
 behave in the correct way. Only one method is needed: Update(). This method, makes sure that when the data changes all the observers
 are reported
 
+## Template 
+ this design pattern asign resposabilites and function/method implementation. A general super-class is used to relate sub-classes with fair simiral behaviors. 
+
 ## Other patterns, strategies & tricks of the trade
 
 ### Memoization
