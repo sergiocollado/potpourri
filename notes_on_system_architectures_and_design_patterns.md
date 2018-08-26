@@ -217,8 +217,8 @@ Between the observer and the subscriber, can exists another class: the observer 
 behave in the correct way. Only one method is needed: Update(). This method, makes sure that when the data changes all the observers
 are reported
 
-## Template 
- this design pattern asign resposabilites and function/method implementation. A general super-class is used to relate sub-classes with fair simiral behaviors. 
+## Template pattern
+ this design pattern asign resposabilites and function/method implementation. A general super-class is used to relate sub-classes with fair simiral behaviors. When different classes have a strong conexion, a supe-class can be used to relate them and manage them with a more general aproach. This reflects in a more efective way to reuse objects, also makes clearer and a more self-explaining coding.
 
 ## Other patterns, strategies & tricks of the trade
 
