@@ -118,7 +118,7 @@ You will need the following components:
 
 
 
-## How to instal ncurses
+## How to install ncurses
 
 ```bash
 Z>sudo apt-get install libncurses5-dev libncursesw5-dev
@@ -148,10 +148,12 @@ to set the system to build, several option are available
 ```batch
 $> make menuconfig
 ```
+![menu_confing](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Embedded_Systems/image/make_menuconfig.PNG)
 
 ```batch
 $> make nconfig
 ```
+![nconfig](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Embedded_Systems/image/nconfig.PNG)
 
 ```batch
 $> make xconfig
