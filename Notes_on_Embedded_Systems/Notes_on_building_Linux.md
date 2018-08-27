@@ -79,7 +79,6 @@ to re-index, use:
 >sudo updatedb
 ```
 
-
 ```bash
 sudo apt-get install build-essential
 ```
@@ -144,6 +143,40 @@ https://stackoverflow.com/questions/47465878/install-qt-4-ubuntu-17-04
 
 http://buildroot.net/downloads/manual/manual.html#_advanced_usage
 
+to set the system to build, several option are available
+
+```batch
+$> make menuconfig
+```
+
+```batch
+$> make nconfig
+```
+
+```batch
+$> make xconfig
+```
+
+for the GTK based.
+```batch
+$> make gconfig
+```
+
+to launch the building, you can run:
+
+```batch
+$> make 
+```
+
+Although I recomend to track the building time, with the 'time' command, so:
+
+```batch
+$> time make 
+```
+
+this will report how time, took to build the system.
+
+The the building is done, all the files will be available at the '/output' folder.
 
 
 # system boot time analysis
