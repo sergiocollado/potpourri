@@ -415,6 +415,7 @@ ISO 31000 - standards for risk management:
 - IEC 60703 - Consumer products
 - EN 60950-1:200 + A2:2013 - Information technology equipment. Safety general Standards.
 - ISO 14118 - Safety on Machinery - prevention of unexpected start-up
+- IEC 60079 Series Explosive Atmosphere Standards
 
 
 ## Common points of the safety standards
@@ -466,6 +467,14 @@ Recomendations to define all the tasks required for and mantaining software.
 - IEEE Std 1044-1993, Standard Classification of Software Anomalies
 - IEEE Std 1012-1998, Standard for Software Validation and Verification Plans.
 - IEC 60287 - current capacity in cables.
+
+## Relevant Organizations
+
+NTSB - National Trasnportation Safety Board: https://www.ntsb.gov/safety/safety-studies/Pages/SafetyStudies.aspx
+EASA - European Aviation Safety Agency: https://www.easa.europa.eu/easa-and-you/safety-management
+JTSB - Japan Transportation Safety Board:    http://www.mlit.go.jp/jtsb/english.html
+
+Also safety standards as UL, ANSI, CSA and IEC, NRTL, ANSI, UL, IEEE standards. TODO: complete....
 
 ## HAZARD ANALYSIS
 
@@ -641,7 +650,7 @@ H. Sutter and A. Alexandrescu. C++ Coding Standards. Addison-Wesley 2005.
 
 Defensive programming is a defensive coding style intended to ensure the continuing function of a program under unforeseen circunstances. This code style is usually used in systems with need high availability, safety and security. Techniques include error function handling for as much error types as possible and the use of exeptions.
 
-Example of safe funtion:
+Example of safe function:
 
 ```c
 int16 safeSum ( int16 a, int16 b)
@@ -1841,6 +1850,22 @@ ref: https://en.wikipedia.org/wiki/Genesis_(spacecraft)
 
 ### Mariner1
 
+
+### Boeing 787 Dreamliner 
+
+In 2013, in the first year of service of the model Boeing 787 Dreamliner, several aircrafts suffered from thermal run-away from its
+lithium-ion batteries.
+
+The National Transportation Safety Board, issued a report pinpointed the causes of the issues
+ - batteries manufactured processes that could introduce defects not detected in the inspection of the batteries.
+ - Test that failed to consider the worst-case event of batteries failures
+ - Failure to recognice the potencial hazard, dues failing to request testing methods for that event.
+ 
+ 
+ref: https://en.wikipedia.org/wiki/Boeing_787_Dreamliner_battery_problems
+
+ref: http://www.mlit.go.jp/jtsb/eng-air_report/JA804A.pdf
+
 Examples of safety-critical systems[edit]
 critical infrastructures monitoring systems[edit]
 Circuit breaker
@@ -2006,6 +2031,8 @@ Types of Risks/Assumption of Risks
 
 http://www.rvs.uni-bielefeld.de/research/WBA/
 www.rvs.uni-bielefeld.de/publications/compendium/
+https://www.ntsb.gov/investigations/AccidentReports/Pages/AccidentReports.aspx
+
 
 ACRONYMS:
 
@@ -2273,6 +2300,45 @@ SUPPLIERS
 
 13. Supplied elements are out of the expected/negotiated specs.
 
+14. is a critical element with a protection element.
+
+15. Is a critical element without rebundant elements to back up it.
+
+
+## list of recomended battery tests
+
+- Thermal and enviromental testing
+- vibrations
+- shocks, and mechanical testing
+- External/internal shotcircuit
+- battery life cycle/ recharges cicles /charge-discharge cicles
+- overcharge
+- forced discharge.
+- protection circuits
+- abuse use test
+- compliance with safety standards as UL, ANSI, CSA and IEC, NRTL, ANSI, UL, IEEE  standards.
+
+ref: https://batteryuniversity.com/learn/article/battery_testing_and_safety
+
+ref: https://www.energy.gov/sites/prod/files/2014/05/f15/APR13_Energy_Storage_e_IV_Battery_Tstg_Design_2.pdf
+
+ref: https://www.diva-portal.org/smash/get/diva2:716986/FULLTEXT01.pdf
+
+ref: https://www.mpoweruk.com/testing.htm
+
+
+
+
+## list of possible issues with lithium-batteries
+
+Lithium batteries may suffer for thermal-runaway and/or cells ruptures in case of overheating or overcharging. In extreame cases can lead to fire and/or explosions. This has to be consider as the wort-case scenario, and prepared and tested for detect and react to it.
+
+Thus is recomend to use a baterie management system (BMU). Also short-circuit proctection
+
+Viewed in: Samsung Galaxie Note 7, Boeing 787 Dreamliner.
+
+
+
 
 
 https://pascal.computer.org/sev_display/index.action
@@ -2305,6 +2371,10 @@ http://www.hse.gov.uk/research/hsl_pdf/2005/hsl0558.pdf
 http://www.planning.nsw.gov.au/Policy-and-Legislation/~/media/C9CC2DA7E9B947C78C7C1355AD5B4B15.ashx
 
 https://cdn.auckland.ac.nz/assets/ecm/documents/example-of-hazop.pdf
+
+https://www.ntsb.gov/investigations/AccidentReports/Pages/AccidentReports.aspx
+
+https://www.easa.europa.eu/easa-and-you/safety-management
 
 
 BIBLIOGRAPHY:
