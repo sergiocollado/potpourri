@@ -218,10 +218,6 @@ If we compare the ratio, we can see that the electrostatic force significant big
 
 [the neutron has been left out, in the gravity force calculation]
 
-
-
-
-
 <hr>
 
 TODO: NOTES ON ESPECTROSCOPE...
@@ -388,6 +384,13 @@ There are other factors, as for example in winter we use to wear more clothes an
 
 It happens that the water molecule H <sub>2</sub> Om, is a polar molecule, that means that it has polarities .. the same as a battery. the water molecule overall electrostatic charge is zero, but at one side it has the possitive charge, and at other the negative charge.
 
+## Why pure (distilled) water is not a good conductor?
+
+Electrons move in water through the ions H+ and OH-, and in pure water the presence on those ions is very low (the ion H+ has a 
+concentreation of around 10-7 moles per liter (actually this is the pH scale is based)).   
+
+On the other hand: water with some other elements, as Salt (NaCl), the salt ions will be disolved in the water, so the ions Na+ and
+Cl- will be disolved in the water, and electrons can move across them.
 
 
 ## Electrostatic applications
