@@ -645,6 +645,10 @@ https://www.die.net/earth/
 
 GPL MATHS:  https://glm.g-truc.net/0.9.8/index.html
 
+laboratory d'informatique de Paris 6
+
+https://www.lip6.fr/production/logiciels.php
+
 https://mcc.lip6.fr/bibliography.php
 
 http://www.mpfr.org/
