@@ -179,6 +179,40 @@ CONICS:
 
 
 
+
+SPIRAL, (archimedean spiral, 
+<!--http://www.mathematische-basteleien.de/spiral.htm -->
+
+Parametric:
+ x(t) = R cos(t), y(t) = R sin(t), R = kte · t;
+
+Cartesian:
+x²+y² = a²[arc tan (y/x)]²
+ 
+ EQUIANGULAR SPIRAL (LOGARITMIC SPIRAL, BERNOULLI SPIRAL)
+ 
+Parametric:
+  x(t) = R cos(t), y(t) = R sin(t), R = kte · exp(t) ;
+
+Cartesian:
+ y = x tan[ln(sqr(x²+y²))]
+ 
+ More spirals:
+ 
+ r= t^2  (Paraboilc or Fermat Spiral)
+ r = ln(t)  (Lituus spiral)
+ r = +/- sqrt(t)
+ r = 1 / t
+ r = 1 / sqrt(t)
+
+
+LOXODROME: The curve on the sphere that crosses the meridians at constant angle. In the mercator proyection they appear as straight lines.
+
+x=cos(t) cos [1/tan (Kte·t)] 
+y=sin(t) cos[1/tan (Kte·t)] 
+z= -sin [1/tan (Kte·t)]    
+
+
 ASTROID:
 
 <br>
