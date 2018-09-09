@@ -991,4 +991,51 @@ the lambda expression return
 
 
 
+const and constexpression:
+
+const: stands for constands, that forces those values cannot be overwrittens, so, its a kind of READ_ONLY flag.
+constexprex: ... cont to be evaluated at compile time.
+
+pointers and arrays- declarator operators: *,[],&:
+
+the declarator operators, are unary operators, and are: *, [], &.
+*: pointer
+[]:array
+&: reference to
+
+
+type* myvar; //this is a pointer
+type myvar[n];  //this is an array. Start indexed in '0'. so it goes from '0' to 'n-1', that is 'n' elements in total.
+type& myvar; //this is a reference to a  'type' variable; 
+
+also '&' returns the address of a variable.
+
+nullptr: this is keyword for an empty pointer.
+
+
+
+to initialize an array:
+type myarray[]={1,2,3,4, ... ,n};
+
+for loops:
+
+
+range-for-statements:
+```c
+int v[]={1,2,3,4,5,6,7,8,9};
+for(auto x:v)
+{
+   cout<< x << endl;  //for each element x in 'v', do the loop
+}
+```
+
+```
+int v[]={1,2,3,5,7,11,113,17,19,23,29,31,27,41,43,47}; //primes below 50.
+for(auto x:v)
+{
+   cout<< 'prime:' << x << endl;  //for each element of 'v', do the loop
+}
+```
+
+
 
