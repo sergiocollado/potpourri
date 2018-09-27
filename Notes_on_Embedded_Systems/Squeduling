@@ -887,6 +887,8 @@ C and C++ programming notes:
 ```c
 char *str = "Hello World!";
 ```
+... but this is not accepted after C++ 11; ... 
+
 
 > never ever write an infinite loop, without a break condition- it may be loop forever.
 
@@ -894,7 +896,7 @@ char *str = "Hello World!";
 
 > always include parameters files
 
-> in swithc-case loops always include a default condition.
+> in switch-case loops always include a default condition, for fallback, and getting errors.
 
 > in switch-case loop always include a break condition, the only excetpion is when doing 'cases' fall.
 
@@ -992,11 +994,13 @@ the lambda expression return
 
 
 const and constexpression:
+=========================
 
 const: stands for constands, that forces those values cannot be overwrittens, so, its a kind of READ_ONLY flag.
 constexprex: ... cont to be evaluated at compile time.
 
 pointers and arrays- declarator operators: *,[],&:
+=====================================================
 
 the declarator operators, are unary operators, and are: *, [], &.
 *: pointer
@@ -1004,18 +1008,46 @@ the declarator operators, are unary operators, and are: *, [], &.
 &: reference to
 
 
-type* myvar; //this is a pointer
-type myvar[n];  //this is an array. Start indexed in '0'. so it goes from '0' to 'n-1', that is 'n' elements in total.
-type& myvar; //this is a reference to a  'type' variable; 
+* is the derefencing operator, used for defining pointers, also '&' is the address operator that returns the address of a variable.
 
-also '&' returns the address of a variable.
+given a certain data type, named 'mytype'
 
-nullptr: this is keyword for an empty pointer.
+mytype myvar; //this is a defined variable of type 'mytype'
+mytype* myvar; //this is a pointer to a variable of type 'mytype'
+mytype myvar[n];  //this is an array of elements of type 'mytype'. the index starts in '0'. so it goes from '0' to 'n-1', that is 'n' elements in total.
+mytype& myvar; // & is the address operator. this is a reference to a 'type' variable; 
+
+Watch out the pointers aritmetic!!
+
+nullptr: this is keyword for an empty pointer. Sometimes it is represented as the NULL macro. 
+
+void* : this is a special pointer, that returns a pointer with no type, or that makes no asumption about the returning type.
 
 
-
-to initialize an array:
+to initialize an array, it is easy to use the {} initialization.
 type myarray[]={1,2,3,4, ... ,n};
+
+there is other operator, the field derefenced pointer, used to access the members of a class or structure:
+
+struct person {
+ const char* name;
+ int age;
+ char gender;
+ }
+ 
+ this can be initialized with {}:
+ 
+ person John{"John Smith", 32, "M"};
+ 
+ person* him;
+ him->age = 33; //this is equal to (*him).age = 33;
+ 
+ sor for a member; p->m is equivalente expresion as p.m 
+
+
+
+flow-control sctructures:
+===========================
 
 for loops:
 
