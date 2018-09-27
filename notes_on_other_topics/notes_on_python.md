@@ -9,6 +9,8 @@
 
 Basic tutorial: https://docs.python.org/3/tutorial/index.html
 
+Downloads: https://www.python.org/downloads/
+
 The main reference is:  https://docs.python.org/3/library/index.html
 
 
