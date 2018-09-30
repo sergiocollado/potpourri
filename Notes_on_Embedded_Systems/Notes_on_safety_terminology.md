@@ -2328,7 +2328,7 @@ ref: https://www.diva-portal.org/smash/get/diva2:716986/FULLTEXT01.pdf
 
 ref: https://www.mpoweruk.com/testing.htm
 
-
+https://blog.nxp.com/automotive/three-things-to-know-about-functional-safety
 
 
 ## list of possible issues with lithium-batteries
@@ -2388,7 +2388,7 @@ https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/risk_managem
 
 https://www.its.bldrdoc.gov/fs-1037/dir-015/_2151.htm
 
-
+https://blog.nxp.com/automotive/three-things-to-know-about-functional-safety
 
 
 BIBLIOGRAPHY:
