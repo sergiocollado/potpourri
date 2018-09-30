@@ -2380,6 +2380,17 @@ https://www.easa.europa.eu/easa-and-you/safety-management
 
 https://en.wikipedia.org/wiki/Fail-safe
 
+https://blog.nxp.com/automotive/automotive-functional-safety-the-evolution-of-fail-safe-to-fail-operational-architecture
+
+https://en.wikipedia.org/wiki/Fault_tolerance
+
+https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/risk_management/ss_handbook/media/app_h_1200.pdf
+
+https://www.its.bldrdoc.gov/fs-1037/dir-015/_2151.htm
+
+
+
+
 BIBLIOGRAPHY:
 
 - Reliability Engineering Handbook; Kececioglu,Dimitri; Prentice-Hall, 1991.
