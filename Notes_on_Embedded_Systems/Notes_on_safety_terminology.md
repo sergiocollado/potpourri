@@ -42,6 +42,8 @@ The leading standard for functional safety is the IEC 61508.
 
 The funtional safety level of a system is evaluated with a figure of merit, known as **SIL** (Safety Integrity Level):
 
+**FAIL-SAFE DESIGN** Is an engineering design practice that makes a system to respond the minimun damage in the event of a failure.
+
 **SECURITY**: Is the propierty of a system that evaluates its ability to deal with malicious actions or attacks.
 
 Take into account, that there is a significative difference between the concepts of safety and security, both terms account protection against a damage, but security implies a malicious or intended action to do a damage, while safety relates to an unintended situation.
@@ -606,7 +608,7 @@ Follow recomendations for implementing the system.
 - Test functions (unit testing) with wrong, and bad data- a program should behave sensibly even if the user don't.
 - Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). (test documentation must comply wit the ieee 829 standard)
 - CSP: Concurrent Sequence Programming (techniques)
-- poka yoke
+- poka-yoke (one type of hw fail-safe design)
 - design and implementation of a recovery/reboot safety process, and recovery safe state.
 - try to include random test checks.
 
@@ -2376,6 +2378,7 @@ https://www.ntsb.gov/investigations/AccidentReports/Pages/AccidentReports.aspx
 
 https://www.easa.europa.eu/easa-and-you/safety-management
 
+https://en.wikipedia.org/wiki/Fail-safe
 
 BIBLIOGRAPHY:
 
