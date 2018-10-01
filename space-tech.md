@@ -1,9 +1,6 @@
 
 
 
-InSigth mission: to study the inners of Mars
-acronym stand for: Interior  Sismic investigatation Geodesy and heat transport.-
-
 ref: https://mars.nasa.gov/insight/
 
 ref: http://www.asc-csa.gc.ca/eng/default.asp+
@@ -12,6 +9,7 @@ ref: https://www.nasa.gov/missions
 
 ref: http://exoplanets.org/e
 
+ref: https://www.kennedyspacecenter.com/
 
 Phoenix lander:  
 
@@ -26,6 +24,13 @@ ref: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.734.4980&rep=rep1&
 ref: http://sci.esa.int/mars-express/58555-crustal-fields-on-mars/
 
 ![mars_crustal_magnetism](http://sci.esa.int/science-e-media/img/bb/135896main_pnas_102_42_connerney_fig1_625w.jpg)
+
+
+
+
+InSigth mission: to study the inners of Mars acronym stand for: Interior  Sismic investigatation Geodesy and heat transport.-
+
+
 
 
 Meridiani planum is an acidic enviroment like rio tinto.
