@@ -61,6 +61,11 @@ Apollo (apolo 13 accident)
 Shuttle
 Colombia (check problem with the foam)
 
+
+![space_shuttel](http://sci.esa.int/science-e-media/img/bb/135896main_pnas_102_42_connerney_fig1_625w.jpg)
+
+
+
 ROVERS:
 
 - Pathfinder
