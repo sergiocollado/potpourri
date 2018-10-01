@@ -57,9 +57,9 @@ Mössbauer espectrograph -- emits and read gamma rays, each element absorbs and 
 check:  http://exoplanets.org/
 
 
-Apollo
+Apollo (apolo 13 accident)
 Shuttle
-
+Colombia (check problem with the foam)
 
 ROVERS:
 
