@@ -57,9 +57,9 @@ Mössbauer espectrograph -- emits and read gamma rays, each element absorbs and 
 check:  http://exoplanets.org/
 
 
-Apollo (apolo 13 accident)
-Shuttle
-Colombia (check problem with the foam)
+- Apollo (apolo 13 accident)
+- Shuttle
+- Colombia (check problem with the foam: ice forms with the liquid hydrogen, and falls into the thermal shield- foam was used to elimitate the ice....)
 
 
 ![space_shuttel](https://github.com/sergiocollado/potpourri/blob/master/image/space_shuttle.PNG)
