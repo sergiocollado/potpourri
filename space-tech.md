@@ -69,6 +69,9 @@ check:  http://exoplanets.org/
 ![space_shuttel_launch](https://github.com/sergiocollado/potpourri/blob/master/image/space_shuttle_launch_00.PNG)
 
 
+![buran](https://github.com/sergiocollado/potpourri/blob/master/image/buran.PNG)
+
+
 ROVERS:
 
 - Pathfinder
