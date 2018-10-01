@@ -58,12 +58,15 @@ check:  http://exoplanets.org/
 
 
 - Apollo (apolo 13 accident)
+- Buran (russian)
 - Shuttle
 - Colombia (check problem with the foam: ice forms with the liquid hydrogen, and falls into the thermal shield- foam was used to elimitate the ice....)
 
 
 ![space_shuttel](https://github.com/sergiocollado/potpourri/blob/master/image/space_shuttle.PNG)
 
+
+![space_shuttel_launch](https://github.com/sergiocollado/potpourri/blob/master/image/space_shuttle_launch_00.PNG)
 
 
 ROVERS:
