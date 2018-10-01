@@ -61,6 +61,7 @@ check:  http://exoplanets.org/
 - Buran (russian)
 - Shuttle
 - Colombia (check problem with the foam: ice forms with the liquid hydrogen, and falls into the thermal shield- foam was used to elimitate the ice....)
+- Endevor
 
 
 ![space_shuttel](https://github.com/sergiocollado/potpourri/blob/master/image/space_shuttle.PNG)
