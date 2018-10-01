@@ -1050,9 +1050,16 @@ flow-control sctructures:
 ===========================
 
 for loops:
+----------
 
+for(init_estatement; condition; loop_iteration) {}
+for(int i=0; i<10; i++) {}
 
 range-for-statements:
+-----------------------
+
+for(type x: v) this is read as: "for each element x in the range of v". So v must be a type with a given interator, that is exists, v.begin() and v.end().
+
 ```c
 int v[]={1,2,3,4,5,6,7,8,9};
 for(auto x:v)
@@ -1070,4 +1077,4 @@ for(auto x:v)
 ```
 
 
-
+ref: Ralston and Rabinowitz: A First Course in Numerical Analysis.
