@@ -974,8 +974,7 @@ for(int i; i<=v.size(); ++)  //print values
 LAMDA EXPRESSIONS 
 =================
 
-Lamda expressions are just a fitting way to express functors. 
-
+Lamda expressions is a way to pass code as an argument.
 Parts:
 
 [capture] - identifies externals variables that will be possible to read. also if those variables will be passed by value or by 
