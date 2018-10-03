@@ -887,6 +887,7 @@ C and C++ programming notes:
 ```c
 char *str = "Hello World!";
 ```
+
 ... but this is not accepted after C++ 11; ... 
 
 
@@ -996,7 +997,8 @@ const and constexpression:
 =========================
 
 const: stands for constands, that forces those values cannot be overwrittens, so, its a kind of READ_ONLY flag.
-constexprex: ... cont to be evaluated at compile time.
+constexprex: ... can to be evaluated at compile time. When this is defined, the compiler will attemp to calculate the value, and 
+substitute it in the final code of the program.
 
 pointers and arrays- declarator operators: *,[],&:
 =====================================================
@@ -1075,5 +1077,68 @@ for(auto x:v)
 }
 ```
 
+key words for function definitions:
+
+ - inline : function is inlined at each call
+ - void : no return type
+ - contsexpr: the function will be a const expression at compile time if contexpr parameters are given
+ - noexcept: the function may not throw any exception
+ - virtual: it can be overwritten by a subclass
+ - override: it must be overwritten by a subclass
+ - final: it cannot be overwritten by a subclass
+ 
+ 
+ 
+ TODO: pointers to functions.
+ TODO: arguments as value, as refence.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CODE SNIPPETS:
+ 
+ factorization:
+ 
+ ```c++
+ inline int fact(int n)
+ {
+     return (n<2)?1:n*fact(n-1);
+ }
+ ```
+ 
+ ```c++
+ void swap(int*, int*);
+ 
+ void swap(int* a, int* b);
+ {
+     int c =  *a;
+     *b = *a;
+     *a = c;
+ }
+ ```
+ 
+```c++
+int& max(int&, int&, int&);
+ 
+int& max(int& a, int& b, int& c);
+{
+    return (a>b)?((a>c)?a:c):((b>c)?b:a);
+}
+ ```
+
+
+
+
+
+
+
+
+
 
 ref: Ralston and Rabinowitz: A First Course in Numerical Analysis.
+
+ref: Computer Approximations, John Fraser Hart
