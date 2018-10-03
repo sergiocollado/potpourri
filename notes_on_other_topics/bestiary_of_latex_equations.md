@@ -36,6 +36,8 @@ CLASSICAL ROCKET EQUATION:
 \Delta \nu  = \nu_e \ln \frac{ m_0}{ m_f}
 ```
 
+<br> <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/roquet_equation.svg?sanitize=true" alt="classical_rocket_equation"> <br>
+
 
 
 SCALAR COULOMB FORCE EQUATION
