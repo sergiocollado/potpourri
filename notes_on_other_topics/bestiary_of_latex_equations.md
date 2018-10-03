@@ -29,6 +29,15 @@ SNELL EQUATION
 \frac{\sin\theta_{1} }{\sin\theta_2} = \frac{ n_1 }{ n_2 }
 ```
 
+
+CLASSICAL ROCKET EQUATION:
+
+```latex
+\Delta \nu  = \nu_e \ln \frac{ m_0}{ m_f}
+```
+
+
+
 SCALAR COULOMB FORCE EQUATION
 
 ```latex
