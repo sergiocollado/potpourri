@@ -68,6 +68,7 @@ check:  http://exoplanets.org/
 
 - Apollo (apolo 13 accident)
 - Buran (russian)
+- Challenger
 - Shuttle
 - Colombia (check problem with the foam: ice forms with the liquid hydrogen, and falls into the thermal shield- foam was used to elimitate the ice....)
 - Endevor
