@@ -71,6 +71,8 @@ Mössbauer espectrograph -- emits and read gamma rays, each element absorbs and 
 check:  http://exoplanets.org/
 
 
+- Spunik
+- Soyuz
 - Apollo (apolo 13 accident)
 - Buran (russian)
 - Challenger
