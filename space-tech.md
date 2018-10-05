@@ -11,6 +11,11 @@ ref: http://exoplanets.org/e
 
 ref: https://www.kennedyspacecenter.com/
 
+cape Canveral
+
+Vandenverg basa
+
+
 https://www.youtube.com/watch?v=vFwqZ4qAUkE&feature=youtu.be
 
 
