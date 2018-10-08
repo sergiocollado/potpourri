@@ -611,6 +611,7 @@ Follow recomendations for implementing the system.
 - poka-yoke (one type of hw fail-safe design)
 - design and implementation of a recovery/reboot safety process, and recovery safe state.
 - try to include random test checks.
+- Privacy by design (if applies)
 
 
 ACcording to Straoup Book:
