@@ -529,6 +529,15 @@ There are quite a few ways for a system development project; although at least t
  - **Analysis**:This step looks to answer and evaluate the following questions:
  
 What's the problem to solve? Has it be done before? What's the function to perform? there are other non-functional features needed in the system (as user interfaces, usability, safety, security, scalability, performance, robustness ...)?, what the stackholders and interested parties expectations? What will be system enviroment? Specification and requirement of the system? Time-line and squedule of the project? Expected problems or issues that may come up? How many people does the project need to achieve the requested specifications, results, timing and goals? Evaluation of the expected project risks? Expected costs? What is the budget? Normative, contract, legal issues and laws to comply with? Do I have the skills, people and resources to do it?  
+ 
+  Parts of the Analysis, include:
+   - Concept studies
+   - Concept definitions
+   - Critical design
+   - Preliminary design
+   - Production design
+   - Certifications
+   - Operations
 
 If there is significant confidence to overcome all those challenges, the the following step is -->  Definition of requirements and specifications of the system. **In a safety system the first step is allways to define the hazard and risk requirements;** for this methodologies as FMEA, FMECA, HAZOP, ETA, FTA. ... can be used.
  
