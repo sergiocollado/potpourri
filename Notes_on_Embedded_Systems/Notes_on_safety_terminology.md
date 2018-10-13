@@ -374,6 +374,8 @@ Very low, low, medium, high, very high. With this classification then it is poss
 means to be able to show other people that the system complies with the expected performance. Certifying a system is an expensive task
 and is best to prepare for it from the start of the systme design, in case it is needed.
 
+**SINGLE POINT of FAILURE** In a system, a given element of that system, is known as a *Single Point of Failure* in the case, that if that elements fails, that will prevent the whole system from working.
+
 # STANDARDS AND NORMATIVES:
 
   ## BASIC FOR SAFETY:
