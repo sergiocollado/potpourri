@@ -532,19 +532,20 @@ Making Software: What Really Works, and Why We Believe It -- https://books.googl
 
 There are quite a few ways for a system development project; although at least the following steps always should be considered:
 
- - **Analysis**:This step looks to answer and evaluate the following questions:
+ - **Analysis**:This step aims to answer and evaluate the following questions:
  
-What's the problem to solve? Has it be done before? What's the function to perform? there are other non-functional features needed in the system (as user interfaces, usability, safety, security, scalability, performance, robustness ...)?, what the stackholders and interested parties expectations? What will be system enviroment? Specification and requirement of the system? Time-line and squedule of the project? Expected problems or issues that may come up? How many people does the project need to achieve the requested specifications, results, timing and goals? Evaluation of the expected project risks? Expected costs? What is the budget? Normative, contract, legal issues and laws to comply with? Do I have the skills, people and resources to do it?  
+What's the problem to solve? Has it be done before? what solution has been used previously? Desired requirements and specificationns: What's the function to perform? there are other non-functional features needed in the system (as user interfaces, usability, safety, security, scalability, performance, robustness, expected working life ...)?, what the stackholders and interested parties expectations? What will be system enviroment? Time-line and squedule of the project? Expected problems or issues that may come up? How many people does the project need to achieve the requested specifications, results, timing and goals? Evaluation of the expected project risks? Expected costs? What is the budget? Normative, contract, legal issues and laws to comply with? Do I have the skills, people and resources to do it?  
  
   Parts of the Analysis, include:
-   - Concept definitions and concept studies: conceiving and characterizing quantitative and qualitative concepts. Evaluating the feasiability of the concept. how much will it cost:  what are going to be the development costs? what are operation costs? (usually development costs and operational costs and inverse proportional). Budget estimations. technologie readiness. producibility and operatibility requirement and estimations.
+
+   - Concept definitions and concept studies: Evaluating the feasiability of the concept. Initial requirements, hazard, risks, architecture, design, components and also conceiving and characterizing quantitative and qualitative concepts.Budget estimations: How much will it cost: what are going to be the development costs? what are operation costs? (usually development costs and operational costs and inverse proportional). technologie readiness. producibility and operatibility requirement and estimations.
    - Preliminary design: evaluation of the design trade-offs (as develoment vs operational costs, or size vs weitgh, or size vs battery). design draft. 
    - Critical design: identification of critical key points of the desing, operation, production, ...
-   - Production design: estimation on how it is going to be produced, transported, logistics, cost estimations, ...
-   - Certifications: how it is goning to be proof that it is safe or reliable? what certification or standards are needed?
-   - Operations: How normal operation will be. How much will it cost?
+   - Production design: estimation on how it is going to be produced, proposal of suppliers and contractors, logistics, transportations, cost estimations ...
+   - Certifications: what certification or standards are needed? how it is going to be proof that it is safe or reliable? 
+   - Operations: How normal operation will be. How much will it cost? Definition of normal operations. List and proposal of Standard Operation Procedures (SOP) that will be needed. 
 
-If there is significant confidence to overcome all those challenges, the the following step is -->  Definition of requirements and specifications of the system. **In a safety system the first step is allways to define the hazard and risk requirements;** for this methodologies as FMEA, FMECA, HAZOP, ETA, FTA. ... can be used.
+If there is significant confidence to overcome all those challenges, the the following step is -->  Definition of requirements and specifications of the system. **In a safety system the first step is always to define the hazard and risk requirements;** for this methodologies as FMEA, FMECA, HAZOP, ETA, FTA, STAMP... can be used.
  
  - **Design**: Reasoning, evaluation and design for the most fitting solution to achieve the specification, requirements and goals of the system. Consideration of problems and issues to overcome. Design of the system architecture: the different parts, modules, elements of the system. Comunications and interface between the different parts of the system. 
  
@@ -572,7 +573,7 @@ much easily the pernicious event.
  
 #### Avoid dangerous implementations
 
- Users should not gain access to the inners of the system/program - that is: libraries, internal states, internal values, or pointer to data structures ... The interfece with the user should be that, and be probed against loopholes.
+ Users should not gain access to the inners of the system/program - that is: Its operating system, libraries, internal states, internal values, or pointer to data structures ... The interfece with the user should be that, and be probed against loopholes.
  
  Avoid anti-patters, ie: for concurrent systems, take special care with racing conditions, priority inversions, death-locks, ... other usual suspects are architectures that relay in heabily coupled components, as oppoused to modular architectures. 
 
@@ -2315,7 +2316,7 @@ SUPPLIERS
 
 9. thermal performance don't achieve the design goals.
 
-10. mechanical performance don't achieve the design goals. (fatigue, resilience, rupture strength, rupture stress, vibration, protection (IP), corrosion, wear .... there are several factors to take into account).
+10. mechanical performance don't achieve the design goals. (fatigue, yiel and deformations, max laod, resilience, rupture strength, rupture stress, vibration, protection (IP), corrosion, wear, safety margins .... there are several factors to take into account).
 
 11. dielectric isolation of components fails
 
