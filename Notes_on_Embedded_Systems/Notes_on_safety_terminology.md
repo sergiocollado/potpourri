@@ -238,13 +238,17 @@ https://www.drexelbrook.com/support/faq/what-are-safety-systems
 
  Safety-critical systems design involves: software, hardware and human factors.
  
- According to its reliability regimes, there are the following classifications:
+ According to its reliability regimes, there are the following concepts:
  
- - **Fail-operational systems**: They continue to operate even when their control systems fail. Examples are: elevators, automotive electronic throttle control, braking systems, circuit-breakers  ...
+  - **Fail-safe systems**: In case of a misfunction, they addopt a safety state. So they become safe even when they cannot perform its function. Medical devices, usually are found in this category, for example a heart-pump: when it cannot work, it warns the medical personal, as the safety interval, is long enough, the live of the patient is not in thread.
+ - **Fail-operational systems**: They continue to operate even when a part of the system fail. For example, when systems use rebundant subsystems, in case the main subsystem fails, the redundat subsystem, may take-over the control, and keep the overall system working. Examples are: elevators, automotive electronic throttle control, braking systems, circuit-breakers  ...
  - **Fail-soft systems**: they continue operation with a reduced efficiency even in the presence of a failure.
- - **Fail-safe systems**: they become safe when they cannot perform its function. Medical devices, usually are found in this category, for example a heart-pump: when it cannot work, it warns the medical personal, as the safety interval, is long enough, the live of the patient is not in thread.
- - **Fail-Passive systems**: As a helmet or a shield.
+ - **Fail-Passive systems**: As a helmet or a shield. they achieve safety throught passive elements. (TODO: expand)
  - **Fault-tolerant sytems**: they continue to operate even when faults are present in the system. 
+ 
+ These concepts are not exclusive. A given system, can be fail-safe, and also fail-operational. An example of this, are aircraft vehicles: they usually have three on-board control computers, in case one of the control computers fails, it is fails-safe, because it keeps yet other two control computers that keep all the functunality, but it also is fail-operational, because it retains all the system functionality.
+ 
+ **SINGLE POINT of FAILURE** In a system, a given element of that system, is known as a *Single Point of Failure* in the case, that if that elements fails, that will prevent the whole system from working. Of course this element is considered as a critical component.
  
  Reference: https://en.wikipedia.org/wiki/Safety-critical_system
  
@@ -357,11 +361,13 @@ Very low, low, medium, high, very high. With this classification then it is poss
 
 ## FAILURES vs ERRORS:
 
+
+**Fault**: A fault is either a failure or an error.
+
 **Failure**: is the non-performance of the system or component, AT RANDOM. Thus, it can be estimated from a pdf (probability density function). FAILURES ARE EVENTS.
 
 **Error**: is a systematic fault, thus a design flaw, thus repetible. ERRORS ARE STATES.
 
-**Fault**: A fault is either a failure or an error.
 
 
 # OTHER CONCEPTS:
@@ -374,7 +380,6 @@ Very low, low, medium, high, very high. With this classification then it is poss
 means to be able to show other people that the system complies with the expected performance. Certifying a system is an expensive task
 and is best to prepare for it from the start of the systme design, in case it is needed.
 
-**SINGLE POINT of FAILURE** In a system, a given element of that system, is known as a *Single Point of Failure* in the case, that if that elements fails, that will prevent the whole system from working.
 
 # STANDARDS AND NORMATIVES:
 
@@ -479,6 +484,7 @@ Recomendations to define all the tasks required for and mantaining software.
 
 ## Relevant Organizations
 
+SAE- Society Automotive Engineers
 NTSB - National Trasnportation Safety Board: https://www.ntsb.gov/safety/safety-studies/Pages/SafetyStudies.aspx
 EASA - European Aviation Safety Agency: https://www.easa.europa.eu/easa-and-you/safety-management
 JTSB - Japan Transportation Safety Board:    http://www.mlit.go.jp/jtsb/english.html
@@ -936,8 +942,6 @@ At recusive specification if it is guarded, has AT MOST one solution... it has e
 
 
 
-
-
 TODO: tools to study systems 
 
 https://workcraft.org/
@@ -1022,8 +1026,7 @@ Specifications/requirements test, checks the design is compliant with the stackh
 Over time, testing 'sages' have take notice of important learned leassons, and key-points to keep in mind in the test development. Those concepts are known as follows:
 
 **1- Testing shows presence of defects** <br>
-Testing, shows defects, but it cannot proof that there are not defects. Testing
-increases the asurance over the system, because when a bug is found and it corrected, the chance that remaining bugs may exist, is less likely. But even in the case, that no defects can be found any further, that there is no proof that there aren't any.
+Testing, shows defects, but it cannot proof that there are not defects. Testing increases the asurance over the system, because when a bug is found and it corrected, the likehood (the chance) that remaining bugs may exist is lower. But even in the case, that no defects can be found any further, that is no proof that there aren't any.
 
 **2- Exhaustive testing is impossible** <br>
 Testing of all the possible combinations of a system is impossible. So to determine how much testing should be dont, an 
@@ -1036,18 +1039,18 @@ Testing activities should be started as soon as possible in the system developme
 As following the pareto law, (it is said, that around 80% of the system faults, are caused by a 20% of the design) in many cases some components have most of the defect density. Testing should be focus to them, to maximice the effectiveness of the testing efforts.
 
 **5- Pesticide paradox** <br>
-Running the same test again and again, makes that eventually the same set of test don't find any defect at all. Having into account that some schools of thought consider a succesfull test, that one that find defects ... it's a bit, like that set of test loses "effect". 
+Running the same test or the same types of tests, again and again, makes that eventually the same set of test don't find any defect at all. Having into account that some schools of thought consider a succesfull test, that one that find defects ... it's a bit, like that set of test loses "effect". 
 The set of test, needs to be reviewed and updated, to exercice different parts of the system, and in different ways.
 
 **6- Testing is context dependant** <br>
-Testing depends on the context. A safe-critical system test is not at all the same that the test of a video streamming appliance.
+Testing depends on the context. A safe-critical system test is not at all the same that the test for a video streamming appliance.
 
 **7- Absence of errors falacy: Failure-free test doesn't proof failure-free system** <br>
 Even if no defects are found, it doesn't proof that the system is usable, or complies with the end-user expectations. As previously stated testing only increases the asurance of less possible errors.
 
 ## THE DEVELOPMENT - TESTING RATIO
 
- ... Work in progres .. but the recommendation is... two hours testing per each development hour.
+TODO ... Work in progres .. but the recommendation is... two hours testing per each development hour.
  
 
 ## TEST LEVELS
@@ -1310,7 +1313,7 @@ Is the evaluation of the percentage of all statemenst (lines of code) which have
 
 This test accounts the percentage over all of different branchs exercised in the code execution (at the control flow structures: if, else, for, while ...). Tests are desiged, so different conditions are met at the different branch evaluation points. The aim is to account for as much program possible flows as possible. 
 
-**NOTE**: A 100% decision coverage implies a 100% code coverage, but the other way around is not true: a 100% does not guarantee a 100% decision coverage.
+**NOTE**: A 100% decision coverage (or branch coverage) implies a 100% code coverage, but the other way around is not true: a 100% does not guarantee a 100% decision coverage.
 
 ```
 EXAMPLE:
@@ -1610,7 +1613,7 @@ There are several levels of review process depending on how formal they are done
   - pre-meeting preparation.
   - documented by an inspection report, that includes findings.
   - formal follow-up process.
-  - main goal: findiNG defects.
+  - main goal: finding defects.
   
 ##### Activities for a formal review
 
@@ -2312,17 +2315,17 @@ SUPPLIERS
 
 9. thermal performance don't achieve the design goals.
 
-10. mechanical performance don't achieve the design goals. (fatigue, resilience, rupture strength, rupture stress.... there are several factors to take into account).
+10. mechanical performance don't achieve the design goals. (fatigue, resilience, rupture strength, rupture stress, vibration, protection (IP), corrosion, wear .... there are several factors to take into account).
 
 11. dielectric isolation of components fails
 
 12. EMC problems that don't achieve standards.
 
-13. Supplied elements are out of the expected/negotiated specs.
+13. Weldings, traces, reflectios, noise, wires don't achieve the performance expectations from an electrical point of vie.
 
-14. is a critical element with a protection element.
+14. Supplied elements are out of the expected/negotiated specs.
 
-15. Is a critical element without rebundant elements to back up it.
+15. critical element have protection elements or rebundant backup elements
 
 
 ## list of recomended battery tests
@@ -2356,8 +2359,6 @@ Lithium batteries may suffer for thermal-runaway and/or cells ruptures in case o
 Thus is recomend to use a baterie management system (BMU). Also short-circuit proctection
 
 Viewed in: Samsung Galaxie Note 7, Boeing 787 Dreamliner.
-
-
 
 
 
@@ -2427,4 +2428,4 @@ BIBLIOGRAPHY - TECHNICALL BOOKS & PAPERS:
 - "Strengh Integrity of the Space Shuttle Orbiter Tiles", T.L. Moser and W.C. Schneider
 - "Reliability Engineering of the Space Shuttle: Lessons Learned" T.L. Moser
 - "Structural Load Challenges During Space Shuttle Development", A.C. Mackey and R.E. Gatto
-
+- Safeware
