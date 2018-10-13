@@ -368,6 +368,11 @@ Very low, low, medium, high, very high. With this classification then it is poss
 
 **DEBUGING**: locate, pin-point the root-cause and correct a defect.
 
+**TESTING**: exertion or exploration of the system to identify defects, wrong or unexpected behaviors or weak points in the systme.
+
+**CERTIFICATION**: the design of a system following the best engineering principles is what must be done, Certification of that system,
+means to be able to show other people that the system complies with the expected performance. Certifying a system is an expensive task
+and is best to prepare for it from the start of the systme design, in case it is needed.
 
 # STANDARDS AND NORMATIVES:
 
