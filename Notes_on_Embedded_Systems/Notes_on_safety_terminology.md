@@ -2413,4 +2413,10 @@ D. Abrahams. Exception-Safety in Generic Components.  https://www.boost.org/comm
 
 H. Sutter and A. Alexandrescu. C++ Coding Standards. Addison-Wesley 2005.
 
+BIBLIOGRAPHY - TECHNICALL BOOKS & PAPERS:
+
+- "Orbiter Structural Design Verification" P.C. Glynn and T.L. Moser
+- "Strengh Integrity of the Space Shuttle Orbiter Tiles", T.L. Moser and W.C. Schneider
+- "Reliability Engineering of the Space Shuttle: Lessons Learned" T.L. Moser
+- "Structural Load Challenges During Space Shuttle Development", A.C. Mackey and R.E. Gatto
 
