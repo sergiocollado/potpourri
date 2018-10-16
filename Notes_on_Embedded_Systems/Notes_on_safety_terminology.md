@@ -266,9 +266,9 @@ https://www.drexelbrook.com/support/faq/what-are-safety-systems
 
 There are two basic elements associated with this measure:
 
-Hardware safety integrity: which is typically based upon random hardware failures can normally be estimated to a reasonable level of accuracy via probability of failure on demand (PFD).
+**Hardware safety integrity**: which is typically based upon random hardware failures can normally be estimated to a reasonable level of accuracy via probability of failure on demand (PFD).
 
-Systematic safety integrity: systematic integrity tends to be harder to quantify. This is due to the diversity of causes of failures; systematic failures may be introduced during the specification, design, implementation, operational and modification phase and may affect hardware as well as software
+**Systematic safety integrity**: systematic integrity tends to be harder to quantify. This is due to the diversity of causes of failures; systematic failures may be introduced during the specification, design, implementation, operational and modification phase and may affect hardware as well as software
 
  
  https://blogs.dnvgl.com/software/2017/05/what-is-safety-integrity-level-sil/
@@ -483,10 +483,11 @@ Recomendations to define all the tasks required for and mantaining software.
 
 ## Relevant Organizations
 
-SAE- Society Automotive Engineers
+SAE- Society Automotive Engineers: https://www.sae.org/
 NTSB - National Trasnportation Safety Board: https://www.ntsb.gov/safety/safety-studies/Pages/SafetyStudies.aspx
 EASA - European Aviation Safety Agency: https://www.easa.europa.eu/easa-and-you/safety-management
 JTSB - Japan Transportation Safety Board:    http://www.mlit.go.jp/jtsb/english.html
+FAA - Federal Aviation Administration: https://www.faa.gov
 
 Also safety standards as UL, ANSI, CSA and IEC, NRTL, ANSI, UL, IEEE standards. TODO: complete....
 
@@ -2079,6 +2080,8 @@ ETR - Estimated Time for Repair
 
 SOTIF - Safety of the Intended Functionality
 
+FMEA - Failure Mode Effect and Analysis.
+
 ISO 9126 - Software Product Quality.
 
 SIL - SOFTWARE IN THE LOOP
@@ -2247,7 +2250,7 @@ Requirements constantly increase its number, and the requested features may not 
 
 SYSTEM ARCHITECTURE and DESIGN
 
-28. Architecture or design lacks flexibility 
+28. Architecture, design or technical solution lacks flexibility 
 
 The architecture is incapable of supporting change requests and needs to be reworked. For example: in a computer system a Round-robin
 schecdule is a very neat architecture, and really good in some ways: as predictability and time estimation, but if lacks flexibility
@@ -2255,9 +2258,9 @@ when the system needs to include new functionality.
 
 29. Architecture or design is not fit for purpose 
 
-The architecture is low quality. Don't use anti-patterns.
+The architecture or technical solution is low quality. Don't use anti-patterns.
 
-30. Architecture or design is infeasible 
+30. Architecture or design or technical solution is not feasible .
 
 The architecture is impossible to implement, excessively costly or doesn't support the requirements. For example: the data-processing
 requirements are impossible to achieve for the requested system.
@@ -2310,13 +2313,13 @@ SUPPLIERS
 
 6. working range of the component is not enought for the design goals
 
-7. elements wears-out and don't achieve the design goals
+7. elements wears-out, design life or aging don't achieve the design goals
 
 8. element doesn't meet design goals under defined enviroment or expected work conditions.
 
 9. thermal performance don't achieve the design goals. (thermal stress, cooling issues or expasion joints needed)
 
-10. mechanical performance don't achieve the design goals. (fatigue, yiel and deformations, max laod, resilience, rupture strength, rupture stress, vibration, protection (IP), corrosion, wear, safety margins ... there are several factors to take into account).
+10. mechanical performance don't achieve the design goals. (fatigue, yiel and deformations, max laod, resilience, rupture strength, rupture stress, vibration, protection (IP), corrosion, wear, noises, unfitting materials, safety margins ... there are several factors to take into account).
 
 11. dielectric isolation of components fails
 
@@ -2377,6 +2380,7 @@ https://pascal.computer.org/sev_display/index.action
 software managemente tools
 
 https://trac.edgewall.org/
+
 redmine
 jira
 
@@ -2411,22 +2415,16 @@ https://www.its.bldrdoc.gov/fs-1037/dir-015/_2151.htm
 https://blog.nxp.com/automotive/three-things-to-know-about-functional-safety
 
 
-BIBLIOGRAPHY:
-
-- Reliability Engineering Handbook; Kececioglu,Dimitri; Prentice-Hall, 1991.
-
-B. Stroustrup, Herb Sutter, and G. Dos Reis: A brief introduction to C++’s model for type- and resource-safety.
-
-
-D. Abrahams. Exception-Safety in Generic Components.  https://www.boost.org/community/exception_safety.html
-
-
-H. Sutter and A. Alexandrescu. C++ Coding Standards. Addison-Wesley 2005.
-
 BIBLIOGRAPHY - TECHNICALL BOOKS & PAPERS:
 
+- "Reliability Engineering Handbook",Kececioglu,Dimitri; Prentice-Hall, 1991.
+- "A brief introduction to C++’s model for type- and resource-safety", B. Stroustrup, Herb Sutter, and G. Dos Reis.
+- "Exception-Safety in Generic Components", D. Abrahams. https://www.boost.org/community/exception_safety.html
+- " C++ Coding Standards", H. Sutter and A. Alexandrescu. Addison-Wesley 2005.
+- "Safeware: System Safety and Computers", Nancy G. Leveson
+- "Safety Critical Computer Systems", Neil Storey
+- "Embedded Software Development for Safety-Critical Systems", Chris Hobbs
 - "Orbiter Structural Design Verification" P.C. Glynn and T.L. Moser
 - "Strengh Integrity of the Space Shuttle Orbiter Tiles", T.L. Moser and W.C. Schneider
 - "Reliability Engineering of the Space Shuttle: Lessons Learned" T.L. Moser
 - "Structural Load Challenges During Space Shuttle Development", A.C. Mackey and R.E. Gatto
-- Safeware
