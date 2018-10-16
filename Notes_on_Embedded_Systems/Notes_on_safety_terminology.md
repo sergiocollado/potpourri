@@ -361,7 +361,6 @@ Very low, low, medium, high, very high. With this classification then it is poss
 
 ## FAILURES vs ERRORS:
 
-
 **Fault**: A fault is either a failure or an error.
 
 **Failure**: is the non-performance of the system or component, AT RANDOM. Thus, it can be estimated from a pdf (probability density function). FAILURES ARE EVENTS.
@@ -538,7 +537,7 @@ What's the problem to solve? Has it be done before? what solution has been used 
  
   Parts of the Analysis, include:
 
-   - Concept definitions and concept studies: Evaluating the feasiability of the concept. Initial requirements, hazard, risks, architecture, design, components and also conceiving and characterizing quantitative and qualitative concepts.Budget estimations: How much will it cost: what are going to be the development costs? what are operation costs? (usually development costs and operational costs and inverse proportional). technologie readiness. producibility and operatibility requirement and estimations.
+   - Concept definitions and concept studies: Evaluating the feasibility of the concept. The acronym TELOS identifies five areas of feasibility - Technical, Economic, Legal, Operational and Scheduling. Initial requirements, hazard, risks, architecture, design, components and also conceiving and characterizing quantitative and qualitative concepts.Budget estimations: How much will it cost: what are going to be the development costs? what are operation costs? (usually development costs and operational costs and inverse proportional). technologie readiness. producibility and operatibility requirement and estimations.
    - Preliminary design: evaluation of the design trade-offs (as develoment vs operational costs, or size vs weitgh, or size vs battery). design draft. 
    - Critical design: identification of critical key points of the desing, operation, production, ...
    - Production design: estimation on how it is going to be produced, proposal of suppliers and contractors, logistics, transportations, cost estimations ...
@@ -2114,6 +2113,7 @@ ETSI
 
 ITU
 
+TELOS - Technical, Economic, Legal (liability), Operational and Scheduling. Refers to the five areas of feasibility
 
 BOOKS and REFERENCES
 =======================
