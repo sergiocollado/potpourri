@@ -2314,9 +2314,9 @@ SUPPLIERS
 
 8. element doesn't meet design goals under defined enviroment or expected work conditions.
 
-9. thermal performance don't achieve the design goals.
+9. thermal performance don't achieve the design goals. (thermal stress, cooling issues or expasion joints needed)
 
-10. mechanical performance don't achieve the design goals. (fatigue, yiel and deformations, max laod, resilience, rupture strength, rupture stress, vibration, protection (IP), corrosion, wear, safety margins .... there are several factors to take into account).
+10. mechanical performance don't achieve the design goals. (fatigue, yiel and deformations, max laod, resilience, rupture strength, rupture stress, vibration, protection (IP), corrosion, wear, safety margins ... there are several factors to take into account).
 
 11. dielectric isolation of components fails
 
