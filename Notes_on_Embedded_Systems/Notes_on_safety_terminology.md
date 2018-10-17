@@ -66,7 +66,6 @@ R(accident_i) = P(accident_i) · Severity(accident_i)
 
  **Risk matrix**: In practice the risk formula is difficult to apply, due the probablities of given accident are difficult to pin-point with an exact number, so it is common to apply categories to the probability and severity, so instead of numbers they are classified in ranges, for example is common to evaluate: Very low, low, medium, high, very high. With this classification then it is possible to make what is refered to, as a risk matrix, or risk table. 
 
-
 **HAZARD**: Set of combinations of conditions or requisites or enviroments or events that lead to an accident
 
 **ERROR/MISTAKE**: A human being can make an error(mistake), with results in a **defect** in the system (fault, bug) in the program or code, or in a document. The defect in the system, might never be noticed, or can result in the case that the system might fail its expected function (or do something it shouldn't) causing a failure. Defects in software, systems or documents can result in failures, but no all defects do.
@@ -75,8 +74,10 @@ R(accident_i) = P(accident_i) · Severity(accident_i)
 **(human) ERROR -> (code) DEFECT -> (system) FAILURE**
 <br>
 
-**FAILURE**: A failure is the misperformance or lack of ?h?ability of a component to comply with its designed function, during certain
+**FAILURE**: A failure is the misperformance or lack of ability of a component to comply with its designed function, during certain
 time, or under specified enviromental system conditions. 
+
+**FAILURE MODE**: A failure mode is one of the possible potentinal ways of a system to fail. Usually in a system there are several ways in which it can fail, each one is knwon as a failure mode. Usually different failures mode also are expected to have different probability distributions.
 
 **FAULT**: An error is a systematic fault: An error is a desing flaw or desviation from an intended or designed state.
 
