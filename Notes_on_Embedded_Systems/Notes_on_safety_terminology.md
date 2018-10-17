@@ -2321,7 +2321,7 @@ SUPPLIERS
 
 9. thermal performance don't achieve the design goals. (thermal stress, cooling issues or expasion joints needed)
 
-10. mechanical performance don't achieve the design goals. (fatigue, yiel and deformations, max loads, resilience, rupture strength, rupture stress, vibration, protection (IP), corrosion, wear, noises, geometries, tolerances, unfitting materials, safety margins ... there are several factors to take into account).
+10. mechanical performance don't achieve the design goals. (fatigue, yiel and deformations, max loads, resilience, rupture strength, rupture stress, vibration, protection (IP), corrosion, wear, noises, geometries, tolerances, unfitting materials, materials interfaces,  safety margins ... there are several factors to take into account).
 
 11. dielectric isolation of components fails
 
