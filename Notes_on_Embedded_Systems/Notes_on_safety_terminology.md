@@ -276,7 +276,7 @@ There are two basic elements associated with this measure:
  https://www.drexelbrook.com/support/faq/what-are-safety-systems
  https://www.drexelbrook.com/learningzone/articles/what-is-sil-certification
 
-**FAULT TOLERANT SYSTEM**: Is a system that performs correctly, although might have some internal errors or faults in it. Usually this is achieved by means of repeated computations (repetition in time), redundant systems (repetition in components), and monitoring the system and the system data.
+**FAULT TOLERANT SYSTEM**: Is a system that performs correctly, although might have some inner faults in it. Usually this is achieved by means of repeated operations (repetition in time), redundant systems (repetition in components), and/or monitoring the system and the system data.
 
 RECOVERING FROM ERRORS:
 For recovering from errors there are two aproaches:
@@ -349,7 +349,7 @@ the 'Hazard log' is a life document: initialy the hazards are defined by means o
 
 reference: https://en.wikipedia.org/wiki/Hazard_and_operability_study
 
-**Risk**: It's the likehood of an accident and its severity. In other words: is the figure of merit that provides a meaningful value, that allows the comparation of the risk on different cases. Its mathematical expressionn is:
+**Risk**: It's the likehood or probability of an accident and its severity. In other words: is the figure of merit that provides a meaningful value, that allows the comparation of the risk on different cases. Its mathematical expressionn is:
 
 R(a) = p(a) * s(a);
 
@@ -357,8 +357,7 @@ R(a) = p(a) * s(a);
 - p(a) is the probability an accident 'a' happen.
 - s(a) is the severity of this accident. This is a factor that evaluates the overall damage, harm or loss in case on an accident 'a'. Usually the s(x) factor is defined by legal, customer or stackhorlders specifications. 
 
-In practice this formula is difficult to apply, as the probablities and damage evaluation are dificult to pin-point with an exact number, so it is common to apply categories to the probability and severity, so instead of numbers they are classified in ranges as:
-Very low, low, medium, high, very high. With this classification then it is possible to make what is refered to, as a risk matrix, or risk table. 
+In practice this formula is difficult to apply, as the probablities and damage evaluation are dificult to pin-point with an exact number, so it is common to apply categories to the probability and severity, so instead of numbers they are classified in ranges, classifing the likelihood of an event, for example: Very low, low, medium, high, very high. With this classification then it is possible to make what is refered to, as a risk matrix, or risk table. 
 
 ## FAILURES vs ERRORS:
 
@@ -2322,7 +2321,7 @@ SUPPLIERS
 
 9. thermal performance don't achieve the design goals. (thermal stress, cooling issues or expasion joints needed)
 
-10. mechanical performance don't achieve the design goals. (fatigue, yiel and deformations, max laod, resilience, rupture strength, rupture stress, vibration, protection (IP), corrosion, wear, noises, unfitting materials, safety margins ... there are several factors to take into account).
+10. mechanical performance don't achieve the design goals. (fatigue, yiel and deformations, max loads, resilience, rupture strength, rupture stress, vibration, protection (IP), corrosion, wear, noises, geometries, tolerances, unfitting materials, safety margins ... there are several factors to take into account).
 
 11. dielectric isolation of components fails
 
@@ -2418,7 +2417,7 @@ https://www.its.bldrdoc.gov/fs-1037/dir-015/_2151.htm
 https://blog.nxp.com/automotive/three-things-to-know-about-functional-safety
 
 
-BIBLIOGRAPHY - TECHNICALL BOOKS & PAPERS:
+BIBLIOGRAPHY & References - TECHNICAL BOOKS & PAPERS:
 
 - "Reliability Engineering Handbook",Kececioglu,Dimitri; Prentice-Hall, 1991.
 - "A brief introduction to C++’s model for type- and resource-safety", B. Stroustrup, Herb Sutter, and G. Dos Reis.
@@ -2426,8 +2425,32 @@ BIBLIOGRAPHY - TECHNICALL BOOKS & PAPERS:
 - " C++ Coding Standards", H. Sutter and A. Alexandrescu. Addison-Wesley 2005.
 - "Safeware: System Safety and Computers", Nancy G. Leveson
 - "Safety Critical Computer Systems", Neil Storey
+- "Test Driven Development: by example", Kent Beck
+- "Clean Code: A handbook of agile software craftmanship", Robert Martin
+- "Software system safety Handbook- A technical & managerila team approach", Joint System Safety Commitee
 - "Embedded Software Development for Safety-Critical Systems", Chris Hobbs
 - "Orbiter Structural Design Verification" P.C. Glynn and T.L. Moser
 - "Strengh Integrity of the Space Shuttle Orbiter Tiles", T.L. Moser and W.C. Schneider
 - "Reliability Engineering of the Space Shuttle: Lessons Learned" T.L. Moser
 - "Structural Load Challenges During Space Shuttle Development", A.C. Mackey and R.E. Gatto
+
+
+ # FMEA: Failure Mode and Effects Analysis
+ 
+ FMEA is a methodology and a structured systematic approach that aims to predict, anticipate and asses the possible failures of a system in its design phase, by means of identifying all possible failure causes and its effects in the system design, manufacture, production or operation.
+ 
+ FMEA studies are very interesting due the advantage of identifing and preventing a failure early in the development or in the life of a product. As the discovering and solving failures in later stages of a system development increase significantly the cost of solving them.
+ 
+Steps on FMEA:
+
+- Gathering of the FMEA team
+- Definition of the system, product of process
+- Definition of the functions
+- list of the potencial failure modes
+- list of the effectso of the failure modes
+- identification of the causes of the failure modes
+- Definition of controls
+- RPN (Risk Priority Number) calculation
+
+
+ ref: https://quality-one.com/fmea/
