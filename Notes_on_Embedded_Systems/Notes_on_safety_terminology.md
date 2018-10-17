@@ -115,7 +115,7 @@ referred as a 99% (two nines) means that over a year its downtime is 3.65 days. 
 
 **DEPENDABILITY**: Is the truthworthiness of a system so there is a justified confidence in the tasks it must perform.
 
-Dependability is a concept that usually refers to a figure of merit that is based on:
+Dependability is a concept that usually refers to a figure of merit that is based on the evaluation of the following properties:
 
 - Reliability
 - Availability
@@ -305,7 +305,7 @@ http://www.eventhelix.com/RealtimeMantra/FaultHandling/hardware_diagnostics.htm#
 
 EXAMPLE:
 
- Suppose, you have a system, in which two tasks are working together, one of them, task_1 - senses, gadthers and updates data in real time. task_2: request that data, and do some data processing algorithm. 
+ Suppose, you have a system, in which two tasks are working together, one of them, task_1 - senses, gathers and updates data in real time. task_2: request that data, and do some data processing algorithm. 
  
  In the event, that for whatever reason, maybe some bug, as could be: that there aren't enough memory..., the task_1 stops on working, or performing properly, so it may report the unfriendly: segmentation fault... at that point, the task_2, should be able to detect the problem, - there are some methods to do this - and it should try to fix the system, for example, re-launching, the task_1, or reseting/rebooting the whole system in the worst case.
  
@@ -434,7 +434,7 @@ ISO 31000 - standards for risk management:
 
 Each application specific safety standard has its own characteristics, but all the safety standards share some key points:
 
- - Identfication of hazards and risks for the system. A SIL (Safety Integrity level) is assigned based on the severity of the risk. A risk that has a great severity is assigned with a higher SIL level.
+ - Identification of hazards and risks for the system. A SIL (Safety Integrity level) is assigned based on the severity of the risk. A risk that has a great severity is assigned with a higher SIL level.
  
  - The SIL grade implies the effort o engineering effort for working with that risk. According to the SIL level, the higher it is, it will imply more effor, the use of more analisys techniques, and the use of more mitigation actions or functions.
 
@@ -487,7 +487,7 @@ Recomendations to define all the tasks required for and mantaining software.
 SAE- Society Automotive Engineers: https://www.sae.org/
 NTSB - National Trasnportation Safety Board: https://www.ntsb.gov/safety/safety-studies/Pages/SafetyStudies.aspx
 EASA - European Aviation Safety Agency: https://www.easa.europa.eu/easa-and-you/safety-management
-JTSB - Japan Transportation Safety Board:    http://www.mlit.go.jp/jtsb/english.html
+JTSB - Japan Transportation Safety Board: http://www.mlit.go.jp/jtsb/english.html
 FAA - Federal Aviation Administration: https://www.faa.gov
 
 Also safety standards as UL, ANSI, CSA and IEC, NRTL, ANSI, UL, IEEE standards. TODO: complete....
@@ -658,15 +658,6 @@ a tendency to check for the same errors, such as invalid arguments, over and ove
 to overall system reliability.
 However, separating the program into distinct subsystems that either complete successfully or fail
 in well-defined ways is essential, feasible, and economical."
-
-
-references and further readings:
-
-- B. Stroustrup, Herb Sutter, and G. Dos Reis: A brief introduction to C++’s model for type- and resource-safety.
-- D. Abrahams. Exception-Safety in Generic Components.  https://www.boost.org/community/exception_safety.html
-- H. Sutter and A. Alexandrescu. C++ Coding Standards. Addison-Wesley 2005.
-
-
 
 ## Defensive programming
 
@@ -1798,7 +1789,7 @@ the responsabilites for example are:
  - selection of features to be testested and not to be tested
  - definition of the overall strategy
  - resolucion of conflics
- - planniong of squedules
+ - planning of squedules
  - who takes the critical decisions.
  
  # approvals
@@ -2126,16 +2117,7 @@ ITU
 
 TELOS - Technical, Economic, Legal (liability), Operational and Scheduling. Refers to the five areas of feasibility
 
-BOOKS and REFERENCES
-=======================
 
-safeware -
-
-KENT BECK - Test Driven Development: BY EXAMPLE 
-
-ROBERT MARTIN - CLEAN CODE: A HANDBOOK OF AGILE SOFTWARE CRAFTMANSHIP
-
-JOINT SYSTEM SAFETY COMMITTEE  - SOFTWARE SYSTEM SAFETY HANDBOOK - A TECHNICAL & MANAGERIAL TEAM APPROACH-
 
 ## Draft on GENERAL PROJECT RISKS
 
@@ -2454,13 +2436,13 @@ BIBLIOGRAPHY & References - TECHNICAL BOOKS & PAPERS:
  
 Steps on FMEA:
 
-- Gathering of the FMEA team
-- Definition of the system, product of process
-- Definition of the functions
-- list of the potencial failure modes
-- list of the effectso of the failure modes
+- Assemble of the FMEA team
+- Definition of the system, product or process
+- Definition of the functions and requirements (and severity ranking of them)
+- list of the potencial failures and prevention controls through occurrence ranking
+- list of the effects of the failure modes
 - identification of the causes of the failure modes
-- Definition of controls
+- Definition of controls, actions and test
 - RPN (Risk Priority Number) calculation
 
 
