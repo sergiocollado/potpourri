@@ -1844,9 +1844,14 @@ steps, and instructions to perform a certain task. the acronym also stands for S
 
 https://aviation-safety.net/  
 
+
+
 #### Hinderburg 
 
 wip....
+
+
+### Ford Pinto
 
 #### Genesis Solar Wind Probe:
 Went to Space, took samples of the solar wind, come back to Earth, but failed to open the parachutes : S
@@ -2429,6 +2434,7 @@ BIBLIOGRAPHY & References - TECHNICAL BOOKS & PAPERS:
 - "Clean Code: A handbook of agile software craftmanship", Robert Martin
 - "Software system safety Handbook- A technical & managerila team approach", Joint System Safety Commitee
 - "Embedded Software Development for Safety-Critical Systems", Chris Hobbs
+- "Risk assessment theory, methods and applications", Rausand
 - "Orbiter Structural Design Verification" P.C. Glynn and T.L. Moser
 - "Strengh Integrity of the Space Shuttle Orbiter Tiles", T.L. Moser and W.C. Schneider
 - "Reliability Engineering of the Space Shuttle: Lessons Learned" T.L. Moser
@@ -2437,9 +2443,13 @@ BIBLIOGRAPHY & References - TECHNICAL BOOKS & PAPERS:
 
  # FMEA: Failure Mode and Effects Analysis
  
+ Is one of the earliest approach to a systematic realiability analysis.
+  
  FMEA is a methodology and a structured systematic approach that aims to predict, anticipate and asses the possible failures of a system in its design phase, by means of identifying all possible failure causes and its effects in the system design, manufacture, production or operation.
  
  FMEA studies are very interesting due the advantage of identifing and preventing a failure early in the development or in the life of a product. As the discovering and solving failures in later stages of a system development increase significantly the cost of solving them.
+ 
+ The leading standards for FMEA are the IEC 60812 and MIL 1629
  
 Steps on FMEA:
 
