@@ -395,8 +395,7 @@ IEC 61508 has several parts:
  - Part 5: Examples for determining safety integrity levels (SILs)
  - Part 7: guidelines of application of parts 2 and 3
  - Part 8: overview of tecniques and measures
- 
- 
+
 EN 60204-1 - Safety on Machinery - electrical equipment of machines. 
 
 IEC 62061 - Safety of machinery – functional safety of electrical, electronic and programmable control systems for machinery
@@ -454,6 +453,8 @@ requires of analisys, records and feedback of the development, testing and field
  
  Software Quality Product -  ISO 9126
  
+ MIL-HDBK-217 "Reliability Prediction of Electronic Equipment"
+
  ISO 9001
 
 ## Other stadards to observe
@@ -474,8 +475,8 @@ Recomendations to define all the tasks required for and mantaining software.
 - Recomendations for the computer software development process and related bussines management fuctions. This standard is derived from the ISO/IEC 12207, and madurity models as CMM (Capability Madurity Model).
 - IEEE 829 - software test documentation
 - ISO/IEC 27000 - Information security management systems.
-- IEC 60812:1985 Analysis techniques for system reliability - FEMA: procedures for failure mode effect and analysis
-- IEC 61025:1990 Fault Tree Analysis (FTA)
+- IEC 60812 Analysis techniques for system reliability - FMEA: procedures for failure mode effect and analysis
+- IEC 61025 Fault Tree Analysis (FTA)
 - IEC 61713:2000
 - IEEE Std 1044-1993, Standard Classification of Software Anomalies
 - IEEE Std 1012-1998, Standard for Software Validation and Verification Plans.
@@ -1553,7 +1554,7 @@ WIP: ...
 
 When a test case of a system involves the actual run of the system, this is known as 'dinamic testing', on the other hand when it doens't inolve the run of the sysem is known as 'static testing'.
 
- - Dinamic testing usually makes us of stubs/drivers, execution from a debugger enviroment. And is also quite common to automate it.
+ - Dynamic testing usually makes us of stubs/drivers, execution from a debugger enviroment. And is also quite common to automate it.
  
 Static testing, is referred to those evaluations that don't need the system to be running. Those are techniques as: code review, revision, walkthoruhgs, inspection, and alsouse of programs that automatically ckeck the code propierties (as could be: detection of 'dead code' (code that will never execute)unused variables, missing pointers, out of bound arrays, wrong types varaible asignations, lost of precission in mathematical operations, ...) 
 
@@ -2443,7 +2444,7 @@ BIBLIOGRAPHY & References - TECHNICAL BOOKS & PAPERS:
 
  # FMEA: Failure Mode and Effects Analysis
  
- Is one of the earliest approach to a systematic realiability analysis.
+ Is one of the earliest approach to a systematic realiability analysis, that of course includes risk assesment.
   
  FMEA is a methodology and a structured systematic approach that aims to predict, anticipate and asses the possible failures of a system in its design phase, by means of identifying all possible failure causes and its effects in the system design, manufacture, production or operation.
  
