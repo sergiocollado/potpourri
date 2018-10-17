@@ -661,13 +661,9 @@ in well-defined ways is essential, feasible, and economical."
 
 references and further readings:
 
-B. Stroustrup, Herb Sutter, and G. Dos Reis: A brief introduction to C++’s model for type- and resource-safety.
-
-
-D. Abrahams. Exception-Safety in Generic Components.  https://www.boost.org/community/exception_safety.html
-
-
-H. Sutter and A. Alexandrescu. C++ Coding Standards. Addison-Wesley 2005.
+- B. Stroustrup, Herb Sutter, and G. Dos Reis: A brief introduction to C++’s model for type- and resource-safety.
+- D. Abrahams. Exception-Safety in Generic Components.  https://www.boost.org/community/exception_safety.html
+- H. Sutter and A. Alexandrescu. C++ Coding Standards. Addison-Wesley 2005.
 
 
 
@@ -1348,13 +1344,19 @@ There are test methodologies that are only applicable to the hardware of the sys
  - HALT: Higly Accelerated life testing.
  - HASS: Higly Accelerated stress screening.
  
-These two methods are complementary of each other.
+ When designing hardaware or mechanical tests, according to the expected goal, different classification can be made:
+ 
+ - **pass/fail test**: the test subject is just evaluated according to if it complies or not with its goal.
+ - **test to failure**: the test subject is evaluated up to the point of critical collapse or failure. this test improves the pass/test fail, as it explores the boundary limits of the test subject.
+ - **degradation test**: the test subject is evaluated during certain life time of cycles, and different relevant paramenters or performance are evaluated. Then the the test subject is evaluated againg during other life time or cycles, and again the paramenters of interest or performance is evaluated, .... this continues up to the goal of the test is fullfilled. This method is preferred over the other two previous methods, as it gives information about the relevant parameters of interest and its evolution.
+ 
+HALT and HASS are two methods that are complementary of each other.
 
-HALT is used during early desing and development phases, and aims to clearly identify the hardware operating limits and fault modes at its material level. 
+**HALT** (Higly Accelerated life testing) is used during early desing and development phases, and aims to clearly identify the hardware operating limits and fault modes at its material level. 
 
 During the design and development phase is the best change to modify the design and the point at which will have less impact overall the project. Sometimes, some devices, don't have clear specifications, in the range we would like to use them, this might be because we are using these devices out of its common design use, o because our design goes into never explored situations...
 
-HASS takes place in the industrialization phase, to screen hardware components, to indentify possible unidentified or lattent faults  - in practice it might just happen that a batch of a certain element, might be out of its specs, for wathever reason, ... if this is not detected in the fabrication stage, the proble will most possibly surface at the end user end, ...  As a reference is possible to look for the case of the Samsung Galaxy Note 7, that under some cases, was known to explode, allegedy due to irregularities in its batteries. It is estimated that this issues costed the firm around $5 billion. 
+**HASS** (Higly Accelerated stress screening)  takes place in the industrialization phase, to screen hardware components, to indentify possible unidentified or lattent faults  - in practice it might just happen that a batch of a certain element, might be out of its specs, for wathever reason, ... if this is not detected in the fabrication stage, the proble will most possibly surface at the end user end, ...  As a reference is possible to look for the case of the Samsung Galaxy Note 7, that under some cases, was known to explode, allegedy due to irregularities in its batteries. It is estimated that this issues costed the firm around $5 billion. 
 
 
 reference: https://www.techradar.com/news/samsung-galaxy-note-7-battery-fires-heres-why-they-exploded
