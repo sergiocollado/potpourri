@@ -456,7 +456,7 @@ MTTR - Mean Time To Repair
 MTTF - Mean Time To Failure
 FTA - Fault Tree Analysis.
 TSC - Thermal Shutdown Circuit.
-POST - Power On Reset System Test?
+POST - Power On Self Test
 OCP - Over Current Protection Circuit.
 UVLO - Under Voltage Lock Out Circuit.
 OVLO - Over Voltage Lock Out Circuit.
