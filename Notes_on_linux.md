@@ -338,8 +338,11 @@ TODO:  complete with: -- > http://unix.stackexchange.com/questions/87908/how-do-
 5) 
 If you want to know how much free memory you have in your hard disk, you have to use the commands:
 
-· **df** command
-· **du** command
+-  **df** command: this will report how much free memory has the filesystem.
+
+
+
+ - **du** command: reports an estimation of the file space usage.
 
 TODO: COMPLETE
 
