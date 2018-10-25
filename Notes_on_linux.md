@@ -170,6 +170,13 @@ file1  rwxr-x^-x
 - Sometimes it is needed to get all the permissions, for example when we want to install a program. For doing this we use the **sudo** command, it stands for "Switch User DO". To be possible to used the **sudo** command, the user must belong to the group: 'sudoers'.
 
 
+### Other users
+
+  Using the commands **who** or **users** reports the current users logged into the system. the current users can be printed with the command **whoami**. 
+  
+  The command **su** lets you borrow the permissions from another user to run commands, if no user is especified, it defaults to use the **root** user.
+  
+
 ### Processes
 
 To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
