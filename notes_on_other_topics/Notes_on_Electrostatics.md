@@ -82,7 +82,7 @@ charge is distributed between the two objects, due the charge is transferred and
 
 - by **induction**: a charged objet is used, and a not charged object is presented close to it, but with-out touching it... also useful for charging metals and other conductors. Again, a charged object is used, but this time it is only brought close to the conductor, and does not touch it. If the conductor is connected to ground (ground is basically anything neutral that can give up electrons to, or take electrons from, an object), electrons will either flow on to it or away from it. When the ground connection is removed , the conductor will have a charge opposite in sign to that of the charged object.
 
- - by **ionization radiation**: as elements that are radiated with X-rays.
+ - by **ionization radiation**: as elements that are radiated with X-rays (for example at the top layers of the atmosphere: Ionosphere) . Gases also can get ionized with high temperatures, these increase collisions, that  that give rise to vibration, ionize the electronic energy levels in the molecule.
 
 - **Piezoelectric effect**: wip..
 
