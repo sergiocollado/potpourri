@@ -67,7 +67,7 @@ To get the list of commands, you just need to type the command: `>help`
 
 To restart the TCP/Ip stack:
 
-'''bash
+```bash
 ipconfig /flushdns
 
 ipconfig /registerdns
@@ -75,4 +75,12 @@ ipconfig /registerdns
 ipconfig /release
 
 ipconfig /renew
-'''
+```
+
+or 
+
+```bash
+netsh int ip reset reset.log
+netsh winsock reset catalog
+```
+
