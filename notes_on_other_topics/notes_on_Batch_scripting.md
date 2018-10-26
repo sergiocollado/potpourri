@@ -63,4 +63,16 @@ To get the list of commands, you just need to type the command: `>help`
 
 
 
+## NETWORK COMMANDS
 
+To restart the TCP/Ip stack:
+
+'''bash
+ipconfig /flushdns
+
+ipconfig /registerdns
+
+ipconfig /release
+
+ipconfig /renew
+'''
