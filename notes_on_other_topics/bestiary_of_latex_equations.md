@@ -46,6 +46,10 @@ CLASSICAL ROCKET EQUATION:
 \end{matrix}\right.
 ```
 <br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/leyenda_rocket_eq2.png" alt="classical_rocket_equation_parameters"> <br>
+
+<br>
+<br>
+
 SCALAR COULOMB FORCE EQUATION
 
 ```latex
