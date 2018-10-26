@@ -375,6 +375,12 @@ It reads from the file `proc/modules`, so you can also read it as: `cat /proc/mo
 
 more on: https://www.computerhope.com/unix/lsmod.htm
 
+# How to evaluate the startup of linux system
+
+Bootchart is a tool for performance analysis and visualization of the GNU/Linux boot process. Resource utilization and process information are collected during the boot process and are later rendered in a PNG, SVG or EPS encoded chart.
+http://www.bootchart.org/
+
+
 
 # Run a script as a background daemon
 
