@@ -367,6 +367,9 @@ if it fails at start, try to
 > sudo apt-get upgrade
 
 
+6) memsusage: is a script that reports the memory consuption of a given program. http://man7.org/linux/man-pages/man1/memusage.1.html
+
+
 ## How do I know what modules my linux system has:
 
 You can use the **lsmod** command, and it will give you the status of the present linux.
