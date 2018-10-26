@@ -38,7 +38,13 @@ CLASSICAL ROCKET EQUATION:
 
 <br> <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/roquet_equation.svg?sanitize=true" alt="classical_rocket_equation"> <br>
 
-
+```latex
+\left\{\begin{matrix}\Delta \nu \: \: \: - & \:  \textrm{change of velocity}
+\\  \nu_e \: \: \: -& \: \textrm{effective exhaust velocity}
+\\  m_0 \: \: \: -& \: \textrm{initial total mass, included the fuel}
+\\ m_f \: \: \: -& \: \textrm{final total mass}
+\end{matrix}\right.
+```
 
 SCALAR COULOMB FORCE EQUATION
 
