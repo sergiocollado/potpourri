@@ -945,12 +945,14 @@ Petri nets are a method for representing systems, usually systems that strongly 
 Wath out! not all the systems are possible to be represented with petri-nets... for example stocastic systems...
 
 
-The elements that the petri nets use are:
+The elements that define a petri-net are the following:
 
- - Bars: processes or transitions or events
- - Circles: buffers or places or states
- - Tokes (dots): represent consumable elements for the processes
- - Directed arrows: representation of the flow 
+Graphically:
+
+ - Bars: processes or transitions or events (T)
+ - Circles: buffers or places or states  (P)
+ - Tokens (dots): represent consumable elements for the processes
+ - Directed arrows: representation of the flow  (I or O)
 
 Mathematically is defined as a four-tuple:
 
@@ -970,6 +972,8 @@ Automata/State-Machine: In the case the Places, or processes have ONLY one incom
 
 
 ref: https://isr.umd.edu/Labs/CIM/miscs/wmsor97.pdf
+
+ref: http://www.site.uottawa.ca/~bochmann/ELG7187C/CourseNotes/BehaviorModeling/Petri-nets/index.html
 
 references:
  - Petri Net Theory and the Modeling of Systems, J. L. Peterson, Prentice-Hall, 1981.
