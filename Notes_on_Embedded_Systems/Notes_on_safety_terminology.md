@@ -942,8 +942,11 @@ http://www.es.ele.tue.nl/sdf3/
 
 Petri nets are a method for representing systems, usually systems that strongly represent production-consumption systems, sequece systems ...
 
+Motivations: Petri-nets provide a method for representing and evaluatin a given system. They allow us to evaluate system propierties as concurrency, latencies, throuputs, ...
+
 Wath out! not all the systems are possible to be represented with petri-nets... for example stocastic systems...
 
+## Basic elements of a Petri net
 
 The elements that define a petri-net are the following:
 
@@ -954,14 +957,14 @@ Graphically:
  - Tokens (dots): represent consumable elements for the processes
  - Directed arrows: representation of the flow  (I or O)
 
-Mathematically is defined as a four-tuple:
+Mathematically:
 
-PN = <P, T, I, O>
+It is defined as a four-tuple:  **PN = <P, T, I, O>**
 
-P: finite set of places: {p1, p2, p3, ..., pn}
-T: finite set of transitions: {t1, t2, ... ts}
-I: Input function (TxP) --> (0,1) - maps inputs from a transition (ti) to a Place (pj) 
-O: Output functio (PxT) --> (0,1) - maps output from a place (pr) to a transition (ts)
+**P**: finite set of places: {p1, p2, p3, ..., pn}
+**T**: finite set of transitions: {t1, t2, ... ts}
+**I**: Input function (TxP) --> (0,1) - maps inputs from a transition (ti) to a Place (pj) 
+**O**: Output functio (PxT) --> (0,1) - maps output from a place (pr) to a transition (ts)
 
 Special types of petry nets are:
 
@@ -974,6 +977,8 @@ Automata/State-Machine: In the case the Places, or processes have ONLY one incom
 ref: https://isr.umd.edu/Labs/CIM/miscs/wmsor97.pdf
 
 ref: http://www.site.uottawa.ca/~bochmann/ELG7187C/CourseNotes/BehaviorModeling/Petri-nets/index.html
+
+ref: interactive tutorial for petri-nets: http://www.informatik.uni-hamburg.de/TGI/PetriNets/introductions/aalst/
 
 references:
  - Petri Net Theory and the Modeling of Systems, J. L. Peterson, Prentice-Hall, 1981.
