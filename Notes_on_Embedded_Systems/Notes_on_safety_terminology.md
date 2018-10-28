@@ -942,6 +942,9 @@ http://www.es.ele.tue.nl/sdf3/
 
 Petri nets are a method for representing systems, usually systems that strongly represent production-consumption systems, sequece systems ...
 
+Wath out! not all the systems are possible to be represented with petri-nets... for example stocastic systems...
+
+
 The elements that the petri nets use are:
 
  - Bars: processes or transitions or events
@@ -957,6 +960,13 @@ P: finite set of places: {p1, p2, p3, ..., pn}
 T: finite set of transitions: {t1, t2, ... ts}
 I: Input function (TxP) --> (0,1) - maps inputs from a transition (ti) to a Place (pj) 
 O: Output functio (PxT) --> (0,1) - maps output from a place (pr) to a transition (ts)
+
+Special types of petry nets are:
+
+Multi-rate petri-net (Data-flow graphs aka marked graphs): Is the case in which the transitions consume or outputs more that one token.
+
+Automata/State-Machine: In the case the Places, or processes have ONLY one incoming and other outgoing transition, then this petri-nets is equal to an Automata or State-Machine. Usually in this case, they are draw a bit different, as in this case the proceeses or transitions are redundant, so they are left out of the drawing, and only the cicles (states) are left.
+
 
 
 ref: https://isr.umd.edu/Labs/CIM/miscs/wmsor97.pdf
