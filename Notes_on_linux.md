@@ -103,6 +103,13 @@ $> del lang=es
 
 You should change the 'es' to your langauge code. And rememember than in an english keyboard, the 'equal sign' is next to the back space key.
 
+the local settings of the system can be identified with the command **locale**
+
+```bash
+>> locale
+```
+
+
 ## Linux File System
 
 The linux file system usually has the following file hierarchy structure:
@@ -259,7 +266,7 @@ using the **'free'** command:
 
 Note: free command, only gives you info about the RAM memory.
 
-Opertators:
+command options:
 
 -b : gives you the memory in bytes
 -k : (default) gives you the memory in kibibytes (KiB)
@@ -329,7 +336,9 @@ There are also the **atop**, and **htop** programs, that have increased function
 
 Use **'linux-ftools'**, to check what files are in your CACHE.
 
-`>> fincore [options] files ...`
+```
+>> fincore [options] files ...
+```
 
 Options:
 
@@ -345,7 +354,7 @@ TODO:  complete with: -- > http://unix.stackexchange.com/questions/87908/how-do-
 5) 
 If you want to know how much free memory you have in your hard disk, you have to use the commands:
 
--  **df** command (for disk free?): this will report how much free memory has the filesystem.
+-  **df** command (for disk free?): this will report how much free memory has the filesystem. You usually invoque `df -h` the -h flag stands for "human readable".
 
 
 
@@ -356,15 +365,19 @@ TODO: COMPLETE
 
 - If you want to have updated all the references to yor database repository, you should install mlocate, it will update the db once a day.
 
+```
 > sudo apt-get install mlocate
+```
 
 if it fails at start, try to 
 
+```
 > sudo updatedb
 
 > sudo apt-get update
 
 > sudo apt-get upgrade
+```
 
 
 6) memsusage: is a script that reports the memory consuption of a given program. http://man7.org/linux/man-pages/man1/memusage.1.html
