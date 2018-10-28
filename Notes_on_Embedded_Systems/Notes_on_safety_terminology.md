@@ -938,6 +938,32 @@ https://workcraft.org/
 http://www.es.ele.tue.nl/sdf3/
 
 
+## PETRI NETS
+
+Petri nets are a method for representing systems, usually systems that strongly represent production-consumption systems, sequece systems ...
+
+The elements that the petri nets use are:
+
+ - Bars: processes or transitions or events
+ - Circles: buffers or places or states
+ - Tokes (dots): represent consumable elements for the processes
+ - Directed arrows: representation of the flow 
+
+Mathematically is defined as a four-tuple:
+
+PN = <P, T, I, O>
+
+P: finite set of places: {p1, p2, p3, ..., pn}
+T: finite set of transitions: {t1, t2, ... ts}
+I: Input function (TxP) --> (0,1) - maps inputs from a transition (ti) to a Place (pj) 
+O: Output functio (PxT) --> (0,1) - maps output from a place (pr) to a transition (ts)
+
+
+ref: https://isr.umd.edu/Labs/CIM/miscs/wmsor97.pdf
+
+references:
+ - Petri Net Theory and the Modeling of Systems, J. L. Peterson, Prentice-Hall, 1981.
+ - Petri Nets: An Introduction, W. Reisig, Springer-Verlag,1985
 
 
 **TODO**: Check and elavorate: https://en.wikipedia.org/wiki/Calculus_of_communicating_systems
@@ -1342,9 +1368,9 @@ There are test methodologies that are only applicable to the hardware of the sys
  - **test to failure**: the test subject is evaluated up to the point of critical collapse or failure. this test improves the pass/test fail, as it explores the boundary limits of the test subject.
  - **degradation test**: the test subject is evaluated during certain life time of cycles, and different relevant paramenters or performance are evaluated. Then the the test subject is evaluated againg during other life time or cycles, and again the paramenters of interest or performance is evaluated, .... this continues up to the goal of the test is fullfilled. This method is preferred over the other two previous methods, as it gives information about the relevant parameters of interest and its evolution.
  
-HALT and HASS are two methods that are complementary of each other.
+ALT (and HALT) and HASS are two methods that are complementary of each other.
 
-**HALT** (Higly Accelerated life testing) is used during early desing and development phases, and aims to clearly identify the hardware operating limits and fault modes at its material level. 
+**ALT** (Accelerated life testing) and **HALT** (Higly Accelerated life testing) is used during early desing and development phases, and aims to clearly identify the hardware operating limits and fault modes at its material level. 
 
 During the design and development phase is the best change to modify the design and the point at which will have less impact overall the project. Sometimes, some devices, don't have clear specifications, in the range we would like to use them, this might be because we are using these devices out of its common design use, o because our design goes into never explored situations...
 
