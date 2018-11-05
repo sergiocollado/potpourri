@@ -970,9 +970,21 @@ Special types of petry nets are:
 
 Multi-rate petri-net (Data-flow graphs aka marked graphs): Is the case in which the transitions consume or outputs more that one token.
 
-Automata/State-Machine: In the case the Places, or processes have ONLY one incoming and other outgoing transition, then this petri-nets is equal to an Automata or State-Machine. Usually in this case, they are draw a bit different, as in this case the proceeses or transitions are redundant, so they are left out of the drawing, and only the cicles (states) are left.
+Automata/State-Machine: In the case the Places, or processes have ONLY one incoming and other outgoing transition, then this petri-nets is equal to an Automata or State-Machine. Usually in this case, they are draw a bit different, as in this case the proceeses or transitions are redundant, so they are left out of the drawing, and only the cicles (states) are left. 
 
+## Model patterns
 
+There are three identificlable patterns 
+
+ - Causallity: one event directly triggers other
+ - Choice: one event has a choice, that is two or more options to trigger.
+ - Concurrency: two or more processes run in parallel. 
+ 
+ Also related to concurrecy is the concept of fork and syncronization. 
+  - Fork: a process divides into two or more processes
+  - Syncronization: two or more concurrent processes joint in a single event.
+  
+  
 
 ref: https://isr.umd.edu/Labs/CIM/miscs/wmsor97.pdf
 
