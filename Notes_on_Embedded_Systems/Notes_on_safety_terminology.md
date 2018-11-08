@@ -911,7 +911,6 @@ Ref: http://theory.stanford.edu/~rvg/
 
 ## RECUSIVE STATES.
 
-
 This is done by means of process equations. 'X' is known as a process variable.
 
 'X= a·X'
@@ -952,19 +951,37 @@ The elements that define a petri-net are the following:
 
 Graphically:
 
- - Bars: processes or transitions or events (T)
- - Circles: buffers or places or states  (P)
+ - Bars: **A**ctions, processes or transitions or events,- this is an active event (T)
+ - Circles: states, or **B**uffers or places,- this  is a passive state  (P)
  - Tokens (dots): represent consumable elements for the processes
  - Directed arrows: representation of the flow  (I or O)
 
 Mathematically:
 
-It is defined as a four-tuple:  **PN = <P, T, I, O>**
+It is defined as the tuple:  **PN = <P, T, I, O, C, P>**
 
-**P**: finite set of places: {p1, p2, p3, ..., pn}
-**T**: finite set of transitions: {t1, t2, ... ts}
-**I**: Input function (TxP) --> (0,1) - maps inputs from a transition (ti) to a Place (pj) 
-**O**: Output functio (PxT) --> (0,1) - maps output from a place (pr) to a transition (ts)
+**A**: finite set of actions or process or transitions (the bars): {a1, a2, ... as}
+
+**B**: finite set of states/places/buffers (the circles): {b1, b2, b3, ..., bn}
+
+**I**: the set of Input arrows , these are the consumption arrow.
+
+ - the functions I(AxB) --> (0,1) - maps inputs from a given transition (ti) to a Place (pj)
+ - So if an action/process a1 goes to a state/place b1, then the I(a1,b1) = 1 because the 1 defines that it exits.
+
+**C**: the consumption function, for a given Input arrow i:  C: I -> (A,B)
+
+ - So for a given input arrow i, its consumption function :  C(i) = (ai, bi) 
+
+**O**: the set of Output arrows, that is to say the production arrows.
+
+ - the function: O(B,A) --> (0,1) - maps output from a state/place (B) to a action/process (A)
+ - So if a state/place b1 goes action/process a1, then the O(b1,a1) = 1 because the 1 defines that it exits.
+
+**P**: the production function, for a given output arrow j: O(j) -> (B,A)
+
+ - So for a given output/production arrow j, its production function: P(j) = (bi, ai) 
+
 
 Special types of petry nets are:
 
@@ -985,7 +1002,7 @@ There are three identificlable patterns
   - Syncronization: two or more concurrent processes joint in a single event.
   
   
-
+  
 ref: https://isr.umd.edu/Labs/CIM/miscs/wmsor97.pdf
 
 ref: http://www.site.uottawa.ca/~bochmann/ELG7187C/CourseNotes/BehaviorModeling/Petri-nets/index.html
