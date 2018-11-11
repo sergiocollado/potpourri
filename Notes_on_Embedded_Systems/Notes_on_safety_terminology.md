@@ -21,7 +21,7 @@ Key propierties to take into account for an embedded system are:
 - Interaction with the enviroment.
 - Performance and efficiency. (definition of the maximum work load capabilities)
 - Real-time constrains (definition of the maximum reaction/response/actuation time, it also includes start-up times).
-- Dependability:
+- Dependability:E
      - Availability.
      - Reliability.
      - Safety.
@@ -1910,7 +1910,9 @@ steps, and instructions to perform a certain task. the acronym also stands for S
 
 https://aviation-safety.net/  
 
+#### Mars Polar Lander
 
+Issue with the imperial and internation metric units. :(
 
 #### Hinderburg 
 
