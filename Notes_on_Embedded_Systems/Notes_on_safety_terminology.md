@@ -2525,3 +2525,8 @@ Steps on FMEA:
 
 
  ref: https://quality-one.com/fmea/
+
+
+ARTICLES:
+http://www.robertfeldt.net/publications/shahrokni_2013_sysrev_robustness.pdf
+https://uwaterloo.ca/embedded-software-group/people-profiles/sebastian-fischmeister
