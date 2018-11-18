@@ -482,6 +482,7 @@ Recomendations to define all the tasks required for and mantaining software.
 - IEEE Std 1012-1998, Standard for Software Validation and Verification Plans.
 - IEC 60287 - current capacity in cables.
 - ISO 9126 standard for classifying quality requirements. Classify the requirment main categories:functionality, realiability, usability, efficiency, maintainability, and portability
+- IEEE Std 830 recomended practices to define software requirment specifications
 
 ## Relevant Organizations
 
