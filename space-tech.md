@@ -104,6 +104,7 @@ OBSERVATORIES:
 
 ROVERS:
 
+- Lunar rober
 - Pathfinder
 - Opportunity (2004)
 - Curiosity
@@ -126,3 +127,4 @@ QMS - Quadrupole Mass spectrometer
 - Twin Keck Telescopes
 - Subaro Telescope
 - Enceladus 
+- Van Allen belts (radiation related)
