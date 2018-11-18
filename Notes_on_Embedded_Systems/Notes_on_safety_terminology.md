@@ -454,7 +454,7 @@ requires of analisys, records and feedback of the development, testing and field
  Software Quality Product -  ISO 9126
  
  MIL-HDBK-217 "Reliability Prediction of Electronic Equipment"
-
+ 
  ISO 9001
 
 ## Other stadards to observe
@@ -481,6 +481,7 @@ Recomendations to define all the tasks required for and mantaining software.
 - IEEE Std 1044-1993, Standard Classification of Software Anomalies
 - IEEE Std 1012-1998, Standard for Software Validation and Verification Plans.
 - IEC 60287 - current capacity in cables.
+- ISO 9126 standard for classifying quality requirements. Classify the requirment main categories:functionality, realiability, usability, efficiency, maintainability, and portability
 
 ## Relevant Organizations
 
