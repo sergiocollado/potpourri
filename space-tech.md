@@ -93,6 +93,14 @@ check:  http://exoplanets.org/
 
 ![buran](https://github.com/sergiocollado/potpourri/blob/master/image/buran.PNG)
 
+OBSERVATORIES:
+
+-Chandra X ray observator (previouslyAXAF -Advanced X ray Astrophysics Facility)
+-Hubble (visible and ultraviolet)
+-Compton gamma ray observatory
+-Spitzer -infrared rays
+
+
 
 ROVERS:
 
