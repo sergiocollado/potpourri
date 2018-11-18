@@ -614,6 +614,7 @@ Follow recomendations for implementing the system.
 - Design self checking tests (for hardware control).
 - Use watchdog's (sw and/or hw implemented), and/or sw/functions/processes/threads/devices heartbeats.
 - Implementation of recovery systems.
+- Implement early warning systems in case of degradation.
 - the software must indentify itself and its version, as a response of a command, or at reset of the system.
 - Follow design and architecture patterns:
     - SOLID principles
@@ -627,7 +628,8 @@ Follow recomendations for implementing the system.
     - use lint programs that advice about the coding.
     - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances, use DRC (design rule checks),  simulate the hardware, run montecarlo simulation analysis on the hardware, choose wisely the memory type (remember Flash, writes in blocks, and the number of writings is lower than for a EEPROM memory). Use poke-yoke connectors.
 - Implement a log or trace mechanism in the system.
-- Have a method to identify the software, and version of the system.
+- Have a method to identify the software, and version of the system (build system, build management)
+- For robustness: check input paramenters into functions, and repor functions sucess or failure.
 - Test functions (unit testing) with wrong, and bad data- a program should behave sensibly even if the user don't.
 - Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). (test documentation must comply wit the ieee 829 standard)
 - CSP: Concurrent Sequence Programming (techniques)
