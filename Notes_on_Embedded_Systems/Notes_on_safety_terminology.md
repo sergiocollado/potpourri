@@ -315,7 +315,7 @@ https://en.wikipedia.org/wiki/Software_fault_tolerance </br>
 https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 
 
-**ROBUST SYSTEMS** Robust systems are those, in which the system has the ability to cope with errors during execution and cope with erroneous inputs. Usually you test those systems with the technique of *Fault Injection*, other techniques are for example *Fuzzy testing* that involves invalid or unexpected inputs. 
+**ROBUST SYSTEMS** Robust systems are those, in which the system has the ability to cope with errors during execution and cope with erroneous inputs and stressfull enviroments. Usually you test those systems with the technique of *Fault Injection*, other techniques are for example *Fuzzy testing* that involves invalid or unexpected inputs. 
 <br>
 <br>
 
