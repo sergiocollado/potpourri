@@ -1228,7 +1228,7 @@ A list of non-functional characteristics:
  - compatibility: compatibility with defined versions
  - installation: evaluation of the methods and easianess to install the system.
  - recovery: evaluation of recovery methods
- - maintenance: evaluation of maintenance methods. 
+ - maintainability: evaluation of maintenance methods, or the ability to undergo repair or modifications.
  - code readability: how easy is the code to read and understand (this is quite subjetive)
  - interconnectivity: the ability to work with diferent related systems. For example a system might work only withy
  a propietary protocol that prevents it to work with equivalent systems from other manufacturers, thus
