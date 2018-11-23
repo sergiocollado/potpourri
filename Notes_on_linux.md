@@ -115,11 +115,12 @@ the local settings of the system can be identified with the command **locale**
 The linux file system usually has the following file hierarchy structure:
 
  - **/** (top level directory, that is referenced as **'backslash'**)
-    - **/bin** user binaries
-    - **/sbin** system binaries
-    - **/etc** configuration files
-    - **/dev** device files*
-    - **/proc** information about the system and running processes
+    - **/bin** essential user command binaries
+    - **/sbin** essential system binaries
+    - **/etc** host specific configuration files
+    - **/dev** device and special files
+    - **/proc** kernel and processes informative file system: information about the system and running processes
+    - **/sys** kernel and system information
     - **/var** variable files (as logs)
     - **/tmp** temporary files
     - **/usr** user programms
@@ -136,6 +137,8 @@ Depending on the linux version, the list of the filesystem, may be different.
     
 The reference to this file structure, is defined at:  https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.pdf
 
+This is known as a FHS: File Hierarchy Standard. - Usually systems want to comply with this standard, so the sowftware can predict the location of installed files and directories.
+
 
 ### Commands to navigate through the file system.
 
@@ -144,7 +147,7 @@ The reference to this file structure, is defined at:  https://refspecs.linuxfoun
 - **ls** command: it is teh 'listing' command, it enumerates all the files inside the current directory. When used with the parameter '-l', that stands for "long", it will define the files, with a lot of information about them ( permission, creation date, last used date ...) There are many options, for getting info about them, just type: 'man ls'. 
 - **mkdir** command: creates a directory. (Make directory)
 - **rmdir** command: removes a directory. (remove directory). **Note** rmdir only works, if the directory is empty. This is as a safety mechanisms.
-- **cat** command: Output a file to the terminal.
+- **cat** command: Output a file to the terminal. 
 - **head** command: Prints to the terminal the first 10 lines of a file.
 - **last** and **tail** commands: print the last 10 lines of a file to the terminal.
 - **cp** command: It copies a file.
