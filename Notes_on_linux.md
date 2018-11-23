@@ -134,6 +134,9 @@ The linux file system usually has the following file hierarchy structure:
 
 Depending on the linux version, the list of the filesystem, may be different. 
     
+The reference to this file structure, is defined at:  https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.pdf
+
+
 ### Commands to navigate through the file system.
 
 - **pwd** command: identifie what is the current working directory.
