@@ -180,6 +180,11 @@ this will report how time, took to build the system.
 
 The the building is done, all the files will be available at the '/output' folder.
 
+![nconfig](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Embedded_Systems/image/nconfig.PNG)
+
+
+
+
 
 # system boot time analysis
 
@@ -230,4 +235,20 @@ gcc: http://gcc.gnu.org/
 https://launchpadlibrarian.net/287100910/How-to-build-toolchain.pdf
 
 kERNEL:  https://www.kernel.org/
+
+
+
+
+
+<img  width="70%" src="https://github.com/sergiocollado/potpourri/blob/master/image/linux_buildroot/vm0001.PNG" >
+
+<img  width="70%" src="https://github.com/sergiocollado/potpourri/blob/master/image/linux_buildroot/vm0002.PNG" >
+
+<img  width="70%" src="https://github.com/sergiocollado/potpourri/blob/master/image/linux_buildroot/vm0003.PNG" >
+
+<img  width="70%" src="https://github.com/sergiocollado/potpourri/blob/master/image/linux_buildroot/vm0004.PNG" >
+
+<img  width="70%" src="https://github.com/sergiocollado/potpourri/blob/master/image/linux_buildroot/vm0005.PNG" >
+
+<img  width="70%" src="https://github.com/sergiocollado/potpourri/blob/master/image/linux_buildroot/vm0006.PNG" >
 
