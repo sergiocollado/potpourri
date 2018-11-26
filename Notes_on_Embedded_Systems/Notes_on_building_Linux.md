@@ -252,3 +252,15 @@ kERNEL:  https://www.kernel.org/
 
 <img  width="70%" src="https://github.com/sergiocollado/potpourri/blob/master/image/linux_buildroot/vm0006.PNG" >
 
+<img  width="70%" src="https://github.com/sergiocollado/potpourri/blob/master/image/linux_buildroot/vm0007.PNG" >
+
+<img  width="70%" src="https://github.com/sergiocollado/potpourri/blob/master/image/linux_buildroot/vm0008.PNG" >
+
+<img  width="70%" src="https://github.com/sergiocollado/potpourri/blob/master/image/linux_buildroot/vm0009.PNG" >
+
+<img  width="70%" src="https://github.com/sergiocollado/potpourri/blob/master/image/linux_buildroot/vm0010.PNG" >
+
+<img  width="70%" src="https://github.com/sergiocollado/potpourri/blob/master/image/linux_buildroot/vm0011.PNG" >
+
+<img  width="70%" src="https://github.com/sergiocollado/potpourri/blob/master/image/linux_buildroot/vm0006.PNG" >
+
