@@ -153,6 +153,19 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 - **cp** command: It copies a file.
 - **mv** command: It moves a file (to another directory), also can be used to change the name of a file.
 
+
+### types of files in linux
+
+It is possible to check the types of files with the command **ls**. Also with the command **file**
+
+- -: regular file as text, images, or shared libraries...
+- d: directory
+- c: caracter device file
+- b: block device file
+- s: local socket file
+- p: named pipe
+- l: symbolic link
+
 ### Permisions
 
 Files have owners (the user who created the file), and also access permissions.
@@ -193,7 +206,6 @@ file1  rwxr-x^-x
 ### Processes
 
 To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
-
 
 
   
@@ -349,7 +361,9 @@ Use **'linux-ftools'**, to check what files are in your CACHE.
 Options:
 
    --pages=false  Do no print pages.
+  
    --sumarize     Prints a summary report
+   
    --only-cached  Only prints stats, for files that actually are on the cache.
    
 TODO: make example
@@ -386,7 +400,7 @@ if it fails at start, try to
 ```
 
 
-6) memsusage: is a script that reports the memory consuption of a given program. http://man7.org/linux/man-pages/man1/memusage.1.html
+6) **memsusage**: is a script that reports the memory consuption of a given program. http://man7.org/linux/man-pages/man1/memusage.1.html
 
 
 ## How do I know what modules my linux system has:
@@ -401,7 +415,6 @@ more on: https://www.computerhope.com/unix/lsmod.htm
 
 Bootchart is a tool for performance analysis and visualization of the GNU/Linux boot process. Resource utilization and process information are collected during the boot process and are later rendered in a PNG, SVG or EPS encoded chart.
 http://www.bootchart.org/
-
 
 
 # Run a script as a background daemon
@@ -651,11 +664,6 @@ HLFS - Hardened Linux From Scratch.
 CLFS - Cross Linux From Scratch.
 BLFS - Beyond Linux From Scratch.
 LFS - Linux From Scratch. [http://www.linuxfromscratch.org/]
-
-
-
-
-
 
 
 
