@@ -302,9 +302,9 @@ DISTANCE BETWEEN TWO POINTS
 d = \sqrt{ (x1-x2)^2 + (y1-y2)^2 }
 ```
 
-
-
-
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/distancetwopoints.svg?sanitize=true" alt="distance between two points formula">
+<br>
 
 
 FUNCTION CURVATURE
