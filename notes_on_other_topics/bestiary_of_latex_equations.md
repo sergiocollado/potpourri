@@ -1,6 +1,6 @@
 
 <!---EQ LATEX 2 SVG EDITOR:  http://www.codecogs.com/latex/eqneditor.php -->
-<!--- rawgit:   https://rawgit.com/  -->
+<!--- rawgit:   https://rawgit.com/   https://www.jsdelivr.com/rawgit   -->
 <!--- template: --->
 <!--- <br> <img  src="https:/   .svg?sanitize=true" alt="Alterantive_description"> <br> --->
 
@@ -18,11 +18,11 @@ BAYES THEOREM
 P(A|B)= \frac{P(B|A) \cdot P(A)}{P(B)}
 ```
 
-<br> <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/Bayes.svg?sanitize=true" alt="Bayes theorem equation"> <br>
+<br> <img  src="https://cdn.jsdelivr.net/gh/sergiocollado/potpourri/image/Bayes.svg?sanitize=true" alt="Bayes theorem equation"> <br>
 
 SNELL EQUATION
 
- <br> <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/snell_eq.svg?sanitize=true" alt="snell equation"> <br> 
+ <br> <img  src="https://cdn.jsdelivr.net/gh/sergiocollado/potpourri/image/snell_eq.svg?sanitize=true" alt="snell equation"> <br> 
 
 
 ```latex
