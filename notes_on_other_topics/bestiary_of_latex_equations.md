@@ -303,7 +303,7 @@ d = \sqrt{ (x1-x2)^2 + (y1-y2)^2 }
 ```
 
 <br>
-<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/distancetwopoints.svg?sanitize=true" alt="distance between two points formula">
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/distancetwopoints2.svg?sanitize=true" alt="distance between two points formula">
 <br>
 
 COLINIALITY: two points are colineal if the following determinat equations is true.
@@ -317,7 +317,7 @@ x_3 & y_3 & 1
 \end{vmatrix} = 1
 ```
 <br>
-<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/3pointscoliniality.svg?sanitize=true" alt="three points coliniality equation">
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/3pointscoliniality2.svg?sanitize=true" alt="three points coliniality equation">
 <br>
 
 
