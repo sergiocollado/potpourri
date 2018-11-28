@@ -282,6 +282,31 @@ y =& \big(  k^2 - 2·f^2 + f^2· \sin (t)  \big)  \cdot \frac{ sin(t) }{b}
 \end{matrix}\right.
 ```
 
+
+TWO DIMENSIONS
+
+POINTS
+
+```latex
+P1(x1,y1) = x1 \overrightarrow{i} + y1 \overrightarrow{j}
+```
+```latex
+P2(x2,y2) = x2 \overrightarrow{i} + y2 \overrightarrow{j}
+```
+```latex
+P3(x2,y2) = x3 \overrightarrow{i} + y3 \overrightarrow{j}
+```
+DISTANCE BETWEEN TWO POINTS
+
+```latex
+d = \sqrt{ (x1-x2)^2 + (y1-y2)^2 }
+```
+
+
+
+
+
+
 FUNCTION CURVATURE
 
 ```latex
