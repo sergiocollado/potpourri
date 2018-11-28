@@ -311,9 +311,9 @@ COLINIALITY: two points are colineal if the following determinat equations is tr
 
 ```latex
 \begin{vmatrix}
-x1 & y1 & 1\\ 
-x2 & y2 & 1\\ 
-x3 & y3 & 1
+x_1 & y_1 & 1\\ 
+x_2 & y_2 & 1\\ 
+x_3 & y_3 & 1
 \end{vmatrix} = 1
 ```
 <br>
