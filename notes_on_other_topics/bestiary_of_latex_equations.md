@@ -288,13 +288,12 @@ TWO DIMENSIONS
 POINTS
 
 ```latex
-P1(x1,y1) = x1 \overrightarrow{i} + y1 \overrightarrow{j}
+P1(x_1,y_1) = x_1 \overrightarrow{i} + y_1 \overrightarrow{j}
 ```
-```latex
-P2(x2,y2) = x2 \overrightarrow{i} + y2 \overrightarrow{j}
-```
-```latex
-P3(x2,y2) = x3 \overrightarrow{i} + y3 \overrightarrow{j}
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/Point1_3.svg?sanitize=true" alt="distance between two points formula">
+<br>
+
 ```
 DISTANCE BETWEEN TWO POINTS
 
