@@ -306,6 +306,17 @@ d = \sqrt{ (x1-x2)^2 + (y1-y2)^2 }
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/distancetwopoints.svg?sanitize=true" alt="distance between two points formula">
 <br>
 
+COLINIALITY: two points are colineal if the following determinat equations is true.
+
+
+```latex
+\begin{vmatrix}
+x1 & y1 & 1\\ 
+x2 & y2 & 1\\ 
+x3 & y3 & 1
+\end{vmatrix} = 1
+```
+
 
 FUNCTION CURVATURE
 
