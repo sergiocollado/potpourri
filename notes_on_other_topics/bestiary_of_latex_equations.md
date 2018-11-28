@@ -316,6 +316,9 @@ x2 & y2 & 1\\
 x3 & y3 & 1
 \end{vmatrix} = 1
 ```
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/3pointscoliniality.svg?sanitize=true" alt="three points coliniality equation">
+<br>
 
 
 FUNCTION CURVATURE
