@@ -294,7 +294,6 @@ P1(x_1,y_1) = x_1 \overrightarrow{i} + y_1 \overrightarrow{j}
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/Point1_3.svg?sanitize=true" alt="distance between two points formula">
 <br>
 
-```
 DISTANCE BETWEEN TWO POINTS
 
 ```latex
