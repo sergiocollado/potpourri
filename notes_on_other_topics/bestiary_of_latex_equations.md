@@ -3,7 +3,8 @@
 <!--- rawgit:   https://rawgit.com/   https://www.jsdelivr.com/rawgit   -->
 <!--- template: --->
 <!--- <br> <img  src="https:/   .svg?sanitize=true" alt="Alterantive_description"> <br> --->
-
+<!--  somewhat nice intro text. http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf -->
+<!--- other nice intro text. https://www.latex-tutorial.com/tutorials/ -->
 Sigmoid function
 
 ```latex
