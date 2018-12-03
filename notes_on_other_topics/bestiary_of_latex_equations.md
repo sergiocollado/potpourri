@@ -305,7 +305,7 @@ d = \sqrt{ (x1-x2)^2 + (y1-y2)^2 }
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/distancetwopoints2.svg?sanitize=true" alt="distance between two points formula">
 <br>
 
-COLINIALITY: two points are colineal if the following determinat equations is true.
+COLINIALITY: three points are colineal if the following determinat equations is true.
 
 
 ```latex
