@@ -349,6 +349,26 @@ NORMAL FORM
 <br>
 
 
+PARAMETRIC FORM
+
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_parametric_forl.svg?sanitize=true" alt="line parametric form equation">
+<br>
+
+
+SLOPE FORM
+
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_slope.svg?sanitize=true" alt="line slope form equation">
+<br>
+
+
+SLOPE POINT FORM
+
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_point_slope.svg?sanitize=true" alt="line slope point form equation">
+<br>
+
 
 
 
