@@ -320,6 +320,44 @@ x_3 & y_3 & 1
 <br>
 
 
+LINES
+
+GENERAL FORM
+
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_general_form.svg?sanitize=true" alt="line general form equation">
+<br>
+
+
+TWO POINTS EQUATION
+
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_2points.svg?sanitize=true" alt="line two points equation">
+<br>
+
+
+INTERCEPT FORM
+
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_intercept_form.svg?sanitize=true" alt="line intercept equation">
+<br>
+
+NORMAL FORM
+
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_normal_form.svg?sanitize=true" alt="line normal form equation">
+<br>
+
+
+
+
+
+
+
+
+
+
+
 FUNCTION CURVATURE
 
 ```latex
