@@ -578,8 +578,7 @@ much easily the pernicious event.
 
  Users should not gain access to the inners of the system/program - that is: Its operating system, libraries, internal states, internal values, or pointer to data structures ... The interfece with the user should be that, and be probed against loopholes.
  
- Avoid anti-patters, ie: for concurrent systems, take special care with racing conditions, priority inversions, death-locks, ... other usual suspects are architectures that relay in heabily coupled components, as oppoused to modular architectures. 
-
+ Avoid anti-patters, ie: for concurrent systems, take special care with racing conditions, priority inversions, death-locks, ... other usual suspects are architectures that relay in heavyly coupled components or monolithic, as oppoused to modular architectures. 
  
 References:
 https://en.wikipedia.org/wiki/Robustness_(computer_science)#Robust_programming </br>
@@ -631,6 +630,7 @@ Follow recomendations for implementing the system.
     - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances, use DRC (design rule checks),  simulate the hardware, run montecarlo simulation analysis on the hardware, choose wisely the memory type (remember Flash, writes in blocks, and the number of writings is lower than for a EEPROM memory). Use poke-yoke connectors.
 - Implement a log or trace mechanism in the system.
 - Have a method to identify the software, and version of the system (build system, build management)
+- Verify integrity and Hahs or alike for configuration files, parameters files, an such....
 - For robustness: check input paramenters into functions, and repor functions sucess or failure.
 - Test functions (unit testing) with wrong, and bad data- a program should behave sensibly even if the user don't.
 - Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). (test documentation must comply wit the ieee 829 standard)
