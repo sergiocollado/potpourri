@@ -324,6 +324,15 @@ LINES
 
 GENERAL FORM
 
+```latex
+\begin{matrix}
+Ax + By + C = 0
+\\  \forall A, B, C \,  \epsilon  \, \mathbb{R}
+\\ A \neq 0 \wedge B \neq 0
+\end{matrix}
+```
+
+
 <br>
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_general_form.svg?sanitize=true" alt="line general form equation">
 <br>
