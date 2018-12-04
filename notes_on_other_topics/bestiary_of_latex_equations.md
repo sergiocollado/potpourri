@@ -340,6 +340,10 @@ Ax + By + C = 0
 
 TWO POINTS EQUATION
 
+```latex
+\frac{ x - x_1}{ y_2 - y_1} =  \frac{ y - y_1}{ x_2 - x_1} 
+```
+
 <br>
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_2points.svg?sanitize=true" alt="line two points equation">
 <br>
