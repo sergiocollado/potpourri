@@ -351,6 +351,10 @@ TWO POINTS EQUATION
 
 INTERCEPT FORM
 
+```latex
+\frac{x}{a} + \frac{y}{b} = 1
+```
+
 <br>
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_intercept_form.svg?sanitize=true" alt="line intercept equation">
 <br>
