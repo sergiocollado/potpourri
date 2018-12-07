@@ -464,6 +464,8 @@ requires of analisys, records and feedback of the development, testing and field
 Recomendations to define all the tasks required for and mantaining software.
 - ISO/IEC/IEE 14764 - Software maintenance
 - ISO/IEC/IEE 15026 - Software assurance
+- ISO/IEC 9126 -SW quality
+- ISO/IEC 20510 - SW quality
 - ISO/IEC/IEE 15289 - Information items (documentation)
 - ISO/IEC/IEE 15939 - Measurement
 - ISO/IEC/IEE 16085 - Risk management
