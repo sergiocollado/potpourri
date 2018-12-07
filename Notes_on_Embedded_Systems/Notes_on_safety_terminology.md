@@ -641,7 +641,7 @@ Follow recomendations for implementing the system.
 - design and implementation of a recovery/reboot safety process, and recovery safe state.
 - try to include random test checks.
 - Privacy by design (if applies)
-
+- Policy and strategy for critical and safety data backup.
 
 ACcording to Straoup Book:
 
