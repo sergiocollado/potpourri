@@ -328,6 +328,8 @@ Example:
  To clarify, the utilization test can prove that a schedule is not feasible, ... but it cannot prove
  that a schedule is feasible... there may be cases, that make the schedule also unfeasible. 
 
+- Advantage: Its very effective
+- Disadvange: It is not flexible.
 
 TICK SCHEDULER
 ==============
