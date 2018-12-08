@@ -554,6 +554,22 @@ If there is significant confidence to overcome all those challenges, the the fol
  
  - **Design**: Reasoning, evaluation and design for the most fitting solution to achieve the specification, requirements and goals of the system. Consideration of problems and issues to overcome. Design of the system architecture: the different parts, modules, elements of the system. Comunications and interface between the different parts of the system. 
  
+ Usually topics to take into account are:
+ - Safety
+ - Response time
+ - Bandwidth: The amount of information processed per time
+ - Maintainability
+ - Testability
+ - Compatibility
+ - Mean time between failure
+ - Size and weight
+ - Power
+ - Nonrecurring engineering cost (NRE cost)
+ - Unit cost
+ - Time-to-prototype
+ - Time-to-market
+ - Human factors
+ 
  - **Development**: Implementation of the system, an the different modules it is made of: hardware, software, ... user interface, communication protocols, power supplies, logging system, metrics of the system. Also includes the project documentation, release notes, use instructions, manuals and learning lessons.
  
  - **Testing**: Evaluation of the performance of the systems, so it can be determined if it reaches the expected goals. Validation, verification and test, riks and acceptance reports. 
