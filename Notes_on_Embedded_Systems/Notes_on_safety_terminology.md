@@ -556,6 +556,7 @@ If there is significant confidence to overcome all those challenges, the the fol
  
  Usually topics to take into account are:
  - Safety
+ - Security
  - Response time
  - Bandwidth: The amount of information processed per time
  - Maintainability
