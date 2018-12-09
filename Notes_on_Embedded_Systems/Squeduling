@@ -1150,6 +1150,9 @@ int& max(int& a, int& b, int& c);
 	ByteData |= 0x04; 
 ```
 
+```c++
+for(;;) //this is forever... a naughty way to write: while(1)
+```
 
 
 
