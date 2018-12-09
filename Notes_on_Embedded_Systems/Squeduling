@@ -1137,8 +1137,18 @@ int& max(int& a, int& b, int& c);
 }
  ```
 
+```c++
+// friendly code to CLEAR a bit in a byte
+// in this example is the third (3º) bit 0x0100 = 0x4
 
+	ByteData &= ~0x04; 
+```
+```c++
+// friendly code to SET a bit in a byte
+// in this example is the third (3º) bit 0x0100 = 0x4
 
+	ByteData |= 0x04; 
+```
 
 
 
