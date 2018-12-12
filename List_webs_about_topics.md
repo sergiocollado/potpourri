@@ -1052,6 +1052,8 @@ https://www.uvic.ca/engineering/
 
 Granada: http://electronica.ugr.es/
 
+https://www.cs.swarthmore.edu/~newhall/unixlinks.html#lang
+
 ## Testing Skills
 
 https://www.testdome.com/tests/cpp-online-test/34
