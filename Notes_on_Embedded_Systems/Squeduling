@@ -275,7 +275,10 @@ PRE-EMPTIVE SYSTEMS:
 Some schedulers perform better that others depending on the given tasks. To decide what scheduler is the best option, you 
 have to understand the differences between each scheduler strategies and how they work.
 
- 
+Event driven scheduled, or dynamic schedulers have some advantes, like they can react and adjust to aperiodic jobs, or they can allocate 
+the right amount of CPU in data-driven systems, or jobs can be re-scheduled according to a change in priorities.
+
+
 STATIC SCHEDULER ( aka CLOCK DRIVEN SCHEDULER):
 ==============================================
 
