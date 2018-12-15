@@ -215,12 +215,12 @@ int main( void )
 
 	/* Create the task, storing the handle. */
 	xReturnedComunication = xTaskCreate(
-		     (pdTASK_CODE)communication_task,  /* Function that implements the task. */
-				   (signed char *)"Communication", /* Text name for the task. */
-				   configMINIMAL_STACK_SIZE, /* Stack size in words, not bytes. */
-				   NULL, /* Parameter passed into the task. */
-				   1, /* The priority at which the created task will execute. */
-				   &communication_handle);  /* Used to pass out the created task's handle. */
+		(pdTASK_CODE)communication_task,  /* Function that implements the task. */
+		(signed char *)"Communication", /* Text name for the task. */
+		configMINIMAL_STACK_SIZE, /* Stack size in words, not bytes. */
+		NULL, /* Parameter passed into the task. */
+		1, /* The priority at which the created task will execute. */
+		&communication_handle);  /* Used to pass out the created task's handle. */
 
 	if (xReturnedComunication == pdPASS)
 	{
@@ -238,5 +238,11 @@ int main( void )
 	return 0;
 }
 
+void communication_task(void)
+{
+ //function code
+ while(1) {
+ }
+}
 ```
 
