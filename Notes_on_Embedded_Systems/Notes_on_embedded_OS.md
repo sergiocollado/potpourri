@@ -195,6 +195,9 @@ CFG - Control Flow Graph
 # FREERTOS
 FreeRTOS uses a tick scheduler.
 
+https://www.freertos.org/Documentation/RTOS_book.html
+
+
 Example of a task creation:
 
 ```C
