@@ -466,6 +466,7 @@ Recomendations to define all the tasks required for and mantaining software.
 - ISO/IEC/IEE 15026 - Software assurance
 - ISO/IEC 9126 -SW quality
 - ISO/IEC 20510 - SW quality
+- IEC60300-3-1 - Reliability methods
 - ISO/IEC/IEE 15289 - Information items (documentation)
 - ISO/IEC/IEE 15939 - Measurement
 - ISO/IEC/IEE 16085 - Risk management
