@@ -486,6 +486,21 @@ Recomendations to define all the tasks required for and mantaining software.
 - IEC 60287 - current capacity in cables.
 - ISO 9126 standard for classifying quality requirements. Classify the requirment main categories:functionality, realiability, usability, efficiency, maintainability, and portability
 - IEEE Std 830 recomended practices to define software requirment specifications
+- IEC 60068 (all parts), Environmental testing
+-IEC 60300-3-1:2003, Dependability management – Part 3-1: Application guide – Analysis
+        techniques for dependability – Guide on methodology
+- IEC 60300-3-5, Dependability management – Part 3-5: Application guide – Reliability test
+        conditions and statistical test principles
+- IEC 60605-2, Equipment reliability testing – Part 2: Design of test cycles
+- IEC 60721 (all parts), Classification of environmental conditions
+- IEC 61014:2003, Programmes for reliability growth
+- IEC 61164:2004, Reliability growth – Statistical test and estimation methods
+- IEC 61124:2012, Reliability testing – Compliance tests for constant failure rate and constant
+failure intensity
+- IEC 61163-2, Reliability stress screening – Part 2: Electronic components
+- IEC 61649:2008, Weibull analysis
+- IEC 61709, Electronic components – Reliability – Reference conditions for failure rates and
+        stress models for conversion
 
 ## Relevant Organizations
 
