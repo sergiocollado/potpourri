@@ -501,6 +501,11 @@ failure intensity
 - IEC 61649:2008, Weibull analysis
 - IEC 61709, Electronic components – Reliability – Reference conditions for failure rates and
         stress models for conversion
+- IEC 61710, Power law model – Goodness-of-fit tests and estimation methods
+- IEC 62303, Radiation protection instrumentation – Equipment for monitoring airborne tritium
+- IEC/TR 62380, Reliability data handbook – Universal model for reliability prediction of
+         electronics components, PCBs and equipment
+- IEC 62429, Reliability growth – Stress testing for early failures in unique complex systems
 
 ## Relevant Organizations
 
