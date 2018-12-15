@@ -190,3 +190,50 @@ ACRONYMS:
 
 WCET - Worst Case Execution Time
 CFG - Control Flow Graph
+
+
+# FREERTOS
+FreeRTOS uses a tick scheduler.
+
+Example of a task creation:
+
+```C
+/*Comunication task:*/
+
+/*help variables for tasks*/
+BaseType_t xReturnedComunication;
+TaskHandle_t communication_handle = NULL;
+
+int main( void )
+{
+	printf("Hello World!");
+
+	prvInitialiseHeap();
+
+	/* Create the task, storing the handle. */
+	xReturnedComunication = xTaskCreate(
+		     (pdTASK_CODE)communication_task,  /* Function that implements the task. */
+				   (signed char *)"Communication", /* Text name for the task. */
+				   configMINIMAL_STACK_SIZE, /* Stack size in words, not bytes. */
+				   NULL, /* Parameter passed into the task. */
+				   1, /* Parameter passed into the task. */
+				   &communication_handle);  /* Used to pass out the created task's handle. */
+
+	if (xReturnedComunication == pdPASS)
+	{
+		printf("SUCCEDD communication task");	fflush(stdout);
+	}
+	else if (xReturnedComunication == pdFAIL) {
+		printf("FAILURE communication task");	fflush(stdout);
+  /*Use the task's handle to delete the task. */
+		vTaskDelete(communication_handle);
+	}
+
+	vTaskStartScheduler();
+
+	for (;;);
+	return 0;
+}
+
+```
+
