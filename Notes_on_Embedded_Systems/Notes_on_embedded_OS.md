@@ -219,7 +219,7 @@ int main( void )
 				   (signed char *)"Communication", /* Text name for the task. */
 				   configMINIMAL_STACK_SIZE, /* Stack size in words, not bytes. */
 				   NULL, /* Parameter passed into the task. */
-				   1, /* Parameter passed into the task. */
+				   1, /* The priority at which the created task will execute. */
 				   &communication_handle);  /* Used to pass out the created task's handle. */
 
 	if (xReturnedComunication == pdPASS)
@@ -228,7 +228,7 @@ int main( void )
 	}
 	else if (xReturnedComunication == pdFAIL) {
 		printf("FAILURE communication task");	fflush(stdout);
-  /*Use the task's handle to delete the task. */
+                /*Use the task's handle to delete the task. */
 		vTaskDelete(communication_handle);
 	}
 
