@@ -2570,8 +2570,16 @@ Steps on FMEA:
 - Definition of controls, actions and test
 - RPN (Risk Priority Number) calculation
 
-
  ref: https://quality-one.com/fmea/
+
+
+Concetps in FMEA:
+
+- **Function**: activity, or goal, or task in the system, device or element, that is expected to be done.
+- **Failure**: when the given element fails to achieve its goal, task or expected funtionality.
+- **failure mode**: it is the HOW a elemenent get to the failure result.
+- **failure potential**: the posible consecuencies that might result due to a failure, in a direct or indirect way.
+- **cause**: is the reason, that results in a failure as an effect. The ultimate reason is refered as "root-cause".
 
 
 ARTICLES:
