@@ -1447,6 +1447,11 @@ In experienced based tecniques, the test are done based on the previus project e
 is under test. Similar systems and previus experience on them, allow the testers to have an intuition on the weak and strong points at the system development. 
 
 
+## WHITE-BOX vs BLACK-BOX testing:
+
+As a clarification, just state, that a Black-box test is that which only regards for the inputs and outputs of the system under test, so without looking in the insides of the system, effectibily treating the system as a "black-box". On the other hand, the White-box test, regards for the inputs, outputs, and also for the inner values, signal and internal states, and inner workings on the inside of the system under test. A good testing strategy and test process, uses both approaches, it usually starts with a black-box approach, both in hardware and software, and builds up to a white-box approach.
+
+
 ## HARDWARE TESTING
 
 There are test methodologies that are only applicable to the hardware of the system. Those methods aim to increase the reliability and confidence on the hardware components and subcomponets of the system.
