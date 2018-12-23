@@ -1101,7 +1101,10 @@ Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https
 
 ## CONTINOUS INTEGRATION
 
-The spirit of the continous integration, is handle small changes in the code, merging the into the main trunk, so it favours frequent small changes, rather that more unfrequent bigger changes. So it aims to get a healthier code by means of developing and testing small changes. A famous platform for this is for example: Travis CI. https://docs.travis-ci.com/user/for-beginners.
+The spirit of the continous integration, is handle small changes in the code, merging the into the main trunk, so it favours frequent small changes, rather that more unfrequent bigger changes. So it aims to get a healthier code by means of developing and testing small changes. Usually is desired that once a new piece of code is done, the CI platform can autobuild the code, and test it automatically. Other features are desired, as notification and deployment capabilities.
+
+
+A famous platform for this is for example: Travis CI. https://docs.travis-ci.com/user/for-beginners.
 
 
 
