@@ -1099,6 +1099,12 @@ Other sys: lcov, valgrind, ltrace, strace....
 
 Refernece to check: Dependability through Assuredness™ (O-DA) Framework: https://www2.opengroup.org/ogsys/catalog/C13F
 
+## CONTINOUS INTEGRATION
+
+The spirit of the continous integration, is handle small changes in the code, merging the into the main trunk, so it favours frequent small changes, rather that more unfrequent bigger changes. So it aims to get a healthier code by means of developing and testing small changes. A famous platform for this is for example: Travis CI. https://docs.travis-ci.com/user/for-beginners.
+
+
+
 # OVERVIEW OF THE TESTING PROCESS:
 
 **What is testing?:"** The test of a system is the process of evaluating the real capabilities of the system related with its desired/expected performance/behavior, and check it complies with the design requisites, expected behavior and desired capabilites.
@@ -1456,6 +1462,7 @@ As a clarification, just state, that a Black-box test is that which only regards
 
 There are test methodologies that are only applicable to the hardware of the system. Those methods aim to increase the reliability and confidence on the hardware components and subcomponets of the system.
 
+ - ALT: Accelerated life testint.
  - HALT: Higly Accelerated life testing.
  - HASS: Higly Accelerated stress screening.
  
