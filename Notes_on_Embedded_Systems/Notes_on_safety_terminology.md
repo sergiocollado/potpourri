@@ -681,8 +681,10 @@ Follow recomendations for implementing the system.
 - Privacy by design (if applies)
 - Policy and strategy for critical and safety data backup.
 
-ACcording to Straoup Book:
+- Time accuracy and sync: Usually computer systems are drived by crystals to measure the time, a standard crystal for an embedded device as the NX5032GA crystal will have a variation in its measurement of 150 PPM (parts per millions), in the range of temperature from -40 C to 150 C. And an accurancy around 50 PPM, that is about 5 seconds per day. So when taking into account timings, it must be consider the stability and accuracy of the crystal.
 
+
+ACcording to Straoup Book:
 "tricky as error recovery.
 Successful fault-tolerant systems are multilevel. Each level copes with as many errors as it can
 without getting too contorted and leaves the rest to higher levels. Exceptions support that view.
@@ -2194,7 +2196,7 @@ ACRONYMS:
 
 UAT - User Acceptance Test
 
-COTS -Comertial Of The Shexxcf (software, hardware or device)
+COTS -Comertial Of The Shelcf (software, hardware or device)
 
 DUT - Device Under Test
 
