@@ -59,7 +59,7 @@ Objects, also have types of access control:
 
  - IAM policies  (http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html)
  - Bucket policies
- - ACLs(Acess Control Lists) - AWS console
+ - ACLs(Access Control Lists) - AWS console
  - Query string autentification - gives expiring acess.
  - AWS management console. (sign in: https://console.aws.amazon.com/s3.)
  
