@@ -183,12 +183,12 @@ Gon ; s3tools.org/download
   
   Less install
   
-  easteisnt way to install is : python .py instals
+  easte isnt way to install is : python .py instals
  
   s3cmd-1.5.0-alpha1
   ```
   
-  we have provide the kees> using > credential needed, > access credenctiasn "Aceess Keys´2"
+  we have provide the keys> using > credential needed, > access credenctials "Aceess Keys´2"
     
   intall the keys. 
   
