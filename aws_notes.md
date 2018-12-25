@@ -87,7 +87,7 @@ More info in: http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html
 
 There are three ways to store policies:
 
- - **Standard** ( "11 9's") - that means that if you have 1 million files stored there, you will loose one, everty 10.000 years.
+ - **Standard** ( "11 9's") - that means that if you have 1 million files stored there, you will loose one, every 10.000 years.
   - It comes at greatest cost, but is the default.
   
  - **Reduced Redundancy Storage (RRS)** - is ("4 9s") - that is 99.99% durability over a given year- it means that if you have 10000 files there, you'll probable lose one every year.
