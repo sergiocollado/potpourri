@@ -683,6 +683,27 @@ Follow recomendations for implementing the system.
 
 - Time accuracy and sync: Usually computer systems are drived by crystals to measure the time, a standard crystal for an embedded device as the NX5032GA crystal will have a variation in its measurement of 150 PPM (parts per millions), in the range of temperature from -40 C to 150 C. And an accurancy around 50 PPM, that is about 5 seconds per day. So when taking into account timings, it must be consider the stability and accuracy of the crystal.
 
+Selection of communication protocols:
+
+- RS-232 (low-speed, implemented by serial ports like we will use in this chapter),
+- RS-422 (differential full duplex),
+- RS-485 (differential half duplex, mult-drop),
+- I²C (connection to I/O peripherals),
+- I²S (connection to sound peripherals),
+- CAN (controller area network),
+- SPI (synchronous serial, used in the Nokia 5110 LCD),
+- FireWire (high speed connection to external peripherals),
+- Ethernet (wired network),
+- Fibre Channel (high-speed, for connecting computers to mass storage devices),
+- MIDI (control of electronic musical instruments),
+- Serial ATA (high speed connection to external peripherals),
+- SpaceWire (Spacecraft communication network),
+- HyperTransport ( interconnection of computer processors),
+- PCI Express (high speed connection to external peripherals), and
+- T-1(high speed telecommunication over copper pairs)
+
+
+
 
 ACcording to Straoup Book:
 "tricky as error recovery.
