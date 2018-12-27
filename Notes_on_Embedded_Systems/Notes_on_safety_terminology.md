@@ -702,6 +702,22 @@ Selection of communication protocols:
 - PCI Express (high speed connection to external peripherals), and
 - T-1(high speed telecommunication over copper pairs)
 
+In communications must be checked: 
+
+- BER: Bit error rate
+
+- **Latency**: time between a need is required, and the time it is fullfilled. This accounts for both hardware delays and software delays. A real-time system is one that can guarantee the wort-case latency.
+
+- **Throughput** or **bandwith** the ammount of data that can be processed by the system. This concept can be reported as an overall figure or as a short-term value (burst messages).
+
+- there are some basic method to syncronize the hardware and software, 
+ - Blind
+ - Polling or periodic polling
+ - Interrupt
+ - direct memory acess.
+
+
+
 
 
 
