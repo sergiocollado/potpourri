@@ -13,6 +13,7 @@ Downloads: https://www.python.org/downloads/
 
 The main reference is:  https://docs.python.org/3/library/index.html
 
+https://www.python-course.eu/numpy.php
 
 ## Looking for help()
 
