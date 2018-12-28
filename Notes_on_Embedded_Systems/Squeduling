@@ -653,6 +653,50 @@ Since U>= URM, but U =< 1, neither feaseability nor overloading can be guarantee
 
 
 
+LST: Least Slack Time Scheduling:
+==================================
+
+this scheduling strategy prioritizes the job with the least slack time. As a dynamic scheduling algorithm, this priority is evaluated at each tick.
+
+the remaining slack time is calculated as:
+
+slack_time = death_line_time -  current_time - remaining_execution_time
+
+in case the job has not been executed yet, then the slack time equals the execution time.
+
+
+Example LST:
+
+Consider the following taks set:
+
+with dependecies: J1 -> J2, Je
+
+-Please, schedule tasks in the interval [0,8].
+
+r - release time
+e - execution time
+D - relative deadline
+
+|          |   r     |    e   |   D     |  
+------------------------------------------
+|   T1     |   0     |    3   |   6     |        
+------------------------------------------
+|   T2     |   5     |    2   |   8     |        
+------------------------------------------
+|   T3     |   2     |    2   |   7     |        
+------------------------------------------
+
+- - - - - - - - - - -- - -- - -- - -- - --
+
+We start marcking all the death-lines of the job:
+
+                                    D1    D3    D2
+                                    |     |     |
+                                    V     V     V
+|-----|-----|-----|-----|-----|-----|-----|-----|--------->
+0     1     2     3     4     5     6     7     8      time
+
+
 
 
 
