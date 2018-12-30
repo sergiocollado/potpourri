@@ -5,6 +5,23 @@
 <!--- <br> <img  src="https:/   .svg?sanitize=true" alt="Alterantive_description"> <br> --->
 <!--  somewhat nice intro text. http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf -->
 <!--- other nice intro text. https://www.latex-tutorial.com/tutorials/ -->
+
+Golden ratio - Seccion Aurea
+
+```latex
+\frac{a+b}{a} = \frac{a}{b} = \phi 
+```
+
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/secci%C3%B3n_aurea_01.svg?sanitize=true" alt="golden ratio 1"> <br>
+
+
+```latex
+1 + \frac{1}{\phi } = \phi
+```
+
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/secci%C3%B3n_aurea_02.svg?sanitize=true" alt="golden ratio 1"> <br>
+
+
 Sigmoid function
 
 ```latex
