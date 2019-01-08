@@ -668,7 +668,9 @@ Follow recomendations for implementing the system.
     - safety and security recomendations and techniques.
     - use lint programs that advice about the coding.
     - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances, use DRC (design rule checks),  simulate the hardware, run montecarlo simulation analysis on the hardware, choose wisely the memory type (remember Flash, writes in blocks, and the number of writings is lower than for a EEPROM memory). Use poke-yoke connectors.
+   - use discharge resistences in parallel to significant big capacitors, for handling safety porpouses... it will discharge the capacitor over the time, so in case someone handles it without care, the capacitor dont discharges on that person.
 - Implement a log or trace mechanism in the system.
+- Previous a modification of a file, make a back up copy, just in case a sudden power off, or corruption of the data.
 - Have a method to identify the software, and version of the system (build system, build management)
 - Verify integrity and Hahs or alike for configuration files, parameters files, an such....
 - For robustness: check input paramenters into functions, and repor functions sucess or failure.
