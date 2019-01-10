@@ -382,7 +382,16 @@ and is best to prepare for it from the start of the systme design, in case it is
 
 # STANDARDS AND NORMATIVES:
 
+The standards, define the rules to observe and techniques and methodologies to use and comply depending in the application, industrie, national rules and stakeholders.
+
+
   ## BASIC FOR SAFETY:
+
+Most standard, define a general requirements safety clause that must be complied with. Products must be designed and manufactured so they function in a safetly way without causing any danger or unnaceptable risk, in: 
+ - intended use
+ - foreesable misuse
+ - single fault condition.
+
 
 IEC 61508 - standard for functional safety in electric and electronic systems
 
@@ -611,8 +620,12 @@ much easily the pernicious event.
 #### Paranoia
  The programmer must undestand that its code can produce bug, that make the system fail or work incorrectly. Also that the users are there to break their code. - You know the saying: *--Even paranoids have enemies--*
  
-#### User-proof (aka fool-proof)
+#### User-proof (aka fool-proof), foressable misuse.
  A system must behave sensibly even if the user doesn't. Designers assume that the user at some point will use incorrect, malformed, and bogus inputs. So he has to code error-proof inputs, and emit **error mesages**, that must be: clear, specific, intuitive, unambigous, effective, detailed, explicit and that don't require to look up error codes. The message must be as accurate as possible, to the problem, so it can be detected and corrected with ease. Wrong input to the system must be always tested.
+ some plausible causes for a user incorrect use are:
+  - lack of kwnoledge
+  - carelesses or mistakes
+  
  
 #### Avoid dangerous implementations
 
@@ -669,6 +682,7 @@ Follow recomendations for implementing the system.
     - use lint programs that advice about the coding.
     - HW patterns: ie. pulsed sources induce more EMC problems, shieldings, power supply misperformances, use DRC (design rule checks),  simulate the hardware, run montecarlo simulation analysis on the hardware, choose wisely the memory type (remember Flash, writes in blocks, and the number of writings is lower than for a EEPROM memory). Use poke-yoke connectors.
    - use discharge resistences in parallel to significant big capacitors, for handling safety porpouses... it will discharge the capacitor over the time, so in case someone handles it without care, the capacitor dont discharges on that person.
+   - Isolate electric parts.
 - Implement a log or trace mechanism in the system.
 - Previous a modification of a file, make a back up copy, just in case a sudden power off, or corruption of the data.
 - Have a method to identify the software, and version of the system (build system, build management)
