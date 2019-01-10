@@ -44,6 +44,8 @@ The funtional safety level of a system is evaluated with a figure of merit, know
 
 **FAIL-SAFE DESIGN** Is an engineering design practice that makes a system to respond the minimun damage in the event of a failure.
 
+**SINGLE-FAULT CONDITION SAFETY**: Even in the event that a fault happens in the system, the system must remain safe.
+
 **SECURITY**: Is the propierty of a system that evaluates its ability to deal with malicious actions or attacks.
 
 Take into account, that there is a significative difference between the concepts of safety and security, both terms account protection against a damage, but security implies a malicious or intended action to do a damage, while safety relates to an unintended situation.
