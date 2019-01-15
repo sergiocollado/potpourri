@@ -453,6 +453,35 @@ r_2 \equiv A_2 x + B_2 y + C_2 = 0
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/lines_crossing.svg?sanitize=true" alt="distance between line and point">
 <br>
 
+
+3 CONCURRENT LINES
+
+```latex
+\begin{matrix}
+&
+\left\{\begin{matrix}
+ r_1 \equiv A_1 x + B_1 y + C_1 = 0 
+\\ 
+r_2 \equiv A_2 x + B_2 y + C_2 = 0 
+\\ 
+r_3 \equiv A_3 x + B_3 y + C_3 = 0 
+\end{matrix}\right.
+\\
+& \exists \:  P = r_1 \cap r_2 \cap r_3 = (x,y) \neq \oslash  \Leftrightarrow 
+
+ \begin{vmatrix}
+ A_1 &B_1 &C_1 \\ 
+ A_2 &B_2 &C_2 \\
+ A_3 &B_3 &C_3
+\end{vmatrix} = 0
+\end{matrix}
+```
+
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/lines_crossing.svg?sanitize=true" alt="condition for concurrence of three lines">
+<br>
+
+
 FUNCTION CURVATURE
 
 ```latex
