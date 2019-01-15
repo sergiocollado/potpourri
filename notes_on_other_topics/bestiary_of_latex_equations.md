@@ -478,7 +478,7 @@ r_3 \equiv A_3 x + B_3 y + C_3 = 0
 ```
 
 <br>
-<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/lines_crossing.svg?sanitize=true" alt="condition for concurrence of three lines">
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/lines_3_concurrent.svg?sanitize=true" alt="condition for concurrence of three lines">
 <br>
 
 
