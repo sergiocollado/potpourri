@@ -407,12 +407,51 @@ DISTANCE BETWEEN A POINT AND A LINE
 
 The distance between a line and a point is given by:
 
+
+```latex
+\begin{matrix}
+&
+\left\{\begin{matrix}
+& r_1 \equiv A_1 x + B_1 y + C_1 = 0 
+\\ 
+&r_2 \equiv A_2 x + B_2 y + C_2 = 0 
+\end{matrix}\right.
+
+\\ \\& P = r_1 \cap r_2 = (x,y)
+
+\\ \\ & x= \frac{-C_1 B_2 + C_2 B1}{A_1 B_2 - A_2 B_1}
+\\
+\\ & y= \frac{-A_1 C_2 + A_2 C_1}{A_1 B_2 - A_2 B_1}
+
+\end{matrix}
+```
 <br>
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_point_distance.svg?sanitize=true" alt="distance between line and point">
 <br>
 
+CROSSING POINT OF TWO LINES
 
+```latex
+\begin{matrix}
+&
+\left\{\begin{matrix}
+ r_1 \equiv A_1 x + B_1 y + C_1 = 0 
+\\ 
+r_2 \equiv A_2 x + B_2 y + C_2 = 0 
+\end{matrix}\right.
 
+\\ \\& P = r_1 \cap r_2 = (x,y)
+
+\\ \\ & x= \frac{-C_1 B_2 + C_2 B1}{A_1 B_2 - A_2 B_1}
+\\
+\\ & y= \frac{-A_1 C_2 + A_2 C_1}{A_1 B_2 - A_2 B_1}
+
+\end{matrix}
+```
+
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/lines_crossing.svg?sanitize=true" alt="distance between line and point">
+<br>
 
 FUNCTION CURVATURE
 
