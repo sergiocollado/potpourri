@@ -403,11 +403,13 @@ SLOPE POINT FORM
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_point_slope.svg?sanitize=true" alt="line slope point form equation">
 <br>
 
+DISTANCE BETWEEN A POINT AND A LINE
 
+The distance between a line and a point is given by:
 
-
-
-
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_point_distance.svg?sanitize=true" alt="distance between line and point">
+<br>
 
 
 
