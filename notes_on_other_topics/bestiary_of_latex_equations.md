@@ -408,23 +408,6 @@ DISTANCE BETWEEN A POINT AND A LINE
 The distance between a line and a point is given by:
 
 
-```latex
-\begin{matrix}
-&
-\left\{\begin{matrix}
-& r_1 \equiv A_1 x + B_1 y + C_1 = 0 
-\\ 
-&r_2 \equiv A_2 x + B_2 y + C_2 = 0 
-\end{matrix}\right.
-
-\\ \\& P = r_1 \cap r_2 = (x,y)
-
-\\ \\ & x= \frac{-C_1 B_2 + C_2 B1}{A_1 B_2 - A_2 B_1}
-\\
-\\ & y= \frac{-A_1 C_2 + A_2 C_1}{A_1 B_2 - A_2 B_1}
-
-\end{matrix}
-```
 <br>
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_point_distance.svg?sanitize=true" alt="distance between line and point">
 <br>
@@ -479,6 +462,34 @@ r_3 \equiv A_3 x + B_3 y + C_3 = 0
 
 <br>
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/lines_3_concurrent.svg?sanitize=true" alt="condition for concurrence of three lines">
+<br>
+
+LINE SEGMENT
+
+A line segment can be defined as:
+
+```latex
+\begin{matrix}
+x = x_1 + (x_2-x_1)t
+\\ y = y_1 + (y_2-y_1)t
+\\ 0 \leq  t \leq  1
+\end{matrix}
+```
+
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_segment.svg?sanitize=true" alt="equation for a line segment">
+<br>
+
+BISECTOR OF A SEGMENT
+
+The perpendicular bisector of a segmente difined by two points P1 and P2 is defines by it line equation: 
+
+```latex
+(x_2-x_1)\cdot x + (y_2-y_1)\cdot y - \frac{[(x_2^2+y_2^2) - (x_1^2+y_1^2)]}{2} = 0.
+```
+
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_sector_bisector.svg?sanitize=true" alt="equation a segment's bisector">
 <br>
 
 
