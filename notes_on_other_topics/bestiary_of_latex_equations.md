@@ -482,7 +482,7 @@ x = x_1 + (x_2-x_1)t
 
 BISECTOR OF A SEGMENT
 
-The perpendicular bisector of a segmente difined by two points P1 and P2 is defines by it line equation: 
+The perpendicular bisector of a segment, defined by it's two points P1 and P2, is defined by the line equation:
 
 ```latex
 (x_2-x_1)\cdot x + (y_2-y_1)\cdot y - \frac{[(x_2^2+y_2^2) - (x_1^2+y_1^2)]}{2} = 0.
@@ -492,8 +492,7 @@ The perpendicular bisector of a segmente difined by two points P1 and P2 is defi
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_sector_bisector.svg?sanitize=true" alt="equation a segment's bisector">
 <br>
 
-
-FUNCTION CURVATURE
+CURVATURE FUNCTION
 
 ```latex
 \frac{1}{R} = \frac{ \left | f{(x)}'' \right | }{\left (1 +   \left [ f{(x)}' \right ]^{2}  \right )^{\frac{3}{2}}}
@@ -502,7 +501,6 @@ FUNCTION CURVATURE
 <br>
 <img  src="https://rawgit.com/sergiocollado/potpourri/master/image/curvature.svg?sanitize=true" alt="curvature of a function">
 <br>
-
 
 
 MATRIX TRANSFORMATION
