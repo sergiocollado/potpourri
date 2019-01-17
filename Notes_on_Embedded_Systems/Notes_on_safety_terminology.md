@@ -339,6 +339,7 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 
 A **Non-secure** system is also a **Non-safety** system, as it is susceptible of malicious intends and actions.
 
+**Safety** and **Reliability** are not the same, although in coloquial languaje many times are thought equivalent, these concepts are not equivalent. Safety relates that an event X never happens, or its probability is very low. Reliability relates that an event Y always happens, or is intedend to happen with a high probability.
 
 ## SAFETY RELATED CONCEPTS:
 
