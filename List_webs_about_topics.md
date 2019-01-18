@@ -745,6 +745,10 @@ http://darwin-online.org.uk/manuscripts.html
 
 http://pares.mcu.es/
 
+http://www.famsi.org/spanish/mayawriting/codices/madrid.html
+
+http://leonardo.bne.es/index.html
+
 # Internet, Web, ... characters and html5-utf-8, protocols, standardas and recomendations.
 
 https://dev.w3.org/html5/html-author/charref
