@@ -643,6 +643,10 @@ https://www.die.net/earth/
 
 # MATHS
 
+http://paulbourke.net/miscellaneous/
+
+http://mathforum.org/dr.math/faq/formulas/faq.analygeom_2.html
+
 GPL MATHS:  https://glm.g-truc.net/0.9.8/index.html
 
 laboratory d'informatique de Paris 6
