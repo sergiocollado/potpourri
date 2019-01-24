@@ -496,7 +496,8 @@ TWO SEGMENTS INTERCEPTION
 
 ```latex
 \begin{matrix}
- \exists  \overline{P1\, P2} \cap \overline{P3\, P4}  \leftrightarrow  \exists \: s,\, t:  ( 0 \leq s \leq 1 ) \wedge (0 \leq t \leq 1)
+ \exists  \overline{P1\, P2} \cap \overline{P3\, P4}  \leftrightarrow 
+ \exists \: s,\, t:  ( 0 \leq s \leq 1 ) \wedge (0 \leq t \leq 1)
 \\ 
 \\
 \left\{\begin{matrix}
