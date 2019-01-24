@@ -492,6 +492,46 @@ The perpendicular bisector of a segment, defined by it's two points P1 and P2, i
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/line_sector_bisector.svg?sanitize=true" alt="equation a segment's bisector">
 <br>
 
+TWO SEGMENTS INTERCEPTION
+
+```latex
+\begin{matrix}
+ \exists  \overline{P1\, P2} \cap \overline{P3\, P4}  \leftrightarrow  \exists \: s,\, t:  ( 0 \leq s \leq 1 ) \wedge (0 \leq t \leq 1)
+\\ 
+\\
+\left\{\begin{matrix}
+x_1 + (x_2 - x_1)t = x_3 + (x_4 - x_3)s
+\\ 
+y_1 + (y_2 - y_1)t = y_3 + (y_4 - y_3)s
+\end{matrix}\right.
+\\ 
+\\
+s = \frac{\begin{vmatrix} x_2 - x_1
+ & y_2 - y_1 \\ x_3 - x_1
+ & y_3 - y_1
+\end{vmatrix}}{\begin{vmatrix} x_2 - x_1
+ & y_2 - y_1 \\ x_3 - x_4
+ & y_3 - y_4
+\end{vmatrix} }
+\\
+\\
+t = \frac{\begin{vmatrix} x_3 - x_1
+ & y_3 - y_1 \\ x_3 - x_4
+ & y_3 - y_4
+\end{vmatrix}}{\begin{vmatrix} x_2 - x_1
+ & y_2 - y_1 \\ x_3 - x_4
+ & y_3 - y_4
+\end{vmatrix} }
+
+\end{matrix}
+```
+
+
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/lines_segments_intercepts.svg?sanitize=true" alt="existence of two segment's bisector">
+<br>
+
+
 CURVATURE FUNCTION
 
 ```latex
