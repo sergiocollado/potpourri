@@ -929,6 +929,16 @@ http://coliru.stacked-crooked.com/
 
 http://code.runnable.com/
 
+https://techiedelight.com/compiler/
+
+# coding challneges
+
+https://leetcode.com/
+
+## selfpublishin 
+
+https://leanpub.com/authors
+
 # List of RFCs, standards and normatives.
 
 [RFC2119] - "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, March 1997. - http://www.ietf.org/rfc/rfc2119.txt
