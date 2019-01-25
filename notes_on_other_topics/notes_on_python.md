@@ -17,6 +17,7 @@ https://www.python-course.eu/numpy.php
 
 https://opentechschool.github.io/python-beginners/en/getting_started.html#what-is-python-exactly
 
+https://packaging.python.org/tutorials/installing-packages/
 
 ## Looking for help()
 
@@ -71,6 +72,19 @@ Also there is great documentation at:  https://docs.python.org/3/library/index.h
 <br>
 <br>
 
+## Detecting the python version
+
+In the console you can just type
+
+```python
+>>python --version
+```
+
+or 
+
+```
+>>python --v
+```
 
 
  ## BLOCKS
@@ -449,8 +463,7 @@ def foo(parameter_lit):
 ```
 
 Is common that the first line after the function definitions is what is known as **docstring**, it usually is a string that
-explains the goal, use and other notes about the function. It can be accessed by means of `functionName.__doc__' 
-
+explains the goal, use and other notes about the function. It can be accessed by means of "functionName.__doc__"
 
 ### dEFAULT VALUES
 
@@ -651,6 +664,31 @@ https://www.scipy.org/
 http://scikit-learn.org/stable/
 
 https://matplotlib.org/
+
+
+# pip
+
+Pip is a package manager.
+
+Check pip version
+
+
+```python
+>> pip --version
+```
+
+if it is not installed try to get it from the standard library
+
+```python
+>> python -m ensurepip --default-pip
+```
+
+it it is installed, then asure it is up to date
+
+```python
+>>python -m pip install --upgrade pip 
+```
+
 
 # ANACONDA INSTALATION
 
