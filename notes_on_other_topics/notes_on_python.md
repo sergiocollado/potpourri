@@ -15,6 +15,9 @@ The main reference is:  https://docs.python.org/3/library/index.html
 
 https://www.python-course.eu/numpy.php
 
+https://opentechschool.github.io/python-beginners/en/getting_started.html#what-is-python-exactly
+
+
 ## Looking for help()
 
 If help or reference is needed, you can type: `help()` -- dont forget the parenthesys.
