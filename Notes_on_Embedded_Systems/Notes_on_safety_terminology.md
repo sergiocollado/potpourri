@@ -700,7 +700,7 @@ Follow recomendations for implementing the system.
 - Privacy by design (if applies)
 - Policy and strategy for critical and safety data backup.
 - for files. - alwasys create a backup previous to modification of the file
-- for files. - test always fist the rights in the file you are goint to access ( in C: int access(char \*path, int mode) -- determine accessibility of file. ) 
+- for files. - test always fist the rights in the file you are goint to access ( in C: int access(char \*path, int mode) -- determine accessibility of file. Also: stat(), and fstat() )
 
 - Time accuracy and sync: Usually computer systems are drived by crystals to measure the time, a standard crystal for an embedded device as the NX5032GA crystal will have a variation in its measurement of 150 PPM (parts per millions), in the range of temperature from -40 C to 150 C. And an accurancy around 50 PPM, that is about 5 seconds per day. So when taking into account timings, it must be consider the stability and accuracy of the crystal.
 
