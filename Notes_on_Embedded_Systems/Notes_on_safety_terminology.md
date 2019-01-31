@@ -645,11 +645,11 @@ http://nob.cs.ucdavis.edu/bishop/secprog/robust.html </br>
 Follow recomendations for implementing the system.
 
 - Use coding standards and recomendations:
-    - meanfuly comments. the code must have a good 'readability'.
+    - meaninfuly comments. the code must have a good 'readability'.
     - work on define good baselines and documentation.
     - Always define the variable inizialization values.
-    - Use indentation.
-    - Never ever programm an infinite loop. (under a wort case design it will block execution)
+    - Use indentation. it improves readeability
+    - Never ever program an infinite loop. (under a worst case design it will block execution)
     - Never ever use magic numbers.
     - two persons rule: at least two persons must be familiar with the overall design, arquitecture, configuration, software and hardware.
     - input/output records, data and logs.
@@ -689,8 +689,8 @@ Follow recomendations for implementing the system.
 - Implement a log or trace mechanism in the system.
 - Previous a modification of a file, make a back up copy, just in case a sudden power off, or corruption of the data.
 - Have a method to identify the software, and version of the system (build system, build management)
-- Verify integrity and Hahs or alike for configuration files, parameters files, an such....
-- For robustness: check input paramenters into functions, and repor functions sucess or failure.
+- Verify integrity and Hash or crc's or alike for configuration files, parameters files, an such....
+- For robustness: check input parameters into functions, and repor functions sucess or failure. 
 - Test functions (unit testing) with wrong, and bad data- a program should behave sensibly even if the user don't.
 - Test, test, test. (it's is not the developers skill what asures a good systems (although it helps, of course!), is the test of system the action that increases the asurance on the systems capabilities, quality and confidence). (test documentation must comply wit the ieee 829 standard)
 - CSP: Concurrent Sequence Programming (techniques)
@@ -699,6 +699,8 @@ Follow recomendations for implementing the system.
 - try to include random test checks.
 - Privacy by design (if applies)
 - Policy and strategy for critical and safety data backup.
+- for files. - alwasys create a backup previous to modification of the file
+- for files. - test always fist the rights in the file you are goint to access ( in C: int access(char \*path, int mode) -- determine accessibility of file. ) 
 
 - Time accuracy and sync: Usually computer systems are drived by crystals to measure the time, a standard crystal for an embedded device as the NX5032GA crystal will have a variation in its measurement of 150 PPM (parts per millions), in the range of temperature from -40 C to 150 C. And an accurancy around 50 PPM, that is about 5 seconds per day. So when taking into account timings, it must be consider the stability and accuracy of the crystal.
 
