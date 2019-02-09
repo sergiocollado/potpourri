@@ -749,6 +749,8 @@ http://www.famsi.org/spanish/mayawriting/codices/madrid.html
 
 http://leonardo.bne.es/index.html
 
+http://www.ampere.cnrs.fr/manuscrits/avoir/avoir-electro.php
+
 # Internet, Web, ... characters and html5-utf-8, protocols, standardas and recomendations.
 
 https://dev.w3.org/html5/html-author/charref
