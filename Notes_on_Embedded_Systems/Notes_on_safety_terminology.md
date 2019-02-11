@@ -651,6 +651,7 @@ Follow recomendations for implementing the system.
     - Use indentation. it improves readeability
     - Never ever program an infinite loop. (under a worst case design it will block execution)
     - Never ever use magic numbers.
+    - Coding standards encorage developers to write a cleaner code.
     - two persons rule: at least two persons must be familiar with the overall design, arquitecture, configuration, software and hardware.
     - input/output records, data and logs.
     - system error log
