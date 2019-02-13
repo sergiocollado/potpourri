@@ -1,4 +1,4 @@
-E
+
 ## What are things made of?
 ### ... or: what is the structure of matter?
 
