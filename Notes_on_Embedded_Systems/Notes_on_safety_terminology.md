@@ -1573,6 +1573,8 @@ Other times a natural disaster, might force to change the production locations, 
 
 reference: https://www.theguardian.com/technology/2011/oct/25/thailand-floods-hard-drive-shortage
 
+reference: https://www.theguardian.com/technology/2011/apr/11/smartphones-hit-by-japanese-earthquake
+
 ![thai_floods](https://github.com/sergiocollado/potpourri/blob/master/image/Thailand_floods.PNG)
 
 
