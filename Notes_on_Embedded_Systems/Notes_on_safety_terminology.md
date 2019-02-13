@@ -1170,7 +1170,16 @@ Continous integration favours that testing is done so often that bugs dont stay 
 
 A famous platform for this is for example: Travis CI. https://docs.travis-ci.com/user/for-beginners.
 
+### CI pros
 
+- Regression error are minized due to early testing and early identification
+- Building of the system and testing is automated
+
+### CI cons
+
+ - the repository must be monitored constantly
+ - scripts and tools to automate the process can require a significanta amount of work
+ 
 
 # OVERVIEW OF THE TESTING PROCESS:
 
