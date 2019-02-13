@@ -1,4 +1,4 @@
-
+E
 ## What are things made of?
 ### ... or: what is the structure of matter?
 
@@ -487,5 +487,10 @@ Fd= 6 · pi · radius · terminal_velocity · viscosity  =  4/3 · pi · radius^
 radius^2 =  6·3/4 (=9/2) · terminal_velocity · viscosity  / g /  (oil_density - air_density)
 
 once the radius is calculated, is easy to calculate F_gb
+
+
+ --------------------------------
+ 
+https://www.who.int/ionizing_radiation/about/what_is_ir/en/
 
 
