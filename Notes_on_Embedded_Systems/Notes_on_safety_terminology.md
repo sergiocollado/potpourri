@@ -2328,6 +2328,7 @@ ITU
 
 TELOS - Technical, Economic, Legal (liability), Operational and Scheduling. Refers to the five areas of feasibility
 
+RAMS - Reliability, Availability, Maintainability and Safety 
 
 
 ## Draft on GENERAL PROJECT RISKS
