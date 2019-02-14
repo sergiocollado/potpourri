@@ -676,8 +676,4 @@ permisive licenses: like BSD or Apache licenses. - dont need to be make public.
 
 
 
-permisive licenses:
-
- 
-
 
