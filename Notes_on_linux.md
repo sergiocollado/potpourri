@@ -666,6 +666,18 @@ BLFS - Beyond Linux From Scratch.
 LFS - Linux From Scratch. [http://www.linuxfromscratch.org/]
 
 
+## ABOUT OPEN SOURCE SOFTWARE LINCESES.
 
+Mainly there are two types of licenses: restrictive and permisive
+
+restrictive licenses: derivative works are intended to remain open, and changes must be made availables. Example: GPL (general public license) (aka copyleft)
+
+permisive licenses: like BSD or Apache licenses. - dont need to be make public.
+
+
+
+permisive licenses:
+
+ 
 
 
