@@ -723,6 +723,7 @@ Selection of communication protocols:
 - HyperTransport ( interconnection of computer processors),
 - PCI Express (high speed connection to external peripherals), and
 - T-1(high speed telecommunication over copper pairs)
+- In signals or data from sensors, qualify the quality of the signal or the case in which the sensor is not calibrated, or error signals are detected, then desing and implement correction actions and safety estates as needed.
 
 In communications must be checked: 
 
