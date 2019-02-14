@@ -142,9 +142,9 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 
 ### Commands to navigate through the file system.
 
-- **pwd** command: identifie what is the current working directory.
-- **cd** commands: it stands for 'change directory'. If 'cd' is used without arguments, it changes to the home/defaul directory. To move one step up in the file system hierarchy, the command 'cd ..' is used.
-- **ls** command: it is teh 'listing' command, it enumerates all the files inside the current directory. When used with the parameter '-l', that stands for "long", it will define the files, with a lot of information about them ( permission, creation date, last used date ...) There are many options, for getting info about them, just type: 'man ls'. 
+- **pwd** command: Stands for 'print working directory', and it prints the name the current working directory.
+- **cd** commands: it stands for 'change directory'. If 'cd' is used without arguments, it changes to the home/defaul directory. To move one step up in the file system hierarchy, the command 'cd ..' is used. It can be used with absulute paths (all the path is defined related to root directory (/)) or relative paths (relative direction from the current directory).
+- **ls** command: it is the 'listing' command, it enumerates all the files inside the current directory. When used with the parameter '-l', that stands for "long", it will define the files, with a lot of information about them ( permission, creation date, last used date ...) There are many options, for getting info about them, just type: 'man ls'. 
 - **mkdir** command: creates a directory. (Make directory)
 - **rmdir** command: removes a directory. (remove directory). **Note** rmdir only works, if the directory is empty. This is as a safety mechanisms.
 - **cat** command: Output a file to the terminal. 
@@ -152,6 +152,13 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 - **last** and **tail** commands: print the last 10 lines of a file to the terminal.
 - **cp** command: It copies a file.
 - **mv** command: It moves a file (to another directory), also can be used to change the name of a file.
+
+special directory names: 
+
+- / : root directory
+- ~ : (tilde) user home directory
+
+
 
 
 ### types of files in linux
