@@ -743,7 +743,6 @@ In communications must be checked:
 
 
 
-
 ACcording to Straoup Book:
 "tricky as error recovery.
 Successful fault-tolerant systems are multilevel. Each level copes with as many errors as it can
