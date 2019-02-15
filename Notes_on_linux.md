@@ -147,11 +147,15 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 - **ls** command: it is the 'listing' command, it enumerates all the files inside the current directory. When used with the parameter '-l', that stands for "long", it will define the files, with a lot of information about them ( permission, creation date, last used date ...) There are many options, for getting info about them, just type: 'man ls'. 
 - **mkdir** command: creates a directory. (Make directory)
 - **rmdir** command: removes a directory. (remove directory). **Note** rmdir only works, if the directory is empty. This is as a safety mechanisms.
-- **cat** command: Output a file to the terminal. 
+- **cat** command: Output a file to the terminal. -although it is intended to con*cat*enate files. It will print the concatenation of all files passed to it. 
 - **head** command: Prints to the terminal the first 10 lines of a file.
 - **last** and **tail** commands: print the last 10 lines of a file to the terminal.
 - **cp** command: It copies a file.
 - **mv** command: It moves a file (to another directory), also can be used to change the name of a file.
+- **touch** command: creates a new file.
+- **output redirection: >**: it redirects, ex: echo "hello-world" > mytextfile.txt
+- **append >>**: it appends: echo "hello again!" >> mytextfile.txt
+
 
 special directory names: 
 
@@ -161,9 +165,10 @@ special directory names:
 
 
 
+
 ### types of files in linux
 
-It is possible to check the types of files with the command **ls**. Also with the command **file**
+It is possible to check the types of files with the command **ls -l**. Also with the command **file**
 
 - -: regular file as text, images, or shared libraries...
 - d: directory
