@@ -12,7 +12,6 @@ That means, that all the different elements known, are made of protons, neutrons
 
 _NOTE_ The existence of atoms, was first considered by the experiments of J.J. Thompson while working with cathodic rays and Crookes tubes.
 
-
 ## **Electric Charge:**
 The electric charge,usually represented by its symbol **Q**, it is what in physics is refered as a **fundamental magnitude**, as for example are: the _longidude_ (SI unit: Meter), or the _force_ (SI unit: Newton) or the _mass_ (SI unit: Kg). It is a fundamental magnitude because it cannot be deduced from the others: Mass(M), Lenght(L), and time(T) ...
 
@@ -21,6 +20,9 @@ The electric charge cuantifies the **defect** of electrons (by convention this i
 The Coulomb (C) is defined as the amount of electrical charge that have 6.241x10<sup>18</sup> electrons.
 
 The number of Coulombs per second (C/s) is known as the **Ampere** (A), which is the unit of the electric current. The electric current is the amount of electric charges that goes through a body per unit time - this is same as say: the flow of electric charges.
+
+
+**ION**: An ion is the name given to an atom or molecule that have different numbers of electrons and protons, so then, having a no neutral electric charge. As this ion has a certain electric charge it is attracted or repulsed by other ions, depending on their charge.
 
 ## **Electricity**: 
 Electricity is an energy asociated with the phenomenon of the flow and/or accumulation of electric charges (excess or defect of electrons)
