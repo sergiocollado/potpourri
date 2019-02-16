@@ -165,7 +165,11 @@ special directory names:
 - ~ : (tilde) user home directory
 
 
+### Commands for working with files.
 
+- **touch**: creates a new file
+- **wc**: counts the number or words and lines in a file.
+- **grep**: search text through files and match patterns. [https://linux.die.net/man/1/grep]
 
 
 ### types of files in linux
