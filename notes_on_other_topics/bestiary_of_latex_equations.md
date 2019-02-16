@@ -6,6 +6,14 @@
 <!--  somewhat nice intro text. http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf -->
 <!--- other nice intro text. https://www.latex-tutorial.com/tutorials/ -->
 
+Bernouili equation
+
+```latex
+P_1 + \frac{1}{2} \rho v_1^2 + \rho g h_1 = P_2 + \frac{1}{2} \rho v_2^2 + \rho g h_2
+```
+
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/Bernouilli_equation.svg?sanitize=true" alt="golden ratio 1"> <br>
+
 Golden ratio - Seccion Aurea
 
 ```latex
