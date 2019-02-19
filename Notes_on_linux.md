@@ -171,6 +171,7 @@ special directory names:
 - **wc**: counts the number or words and lines in a file.
 - **grep**: search text through files and match patterns. [https://linux.die.net/man/1/grep]
 - **file**: to find the location of files.
+- **diff**: identify differences between files.
 
 ### types of files in linux
 
