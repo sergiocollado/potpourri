@@ -2633,7 +2633,7 @@ BIBLIOGRAPHY & References - TECHNICAL BOOKS & PAPERS:
 - "Strengh Integrity of the Space Shuttle Orbiter Tiles", T.L. Moser and W.C. Schneider
 - "Reliability Engineering of the Space Shuttle: Lessons Learned" T.L. Moser
 - "Structural Load Challenges During Space Shuttle Development", A.C. Mackey and R.E. Gatto
-
+- "Comparision of Bus architectures for Safety Critical Embedded Systems", NASNCR-2003-2 John Rushby, https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20030032956.pdf
 
  # FMEA: Failure Mode and Effects Analysis
  
