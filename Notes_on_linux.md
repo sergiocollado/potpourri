@@ -221,6 +221,16 @@ file1  rwxr-x^-x
   The command **su** lets you borrow the permissions from another user to run commands, if no user is especified, it defaults to use the **root** user.
   
 
+### Bash configuration
+
+The bash console has a copy of the history of the commands we have issued, the comands are at: ~/.bash_history
+
+Other usesufl file for the command console (terminal) is: ~/.bash_profile. This file keeps a serie of commands that runs everytime that
+the terminal is launched
+
+
+
+
 ### Processes
 
 To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
