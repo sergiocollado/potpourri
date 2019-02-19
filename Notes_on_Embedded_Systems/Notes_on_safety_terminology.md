@@ -564,6 +564,10 @@ Software Reliability Handbook -- https://books.google.dk/books?id=K7n52MOlDQsC&p
 
 Making Software: What Really Works, and Why We Believe It -- https://books.google.dk/books?id=DxuGi5h2-HEC&pg=PA573&lpg=PA573&dq=boehm+and+papaccio&source=bl&ots=0WswskO6lT&sig=XXnHQR66VsnNthS9EYi8IrgJtak&hl=en&sa=X&ved=2ahUKEwiqlPP_s-TcAhWLKlAKHRZsB7YQ6AEwCXoECAEQAQ#v=onepage&q=boehm%20and%20papaccio&f=false
 
+software reliability: is the probability of failure-free software execution for a specified period of time, in a specified enviroment.
+
+ref: https://www.semanticscholar.org/paper/Software-Reliability-Theory-Lyu/873c93180359462543d51dd62f8c2b4a7b8cfe9d
+
 
 
 # SYSTEM DEVELOPMENT LIFE CICLE
