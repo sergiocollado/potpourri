@@ -2010,9 +2010,31 @@ the responsabilites for example are:
 ... to be done.
 
 
+## ELECTRIC AND ELECTRONIC HARDWARE CONSIDERATIONS
+
+Electric Loads fault protection: Fuses, semicondutor fuses and circuits breakers are common protections methods. 
+
+Also varistor, TVSs and crownbar circuits are common for overvoltage protections.
+
+### CAPACITOR FAILURE MODES
+
+- mechanical failure
+- temperature cycling
+- electrolitic failure (for electrolitic capacitors)
+- capacitor life span (rated voltage, ripple current)
+
+### SEMICONDUCTOR FAILURE MODES
+
+- AVALACHE RELATED FAILURE
+- THERMAL RUNAWAY
+- THERMAL SECONDARY BREAKDOWN
+- METALLIZATION FAILURE
+- POLARITY REVERSALS
+- ESD DAMAGE
 
 
-LIABILITY:
+
+## LIABILITY:
 
 As far as the manufacturer complies with the required standards, it is assumed that it did not act negligently. Therefore, the legal consecuences in case of an issue, will be reduced to the minimum.
 
