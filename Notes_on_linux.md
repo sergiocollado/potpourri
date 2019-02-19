@@ -170,7 +170,7 @@ special directory names:
 - **touch**: creates a new file
 - **wc**: counts the number or words and lines in a file.
 - **grep**: search text through files and match patterns. [https://linux.die.net/man/1/grep]
-
+- **file**: to find the location of files.
 
 ### types of files in linux
 
