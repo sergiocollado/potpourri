@@ -12,7 +12,15 @@ Bernouili equation
 P_1 + \frac{1}{2} \rho v_1^2 + \rho g h_1 = P_2 + \frac{1}{2} \rho v_2^2 + \rho g h_2
 ```
 
-<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/Bernouilli_equation.svg?sanitize=true" alt="golden ratio 1"> <br>
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/Bernouilli_equation.svg?sanitize=true" alt="Bernouilli equation"> <br>
+
+Aerodinamic drag force
+
+```latex
+ \textup{Aerodynamc Drag Force}= \frac{1}{2} \, \rho\,  C_x \,  v^2 
+```
+
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/aerodynamic_drag_force.svg?sanitize=true" alt="golden ratio 1"> <br>
 
 Golden ratio - Seccion Aurea
 
