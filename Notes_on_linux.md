@@ -173,6 +173,7 @@ special directory names:
 - **file**: to find the location of files.
 - **diff** and **sdiff**: identify differences between files.
 - **md5**: computes the md5 hash of a file.
+- **shasum**: compute the SHA-1 of a file.
 
 ### types of files in linux
 
