@@ -172,6 +172,7 @@ special directory names:
 - **grep**: search text through files and match patterns. [https://linux.die.net/man/1/grep]
 - **file**: to find the location of files.
 - **diff** and **sdiff**: identify differences between files.
+- **md5**: computes the md5 hash of a file.
 
 ### types of files in linux
 
