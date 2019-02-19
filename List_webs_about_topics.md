@@ -899,6 +899,12 @@ https://www.semanticscholar.org/
 
 https://www.osti.gov/
 
+https://www.intechopen.com/
+
+researchgate
+
+google scholar
+
 
 # Unis
 
@@ -915,7 +921,7 @@ https://wandbox.org/
 
 http://webcompiler.cloudapp.net/
 
-https://gcc.godbolt.org/
+https://gcc.godbolt.org/   <------!!!
 
 https://techiedelight.com/compiler/?ADgrxXNkoXr7rl7jo8Z3ipEOR2Ga
 
