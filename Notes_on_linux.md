@@ -147,7 +147,7 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 - **pwd** command: Stands for 'print working directory', and it prints the name the current working directory.
 - **cd** commands: it stands for 'change directory'. If 'cd' is used without arguments, it changes to the home/defaul directory. To move one step up in the file system hierarchy, the command 'cd ..' is used. It can be used with absulute paths (all the path is defined related to root directory (/)) or relative paths (relative direction from the current directory).
 - **ls** command: it is the 'listing' command, it enumerates all the files inside the current directory. When used with the parameter '-l', that stands for "long", it will define the files, with a lot of information about them ( permission, creation date, last used date ...) There are many options, for getting info about them, just type: 'man ls'. 
-- **mkdir** command: creates a directory. (Make directory)
+- **mkdir** command: creates a directory. (**M**a**k**e **dir**ectory)
 - **rmdir** command: removes a directory. (remove directory). **Note** rmdir only works, if the directory is empty. This is as a safety mechanisms.
 - **cat** command: Output a file to the terminal. -although it is intended to con*cat*enate files. It will print the concatenation of all files passed to it. 
 - **head** command: Prints to the terminal the first 10 lines of a file.
