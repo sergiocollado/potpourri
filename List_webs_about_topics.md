@@ -36,6 +36,7 @@ http://www.cnx-software.com/2016/05/17/bluepill-is-a-2-arduino-compatible-develo
 
 PCB design: http://www.electronpcb.es/es/disenoIPC.html
 
+
 PCB manufacturer: https://www.pcbway.com/orderonline.aspx
 
 PCB manufacturer: https://www.wellpcb.com/
@@ -908,6 +909,9 @@ google scholar
 https://www.sciencedirect.com/
 
 https://www.intechopen.com/books/petri-nets-in-science-and-engineering
+
+https://leanpub.com/
+
 
 # Unis
 
