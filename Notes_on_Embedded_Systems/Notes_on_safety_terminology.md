@@ -768,6 +768,20 @@ to overall system reliability.
 However, separating the program into distinct subsystems that either complete successfully or fail
 in well-defined ways is essential, feasible, and economical."
 
+
+
+## Modular Design
+
+modular design is a methodology in which we break down the system functions or components into smaller components or modules, that build up toghether the functions or structure of the overall system. This allows us to better manage complexity
+
+
+tools for modular design:
+
+- call-graph
+- data-flow
+- low level flow-charts
+
+
 ## Defensive programming
 
 Defensive programming is a defensive coding style intended to ensure the continuing function of a program under unforeseen circunstances. This code style is usually used in systems with need high availability, safety and security. Techniques include error function handling for as much error types as possible and the use of exeptions.
