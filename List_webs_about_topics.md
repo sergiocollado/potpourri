@@ -905,6 +905,9 @@ researchgate
 
 google scholar
 
+https://www.sciencedirect.com/
+
+https://www.intechopen.com/books/petri-nets-in-science-and-engineering
 
 # Unis
 
