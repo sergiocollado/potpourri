@@ -36,19 +36,17 @@ Key propierties to take into account for an embedded system are:
 
 **FUNCTIONAL SAFETY** Is propierty of a systems that evaluates the safety of a system that correspond the correct actions according to the system inputs, this also includes detection of potential dangerous states or actions, and activation of protecttion, corrective or mitigation measures.
 
-Functional safety implies _**active measures**_, that _**develop mechanism and risk-reduction measurements**_, as an example: the airbag systems in automotive vehicles, when a crash is detected, the safety system is triggered. On the other hand, a helmet that protects the driver, is a passive system; passive systems do not comply with the functional safety concept.
+Functional safety implies _**active measures**_, that _**develop and implement mechanism and risk-reduction measurements**_, as an example: the airbag systems in automotive vehicles, when a crash is detected, the safety system is triggered. On the other hand, a helmet that protects the driver, is a passive system; passive systems do not comply with the functional safety concept.
 
 The leading standard for functional safety is the IEC 61508.
 
 The funtional safety level of a system is evaluated with a figure of merit, known as **SIL** (Safety Integrity Level):
 
+**SAFETY FUNCTION**: function, method or mechanism that reduces the risk of a system.
+
 **FAIL-SAFE DESIGN** Is an engineering design practice that makes a system to respond the minimun damage in the event of a failure.
 
 **SINGLE-FAULT CONDITION SAFETY**: Even in the event that a fault happens in the system, the system must remain safe.
-
-**SECURITY**: Is the propierty of a system that evaluates its ability to deal with malicious actions or attacks.
-
-Take into account, that there is a significative difference between the concepts of safety and security, both terms account protection against a damage, but security implies a malicious or intended action to do a damage, while safety relates to an unintended situation.
 
 **ACCIDENT**: The event of causing/receiving damage of any kind (either directly or indirectly): equipment damage, property damage, or damage to the enviroment, and human injuries or even deaths.
 
@@ -68,6 +66,10 @@ R(accident_i) = P(accident_i) · Severity(accident_i)
 
  **Risk matrix**: In practice the risk formula is difficult to apply, due the probablities of given accident are difficult to pin-point with an exact number, so it is common to apply categories to the probability and severity, so instead of numbers they are classified in ranges, for example is common to evaluate: Very low, low, medium, high, very high. With this classification then it is possible to make what is refered to, as a risk matrix, or risk table. 
 
+**Tolerable Risk**: acceptable risk in certain given enviroment for a society.
+
+**RESIDUAL RISK**: risk in a system after protective measures have been applied.
+
 **HAZARD**: Set of combinations of conditions or requisites or enviroments or events that lead to an accident
 
 **ERROR/MISTAKE**: A human being can make an error(mistake), with results in a **defect** in the system (fault, bug) in the program or code, or in a document. The defect in the system, might never be noticed, or can result in the case that the system might fail its expected function (or do something it shouldn't) causing a failure. Defects in software, systems or documents can result in failures, but no all defects do.
@@ -85,6 +87,14 @@ time, or under specified enviromental system conditions.
 
 >__A word about SW context__
 > A human being can make an error (mistake), wich produces a defect (fault,bug) in the program, code, or in a document. If a defect in the code is executed, the system may fail to do what it must do (or do something it shouldn't) causing a failure. 
+
+**SAFETY INTEGRITY** probability in a safety-system that the safety functions perform as intended in a defined enviroment under all defined conditions for a defined amount of time.
+
+**SAFETY INTEGRITY LEVEL** Level that qualifies the safety requirements and safety functions of a system. It is ranked on 4 levels being SIL4 the safest, and SIL1 the lowest safe.
+
+**SOFTWARE SAFETY INTEGRITY**: probability or measurment of the likehood in a electronic programmable system that its safety funtions  perform as intended in a defined enviroment under all defined conditions for a defined amount of time.
+
+**HARDWARE SAFETY INTEGRITY**: part of the system safety that depends in the random hardware failures that be hazarous.
 
 **RELIABILITY**: Is the probability that a piece of equipment or component will perform correctly its intended goal, inside the defined time, and under the correct enviroment. So Reliability is defined by the probability that for an given time interval [0,t], the systems performs ok, during all the time interval up to time t, starting working at time t=0. 
 
@@ -114,6 +124,10 @@ and
 
 Is also common to express availability as percentage between uptime and downtime of the system. For example a system availability 
 referred as a 99% (two nines) means that over a year its downtime is 3.65 days. A system reliability with 99.999% is refered as five nines. 
+
+**SECURITY**: Is the propierty of a system that evaluates its ability to deal with malicious actions or attacks.
+
+Take into account, that there is a significative difference between the concepts of safety and security, both terms account protection against a damage, but security implies a malicious or intended action to do a damage, while safety relates to an unintended situation.
 
 **DEPENDABILITY**: Is the truthworthiness of a system so there is a justified confidence in the tasks it must perform.
 
@@ -316,6 +330,7 @@ https://en.wikipedia.org/wiki/Fault-tolerant_computer_system </br>
 https://en.wikipedia.org/wiki/Software_fault_tolerance </br>
 https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 
+https://www.mtl-inst.com/images/uploads/datasheets/App_Notes/AN9025.pdf
 
 **ROBUST SYSTEMS** Robust systems are those, in which the system has the ability to cope with errors during execution and cope with erroneous inputs and stressfull enviroments. Usually you test those systems with the technique of *Fault Injection*, other techniques are for example *Fuzzy testing* that involves invalid or unexpected inputs. 
 <br>
@@ -370,8 +385,6 @@ In practice this formula is difficult to apply, as the probablities and damage e
 
 **Error**: is a systematic fault, thus a design flaw, thus repetible. ERRORS ARE STATES.
 
-
-
 # OTHER CONCEPTS:
 
 **DEBUGING**: locate, pin-point the root-cause and correct a defect.
@@ -390,7 +403,7 @@ The standards, define the rules to observe and techniques and methodologies to u
 
   ## BASIC FOR SAFETY:
 
-Most standard, define a general requirements safety clause that must be complied with. Products must be designed and manufactured so they function in a safetly way without causing any danger or unnaceptable risk, in: 
+Most standards, define a general requirements safety clause that must be complied with. Products must be designed and manufactured so they function in a safetly way without causing any danger or unnaceptable risk, in: 
  - intended use
  - foreesable misuse
  - single fault condition.
@@ -2674,7 +2687,7 @@ BIBLIOGRAPHY & References - TECHNICAL BOOKS & PAPERS:
 - "Reliability Engineering of the Space Shuttle: Lessons Learned" T.L. Moser
 - "Structural Load Challenges During Space Shuttle Development", A.C. Mackey and R.E. Gatto
 - "Comparision of Bus architectures for Safety Critical Embedded Systems", NASNCR-2003-2 John Rushby, https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20030032956.pdf
-
+- "Second Edition of System Reliability Theory: Models, Statistical Methods, and Applications".
  # FMEA: Failure Mode and Effects Analysis
  
  Is one of the earliest approach to a systematic realiability analysis, that of course includes risk assesment.
