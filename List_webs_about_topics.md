@@ -912,6 +912,7 @@ https://www.intechopen.com/books/petri-nets-in-science-and-engineering
 
 https://leanpub.com/
 
+https://www.elsevier.com/authors
 
 # Unis
 
