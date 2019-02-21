@@ -239,7 +239,42 @@ the terminal is launched
 To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
 
 
-  
+### LINUX GRAPHIC SYSTEM
+
+There are three basic layers:
+
+ - x window system (aka x11)
+ - window manager
+ - desktop manager
+ 
+#### x window system - X11
+
+ its inteded as a remote interface, so it is really a protocol, and it really is a X server. X comes from eXternal. It is supplied in X.org
+ 
+ - x server: is what runs in the local machine.
+ - x cliente: is what is being displayed, and can be anywhere.
+ 
+ the basic configuration file used to be at: /etc/X11/xorg.conf
+ 
+A new system that is replacing X11 is Wayland.
+
+#### window manager
+
+it controls the placement of the windows, tabs, controls ...
+
+most commoon are: kwin(in KDE), mutter (in GNOME). Other like: fluxbox or fvwm work really good in systems with limited hardware. fluxbox and fvwm dont even need a desktop manager.
+
+#### desktop managers
+
+provides an visual enviroment, as taskbars, icons and access to applications, controls.
+
+Examples:
+
+- GNOME
+- KDE 
+- XFCE
+
+
 ### Memory análisis in linux systems
  
 The analysis of the memory in the linux system, can be checked using the commands:
