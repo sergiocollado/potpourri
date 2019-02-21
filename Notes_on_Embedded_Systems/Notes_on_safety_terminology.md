@@ -36,7 +36,7 @@ Key propierties to take into account for an embedded system are:
 
 **FUNCTIONAL SAFETY** Is propierty of a systems that evaluates the safety of a system that correspond the correct actions according to the system inputs, this also includes detection of potential dangerous states or actions, and activation of protecttion, corrective or mitigation measures.
 
-Functional safety implies _**active measures**_, as an example: the airbag systems in automotive vehicles, when a crash is detected, the safety system is triggered. On the other hand, a helmet that protects the driver, is a passive system; passive systems do not comply with the functional safety concept.
+Functional safety implies _**active measures**_, that _**develop mechanism and risk-reduction measurements**_, as an example: the airbag systems in automotive vehicles, when a crash is detected, the safety system is triggered. On the other hand, a helmet that protects the driver, is a passive system; passive systems do not comply with the functional safety concept.
 
 The leading standard for functional safety is the IEC 61508.
 
