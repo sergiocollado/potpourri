@@ -918,6 +918,10 @@ https://www.ccsd.cnrs.fr/en/
 
 https://hal.archives-ouvertes.fr/
 
+
+https://hal.inria.fr/hal-01463608/document
+
+
 # Unis
 
 https://www.brown.edu/academics/engineering/
