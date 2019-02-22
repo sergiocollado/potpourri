@@ -914,6 +914,10 @@ https://leanpub.com/
 
 https://www.elsevier.com/authors
 
+https://www.ccsd.cnrs.fr/en/
+
+https://hal.archives-ouvertes.fr/
+
 # Unis
 
 https://www.brown.edu/academics/engineering/
