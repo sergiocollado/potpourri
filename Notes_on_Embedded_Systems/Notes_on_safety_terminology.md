@@ -445,7 +445,7 @@ ISO 31000 - standards for risk management:
 - EN 50126 - 50126/8/9 Railway
 - IEC 61513 - Nuclear Power
 - IEC 50156 - Furnaces 
-- IEC 60335 - Household Appliances
+- IEC 60335 - Household and similar electrical appliances
 - IEC 61511 - Industrial Processes
 - IEC 62061 & ISO 13849 - Manufacturing industry
 - MIL-STD 882 - Combat systems
@@ -453,7 +453,6 @@ ISO 31000 - standards for risk management:
 - EN 60950-1:200 + A2:2013 - Information technology equipment. Safety general Standards.
 - ISO 14118 - Safety on Machinery - prevention of unexpected start-up
 - IEC 60079 Series Explosive Atmosphere Standards
-
 
 ## Common points of the safety standards
 
@@ -2042,6 +2041,20 @@ the responsabilites for example are:
 
 
 ## ELECTRIC AND ELECTRONIC HARDWARE CONSIDERATIONS
+
+### POINT TO DESIGN AND EVALUATE:
+
+- PROTECTIVE EARTHING
+- ELECTRIC STRENGH: Is defined as the maximum electric field strengh (V/mm) that a material can withstand without breaking down or experience failure in its insulation propierties. - In plain talking is when the electric field is so big that it actually brokes the material, throug a current/sparks... 
+
+ The electric field value, actually is a function that depends on several factors, as temperaute, humidity (maximun electric field in inverse to the humidity) , also frequency of the electric field (the maximun electric field strengh decreases inversely to the frequency of the electric field).
+ 
+ So any system must comply with the standard taking into account, its rated voltage, and the voltage that can be generated inside.
+ 
+- INSULATION RESISTANCE
+- LEAKAGE CURRENTS
+- TOUCH CURRENTS
+
 
 Electric Loads fault protection: Fuses, semicondutor fuses and circuits breakers are common protections methods. 
 
