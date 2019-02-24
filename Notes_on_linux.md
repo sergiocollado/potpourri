@@ -23,8 +23,9 @@ At the console, is easy to get help if needed, checking the manual pages: for it
 well, this is actually a method from long ago, ... today it might just be easier to google it : )
 
 
-there is other way, that is use the command: 'apropos + topic' that will present you with a list of possible references.
+there is other way, that is use the command: '**apropos** + topic' that will present you with a list of possible references.
 
+other useful command is '**info** + topic' that presents you with a text with hyperlinks. 
 
 In case something is not working properly, always have a go with with the following:
 
