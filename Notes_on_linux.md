@@ -27,6 +27,9 @@ there is other way, that is use the command: '**apropos** + topic' that will pre
 
 other useful command is '**info** + topic' that presents you with a text with hyperlinks. 
 
+also, in any command you can use the **--help** option: 'rm --help'
+
+
 In case something is not working properly, always have a go with with the following:
 
 ```bash
