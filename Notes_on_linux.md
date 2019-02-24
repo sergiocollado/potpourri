@@ -275,6 +275,15 @@ Examples:
 - XFCE
 
 
+### SODOERS
+
+if a user needs to run a command with root privileges, it has to be added to the list of sudoes, so it can execute the **sudo** command.
+
+in latest linux distributions you have to go to the file /etc/sudoers.d directorie and create a file, with the name of the user who needs to be granted access. 
+
+in previous linux distributuions, you had to use the **visudo** program to add a line at the file /etc/sudoers. 
+
+
 ### Memory análisis in linux systems
  
 The analysis of the memory in the linux system, can be checked using the commands:
