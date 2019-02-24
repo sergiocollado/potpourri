@@ -275,13 +275,27 @@ Examples:
 - XFCE
 
 
-### SODOERS
+### SUDOERS
 
 if a user needs to run a command with root privileges, it has to be added to the list of sudoes, so it can execute the **sudo** command.
 
 in latest linux distributions you have to go to the file /etc/sudoers.d directorie and create a file, with the name of the user who needs to be granted access. 
 
 in previous linux distributuions, you had to use the **visudo** program to add a line at the file /etc/sudoers. 
+
+### Open-terminal
+
+It is a programm that lets you open a terminal in any window from the desktop manager.
+
+you can istall it with:
+
+```bash
+$ sudo yum install nautilus-open-terminal
+$ sudo apt-get install Nautilus-open-terminal
+```
+
+
+
 
 
 ### Memory análisis in linux systems
