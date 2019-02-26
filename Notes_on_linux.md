@@ -163,8 +163,10 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 
 special directory names: 
 
-- / : root directory
-- ~ : (tilde) user home directory
+- /  : root directory
+- ~  : (tilde) user home directory
+- .  : current directory
+- .. : directory above current directory
 
 
 ### Commands for working with files.
