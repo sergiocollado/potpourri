@@ -169,6 +169,9 @@ special directory names:
 - .. : directory above current directory
 
 
+**NOTE**: A path which begins with **/** is considered absolute because it specifies the exact filesystem location. Otherwise, it is considered relative and it is implicitly assumed your current directory is prepended.
+
+
 ### Commands for working with files.
 
 - **touch**: creates a new file
