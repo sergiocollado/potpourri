@@ -226,19 +226,15 @@ file1  rwxr-x^-x
   Using the commands **who** or **users** reports the current users logged into the system. the current users can be printed with the command **whoami**. 
   
   The command **su** lets you borrow the permissions from another user to run commands, if no user is especified, it defaults to use the **root** user.
-  
+ 
+ 
+### SUDOERS
 
-### Bash configuration
+if a user needs to run a command with root privileges, it has to be added to the list of sudoes, so it can execute the **sudo** command.
 
-The bash console has a copy of the history of the commands we have issued, the comands are at: ~/.bash_history
+in latest linux distributions you have to go to the file /etc/sudoers.d directorie and create a file, with the name of the user who needs to be granted access. 
 
-Other usesufl file for the command console (terminal) is: ~/.bash_profile. This file keeps a serie of commands that runs everytime that
-the terminal is launched
-
-
-### Processes
-
-To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
+in previous linux distributuions, you had to use the **visudo** program to add a line at the file /etc/sudoers. 
 
 
 ### LINUX GRAPHIC SYSTEM
@@ -277,14 +273,6 @@ Examples:
 - XFCE
 
 
-### SUDOERS
-
-if a user needs to run a command with root privileges, it has to be added to the list of sudoes, so it can execute the **sudo** command.
-
-in latest linux distributions you have to go to the file /etc/sudoers.d directorie and create a file, with the name of the user who needs to be granted access. 
-
-in previous linux distributuions, you had to use the **visudo** program to add a line at the file /etc/sudoers. 
-
 ### Package managers
 
 package managers are programs that handle the installation, configuration, update or removal of diferent software applications of programs. Depending on the distribuitons, one or other is used.
@@ -313,6 +301,44 @@ The first step is to update the sources
  2- yum install "package_name"
 
 
+### shells
+
+there are several shells /command lines / terminals available in linux. 
+
+those are defined in the file: /etc/shells
+
+
+```bash
+$ cat /etc/shells
+/bin/sh
+/bin/bash
+/sbin/nologin
+/bin/tcsh
+/bin/csh
+/bin/ksh
+/bin/zsh
+```
+
+there are login shells (require login) and no-login shells.
+
+their initialization depends in:
+
+if            /etc/profile exists,  then it runs the shell
+if            ~/.bash_profile exists, then it runs the shell
+else if       ~/.bash_login exists,  then it runs the shell
+else if       ~/.profile exists,  then it runs the shell
+on exit, if   ~/.bash_logout exists,  then it runs the shell
+
+In non-login shells, like bash, it checks just if  ~/.bashrc exists, then it runs the shell
+
+#### Bash configuration
+
+The bash console has a copy of the history of the commands we have issued, the comands are at: ~/.bash_history
+
+Other useful file for the command console (terminal) is: ~/.bash_profile. This file keeps a serie of commands that runs everytime that
+the terminal is launched
+
+
 ### Open-terminal
 
 It is a programm that lets you open a terminal in any window from the desktop manager.
@@ -323,6 +349,13 @@ you can istall it with:
 $ sudo yum install nautilus-open-terminal
 $ sudo apt-get install Nautilus-open-terminal
 ```
+
+
+
+### Processes
+
+To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
+
 
 
 
