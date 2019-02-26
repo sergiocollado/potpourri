@@ -236,8 +236,6 @@ Other usesufl file for the command console (terminal) is: ~/.bash_profile. This 
 the terminal is launched
 
 
-
-
 ### Processes
 
 To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
@@ -286,6 +284,34 @@ if a user needs to run a command with root privileges, it has to be added to the
 in latest linux distributions you have to go to the file /etc/sudoers.d directorie and create a file, with the name of the user who needs to be granted access. 
 
 in previous linux distributuions, you had to use the **visudo** program to add a line at the file /etc/sudoers. 
+
+### Package managers
+
+package managers are programs that handle the installation, configuration, update or removal of diferent software applications of programs. Depending on the distribuitons, one or other is used.
+
+ - Ubuntu – deb/dpkg
+ - Red Hat – RPM and YUM
+ - Solaris – pkgadd
+
+#### APT (Advanced Packaging Tool) (Ubuntu)
+
+It uses the file /etc/apt/sources.list to list which servers to download the packages from.
+
+So the first thing is to update that file
+
+ 1- apt-get update
+ 2- apt-get upgrade
+ 3- apt-get install "package_name" 
+
+#### YUM (RedHat)
+
+It uses /etc/yum.repos.d/ to list which servers to download the packages from.
+
+The first step is to update the sources
+
+ 1- yum update
+ 2- yum install "package_name"
+
 
 ### Open-terminal
 
