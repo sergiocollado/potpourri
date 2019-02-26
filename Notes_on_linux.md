@@ -777,6 +777,9 @@ Independent magazine for Ubuntu users: https://fullcirclemagazine.org/
 
 bactraces:   https://www.gnu.org/software/libc/manual/html_node/Backtraces.html
 
+http://linuxfreedom.com
+https://distrowatch.com/
+
 For building distros:
 
 HLFS - Hardened Linux From Scratch.
