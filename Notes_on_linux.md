@@ -214,7 +214,7 @@ file1  rwxr-x^-x
 - The following 3 characters are the group permissions: r-x
 - the last 3 characters are the permissions for all users.
 
-### Root user
+### Root user aka Superuser
 
 - the root account has the highest permission level, and it has access to everything.
 
@@ -228,13 +228,15 @@ file1  rwxr-x^-x
   The command **su** lets you borrow the permissions from another user to run commands, if no user is especified, it defaults to use the **root** user.
  
  
-### SUDOERS
+### Sudoers
 
 if a user needs to run a command with root privileges, it has to be added to the list of sudoes, so it can execute the **sudo** command.
 
 in latest linux distributions you have to go to the file /etc/sudoers.d directorie and create a file, with the name of the user who needs to be granted access. 
 
 in previous linux distributuions, you had to use the **visudo** program to add a line at the file /etc/sudoers. 
+
+**NOTE**: The default command line prompt is dollar **$** for normal users and **#** for the root or superuser.
 
 
 ### LINUX GRAPHIC SYSTEM
@@ -323,13 +325,16 @@ there are login shells (require login) and no-login shells.
 
 their initialization depends in:
 
-if            /etc/profile exists,  then it runs the shell
-if            ~/.bash_profile exists, then it runs the shell
-else if       ~/.bash_login exists,  then it runs the shell
-else if       ~/.profile exists,  then it runs the shell
-on exit, if   ~/.bash_logout exists,  then it runs the shell
+if            _**/etc/profile exists**_,    then it runs the shell
+if            _**~/.bash_profile exists**_, then it runs the shell
+else if       _**~/.bash_login exists**_,   then it runs the shell
+else if       _**~/.profile exists**_,      then it runs the shell
+on exit, if   _**~/.bash_logout exists**_,  then it runs the shell
 
-In non-login shells, like bash, it checks just if  ~/.bashrc exists, then it runs the shell
+In non-login shells, like bash, it checks just if  _**~/.bashrc**_ exists, then it runs the shell
+
+**NOTE**: The default command line prompt is dollar **$** for normal users and **#** for the root or superuser.
+
 
 #### Bash configuration
 
