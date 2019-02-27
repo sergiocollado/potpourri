@@ -230,16 +230,17 @@ file1  rwxr-x^-x
 
   Using the commands **who** or **users** reports the current users logged into the system. the current users can be printed with the command **whoami**. 
   
-  The command **su** lets you borrow the permissions from another user to run commands, if no user is especified, it defaults to use the **root** user.
+  The command **su** (**switch user**)lets you borrow the permissions from another user to run commands, if no user is especified, it defaults to use the **root** user.
  
  
 ### Sudoers
 
-if a user needs to run a command with root privileges, it has to be added to the list of sudoes, so it can execute the **sudo** command.
+if a user needs to run a command with root privileges, it has to be added to the list of sudoes, so it can execute the **sudo** command, and then it will be able to use privileged commands. So with **sudo** it is possible for a user to run programs with the privileges of another user, tipically the superuser (root)
 
-in latest linux distributions you have to go to the file /etc/sudoers.d directorie and create a file, with the name of the user who needs to be granted access. 
+This is done through the sudoers file. In latest linux distributions you have to go to the file _**/etc/sudoers.d**_ directorie and create a file, with the name of the user who needs to be granted access. 
 
-in previous linux distributuions, you had to use the **visudo** program to add a line at the file /etc/sudoers. 
+in previous linux distributuions, you had to use the **visudo** program to add a line at the file /etc/sudoers. The sudoers file, cannot or must not be edited with a normal text editor.
+
 
 **NOTE**: The default command line prompt is dollar **$** for normal users and **#** for the root or superuser.
 
