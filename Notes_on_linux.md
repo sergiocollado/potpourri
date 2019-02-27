@@ -434,13 +434,15 @@ echo "hello $yourname"
 
 ### script flow control
 
+#### conditional executions
+
 the result status of the last command or program is always stored in the variable '$?'
 
 so a true condition returns 0, and a false condition returns 1.
 
-AND operator is &&
+AND operator is &&. the term at the right will only be executed if the term in the left is true.
 
-OR operator is ||
+OR operator is ||.  the term at the right will only be executed if the term in the left is false.
 
 
 ### Processes
