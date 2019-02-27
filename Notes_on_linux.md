@@ -330,15 +330,34 @@ there are login shells (require login) and no-login shells.
 
 their initialization depends in:
 
-if            _**/etc/profile exists**_,    then it runs the shell
-if            _**~/.bash_profile exists**_, then it runs the shell
-else if       _**~/.bash_login exists**_,   then it runs the shell
-else if       _**~/.profile exists**_,      then it runs the shell
-on exit, if   _**~/.bash_logout exists**_,  then it runs the shell
+if            _**/etc/profile**_ exists,    then it runs the shell
+else if       _**~/.bash_profile**_ exists, then it runs the shell
+else if       _**~/.bash_login**_ exists,   then it runs the shell
+else if       _**~/.profile**_ exists,      then it runs the shell
+on exit, if   _**~/.bash_logout**_ exists,  then it runs the shell
 
 In non-login shells, like bash, it checks just if  _**~/.bashrc**_ exists, then it runs the shell
 
 **NOTE**: The default command line prompt is dollar **$** for normal users and **#** for the root or superuser.
+
+
+### Enviromental Variables
+
+these are definitions that might be used for several goals. Many applications use them to define default settings.
+
+Most common are:  HOST, HOME, PATH.
+
+They can be set like: 'PATH=$HOME/BIN:$PATH'
+
+To check all defined enviroment variables, you can type: env, or export.
+
+to make abailable the env var in other directories, they must be exported.
+
+```bash
+MYVAR=value;
+export VAR;
+``` 
+
 
 
 #### Bash configuration
@@ -347,6 +366,11 @@ The bash console has a copy of the history of the commands we have issued, the c
 
 Other useful file for the command console (terminal) is: ~/.bash_profile. This file keeps a serie of commands that runs everytime that
 the terminal is launched
+
+### Customizing the prompt
+
+This can be done through the enviromental varialbe PS1
+
 
 
 ### Open-terminal
