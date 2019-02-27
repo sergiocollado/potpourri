@@ -345,7 +345,7 @@ In non-login shells, like bash, it checks just if  _**~/.bashrc**_ exists, then 
 
 these are definitions that might be used for several goals. Many applications use them to define default settings.
 
-Most common are:  HOST, HOME, PATH.
+Most common are:  HOST, HOME, PATH, PS1, CDPATH, CWD.
 
 They can be set like: 'PATH=$HOME/BIN:$PATH'
 
@@ -357,6 +357,13 @@ to make abailable the env var in other directories, they must be exported.
 MYVAR=value;
 export VAR;
 ``` 
+PATH, is the enviromental varible that defines the order in which directories will be checked for looking for programs. those directories will be checked from the begining to the end.
+
+you can check its value, with:
+
+```bach
+>echo $PATH
+```
 
 
 
@@ -384,6 +391,56 @@ $ sudo yum install nautilus-open-terminal
 $ sudo apt-get install Nautilus-open-terminal
 ```
 
+## BASH COMMANDS
+
+### comments
+
+all that follos a # is a comment
+
+### variables
+
+variables are defined with the equal operator (=), and its value is returned, with the dolar simbol operator $.
+And to print its value, is common to use a echo $variable.
+
+
+```bash
+myname="Sergio"
+echo "hello $myname !"
+```
+
+### expr and bc
+
+expr evaluates mathematicals expressions
+
+a more powerfull program is bc, for Bench Calculator https://linux.die.net/man/1/bc
+
+```bash
+expr 5 +1 
+expr 25 / 5
+expr 33 % 5
+echo "27/35" | bc -l
+```
+### user inputs
+
+You can use the 'read' command
+
+```bash
+#!/usr/bin/env bash
+
+echo "Whats your name"
+read  yourname
+echo "hello $yourname"
+```
+
+### script flow control
+
+the result status of the last command or program is always stored in the variable '$?'
+
+so a true condition returns 0, and a false condition returns 1.
+
+AND operator is &&
+
+OR operator is ||
 
 
 ### Processes
