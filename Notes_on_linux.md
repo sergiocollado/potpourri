@@ -450,6 +450,51 @@ OR operator is ||.  the term at the right will only be executed if the term in t
 To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
 
 
+### NETWORKGIN
+
+ifcongif - presents the current network configuration
+
+enoXXXX - ethernet onboard
+
+lo -- loopback adress
+
+to change the ip address, you must command:
+
+```bash
+sudo ifconig enoXXXXX 192.1new_ip_address netmask 255.255.255.0
+```
+
+to check the route - (shows the way to the next hub)
+
+```bash
+route
+```
+to change the route, you have to command:
+
+```bash
+route add 192.34X.xxx.xxx enoXXXX
+```
+
+to check everything is ok. you can ping adresses
+
+```bash
+ping 192.xxx.xxx.xx
+```
+
+```bash
+ping google.com
+```
+
+to configure the network interface to be persistant, you have to edit the file _**/etc/sysconfig/network-scripts/ifcfg-enoXXX**_
+
+so we can change the BOOTPROT (ocol) to static, and add the address information and netmask.
+
+```
+BOOTPROTO=
+IPADDR=192.168.XXX.XXX
+NETMASK=255.255.255.xxx
+```
+
 
 
 
