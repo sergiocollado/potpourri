@@ -380,7 +380,6 @@ the terminal is launched
 This can be done through the enviromental varialbe PS1
 
 
-
 ### Open-terminal
 
 It is a programm that lets you open a terminal in any window from the desktop manager.
@@ -444,6 +443,26 @@ so a true condition returns 0, and a false condition returns 1.
 AND operator is &&. the term at the right will only be executed if the term in the left is true.
 
 OR operator is ||.  the term at the right will only be executed if the term in the left is false.
+
+
+#### conditional expressions
+
+Conditionals expressions are indicated a condition inside double brackets. 
+
+the possible operators are:
+
+| Left-aligned | Center-aligned | Right-aligned |
+| :---         |     :---:      |          ---: |
+| -gt  | greater than     | git status    |
+| -ge   | greater than or equal    | git diff      |
+| -eq   | equal   | git status    |
+| -neq  | not equal     | git diff      |
+| -le   | less than or equal     | git status    |
+| -lt   | a file exits     | git diff      |
+| -e   | a directory exits  | git status    |
+| -d   | length of a String is zero    | git diff      |
+| -z   | Length of a string is non-zero     | git status    |
+
 
 
 ### Processes
@@ -961,7 +980,7 @@ BLFS - Beyond Linux From Scratch.
 LFS - Linux From Scratch. [http://www.linuxfromscratch.org/]
 
 
-## ABOUT OPEN SOURCE SOFTWARE LINCESES.
+## ABOUT OPEN SOURCE SOFTWARE LICENSES.
 
 Mainly there are two types of licenses: restrictive and permisive
 
