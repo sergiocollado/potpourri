@@ -470,7 +470,7 @@ the possible operators are:
 To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
 
 
-### NETWORKGIN
+### NETWORKING
 
 ifcongif - presents the current network configuration
 
@@ -903,8 +903,7 @@ http://buildroot.net/downloads/manual/manual.html#_advanced_usage
 # GRUB
 
 its basic configuration file is at: /boot/grub/grub.cfg or /boot/grub2/grub.cfg, those are related to /etc/grub.d and /etc/default/grub
-
-
+Those file will generate the ones under /boot, when is run update-grub or grub2-mkconfig
 
 Links:
 
