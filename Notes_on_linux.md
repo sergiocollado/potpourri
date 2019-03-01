@@ -280,7 +280,6 @@ Examples:
 - KDE 
 - XFCE
 
-
 ### Package managers
 
 package managers are programs that handle the installation, configuration, update or removal of diferent software applications of programs. Depending on the distribuitons, one or other is used.
@@ -376,7 +375,6 @@ the terminal is launched
 ### Customizing the prompt
 
 This can be done through the enviromental varialbe PS1
-
 
 ### Open-terminal
 
@@ -514,9 +512,6 @@ NETMASK=255.255.255.xxx
 ```
 
 
-
-
-
 ### Memory análisis in linux systems
  
 The analysis of the memory in the linux system, can be checked using the commands:
@@ -617,6 +612,16 @@ Mem:          7978        883       7094          3        151        212
 Swap:         1021          0       1021
 Total:        9000        883       8116
 ```
+
+the cache can be released, writting into the 
+
+```bash
+>sudo su
+>echo 3 > /proc/sys/vm/drop_caches
+>exit
+```
+
+
 
 
 3)
