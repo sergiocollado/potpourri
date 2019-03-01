@@ -905,6 +905,15 @@ http://buildroot.net/downloads/manual/manual.html#_advanced_usage
 its basic configuration file is at: /boot/grub/grub.cfg or /boot/grub2/grub.cfg, those are related to /etc/grub.d and /etc/default/grub
 Those file will generate the ones under /boot, when is run update-grub or grub2-mkconfig
 
+ - vmlinuz-xxx - this is the compressed kernel
+ - initrams/initrd - a initial root file system loaded as a ramdisk
+ - System.map - the kernel symbolic table.
+ 
+ 
+ # SYSTEM INIT
+ 
+ /sbin/init - is the first program to run, is identified with process id = 1. It launches the rest of processes
+
 Links:
 
 http://www.linux.org/ <br>
