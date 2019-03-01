@@ -594,14 +594,14 @@ Note: free command, only gives you info about the RAM memory.
 
 command options:
 
--b : gives you the memory in bytes
--k : (default) gives you the memory in kibibytes (KiB)
--m : gives you the memory in mebibytes (MiB)
--t : displays a line containing the totals RAM + swap
--s : update every [delay] seconds. So if you command: >>free -s 5 ; this will update the results everty 5 seconds.
--c : use old format (no -/+buffers/cache line)
--l : shows low and high memory statistics
--V : displays version information.
+ - b : gives you the memory in bytes
+ - k : (default) gives you the memory in kibibytes (KiB)
+ - m : gives you the memory in mebibytes (MiB)
+ - t : displays a line containing the totals RAM + swap
+ - s : update every [delay] seconds. So if you command: >>free -s 5 ; this will update the results everty 5 seconds.
+ - c : use old format (no -/+buffers/cache line)
+ - l : shows low and high memory statistics
+ - V : displays version information.
 
 ```bash
 >>:/$ free -m
