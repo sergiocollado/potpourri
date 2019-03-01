@@ -900,6 +900,11 @@ https://stackoverflow.com/questions/47465878/install-qt-4-ubuntu-17-04
 
 http://buildroot.net/downloads/manual/manual.html#_advanced_usage
 
+# GRUB
+
+its basic configuration file is at: /boot/grub/grub.cfg or /boot/grub2/grub.cfg, those are related to /etc/grub.d and /etc/default/grub
+
+
 
 Links:
 
