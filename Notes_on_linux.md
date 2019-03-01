@@ -914,6 +914,36 @@ Those file will generate the ones under /boot, when is run update-grub or grub2-
  
  /sbin/init - is the first program to run, is identified with process id = 1. It launches the rest of processes
 
+the first thing the init process do is to read the /etc/inittab command, in that file each line represents an action:  "id:runlevel(s):action:process"
+
+Old distros where based in **SysVinit**. More updated distros use: **systemd**
+
+runlevel go from 0 to 6:
+
+
+| Left-aligned | Center-aligned |
+| :---:       |     :---:      |  
+| 0  | shut down and turn power off     | 
+| 1   | single user mode    |
+| S,s  | equal that runlevel 1   | 
+| 2 | multiple user, no NFS, only text login     | 
+| 3   | multiple user, with NFS and network, only text  | 
+| 4   | Not used    |
+| 5  |  multiple user, wit NFS, visual login |
+| 6  |  reboot  | 
+
+
+to verify the runlevel, can be done with the 'runlevel' command.
+
+to change the runlevel, use the 'teleinit' command.
+
+http://man7.org/linux/man-pages/man1/systemd.1.html
+
+http://man7.org/linux/man-pages/man1/systemctl.1.html
+
+
+
+
 Links:
 
 http://www.linux.org/ <br>
