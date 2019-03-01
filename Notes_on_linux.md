@@ -621,6 +621,16 @@ the cache can be released, writting into the
 >exit
 ```
 
+to view what the system is usign the swap areas for:
+
+```
+cat /proc/swaps
+```
+
+more swap commands:
+
+**mkswap**, **swpaon**, **swapoff**.-
+
 
 
 
