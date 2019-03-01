@@ -366,8 +366,6 @@ you can check its value, with:
 >echo $PATH
 ```
 
-
-
 #### Bash configuration
 
 The bash console has a copy of the history of the commands we have issued, the comands are at: ~/.bash_history
@@ -395,7 +393,7 @@ $ sudo apt-get install Nautilus-open-terminal
 
 ### comments
 
-all that follos a # is a comment
+all that follows a # is a comment
 
 ### variables
 
@@ -902,11 +900,13 @@ http://buildroot.net/downloads/manual/manual.html#_advanced_usage
 
 # GRUB
 
-its basic configuration file is at: /boot/grub/grub.cfg or /boot/grub2/grub.cfg, those are related to /etc/grub.d and /etc/default/grub
+Its basic configuration file is at: /boot/grub/grub.cfg or /boot/grub2/grub.cfg, those are related to /etc/grub.d and /etc/default/grub
 Those file will generate the ones under /boot, when is run update-grub or grub2-mkconfig
 
- - vmlinuz-xxx - this is the compressed kernel
- - initrams/initrd - a initial root file system loaded as a ramdisk
+ - vmlinuz-xxx - this is the compressed kernel.
+ 
+ - initrams/initrd - a initial root file system loaded as a ramdisk. this is the initial ram filesystem, which contains essential drivers for hardware and filesystems.
+ 
  - System.map - the kernel symbolic table.
  
  
@@ -914,7 +914,9 @@ Those file will generate the ones under /boot, when is run update-grub or grub2-
  
  /sbin/init - is the first program to run, is identified with process id = 1. It launches the rest of processes
 
-the first thing the init process do is to read the /etc/inittab command, in that file each line represents an action:  "id:runlevel(s):action:process"
+the first thing the init process do is to read the /etc/inittab command, in that file each line represents an action:  
+
+"id:runlevel(s):action:process"
 
 Old distros where based in **SysVinit**. More updated distros use: **systemd**
 
