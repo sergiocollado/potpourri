@@ -527,6 +527,79 @@ NETMASK=255.255.255.xxx
 ```
 
 
+
+to launch a network connection and attach it to a ip address, you do like:
+
+```bash
+$ sudo /sbin/ifconfig eth0 up 192.168.1.123
+```
+
+if you want to request a dynamic IP is done like
+
+```bash
+$ sudo /sbin/ifconfig eth0 up
+$ sudo /sbin/dhclient eth0
+```
+
+the usual command used to be 'ifconfig', although nowadays the new utility 'ip' seems to be an improved version and is more efficient
+
+https://linux.die.net/man/7/netlink
+
+https://linux.die.net/man/2/ioctl
+
+
+the ip command can be used for many tasks like: manipulate routing, devices, policy routing and tunnels
+
+https://linux.die.net/man/8/ip
+
+its basic sintaxis is: 
+
+ip [ OPTIONS ] OBJECT { COMMAND | help }
+
+so, if you need to print all the network interfaces:
+
+```bash
+ ip link
+ ```
+ 
+ to check the info of one network interface.
+
+```bash
+$ ip -s link show ethX
+```
+ 
+to define the ip for a newtork interface
+```bash
+$ sudo ip addr add 192.168.1.7 dev ethX
+```
+ 
+to bring down a network interface
+```bash
+$ sudo ip link set eth0 down
+```
+ 
+to set the MTU (Maximun Transmision Unit) for a given network interface
+```bash
+$ sudo ip link set eth0 mtu 1480
+```
+
+to define a network route:
+```bash
+$ sudo ip route add 172.16.1.0/24 via 192.168.1.5
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Memory análisis in linux systems
 
  https://akkadia.org/drepper/cpumemory.pdf
