@@ -838,10 +838,21 @@ $>nmap 192.168.0*  --exclude 192.168.1.5
 nmap -sP 192.168.1.0/24
 ```
 
-
 # kernel messages
 
-kernel messages are printed with: dmesg
+kernel messages are printed with: 
+
+```bash
+dmesg -w
+```
+
+# system logs
+
+you can use the following command:
+
+```bash
+$ sudo tail -f /var/log/messages
+```
 
 
 # INSTALLING NGINX
