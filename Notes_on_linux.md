@@ -560,8 +560,7 @@ so, if you need to print all the network interfaces:
 
 ```bash
  ip link
- ```
- 
+``` 
  to check the info of one network interface.
 
 ```bash
@@ -589,6 +588,57 @@ $ sudo ip route add 172.16.1.0/24 via 192.168.1.5
 ```
 
 
+
+Some playbook options are:
+
+### wit 'ip'
+
+get basic info about connection eth0
+
+```bash
+$ ip addr show eth0
+```
+change its address
+Bring down eth0 and reconfigure to use a static address instead of DCHP,
+```bash
+$ sudo ip link set eth0 down 
+$ sudo ip addr add 192.168.1.200 dev eth0 
+$ sudo ip link set eth0 up
+```
+
+Bring the interface back up.
+```bash
+$ sudo ip link set eth0 up 
+$ sudo dhclient eth0
+```
+check everything works as expected after reboot
+```bash
+$ sudo reboot
+```
+
+### with ifconfig
+
+get knowledge about the connection
+```bash
+ $ ifconfig eth0
+```
+
+change its address
+```bash
+$ sudo ifconfig eth0 down 
+$ sudo ifconfig eth0 up 192.168.1.100
+```
+
+define a dhcp into it
+```bash
+$ sudo ifconfig eth0 up 
+$ sudo dhclient eth0
+```
+
+test if it works after reboot.
+```bash
+$ sudo reboot
+```
 
 
 
