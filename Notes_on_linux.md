@@ -480,6 +480,8 @@ To view the processes that are running, the command **ps** is used. Using **ps**
 
 normally ethernet intefaces are named as eth0,eth1... and wireless interfeaces as wlan0,wlan1... although nowadays, the diferent distros use to use the **Predictable Network inteface Device Names**
 
+https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
+
 statistical info is in the file:  _**/proc/net/dev**_ and also in the files: _**sys/class/net/ethX/statistics**_
 
 
@@ -958,6 +960,9 @@ the first thing the init process do is to read the /etc/inittab command, in that
 "id:runlevel(s):action:process"
 
 Old distros where based in **SysVinit**. More updated distros use: **systemd**
+
+https://www.freedesktop.org/wiki/Software/systemd/
+
 
 runlevel go from 0 to 6:
 
