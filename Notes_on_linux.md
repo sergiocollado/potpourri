@@ -521,6 +521,8 @@ NETMASK=255.255.255.xxx
 
 
 ### Memory análisis in linux systems
+
+ https://akkadia.org/drepper/cpumemory.pdf
  
 The analysis of the memory in the linux system, can be checked using the commands:
 
@@ -641,8 +643,9 @@ more swap commands:
 
 https://linux.die.net/man/8/swapoff
 
+https://linux.die.net/man/2/swapoff
 
-
+https://opensource.com/article/18/9/swap-space-linux-systems
 
 
 3)
@@ -736,6 +739,7 @@ if it fails at start, try to
 
 6) **memsusage**: is a script that reports the memory consuption of a given program. http://man7.org/linux/man-pages/man1/memusage.1.html
 
+https://akkadia.org/drepper/cpumemory.pdf
 
 ## How do I know what modules my linux system has:
 
@@ -828,7 +832,9 @@ nmap -sP 192.168.1.0/24
 ```
 
 
+# kernel messages
 
+kernel messages are printed with: dmesg
 # INSTALLING NGINX
 
 ```bash
@@ -1043,6 +1049,7 @@ http://linuxfreedom.com
 https://distrowatch.com/
 https://www.linux.com/news/learn/sysadmin/best-linux-distributions-2017
 
+https://akkadia.org/drepper/cpumemory.pdf
 For building distros:
 
 HLFS - Hardened Linux From Scratch.
