@@ -20,7 +20,23 @@ Aerodinamic drag force
  \textup{Aerodynamc Drag Force}= \frac{1}{2} \, \rho\,  C_x \,  v^2 
 ```
 
-<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/aerodynamic_drag_force.svg?sanitize=true" alt="golden ratio 1"> <br>
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/aerodynamic_drag_force.svg?sanitize=true" alt="aerodynamic drag force"> <br>
+
+Power in a fluid stream (as for wind turbines)
+
+```latex
+P = \frac{1}{2}   A V^3 C_f
+\\
+\left\{\begin{matrix}
+\\ \varphi  & \textup{ - the fluid density}
+\\  A   & \textup{  - the area of the stream of interest}
+\\  V   & \textup{  - the velocity of the stream}
+\\  C   &\textup{  - the efficiency coefficient}
+\end{matrix}\right.
+```
+
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/powerinastream.svg?sanitize=true" alt="power in a fluid stream"> <br>
+
 
 Golden ratio - Seccion Aurea
 
