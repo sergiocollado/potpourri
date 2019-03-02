@@ -10,6 +10,14 @@
   
 <hr>
 
+In the case there are reference to several of the previous chapters, those references are indicated within a parenthesis, ie:
+
+swapoff(8) and swapoff(2)
+
+https://linux.die.net/man/8/swapoff
+
+https://linux.die.net/man/2/swapoff
+
 time line of Unix based systems:   https://www.levenez.com/unix/
 
 <hr>
@@ -630,6 +638,9 @@ cat /proc/swaps
 more swap commands:
 
 **mkswap**, **swpaon**, **swapoff**.-
+
+https://linux.die.net/man/8/swapoff
+
 
 
 
