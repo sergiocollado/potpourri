@@ -476,7 +476,12 @@ To view the processes that are running, the command **ps** is used. Using **ps**
 
 ### NETWORKING
 
-ifcongif - presents the current network configuration
+**ifcongif** - presents the current network configuration
+
+normally ethernet intefaces are named as eth0,eth1... and wireless interfeaces as wlan0,wlan1... although nowadays, the diferent distros use to use the **Predictable Network inteface Device Names**
+
+statistical info is in the file:  _**/proc/net/dev**_ and also in the files: _**sys/class/net/ethX/statistics**_
+
 
 enoXXXX - ethernet onboard
 
@@ -835,6 +840,8 @@ nmap -sP 192.168.1.0/24
 # kernel messages
 
 kernel messages are printed with: dmesg
+
+
 # INSTALLING NGINX
 
 ```bash
