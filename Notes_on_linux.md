@@ -269,7 +269,7 @@ in previous linux distributuions, you had to use the **visudo** program to add a
 - iostat - cpu utilization and I/O statistics. iostat(1) http://man7.org/linux/man-pages/man1/iostat.1.html
 - iotop - I/O statistics including per process iotop(8) http://man7.org/linux/man-pages/man8/iotop.8.html
 - sar - system activity. sar(1) http://man7.org/linux/man-pages/man1/sar.1.html
-- vmstat - detailde virtual memory statistics and IO. vmstat(8) http://man7.org/linux/man-pages/man8/vmstat.8.html
+- vmstat - detail of the virtual memory statistics and IO. vmstat(8) http://man7.org/linux/man-pages/man8/vmstat.8.html
 
 
 
@@ -663,8 +663,8 @@ $ sudo reboot
 
 #### more about networking
 
- - netstat: network statistics
- - iptraf: info about network interfaces
+ - netstat: network statistics - https://linux.die.net/man/8/netstat
+ - iptraf: info about network interfaces - Interactive Colorful IP LAN Monitor - https://linux.die.net/man/8/iptraf
  - tcpdump & wireshark analysys of network and traffic
 
 
@@ -678,6 +678,9 @@ $ sudo reboot
 ### Memory análisis in linux systems
 
  https://akkadia.org/drepper/cpumemory.pdf
+ 
+ free - Display amount of free and used memory in the system - https://linux.die.net/man/1/free
+ df - report file system disk space usage  https://linux.die.net/man/1/df
  
 The analysis of the memory in the linux system, can be checked using the commands:
 
@@ -896,6 +899,18 @@ if it fails at start, try to
 
 https://akkadia.org/drepper/cpumemory.pdf
 
+
+## system monitoring
+
+- sar:Collect, report, or save system activity information.  https://linux.die.net/man/1/sar
+- iotop - simple top-like I/O monitor  https://linux.die.net/man/1/iotop
+- vmstat - Report virtual memory statistics https://linux.die.net/man/8/vmstat
+- iostat - Report Central Processing Unit (CPU) statistics and input/output statistics for devices, partitions and network filesystems (NFS). https://linux.die.net/man/1/iostat
+- top- display Linux tasks
+- ps - report a snapshot of the current processes - https://linux.die.net/man/1/ps
+- pstree - display a tree of processes  - https://linux.die.net/man/1/pstree
+- pmap - report memory map of a process - https://linux.die.net/man/1/pmap
+
 ## How do I know what modules my linux system has:
 
 You can use the **lsmod** command, and it will give you the status of the present linux.
@@ -923,6 +938,9 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
 2>&1 : stderr is redirected to stdout -- in this case stdout already is redirected to /dev/null --
 & : run the process in the background (as a daemon)
 
+## for Real time
+
+ionice - get/set program io scheduling class and priority https://linux.die.net/man/1/ionice
 
 # Nmap
 
