@@ -252,6 +252,26 @@ in previous linux distributuions, you had to use the **visudo** program to add a
 
 **NOTE**: The default command line prompt is dollar **$** for normal users and **#** for the root or superuser.
 
+## Commands for monitoring the performance, memory
+
+- top - prints the proceses : top(1) http://man7.org/linux/man-pages/man1/top.1.html
+- uptime - how long has the system been running and its load. uptime(1) https://linux.die.net/man/1/uptime
+- ps - information about the processes - http://man7.org/linux/man-pages/man1/ps.1.html
+- pstree - ps in a tree http://man7.org/linux/man-pages/man1/pstree.1.html
+- mpstat - statistics for multiple processors http://man7.org/linux/man-pages/man1/mpstat.1.html
+- iostat - cpu info and statistics
+- trace - info about system call and traces
+
+- pmap - info about process memory stats http://man7.org/linux/man-pages/man1/pmap.1.html
+- vmstats -info about the virtual memory statistics, and block I/O. http://man7.org/linux/man-pages/man1/pmap.1.html
+- free  - info about meomry usage: free(1) http://man7.org/linux/man-pages/man1/free.1.html
+
+- iostat - cpu utilization and I/O statistics. iostat(1) http://man7.org/linux/man-pages/man1/iostat.1.html
+- iotop - I/O statistics including per process iotop(8) http://man7.org/linux/man-pages/man8/iotop.8.html
+- sar - system activity. sar(1) http://man7.org/linux/man-pages/man1/sar.1.html
+- vmstat - detailde virtual memory statistics and IO. vmstat(8) http://man7.org/linux/man-pages/man8/vmstat.8.html
+
+
 
 ### LINUX GRAPHIC SYSTEM
 
