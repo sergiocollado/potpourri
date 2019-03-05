@@ -661,6 +661,11 @@ $ sudo reboot
 ```
 
 
+#### more about networking
+
+ - netstat: network statistics
+ - iptraf: info about network interfaces
+ - tcpdump & wireshark analysys of network and traffic
 
 
 
@@ -1121,7 +1126,7 @@ https://www.freedesktop.org/wiki/Software/systemd/
 runlevel go from 0 to 6:
 
 
-| Left-aligned | Center-aligned |
+| Run Level | description |
 | :---:       |     :---:      |  
 | 0  | shut down and turn power off     | 
 | 1   | single user mode    |
