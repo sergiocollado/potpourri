@@ -919,6 +919,8 @@ It reads from the file `proc/modules`, so you can also read it as: `cat /proc/mo
 
 more on: https://www.computerhope.com/unix/lsmod.htm
 
+Also the commmand **modinfo** shows information about the kernel modules: https://linux.die.net/man/8/modinfo
+
 # How to evaluate the startup of linux system
 
 Bootchart is a tool for performance analysis and visualization of the GNU/Linux boot process. Resource utilization and process information are collected during the boot process and are later rendered in a PNG, SVG or EPS encoded chart.
