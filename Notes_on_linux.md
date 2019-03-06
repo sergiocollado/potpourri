@@ -915,11 +915,24 @@ https://akkadia.org/drepper/cpumemory.pdf
 
 You can use the **lsmod** command, and it will give you the status of the present linux.
 
+you usually command:
+
+```bash
+> lsmod | less
+```
+
 It reads from the file `proc/modules`, so you can also read it as: `cat /proc/modules`.
 
 more on: https://www.computerhope.com/unix/lsmod.htm
 
 Also the commmand **modinfo** shows information about the kernel modules: https://linux.die.net/man/8/modinfo
+
+other module-related commands are: **insmod**, **modprobe**, 
+
+- lsmod - program to show the status of modules in the Linux Kernel. https://linux.die.net/man/8/lsmod
+- modinfo - presents info about the modules the kernel is using. https://linux.die.net/man/8/modinfo
+- modprobe - program to add and remove modules from the Linux Kernel. https://linux.die.net/man/8/modprobe
+- insmod - simple program to insert a module into the Linux Kernel. https://linux.die.net/man/8/insmod
 
 # How to evaluate the startup of linux system
 
