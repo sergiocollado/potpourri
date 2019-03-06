@@ -249,6 +249,7 @@ This is done through the sudoers file. In latest linux distributions you have to
 
 in previous linux distributuions, you had to use the **visudo** program to add a line at the file /etc/sudoers. The sudoers file, cannot or must not be edited with a normal text editor.
 
+https://linux.die.net/man/5/sudoers
 
 **NOTE**: The default command line prompt is dollar **$** for normal users and **#** for the root or superuser.
 
@@ -266,6 +267,7 @@ in previous linux distributuions, you had to use the **visudo** program to add a
 - vmstats -info about the virtual memory statistics, and block I/O. http://man7.org/linux/man-pages/man1/pmap.1.html
 - free  - info about meomry usage: free(1) http://man7.org/linux/man-pages/man1/free.1.html
 
+- uname - print system information, like kernel version, hardware, operating systen. https://linux.die.net/man/1/uname
 - iostat - cpu utilization and I/O statistics. iostat(1) http://man7.org/linux/man-pages/man1/iostat.1.html
 - iotop - I/O statistics including per process iotop(8) http://man7.org/linux/man-pages/man8/iotop.8.html
 - sar - system activity. sar(1) http://man7.org/linux/man-pages/man1/sar.1.html
@@ -672,9 +674,6 @@ $ sudo reboot
 
 
 
-
-
-
 ### Memory análisis in linux systems
 
  https://akkadia.org/drepper/cpumemory.pdf
@@ -902,6 +901,7 @@ https://akkadia.org/drepper/cpumemory.pdf
 
 ## system monitoring
 
+- uname - print system information, like kernel version, hardware, operating systen. https://linux.die.net/man/1/uname
 - sar:Collect, report, or save system activity information.  https://linux.die.net/man/1/sar
 - iotop - simple top-like I/O monitor  https://linux.die.net/man/1/iotop
 - vmstat - Report virtual memory statistics https://linux.die.net/man/8/vmstat
@@ -940,7 +940,7 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
 
 ## for Real time
 
-ionice - get/set program io scheduling class and priority https://linux.die.net/man/1/ionice
+ - ionice - get/set program io scheduling class and priority https://linux.die.net/man/1/ionice
 
 # Nmap
 
@@ -1020,6 +1020,8 @@ you can use the following command:
 $ sudo tail -f /var/log/messages
 ```
 
+also syslogs: https://linux.die.net/man/3/syslog
+also: https://linux.die.net/man/5/syslog-ng.conf
 
 # INSTALLING NGINX
 
