@@ -1098,6 +1098,8 @@ Granada: http://electronica.ugr.es/
 
 https://www.cs.swarthmore.edu/~newhall/unixlinks.html#lang
 
+https://webpages.uncc.edu/~jmconrad/ECGR4101-2012-01/notes.html
+
 ## Testing Skills
 
 https://www.testdome.com/tests/cpp-online-test/34
