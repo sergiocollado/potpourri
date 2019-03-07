@@ -956,7 +956,12 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
 ## for Real time
 
  - ionice - get/set program io scheduling class and priority https://linux.die.net/man/1/ionice
-
+ - heartbeat - Heartbeat subsystem for High-Availability Linux https://linux.die.net/man/8/heartbeat
+ - uptime - Tell how long the system has been running.
+ http://www.admin-magazine.com/Articles/Law-of-Averages-Load-Averaging
+ https://people.seas.harvard.edu/~apw/stress/
+ http://smackerelofopinion.blogspot.com/2014/06/stress-ng-updated-system-stress-test.html
+ 
 # Nmap
 
 Nmap is the abreviation of Net Mapping an is a tool for network explorations, thus I is heavily used also to check network scanning and security.
@@ -1093,6 +1098,7 @@ $>sudo . /var/www/app/venv/bin/activate
 ```
 
 # INSTALLING FLASK
+
 ```bash
 (vevn)$: sudo pip3install flask
 ```
@@ -1227,7 +1233,8 @@ https://www.dwheeler.com/flawfinder/    <br>
 https://www.gnu.org/software/cflow/    <br>
 https://www.gnu.org/software/cgicc/    <br>
 https://www.gnu.org/software/coreutils/coreutils.html    <br>
-https://www.linux.com/learn/limit-cpu-usage-process-linux-cpulimit-tool    <br>
+https://www.linux.com/learn/limit-cpu-usage-process-linux-cpulimit-tool    <br> 
+https://fedoraproject.org/wiki/SysVinit_to_Systemd_Cheatsheet   <br>
 
 GNU ARM embedded toolchain:  https://launchpad.net/gcc-arm-embedded
 
