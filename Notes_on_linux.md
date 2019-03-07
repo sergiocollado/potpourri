@@ -1188,7 +1188,7 @@ http://man7.org/linux/man-pages/man1/systemd.1.html
 http://man7.org/linux/man-pages/man1/systemctl.1.html
 
 
-
+Start apache service at boot:  sudo systemctl enable httpd.service
 
 Links:
 
