@@ -327,6 +327,8 @@ So the first thing is to update that file
  1- apt-get update
  2- apt-get upgrade
  3- apt-get install "package_name" 
+ 
+ you can use: rpm -qa for a list of all the packages in the system.
 
 #### YUM (RedHat)
 
