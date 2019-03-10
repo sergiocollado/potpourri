@@ -240,7 +240,16 @@ file1  rwxr-x^-x
   
   The command **su** (**switch user**)lets you borrow the permissions from another user to run commands, if no user is especified, it defaults to use the **root** user.
  
- 
+#### User directories
+
+In most linux distributions, the directories for the different users are placed in: _**/home/my_user**_
+
+Any user can change his enviroment variable HOME, so it points to whereever he wants, as his root directorie
+
+The tilde: **~**,  represents the home directorie for any user in the terminal.
+
+
+
 ### Sudoers
 
 if a user needs to run a command with root privileges, it has to be added to the list of sudoes, so it can execute the **sudo** command, and then it will be able to use privileged commands. So with **sudo** it is possible for a user to run programs with the privileges of another user, tipically the superuser (root)
