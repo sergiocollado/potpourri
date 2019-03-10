@@ -488,17 +488,17 @@ Conditionals expressions are indicated a condition inside double brackets.
 
 the possible operators are:
 
-| Left-aligned | Center-aligned | Right-aligned |
-| :---         |     :---:      |          ---: |
-| -gt  | greater than     | git status    |
-| -ge   | greater than or equal    | git diff      |
+| condition | text | 
+| :---         |     :---:      |  
+| -gt  | greater than     | 
+| -ge   | greater than or equal    | 
 | -eq   | equal   | git status    |
-| -neq  | not equal     | git diff      |
-| -le   | less than or equal     | git status    |
-| -lt   | a file exits     | git diff      |
-| -e   | a directory exits  | git status    |
-| -d   | length of a String is zero    | git diff      |
-| -z   | Length of a string is non-zero     | git status    |
+| -neq  | not equal     | 
+| -le   | less than or equal     | 
+| -lt   | a file exits     |
+| -e   | a directory exits  | 
+| -d   | length of a String is zero    |
+| -z   | Length of a string is non-zero     | 
 
 
 
@@ -679,9 +679,6 @@ $ sudo reboot
  - netstat: network statistics - https://linux.die.net/man/8/netstat
  - iptraf: info about network interfaces - Interactive Colorful IP LAN Monitor - https://linux.die.net/man/8/iptraf
  - tcpdump & wireshark analysys of network and traffic
-
-
-
 
 
 
@@ -921,6 +918,23 @@ https://akkadia.org/drepper/cpumemory.pdf
 - ps - report a snapshot of the current processes - https://linux.die.net/man/1/ps
 - pstree - display a tree of processes  - https://linux.die.net/man/1/pstree
 - pmap - report memory map of a process - https://linux.die.net/man/1/pmap
+
+
+### system logs
+
+ system logs are usually in the folder _**/var/log/messages**_. Usually those files are handled  by the syslogd daemon. the program **logrotate** usually hadles the rotation of those logs, so they dont keep on getting bigger without limits. Its configuration file is in **/etc/logrotate.conf**. the boot related messages are in _**/var/log/boot.log**_, the security related are in _**/var/log/secure.log**_
+ 
+ ```bash
+ tail -f /var/log/messages
+ ```
+ 
+ kernel messages are printed with: 
+
+```bash
+dmesg -w
+```
+
+
 
 ## How do I know what modules my linux system has:
 
