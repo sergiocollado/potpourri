@@ -248,6 +248,13 @@ file1  rwxr-x^-x
  
   For a given user all his files will be kept in the folder _**/home/user_name**_.
   
+  To create a new user, the **useradd** command is used, and to remove one the **userdel** command is used, to modify a user account the **usermod** command is used. (-p flag to change a password). 
+  
+  
+  - useradd - create a new user or update default new user information - https://linux.die.net/man/8/useradd
+  - userdel - delete a user account and related files - https://linux.die.net/man/8/userdel
+  - usermod - modify a user account https://linux.die.net/man/8/userdel
+  
   
 #### User directories
 
