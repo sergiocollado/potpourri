@@ -240,6 +240,15 @@ file1  rwxr-x^-x
   
   The command **su** (**switch user**)lets you borrow the permissions from another user to run commands, if no user is especified, it defaults to use the **root** user.
  
+  Every user in a linux system is defined by a user ID and also a group ID. For most linux flavors, the first user is defined as user ID = 1000 and the following defined user follow that number. The super user has a user ID of 0.
+  
+  for handling user, relevant files are _**/etc/passwd**_ and _**/etc/group**_. 
+  
+  Groups are groups of users that share common privileges in folder and files.
+ 
+  For a given user all his files will be kept in the folder _**/home/user_name**_.
+  
+  
 #### User directories
 
 In most linux distributions, the directories for the different users are placed in: _**/home/my_user**_
