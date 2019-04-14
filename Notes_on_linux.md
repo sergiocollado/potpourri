@@ -76,7 +76,6 @@ If you want to be sure that a module is or isn't insalled you can use the follow
 Actually the no-response, means, it is not present in the system.
 
 
-
 REFERENCES:
 
 >> Of course the master reference will be: https://linux.die.net/man/  </br>
@@ -153,6 +152,10 @@ The reference to this file structure, is defined at:  https://refspecs.linuxfoun
 
 This is known as a FHS: File Hierarchy Standard. - Usually systems want to comply with this standard, so the sowftware can predict the location of installed files and directories.
 
+-  /etc/passwd   - users account informations
+-  /etc/shadow   - secure info account for user
+-  /etc/group    - group account information.
+-  /etc/gshadow  - secure group account information.
 
 ### Commands to navigate through the file system.
 
@@ -262,9 +265,14 @@ file1  rwxr-x^-x
   To create a new user, the **useradd** command is used, and to remove one the **userdel** command is used, to modify a user account the **usermod** command is used. (-p flag to change a password). 
   
   
-  - useradd - create a new user or update default new user information - https://linux.die.net/man/8/useradd
+  - useradd - create a new user or update default new user information. the password must be added with other command - https://linux.die.net/man/8/useradd
   - userdel - delete a user account and related files - https://linux.die.net/man/8/userdel
-  - usermod - modify a user account https://linux.die.net/man/8/userdel
+  - usermod - modify a user account - http://man7.org/linux/man-pages/man8/usermod.8.html
+  - passwd  - add or changes the password to a user - http://man7.org/linux/man-pages/man1/passwd.1.html
+  
+  Each user is identified by a uid (user identification).
+  
+  Users are added to groups with the **usermod** command, with the **-g** or **-G** options.
   
   
 #### User directories
