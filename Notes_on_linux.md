@@ -161,12 +161,9 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 - **ls** command: it is the 'listing' command, it enumerates all the files inside the current directory. When used with the parameter '-l', that stands for "long", it will define the files, with a lot of information about them ( permission, creation date, last used date ...) There are many options, for getting info about them, just type: 'man ls'. 
 - **mkdir** command: creates a directory. (**M**a**k**e **dir**ectory)
 - **rmdir** command: removes a directory. (remove directory). **Note** rmdir only works, if the directory is empty. This is as a safety mechanisms.
-- **cat** command: Output a file to the terminal. -although it is intended to con*cat*enate files. It will print the concatenation of all files passed to it. 
-- **head** command: Prints to the terminal the first 10 lines of a file.
-- **last** and **tail** commands: print the last 10 lines of a file to the terminal.
 - **cp** command: It copies a file.
 - **mv** command: It moves a file (to another directory), also can be used to change the name of a file.
-- **touch** command: creates a new file.
+- **touch** command: creates a new file or updates it last edition time.
 
 
 special directory names: 
@@ -182,7 +179,7 @@ special directory names:
 
 ### Commands for working with files.
 
-- **touch**: creates a new file
+- **touch**: creates a new file or updateds the edition time of the file
 - **output redirection: >**: it redirects, ex: echo "hello-world" > mytextfile.txt
 - **output append >>**: it appends: echo "hello again!" >> mytextfile.txt
 - **wc**: counts the number of lines, words and characters in a file.
@@ -191,6 +188,11 @@ special directory names:
 - **diff** and **sdiff**: identify differences between files.
 - **md5**: computes the md5 hash of a file.
 - **shasum**: compute the SHA-1 of a file.
+- **cat** command: Output a file to the terminal. -although it is intended to con**cat**enate files. It will print the concatenation of all files passed to it. 
+- **head** command: Prints to the terminal the first 10 lines of a file.
+- **last** and **tail** commands: print the last 10 lines of a file to the terminal.
+- **sed**: stands for *stream editor*.
+- **awk**
 
 ### types of files in linux
 
