@@ -182,6 +182,7 @@ special directory names:
 - **touch**: creates a new file or updateds the edition time of the file
 - **output redirection: >**: it redirects, ex: echo "hello-world" > mytextfile.txt
 - **output append >>**: it appends: echo "hello again!" >> mytextfile.txt
+- **echo**: prints text. Usually is used with the redirecton and append operators: **>** and **>>**. the **-e** option is used so special character can be used, as: \t for tabulation or \n for a new line. It is very useful also to print the value of enviromental variables, like: echo $USERNAME.
 - **wc**: counts the number of lines, words and characters in a file.
 - **grep**: search text through files and match patterns. [https://linux.die.net/man/1/grep]
 - **file**: to find the location of files.
@@ -406,7 +407,7 @@ In non-login shells, like bash, it checks just if  _**~/.bashrc**_ exists, then 
 
 these are definitions that might be used for several goals. Many applications use them to define default settings.
 
-Most common are:  HOST, HOME, PATH, PS1, CDPATH, CWD.
+Most common are:  HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME
 
 They can be set like: 'PATH=$HOME/BIN:$PATH'
 
@@ -424,7 +425,9 @@ you can check its value, with:
 
 ```bach
 >echo $PATH
+>echo $USERNAME
 ```
+
 
 #### Bash configuration
 
