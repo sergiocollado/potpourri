@@ -207,6 +207,9 @@ It is possible to check the types of files with the command **ls -l**. Also with
 - p: named pipe
 - l: symbolic link
 
+
+TODO: add info about stiky  bits
+
 ### Permisions
 
 Files have owners (the user who created the file), and also access permissions.
