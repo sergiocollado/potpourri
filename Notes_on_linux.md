@@ -156,6 +156,8 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 -  /etc/shadow   - secure info account for user
 -  /etc/group    - group account information.
 -  /etc/gshadow  - secure group account information.
+-  /etc/shells   - shells defined in the system.
+-  /etc/nologin  - If the file /etc/nologin exists and is readable, login(1) will allow access only to root.  Other users will be shown the contents of this file and their logins will be refused.  This provides a simple way of temporarily disabling all unprivileged logins.
 
 ### Commands to navigate through the file system.
 
@@ -253,6 +255,8 @@ file1  rwxr-x^-x
   Using the commands **who** or **users** reports the current users logged into the system. the current users can be printed with the command **whoami**. 
   
   The command **su** (**switch user**)lets you borrow the permissions from another user to run commands, if no user is especified, it defaults to use the **root** user.
+  
+  
  
   Every user in a linux system is defined by a user ID and also a group ID. For most linux flavors, the first user is defined as user ID = 1000 and the following defined user follow that number. The super user has a user ID of 0.
   
@@ -283,7 +287,13 @@ Any user can change his enviroment variable HOME, so it points to whereever he w
 
 The tilde: **~**,  represents the home directorie for any user in the terminal.
 
+#### groups
 
+groups allow users to be part of a groups. groups in linux allow to have different rights or permitions over given files or resources.
+
+- groupadd - create a new group http://man7.org/linux/man-pages/man8/groupadd.8.html
+- groupdel - delete a group http://man7.org/linux/man-pages/man8/groupdel.8.html
+- groupmod - modify a group definition on the system http://man7.org/linux/man-pages/man8/groupmod.8.html
 
 ### Sudoers
 
@@ -386,8 +396,10 @@ The first step is to update the sources
 
 there are several shells /command lines / terminals available in linux. 
 
-those are defined in the file: /etc/shells
+http://man7.org/linux/man-pages/man1/bash.1.html
 
+
+those are defined in the file: /etc/shells
 
 ```bash
 $ cat /etc/shells
@@ -402,6 +414,8 @@ $ cat /etc/shells
 
 there are login shells (require login) and no-login shells.
 
+http://man7.org/linux/man-pages/man1/login.1.html
+
 their initialization depends in:
 
 if            _**/etc/profile**_ exists,    then it runs the shell
@@ -412,7 +426,7 @@ on exit, if   _**~/.bash_logout**_ exists,  then it runs the shell
 
 In non-login shells, like bash, it checks just if  _**~/.bashrc**_ exists, then it runs the shell
 
-**NOTE**: The default command line prompt is dollar **$** for normal users and **#** for the root or superuser.
+**NOTE**: The default command line prompt is dollar **$** for normal users and **#** for the root or super-user.
 
 
 ### Enviromental Variables
