@@ -169,6 +169,11 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 - **cp** command: It copies a file.
 - **mv** command: It moves a file (to another directory), also can be used to change the name of a file.
 - **touch** command: creates a new file or updates it last edition time.
+- **sort**
+- **uniq**
+- **paste**
+- **join**
+- **split**
 
 
 special directory names: 
