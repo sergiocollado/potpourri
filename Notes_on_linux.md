@@ -188,7 +188,8 @@ special directory names:
 - **diff** and **sdiff**: identify differences between files.
 - **md5**: computes the md5 hash of a file.
 - **shasum**: compute the SHA-1 of a file.
-- **cat** command: Output a file to the terminal. -although it is intended to con**cat**enate files. It will print the concatenation of all files passed to it. 
+- **cat** command: print a file to the terminal. -although it is intended to con**cat**enate files. It will print the concatenation of all files passed to it. 
+- **tac** this is **cat** spelled backwards. prints the lines of a file in reverse order : )
 - **head** command: Prints to the terminal the first 10 lines of a file.
 - **last** and **tail** commands: print the last 10 lines of a file to the terminal.
 - **sed**: stands for *stream editor*.
