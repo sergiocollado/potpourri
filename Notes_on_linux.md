@@ -244,7 +244,8 @@ $> ls -l
 file1  rwxr-x^-x 
 ```
 
-- The first 3 characters are the user permissions: rwx
+- The first character will be a **d** in that case, it is a directory.
+- The following 3 characters are the user permissions: rwx
 - The following 3 characters are the group permissions: r-x
 - the last 3 characters are the permissions for all users.
 
