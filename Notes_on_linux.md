@@ -184,6 +184,8 @@ special directory names:
 - **output append >>**: it appends: echo "hello again!" >> mytextfile.txt
 - **echo**: prints text. Usually is used with the redirecton and append operators: **>** and **>>**. the **-e** option is used so special character can be used, as: \t for tabulation or \n for a new line. It is very useful also to print the value of enviromental variables, like: echo $USERNAME.
 - **wc**: counts the number of lines, words and characters in a file.
+- **more**: prints a screen from a text file.
+- **less**: prints a screen from a text file. Less has more options that the **more** command, following the saying: *less is more*
 - **grep**: search text through files and match patterns. [https://linux.die.net/man/1/grep]
 - **file**: to find the location of files.
 - **diff** and **sdiff**: identify differences between files.
