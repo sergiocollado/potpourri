@@ -193,10 +193,12 @@ special directory names:
 - **shasum**: compute the SHA-1 of a file.
 - **cat** command: print a file to the terminal. -although it is intended to con**cat**enate files. It will print the concatenation of all files passed to it. 
 - **tac** this is **cat** spelled backwards. prints the lines of a file in reverse order : )
-- **head** command: Prints to the terminal the first 10 lines of a file.
+- **head** command: Prints to the terminal the firsts lines of a file.
+- **tail** command: prits the last lines from a file. It is really usefull to check files that update in real time, as system logs or alike. Usually using *tail -f filename*. this will print all the new lines into the file, and the monitor the activity in the file.
 - **last** and **tail** commands: print the last 10 lines of a file to the terminal.
-- **sed**: stands for *stream editor*.
-- **awk**
+- **sed**: stands for *stream editor*. it takes a file or a stream through a pipe as an input. and it is a really powerful text processor utility
+- **awk**: it is an extractor utility
+- **zcat, zless, zdiff, zgrep**: working with compressed files. those commands are designed to work with compressed files, in the same what that their regular commands counterparts.
 
 ### types of files in linux
 
@@ -669,7 +671,7 @@ Bring the interface back up.
 $ sudo ip link set eth0 up 
 $ sudo dhclient eth0
 ```
-check everything works as expected after reboot
+check everything works as expected  after reboot
 ```bash
 $ sudo reboot
 ```
