@@ -169,11 +169,6 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 - **cp** command: It copies a file.
 - **mv** command: It moves a file (to another directory), also can be used to change the name of a file.
 - **touch** command: creates a new file or updates it last edition time.
-- **sort**  - sort lines of text files  http://man7.org/linux/man-pages/man1/sort.1.html
-- **uniq**  - report or omit repeated lines http://man7.org/linux/man-pages/man1/uniq.1.html
-- **paste** - merge lines of files  http://man7.org/linux/man-pages/man1/paste.1.html
-- **join** - join lines of two files on a common field  http://man7.org/linux/man-pages/man1/join.1.html
-- **split** - split a file into pieces http://man7.org/linux/man-pages/man1/split.1.html
 
 
 special directory names: 
@@ -209,6 +204,12 @@ special directory names:
 - **sed**: stands for *stream editor*. it takes a file or a stream through a pipe as an input. and it is a really powerful text processor utility
 - **awk**: it is an extractor utility
 - **zcat, zless, zdiff, zgrep**: working with compressed files. those commands are designed to work with compressed files, in the same what that their regular commands counterparts.
+- **grep, egrep, fgrep** - print lines that match patterns http://man7.org/linux/man-pages/man1/grep.1.html
+- **sort**  - sort lines of text files  http://man7.org/linux/man-pages/man1/sort.1.html
+- **uniq**  - report or omit repeated lines http://man7.org/linux/man-pages/man1/uniq.1.html
+- **paste** - merge lines of files  http://man7.org/linux/man-pages/man1/paste.1.html
+- **join** - join lines of two files on a common field  http://man7.org/linux/man-pages/man1/join.1.html
+- **split** - split a file into pieces http://man7.org/linux/man-pages/man1/split.1.html
 
 ### types of files in linux
 
