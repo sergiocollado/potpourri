@@ -169,11 +169,11 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 - **cp** command: It copies a file.
 - **mv** command: It moves a file (to another directory), also can be used to change the name of a file.
 - **touch** command: creates a new file or updates it last edition time.
-- **sort**
-- **uniq**
-- **paste**
-- **join**
-- **split**
+- **sort**  - sort lines of text files  http://man7.org/linux/man-pages/man1/sort.1.html
+- **uniq**  - report or omit repeated lines http://man7.org/linux/man-pages/man1/uniq.1.html
+- **paste** - merge lines of files  http://man7.org/linux/man-pages/man1/paste.1.html
+- **join** - join lines of two files on a common field  http://man7.org/linux/man-pages/man1/join.1.html
+- **split** - split a file into pieces http://man7.org/linux/man-pages/man1/split.1.html
 
 
 special directory names: 
@@ -425,9 +425,13 @@ http://man7.org/linux/man-pages/man1/login.1.html
 their initialization depends in:
 
 if            _**/etc/profile**_ exists,    then it runs the shell
+
 else if       _**~/.bash_profile**_ exists, then it runs the shell
+
 else if       _**~/.bash_login**_ exists,   then it runs the shell
+
 else if       _**~/.profile**_ exists,      then it runs the shell
+
 on exit, if   _**~/.bash_logout**_ exists,  then it runs the shell
 
 In non-login shells, like bash, it checks just if  _**~/.bashrc**_ exists, then it runs the shell
@@ -459,7 +463,6 @@ you can check its value, with:
 >echo $PATH
 >echo $USERNAME
 ```
-
 
 #### Bash configuration
 
@@ -555,12 +558,9 @@ the possible operators are:
 | -d   | length of a String is zero    |
 | -z   | Length of a string is non-zero     | 
 
-
-
 ### Processes
 
 To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
-
 
 ### NETWORKING
 
