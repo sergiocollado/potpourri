@@ -158,6 +158,7 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 -  /etc/gshadow  - secure group account information.
 -  /etc/shells   - shells defined in the system.
 -  /etc/nologin  - If the file /etc/nologin exists and is readable, login(1) will allow access only to root.  Other users will be shown the contents of this file and their logins will be refused.  This provides a simple way of temporarily disabling all unprivileged logins.
+-  /etc/services  - The /etc/services file is used by applications to translate human-readable service names into port numbers when connecting to a machine across a network. 
 
 ### Commands to navigate through the file system.
 
@@ -210,6 +211,8 @@ special directory names:
 - **paste** - merge lines of files  http://man7.org/linux/man-pages/man1/paste.1.html
 - **join** - join lines of two files on a common field  http://man7.org/linux/man-pages/man1/join.1.html
 - **split** - split a file into pieces http://man7.org/linux/man-pages/man1/split.1.html
+- **cut** - extracts columns frot text data files. It is used for manipulating column-based files and is designed to extract specific columns. http://man7.org/linux/man-pages/man1/cut.1.html
+
 
 ### types of files in linux
 
