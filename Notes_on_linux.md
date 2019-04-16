@@ -398,6 +398,11 @@ executing **mount** without options, prints a list of the current mounted filesy
 
 In the file:  /etc/fstab - is stated the information required to specify mount points, options, devices, etc.
 
+### physical volumes
+
+the command **pvdisplay** allows you to see the attributes of one or more physical volumes like size, physical extent size, space used for the volume group descriptor area and so on.
+
+
 ### LINUX GRAPHIC SYSTEM
 
 There are three basic layers:
@@ -926,8 +931,8 @@ cat /proc/filesystem | less
 
  https://akkadia.org/drepper/cpumemory.pdf
  
- free - Display amount of free and used memory in the system - https://linux.die.net/man/1/free
- df - report file system disk space usage  https://linux.die.net/man/1/df
+ **free** - Display amount of free and used memory in the system - https://linux.die.net/man/1/free
+ **df** - report file system disk space usage  https://linux.die.net/man/1/df
  
 The analysis of the memory in the linux system, can be checked using the commands:
 
@@ -993,7 +998,7 @@ If you also need to check your CPU, then you can read the file as:
 ```
 <br>
 
-Or also there is the command: lscpu
+Or also there is the command: **lscpu**
 
 ref: http://man7.org/linux/man-pages/man1/lscpu.1.html
 
@@ -1316,6 +1321,7 @@ $> sudo apt-get install nginx
 ... 
 $> sudo /etc/init.d/nginx
 ```
+
 reference for nginx:  http://nginx.org/en/docs/
 
 for nginx configuration check:
@@ -1417,7 +1423,7 @@ Those file will generate the ones under /boot, when is run update-grub or grub2-
  - System.map - the kernel symbolic table.
  
  
- # SYSTEM INIT
+ # SYSTEM INITIALIZATION:
  
  /sbin/init - is the first program to run, is identified with process id = 1. It launches the rest of processes
 
