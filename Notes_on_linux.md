@@ -240,9 +240,9 @@ NOTE! in linux extensions dont define the utility or type of a file.
 the permission model that linux follows is known as DAC, Direct Acess Control.
 
 Files have owners (the user who created the file), and also access permissions.
- - read **r**
- - write **w**
- - execute **x**
+ - read **r**     (1)
+ - write **w**    (2)
+ - execute **x**  (4)
  
 So different permissions are defined for different users, or groups of users, so there are the following scope of permissions.
 - user
@@ -261,6 +261,7 @@ file1  rwxr-x^-x
 - The following 3 characters are the group permissions: r-x
 - the last 3 characters are the permissions for all users.
 
+
 ### Root user aka Superuser
 
 - the root account has the highest permission level, and it has access to everything.
@@ -274,8 +275,6 @@ file1  rwxr-x^-x
   
   The command **su** (**switch user**)lets you borrow the permissions from another user to run commands, if no user is especified, it defaults to use the **root** user.
   
-  
- 
   Every user in a linux system is defined by a user ID and also a group ID. For most linux flavors, the first user is defined as user ID = 1000 and the following defined user follow that number. The super user has a user ID of 0.
   
   for handling user, relevant files are _**/etc/passwd**_ and _**/etc/group**_. 
@@ -303,7 +302,7 @@ In most linux distributions, the directories for the different users are placed 
 
 Any user can change his enviroment variable HOME, so it points to whereever he wants, as his root directorie
 
-The tilde: **~**,  represents the home directorie for any user in the terminal.
+The _**tilde**_: **~**,  represents the home directorie for any user in the terminal.
 
 #### groups
 
@@ -348,6 +347,21 @@ so the command:
 - _**chmod 755**_, give the user read/write/execute permissions, and to the group and rest of the world read/execute permissions.
 - _**chmod 666**_, gives read write permissions for everybody.
 
+### default permissions: umask
+
+New files are created with a default set of permissions. Specifically, a new file's permissions may be restricted in a specific way by applying a permissions "mask" called the **umask**. The umask command is used to set this mask, or to show you its current value.
+
+to get the default permissions, just type the command: umask
+
+```bash
+>umask
+0002
+``` 
+to change the default permissions to read/write permissions for everybody.
+
+```bash
+>umask 0666
+```
 
 ## Commands for monitoring the performance, memory
 
