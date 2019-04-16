@@ -514,6 +514,12 @@ The scripts must start by a line, that points to the interpreter of that file. T
 ```bash
 #!/bin/sh
 ```
+It is possible to define an option to verify that your script is running, for this use:
+
+```bash
+#!/bin/sh +x 
+```
+then the script will be printed in the screen as it is executed.
 
 
 ### SCRIPT ARGUMENTS
@@ -526,6 +532,7 @@ there are special enviroment variables for the script
 - $* represents all the arguments 
 - "$@" represents all the argumemts keeping the grouping of quoted argumets
 - $# represents the number of arguments given
+- $? retains the value of the last executed command
 
 ## BASH COMMANDS
 
@@ -537,7 +544,6 @@ all that follows a # is a comment
 
 variables are defined with the equal operator (=), and its value is returned, with the dolar simbol operator $.
 And to print its value, is common to use a echo $variable.
-
 
 ```bash
 myname="Sergio"
@@ -558,17 +564,45 @@ echo "27/35" | bc -l
 ```
 ### user inputs
 
-You can use the 'read' command
+The command 'read' can be used to get user input.
 
 ```bash
 #!/usr/bin/env bash
 
 echo "Whats your name"
-read  yourname
+read -n  yourname
 echo "hello $yourname"
 ```
 
+that "-n" given to the echo command causes it to keep the cursor on the same line; i.e., it does not output a linefeed at the end of the prompt.
+
+
 ### script flow control
+
+### ifS
+
+if commands; then
+commands
+[elif commands; then
+commands...]
+[else
+commands]
+fi
+
+### tests
+
+The test command is used most often with the if command to perform true/false decisions. The command is unusual in that it has two different syntactic forms:
+
+# First form
+
+test expression
+
+# Second form
+
+[ expression ]
+       
+The test command works simply. If the given expression is true, test exits with a status of zero; otherwise it exits with a status of 1.
+
 
 #### conditional executions
 
@@ -587,17 +621,47 @@ Conditionals expressions are indicated a condition inside double brackets.
 
 the possible operators are:
 
-| condition | text | 
+| condition value operator| text | 
 | :---         |     :---:      |  
 | -gt  | greater than     | 
 | -ge   | greater than or equal    | 
-| -eq   | equal   | git status    |
+| -eq   | equal   | 
 | -neq  | not equal     | 
 | -le   | less than or equal     | 
 | -lt   | a file exits     |
 | -e   | a directory exits  | 
 | -d   | length of a String is zero    |
 | -z   | Length of a string is non-zero     | 
+
+
+| condition file evaluations| text | 
+| :---         |     :---:      |  
+| -e file | file exists?   | 
+| -d file  | file is a directory?   | 
+| -f file   | file is a regular file?   | 
+| -L file   | file is a symbolic link file?   | 
+| -s file | file has a non-zero size?| 
+| -g file    | has file  a sgid defined? | 
+| -u file   | has file a guid defined?    |
+| -r file  | is file readable by you?  | 
+| -w file   | is file writeable by you? |
+| -x file   | is file executable by you?   | 
+| file1 -nt file2  | file1 is newer than file2?  | 
+| file1 -ot file2  | file1 is newer than file2?  | 
+| -w file   | is file writeable by you? |
+| -x file   | is file executable by you?   | 
+
+
+
+| condition for string evaluations| text | 
+| :---         |     :---:      |  
+| string | is it non empty? | 
+| string1 == string2 | equals?  | 
+| string1 != string2   | different?   | 
+| -n string | not null or empty?| 
+| -z string    | is the string null? | 
+
+
 
 ### Processes
 
