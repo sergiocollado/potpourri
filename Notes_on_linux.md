@@ -897,8 +897,17 @@ $ sudo reboot
  - tcpdump & wireshark analysys of network and traffic
 
 
+### check system file system
 
-### Memory análisis in linux systems
+to verify the system file system:
+
+```bash
+cat /proc/filesystem | less
+```
+
+
+
+### Memory analisys in linux systems
 
  https://akkadia.org/drepper/cpumemory.pdf
  
