@@ -1508,6 +1508,7 @@ https://www.gnu.org/software/coreutils/coreutils.html    <br>
 https://www.linux.com/learn/limit-cpu-usage-process-linux-cpulimit-tool    <br> 
 https://fedoraproject.org/wiki/SysVinit_to_Systemd_Cheatsheet   <br>
 http://linuxcommand.org/lc3_learning_the_shell.php <br>
+https://linux.die.net/HOWTO/HOWTO-INDEX/howtos.html
 
 GNU ARM embedded toolchain:  https://launchpad.net/gcc-arm-embedded
 
