@@ -339,11 +339,14 @@ the possible values are:
 
 and from summing up the previous ones:
 
-- 5 read/execute
+- 5 read/execute permissions
+- 6 read/write permissions
 - 7 read/write/execute permision
 
-so the command: _**chmod 755**_, give the user read/write/execute permissions, and to the group and rest of the world read/execute permissions.
+so the command:
 
+- _**chmod 755**_, give the user read/write/execute permissions, and to the group and rest of the world read/execute permissions.
+- _**chmod 666**_, gives read write permissions for everybody.
 
 
 ## Commands for monitoring the performance, memory
