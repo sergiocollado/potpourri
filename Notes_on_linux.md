@@ -504,6 +504,16 @@ of course, for running that script, the required execution permissions are neede
 chmod +x myscript.sh
 ```
 
+### SCRIPT ARGUMENTS
+
+there are special enviroment variables for the script
+
+- $0 the command name
+- $1 the first argument
+- $2 the second time
+- $* represents all the arguments 
+- "$@" represents all the argumemts keeping the grouping of quoted argumets
+- $# represents the number of arguments given
 
 ## BASH COMMANDS
 
