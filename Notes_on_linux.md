@@ -237,6 +237,8 @@ NOTE! in linux extensions dont define the utility or type of a file.
 
 ### Permisions
 
+the permission model that linux follows is known as DAC, Direct Acess Control.
+
 Files have owners (the user who created the file), and also access permissions.
  - read **r**
  - write **w**
