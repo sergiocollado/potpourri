@@ -491,6 +491,8 @@ $ sudo apt-get install Nautilus-open-terminal
 ```
 ## BASH SCRIPTING
 
+ref: http://linuxcommand.org/lc3_learning_the_shell.php
+
 ### LAUNCH A BASH SCRIPT
 
 there are two ways
@@ -503,6 +505,16 @@ of course, for running that script, the required execution permissions are neede
 ```bash
 chmod +x myscript.sh
 ```
+
+
+### SHABANG
+
+The scripts must start by a line, that points to the interpreter of that file. That file is known as shabang.
+
+```bash
+#!/bin/sh
+```
+
 
 ### SCRIPT ARGUMENTS
 
@@ -1344,6 +1356,7 @@ https://www.gnu.org/software/cgicc/    <br>
 https://www.gnu.org/software/coreutils/coreutils.html    <br>
 https://www.linux.com/learn/limit-cpu-usage-process-linux-cpulimit-tool    <br> 
 https://fedoraproject.org/wiki/SysVinit_to_Systemd_Cheatsheet   <br>
+http://linuxcommand.org/lc3_learning_the_shell.php <br>
 
 GNU ARM embedded toolchain:  https://launchpad.net/gcc-arm-embedded
 
