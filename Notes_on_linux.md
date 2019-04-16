@@ -346,7 +346,7 @@ so the command:
 
 - _**chmod 755**_, give the user read/write/execute permissions, and to the group and rest of the world read/execute permissions.
 - _**chmod 666**_, gives read write permissions for everybody.
-- _**chmod 644**_, the user can read/write/execute, and the rest on user can only read the file.
+- _**chmod 744**_, the user can read/write/execute, and the rest on user can only read the file.
 
 ### default permissions: umask
 
