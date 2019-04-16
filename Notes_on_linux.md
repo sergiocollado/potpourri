@@ -489,6 +489,21 @@ you can istall it with:
 $ sudo yum install nautilus-open-terminal
 $ sudo apt-get install Nautilus-open-terminal
 ```
+## BASH SCRIPTING
+
+### LAUNCH A BASH SCRIPT
+
+there are two ways
+
+- run the command:'bash myscript.sh'
+- run the commmand: './myscript.sh'
+
+of course, for running that script, the required execution permissions are needed. It not, the permmissions need to be changed with 'chmod'
+
+```bash
+chmod +x myscript.sh
+```
+
 
 ## BASH COMMANDS
 
