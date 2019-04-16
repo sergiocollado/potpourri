@@ -159,6 +159,7 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 -  /etc/shells   - shells defined in the system.
 -  /etc/nologin  - If the file /etc/nologin exists and is readable, login(1) will allow access only to root.  Other users will be shown the contents of this file and their logins will be refused.  This provides a simple way of temporarily disabling all unprivileged logins.
 -  /etc/services  - The /etc/services file is used by applications to translate human-readable service names into port numbers when connecting to a machine across a network. 
+-  /etc/fstab     - the information required to specify mount points, options, devices, etc.
 
 ### Commands to navigate through the file system.
 
@@ -383,6 +384,19 @@ to change the default permissions to read/write permissions for everybody.
 - vmstat - detail of the virtual memory statistics and IO. vmstat(8) http://man7.org/linux/man-pages/man8/vmstat.8.html
 - systemctl: report the system programs. http://man7.org/linux/man-pages/man1/systemctl.1.html
 
+### MOUNTING FILE SYSTEMS
+
+In linux all the files are under the tree that starts in **/**
+
+to mount a partition, it is possible to use the command: **mount**  https://linux.die.net/man/8/mount
+it follows:
+
+```bash
+$ sudo mount [-t type] [-o options] device dir
+```
+executing **mount** without options, prints a list of the current mounted filesystems.
+
+In the file:  /etc/fstab - is stated the information required to specify mount points, options, devices, etc.
 
 ### LINUX GRAPHIC SYSTEM
 
@@ -536,6 +550,8 @@ you can istall it with:
 $ sudo yum install nautilus-open-terminal
 $ sudo apt-get install Nautilus-open-terminal
 ```
+
+
 ## BASH SCRIPTING
 
 ref: http://linuxcommand.org/lc3_learning_the_shell.php
@@ -889,7 +905,6 @@ test if it works after reboot.
 $ sudo reboot
 ```
 
-
 #### more about networking
 
  - netstat: network statistics - https://linux.die.net/man/8/netstat
@@ -1143,6 +1158,7 @@ https://akkadia.org/drepper/cpumemory.pdf
 - ps - report a snapshot of the current processes - https://linux.die.net/man/1/ps
 - pstree - display a tree of processes  - https://linux.die.net/man/1/pstree
 - pmap - report memory map of a process - https://linux.die.net/man/1/pmap
+- systemctl -
 
 
 ### system logs
