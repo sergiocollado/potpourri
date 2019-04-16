@@ -189,6 +189,7 @@ special directory names:
 - **output redirection: >**: it redirects, ex: echo "hello-world" > mytextfile.txt
 - **output append >>**: it appends: echo "hello again!" >> mytextfile.txt
 - **echo**: prints text. Usually is used with the redirecton and append operators: **>** and **>>**. the **-e** option is used so special character can be used, as: \t for tabulation or \n for a new line. It is very useful also to print the value of enviromental variables, like: echo $USERNAME.
+- **file**: report information about a file.
 - **wc**: counts the number of lines, words and characters in a file.
 - **more**: prints a screen from a text file.
 - **less**: prints a screen from a text file. Less has more options that the **more** command, following the saying: *less is more*
@@ -223,11 +224,16 @@ It is possible to check the types of files with the command **ls -l**. Also with
 - c: caracter device file
 - b: block device file
 - s: local socket file
-- p: named pipe
+- p: named pipe-. this are FIFOS and used for interprocess communications.
 - l: symbolic link
 
+caracter device files and block device files are two different data structures that represents periphericals or hardware devices or IO ports. Those are almost always placed in the devices folder: **/dev**.
 
 TODO: add info about stiky  bits
+
+the **file** utility can be used to get more information about the data type of a file
+
+NOTE! in linux extensions dont define the utility or type of a file.
 
 ### Permisions
 
@@ -316,6 +322,27 @@ in previous linux distributuions, you had to use the **visudo** program to add a
 https://linux.die.net/man/5/sudoers
 
 **NOTE**: The default command line prompt is dollar **$** for normal users and **#** for the root or superuser.
+
+### commands to change permissions and ownership
+
+- **chmod** change permissions of a file
+- **chown** change ownership of a file
+- **chgrp** change group ownership
+
+the possible values are:
+
+- 1 execute permission
+- 2 write permision
+- 4 read permission
+
+and from summing up the previous ones:
+
+- 5 read/execute
+- 7 read/write/execute permision
+
+so the command: _**chmod 755**_, give the user read/write/execute permissions, and to the group and rest of the world read/execute permissions.
+
+
 
 ## Commands for monitoring the performance, memory
 
