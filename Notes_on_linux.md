@@ -1407,6 +1407,23 @@ or
 
 https://stackoverflow.com/questions/47465878/install-qt-4-ubuntu-17-04
 
+# HOW TO INSTALL GIT
+
+to know if it is already installed
+
+```bash
+$ which git
+```
+
+```bash
+$ sudo apt-get install git-core git-gui gitweb cgit gitk git-daemon-run \
+                       git-cvs git-svn
+```
+
+```bash
+$ sudo yum list git*
+$ sudo yum install git* cgit
+```
 # BUILDROOT
 
 http://buildroot.net/downloads/manual/manual.html#_advanced_usage
