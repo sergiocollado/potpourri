@@ -1442,6 +1442,8 @@ $ sudo yum install git* cgit
 - git rm
 - git mv
 - git ls-files
+- git revert
+
 
 # BUILDROOT
 
