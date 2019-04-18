@@ -1443,6 +1443,12 @@ $ sudo yum install git* cgit
 - git mv
 - git ls-files
 - git revert
+- git reset
+- git gc
+- git fsck
+- git prune
+- git blame
+- git bisect
 
 
 # BUILDROOT
