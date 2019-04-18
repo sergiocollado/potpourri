@@ -1439,6 +1439,9 @@ $ sudo yum install git* cgit
 - git commit -m (message)
 - git log
 - git diff
+- git rm
+- git mv
+- git ls-files
 
 # BUILDROOT
 
