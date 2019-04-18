@@ -196,7 +196,7 @@ special directory names:
 - **less**: prints a screen from a text file. Less has more options that the **more** command, following the saying: *less is more*
 - **grep**: search text through files and match patterns. [https://linux.die.net/man/1/grep]
 - **file**: to find the location of files.
-- **diff** and **sdiff**: identify differences between files.
+- **diff** and **sdiff**: identify differences between files. usually use: **diff -Nur**
 - **md5**: computes the md5 hash of a file.
 - **shasum**: compute the SHA-1 of a file.
 - **cat** command: print a file to the terminal. -although it is intended to con**cat**enate files. It will print the concatenation of all files passed to it. 
@@ -1449,7 +1449,25 @@ $ sudo yum install git* cgit
 - git prune
 - git blame
 - git bisect
+- git branch
+- git merge
+- git clone
+- git push
+- git fetch
+- git pull
+- git show-branch
+- git checkout
+- git rebase
+- git show
+- git tag
+- git daemon
+- git format-patch
+- git am
 
+
+# GERRIT
+
+ref: https://gerrit-review.googlesource.com/Documentation/intro-gerrit-walkthrough.html
 
 # BUILDROOT
 
