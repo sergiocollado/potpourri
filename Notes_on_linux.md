@@ -1424,6 +1424,22 @@ $ sudo apt-get install git-core git-gui gitweb cgit gitk git-daemon-run \
 $ sudo yum list git*
 $ sudo yum install git* cgit
 ```
+
+## git commands
+
+- git --version
+- git
+- git --help [command]
+- git help --all
+- git status
+- git init
+- git add (file)
+- git config user.name
+- git config user.email
+- git commit -m (message)
+- git log
+- git diff
+
 # BUILDROOT
 
 http://buildroot.net/downloads/manual/manual.html#_advanced_usage
