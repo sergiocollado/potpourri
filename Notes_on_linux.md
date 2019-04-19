@@ -533,7 +533,7 @@ In non-login shells, like bash, it checks just if  _**~/.bashrc**_ exists, then 
 
 these are definitions that might be used for several goals. Many applications use them to define default settings.
 
-Most common are:  HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME
+Most common are:  HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME, VISUAL
 
 They can be set like: 'PATH=$HOME/BIN:$PATH'
 
