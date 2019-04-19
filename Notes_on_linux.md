@@ -238,18 +238,23 @@ NOTE! in linux extensions dont define the utility or type of a file.
 
 ### Permisions
 
-the permission model that linux follows is known as DAC, Direct Acess Control.
 
 Files have owners (the user who created the file), and also access permissions.
- - read **r**     (1)
- - write **w**    (2)
- - execute **x**  (4)
- 
-So different permissions are defined for different users, or groups of users, so there are the following scope of permissions.
+
+So different permissions are defined for different users, or groups of users:
 - user
 - groups
 - others (all users)
 
+the permission model that linux follows is known as DAC, Direct Acess Control.
+
+Permissions can be expressed in numeric for with octal notation, so values are given with digits from 0 to 7.
+
+ - read **r**     (1)
+ - write **w**    (2)
+ - execute **x**  (4)
+ 
+ 
 To view the permissions, usually the **ls -l** command is used.
 
 ```bash
@@ -257,7 +262,7 @@ $> ls -l
 file1  rwxr-x^-x 
 ```
 
-- The first character will be a **d** in that case, it is a directory.
+- The first character will be a **d** in that case, it is a directory. or a **b** or **c** in case of a external device.
 - The following 3 characters are the user permissions: rwx
 - The following 3 characters are the group permissions: r-x
 - the last 3 characters are the permissions for all users.
@@ -350,6 +355,8 @@ so the command:
 - _**chmod 744**_, the user can read/write/execute, and the rest on user can only read the file.
 
 ### default permissions: umask
+
+ref: http://man7.org/linux/man-pages/man1/umask.1p.html
 
 New files are created with a default set of permissions. Specifically, a new file's permissions may be restricted in a specific way by applying a permissions "mask" called the **umask**. The umask command is used to set this mask, or to show you its current value.
 
