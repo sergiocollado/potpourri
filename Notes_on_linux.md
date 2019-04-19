@@ -326,7 +326,8 @@ This is done through the sudoers file. In latest linux distributions you have to
 
 in previous linux distributuions, you had to use the **visudo** program to add a line at the file /etc/sudoers. The sudoers file, cannot or must not be edited with a normal text editor.
 
-https://linux.die.net/man/5/sudoers
+ref: https://linux.die.net/man/5/sudoers
+ref: https://linux.die.net/man/8/visudo
 
 **NOTE**: The default command line prompt is dollar **$** for normal users and **#** for the root or superuser.
 
@@ -353,6 +354,18 @@ so the command:
 - _**chmod 755**_, give the user read/write/execute permissions, and to the group and rest of the world read/execute permissions.
 - _**chmod 666**_, gives read write permissions for everybody.
 - _**chmod 744**_, the user can read/write/execute, and the rest on user can only read the file.
+
+### how to check users and groups
+
+one option is to chech the files:
+
+ - /etc/passwd
+ - /etc/group
+
+```bash
+>sudo cat /etc/passwd
+>sudo cat /etc/group
+```
 
 ### default permissions: umask
 
