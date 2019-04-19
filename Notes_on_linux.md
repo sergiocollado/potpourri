@@ -1,4 +1,4 @@
-E # Reference: man pages:
+# Reference: man pages:
 
  - User commands: [:link:](http://man7.org/linux/man-pages/dir_section_1.html)
  - System calls: [:link:](http://man7.org/linux/man-pages/dir_section_2.html)
