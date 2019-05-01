@@ -92,6 +92,7 @@ REFERENCES:
 >> https://www.linux.com/ <br>
 >> https://www.linux.com/tutorials <br>
 >> to made an USB live LINUX, check: http://www.linuxliveusb.com/en/features <br>
+>> https://linuxgazette.net/archives.html <br>
 GNU ARM embedded toolchain:  https://launchpad.net/gcc-arm-embedded
 
 C library for embedded systems:  https://sourceware.org/newlib/
