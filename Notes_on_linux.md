@@ -1574,7 +1574,10 @@ https://www.gnu.org/manual/blurbs.html<br>
 POSIX_SPEC: https://www2.opengroup.org/ogsys/catalog/t101<br>
 POSIX_SPEC: http://pubs.opengroup.org/onlinepubs/9699919799/     <br>
 http://www.linuxhowtos.org    <br>
-https://distrowatch.com/
+https://distrowatch.com/ <br>
+https://www.linuxjournal.com/article/3184 <br>
+https://lwn.net/Articles/734694/ <br>
+
 <hr>
 <br>
 # UTILITIES.
@@ -1602,8 +1605,7 @@ https://www.gnu.org/software/coreutils/coreutils.html    <br>
 https://www.linux.com/learn/limit-cpu-usage-process-linux-cpulimit-tool    <br> 
 https://fedoraproject.org/wiki/SysVinit_to_Systemd_Cheatsheet   <br>
 http://linuxcommand.org/lc3_learning_the_shell.php <br>
-https://linux.die.net/HOWTO/HOWTO-INDEX/howtos.html <br>
-https://www.linuxjournal.com/article/3184 <br>
+https://linux.die.net/HOWTO/HOWTO-INDEX/howtos.html 
 
 GNU ARM embedded toolchain:  https://launchpad.net/gcc-arm-embedded
 
