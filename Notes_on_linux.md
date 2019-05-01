@@ -1220,6 +1220,10 @@ you usually command:
 
 It reads from the file `proc/modules`, so you can also read it as: `cat /proc/modules`.
 
+```
+sudo cat /proc/modules
+```
+
 more on: https://www.computerhope.com/unix/lsmod.htm
 
 Also the commmand **modinfo** shows information about the kernel modules: https://linux.die.net/man/8/modinfo
@@ -1560,6 +1564,8 @@ http://www.amazon.com/The-Linux-Programming-Interface-Handbook/dp/1593272200<br>
 https://lwn.net/<br>
 http://www.linuxtoday.com/<br>
 http://www.ssc.com/lg/<br>
+https://www.linuxhowtos.org <br>
+https://www.tldp.org/HOWTO/HOWTO-INDEX/howtos.html <br>
 https://buildroot.org/downloads/manual/manual.html<br>
 http://www.tldp.org/LDP/LGNET/archives.html<br>
 https://www.tux.org/<br>
