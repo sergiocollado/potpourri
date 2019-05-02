@@ -21,6 +21,12 @@ Engineering Strain
 ```
 <br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/StrainEq.svg?sanitize=true" alt="Bernouilli equation"> <br>
 
+Hook's Law
+
+```latex
+ \sigma   = E \cdot  \varepsilon _0 
+```
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/HookLaw.svg?sanitize=true" alt="Bernouilli equation"> <br>
 
 
 Bernouili equation
