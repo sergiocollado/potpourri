@@ -1267,6 +1267,13 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
  https://people.seas.harvard.edu/~apw/stress/
  http://smackerelofopinion.blogspot.com/2014/06/stress-ng-updated-system-stress-test.html
  
+#### how to create timers:
+
+ timer_create - create a POSIX per-process timer  http://man7.org/linux/man-pages/man2/timer_create.2.html
+ 
+ timerfd_create, timerfd_settime, timerfd_gettime--timers that notify  via file descriptors, http://man7.org/linux/man-pages/man2/timerfd_create.2.html 
+
+ 
 # Nmap
 
 Nmap is the abreviation of Net Mapping an is a tool for network explorations, thus I is heavily used also to check network scanning and security.
