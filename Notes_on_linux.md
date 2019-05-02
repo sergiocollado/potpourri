@@ -1346,6 +1346,13 @@ $ sudo tail -f /var/log/messages
 also syslogs: https://linux.die.net/man/3/syslog
 also: https://linux.die.net/man/5/syslog-ng.conf
 
+# kernel panic 
+
+kernel panic is the name of the error known in witch the OS has a hard time recovering.
+
+reference: https://searchdatacenter.techtarget.com/definition/Linux-kernel-panic
+
+
 # INSTALLING NGINX
 
 ```bash
