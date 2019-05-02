@@ -28,6 +28,15 @@ Hook's Law
 ```
 <br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/HookLaw.svg?sanitize=true" alt="Bernouilli equation"> <br>
 
+Young modulus
+
+```latex
+ \sigma = E \cdot  \varepsilon _0 
+\\
+\\ & \textrm{}{E: modulus of Elasticity or Young modulus}
+```
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/YoungModulus.svg?sanitize=true" alt="Bernouilli equation"> <br>
+
 
 Bernouili equation
 
