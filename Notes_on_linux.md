@@ -1639,10 +1639,14 @@ Independent magazine for Ubuntu users: https://fullcirclemagazine.org/
 bactraces:   https://www.gnu.org/software/libc/manual/html_node/Backtraces.html
 
 http://linuxfreedom.com
+
 https://distrowatch.com/
+
 https://www.linux.com/news/learn/sysadmin/best-linux-distributions-2017
 
 https://akkadia.org/drepper/cpumemory.pdf
+
+
 For building distros:
 
 HLFS - Hardened Linux From Scratch.
