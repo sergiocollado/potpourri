@@ -1160,8 +1160,9 @@ key words for function definitions:
  TODO: arguments as value, as refence.
  
  
- 
- 
+ Static Functions in C:
+ in C by a function that is declared as Static, can only be used in the file in wich it is defines, so a kind of making it privat.
+so those function cannot be accessed from other files. 
  
  
  
@@ -1214,6 +1215,11 @@ int& max(int& a, int& b, int& c);
 for(;;) //this is forever... a naughty way to write: while(1)
 ```
 
+error macro:
+```C
+   #define errExit(msg)    do { perror(msg); exit(EXIT_FAILURE); \
+                               } while (0)
+```
 
 
 
