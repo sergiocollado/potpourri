@@ -96,6 +96,8 @@ REFERENCES:
 GNU ARM embedded toolchain:  https://launchpad.net/gcc-arm-embedded <br>
 https://linuxgazette.net/archives.html <br>
 
+secure programming: https://dwheeler.com/secure-programs/Secure-Programs-HOWTO.pdf
+
 C library for embedded systems:  https://sourceware.org/newlib/
 
 binutils:  http://www.gnu.org/software/binutils/
