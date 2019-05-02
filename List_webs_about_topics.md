@@ -103,6 +103,8 @@ PCB manufacturer: http://www.tefmontajes.com/
 
 PCB manufacturer: https://www.firstpcb.com
 
+PCB manufacturer: https://www.proto-electronics.com/
+
 PCB supplier: http://www.allpcb.com/   ... a bit strange this one..
 
 Other PCB supplier: https://www.multi-circuit-boards.eu/en/index.html
