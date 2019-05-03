@@ -18,7 +18,7 @@ Engineering Strain
 
 ```latex
  \varepsilon _0 = \frac{L - L_0 }{ L_0}
-```
+``` 
 <br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/StrainEq.svg?sanitize=true" alt="Bernouilli equation"> <br>
 
 Hook's Law
