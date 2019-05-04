@@ -95,6 +95,7 @@ REFERENCES:
 >> https://linuxgazette.net/archives.html <br>
 GNU ARM embedded toolchain:  https://launchpad.net/gcc-arm-embedded <br>
 https://linuxgazette.net/archives.html <br>
+kernel parameters: https://www.mjmwired.net/kernel/Documentation/kernel-parameters.txt <br>
 
 secure programming: https://dwheeler.com/secure-programs/Secure-Programs-HOWTO.pdf
 
