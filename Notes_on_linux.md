@@ -1154,8 +1154,6 @@ If you want to know how much free memory you have in your hard disk, you have to
 
 -  **df** command (for disk free?): this will report how much free memory has the filesystem. You usually invoque `df -h` the -h flag stands for "human readable".
 
-
-
  - **du** command (for disk usage?): reports an estimation of the file space usage.
 
 TODO: COMPLETE
@@ -1264,10 +1262,12 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
  - ionice - get/set program io scheduling class and priority https://linux.die.net/man/1/ionice
  - heartbeat - Heartbeat subsystem for High-Availability Linux https://linux.die.net/man/8/heartbeat
  - uptime - Tell how long the system has been running.
- http://www.admin-magazine.com/Articles/Law-of-Averages-Load-Averaging
- https://people.seas.harvard.edu/~apw/stress/
- http://smackerelofopinion.blogspot.com/2014/06/stress-ng-updated-system-stress-test.html
  
+ http://www.admin-magazine.com/Articles/Law-of-Averages-Load-Averaging <br>
+ https://people.seas.harvard.edu/~apw/stress/   <br>
+ http://smackerelofopinion.blogspot.com/2014/06/stress-ng-updated-system-stress-test.html   <br>
+  watchdog: https://mmonit.com/monit/   <br>
+  
 #### how to create timers:
 
  timer_create - create a POSIX per-process timer  http://man7.org/linux/man-pages/man2/timer_create.2.html
