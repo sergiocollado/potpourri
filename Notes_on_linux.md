@@ -782,6 +782,8 @@ normally ethernet intefaces are named as eth0,eth1... and wireless interfeaces a
 
 https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
 
+the configuration file is: _**/etc/sysconfig/network-scripts/ifcfg-exnoXXXX**_
+
 statistical info is in the file:  _**/proc/net/dev**_ and also in the files: _**sys/class/net/ethX/statistics**_
 
 
