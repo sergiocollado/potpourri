@@ -587,7 +587,6 @@ $ sudo yum install nautilus-open-terminal
 $ sudo apt-get install Nautilus-open-terminal
 ```
 
-
 ## BASH SCRIPTING
 
 ref: http://linuxcommand.org/lc3_learning_the_shell.php
@@ -777,7 +776,7 @@ To view the processes that are running, the command **ps** is used. Using **ps**
 
 ### NETWORKING
 
-**ifcongif** - presents the current network configuration
+**ifconfig** - presents the current network configuration
 
 normally ethernet intefaces are named as eth0,eth1... and wireless interfeaces as wlan0,wlan1... although nowadays, the diferent distros use to use the **Predictable Network inteface Device Names**
 
@@ -826,8 +825,6 @@ BOOTPROTO=
 IPADDR=192.168.XXX.XXX
 NETMASK=255.255.255.xxx
 ```
-
-
 
 to launch a network connection and attach it to a ip address, you do like:
 
@@ -892,7 +889,7 @@ $ sudo ip route add 172.16.1.0/24 via 192.168.1.5
 
 Some playbook options are:
 
-### wit 'ip'
+### with 'ip'
 
 get basic info about connection eth0
 
