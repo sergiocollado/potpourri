@@ -104,7 +104,7 @@ Reliability is often quantified with the merit figure of **MTBF** (Mean Time Bet
 
 **AVAILABILITY**: Is the probability that the system will be working/performing as expected at any given time. When calculating this parameter, it has to be taken into account: maintenace times, preventive mantenaice times and estimated time for repair (**ETR**).
 
-Availability is commonly meanfully for those systems, where its functions can be delayed or denied for a short time period, without serius consequences.
+Availability is commonly meanfully for those systems, where its functions can be delayed or denied for a short time period, without serius consequences. Ensuring timely and reliable access to and use of information is an essential propierty of real time critical systems.
 
 An example of a high availability (HA) system is the electric power distribution grid (anyway hospitals, airports ... have emergency power generation systems- as fail-safe measurements because the need to be a high avaliability facilites... just in case you were worried). The GPS system, for example, is an outstandig system, as it was designed as a **zero-down-time** system.
 
@@ -148,6 +148,14 @@ Usually, these systems are classified into the following groups:
  - **security critical**: designed to protect data or sensible information. example: medical databases, customers data ...
 
 **Critical systems must always identify and pin-point the worst case escenario, and also data throuputs and latencies!!**
+
+Other related concepts are also:
+
+**Integrity**: the property that represents how reliable and accurate data. To prevent fraud and other more harmful attacks measures must be taken to ensure that data is accurate and free from manipulation.
+
+**Confidentiality** the data in a system must be confidential.
+
+**Accountability**: Accountability is the idea that users of a system should be responsible for the actions they perform. This means that user interactions with sensitive systems should be logged and associated with a specific user. These logs should be difficult to forge, and have strong integrity protection.
 
 
 Referencess:
