@@ -370,6 +370,8 @@ about batteries: http://batteryuniversity.com/learn/
 
 http://aima.cs.berkeley.edu/
 
+http://lushprojects.com/absolutebeginners/
+
 
 # Learn electronics with application notes:
 
