@@ -757,6 +757,9 @@ http://leonardo.bne.es/index.html
 
 http://www.ampere.cnrs.fr/manuscrits/avoir/avoir-electro.php
 
+https://digital.slub-dresden.de/werkansicht/dlf/2967/1/
+
+
 # Internet, Web, ... characters and html5-utf-8, protocols, standardas and recomendations.
 
 https://dev.w3.org/html5/html-author/charref
