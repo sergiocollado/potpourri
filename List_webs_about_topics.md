@@ -421,6 +421,7 @@ About Optics:   https://micro.magnet.fsu.edu/optics/index.html
 
 electronic signatures standard: ETSI TS 102 042
 
+
 # INDUSTRIAL manufacturers
 
 http://www.apator.com/en
@@ -625,7 +626,7 @@ Italian observatory: http://www.astrogeo.va.it/
 
 http://space.skyrocket.de/
 
-nasa files :    https://www.nasa.gov/missions
+nasa files : https://www.nasa.gov/missions
 
 https://www.eutelsat.com/en/home.html
 
@@ -648,6 +649,8 @@ https://www.die.net/earth/
 https://www.astronomynotes.com/index.html
 
 https://www.museogalileo.it/it/museo/esplora/meridiana-monumentale.html
+
+https://catalogue.museogalileo.it/index/IndexObjectsInAlphabeticalOrder.html?_ga=2.50014821.292956349.1558987272-1765603183.1558987272
 
 # MATHS
 
@@ -692,6 +695,7 @@ https://www.intmath.com/applications-differentiation/8-radius-curvature.php
 http://tutorial.math.lamar.edu/Classes/CalcIII/Curvature.aspx
 
 http://spiff.rit.edu/classes/
+
 
 # PHYSICS
 
@@ -744,6 +748,7 @@ ANKA - ANKA Synchrotron, Karlsruhe, Germany
 TANGO- free open source control system.
 EPICS—Experimental Physics and Industrial Control System
 SCADA—Supervisory Control And Data Acquisition
+
 
 # digital manuscripts
 
@@ -927,7 +932,6 @@ https://www.elsevier.com/authors
 https://www.ccsd.cnrs.fr/en/
 
 https://hal.archives-ouvertes.fr/
-
 
 https://hal.inria.fr/hal-01463608/document
 
