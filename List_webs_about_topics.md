@@ -647,6 +647,8 @@ https://www.die.net/earth/
 
 https://www.astronomynotes.com/index.html
 
+https://www.museogalileo.it/it/museo/esplora/meridiana-monumentale.html
+
 # MATHS
 
 http://paulbourke.net/miscellaneous/
