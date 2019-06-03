@@ -150,7 +150,6 @@ The linux file system usually has the following file hierarchy structure:
     - **/media** removable devices
     - **/srv** service data
     
-
 Depending on the linux version, the list of the filesystem, may be different. 
     
 The reference to this file structure, is defined at:  https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.pdf
@@ -243,7 +242,6 @@ NOTE! in linux extensions dont define the utility or type of a file.
 
 ### Permisions
 
-
 Files have owners (the user who created the file), and also access permissions.
 
 So different permissions are defined for different users, or groups of users:
@@ -306,6 +304,8 @@ file1  rwxr-x^-x
   
   Users are added to groups with the **usermod** command, with the **-g** or **-G** options.
   
+  To check the users in a system, you can check with: 'sudo cat _**/etc/password'**_. If you want to edit that file, it will need to use the command **'vipw'**, that will lock that file for other users. Also is possible that it will be necessary to exit the file _**/etc/shadow**_ for consistency, and that can be done with the command **'vipw -s'**.
+  
   
 #### User directories
 
@@ -329,18 +329,30 @@ to add a given user to a group, is done:
 > sudo usermod -a -G groupname username
 ```
 
-### Sudoers
+### Sudoers and sudo
+
+The **sudo** command lets users to run priviliged commands. But that user must be first allowed to use the **sudo** command.
 
 if a user needs to run a command with root privileges, it has to be added to the list of sudoes, so it can execute the **sudo** command, and then it will be able to use privileged commands. So with **sudo** it is possible for a user to run programs with the privileges of another user, tipically the superuser (root)
 
-This is done through the sudoers file. In latest linux distributions you have to go to the file _**/etc/sudoers.d**_ directorie and create a file, with the name of the user who needs to be granted access. 
+This is done through the sudoers file.
 
-in previous linux distributuions, you had to use the **visudo** program to add a line at the file /etc/sudoers. The sudoers file, cannot or must not be edited with a normal text editor.
+In linux distributions you have to go to the file _**/etc/sudoers.d**_ directorie and create a file, with the name of the user who needs to be granted access. 
+
+In linux distributions, you had to use the **visudo** program to add a line at the file /etc/sudoers. The sudoers file, cannot or must not be edited with a normal text editor.
 
 ref: https://linux.die.net/man/5/sudoers
 ref: https://linux.die.net/man/8/visudo
 
 **NOTE**: The default command line prompt is dollar **$** for normal users and **#** for the root or superuser.
+
+the command sudo:
+ - keeps a log of every time it has been used
+ - which user used the command
+ - timestamp
+ - directory in which it was ran.
+
+
 
 ### commands to change permissions and ownership
 
@@ -603,7 +615,6 @@ of course, for running that script, the required execution permissions are neede
 ```bash
 chmod +x myscript.sh
 ```
-
 
 ### SHABANG
 
