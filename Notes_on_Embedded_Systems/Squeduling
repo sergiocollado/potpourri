@@ -448,7 +448,7 @@ In the table, T1, would get the highest priority, because his period is the shor
 DEADLINE MONOTONIC SCHEDULER:
 ============================
 
-In the deadline monotonic scheduler, the task with the smaller realtive deadline has the highest priority, in the tabl, that would
+In the deadline monotonic scheduler, the task with the smaller relative deadline has the highest priority, in the table, that would
 be T2, because its realtive deadline is the smallest (D=3).
 
 NOTE:
@@ -456,8 +456,8 @@ NOTE:
 > if nothing else is said.
 
 
-EXAMPLE RM SCHEDULING:
-=====================
+EXAMPLE RM (rate monotonic) SCHEDULING:
+======================================
 
 We have the following preemptive system:
 
@@ -511,8 +511,8 @@ Finally Task T3 has the lowest priority, so Jobs of task3, have to be schedule o
 
 And in this case we obtain a feaseble schedule, because no task ever miss its deadline.
 
-EXAMPLE DM SCHEDULING:
-=====================
+EXAMPLE DM (dead-line monotonic) SCHEDULING:
+============================================
 
 Consider the following setup, in a preemptive system:
 
