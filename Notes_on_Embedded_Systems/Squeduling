@@ -371,11 +371,11 @@ CYCLIC SCHEDULING
 
 The cyclic structure scheduler, aims to get the best of the flexibility of a tick scheduler, with the performance of the 
 static scheduler. This policy uses fix periods for schedule the tasks, so it removes all the unnecesary interruptions not needed,
-it removes all the no needed ticks, and the remaining interruption periods, is know as a frame, only at this points, the scheduling
+it removes all the no needed ticks, and the remaining interruption periods is known as a frame, only at this points, the scheduling
 will take place. At the beginning of the frame, the scheduler decides the jobs to be done in the NEXT frame. It can also try to
 predict dead-line misses at the beginning of the frame, an try to have an error correction action or mitigation. 
 
-So the key question, is to define the best frame length. If the frame is too short, the context swicth overhead will penalice the system
+So the key question, is to define the best frame length. If the frame is too short, the context switch overhead will penalice the system
 performance, on the other hand a small frame is better to ensure the feaseability of the system. If the frame too big, will mean less scheduling points, this reduces the penalty of the context switch, but the death-lines
 might not be guaranteed. So the goal, is to get the largest frame possible that can guarantee the dead-lines for the jobs.
 
