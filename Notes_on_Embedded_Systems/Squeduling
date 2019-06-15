@@ -383,7 +383,10 @@ Calculation of the frame size:
 
 The Hiper-period (H) (this is the time at witch the schedule starts to repeat it-self), is divided in equal sizes 'f'.
 So the number of frames (F) in  the hiper-period: H; this is F = H/f
-the goal is to get the biggest f that complies with:
+
+      HyperPeriod (H)  = frame number (F) * frame size(f) 
+
+the goal is to get the biggest frame size (f) that complies with:
 
 1- All the jobs must be able to fit into one frame so: f >= max(ei) forall i
 
@@ -392,8 +395,6 @@ will fit in every frame period.
 
 3- We think of: candidate frames: which are all the possible frame sizes that comply whit the previous rule (2), one of this
 candidate frames will be the best fitted for our schedule.
-
-
 
  
 FIXED PRIORITY SCHEDULING
