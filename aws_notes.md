@@ -613,7 +613,8 @@ Amazon S3 is designed to be languaje neutral, and to be used with the supported 
 
 
  
- 
+ # AWS LEX
+  AWS LEX is a service to build chat bots, also known as conversational interfaces, that use natural language processing, deep learning and ASP (advanced speech recognition).
  
  
  
