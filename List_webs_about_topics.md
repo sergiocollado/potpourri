@@ -935,6 +935,7 @@ https://hal.archives-ouvertes.fr/
 
 https://hal.inria.fr/hal-01463608/document
 
+https://www.elsevier.com/solutions/scopus
 
 # Unis
 
