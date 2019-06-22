@@ -625,8 +625,10 @@ Amazon S3 is designed to be languaje neutral, and to be used with the supported 
  
   Cloudfront also can improve our security as it uses features as OAI (Original Access Identity), so it restrict uderlying data through use only through Cloudfront operations, this includes protection from several exploits, safeguards, as AWS WAF, a web application firewall, and AWS Shield, a sevice that protects against DDoS attacks
  
+ # AWS API GATEWAY
+ AWS API Gateway is a service to create, pubilsh, mantain, and monitor APIs. This allows an API that will work as the "front door" cffro applications for your back-end services, as Elastic compute clouds EC2, aws lambda or web applications
  
- 
+
  
  
  
