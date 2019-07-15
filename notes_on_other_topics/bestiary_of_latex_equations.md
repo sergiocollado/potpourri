@@ -10,6 +10,8 @@
 
 Atmospheric equation:
 
+the lagrange derivative of the velocity of the wind is:
+
 ```latex
 \underset{acceleration}{\underbrace{ \rho \frac{DU}{Dt} } } =
 \underset{Pressure \:  gradient}{\underbrace{- \triangledown P }}
