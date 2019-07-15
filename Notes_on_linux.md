@@ -1684,6 +1684,20 @@ restrictive licenses: derivative works are intended to remain open, and changes 
 
 permisive licenses: like BSD or Apache licenses. - dont need to be make public.
 
+## tips for hardening linux
 
+ Keep boot dir as read-only	# vi /etc/fstab	then, Add the following line at the bottom "LABEL=/boot/boot ext2 defaults,ro 1 2"	in case of upgrade we need to reset the change 
+
+2. Review Logs Regularly 	in our case we have a log server that will be easy to modify local logs.	For example this is the dafault log files name and their usage: /var/log/message – Where whole system logs or current activity logs are available.	/var/log/auth.log – Authentication logs.	/var/log/kern.log – Kernel logs. /var/log/cron.log – Crond logs (cron job).	/var/log/maillog – Mail server logs.	/var/log/boot.log – System boot log. /var/log/mysqld.log – MySQL database server log file. /var/log/secure – Authentication log.	/var/log/utmp or /var/log/wtmp : Login records file.	/var/log/yum.log: Yum log files.
+
+3. Monitor User Activity with psacct	Installing psacct Packages # yum install psacct	Starting psacct or acct service # chkconfig psacct on	# /etc/init.d/psacct start Display Statistics of Users Connect Time # ac	Display Statistics of Users Day-wise # ac -d	Display Time Totals for each User # ac -p	Display Individual User Time # ac username	Print All Account Activity Information # sa Search Logs for Commands # lastcomm ls
+
+4. Disable Root login	create a new user # useradd username	add password # passwd username	provide sudo permissions to the newly added user # echo 'username ALL=(ALL) ALL' >> /etc/sudoers	now it's time to disable root login 	1. open the sshd configuration file # vi /etc/ssh/sshd_conf	2. uncomment the line 'PermitRootLogin no'	3. save and restart # service sshd restart
+
+5. Change the default SSH Port	Open the /etc/ssh/sshd_config file	replace default Port 22 with different port number say 1110 save & exit from the file # service sshd restart	Now to login define the port No # ssh username@IP -p 1110
+
+6. SSH-keys	to generate keys # ssh-keygen - t rsa	Copy your public SSH key , then add the same in the server
+
+7. Turn Off IPv6	# vi /etc/sysconfig/network	add the following lines "NETWORKING_IPV6=no	IPV6INIT=no"8. Lockdown Cronjobs	# echo ALL >>/etc/cron.deny
 
 
