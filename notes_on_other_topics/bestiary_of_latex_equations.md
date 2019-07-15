@@ -16,8 +16,17 @@ Atmospheric equation:
 + \underset{gravity}{\underbrace{\rho g} }
 + \underset{friction}{\underbrace{\rho F_r}}
 ```
-<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/atmospheric_eq.svg?sanitize=true" alt="atmospheric equaiton"> <br>
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/atmospheric_eq.svg?sanitize=true" alt="atmospheric equation"> <br>
 
+where:
+
+
+```latex
+\underset{acceleration}{\underbrace{ \rho \frac{D\mathbf{U}}{Dt} } } = 
+\frac{\partial \mathbf{U}}{\partial t} + \mathbf{U} \cdot  \triangledown \boldsymbol{U}
+```
+
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/atmospheric_eq2.svg?sanitize=true" alt="atmospheric equation"> <br>
 
 Stress Equation
 
