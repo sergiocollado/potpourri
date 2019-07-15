@@ -30,6 +30,47 @@ where:
 
 <br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/atmospheric_eq2.svg?sanitize=true" alt="atmospheric equation"> <br>
 
+
+Pressure barometric law:
+
+```latex
+\\
+\rho g A\, dz = ( P(z) + P(z+dz) ) \cdot  A  \\
+\\
+\frac{ ( P(z) + P(z+dz) )}{dz} = - \rho g
+\\
+\\
+\frac{dP}{dz} = - \rho g
+\\
+\\
+\rho = \frac{P M }{R T}
+\\
+\\
+\frac{dP}{P} = - \frac{M g}{R T} dz
+\\
+\\
+\ln P(z) - \ln P(0) = - \frac{M g}{R T} z
+\\
+\\
+P(z) = P(0) \exp{- \frac{M g}{R T} z}
+\\
+\\
+\textup{  so if we define a barometric height as: }
+\\
+\\
+H = \frac{R T}{M g}
+\\
+\\
+\textup{  then the barometric law is: }
+\\
+\\
+P(z) = P(0) \exp{- \frac{z}{H}}
+```
+
+
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/barometric_law.svg?sanitize=true" alt="pressure barometric law equation"> <br>
+
+
 Stress Equation
 
 ```latex
@@ -61,7 +102,7 @@ Young modulus
 <br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/YoungModulus.svg?sanitize=true" alt="Youngs modulous equation"> <br>
 
 
-Bernouili equation
+Bernouilli equation
 
 ```latex
 P_1 + \frac{1}{2} \rho v_1^2 + \rho g h_1 = P_2 + \frac{1}{2} \rho v_2^2 + \rho g h_2
