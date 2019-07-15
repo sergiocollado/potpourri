@@ -7,26 +7,35 @@
 <!--  somewhat nice intro text. http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf -->
 <!--- other nice intro text. https://www.latex-tutorial.com/tutorials/ -->
 
+
+Atmospheric equation:
+
+```latex
+\underset{acceleration}{\underbrace{ \rho \frac{DU}{Dt} } } = \underset{Pressure \:  gradient}{\underbrace{- \triangledown P }}+ \underset{gravity}{\underbrace{\rho g} } + \underset{friction}{\underbrace{\rho F_r}}
+```
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/atmospheric_eq.svg?sanitize=true" alt="atmospheric equaiton"> <br>
+
+
 Stress Equation
 
 ```latex
 S  = \frac{F }{ A_0}
 ```
-<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/StressEq.svg?sanitize=true" alt="Bernouilli equation"> <br>
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/StressEq.svg?sanitize=true" alt="engineering stress equation"> <br>
 
 Engineering Strain
 
 ```latex
  \varepsilon _0 = \frac{L - L_0 }{ L_0}
 ``` 
-<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/StrainEq.svg?sanitize=true" alt="Bernouilli equation"> <br>
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/StrainEq.svg?sanitize=true" alt="engineering strain equation"> <br>
 
 Hook's Law
 
 ```latex
  \sigma   = E \cdot  \varepsilon _0 
 ```
-<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/HookLaw.svg?sanitize=true" alt="Bernouilli equation"> <br>
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/HookLaw.svg?sanitize=true" alt="hook law equation"> <br>
 
 Young modulus
 
@@ -35,7 +44,7 @@ Young modulus
 \\
 \\ & \textrm{}{E: modulus of Elasticity or Young modulus}
 ```
-<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/YoungModulus.svg?sanitize=true" alt="Bernouilli equation"> <br>
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/YoungModulus.svg?sanitize=true" alt="Youngs modulous equation"> <br>
 
 
 Bernouili equation
