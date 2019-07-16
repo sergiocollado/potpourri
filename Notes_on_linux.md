@@ -1692,9 +1692,28 @@ permisive licenses: like BSD or Apache licenses. - dont need to be make public.
 
 3. Monitor User Activity with psacct	Installing psacct Packages # yum install psacct	Starting psacct or acct service # chkconfig psacct on	# /etc/init.d/psacct start Display Statistics of Users Connect Time # ac	Display Statistics of Users Day-wise # ac -d	Display Time Totals for each User # ac -p	Display Individual User Time # ac username	Print All Account Activity Information # sa Search Logs for Commands # lastcomm ls
 
-4. Disable Root login	create a new user # useradd username	add password # passwd username	provide sudo permissions to the newly added user # echo 'username ALL=(ALL) ALL' >> /etc/sudoers	now it's time to disable root login 	1. open the sshd configuration file # vi /etc/ssh/sshd_conf	2. uncomment the line 'PermitRootLogin no'	3. save and restart # service sshd restart
+4. Disable SSH Login via Root
 
-5. Disable SSH Login via Root
+# useradd username	add password 
+# passwd username	provide sudo permissions to the newly added use
+
+r # echo 'username ALL=(ALL) ALL'
+
+>> /etc/sudoers	now it's time to disable root login 	
+ 
+  1. open the sshd configuration file # vi /etc/ssh/sshd_conf	
+  2. uncomment the line 'PermitRootLogin no'	
+  3. save and restart # service sshd restart
+
+Search for the authentication options and change the root login permission by setting it to no like below.
+
+PermitRootLogin no
+
+Afterwards just save the file and exit the text editor.
+Making changes to the SSH configuration file will require you to restart the service, on CentOS cloud servers use the following.
+sudo systemctl restart sshd
+On systems running Ubuntu, the service is simply called SSH, the same will work with Debian.
+sudo service ssh restart
 
 In order to disable anyone logging in via SSH, you should access the file that is responsible for the configuration of SSH. The file has the following location:
  /etc/ssh/sshd_config
@@ -1702,7 +1721,18 @@ In order to disable anyone logging in via SSH, you should access the file that i
 After you have found this file, open it with the text editor app and fine the following line of code and when you do, remove the # symbol from it:
 PermitRootLogin no
 
-6. Monitor authentification
+5-Password policies
+If your server has more remote users than just yourself, implement and enforce reasonable password policies with Linux PAM module called pam_cracklib. The module will check user passwords against dictionary words to help prevent weak password usage. You can also use it to set the minimum requirements for a new password like length and complexity.
+
+6.-Restrict SSH to specific user group
+OpenSSH server can limit user connections by cross-checking that they belong to the allowed group. This can be useful if you have multiple users of which some should not need to remote with SSH, or you just want the added security for example when running web service or database with separate users to your own.
+
+7. Change the default SSH Port	Open the /etc/ssh/sshd_config file	replace default Port 22 with different port number say 1110 save & exit from the file # service sshd restart	Now to login define the port No # ssh username@IP -p 1110
+
+8. SSH-keys	to generate keys # ssh-keygen - t rsa	Copy your public SSH key , then add the same in the server
+
+
+9. Monitor authentification
 
 Install Fail2Ban
 
@@ -1712,14 +1742,9 @@ sudo apt-get install fail2ban
 
 To configure, open up the configuration file in a text editor, find the services you want to have it watch (for example, SSH), and then restart the service.
 
+10. Turn Off IPv6	# vi /etc/sysconfig/network	add the following lines "NETWORKING_IPV6=no	IPV6INIT=no"8. Lockdown Cronjobs	# echo ALL >>/etc/cron.deny
 
-7. Change the default SSH Port	Open the /etc/ssh/sshd_config file	replace default Port 22 with different port number say 1110 save & exit from the file # service sshd restart	Now to login define the port No # ssh username@IP -p 1110
-
-8. SSH-keys	to generate keys # ssh-keygen - t rsa	Copy your public SSH key , then add the same in the server
-
-9. Turn Off IPv6	# vi /etc/sysconfig/network	add the following lines "NETWORKING_IPV6=no	IPV6INIT=no"8. Lockdown Cronjobs	# echo ALL >>/etc/cron.deny
-
-10. - - Check for open ports
+11. - - Check for open ports
 
 If a service is listening on a port, it leaves the door open for possible exploit.
 
@@ -1727,8 +1752,7 @@ We can see what ports currently have services listening on them by running a qui
 
 sudo netstat -tulpn
 
-
-11. Disable USB Mount
+12. Disable USB Mount
 One crucial method by which you can ensure higher security, especially against someone who can physically tamper with your computer is to ban them from using USB to attack it. There are many sophisticated USB-based malware which is activated automatically when the pen drive is inserted in your USB port, so this is a crucial tip to strengthen your Linux security. The only price you have to pay is to quit using USB drives all the time and find another method to safely transfer data. Here is how to do it:
 
 Step 1: Open any text editor and write:
@@ -1741,7 +1765,7 @@ Step 2: Save the file as a .conf type of file and save in the following location
 
 Step 3: Restart your computer and test if you are able to mount a USB drive.
 
-12. . Enable Your Firewall
+13. Enable Your Firewall
 Basically, this is one thing that every self-respecting Linux user should do when they install a Linux distribution. It more of a security ethic advise, primarily because, even with the firewall disabled, Linux has all the ports locked down either way. But, you never know, if your computer will be targeted sooner or later, because someone with hardened security obviously has something to hide and people quickly realize this. To enable your Linux firewall, you must run the Linux Terminal after which type:
 
 sudo apt-get install guf
@@ -1754,14 +1778,17 @@ gufw
 
 After you open GUFW you will see it’s simple user interface. From there simply click on the slider button next to Status to turn it from OFF to ON
 
-13.Make your BIOS More Secure
+14.Make your BIOS More Secure
 This tip may not be directly Linux related but it is considered as a general security risk for most Linux distributions. After installing Linux on your computer, it is a good idea to disable any possibility of your computer to boot via USB, CD/DVD or other external drives. This means that nobody can overwrite your Linux and hence damage it or even try to access your drive by booting a Live OS. And this is just the tip of the iceberg of security threats when external boot is enabled. This is why, you should access BIOS on your system start up and go to the Boot tab from which disable the booting option from external drives:
 Image: https://sensorstechforum.com/wp-content/uploads/2017/07/bios-boot-tab-sensorstechforum.jpg
 
 In addition to these measures, add a BIOS password, which will stop someone with a physical access to your computer to enter the BIOS
 
+15. Limit your pings or disable responding to pings
 
-14. Use Firejail Sandboxing When You Try New Applications
+As lots of bots find your server by pinging, turning off pings is one way to help hide it (though this really only helps servers that you aren't driving the public to)
+
+16. Use Firejail Sandboxing When You Try New Applications
 
 In general, Linux operating systems are designed in order to be secure by default. But this does not mean that your online browsing is not exposed against any sniffing or phishing attacks – the main reason why you need to secure yourself against new browser extensions or apps that may be unwanted on your Linux machine. Firejail is one security app that is very simple to set up and works on the latest Linux distros. Here is how to set it up on 16.04 LTS Ubuntu:
  sudo apt-get update
@@ -1778,4 +1805,63 @@ If we would like to secure Tor web browser, for example, we can use the “firej
 
  firejail firefox
  
- 15. Encrypt your Drive (Full Disk Encryption) -like with Bitlocker??
+17. Encrypt your Drive (Full Disk Encryption) -like with Bitlocker??
+
+
+18. servers connectiosn
+
+The easiest way to create a secure connection between two servers is through the use of the secure shell command (ssh), which uses SSL to create a telnet-style connection between two servers.
+This command creates a public and a private key pair in the /root/.ssh/ directory:
+•	id_rsa.pub
+•	id_rsa
+Authorizing the server to trust itself
+Now that we have a keypair, we can authorize the server to trust itself. This may seem odd but we can script commands that reference the server itself as well as the other server in the pair. Moreover, we can replicate this trust to the other server and this makes distribution of the trust simple. Run the following:
+cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+To validate this works, ssh to the local server using the hostname you specified in the /etc/hosts file:
+ssh root@primary
+After accepting the fingerprint, it should log you on without specifying a password.
+Copying trust to the target server
+This next step assumes that the trust is limited between the servers you are trusting. We will send all of these files to the other server and for this we will have to supply the password for once. Copy the files to the other server by running the following:
+scp -r /root/.ssh* backup:/root/
+
+19. Define firewalls- 
+
+Nevertheless, we can create such a slightly secure workstation as possible as we can, using firewalld. 
+1.	To start the service and enable FirewallD on boot:
+2.	sudo systemctl start firewalld
+3.	sudo systemctl enable firewalld
+To stop and disable it:
+sudo systemctl stop firewalld
+sudo systemctl disable firewalld
+4.	Check the firewall status. The output should say either running or not running.
+5.	sudo firewall-cmd --state
+6.	To view the status of the FirewallD daemon:
+7.	sudo systemctl status firewalld
+
+8.	To reload a FirewallD configuration:
+9.	sudo firewall-cmd --reload
+Configuring FirewallD
+Firewalld is configured with XML files. Except for very specific configurations, firewall-cmd should be used instead.
+Configuration files are located in two directories:
+•	/usr/lib/FirewallD holds default configurations like default zones and common services. Avoid updating them because those files will be overwritten by each firewalld package update.
+•	/etc/firewalld holds system configuration files. These files will overwrite a default configuration.
+Configuration Set
+Firewalld uses two configuration sets: Runtime and Permanent. Runtime configuration changes are not retained on reboot or upon restarting FirewallD whereas permanent changes are not applied to a running system.
+By default, firewall-cmd commands apply to runtime configuration but using the --permanent flag will establish a persistent configuration. To add and activate a permanent rule, there are two methods.
+1.	Add the rule to both the permanent and runtime sets.
+2.	sudo firewall-cmd --zone=public --add-service=http --permanent
+3.	sudo firewall-cmd --zone=public --add-service=http
+4.	Add the rule to the permanent set and reload FirewallD.
+5.	sudo firewall-cmd --zone=public --add-service=http --permanent
+6.	sudo firewall-cmd --reload
+Note
+The reload command drops all runtime configurations and applies a permanent configuration. Because firewalld manages the ruleset dynamically, it won’t break an existing connection and session.
+Firewall Zones
+Zones are pre-constructed rule sets for various trust levels you would likely have for a given location or scenario (e.g. home, public, trusted, etc.). Different zones allow different network services and incoming traffic types while denying everything else. After enabling FirewallD for the first time, Public will be the default zone.
+Zones can also be applied to different network interfaces. For example, with separate interfaces for both an internal network and the Internet, you can allow DHCP on an internal zone but only HTTP and SSH on external zone. Any interface not explicitly set to a specific zone will be attached to the default zone.
+To view the default zone:
+sudo firewall-cmd --get-default-zone
+To change the default zone:
+sudo firewall-cmd --set-default-zone=internal
+To see the zones used by your network interface(s):
+sudo firewall-cmd --get-active-zones
