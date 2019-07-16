@@ -1865,3 +1865,6 @@ To change the default zone:
 sudo firewall-cmd --set-default-zone=internal
 To see the zones used by your network interface(s):
 sudo firewall-cmd --get-active-zones
+
+
+?? The main web server should be deployed on a dedicated host in the demilitarized zone (DMZ). It’s ports must be firewalled: only 80 (http) and 443 (https) ports must be opened for external connections. 
