@@ -1694,10 +1694,88 @@ permisive licenses: like BSD or Apache licenses. - dont need to be make public.
 
 4. Disable Root login	create a new user # useradd username	add password # passwd username	provide sudo permissions to the newly added user # echo 'username ALL=(ALL) ALL' >> /etc/sudoers	now it's time to disable root login 	1. open the sshd configuration file # vi /etc/ssh/sshd_conf	2. uncomment the line 'PermitRootLogin no'	3. save and restart # service sshd restart
 
-5. Change the default SSH Port	Open the /etc/ssh/sshd_config file	replace default Port 22 with different port number say 1110 save & exit from the file # service sshd restart	Now to login define the port No # ssh username@IP -p 1110
+5. Disable SSH Login via Root
 
-6. SSH-keys	to generate keys # ssh-keygen - t rsa	Copy your public SSH key , then add the same in the server
+In order to disable anyone logging in via SSH, you should access the file that is responsible for the configuration of SSH. The file has the following location:
+ /etc/ssh/sshd_config
 
-7. Turn Off IPv6	# vi /etc/sysconfig/network	add the following lines "NETWORKING_IPV6=no	IPV6INIT=no"8. Lockdown Cronjobs	# echo ALL >>/etc/cron.deny
+After you have found this file, open it with the text editor app and fine the following line of code and when you do, remove the # symbol from it:
+PermitRootLogin no
+
+6. Monitor authentification
+
+Install Fail2Ban
+
+Fail2Ban is a program that monitors the authentication logs of various programs. When too many attempts are detected, it blocks the source IP address. First, we'll need to install it:
+
+sudo apt-get install fail2ban
+
+To configure, open up the configuration file in a text editor, find the services you want to have it watch (for example, SSH), and then restart the service.
 
 
+7. Change the default SSH Port	Open the /etc/ssh/sshd_config file	replace default Port 22 with different port number say 1110 save & exit from the file # service sshd restart	Now to login define the port No # ssh username@IP -p 1110
+
+8. SSH-keys	to generate keys # ssh-keygen - t rsa	Copy your public SSH key , then add the same in the server
+
+9. Turn Off IPv6	# vi /etc/sysconfig/network	add the following lines "NETWORKING_IPV6=no	IPV6INIT=no"8. Lockdown Cronjobs	# echo ALL >>/etc/cron.deny
+
+10. - - Check for open ports
+
+If a service is listening on a port, it leaves the door open for possible exploit.
+
+We can see what ports currently have services listening on them by running a quick command:
+
+sudo netstat -tulpn
+
+
+11. Disable USB Mount
+One crucial method by which you can ensure higher security, especially against someone who can physically tamper with your computer is to ban them from using USB to attack it. There are many sophisticated USB-based malware which is activated automatically when the pen drive is inserted in your USB port, so this is a crucial tip to strengthen your Linux security. The only price you have to pay is to quit using USB drives all the time and find another method to safely transfer data. Here is how to do it:
+
+Step 1: Open any text editor and write:
+
+→ install usb-storage /bin/true
+
+Step 2: Save the file as a .conf type of file and save in the following location:
+
+→ /etc/modprobe.d/
+
+Step 3: Restart your computer and test if you are able to mount a USB drive.
+
+12. . Enable Your Firewall
+Basically, this is one thing that every self-respecting Linux user should do when they install a Linux distribution. It more of a security ethic advise, primarily because, even with the firewall disabled, Linux has all the ports locked down either way. But, you never know, if your computer will be targeted sooner or later, because someone with hardened security obviously has something to hide and people quickly realize this. To enable your Linux firewall, you must run the Linux Terminal after which type:
+
+sudo apt-get install guf
+
+
+GUFW stands for “Graphical Uncomplicated Fire Wall”. The command will install it and after it has finished doing so, you should open it, by typing in your terminal it’s abbreviation and hitting Enter
+
+
+gufw
+
+After you open GUFW you will see it’s simple user interface. From there simply click on the slider button next to Status to turn it from OFF to ON
+
+13.Make your BIOS More Secure
+This tip may not be directly Linux related but it is considered as a general security risk for most Linux distributions. After installing Linux on your computer, it is a good idea to disable any possibility of your computer to boot via USB, CD/DVD or other external drives. This means that nobody can overwrite your Linux and hence damage it or even try to access your drive by booting a Live OS. And this is just the tip of the iceberg of security threats when external boot is enabled. This is why, you should access BIOS on your system start up and go to the Boot tab from which disable the booting option from external drives:
+Image: https://sensorstechforum.com/wp-content/uploads/2017/07/bios-boot-tab-sensorstechforum.jpg
+
+In addition to these measures, add a BIOS password, which will stop someone with a physical access to your computer to enter the BIOS
+
+
+14. Use Firejail Sandboxing When You Try New Applications
+
+In general, Linux operating systems are designed in order to be secure by default. But this does not mean that your online browsing is not exposed against any sniffing or phishing attacks – the main reason why you need to secure yourself against new browser extensions or apps that may be unwanted on your Linux machine. Firejail is one security app that is very simple to set up and works on the latest Linux distros. Here is how to set it up on 16.04 LTS Ubuntu:
+ sudo apt-get update
+sudo apt-get install firejail
+ls /etc/firejail
+
+Now you have successfully entered a page where you should see the profiles of all the programs installed on your computer. They should look somewhat like the following:
+skype.profile
+dropbox.profile
+icedove.profile
+Tor.profile
+
+If we would like to secure Tor web browser, for example, we can use the “firejail” command in the following syntax:
+
+ firejail firefox
+ 
+ 15. Encrypt your Drive (Full Disk Encryption) -like with Bitlocker??
