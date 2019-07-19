@@ -1278,6 +1278,10 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
  http://smackerelofopinion.blogspot.com/2014/06/stress-ng-updated-system-stress-test.html   <br>
   watchdog: https://mmonit.com/monit/   <br>
   
+ The tmpfs facility allows the creation of filesystems whose contents reside in virtual memory.  Since the files on such filesystems
+ typically reside in RAM, file access is extremely fast. http://man7.org/linux/man-pages/man5/tmpfs.5.html
+ 
+  
 #### how to create timers:
 
  timer_create - create a POSIX per-process timer  http://man7.org/linux/man-pages/man2/timer_create.2.html
