@@ -717,9 +717,11 @@ A =
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/area_triangle_02.svg?sanitize=true" alt="area of a triangle defined by 3 vertices">
 <br>
 
+or also by:
 
-
-
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/area_triangle_03.svg?sanitize=true" alt="area of a triangle defined by 3 vertices 2">
+<br>
 
 CURVATURE FUNCTION
 
