@@ -690,6 +690,10 @@ A = \frac{
 \end{matrix}
 }
 ```
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/three_lines_def.svg?sanitize=true" alt="definition of 3 lines">
+<br>
+
 
 <br>
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/area_triangle_01.svg?sanitize=true" alt="area of a triangle defined by 3 lines">
