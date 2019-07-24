@@ -2745,3 +2745,13 @@ Concetps in FMEA:
 ARTICLES:
 http://www.robertfeldt.net/publications/shahrokni_2013_sysrev_robustness.pdf
 https://uwaterloo.ca/embedded-software-group/people-profiles/sebastian-fischmeister
+
+
+
+# SECURITY
+
+## A Security mindset - 
+
+ A system designer must use a security mindset- this means to identify weak points in the system under design and address security at all levels of the system. Security is designed in the system, not an afterthought, the later is a bad design practice. 
+ 
+ 
