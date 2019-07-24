@@ -699,6 +699,28 @@ A = \frac{
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/area_triangle_01.svg?sanitize=true" alt="area of a triangle defined by 3 lines">
 <br>
 
+
+
+For a triagle defined by the vertices P1, P2 and P3, its area is defined by:
+
+```latex
+A = 
+\frac{1}{2}
+ \begin{vmatrix}
+     x_1 &  y_1 & 1
+ \\  x_2 &  y_2 & 1
+ \\  x_3 &  y_3 & 1
+ \end{vmatrix}
+```
+
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/area_triangle_02.svg?sanitize=true" alt="area of a triangle defined by 3 vertices">
+<br>
+
+
+
+
+
 CURVATURE FUNCTION
 
 ```latex
