@@ -2755,3 +2755,6 @@ https://uwaterloo.ca/embedded-software-group/people-profiles/sebastian-fischmeis
  A system designer must use a security mindset- this means to identify weak points in the system under design and address security at all levels of the system. Security is designed in the system, not an afterthought, the later is a bad design practice. 
  
  
+kerckhoff's principle: a crypto system should be secure even if everything about the system is known, except the key.
+
+Security through obscurity is not security... <- security through obscurity is not really a good practice, although it has been used, for example with the use of native american languajes in WWII. 
