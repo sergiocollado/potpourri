@@ -655,11 +655,45 @@ t = \frac{\begin{vmatrix} x_3 - x_1
 \end{matrix}
 ```
 
-
 <br>
 <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/lines_segments_intercepts.svg?sanitize=true" alt="existence of two segment's bisector">
 <br>
 
+
+
+AREA OF A TRIAGLE
+
+The area of a triangle defined by three lines is:
+
+```latex
+A = \frac{ 
+\begin{matrix} 
+ \begin{vmatrix}
+     A_1 &  B_1 & C_1
+ \\  A_2 &  B_2 & C_2
+ \\  A_3 &  B_3 & C_3
+\end{vmatrix}^2
+\\ \: 
+\end{matrix}
+ }
+{\begin{matrix} 
+\: \\ 
+2 
+\begin{vmatrix} A_1 & B_1 \\  A_2 & B_2
+\end{vmatrix} 
+
+\begin{vmatrix} A_2 & B_2 \\  A_3 & B_3
+\end{vmatrix} 
+
+\begin{vmatrix} A_3 & B_3 \\ A_1 & B_1 
+\end{vmatrix} 
+\end{matrix}
+}
+```
+
+<br>
+<img  src="https://github.com/sergiocollado/potpourri/blob/master/image/area_triangle_01.svg?sanitize=true" alt="area of a triangle defined by 3 lines">
+<br>
 
 CURVATURE FUNCTION
 
