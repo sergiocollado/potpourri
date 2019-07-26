@@ -2759,6 +2759,25 @@ kerckhoff's principle: a crypto system should be secure even if everything about
 
 Security through obscurity is not security... <- security through obscurity is not really a good practice, although it has been used, for example with the use of native american languajes in WWII. 
 
-## Secure software updates
+## Secure software updates 
 
 the device must connect to a secure server, and have a pair of secrets keys. the private key is kept in the server
+
+So a possible way to implement this is:
+
+1- Get a new sw image from a secure source (download the image)
+2- Calculate hash, crc, mac and signature values
+3 -check the hash, crc, mac and signature values
+ - if ok update software
+ - if nok ok reject softeware an log security event
+ 
+Other mechanims desired for a resiliat and robust system are:
+
+- atomic updates: the update only will run after checking all the package has been recevided and checked
+- automatic rollback: in case of failure with the latest firmware/swupdate, the device will revert to the previous version of the sw.+
+- no disruption: a device or system will keep on running or executing its functions during the image or new sw transfer
+- version management: the device will recond the os versions and application versions. 
+- suppor for sleeping devices: devices sleeping or in low power mode should also be capable of sw updating.
+- sender verification: check and secure the source of the sw provider
+- encrypt communications: use of secure comunications
+- planning the updates: the updates can take place under a command, or the devices can request it at given or suitable times.
