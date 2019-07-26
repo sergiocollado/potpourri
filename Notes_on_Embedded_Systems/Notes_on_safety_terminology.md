@@ -2773,11 +2773,20 @@ So a possible way to implement this is:
  
 Other mechanims desired for a resiliat and robust system are:
 
+- update record: keep a log of update sw events, this will provide a useful information source in case to analyze tampering attacks or attemps, also identify sw versions, sources, times...
+- version management: the device will record the os versions and application versions. 
 - atomic updates: the update only will run after checking all the package has been recevided and checked
 - automatic rollback: in case of failure with the latest firmware/swupdate, the device will revert to the previous version of the sw.+
 - no disruption: a device or system will keep on running or executing its functions during the image or new sw transfer
-- version management: the device will recond the os versions and application versions. 
 - suppor for sleeping devices: devices sleeping or in low power mode should also be capable of sw updating.
 - sender verification: check and secure the source of the sw provider
 - encrypt communications: use of secure comunications
 - planning the updates: the updates can take place under a command, or the devices can request it at given or suitable times.
+
+
+implementation tips:
+
+ This strategy can be implemented in many ways, but there are ways to do it in a simple maner. 
+ 
+ for example the sw image gather and with secure comunciations can be achieved easly using a secure ftp service. 
+ the automatinc rollback, can be done using two memory partitions, one keeps the previous sw image and the second the lates uploaded sw image, in case of catastrophic behavior of the image, the system can jump to use the other partition in the memory, so then geting the previous sw.
