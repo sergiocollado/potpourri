@@ -2151,7 +2151,7 @@ ref: https://en.wikipedia.org/wiki/Genesis_(spacecraft)
 ... almost lost it... because a priority inversion pitfall... :S
 
 
-### MARS CLIMATE... 
+### MARS CLIMATE OBSERVER. - fail in system verification: imperial vs metric units used. 
 
 ### Mariner1
 
