@@ -632,6 +632,8 @@ If there is significant confidence to overcome all those challenges, the the fol
  
  - **Testing**: Evaluation of the performance of the systems, so it can be determined if it reaches the expected goals. Validation, verification and test, riks and acceptance reports. 
   
+  
+NOTE: a word of advice, all the previous will need a quite significant effort of documentation. Please use pictures and diagrams as much as possible, as those usually help into clarifing concepts.
 
 # PROGRAMMING TECHNIQUES:
 
