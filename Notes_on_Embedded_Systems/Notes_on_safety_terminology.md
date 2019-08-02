@@ -2769,9 +2769,14 @@ So a possible way to implement this is:
 
 1- Get a new sw image from a secure source (download the image)
 2- Calculate hash, crc, mac and signature values
+3- encript it all with the server key
+4- send to the device the binary package
+5- the device unencrypts the binary package
 3 -check the hash, crc, mac and signature values
- - if ok update software
+ - if ok update software and log updat event
  - if nok ok reject softeware an log security event
+ 
+ so the update server and the system device, must share a secret key between them. 
  
 Other mechanims desired for a resiliat and robust system are:
 
