@@ -2817,3 +2817,7 @@ implementation tips:
  
  for example the sw image gather and with secure comunciations can be achieved easly using a secure ftp service. 
  the automatinc rollback, can be done using two memory partitions, one keeps the previous sw image and the second the lates uploaded sw image, in case of catastrophic behavior of the image, the system can jump to use the other partition in the memory, so then geting the previous sw.
+
+### secure libraries
+
+https://github.com/intel/safestringlib
