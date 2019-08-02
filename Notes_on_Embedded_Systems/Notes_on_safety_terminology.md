@@ -794,7 +794,13 @@ in well-defined ways is essential, feasible, and economical."
 
 ## Modular Design
 
-modular design is a methodology in which we break down the system functions or components into smaller components or modules, that build up toghether the functions or structure of the overall system. This allows us to better manage complexity
+Modular design is a methodology in which we break down the system functions or components into smaller components or modules, that build up toghether the functions or structure of the overall system. This allows us to better manage complexity
+
+It is important to use a modular desing, because:
+
+ - It makes easier to test and verify various parts of the system without the need to execute the whole system at once.
+ - It increases maintainability and allows to easily add or remove software modules without modifing the whole system.
+ - Improves greatly the loose decoupling of the diferent software parts. 
 
 
 tools for modular design:
