@@ -2168,6 +2168,9 @@ The National Transportation Safety Board, issued a report pinpointed the causes 
  - Test that failed to consider the worst-case event of batteries failures
  - Failure to recognice the potencial hazard, dues failing to request testing methods for that event.
  
+### Swissair 111 MD-11
+
+ On 2 September 1998, the Swissair 111 MD-11 crashed into the Atlantic ocean outside of Halifax in Canada. This was the first aircraft with an entertainment system and when all passengers started to use it as the same time, it overheated. Experts believe that the crash was caused by faulty wiring in the cockpit after the entertainment system started to overheat
  
 ref: https://en.wikipedia.org/wiki/Boeing_787_Dreamliner_battery_problems
 
