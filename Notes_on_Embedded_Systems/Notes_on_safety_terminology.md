@@ -2821,3 +2821,8 @@ implementation tips:
 ### secure libraries
 
 https://github.com/intel/safestringlib
+
+secure file systems:
+
+ - https://en.wikipedia.org/wiki/Pretty_Good_Privacy
+ - https://ecryptfs.org/about.html
