@@ -801,6 +801,7 @@ It is important to use a modular desing, because:
  - It makes easier to test and verify various parts of the system without the need to execute the whole system at once.
  - It increases maintainability and allows to easily add or remove software modules without modifing the whole system.
  - Improves greatly the loose decoupling of the diferent software parts. 
+ - It makes the code easier to read and to understand.
 
 
 tools for modular design:
