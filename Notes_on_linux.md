@@ -1613,8 +1613,8 @@ https://lwn.net/Articles/734694/ <br>
 
 <hr>
 <br>
-# UTILITIES.
 
+# UTILITIES.
 
 https://www.gnu.org/software/gnu-c-manual/    <br>
 https://www.gnu.org/software/indent/    <br>
@@ -1681,6 +1681,35 @@ HLFS - Hardened Linux From Scratch.
 CLFS - Cross Linux From Scratch.
 BLFS - Beyond Linux From Scratch.
 LFS - Linux From Scratch. [http://www.linuxfromscratch.org/]
+
+## USER SPACE AND KERNEL SPACE
+
+### user space
+
+user space is the part of the memory where all the user mode application run, and that memory can be swapped at any time, when necessary.
+
+user space processes then run in its own virtual memory addresses space, and unless specifically requested cannot address the memory of other processes. (tring to read a memory out of their space is the famous segmentation faolt error).
+
+### kernel space
+
+kernel space is restricted and exclusively reserverd for running the kernel, kernel extension, modules and drivers.
+
+linux kernel space gives full access to the hardware, 
+
+
+user application 
+ V
+gnu glibc             ..........user space /\
+ V
+system call interface ............kernel space V
+ V 
+kernel
+ V 
+architecture dependant kernel code
+ V 
+hardware platform
+
+
 
 
 ## ABOUT OPEN SOURCE SOFTWARE LICENSES.
