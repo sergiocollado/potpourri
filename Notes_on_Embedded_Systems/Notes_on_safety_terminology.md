@@ -59,7 +59,6 @@ ISO 31000 - standards for risk management:
  - ISO 31010 - Risk management, and risk assesment techniques. 
  - ISO Guide 73 - Vocabulary
  
- 
 **RISK ASSESMENT**: Is the analisys to identify and determine the possible situations or conditions that may end in an accident, thus there is a thread(hazard). If the risk assesment is quantitative, it needs two factors: the Risk(R) = magnitude of the potencial lost, the severity (s) and the probability (p) that lost happens.
 
 R(accident_i) = P(accident_i) · Severity(accident_i)
@@ -156,6 +155,8 @@ Other related concepts are also:
 **Confidentiality** the data in a system must be confidential.
 
 **Accountability**: Accountability is the idea that users of a system should be responsible for the actions they perform. This means that user interactions with sensitive systems should be logged and associated with a specific user. These logs should be difficult to forge, and have strong integrity protection.
+
+**Real-time system**: a system is said to be real time, when it can guarantee that the tasks to be done, are done by sure in the given time, or when the tasks are scheduled to be done. 
 
 
 Referencess:
@@ -755,7 +756,7 @@ In communications must be checked:
 
 - BER: Bit error rate
 
-- **Latency**: time between a need is required, and the time it is fullfilled. This accounts for both hardware delays and software delays. A real-time system is one that can guarantee the wort-case latency.
+- **Latency**: It's the time difference, between the time in which a taks is requested to start, and the time in which the task really starts. Also in other words, the time between a need is required, and the time it is fullfilled. This accounts for both hardware delays and software delays. A real-time system is one that can guarantee the wort-case latency, and this latency must be well-bounded and documented.
 
 - **Throughput** or **bandwith** the ammount of data that can be processed by the system. This concept can be reported as an overall figure or as a short-term value (burst messages).
 
