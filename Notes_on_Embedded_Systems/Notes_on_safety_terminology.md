@@ -156,7 +156,7 @@ Other related concepts are also:
 
 **Accountability**: Accountability is the idea that users of a system should be responsible for the actions they perform. This means that user interactions with sensitive systems should be logged and associated with a specific user. These logs should be difficult to forge, and have strong integrity protection.
 
-**Real-time system**: a system is said to be real time, when it can guarantee that the tasks to be done, are done by sure in the given time, or when the tasks are scheduled to be done. 
+**Real-time system**: a system is said to be real time, when it can guarantee tha tasks to be done, are done at the expected time time, or when the tasks are scheduled and expected to be done. also real-time systems are expected to have a predictable behavior, and very reliable way.
 
 
 Referencess:
