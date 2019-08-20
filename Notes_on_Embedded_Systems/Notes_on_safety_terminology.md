@@ -410,7 +410,7 @@ and is best to prepare for it from the start of the systme design, in case it is
 The standards, define the rules to observe and techniques and methodologies to use and comply depending in the application, industrie, national rules and stakeholders.
 
 
-  ## BASIC FOR SAFETY:
+## BASIC FOR SAFETY:
 
 Most standards, define a general requirements safety clause that must be complied with. Products must be designed and manufactured so they function in a safetly way without causing any danger or unnaceptable risk, in: 
  - intended use
@@ -631,14 +631,16 @@ If there is significant confidence to overcome all those challenges, the the fol
  
  - **Development**: Implementation of the system, an the different modules it is made of: hardware, software, ... user interface, communication protocols, power supplies, logging system, metrics of the system. Also includes the project documentation, release notes, use instructions, manuals and learning lessons.
  
- - **Testing**: Evaluation of the performance of the systems, so it can be determined if it reaches the expected goals. Validation, verification and test, riks and acceptance reports. 
-  
+ - **Testing**: Evaluation of the performance of the systems, so it can be determined if it reaches the expected goals. Validation, verification and test, riks and acceptance reports. Take into account that for safety-critical systems life could be at the stake so for that reason the system must be proven safe before deploiment.
   
 NOTE: a word of advice, all the previous will need a quite significant effort of documentation. Please use pictures and diagrams as much as possible, as those usually help into clarifing concepts.
 
 # PROGRAMMING TECHNIQUES:
 
-TODO: Desing for testeability.... write it!
+TODO: Desing for testeability.... write it! 
+
+Again: Take into account that for safety-critical systems life could be at the stake so for that reason the system must be proven safe before deploiment. for that reason the ability to proof the system is extremely important.
+  
 
 ## Robust programming
 
@@ -764,11 +766,7 @@ In communications must be checked:
  - Blind
  - Polling or periodic polling
  - Interrupt
- - direct memory acess.
-
-
-
-
+ - direct memory acess(DMA).
 
 ACcording to Straoup Book:
 "tricky as error recovery.
@@ -1266,8 +1264,7 @@ Over time, testing 'sages' have take notice of important learned leassons, and k
 Testing, shows defects, but it cannot proof that there are not defects. Testing increases the asurance over the system, because when a bug is found and it corrected, the likehood (the chance) that remaining bugs may exist is lower. But even in the case, that no defects can be found any further, that is no proof that there aren't any.
 
 **2- Exhaustive testing is impossible** <br>
-Testing of all the possible combinations of a system is impossible. So to determine how much testing should be dont, an 
-estimation of the risks, risk analysys and priorities, must be done. The testing will stop, when there is certainty that the systems complies.
+Testing of all the possible combinations of a system is impossible, and it would require and infinite amount of time . So to determine how much testing should be dont, an estimation of the risks, risk analisys and priorities, must be done. The testing will stop, when there is certainty that the systems complies.
 
 **3- Early testing** <br>
 Testing activities should be started as soon as possible in the system development live. (TDD - explain this!!!)
