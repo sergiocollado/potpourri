@@ -1696,6 +1696,8 @@ kernel space is restricted and exclusively reserverd for running the kernel, ker
 
 linux kernel space gives full access to the hardware, 
 
+http://www.ibiblio.org/pub/Linux/docs/faqs/Threads-FAQ/html/Types.html
+
 
 user application 
  V
