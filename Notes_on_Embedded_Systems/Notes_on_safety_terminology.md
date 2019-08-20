@@ -345,6 +345,14 @@ https://www.mtl-inst.com/images/uploads/datasheets/App_Notes/AN9025.pdf
 <br>
 <br>
 
+**MURPHY'S LAW**: _**"If it can happen... it will happen..."**_
+
+"If it can happen... it will happen... so you've got throught and ask yourself, if this part fails, does this system still work, does it still do the function it is supposed to do? What are the points of failure? 
+
+Murphy's law established the drive to put redundancy in. and that's the heart of realiability engineering.
+
+
+
 ## CONCEPTS CLARIFICATIONS:
 
 **Safety** is build-in in the system as first step, when it is designed... a system that aims to achieve safety through building outer layers, is not a good design.
