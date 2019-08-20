@@ -1,7 +1,6 @@
 # NOTES ON EMBEDDED SYSTEMS SAFETY
 ## CODE WARRIORS, HW TANKS, TEST MONKS, AND MANAGER ONIs
 ### Unselected readings
-#### Read at your own risk
 
 <hr>
 <hr>
@@ -349,8 +348,9 @@ https://www.mtl-inst.com/images/uploads/datasheets/App_Notes/AN9025.pdf
 
 "If it can happen... it will happen... so you've got through and ask yourself, if this part fails, does this system still work, does it still do the function it is supposed to do? What are the points of failure? 
 
-Murphy's law established the drive to put redundancy in. and that's the heart of realiability engineering.
+Murphy's law established the drive to put redundancy in, and that's the heart of realiability engineering.
 
+Later on the law was rephased as: "Whatever can go wrong, will go wrong", but take into account that the Murphyp's law actually is a call for excellence. 
 
 
 ## CONCEPTS CLARIFICATIONS:
