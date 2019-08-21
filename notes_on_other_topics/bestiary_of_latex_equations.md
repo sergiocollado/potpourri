@@ -63,6 +63,27 @@ FIT = \lambda_{FIT}   = \lambda_{hour}  \cdot 10^9
 
 <br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/FIT.svg?sanitize=true" alt="Failures in time"> <br>
 
+Statistical Failure rate
+
+we can consider r as a probability with a given confiance interval.
+
+```latex
+  r \sim  \frac{\chi (\alpha ,\nu )}{2}
+\\
+\\
+\textup{where: }
+\\ 
+\\ 
+\begin{matrix}
+ \mathrm{ \chi }   &\textup{ (Chi-squared/2)  is the probability estimation for the number of failures or rejects.  } \\
+ \mathrm{ D}   &\textup{ (alpha) is the confidence level. For reliability calculation is used 0.6 or 60\%} \\
+ \mathrm{\nu }   &\textup{ (nu) are degrees of freedom (DF), determines the shape of the X2 curve reliability calculations.  }
+\\ & \textup{ use  v = 2r + 2  where r is the number of failures or rejects} 
+\end{matrix}
+```
+
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/failure_rate_eq2.svg?sanitize=true" alt="statistic failure rate"> <br>
+
 
 Atmospheric equation:
 
