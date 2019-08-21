@@ -8,6 +8,27 @@
 <!--- other nice intro text. https://www.latex-tutorial.com/tutorials/ -->
 
 
+
+
+Equivalent Device Hours:
+
+```latex
+EDH  = D \cdot H \cdot A_f
+\\
+\\
+\textup{where: }
+\\ 
+\\ 
+\begin{matrix}
+ \mathbf{EDH}   & \textup{ Equivalent Device Hours } \\
+ \mathbf{D}   & \textup{ Number of devices tested } \\
+ \mathbf{H}   & \textup{ Test Hours per Device } \\
+ \mathbf{A_f} & \textup{ Acceleration Factor derived from the Arrhenius equation }
+\end{matrix}
+```
+
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/EDH_eq.svg?sanitize=true" alt="EDH equation"> <br>
+
 Arrhenius equation:
 
 ```latex
