@@ -8,6 +8,25 @@
 <!--- other nice intro text. https://www.latex-tutorial.com/tutorials/ -->
 
 
+Arrhenius equation:
+
+```latex
+A_f = e^{\frac{E_a}{k} ( \frac{1}{T_{use}} -  \frac{1}{T_{test}}) }
+\\
+\\
+\textup{where: }
+\\ 
+\\ \: \:  \mathbf{E_a} \: \:  \textup{ Activation energy (eV) of the failure mode }
+\\ \: \:  \mathbf{k} \: \:  \textup{ Boltzmann's Constant) = 8.617 x 10-5 eV/°K }
+\\ \: \:  \mathbf{T_{use}} \: \:  \textup{ Use Temperature (standardized at 55°C or 328°K) }
+\\ \: \:  \mathbf{T_{use}} \: \:  \textup{ Test Temperature (HTOL- High Temperature Operating Life temperature in °K) } 
+\\ \: \:  \mathbf{ºK} \: \:  \textup{ (degrees Kelvin) = 273 + °C } 
+\\ \: \:  \mathbf{eV} \: \:  \textup{ electron volts } 
+```
+
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/atmospheric_eq.svg?sanitize=true" alt="atmospheric equation"> <br>
+
+
 Atmospheric equation:
 
 the lagrange derivative of the velocity of the wind is:
@@ -18,7 +37,7 @@ the lagrange derivative of the velocity of the wind is:
 + \underset{gravity}{\underbrace{\rho g} }
 + \underset{friction}{\underbrace{\rho F_r}}
 ```
-<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/atmospheric_eq.svg?sanitize=true" alt="atmospheric equation"> <br>
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/Arrhenius_eq.svg?sanitize=true" alt="Arrhenius equation"> <br>
 
 where:
 
