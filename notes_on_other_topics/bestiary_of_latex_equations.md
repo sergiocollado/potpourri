@@ -37,6 +37,7 @@ EDH  = D \cdot H \cdot A_f
 
 <br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/EDH_eq.svg?sanitize=true" alt="EDH equation"> <br>
 
+
 Arrhenius equation:
 
 ```latex
@@ -84,6 +85,13 @@ r \sim  \frac{\chi^2 (\alpha ,\nu )}{2}
 
 <br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/failure_rate_eq2.svg?sanitize=true" alt="statistic failure rate"> <br>
 
+so the failure rate: 
+
+```latex
+\lambda_{hour}  = \frac{\chi^2 (\alpha ,\nu )}{2 \cdot D \cdot H \cdot A_f} = \frac{\chi^2 (\alpha ,\nu )}{2 \cdot EDH}
+```
+
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/failure_rate_eq3.svg?sanitize=true" alt="statistic failure rate"> <br>
 
 Atmospheric equation:
 
