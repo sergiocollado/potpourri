@@ -55,6 +55,14 @@ A_f = e^{\frac{E_a}{k} ( \frac{1}{T_{use}} -  \frac{1}{T_{test}}) }
 
 <br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/Arrhenius_eq.svg?sanitize=true" alt="Arrhenius equation"> <br>
 
+Failures in time:
+
+```latex
+FIT = \lambda_{FIT}   = \lambda_{hour}  \cdot 10^9
+```
+
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/FIT.svg?sanitize=true" alt="Failures in time"> <br>
+
 
 Atmospheric equation:
 
