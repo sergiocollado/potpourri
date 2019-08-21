@@ -24,7 +24,7 @@ A_f = e^{\frac{E_a}{k} ( \frac{1}{T_{use}} -  \frac{1}{T_{test}}) }
 \\ \: \:  \mathbf{eV} \: \:  \textup{ electron volts } 
 ```
 
-<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/atmospheric_eq.svg?sanitize=true" alt="atmospheric equation"> <br>
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/Arrhenius_eq.svg?sanitize=true" alt="Arrhenius equation"> <br>
 
 
 Atmospheric equation:
@@ -37,7 +37,9 @@ the lagrange derivative of the velocity of the wind is:
 + \underset{gravity}{\underbrace{\rho g} }
 + \underset{friction}{\underbrace{\rho F_r}}
 ```
-<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/Arrhenius_eq.svg?sanitize=true" alt="Arrhenius equation"> <br>
+
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/atmospheric_eq.svg?sanitize=true" alt="atmospheric equation"> <br>
+
 
 where:
 
