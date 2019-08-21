@@ -68,7 +68,7 @@ Statistical Failure rate
 we can consider r as a probability with a given confiance interval.
 
 ```latex
-  r \sim  \frac{\chi (\alpha ,\nu )}{2}
+r \sim  \frac{\chi^2 (\alpha ,\nu )}{2}
 \\
 \\
 \textup{where: }
