@@ -7,8 +7,16 @@
 <!--  somewhat nice intro text. http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf -->
 <!--- other nice intro text. https://www.latex-tutorial.com/tutorials/ -->
 
+Failure rate
 
+```latex
+\lambda_{hour}   = \frac{r}{D \cdot H \cdot A_f} = \frac{r}{EDH}
+\\
+\\
+\textup{where r is the number of failures or rejects }
+```
 
+<br> <img  src="https://github.com/sergiocollado/potpourri/blob/master/image/failure_rate_eq.svg?sanitize=true" alt="EDH equation"> <br>
 
 Equivalent Device Hours:
 
