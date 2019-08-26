@@ -1472,6 +1472,9 @@ https://stackoverflow.com/questions/47465878/install-qt-4-ubuntu-17-04
 
 # HOW TO INSTALL GIT
 
+ref: https://git-scm.com/docs/gittutorial
+
+
 to know if it is already installed
 
 ```bash
