@@ -1487,6 +1487,21 @@ $ sudo apt-get install git-core git-gui gitweb cgit gitk git-daemon-run \
 $ sudo yum list git*
 $ sudo yum install git* cgit
 ```
+## configuring GIT
+
+```bash
+git config --global user.name "_myusername"
+git config --global user.email _myuseremail 
+git config --global core.editor _emacs
+git config --global merge.tool  kdiff3
+```
+
+to check the settings.
+```bash
+git config --list 
+```
+
+
 
 ## git commands
 
