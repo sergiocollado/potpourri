@@ -1924,3 +1924,12 @@ sudo firewall-cmd --get-active-zones
 
 
 ?? The main web server should be deployed on a dedicated host in the demilitarized zone (DMZ). It’s ports must be firewalled: only 80 (http) and 443 (https) ports must be opened for external connections. 
+
+
+## how to generate a ssh_key
+
+ref: https://www.ssh.com/ssh/keygen/
+
+run the command: ssh-keygen
+
+the keys are stored in the file '.ssh/' -- id_rsa.pub is your public key and can be shared, while id_rsa is your private key and should be kept secret.
