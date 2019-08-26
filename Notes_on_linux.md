@@ -1933,3 +1933,5 @@ ref: https://www.ssh.com/ssh/keygen/
 run the command: ssh-keygen
 
 the keys are stored in the file '.ssh/' -- id_rsa.pub is your public key and can be shared, while id_rsa is your private key and should be kept secret.
+
+the command `ssh-add` will keep the ssh keys if these are stored in the standard places. And with the command `ssh-agent` the passphase will be used automatically.
