@@ -1504,6 +1504,13 @@ $ sudo apt-get install git-core git-gui gitweb cgit gitk git-daemon-run \
 $ sudo yum list git*
 $ sudo yum install git* cgit
 ```
+
+
+to verify the git version in the system
+```bash
+git --version
+```
+
 ## configuring GIT
 
 ```bash
