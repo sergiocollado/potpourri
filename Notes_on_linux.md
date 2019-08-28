@@ -1272,8 +1272,18 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
  - ionice - get/set program io scheduling class and priority https://linux.die.net/man/1/ionice
  - heartbeat - Heartbeat subsystem for High-Availability Linux https://linux.die.net/man/8/heartbeat
  - uptime - Tell how long the system has been running.
- - gcov -  is a test coverage program. Use it in concert with GCC to analyze your programs to help create more efficient, faster running code and to discover untested parts of your program. https://linux.die.net/man/1/gcov
+ - gcov -  is a test coverage program. Use it in concert with GCC to analyze your programs to help create more efficient, faster running code and to discover untested parts of your program. https://linux.die.net/man/1/gcov   https://linux.die.net/man/1/arm-linux-gnu-gcov
  - gprof - display call graph profile data. "Gprof" calculates the amount of time spent in each routine. https://linux.die.net/man/1/gprof   and   https://www.maketecheasier.com/profile-c-program-linux-using-gprof/  
+ - strace - trace system calls and signals - strace is a useful diagnostic, instructional, and debugging tool.- https://linux.die.net/man/1/strace
+ - ltrace - A library call tracer - It intercepts and records the dynamic library calls which are called by the executed process and the signals which are received by that process. It can also intercept and print the system calls executed by the program. - https://linux.die.net/man/1/ltrace
+ - ptrace - process trace - #include <sys/ptrace.h> - The ptrace() system call provides a means by which one process (the "tracer") may observe and control the execution of another process (the "tracee"), and examine and change the tracee's memory and registers. It is primarily used to implement breakpoint debugging and system call tracing. - https://linux.die.net/man/2/ptrace
+ - nm - list symbols from object files  - https://linux.die.net/man/1/nm
+ - dstat - versatile tool for generating system resource statistics - https://linux.die.net/man/1/dstat
+ - gstack - print a stack trace of a running process -- https://linux.die.net/man/1/pstack 
+ - poll, ppoll - wait for some event on a file descriptor - #include <poll.h>
+ - select _ select() and pselect() allow a program to monitor multiple file descriptors, waiting until one or more of the file descriptors become "ready" for some class of I/O operation (e.g., input possible). A file descriptor is considered ready if it is possible to perform the corresponding I/O operation (e.g., read(2)) without blocking.
+ - valgrind - a suite of tools for debugging and profiling programs - http://www.valgrind.org/docs/manual/index.html.
+ 
  
  http://www.admin-magazine.com/Articles/Law-of-Averages-Load-Averaging <br>
  https://people.seas.harvard.edu/~apw/stress/   <br>
