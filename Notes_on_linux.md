@@ -1272,6 +1272,8 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
  - ionice - get/set program io scheduling class and priority https://linux.die.net/man/1/ionice
  - heartbeat - Heartbeat subsystem for High-Availability Linux https://linux.die.net/man/8/heartbeat
  - uptime - Tell how long the system has been running.
+ - gcov -  is a test coverage program. Use it in concert with GCC to analyze your programs to help create more efficient, faster running code and to discover untested parts of your program. https://linux.die.net/man/1/gcov
+ - gprof - display call graph profile data. "Gprof" calculates the amount of time spent in each routine. https://linux.die.net/man/1/gprof
  
  http://www.admin-magazine.com/Articles/Law-of-Averages-Load-Averaging <br>
  https://people.seas.harvard.edu/~apw/stress/   <br>
@@ -1281,6 +1283,8 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
  The tmpfs facility allows the creation of filesystems whose contents reside in virtual memory.  Since the files on such filesystems
  typically reside in RAM, file access is extremely fast. http://man7.org/linux/man-pages/man5/tmpfs.5.html
  
+  
+  
   
 #### how to create timers:
 
