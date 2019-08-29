@@ -1283,7 +1283,9 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
  - poll, ppoll - wait for some event on a file descriptor - #include <poll.h>
  - select _ select() and pselect() allow a program to monitor multiple file descriptors, waiting until one or more of the file descriptors become "ready" for some class of I/O operation (e.g., input possible). A file descriptor is considered ready if it is possible to perform the corresponding I/O operation (e.g., read(2)) without blocking.
  - valgrind - a suite of tools for debugging and profiling programs - http://www.valgrind.org/docs/manual/index.html.
- 
+ - mmap, munmap - map or unmap files or devices into memory-  conforms with POSIX.1-2001. is defined in  <unistd.h> 
+ - sysconf - get configuration information at run time-  #include <unistd.h> - POSIX.1 compatible - https://linux.die.net/man/3/sysconf
+ - clock_getres, clock_gettime, clock_settime - clock and time functions - #include <time.h> - POSIX.1-2001.
  
  http://www.admin-magazine.com/Articles/Law-of-Averages-Load-Averaging <br>
  https://people.seas.harvard.edu/~apw/stress/   <br>
