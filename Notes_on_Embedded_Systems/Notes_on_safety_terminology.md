@@ -110,7 +110,7 @@ Availability is often quantified by the merit figure of: 1-MTTR / MTTF
 
 where:
 
-**MTTR** stands for Mean Time To Repair the system
+**MTTR** stands for Mean Time To Repair the system, in some contexts it can be also understood as Mean Time to Recovery (in the IT/Cloud world) The mean time to recovery, is oriented to indicate the mean time to reboot this make sense in the case that it is possible to use half an hour in reboot a server, but probably that is too much time for example in pacemaker. 
 
 and 
 
@@ -149,11 +149,11 @@ Usually, these systems are classified into the following groups:
 
 Other related concepts are also:
 
-**Integrity**: the property that represents how reliable and accurate data. To prevent fraud and other more harmful attacks measures must be taken to ensure that data is accurate and free from manipulation.
+**Integrity**: the property that represents how reliable and accurate data. To prevent fraud and other more harmful attacks measures must be taken to ensure that data is accurate and free from manipulation. (use CRC and ECC codes and alike to ensure this):
 
-**Confidentiality** the data in a system must be confidential.
+**Confidentiality** the data in a system must be confidential. (use encription to ensure this)
 
-**Accountability**: Accountability is the idea that users of a system should be responsible for the actions they perform. This means that user interactions with sensitive systems should be logged and associated with a specific user. These logs should be difficult to forge, and have strong integrity protection.
+**Accountability**: Accountability is the idea that users of a system should be responsible for the actions they perform. This means that user interactions with sensitive systems should be logged and associated with a specific user. These logs should be difficult to forge, and have strong integrity protection. (use identification to ensure this)
 
 **Real-time system**: a system is said to be real time, when it can guarantee tha tasks to be done, are done at the expected time time, or when the tasks are scheduled and expected to be done. also real-time systems are expected to have a predictable behavior, and very reliable way.
 
@@ -340,9 +340,6 @@ https://users.ece.cmu.edu/~koopman/des_s99/sw_fault_tolerance/ </br>
 
 https://www.mtl-inst.com/images/uploads/datasheets/App_Notes/AN9025.pdf
 
-**ROBUST SYSTEMS** Robust systems are those, in which the system has the ability to cope with errors during execution and cope with erroneous inputs and stressfull enviroments. Usually you test those systems with the technique of *Fault Injection*, other techniques are for example *Fuzzy testing* that involves invalid or unexpected inputs. 
-<br>
-<br>
 
 **MURPHY'S LAW**: _**"If it can happen... it will happen..."**_
 
@@ -352,6 +349,17 @@ Murphy's law established the drive to put redundancy in, and that's the heart of
 
 Later on the law was rephased as: "Whatever can go wrong, will go wrong", but take into account that the Murphyp's law actually is a call for excellence. 
 
+
+
+**ROBUST SYSTEMS** Robust systems are those, in which the system has the ability to cope with errors during execution and cope with erroneous inputs and stressfull enviroments. Usually you test those systems with the technique of *Fault Injection*, other techniques are for example *Fuzzy testing* that involves invalid or unexpected inputs. 
+<br>
+<br>
+
+The __**robustness principle**__, The principle is also known as Postel's law (after Jon Postel, who wrote in an early specification of TCP): 
+
+__Be conservative in what you do, be liberal in what you accept from others (often reworded as "Be conservative in what you send, be liberal in what you accept"__
+
+https://www.usenix.org/system/files/conference/osdi14/osdi14-paper-yuan.pdf
 
 ## CONCEPTS CLARIFICATIONS:
 
@@ -555,6 +563,7 @@ NTSB - National Trasnportation Safety Board: https://www.ntsb.gov/safety/safety-
 EASA - European Aviation Safety Agency: https://www.easa.europa.eu/easa-and-you/safety-management
 JTSB - Japan Transportation Safety Board: http://www.mlit.go.jp/jtsb/english.html
 FAA - Federal Aviation Administration: https://www.faa.gov
+AUTOSAR
 
 Also safety standards as UL, ANSI, CSA and IEC, NRTL, ANSI, UL, IEEE standards. TODO: complete....
 
@@ -652,8 +661,7 @@ Again: Take into account that for safety-critical systems life could be at the s
 
 ## Robust programming
 
-Robust programming is a style of programming that focus on handling unexpected terminations and unexpected actions. The code should handle those events gracefully and log or display accurate and unambigous **error mensages**, this will allow to detect and correct
-much easily the pernicious event.
+Robust programming is a style of programming that focus on handling unexpected terminations and unexpected actions, and error handling. The code should handle those events gracefully and log or display accurate and unambigous **error mensages**, this will allow to detect and correct much easily the pernicious event. In case of need the system should fallback, degrade to basic fuctions or enter into a safety state. 
 
 ### Principles:
 
@@ -796,6 +804,32 @@ a tendency to check for the same errors, such as invalid arguments, over and ove
 to overall system reliability.
 However, separating the program into distinct subsystems that either complete successfully or fail
 in well-defined ways is essential, feasible, and economical."
+
+
+## input validation
+
+always test the input of the system or function unless the data is guaranteed to be well defined and without error. (data type, data size, data boundaries, white and black lists... ) 
+
+## timeouts
+
+as a protection measure, retry, relaunch or fallback, in case the intended function cannot be performed or fails.
+
+## circuit breakers
+
+in case several continous failures in an inteded function, abort and consider rescue action like reboot drivers, or reboot the system.
+
+## supervisory patterns
+
+implement strategies like heartbeats and so, that acknoledge that the system is still going on.
+
+## fallbacks
+
+Prepare a list of possible fall back option in case that the expected function cannot be performed.
+
+## test the system with fault injection techniques.
+
+## excell in error handling.
+
 
 
 
@@ -2190,6 +2224,8 @@ ref: https://en.wikipedia.org/wiki/Boeing_787_Dreamliner_battery_problems
 ref: http://www.mlit.go.jp/jtsb/eng-air_report/JA804A.pdf
 
 Examples of safety-critical systems[edit]
+seat belt
+aeroplane pilot ejection ssytem
 critical infrastructures monitoring systems[edit]
 Circuit breaker
 Emergency services dispatch systems (e-call)
@@ -2215,7 +2251,7 @@ Medical imaging devices (X ray, computerized tomography- CT or CAT, different ma
 Nuclear engineering[10][edit]
 Nuclear reactor control systems
 Recreation[edit]
-Amusement rides
+Amusement rides (roll coasters and alike)
 Climbing equipment
 Parachutes
 SCUBA Equipment
@@ -2226,7 +2262,7 @@ Platform detection to control train doors[12]
 Automatic train stop[12]
 Automotive[13][edit]
 Airbag systems
-Braking systems
+Braking systems 
 Seat belts
 Power Steering systems
 Advanced driver-assistance systems (ADAS).
@@ -2361,7 +2397,7 @@ ACRONYMS:
 
 UAT - User Acceptance Test
 
-COTS -Comertial Of The Shelcf (software, hardware or device)
+COTS -Comertial Of The Shelf (software, hardware or device)
 
 DUT - Device Under Test
 
@@ -2420,6 +2456,8 @@ ITU
 TELOS - Technical, Economic, Legal (liability), Operational and Scheduling. Refers to the five areas of feasibility
 
 RAMS - Reliability, Availability, Maintainability and Safety 
+
+SPOF - Single Point of Failure.
 
 
 ## Draft on GENERAL PROJECT RISKS
