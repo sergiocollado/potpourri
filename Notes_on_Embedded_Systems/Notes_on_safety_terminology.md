@@ -1286,6 +1286,9 @@ A key concept to take into account is: that **it is not the development process 
  
 The test process is of main importance in the project, due it evaluates the quality of the system, and give the stackholders, and the involved team, a sense of the expected confidence and risk level of the project. **This allows to take informed decisions and choices on the project execution, effort estimation, timelines and other project activities.**
   
+ ## Errando, errando, deponitur error
+ So this is a latin adagio, that intends to illustrate that through the process of finding errors, is the way to correct those errors. Take into accout that the lack of known errors doesn't mean that the system is free of errors. But the act of finding errors and correct those errors increase the asurance in the system correct performance. That is why we test the system.
+  
 ## HOW MUCH TESTING IS NEEDED?
 
 The number of test you can possibly plan for most of the systems tends to infinity. The stop point is that, in which, the asurance of the quality of the product, has been reached and checked satisfactory by the tests. Of course this level is different depending on the nature of the projet: the design of a video streamming home-appliance, usually doesn't need as much testing as the design of an emergency train brake system. 
