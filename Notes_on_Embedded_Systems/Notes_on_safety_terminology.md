@@ -49,7 +49,7 @@ The funtional safety level of a system is evaluated with a figure of merit, know
 
 **ACCIDENT**: The event of causing/receiving damage of any kind (either directly or indirectly): equipment damage, property damage, or damage to the enviroment, and human injuries or even deaths.
 
-**RISK**: Is the combination of the likehood on an accident and its severity. That is to say, the chances of an accident to happen,  evaluated according of the potenctial damage that risk can do. As a mathematical expression it is usually evaluated with the following formula:
+**RISK**: Is the combination of the likehood on an accident and its severity. That is to say, the chances of an accident to happen,  evaluated according of the potential damage that risk can result in. As a mathematical expression it is usually evaluated with the following formula:
 
 Risk = probability(accident) * severity(accident)
 
@@ -2748,6 +2748,8 @@ https://www.its.bldrdoc.gov/fs-1037/dir-015/_2151.htm
 
 https://blog.nxp.com/automotive/three-things-to-know-about-functional-safety
 
+https://users.ece.cmu.edu/~koopman/des_s99/contents.html
+
 
 BIBLIOGRAPHY & References - TECHNICAL BOOKS & PAPERS:
 
@@ -2768,6 +2770,7 @@ BIBLIOGRAPHY & References - TECHNICAL BOOKS & PAPERS:
 - "Structural Load Challenges During Space Shuttle Development", A.C. Mackey and R.E. Gatto
 - "Comparision of Bus architectures for Safety Critical Embedded Systems", NASNCR-2003-2 John Rushby, https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20030032956.pdf
 - "Second Edition of System Reliability Theory: Models, Statistical Methods, and Applications".
+
  # FMEA: Failure Mode and Effects Analysis
  
  Is one of the earliest approach to a systematic realiability analysis, that of course includes risk assesment.
@@ -2873,3 +2876,7 @@ secure file systems:
 
  - https://en.wikipedia.org/wiki/Pretty_Good_Privacy
  - https://ecryptfs.org/about.html
+
+
+
+https://users.ece.cmu.edu/~koopman/des_s99/contents.html
