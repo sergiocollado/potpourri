@@ -31,6 +31,19 @@ Key propierties to take into account for an embedded system are:
 
 **LIMITED RESOURCES** An embedded system is designed to achive only the defined functions and requirements; the system only needs a certain number of resources and no more. That means in most cases, that the harware cannot be upgraded or expanded. As such, it's is also very rare that an embedded system can be designed for increase its hardware dependant capabilities, functions, or it is possible to expand its systems parts or modules. On the other hand, most of the embedded systems can be re-programmed, so its software can be changed and upgraded, that means thatt it is possible to improve the system, or adapt it to new requirements or new cases, as far as it is possible with the designed hardware.
 
+
+**Real-time system**: a system is said to be real time, when it can guarantee tha tasks to be done, are done at the expected time time, or when the tasks are scheduled and expected to be done. also real-time systems are expected to have a predictable behavior, and very reliable way.
+
+
+**CRITICAL SYSTEM** Is a system that must be highly reliable, and keep this reliability even when it is developed, and evolves. 
+Usually, these systems are classified into the following groups:
+
+ - **safety critical** : the misperformance of the system would mean, personal damage or loss, or material/propierty/resources or enviromental damages Examples: Energy systes (as nuclear plants), control in transportations systems, chemical reactors, medical devices (as a pacemaker or a heart-lung assistance systems) ...
+ - **mission critical**: designed to avoid total misfunction of the designed functionality or objective. example: navigation systems.
+ - **bussines critical**: designed to avoid a missfunctions that would result or imply huge economic/bussines impact or material losses, usually as a result of a service interruption. Example: bank, accounting and payment systems, stock-trading systems.
+ - **security critical**: designed to protect data or sensible information. example: medical databases, customers data ...
+ 
+
 **SAFETY**: Is the propierty of a system that evaluates, weight and analyze the risk of the ocurrence of an accident (injury or death of people), material, propierty, equipment or resources damage or losses, also enviromental degradation.
 
 **FUNCTIONAL SAFETY** Is propierty of a systems that evaluates the safety of a system that correspond the correct actions according to the system inputs, this also includes detection of potential dangerous states or actions, and activation of protecttion, corrective or mitigation measures.
@@ -48,6 +61,20 @@ The funtional safety level of a system is evaluated with a figure of merit, know
 **SINGLE-FAULT CONDITION SAFETY**: Even in the event that a fault happens in the system, the system must remain safe.
 
 **ACCIDENT**: The event of causing/receiving damage of any kind (either directly or indirectly): equipment damage, property damage, or damage to the enviroment, and human injuries or even deaths.
+
+**fault tolerance** [IEEE Std 610.12 1990]
+The ability of a system or component to continue normal operation despite the presence of hardware or software faults.
+
+**fail safe** [IEEE Std 610.12 1990]
+Pertaining to a system or component that automatically places itself in a safe operating mode in the event of a failure—for example, a traffic light that reverts to blinking red in all directions when normal operation fails.
+
+
+**fail soft** [IEEE Std 610.12 1990]
+Pertaining to a system or component that continues to provide partial operational capability in the event of certain failures—for example, a traffic light that continues to alternate between red and green if the yellow light fails.
+
+**mitigation** [Seacord 2005a]
+Methods, techniques, processes, actions, tools, or runtime libraries that can prevent or limit exploits against vulnerabilities.
+
 
 **RISK**: Is the combination of the likehood on an accident and its severity. That is to say, the chances of an accident to happen,  evaluated according of the potential damage that risk can result in. As a mathematical expression it is usually evaluated with the following formula:
 
@@ -76,6 +103,14 @@ R(accident_i) = P(accident_i) · Severity(accident_i)
 **(human) ERROR -> (code) DEFECT -> (system) FAILURE**
 <br>
 
+
+validation [IEC 61508-4]
+Confirmation by examination and provision of objective evidence that the particular requirements for a specific intended use are fulfilled.
+
+verification [IEC 61508-4]
+Confirmation by examination and provision of objective evidence that the requirements have been fulfilled.
+
+
 **FAILURE**: A failure is the misperformance or lack of ability of a component to comply with its designed function, during certain
 time, or under specified enviromental system conditions. 
 
@@ -93,6 +128,9 @@ time, or under specified enviromental system conditions.
 **SOFTWARE SAFETY INTEGRITY**: probability or measurment of the likehood in a electronic programmable system that its safety funtions  perform as intended in a defined enviroment under all defined conditions for a defined amount of time.
 
 **HARDWARE SAFETY INTEGRITY**: part of the system safety that depends in the random hardware failures that be hazarous.
+
+error tolerance [IEEE Std 610.12 1990]
+The ability of a system or component to continue normal operation despite the presence of erroneous inputs.
 
 **RELIABILITY**: Is the probability that a piece of equipment or component will perform correctly its intended goal, inside the defined time, and under the correct enviroment. So Reliability is defined by the probability that for an given time interval [0,t], the systems performs ok, during all the time interval up to time t, starting working at time t=0. 
 
@@ -155,7 +193,6 @@ Other related concepts are also:
 
 **Accountability**: Accountability is the idea that users of a system should be responsible for the actions they perform. This means that user interactions with sensitive systems should be logged and associated with a specific user. These logs should be difficult to forge, and have strong integrity protection. (use identification to ensure this)
 
-**Real-time system**: a system is said to be real time, when it can guarantee tha tasks to be done, are done at the expected time time, or when the tasks are scheduled and expected to be done. also real-time systems are expected to have a predictable behavior, and very reliable way.
 
 
 Referencess:
@@ -686,6 +723,47 @@ https://en.wikipedia.org/wiki/Robustness_(computer_science)#Robust_programming <
 http://nob.cs.ucdavis.edu/bishop/secprog/robust.html </br>
 
 #### Coding standards and best practices
+
+https://wiki.sei.cmu.edu/confluence/display/seccode/SEI+CERT+Coding+Standards
+
+[IEEE Std 610.12 1990] IEEE. IEEE Standard Glossary of Software Engineering Terminology . (1990).
+
+POSIX - http://pubs.opengroup.org/onlinepubs/9699919799/
+
+
+Most significant code standards, for safety and security
+
+other standards: CWE, MISRA C2, MISRA C3, CERT99, CERT11, ISO/IEC TS 17961
+
+The purpose of ISO/IEC TS 17961 [ISO/IEC TS 17961:2013] is to establish a baseline set of requirements for analyzers, including static analysis tools and C language compilers, to be applied by vendors that wish to diagnose insecure code beyond the requirements of the language standard. All rules are meant to be enforceable by static analysis.
+
+
+LIST OF CODE ANALIZERS
+
+Astrée
+Axivion Bauhaus Suite
+Clang
+CodeSonar
+Coverity
+Cppcheck
+ECLAIR
+EDG
+GCC
+Klocwork
+LDRA
+Parasoft
+Polyspace Bug Finder
+PRQA QA-C
+PVS-Studio
+RosE
+RuleChecker
+SonarQube C/C++ Plugin
+Splint
+TrustInSoft Analyzer
+
+
+
+
 
 Follow recomendations for implementing the system.
 
