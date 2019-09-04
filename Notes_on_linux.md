@@ -322,6 +322,7 @@ groups allow users to be part of a groups. groups in linux allow to have differe
 - groupadd - create a new group http://man7.org/linux/man-pages/man8/groupadd.8.html
 - groupdel - delete a group http://man7.org/linux/man-pages/man8/groupdel.8.html
 - groupmod - modify a group definition on the system http://man7.org/linux/man-pages/man8/groupmod.8.html
+- chgrp - modify a file or folder group ownership 
 
 to add a given user to a group, is done:
 
