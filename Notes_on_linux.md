@@ -1397,6 +1397,7 @@ kernel panic is the name of the error known in witch the OS has a hard time reco
 
 reference: https://searchdatacenter.techtarget.com/definition/Linux-kernel-panic
 
+reference: https://www.linuxjournal.com/content/oops-debugging-kernel-panics-0
 
 # INSTALLING NGINX
 
