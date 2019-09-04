@@ -334,7 +334,9 @@ to add a given user to a group, is done:
 
 The **sudo** command lets users to run priviliged commands. But that user must be first allowed to use the **sudo** command.
 
-if a user needs to run a command with root privileges, it has to be added to the list of sudoes, so it can execute the **sudo** command, and then it will be able to use privileged commands. So with **sudo** it is possible for a user to run programs with the privileges of another user, tipically the superuser (root)
+by the way, **sudo** stands for "super user do".
+
+So if a user needs to run a command with root privileges, it has to be added to the list of sudoes, so it can execute the **sudo** command, and then it will be able to use privileged commands. So with **sudo** it is possible for a user to run programs with the privileges of another user, tipically the superuser (root)
 
 This is done through the sudoers file.
 
@@ -577,6 +579,9 @@ you can check its value, with:
 >echo $PATH
 >echo $USERNAME
 ```
+
+Other enviromental varibles are:  PATH, LD_LIBRARY_PATH, MANPATH, INFOPATH, CPPFLAGS HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME, VISUAL.
+
 
 #### Bash configuration
 
@@ -966,7 +971,6 @@ to verify the system file system:
 ```bash
 cat /proc/filesystem | less
 ```
-
 
 
 ### Memory analisys in linux systems
