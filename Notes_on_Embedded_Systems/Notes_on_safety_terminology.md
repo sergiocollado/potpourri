@@ -761,7 +761,9 @@ SonarQube C/C++ Plugin
 Splint
 TrustInSoft Analyzer
 
-
+# TODO: save file systems
+# inputs optocoupled protected
+# protection circuits
 
 
 
@@ -907,7 +909,6 @@ Prepare a list of possible fall back option in case that the expected function c
 ## test the system with fault injection techniques.
 
 ## excell in error handling.
-
 
 
 
