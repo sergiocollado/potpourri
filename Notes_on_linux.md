@@ -1534,6 +1534,219 @@ git config --list
 ```
 
 
+git has 3 levels of configuration 
+
+- the system level config: git config --system,  stored at /ect/gitconfig. it afects to all the computer
+- the user level: git config --global, stored in ~/.gitconfig  
+- the repository level: git config, defined in .git/config of each repository 
+
+these configuration level are hierarchical, 
+
+to check the configuration: git config --global --list 
+or just read the configuration files:
+
+```bash
+cat /etc/gitconfig
+cat ~/.gitconfig  
+cat .git/config
+```
+
+
+to configure the user: 
+
+```bash
+git config --global user.name "myName"
+```
+to configure the email: 
+```bash
+git config --global user.email "myName@email.com"
+```
+to check those values, agian
+```bash
+git config --global --list
+```
+to set the core editor:
+```bash
+git config --global core.editor nano
+```
+to help to do matches to correct commands:
+```bash
+git config --global help.autocorrect 1
+```
+to show colors while reporting in git: 
+```bash
+git config --global color.ui auto
+```
+```bash
+git config --global core.autcrlf input
+```
+
+to remove any of those varibles:
+```bash
+git config --unset user.name 
+```
+
+to ignore files with:  .gitignore
+
+
+to create a git repository, use:
+```bash
+git init
+```
+this will create a hidden .git file, in which the info of the repository will be saved.
+
+to add a file
+```bash
+git add finename
+```
+to add all modified files, it is possible to use the -u flag
+```bash
+git add -u 
+```
+
+then check the status of the repo
+```bash
+git status
+```
+the new added file should appear as a new file, and it is staged to be added to the repo, which will be done with:
+```bash
+git commit
+```
+this will pop up the custom text editor, so that we can add a message to the commit. or that can be also done with the flag:
+```bash
+git commit -m "message with the commit"
+```
+
+we can check the last commit done with the command:
+```bash
+git log
+```
+
+
+git show HEAD <- shows the HEAD info
+
+
+to get to a branch
+```bash
+git checkout branchName
+```
+
+
+to save changes, that are not ready to commit, but that we dont want to lose either, the 'stash' command is used:
+```bash
+git stash
+```
+I can check the changes stashed with:
+```bash
+git stash list
+```
+
+this will list the pending changes. 
+
+
+to pull the changes back, use:
+```bash
+git stash apply
+```
+
+if we check after that the stash list, we can see the stash is still in the list. 
+
+it is also possible to use:
+```bash
+git stash pop
+```
+is the same as the stash apply, but it removes it from the stash list. 
+
+
+to remove the changes pending, use.
+```bash
+git stash drop 
+```
+
+
+BRANCH CREATION
+```bash
+git branch MyNewBranchName OriginBranchName
+```
+
+```bash
+git checkout MyNewBranchName 
+```
+
+
+
+BRANCHING MERGING:
+
+to merge banches, you invoque.
+
+```bash
+git merge mybranchname
+```
+
+
+if conflicts exists, those must be resolved. 
+
+for this the merge tool is used, it is invoqued with:
+
+```bash
+git mergetool 
+```
+
+after solving the merging issues, if we request the status, the changes should appear
+
+```bash
+git status
+```
+
+then we can check the repository with the staging area: 
+
+```bash
+git diff --cached
+```
+
+then commit
+```bash
+git commit -m "message to commit branches"
+```
+
+then is safe to delete branch
+```bash
+git branch -d mybranchname
+```
+
+
+REBASE:
+
+```bash
+git rebase BranchToRebase
+```
+
+in case conflicts exists, use the merge tool:
+```bash
+git merge tool
+```
+once done, better to check:
+
+```bash
+git status
+git diff --cache
+```
+then continue with the rebase:
+
+```bash
+git rebase --continue 
+```
+
+when a repo is created with clone, its rebase is automatically
+
+
+REMOTE BRANCHES:
+to list the remote branches:
+
+```bash
+git branch -r 
+```
+
 
 ## git commands
 
