@@ -894,6 +894,10 @@ always test the input of the system or function unless the data is guaranteed to
 
 as a protection measure, retry, relaunch or fallback, in case the intended function cannot be performed or fails.
 
+## fallbacks
+
+Prepare a list of possible fall back option in case that the expected function cannot be performed.
+
 ## circuit breakers
 
 in case several continous failures in an inteded function, abort and consider rescue action like reboot drivers, or reboot the system.
@@ -902,9 +906,6 @@ in case several continous failures in an inteded function, abort and consider re
 
 implement strategies like heartbeats and so, that acknoledge that the system is still going on.
 
-## fallbacks
-
-Prepare a list of possible fall back option in case that the expected function cannot be performed.
 
 ## test the system with fault injection techniques.
 
@@ -923,6 +924,7 @@ It is important to use a modular desing, because:
  - Improves greatly the loose decoupling of the diferent software parts. 
  - It makes the code easier to read and to understand.
 
+An advantage in modular programming is modular debugging, so in a system with a modular design, is easy to discard modules that may cause a but or failure, and then focus the efforts in list of the modules that can be the root-cause of given behavior. Also there is the advantage of modular testing, modular routines and suits of test can be developed to easily identify problems. 
 
 tools for modular design:
 
@@ -1702,7 +1704,6 @@ is under test. Similar systems and previus experience on them, allow the testers
 
 As a clarification, just state, that a Black-box test is that which only regards for the inputs and outputs of the system under test, so without looking in the insides of the system, effectibily treating the system as a "black-box". On the other hand, the White-box test, regards for the inputs, outputs, and also for the inner values, signal and internal states, and inner workings on the inside of the system under test. A good testing strategy and test process, uses both approaches, it usually starts with a black-box approach, both in hardware and software, and builds up to a white-box approach.
 
-
 ## HARDWARE TESTING
 
 There are test methodologies that are only applicable to the hardware of the system. Those methods aim to increase the reliability and confidence on the hardware components and subcomponets of the system.
@@ -1716,6 +1717,11 @@ There are test methodologies that are only applicable to the hardware of the sys
  - **pass/fail test**: the test subject is just evaluated according to if it complies or not with its goal.
  - **test to failure**: the test subject is evaluated up to the point of critical collapse or failure. this test improves the pass/test fail, as it explores the boundary limits of the test subject.
  - **degradation test**: the test subject is evaluated during certain life time of cycles, and different relevant paramenters or performance are evaluated. Then the the test subject is evaluated againg during other life time or cycles, and again the paramenters of interest or performance is evaluated, .... this continues up to the goal of the test is fullfilled. This method is preferred over the other two previous methods, as it gives information about the relevant parameters of interest and its evolution.
+ 
+ 
+## ACCELERATING TESTING 
+
+This refers to those techniques that allow us to accelerate testing. 
  
 ALT (and HALT) and HASS are two methods that are complementary of each other.
 
@@ -1746,7 +1752,6 @@ reference: https://www.theguardian.com/technology/2011/apr/11/smartphones-hit-by
 
 ![thai_floods](https://github.com/sergiocollado/potpourri/blob/master/image/Thailand_floods.PNG)
 
-
 These methods are used for IDENTIFICATION and CORRECTION of possible or eventual faults at the hardware component level.
 
 ### Fault injection techniques
@@ -1767,6 +1772,11 @@ Poka yoke means "error-proof" in japanese. ... this technique, stands for exampl
 in the electronic-design/hardware of the system, so it is impossible to wire the hardware in a incorrect way. For example: a SD memory card only has a position that fits, so actually it is not possible to put it wrong without realsize of the mistake (at least it should be pretty difficult... ) 
 
 reference: https://toughnickel.com/industries/Poka-Yokemistakeproofing
+
+## STRESS testing
+
+Stress testing is refered as those test that evaluate the system performance beyond its specification or expected enviroment or conditions.
+
 
 ## TEST PROCESS STEPS and ACTIVITIES
 
