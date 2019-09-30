@@ -600,6 +600,8 @@ JTSB - Japan Transportation Safety Board: http://www.mlit.go.jp/jtsb/english.htm
 FAA - Federal Aviation Administration: https://www.faa.gov
 AUTOSAR
 Occupational Safety and Health Administration USA - https://www.osha.gov/
+https://www.iso.org/news/ref2358.html
+
 
 Also safety standards as UL, ANSI, CSA and IEC, NRTL, ANSI, UL, IEEE standards. TODO: complete....
 
@@ -763,8 +765,6 @@ TrustInSoft Analyzer
 # TODO: save file systems
 # inputs optocoupled protected
 # protection circuits
-
-
 
 Follow recomendations for implementing the system.
 
