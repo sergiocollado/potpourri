@@ -31,9 +31,7 @@ Key propierties to take into account for an embedded system are:
 
 **LIMITED RESOURCES** An embedded system is designed to achive only the defined functions and requirements; the system only needs a certain number of resources and no more. That means in most cases, that the harware cannot be upgraded or expanded. As such, it's is also very rare that an embedded system can be designed for increase its hardware dependant capabilities, functions, or it is possible to expand its systems parts or modules. On the other hand, most of the embedded systems can be re-programmed, so its software can be changed and upgraded, that means thatt it is possible to improve the system, or adapt it to new requirements or new cases, as far as it is possible with the designed hardware.
 
-
-**Real-time system**: a system is said to be real time, when it can guarantee tha tasks to be done, are done at the expected time time, or when the tasks are scheduled and expected to be done. also real-time systems are expected to have a predictable behavior, and very reliable way.
-
+**Real-time system**: a system is said to be real time, when it can guarantee tha tasks to be done, at the expected time (it can guarantee to meet all the deadlines).Also real-time systems are expected to have a very predictable behavior, in a very reliable way.
 
 **CRITICAL SYSTEM** Is a system that must be highly reliable, and keep this reliability even when it is developed, and evolves. 
 Usually, these systems are classified into the following groups:
@@ -601,6 +599,7 @@ EASA - European Aviation Safety Agency: https://www.easa.europa.eu/easa-and-you/
 JTSB - Japan Transportation Safety Board: http://www.mlit.go.jp/jtsb/english.html
 FAA - Federal Aviation Administration: https://www.faa.gov
 AUTOSAR
+Occupational Safety and Health Administration USA - https://www.osha.gov/
 
 Also safety standards as UL, ANSI, CSA and IEC, NRTL, ANSI, UL, IEEE standards. TODO: complete....
 
@@ -1753,6 +1752,11 @@ reference: https://www.theguardian.com/technology/2011/apr/11/smartphones-hit-by
 ![thai_floods](https://github.com/sergiocollado/potpourri/blob/master/image/Thailand_floods.PNG)
 
 These methods are used for IDENTIFICATION and CORRECTION of possible or eventual faults at the hardware component level.
+
+### PROFILING
+
+Profiling is a type of performance evaluation that collects and records the time history of sytem execution. This is critical for example when evaluatin the compliance of a real-time system.
+
 
 ### Fault injection techniques
 
