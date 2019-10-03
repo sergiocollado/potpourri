@@ -1743,12 +1743,52 @@ git rebase --continue
 
 when a repo is created with clone, its rebase is automatically
 
+BRANCHES:
 
-REMOTE BRANCHES:
+a branch is the set of commits that trace back all the way to the project first commit. Actually a branch is only a label that points to one commit. 
+
+to see a list of branches
+
+```banch
+git branch
+```
+the current branch will be marked with an asterisk
+
+to create a branch:
+
+```bash
+git branch <newbranchname>
+```
+the act of creating a branch only creates a label.
+
+then we use the 'checkout' command. it changes the current commit to the label of the checkout branch. So the HEAD reference, passes to point to the current commit, to the checkout branch. - it updates the working tree from the files from the checked out 
+
+actually the 'checkout' command only updates the reference of the HEAD reference from the previous branch to the new desired branch. 
+
+```bash
+git checkout <branchname>
+```
+
+to indicate a specific commit, use its SHA1 identifier. this is useful for example if you want to view the code in a previous state of the project. beware, because then you can get into a detached head situation ( the HEAD is not pointing to a branch label)-
+
+the detached head state is the situation in which the label HEAD points directly to a commit (that is not pointed by a brach label tag)
+
+it is possible to unify the branch creation (git branch) and its checkout, with the option -b
+
+```bash
+git checkout -b <branchname>
+```
+this will create a new branch and checkout to it.
+
 to list the remote branches:
 
 ```bash
 git branch -r 
+```
+to delete a branch, just means to delete a branch label. to delete a branch we use the -d or -D options.
+
+```branch
+git branch -d <branchname>
 ```
 
 
@@ -1765,6 +1805,7 @@ git branch -r
 - git config user.email
 - git commit -m (message)
 - git log
+- git log --oneline --decorate --graph
 - git diff
 - git rm
 - git mv
@@ -1786,6 +1827,7 @@ git branch -r
 - git checkout
 - git rebase
 - git show
+- git reflog
 - git tag
 - git daemon
 - git format-patch
@@ -1974,7 +2016,6 @@ kernel
 architecture dependant kernel code
  V 
 hardware platform
-
 
 
 
