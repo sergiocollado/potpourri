@@ -559,11 +559,15 @@ In non-login shells, like bash, it checks just if  _**~/.bashrc**_ exists, then 
 
 these are definitions that might be used for several goals. Many applications use them to define default settings.
 
-Most common are:  HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME, VISUAL
+Most common are:  HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME, VISUAL, SHELL, BASH_VERSION, HOSTNAME, HISTFILE, HISTFILESIZE, HISTSIZE, LANG, EDITOR, DISPLAY, TMOUT,
 
 They can be set like: 'PATH=$HOME/BIN:$PATH'
 
-To check all defined enviroment variables, you can type: env, or export.
+To check all defined enviroment variables, you can type: printenv, env, or export.
+
+```bash
+printenv | less
+``` 
 
 to make abailable the env var in other directories, they must be exported.
 
