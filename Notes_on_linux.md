@@ -1295,11 +1295,12 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
  - mmap, munmap - map or unmap files or devices into memory-  conforms with POSIX.1-2001. is defined in  <unistd.h> 
  - sysconf - get configuration information at run time-  #include <unistd.h> - POSIX.1 compatible - https://linux.die.net/man/3/sysconf
  - clock_getres, clock_gettime, clock_settime - clock and time functions - #include <time.h> - POSIX.1-2001.
+ -  btrace - perform live tracing for block devices - http://man7.org/linux/man-pages/man8/btrace.8.html <br>
  
  http://www.admin-magazine.com/Articles/Law-of-Averages-Load-Averaging <br>
  https://people.seas.harvard.edu/~apw/stress/   <br>
  http://smackerelofopinion.blogspot.com/2014/06/stress-ng-updated-system-stress-test.html   <br>
-  watchdog: https://mmonit.com/monit/   <br>
+ watchdog: https://mmonit.com/monit/   <br>
   
  The tmpfs facility allows the creation of filesystems whose contents reside in virtual memory.  Since the files on such filesystems
  typically reside in RAM, file access is extremely fast. http://man7.org/linux/man-pages/man5/tmpfs.5.html
