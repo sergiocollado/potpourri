@@ -1602,12 +1602,42 @@ the tilde (~) and caret are used to refence to previous commits. to use them you
 
 the caret (^) is used to point to a parent in a merge commit. so ^1 or ^ refers to the first parent and ^2 refers to  the second parent. or if you stack them : ^^ refers to the first's parent first parent of the pointed commit. 
 
+TAGS: 
+a tag is just a refenced defined to point to a given commit. So you can also use tags instead of SHA values to reference commits.  
+
+there are two types of tags. A lightweight tag, is just a simple reference name to a given commit. An annotated tag, it includes more information as author, date, messates, commit ID, and can be signed and verified with GPG (GNU Privacy Guard). 
+
+to view the tags defined in a given repository use the tag command:
+
+```bash
+git tag
+git push remoterepo tagname
+```
+to tranfer all the tags you use:
+
+```bash
+git push remoterepo --tags
+```
+
+to view the information about a given tag:
+
+```bash
+git show tagname
+```
+
+to tag a certain commit you use:
+
+```bash
+git tag tagname commitreference
+```
+you need to use the -a option to indicate an annotaded tag
+
  
 to create a git repository, use:
 ```bash
 git init
 ```
-this will create a hidden .git file, in which the info of the repository will be saved.
+this will create a hidden .git file, in which the info of the repository will be saved. 
 
 to add a file
 ```bash
@@ -1780,14 +1810,20 @@ when a repo is created with clone, its rebase is automatically
 
 BRANCHES:
 
-a branch is the set of commits that trace back all the way to the project first commit. Actually a branch is only a label that points to one commit. 
+a branch is the set of commits that trace back all the way to the project first commit. Actually a branch only implies to create a label that points to one commit, with will be the latest commit of the created branch.
 
 to see a list of branches
 
-```banch
+```bash
 git branch
 ```
 the current branch will be marked with an asterisk
+
+to see the list of the remote braches, you use the -r option
+
+```bash
+git branch -r
+```
 
 to create a branch:
 
