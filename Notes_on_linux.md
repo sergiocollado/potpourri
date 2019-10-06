@@ -1682,6 +1682,24 @@ git checkout MyNewBranchName
 
 BRANCHING MERGING:
 
+
+there are different types of merging:
+
+- fast-fordward merge
+- merge commit
+- squash merge
+- rebase
+
+The fast-fordward merge moves the base of the master label to to the tip of the local/actual branch. the FF merge is only possible if no other commits have been done in the master branch since the local branch was branched out of the master branch. with a ff merge the history of the repo is lineal as there are no commits with multiple parents.
+
+```bash
+git checkout master
+git merge mybranch
+git branch -d mybranch
+```
+
+
+
 to merge banches, you invoque.
 
 ```bash
