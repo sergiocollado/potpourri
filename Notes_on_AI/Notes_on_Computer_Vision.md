@@ -159,3 +159,14 @@ is checked against a threshold value, that have that factor implicit in it.
 
 
 
+
+
+
+
+
+
+
+
+
+
+More on: https://homepages.inf.ed.ac.uk/rbf/HIPR2/wksheets.htm
