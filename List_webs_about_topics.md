@@ -325,6 +325,7 @@ a site about electric engineering: http://www.electrotechnik.net/
 
 optics and tutorials on microscopy: http://zeiss-campus.magnet.fsu.edu/tutorials/index.html
 
+computer vision: https://homepages.inf.ed.ac.uk/rbf/HIPR2/wksheets.htm
 shop RF elements: https://www.ondamania.com/b2c/inicio.php
 
 about thermodinamics, thermal engines... http://technicaltheory.blogspot.com.es/
@@ -418,6 +419,8 @@ Way_Back_Machine:  http://archive.org/web/web.php
 Reference programming functions for Arduino:   https://www.arduino.cc/reference/en/
 
 About Optics:   https://micro.magnet.fsu.edu/optics/index.html
+
+computer vision: https://homepages.inf.ed.ac.uk/rbf/HIPR2/wksheets.htm
 
 electronic signatures standard: ETSI TS 102 042
 
