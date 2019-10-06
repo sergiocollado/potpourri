@@ -1592,6 +1592,12 @@ git config --unset user.name
 to ignore files with:  .gitignore
 
 
+REFERENCES:
+
+references are labels associated to commit's SHA hash value. The reference **master** points to the master branch. A branch label points to the latest commit in a brach, its tip. actually branch labels are implemented only as refereces to given commits. the referenes are stored in the .git/refs directory. local branch references are in the .git/refs/heads directory.
+
+
+ 
 to create a git repository, use:
 ```bash
 git init
