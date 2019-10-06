@@ -1598,6 +1598,9 @@ references are labels associated to commit's SHA hash value. The reference **mas
 
 The **HEAD** reference is the reference to the actual commit in you local branch. 
 
+the tilde (~) and caret are used to refence to previous commits. to use them you append them to a commits refernce. You can use a ~ or ~1, that points to the parent of the given commit, if you use ~~ or ~2 you are refering to the parent's parent of the pointed commit. If you use the ~~~ or ~3 the reference is to the parent's parent's parent of the pointed commit. and so on ...
+
+the caret (^) is used to point to a parent in a merge commit. so ^1 or ^ refers to the first parent and ^2 refers to  the second parent. or if you stack them : ^^ refers to the first's parent first parent of the pointed commit. 
 
  
 to create a git repository, use:
