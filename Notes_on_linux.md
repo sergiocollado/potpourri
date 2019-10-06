@@ -1228,8 +1228,6 @@ https://akkadia.org/drepper/cpumemory.pdf
 dmesg -w
 ```
 
-
-
 ## How do I know what modules my linux system has:
 
 You can use the **lsmod** command, and it will give you the status of the present linux.
@@ -1476,7 +1474,7 @@ reference: https://uwsgi-docs.readthedocs.io/en/latest/
 $: dpkg -l
 ```
 
-## How to instal ncurses
+## How to install ncurses
 
 ```bash
 Z>sudo apt-get install libncurses5-dev libncursesw5-dev
@@ -1690,7 +1688,7 @@ there are different types of merging:
 - squash merge
 - rebase
 
-The fast-fordward merge moves the base of the master label to to the tip of the local/actual branch. the FF merge is only possible if no other commits have been done in the master branch since the local branch was branched out of the master branch. with a ff merge the history of the repo is lineal as there are no commits with multiple parents.
+The **fast-fordward merge** moves the base of the master label to to the tip of the local/actual branch. the FF merge is only possible if no other commits have been done in the master branch since the local branch was branched out of the master branch. with a ff merge the history of the repo is lineal as there are no commits with multiple parents. Also no merge conflicts should exist due to the previous reason.
 
 ```bash
 git checkout master
@@ -1698,7 +1696,14 @@ git merge mybranch
 git branch -d mybranch
 ```
 
+The **merge commit** actually merges the changes in two given branches.
 
+```bash
+git checkout master
+git merge mybranch
+echo "resolve conflicts if needed"
+git branch -d mybranch
+```
 
 to merge banches, you invoque.
 
