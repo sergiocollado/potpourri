@@ -1396,7 +1396,7 @@ also: https://linux.die.net/man/5/syslog-ng.conf
 
 # kernel panic 
 
-kernel panic is the name of the error known in witch the OS has a hard time recovering.
+kernel panic is the name of the error known in which the OS has a hard time recovering.
 
 reference: https://searchdatacenter.techtarget.com/definition/Linux-kernel-panic
 
@@ -1594,7 +1594,9 @@ to ignore files with:  .gitignore
 
 REFERENCES:
 
-references are labels associated to commit's SHA hash value. The reference **master** points to the master branch. A branch label points to the latest commit in a brach, its tip. actually branch labels are implemented only as refereces to given commits. the referenes are stored in the .git/refs directory. local branch references are in the .git/refs/heads directory.
+references are labels associated to commit's SHA hash value. The reference **master** points to the master branch. A branch label points to the latest commit in a brach, its tip. actually branch labels are implemented only as refereces to given commits. the referenes are stored in the .git/refs directory. local branch references are in the .git/refs/heads directory. 
+
+The **HEAD** reference is the reference to you actual commit in you local branch. 
 
 
  
