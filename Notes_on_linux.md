@@ -37,6 +37,7 @@ other useful command is '**info** + topic' that presents you with a text with hy
 
 also, in any command you can use the **--help** option: 'rm --help'
 
+also another option is use the tldr pages, tldr stands for 'too long dind't read' actually this pages have a more practical aproach and showcase realcase examples. ref: https://github.com/tldr-pages/tldr
 
 In case something is not working properly, always have a go with with the following:
 
