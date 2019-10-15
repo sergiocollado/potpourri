@@ -1719,7 +1719,19 @@ git branch MyNewBranchName OriginBranchName
 git checkout MyNewBranchName 
 ```
 
+TRACKING BRANCHES.
 
+A tracking branch is a local branch that identifies itself with a remote branch. It usually is represented as <name_remote>/<name-local-branch>, for example: <origin>/<master> (origin stands for the remote master branch, and master is our local branch). 
+
+For example when you create a repo by means of 'git clone' you are creating a tracking branch
+
+but tracking branches update differently in local and remote branches. So tracking branches are only updated with network commands like: clone, fetch, push or pull
+
+the command 'git branch' displays all the local branches. the command 'git branch --all' displays the local, remote and tracking branches, the command 'git branch -r' display all remote branches.
+
+it is possible to change the remote tracking branch wit the command 'git remote set-head <remote> <branch>'
+ 
+you can use 'git log --all' to see a log of all local and remote branches.
 
 BRANCHING MERGING:
 
