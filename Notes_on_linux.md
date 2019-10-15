@@ -2107,7 +2107,13 @@ hardware platform
 
 https://linux.die.net/man/1/strace
 
+
 strace is a commad to track and debug system calls and signals. you use it typing 'strace' + program. But it is useful to use the -o option (for output), so the command is: 'strace -o output.txt + argument_program'. The -c option (for count calls) give us a list of the used system calls. We can monitor only one type of system calls with the option -e + name_system_call (open,stat,chmod,unlink ...). to get a timestamp, you use the -t option or for a relative timestamp, the time between calls use the -r option. strace by default don't monitor the spawned processes, to check them also use the -f option. If the program we want to check is already running we can attach strace to it with 'strace -p <prog_PID>' 
+
+see also: 
+
+https://linux.die.net/man/1/explain
+https://linux.die.net/man/2/ptrace
 
 ## ABOUT OPEN SOURCE SOFTWARE LICENSES.
 
