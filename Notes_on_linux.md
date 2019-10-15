@@ -219,6 +219,7 @@ special directory names:
 - **join** - join lines of two files on a common field  http://man7.org/linux/man-pages/man1/join.1.html
 - **split** - split a file into pieces http://man7.org/linux/man-pages/man1/split.1.html
 - **cut** - extracts columns frot text data files. It is used for manipulating column-based files and is designed to extract specific columns. http://man7.org/linux/man-pages/man1/cut.1.html
+- **du** - informs about disk usage.
 
 
 ### types of files in linux
@@ -966,8 +967,8 @@ $ sudo reboot
 
  - netstat: network statistics - https://linux.die.net/man/8/netstat
  - iptraf: info about network interfaces - Interactive Colorful IP LAN Monitor - https://linux.die.net/man/8/iptraf
- - tcpdump & wireshark analysys of network and traffic
-
+ - tcpdump & tshark &  wireshark analysys of network and traffic
+  
 
 ### check system file system
 
@@ -1174,7 +1175,7 @@ If you want to know how much free memory you have in your hard disk, you have to
 
 -  **df** command (for disk free?): this will report how much free memory has the filesystem. You usually invoque `df -h` the -h flag stands for "human readable".
 
- - **du** command (for disk usage?): reports an estimation of the file space usage.
+ - **du** command (stands for: disk usage): reports an estimation of the file space usage. is better to use it with the optinons -sh. -s for summary and -h for human readeble.
 
 TODO: COMPLETE
 
