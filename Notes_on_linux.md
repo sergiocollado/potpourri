@@ -1296,6 +1296,8 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
  - sysconf - get configuration information at run time-  #include <unistd.h> - POSIX.1 compatible - https://linux.die.net/man/3/sysconf
  - clock_getres, clock_gettime, clock_settime - clock and time functions - #include <time.h> - POSIX.1-2001.
  -  btrace - perform live tracing for block devices - http://man7.org/linux/man-pages/man8/btrace.8.html <br>
+ - mtrace, muntrace - malloc tracing - https://linux.die.net/man/3/mtrace
+ 
  
  http://www.admin-magazine.com/Articles/Law-of-Averages-Load-Averaging <br>
  https://people.seas.harvard.edu/~apw/stress/   <br>
@@ -2110,13 +2112,56 @@ https://linux.die.net/man/1/strace
 
 strace is a commad to track and debug system calls and signals. you use it typing 'strace' + program. But it is useful to use the -o option (for output), so the command is: 'strace -o output.txt + argument_program'. The -c option (for count calls) give us a list of the used system calls. We can monitor only one type of system calls with the option -e + name_system_call (open,stat,chmod,unlink ...). to get a timestamp, you use the -t option or for a relative timestamp, the time between calls use the -r option. strace by default don't monitor the spawned processes, to check them also use the -f option. If the program we want to check is already running we can attach strace to it with 'strace -p <prog_PID>' 
 
-see also: 
+## system analysis tools
 
 https://linux.die.net/man/1/explain - explain system call error messages
 https://linux.die.net/man/2/ptrace  - process trace
 https://linux.die.net/man/1/pstack - print a stack trace of a running process
 https://linux.die.net/man/1/nm    - list symbols from object files
-https://linux.die.net/man/2/tgkill  - send a signal to a thread
+tgkill  - send a signal to a thread - https://linux.die.net/man/2/tgkill
+pmap - report memory map of a process  - https://linux.die.net/man/1/pmap
+dstat - versatile tool for generating system resource statistics - https://linux.die.net/man/1/dstat
+smem - Report memory usage with shared memory divided proportionally.
+
+Performance tools
+
+ifstat(1), iftop(8), iostat(1), mpstat(1), netstat(1), nfsstat(1), nstat, vmstat(1), xosview(1)
+
+Debugging tools
+
+htop(1), lslk(1), lsof(8), top(1)
+
+Process tracing
+
+ltrace(1), pmap(1), ps(1), pstack(1), strace(1)
+
+Binary debugging
+
+ldd(1), file(1), nm(1), objdump(1), readelf(1)
+
+Memory usage tools
+
+free(1), memusage, memusagestat, slabtop(1)
+
+Accounting tools
+
+dump-acct, dump-utmp, sa(8)
+
+Hardware debugging tools
+
+dmidecode, ifinfo(1), lsdev(1), lshal(1), lshw(1), lsmod(8), lspci(8), lsusb(8), smartctl(8), x86info(1)
+
+Application debugging
+
+mailstats(8), qshape(1)
+
+Xorg related tools
+
+xdpyinfo(1), xrestop(1)
+
+Other useful info
+
+collectl(1), proc(5), procinfo(8)
 
 ## ABOUT OPEN SOURCE SOFTWARE LICENSES.
 
