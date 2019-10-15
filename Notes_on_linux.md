@@ -1980,8 +1980,8 @@ Start apache service at boot:  sudo systemctl enable httpd.service
 
 Links:
 
+https://www.kernel.org/ <br>
 http://www.linux.org/ <br>
-http://www.debian.org/<br>
 http://www.debian.org/<br>
 http://www.ssc.com/lj/index.html<br>
 http://www.amazon.com/The-Linux-Programming-Interface-Handbook/dp/1593272200<br>
@@ -2103,6 +2103,11 @@ architecture dependant kernel code
 hardware platform
 
 
+## strace
+
+https://linux.die.net/man/1/strace
+
+strace is a commad to track and debug system calls and signals. you use it typing 'strace' + program. But it is useful to use the -o option (for output), so the command is: 'strace -o output.txt + argument_program'. The -c option (for count calls) give us a list of the used system calls. We can monitor only one type of system calls with the option -e + name_system_call (open,stat,chmod,unlink ...). to get a timestamp, you use the -t option or for a relative timestamp, the time between calls use the -r option. strace by default don't monitor the spawned processes, to check them also use the -f option. If the program we want to check is already running we can attach strace to it with 'strace -p <prog_PID>' 
 
 ## ABOUT OPEN SOURCE SOFTWARE LICENSES.
 
