@@ -2112,8 +2112,11 @@ strace is a commad to track and debug system calls and signals. you use it typin
 
 see also: 
 
-https://linux.die.net/man/1/explain
-https://linux.die.net/man/2/ptrace
+https://linux.die.net/man/1/explain - explain system call error messages
+https://linux.die.net/man/2/ptrace  - process trace
+https://linux.die.net/man/1/pstack - print a stack trace of a running process
+https://linux.die.net/man/1/nm    - list symbols from object files
+https://linux.die.net/man/2/tgkill  - send a signal to a thread
 
 ## ABOUT OPEN SOURCE SOFTWARE LICENSES.
 
