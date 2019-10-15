@@ -45,6 +45,10 @@
  
 An example of a modular kernel: contiki.
 
+
+A good reference about how to write RTOS is in the code of the µC/OS-II and µC/OS-III https://www.micrium.com/rtos/kernels/
+
+
 <hr>
 
 # [CONTIKI](http://www.contiki-os.org/)
