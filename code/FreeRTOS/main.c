@@ -1,4 +1,18 @@
 /*
+
+This is a FreeRTOS exercice that creates 3 tasks, and handles its priorities. Also outputs the tasks execution priorties and stats.
+	
+	//my tasks
+	CreateMatrixTask();
+	CreateComunicationTask();
+        CreatePriorityTask();
+	
+the traces recorde is in:
+
+     // Initialise the trace recorder.  Use of the trace recorder is optional.
+     // See http://www.FreeRTOS.org/trace for more information.
+	vTraceEnable( TRC_START );
+	
  * FreeRTOS Kernel V10.0.1
  * Copyright (C) 2017 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
@@ -189,10 +203,10 @@ int main( void )
 	See http://www.FreeRTOS.org/trace for more information. */
 	vTraceEnable( TRC_START );
 
-	//may tasks
+	//my tasks
 	CreateMatrixTask();
 	CreateComunicationTask();
-    CreatePriorityTask();
+        CreatePriorityTask();
 
 	printf("\nNumber of tasks: %d\n", (int)uxTaskGetNumberOfTasks());
 	vTaskStartScheduler();
