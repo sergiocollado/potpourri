@@ -1878,6 +1878,15 @@ to delete a branch, just means to delete a branch label. to delete a branch we u
 git branch -d <branchname>
 ```
 
+NETWORK COMMANDS
+
+these are the commands that allow to communicate to a remote repository
+
+git clone - copies a remote repo and creates a local repo.
+git fetch - gets the data from a remote repository. it updates the tracking branch information.
+git pull - is fetch + merge commands
+git push - add changes to the remote repository.
+
 
 ## git commands
 
@@ -2124,43 +2133,33 @@ dstat - versatile tool for generating system resource statistics - https://linux
 smem - Report memory usage with shared memory divided proportionally.
 
 Performance tools
-
 ifstat(1), iftop(8), iostat(1), mpstat(1), netstat(1), nfsstat(1), nstat, vmstat(1), xosview(1)
 
 Debugging tools
-
 htop(1), lslk(1), lsof(8), top(1)
 
 Process tracing
-
 ltrace(1), pmap(1), ps(1), pstack(1), strace(1)
 
 Binary debugging
-
 ldd(1), file(1), nm(1), objdump(1), readelf(1)
 
 Memory usage tools
-
 free(1), memusage, memusagestat, slabtop(1)
 
 Accounting tools
-
 dump-acct, dump-utmp, sa(8)
 
 Hardware debugging tools
-
 dmidecode, ifinfo(1), lsdev(1), lshal(1), lshw(1), lsmod(8), lspci(8), lsusb(8), smartctl(8), x86info(1)
 
 Application debugging
-
 mailstats(8), qshape(1)
 
 Xorg related tools
-
 xdpyinfo(1), xrestop(1)
 
 Other useful info
-
 collectl(1), proc(5), procinfo(8)
 
 ## ABOUT OPEN SOURCE SOFTWARE LICENSES.
