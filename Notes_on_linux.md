@@ -1882,11 +1882,11 @@ NETWORK COMMANDS
 
 these are the commands that allow to communicate to a remote repository
 
-git clone - copies a remote repo and creates a local repo.
-git fetch - gets the data from a remote repository. it updates the tracking branch information.
-git pull - is fetch + merge commands
-git push - add changes to the remote repository.
-
+- git clone - copies a remote repo and creates a local repo.
+- git fetch - gets the data from a remote repository. it updates the tracking branch information.
+- git pull - is fetch + merge commands
+- git push - add changes to the remote repository.
+- git rebase - rebase is a form of merge, so there is possible to have merge conflicts. It moves the changes of a branch to the tip of another branch 
 
 ## git commands
 
