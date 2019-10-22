@@ -2131,9 +2131,15 @@ tgkill  - send a signal to a thread - https://linux.die.net/man/2/tgkill
 pmap - report memory map of a process  - https://linux.die.net/man/1/pmap
 dstat - versatile tool for generating system resource statistics - https://linux.die.net/man/1/dstat
 smem - Report memory usage with shared memory divided proportionally.
+backtrace -returns a backtrace for the calling program - https://linux.die.net/man/3/backtrace
+dlopen - The function dlopen() loads the dynamic library  - https://linux.die.net/man/3/dlopen
+uselib - he system call uselib() serves to load a shared library to be used by the calling process - https://linux.die.net/man/2/uselib
 
 Performance tools
 ifstat(1), iftop(8), iostat(1), mpstat(1), netstat(1), nfsstat(1), nstat, vmstat(1), xosview(1)
+
+mpatrol, a library for controlling and tracing dynamic memory allocations.
+mpatrol - http://mpatrol.sourceforge.net/doc/index.html#Top
 
 Debugging tools
 htop(1), lslk(1), lsof(8), top(1)
@@ -2161,6 +2167,18 @@ xdpyinfo(1), xrestop(1)
 
 Other useful info
 collectl(1), proc(5), procinfo(8)
+
+
+Valgrind http://www.valgrind.org/docs/manual/quick-start.html
+
+ libcw   http://libcwd.sourceforge.net/
+
+MM: http://www.engelschall.com/sw/mm/
+
+mpr: http://freshmeat.net/projects/mpr/
+
+
+
 
 ## ABOUT OPEN SOURCE SOFTWARE LICENSES.
 
