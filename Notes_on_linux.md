@@ -2197,7 +2197,9 @@ mpatrol, a library for controlling and tracing dynamic memory allocations.
 mpatrol - http://mpatrol.sourceforge.net/doc/index.html#Top
 
 Debugging tools
-htop(1), lslk(1), lsof(8), top(1)
+htop(1), lslk(1), lsof(8), top(1),
+
+efence - Electric Fence Malloc Debugger - https://linux.die.net/man/3/efence
 
 Process tracing
 ltrace(1), pmap(1), ps(1), pstack(1), strace(1)
@@ -2226,13 +2228,21 @@ collectl(1), proc(5), procinfo(8)
 
 Valgrind http://www.valgrind.org/docs/manual/quick-start.html
 
- libcw   http://libcwd.sourceforge.net/
+libcw   http://libcwd.sourceforge.net/
 
 MM: http://www.engelschall.com/sw/mm/
 
 mpr: http://freshmeat.net/projects/mpr/
 
 
+A list of Linux tools that can be used to explore object/executable files.
+
+ - ar: creates static libraries.
+ - objdump: this is the most important binary tool; it can be used to display all the information in an object binary file.
+ - strings: list all the printable strings in a binary file.
+ - nm: lists the symbols defined in the symbol table of an object file.
+ - ldd: lists the shared libraries on which the object binary is dependent.
+ - strip: deletes the symbol table information.
 
 
 ## ABOUT OPEN SOURCE SOFTWARE LICENSES.
