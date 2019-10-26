@@ -2230,6 +2230,8 @@ Valgrind http://www.valgrind.org/docs/manual/quick-start.html
 
 libmcheck - Turns on memory allocation checking when linked to
 
+libmemusage - Used by memusage to help collect information about the memory usage of a program
+
 libcw  -  http://libcwd.sourceforge.net/
 
 MM: http://www.engelschall.com/sw/mm/
