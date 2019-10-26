@@ -2228,7 +2228,9 @@ collectl(1), proc(5), procinfo(8)
 
 Valgrind http://www.valgrind.org/docs/manual/quick-start.html
 
-libcw   http://libcwd.sourceforge.net/
+libmcheck - Turns on memory allocation checking when linked to
+
+libcw  -  http://libcwd.sourceforge.net/
 
 MM: http://www.engelschall.com/sw/mm/
 
