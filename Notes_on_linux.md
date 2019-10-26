@@ -165,6 +165,10 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 -  /etc/nologin  - If the file /etc/nologin exists and is readable, login(1) will allow access only to root.  Other users will be shown the contents of this file and their logins will be refused.  This provides a simple way of temporarily disabling all unprivileged logins.
 -  /etc/services  - The /etc/services file is used by applications to translate human-readable service names into port numbers when connecting to a machine across a network. 
 -  /etc/fstab     - the information required to specify mount points, options, devices, etc.
+- /usr/lib   - other place to save dynamic libraries needed by programs.
+- /usr/local/lib   - other place to save dynamic libraries needed by programs.
+- /opt/lib   - other place to save dynamic libraries needed by programs.
+
 
 ### Commands to navigate through the file system.
 
