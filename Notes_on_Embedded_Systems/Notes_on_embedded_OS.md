@@ -249,6 +249,7 @@ void communication_task(void)
  }
 }
 ```
+
 References:
 
 http://www.FreeRTOS.org/FAQHelp.html - Having a problem?  Start by reading
@@ -278,3 +279,26 @@ licenses offer ticketed support, indemnification and commercial middleware.
 http://www.SafeRTOS.com - High Integrity Systems also provide a safety
 engineered and independently SIL3 certified version for use in safety and
 mission critical applications that require provable dependability.
+
+Posix https://pubs.opengroup.org/onlinepubs/9699919799/functions/contents.html
+
+
+
+# POSIX 
+
+POSIX  stands for Portable Operating System Interface. It is a proposal to use a common interface and semantics for portable applications that comply with the POSIX standard. 
+
+
+
+https://pubs.opengroup.org/onlinepubs/9699919799/functions/V2_chap02.html#tag_15_08
+
+# POSIX Safety Concepts
+
+https://www.gnu.org/software/libc/manual/html_node/POSIX-Safety-Concepts.html#POSIX-Safety-Concepts
+
+https://www.ctr.unican.es/publications/mgh-1993a.pdf
+
+https://pubs.opengroup.org/onlinepubs/9699919799/nframe.html
+
+https://wiki.debian.org/POSIX
+
