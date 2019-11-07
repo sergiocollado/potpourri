@@ -801,6 +801,42 @@ the possible operators are:
 
 To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
 
+
+### linux booting
+
+Booting a Linux system involves several tasks. The process must mount both virtual and real file systems, initialize devices, activate swap, check file systems for integrity, mount any swap partitions or files, set the system clock, bring up networking, start any daemons required by the system, and accomplish any other custom tasks needed by the user. This process must be organized to ensure the tasks are performed in the correct order but, at the same time, be executed as fast as possible.
+
+#### System V
+System V is the classic boot process that has been used in Unix and Unix-like systems such as Linux since about 1983. It consists of a small program, init, that sets up basic programs such as login (via getty) and runs a script. This script, usually named rc, controls the execution of a set of additional scripts that perform the tasks required to initialize the system.
+
+The init program is controlled by the /etc/inittab file and is organized into run levels that can be run by the user:
+
+
+0 — halt
+1 — Single user mode
+2 — Multiuser, without networking
+3 — Full multiuser mode
+4 — User definable
+5 — Full multiuser mode with display manager
+6 — reboot
+The usual default run level is 3 or 5.
+
+##### Advantages
+Established, well understood system.
+
+Easy to customize.
+
+##### Disadvantages
+Slower to boot. A medium speed base LFS system takes 8-12 seconds where the boot time is measured from the first kernel message to the login prompt. Network connectivity is typically established about 2 seconds after the login prompt.
+
+Serial processing of boot tasks. This is related to the previous point. A delay in any process such as a file system check, will delay the entire boot process.
+
+Does not directly support advanced features like control groups (cgroups), and per-user fair share scheduling.
+
+Adding scripts requires manual, static sequencing decisions.
+
+
+
 ### NETWORKING
 
 **ifconfig** - presents the current network configuration
@@ -1177,7 +1213,7 @@ TODO:  complete with: -- > http://unix.stackexchange.com/questions/87908/how-do-
 5) 
 If you want to know how much free memory you have in your hard disk, you have to use the commands:
 
--  **df** command (for disk free?): this will report how much free memory has the filesystem. You usually invoque `df -h` the -h flag stands for "human readable".
+-  **df** command (for disk filesystem): this will report how much free memory has the filesystem. You usually invoque `df -sh` the -h flag stands for "human readable", and the -s for summary
 
  - **du** command (stands for: disk usage): reports an estimation of the file space usage. is better to use it with the optinons -sh. -s for summary and -h for human readeble.
 
