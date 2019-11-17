@@ -2475,8 +2475,9 @@ sudo firewall-cmd --set-default-zone=internal
 To see the zones used by your network interface(s):
 sudo firewall-cmd --get-active-zones
 
-
 ?? The main web server should be deployed on a dedicated host in the demilitarized zone (DMZ). It’s ports must be firewalled: only 80 (http) and 443 (https) ports must be opened for external connections. 
+
+19. use Shadow with Cracklib, to enforce sstrong passwords: http://www.linuxfromscratch.org/blfs/view/9.0/postlfs/cracklib.html 
 
 
 ## how to generate a ssh_key
