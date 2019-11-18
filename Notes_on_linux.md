@@ -1213,9 +1213,9 @@ TODO:  complete with: -- > http://unix.stackexchange.com/questions/87908/how-do-
 5) 
 If you want to know how much free memory you have in your hard disk, you have to use the commands:
 
--  **df** command (for disk filesystem): this will report how much free memory has the filesystem. You usually invoque `df -sh` the -h flag stands for "human readable", and the -s for summary
+-  **df** command (for _disk filesystem_): this will report how much free memory has the filesystem. You usually invoque `df -sh` the -h flag stands for "human readable", and the -s for summary
 
- - **du** command (stands for: disk usage): reports an estimation of the file space usage. is better to use it with the optinons -sh. -s for summary and -h for human readeble.
+ - **du** command (stands for: _disk usage_): reports an estimation of the file space usage. is better to use it with the optinons -sh. -s for summary and -h for human readeble.
 
 TODO: COMPLETE
 
@@ -1692,6 +1692,8 @@ REFERENCES:
 references are labels associated to commit's SHA hash value. The reference **master** points to the master branch. A branch label points to the latest commit in a brach, its tip. actually branch labels are implemented only as refereces to given commits. the referenes are stored in the .git/refs directory. local branch references are in the .git/refs/heads directory. 
 
 The **HEAD** reference is the reference to the actual commit in you local branch. 
+
+The **origin**  is the default name Git gives to the server you cloned from.
 
 the tilde (~) and caret are used to refence to previous commits. to use them you append them to a commits refernce. You can use a ~ or ~1, that points to the parent of the given commit, if you use ~~ or ~2 you are refering to the parent's parent of the pointed commit. If you use the ~~~ or ~3 the reference is to the parent's parent's parent of the pointed commit. and so on ...
 
