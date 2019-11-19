@@ -1592,9 +1592,7 @@ to read about a specific subcommand or concept.
 See 'git help git' for an overview of the system.
 ```
 
-
-
-## how to install git 
+## How to install git 
 to know if it is already installed
 
 ```bash
@@ -1649,7 +1647,6 @@ cat ~/.gitconfig
 cat .git/config
 ```
 
-
 to configure the user: 
 
 ```bash
@@ -1659,13 +1656,13 @@ to configure the email:
 ```bash
 git config --global user.email "myName@email.com"
 ```
-to check those values, agian
+to check the configuration values, agian
 ```bash
 git config --global --list
 ```
 to set the core editor:
 ```bash
-git config --global core.editor nano
+git config --global core.editor nano/gedit/emacs/vim/...
 ```
 to help to do matches to correct commands:
 ```bash
@@ -1691,11 +1688,13 @@ REFERENCES:
 
 references are labels associated to commit's SHA hash value. The reference **master** points to the master branch. A branch label points to the latest commit in a brach, its tip. actually branch labels are implemented only as refereces to given commits. the referenes are stored in the .git/refs directory. local branch references are in the .git/refs/heads directory. 
 
+**NOTE**: The _**“master”**_ branch in Git is not a special branch. It is exactly like any other branch. The only reason nearly every repository has one is that the git init command creates it by default and most people don’t bother to change it.
+
 The **HEAD** reference is the reference to the actual commit in you local branch. Watch out! because in other repository systems the concept of 'head' is diffenent. In git it just identifies the branch you are currently on.
 
 The **origin**  is the default name Git gives to the server you cloned from.
 
-the tilde (~) and caret are used to refence to previous commits. to use them you append them to a commits refernce. You can use a ~ or ~1, that points to the parent of the given commit, if you use ~~ or ~2 you are refering to the parent's parent of the pointed commit. If you use the ~~~ or ~3 the reference is to the parent's parent's parent of the pointed commit. and so on ...
+the tilde (**~**) and caret (**^**) are used to refence to previous commits. to use them you append them to a commits refernce. You can use a ~ or ~1, that points to the parent of the given commit, if you use ~~ or ~2 you are refering to the parent's parent of the pointed commit. If you use the ~~~ or ~3 the reference is to the parent's parent's parent of the pointed commit. and so on ...
 
 the caret (^) is used to point to a parent in a merge commit. so ^1 or ^ refers to the first parent and ^2 refers to  the second parent. or if you stack them : ^^ refers to the first's parent first parent of the pointed commit. 
 
@@ -1763,15 +1762,13 @@ we can check the last commit done with the command:
 git log
 ```
 
-
-git show HEAD <- shows the HEAD info
-
+**git show HEAD** <- shows the HEAD info
 
 to get to a branch
 ```bash
 git checkout branchName
 ```
-
+with this the **git checkout** command, moves the HEAD (the current point we are pointing in the repository) to the new "branchName", and at the same time, sets the files to point to the files at that point in "branchName". 
 
 to save changes, that are not ready to commit, but that we dont want to lose either, the 'stash' command is used:
 ```bash
