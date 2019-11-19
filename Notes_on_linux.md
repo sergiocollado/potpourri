@@ -2246,7 +2246,7 @@ Binary debugging
 ldd(1), file(1), nm(1), objdump(1), readelf(1)
 
 Memory usage tools
-free(1), memusage, memusagestat, slabtop(1)
+free(1), memusage, memusagestat, slabtop(1), memcheck, valgrind
 
 Accounting tools
 dump-acct, dump-utmp, sa(8)
@@ -2262,6 +2262,11 @@ xdpyinfo(1), xrestop(1)
 
 Other useful info
 collectl(1), proc(5), procinfo(8)
+
+code coverage:
+gcov: http://gcc.gnu.org/onlinedocs/gcc/Gcov.html <br>
+gcovr : https://gcovr.com/en/stable/ <br>
+lcov : http://ltp.sourceforge.net/coverage/lcov.php <br>
 
 
 Valgrind http://www.valgrind.org/docs/manual/quick-start.html
