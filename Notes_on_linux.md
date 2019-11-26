@@ -563,11 +563,25 @@ In non-login shells, like bash, it checks just if  _**~/.bashrc**_ exists, then 
 
 ### Enviromental Variables
 
-these are definitions that might be used for several goals. Many applications use them to define default settings.
+The enviromental variables let you customize the system, and define how it works.
+These enviromental variables, are definitions that might be used for several goals. Many applications use them to define default settings.
 
-Most common are:  HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME, VISUAL, SHELL, BASH_VERSION, HOSTNAME, HISTFILE, HISTFILESIZE, HISTSIZE, LANG, EDITOR, DISPLAY, TMOUT,
+Most common are:  HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME, LOGNAME, VISUAL, SHELL, TERM, BASH_VERSION, HOSTNAME, HISTFILE, HISTFILESIZE, HISTSIZE, LANG, EDITOR, DISPLAY, TMOUT,
+
+the commands to work with enviromental variables are:
+
+ - **env**
+ - **printenv**
+ - **set**
+ - **unset**
+ - **export**
+
+
+By convention, all the enviromental variables has a name in upper-case.
 
 They can be set like: 'PATH=$HOME/BIN:$PATH'
+
+Watch out when defining enviromental variables as you cannot use 'spaces' around the '=' equal symbol.
 
 To check all defined enviroment variables, you can type: printenv, env, or export.
 
@@ -575,13 +589,27 @@ To check all defined enviroment variables, you can type: printenv, env, or expor
 printenv | less
 ``` 
 
-to make abailable the env var in other directories, they must be exported.
+to make available the env var in other directories, they must be exported.
 
 ```bash
 MYVAR=value;
 export VAR;
 ``` 
+
+To check the value of a variable, you can use
+
+```bash
+echo $MYVAR
+```
+
 PATH, is the enviromental varible that defines the order in which directories will be checked for looking for programs. those directories will be checked from the begining to the end.
+
+is common that you want to update your PATH variable, it is done like follows:
+
+```bash
+export JAVA_HOME="/path/to/java/home"
+export PATH=$PATH:$JAVA_HOME/bin
+```
 
 you can check its value, with:
 
@@ -590,7 +618,13 @@ you can check its value, with:
 >echo $USERNAME
 ```
 
-Other enviromental varibles are:  PATH, LD_LIBRARY_PATH, MANPATH, INFOPATH, CPPFLAGS HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME, VISUAL.
+Other enviromental varibles are:  LD_LIBRARY_PATH, MANPATH, INFOPATH, CPPFLAGS HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME, VISUAL.
+
+In the case you want to have persisten enviromental variables, you need to configure those into the terminal configuration files, for example in the following files:
+
+- /etc/enviroment- here there are system-wide used variables.
+- /etc/profile - here this file is loaded whenever the bash terminal is call.
+- ~/.bashrc - this file is loaded each time a give user open the bash terminal.
 
 
 #### Bash configuration
@@ -2483,8 +2517,84 @@ sudo firewall-cmd --get-active-zones
 
 19. use Shadow with Cracklib, to enforce sstrong passwords: http://www.linuxfromscratch.org/blfs/view/9.0/postlfs/cracklib.html 
 
+## SSH secure shell
 
-## how to generate a ssh_key
+ssh is the secure shell. SSH is a network prototocol, like telnel, ftp, ...  SSH is a secure protocol, so the comunication is encrypted. SSH can be used for transmitting data, for transmitting commands of files, 
+
+there are ssh clients or server, for mayor system platforms.
+
+to install a ssh server:
+
+to look for the packet: apt-cache search openssh
+
+### How to install a ssh server
+
+to install: 
+sudo apt-get install openssh-server
+
+
+### How to login to ssh
+
+to connet to a ssh server you command in a terminal as:
+
+ssh username@remotelocation
+
+remotelocation can be an ip address or a name
+
+if you left out your user name, it will attemp to connect with you local user name .
+
+
+you will be asked for your password. 
+
+basically almost any command you can run in the terminal you can also run it in the ssh shell
+
+to end the ssh connections you use the command: exit.
+
+otherwise if you just close the terminal the process will still be open, and consumming resources. 
+
+
+## how to logout ssh
+
+CTR+D
+logout 
+exit
+
+
+## how to ssh authentification
+
+ there is two aproaches one is password based and the second one is based in cryptographic keys. the later is much more secure.
+
+
+
+## how to change the ssh port
+
+you can also edit the ports which ssh is using:
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+and in the Port, you can edit and change it. Usually it uses the standard port 22 , but you can choose to change it for security reasons. so it is not easy to guess where you ssh port is.
+
+
+after that it is needed to restar the ssh server:
+
+```
+sudo /etc/init.d/ssh restart
+```
+
+you can test the service with: ssh localhost
+
+it should report an error.
+
+but if the newport is tested: ssh -p newportnumber localhost
+
+then it should ask for the password. 
+
+to stop the ssh server: sudo /etc/init.d/ssh stop
+
+
+## How to generate a ssh_key
 
 ref: https://www.ssh.com/ssh/keygen/
 
@@ -2493,3 +2603,5 @@ run the command: ssh-keygen
 the keys are stored in the file '.ssh/' -- id_rsa.pub is your public key and can be shared, while id_rsa is your private key and should be kept secret.
 
 the command `ssh-add` will keep the ssh keys if these are stored in the standard places. And with the command `ssh-agent` the passphase will be used automatically.
+
+
