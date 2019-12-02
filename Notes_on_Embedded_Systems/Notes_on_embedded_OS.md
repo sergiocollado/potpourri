@@ -302,3 +302,8 @@ https://pubs.opengroup.org/onlinepubs/9699919799/nframe.html
 
 https://wiki.debian.org/POSIX
 
+
+
+Other embedded OS:
+
+- http://www.chibios.org/dokuwiki/doku.php
