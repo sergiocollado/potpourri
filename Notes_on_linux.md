@@ -2323,6 +2323,12 @@ A list of Linux tools that can be used to explore object/executable files.
  - strip: deletes the symbol table information.
 
 
+other references: 
+
+ - http://www.unknownroad.com/rtfm/gdbtut/gdbadvanced.html#CORE
+ - http://www.brendangregg.com/bpf-performance-tools-book.html
+
+
 ## ABOUT OPEN SOURCE SOFTWARE LICENSES.
 
 Mainly there are two types of licenses: restrictive and permisive
