@@ -180,7 +180,7 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 - **cp** command: It copies a file.
 - **mv** command: It moves a file (to another directory), also can be used to change the name of a file.
 - **touch** command: creates a new file or updates it last edition time.
-
+- **tree** command:- list contents of directories in a tree-like format https://linux.die.net/man/1/tree
 
 special directory names: 
 
@@ -420,21 +420,25 @@ to change the default permissions to read/write permissions for everybody.
 ## Commands for monitoring the performance, memory
 
 - top - prints the proceses : top(1) http://man7.org/linux/man-pages/man1/top.1.html
+- htop - like top- but with better inteface.
 - uptime - how long has the system been running and its load. uptime(1) https://linux.die.net/man/1/uptime
 - ps - information about the processes - http://man7.org/linux/man-pages/man1/ps.1.html
 - pstree - ps in a tree http://man7.org/linux/man-pages/man1/pstree.1.html
-- mpstat - statistics for multiple processors http://man7.org/linux/man-pages/man1/mpstat.1.html
-- iostat - cpu info and statistics
-- trace - info about system call and traces
+- trace - info about system call and traces (also theck strace, ptrace and ltrace).
 - pmap - info about process memory stats http://man7.org/linux/man-pages/man1/pmap.1.html
 - vmstats -info about the virtual memory statistics, and block I/O. http://man7.org/linux/man-pages/man1/pmap.1.html
 - free  - info about meomry usage: free(1) http://man7.org/linux/man-pages/man1/free.1.html
 - uname - print system information, like kernel version, hardware, operating systen. https://linux.die.net/man/1/uname
-- iostat - cpu utilization and I/O statistics. iostat(1) http://man7.org/linux/man-pages/man1/iostat.1.html
-- iotop - I/O statistics including per process iotop(8) http://man7.org/linux/man-pages/man8/iotop.8.html
-- sar - system activity. sar(1) http://man7.org/linux/man-pages/man1/sar.1.html
 - vmstat - detail of the virtual memory statistics and IO. vmstat(8) http://man7.org/linux/man-pages/man8/vmstat.8.html
 - systemctl: report the system programs. http://man7.org/linux/man-pages/man1/systemctl.1.html
+- sysstat: a group of tools to monitor performance: http://sebastien.godard.pagesperso-orange.fr/features.html
+  - sar: system activity reporter: statistics about all the system 
+  - mpstat - statistics for multiple processors http://man7.org/linux/man-pages/man1/mpstat.1.html
+  - iostat - cpu utilization and I/O statistics. iostat(1) http://man7.org/linux/man-pages/man1/iostat.1.html
+  - iotop - I/O statistics including per process iotop(8) http://man7.org/linux/man-pages/man8/iotop.8.html
+  - sar - system activity. sar(1) http://man7.org/linux/man-pages/man1/sar.1.html
+  - pidstats: processes statistics. (like top or htop) 
+
 
 ### MOUNTING FILE SYSTEMS
 
@@ -566,7 +570,7 @@ In non-login shells, like bash, it checks just if  _**~/.bashrc**_ exists, then 
 The enviromental variables let you customize the system, and define how it works.
 These enviromental variables, are definitions that might be used for several goals. Many applications use them to define default settings.
 
-Most common are:  HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME, LOGNAME, VISUAL, SHELL, TERM, BASH_VERSION, HOSTNAME, HISTFILE, HISTFILESIZE, HISTSIZE, LANG, EDITOR, DISPLAY, TMOUT,
+Most common are:  HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME, LOGNAME, VISUAL, SHELL, TERM, BASH_VERSION, HOSTNAME, HISTFILE, HISTFILESIZE, HISTSIZE, LANG, EDITOR, DISPLAY, TMOUT,LS_COLORS.
 
 the commands to work with enviromental variables are:
 
@@ -1058,7 +1062,7 @@ cat /proc/filesystem | less
  https://akkadia.org/drepper/cpumemory.pdf
  
  **free** - Display amount of free and used memory in the system - https://linux.die.net/man/1/free
- **df** - report file system disk space usage  https://linux.die.net/man/1/df
+ **df** - (from disk filesystem?) report file system disk space usage  https://linux.die.net/man/1/df
  
 The analysis of the memory in the linux system, can be checked using the commands:
 
@@ -1279,6 +1283,7 @@ https://akkadia.org/drepper/cpumemory.pdf
 ## system monitoring
 
 - uname - print system information, like kernel version, hardware, operating systen. https://linux.die.net/man/1/uname
+- ulimits
 - sar:Collect, report, or save system activity information.  https://linux.die.net/man/1/sar
 - iotop - simple top-like I/O monitor  https://linux.die.net/man/1/iotop
 - vmstat - Report virtual memory statistics https://linux.die.net/man/8/vmstat
@@ -1575,8 +1580,12 @@ https://stackoverflow.com/questions/47465878/install-qt-4-ubuntu-17-04
 
 # GIT
 
-ref: https://git-scm.com/docs/gittutorial
-ref: https://www.git-scm.com/doc
+ref: https://git-scm.com/docs/gittutorial <br>
+ref: https://www.git-scm.com/doc <br>
+ref: https://linux.die.net/man/7/gittutorial <br>
+ref: https://linux.die.net/man/7/gittutorial-2 <br>
+https://linux.die.net/man/7/gitworkflows <br>
+https://linux.die.net/man/7/gitglossary <br>
 
 
 ```bash
