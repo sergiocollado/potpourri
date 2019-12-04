@@ -1387,7 +1387,21 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
  typically reside in RAM, file access is extremely fast. http://man7.org/linux/man-pages/man5/tmpfs.5.html
  
   
-  
+### for debugging: gdb
+
+gdb good stuff:
+
+ https://youtu.be/PorfLSr3DDI
+
+graphical interface for gdb: gdb --tui 
+
+For debugging: gdb and core dumps:
+
+http://www.brendangregg.com/blog/2016-08-09/gdb-example-ncurses.html
+
+https://sourceware.org/gdb/onlinedocs/gdb/index.html#Top
+
+ 
   
 #### how to create timers:
 
