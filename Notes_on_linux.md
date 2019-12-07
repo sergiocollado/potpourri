@@ -926,6 +926,18 @@ else
 fi 
 ```
 
+or with severla branches
+
+
+```bash
+if [[ condition]]
+then
+    #... commands
+elif [[ other condition ]]
+then
+    #... other commands
+fi 
+```
 
 
 ### NETWORKING
