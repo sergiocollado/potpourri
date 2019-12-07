@@ -263,7 +263,7 @@ SNELL EQUATION
 ```
 
 
-CLASSICAL ROCKET EQUATION:
+CLASSICAL ROCKET EQUATION or Tsiolkovsky Equation:
 
 ```latex
 \Delta \nu  = \nu_e \ln \frac{ m_0}{ m_f}
