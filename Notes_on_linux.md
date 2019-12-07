@@ -698,6 +698,118 @@ Adding scripts requires manual, static sequencing decisions.
 
 
 
+# SYSTEM INITIALIZATION:
+ 
+ /sbin/init - is the first program to run, is identified with process id = 1. It launches the rest of processes
+
+the first thing the init process do is to read the /etc/inittab command, in that file each line represents an action:  
+
+"id:runlevel(s):action:process"
+
+Old distros where based in **SysVinit**. More updated distros use: **systemd**
+
+https://www.freedesktop.org/wiki/Software/systemd/
+
+
+runlevel go from 0 to 6:
+
+
+| Run Level | description |
+| :---:       |     :---:      |  
+| 0  | shut down and turn power off     | 
+| 1   | single user mode    |
+| S,s  | equal that runlevel 1   | 
+| 2 | multiple user, no NFS, only text login     | 
+| 3   | multiple user, with NFS and network, only text  | 
+| 4   | Not used    |
+| 5  |  multiple user, wit NFS, visual login |
+| 6  |  reboot  | 
+
+
+to verify the runlevel, can be done with the 'runlevel' command.
+
+to change the runlevel, use the 'teleinit' command.
+
+http://man7.org/linux/man-pages/man1/systemd.1.html
+
+http://man7.org/linux/man-pages/man1/systemctl.1.html
+
+
+Start apache service at boot:  sudo systemctl enable httpd.service
+
+# BUILDROOT
+
+http://buildroot.net/downloads/manual/manual.html#_advanced_usage
+
+# GRUB
+
+Its basic configuration file is at: /boot/grub/grub.cfg or /boot/grub2/grub.cfg, those are related to /etc/grub.d and /etc/default/grub
+Those file will generate the ones under /boot, when is run update-grub or grub2-mkconfig
+
+ - vmlinuz-xxx - this is the compressed kernel.
+ 
+ - initrams/initrd - a initial root file system loaded as a ramdisk. this is the initial ram filesystem, which contains essential drivers for hardware and filesystems.
+ 
+ - System.map - the kernel symbolic table.
+ 
+ 
+# kernel messages
+
+kernel messages are printed with: 
+
+```bash
+dmesg -w
+```
+
+# system logs
+
+you can use the following command:
+
+```bash
+$ sudo tail -f /var/log/messages
+```
+
+also syslogs: https://linux.die.net/man/3/syslog
+also: https://linux.die.net/man/5/syslog-ng.conf
+
+# kernel panic 
+
+kernel panic is the name of the error known in which the OS has a hard time recovering.
+
+reference: https://searchdatacenter.techtarget.com/definition/Linux-kernel-panic
+
+reference: https://www.linuxjournal.com/content/oops-debugging-kernel-panics-0
+
+
+## USER SPACE AND KERNEL SPACE
+
+### user space
+
+user space is the part of the memory where all the user mode application run, and that memory can be swapped at any time, when necessary.
+
+user space processes then run in its own virtual memory addresses space, and unless specifically requested cannot address the memory of other processes. (tring to read a memory out of their space is the famous segmentation faolt error).
+
+### kernel space
+
+kernel space is restricted and exclusively reserverd for running the kernel, kernel extension, modules and drivers.
+
+linux kernel space gives full access to the hardware, 
+
+http://www.ibiblio.org/pub/Linux/docs/faqs/Threads-FAQ/html/Types.html
+
+user application 
+ V
+gnu glibc             ..........user space /\
+ V
+system call interface ............kernel space V
+ V 
+kernel
+ V 
+architecture dependant kernel code
+ V 
+hardware platform
+
+
 
 ## BASH SCRIPTING
 
@@ -1637,33 +1749,6 @@ $>nmap 192.168.0*  --exclude 192.168.1.5
 nmap -sP 192.168.1.0/24
 ```
 
-# kernel messages
-
-kernel messages are printed with: 
-
-```bash
-dmesg -w
-```
-
-# system logs
-
-you can use the following command:
-
-```bash
-$ sudo tail -f /var/log/messages
-```
-
-also syslogs: https://linux.die.net/man/3/syslog
-also: https://linux.die.net/man/5/syslog-ng.conf
-
-# kernel panic 
-
-kernel panic is the name of the error known in which the OS has a hard time recovering.
-
-reference: https://searchdatacenter.techtarget.com/definition/Linux-kernel-panic
-
-reference: https://www.linuxjournal.com/content/oops-debugging-kernel-panics-0
-
 # INSTALLING NGINX
 
 ```bash
@@ -2246,60 +2331,6 @@ these are the commands that allow to communicate to a remote repository
 
 ref: https://gerrit-review.googlesource.com/Documentation/intro-gerrit-walkthrough.html
 
-# BUILDROOT
-
-http://buildroot.net/downloads/manual/manual.html#_advanced_usage
-
-# GRUB
-
-Its basic configuration file is at: /boot/grub/grub.cfg or /boot/grub2/grub.cfg, those are related to /etc/grub.d and /etc/default/grub
-Those file will generate the ones under /boot, when is run update-grub or grub2-mkconfig
-
- - vmlinuz-xxx - this is the compressed kernel.
- 
- - initrams/initrd - a initial root file system loaded as a ramdisk. this is the initial ram filesystem, which contains essential drivers for hardware and filesystems.
- 
- - System.map - the kernel symbolic table.
- 
- 
- # SYSTEM INITIALIZATION:
- 
- /sbin/init - is the first program to run, is identified with process id = 1. It launches the rest of processes
-
-the first thing the init process do is to read the /etc/inittab command, in that file each line represents an action:  
-
-"id:runlevel(s):action:process"
-
-Old distros where based in **SysVinit**. More updated distros use: **systemd**
-
-https://www.freedesktop.org/wiki/Software/systemd/
-
-
-runlevel go from 0 to 6:
-
-
-| Run Level | description |
-| :---:       |     :---:      |  
-| 0  | shut down and turn power off     | 
-| 1   | single user mode    |
-| S,s  | equal that runlevel 1   | 
-| 2 | multiple user, no NFS, only text login     | 
-| 3   | multiple user, with NFS and network, only text  | 
-| 4   | Not used    |
-| 5  |  multiple user, wit NFS, visual login |
-| 6  |  reboot  | 
-
-
-to verify the runlevel, can be done with the 'runlevel' command.
-
-to change the runlevel, use the 'teleinit' command.
-
-http://man7.org/linux/man-pages/man1/systemd.1.html
-
-http://man7.org/linux/man-pages/man1/systemctl.1.html
-
-
-Start apache service at boot:  sudo systemctl enable httpd.service
 
 Links:
 
@@ -2711,6 +2742,7 @@ sudo firewall-cmd --get-active-zones
 
 19. use Shadow with Cracklib, to enforce sstrong passwords: http://www.linuxfromscratch.org/blfs/view/9.0/postlfs/cracklib.html 
 
+
 ## SSH secure shell
 
 ssh is the secure shell. SSH is a network prototocol, like telnel, ftp, ...  SSH is a secure protocol, so the comunication is encrypted. SSH can be used for transmitting data, for transmitting commands of files, 
@@ -2754,21 +2786,36 @@ logout
 exit
 
 
-## how to ssh authentification
+## ssh authentification
 
  there is two aproaches one is password based and the second one is based in cryptographic keys. the later is much more secure.
 
 
 
+## How to generate a ssh_key
+
+ref: https://www.ssh.com/ssh/keygen/
+
+run the command: **ssh-keygen**
+
+the keys are stored in the file '.ssh/' 
+
+- id_rsa.pub is your public key and can be shared, while id_rsa is your private key and should be kept secret.
+
+the command **`ssh-add`** will keep the ssh keys if these are stored in the standard places.
+
+And with the command **`ssh-agent`** the passphase will be used automatically.
+
+
 ## how to change the ssh port
 
-you can also edit the ports which ssh is using:
+you can also change the default port in which ssh is using (for security reasons..)
 
 ```bash
-sudo nano /etc/ssh/sshd_config
+sudo vim /etc/ssh/sshd_config
 ```
 
-and in the Port, you can edit and change it. Usually it uses the standard port 22 , but you can choose to change it for security reasons. so it is not easy to guess where you ssh port is.
+and in the port, you can edit and change it. Usually it uses the standard port 22 , but you can choose to change it for security reasons. so it is not easy to guess where you ssh port is.
 
 
 after that it is needed to restar the ssh server:
@@ -2786,16 +2833,5 @@ but if the newport is tested: ssh -p newportnumber localhost
 then it should ask for the password. 
 
 to stop the ssh server: sudo /etc/init.d/ssh stop
-
-
-## How to generate a ssh_key
-
-ref: https://www.ssh.com/ssh/keygen/
-
-run the command: ssh-keygen
-
-the keys are stored in the file '.ssh/' -- id_rsa.pub is your public key and can be shared, while id_rsa is your private key and should be kept secret.
-
-the command `ssh-add` will keep the ssh keys if these are stored in the standard places. And with the command `ssh-agent` the passphase will be used automatically.
 
 
