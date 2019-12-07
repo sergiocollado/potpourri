@@ -644,7 +644,7 @@ This can be done through the enviromental varialbe PS1
 
 ### Open-terminal
 
-It is a programm that lets you open a terminal in any window from the desktop manager.
+It is a program that lets you open a terminal in any window from the desktop manager.
 
 you can install it with:
 
@@ -652,6 +652,50 @@ you can install it with:
 $ sudo yum install nautilus-open-terminal
 $ sudo apt-get install Nautilus-open-terminal
 ```
+
+### Processes
+
+To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
+
+
+### linux booting
+
+Booting a Linux system involves several tasks. The process must mount both virtual and real file systems, initialize devices, activate swap, check file systems for integrity, mount any swap partitions or files, set the system clock, bring up networking, start any daemons required by the system, and accomplish any other custom tasks needed by the user. This process must be organized to ensure the tasks are performed in the correct order but, at the same time, be executed as fast as possible.
+
+#### System V
+System V is the classic boot process that has been used in Unix and Unix-like systems such as Linux since about 1983. It consists of a small program, init, that sets up basic programs such as login (via getty) and runs a script. This script, usually named rc, controls the execution of a set of additional scripts that perform the tasks required to initialize the system.
+
+The init program is controlled by the /etc/inittab file and is organized into run levels that can be run by the user:
+
+| status | state |
+|    :---:        |     :---:      |  
+|0 —| halt|
+|1 —| Single user mode|
+|2 —| Multiuser, without networking|
+|3 —| Full multiuser mode|
+|4 —|User definable|
+|5 —| Full multiuser mode with display manager|
+|6 —| reboot|
+
+
+The usual default run level is 3 or 5.
+
+##### Advantages
+Established, well understood system.
+
+Easy to customize.
+
+##### Disadvantages
+Slower to boot. A medium speed base LFS system takes 8-12 seconds where the boot time is measured from the first kernel message to the login prompt. Network connectivity is typically established about 2 seconds after the login prompt.
+
+Serial processing of boot tasks. This is related to the previous point. A delay in any process such as a file system check, will delay the entire boot process.
+
+Does not directly support advanced features like control groups (cgroups), and per-user fair share scheduling.
+
+Adding scripts requires manual, static sequencing decisions.
+
+
+
 
 ## BASH SCRIPTING
 
@@ -786,17 +830,6 @@ so the value 'true' is equal to 0, and the value 'false' is equal to not 0.
 the returned value of the last exectued command or program is stored in $? so you can retrieve it with 'echo $?'
 
 
-
-### ifS
-
-if commands; then
-commands
-[elif commands; then
-commands...]
-[else
-commands]
-fi
-
 ### tests
 
 The test command is used most often with the if command to perform true/false decisions. The command is unusual in that it has two different syntactic forms:
@@ -836,11 +869,13 @@ the possible operators are:
 | -eq   | equal   | 
 | -neq  | not equal     | 
 | -le   | less than or equal     | 
-| -lt   | a file exits     |
-| -e   | a directory exits  | 
-| -d   | length of a String is zero    |
-| -z   | Length of a string is non-zero     | 
-
+| -lt   | less than    |
+| -e  | a file exits     |
+| -d   | a directory exits  | 
+| -z   | length of a String is zero    |
+| -n   | Length of a string is non-zero     | 
+| ~=   | match operator to a regular expression    | 
+| !   | NOT operator    | 
 
 | condition file evaluations| text | 
 | :---         |     :---:      |  
@@ -870,47 +905,26 @@ the possible operators are:
 | -z string    | is the string null? | 
 
 
-
-### Processes
-
-To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
-
-
-### linux booting
-
-Booting a Linux system involves several tasks. The process must mount both virtual and real file systems, initialize devices, activate swap, check file systems for integrity, mount any swap partitions or files, set the system clock, bring up networking, start any daemons required by the system, and accomplish any other custom tasks needed by the user. This process must be organized to ensure the tasks are performed in the correct order but, at the same time, be executed as fast as possible.
-
-#### System V
-System V is the classic boot process that has been used in Unix and Unix-like systems such as Linux since about 1983. It consists of a small program, init, that sets up basic programs such as login (via getty) and runs a script. This script, usually named rc, controls the execution of a set of additional scripts that perform the tasks required to initialize the system.
-
-The init program is controlled by the /etc/inittab file and is organized into run levels that can be run by the user:
-
-| status | state |
-|    :---:        |     :---:      |  
-|0 —| halt|
-|1 —| Single user mode|
-|2 —| Multiuser, without networking|
-|3 —| Full multiuser mode|
-|4 —|User definable|
-|5 —| Full multiuser mode with display manager|
-|6 —| reboot|
+| logica operators| text | 
+| :---         |     :---:      |  
+| ~=   | match operator to a regular expression    | 
+| $value | is it non empty? | 
+| ==  | equals?  | 
+|  !=  | different?   | 
+| !   | NOT operator    | 
 
 
-The usual default run level is 3 or 5.
 
-##### Advantages
-Established, well understood system.
+### IF statements
 
-Easy to customize.
-
-##### Disadvantages
-Slower to boot. A medium speed base LFS system takes 8-12 seconds where the boot time is measured from the first kernel message to the login prompt. Network connectivity is typically established about 2 seconds after the login prompt.
-
-Serial processing of boot tasks. This is related to the previous point. A delay in any process such as a file system check, will delay the entire boot process.
-
-Does not directly support advanced features like control groups (cgroups), and per-user fair share scheduling.
-
-Adding scripts requires manual, static sequencing decisions.
+```bash
+if [[ condition]] then
+    #... commands
+else
+    #... other commands
+fi
+... 
+```
 
 
 
