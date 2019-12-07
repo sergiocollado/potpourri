@@ -128,6 +128,7 @@ the local settings of the system can be identified with the command **locale**
 >> locale
 ```
 
+you can try the following commands: **whoami, pwd, date, uname -a**
 
 ## Linux File System
 
@@ -224,6 +225,7 @@ special directory names:
 - **split** - split a file into pieces http://man7.org/linux/man-pages/man1/split.1.html
 - **cut** - extracts columns frot text data files. It is used for manipulating column-based files and is designed to extract specific columns. http://man7.org/linux/man-pages/man1/cut.1.html
 - **du** - informs about disk usage.
+- **date** print or set the system date and time, or the last modification of a given file (-r, --reference=FILE) http://man7.org/linux/man-pages/man1/date.1.html
 
 
 ### types of files in linux
@@ -926,7 +928,7 @@ else
 fi 
 ```
 
-or with severla branches
+or with several branches
 
 
 ```bash
@@ -938,6 +940,104 @@ then
     #... other commands
 fi 
 ```
+### arrays
+arrays are lits of elements.
+
+```bash
+weekdays=(monday tuesday wednesday thursday friday saturday sunday)
+```
+
+you can retrieve a given element with the parameter expansion ${} and with the '[]' squaded brackets indicator.
+
+Take into account, that arrays are zero-indexed (the first elements starts in zero index)
+
+```bash
+${weekdays[0]}
+```
+to referer to all the elements use a * pattern
+
+```bash
+${weekdays[*]}
+```
+to get only some of the elemnts you can use the start index, followed by the number of elements, separated by colons (:)
+
+```bash
+${weekdays[*]:5:2}
+# saturday sunday
+```
+
+to get the size of the array, use the pound # sign
+
+```bash
+${#weekdays[*]}
+```
+to add an element at the end of the array use the '+=' sign.
+
+```bash
+weekdays+= otherday
+echo ${weekdays[*]}
+```
+
+or you can modify a given element with the square brackets
+
+```bash
+weekdays[7]=monday
+```
+
+### brace expansion
+
+brace expansion is a way to create series of strings. it uses curly braquets and two periods to indicate it.
+
+```bash
+echo {0..9}
+# 0 1 2 3 4 5 6 7 8 9 
+```
+
+you can use number or letters
+```bash
+echo {a..j}
+echo {A..J}
+```
+
+it is possible to used prefixes to the brace expansion
+```bash
+echo a{0..9}
+# a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 
+```
+
+or postfixes
+
+```bash
+echo {0..9}z
+# 0z 1z 2z 3z 4z 5z 6z 7z 8z 9z 
+```
+
+or combine sequences.
+
+```bash
+echo {1..3}{A..C}
+# 1A 1B 1C 2A 2B 2C 3A 3B 3C
+```
+
+or concanete sequences with a comma.
+```bash
+echo {{1..3},{A..C}}
+# 1 2 3 A B C 
+```
+
+or use variables with the evaluation 
+
+```bash
+start=3
+end=7
+echo {$start..$end}
+eval echo {$start..$end}
+```
+
+
+
+
+
 
 
 ### NETWORKING
