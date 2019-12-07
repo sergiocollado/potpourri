@@ -697,27 +697,55 @@ there are special enviroment variables for the script
 - $# represents the number of arguments given
 - $? retains the value of the last executed command
 
+
+The arguments of a script go from $0 to $9.
+
+
 ## BASH COMMANDS
 
 ### comments
 
-all that follows a # is a comment
+all that follows a '#' is a comment
 
 ### variables
 
 variables are defined with the equal operator (=), and its value is returned, with the dolar simbol operator $.
-And to print its value, is common to use a echo $variable.
+variables can be numbers or character strings.
+And to print its value, is common to use a 'echo $variable'. 
+
+Watch out when giving value, as no spaces can be written previous and after the equal sign!
 
 ```bash
 myname="Sergio"
 echo "hello $myname !"
+myage=30
+echo $myage
 ```
+
+it is possible to modify the value of variable with the 'let' command
+
+```
+let myage=$myage+1
+```
+
+the value of a variable is getted with the dollar sign $. You can use it even inside strings to use the variable's value.
+
+```
+echo "Hello. I am $myname$, and I am $myage years old"
+```
+
+### command substitution
+
+in a script you can use commands in the same way as in the console, but the commands must be wrapped in 
+'$( )'. this is called command substitution.
+
+the command is executed, and then it is replaced by the string that results from running that command.
 
 ### expr and bc
 
 expr evaluates mathematicals expressions
 
-a more powerfull program is bc, for Bench Calculator https://linux.die.net/man/1/bc
+a more powerfull program is bc, 'bc' stands for **B**ench **C**alculator https://linux.die.net/man/1/bc
 
 ```bash
 expr 5 +1 
