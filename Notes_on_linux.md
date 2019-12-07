@@ -763,7 +763,7 @@ The command 'read' can be used to get user input.
 echo "Whats your name"
 read -n  yourname
 echo "hello $yourname"
-
+``` 
 
 that "-n" given to the echo command causes it to keep the cursor on the same line; i.e., it does not output a linefeed at the end of the prompt.
 
