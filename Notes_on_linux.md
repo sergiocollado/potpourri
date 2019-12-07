@@ -918,12 +918,12 @@ the possible operators are:
 ### IF statements
 
 ```bash
-if [[ condition]] then
+if [[ condition]]
+then
     #... commands
 else
     #... other commands
-fi
-... 
+fi 
 ```
 
 
