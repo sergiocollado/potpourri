@@ -777,7 +777,15 @@ echo -n "Enter a number > "
 read number
 ```
 
-### script flow control
+### Conditional execution: script flow control
+
+the return value of a command or program thar exits successfully is 0 otherwise the exit is not successfully.
+
+so the value 'true' is equal to 0, and the value 'false' is equal to not 0.
+
+the returned value of the last exectued command or program is stored in $? so you can retrieve it with 'echo $?'
+
+
 
 ### ifS
 
