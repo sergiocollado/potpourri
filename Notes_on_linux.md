@@ -646,7 +646,7 @@ This can be done through the enviromental varialbe PS1
 
 It is a programm that lets you open a terminal in any window from the desktop manager.
 
-you can istall it with:
+you can install it with:
 
 ```bash
 $ sudo yum install nautilus-open-terminal
@@ -885,14 +885,17 @@ System V is the classic boot process that has been used in Unix and Unix-like sy
 
 The init program is controlled by the /etc/inittab file and is organized into run levels that can be run by the user:
 
+| status | state |
+|    :---:        |     :---:      |  
+|0 —| halt|
+|1 —| Single user mode|
+|2 —| Multiuser, without networking|
+|3 —| Full multiuser mode|
+|4 —|User definable|
+|5 —| Full multiuser mode with display manager|
+|6 —| reboot|
 
-0 — halt
-1 — Single user mode
-2 — Multiuser, without networking
-3 — Full multiuser mode
-4 — User definable
-5 — Full multiuser mode with display manager
-6 — reboot
+
 The usual default run level is 3 or 5.
 
 ##### Advantages
