@@ -114,7 +114,7 @@ journal: http://www.linuxjournal.com
 
 ## Starting with a Linux System.
 
-Most commonly you would use an already designed Linux system, there are many chances that lenguage is set to english, and you must change it to you keyboard cofingurations. Just for reference: u should  run the following command:
+Most commonly you would use an already designed Linux system, there are many chances that lenguage is set to english, and you must change it to you keyboard cofingurations. Just for reference: you should  run the following command:
 
 ```bash
 $> del lang=es
@@ -789,7 +789,7 @@ OR operator is ||.  the term at the right will only be executed if the term in t
 
 #### conditional expressions
 
-Conditionals expressions are indicated a condition inside double brackets. 
+Conditionals expressions are indicated a condition inside double brackets: [[ ]]
 
 the possible operators are:
 
