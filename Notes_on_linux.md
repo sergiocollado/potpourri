@@ -1133,7 +1133,7 @@ echo {1..3}{A..C}
 
 or concanete sequences with a comma.
 ```bash
-echo {{1..3},{A..C}}
+echo { {1..3},{A..C} }
 # 1 2 3 A B C 
 ```
 
