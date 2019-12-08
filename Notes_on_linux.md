@@ -1146,10 +1146,26 @@ echo {$start..$end}
 eval echo {$start..$end}
 ```
 
+### FOR loops
 
+```bash
+for i in {1..3}
+do
+    echo "i is equal to $i"
+done
+```
 
+### WHILE loops
 
+```bash
+count=5
 
+while [[ $count -gt 0 ]]
+do
+  echo "count is equal to $count"
+  let count=$count-1
+done
+```
 
 
 ### NETWORKING
@@ -2108,7 +2124,6 @@ to remove the changes pending, use.
 git stash drop 
 ```
 
-
 BRANCH CREATION
 ```bash
 git branch MyNewBranchName OriginBranchName
@@ -2531,6 +2546,7 @@ MM: http://www.engelschall.com/sw/mm/
 
 mpr: http://freshmeat.net/projects/mpr/
 
+for checking cpu performance: **lscpu**  ref: http://man7.org/linux/man-pages/man1/lscpu.1.html
 
 A list of Linux tools that can be used to explore object/executable files.
 
