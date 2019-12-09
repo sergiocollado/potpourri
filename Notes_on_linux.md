@@ -279,6 +279,8 @@ file1  rwxr-x^-x
 - the last 3 characters are the permissions for all users.
 
 
+A finer or more advanced control of access to files can be managed with the paquet ACL (Access Control Lists) 
+
 ### Root user aka Superuser
 
 - the root account has the highest permission level, and it has access to everything.
