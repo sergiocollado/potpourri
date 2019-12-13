@@ -640,6 +640,9 @@ Successfully installed paho-mqtt-1.3.1
 ```
 $>> C:\winsuer\> python -m pip install --upgrade pip
 $>> C:\winuser\> py -m pip install pytube
+
+//to update pytube
+> pip install --upgrade pytube
 ```
 
 ``` python
