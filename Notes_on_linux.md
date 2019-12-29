@@ -1696,7 +1696,22 @@ http://www.brendangregg.com/blog/2016-08-09/gdb-example-ncurses.html
 
 https://sourceware.org/gdb/onlinedocs/gdb/index.html#Top
 
- 
+
+### tools to monitor linux systems
+
+ - top and htop: Linux process ponitoring
+ - vmstat: virtual memory statistics
+ - lsof: list open file
+ - tcpdump: network packet analyzer
+ - netstat: network statistics
+ - monitorix: system and network monitoring   https://www.monitorix.org/
+ - iotop: Monitor Linux Disk I/O
+ - iostat: Input / Output Statistics
+ - iptraf: Real Time IP LAN Monitoring
+ - psacct: Monitor User Activity
+ - monit: Linux Process & Srvc Monitoring
+ - nethogs: Monitor Per Process Network
+ - nmon: Monitor Linux Performance 
   
 #### how to create timers:
 
