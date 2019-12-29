@@ -1634,8 +1634,7 @@ other module-related commands are: **insmod**, **modprobe**,
 # How to evaluate the startup of linux system
 
 Bootchart is a tool for performance analysis and visualization of the GNU/Linux boot process. Resource utilization and process information are collected during the boot process and are later rendered in a PNG, SVG or EPS encoded chart.
-http://www.bootchart.org/
-
+http://www.bootchart.org/  or  https://github.com/xrmx/bootchart
 
 # Run a script as a background daemon
 
