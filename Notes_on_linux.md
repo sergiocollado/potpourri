@@ -574,7 +574,7 @@ In non-login shells, like bash, it checks just if  _**~/.bashrc**_ exists, then 
 The enviromental variables let you customize the system, and define how it works.
 These enviromental variables, are definitions that might be used for several goals. Many applications use them to define default settings.
 
-Most common are:  HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME, LOGNAME, VISUAL, SHELL, TERM, BASH_VERSION, HOSTNAME, HISTFILE, HISTFILESIZE, HISTSIZE, LANG, EDITOR, DISPLAY, TMOUT,LS_COLORS.
+Most common are:  HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME, USER, USERID, LOGNAME, VISUAL, SHELL, TERM, BASH_VERSION, HOSTNAME, HISTFILE, HISTFILESIZE, HISTSIZE, LANG, EDITOR, DISPLAY, TMOUT,LS_COLORS.
 
 the commands to work with enviromental variables are:
 
@@ -1052,8 +1052,16 @@ then
 elif [[ other condition ]]
 then
     #... other commands
-fi 
+fi ``
+
+for example
+
+```bash
+if [ -d "$JAVA_HOME/bin" ] ; then
+    PATH="$JAVA_HOME/bin:$PATH"
 ```
+
+
 ### arrays
 arrays are lits of elements.
 
