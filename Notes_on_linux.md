@@ -937,6 +937,17 @@ echo -n "Enter a number > "
 read number
 ```
 
+It is possible to present options to the user:
+
+```
+read -p "Install Software ?? [Y/n]: " answ
+ if [ "$answ" == 'n' ]; then
+   exit 1
+ fi
+   echo "Installation starting..."
+```
+
+
 ### Conditional execution: script flow control
 
 the return value of a command or program thar exits successfully is 0 otherwise the exit is not successfully.
