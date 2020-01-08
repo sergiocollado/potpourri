@@ -574,7 +574,7 @@ In non-login shells, like bash, it checks just if  _**~/.bashrc**_ exists, then 
 The enviromental variables let you customize the system, and define how it works.
 These enviromental variables, are definitions that might be used for several goals. Many applications use them to define default settings.
 
-Most common are:  HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME, USER, USERID, LOGNAME, VISUAL, SHELL, TERM, BASH_VERSION, HOSTNAME, HISTFILE, HISTFILESIZE, HISTSIZE, LANG, EDITOR, DISPLAY, TMOUT,LS_COLORS.
+Most common are:  HOST, HOME, PATH, PS1, CDPATH, CWD, USERNAME, USER, UID, LOGNAME, VISUAL, SHELL, TERM, BASH_VERSION, HOSTNAME, HISTFILE, HISTFILESIZE, HISTSIZE, LANG, EDITOR, DISPLAY, TMOUT,LS_COLORS, CPATH, LIBRARY_PATH.
 
 the commands to work with enviromental variables are:
 
@@ -583,7 +583,6 @@ the commands to work with enviromental variables are:
  - **set**
  - **unset**
  - **export**
-
 
 By convention, all the enviromental variables has a name in upper-case.
 
@@ -603,11 +602,24 @@ to make available the env var in other directories, they must be exported.
 MYVAR=value;
 export VAR;
 ``` 
+or
 
-To check the value of a variable, you can use
+```bash
+export MYVAR=value;
+``` 
+
+WARNING: Please, remeber to not put spaces at the sides of the equal sign.
+
+To check the value of a variable, you can use 'echo' and the value of the variable is read with the dollar simbol '$'
 
 ```bash
 echo $MYVAR
+```
+
+To delete a enviromental variable use the command 'unset'
+
+```
+>unset $MYVAR
 ```
 
 PATH, is the enviromental varible that defines the order in which directories will be checked for looking for programs. those directories will be checked from the begining to the end.
@@ -1719,7 +1731,7 @@ https://sourceware.org/gdb/onlinedocs/gdb/index.html#Top
 
  - top and htop: Linux process ponitoring
  - vmstat: virtual memory statistics
- - lsof: list open file
+ - lsof: list open files
  - tcpdump: network packet analyzer
  - netstat: network statistics
  - monitorix: system and network monitoring   https://www.monitorix.org/
@@ -2054,7 +2066,7 @@ The **origin**  is the default name Git gives to the server you cloned from.
 
 the tilde (**~**) and caret (**^**) are used to refence to previous commits. to use them you append them to a commits refernce. You can use a ~ or ~1, that points to the parent of the given commit, if you use ~~ or ~2 you are refering to the parent's parent of the pointed commit. If you use the ~~~ or ~3 the reference is to the parent's parent's parent of the pointed commit. and so on ...
 
-the caret (^) is used to point to a parent in a merge commit. so ^1 or ^ refers to the first parent and ^2 refers to  the second parent. or if you stack them : ^^ refers to the first's parent first parent of the pointed commit. 
+the **caret** (^) is used to point to a parent in a merge commit. so ^1 or ^ refers to the first parent and ^2 refers to  the second parent. or if you stack them : ^^ refers to the first's parent first parent of the pointed commit. 
 
 TAGS: 
 a tag is just a refenced defined to point to a given commit. So you can also use tags instead of SHA values to reference commits.  
@@ -2598,6 +2610,7 @@ A list of Linux tools that can be used to explore object/executable files.
 
  - ar: creates static libraries.
  - objdump: this is the most important binary tool; it can be used to display all the information in an object binary file.
+ - file: displays object type an dinformations. 
  - strings: list all the printable strings in a binary file.
  - nm: lists the symbols defined in the symbol table of an object file.
  - ldd: lists the shared libraries on which the object binary is dependent.
