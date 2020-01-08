@@ -1057,7 +1057,7 @@ the possible operators are:
 ### IF statements
 
 ```bash
-if [[ condition]]
+if [ condition ]
 then
     #... commands
 else
@@ -1069,18 +1069,20 @@ or with several branches
 
 
 ```bash
-if [[ condition]]
+if [ condition]
 then
     #... commands
-elif [[ other condition ]]
+elif [ other condition ]
 then
     #... other commands
-fi ``
+fi 
+```
 
 for example
 
 ```bash
-if [ -d "$JAVA_HOME/bin" ] ; then
+if [ -d "$JAVA_HOME/bin" ] 
+then
     PATH="$JAVA_HOME/bin:$PATH"
 ```
 
