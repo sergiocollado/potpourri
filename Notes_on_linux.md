@@ -2511,8 +2511,19 @@ hardware platform
 
 https://linux.die.net/man/1/strace
 
-
 strace is a commad to track and debug system calls and signals. you use it typing 'strace' + program. But it is useful to use the -o option (for output), so the command is: 'strace -o output.txt + argument_program'. The -c option (for count calls) give us a list of the used system calls. We can monitor only one type of system calls with the option -e + name_system_call (open,stat,chmod,unlink ...). to get a timestamp, you use the -t option or for a relative timestamp, the time between calls use the -r option. strace by default don't monitor the spawned processes, to check them also use the -f option. If the program we want to check is already running we can attach strace to it with 'strace -p <prog_PID>' 
+
+## process evaluation 
+
+as part of the package Psmic, it is possible to use the following programs: 
+
+ - fuser: Reports the Process IDs (PIDs) of processes that use the given files or file systems
+ - killall: Kills processes by name; it sends a signal to all processes running any of the given commands
+ - peekfd: Peek at file descriptors of a running process, given its PID
+ - prtstat: Prints information about a process
+ - pslog: Reports current logs path of a process
+ - pstree: Displays running processes as a tree
+ - pstree.x11: Same as pstree, except that it waits for confirmation before exiting
 
 ## system analysis tools
 
