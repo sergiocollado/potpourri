@@ -279,30 +279,7 @@ file1  rwxr-x^-x
 - the last 3 characters are the permissions for all users.
 
 
-A finer or more advanced control of access to files can be managed with the paquet ACL (Access Control Lists) 
-
-#### chmod
-
- The permissions of a file can be modified with the chmod command. it uses the following syntaxis
- 
-|character | description |
-| :---:  |  :---: |  
-| u | owner of the file | 
-| g | group the file belongs to |
-| o | everybody else | 
-| a | everybody above  | 
- 
-|character | description |
-| :---:  |  :---: |  
-| + | add permission| 
-| - | remove permission |
-| = | set permission | 
-
-|character | description |
-| :---:  |  :---: |  
-| r | read | 
-| w | write  |
-| x | execute | 
+A finer or more advanced control of access to files can be managed with the paquet **ACL (Access Control Lists)**
 
 ### Root user aka Superuser
 
@@ -413,6 +390,29 @@ so the command:
 - _**chmod 755**_, give the user read/write/execute permissions, and to the group and rest of the world read/execute permissions.
 - _**chmod 666**_, gives read write permissions for everybody.
 - _**chmod 744**_, the user can read/write/execute, and the rest on user can only read the file.
+
+#### chmod
+
+ The permissions of a file can be modified with the chmod command. it uses the following syntaxis
+ 
+|character | description |
+| :---:  |  :---: |  
+| u | owner of the file | 
+| g | group the file belongs to |
+| o | everybody else | 
+| a | everybody above  | 
+ 
+|character | description |
+| :---:  |  :---: |  
+| + | add permission| 
+| - | remove permission |
+| = | set permission | 
+
+|character | description |
+| :---:  |  :---: |  
+| r | read | 
+| w | write  |
+| x | execute | 
 
 ### how to check users and groups
 
