@@ -248,7 +248,7 @@ the **file** utility can be used to get more information about the data type of 
 
 NOTE! in linux extensions dont define the utility or type of a file.
 
-### Permisions
+### Permissions
 
 Files have owners (the user who created the file), and also access permissions.
 
