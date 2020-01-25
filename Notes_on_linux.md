@@ -1230,11 +1230,7 @@ done
   ```bash
   source functions.sh
  ```
-  
-  
-  
-  
-
+  in case we need to define a local variable inside a function that has the same name as a global varible, we can use the keyword 'local' that way, this will define the variable like a local one, and it will not collide with any global variable.
 
 
 ### NETWORKING
