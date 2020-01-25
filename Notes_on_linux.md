@@ -1202,6 +1202,40 @@ do
 done
 ```
 
+### Functions
+
+ funtions allow us to reuse code:
+ 
+ the syntaxis of the function definition and invocatios is like follows
+ 
+  ```bash
+  function hello {
+    echo "hello there $1!"
+    # do stuff
+  }
+  
+  hello Sergio
+  ```
+  
+  ```bash
+  >> hello there Sergio
+  ```
+  
+  $1, $2, $3 .... are the parameters of the function
+  
+  $@ is a list of the parameters of the function. This is useful for FOR-LOOPS to iterate over the input arguments. 
+  
+  If we define some funcions in a file like "functions.sh", we can include it in another file, with the 'source' instruction. 
+  
+  ```bash
+  source functions.sh
+ ```
+  
+  
+  
+  
+
+
 
 ### NETWORKING
 
