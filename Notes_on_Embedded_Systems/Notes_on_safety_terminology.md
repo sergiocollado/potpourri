@@ -602,7 +602,7 @@ FAA - Federal Aviation Administration: https://www.faa.gov
 AUTOSAR
 Occupational Safety and Health Administration USA - https://www.osha.gov/
 https://www.iso.org/news/ref2358.html
-
+he Safety and Reliability Society - https://www.sars.org.uk/
 
 Also safety standards as UL, ANSI, CSA and IEC, NRTL, ANSI, UL, IEEE standards. TODO: complete....
 
