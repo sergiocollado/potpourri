@@ -2973,3 +2973,5 @@ secure file systems:
 
 
 https://users.ece.cmu.edu/~koopman/des_s99/contents.html
+
+https://formalmethods.wikia.org/wiki/Safety-critical_systems
