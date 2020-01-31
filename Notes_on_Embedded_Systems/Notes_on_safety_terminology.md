@@ -293,6 +293,7 @@ http://www.sohar.com/proj_pub/download/y2ktest.pdf
 
 https://www.drexelbrook.com/support/faq/what-are-safety-systems
 
+https://formalmethods.wikia.org/wiki/Safety-critical_systems
 
 **SAFE-CRITICAL SYSTEM** Is a system that under misfunction, can result in an injury or loss of people's life, a damage to material or propierty, or an enviroment harm.
 
