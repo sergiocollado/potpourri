@@ -169,7 +169,7 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 - /usr/lib   - other place to save dynamic libraries needed by programs.
 - /usr/local/lib   - other place to save dynamic libraries needed by programs.
 - /opt/lib   - other place to save dynamic libraries needed by programs.
-
+- /etc/os-release - identifies the linux version and release identification information
 
 ### Commands to navigate through the file system.
 
