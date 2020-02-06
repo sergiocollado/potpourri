@@ -200,12 +200,12 @@ special directory names:
 - **output redirection: >**: it redirects, ex: echo "hello-world" > mytextfile.txt
 - **output append >>**: it appends: echo "hello again!" >> mytextfile.txt
 - **echo**: prints text. Usually is used with the redirecton and append operators: **>** and **>>**. the **-e** option is used so special character can be used, as: \t for tabulation or \n for a new line. It is very useful also to print the value of enviromental variables, like: echo $USERNAME.
-- **file**: report information about a file.
 - **wc**: counts the number of lines, words and characters in a file.
 - **more**: prints a screen from a text file.
 - **less**: prints a screen from a text file. Less has more options that the **more** command, following the saying: *less is more*
 - **grep**: search text through files and match patterns. [https://linux.die.net/man/1/grep]
-- **file**: to find the location of files.
+- **file**: search for files in a directory hierarchy, to find the location of report information about a files..https://linux.die.net/man/1/find
+- **locate**: find files by name, based on updatedb.  https://linux.die.net/man/1/locate
 - **diff** and **sdiff**: identify differences between files. usually use: **diff -Nur**
 - **md5**: computes the md5 hash of a file.
 - **shasum**: compute the SHA-1 of a file.
@@ -224,7 +224,7 @@ special directory names:
 - **join** - join lines of two files on a common field  http://man7.org/linux/man-pages/man1/join.1.html
 - **split** - split a file into pieces http://man7.org/linux/man-pages/man1/split.1.html
 - **cut** - extracts columns frot text data files. It is used for manipulating column-based files and is designed to extract specific columns. http://man7.org/linux/man-pages/man1/cut.1.html
-- **du** - informs about disk usage.
+- **du** - informs about **d**isk **u**sage.
 - **date** print or set the system date and time, or the last modification of a given file (-r, --reference=FILE) http://man7.org/linux/man-pages/man1/date.1.html
 
 
@@ -244,7 +244,7 @@ caracter device files and block device files are two different data structures t
 
 TODO: add info about stiky  bits
 
-the **file** utility can be used to get more information about the data type of a file
+the **file** utility can be used to get more information about the data type of a file. 
 
 NOTE! in linux extensions dont define the utility or type of a file.
 
