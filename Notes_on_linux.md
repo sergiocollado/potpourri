@@ -200,11 +200,12 @@ special directory names:
 - **output redirection: >**: it redirects, ex: echo "hello-world" > mytextfile.txt
 - **output append >>**: it appends: echo "hello again!" >> mytextfile.txt
 - **echo**: prints text. Usually is used with the redirecton and append operators: **>** and **>>**. the **-e** option is used so special character can be used, as: \t for tabulation or \n for a new line. It is very useful also to print the value of enviromental variables, like: echo $USERNAME.
+- **file**: reports information about files. https://linux.die.net/man/1/file
 - **wc**: counts the number of lines, words and characters in a file.
 - **more**: prints a screen from a text file.
 - **less**: prints a screen from a text file. Less has more options that the **more** command, following the saying: *less is more*
 - **grep**: search text through files and match patterns. [https://linux.die.net/man/1/grep]
-- **file**: search for files in a directory hierarchy, to find the location of report information about a files..https://linux.die.net/man/1/find
+- **find**: search for files in a directory hierarchy, to find the location of files.  https://linux.die.net/man/1/find
 - **locate**: find files by name, based on updatedb.  https://linux.die.net/man/1/locate
 - **diff** and **sdiff**: identify differences between files. usually use: **diff -Nur**
 - **md5**: computes the md5 hash of a file.
