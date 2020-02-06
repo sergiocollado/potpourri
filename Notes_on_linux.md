@@ -1798,6 +1798,7 @@ https://sourceware.org/gdb/onlinedocs/gdb/index.html#Top
  - monit: Linux Process & Srvc Monitoring
  - nethogs: Monitor Per Process Network
  - nmon: Monitor Linux Performance 
+ - watch: monitor a given element
   
 #### how to create timers:
 
@@ -1875,7 +1876,7 @@ nmap -sP 192.168.1.0/24
  
  ```bash
  $ sudo apt update
- $ sudo apt install build-essential
+ $ sudo aptget install build-essential
  ```
 # INSTALLING NGINX
 
