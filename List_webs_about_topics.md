@@ -1145,3 +1145,109 @@ An essential guide to Cloud Native applications: https://www.ibm.com/cloud/learn
 An essential guide to DevOps: https://www.ibm.com/cloud/learn/devops-a-complete-guide
 
 For more courses, go to the IBM Skills Gateway: https://www.ibm.com/services/learning/ites.wss/zz-en
+
+
+## about SW
+
+https://sourcemaking.com/design_patterns/visitor/cpp/1
+
+https://www.linuxjournal.com/article/6463
+
+https://studymild.com/cpp-programming/constructors-and-destructors/
+
+
+http://www.ti.com/lit/ug/slau131u/slau131u.pdf
+
+
+https://stackoverflow.com/questions/654754/what-really-happens-when-you-dont-free-after-malloc?rq=1
+
+https://www.linux-party.com/26-hackers/9118-29-practicos-ejemplos-de-nmap-para-administradores-de-sistemas-redes.html
+
+https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html
+
+https://www.howtoforge.com/tutorial/how-to-install-and-use-profiling-tool-gprof/
+
+http://valgrind.org/docs/manual/quick-start.html
+
+https://gcc.gnu.org/onlinedocs/gcc/Gcov.html#Gcov
+
+https://github.com/Erdk/introtoprofiling
+
+https://www.digitalocean.com/community/tutorials/the-basics-of-using-the-sed-stream-editor-to-manipulate-text-in-linux
+
+http://users.cs.cf.ac.uk/Dave.Marshall/C/node24.html#SECTION002400000000000000000
+
+https://www.ctr.unican.es/publications/mgh-1993a.pdf
+
+https://billatnapier.wordpress.com/2013/04/22/magic-numbers-in-files/
+
+
+https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_74/rzarg/rzargmain.htm
+
+https://www.ibm.com/support/knowledgecenter/ssw_ibm_i_74/rzarg/sc097852.pdf
+
+
+https://en.wikipedia.org/wiki/Data_segment
+
+https://git-scm.com/book/en/v2
+
+https://www.bestsevenreviews.com/all-about-linux/
+
+http://www.parashift.com/c++-faq-lite/
+
+
+http://www.gotw.ca/publications/mill18.htm
+
+
+
+
+
+Why databases use ordered indexes but programming uses hash tables (Evan Jones)
+Link: https://www.evanjones.ca/ordered-vs-unordered-indexes.html
+Estimated reading time: 7 minutes
+Why do I like it? Choosing the right data structure for a task is critical.
+ 
+How tracking pixels work (Julia Evans)
+Link: https://jvns.ca/blog/how-tracking-pixels-work/
+Estimated reading time: 6 minutes
+Why do I like it? Know the attack to better understand how to defend from it.
+ 
+API practices if you hate your customers (Thomas A. Limoncelli @ ACM)
+Link: https://queue.acm.org/detail.cfm?ref=rss&id=3375635
+Estimated reading time: 17 minutes
+Why do I like it? As the author says: APIs speak louder than words
+
+
+ 
+Test Flakiness - Methods for identifying and dealing with flaky tests – Jason Palmer (spotify)
+Link: https://labs.spotify.com/2019/11/18/test-flakiness-methods-for-identifying-and-dealing-with-flaky-tests/
+Estimated reading time: 4 minutes
+Why do I like it? We have all suffered sometimes from flaky tests. Here is the approach that spotify took to deal with them.
+ 
+Scaling and the friction of dimension – Michael Feathers
+Link: https://michaelfeathers.silvrback.com/scaling-and-the-friction-of-dimension
+Estimated reading time: 5 minutes
+Why do I like it? Because it is a nice reinforcement about why solutions that work in proof of concepts or small scale may not be so nice when using them in a bigger environment.
+ 
+Amazon CodeGuru (preview)
+Link: https://aws.amazon.com/codeguru/
+Estimated reading time: 7 minutes
+Why do I like it? Automation driven one step forward, to tasks that we usually think only experienced developers can do.
+ 
+
+
+the lost art of structure packing: 
+http://www.catb.org/esr/structure-packing/
+
+Dennis M. Ritchie home page:
+https://www.bell-labs.com/usr/dmr/www/index.html
+
+
+http://codingdojo.org/kata/RomanNumerals/
+
+
+https://think-async.com/Asio/
+
+what is RCU - read copy update 
+https://lwn.net/Articles/262464/
+
