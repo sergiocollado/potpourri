@@ -1758,6 +1758,11 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
  - mtrace, muntrace - malloc tracing - https://linux.die.net/man/3/mtrace
  
  
+   getrlimit, setrlimit, prlimit - get/set resource limits: http://man7.org/linux/man-pages/man2/getrlimit.2.html
+   
+   coredumps: http://man7.org/linux/man-pages/man5/core.5.html
+   
+   
  http://www.admin-magazine.com/Articles/Law-of-Averages-Load-Averaging <br>
  https://people.seas.harvard.edu/~apw/stress/   <br>
  http://smackerelofopinion.blogspot.com/2014/06/stress-ng-updated-system-stress-test.html   <br>
