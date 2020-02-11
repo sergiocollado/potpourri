@@ -1371,7 +1371,6 @@ $ sudo ip route add 172.16.1.0/24 via 192.168.1.5
 ```
 
 
-
 Some playbook options are:
 
 ### with 'ip'
@@ -2065,7 +2064,6 @@ to check the settings.
 git config --list 
 ```
 
-
 git has 3 levels of configuration 
 
 - the system level config: git config --system,  stored at /ect/gitconfig. it afects to all the computer
@@ -2413,6 +2411,11 @@ these are the commands that allow to communicate to a remote repository
 - git push - add changes to the remote repository.
 - git rebase - rebase is a form of merge, so there is possible to have merge conflicts. It moves the changes of a branch to the tip of another branch 
 
+
+ADDING FILES.
+ To track all of the changes to all of the files in our directory we should use the command git add -A.
+ 
+ 
 ## git commands
 
 - git --version
