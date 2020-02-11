@@ -2524,10 +2524,13 @@ https://linux.die.net/HOWTO/HOWTO-INDEX/howtos.html  <br>
 https://linuxconfig.org/  <br>
 https://wiki.linuxfoundation.org/realtime/rtl/blog#the_jury_has_spoken   <br>
 
+https://0xax.gitbooks.io/linux-insides/content/Theory/linux-theory-1.html
 
 GNU ARM embedded toolchain:  https://launchpad.net/gcc-arm-embedded
 
 C library for embedded systems:  https://sourceware.org/newlib/
+
+other small fast C library : https://musl.libc.org/
 
 binutils:  http://www.gnu.org/software/binutils/
 
