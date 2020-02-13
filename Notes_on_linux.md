@@ -227,7 +227,8 @@ special directory names:
 - **cut** - extracts columns frot text data files. It is used for manipulating column-based files and is designed to extract specific columns. http://man7.org/linux/man-pages/man1/cut.1.html
 - **du** - informs about **d**isk **u**sage.
 - **date** print or set the system date and time, or the last modification of a given file (-r, --reference=FILE) http://man7.org/linux/man-pages/man1/date.1.html
-
+  **scp** - secure copy  https://linux.die.net/man/1/scp
+  **rsync** -- a fast, versatile, remote (and local) file-copying tool https://linux.die.net/man/1/rsync
 
 ### types of files in linux
 
