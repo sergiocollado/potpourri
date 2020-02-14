@@ -1200,23 +1200,20 @@ http://www.gotw.ca/publications/mill18.htm
 
 
 
-
-
-Why databases use ordered indexes but programming uses hash tables (Evan Jones)
+Why databases use ordered indexes but programming uses hash tables 
 Link: https://www.evanjones.ca/ordered-vs-unordered-indexes.html
 Estimated reading time: 7 minutes
 Why do I like it? Choosing the right data structure for a task is critical.
  
-How tracking pixels work (Julia Evans)
+How tracking pixels work 
 Link: https://jvns.ca/blog/how-tracking-pixels-work/
 Estimated reading time: 6 minutes
 Why do I like it? Know the attack to better understand how to defend from it.
  
-API practices if you hate your customers (Thomas A. Limoncelli @ ACM)
+API practices if you hate your customers 
 Link: https://queue.acm.org/detail.cfm?ref=rss&id=3375635
 Estimated reading time: 17 minutes
 Why do I like it? As the author says: APIs speak louder than words
-
 
  
 Test Flakiness - Methods for identifying and dealing with flaky tests – Jason Palmer (spotify)
@@ -1235,7 +1232,6 @@ Estimated reading time: 7 minutes
 Why do I like it? Automation driven one step forward, to tasks that we usually think only experienced developers can do.
  
 
-
 the lost art of structure packing: 
 http://www.catb.org/esr/structure-packing/
 
@@ -1245,9 +1241,10 @@ https://www.bell-labs.com/usr/dmr/www/index.html
 
 http://codingdojo.org/kata/RomanNumerals/
 
-
 https://think-async.com/Asio/
 
 what is RCU - read copy update 
 https://lwn.net/Articles/262464/
+
+virtuals: http://www.gotw.ca/publications/mill18.htm
 
