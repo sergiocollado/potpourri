@@ -1199,7 +1199,6 @@ http://www.parashift.com/c++-faq-lite/
 http://www.gotw.ca/publications/mill18.htm
 
 
-
 Why databases use ordered indexes but programming uses hash tables 
 Link: https://www.evanjones.ca/ordered-vs-unordered-indexes.html
 Estimated reading time: 7 minutes
@@ -1216,7 +1215,7 @@ Estimated reading time: 17 minutes
 Why do I like it? As the author says: APIs speak louder than words
 
  
-Test Flakiness - Methods for identifying and dealing with flaky tests – Jason Palmer (spotify)
+Test Flakiness - Methods for identifying and dealing with flaky tests 
 Link: https://labs.spotify.com/2019/11/18/test-flakiness-methods-for-identifying-and-dealing-with-flaky-tests/
 Estimated reading time: 4 minutes
 Why do I like it? We have all suffered sometimes from flaky tests. Here is the approach that spotify took to deal with them.
@@ -1228,9 +1227,7 @@ Why do I like it? Because it is a nice reinforcement about why solutions that wo
  
 Amazon CodeGuru (preview)
 Link: https://aws.amazon.com/codeguru/
-Estimated reading time: 7 minutes
-Why do I like it? Automation driven one step forward, to tasks that we usually think only experienced developers can do.
- 
+
 
 the lost art of structure packing: 
 http://www.catb.org/esr/structure-packing/
@@ -1248,3 +1245,14 @@ https://lwn.net/Articles/262464/
 
 virtuals: http://www.gotw.ca/publications/mill18.htm
 
+RCU-: 
+
+http://www2.rdrop.com/users/paulmck/RCU/
+
+https://en.wikipedia.org/wiki/Read-copy-update
+
+https://www.kernel.org/doc/Documentation/RCU/whatisRCU.txt
+
+http://liburcu.org/
+
+https://lwn.net/Articles/262464/
