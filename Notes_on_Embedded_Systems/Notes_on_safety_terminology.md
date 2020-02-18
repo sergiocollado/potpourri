@@ -417,6 +417,8 @@ A **Non-secure** system is also a **Non-safety** system, as it is susceptible of
 
 **Safety** and **Reliability** are not the same, although in coloquial languaje many times are thought equivalent, these concepts are not equivalent. Safety relates that an event X never happens, or its probability is very low. Reliability relates that an event Y always happens, or is intedend to happen with a high probability.
 
+**Risk** and **Hazard**. A risk is the probablity of a negative outcome, the hazard is the set of conditions that lay the ground to the given risk. For example: a given aircraft may have a 0.00005% of an engine misfunction, but a design flaw is the hazard. 
+
 ## SAFETY RELATED CONCEPTS:
 
 **Accident**: It's the situation in which there is a loss of some kind: death or material damage.
