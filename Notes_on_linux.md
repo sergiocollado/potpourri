@@ -2672,6 +2672,7 @@ lcov : http://ltp.sourceforge.net/coverage/lcov.php <br>
 
 Valgrind http://www.valgrind.org/docs/manual/quick-start.html
 
+gdb https://www.gnu.org/software/gdb/
 libmcheck - Turns on memory allocation checking when linked to
 
 libmemusage - Used by memusage to help collect information about the memory usage of a program
