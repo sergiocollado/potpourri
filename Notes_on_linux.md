@@ -1775,6 +1775,8 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
   
 ### for debugging: gdb
 
+main website: https://www.gnu.org/software/gdb/
+
 gdb good stuff:
 
  https://youtu.be/PorfLSr3DDI
