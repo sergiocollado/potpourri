@@ -1256,3 +1256,5 @@ https://www.kernel.org/doc/Documentation/RCU/whatisRCU.txt
 http://liburcu.org/
 
 https://lwn.net/Articles/262464/
+
+to draw UML diagrams:   https://www.planttext.com/
