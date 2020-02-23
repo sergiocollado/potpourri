@@ -80,3 +80,8 @@ Directive 2014/32/EU  - Measurement Instruments (MID)
 - IEC 60950 - Safety for IT equipment
 
 
+Ocupational safety:
+
+https://www.osha.gov/pls/oshaweb/owadisp.show_document?p_table=STANDARDS&p_id=9735
+https://www.osha.gov/Publications/laboratory/OSHAfactsheet-laboratory-safety-noise.pdf
+
