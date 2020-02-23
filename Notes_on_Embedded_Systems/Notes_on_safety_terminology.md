@@ -594,6 +594,12 @@ failure intensity
          electronics components, PCBs and equipment
 - IEC 62429, Reliability growth – Stress testing for early failures in unique complex systems
 
+Ocupational safety:
+
+https://www.osha.gov/pls/oshaweb/owadisp.show_document?p_table=STANDARDS&p_id=9735
+https://www.osha.gov/Publications/laboratory/OSHAfactsheet-laboratory-safety-noise.pdf
+
+
 ## Relevant Organizations
 
 SAE- Society Automotive Engineers: https://www.sae.org/
