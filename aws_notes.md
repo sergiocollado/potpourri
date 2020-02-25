@@ -130,6 +130,13 @@ As part of the AWS Free Usage Tier, you can get started with Amazon S3 for free.
 
 It is a service that allows to provision virtual severs on demand. Each virtual server requested in known as a EC2 instance. anything you can do with a traditional server can be done with a EC2 instance. EC2 instances are flexible, and can be configured acconrding the needs. they support a variety of OS, like linux or windows. to select a given operating system, we choose a AMI (Amazon Machine Image). It is possible to launch one or several AMIs and create serveral instances with the same configuration. It is possible to set the image type, size, memory and netwoking capabilities, even the underling hardware. Also the configuration can be done programatically and automated. 
 
+EC2 service allows you to:
+
+ - launch virtual machines in the cloud(EC2)- Elastic Cloud Computer
+ - Storing data in virtual data drives (EBS)
+ - Distributing load between machines (ELB) Elastic Load Balancing 
+ - Scaling services using auto-scaling  groups(ASG)Auto Scaling Group
+
 ## ADVANCED FEATURES OF S3
 
  S3 also allows for:
