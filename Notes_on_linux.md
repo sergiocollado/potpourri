@@ -102,6 +102,8 @@ secure programming: https://dwheeler.com/secure-programs/Secure-Programs-HOWTO.p
 
 C library for embedded systems:  https://sourceware.org/newlib/
 
+other c library: https://musl.libc.org/
+
 binutils:  http://www.gnu.org/software/binutils/
 
 GNU ARM TOOLCHAIN: https://developer.arm.com/open-source/gnu-toolchain/gnu-rm
@@ -114,21 +116,20 @@ journal: http://www.linuxjournal.com
 
 ## Starting with a Linux System.
 
-Most commonly you would use an already designed Linux system, there are many chances that lenguage is set to english, and you must change it to you keyboard cofingurations. Just for reference: you should  run the following command:
 
-```bash
-$> del lang=es
-```
-
-You should change the 'es' to your langauge code. And rememember than in an english keyboard, the 'equal sign' is next to the back space key.
-
-the local settings of the system can be identified with the command **locale**
+The local settings of the system can be identified with the command **locale**
 
 ```bash
 >> locale
 ```
 
-you can try the following commands: **whoami, pwd, date, uname -a**
+you can try the following commands: **whoami, pwd, date, uname -a, hostname**
+
+ - **whoami** names the actual user (you?) http://man7.org/linux/man-pages/man1/whoami.1.html
+ - **hostname** show or set the system's host name  http://man7.org/linux/man-pages/man1/hostname.1.html
+ - **pwd** print current directory  https://linux.die.net/man/1/pwd
+ - **date**  print or set the system date and time  http://man7.org/linux/man-pages/man1/date.1.html
+ - **uname** print system information https://linux.die.net/man/1/uname
 
 ## Linux File System
 
@@ -227,8 +228,9 @@ special directory names:
 - **cut** - extracts columns frot text data files. It is used for manipulating column-based files and is designed to extract specific columns. http://man7.org/linux/man-pages/man1/cut.1.html
 - **du** - informs about **d**isk **u**sage.
 - **date** print or set the system date and time, or the last modification of a given file (-r, --reference=FILE) http://man7.org/linux/man-pages/man1/date.1.html
-  **scp** - secure copy  https://linux.die.net/man/1/scp
-  **rsync** -- a fast, versatile, remote (and local) file-copying tool https://linux.die.net/man/1/rsync
+- **scp** - secure copy  https://linux.die.net/man/1/scp
+- **rsync** -- a fast, versatile, remote (and local) file-copying tool https://linux.die.net/man/1/rsync
+- **dd** convert and copy a file. (used to do backups) http://man7.org/linux/man-pages/man1/dd.1.html
 
 ### types of files in linux
 
