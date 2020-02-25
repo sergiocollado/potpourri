@@ -132,10 +132,16 @@ It is a service that allows to provision virtual severs on demand. Each virtual 
 
 EC2 service allows you to:
 
- - launch virtual machines in the cloud(EC2)- Elastic Cloud Computer
+ - launch virtual machines in the cloud(EC2)- Elastic Cloud Computing
  - Storing data in virtual data drives (EBS)
  - Distributing load between machines (ELB) Elastic Load Balancing 
  - Scaling services using auto-scaling  groups(ASG)Auto Scaling Group
+ 
+ for reference on the types of ec2 instances, check: 
+ 
+ https://aws.amazon.com/ec2/instance-types/
+ 
+ 
 
 ## ADVANCED FEATURES OF S3
 
