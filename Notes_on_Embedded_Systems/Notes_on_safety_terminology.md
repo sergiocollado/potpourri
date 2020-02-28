@@ -31,7 +31,9 @@ Key propierties to take into account for an embedded system are:
 
 **LIMITED RESOURCES** An embedded system is designed to achive only the defined functions and requirements; the system only needs a certain number of resources and no more. That means in most cases, that the harware cannot be upgraded or expanded. As such, it's is also very rare that an embedded system can be designed for increase its hardware dependant capabilities, functions, or it is possible to expand its systems parts or modules. On the other hand, most of the embedded systems can be re-programmed, so its software can be changed and upgraded, that means thatt it is possible to improve the system, or adapt it to new requirements or new cases, as far as it is possible with the designed hardware.
 
-**Real-time system**: a system is said to be real time, when it can guarantee tha tasks to be done, at the expected time (it can guarantee to meet all the deadlines).Also real-time systems are expected to have a very predictable behavior, in a very reliable way.
+**Real-time system**: A system is said to be real time, when it can guarantee tha tasks to be done, at the expected time (it can guarantee to meet all the deadlines).Also real-time systems are expected to have a very predictable behavior, in a very reliable way.
+
+For and embedded system to be deployed in safety-critical environments also implies that that the task and functions that it performs must be effective and reliable.
 
 **CRITICAL SYSTEM** Is a system that must be highly reliable, and keep this reliability even when it is developed, and evolves. 
 Usually, these systems are classified into the following groups:
