@@ -1209,6 +1209,8 @@ Link: https://jvns.ca/blog/how-tracking-pixels-work/
 Estimated reading time: 6 minutes
 Why do I like it? Know the attack to better understand how to defend from it.
  
+ 
+ 
 API practices if you hate your customers 
 Link: https://queue.acm.org/detail.cfm?ref=rss&id=3375635
 Estimated reading time: 17 minutes
@@ -1258,3 +1260,15 @@ http://liburcu.org/
 https://lwn.net/Articles/262464/
 
 to draw UML diagrams:   https://www.planttext.com/
+
+https://sites.google.com/a/dieecs.com/robolab/proyectos-pre-2004-generacion-trasgu/2006-robosapiens
+
+https://clipset.20minutos.es/como-el-culo-de-un-caballo-condiciona-la-tecnologia-espacial-de-la-nasa/
+
+signals
+
+https://users.cs.cf.ac.uk/Dave.Marshall/C/node24.html#SECTION002400000000000000000
+
+http://www.yolinux.com/TUTORIALS/C++Signals.html
+
+http://man7.org/linux/man-pages/man2/sigaction.2.html
