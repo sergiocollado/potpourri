@@ -174,6 +174,18 @@ to define a ASG, we need:
 
 a very interesting feature, is that when an ASG(auto scaling group) works with a LB (load balancer) in case the load balancer health check detects an unhealthy instance that one can be terminated by the ASG and a new one launched. 
 
+## EBS (Elastic Block Storage)
+
+it is a network drive to attach to the instances when they drive. 
+it can be detached from one EC2 instance and attached to another.
+
+they are defined by sotorage capacity and IOPS input output per second.
+
+there are different types of EBS: GP2, IO1, STI, SCI
+
+It is possible to get EBS snapshots, this is usefull for backups, or volume migrations.
+
+Also is possible to use encrypted EBS volumes.
 
  
 
