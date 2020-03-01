@@ -142,6 +142,40 @@ EC2 service allows you to:
  https://aws.amazon.com/ec2/instance-types/
  
  
+## ELB( Elastic Load Balancer) 
+
+there is 3 types of load balancer
+
+- classic load balancer (CLB) (deprecated)
+- Aplication Load Balancer (ALB) - these evaluate the layer 7, that is they work at HTTP level.They dont see directly the client IP and port, those are in the x-fordward-for-proto header.
+- Network Load Balancer (NLB) - these work at layer 4, that is TCP. they are high performance, much better that the ALB. they see directly the client IP. 
+
+You can set the load balancer as Internal(private) or External (public: internet-facing) 
+
+Load Balancer also have health checks that allows to identify problems. 
+
+
+## AUTO SCALING GROUPS (ASG)
+
+this is a mechanism to scale computing instances, they can scale out (add instances) or scale in (remove instances.
+Also add them to a load balancer.
+
+to define a ASG, we need: 
+
+- AMI + instace type
+- EC2 user data
+- EBS volumes
+- Security Groups
+- SSH Key Pair
+- Min size, Max size, and initial instaces
+- working network and subnets
+- load balancer information 
+- Scaling policies (CloudWatch alarms)
+
+a very interesting feature, is that when an ASG(auto scaling group) works with a LB (load balancer) in case the load balancer health check detects an unhealthy instance that one can be terminated by the ASG and a new one launched. 
+
+
+ 
 
 ## ADVANCED FEATURES OF S3
 
