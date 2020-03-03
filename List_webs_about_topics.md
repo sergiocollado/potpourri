@@ -1274,3 +1274,5 @@ https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/signal.h.html
 http://www.yolinux.com/TUTORIALS/C++Signals.html
 
 http://man7.org/linux/man-pages/man2/sigaction.2.html
+
+https://linux.die.net/man/2/sigprocmask
