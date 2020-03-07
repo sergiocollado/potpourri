@@ -35,6 +35,8 @@ Key propierties to take into account for an embedded system are:
 
 For and embedded system to be deployed in safety-critical environments also implies that that the task and functions that it performs must be effective and reliable.
 
+**Deterministic system**: A deterministic system is that system, that with a give set of inputs, it always have the same outputs. In other words, in a given scenario it will always have the same response. This is an important propierty for safety or real-time systems, because determinstic systems can be tested and proven.
+
 **CRITICAL SYSTEM** Is a system that must be highly reliable, and keep this reliability even when it is developed, and evolves. 
 Usually, these systems are classified into the following groups:
 
@@ -43,7 +45,6 @@ Usually, these systems are classified into the following groups:
  - **bussines critical**: designed to avoid a missfunctions that would result or imply huge economic/bussines impact or material losses, usually as a result of a service interruption. Example: bank, accounting and payment systems, stock-trading systems.
  - **security critical**: designed to protect data or sensible information. example: medical databases, customers data ...
  
-
 **SAFETY**: Is the propierty of a system that evaluates, weight and analyze the risk of the ocurrence of an accident (injury or death of people), material, propierty, equipment or resources damage or losses, also enviromental degradation.
 
 **FUNCTIONAL SAFETY** Is propierty of a systems that evaluates the safety of a system that correspond the correct actions according to the system inputs, this also includes detection of potential dangerous states or actions, and activation of protecttion, corrective or mitigation measures.
@@ -67,7 +68,6 @@ The ability of a system or component to continue normal operation despite the pr
 
 **fail safe** [IEEE Std 610.12 1990]
 Pertaining to a system or component that automatically places itself in a safe operating mode in the event of a failure—for example, a traffic light that reverts to blinking red in all directions when normal operation fails.
-
 
 **fail soft** [IEEE Std 610.12 1990]
 Pertaining to a system or component that continues to provide partial operational capability in the event of certain failures—for example, a traffic light that continues to alternate between red and green if the yellow light fails.
@@ -152,7 +152,7 @@ where:
 
 and 
 
-**MTTF** stands for Mean Time To Failure
+**MTTF** stands for Mean Time To Failure - this is the mean time to the first failure.
 
 and
 
@@ -174,6 +174,8 @@ Dependability is a concept that usually refers to a figure of merit that is base
 - Maintanability
 - Safety
 - Security 
+
+Of course when a system is deterministic, is much easier to proof the dependabilty of it.
 
 **CRITICAL SYSTEM** Is a system that must be highly reliable, and keep this reliability even when it is developed, and evolves. 
 Usually, these systems are classified into the following groups:
