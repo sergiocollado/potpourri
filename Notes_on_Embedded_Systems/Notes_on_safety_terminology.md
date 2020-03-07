@@ -962,6 +962,12 @@ int16 safeSum ( int16 a, int16 b)
     return a+b;
 }
 ```
+## Deterministic system vs dynamic memory allocations
+
+The use of dynamic memory allocation function like malloc, realloc, new, free, delete ... inpacts in the deterministic behavior of the system. This is due that a given process may be using a huge amount of memory and starving other processes out of memory, or making other processes to need more time to allocate memory. So actually dynamic memory allocation cannot guarantee a fixed amount of time to allocate memory, thus the deterministic behavior of the system is penalized.
+
+The solution to this situation is not use dynamic memory allocation and allocate all the memory needed at the system start, in fixed sizes, so the non-deterministic behavior does't appear because we are allocating fixed sizes.
+
 
 ### Techniques:
 
