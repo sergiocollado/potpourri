@@ -595,7 +595,22 @@ In non-login shells, like bash, it checks just if  _**~/.bashrc**_ exists, then 
 
 **NOTE**: The default command line prompt is dollar **$** for normal users and **#** for the root or super-user.
 
+### Diference between shell and terminal
 
+  A Shell is the command-line interpreter. The shells can be interactive or non-interactive, for example when a script, calls a give shell to run another script: ' bash -c 'hello world!'".
+  
+  But the terminal is the interface to the shell. 
+  
+  To findout what shell you are using you can use the following commands:
+  
+  ```bash
+  echo $0
+  ````
+  
+  ```bash
+  echo $SHELL
+  ```
+  
 ### Enviromental Variables
 
 The enviromental variables let you customize the system, and define how it works.
