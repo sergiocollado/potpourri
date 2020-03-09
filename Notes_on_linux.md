@@ -610,6 +610,8 @@ In non-login shells, like bash, it checks just if  _**~/.bashrc**_ exists, then 
   ```bash
   echo $SHELL
   ```
+  reference: http://www.linusakesson.net/programming/tty/index.php
+  
   
 ### Enviromental Variables
 
