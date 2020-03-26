@@ -1278,3 +1278,16 @@ http://man7.org/linux/man-pages/man2/sigaction.2.html
 https://linux.die.net/man/2/sigprocmask
 
 https://sites.google.com/a/dieecs.com/robolab/proyectos-pre-2004-generacion-trasgu/2006-robosapiens
+
+ ISO-IEC 9899 standard   http://www.open-std.org/JTC1/SC22/wg14/www/docs/n1124.pdf
+ 
+ VALGRIND: 
+ 
+ https://accu.org/index.php/journals/1905
+ 
+ http://www.valgrind.org/docs/manual/mc-manual.html#mc-manual.clientreqs
+ 
+ http://www.valgrind.org/docs/memcheck2005.pdf
+ 
+ https://blog.mozilla.org/nnethercote/2009/02/27/eliminating-undefined-values-with-valgrind-the-easy-way/
+
