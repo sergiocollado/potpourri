@@ -40,3 +40,6 @@
 +----v----+
 | close() |
 +---------+
+
+
+//ref: https://pubs.opengroup.org/onlinepubs/009695399/functions/socket.html
