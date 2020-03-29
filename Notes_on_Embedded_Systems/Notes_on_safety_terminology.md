@@ -969,6 +969,16 @@ The use of dynamic memory allocation function like malloc, realloc, new, free, d
 The solution to this situation is not use dynamic memory allocation and allocate all the memory needed at the system start, in fixed sizes, so the non-deterministic behavior does't appear because we are allocating fixed sizes.
 
 
+### Ways to increase the reliability of a file system 
+
+- Important data is to be stored on multiple places of the disk 
+- Additional of different storage mediums, so important data is stored on different physical media.
+- add verification mechanism that check that the important data is properly stored, so you can detect erros when the storage media begins to fail.
+- include checksum data of every important file, and add periodic verification routines that check the files are in a consistent state, so then it would be possible to identify when the storage media begins to fail.
+- assuming each memory block has a finite number of operations, add operation counters, so you can predict when that memory portion is reaching its expected end of life, and mark in the system that memory portions as unusable. 
+
+
+
 ### Techniques:
 
 #### Intelligent code reuse:
