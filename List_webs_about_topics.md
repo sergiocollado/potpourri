@@ -1292,3 +1292,5 @@ https://sites.google.com/a/dieecs.com/robolab/proyectos-pre-2004-generacion-tras
  https://blog.mozilla.org/nnethercote/2009/02/27/eliminating-undefined-values-with-valgrind-the-easy-way/
 
 https://heeris.id.au/2016/valgrind-gdb/
+
+how to zero intialize structures: http://www.ex-parrot.com/~chris/random/initialise.html
