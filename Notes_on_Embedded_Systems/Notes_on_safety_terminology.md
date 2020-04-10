@@ -2326,6 +2326,12 @@ ref: https://en.wikipedia.org/wiki/Genesis_(spacecraft)
 
 ### MARS CLIMATE OBSERVER. - fail in system verification: imperial vs metric units used. 
 
+https://en.wikipedia.org/wiki/Mars_Climate_Orbiter
+
+https://www.wired.com/2010/11/1110mars-climate-observer-report/
+
+http://edition.cnn.com/TECH/space/9909/30/mars.metric.02/
+
 ### Mariner1
 
 
