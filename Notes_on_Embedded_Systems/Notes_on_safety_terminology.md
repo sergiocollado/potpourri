@@ -2353,6 +2353,11 @@ ref: https://en.wikipedia.org/wiki/Boeing_787_Dreamliner_battery_problems
 
 ref: http://www.mlit.go.jp/jtsb/eng-air_report/JA804A.pdf
 
+### The Hyatt Regency Collapse
+ Design error in structure.
+
+
+
 Examples of safety-critical systems[edit]
 seat belt
 aeroplane pilot ejection ssytem
