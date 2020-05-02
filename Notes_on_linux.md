@@ -1997,6 +1997,14 @@ or
 
 https://stackoverflow.com/questions/47465878/install-qt-4-ubuntu-17-04
 
+## How to isnstall apache 
+
+```bash
+apt-get update
+apt-get install apache2 php php-mysql -y
+service apache2 restart
+```
+
 # GIT
 
 ref: https://git-scm.com/docs/gittutorial <br>
