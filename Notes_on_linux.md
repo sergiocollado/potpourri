@@ -1997,12 +1997,18 @@ or
 
 https://stackoverflow.com/questions/47465878/install-qt-4-ubuntu-17-04
 
-## How to isnstall apache 
+## How to install apache 
 
 ```bash
 apt-get update
 apt-get install apache2 php php-mysql -y
 service apache2 restart
+```
+
+## How to install nginx-light
+
+```bash
+sudo apt-get install nginx-light -y
 ```
 
 # GIT
