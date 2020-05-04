@@ -1294,3 +1294,12 @@ https://sites.google.com/a/dieecs.com/robolab/proyectos-pre-2004-generacion-tras
 https://heeris.id.au/2016/valgrind-gdb/
 
 how to zero intialize structures: http://www.ex-parrot.com/~chris/random/initialise.html
+
+about RCU:
+
+http://www.rdrop.com/~paulmck/RCU/
+
+https://www.cyberciti.biz/files/linux-kernel/Documentation/RCU/Design/Requirements/Requirements.html
+
+https://www.youtube.com/watch?v=rxQ5K9lo034
+
