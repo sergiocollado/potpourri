@@ -618,6 +618,43 @@ he Safety and Reliability Society - https://www.sars.org.uk/
 
 Also safety standards as UL, ANSI, CSA and IEC, NRTL, ANSI, UL, IEEE standards. TODO: complete....
 
+
+## PROTECTION INDEXES: IP CODES:
+
+The physical protection indexes, define a given protection of a system in relation to solids and liquids. The IP code is the international protection marking and also de ingress protection marking. It identifies the degree of protection mainly related to intrussion in the system of dust (solids) and water (liquids). The IP codes are defined in the IEC 60529.
+
+The code is specified as the "IP" letters plus two digits, the first one is to identify the protection against solids, and the 
+second one identifies the protection agains liquids, following those it is posible to have optional letters.
+
+the solid protection index, specifies the level of protection that the enclosure of the system presents against, access to hazarous parts, or ingress of solid foreing objects. 
+
+
+LEVEL      OBJECT SIZE         EFFECTIVE AGAINST
+
+0               --              No protection agains  contact of ingress of solid objects of any size.
+
+1             > 50 mm           any large part of the body, or body surface, but no protection against deliberate contact with the body.
+
+2             > 12.5 mm         ingress of fingers or similar bodies.
+
+3             > 2.5 mm           Tools, thick wires or similar
+
+4             > 1 mm               most wires, screws or similar
+
+
+5               Dust protected        intrussion of dust is not entirely avoided, but it should not lead to misfunctions.  Complete protectono against contact.
+
+6              Dust tight         No ingress of dust. complete protection against contact.
+
+
+
+
+
+
+
+
+
+
 ## HAZARD ANALYSIS
 
 FMEA, FMECA, HAZOP, ETA, FTA...
