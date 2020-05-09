@@ -648,7 +648,28 @@ LEVEL      OBJECT SIZE         EFFECTIVE AGAINST
 
 
 
+The second digit of the IP code specifies the proctection of the system inside its enclose agains the harmfull ingress of water.
 
+LEVEL      OBJECT SIZE         EFFECTIVE AGAINST
+
+0              --                 No protected.
+
+1           Dripping water        Dripping water vertically should have no harmfull effect on the system
+
+2         Dripping water at 15º inclination          vertically dripping water should have no harmful effect even when the enclosure is tilted  up to an angle of 15º degrees from its normal position.
+
+3       spraying water            water falling as a spray at any angle up to 60º degrees should have no harmfull effect on the system
+
+4       splashing water           water splashing  against the enclosure of the system  from any direction should have no harmfull effect on the system 
+
+5        water jets           water projected by a nozzle (size 6.3mm) against enclosure  from any direction should have no harmfull effects on the system.
+
+
+6        powerfull water jets         water projected by nozzels (size 12.5 mm) against the enclosure from any direction should have no harmful effect on the system.
+
+7       Inmersion up to 1 meter       the ingress of water in a harmfull quantity should be no possible when the enclosure is inmmersed under water at defined conditions of pressure and time. (up to 1 meter of inmersion).
+
+8      Inmersion beyond 1 m            The system is suitable for continuous inmersion under water at defined conditions specified by the manufacturer. This could mean that the system may be hermetically sealed or that the water can ingress in the enclosure but without harmful effects.
 
 
 
