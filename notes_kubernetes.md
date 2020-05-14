@@ -24,7 +24,7 @@ Union file systems: to encapsulate applications and its dependencies.
 
 
 
-Kubernetes is an application for deploying containerized applications.  Kubernetes is a solution for container management and orchestations. The apps in them need to communicate over the network. Also, needs to be some network mechanism that makes it possible for the containers to find each other. 
+Kubernetes is an orchestration framework for containers and for deploying containerized applications.  Kubernetes  is a solution for container management and orchestations. 
 
 Kubernetes handles the deployment, scaling, load balancing, monitoring and logging of containerized applications. 
 
@@ -38,7 +38,7 @@ The basic object for the kubernetes model is known as a Pod. Those are the small
 
 For working with kubernetes, we work through the kube-API server. This component will allow us to declare commands to view or change the state of the cluster. 
 
- - ubctl command - connect to kubeAPI server. 
+ - Kubctl command - connect to kubeAPI server. 
 
  - ETCD is the cluster database and it stores the state of the cluster. 
 
@@ -50,13 +50,11 @@ For working with kubernetes, we work through the kube-API server. This component
 
  - Kubelete, is the agent of Kubernetes, in each node. 
 
- - Kube-proxy  handles network connectivity among the pods in the cluster.
+ - Kube-proxy  handles network connectivity among the pods in the cluster.The apps in the kubernetes cluster will need to communicate over the network. Also, needs to be some network mechanism that makes it possible for the containers to find each other. 
  
  - Kuber ADM, that can automate much of the initial setup of a cluster.
 
-
 All kubernetes objects are identified by an unique name and an unique id (uid). And the objects are defined in manifest files (in YAML or JSON format). And those files define a desired state for the object, like name and container image. 
-
 
   In a Kubernetes cluster, you don't need to only specify the state of Pods.  A better solution for high availability is to define controller objects that handle the state of the pods. Controllers maintain the pod’s desired state within a cluster. Like deployments (deployment ensures that a defined set of pods is running at any given time) , stateful sets, daemon sets or jobs. 
 
