@@ -1,5 +1,6 @@
 
 
+
 Preface:
 
 In a Virtual Machine, an hypervisor is the sw layer that detaches the dependencies of an operating system with its undelingin hardware and allows several virtual machines to share that same hardware. This is know as virtualization, 
@@ -24,7 +25,7 @@ Union file systems: to encapsulate applications and its dependencies.
 
 
 
-Kubernetes is an orchestration framework for containers and for deploying containerized applications.  Kubernetes  is a solution for container management and orchestations. 
+The Kubernetes is an application for deploying containerized applications.  Kubernetes is a solution for container management and orchestations. The apps in them need to communicate over the network. Also, needs to be some network mechanism that makes it possible for the containers to find each other. 
 
 Kubernetes handles the deployment, scaling, load balancing, monitoring and logging of containerized applications. 
 
@@ -38,21 +39,22 @@ The basic object for the kubernetes model is known as a Pod. Those are the small
 
 For working with kubernetes, we work through the kube-API server. This component will allow us to declare commands to view or change the state of the cluster. 
 
- - Kubctl command - connect to kubeAPI server. 
+Kubctl command - connect to kubeAPI server. 
 
- - ETCD is the cluster database and it stores the state of the cluster. 
+ETCD is the cluster database and it stores the state of the cluster. 
 
- - Kube-scheduler. It schedules pods into the nodes. 
+Kube-scheduler. It schedules pods into the nodes. 
 
- - Kube-controller. It monitors the state of the cluster. When the current state of the cluster doesn’t match the desired state, it will try to get to the desired state. 
+Kube-controller. It monitors the state of the cluster. When the current state of the cluster doesn’t match the desired state, it will try to get to the desired state. 
 
- - Kube-cloud manager manages controllers that interact with underlying cloud providers. 
+Kube-cloud manager manages controllers that interact with underlying cloud providers. 
 
- - Kubelete, is the agent of Kubernetes, in each node. 
+Kubelete, is the agent of Kubernetes, in each node. 
 
- - Kube-proxy  handles network connectivity among the pods in the cluster.The apps in the kubernetes cluster will need to communicate over the network. Also, needs to be some network mechanism that makes it possible for the containers to find each other. 
- 
- - Kuber ADM, that can automate much of the initial setup of a cluster.
+Kube-proxy  handles network connectivity among the pods in the cluster.
+
+Kuber ADM, that can automate much of the initial setup of a cluster.
+
 
 All kubernetes objects are identified by an unique name and an unique id (uid). And the objects are defined in manifest files (in YAML or JSON format). And those files define a desired state for the object, like name and container image. 
 
@@ -62,8 +64,7 @@ Kubernetes services, is an abstraction that represents a service in kubernetes w
 
 Kubernetes volume  - is an abstraction that represents a directory that is accessible to all the containers in a pod. One advantage is that you can configure kubernetes volumes to use network based storage from outside the pods, so you can manage to have a persistent volume storage. 
 
-Several Kubernetes controller objects:
-
+- Several Kubernetes controller objects:
 - ReplicaSets
 - Deployments
 - Replication Controllers
@@ -71,11 +72,21 @@ Several Kubernetes controller objects:
 - DaemonSets
 - Jobs
 
+
 A ReplicaSet controller ensures that a population of Pods, all identical, are running at the same time. Deployments let you do declarative updates to ReplicaSets and Pods. In fact, Deployments manage their own ReplicaSets to achieve the declarative goals you prescribe, so you will most commonly work with Deployment objects.
+
+
 Deployments let you create, update, roll back, and scale Pods, using ReplicaSets as needed to do so. For example, when you perform a rolling upgrade of a Deployment, the Deployment object creates a second ReplicaSet, and then increases the number of Pods in the new ReplicaSet as it decreases the number of Pods in its original ReplicaSet.
+
+
 Replication Controllers perform a similar role to the combination of ReplicaSets and Deployments, but their use is no longer recommended. Because Deployments provide a helpful "front end" to ReplicaSets.
+
 In the need to deploy applications that maintain local state, StatefulSet is a better option. A StatefulSet is similar to a Deployment in that the Pods use the same container spec. The Pods created through Deployment are not given persistent identities, however; by contrast, Pods created using StatefulSet have unique persistent identities with stable network identity and persistent disk storage. So for persistent storage, the StatefulSet is the best option, defining a network storage. 
+
+
 If you need to run certain Pods on all the nodes within the cluster or on a selection of nodes, use DaemonSet. DaemonSet ensures that a specific Pod is always running on all or some subset of the nodes. If new nodes are added, DaemonSet will automatically set up Pods in those nodes with the required specification. The word "daemon" is a computer science term meaning a non-interactive process that provides useful services to other processes in the background. A Kubernetes cluster might use a DaemonSet to ensure that a logging agent like fluentd is running on all nodes in the cluster. DeamonSets are useful, if you want to have logging and auditing processes in all the nodes of your cluster. 
+
+
 The Job controller creates one or more Pods required to run a task. When the task is completed, Job will then terminate all those Pods. A related controller is CronJob, which runs Pods on a time-based schedule.
 
 https://kubernetes.io/
@@ -87,3 +98,31 @@ minikube is local Kubernetes, focusing on making it easy to learn and develop fo
 https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app
 
 https://cloud.google.com/code/docs/vscode/yaml-editing
+
+
+
+Kubectl command
+
+It is the command used to communicate with the kubernetes cluster, with the kube-API server, so the kubectl commands are transformed in APIs calls.
+
+Before anything the kubectl must be configured with the location and credentials of a given kubernetes cluster.  The configuration is  in a file in the home directory $HOME/.kube/config. The config file has the cluster name and the cluster credentials.  To edit this use the command: --kubeconfig
+
+If you want to view the configuration, just use the command: kubectl config view 
+
+Sintaxis
+
+kubectl [command] [type] [name] [flags]
+
+Commands: get, describe, logs, exec …
+
+Type: pods, deployments, nodes …
+
+
+For example:
+
+Kubectl get pods, -- get a list and info about the pods. 
+
+kubectl describe pod <pod_name> get detailed info about a given pod.
+
+
+
