@@ -1,0 +1,25 @@
+# basic make file for the reverse polish notation calculator. v1
+# remeber to use tabs!!
+
+# the rules in 'make' has the following format:
+
+# target: [dependecies]
+# \tab command
+
+polishcalc: main.o getch.o getop.o stack.o
+	gcc -o polishcalc main.o getch.o getop.o stack.o
+
+main.o: main.c calc.h
+	gcc -c main.c
+	
+stack.o: stack.c calc.h
+	gcc -c stack.c
+
+getop.o: getop.c calc.h
+	gcc -c getop.c
+
+getch.o: getch.c
+	gcc -c getch.c
+
+clean:
+	rm polishcalc stack.o getop.o getch.o main.o
