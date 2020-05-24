@@ -1,0 +1,33 @@
+# make file for the reverse polish notation calculator. v3
+
+# remeber to use tabs!!
+
+# the rules in 'make' has the following format:
+
+# target: [dependecies]
+# \tab command
+
+#make is aware of the rules form compiling C code, so
+#it is no needed to specify the .c files.
+
+CC = gcc
+OBJECTS = stack.o getop.o getch.o
+
+polishcalc : main.o $(OBJECTS)
+	$(CC) -o polishcalc  main.o $(OBJECTS)
+main.o: calc.h
+stack.o: calc.h
+getop.o: calc.h
+getch.o:
+
+
+#you can create a rule for 'clean', so in this way
+#it is avoided confusion in case a file is named 'clean'.
+
+.PHONY: clean
+	clean : 
+	rm polishcalc main.o $(OBJETCS)
+
+# to compile with the deafult makefile, only run 'make'.
+# to view the compile commands, use: 'make -n'
+# to compile with another file, use: 'make -f anotherfile'
