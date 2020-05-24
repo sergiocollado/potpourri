@@ -1,0 +1,27 @@
+# make file for the reverse polish notation calculator. v2
+
+# remeber to use tabs!!
+
+# the rules in 'make' has the following format:
+
+# target: [dependecies]
+# \tab command
+
+#custom varialbes can be defined. for example 'CC = gcc', to define the compiler
+#to read the value of the variable, it's done: '$(CC)'.
+
+CC = gcc
+OBJETCS = stack.o getch.o getop.o
+
+polishcalc: main.o $(OBJETCS)
+	$(CC) -o polishcalc main.o $(OBJETCS)
+main.o: main.c calc.h
+	gcc -c main.c
+stack.o: stack.c calc.h
+	$(CC) -c stack.c 
+getop.o: getop.c calc.h
+	$(CC) -c getop.c
+getch.o: getch.c
+	$(CC) -c getch.c
+clean:
+	rm polishcalc $(OBJECTS)
