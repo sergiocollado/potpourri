@@ -43,6 +43,7 @@ A list of Linux tools that can be used to explore object/executable files.
 
 When a program is launched for execution, its memory layout usually corresponds with:
 
+```
 +----------------+
 |                |
 |      STACK     |
@@ -65,7 +66,7 @@ When a program is launched for execution, its memory layout usually corresponds 
 |                |
 |      TEXT      |
 +----------------+
-
+```
 
 
 Variables, the heap, and the stack go in RAM. Constants and machine code go in ROM. Basically, items that can change over time go in RAM and items that do not change go in ROM.
@@ -117,17 +118,16 @@ GCC is the standard linux compiler. Its name stands for GNU Compiler Collection,
 
 GCC is part of the GNU toolchain, that includes:
 
-GNU Compiler Collection (GCC): a compiler suite that supports many languages, such as C/C++ and Objective-C/C++.
-GNU Make: an automation tool for compiling and building applications.
-GNU Binutils: a suite of binary utility tools, including linker and assembler.
-GNU Debugger (GDB).
-GNU Autotools: A build system including Autoconf, Autoheader, Automake and Libtool.
-GNU Bison: a parser generator (similar to lex and yacc).
+ - GNU Compiler Collection (GCC): a compiler suite that supports many languages, such as C/C++ and Objective-C/C++.
+ - GNU Make: an automation tool for compiling and building applications.
+ - GNU Binutils: a suite of binary utility tools, including linker and assembler.
+ - GNU Debugger (GDB).
+ - GNU Autotools: A build system including Autoconf, Autoheader, Automake and Libtool.
+ - GNU Bison: a parser generator (similar to lex and yacc).
+ 
 GCC is portable and run in many operating platforms. GCC (and GNU Toolchain) is currently available on all Unixes. They are also ported to Windows (by Cygwin, MinGW and MinGW-W64). GCC is also a cross-compiler, for producing executables on different platforms.
 
-
 the possible program could be: 
-
 
 ```
 # include <stdio.h>
@@ -164,7 +164,7 @@ if you read a.i ( tail -25 a.i)  you can see the created file, with all the incl
 
 the sequential steps are: 
 
-
+```
                                   +
                                   |
                                   |   Source files (.c .cpp .h)
@@ -202,7 +202,7 @@ libraries (.a, .lib)   |                      |
                                   |
                                   |   machine code (.exe , ELF)
                                   v
-
+```
 
 
 
