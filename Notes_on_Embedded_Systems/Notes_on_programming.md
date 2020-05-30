@@ -17,10 +17,7 @@ An ELF file is a relocatable object, with the following sections.
 - .line -> mapping between line numbers, and the source code program, and machine code instruction in the .text section.
 - .strab -> string table for the sections .symtab and .debug.
 
-
 These different parts are assembly definitions, so different architectures may have different parts.
-
-
 
 A list of Linux tools that can be used to explore object/executable files.
 
@@ -134,8 +131,10 @@ save it as: helloworld.c
 
 and compile it:  '''gcc hellowold.c'''
 
-a new file will appear: a.out
+- gcc is the C compiler
+- g++ is the C++ compiler
 
+a new file will appear: a.out
 
 ```
 $ chmod a+x a.out
@@ -339,21 +338,11 @@ http://www.cmake.org/
 
 
 
-
-
-
-MAKE
+## BUILD SYSTEM: MAKE
 
 Only the compilation of small projects is feasible directly invoking the compiler. For the rest of the projects, tools to compile it are used. This is known as build automation.
 
 Make is an executable generating application provided by GNU, it is separate from the GCC toolchain
-
-
-
-
-
-
-
 
 
 MAKE TARGETS AND RULES: 
@@ -362,6 +351,10 @@ The main syntaxis rule is:
 
 [target file]: [resources]
   [tab - a real tab character, not spaces!] system commands
+	
+	
+- gcc is the C compiler
+- g++ is the C++ compiler
 	
 	
 for example:
@@ -444,12 +437,13 @@ clean : -rm myprogram $(OBJECTS)
 
 more variables can be used, like CFLACS that stand for compilation flags...
 
+
 ```
 CC = g++
 SOURCES =  main.cpp aa.cpp bb.cpp cc.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 EXECUTABLE = myprogram
-CFLAGS=-O3 -funroll-loops -c
+CFLAGS=-O3 -funroll-loops -c -Wall -Werror
 LDFLAGS=-O2 -lm
 
 #Uncomment the following to enable debugging
@@ -484,19 +478,18 @@ this substitutes the value of a variable with alterations that you specify.
  resulting string. So, the line means OBJECTS are all the sources, with .cc replaced by .o.
 
 
-
 In the previous example we can see the use of automatic variables: 
 
 These variables have values computed anew for each rule. 
 
 
-$@   - the name of the target or rule
-$%   - The target member name, when the target is an archive member
-$<   - The name of the first prerequisite
-$?   - The names of all the prerequisites that are newer than the target
-$^   - The names of all the prerequisites with spaces between them
-$+   - Similar to '$^', but prerequisites listed more than once are duplicated in the order they were listed in the makefile
-$*   - The stem with which an implicit rule matches. For example, the target aa.o matches the pattern '%.o', then 'aa' is the stem.
+ - $@   - the name of the target or rule
+ - $%   - The target member name, when the target is an archive member
+ - $<   - The name of the first prerequisite
+ - $?   - The names of all the prerequisites that are newer than the target
+ - $^   - The names of all the prerequisites with spaces between them
+ - $+   - Similar to '$^', but prerequisites listed more than once are duplicated in the order they were listed in the makefile
+ - $*   - The stem with which an implicit rule matches. For example, the target aa.o matches the pattern '%.o', then 'aa' is the stem.
 
 
 a more advanced script would be:
@@ -545,11 +538,7 @@ install: $(EXECUTABLE)
 
 
 
-
-
-
-
-PREPROCESSOR
+## PREPROCESSOR
 
 The preprocessor allows us to create macros for code readability and also define compilation switches.
 
@@ -562,8 +551,6 @@ its directives are preceded by a # simbol
 #pragma  --this one is not standard, so it will not be very portable.
 
 Also the compile time switches: -D<macro_name>
-
-
 
 
 MEMORY
