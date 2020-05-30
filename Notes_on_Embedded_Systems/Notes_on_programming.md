@@ -24,21 +24,13 @@ These different parts are assembly definitions, so different architectures may h
 
 A list of Linux tools that can be used to explore object/executable files.
 
-- ar: creates static libraries.
-
-- objdump: this is the most important binary tool; it can be used to display all the information in an object binary file.
-
-- readelf: this provides info about elf files. 
-
-
-- strings: list all the printable strings in a binary file.
-
-- nm: lists the symbols defined in the symbol table of an object file.
-
-- ldd: lists the shared libraries on which the object binary is dependent.
-
-- strip: deletes the symbol table information.
-
+ - ar: creates static libraries.
+ - objdump: this is the most important binary tool; it can be used to display all the information in an object binary file.
+ - readelf: this provides info about elf files. 
+ - strings: list all the printable strings in a binary file.
+ - nm: lists the symbols defined in the symbol table of an object file.
+ - ldd: lists the shared libraries on which the object binary is dependent.
+ - strip: deletes the symbol table information.
 
 
 When a program is launched for execution, its memory layout usually corresponds with:
@@ -57,7 +49,8 @@ When a program is launched for execution, its memory layout usually corresponds 
 +--------+-------+
 |      HEAP      |
 +----------------+
-|uninitialized data |
+| uninitialized  |
+|      data      |
 |      .bss      |
 +----------------+
 |      DATA      |
@@ -223,37 +216,38 @@ Place the output into a file
 GCC compiles a C/C++ program into executable in 4 steps as shown in the above diagram. For example, a "gcc -o hello.exe hello.c" is carried out as follows:
 
 Pre-processing: via the GNU C Preprocessor (cpp.exe), which includes the headers (#include) and expands the macros (#define).
+```
 > cpp hello.c > hello.i
+```
 
 The resultant intermediate file "hello.i" contains the expanded source code.
 
 Compilation: The compiler compiles the pre-processed source code into assembly code for a specific processor.
+```
 > gcc -S hello.i
+```
 The -S option specifies to produce assembly code, instead of object code. The resultant assembly file is "hello.s".
 
 Assembly: The assembler (as.exe) converts the assembly code into machine code in the object file "hello.o".
+```
 > as -o hello.o hello.s
+```
 
 Linker: Finally, the linker (ld.exe) links the object code with the library code to produce an executable file "hello.exe".
+```
 > ld -o hello.exe hello.o ...libraries...
-
+```
 
 
 some common compiler options are:
 
--o: specifies the output executable filename. Compile, assemble, and link to the output file.
-
--Wall: prints "all" Warning messages.
-
--Werror: consider all warnings as errors. 
-
--I or -L <dir> : include this directory to look for header files and libraries
-
--g: generates additional symbolic debugging information for use with gdb debugger.
-
--std=STANDARD : define which language standard to use.
-
--v: verbose mode. displays more information.
+ - o: specifies the output executable filename. Compile, assemble, and link to the output file.
+ - Wall: prints "all" Warning messages.
+ - Werror: consider all warnings as errors. 
+ - I or -L: include this directory to look for header files and libraries
+ - g: generates additional symbolic debugging information for use with gdb debugger.
+ - std=STANDARD : define which language standard to use.
+ - v: verbose mode. displays more information.
 
 
 to check the current installed version of gcc, use the command:
@@ -276,28 +270,21 @@ ls -la /usr/bin/*gcc
 ```
 
 it is possible to see the ARM cross compiler:
-
+```
 arm-none-eabi-gcc
+```
 Also depending of the architecture of the processor, different compiling flags are available:
 
 For example, for the ARM architecture:
 
 
--mcpu   defines target ARM processor and architecture
-
--march   defines target ARM architecture
-
--mtune   defines target ARM processor
-
--mthumb   generates thumb code
-
--marm   generates code in ARM state
-
--mlittle-endinan   generates code in little endian mode
-
--mbig-endian   generates code for big endian mode
-
-
+- mcpu   defines target ARM processor and architecture
+- march   defines target ARM architecture
+- mtune   defines target ARM processor
+- mthumb   generates thumb code
+- marm   generates code in ARM state
+- mlittle-endinan   generates code in little endian mode
+- mbig-endian   generates code for big endian mode
 
 
 More on:
@@ -311,7 +298,7 @@ Robert Mecklenburg, "Managing Projects with GNU Make", 3rd Edition, 2004.
 
 
 
-LIBRARIES:
+## LIBRARIES:
 
 Libraries are precompiled code that can be added to a program in the linking process.
 
