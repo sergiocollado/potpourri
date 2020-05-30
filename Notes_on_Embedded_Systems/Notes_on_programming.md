@@ -345,7 +345,7 @@ Only the compilation of small projects is feasible directly invoking the compile
 Make is an executable generating application provided by GNU, it is separate from the GCC toolchain
 
 
-MAKE TARGETS AND RULES: 
+### MAKE TARGETS AND RULES: 
 
 The main syntaxis rule is:
 
@@ -443,11 +443,11 @@ CC = g++
 SOURCES =  main.cpp aa.cpp bb.cpp cc.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 EXECUTABLE = myprogram
-CFLAGS=-O3 -funroll-loops -c -Wall -Werror
+CPPFLAGS=-O3 -funroll-loops -c -Wall -Werror
 LDFLAGS=-O2 -lm
 
 #Uncomment the following to enable debugging
-#CFLAGS+=-g -DDEBUG
+#CPPFLAGS+=-g -DDEBUG
 
 all: $(OBJECTS) $(EXECUTABLE)
 
@@ -477,6 +477,8 @@ this substitutes the value of a variable with alterations that you specify.
  replace every x at the end of a word with y in that value, and substitute the
  resulting string. So, the line means OBJECTS are all the sources, with .cc replaced by .o.
 
+
+### AUTOMATIC VARIABLES
 
 In the previous example we can see the use of automatic variables: 
 
