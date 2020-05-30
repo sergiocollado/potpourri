@@ -243,7 +243,9 @@ some common compiler options are:
  - o: specifies the output executable filename. Compile, assemble, and link to the output file.
  - Wall: prints "all" Warning messages.
  - Werror: consider all warnings as errors. 
- - I or -L: include this directory to look for header files and libraries
+ - I: include this directory to look for header files.
+ - L: include this directory to look for libraries files
+ - l: link with a library.
  - g: generates additional symbolic debugging information for use with gdb debugger.
  - std=STANDARD : define which language standard to use.
  - v: verbose mode. displays more information.
