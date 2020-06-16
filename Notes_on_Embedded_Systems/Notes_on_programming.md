@@ -298,21 +298,19 @@ Robert Mecklenburg, "Managing Projects with GNU Make", 3rd Edition, 2004.
 
 
 
-
 ## LIBRARIES:
 
 Libraries are precompiled code that can be added to a program in the linking process.
 
 There is two kinds of libraries: static libraries and shared (or dynamic) libraries:
 
-Static libraries have the extension '.a' (in linux systems) or '.lib' (in windows). When a static library is linked the machine code of the library functions is added to the program. The static libraries will be installed with the program as a part of the executable, they are linked into the executable.  They are created using the “archiver” gnu tool.
+Static libraries have the extension '.a' (from __archive__ in linux systems) or '.lib' (in windows). When a static library is linked the machine code of the library functions is added to the program. The static libraries will be installed with the program as a part of the executable, they are linked into the executable.  They are created using the “archiver” gnu tool, the command 'ar'. 
 
 Shared (or dynamic) libraries: have the extension .so (shared object) (in linux) or .dll (in windows- dynamic linked libraries) in this the operating system loads the machine code of the libraries functions. So the program is smaller. The shared or dynamic libraries are linked at runtime with the executable. So they must be pre installed in the target. They are created with the “shared” flag. Their advantage is that multiple programs can use the same library. 
 
 in linux:
 Files with the “.a” extension are static libraries.
 Files with the “.so” extension are dynamically linked shared object libraries. 
-
 
 GCC uses the following environment variables:
 
@@ -325,8 +323,6 @@ C_INCLUDE_PATH and CPLUS_INCLUDE_PATH can be used to specify C and C++ headers i
 LIBRARY_PATH: For searching library-paths for link libraries. It is searched after paths specified in -L<dir> options.
 
 
-
-
 the program: "make" is a program for compiling and building programs or libraries from source code. It is part of the build-essential package.
 
 references: 
@@ -336,6 +332,13 @@ https://www.gnu.org/software/make/
 https://www.gnu.org/software/make/manual/html_node/index.html
 
 http://www.cmake.org/
+
+
+### how to decide between static and dynamic libraries
+
+With static libraries, programs will be bigger and harder to upgrade. But they will be easier to deploy.
+
+With dynamic libraries, programs will be smaller and easier to upgrade, but harder to deploy.
 
 
 
