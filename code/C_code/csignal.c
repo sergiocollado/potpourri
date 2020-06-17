@@ -7,13 +7,26 @@
 /** signals are a sw interruptions **/
 
 /** signals are very useful for example when the program 
-sudently stops, and you can have the change to close file handles,
+suddently stops, and you can have the change to close file handles,
 free memory ... so you can get a consistant state before
 your program ends, and you have the choice to fail gracefully**/
 
 /** signals can also work for communication between threads **/
 
 /** http://man7.org/linux/man-pages/man7/signal.7.html **/
+
+/**
+* the SIGCHLD signal is used to notify that a child process is finished
+* the SIGBUS is a bus error
+* the SIGSEGV is a segmentation violation
+* the SIGFPE is a floating point error
+* SIGUSR1 and SIGUSR2 are used to pass commands to a program
+* SIGHUP is sometimes used to wake up an idling program or to reread its configurationfiles
+* SIGTERM and SIGKILL are used to end a program.
+* the difference between SIGTERM and SIGKILL, is that SIGTERM request the program to finish,
+* so it is possible to do something, mask or even ignore the signal, whereas SIGKILL can not be 
+* masked and just kills the process
+**/
 
 void handler(int num)
 {
