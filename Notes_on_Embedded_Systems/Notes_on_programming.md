@@ -306,7 +306,7 @@ There is two kinds of libraries: static libraries and shared (or dynamic) librar
 
 Static libraries have the extension '.a' (from __archive__ in linux systems) or '.lib' (in windows). When a static library is linked the machine code of the library functions is added to the program. The static libraries will be installed with the program as a part of the executable, they are linked into the executable.  They are created using the “archiver” gnu tool, the command 'ar'. 
 
-Shared (or dynamic) libraries: have the extension .so (wich stands for shared object in linux) or .dll (in windows- dynamic linked libraries) in this the operating system loads the machine code of the libraries functions. So the program is smaller. The shared or dynamic libraries are linked at runtime with the executable. So they must be pre installed in the target. They are created with the “shared” flag. Their advantage is that multiple programs can use the same library. To create a shard library, it is needed to compile in gcc, with the -fPIC option, PIC, stands for Possition Independent Code. And link with the -shared option, this will combine object files into a shared library.
+Shared (or dynamic) libraries: have the extension .so (wich stands for __shared object__ in linux) or .dll (in windows- dynamic linked libraries) in this the operating system loads the machine code of the libraries functions. So the program is smaller. The shared or dynamic libraries are linked at runtime with the executable. So they must be pre installed in the target. They are created with the “shared” flag. Their advantage is that multiple programs can use the same library. To create a shard library, it is needed to compile in gcc, with the -fPIC option, PIC, stands for Possition Independent Code. And link with the -shared option, this will combine object files into a shared library.
 
 in linux:
 Files with the “.a” extension are static libraries.
@@ -338,9 +338,9 @@ http://www.cmake.org/
 
 With static libraries, programs will be bigger and harder to upgrade. But they will be easier to deploy.
 
-With dynamic libraries, programs will be smaller and easier to upgrade, but harder to deploy.
+With dynamic libraries (shared libraries), programs will be smaller and easier to upgrade, but harder to deploy.
 
-
+A major advantage of shared libraries, is that they save space in the system where they are installed.
 
 
 ## BUILD SYSTEM: MAKE
