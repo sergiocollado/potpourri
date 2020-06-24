@@ -98,9 +98,9 @@ objdump
 
 https://linux.die.net/man/1/objdump
 
-https://www.bell-labs.com/usr/dmr/www/chist.html
+Development of the C languaje: https://www.bell-labs.com/usr/dmr/www/chist.html
 
-CREATION AND ANALYSIS OF A PROGRAM
+## CREATION AND ANALYSIS OF A PROGRAM
 
 you can write a simple program. For that we can use GCC. 
 
@@ -294,7 +294,6 @@ GCC Manual "Using the GNU Compiler Collection (GCC)" @ http://gcc.gnu.org/online
 GNU 'make' manual @ http://www.gnu.org/software/make/manual/make.html.
 
 Robert Mecklenburg, "Managing Projects with GNU Make", 3rd Edition, 2004.
-
 
 
 ## LIBRARIES:
