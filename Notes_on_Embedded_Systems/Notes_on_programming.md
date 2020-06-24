@@ -278,7 +278,6 @@ Also depending of the architecture of the processor, different compiling flags a
 
 For example, for the ARM architecture:
 
-
 - mcpu   defines target ARM processor and architecture
 - march   defines target ARM architecture
 - mtune   defines target ARM processor
@@ -542,8 +541,99 @@ install: $(EXECUTABLE)
         fi 
 ```
 
+for example a make file that is can be used to cross compile:
+
+```
+------------------------------------------------
+#  the platform has to be defined, like:
+#  make build PLATFORM=MSP432
+#  make build PLATFORM=HOST
+#------------------------------------------------------------------------------
+#include sources.mk
+
+# Add your Source files to this variable
+SOURCES = \
+main.c \
+memory.c \
+interrupts_msp432p401r_gcc.c \
+startup_msp432p401r_gcc.c \
+system_msp432p401r.c \
+
+# Add your include paths to this variable
+INCLUDES = \
+-I ./../include/CMSIS \
+-I ./../include/common \
+-I ./../include/msp432 \
 
 
+CWD:=$(shell pwd)
+OS:=$(shell uname)
+
+TARGET = c1m2
+
+ifeq ($(PLATFORM),HOST)
+    #HOST
+	CC = gcc
+        LD = ld
+        LDFLAGS = -Wl,-Map=$(TARGET).map 	
+        CPPFLAGS = -DHOST -MD
+        CFLAGS = -Wall -Werror -g -O0 -std=c99 -I ./../include/common 
+        SOURCES = main.c  memory.c 
+	OBJDUMP = objdump
+	# etc
+else
+  ifeq ($(PLATFORM),MSP432)
+	CC = arm-none-eabi-gcc
+        LD = arm-none-eabi-l
+        LINKER_FILE = -T msp432p401r.lds
+        LINKER_FILE_PATH = -L ../
+        LDFLAGS = -Wl,-Map=$(TARGET).map $(LINKER_FILE_PATH) $(LINKER_FILE)
+        CPU = cortex-m4
+        ARCH = armv7e-m
+        SPECS = nosys.specs
+        CPPFLAGS = -DMSP432 -MD
+        CFLAGS = -mcpu=$(CPU) -mthumb -march=$(ARCH) --specs=$(SPECS) -mfloat-abi=hard  -mfpu=fpv4-sp-d16 -Wall -Werror -g -O0 -std=c99 $(INCLUDES)
+	OBJDUMP = arm-none-eabi-objdump
+	# etc
+  else
+	CC = gcc
+        LD = ld
+        CFLAGS = -DHOST -Wall -Werror -g -O0 -std=c99 -I ./../include/common 
+  endif
+endif
+
+
+OBJS = $(SOURCES:.c=.o)
+
+
+%.o : %.c
+	$(CC) -c $< $(CPPFLAGS) $(CFLAGS) -o $@
+
+%.i : %.c
+	$(CC) -E $< $(CPPFLAGS) $(CFLAGS) -o $@
+
+%.asm : %.c
+	$(CC) -S $< $(CPPFLAGS) $(CFLAGS) -o $@ -E $< -o $@ $(OBJDUMP) -S $@
+
+
+.PHONY: build
+build: all
+
+.PHONY: all
+all: $(TARGET).out
+
+.PHONY: compile-all
+compile-all: $(TARGET).out
+
+$(TARGET).out: $(OBJS)
+	$(CC) $(OBJS) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@
+	echo ">> Build succeeded!!!"
+
+.PHONY: clean
+clean:
+	rm -f $(OBJS) $(TARGET).out $(TARGET).map *.i *.d *.asm
+
+```
 
 ## PREPROCESSOR
 
