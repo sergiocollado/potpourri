@@ -565,26 +565,31 @@ INCLUDES = \
 -I ./../include/common \
 -I ./../include/msp432 \
 
+# General flags for both platforms
+GEN_FLAGS = -Wall \
+            -Werror \
+            -g \
+            -O0 \
+            -std=c99
 
-CWD:=$(shell pwd)
-OS:=$(shell uname)
-
-TARGET = c1m2
+TARGET = program
 
 ifeq ($(PLATFORM),HOST)
     #HOST
-	CC = gcc
-        LD = ld
-        LDFLAGS = -Wl,-Map=$(TARGET).map 	
-        CPPFLAGS = -DHOST -MD
-        CFLAGS = -Wall -Werror -g -O0 -std=c99 -I ./../include/common 
+	CC = gcc      #Compiler
+        LD = ld       #Loader
+        LDFLAGS = -Wl,-Map=$(TARGET).map 	#Loader flags
+        CPPFLAGS = -DHOST -MD                   #C preprocessor flags
+        CFLAGS = $(GEN_FLAGS) -I ./../include/common   #C compiler flags
         SOURCES = main.c  memory.c 
 	OBJDUMP = objdump
-	# etc
+        SIZE = size
 else
   ifeq ($(PLATFORM),MSP432)
 	CC = arm-none-eabi-gcc
         LD = arm-none-eabi-l
+	OBJDUMP = arm-none-eabi-objdu
+        SIZE = arm-none-eabi-size
         LINKER_FILE = -T msp432p401r.lds
         LINKER_FILE_PATH = -L ../
         LDFLAGS = -Wl,-Map=$(TARGET).map $(LINKER_FILE_PATH) $(LINKER_FILE)
@@ -592,24 +597,35 @@ else
         ARCH = armv7e-m
         SPECS = nosys.specs
         CPPFLAGS = -DMSP432 -MD
-        CFLAGS = -mcpu=$(CPU) -mthumb -march=$(ARCH) --specs=$(SPECS) -mfloat-abi=hard  -mfpu=fpv4-sp-d16 -Wall -Werror -g -O0 -std=c99 $(INCLUDES)
-	OBJDUMP = arm-none-eabi-objdump
-	# etc
+        CFLAGS = -mcpu=$(CPU) -mthumb -march=$(ARCH)
+        CFLAGS += --specs=$(SPECS) -mfloat-abi=hard -mfpu=fpv4-sp-d16
+        CFLAGS += $(GEN_FLAGS) $(INCLUDES)
+
   else
+        # by default
 	CC = gcc
         LD = ld
-        CFLAGS = -DHOST -Wall -Werror -g -O0 -std=c99 -I ./../include/common 
+        SIZE = size
+	OBJDUMP = objdump
+        SOURCES = main.c  memory.c 
+        CFLAGS = -DHOST $(GEN_FLAGS) -I ./../include/common 
   endif
 endif
 
-
-OBJS = $(SOURCES:.c=.o)
+# Pattern Matching - Associate source files with:
+OBJS = $(SOURCES:.c=.o)    # Object files
+DEPS = $(SOURCES:.c=.d)    # Dependency files
+ASMS = $(SOURCES:.c=.asm)  # Assembly files
+PREP = $(SOURCES:.c=.i)    # Preprocessed files
 
 
 %.o : %.c
 	$(CC) -c $< $(CPPFLAGS) $(CFLAGS) -o $@
 
 %.i : %.c
+	$(CC) -E $< $(CPPFLAGS) $(CFLAGS) -o $@
+
+%.d: %.c
 	$(CC) -E $< $(CPPFLAGS) $(CFLAGS) -o $@
 
 %.asm : %.c
@@ -627,11 +643,12 @@ compile-all: $(TARGET).out
 
 $(TARGET).out: $(OBJS)
 	$(CC) $(OBJS) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@
+	$(SIZE) $@
 	echo ">> Build succeeded!!!"
 
 .PHONY: clean
 clean:
-	rm -f $(OBJS) $(TARGET).out $(TARGET).map *.i *.d *.asm
+	rm -f $(OBJS) $(DEPS) $(ASMS) $(PREP) $(TARGET).out $(TARGET).map *.o *.i *.d *.asm
 
 ```
 
