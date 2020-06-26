@@ -7,7 +7,7 @@ An ELF file is a relocatable object, with the following sections.
 
 - ELF header ->starts with magic number string: /177ELF
 - .text      -> this is the machine code
-- .rodata    -> read only data, like char strings
+- .rodata    -> read only data, like char strings, or const variables.
 - .data      -> global variables
 - .bss    -> (block storage start) uninitialized global variables
 - .symtab -> symbol table for functions and global variables. local variables are in the stack, not here
