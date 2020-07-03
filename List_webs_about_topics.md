@@ -1303,3 +1303,4 @@ https://www.cyberciti.biz/files/linux-kernel/Documentation/RCU/Design/Requiremen
 
 https://www.youtube.com/watch?v=rxQ5K9lo034
 
+crazy code, crazy coders [Walter E. Brown] https://youtu.be/OAmWHmwlMwI
