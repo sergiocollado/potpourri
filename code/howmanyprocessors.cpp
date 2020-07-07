@@ -17,4 +17,8 @@ int main(int argc,char *argv[])
  The sysconf() function provides a method for an
 application to get values for system limits or variables. In this case the _SC_NPROCESSORS_CONF
 argument asks for the number of processors configured
+sysconfig() conforms to  POSIX.1-2001, POSIX.1-2008.
+
+ref:
+https://man7.org/linux/man-pages/man3/sysconf.3.html
 */
