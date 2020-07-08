@@ -1,3 +1,4 @@
+HHO - Hard HandOver
 VoIP - Voice over IP. 
 ETSI - European Telecommunications Standards Institute
 ITU - International Telecomunication Union
