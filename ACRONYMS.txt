@@ -1,3 +1,21 @@
+PCRF - Policy Control & Charging Rules Function
+HLR - Home Location Register
+AuC - Authentification Center
+HSS - Home Subscriber Server
+MME Movility Management Entity
+S-GW - Serving Gateway
+P-GW - Packet GateWay
+eNB - Evolved Node B (4G)
+NB - Node B (3G)
+BTS - Base Tranceiver Station (2G)
+BS - Base Station (1G)
+CPS - Ciber Physical Systems
+ITS - Intelligent Transportation Systems
+RAN - Radio Access Network
+E-UTRAN - Evolved Universal Terrestrian RAN
+EPC - Evolved Packet Core
+EPS - Evolved Packet System
+SHO - Soft HandOver
 HHO - Hard HandOver
 VoIP - Voice over IP. 
 ETSI - European Telecommunications Standards Institute
@@ -8,6 +26,7 @@ SMS - Short Message Service
 SIM - Subscriber Identity Module
 IS-95 - Interim Standard -1995
 GSM - Global system for Mobile communications
+OFDM - Orthogonal Frequency Division Multiplexing
 CDMA - Code Division Multiple Access
 TDMA - Time Division Multiple Access
 FDMA - Frequency Division Multiple Access
