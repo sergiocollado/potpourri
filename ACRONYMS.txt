@@ -26,6 +26,7 @@ SMS - Short Message Service
 SIM - Subscriber Identity Module
 IS-95 - Interim Standard -1995
 GSM - Global system for Mobile communications
+OFDMA - Orthogonal Frequency Division Multiple Access
 OFDM - Orthogonal Frequency Division Multiplexing
 CDMA - Code Division Multiple Access
 TDMA - Time Division Multiple Access
