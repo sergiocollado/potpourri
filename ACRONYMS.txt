@@ -1,3 +1,4 @@
+MBMS- Multimedia Broadcast Multicast Service
 PCRF - Policy Control & Charging Rules Function
 HLR - Home Location Register
 AuC - Authentification Center
