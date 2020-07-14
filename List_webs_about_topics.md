@@ -1304,3 +1304,5 @@ https://www.cyberciti.biz/files/linux-kernel/Documentation/RCU/Design/Requiremen
 https://www.youtube.com/watch?v=rxQ5K9lo034
 
 crazy code, crazy coders [Walter E. Brown] https://youtu.be/OAmWHmwlMwI
+
+how to print bits in C++ : https://katyscode.wordpress.com/2012/05/12/printing-numbers-in-binary-format-in-c/
