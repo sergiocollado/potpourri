@@ -438,8 +438,12 @@ bb.o : header2.h
 clean : -rm myprogram $(OBJECTS)
 ```
 
-more variables can be used, like CFLACS that stand for compilation flags...
+more variables can be used, like CFLAGS that stand for compilation flags...
 
+ - CFLAGS: flags for the C compiler
+ - CPPFLAGS: flags for the C Preprocessor.
+ - CXX: flags for C++ compiler (g++ in gnu)
+ - CXXFLAGS: extra flags for the C++ compiler. 
 
 ```
 CC = g++
