@@ -1310,3 +1310,7 @@ how to print bits in C++ : https://katyscode.wordpress.com/2012/05/12/printing-n
 Netflix talks about Extended BPF - A new software type [Brendan Gregg] :  https://youtu.be/7pmXdG8-7WU 
 
 https://www.facebook.com/groups/cppEnthusiasts/
+
+the faumous --> operator in c++ : https://stackoverflow.com/questions/1642028/what-is-the-operator-in-c?rq=1
+
+iterator-loop vs index-loop :  https://stackoverflow.com/questions/14373934/iterator-loop-vs-index-loop
