@@ -1308,3 +1308,5 @@ crazy code, crazy coders [Walter E. Brown] https://youtu.be/OAmWHmwlMwI
 how to print bits in C++ : https://katyscode.wordpress.com/2012/05/12/printing-numbers-in-binary-format-in-c/
 
 Netflix talks about Extended BPF - A new software type [Brendan Gregg] :  https://youtu.be/7pmXdG8-7WU 
+
+https://www.facebook.com/groups/cppEnthusiasts/
