@@ -1281,7 +1281,7 @@ done
 
 **ifconfig** - presents the current network configuration
 
-normally ethernet intefaces are named as eth0,eth1... and wireless interfeaces as wlan0,wlan1... although nowadays, the diferent distros use to use the **Predictable Network inteface Device Names**
+normally ethernet intefaces are named as eth0, eth1... and wireless interfeaces as wlan0, wlan1... although nowadays, the different distros use to use the **Predictable Network inteface Device Names**
 
 https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
 
@@ -1290,14 +1290,14 @@ the configuration file is: _**/etc/sysconfig/network-scripts/ifcfg-exnoXXXX**_
 statistical info is in the file:  _**/proc/net/dev**_ and also in the files: _**sys/class/net/ethX/statistics**_
 
 
-enoXXXX - ethernet onboard
+enoXXXX - stands for **ethernet onboard**
 
-lo -- loopback adress
+lo -- stands for **loopback adress**
 
 to change the ip address, you must command:
 
 ```bash
-sudo ifconig enoXXXXX 192.1new_ip_address netmask 255.255.255.0
+sudo ifconfig enoXXXXX 192.1new_ip_address netmask 255.255.255.0
 ```
 
 to check the route - (shows the way to the next hub)
@@ -1351,7 +1351,7 @@ https://linux.die.net/man/7/netlink
 https://linux.die.net/man/2/ioctl
 
 
-the ip command can be used for many tasks like: manipulate routing, devices, policy routing and tunnels
+the newer **ip** command can be used for many tasks like: manipulate routing, devices, policy routing and tunnels
 
 https://linux.die.net/man/8/ip
 
@@ -1364,6 +1364,18 @@ so, if you need to print all the network interfaces:
 ```bash
  ip link
 ``` 
+or 
+
+```bash
+ ip addr show 
+``` 
+
+that will give the addresses of all the devices. Or in case a specific device is needed:
+
+```bash
+ ip addr show eth0
+``` 
+
  to check the info of one network interface.
 
 ```bash
