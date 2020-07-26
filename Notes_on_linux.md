@@ -52,13 +52,13 @@ maybe even re-index inmediatetly use:
 >sudo updatedb
 ```
 
-if you want to identify your system, you can try for:
+if you want to identify your system, the 'uname' command is to be used. It will display the linux version.
 
 ```bash
 > uname -a
 ```
 
-or with:
+if you want to know if a given command is insatalled, or where is installed, the 'which' command is used. It will report where a given command is installed. 
 
 ```bash
 >which wich
