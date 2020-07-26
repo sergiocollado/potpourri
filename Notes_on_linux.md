@@ -783,6 +783,8 @@ Old distros where based in **SysVinit**. More updated distros use: **systemd**
 
 https://www.freedesktop.org/wiki/Software/systemd/
 
+https://www.linux.com/training-tutorials/understanding-and-using-systemd/
+
 runlevel go from 0 to 6:
 
 | Run Level | description |
@@ -1773,7 +1775,7 @@ Define it in the file: /etc/fstab.
 
 # Run a script as a background daemon
 
-it is possible with:
+it is possible with '&':
 
 ```bash
 nohup node myscript.js > /dev/null 2>1 &
@@ -2588,6 +2590,7 @@ http://linuxcommand.org/lc3_learning_the_shell.php <br>
 https://linux.die.net/HOWTO/HOWTO-INDEX/howtos.html  <br>
 https://linuxconfig.org/  <br>
 https://wiki.linuxfoundation.org/realtime/rtl/blog#the_jury_has_spoken   <br>
+https://www.linux.com <br>
 
 https://0xax.gitbooks.io/linux-insides/content/Theory/linux-theory-1.html
 
@@ -2961,7 +2964,7 @@ sudo firewall-cmd --get-active-zones
 19. use Shadow with Cracklib, to enforce sstrong passwords: http://www.linuxfromscratch.org/blfs/view/9.0/postlfs/cracklib.html 
 
 
-## SSH secure shell
+## SSH - Secure SHell
 
 ssh is the secure shell. SSH is a network prototocol, like telnel, ftp, ...  SSH is a secure protocol, so the comunication is encrypted. SSH can be used for transmitting data, for transmitting commands of files, 
 
