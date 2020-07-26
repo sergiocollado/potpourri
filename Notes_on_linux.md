@@ -1757,6 +1757,20 @@ other module-related commands are: **insmod**, **modprobe**,
 Bootchart is a tool for performance analysis and visualization of the GNU/Linux boot process. Resource utilization and process information are collected during the boot process and are later rendered in a PNG, SVG or EPS encoded chart.
 http://www.bootchart.org/  or  https://github.com/xrmx/bootchart
 
+# How to check for open network connectios, open ports or alike:
+
+Use the command **netstat** and filter with the options
+
+```bash
+netstat -tulpn
+```
+if the command is run as root, then the program that is using those connections will be shown. 
+
+## How to automaticaly mount a volume at boot
+
+Define it in the file: /etc/fstab.
+
+
 # Run a script as a background daemon
 
 it is possible with:
