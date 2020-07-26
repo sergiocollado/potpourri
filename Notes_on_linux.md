@@ -52,6 +52,22 @@ maybe even re-index inmediatetly use:
 >sudo updatedb
 ```
 
+- If you want to have updated all the references to yor database repository, you should install **mlocate**, it will update the db once a day.
+
+```
+> sudo apt-get install mlocate
+```
+
+if it fails at start, try to 
+
+```
+> sudo updatedb
+
+> sudo apt-get update
+
+> sudo apt-get upgrade
+```
+
 if you want to identify your system, the 'uname' command is to be used. It will display the linux version.
 
 ```bash
@@ -601,7 +617,7 @@ In non-login shells, like bash, it checks just if  _**~/.bashrc**_ exists, then 
   
   But the terminal is the interface to the shell. 
   
-  To findout what shell you are using you can use the following commands:
+  To find out what shell you are using you can use the following commands:
   
   ```bash
   echo $0
@@ -755,7 +771,6 @@ Does not directly support advanced features like control groups (cgroups), and p
 Adding scripts requires manual, static sequencing decisions.
 
 
-
 # SYSTEM INITIALIZATION:
  
  /sbin/init - is the first program to run, is identified with process id = 1. It launches the rest of processes
@@ -768,9 +783,7 @@ Old distros where based in **SysVinit**. More updated distros use: **systemd**
 
 https://www.freedesktop.org/wiki/Software/systemd/
 
-
 runlevel go from 0 to 6:
-
 
 | Run Level | description |
 | :---:       |     :---:      |  
@@ -782,7 +795,6 @@ runlevel go from 0 to 6:
 | 4   | Not used    |
 | 5  |  multiple user, wit NFS, visual login |
 | 6  |  reboot  | 
-
 
 to verify the runlevel, can be done with the 'runlevel' command.
 
@@ -832,7 +844,7 @@ also: https://linux.die.net/man/5/syslog-ng.conf
 
 # kernel panic 
 
-kernel panic is the name of the error known in which the OS has a hard time recovering.
+kernel panic is the name of the error known in which the OS has a "hard time recovering".
 
 reference: https://searchdatacenter.techtarget.com/definition/Linux-kernel-panic
 
@@ -868,10 +880,10 @@ architecture dependant kernel code
 hardware platform
 
 
-
 ## BASH SCRIPTING
 
 ref: http://linuxcommand.org/lc3_learning_the_shell.php
+
 
 ### LAUNCH A BASH SCRIPT
 
@@ -1002,7 +1014,6 @@ read -p "Install Software ?? [Y/n]: " answ
  fi
    echo "Installation starting..."
 ```
-
 
 ### Conditional execution: script flow control
 
@@ -1475,6 +1486,7 @@ cat /proc/filesystem | less
  https://akkadia.org/drepper/cpumemory.pdf
  
  **free** - Display amount of free and used memory in the system - https://linux.die.net/man/1/free
+ 
  **df** - (from disk filesystem?) report file system disk space usage  https://linux.die.net/man/1/df
  
 The analysis of the memory in the linux system, can be checked using the commands:
@@ -1535,6 +1547,7 @@ DirectMap1G:     7340032 kB
 ```
 
 If you also need to check your CPU, then you can read the file as:
+
 <br>
 ```bash
 >> cat /proc/cpuinfo
@@ -1668,25 +1681,15 @@ If you want to know how much free memory you have in your hard disk, you have to
 
  - **du** command (stands for: _disk usage_): reports an estimation of the file space usage. is better to use it with the optinons -sh. -s for summary and -h for human readeble.
 
+for example to check the disk free, you can use:
+
+```bash
+df -ah 
+``
+- a for 'all'
+- h for 'human readable' 
+
 TODO: COMPLETE
-
-
-- If you want to have updated all the references to yor database repository, you should install mlocate, it will update the db once a day.
-
-```
-> sudo apt-get install mlocate
-```
-
-if it fails at start, try to 
-
-```
-> sudo updatedb
-
-> sudo apt-get update
-
-> sudo apt-get upgrade
-```
-
 
 6) **memsusage**: is a script that reports the memory consuption of a given program. http://man7.org/linux/man-pages/man1/memusage.1.html
 
