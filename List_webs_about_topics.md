@@ -1314,3 +1314,5 @@ https://www.facebook.com/groups/cppEnthusiasts/
 the faumous --> operator in c++ : https://stackoverflow.com/questions/1642028/what-is-the-operator-in-c?rq=1
 
 iterator-loop vs index-loop :  https://stackoverflow.com/questions/14373934/iterator-loop-vs-index-loop
+
+Capacity awarenes of the deadline scheduler: https://lwn.net/Articles/821578/
