@@ -706,7 +706,13 @@ EDF:  EARLIEST DEADLINE FIRST SCHEDULER:
 
 
 
+HOW TO SCHEDULE LINUX REALTIME:
 
+https://lwn.net/Articles/743740/
+
+https://lwn.net/Articles/743946/
+
+https://lwn.net/Articles/821578/
 
 
 
