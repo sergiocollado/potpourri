@@ -714,6 +714,7 @@ https://lwn.net/Articles/743946/
 
 https://lwn.net/Articles/821578/
 
+https://www.kernel.org/doc/Documentation/scheduler/sched-deadline.txt
 
 
 
