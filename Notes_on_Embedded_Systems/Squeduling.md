@@ -134,10 +134,11 @@ A scheduling algorithm is OPTIMUN SCHEDULING ALGORITHM it if always generates a 
 
 Scheduling example:
 
-
+```
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|----->
 
 0     1     2     3     4     5     6     7     8     9     10
+```
 
 And three tasts: T1, T2 and T3:
 
@@ -147,11 +148,12 @@ T1 -task 1. time(T1) = 1
 T2 -task 2. time(T2) = 0.5
 T3 -task 3. time(T3) = 3
 
+```
  ____    __     ________________
 |    |  |  |   |                |
 | T1 |  |T2|   |      T3        |
 |____|  |__|   |________________|
-
+```
 
 With the deathlines acording to the figure below:
 
@@ -161,17 +163,18 @@ D1 -death-line task1 = 2
 D2 -death-line tast2 = 2.5
 D3 -death-line tast3 = 5
 
+```
            D1 D2             D3
             |  |              |
             V  V              V
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|----->
 0     1     2     3     4     5     6     7     8     9     10
-
+```
 
 The schedule may want to allocate the T3, the first, because it might be the most important one:
 
 
-
+```
            D1 D2             D3
             |  |              |
             V  V              V
@@ -182,12 +185,15 @@ The schedule may want to allocate the T3, the first, because it might be the mos
 |      T3        | T1 |T2|  
 |________________|____|__|
 
+```
+
 - but, by doing so, we make the Task1, and Task2, miss their death lines.
 
 This squeduler is not feaseble, even thougth Task3, might be the most important task.
 
 But if we change the squedule, so it choose first T1, and then T2, and then T3, we see:
 
+```
            D1 D2             D3
             |  |              |
             V  V              V
@@ -197,7 +203,7 @@ But if we change the squedule, so it choose first T1, and then T2, and then T3, 
 |    |  |                  |
 | T1 |T2|        T3        |          
 |____|__|__________________|
-
+```
  
 Then all three task meet their deathlines. 
 
@@ -243,6 +249,7 @@ PRE-EMPTIVE SYSTEMS:
  the OS, run a routine call, __IRS__(), (ISR stands for Interruption Routine Service), first thing it does is block the interrupts, so nothing can change its process. Then it stores
  the regitsters, to the task stack -using architecture specific, assembly code- 
  
+ ```
  Void __ISR__(){
  cli(); //disable interrupts - clear interrupts
  stores_context(); 
@@ -251,6 +258,7 @@ PRE-EMPTIVE SYSTEMS:
  sei(); //enable interrupts - set interrupts
  reti(); //return - return from isr
  }
+ ```
  
  Then the schedule algorithm decides on what will be the next task, and then loads the context back to the new task, because this
  was saved last time the task was interrumped. Now the system is ready to continue executing. The OS enables interrupts again, and 
@@ -290,9 +298,11 @@ if the code of a task is modified, the scheduler must be re-calculated, because 
 
 The static scheduler is defined in a table, with 't' and 'T'. 
 
+```
 t - is the scheduling time (trigger time of the job)
 T - is the Task
 D - death-lines
+```
 
 The scheduling policy is the one that defines the tasks in the timeline in a way that no dead-line is violated. 
 
@@ -313,6 +323,7 @@ the schedule is feaseable, because for example, some tasks can collide, or the d
 
 Example:
 
+```
  ·    P      e      D
  
  T1   3      1      3
@@ -323,6 +334,8 @@ Example:
 - e: execution time. How long does it take to run the task
 - D: death-line
  
+```
+
  So the Utilization is:   U = 1/3 + 1/4  + 2/10 = 0.78
  
  Remember, what this means is that we cannot guarantee that this schedule is NOT feaseable, ... but this cannot also
@@ -431,6 +444,7 @@ RATE MONOTONIC SCHEDULER:
 The rate monotonic scheduler sets the priority of the tasks acording to the period (P) of the tasks, so those tasks with a shorten period,
 have a higher priority.
 
+```
 P - Periods
 e - execution time
 D - relative deadline
@@ -443,6 +457,7 @@ D - relative deadline
 ------------------------------------------
 |   T3     |   20    |    5    |   20    |        
 ------------------------------------------
+```
 
 In the table, T1, would get the highest priority, because his period is the shortest (P=4)
 
@@ -462,6 +477,7 @@ EXAMPLE RM (rate monotonic) SCHEDULING:
 
 We have the following preemptive system:
 
+```
 P - Periods
 e - execution time
 D - relative deadline
@@ -475,6 +491,7 @@ D - relative deadline
 ------------------------------------------
 |   T3     |   20    |    5    |   20    |        
 ------------------------------------------
+```
 
 Note that all the deadlines are identical to periods.
 
@@ -483,32 +500,34 @@ We want to schedule the tasks in the period [0,20]. Can we assure that all the t
 First we look and the table, and check which task have the highest priority.- It's Task1, due it have the shortest period (P=4), it
 has the highest priority. As T1, has the highest priority, it will be executed inmediatly when it's released.
 
+```
  _____                   _____                   _____                   _____                   _____                                                
 |     |                 |     |                 |     |                 |     |                 |     |          
 |  T1 |                 | T1  |                 | T1  |                 | T1  |                 | T1  |           
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|----->
 0     1     2     3     4     5     6     7     8     9     10    11    12    13    14    15   16     17    18    19    20       time
-
+```
 
 The following task in priority is T2, because it has the second shortest period (P=5). So we allocate all the T2 Jobs, but they have
 to respect the T1 task scheduling:
 
-
+```
  _____ ___________       _____ ___________       _____       ___________ _____             _____ _____ _____                                             
 |     |           |     |     |           |     |     |     |           |     |           |     |     |     |
 |  T1 |     T2    |     | T1  |    T2     |     | T1  |     |     T2    | T1  |           |  T2 | T1  | T2  |
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|----->
 0     1     2     3     4     5     6     7     8     9     10    11    12    13    14    15   16     17    18    19    20       time
-
+```
 
 Finally Task T3 has the lowest priority, so Jobs of task3, have to be schedule only where there are space left in the timeline.
 
-
+```
  _____ ___________ ____  _____ ___________ ____  _____ ____  ___________ _____ ___________ _____ _____ _____                                             
 |     |           |     |     |           |     |     |     |           |     |           |     |     |     |
 |  T1 |     T2    | T3  | T1  |    T2     |  T3 | T1  | T3  |     T2    | T1  |    T3     |  T2 | T1  | T2  |
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|----->
 0     1     2     3     4     5     6     7     8     9     10    11    12    13    14    15   16     17    18    19    20       time
+```
 
 And in this case we obtain a feaseble schedule, because no task ever miss its deadline.
 
@@ -516,7 +535,7 @@ EXAMPLE DM (dead-line monotonic) SCHEDULING:
 ============================================
 
 Consider the following setup, in a preemptive system:
-
+```
 P - Periods
 e - execution time
 D - relative deadline
@@ -530,6 +549,7 @@ D - relative deadline
 ----------------------------------------------------
 |   T3     |    0     |   125   |    25    |   50   |        
 ----------------------------------------------------
+```
 
 We want to schedule the tasks in the interval [0,250], and also want to know if the tasks will meet the deadline.
 
@@ -538,26 +558,31 @@ T1, has phase of 50, so that means that the first Job in T1, it will be shifted 
 Which is the task with the highest priority? It's T2, because is the task with the closest deadline. Therefore, the jobs, from T2,
 will freely allocate.
 
-
+```
  T           T           T           T           T 
  2           2           2           2           2
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|----->
 0           62.5        125         187.5       250              time(ms)
+```
 
 The task with the second highest priority, is task T3, because its relative deadline is 50, which is the second lowest deadline, thus
 the second one in priority.
 
+```
  T T T      T           T T T        T           T 
  2 3 3      2           2 3 3        2           2
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|----->
 0           62.5        125         187.5       250              time(ms)
+```
 
 Finally comes T1, which has the lowest priority because it has the latest deadline.
 
+```
  T  T     T  T T     T T T T T    T T T T T      T 
  2  3     1  2 1     1 1 2 3 3    1 1 2 1 1      2
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|----->
 0           62.5        125         187.5       250              time(ms)
+```
 
 As we see, all the tasks, are done before the deadlines. :v:
 
@@ -588,6 +613,7 @@ U =< URM(n) =< n*(2^(1/n) - 1) //n: number of tasks
 
 Consider the following task set:
 
+```
 P - Periods
 e - execution time
 D - relative deadline
@@ -600,6 +626,7 @@ D - relative deadline
 ------------------------------------------
 |   T3     |   6     |    1.2   |   6     |        
 ------------------------------------------
+```
 
 So the total utilization of the system (U) is:
 
@@ -611,6 +638,7 @@ As U < URM, thus the system is guaranteed to be feaseble.
 
 Consider now, the following tasks set:
 
+```
 P - Periods
 e - execution time
 D - relative deadline
@@ -623,6 +651,7 @@ D - relative deadline
 ------------------------------------------
 |   T3     |   6     |    2.2   |   6     |        
 ------------------------------------------
+```
 
 U = 1.9 / 5 + 1.5 / 4 + 2.2 / 6 = 1.12
 
@@ -633,6 +662,7 @@ Since U >= URM and 1, the system is not feaseble.
 
 Last example, consider the following taks set:
 
+```
 P - Periods
 e - execution time
 D - relative deadline
@@ -645,6 +675,7 @@ D - relative deadline
 ------------------------------------------
 |   T3     |   2     |    1   |   2     |        
 ------------------------------------------
+```
 
 U = 1 / 4 + 1 / 6 + 1 / 2 = 0.917 
 
@@ -673,7 +704,7 @@ Consider the following taks set:
 with dependecies: J1 -> J2, Je
 
 -Please, schedule tasks in the interval [0,8].
-
+```
 r - release time
 e - execution time
 D - relative deadline
@@ -686,9 +717,10 @@ D - relative deadline
 ------------------------------------------
 |   T3     |   2     |    2   |   7     |        
 ------------------------------------------
-
+```
 - - - - - - - - - - -- - -- - -- - -- - --
 
+```
 We start marcking all the death-lines of the job:
 
                                     D1    D3    D2
@@ -696,7 +728,7 @@ We start marcking all the death-lines of the job:
                                     V     V     V
 |-----|-----|-----|-----|-----|-----|-----|-----|--------->
 0     1     2     3     4     5     6     7     8      time
-
+```
 ... TODO:
 
 
