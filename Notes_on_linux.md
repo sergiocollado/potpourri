@@ -151,7 +151,7 @@ you can try the following commands: **whoami, pwd, date, uname -a, hostname**
 
 The linux file system usually has the following file hierarchy structure:
 
- - **/** (top level directory, that is referenced as **'backslash'**)
+ - **/** (top level directory, named the root directory)
     - **/bin** essential user command binaries
     - **/sbin** essential system binaries
     - **/etc** host specific configuration files
@@ -243,6 +243,7 @@ special directory names:
 - **split** - split a file into pieces http://man7.org/linux/man-pages/man1/split.1.html
 - **cut** - extracts columns frot text data files. It is used for manipulating column-based files and is designed to extract specific columns. http://man7.org/linux/man-pages/man1/cut.1.html
 - **du** - informs about **d**isk **u**sage.
+- **df** - informs about **d**isk **f**ilesystem.
 - **date** print or set the system date and time, or the last modification of a given file (-r, --reference=FILE) http://man7.org/linux/man-pages/man1/date.1.html
 - **scp** - secure copy  https://linux.die.net/man/1/scp
 - **rsync** -- a fast, versatile, remote (and local) file-copying tool https://linux.die.net/man/1/rsync
