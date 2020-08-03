@@ -1,6 +1,5 @@
 
 
-
 Preface:
 
 In a Virtual Machine, an hypervisor is the sw layer that detaches the dependencies of an operating system with its undelingin hardware and allows several virtual machines to share that same hardware. This is know as virtualization, 
@@ -25,9 +24,20 @@ Union file systems: to encapsulate applications and its dependencies.
 
 
 
-The Kubernetes is an application for deploying containerized applications.  Kubernetes is a solution for container management and orchestations. The apps in them need to communicate over the network. Also, needs to be some network mechanism that makes it possible for the containers to find each other. 
+Kubernetes is an application for deploying containerized applications.  Kubernetes is a solution for container management and orchestations. The apps in them need to communicate over the network. Also, needs to be some network mechanism that makes it possible for the containers to find each other. 
 
 Kubernetes handles the deployment, scaling, load balancing, monitoring and logging of containerized applications. 
+
+Some of its features are:
+Automatically schedules containers based on resources
+Self-healing. Replaces and reschedules containers from failed nodes.
+Horizontal scaling: - scales automatically or manually.
+Service discovery
+Load balancing 
+Automated rollbacks and rollaoust
+Configuration managements
+Storage orchestration
+BAtch execution.
 
 How do Kubernetes works?
 
@@ -35,11 +45,15 @@ Each thing Kubernetes manages is viewed as an object. And it’s attributes and 
 
 Kuberneters objects have two elements. An object spec, that defines the desired object state. And the object status is just the current state of each object, provided by the Kubernetes control plane.  The Kubernetes control plane are the different system processes that collaborate to make a cluster work. 
 
-The basic object for the kubernetes model is known as a Pod. Those are the smallest deployable kubernetes objects. A pod is the environment, in which the containers live. And a Pod can have one or more containers. In case of more than one container, those will share resources. Each pod has an unique IP address. In case of several containers within a Pod, those will share the network namespace, including IP address and ports, and they can communicate through the local host. A Pod, can also define a set of storage  volumes to be shared among its containers. 
+The basic object for the kubernetes model is known as a **Pod**. Those are the smallest deployable kubernetes objects. A pod is the environment, in which the containers live. 
+
+A Pod, is a group of containers that share storage and networking. 
+
+And a Pod can have one or more containers. In case of more than one container, those will share resources. Each pod has an unique IP address. In case of several containers within a Pod, those will share the network namespace, including IP address and ports, and they can communicate through the local host. A Pod can also define a set of storage  volumes to be shared among its containers. 
 
 For working with kubernetes, we work through the kube-API server. This component will allow us to declare commands to view or change the state of the cluster. 
 
-Kubctl command - connect to kubeAPI server. 
+Kubctl command - connect to kubeAPI server. Is the kuberntetes Command Line interface client. To manage the cluster and its applications. 
 
 ETCD is the cluster database and it stores the state of the cluster. 
 
@@ -49,45 +63,44 @@ Kube-controller. It monitors the state of the cluster. When the current state of
 
 Kube-cloud manager manages controllers that interact with underlying cloud providers. 
 
-Kubelete, is the agent of Kubernetes, in each node. 
+Kubelet, is the agent of Kubernetes, in each node. 
 
 Kube-proxy  handles network connectivity among the pods in the cluster.
 
-Kuber ADM, that can automate much of the initial setup of a cluster.
+KuberAdm, that can automate much of the initial setup of a cluster.
 
 
 All kubernetes objects are identified by an unique name and an unique id (uid). And the objects are defined in manifest files (in YAML or JSON format). And those files define a desired state for the object, like name and container image. 
 
-  In a Kubernetes cluster, you don't need to only specify the state of Pods.  A better solution for high availability is to define controller objects that handle the state of the pods. Controllers maintain the pod’s desired state within a cluster. Like deployments (deployment ensures that a defined set of pods is running at any given time) , stateful sets, daemon sets or jobs. 
+
+KUBERNETES OBJECT MODEL
+
+In Kubernetes objects, represent different persistent entities, that represent:
+The containerized apps that are running and in which node.
+Resources consumption
+Policies reated to the applications, liek restart/upgrade, fault tolerances, …
+For each object, we declare the intent in the _**spec**_ section, and kubernetes manages the _**status**_ section for the objects, where it records the actual state of the objects. At any given point in time, kubernetes tries to match the object current state to the desired state. 
+
+
+In a Kubernetes cluster, you don't need to only specify the state of Pods.  A better solution for high availability is to define controller objects that handle the state of the pods. Controllers maintain the pod’s desired state within a cluster. Like deployments (deployment ensures that a defined set of pods is running at any given time) , stateful sets, daemon sets or jobs. 
 
 Kubernetes services, is an abstraction that represents a service in kubernetes with a static ip address. So services provide an end-point with a non-ephemeral IP for pods giving a certain service. These kubernetes services can be only internal for the cluster, or external in a front-end way.
 
 Kubernetes volume  - is an abstraction that represents a directory that is accessible to all the containers in a pod. One advantage is that you can configure kubernetes volumes to use network based storage from outside the pods, so you can manage to have a persistent volume storage. 
 
-- Several Kubernetes controller objects:
-- ReplicaSets
-- Deployments
-- Replication Controllers
-- StatefulSets
-- DaemonSets
-- Jobs
-
-
+Several Kubernetes controller objects:
+ReplicaSets
+Deployments
+Replication Controllers
+StatefulSets
+DaemonSets
+Jobs
 A ReplicaSet controller ensures that a population of Pods, all identical, are running at the same time. Deployments let you do declarative updates to ReplicaSets and Pods. In fact, Deployments manage their own ReplicaSets to achieve the declarative goals you prescribe, so you will most commonly work with Deployment objects.
-
-
-Deployments let you create, update, roll back, and scale Pods, using ReplicaSets as needed to do so. For example, when you perform a rolling upgrade of a Deployment, the Deployment object creates a second ReplicaSet, and then increases the number of Pods in the new ReplicaSet as it decreases the number of Pods in its original ReplicaSet.
-
-
+Deployments let you create, update, roll back, and scale Pods, using ReplicaSets as needed to do so. For example, when you perform a rolling upgrade of a Deployment, the Deployment object creates a second ReplicaSet, and then increases the number of Pods in the new ReplicaSet as it decreases the number of Pods in its original ReplicaSet.  Deployments are better suited to state-less applications like web front-end.
 Replication Controllers perform a similar role to the combination of ReplicaSets and Deployments, but their use is no longer recommended. Because Deployments provide a helpful "front end" to ReplicaSets.
-
 In the need to deploy applications that maintain local state, StatefulSet is a better option. A StatefulSet is similar to a Deployment in that the Pods use the same container spec. The Pods created through Deployment are not given persistent identities, however; by contrast, Pods created using StatefulSet have unique persistent identities with stable network identity and persistent disk storage. So for persistent storage, the StatefulSet is the best option, defining a network storage. 
-
-
 If you need to run certain Pods on all the nodes within the cluster or on a selection of nodes, use DaemonSet. DaemonSet ensures that a specific Pod is always running on all or some subset of the nodes. If new nodes are added, DaemonSet will automatically set up Pods in those nodes with the required specification. The word "daemon" is a computer science term meaning a non-interactive process that provides useful services to other processes in the background. A Kubernetes cluster might use a DaemonSet to ensure that a logging agent like fluentd is running on all nodes in the cluster. DeamonSets are useful, if you want to have logging and auditing processes in all the nodes of your cluster. 
-
-
-The Job controller creates one or more Pods required to run a task. When the task is completed, Job will then terminate all those Pods. A related controller is CronJob, which runs Pods on a time-based schedule.
+The Job controller creates one or more Pods required to run a task. When the task is completed, Job will then terminate all those Pods. A related controller is CronJob, which runs Pods on a time-based schedule. Jobs run a task up to its completion, rather than a desired state. 
 
 https://kubernetes.io/
 
@@ -99,6 +112,13 @@ https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app
 
 https://cloud.google.com/code/docs/vscode/yaml-editing
 
+https://cloud.google.com/sdk/gcloud
+
+https://helm.sh/docs/intro/
+
+https://istio.io/  - Connect, secure, control, and observe services.
+
+https://cloud.google.com/kubernetes-engine/
 
 
 Kubectl command
@@ -107,11 +127,13 @@ It is the command used to communicate with the kubernetes cluster, with the kube
 
 Before anything the kubectl must be configured with the location and credentials of a given kubernetes cluster.  The configuration is  in a file in the home directory $HOME/.kube/config. The config file has the cluster name and the cluster credentials.  To edit this use the command: --kubeconfig
 
-If you want to view the configuration, just use the command: kubectl config view 
+If you want to view the configuration, just use the command: ‘’’  kubectl config view ‘’’ 
+
+Or to get the cluster info,and the services running in it,  use the command: ‘’’kubectl cluster-info’’’
 
 Sintaxis
 
-kubectl [command] [type] [name] [flags]
+‘’’ kubectl [command] [type] [name] [flags] ‘’’ 
 
 Commands: get, describe, logs, exec …
 
@@ -120,9 +142,178 @@ Type: pods, deployments, nodes …
 
 For example:
 
-Kubectl get pods, -- get a list and info about the pods. 
+‘’’ kubectl get pods ‘’’ , -- get a list and info about the pods. 
 
-kubectl describe pod <pod_name> get detailed info about a given pod.
+‘’’ kubectl describe pod <pod_name> ‘’’ -  get detailed info about a given pod.
 
 
+Commands to create deployments:
 
+Declaratively:
+
+ kubectl apply -f <deployment_file.yaml>
+
+Imperatively:
+
+Kubectl run <deployment_name> \
+  --image  <image>:<tag>
+  --replicas N \
+  --labels <key>=<value> \
+  --port  XX \
+  --generator deployment/apps.v1 \
+  --save-config
+
+
+To inspect the deployment:
+
+Kubectl get deployment <deployment_name>
+
+Or to get it in yaml format:
+
+Kubectl get deployment <deployment_name> -o yaml > thisdeployment.yaml
+
+Or to get even more information
+
+Kubectl describe deployment <deployment-name>
+
+For manually scaling a deployment.
+
+Kubectl scale deployment <deployment_name> --replicas=N
+
+ex : ‘’’kubectl scale --replicas=3 deployment nginx-deployment’’’
+
+Also, you can perform autoscaling 
+
+Kubectl autoscale deployment <deployment_name>  --min=N --	max=M --cpu-percentaje=P
+
+To define a deploy period to perform another scale action:
+
+--horizontal-pod-autoscaler-downscale-delay
+
+
+DEPLOYMENT ROLLOUT
+
+A deployment's rollout is triggered if and only if the deployment's Pod template (that is, .spec.template) is changed,
+
+To check the rollout status:
+```
+kubectl rollout status deployment.v1.apps/nginx-deployment
+```
+
+To view the rollout history:
+
+```
+kubectl rollout history deployment nginx-deployment
+```
+
+
+UPDATED DEPLOYMENTS:
+
+
+To update a deployment:
+
+Kubectl apply -f <deployment_file>
+
+Or 
+
+Kubectl set image deployment <deployment-name> <image> <image>=<tag>
+
+Or 
+
+Kubectl edit deployment /<deployment_name>
+
+ROLLBACK DEPLOYMENTS
+
+To rollback a deployment
+
+To the previous revision:
+
+```
+kubectl rollout undo deployment <deployment_name>
+```
+
+To a given revision number
+
+
+```
+kubectl rollout undo deployment <deployment_name> --to-revision=X
+```
+
+or
+```
+kubectl rollout history deployment <deployment_name> --revision=X
+```
+
+To pause the rollout (maybe to workout some issue)
+
+```
+kubectl rollout pause deployment <deployment_name>
+```
+
+To resume it:
+```
+kubectl rollout resume deployment <deployment_name>
+```
+Or to check out the roll out status.
+
+```
+kubectl rollout status deployment <deployment_name>
+```
+
+One you are done, with the deployment you can delete it
+
+```
+kubectl delete deployment <deployment_name>
+```
+
+
+JOBS
+
+The Job controller creates one or more Pods required to run a task. When the task is completed, Job will then terminate all those Pods. A related controller is CronJob, which runs Pods on a time-based schedule. Jobs run a task up to its completion, rather than a desired state. 
+There are two main jobs definitions, parallel and non-parallel.
+ 
+Non-parallel jobs cretate one pod at a time, and that pod, will be recreated if it doesn’t finish the job successfully. The condition to be successful is to finish the job, or that the job has run a given number of times. 
+Parallel jobs are those that work on parallel, where multiple pods are scheduled to work on the same job at the same time. They also have a completion count to satisfy. They are used when jobs have to be done more than once. A second type of parallel jobs are jobs with worker queues, in this each pod, work on several items from a queue, and then exits when there are no more items.  
+To create a non-parallel job:
+```kubectl apply -f <job-file>’’’ 
+Or using the run command:
+‘’’ kubectl run <job-file> pi --image perl --restart Never -- perl -Mbignum bpi -wle “print bpi(2000)” ‘’’ 
+To inspect jobs 
+‘’’’ kubectl describe job <job-name> ‘’’
+‘’’ kubectl get pod -L <job-name=my-app-job>
+“-L” is the label selector.
+To scale jobs.
+‘’’ kubectl scale job <job_name> --replicas <value> ‘’’
+To delete a job
+‘’’Kubectl delete -f <job_name>’’’ 
+‘’’ kubectl delete job <job_name>’’’ 
+ 
+Or if retain a job is needed, use the cascade flag set to false
+‘’’ kubectl delete job <job_name> --cascade false ‘’’ 
+ 
+To schedule a job, CronJobs are used.
+CronJobs use the required schedule field, which accepts a time in the Unix standard crontab format. All CronJob times are in UTC:
+The first value indicates the minute (between 0 and 59).
+The second value indicates the hour (between 0 and 23).
+The third value indicates the day of the month (between 1 and 31).
+The fourth value indicates the month (between 1 and 12).
+The fifth value indicates the day of the week (between 0 and 6).
+The schedule field also accepts * and ? as wildcard values. Combining / with ranges specifies that the task should repeat at a regular interval. In the example, */1 * * * * indicates that the task should repeat every minute of every day of every month.
+ 
+ 
+ 
+ 
+POD NETWORKING
+In the kubernetes model, each pod is assigned a single IP address. And the containers in that pod, contain the same ip space, including that IP address. 
+**Services** give pods stable IP addresses. A kubernetes service is an object that creates a dynamic collection of IP addresses, called endpoints, that belog to pods, that match the services label selector. 
+STORAGES ABSTRACTIONS
+**Volumes** are the method by which you attach storage to a Pod.
+Some Volumes are ephemeral, meaning they have the same life span as the pod they are attached to. Other volumes are persistent, meaning they can outlive a Pod. 
+ 
+ 
+MINIKUBE. - 
+Minikube is a single node local kubernetes cluster - with this you can create an all-in-one kubernetes setup.
+ 
+ 
+ 
+ 
