@@ -487,6 +487,18 @@ to change the default permissions to read/write permissions for everybody.
   - sar - system activity. sar(1) http://man7.org/linux/man-pages/man1/sar.1.html
   - pidstats: processes statistics. (like top or htop) 
 
+In the /proc directory thre are lots of info about the system:
+
+ - /proc/cpuinfo : CPU Information
+ - /proc/filesystems : File-system Information being used currently.
+ - /proc/interrupts : Information about the current interrupts being utilised currently.
+ - /proc/ioports : Contains all the Input/Output addresses used by devices on the server.
+ - /proc/meminfo : Memory Usages Information.
+ - /proc/modules : Currently using kernel module.
+ - /proc/mount : Mounted File-system Information.
+ - /proc/stat : Detailed Statistics of the current System.
+ - /proc/swaps : Swap File Information.
+
 
 ### MOUNTING FILE SYSTEMS
 
