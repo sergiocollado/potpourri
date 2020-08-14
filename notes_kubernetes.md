@@ -312,11 +312,16 @@ In the kubernetes model, each pod is assigned a single IP address. And the conta
 STORAGES ABSTRACTIONS
 **Volumes** are the method by which you attach storage to a Pod.
 Some Volumes are ephemeral, meaning they have the same life span as the pod they are attached to. Other volumes are persistent, meaning they can outlive a Pod. 
- 
+ ```
  
 MINIKUBE. - 
 Minikube is a single node local kubernetes cluster - with this you can create an all-in-one kubernetes setup.
  
- 
+
+tutorials:
+
+https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-intro/
+
+
  
  
