@@ -47,9 +47,9 @@ Kuberneters objects have two elements. An object spec, that defines the desired 
 
 The basic object for the kubernetes model is known as a **Pod**. Those are the smallest deployable kubernetes objects. A pod is the environment, in which the containers live. 
 
-A Pod, is a group of containers that share storage and networking. 
+A Pod, is a group of containers that share storage and networking (all the containers share memory volumes and share the same IP).
 
-And a Pod can have one or more containers. In case of more than one container, those will share resources. Each pod has an unique IP address. In case of several containers within a Pod, those will share the network namespace, including IP address and ports, and they can communicate through the local host. A Pod can also define a set of storage  volumes to be shared among its containers. 
+And a Pod can have one or more application containers (like docker or others). In case of more than one container, those will share resources. Each pod has an unique IP address. In case of several containers within a Pod, those will share the network namespace, including IP address and ports, and they can communicate through the local host. A Pod can also define a set of storage  volumes to be shared among its containers. 
 
 For working with kubernetes, we work through the kube-API server. This component will allow us to declare commands to view or change the state of the cluster. 
 
