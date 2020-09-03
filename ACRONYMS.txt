@@ -1,3 +1,5 @@
+PIE  - Position-Independent Executables
+ASLR - Address space layout randomization
 MBMS- Multimedia Broadcast Multicast Service
 PCRF - Policy Control & Charging Rules Function
 HLR - Home Location Register
