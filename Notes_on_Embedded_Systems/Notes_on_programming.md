@@ -6,10 +6,10 @@ Unix-like systems use the ELF (executable and linking format) for these programs
 An ELF file is a relocatable object, with the following sections.
 
 - ELF header ->starts with magic number string: /177ELF
-- .text      -> this is the machine code
+- .text      -> this is the machine code - This is the CODE of the program!!
 - .rodata    -> read only data, like char strings, or const variables.
 - .data      -> global variables
-- .bss    -> (block storage start) uninitialized global variables
+- .bss    -> (block storage start) uninitialized global variables and zero initialized variables.
 - .symtab -> symbol table for functions and global variables. local variables are in the stack, not here
 - .rel.text -> list of location in the .text section, that will need to be modified by linker, when combining object files. 
 - .rel.data ->relocation info of global variables that are referenced but not defined in the current module.
@@ -51,7 +51,7 @@ When a program is launched for execution, its memory layout usually corresponds 
 |      .bss      |
 +----------------+
 |      DATA      |
-| initialized data|
+|initialized data|
 +----------------+
 |                |
 |      TEXT      |
