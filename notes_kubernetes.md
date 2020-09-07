@@ -123,6 +123,7 @@ https://istio.io/  - Connect, secure, control, and observe services.
 
 https://cloud.google.com/kubernetes-engine/
 
+https://github.com/dysinger/learn-minikube
 
 Kubectl command
 
@@ -322,6 +323,7 @@ tutorials:
 
 https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-intro/
 
+https://github.com/dysinger/learn-minikube
 
  
  
