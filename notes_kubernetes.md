@@ -8,22 +8,11 @@ Anyway for an application all its dependencies from the sw and os, are there. Al
 
 One way to overcome these issues is to implement abstraction at the application level and its dependencies. So the trick is to virtualize the user space. That is what containers are, isolated user spaces, that run application code. Containers are much lighter than VM because they don't replicate the operating system. And can be created and destroyed very fast, because they only need to handle the processes needed for the application, and not all the OS kernel. 
 
-Another advantage is that containers make very easy to build applications that use the microservices design pattern, that is loosely coupled, fine grained components and with modular design, this allows an easy scale, and upgrade of components of the applications without changing the application as a whole. 
+Another advantage is that containers make very easy to build applications that use the microservices design pattern, that are loosely coupled, fine grained components and with modular design, this allows an easy scale, and upgrade of components of the applications without changing the application as a whole. 
 
-An application and its dependencies, are called an image.  Sw its needed to build the images, for example: Docker. Docker is an open source project that allows you to run applications in containers. Although it doesn’t have a way to orchestrate those applications. 
+An application and its dependencies, are called an image.  Software is needed to build the images, for example: Docker. **Docker** is an open source project that allows you to run applications in containers. Although it doesn’t have a way to orchestrate those applications. 
 
-**Containers**, actually depends on several linux technologies:
-
-**Processes** : each process has its virtual espace address. Isolated from all the rest of the processes. 
-
-**Namespaces** : containers handle the linux namespaces to control what an application can see: process id numbers, directories trees, ip addresses ….
-
-**Cgroups** : containers use linux cgroups to control what an application can use. Its maximum consumption of cpu, memory, io throughput and resources ...
-
-**Union file systems** : to encapsulate applications and its dependencies. 
-
-
-Kubernetes is an application for deploying containerized applications.  Kubernetes is a solution for container management and orchestations. The apps in them need to communicate over the network. Also, needs to be some network mechanism that makes it possible for the containers to find each other. 
+**Kubernetes** is an application for deploying containerized applications.  Kubernetes is a solution for container management and orchestations. The apps in them need to communicate over the network. Also, needs to be some network mechanism that makes it possible for the containers to find each other. 
 
 Kubernetes handles the deployment, scaling, load balancing, monitoring and logging of containerized applications. 
 
@@ -125,15 +114,15 @@ https://cloud.google.com/kubernetes-engine/
 
 https://github.com/dysinger/learn-minikube
 
-Kubectl command
+## kubectl command
 
 It is the command used to communicate with the kubernetes cluster, with the kube-API server, so the kubectl commands are transformed in APIs calls.
 
 Before anything the kubectl must be configured with the location and credentials of a given kubernetes cluster.  The configuration is  in a file in the home directory $HOME/.kube/config. The config file has the cluster name and the cluster credentials.  To edit this use the command: --kubeconfig
 
-If you want to view the configuration, just use the command: ‘’’  kubectl config view ‘’’ 
+If you want to view the configuration, just use the command:  'kubectl config view.
 
-Or to get the cluster info,and the services running in it,  use the command: ‘’’kubectl cluster-info’’’
+Or to get the cluster info,and the services running in it,  use the command: 'kubectl cluster-info'
 
 Sintaxis
 
@@ -146,31 +135,35 @@ Type: pods, deployments, nodes …
 
 For example:
 
-‘’’ kubectl get pods ‘’’ , -- get a list and info about the pods. 
+'kubectl get pods' -- get a list and info about the pods. 
 
-‘’’ kubectl describe pod <pod_name> ‘’’ -  get detailed info about a given pod.
+'kubectl describe pod <pod_name>' -- get detailed info about a given pod.
 
 
 Commands to create deployments:
 
-Declaratively:
+**Declaratively**:
 
+```
  kubectl apply -f <deployment_file.yaml>
+ ```
 
-Imperatively:
+**Imperatively**:
 
-Kubectl run <deployment_name> \
+```
+kubectl run <deployment_name> \
   --image  <image>:<tag>
   --replicas N \
   --labels <key>=<value> \
   --port  XX \
   --generator deployment/apps.v1 \
   --save-config
+```
 
 
 To inspect the deployment:
 
-Kubectl get deployment <deployment_name>
+'kubectl get deployment <deployment_name>
 
 Or to get it in yaml format:
 
