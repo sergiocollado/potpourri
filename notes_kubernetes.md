@@ -318,5 +318,7 @@ https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-in
 
 https://github.com/dysinger/learn-minikube
 
+https://medium.com/bb-tutorials-and-thoughts/practice-enough-with-these-questions-for-the-ckad-exam-2f42d1228552
+
  
  
