@@ -126,18 +126,17 @@ Or to get the cluster info,and the services running in it,  use the command: 'ku
 
 Sintaxis
 
-‘’’ kubectl [command] [type] [name] [flags] ‘’’ 
+``` kubectl [command] [type] [name] [flags] ```
 
-Commands: get, describe, logs, exec …
-
-Type: pods, deployments, nodes …
+ - **Commands**: get, describe, logs, exec …
+ - **Type**: pods, deployments, nodes …
 
 
 For example:
 
-'kubectl get pods' -- get a list and info about the pods. 
+``` kubectl get pods -- get a list and info about the pods. ```
 
-'kubectl describe pod <pod_name>' -- get detailed info about a given pod.
+```kubectl describe pod <pod_name> -- get detailed info about a given pod. ```
 
 
 Commands to create deployments:
@@ -163,25 +162,27 @@ kubectl run <deployment_name> \
 
 To inspect the deployment:
 
-'kubectl get deployment <deployment_name>
+```kubectl get deployment <deployment_name>```
 
 Or to get it in yaml format:
 
-Kubectl get deployment <deployment_name> -o yaml > thisdeployment.yaml
+```kubectl get deployment <deployment_name> -o yaml > thisdeployment.yaml ``` 
 
 Or to get even more information
 
-Kubectl describe deployment <deployment-name>
+ ```kubectl describe deployment <deployment-name> ```
 
 For manually scaling a deployment.
 
-Kubectl scale deployment <deployment_name> --replicas=N
+ ```kubectl scale deployment <deployment_name> --replicas=N ```
 
-ex : ‘’’kubectl scale --replicas=3 deployment nginx-deployment’’’
+ejample : 
+
+  ```kubectl scale --replicas=3 deployment nginx-deployment```
 
 Also, you can perform autoscaling 
 
-Kubectl autoscale deployment <deployment_name>  --min=N --	max=M --cpu-percentaje=P
+ ```kubectl autoscale deployment <deployment_name>  --min=N --	max=M --cpu-percentaje=P ```
 
 To define a deploy period to perform another scale action:
 
@@ -193,6 +194,7 @@ DEPLOYMENT ROLLOUT
 A deployment's rollout is triggered if and only if the deployment's Pod template (that is, .spec.template) is changed,
 
 To check the rollout status:
+
 ```
 kubectl rollout status deployment.v1.apps/nginx-deployment
 ```
@@ -209,15 +211,15 @@ UPDATED DEPLOYMENTS:
 
 To update a deployment:
 
-Kubectl apply -f <deployment_file>
+```kubectl apply -f <deployment_file> ```
 
 Or 
 
-Kubectl set image deployment <deployment-name> <image> <image>=<tag>
+ ```kubectl set image deployment <deployment-name> <image> <image>=<tag> ```
 
 Or 
 
-Kubectl edit deployment /<deployment_name>
+ ```kubectl edit deployment /<deployment_name> ```
 
 ROLLBACK DEPLOYMENTS
 
@@ -251,6 +253,7 @@ To resume it:
 ```
 kubectl rollout resume deployment <deployment_name>
 ```
+
 Or to check out the roll out status.
 
 ```
