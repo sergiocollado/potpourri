@@ -116,6 +116,8 @@ https://github.com/dysinger/learn-minikube
 
 ## kubectl command
 
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
 It is the command used to communicate with the kubernetes cluster, with the kube-API server, so the kubectl commands are transformed in APIs calls.
 
 Before anything the kubectl must be configured with the location and credentials of a given kubernetes cluster.  The configuration is  in a file in the home directory $HOME/.kube/config. The config file has the cluster name and the cluster credentials.  To edit this use the command: --kubeconfig
@@ -323,5 +325,5 @@ https://github.com/dysinger/learn-minikube
 
 https://medium.com/bb-tutorials-and-thoughts/practice-enough-with-these-questions-for-the-ckad-exam-2f42d1228552
 
- 
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
  
