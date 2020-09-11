@@ -141,6 +141,8 @@ For example:
 ```kubectl describe pod <pod_name> -- get detailed info about a given pod. ```
 
 
+## howto Deployments
+
 Commands to create deployments:
 
 **Declaratively**:
@@ -190,8 +192,7 @@ To define a deploy period to perform another scale action:
 
 --horizontal-pod-autoscaler-downscale-delay
 
-
-DEPLOYMENT ROLLOUT
+## Howto Rollout
 
 A deployment's rollout is triggered if and only if the deployment's Pod template (that is, .spec.template) is changed,
 
@@ -208,7 +209,7 @@ kubectl rollout history deployment nginx-deployment
 ```
 
 
-UPDATED DEPLOYMENTS:
+## Howto Update deployments
 
 
 To update a deployment:
@@ -222,8 +223,8 @@ Or
 Or 
 
  ```kubectl edit deployment /<deployment_name> ```
-
-ROLLBACK DEPLOYMENTS
+ 
+## Howto rollback deployments
 
 To rollback a deployment
 
@@ -234,7 +235,6 @@ kubectl rollout undo deployment <deployment_name>
 ```
 
 To a given revision number
-
 
 ```
 kubectl rollout undo deployment <deployment_name> --to-revision=X
@@ -269,7 +269,7 @@ kubectl delete deployment <deployment_name>
 ```
 
 
-JOBS
+## Jobs
 
 The Job controller creates one or more Pods required to run a task. When the task is completed, Job will then terminate all those Pods. A related controller is CronJob, which runs Pods on a time-based schedule. Jobs run a task up to its completion, rather than a desired state. 
 There are two main jobs definitions, parallel and non-parallel.
@@ -277,7 +277,9 @@ There are two main jobs definitions, parallel and non-parallel.
 Non-parallel jobs cretate one pod at a time, and that pod, will be recreated if it doesn’t finish the job successfully. The condition to be successful is to finish the job, or that the job has run a given number of times. 
 Parallel jobs are those that work on parallel, where multiple pods are scheduled to work on the same job at the same time. They also have a completion count to satisfy. They are used when jobs have to be done more than once. A second type of parallel jobs are jobs with worker queues, in this each pod, work on several items from a queue, and then exits when there are no more items.  
 To create a non-parallel job:
-```kubectl apply -f <job-file>’’’ 
+
+```kubectl apply -f <job-file>```
+
 Or using the run command:
 ‘’’ kubectl run <job-file> pi --image perl --restart Never -- perl -Mbignum bpi -wle “print bpi(2000)” ‘’’ 
 To inspect jobs 
@@ -305,7 +307,8 @@ The schedule field also accepts * and ? as wildcard values. Combining / with ran
  
  
  
-POD NETWORKING
+## Pod Networking
+
 In the kubernetes model, each pod is assigned a single IP address. And the containers in that pod, contain the same ip space, including that IP address. 
 **Services** give pods stable IP addresses. A kubernetes service is an object that creates a dynamic collection of IP addresses, called endpoints, that belog to pods, that match the services label selector. 
 STORAGES ABSTRACTIONS
