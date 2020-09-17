@@ -10,7 +10,7 @@
   
 <hr>
 
-In the case there are reference to several of the previous chapters, those references are indicated within a parenthesis, ie:
+In the case there are references to several of the previous chapters, those references are indicated within a parenthesis, ie:
 
 swapoff(8) and swapoff(2)
 
@@ -37,7 +37,7 @@ other useful command is '**info** + topic' that presents you with a text with hy
 
 also, in any command you can use the **--help** option: 'rm --help'
 
-also another option is use the tldr pages, tldr stands for 'too long dind't read' actually this pages have a more practical aproach and showcase realcase examples. ref: https://github.com/tldr-pages/tldr
+also another option is use the **tldr pages**, tldr stands for 'too long dind't read' actually this pages have a more practical aproach and showcase realcase examples. ref: https://github.com/tldr-pages/tldr
 
 In case something is not working properly, always have a go with with the following:
 
@@ -58,7 +58,7 @@ maybe even re-index inmediatetly use:
 > sudo apt-get install mlocate
 ```
 
-if it fails at start, try to 
+If it fails at start, try to:
 
 ```
 > sudo updatedb
@@ -90,7 +90,7 @@ If you want to be sure that a module is or isn't insalled you can use the follow
 >
 ```
 
-Actually the no-response, means, it is not present in the system.
+Actually the no-response, means that the command is not present in the system.
 
 
 REFERENCES:
@@ -132,13 +132,6 @@ journal: http://www.linuxjournal.com
 
 ## Starting with a Linux System.
 
-
-The local settings of the system can be identified with the command **locale**
-
-```bash
->> locale
-```
-
 you can try the following commands: **whoami, pwd, date, uname -a, hostname**
 
  - **whoami** names the actual user (you?) http://man7.org/linux/man-pages/man1/whoami.1.html
@@ -146,6 +139,12 @@ you can try the following commands: **whoami, pwd, date, uname -a, hostname**
  - **pwd** print current directory  https://linux.die.net/man/1/pwd
  - **date**  print or set the system date and time  http://man7.org/linux/man-pages/man1/date.1.html
  - **uname** print system information https://linux.die.net/man/1/uname
+
+The local settings of the system can be identified with the command **locale**
+
+```bash
+>> locale
+```
 
 ## Linux File System
 
@@ -473,6 +472,7 @@ to change the default permissions to read/write permissions for everybody.
 - ps - information about the processes - http://man7.org/linux/man-pages/man1/ps.1.html
 - pstree - ps in a tree http://man7.org/linux/man-pages/man1/pstree.1.html
 - trace - info about system call and traces (also theck strace, ptrace and ltrace).
+- perf - perf tools https://es.m.wikipedia.org/wiki/Perf_(Linux)   https://perf.wiki.kernel.org/index.php/Main_Page   https://man7.org/linux/man-pages/man1/perf.1.html
 - pmap - info about process memory stats http://man7.org/linux/man-pages/man1/pmap.1.html
 - vmstats -info about the virtual memory statistics, and block I/O. http://man7.org/linux/man-pages/man1/pmap.1.html
 - free  - info about meomry usage: free(1) http://man7.org/linux/man-pages/man1/free.1.html
@@ -529,7 +529,7 @@ There are three basic layers:
  
 #### x window system - X11
 
- its inteded as a remote interface, so it is really a protocol, and it really is a X server. X comes from eXternal. It is supplied in X.org
+ It is inteded as a remote interface, so it is really a protocol, and it really is a X server. X comes from eXternal. It is supplied in X.org
  
  - x server: is what runs in the local machine.
  - x cliente: is what is being displayed, and can be anywhere.
@@ -896,6 +896,8 @@ hardware platform
 
 
 ## BASH SCRIPTING
+
+ref: https://www.man7.org/linux/man-pages/man1/bash.1.html
 
 ref: http://linuxcommand.org/lc3_learning_the_shell.php
 
