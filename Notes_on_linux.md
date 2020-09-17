@@ -2604,6 +2604,7 @@ https://linux.die.net/HOWTO/HOWTO-INDEX/howtos.html  <br>
 https://linuxconfig.org/  <br>
 https://wiki.linuxfoundation.org/realtime/rtl/blog#the_jury_has_spoken   <br>
 https://www.linux.com <br>
+https://m.youtube.com/watch?v=JRyrhsx-L5Y&t=246s
 
 https://0xax.gitbooks.io/linux-insides/content/Theory/linux-theory-1.html
 
