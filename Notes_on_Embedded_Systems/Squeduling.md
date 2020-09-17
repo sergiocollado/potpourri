@@ -738,7 +738,7 @@ EDF:  EARLIEST DEADLINE FIRST SCHEDULER:
 
 
 
-HOW TO SCHEDULE LINUX REALTIME:
+# HOW TO SCHEDULE LINUX REALTIME:
 
 https://lwn.net/Articles/743740/
 
@@ -748,7 +748,7 @@ https://lwn.net/Articles/821578/
 
 https://www.kernel.org/doc/Documentation/scheduler/sched-deadline.txt
 
-
+Using KernelShark to analyze the real-time scheduler https://lwn.net/Articles/425583/
 
 
 
