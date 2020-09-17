@@ -3070,3 +3070,9 @@ then it should ask for the password.
 to stop the ssh server: sudo /etc/init.d/ssh stop
 
 
+
+
+
+
+Steven Rostedt - Learning the Linux Kernel with tracing - https://m.youtube.com/watch?v=JRyrhsx-L5Y&t=246s
+
