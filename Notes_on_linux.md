@@ -3098,3 +3098,5 @@ Introduction to Memory Management in Linux - https://m.youtube.com/watch?v=7aONI
 
 Introduction to Linux Memory Management - Christopher Lameter, Jump Trading LLC https://m.youtube.com/watch?v=wbi6IZDIv_4
 
+Pragmatic Guide to Boot-Time Optimization - Chris Simmonds - https://m.youtube.com/watch?v=gIK1he6Ocpg
+
