@@ -3141,3 +3141,12 @@ Introduction to Linux Memory Management - Christopher Lameter, Jump Trading LLC 
 
 Pragmatic Guide to Boot-Time Optimization - Chris Simmonds - https://m.youtube.com/watch?v=gIK1he6Ocpg
 
+https://elinux.org/images/7/70/Opdenacker-boot-time-ELC-2014.pdf&ved=2ahUKEwi4q9z1zPPrAhX66eAKHR6tCowQFjARegQIBhAB&usg=AOvVaw0a3KsXZ0owCVtYeSWwxc2L
+
+Booting faster: https://m.youtube.com/watch?v=fTLsS_QZ8us
+
+
+
+
+
+
