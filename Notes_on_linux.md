@@ -1764,15 +1764,16 @@ Also the commmand **modinfo** shows information about the kernel modules: https:
 
 other module-related commands are: **insmod**, **modprobe**, 
 
-- lsmod - program to show the status of modules in the Linux Kernel. https://linux.die.net/man/8/lsmod
-- modinfo - presents info about the modules the kernel is using. https://linux.die.net/man/8/modinfo
-- modprobe - program to add and remove modules from the Linux Kernel. https://linux.die.net/man/8/modprobe
-- insmod - simple program to insert a module into the Linux Kernel. https://linux.die.net/man/8/insmod
+- **lsmod** - program to show the status of modules in the Linux Kernel. https://linux.die.net/man/8/lsmod
+- **modinfo** - presents info about the modules the kernel is using. https://linux.die.net/man/8/modinfo
+- **modprobe** - program to add and remove modules from the Linux Kernel. https://linux.die.net/man/8/modprobe
+- **insmod** - simple program to insert a module into the Linux Kernel. https://linux.die.net/man/8/insmod
 
 # How to evaluate the startup of linux system
 
 Bootchart is a tool for performance analysis and visualization of the GNU/Linux boot process. Resource utilization and process information are collected during the boot process and are later rendered in a PNG, SVG or EPS encoded chart.
 http://www.bootchart.org/  or  https://github.com/xrmx/bootchart
+
 
 # How to check for open network connectios, open ports or alike:
 
@@ -1837,6 +1838,8 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
  The tmpfs facility allows the creation of filesystems whose contents reside in virtual memory.  Since the files on such filesystems
  typically reside in RAM, file access is extremely fast. http://man7.org/linux/man-pages/man5/tmpfs.5.html
  
+  https://www.bootchart.org/
+  
   
 ### for debugging: gdb
 
@@ -1871,6 +1874,13 @@ https://sourceware.org/gdb/onlinedocs/gdb/index.html#Top
  - nethogs: Monitor Per Process Network
  - nmon: Monitor Linux Performance 
  - watch: monitor a given element
+ - bootchart https://www.bootchart.org/
+ - kernelshark
+ - bootgraph  https://github.com/torvalds/linux/blob/master/scripts/bootgraph.pl
+ - ulimit
+ - oprofile https://man7.org/linux/man-pages/man1/oprofile.1.html
+ - lltn   https://lttng.org/docs/#doc-getting-started
+ 
   
 #### how to create timers:
 
@@ -2733,7 +2743,10 @@ htop(1), lslk(1), lsof(8), top(1),
 efence - Electric Fence Malloc Debugger - https://linux.die.net/man/3/efence
 
 Process tracing
-ltrace(1), pmap(1), ps(1), pstack(1), strace(1)
+ltrace(1), pmap(1), ps(1), pstack(1), strace(1), trace-cmd
+
+- oprofile https://man7.org/linux/man-pages/man1/oprofile.1.html
+- lltn   https://lttng.org/docs/#doc-getting-started
 
 Binary debugging
 ldd(1), file(1), nm(1), objdump(1), readelf(1)
@@ -2757,10 +2770,14 @@ Other useful info
 collectl(1), proc(5), procinfo(8)
 
 code coverage:
-gcov: http://gcc.gnu.org/onlinedocs/gcc/Gcov.html <br>
-gcovr : https://gcovr.com/en/stable/ <br>
-lcov : http://ltp.sourceforge.net/coverage/lcov.php <br>
+- **gcov**: http://gcc.gnu.org/onlinedocs/gcc/Gcov.html <br>
+- **gcovr** : https://gcovr.com/en/stable/ <br>
+- **lcov** : http://ltp.sourceforge.net/coverage/lcov.php <br>
 
+performance:
+- oprofile https://man7.org/linux/man-pages/man1/oprofile.1.html
+- lltn   https://lttng.org/docs/#doc-getting-started
+ 
 
 Valgrind http://www.valgrind.org/docs/manual/quick-start.html
 
@@ -2779,16 +2796,17 @@ for checking cpu performance: **lscpu**  ref: http://man7.org/linux/man-pages/ma
 
 A list of Linux tools that can be used to explore object/executable files.
 
- - ar: creates static libraries.
- - objdump: this is the most important binary tool; it can be used to display all the information in an object binary file.
- - file: displays object type an dinformations. 
- - strings: list all the printable strings in a binary file.
- - nm: lists the symbols defined in the symbol table of an object file.
- - ldd: lists the shared libraries on which the object binary is dependent.
- - strip: deletes the symbol table information.
- - strace
- - ltrace
- - readelf
+ - **ar**: creates static libraries.
+ - **objdump**: this is the most important binary tool; it can be used to display all the information in an object binary file.
+ - **file**: displays object type an dinformations. 
+ - **strings**: list all the printable strings in a binary file.
+ - **nm**: lists the symbols defined in the symbol table of an object file.
+ - **ldd**: lists the shared libraries on which the object binary is dependent.
+ - **strip**: deletes the symbol table information.
+ - **strace**
+ - **trace-cmd**
+ - **ltrace**
+ - **readelf** 
 
 other references: 
 
@@ -2819,7 +2837,9 @@ permisive licenses: like BSD or Apache licenses. - dont need to be make public.
 
 r # echo 'username ALL=(ALL) ALL'
 
+```
 >> /etc/sudoers	now it's time to disable root login 	
+ ```
  
   1. open the sshd configuration file # vi /etc/ssh/sshd_conf	
   2. uncomment the line 'PermitRootLogin no'	
@@ -2827,7 +2847,9 @@ r # echo 'username ALL=(ALL) ALL'
 
 Search for the authentication options and change the root login permission by setting it to no like below.
 
+```
 PermitRootLogin no
+```
 
 Afterwards just save the file and exit the text editor.
 Making changes to the SSH configuration file will require you to restart the service, on CentOS cloud servers use the following.
@@ -2858,7 +2880,9 @@ Install Fail2Ban
 
 Fail2Ban is a program that monitors the authentication logs of various programs. When too many attempts are detected, it blocks the source IP address. First, we'll need to install it:
 
+```
 sudo apt-get install fail2ban
+``` 
 
 To configure, open up the configuration file in a text editor, find the services you want to have it watch (for example, SSH), and then restart the service.
 
@@ -2870,31 +2894,39 @@ If a service is listening on a port, it leaves the door open for possible exploi
 
 We can see what ports currently have services listening on them by running a quick command:
 
+```
 sudo netstat -tulpn
+```
 
 12. Disable USB Mount
 One crucial method by which you can ensure higher security, especially against someone who can physically tamper with your computer is to ban them from using USB to attack it. There are many sophisticated USB-based malware which is activated automatically when the pen drive is inserted in your USB port, so this is a crucial tip to strengthen your Linux security. The only price you have to pay is to quit using USB drives all the time and find another method to safely transfer data. Here is how to do it:
 
 Step 1: Open any text editor and write:
 
+```
 → install usb-storage /bin/true
+```
 
 Step 2: Save the file as a .conf type of file and save in the following location:
 
+```
 → /etc/modprobe.d/
+```
 
 Step 3: Restart your computer and test if you are able to mount a USB drive.
 
 13. Enable Your Firewall
 Basically, this is one thing that every self-respecting Linux user should do when they install a Linux distribution. It more of a security ethic advise, primarily because, even with the firewall disabled, Linux has all the ports locked down either way. But, you never know, if your computer will be targeted sooner or later, because someone with hardened security obviously has something to hide and people quickly realize this. To enable your Linux firewall, you must run the Linux Terminal after which type:
 
+```
 sudo apt-get install guf
-
+```
 
 GUFW stands for “Graphical Uncomplicated Fire Wall”. The command will install it and after it has finished doing so, you should open it, by typing in your terminal it’s abbreviation and hitting Enter
 
-
+```
 gufw
+```
 
 After you open GUFW you will see it’s simple user interface. From there simply click on the slider button next to Status to turn it from OFF to ON
 
@@ -2911,9 +2943,12 @@ As lots of bots find your server by pinging, turning off pings is one way to hel
 16. Use Firejail Sandboxing When You Try New Applications
 
 In general, Linux operating systems are designed in order to be secure by default. But this does not mean that your online browsing is not exposed against any sniffing or phishing attacks – the main reason why you need to secure yourself against new browser extensions or apps that may be unwanted on your Linux machine. Firejail is one security app that is very simple to set up and works on the latest Linux distros. Here is how to set it up on 16.04 LTS Ubuntu:
- sudo apt-get update
+
+```
+sudo apt-get update
 sudo apt-get install firejail
 ls /etc/firejail
+``` 
 
 Now you have successfully entered a page where you should see the profiles of all the programs installed on your computer. They should look somewhat like the following:
 
@@ -2924,7 +2959,9 @@ Tor.profile
 
 If we would like to secure Tor web browser, for example, we can use the “firejail” command in the following syntax:
 
+```
  firejail firefox
+ ```
  
 17. Encrypt your Drive (Full Disk Encryption) -like with Bitlocker??
 
@@ -2994,7 +3031,7 @@ sudo firewall-cmd --get-active-zones
 19. use Shadow with Cracklib, to enforce sstrong passwords: http://www.linuxfromscratch.org/blfs/view/9.0/postlfs/cracklib.html 
 
 
-## SSH - Secure SHell
+## Secure SHell aka ssh
 
 ssh is the secure shell. SSH is a network prototocol, like telnel, ftp, ...  SSH is a secure protocol, so the comunication is encrypted. SSH can be used for transmitting data, for transmitting commands of files, 
 
@@ -3007,6 +3044,7 @@ to look for the packet: apt-cache search openssh
 ### How to install a ssh server
 
 to install: 
+
 ```
 sudo apt-get install openssh-server
 ```
@@ -3043,7 +3081,6 @@ otherwise if you just close the terminal the process will still be open, and con
 ## ssh authentification
 
  There is two aproaches: one is password based and the second one is based in cryptographic keys. the later is much more secure.
-
 
 
 ## How to generate a ssh_key
@@ -3086,7 +3123,11 @@ but if the newport is tested: ssh -p newportnumber localhost
 
 then it should ask for the password. 
 
-to stop the ssh server: sudo /etc/init.d/ssh stop
+to stop the ssh server:
+
+```
+sudo /etc/init.d/ssh stop
+```
 
 
 
