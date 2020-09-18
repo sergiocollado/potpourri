@@ -1,4 +1,4 @@
-# Reference: man pages:
+# Reference: manual (man) pages:
 
  - User commands: [:link:](http://man7.org/linux/man-pages/dir_section_1.html)
  - System calls: [:link:](http://man7.org/linux/man-pages/dir_section_2.html)
@@ -3095,4 +3095,6 @@ to stop the ssh server: sudo /etc/init.d/ssh stop
 Steven Rostedt - Learning the Linux Kernel with tracing - https://m.youtube.com/watch?v=JRyrhsx-L5Y&t=246s
 
 Introduction to Memory Management in Linux - https://m.youtube.com/watch?v=7aONIVSXiJ8
+
+Introduction to Linux Memory Management - Christopher Lameter, Jump Trading LLC https://m.youtube.com/watch?v=wbi6IZDIv_4
 
