@@ -2704,13 +2704,22 @@ https://linux.die.net/man/1/explain - explain system call error messages
 https://linux.die.net/man/2/ptrace  - process trace
 https://linux.die.net/man/1/pstack - print a stack trace of a running process
 https://linux.die.net/man/1/nm    - list symbols from object files
+
 tgkill  - send a signal to a thread - https://linux.die.net/man/2/tgkill
 pmap - report memory map of a process  - https://linux.die.net/man/1/pmap
-dstat - versatile tool for generating system resource statistics - https://linux.die.net/man/1/dstat
-smem - Report memory usage with shared memory divided proportionally.
-backtrace -returns a backtrace for the calling program - https://linux.die.net/man/3/backtrace
-dlopen - The function dlopen() loads the dynamic library  - https://linux.die.net/man/3/dlopen
-uselib - he system call uselib() serves to load a shared library to be used by the calling process - https://linux.die.net/man/2/uselib
+
+
+**dstat** - versatile tool for generating system resource statistics - https://linux.die.net/man/1/dstat
+
+**smem** - Report memory usage with shared memory divided proportionally.
+
+**backtrace** -returns a backtrace for the calling program - https://linux.die.net/man/3/backtrace
+
+**dlopen** - The function dlopen() loads the dynamic library  - https://linux.die.net/man/3/dlopen
+
+**uselib** - he system call uselib() serves to load a shared library to be used by the calling process - https://linux.die.net/man/2/uselib
+
+**sar** - System Activity Report. https://linux.die.net/man/1/sar
 
 Performance tools
 ifstat(1), iftop(8), iostat(1), mpstat(1), netstat(1), nfsstat(1), nstat, vmstat(1), xosview(1)
@@ -2777,7 +2786,9 @@ A list of Linux tools that can be used to explore object/executable files.
  - nm: lists the symbols defined in the symbol table of an object file.
  - ldd: lists the shared libraries on which the object binary is dependent.
  - strip: deletes the symbol table information.
-
+ - strace
+ - ltrace
+ - readelf
 
 other references: 
 
@@ -2905,6 +2916,7 @@ sudo apt-get install firejail
 ls /etc/firejail
 
 Now you have successfully entered a page where you should see the profiles of all the programs installed on your computer. They should look somewhat like the following:
+
 skype.profile
 dropbox.profile
 icedove.profile
@@ -2921,8 +2933,10 @@ If we would like to secure Tor web browser, for example, we can use the “firej
 
 The easiest way to create a secure connection between two servers is through the use of the secure shell command (ssh), which uses SSL to create a telnet-style connection between two servers.
 This command creates a public and a private key pair in the /root/.ssh/ directory:
+
 •	id_rsa.pub
 •	id_rsa
+
 Authorizing the server to trust itself
 Now that we have a keypair, we can authorize the server to trust itself. This may seem odd but we can script commands that reference the server itself as well as the other server in the pair. Moreover, we can replicate this trust to the other server and this makes distribution of the trust simple. Run the following:
 cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
@@ -2993,14 +3007,17 @@ to look for the packet: apt-cache search openssh
 ### How to install a ssh server
 
 to install: 
+```
 sudo apt-get install openssh-server
-
+```
 
 ### How to login to ssh
 
-to connet to a ssh server you command in a terminal as:
+To connet to a ssh server you command in a terminal as:
 
+```
 ssh username@remotelocation
+```
 
 remotelocation can be an ip address or a name
 
@@ -3011,21 +3028,21 @@ you will be asked for your password.
 
 basically almost any command you can run in the terminal you can also run it in the ssh shell
 
-to end the ssh connections you use the command: exit.
+to end the ssh connections you use the command: 'exit'.
 
 otherwise if you just close the terminal the process will still be open, and consumming resources. 
 
 
 ## how to logout ssh
 
-CTR+D
-logout 
-exit
+ - CTR+D
+ - logout 
+ - exit
 
 
 ## ssh authentification
 
- there is two aproaches one is password based and the second one is based in cryptographic keys. the later is much more secure.
+ There is two aproaches: one is password based and the second one is based in cryptographic keys. the later is much more secure.
 
 
 
@@ -3044,7 +3061,7 @@ the command **`ssh-add`** will keep the ssh keys if these are stored in the stan
 And with the command **`ssh-agent`** the passphase will be used automatically.
 
 
-## how to change the ssh port
+## How to change the ssh port
 
 you can also change the default port in which ssh is using (for security reasons..)
 
@@ -3073,8 +3090,9 @@ to stop the ssh server: sudo /etc/init.d/ssh stop
 
 
 
-
-
+# More references
 
 Steven Rostedt - Learning the Linux Kernel with tracing - https://m.youtube.com/watch?v=JRyrhsx-L5Y&t=246s
+
+Introduction to Memory Management in Linux - https://m.youtube.com/watch?v=7aONIVSXiJ8
 
