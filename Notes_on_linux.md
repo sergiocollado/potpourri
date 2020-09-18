@@ -3129,7 +3129,21 @@ to stop the ssh server:
 sudo /etc/init.d/ssh stop
 ```
 
+# HOW TO: LINUX REALTIME:
 
+https://m.youtube.com/watch?v=BKkX9WASfpI
+
+https://m.youtube.com/watch?v=BxJm-Ujipcg
+
+https://lwn.net/Articles/743740/
+
+https://lwn.net/Articles/743946/
+
+https://lwn.net/Articles/821578/
+
+https://www.kernel.org/doc/Documentation/scheduler/sched-deadline.txt
+
+Using KernelShark to analyze the real-time scheduler https://lwn.net/Articles/425583/
 
 # More references
 
