@@ -68,7 +68,7 @@ In Kubernetes objects, represent different persistent entities, that represent:
 The containerized apps that are running and in which node.
 Resources consumption
 Policies reated to the applications, liek restart/upgrade, fault tolerances, …
-For each object, we declare the intent in the _**spec**_ section, and kubernetes manages the _**status**_ section for the objects, where it records the actual state of the objects. At any given point in time, kubernetes tries to match the object current state to the desired state. 
+For each object, we declare the intent in the _**spec**_ section. Tye _**spec**_ section describes the desired object state. kubernetes manages the _**status**_ section for the objects, where it records the actual state of the objects. At any given point in time, kubernetes tries to match the object current state to the desired state. 
 
 
 In a Kubernetes cluster, you don't need to only specify the state of Pods.  A better solution for high availability is to define controller objects that handle the state of the pods. Controllers maintain the pod’s desired state within a cluster. Like deployments (deployment ensures that a defined set of pods is running at any given time) , stateful sets, daemon sets or jobs. 
@@ -93,6 +93,42 @@ Replication Controllers perform a similar role to the combination of ReplicaSets
 In the need to deploy applications that maintain local state, StatefulSet is a better option. A StatefulSet is similar to a Deployment in that the Pods use the same container spec. The Pods created through Deployment are not given persistent identities, however; by contrast, Pods created using StatefulSet have unique persistent identities with stable network identity and persistent disk storage. So for persistent storage, the StatefulSet is the best option, defining a network storage. 
 If you need to run certain Pods on all the nodes within the cluster or on a selection of nodes, use DaemonSet. DaemonSet ensures that a specific Pod is always running on all or some subset of the nodes. If new nodes are added, DaemonSet will automatically set up Pods in those nodes with the required specification. The word "daemon" is a computer science term meaning a non-interactive process that provides useful services to other processes in the background. A Kubernetes cluster might use a DaemonSet to ensure that a logging agent like fluentd is running on all nodes in the cluster. DeamonSets are useful, if you want to have logging and auditing processes in all the nodes of your cluster. 
 The Job controller creates one or more Pods required to run a task. When the task is completed, Job will then terminate all those Pods. A related controller is CronJob, which runs Pods on a time-based schedule. Jobs run a task up to its completion, rather than a desired state. 
+
+### Example of a Deployment's configuration file
+
+This is an example of a deployment's configuration in yaml format.
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: nginx-deploy
+  labels:
+    app: nginx
+spec:
+ replicas: 3
+ selector: 
+   matchLabels:
+     app: nginx
+   spec:
+     containers:
+     - name: nginx
+       image: nginx: 1.15.13
+       ports: 
+       - containerPort: 80
+```
+
+the field **apiVersion** just points to the api version we want to connect to.
+
+the field **kind** specifies the type of object.
+
+The field **metadata** defines basic object information like name and labels.
+
+the spec.template field defines the pod's templates we want.
+
+Once the object is deployed, the system will add the field **status** to this file.
+
+
 
 https://kubernetes.io/
 
