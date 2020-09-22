@@ -94,6 +94,15 @@ In the need to deploy applications that maintain local state, StatefulSet is a b
 If you need to run certain Pods on all the nodes within the cluster or on a selection of nodes, use DaemonSet. DaemonSet ensures that a specific Pod is always running on all or some subset of the nodes. If new nodes are added, DaemonSet will automatically set up Pods in those nodes with the required specification. The word "daemon" is a computer science term meaning a non-interactive process that provides useful services to other processes in the background. A Kubernetes cluster might use a DaemonSet to ensure that a logging agent like fluentd is running on all nodes in the cluster. DeamonSets are useful, if you want to have logging and auditing processes in all the nodes of your cluster. 
 The Job controller creates one or more Pods required to run a task. When the task is completed, Job will then terminate all those Pods. A related controller is CronJob, which runs Pods on a time-based schedule. Jobs run a task up to its completion, rather than a desired state. 
 
+### Labels
+
+Labels are pairs of key and value identifiers. Labels are used to identify and select objects. So Labels do not provide uniqueness. Controllers use labels to group togethers in a set decoupled objects, intead fo idetifing them by names.
+
+### Label Selectors
+
+there are two types of label selectors: equality-based ( = , ==, != ) and set-based selectors ( in, notin, exists, does not exist).
+
+
 ### Example of a Deployment's configuration file
 
 This is an example of a deployment's configuration in yaml format.
