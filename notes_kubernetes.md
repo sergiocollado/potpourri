@@ -40,6 +40,8 @@ A Pod, is a group of containers that share storage and networking (all the conta
 
 And a Pod can have one or more application containers (like docker or others). In case of more than one container, those will share resources. Each pod has an unique IP address. In case of several containers within a Pod, those will share the network namespace, including IP address and ports, and they can communicate through the local host. A Pod can also define a set of storage  volumes to be shared among its containers. 
 
+reference: https://kubernetes.io/docs/concepts/workloads/pods/
+
 For working with kubernetes, we work through the kube-API server. This component will allow us to declare commands to view or change the state of the cluster. 
 
 kubctl command - connect to kubeAPI server. Is the kuberntetes Command Line interface client. To manage the cluster and its applications. 
@@ -115,6 +117,8 @@ Deployments let you do declarative updates to ReplicaSets and Pods. In fact, Dep
 
 Deployments let you create, update, roll back, and scale Pods, using ReplicaSets as needed to do so. For example, when you perform a rolling upgrade of a Deployment, the Deployment object creates a second ReplicaSet, and then increases the number of Pods in the new ReplicaSet as it decreases the number of Pods in its original ReplicaSet.  Deployments are better suited to state-less applications like web front-end.
 
+reference: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+
 Replication Controllers perform a similar role to the combination of ReplicaSets and Deployments, but their use is no longer recommended. Because Deployments provide a helpful "front end" to ReplicaSets.
 In the need to deploy applications that maintain local state, StatefulSet is a better option. A StatefulSet is similar to a Deployment in that the Pods use the same container spec. The Pods created through Deployment are not given persistent identities, however; by contrast, Pods created using StatefulSet have unique persistent identities with stable network identity and persistent disk storage. So for persistent storage, the StatefulSet is the best option, defining a network storage. 
 If you need to run certain Pods on all the nodes within the cluster or on a selection of nodes, use DaemonSet. DaemonSet ensures that a specific Pod is always running on all or some subset of the nodes. If new nodes are added, DaemonSet will automatically set up Pods in those nodes with the required specification. The word "daemon" is a computer science term meaning a non-interactive process that provides useful services to other processes in the background. A Kubernetes cluster might use a DaemonSet to ensure that a logging agent like fluentd is running on all nodes in the cluster. DeamonSets are useful, if you want to have logging and auditing processes in all the nodes of your cluster. 
@@ -153,6 +157,7 @@ The field **metadata** defines basic object information like name and labels.
 the spec.template field defines the pod's templates we want.
 
 Once the object is deployed, the system will add the field **status** to this file.
+
 
 ### Example of a Pod configuration file
 
