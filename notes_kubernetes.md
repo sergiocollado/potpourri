@@ -67,9 +67,8 @@ All kubernetes objects are identified by an unique name and an unique id (uid). 
 In Kubernetes objects, represent different persistent entities, that represent:
 The containerized apps that are running and in which node.
 Resources consumption
-Policies reated to the applications, liek restart/upgrade, fault tolerances, …
+Policies reated to the applications, like restart/upgrade, fault tolerances, …
 For each object, we declare the intent in the _**spec**_ section. Tye _**spec**_ section describes the desired object state. kubernetes manages the _**status**_ section for the objects, where it records the actual state of the objects. At any given point in time, kubernetes tries to match the object current state to the desired state. 
-
 
 In a Kubernetes cluster, you don't need to only specify the state of Pods.  A better solution for high availability is to define controller objects that handle the state of the pods. Controllers maintain the pod’s desired state within a cluster. Like deployments (deployment ensures that a defined set of pods is running at any given time) , stateful sets, daemon sets or jobs. 
 
@@ -86,14 +85,7 @@ Several Kubernetes controller objects:
  - DaemonSets
  - Jobs
  
-A ReplicaSet controller ensures that a population of Pods, all identical, are running at the same time. Deployments let you do declarative updates to ReplicaSets and Pods. In fact, Deployments manage their own ReplicaSets to achieve the declarative goals you prescribe, so you will most commonly work with Deployment objects.
-Deployments let you create, update, roll back, and scale Pods, using ReplicaSets as needed to do so. For example, when you perform a rolling upgrade of a Deployment, the Deployment object creates a second ReplicaSet, and then increases the number of Pods in the new ReplicaSet as it decreases the number of Pods in its original ReplicaSet.  Deployments are better suited to state-less applications like web front-end.
-
-Replication Controllers perform a similar role to the combination of ReplicaSets and Deployments, but their use is no longer recommended. Because Deployments provide a helpful "front end" to ReplicaSets.
-In the need to deploy applications that maintain local state, StatefulSet is a better option. A StatefulSet is similar to a Deployment in that the Pods use the same container spec. The Pods created through Deployment are not given persistent identities, however; by contrast, Pods created using StatefulSet have unique persistent identities with stable network identity and persistent disk storage. So for persistent storage, the StatefulSet is the best option, defining a network storage. 
-If you need to run certain Pods on all the nodes within the cluster or on a selection of nodes, use DaemonSet. DaemonSet ensures that a specific Pod is always running on all or some subset of the nodes. If new nodes are added, DaemonSet will automatically set up Pods in those nodes with the required specification. The word "daemon" is a computer science term meaning a non-interactive process that provides useful services to other processes in the background. A Kubernetes cluster might use a DaemonSet to ensure that a logging agent like fluentd is running on all nodes in the cluster. DeamonSets are useful, if you want to have logging and auditing processes in all the nodes of your cluster. 
-The Job controller creates one or more Pods required to run a task. When the task is completed, Job will then terminate all those Pods. A related controller is CronJob, which runs Pods on a time-based schedule. Jobs run a task up to its completion, rather than a desired state. 
-
+ 
 ### Labels
 
 Labels are pairs of key and value identifiers. Labels are used to identify and select objects. So Labels do not provide uniqueness. Controllers use labels to group togethers in a set decoupled objects, intead fo idetifing them by names.
@@ -101,7 +93,32 @@ Labels are pairs of key and value identifiers. Labels are used to identify and s
 ### Label Selectors
 
 there are two types of label selectors: equality-based ( = , ==, != ) and set-based selectors ( in, notin, exists, does not exist).
+ 
+### Namespaces
 
+A cluster resources can be divided using **namespaces**. The name of resources created inside a given namespace is unique, but no across namespaces. 
+
+k8s generates four default namespaces: kube-system, kube-public, kube-node-lease and default. 
+
+- default: contains objects created by admins and developers.
+- kube-system: contains objects created by k8s system, mostly the control plane agents.
+- kube-public: special namespace which is unsecured and readable, used to expose information publically.
+- kube-node-lease: contains the node lease objects, for node heartbeat data.  
+
+### ReplicaSet Controllers
+
+A ReplicaSet controller ensures that a population of Pods, all identical, are running at the same time.
+
+### Deployment Controllers
+
+Deployments let you do declarative updates to ReplicaSets and Pods. In fact, Deployments manage their own ReplicaSets to achieve the declarative goals you prescribe, so you will most commonly work with Deployment objects.
+
+Deployments let you create, update, roll back, and scale Pods, using ReplicaSets as needed to do so. For example, when you perform a rolling upgrade of a Deployment, the Deployment object creates a second ReplicaSet, and then increases the number of Pods in the new ReplicaSet as it decreases the number of Pods in its original ReplicaSet.  Deployments are better suited to state-less applications like web front-end.
+
+Replication Controllers perform a similar role to the combination of ReplicaSets and Deployments, but their use is no longer recommended. Because Deployments provide a helpful "front end" to ReplicaSets.
+In the need to deploy applications that maintain local state, StatefulSet is a better option. A StatefulSet is similar to a Deployment in that the Pods use the same container spec. The Pods created through Deployment are not given persistent identities, however; by contrast, Pods created using StatefulSet have unique persistent identities with stable network identity and persistent disk storage. So for persistent storage, the StatefulSet is the best option, defining a network storage. 
+If you need to run certain Pods on all the nodes within the cluster or on a selection of nodes, use DaemonSet. DaemonSet ensures that a specific Pod is always running on all or some subset of the nodes. If new nodes are added, DaemonSet will automatically set up Pods in those nodes with the required specification. The word "daemon" is a computer science term meaning a non-interactive process that provides useful services to other processes in the background. A Kubernetes cluster might use a DaemonSet to ensure that a logging agent like fluentd is running on all nodes in the cluster. DeamonSets are useful, if you want to have logging and auditing processes in all the nodes of your cluster. 
+The Job controller creates one or more Pods required to run a task. When the task is completed, Job will then terminate all those Pods. A related controller is CronJob, which runs Pods on a time-based schedule. Jobs run a task up to its completion, rather than a desired state. 
 
 ### Example of a Deployment's configuration file
 
