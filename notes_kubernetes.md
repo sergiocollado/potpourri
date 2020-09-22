@@ -223,6 +223,53 @@ For example:
 
 ```kubectl describe pod <pod_name> -- get detailed info about a given pod. ```
 
+## Services
+
+Services are the process that expose a set of pods to the outside of the cluster. 
+
+Rationale: The pods in a cluster have IPs that are ephemeral, if a pod is terminated and a new pod is created, this new pod doesn't really need to have the same IP.
+To overcome this situation, the Service abstraction is provided. Given a set of pods, defined by labes or selectors, those can be addresses by means of a Service. 
+
+reference: https://kubernetes.io/docs/concepts/services-networking/service/
+
+## kube-proxy
+
+kube-proxy is a daemon in all the worker nodes, that monitorices the master node server api, to check for the addition or removal of services. Each kube-proxy, handles the ip-tables, to manage the traffic for each ClusterIP and fordward it to the suitable Service endpoint. 
+
+## Service discovery
+
+There are two ways to discover a service:
+
+- enviromental variables: when a Pod starts the kubelet daemon running in that node defines a set of enviromental variables that defines the active services. Be careful with this method, due if a Service is created after the Pod, this service will not be identifed.
+- DNS: kubernetes has an add-on for DNS, which creates a DNS record for each service. This is the recomended solution.
+
+## Services types:
+
+There are three types of services:
+
+- only accessible inside the cluster.
+- accessible within and from outside the cluster.
+- map to an entity that resides in or out of the cluster.
+
+
+## Example of a Service configuration file:
+
+```
+apiVersion: v1
+kind: Service
+metadata: 
+  name: front-end-svc
+spec:
+  selector: 
+    app: frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
+```
+
+<hr>
+# HOW TO's
 
 ## howto Deployments
 
