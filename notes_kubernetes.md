@@ -243,14 +243,12 @@ There are two ways to discover a service:
 - enviromental variables: when a Pod starts the kubelet daemon running in that node defines a set of enviromental variables that defines the active services. Be careful with this method, due if a Service is created after the Pod, this service will not be identifed.
 - DNS: kubernetes has an add-on for DNS, which creates a DNS record for each service. This is the recomended solution.
 
+reference: https://kubernetes.io/docs/concepts/services-networking/service/#discovering-services
+
 ## Services types:
 
-There are three types of services:
 
-- only accessible inside the cluster.
-- accessible within and from outside the cluster.
-- map to an entity that resides in or out of the cluster.
-
+reference: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
 
 ## Example of a Service configuration file:
 
