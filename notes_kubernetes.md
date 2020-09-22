@@ -397,7 +397,17 @@ In the kubernetes model, each pod is assigned a single IP address. And the conta
 STORAGES ABSTRACTIONS
 **Volumes** are the method by which you attach storage to a Pod.
 Some Volumes are ephemeral, meaning they have the same life span as the pod they are attached to. Other volumes are persistent, meaning they can outlive a Pod. 
- ```
+ 
+ 
+ 
+# Authentication, authorization and admission control
+
+To access and manage kubernetes there are three stages:
+
+- authentication: logs a user.
+- authorization: authorizes the requests API.
+- admission control: software modules that can handle requests based on extra information.
+
  
 MINIKUBE. - 
 Minikube is a single node local kubernetes cluster - with this you can create an all-in-one kubernetes setup.
