@@ -1318,3 +1318,5 @@ the faumous --> operator in c++ : https://stackoverflow.com/questions/1642028/wh
 iterator-loop vs index-loop :  https://stackoverflow.com/questions/14373934/iterator-loop-vs-index-loop
 
 Capacity awarenes of the deadline scheduler: https://lwn.net/Articles/821578/
+
+community-developed list of software and hardware weakness types ->  http://cwe.mitre.org/data/definitions/699.html
