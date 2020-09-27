@@ -492,6 +492,10 @@ EN 60204-1 - Safety on Machinery - electrical equipment of machines.
 
 IEC 62061 - Safety of machinery – functional safety of electrical, electronic and programmable control systems for machinery
 
+EN IEC 62304 - medical software.
+
+IEC 60730/EN 60335 Class B - industry standards for appliances.
+
 ANSI/ISA S84.01 Safety Instrumented Systems for the Process Industry Sector (Parts 1, 2 and 3)
 
 EN ISO 12100 - Concepts and principles for risk assesment.
@@ -670,11 +674,6 @@ LEVEL      OBJECT SIZE         EFFECTIVE AGAINST
 7       Inmersion up to 1 meter       the ingress of water in a harmfull quantity should be no possible when the enclosure is inmmersed under water at defined conditions of pressure and time. (up to 1 meter of inmersion).
 
 8      Inmersion beyond 1 m            The system is suitable for continuous inmersion under water at defined conditions specified by the manufacturer. This could mean that the system may be hermetically sealed or that the water can ingress in the enclosure but without harmful effects.
-
-
-
-
-
 
 ## HAZARD ANALYSIS
 
