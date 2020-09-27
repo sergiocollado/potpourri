@@ -3159,6 +3159,8 @@ https://elinux.org/images/7/70/Opdenacker-boot-time-ELC-2014.pdf&ved=2ahUKEwi4q9
 
 Booting faster: https://m.youtube.com/watch?v=fTLsS_QZ8us
 
+Making C Less Dangerous in the Linux kernel  https://m.youtube.com/watch?v=FY9SbqTO5GQ
+
 
 
 
