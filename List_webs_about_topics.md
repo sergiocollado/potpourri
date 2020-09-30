@@ -1320,3 +1320,6 @@ iterator-loop vs index-loop :  https://stackoverflow.com/questions/14373934/iter
 Capacity awarenes of the deadline scheduler: https://lwn.net/Articles/821578/
 
 community-developed list of software and hardware weakness types ->  http://cwe.mitre.org/data/definitions/699.html
+
+c programming - the gnu C library : https://www.gnu.org/software/libc/manual/html_node/index.html
+
