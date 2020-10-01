@@ -740,6 +740,9 @@ EDF:  EARLIEST DEADLINE FIRST SCHEDULER:
 
 # HOW TO SCHEDULE LINUX REALTIME:
 
+
+https://www.kernel.org/doc/html/latest/scheduler/sched-deadline.html
+
 https://www.kernel.org/doc/html/latest/scheduler/sched-rt-group.html
 
 https://m.youtube.com/watch?v=BKkX9WASfpI
