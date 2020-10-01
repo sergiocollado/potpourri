@@ -6,7 +6,7 @@ Unix-like systems use the ELF (executable and linking format) for these programs
 An ELF file is a relocatable object, with the following sections.
 
 - ELF header ->starts with magic number string: /177ELF
-- .text      -> this is the machine code - This is the CODE of the program!!
+- .text      -> this is the machine code - This is the CODE of the program!! plus literals and static constants
 - .rodata    -> read only data, like char strings, or const variables.
 - .data      -> global variables
 - .bss    -> (block storage start) uninitialized global variables and zero initialized variables.
