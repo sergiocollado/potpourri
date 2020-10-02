@@ -305,6 +305,17 @@ to get more detailed info use:
 kubectl describe pod myapp-pod 
 ```
 
+it you want to copy a pod's definition into a file, use:
+
+```
+kubectl get pod <pod-name> -o yaml > pod-defintion.yml
+```
+
+To edit a pod's properties use:
+
+```
+kubectl edit pod <pod-name>
+```
 
 ## howto Deployments
 
