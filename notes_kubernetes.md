@@ -269,6 +269,43 @@ spec:
 <hr>
 # HOW TO's
 
+## howto Pods
+
+A yaml file that defines a pod, would be like:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+   name: myapp
+   labels:
+      app: myapp-pod
+      type: back-end
+spec:
+   containers:
+       -name: nginx-container
+        image: nginx
+```
+
+to create the Pod, use the command:
+
+```
+kubectl create -f pod-defintion.yml
+```
+
+to verify that the pod has been created, use:
+
+```
+kubectl get pods
+```
+
+to get more detailed info use:
+
+```
+kubectl describe pod myapp-pod 
+```
+
+
 ## howto Deployments
 
 Commands to create deployments:
