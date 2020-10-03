@@ -427,6 +427,30 @@ to see the pods run by the replica set:
 kubectls get pods 
 ```
 
+to scale a replica set, we would need to update the desired number of replicas in the definition file, in the 'replicas: ' tag. then run the replace command:
+
+```
+kubectl replace -f replicaset-definition.yml
+```
+another way to scale a replica set, is to run the 'scale' command: 
+
+```
+kubectl scale --replicas=6 -f replicaset-definition.yml
+```
+
+another way to use the scale command is instead of using the file, using the controller type, and the replica set defined name:
+
+```
+kubectl scale --replicas=6 replicaset myapp-replicaset
+```
+
+but be aware, that in this way the defined file will not be updated.
+
+to delete a replica set, just use the 'delete' command:
+
+```
+kubectl delete replicaset myapp-replicaset
+```
 
 ## howto Deployments
 
