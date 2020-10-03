@@ -114,12 +114,16 @@ k8s generates four default namespaces: kube-system, kube-public, kube-node-lease
  
  A replication controller can help us also, when we want to have several pods, sharing work between them. 
  
+ A replication controller will monitor the specified pods, and in case any would fail, it would replace it by a new one. 
+ 
  
 ### ReplicaSet Controllers
 
 A replica set controller is the replication controller evolution. 
 
 A ReplicaSet controller ensures that a population of Pods, all identical, are running at the same time.
+
+A ReplicaSet can be used to monitor a group of Pods, that are already running, and in case those are not created, the replicaset can create them. the role of the replicaset is to monitor the pods, and if any were to fail, replace them by new ones. The way to identity the pods to monitor is by means of matching labels (with the matchLabel filter), defined in the definition of the Replica set.
 
 ### Deployment Controllers
 
@@ -403,6 +407,8 @@ specs:
         matchLabels
             type: front-end
 ```
+
+A ReplicaSet can be used to monitor a group of Pods, that are already running, and in case those are not created, the replicaset can create them. the role of the replicaset is to monitor the pods, and if any were to fail, replace them by new ones. The way to identity the pods to monitor is by means of matching labels (with the matchLabel filter), defined in the definition of the Replica set.
 
 to create a replica set, run:
 
