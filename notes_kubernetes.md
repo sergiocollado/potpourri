@@ -107,7 +107,17 @@ k8s generates four default namespaces: kube-system, kube-public, kube-node-lease
 - kube-public: special namespace which is unsecured and readable, used to expose information publically.
 - kube-node-lease: contains the node lease objects, for node heartbeat data.  
 
+
+### Replication Controller
+
+ A replication controller allow us to have several instances of a pod, so in case a pod dies, a new one can replace it. Thus allowing us to have a high availability service.
+ 
+ A replication controller can help us also, when we want to have several pods, sharing work between them. 
+ 
+ 
 ### ReplicaSet Controllers
+
+A replica set controller is the replication controller evolution. 
 
 A ReplicaSet controller ensures that a population of Pods, all identical, are running at the same time.
 
@@ -316,6 +326,54 @@ To edit a pod's properties use:
 ```
 kubectl edit pod <pod-name>
 ```
+
+## howto Replica Controller
+
+
+```
+# rc-definition.yml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+    name: myapp-rc
+    labels: 
+        app: myapp
+        type: front_end
+specs:
+    template:
+    # template, will be the template to the pods to replicate
+    # so the info below match the metadata and specs of a pod definition
+        metadata:
+            name: myapp-pod
+            type: front-end
+        spec:
+            containers:
+            - name: nginx-container
+              image: nginx
+    replicas: 3
+    # this is the desired number of replicas
+```
+
+to create a replication controller command:
+
+```
+kubectl create -f rc-definition.yml
+```
+
+to check the replication controller:
+
+```
+kubectl get replicationcontroller
+```
+
+to check the pods run by the replication controller:
+
+```
+kubectl get pods
+```
+
+
+
 
 ## howto Deployments
 
