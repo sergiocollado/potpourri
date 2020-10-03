@@ -373,6 +373,53 @@ kubectl get pods
 ```
 
 
+## howto Replica Set
+
+A example file that defines a replica controller.
+
+```
+# replicaset-definition.yml
+apiVersion: app/v1
+#WATCHOUT: the correct version for a rs is the app/v1
+kind: ReplicationController
+metadata:
+    name: myapp-replicaset
+    labels: 
+        app: myapp
+        type: front_end
+specs:
+    template:
+    # template, will be the template to the pods to replicate
+    # so the info below match the metadata and specs of a pod definition
+        metadata:
+            name: myapp-pod
+            type: front-end
+        spec:
+            containers:
+            - name: nginx-container
+              image: nginx
+    replicas: 3
+    selector: 
+        matchLabels
+            type: front-end
+```
+
+to create a replica set, run:
+
+```
+kubectl create -f replicaset-definition.yml
+```
+
+to get the created replicas:
+```
+kubectl get replicaset
+```
+
+to see the pods run by the replica set:
+
+```
+kubectls get pods 
+```
 
 
 ## howto Deployments
