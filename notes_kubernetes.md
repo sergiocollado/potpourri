@@ -191,6 +191,20 @@ spec:
     - containerPort: 80
 ```
 
+### Configuration Maps
+
+ConfigMaps are objects that keep a configuration definition of **enviromental variables** to be used in a Pod.
+
+the data in the config map, is simply given as a list of key-value pairs.
+
+```
+APP_THEME_COLOR: BLUE
+APP_MODE: PROD
+```
+reference: https://kubernetes.io/docs/concepts/configuration/configmap/
+
+reference: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
+
 
 https://kubernetes.io/
 
@@ -344,6 +358,106 @@ To edit a pod's properties use:
 ```
 kubectl edit pod <pod-name>
 ```
+
+## howto Configuration Maps
+
+ConfigMaps are objects that keep a configuration definition of **enviromental variables** to be used in a Pod.
+
+the data in the config map, is simply given as a list of key-value pairs.
+
+```
+APP_THEME_COLOR: BLUE
+APP_MODE: PROD
+```
+
+
+to create a configMap in an imperative way:
+
+```
+kubectl create configmap <config-name> --from-literal=<key>=<value>
+```
+example:
+```
+kubectl create configmap \
+   my_config --from-literal=APP_THEME_COLOR=BLUE
+             --from-literal=APP_MODE=PROD
+```
+
+or to create it from a file:
+
+```
+kubectl create configmap <config-name> --from-file=<path-to-file>
+```
+example:
+```
+kubectl create configmap \
+    app-config --from-file=app_config.propierties
+
+```
+
+to create a configmap in a declarative way, you need to create a definition file
+
+```
+#configmap.yml definition
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: app-config
+data: 
+    APP_THEME_COLOR: BLUE
+    APP_MODE: PROD
+```
+
+and then use the create command:
+
+```
+kubectl create -f configmap.yml
+```
+
+to get the configmaps:
+
+```
+kubectl get configmaps
+```
+
+to inspect the config maps:
+
+```
+kubectl describe configmaps
+```
+
+To pass the config map to a Pod definition:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.15.12
+    ports:
+        - containerPort: 80
+    envFrom:
+        - configMapRef:    # here we inject the config map into the pod definition.
+            name: app-config
+```
+
+```
+#configmap.yml definition
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: app-config
+data: 
+    APP_THEME_COLOR: BLUE
+    APP_MODE: PROD
+```
+
+reference: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
 
 ## howto Replica Controller
 
