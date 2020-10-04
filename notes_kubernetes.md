@@ -304,11 +304,12 @@ spec:
             - containerPort: 8080
         env:     #optional - to define enviroment variables
             -name: APP_COLOR
-            value: blue
-            name: THEME_COLOR
-            valueFrom:
+             value: blue
+            -name: THEME_COLOR
+             valueFrom:
                 configMapKeyRe
-            name: USER
+            -name: USER
+             valueFrom:
                 secretkeyRef
           
 ```
