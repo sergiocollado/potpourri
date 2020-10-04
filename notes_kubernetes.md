@@ -193,17 +193,25 @@ spec:
 
 ### Configuration Maps
 
-ConfigMaps are objects that keep a configuration definition of **enviromental variables** to be used in a Pod.
+ConfigMaps are objects that keep configuration definitions of **enviromental variables** to be used in a Pod.
 
 the data in the config map, is simply given as a list of key-value pairs.
 
 ```
-APP_THEME_COLOR: BLUE
-APP_MODE: PROD
+DB_HOST: redis
+DB_USER: root
 ```
 reference: https://kubernetes.io/docs/concepts/configuration/configmap/
 
 reference: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
+
+### Secrets
+
+Secrets objects used to store sensitive information, like passwords, keys or personal data... and are stored in a hashed format (although not encripted!)
+
+
+
+
 
 
 https://kubernetes.io/
@@ -458,6 +466,112 @@ data:
 ```
 
 reference: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
+
+
+### Howto Secrets
+
+Secrets objects used to store sensitive information, like passwords, keys or personal data... and are stored in a hashed format (although not encripted!)
+
+to create a secret imperatively:
+
+```
+kubectl create secret generic <secre-name> --from literal=<key>=<value>
+```
+
+example:
+
+
+```
+kubectl create secret generic 
+      app-secret --from literal=DB_HOST=redis \
+                 --from literal=DB_USER=root  \
+                 --from literal=DB_PASSWORD=password
+```
+
+or for creating it imperatively from a file:
+
+```
+kubectl create secret generic <secret-name> --from-file=<path-to-file>
+```
+example:
+
+```
+kubectl create secret generic app-secret --from-file=app_secret.propierties
+```
+
+
+to create a secret declaratively:
+
+```
+kubectl create -f secret.data.yml
+```
+
+```
+#secret-data.yml
+apiVersion: v1
+kind: Secret
+metadata: 
+    name: app-secret
+data: 
+    DB_HOST: 2astasefq   # the secret must be written in encripted format.
+    DB_USER: 45t6yuki
+    DB_PASSWORD: p7ytgfcdew
+```
+
+to encode the strings, in a linux machine use:
+
+```
+echo -m 'password' | base64
+> p7ytgfcdew
+```
+to decode the previous encoding:
+
+```
+echo -n 'p7ytgfcdew' | base64 --decode
+> password
+```
+
+to list the secrets, use the:
+
+```
+kubectl get secrets 
+```
+
+for more details:
+
+```
+kubectl describe secrets
+```
+
+this will not show the secrets values, but if you want it use:
+
+```
+kubectl get secret app-secret -o yaml
+```
+
+To configure a secret within a pod:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.15.12
+    ports:
+        - containerPort: 80
+    envFrom:
+        - configMapRef:    # here we inject the config map into the pod definition.
+            name: app-config
+        - secretRef:       # here we inject the secret into the pod definition.
+            name: app-secret
+```
+
+
 
 ## howto Replica Controller
 
