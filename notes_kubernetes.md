@@ -300,6 +300,17 @@ spec:
    containers:
        -name: nginx-container
         image: nginx
+        ports:   #optional
+            - containerPort: 8080
+        env:     #optional - to define enviroment variables
+            -name: APP_COLOR
+            value: blue
+            name: THEME_COLOR
+            valueFrom:
+                configMapKeyRe
+            name: USER
+                secretkeyRef
+          
 ```
 
 to create the Pod, use the command:
@@ -312,6 +323,7 @@ to verify that the pod has been created, use:
 
 ```
 kubectl get pods
+
 ```
 
 to get more detailed info use:
