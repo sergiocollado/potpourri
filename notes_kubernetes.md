@@ -107,6 +107,7 @@ k8s generates four default namespaces: kube-system, kube-public, kube-node-lease
 - kube-public: special namespace which is unsecured and readable, used to expose information publically.
 - kube-node-lease: contains the node lease objects, for node heartbeat data.  
 
+It is possible to create custom namespaces, for example one named 'dev" for development, and other 'prod' for production purpouses.
 
 ### Replication Controller
 
