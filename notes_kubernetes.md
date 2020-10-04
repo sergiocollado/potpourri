@@ -355,6 +355,8 @@ specs:
             containers:
             - name: nginx-container
               image: nginx
+              command: ["sleep"] #to run commands when creating the pod (optional)
+              args: ["10"] #arguments to the commands (optional)
     replicas: 3
     # this is the desired number of replicas
 ```
@@ -614,6 +616,55 @@ One you are done, with the deployment you can delete it
 kubectl delete deployment <deployment_name>
 ```
 
+## Howto namespaces
+
+A sample file to define a namespace would be:
+
+```
+#namespace-dev.yml
+appiVersion: v1
+kind: Namespace
+metadata:
+    name: dev
+```
+
+to create the namespace:
+
+```
+kubectl create -f namespace-dev.yml
+```
+
+or faster:
+
+```
+kubectl create namespace dev
+```
+
+## Howto resource quota:
+
+to limit resource in a namespace you use a resource quota, to define one:
+
+```
+#compute-quota.yml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+    name: compute-quota
+    namespace: dev
+spec:
+    hard:
+        pods: "15"
+        requests.cpu: "4"
+        requests.memory: 5Gi
+        limits.cpu: "10"
+        limits.memory: 10Gi
+```
+
+to create it:
+
+```
+kubectl create -f compute-quota.yaml
+```
 
 ## Jobs
 
