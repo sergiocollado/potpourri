@@ -856,6 +856,8 @@ Minikube is a single node local kubernetes cluster - with this you can create an
 
 tutorials:
 
+https://labs.play-with-k8s.com/
+
 https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-intro/
 
 https://github.com/dysinger/learn-minikube
