@@ -209,8 +209,9 @@ reference: https://kubernetes.io/docs/tasks/configure-pod-container/configure-po
 
 Secrets objects used to store sensitive information, like passwords, keys or personal data... and are stored in a hashed format (although not encripted!)
 
+### Security contexts
 
-
+Some secure settings can be define at the container run engine level or at the pod level. If configured at the pod level, those settings will be defined for all the containers within the pod. If defined in both places, the container and the pod, the pod settings will override the container settings.
 
 
 
@@ -571,6 +572,48 @@ spec:
             name: app-secret
 ```
 
+### Security contexts
+
+Some secure settings can be define at the container run engine level or at the pod level. If configured at the pod level, those settings will be defined for all the containers within the pod. If defined in both places, the container and the pod, the pod settings will override the container settings.
+
+
+to add the Security Context at the container level, add it in the spec of the container.
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-pod
+  labels:
+    app: front-end
+spec:
+  containers:
+  - name: ubuntu
+    image: ubuntu
+    command: ["sleep", "3600"]
+    securityContext:
+      runAsUser: 1000
+      capabilities:
+          add: ["MAC_ADMIN"]
+```
+
+to add the security context add the POD level, add it ad the specs of the pod
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-pod
+  labels:
+    app: front-end
+securityContext:
+  runAsUser: 1000
+spec:
+  containers:
+  - name: ubuntu
+    image: ubuntu
+    command: ["sleep", "3600"]
+```
 
 
 ## howto Replica Controller
