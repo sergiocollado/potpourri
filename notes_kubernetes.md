@@ -454,9 +454,44 @@ kubectl delete replicaset myapp-replicaset
 
 ## howto Deployments
 
+A sample definition file for a deployment would be:
+
+```
+# deployment-definition.yml
+apiVersion: app/v1
+#WATCHOUT: the correct version for a deployment is the app/v1
+kind: Deployment
+metadata:
+    name: myapp-deployment
+    labels: 
+        app: myapp
+        type: front_end
+specs:
+    template:
+    # template, will be the template to the pods to replicate
+    # so the info below match the metadata and specs of a pod definition
+        metadata:
+            name: myapp-pod
+            type: front-end
+        spec:
+            containers:
+            - name: nginx-container
+              image: nginx
+    replicas: 3
+    selector: 
+        matchLabels
+            type: front-end
+```
+
+
 Commands to create deployments:
 
 **Declaratively**:
+
+
+```
+ kubectl create -f <deployment_file.yaml>
+ ```
 
 ```
  kubectl apply -f <deployment_file.yaml>
@@ -473,7 +508,6 @@ kubectl run <deployment_name> \
   --generator deployment/apps.v1 \
   --save-config
 ```
-
 
 To inspect the deployment:
 
