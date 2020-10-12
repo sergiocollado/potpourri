@@ -973,6 +973,31 @@ to create it:
 kubectl create -f compute-quota.yaml
 ```
 
+The resource quota can be also specified in the Pod definition:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.15.12
+    ports:
+    - containerPort: 80
+    resources:
+        requests:
+            memory: "1Gi"
+            cpu: 1
+        limits: 
+            memory: "2Gi"
+            cpu: 2
+```
+
+
 ## Jobs
 
 The Job controller creates one or more Pods required to run a task. When the task is completed, Job will then terminate all those Pods. A related controller is CronJob, which runs Pods on a time-based schedule. Jobs run a task up to its completion, rather than a desired state. 
