@@ -236,44 +236,31 @@ kubectl describe serviceaccount my-service-account
 
 ### Taints ant tolerations
 
-Tains and tolerations are means to restricts Pods to run in certain Nodes. A node may define a given taint, and only pods that define toleartion to that taint can run in that node. 
+Tains and tolerations are means to **restrict** Pods to run in certain Nodes. A node may define a given taint, and only pods that define toleartion to that taint can run in that node. 
 
-to define a taint:
+### Node Selector
 
-```
-kubectl taint nodes <node-name>  <key>=<value>:<taint-effect>
-```
+You can add a label to a node, and define a label in the pods, you want to run into that node.
 
-there are three taint effects: NoSchedule, PreferNoSchedule, NoExectute.
-
-Taints are defined in Nodes, and tolerations are defined in Pods
-
-To define a toleration in a pod: 
-
+To label a certain node:
 
 ```
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx-pod
-  labels:
-    app: nginx
+kubectl label nodes <node-name> <label-key>=<label-value>
+```
+and in the pod definition:
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: nginx-deploy
 spec:
   containers:
-  - name: nginx
-    image: nginx:1.15.12
-    ports:
-    - containerPort: 80
-  tolerations:
-  - key: "app"
-    operator: "Equal"
-    value: "blue"
-    effect: "NoSchedule"
-    #watchout! the values must be defined with " ".
+   - name: nginx
+     image: nginx: 1.15.13
+     nodeSelector:
+        <label-key>: <label-value>
 ```
-
-
-
 
 
 https://kubernetes.io/
@@ -674,6 +661,44 @@ spec:
   - name: ubuntu
     image: ubuntu
     command: ["sleep", "3600"]
+```
+
+### how to: Taints ant tolerations
+
+Tains and tolerations are means to restricts Pods to run in certain Nodes. A node may define a given taint, and only pods that define toleartion to that taint can run in that node. 
+
+to define a taint:
+
+```
+kubectl taint nodes <node-name>  <key>=<value>:<taint-effect>
+```
+
+there are three taint effects: NoSchedule, PreferNoSchedule, NoExectute.
+
+Taints are defined in Nodes, and tolerations are defined in Pods
+
+To define a toleration in a pod: 
+
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.15.12
+    ports:
+    - containerPort: 80
+  tolerations:
+  - key: "app"
+    operator: "Equal"
+    value: "blue"
+    effect: "NoSchedule"
+    #watchout! the values must be defined with " ".
 ```
 
 
