@@ -261,7 +261,6 @@ spec:
      <label-key>: <label-value>
 ```
 
-
 ### Node Affinity
 
 Node affinity allow us more complex capabilities to set a Pod placement in the nodes. 
@@ -723,6 +722,30 @@ spec:
     effect: "NoSchedule"
     #watchout! the values must be defined with " ".
 ```
+
+### Howto Multi-container Pods.
+
+to define several containers in a pod:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.15.12
+    ports:
+    - containerPort: 8080
+    
+  - name: log-agent
+    image: log-agent
+```
+this is known as the sidecar pattern, but there are other patterns as the ambassador or the adapter.
+
 
 
 ## Howto Replica Controller
