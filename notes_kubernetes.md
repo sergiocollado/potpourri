@@ -87,7 +87,6 @@ Several Kubernetes controller objects:
  - DaemonSets
  - Jobs
  
- 
 ### Labels
 
 Labels are pairs of key and value identifiers. Labels are used to identify and select objects. So Labels do not provide uniqueness. Controllers use labels to group togethers in a set decoupled objects, intead fo idetifing them by names.
@@ -173,7 +172,6 @@ the spec.template field defines the pod's templates we want.
 
 Once the object is deployed, the system will add the field **status** to this file.
 
-
 ### Example of a Pod configuration file
 
 ```
@@ -258,10 +256,36 @@ spec:
   containers:
    - name: nginx
      image: nginx: 1.15.13
-     nodeSelector:
-        <label-key>: <label-value>
+     
+  nodeSelector:
+     <label-key>: <label-value>
 ```
 
+
+### Node Affinity
+
+Node affinity allow us more complex capabilities to set a Pod placement in the nodes. 
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: nginx-deploy
+spec:
+  containers:
+   - name: nginx
+     image: nginx: 1.15.13
+  affinity:
+      nodeAffinity:
+          requiredDuringSchedulingIgnoreDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: <label-key>
+                  operator: In  #or: NotIn, Exists ...
+                  values:
+                  - <label-value-1>
+                  - <label-value-2>
+```
 
 https://kubernetes.io/
 
@@ -355,7 +379,7 @@ spec:
 <hr>
 # HOW TO's
 
-## howto Pods
+## Howto Pods
 
 A yaml file that defines a pod, would be like:
 
@@ -416,7 +440,7 @@ To edit a pod's properties use:
 kubectl edit pod <pod-name>
 ```
 
-## howto Configuration Maps
+## Howto Configuration Maps
 
 ConfigMaps are objects that keep a configuration definition of **enviromental variables** to be used in a Pod.
 
@@ -548,7 +572,6 @@ example:
 kubectl create secret generic app-secret --from-file=app_secret.propierties
 ```
 
-
 to create a secret declaratively:
 
 ```
@@ -620,7 +643,7 @@ spec:
             name: app-secret
 ```
 
-### Security contexts
+### Howto Security contexts
 
 Some secure settings can be define at the container run engine level or at the pod level. If configured at the pod level, those settings will be defined for all the containers within the pod. If defined in both places, the container and the pod, the pod settings will override the container settings.
 
@@ -663,7 +686,7 @@ spec:
     command: ["sleep", "3600"]
 ```
 
-### how to: Taints ant tolerations
+### Howto: Taints ant tolerations
 
 Tains and tolerations are means to restricts Pods to run in certain Nodes. A node may define a given taint, and only pods that define toleartion to that taint can run in that node. 
 
@@ -702,7 +725,7 @@ spec:
 ```
 
 
-## howto Replica Controller
+## Howto Replica Controller
 
 
 ```
@@ -825,7 +848,7 @@ to delete a replica set, just use the 'delete' command:
 kubectl delete replicaset myapp-replicaset
 ```
 
-## howto Deployments
+## Howto Deployments
 
 A sample definition file for a deployment would be:
 
@@ -1134,3 +1157,5 @@ https://medium.com/bb-tutorials-and-thoughts/practice-enough-with-these-question
 
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
  
+https://github.com/dgkanatsios/CKAD-exercises
+
