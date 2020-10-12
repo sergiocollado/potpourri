@@ -213,6 +213,29 @@ Secrets objects used to store sensitive information, like passwords, keys or per
 
 Some secure settings can be define at the container run engine level or at the pod level. If configured at the pod level, those settings will be defined for all the containers within the pod. If defined in both places, the container and the pod, the pod settings will override the container settings.
 
+### Service Accounts
+
+There are two types of accounts in kubernetes, user accounts and service accounts. Service accounts are for service programs, like prometheus or jenkins. 
+
+To create a service account
+
+```
+kubectl create serviceaccount my-service-account
+```
+
+to get the service accounts
+
+```
+kubectl get serviceaccount
+```
+When a service account is created, it creates on token that would be used by a application to access. This token is stored as a secret object. This secret is linked to the service account. 
+
+```
+kubectl describe serviceaccount my-service-account
+```
+
+
+
 
 
 https://kubernetes.io/
