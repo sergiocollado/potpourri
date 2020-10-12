@@ -1159,3 +1159,9 @@ https://kubernetes.io/docs/reference/kubectl/cheatsheet/
  
 https://github.com/dgkanatsios/CKAD-exercises
 
+https://www.linkedin.com/pulse/my-ckad-exam-experience-atharva-chauthaiwale/
+
+https://codeburst.io/resource-creation-tips-for-the-kubernetes-cka-ckd-certification-exam-740b70a13f97
+
+https://github.com/lucassha/CKAD-resources
+
