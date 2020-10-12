@@ -234,6 +234,44 @@ When a service account is created, it creates on token that would be used by a a
 kubectl describe serviceaccount my-service-account
 ```
 
+### Taints ant tolerations
+
+Tains and tolerations are means to restricts Pods to run in certain Nodes. A node may define a given taint, and only pods that define toleartion to that taint can run in that node. 
+
+to define a taint:
+
+```
+kubectl taint nodes <node-name>  <key>=<value>:<taint-effect>
+```
+
+there are three taint effects: NoSchedule, PreferNoSchedule, NoExectute.
+
+Taints are defined in Nodes, and tolerations are defined in Pods
+
+To define a toleration in a pod: 
+
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.15.12
+    ports:
+    - containerPort: 80
+  tolerations:
+  - key: "app"
+    operator: "Equal"
+    value: "blue"
+    effect: "NoSchedule"
+    #watchout! the values must be defined with " ".
+```
+
 
 
 
