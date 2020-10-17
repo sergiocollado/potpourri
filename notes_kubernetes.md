@@ -761,7 +761,7 @@ spec:
     effect: "NoSchedule"
     #watchout! the values must be defined with " ".
 ```
-### Howto Readiness and liveness probes.
+### Howto readiness and liveness probes.
 
 to check if an application is ready we can define different tests (or probes) to check if an app is running. Maybe with an HTTP test, or TCP test, or maybe executing a command within the container that runs a custom scritp that checks if the app is ready. 
 
@@ -911,7 +911,7 @@ kubectl get pods
 ```
 
 
-## howto Replica Set
+## Howto Replica Set
 
 A example file that defines a replica set:
 
@@ -1026,18 +1026,20 @@ Commands to create deployments:
 ```
  kubectl create -f <deployment_file.yaml>
  ```
-
+ 
+to update the deployment:
 ```
  kubectl apply -f <deployment_file.yaml>
  ```
 
 **Imperatively**:
 
+For this no definition file is needed. The needed replica set and pods are automatically created. 
 ```
 kubectl run <deployment_name> \
   --image  <image>:<tag>
   --replicas N \
-  --labels <key>=<value> \
+  --labels <key>=<value> \ c
   --port  XX \
   --generator deployment/apps.v1 \
   --save-config
@@ -1073,6 +1075,8 @@ To define a deploy period to perform another scale action:
 
 ## Howto Rollout
 
+A rollout is to launch a new software version. So for example, go from sw release 1 to sw release 2. 
+
 A deployment's rollout is triggered if and only if the deployment's Pod template (that is, .spec.template) is changed,
 
 To check the rollout status:
@@ -1087,11 +1091,16 @@ To view the rollout history:
 kubectl rollout history deployment nginx-deployment
 ```
 
+there are 2 deployment stragegies:
+
+**Recreation**: replace at one all the running version and launch instead all the new versions. the disadvantage is that at one momenet we have to take down all the sw, and the application is down up to it is replaced.
+
+**Rolling update**: one by one, the old versions are taken down and replaced by the new versions. This is the better approach as the application is always running.
 
 ## Howto Update deployments
 
 
-To update a deployment:
+To update a deployment, we just need to edit the definition of the deployment and apply it with the command:
 
 ```kubectl apply -f <deployment_file> ```
 
@@ -1113,7 +1122,7 @@ To the previous revision:
 kubectl rollout undo deployment <deployment_name>
 ```
 
-To a given revision number
+To a given revision number:
 
 ```
 kubectl rollout undo deployment <deployment_name> --to-revision=X
