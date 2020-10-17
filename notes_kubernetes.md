@@ -63,6 +63,30 @@ KuberAdm, that can automate much of the initial setup of a cluster.
 
 All kubernetes objects are identified by an unique name and an unique id (uid). And the objects are defined in manifest files (in YAML or JSON format). And those files define a desired state for the object, like name and container image. 
 
+## Pods
+
+A Pod, is the minimun unit of work in Kuberntetes. It is a group of containers that share storage and networking (all the containers share memory volumes and share the same IP).
+
+And a Pod can have one or more application containers (like docker or others). In case of more than one container, those will share resources. Each pod has an unique IP address. In case of several containers within a Pod, those will share the network namespace, including IP address and ports, and they can communicate through the local host. A Pod can also define a set of storage  volumes to be shared among its containers. 
+
+reference: https://kubernetes.io/docs/concepts/workloads/pods/
+
+
+A pod can have different status, the status is the point it its lifecicle. 
+
+- pending: the scheduler is looking in which node put the pod.
+- ContainerCreating: the applications for the pod are retrieved and the application starts. 
+- running: the application in the pod is runnning.
+
+Pod conditions tell us more about a pod status. 
+
+- Podscheduled
+- Initialized
+- ContainersReady
+- Ready
+
+
+
 
 ## Kubernetes object model
 
@@ -722,6 +746,82 @@ spec:
     effect: "NoSchedule"
     #watchout! the values must be defined with " ".
 ```
+### Howto Readiness and liveness probes.
+
+to check if an application is ready we can define different tests (or probes) to check if an app is running. Maybe with an HTTP test, or TCP test, or maybe executing a command within the container that runs a custom scritp that checks if the app is ready. 
+
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.15.12
+    ports:
+    - containerPort: 8080
+    readinessProbe:
+      httpGet:
+         path: /api/ready
+         port: 8080
+      initialDelaySeconds: 10
+      periodSeconds: 15
+      failureThreshold: 8
+```
+
+for a tcp probe:
+```
+    readinessProbe:
+       tcpSocket:
+           port: 3306
+```
+
+for a script probe:
+```
+    readinessProbe:
+        exec: 
+           command:
+           - cat
+           - /app/is_it_ready
+```
+
+
+extra options:
+
+```
+      initialDelaySeconds: 10
+      periodSeconds: 15
+      failureThreshold: 8
+```
+A livenes probe can check if an application is running as expected. And it can test periodically if the application within the container is "healthy", in case the test fails the the container is considered "unheathy" and destroyed.  The test, can be a http test, or a tcp test, or run a command that do the test. A liveness probe is defined similar to the readiness probe. 
+
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.15.12
+    ports:
+    - containerPort: 8080
+    livenessProbe:
+      httpGet:
+         path: /api/ready
+         port: 8080
+      initialDelaySeconds: 10
+      periodSeconds: 15
+      failureThreshold: 8
+```
+
 
 ### Howto Multi-container Pods.
 
