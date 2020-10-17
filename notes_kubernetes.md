@@ -113,11 +113,13 @@ Several Kubernetes controller objects:
  
 ### Labels
 
-Labels are pairs of key and value identifiers. Labels are used to identify and select objects. So Labels do not provide uniqueness. Controllers use labels to group togethers in a set decoupled objects, intead fo idetifing them by names.
+Labels are pairs of key and value identifiers. Labels are used to identify and select objects. So Labels do not provide uniqueness. Controllers use labels to group togethers in a set decoupled objects, instead fo idetifing them by names.
 
 ### Label Selectors
 
-there are two types of label selectors: equality-based ( = , ==, != ) and set-based selectors ( in, notin, exists, does not exist).
+There are two types of label selectors: equality-based ( = , ==, != ) and set-based selectors ( in, notin, exists, does not exist).
+
+Labels and selectors, is a method to define sets of pods. 
  
 ### Namespaces
 
@@ -431,6 +433,13 @@ spec:
                 secretkeyRef
           
 ```
+As any yaml definition file for Kubernetes it has 4 main parts:
+
+- apiVersion
+- kind
+- metadata
+- spec
+
 
 to create the Pod, use the command:
 
@@ -443,6 +452,12 @@ to verify that the pod has been created, use:
 ```
 kubectl get pods
 
+```
+
+to get the pods with a given label use:
+
+```
+kubectl get pods --selector app=myapp-pod
 ```
 
 to get more detailed info use:
@@ -898,12 +913,11 @@ kubectl get pods
 
 ## howto Replica Set
 
-A example file that defines a replica controller.
+A example file that defines a replica set:
 
 ```
 # replicaset-definition.yml
-apiVersion: app/v1
-#WATCHOUT: the correct version for a rs is the app/v1
+apiVersion: app/v1    #WATCHOUT: the correct version for a rs is the app/v1
 kind: ReplicationController
 metadata:
     name: myapp-replicaset
@@ -911,20 +925,21 @@ metadata:
         app: myapp
         type: front_end
 specs:
+    replicas: 3
+    selector: 
+        matchLabels
+            type: front-end  #!this label has to match with the label in the pods. (see below)
     template:
     # template, will be the template to the pods to replicate
     # so the info below match the metadata and specs of a pod definition
         metadata:
             name: myapp-pod
-            type: front-end
+            type: front-end  #! this label has to mathc with the sleector label of the replica-set. (see previous comment)
         spec:
             containers:
             - name: nginx-container
               image: nginx
-    replicas: 3
-    selector: 
-        matchLabels
-            type: front-end
+    
 ```
 
 A ReplicaSet can be used to monitor a group of Pods, that are already running, and in case those are not created, the replicaset can create them. the role of the replicaset is to monitor the pods, and if any were to fail, replace them by new ones. The way to identity the pods to monitor is by means of matching labels (with the matchLabel filter), defined in the definition of the Replica set.
