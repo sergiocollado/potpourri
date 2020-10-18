@@ -1231,44 +1231,102 @@ spec:
 ```
 
 
-## Jobs
+## Howto Jobs and CronJobs
 
 The Job controller creates one or more Pods required to run a task. When the task is completed, Job will then terminate all those Pods. A related controller is CronJob, which runs Pods on a time-based schedule. Jobs run a task up to its completion, rather than a desired state. 
-There are two main jobs definitions, parallel and non-parallel.
+
+There are two main jobs definitions: **parallel** and **non-parallel**.
  
 Non-parallel jobs cretate one pod at a time, and that pod, will be recreated if it doesn’t finish the job successfully. The condition to be successful is to finish the job, or that the job has run a given number of times. 
+
 Parallel jobs are those that work on parallel, where multiple pods are scheduled to work on the same job at the same time. They also have a completion count to satisfy. They are used when jobs have to be done more than once. A second type of parallel jobs are jobs with worker queues, in this each pod, work on several items from a queue, and then exits when there are no more items.  
+
 To create a non-parallel job:
 
 ```kubectl apply -f <job-file>```
 
 Or using the run command:
-‘’’ kubectl run <job-file> pi --image perl --restart Never -- perl -Mbignum bpi -wle “print bpi(2000)” ‘’’ 
+
+```kubectl run <job-file> pi --image perl --restart Never -- perl -Mbignum bpi -wle “print bpi(2000)” ```
+
 To inspect jobs 
-‘’’’ kubectl describe job <job-name> ‘’’
-‘’’ kubectl get pod -L <job-name=my-app-job>
+
+``` kubectl describe job <job-name> ```
+
+``` kubectl get pod -L <job-name=my-app-job> ```
+
 “-L” is the label selector.
-To scale jobs.
-‘’’ kubectl scale job <job_name> --replicas <value> ‘’’
-To delete a job
-‘’’Kubectl delete -f <job_name>’’’ 
-‘’’ kubectl delete job <job_name>’’’ 
+
+To scale jobs:
+
+```kubectl scale job <job_name> --replicas <value> ``` 
+
+To delete a job:
+
+```kubectl delete -f <job_name>```
+
+```kubectl delete job <job_name>```
  
-Or if retain a job is needed, use the cascade flag set to false
-‘’’ kubectl delete job <job_name> --cascade false ‘’’ 
+Or if retain a job is needed, use the cascade flag set to false:
+
+```kubectl delete job <job_name> --cascade false ```
  
-To schedule a job, CronJobs are used.
+To schedule a job and run it periodically, CronJobs are used.
+
 CronJobs use the required schedule field, which accepts a time in the Unix standard crontab format. All CronJob times are in UTC:
-The first value indicates the minute (between 0 and 59).
-The second value indicates the hour (between 0 and 23).
-The third value indicates the day of the month (between 1 and 31).
-The fourth value indicates the month (between 1 and 12).
-The fifth value indicates the day of the week (between 0 and 6).
-The schedule field also accepts * and ? as wildcard values. Combining / with ranges specifies that the task should repeat at a regular interval. In the example, */1 * * * * indicates that the task should repeat every minute of every day of every month.
+ - The first value indicates the minute (between 0 and 59).
+ - The second value indicates the hour (between 0 and 23).
+ - The third value indicates the day of the month (between 1 and 31).
+ - The fourth value indicates the month (between 1 and 12).
+ - The fifth value indicates the day of the week (between 0 and 6).
+ - The schedule field also accepts * and ? as wildcard values. Combining / with ranges specifies that the task should repeat at a regular interval. In the example, */1 * * * * indicates that the task should repeat every minute of every day of every month.
  
+
+To define a job with a file:
+
+```
+#job definition - job.yml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my-job
+spec:
+  completions: 8
+  parallelism: 4
+  template:
+     spec:
+        containers:
+          - name: my-job
+            image: my-job-image
+            command ['./launch_job']
+          
+        restartPolicy: Never
+```
  
- 
- 
+To define a CronJob file:
+
+```
+#Cronjob definition - cron-job.yml
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: my-cron-job
+spec:
+  schedule: "*/1 * * * *"
+  jobtemplate:
+     spec:
+        containers:
+          - name: my-cron-job
+            image: my-cron-job-image
+          
+        restartPolicy: Never
+```
+to create the cron-job
+
+```
+kubectl create -f cron-job.yml
+```
+
 ## Pod Networking
 
 In the kubernetes model, each pod is assigned a single IP address. And the containers in that pod, contain the same ip space, including that IP address. 
@@ -1276,7 +1334,6 @@ In the kubernetes model, each pod is assigned a single IP address. And the conta
 STORAGES ABSTRACTIONS
 **Volumes** are the method by which you attach storage to a Pod.
 Some Volumes are ephemeral, meaning they have the same life span as the pod they are attached to. Other volumes are persistent, meaning they can outlive a Pod. 
- 
  
  
 # Authentication, authorization and admission control
