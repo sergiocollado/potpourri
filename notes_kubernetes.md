@@ -367,25 +367,81 @@ To overcome this situation, the Service abstraction is provided. Given a set of 
 
 reference: https://kubernetes.io/docs/concepts/services-networking/service/
 
-## kube-proxy
+There are different types of services available:
+
+- **NodePort**: The service makes an internal pod accesible on a given port of the node.
+- **ClusterIP**: The service creates a virtual IP inside the cluster to enable communications between different services. For example from between front-end and backe end servers.
+- **LoadBalancer**: The service provideas a load balancer, in supported cloud provides (google, aws, azure...)
+
+
+### kube-proxy
 
 kube-proxy is a daemon in all the worker nodes, that monitorices the master node server api, to check for the addition or removal of services. Each kube-proxy, handles the ip-tables, to manage the traffic for each ClusterIP and fordward it to the suitable Service endpoint. 
 
-## Service discovery
+### Service discovery
 
 There are two ways to discover a service:
 
 - enviromental variables: when a Pod starts the kubelet daemon running in that node defines a set of enviromental variables that defines the active services. Be careful with this method, due if a Service is created after the Pod, this service will not be identifed.
+
 - DNS: kubernetes has an add-on for DNS, which creates a DNS record for each service. This is the recomended solution.
 
 reference: https://kubernetes.io/docs/concepts/services-networking/service/#discovering-services
 
-## Services types:
 
+### Services types:
 
 reference: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
 
-## Example of a Service configuration file:
+**NodePort**: A service can map a port in the node, to a port of the pod. The port in the pod, is the **TargetPort**, the port from the service that points to the target port, is the **Port**. Inside the Service, it has its own address, known as the ClusterIP of the service. And then we have the external port of the node, that is used to access from outside the node, and that is known as the **NodePort** (these nodeports, are defined by default in the range: 30000-32767).
+
+```
+#service-definition.yml
+apiVersion: v1
+kind: Service
+metadata:
+    name: my-service
+spec:
+    type: NodePort
+    ports: 
+       - targetPort: 80
+         port: 80
+         nodePort: 30007
+    selector:
+       app: my-app
+       key: my_key_value
+```
+to create the service:
+
+```
+kubectl create -f service-definition.yml
+```
+
+to list the services:
+
+```
+kubectl get services
+```
+
+**ClusterIP**:
+
+```
+#service-definition.yml
+apiVersion: v1
+kind: Service
+metadata:
+    name: my-service
+spec:
+    type: ClusterIP
+    ports: 
+       - targetPort: 80 #the port where the application is exposed
+         port: 80 #the port where the service is exposed.
+    selector:
+       app: my-app
+       key: my_key_value
+```
+
+### Example of a Service configuration file:
 
 ```
 apiVersion: v1
@@ -402,6 +458,7 @@ spec:
 ```
 
 <hr>
+
 # HOW TO's
 
 ## Howto Pods
