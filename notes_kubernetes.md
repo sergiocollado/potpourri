@@ -726,7 +726,7 @@ spec:
 
 ### Howto: Taints ant tolerations
 
-Tains and tolerations are means to restricts Pods to run in certain Nodes. A node may define a given taint, and only pods that define toleartion to that taint can run in that node. 
+Tains and tolerations are means to restrict Pods to run in certain Nodes. A node may define a given taint, and only pods that define toleRACtion to that taint can run in that node. 
 
 to define a taint:
 
