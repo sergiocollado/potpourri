@@ -457,6 +457,70 @@ spec:
     targetPort: 5000
 ```
 
+
+## Ingress
+
+Ingress allows users access the application using a single external url, that can be configured to run throught different services of the cluster. Althought the ingress must still be published as a service.
+
+To define an ingress you have to define a **ingress controller**, like:
+
+https://www.nginx.com/
+
+http://www.haproxy.org/
+
+https://doc.traefik.io/traefik/
+
+https://projectcontour.io/
+
+https://istio.io/
+
+
+An ingress controller must be deployed. For example, an nginx, and it can be deployed, just as any other deployment.
+
+```
+apiVersion: extensions/v1beta
+kind: Deployment
+metadata: 
+  name: nginx-ingress-controller
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+         name: nginx-ingress
+  template:
+      metadata: 
+         Labels: 
+            name: nginx-ingress
+      spec:
+         containers:
+             - name: nginx-ingress-controller
+               image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.21.0
+         args:
+             - /nginx-ingress-controller
+             - --configmap=$(POD_NAMESPACE)/nginx-config  #recommended to add a config map.
+         env:
+             - name: POD_NAME
+               valueFrom:
+                  fieldRef:
+                     fieldPath: metadata.name
+             - name:
+               valueFrom:
+                  fieldRef:
+                     fieldPath: metadata.namespace
+        ports:
+             - name: http
+               containerPort: 80
+             - name: https
+               containerPort: 443
+```
+
+then a service must be defined to publish the ingress controller
+
+```
+```
+
+
+And define a set of rules, related as ingress resources
 <hr>
 
 # HOW TO's
@@ -1426,3 +1490,8 @@ https://codeburst.io/resource-creation-tips-for-the-kubernetes-cka-ckd-certifica
 
 https://github.com/lucassha/CKAD-resources
 
+https://www.nginx.com/
+
+http://www.haproxy.org/
+
+https://doc.traefik.io/traefik/
