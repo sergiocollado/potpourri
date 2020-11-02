@@ -494,11 +494,16 @@ spec:
       spec:
          containers:
              - name: nginx-ingress-controller
-               image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.21.0
+               image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.21.0 
+               # above is defined a custom build of nginx for being an ingress controller for k8s
          args:
-             - /nginx-ingress-controller
+             - /nginx-ingress-controller  #command to start the nginx controller.
              - --configmap=$(POD_NAMESPACE)/nginx-config  #recommended to add a config map.
+             # with the definition of a config map, you can define for example variables for
+             # nginx, like the log paths, keeps alive, secure protocols settings, timeouts
+             # and with this you can decouple those parameters from the container image. 
          env:
+            # Envirmental variables that define the pod's name and the namespace are needed
              - name: POD_NAME
                valueFrom:
                   fieldRef:
@@ -517,7 +522,27 @@ spec:
 then a service must be defined to publish the ingress controller
 
 ```
+appVersion: v1
+kind: Service
+metadata:
+    name: nginx-ingress
+spec: 
+    type: NodePort
+    ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+    - port: 443
+      targetPort: 443
+      protocol: TCP
+      name: https
+    selector:
+      name: nginx-ingress
 ```
+
+a service account with the required permissions, also needs to be created:
+
 
 
 And define a set of rules, related as ingress resources
