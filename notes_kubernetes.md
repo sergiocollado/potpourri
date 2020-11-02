@@ -454,7 +454,6 @@ spec:
     targetPort: 5000
 ```
 
-
 ## Ingress
 
 Ingress allows users access the application using a single external url, that can be configured to run throught different services of the cluster. Althought the ingress must still be published as a service.
@@ -478,143 +477,9 @@ https://istio.io/
 
 An ingress controller must be deployed. For example, an nginx, and it can be deployed, just as any other deployment.
 
-```
-apiVersion: extensions/v1beta
-kind: Deployment
-metadata: 
-  name: nginx-ingress-controller
-spec:
-  replicas: 1
-  selector:
-      matchLabels:
-         name: nginx-ingress
-  template:
-      metadata: 
-         Labels: 
-            name: nginx-ingress
-      spec:
-         containers:
-             - name: nginx-ingress-controller
-               image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.21.0 
-               # above is defined a custom build of nginx for being an ingress controller for k8s
-         args:
-             - /nginx-ingress-controller  #command to start the nginx controller.
-             - --configmap=$(POD_NAMESPACE)/nginx-config  #recommended to add a config map.
-             # with the definition of a config map, you can define for example variables for
-             # nginx, like the log paths, keeps alive, secure protocols settings, timeouts
-             # and with this you can decouple those parameters from the container image. 
-         env:
-            # Envirmental variables that define the pod's name and the namespace are needed
-             - name: POD_NAME
-               valueFrom:
-                  fieldRef:
-                     fieldPath: metadata.name
-             - name:
-               valueFrom:
-                  fieldRef:
-                     fieldPath: metadata.namespace
-        ports:
-             - name: http
-               containerPort: 80
-             - name: https
-               containerPort: 443
-```
-
-then a service must be defined to publish the ingress controller
-
-```
-appVersion: v1
-kind: Service
-metadata:
-    name: nginx-ingress
-spec: 
-    type: NodePort
-    ports:
-    - port: 80
-      targetPort: 80
-      protocol: TCP
-      name: http
-    - port: 443
-      targetPort: 443
-      protocol: TCP
-      name: https
-    selector:
-      name: nginx-ingress
-```
-
-a service account with the required permissions, also needs to be created:
-
-```
-apiVersion: v1
-kind: ServiceAccount
-metadata: 
-    name: nginx-ingress-serviceaccount
-    # ....
-```
-
-
 Also,in addition to the ingress controller, we have to define a set of rules, related as **ingress resources**.
 
 An ingress resource, will define rules, like routing all the traffic to a single application, or direct the traffic to different applications based on the url or the domain name. 
-
-The ingress resource is defined with a k8s definition file (.yaml). It define rules to route traffic
-
-```
-# ingres-rule.yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata: 
-    name: ingress-rule
-spec:
-    backend:
-         serviceName: rule-service # service name
-         servicePort: 80
-```
-
-to route the traffic according to URL:
-```
-# ingress-url-rule.yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata: 
-    name: ingress-rule
-spec:
-    rules:
-    - http: 
-         paths:   # paths is an array of different items
-         - path:  /main-topic
-             backend:
-                serviceName: main-topic-service # service name
-                servicePort: 80
-         - path: /second-topic
-                serviceName: second-topic-service # service name
-                servicePort: 80
-```
-
-
-or to make rules based on domain names:
-
-```
-# ingress-domain-name-rule.yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata: 
-    name: ingress-rule
-spec:
-    rules:
-    - host: domainName1.com
-       http: 
-         paths:   # paths is an array of different items
-           - backend:
-                serviceName: domainName_1_service# service name
-                servicePort: 80
-     - host: domainName2.com
-        http: 
-         paths:   # paths is an array of different items
-           - backend:
-                serviceName: domainName_2_service # service name
-                servicePort: 80  
-```
 
 
 <hr>
@@ -1496,8 +1361,7 @@ CronJobs use the required schedule field, which accepts a time in the Unix stand
  - The third value indicates the day of the month (between 1 and 31).
  - The fourth value indicates the month (between 1 and 12).
  - The fifth value indicates the day of the week (between 0 and 6).
- - The schedule field also accepts * and ? as wildcard values. Combining / with ranges specifies that the task should repeat at a regular interval. In the example, */1 * * * * indicates that the task should repeat every minute of every day of every month.
- 
+ - The schedule field also accepts * and ? as wildcard values. Combining / with ranges specifies that the task should repeat at a regular interval. In the example, */1 * * * * indicates that the task should repeat every minute of every day of every month. 
 
 To define a job with a file:
 
@@ -1561,6 +1425,170 @@ To access and manage kubernetes there are three stages:
 - authorization: authorizes the requests API.
 - admission control: software modules that can handle requests based on extra information.
 
+ 
+ ## HowTo Ingress
+
+Ingress allows users access the application using a single external url, that can be configured to run throught different services of the cluster. Althought the ingress must still be published as a service.
+
+An Ingress has two main components
+
+ - ingress controller
+ - ingress resources
+
+To define an ingress you have to define a **ingress controller**, like:
+
+https://www.nginx.com/
+
+http://www.haproxy.org/
+
+https://doc.traefik.io/traefik/
+
+https://projectcontour.io/
+
+https://istio.io/
+
+An ingress controller must be deployed. For example, an nginx, and it can be deployed, just as any other deployment.
+
+```
+apiVersion: extensions/v1beta
+kind: Deployment
+metadata: 
+  name: nginx-ingress-controller
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+         name: nginx-ingress
+  template:
+      metadata: 
+         Labels: 
+            name: nginx-ingress
+      spec:
+         containers:
+             - name: nginx-ingress-controller
+               image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.21.0 
+               # above is defined a custom build of nginx for being an ingress controller for k8s
+         args:
+             - /nginx-ingress-controller  #command to start the nginx controller.
+             - --configmap=$(POD_NAMESPACE)/nginx-config  #recommended to add a config map.
+             # with the definition of a config map, you can define for example variables for
+             # nginx, like the log paths, keeps alive, secure protocols settings, timeouts
+             # and with this you can decouple those parameters from the container image. 
+         env:
+            # Envirmental variables that define the pod's name and the namespace are needed
+             - name: POD_NAME
+               valueFrom:
+                  fieldRef:
+                     fieldPath: metadata.name
+             - name:
+               valueFrom:
+                  fieldRef:
+                     fieldPath: metadata.namespace
+        ports:
+             - name: http
+               containerPort: 80
+             - name: https
+               containerPort: 443
+```
+
+then a service must be defined to publish the ingress controller
+
+```
+appVersion: v1
+kind: Service
+metadata:
+    name: nginx-ingress
+spec: 
+    type: NodePort
+    ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+    - port: 443
+      targetPort: 443
+      protocol: TCP
+      name: https
+    selector:
+      name: nginx-ingress
+```
+
+a service account with the required permissions, also needs to be created:
+
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata: 
+    name: nginx-ingress-serviceaccount
+    # ....
+```
+
+
+Also,in addition to the ingress controller, we have to define a set of rules, related as **ingress resources**.
+
+An ingress resource, will define rules, like routing all the traffic to a single application, or direct the traffic to different applications based on the url or the domain name. 
+
+The ingress resource is defined with a k8s definition file (.yaml). It define rules to route traffic
+
+```
+# ingres-rule.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata: 
+    name: ingress-rule
+spec:
+    backend:
+         serviceName: rule-service # service name
+         servicePort: 80
+```
+
+to route the traffic according to URL:
+```
+# ingress-url-rule.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata: 
+    name: ingress-rule
+spec:
+    rules:
+    - http: 
+         paths:   # paths is an array of different items
+         - path:  /main-topic
+             backend:
+                serviceName: main-topic-service # service name
+                servicePort: 80
+         - path: /second-topic
+                serviceName: second-topic-service # service name
+                servicePort: 80
+```
+
+
+or to make rules based on domain names:
+
+```
+# ingress-domain-name-rule.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata: 
+    name: ingress-rule
+spec:
+    rules:
+    - host: domainName1.com
+       http: 
+         paths:   # paths is an array of different items
+           - backend:
+                serviceName: domainName_1_service# service name
+                servicePort: 80
+     - host: domainName2.com
+        http: 
+         paths:   # paths is an array of different items
+           - backend:
+                serviceName: domainName_2_service # service name
+                servicePort: 80  
+```
+ 
+ 
+ 
  
 MINIKUBE. - 
 Minikube is a single node local kubernetes cluster - with this you can create an all-in-one kubernetes setup.
