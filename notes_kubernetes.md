@@ -86,8 +86,6 @@ Pod conditions tell us more about a pod status.
 - Ready
 
 
-
-
 ## Kubernetes object model
 
 In Kubernetes objects, represent different persistent entities, that represent:
@@ -388,7 +386,6 @@ There are two ways to discover a service:
 
 reference: https://kubernetes.io/docs/concepts/services-networking/service/#discovering-services
 
-
 ### Services types:
 
 reference: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
@@ -462,6 +459,11 @@ spec:
 
 Ingress allows users access the application using a single external url, that can be configured to run throught different services of the cluster. Althought the ingress must still be published as a service.
 
+An Ingress has two main components
+
+ - ingress controller
+ - ingress resources
+
 To define an ingress you have to define a **ingress controller**, like:
 
 https://www.nginx.com/
@@ -473,7 +475,6 @@ https://doc.traefik.io/traefik/
 https://projectcontour.io/
 
 https://istio.io/
-
 
 An ingress controller must be deployed. For example, an nginx, and it can be deployed, just as any other deployment.
 
@@ -543,9 +544,79 @@ spec:
 
 a service account with the required permissions, also needs to be created:
 
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata: 
+    name: nginx-ingress-serviceaccount
+    # ....
+```
 
 
-And define a set of rules, related as ingress resources
+Also,in addition to the ingress controller, we have to define a set of rules, related as **ingress resources**.
+
+An ingress resource, will define rules, like routing all the traffic to a single application, or direct the traffic to different applications based on the url or the domain name. 
+
+The ingress resource is defined with a k8s definition file (.yaml). It define rules to route traffic
+
+```
+# ingres-rule.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata: 
+    name: ingress-rule
+spec:
+    backend:
+         serviceName: rule-service # service name
+         servicePort: 80
+```
+
+to route the traffic according to URL:
+```
+# ingress-url-rule.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata: 
+    name: ingress-rule
+spec:
+    rules:
+    - http: 
+         paths:   # paths is an array of different items
+         - path:  /main-topic
+             backend:
+                serviceName: main-topic-service # service name
+                servicePort: 80
+         - path: /second-topic
+                serviceName: second-topic-service # service name
+                servicePort: 80
+```
+
+
+or to make rules based on domain names:
+
+```
+# ingress-domain-name-rule.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata: 
+    name: ingress-rule
+spec:
+    rules:
+    - host: domainName1.com
+       http: 
+         paths:   # paths is an array of different items
+           - backend:
+                serviceName: domainName_1_service# service name
+                servicePort: 80
+     - host: domainName2.com
+        http: 
+         paths:   # paths is an array of different items
+           - backend:
+                serviceName: domainName_2_service # service name
+                servicePort: 80  
+```
+
+
 <hr>
 
 # HOW TO's
