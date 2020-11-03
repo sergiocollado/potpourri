@@ -481,6 +481,41 @@ Also,in addition to the ingress controller, we have to define a set of rules, re
 
 An ingress resource, will define rules, like routing all the traffic to a single application, or direct the traffic to different applications based on the url or the domain name. 
 
+## Network policies
+
+https://kubernetes.io/docs/concepts/cluster-administration/networki
+
+```
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: 
+   name: db-policy
+spec:
+   podSelector:
+      matchLabels:
+         role: DataBase
+   policyTypes:
+   - Ingress
+   ingress:
+   - from: 
+     - podSelector:
+       matchLabels:
+          name: api-pod
+   ports:
+   - protocol: TCP
+     port: 3309
+```
+
+Solutions that support network policies:
+
+https://www.kube-router.io/
+
+https://docs.projectcalico.org/getting-started/kubernetes/
+
+https://romana.io/
+
+https://kubernetes.io/docs/tasks/administer-cluster/network-policy-provider/weave-network-policy/
+
 
 <hr>
 
@@ -1104,7 +1139,6 @@ Commands to create deployments:
 
 **Declaratively**:
 
-
 ```
  kubectl create -f <deployment_file.yaml>
  ```
@@ -1531,7 +1565,7 @@ An ingress resource, will define rules, like routing all the traffic to a single
 The ingress resource is defined with a k8s definition file (.yaml). It define rules to route traffic
 
 ```
-# ingres-rule.yaml
+# ingress-rule.yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata: 
@@ -1619,3 +1653,5 @@ https://www.nginx.com/
 http://www.haproxy.org/
 
 https://doc.traefik.io/traefik/
+
+certification: https://www.cncf.io/certification/ckad/
