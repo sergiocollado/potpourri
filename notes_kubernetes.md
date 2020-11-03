@@ -878,10 +878,10 @@ spec:
     effect: "NoSchedule"
     #watchout! the values must be defined with " ".
 ```
+
 ### Howto readiness and liveness probes.
 
 to check if an application is ready we can define different tests (or probes) to check if an app is running. Maybe with an HTTP test, or TCP test, or maybe executing a command within the container that runs a custom scritp that checks if the app is ready. 
-
 
 ```
 apiVersion: v1
@@ -978,10 +978,7 @@ spec:
 ```
 this is known as the sidecar pattern, but there are other patterns as the ambassador or the adapter.
 
-
-
 ## Howto Replica Controller
-
 
 ```
 # rc-definition.yml
@@ -1026,7 +1023,6 @@ to check the pods run by the replication controller:
 ```
 kubectl get pods
 ```
-
 
 ## Howto Replica Set
 
@@ -1636,6 +1632,8 @@ https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-in
 
 https://github.com/dysinger/learn-minikube
 
+https://github.com/lucassha/CKAD-resources
+
 https://medium.com/bb-tutorials-and-thoughts/practice-enough-with-these-questions-for-the-ckad-exam-2f42d1228552
 
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
@@ -1646,12 +1644,21 @@ https://www.linkedin.com/pulse/my-ckad-exam-experience-atharva-chauthaiwale/
 
 https://codeburst.io/resource-creation-tips-for-the-kubernetes-cka-ckd-certification-exam-740b70a13f97
 
-https://github.com/lucassha/CKAD-resources
 
 https://www.nginx.com/
 
 http://www.haproxy.org/
 
 https://doc.traefik.io/traefik/
+
+https://www.kube-router.io/
+
+https://docs.projectcalico.org/getting-started/kubernetes/
+
+https://romana.io/
+
+https://kubernetes.io/docs/tasks/administer-cluster/network-policy-provider/weave-network-policy/
+
+
 
 certification: https://www.cncf.io/certification/ckad/
