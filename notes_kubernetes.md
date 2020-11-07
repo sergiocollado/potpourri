@@ -88,8 +88,8 @@ Pod conditions tell us more about a pod status.
 
 ## Kubernetes object model
 
-In Kubernetes objects, represent different persistent entities, that represent:
-The containerized apps that are running and in which node.
+In Kubernetes objects, represent different persistent entities, that represent the containerized apps that are running and in which node.
+
 Resources consumption
 Policies reated to the applications, like restart/upgrade, fault tolerances, …
 For each object, we declare the intent in the _**spec**_ section. Tye _**spec**_ section describes the desired object state. kubernetes manages the _**status**_ section for the objects, where it records the actual state of the objects. At any given point in time, kubernetes tries to match the object current state to the desired state. 
