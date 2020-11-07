@@ -60,30 +60,7 @@ Kube-proxy  handles network connectivity among the pods in the cluster.
 
 KuberAdm, that can automate much of the initial setup of a cluster.
 
-
 All kubernetes objects are identified by an unique name and an unique id (uid). And the objects are defined in manifest files (in YAML or JSON format). And those files define a desired state for the object, like name and container image. 
-
-## Pods
-
-A Pod, is the minimun unit of work in Kuberntetes. It is a group of containers that share storage and networking (all the containers share memory volumes and share the same IP).
-
-And a Pod can have one or more application containers (like docker or others). In case of more than one container, those will share resources. Each pod has an unique IP address. In case of several containers within a Pod, those will share the network namespace, including IP address and ports, and they can communicate through the local host. A Pod can also define a set of storage  volumes to be shared among its containers. 
-
-reference: https://kubernetes.io/docs/concepts/workloads/pods/
-
-
-A pod can have different status, the status is the point it its lifecicle. 
-
-- pending: the scheduler is looking in which node put the pod.
-- ContainerCreating: the applications for the pod are retrieved and the application starts. 
-- running: the application in the pod is runnning.
-
-Pod conditions tell us more about a pod status. 
-
-- Podscheduled
-- Initialized
-- ContainersReady
-- Ready
 
 
 ## Kubernetes object model
@@ -109,6 +86,52 @@ Several Kubernetes controller objects:
  - DaemonSets
  - Jobs
  
+
+## Pods
+
+A Pod, is the minimun unit of work in Kuberntetes. It is a group of containers that share storage and networking (all the containers share memory volumes and share the same IP).
+
+And a Pod can have one or more application containers (like docker or others). In case of more than one container, those will share resources. Each pod has an unique IP address. In case of several containers within a Pod, those will share the network namespace, including IP address and ports, and they can communicate through the local host. A Pod can also define a set of storage  volumes to be shared among its containers. 
+
+reference: https://kubernetes.io/docs/concepts/workloads/pods/
+
+A pod can have different status, the status is the point it its lifecicle. 
+
+- pending: the scheduler is looking in which node put the pod.
+- ContainerCreating: the applications for the pod are retrieved and the application starts. 
+- running: the application in the pod is runnning.
+
+Pod conditions tell us more about a pod status. 
+
+- Podscheduled
+- Initialized
+- ContainersReady
+- Ready
+
+### Example of a Pod configuration file
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.15.12
+    ports:
+    - containerPort: 80
+```
+
+the field **apiVersion** just points to the api version we want to connect to.
+
+the field **kind** specifies the type of object.
+
+The field **metadata** defines basic object information like name and labels.
+
+
 ### Labels
 
 Labels are pairs of key and value identifiers. Labels are used to identify and select objects. So Labels do not provide uniqueness. Controllers use labels to group togethers in a set decoupled objects, instead fo idetifing them by names.
@@ -130,7 +153,7 @@ k8s generates four default namespaces: kube-system, kube-public, kube-node-lease
 - kube-public: special namespace which is unsecured and readable, used to expose information publically.
 - kube-node-lease: contains the node lease objects, for node heartbeat data.  
 
-It is possible to create custom namespaces, for example one named 'dev" for development, and other 'prod' for production purpouses.
+It is possible to create custom namespaces, for example one named 'dev" for development, and other 'prod' for production pourpouses.
 
 ### Replication Controller
 
@@ -149,6 +172,8 @@ A ReplicaSet controller ensures that a population of Pods, all identical, are ru
 
 A ReplicaSet can be used to monitor a group of Pods, that are already running, and in case those are not created, the replicaset can create them. the role of the replicaset is to monitor the pods, and if any were to fail, replace them by new ones. The way to identity the pods to monitor is by means of matching labels (with the matchLabel filter), defined in the definition of the Replica set.
 
+Replication Controllers perform a similar role to the combination of ReplicaSets and Deployments, but their use is no longer recommended. Because Deployments provide a helpful "front end" to ReplicaSets.
+
 ### Deployment Controllers
 
 Deployments let you do declarative updates to ReplicaSets and Pods. In fact, Deployments manage their own ReplicaSets to achieve the declarative goals you prescribe, so you will most commonly work with Deployment objects.
@@ -157,8 +182,11 @@ Deployments let you create, update, roll back, and scale Pods, using ReplicaSets
 
 reference: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 
-Replication Controllers perform a similar role to the combination of ReplicaSets and Deployments, but their use is no longer recommended. Because Deployments provide a helpful "front end" to ReplicaSets.
-In the need to deploy applications that maintain local state, StatefulSet is a better option. A StatefulSet is similar to a Deployment in that the Pods use the same container spec. The Pods created through Deployment are not given persistent identities, however; by contrast, Pods created using StatefulSet have unique persistent identities with stable network identity and persistent disk storage. So for persistent storage, the StatefulSet is the best option, defining a network storage. 
+Replication Controllers perform a similar role to the combination of ReplicaSets and Deployments, but their use is no longer recommended. Because Deployments provide a helpful "front end" to ReplicaSets. In the need to deploy applications that maintain local state, StatefulSet is a better option. 
+ 
+### StatefulSet
+
+A StatefulSet is similar to a Deployment in that the Pods use the same container spec. The Pods created through Deployment are not given persistent identities, however; by contrast, Pods created using StatefulSet have unique persistent identities with stable network identity and persistent disk storage. So for persistent storage, the StatefulSet is the best option, defining a network storage. 
 If you need to run certain Pods on all the nodes within the cluster or on a selection of nodes, use DaemonSet. DaemonSet ensures that a specific Pod is always running on all or some subset of the nodes. If new nodes are added, DaemonSet will automatically set up Pods in those nodes with the required specification. The word "daemon" is a computer science term meaning a non-interactive process that provides useful services to other processes in the background. A Kubernetes cluster might use a DaemonSet to ensure that a logging agent like fluentd is running on all nodes in the cluster. DeamonSets are useful, if you want to have logging and auditing processes in all the nodes of your cluster. 
 The Job controller creates one or more Pods required to run a task. When the task is completed, Job will then terminate all those Pods. A related controller is CronJob, which runs Pods on a time-based schedule. Jobs run a task up to its completion, rather than a desired state. 
 
