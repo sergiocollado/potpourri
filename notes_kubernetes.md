@@ -556,11 +556,26 @@ a node for any reason. So don’t use emptyDir volumes for data of
 lasting value. Applications usually use emptyDir for short-term 
 purposes.
 
-### Persisten Volumes
+### Persistent Volumes & Persistent Volume Claims
 
 https://kubernetes.io/docs/concepts/storage/persistent-volumes/
 
+A persistent volume has a livecycle that is not attached to the pod that is using it. Persistent storage makes it possible to deal with failures and 
+allow for dynamic rescheduling of  components without loss of data. 
 
+A **persistent volume (PV)** is pool of storage volumes configured by an administrator. Those persistent volumes are requested to be used by a **Persisten Volume Claims (PVC)** in the pods that need them.
+
+Application developers can claim and use provisioned storage using PersistentVolumeClaims without creating and 
+maintaining storage volumes directly. This enforces the separation of roles (microservices).  It’s the job of administrators to make persistent volumes 
+available, and the job of developers to use those volumes in applications. The two job roles can work independently (decoupled) of each other.
+
+PersistentVolumes provide a level of abstraction that lets you decouple storage administration from application configuration.
+
+PersistentVolumeClaims are requests  made by Pods to use PersistentVolumes. Within a PersistentVolumeClaim object, 
+you define a Volume size, access mode, and StorageClass. What’s a StorageClass? It’s a set of storage characteristics that you’ve given a name to.
+
+A Pod uses this PersistentVolumeClaim to request a PersistentVolume. If a PersistentVolume matches all the requirements defined in a PersistentVolumeClaim, the 
+PersistentVolumeClaim is bound to that PersistentVolume. 
 
 ## Dynamic Volume Provisioning & Storage classes
 
