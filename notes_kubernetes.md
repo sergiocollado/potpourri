@@ -517,6 +517,48 @@ https://romana.io/
 https://kubernetes.io/docs/tasks/administer-cluster/network-policy-provider/weave-network-policy/
 
 
+## Volumes
+
+https://kubernetes.io/docs/concepts/storage/volumes/
+
+Volumes can be of temporal or persistent nature.
+
+Ephemeral Volumes are created and destroyed with the pod they belong to.
+
+
+### Ephemeral volumes
+For example a pod definition with a NFS volume:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+ name: web
+spec:
+containers:
+ - name: web
+ image: nginx
+volumeMounts:
+ - mountPath: /mnt/vol
+ name: nfs
+volumes:
+- name: nfs
+ server:10.1.1.2
+     path: "/"
+     readOnly: false
+ ```
+ 
+ An emptyDir volume is simply an empty directory that allows the 
+containers within the Pod to read and write to and from it. It’s 
+created when a Pod is assigned to a node, and it exists as long as 
+the Pod exists. However, it’ll be deleted if the Pod is removed from 
+a node for any reason. So don’t use emptyDir volumes for data of 
+lasting value. Applications usually use emptyDir for short-term 
+purposes.
+
+### Persisten Volumes
+
+https://kubernetes.io/docs/concepts/storage/persistent-volumes/
 
 
 
@@ -1668,6 +1710,10 @@ https://docs.projectcalico.org/getting-started/kubernetes/
 https://romana.io/
 
 https://kubernetes.io/docs/tasks/administer-cluster/network-policy-provider/weave-network-policy/
+
+https://www.gluster.org/
+
+https://flocker.readthedocs.io/en/latest/kubernetes-integra
 
 
 
