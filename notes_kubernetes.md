@@ -517,6 +517,16 @@ https://romana.io/
 https://kubernetes.io/docs/tasks/administer-cluster/network-policy-provider/weave-network-policy/
 
 
+
+
+
+## Dynamic Volume Provisioning & Storage classes
+
+https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/
+
+With storage classes you can provison a volume when a claim is made in a pod, that is known as dynamic volume provisioning.
+
+
 <hr>
 
 # HOW TO's
