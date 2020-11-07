@@ -548,13 +548,17 @@ volumes:
      readOnly: false
  ```
  
- An emptyDir volume is simply an empty directory that allows the 
+ Secrets and ConfigMaps are other example of ephemeral volumes.
+ 
+ Other example is the: emptyDir volume is simply an empty directory that allows the 
 containers within the Pod to read and write to and from it. It’s 
 created when a Pod is assigned to a node, and it exists as long as 
 the Pod exists. However, it’ll be deleted if the Pod is removed from 
 a node for any reason. So don’t use emptyDir volumes for data of 
 lasting value. Applications usually use emptyDir for short-term 
 purposes.
+
+https://kubernetes.io/docs/concepts/storage/volumes/#emptydir
 
 ### Persistent Volumes & Persistent Volume Claims
 
@@ -576,6 +580,42 @@ you define a Volume size, access mode, and StorageClass. What’s a StorageClass
 
 A Pod uses this PersistentVolumeClaim to request a PersistentVolume. If a PersistentVolume matches all the requirements defined in a PersistentVolumeClaim, the 
 PersistentVolumeClaim is bound to that PersistentVolume. 
+
+example of a pod with a PVC:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+ name: demo-pod
+spec:
+containers:
+ - name: demo-container
+ image: gcr.io/hello-app:1.0
+volumeMounts:
+ - mountPath: /demo-pod
+ name: pd-volume
+volumes:
+- name: pd-volume
+ PersistentVolumeClaim:
+claimName: pd-volume-claim
+```
+
+and the persistant volume:
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+ name: pd-volume-claim
+spec:
+storageClassName: “standard"
+ accessModes: 
+- ReadWriteOnce: 
+ resources:
+requests: 
+storage: 100G
+```
 
 ## Dynamic Volume Provisioning & Storage classes
 
