@@ -186,8 +186,20 @@ Replication Controllers perform a similar role to the combination of ReplicaSets
  
 ### StatefulSet
 
-A StatefulSet is similar to a Deployment in that the Pods use the same container spec. The Pods created through Deployment are not given persistent identities, however; by contrast, Pods created using StatefulSet have unique persistent identities with stable network identity and persistent disk storage. So for persistent storage, the StatefulSet is the best option, defining a network storage. 
+A StatefulSet is similar to a Deployment in that the Pods use the same container spec. The Pods created through Deployment are not given persistent identities, however; by contrast, Pods created using StatefulSet have unique persistent identities with stable network identity and persistent disk storage. So for persistent storage, the StatefulSet is the best option, defining a network storage. In A StatetufSet, the ordern in which the pods are created is also defined, this doesn`t happen in a Deployment.
+
+StatefulSet is better use when the instances are needed to come up in a given order, and/or the instances need a stable name or network address. Watch out when defining a StatefulSet, because you have to define a Service name (headless Service)
+
+A headless service is a Service that doesnt do load balancing, but uses a DNS request for each pod. 
+https://kubernetes.io/docs/concepts/services-networking/service/#headless-services
+
+https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
+https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/
+
+### DaemonSet
 If you need to run certain Pods on all the nodes within the cluster or on a selection of nodes, use DaemonSet. DaemonSet ensures that a specific Pod is always running on all or some subset of the nodes. If new nodes are added, DaemonSet will automatically set up Pods in those nodes with the required specification. The word "daemon" is a computer science term meaning a non-interactive process that provides useful services to other processes in the background. A Kubernetes cluster might use a DaemonSet to ensure that a logging agent like fluentd is running on all nodes in the cluster. DeamonSets are useful, if you want to have logging and auditing processes in all the nodes of your cluster. 
+
+### Job controller
 The Job controller creates one or more Pods required to run a task. When the task is completed, Job will then terminate all those Pods. A related controller is CronJob, which runs Pods on a time-based schedule. Jobs run a task up to its completion, rather than a desired state. 
 
 ### Example of a Deployment's configuration file
