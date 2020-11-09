@@ -86,7 +86,18 @@ Several Kubernetes controller objects:
  - DaemonSets
  - Jobs
  
+## shortcuts names
 
+ - po for ods
+ - rs for ReplicaSets
+ - deploy for Deployments
+ - svc for Services
+ - ns for namespaces
+ - netpol for network policies
+ - pv for PersistentVolumes
+ - pvc for PersistentVolumeClaims
+ - sa for Service accounts
+ 
 ## Pods
 
 A Pod, is the minimun unit of work in Kuberntetes. It is a group of containers that share storage and networking (all the containers share memory volumes and share the same IP).
