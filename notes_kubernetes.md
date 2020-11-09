@@ -603,6 +603,7 @@ https://kubernetes.io/docs/concepts/storage/volumes/#emptydir
 ### Persistent Volumes & Persistent Volume Claims
 
 https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/
 
 A persistent volume has a livecycle that is not attached to the pod that is using it. Persistent storage makes it possible to deal with failures and 
 allow for dynamic rescheduling of  components without loss of data. 
