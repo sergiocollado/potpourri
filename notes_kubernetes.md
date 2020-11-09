@@ -641,7 +641,7 @@ volumes:
 claimName: pd-volume-claim
 ```
 
-and the persistant volume:
+and the persistant volume claim:
 
 ```
 apiVersion: v1
@@ -656,6 +656,23 @@ storageClassName: “standard"
 requests: 
 storage: 100G
 ```
+and the persistant volume:
+
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata: 
+    name: pv-vol1
+spec:
+   accessModes:
+       - ReadWriteOnce
+   capacity:
+       storage: 100G
+   getPersistentDisk:
+       pdName: pd-disk
+       fsType: ext4
+```
+
 
 ## Dynamic Volume Provisioning & Storage classes
 
