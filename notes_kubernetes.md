@@ -680,6 +680,54 @@ https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/
 
 With storage classes you can provison a volume when a claim is made in a pod, that is known as dynamic volume provisioning.
 
+With dynamic provision:
+
+example of a pod with a PVC:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-pod
+spec:
+  containers:
+   - name: demo-container
+     image: gcr.io/hello-app:1.0
+     volumeMounts:
+     - mountPath: /demo-pod
+       name: pd-volume
+  volumes:
+  - name: pd-volume
+  PersistentVolumeClaim:
+    claimName: pd-volume-claim
+```
+
+and the persistant volume claim:
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+ name: pd-volume-claim
+spec:
+ accessModes: 
+- ReadWriteOnce: 
+storageClassName: google-storage
+ resources:
+     requests: 
+       storage: 500Mi
+```
+
+and the persistant volume:
+
+```
+#sc-definition.yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata: 
+    name: google-storage
+provisioner: kubernetes.io/gce-pd
+```
 
 <hr>
 
