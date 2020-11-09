@@ -1888,5 +1888,15 @@ https://www.gluster.org/
 https://flocker.readthedocs.io/en/latest/kubernetes-integra
 
 
+For certification:
+
+https://www.youtube.com/watch?v=rnemKrveZks&feature=youtu.be
+
+https://www.youtube.com/watch?v=z0VSJPdP674
+
+https://www.youtube.com/watch?v=5cgpFWVD8ds
+
+https://www.youtube.com/watch?v=qA4dNATs
+
 
 certification: https://www.cncf.io/certification/ckad/
