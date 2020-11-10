@@ -1323,3 +1323,5 @@ community-developed list of software and hardware weakness types ->  http://cwe.
 
 c programming - the gnu C library : https://www.gnu.org/software/libc/manual/html_node/index.html
 
+https://internalpointers.com/post/modern-cmake-beginner-introduction
+
