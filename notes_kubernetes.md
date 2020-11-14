@@ -1326,6 +1326,9 @@ to delete a replica set, just use the 'delete' command:
 kubectl delete replicaset myapp-replicaset
 ```
 
+example: https://www.youtube.com/watch?v=Y2SA7sCtKSs&feature=youtu.be
+
+
 ## Howto Deployments
 
 A sample definition file for a deployment would be:
