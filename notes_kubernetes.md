@@ -54,7 +54,7 @@ Kube-controller. It monitors the state of the cluster. When the current state of
 
 Kube-cloud manager manages controllers that interact with underlying cloud providers. 
 
-Kubelet, is the agent of Kubernetes, in each node. It is responisble for receiving instrucctions from the kubernetes api master server and running pods on the nodes. 
+Kubelet, is the agent of Kubernetes, in each node. It is responisble for receiving instrucctions from the kubernetes api master server and running pods on the nodes. https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
 
 Kube-proxy  handles network connectivity among the pods in the cluster.
 
