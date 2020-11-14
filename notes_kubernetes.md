@@ -819,6 +819,9 @@ To edit a pod's properties use:
 kubectl edit pod <pod-name>
 ```
 
+example: https://www.youtube.com/watch?v=DFEOdnYw1WY
+
+
 ## Howto Configuration Maps
 
 ConfigMaps are objects that keep a configuration definition of **enviromental variables** to be used in a Pod.
