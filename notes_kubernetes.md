@@ -1205,6 +1205,92 @@ spec:
 ```
 this is known as the sidecar pattern, but there are other patterns as the ambassador or the adapter.
 
+## Howto Namespaces
+
+to get the namespaces
+
+```
+kubectl get namespaces
+```
+
+to get the pods in a given namespace:
+
+```
+kubectl get pods --namespace=kube-system
+```
+
+to display the pods in all the namespaces
+
+```
+kubectl get pods --all-namespaces
+```
+
+to create a pod in a given namespace:
+
+```
+kubectl create -f mypod-def.yaml --namespace=dev
+```
+
+or define it in the definition file, like:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  namespace: dev
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.15.12
+```
+
+a new namespace can be created with a definition file:
+
+```
+#definition file of 'dev' namespace.
+apiVersion: v1
+kind: Namespace
+metadata:
+   name: dev
+```
+and: 
+
+```
+kubectl create -f namespace-dev.yaml
+```
+
+or imperatively:
+
+```
+kubectl create namespace dev
+```
+
+by default, we start in the default namespace, but if we want to move to another namespace:
+
+```
+kubectl config set-context $(kubectl config current-context)  --namespace=dev
+```
+
+to manage resources in a given namespace, a resource quota can be defined:
+
+```
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+    name: compute-quota
+    namespace: dev
+spec:
+  hard
+    pods: "15"
+    requests.cpu: "5"
+    requests.memory: 5Gi
+    limits.cpu: "15"
+    limits.memory: 15Gi
+```
+
 ## Howto Replica Controller
 
 reference: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/
