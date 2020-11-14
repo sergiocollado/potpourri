@@ -1207,6 +1207,10 @@ this is known as the sidecar pattern, but there are other patterns as the ambass
 
 ## Howto Replica Controller
 
+reference: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/
+
+A sample replica controller definition file is: 
+
 ```
 # rc-definition.yml
 apiVersion: v1
@@ -1253,11 +1257,13 @@ kubectl get pods
 
 ## Howto Replica Set
 
+reference: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+
 A example file that defines a replica set:
 
 ```
 # replicaset-definition.yml
-apiVersion: app/v1    #WATCHOUT: the correct version for a rs is the app/v1
+apiVersion: apps/v1    #WATCHOUT: the correct version for a rs is the apps/v1
 kind: ReplicationController
 metadata:
     name: myapp-replicaset
@@ -1291,6 +1297,7 @@ kubectl create -f replicaset-definition.yml
 ```
 
 to get the created replicas:
+
 ```
 kubectl get replicaset
 ```
