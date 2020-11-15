@@ -1325,3 +1325,4 @@ c programming - the gnu C library : https://www.gnu.org/software/libc/manual/htm
 
 https://internalpointers.com/post/modern-cmake-beginner-introduction
 
+cpp2020 almost a complete overview:  https://www.youtube.com/watch?v=FRkJCvHWdwQ
