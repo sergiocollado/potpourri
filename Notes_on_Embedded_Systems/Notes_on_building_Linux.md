@@ -1,12 +1,12 @@
 
-# key caracteristics and propierties for embedded systems:
+# key caracteristics and properties for embedded systems:
 
   - Dedicated functionality
   - Limited resources
   - performance and eficiency
   - Real time constrains
   - Interaction with the enviroment.
-  - Dependavilitie
+  - Dependability:
       - Availability.
       - Reliability.
       - Safety.
