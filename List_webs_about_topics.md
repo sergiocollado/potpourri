@@ -1326,3 +1326,32 @@ c programming - the gnu C library : https://www.gnu.org/software/libc/manual/htm
 https://internalpointers.com/post/modern-cmake-beginner-introduction
 
 cpp2020 almost a complete overview:  https://www.youtube.com/watch?v=FRkJCvHWdwQ
+
+
+chat server: http://www.csc.villanova.edu/~mdamian/classes/csc2405sp18/sockets/chat/chat.html
+
+http://www.csc.villanova.edu/~mdamian/classes/
+
+http://www.csc.villanova.edu/~mdamian/Past/cybersecurityfa14/Schedule.html
+
+posix threads http://www.csc.villanova.edu/~mdamian/sockets/posixthreads.html
+
+intro to sockets programming: https://www.cs.rutgers.edu/~pxk/rutgers/notes/sockets/index.html
+
+signal handling: https://www.usna.edu/Users/cs/roche/courses/s19ic221/lab09.html
+
+common secure weakeness: http://cwe.mitre.org/data/definitions/324.html
+
+tmux: http://www.sromero.org/wiki/linux/aplicaciones/tmux
+
+linux death-time scheduler:
+
+https://lwn.net/Articles/743740/
+
+https://lwn.net/Articles/743946/
+
+https://lwn.net/Articles/821578/
+
+https://lwn.net/Articles/397422/
+
+
