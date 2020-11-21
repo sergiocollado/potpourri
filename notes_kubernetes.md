@@ -1960,6 +1960,8 @@ https://github.com/lucassha/CKAD-resources
 https://medium.com/bb-tutorials-and-thoughts/practice-enough-with-these-questions-for-the-ckad-exam-2f42d1228552
 
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+https://github.com/dysinger/learn-minikube
  
 https://github.com/dgkanatsios/CKAD-exercises
 
