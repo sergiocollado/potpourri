@@ -1999,5 +1999,6 @@ https://www.youtube.com/watch?v=5cgpFWVD8ds
 
 https://www.youtube.com/watch?v=qA4dNATs
 
+https://dev.to/kodekloud/tips-and-tricks-to-pass-the-cka-and-ckad-exam-c76
 
 certification: https://www.cncf.io/certification/ckad/
