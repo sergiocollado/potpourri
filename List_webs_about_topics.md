@@ -1354,4 +1354,6 @@ https://lwn.net/Articles/821578/
 
 https://lwn.net/Articles/397422/
 
+http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2027.html#Move_Semantics
 
+https://www.internalpointers.com/post/understanding-meaning-lvalues-and-rvalues-c
