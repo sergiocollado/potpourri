@@ -1292,6 +1292,11 @@ spec:
     limits.cpu: "15"
     limits.memory: 15Gi
 ```
+to get for example all the pods in a given namespace, the option --namespace can be used
+
+```
+kubectl -get pods --namespace=kube-system
+``` 
 
 ## Howto Replica Controller
 
