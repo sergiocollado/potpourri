@@ -761,6 +761,8 @@ spec:
    containers:
        -name: nginx-container
         image: nginx
+        command: ["echo"]
+        args:["Hello World!"]
         ports:   #optional
             - containerPort: 8080
         env:     #optional - to define enviroment variables
