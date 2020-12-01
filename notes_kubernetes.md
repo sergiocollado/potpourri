@@ -1974,6 +1974,8 @@ tutorials:
 
 https://labs.play-with-k8s.com/
 
+https://cloud.google.com/community/tutorials/developing-services-with-k8s
+
 https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-intro/
 
 https://github.com/dysinger/learn-minikube
