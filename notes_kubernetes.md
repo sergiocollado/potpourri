@@ -1183,6 +1183,22 @@ spec:
       failureThreshold: 8
 ```
 
+ref : https://thenewstack.io/12-critical-kubernetes-health-conditions-you-need-to-monitor/
+
+12 health conditions to monitor:
+
+- cpu utilization
+- Disk usage
+- memory usage
+- number of processes running
+- network availability
+- jobs failures
+- peristent volumes failures
+- pod pending delays
+- stateful sets not ready
+- DaemonsSets not ready
+- crash loops
+ 
 
 ### Howto Multi-container Pods.
 
