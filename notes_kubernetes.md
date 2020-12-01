@@ -2011,6 +2011,8 @@ https://www.gluster.org/
 
 https://flocker.readthedocs.io/en/latest/kubernetes-integra
 
+about Helm: https://www.youtube.com/watch?v=-ykwb1d0DXU
+
 
 For certification:
 
