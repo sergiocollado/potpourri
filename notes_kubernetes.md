@@ -62,6 +62,7 @@ KuberAdm, that can automate much of the initial setup of a cluster.
 
 All kubernetes objects are identified by an unique name and an unique id (uid). And the objects are defined in manifest files (in YAML or JSON format). And those files define a desired state for the object, like name and container image. 
 
+more: https://www.youtube.com/watch?v=90kZRyPcRZw&t=462s
 
 ## Kubernetes object model
 
@@ -2015,6 +2016,7 @@ https://flocker.readthedocs.io/en/latest/kubernetes-integra
 
 about Helm: https://www.youtube.com/watch?v=-ykwb1d0DXU
 
+https://www.youtube.com/watch?v=90kZRyPcRZw&t=462s
 
 For certification:
 
