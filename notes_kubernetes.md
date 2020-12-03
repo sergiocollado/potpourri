@@ -89,7 +89,7 @@ Several Kubernetes controller objects:
  
 ## shortcuts names
 
- - po for ods
+ - po for Pods
  - rs for ReplicaSets
  - deploy for Deployments
  - svc for Services
@@ -98,6 +98,7 @@ Several Kubernetes controller objects:
  - pv for PersistentVolumes
  - pvc for PersistentVolumeClaims
  - sa for Service accounts
+ - cm for ConfigMaps
  
 ## Pods
 
