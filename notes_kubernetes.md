@@ -343,6 +343,8 @@ spec:
 
 ### Node Affinity
 
+reference: https://thenewstack.io/strategies-for-kubernetes-pod-placement-and-scheduling/
+
 Node affinity allow us more complex capabilities to set a Pod placement in the nodes. 
 
 ```
