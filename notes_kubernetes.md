@@ -283,6 +283,8 @@ reference: https://kubernetes.io/docs/tasks/configure-pod-container/configure-po
 
 Secrets objects used to store sensitive information, like passwords, keys or personal data... and are stored in a hashed format (although not encripted!)
 
+ref: https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/
+
 ### Security contexts
 
 Some secure settings can be define at the container run engine level or at the pod level. If configured at the pod level, those settings will be defined for all the containers within the pod. If defined in both places, the container and the pod, the pod settings will override the container settings.
@@ -311,6 +313,8 @@ kubectl describe serviceaccount my-service-account
 ### Taints ant tolerations
 
 Tains and tolerations are means to **restrict** Pods to run in certain Nodes. A node may define a given taint, and only pods that define toleartion to that taint can run in that node. 
+
+ref: https://thenewstack.io/strategies-for-kubernetes-pod-placement-and-scheduling/
 
 ### Node Selector
 
