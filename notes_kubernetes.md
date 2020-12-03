@@ -1979,6 +1979,9 @@ https://cloud.google.com/community/tutorials/developing-services-with-k8s
 
 https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-intro/
 
+https://www.katacoda.com/courses/kubernetes/playground
+
+
 https://github.com/dysinger/learn-minikube
 
 https://github.com/lucassha/CKAD-resources
