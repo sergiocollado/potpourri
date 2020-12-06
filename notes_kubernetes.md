@@ -1048,6 +1048,39 @@ spec:
             name: app-secret
 ```
 
+
+to define a Secret into a Pod, there are three ways:
+
+
+as enviroment variables: 
+```
+envFrom: 
+  - secretRef:
+       name: my-secret
+```
+
+or as a single enviroment variables:
+```
+env: 
+  - name: Secret-password
+    valueFrom: 
+       secretKeyRef:
+          name: my-secret
+          key: Password
+```
+
+mount the secrete as a volume in the pod:
+
+```
+volumes:
+- name: my-secret-volume
+  secret:
+    secret-name: my-secret
+```
+
+reference: https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/#configure-all-key-value-pairs-in-a-secret-as-container-environment-variables
+
+
 ### Howto Security contexts
 
 Some secure settings can be define at the container run engine level or at the pod level. If configured at the pod level, those settings will be defined for all the containers within the pod. If defined in both places, the container and the pod, the pod settings will override the container settings.
