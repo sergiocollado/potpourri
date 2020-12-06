@@ -1350,6 +1350,7 @@ to get for example all the pods in a given namespace, the option --namespace can
 ```
 kubectl -get pods --namespace=kube-system
 ``` 
+reference: https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-default-namespace/
 
 ## Howto Replica Controller
 
