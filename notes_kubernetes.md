@@ -44,21 +44,21 @@ reference: https://kubernetes.io/docs/concepts/workloads/pods/
 
 For working with kubernetes, we work through the kube-API server. This component will allow us to declare commands to view or change the state of the cluster. 
 
-kubctl command - connect to kubeAPI server. Is the kuberntetes Command Line interface client. To manage the cluster and its applications. 
+**kubctl command** - connect to kubeAPI server. Is the kuberntetes Command Line interface client. To manage the cluster and its applications. 
 
-ETCD is the cluster database and it stores the state of the cluster. 
+**ETCD** is the cluster database and it stores the state of the cluster. 
 
-Kube-scheduler. It schedules pods into the nodes. 
+**Kube-scheduler** - It schedules pods into the nodes. 
 
-Kube-controller. It monitors the state of the cluster. When the current state of the cluster doesn’t match the desired state, it will try to get to the desired state. 
+**Kube-controller** - It monitors the state of the cluster. When the current state of the cluster doesn’t match the desired state, it will try to get to the desired state. 
 
-Kube-cloud manager manages controllers that interact with underlying cloud providers. 
+**Kube-cloud** - manager manages controllers that interact with underlying cloud providers. 
 
-Kubelet, is the agent of Kubernetes, in each node. It is responisble for receiving instrucctions from the kubernetes api master server and running pods on the nodes. https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
+**Kubelet** - is the agent of Kubernetes, in each node. It is responisble for receiving instrucctions from the kubernetes api master server and running pods on the nodes. https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
 
-Kube-proxy  handles network connectivity among the pods in the cluster.
+**Kube-proxy** - handles network connectivity among the pods in the cluster.
 
-KuberAdm, that can automate much of the initial setup of a cluster.
+**KuberAdm** - that can automate much of the initial setup of a cluster.
 
 All kubernetes objects are identified by an unique name and an unique id (uid). And the objects are defined in manifest files (in YAML or JSON format). And those files define a desired state for the object, like name and container image. 
 
