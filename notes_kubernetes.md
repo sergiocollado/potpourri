@@ -40,6 +40,8 @@ A Pod, is a group of containers that share storage and networking (all the conta
 
 And a Pod can have one or more application containers (like docker or others). In case of more than one container, those will share resources. Each pod has an unique IP address. In case of several containers within a Pod, those will share the network namespace, including IP address and ports, and they can communicate through the local host. A Pod can also define a set of storage  volumes to be shared among its containers. 
 
+Kubernetes inner workings are based in several components witch are described next:
+
 reference: https://kubernetes.io/docs/concepts/workloads/pods/
 
 For working with kubernetes, we work through the kube-API server. This component will allow us to declare commands to view or change the state of the cluster. 
@@ -60,10 +62,21 @@ For working with kubernetes, we work through the kube-API server. This component
 
 **KuberAdm** - that can automate much of the initial setup of a cluster.
 
+reference: https://kubernetes.io/docs/concepts/overview/components/
+
 All kubernetes objects are identified by an unique name and an unique id (uid). And the objects are defined in manifest files (in YAML or JSON format). And those files define a desired state for the object, like name and container image. 
 
 more: https://www.youtube.com/watch?v=90kZRyPcRZw&t=462s
 
+### ETCD 
+ ETCD is a reliable, distributed, key-value based store. 
+ 
+ reference: https://etcd.io/docs/
+ 
+ reference: https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/
+ 
+ the ETCD dababase keeps information with regard to: nodes, pods, configs, secrets, accounts, bindings, roles and more. 
+ 
 ## Kubernetes object model
 
 In Kubernetes objects, represent different persistent entities, that represent the containerized apps that are running and in which node.
@@ -170,9 +183,9 @@ It is possible to create custom namespaces, for example one named 'dev" for deve
 
 ### Replication Controller
 
- A replication controller allow us to have several instances of a pod, so in case a pod dies, a new one can replace it. Thus allowing us to have a high availability service.
+ A replication controller allows to have several instances of a pod, so in case a pod dies, a new one can replace it. Thus allowing to have a high availability service.
  
- A replication controller can help us also, when we want to have several pods, sharing work between them. 
+ A replication controller can help also, when we want to have several pods, sharing work between them. 
  
  A replication controller will monitor the specified pods, and in case any would fail, it would replace it by a new one. 
  
