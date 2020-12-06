@@ -262,23 +262,6 @@ the spec.template field defines the pod's templates we want.
 
 Once the object is deployed, the system will add the field **status** to this file.
 
-### Example of a Pod configuration file
-
-```
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx-pod
-  labels:
-    app: nginx
-spec:
-  containers:
-  - name: nginx
-    image: nginx:1.15.12
-    ports:
-    - containerPort: 80
-```
-
 ### Configuration Maps
 
 ConfigMaps are objects that keep configuration definitions of **enviromental variables** to be used in a Pod.
