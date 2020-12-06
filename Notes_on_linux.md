@@ -901,6 +901,7 @@ ref: https://www.man7.org/linux/man-pages/man1/bash.1.html
 
 ref: http://linuxcommand.org/lc3_learning_the_shell.php
 
+A very good reference is: https://linuxcommand.org/lc3_learning_the_shell.php
 
 ### LAUNCH A BASH SCRIPT
 
