@@ -58,7 +58,7 @@ For working with kubernetes, we work through the kube-API server. This component
 
 **Kubelet** - is the agent of Kubernetes, in each node. It is responisble for receiving instrucctions from the kubernetes api master server and running pods on the nodes. https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
 
-**Kube-proxy** - handles network connectivity among the pods in the cluster.
+**Kube-proxy** - handles network connectivity among the pods in the cluster. it monitors new services, and when a new service is create it creates new rules in each node, to fordware traffic to those services (for example defining ip-tables rules).
 
 **KuberAdm** - that can automate much of the initial setup of a cluster.
 
