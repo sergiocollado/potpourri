@@ -153,7 +153,7 @@ The linux file system usually has the following file hierarchy structure:
  - **/** (top level directory, named the root directory)
     - **/bin** essential user command binaries
     - **/sbin** essential system binaries
-    - **/etc** host specific configuration files
+    - **/etc** configuration files
     - **/dev** device and special files
     - **/proc** kernel and processes informative file system: information about the system and running processes
     - **/sys** kernel and system information
@@ -161,7 +161,7 @@ The linux file system usually has the following file hierarchy structure:
     - **/tmp** temporary files
     - **/usr** user programms
     - **/home** home directory
-    - **/boot** bootloader files
+    - **/boot** bootloader files and the linux kernel - the kernel is the file named: vmlinuz.
     - **/lib** system libraries
     - **/opt** optional add-ons
     - **/mnt** mount directories
@@ -182,10 +182,13 @@ This is known as a **FHS**: **File Hierarchy Standard**. - Usually systems want 
 -  /etc/nologin  - If the file /etc/nologin exists and is readable, login(1) will allow access only to root.  Other users will be shown the contents of this file and their logins will be refused.  This provides a simple way of temporarily disabling all unprivileged logins.
 -  /etc/services  - The /etc/services file is used by applications to translate human-readable service names into port numbers when connecting to a machine across a network. 
 -  /etc/fstab     - the information required to specify mount points, options, devices, etc.
-- /usr/lib   - other place to save dynamic libraries needed by programs.
-- /usr/local/lib   - other place to save dynamic libraries needed by programs.
-- /opt/lib   - other place to save dynamic libraries needed by programs.
-- /etc/os-release - identifies the linux version and release identification information
+-  /edc/hosts     - network host names and IPs that are known by the system.
+-  /etc/init.d    - contains the scripts that start various system services at the boot time
+-  /etc/os-release - identifies the linux version and release identification information
+-  /usr/lib   - other place to save dynamic libraries needed by programs.
+-  /usr/local/lib   - other place to save dynamic libraries needed by programs.
+-  /opt/lib   - other place to save dynamic libraries needed by programs.
+
 
 ### Commands to navigate through the file system.
 
