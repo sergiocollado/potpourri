@@ -172,7 +172,7 @@ Depending on the linux version, the list of the filesystem, may be different.
     
 The reference to this file structure, is defined at:  https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.pdf
 
-This is known as a FHS: File Hierarchy Standard. - Usually systems want to comply with this standard, so the sowftware can predict the location of installed files and directories.
+This is known as a **FHS**: **File Hierarchy Standard**. - Usually systems want to comply with this standard, so the sowftware can predict the location of installed files and directories.
 
 -  /etc/passwd   - users account informations
 -  /etc/shadow   - secure info account for user
@@ -198,13 +198,14 @@ This is known as a FHS: File Hierarchy Standard. - Usually systems want to compl
 - **mv** command: It moves a file (to another directory), also can be used to change the name of a file.
 - **touch** command: creates a new file or updates it last edition time.
 - **tree** command:- list contents of directories in a tree-like format https://linux.die.net/man/1/tree
+- **file** command: identify and report a file type and information.
 
 special directory names: 
 
-- /  : root directory
-- ~  : (tilde) user home directory
-- .  : current directory
-- .. : directory above current directory
+- **/**  : root directory
+- **~**  : (tilde) user home directory
+- **.**  : current directory
+- **..** : directory above current directory
 
 
 **NOTE**: A path which begins with **/** is considered absolute because it specifies the exact filesystem location. Otherwise, it is considered relative and it is implicitly assumed your current directory is prepended.
@@ -248,9 +249,31 @@ special directory names:
 - **rsync** -- a fast, versatile, remote (and local) file-copying tool https://linux.die.net/man/1/rsync
 - **dd** convert and copy a file. (used to do backups) http://man7.org/linux/man-pages/man1/dd.1.html
 
-### types of files in linux
+### Types of files in linux
 
 It is possible to check the types of files with the command **ls -l**. Also with the command **file**
+
+```
+-rw-------   1 me       me            576 Apr 15  2020 weather.txt
+drwxr-xr-x   6 me       me           1024 Oct  7  2020 web_page
+-rw-rw-r--   1 me       me         276480 Feb 13 20:41 web_site.tar
+-rw-------   1 me       me           5743 Dec 13  2019 xmas_file.txt
+
+----------     -------  -------  -------- ------------ -------------
+    |             |        |         |         |             |
+    |             |        |         |         |         File Name
+    |             |        |         |         |
+    |             |        |         |         +---  Modification Time
+    |             |        |         |
+    |             |        |         +-------------   Size (in bytes)
+    |             |        |
+    |             |        +-----------------------        Group
+    |             |
+    |             +--------------------------------        Owner
+    |
+    +----------------------------------------------   File Permissions
+```
+
 
 - -: regular file as text, images, or shared libraries...
 - d: directory
