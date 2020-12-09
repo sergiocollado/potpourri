@@ -463,6 +463,17 @@ spec:
        app: my-app
        key: my_key_value
 ```
+
+summing up there are 3 ports involved
+
+- **target port** the port in the pod, to which the communication is targeted.
+- the port in the service itself, refered simply as the: **port**. From it the communication is directed to the target port.
+- the port in the node, which is used to access externally, it is the **NodePort**
+
+```
+ outside -> [NodePort] ->(Service) -> [Port] -> [Target Port] (Node)
+```
+
 to create the service:
 
 ```
