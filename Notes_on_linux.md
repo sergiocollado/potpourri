@@ -165,7 +165,7 @@ The linux file system usually has the following file hierarchy structure:
     - **/lib** system libraries
     - **/opt** optional add-ons
     - **/mnt** mount directories
-    - **/media** removable devices
+    - **/media** removable devices or where new volue
     - **/srv** service data
     
 Depending on the linux version, the list of the filesystem, may be different. 
@@ -528,6 +528,8 @@ In the /proc directory thre are lots of info about the system:
 
 ### MOUNTING FILE SYSTEMS
 
+The process of attaching a memory device to the filesytem tree, is known as mounting. So for a device to be available, it must first be mounted.
+
 In linux all the files are under the tree that starts in **/**
 
 to mount a partition, it is possible to use the command: **mount**  https://linux.die.net/man/8/mount
@@ -538,7 +540,9 @@ $ sudo mount [-t type] [-o options] device dir
 ```
 executing **mount** without options, prints a list of the current mounted filesystems.
 
-In the file:  /etc/fstab - is stated the information required to specify mount points, options, devices, etc.
+In the file:  **/etc/fstab** - is stated the information required to specify mount points, options, devices, etc.
+
+When the linux system boots, it reads a list of mounting instructions in the **/etc/fstab** file, which describes which device is mounted at which mount point in the directory tree. This takes care of the hard drives, but we may also have devices that are considered temporary, such as optical disks and USB storage devices. Since these are removable, they do not stay mounted all the time. The **/media** directory is used by the automatic device mounting mechanisms found in modern desktop oriented Linux distributions. To see what devices and mount points are used, type **mount**.
 
 ### physical volumes
 
