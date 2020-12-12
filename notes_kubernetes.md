@@ -180,6 +180,8 @@ k8s generates four default namespaces: kube-system, kube-public, kube-node-lease
 
 It is possible to create custom namespaces, for example one named 'dev" for development, and other 'prod' for production pourpouses.
 
+Also in namespaces is possible to define their own resource limits, so each namespace can have different quotas. 
+
 ### Replication Controller
 
  A replication controller allows to have several instances of a pod, so in case a pod dies, a new one can replace it. Thus allowing to have a high availability service.
