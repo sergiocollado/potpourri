@@ -174,8 +174,8 @@ A cluster resources can be divided using **namespaces**. The name of resources c
 k8s generates four default namespaces: kube-system, kube-public, kube-node-lease and default. 
 
 - default: contains objects created by admins and developers.
-- kube-system: contains objects created by k8s system, mostly the control plane agents.
-- kube-public: special namespace which is unsecured and readable, used to expose information publically.
+- kube-system: contains objects created by k8s system, mostly the control plane agents. Here there are containers for the inner workings of k8s, like the networking solutions... 
+- kube-public: Here, resoureces that should be available to all users are located. This is a special namespace which is unsecured and readable, used to expose information publically. 
 - kube-node-lease: contains the node lease objects, for node heartbeat data.  
 
 It is possible to create custom namespaces, for example one named 'dev" for development, and other 'prod' for production pourpouses.
