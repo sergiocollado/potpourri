@@ -1,5 +1,4 @@
 
-
 # Preface
 
 In a Virtual Machine, an hypervisor is the sw layer that detaches the dependencies of an operating system with its undelingin hardware and allows several virtual machines to share that same hardware. This is know as virtualization, 
@@ -306,6 +305,9 @@ When a service account is created, it creates on token that would be used by a a
 ```
 kubectl describe serviceaccount my-service-account
 ```
+
+For every namespace create a service account a service account named "default" is automatically created. And when a new pod is created the default service account, and its token are automatically mounted into that pod as a volume mount. 
+
 
 ### Taints ant tolerations
 
