@@ -16,8 +16,7 @@
 volatile sig_atomic_t keep_going = 1;
 
 /* The signal handler just clears the flag and re-enables itself. */
-void
-catch_alarm (int sig)
+void catch_alarm (int sig)
 {
   keep_going = 0;
   signal (sig, catch_alarm);
@@ -29,16 +28,14 @@ catch_alarm (int sig)
  /* http://man7.org/linux/man-pages/man7/signal-safety.7.html */ 
 }
 
-void
-do_stuff (void)
+void do_stuff (void)
 {
   static uint16_t counter = 0;
   printf("%d: Doing stuff while waiting for alarm....\n", counter);
   ++counter;
 }
 
-int
-main (void)
+int main (void)
 {
   /* Establish a handler for SIGALRM signals. */
   /* This SIGALRM signal typically indicates expiration of a timer that measures real or clock time.*/
