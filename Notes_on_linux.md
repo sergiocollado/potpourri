@@ -324,7 +324,6 @@ file1  rwxr-x^-x
 - The following 3 characters are the group permissions: r-x
 - the last 3 characters are the permissions for all users.
 
-
 A finer or more advanced control of access to files can be managed with the paquet **ACL (Access Control Lists)**
 
 ### Root user aka Superuser
@@ -350,7 +349,6 @@ A finer or more advanced control of access to files can be managed with the paqu
   
   To create a new user, the **useradd** command is used, and to remove one the **userdel** command is used, to modify a user account the **usermod** command is used. (-p flag to change a password). 
   
-  
   - useradd - create a new user or update default new user information. the password must be added with other command - https://linux.die.net/man/8/useradd
   - userdel - delete a user account and related files - https://linux.die.net/man/8/userdel
   - usermod - modify a user account - http://man7.org/linux/man-pages/man8/usermod.8.html
@@ -373,7 +371,7 @@ The _**tilde**_: **~**,  represents the home directorie for any user in the term
 
 #### groups
 
-groups allow users to be part of a groups. groups in linux allow to have different rights or permitions over given files or resources.
+Groups allow users to be part of a groups. groups in linux allow to have different rights or permitions over given files or resources.
 
 - groupadd - create a new group http://man7.org/linux/man-pages/man8/groupadd.8.html
 - groupdel - delete a group http://man7.org/linux/man-pages/man8/groupdel.8.html
@@ -410,8 +408,6 @@ the command sudo:
  - which user used the command
  - timestamp
  - directory in which it was ran.
-
-
 
 ### commands to change permissions and ownership
 
@@ -924,7 +920,6 @@ architecture dependant kernel code
  V 
 hardware platform
 
-
 ## BASH SCRIPTING
 
 ref: https://www.man7.org/linux/man-pages/man1/bash.1.html
@@ -965,17 +960,15 @@ then the script will be printed in the screen as it is executed.
 
 there are special enviroment variables for the script
 
-- $0 the command name
-- $1 the first argument
-- $2 the second time
-- $* represents all the arguments 
-- "$@" represents all the argumemts keeping the grouping of quoted argumets
-- $# represents the number of arguments given
-- $? retains the value of the last executed command
+- **$0** the command name
+- **$1** the first argument
+- **$2** the second time
+- **$\*** represents all the arguments 
+- **"$@"** represents all the argumemts keeping the grouping of quoted argumets
+- **$#** represents the number of arguments given
+- **$?** retains the value of the last executed command
 
-
-The arguments of a script go from $0 to $9.
-
+The arguments of a script go from **$0** to **$9**.
 
 ## BASH COMMANDS
 
