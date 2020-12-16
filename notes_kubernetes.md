@@ -772,6 +772,14 @@ provisioner: kubernetes.io/gce-pd
 
 # HOW TO's
 
+## How to labels
+
+To add labels, the command 'kubeclt label ...' is used:
+
+```
+ kubectl label [--overwrite] (-f FILENAME | TYPE NAME) KEY_1=VAL_1 ...KEY_N=VAL_N [--resource-version=version] [options]
+```
+
 ## Howto Pods
 
 A yaml file that defines a pod, would be like:
