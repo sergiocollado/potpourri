@@ -344,7 +344,8 @@ spec:
 
 ### Node Affinity
 
-reference: https://thenewstack.io/strategies-for-kubernetes-pod-placement-and-scheduling/
+reference:  https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/
+
 
 Node affinity allow us more complex capabilities to set a Pod placement in the nodes. 
 
@@ -368,6 +369,13 @@ spec:
                   - <label-value-1>
                   - <label-value-2>
 ```
+
+other refernce: https://thenewstack.io/strategies-for-kubernetes-pod-placement-and-scheduling/
+
+
+
+links:
+
 
 https://kubernetes.io/
 
@@ -2015,7 +2023,25 @@ spec:
                 serviceName: domainName_2_service # service name
                 servicePort: 80  
 ```
+ ### How to Nodes
  
+ to get the cluster info
+ 
+ ```
+ kubectl cluster-info
+ ```
+ 
+ to get the pods
+ 
+ ```
+ kubectl get nodes
+ ```
+ 
+ to get the nodes with their labels
+ 
+ ```
+ kubectl get nodes --show-labels
+ ```
  
  
  
