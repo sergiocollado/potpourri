@@ -26,3 +26,5 @@ int main()
 	}
 	return(0);
 }
+
+// other reference: https://youtu.be/PZrQ4eGm-hM?list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY
