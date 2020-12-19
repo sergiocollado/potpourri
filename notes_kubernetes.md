@@ -835,6 +835,11 @@ kubectl get pods
 to get the pods with a given label use:
 
 ```
+kubectl get pods --selector label_key=label-value
+```
+
+for example:
+```
 kubectl get pods --selector app=myapp-pod
 ```
 
