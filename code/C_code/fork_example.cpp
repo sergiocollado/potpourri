@@ -20,11 +20,18 @@ int main()
 	}
 	else if(pid ==0)
 	{
+		//this is the child process
 		sleep(3);
-		cout << "Goodbye child!" << endl;
-		exit(1);
+		cout << "Goodbye! - says the Child process" << endl;
+		exit(1); //returns 1 - error. 
 	}
 	return(0);
 }
 
 // other reference: https://youtu.be/PZrQ4eGm-hM?list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY
+
+/*
+*  WHACHT OUT!: when using fork, you the parent process should wait for their child termination
+*  otherwise, its memory will not be freed, and its memory not released, thus we would have a memory leak.
+*  So the wait() function should be used.
+*/
