@@ -34,4 +34,15 @@ int main()
 *  WHACHT OUT!: when using fork, you the parent process should wait for their child termination
 *  otherwise, its memory will not be freed, and its memory not released, thus we would have a memory leak.
 *  So the wait() function should be used.
+
+ A child that terminates, but has not been waited for becomes a
+       "zombie".  The kernel maintains a minimal set of information about
+       the zombie process (PID, termination status, resource usage
+       information) in order to allow the parent to later perform a wait to
+       obtain information about the child.  As long as a zombie is not
+       removed from the system via a wait, it will consume a slot in the
+       kernel process table, and if this table fills, it will not be
+       possible to create further processes. 
+     
+  reference: https://man7.org/linux/man-pages/man2/wait.2.html
 */
