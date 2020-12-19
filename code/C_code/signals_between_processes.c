@@ -1,4 +1,4 @@
-/* example of processes creation and siganls */
+/* example of processes creation and signals */
 /* based in: https://www.youtube.com/watch?v=3mkP_GAxKfs */
 
 #include <stdlib.h>
