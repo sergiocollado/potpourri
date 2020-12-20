@@ -3187,6 +3187,6 @@ Making C Less Dangerous in the Linux kernel  https://m.youtube.com/watch?v=FY9Sb
 
 How to compile the linux kernel  https://youtu.be/bBU7mT2lgPU
 
-
+configuring linux kernel  https://m.youtube.com/watch?v=NVWVHiLx1sU    
 
 
