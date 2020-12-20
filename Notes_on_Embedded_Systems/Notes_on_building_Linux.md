@@ -264,3 +264,8 @@ kERNEL:  https://www.kernel.org/
 
 <img  width="70%" src="https://github.com/sergiocollado/potpourri/blob/master/image/linux_buildroot/vm0006.PNG" >
 
+
+How to compile the linux kernel  https://youtu.be/bBU7mT2lgPU
+
+configuring linux kernel  https://m.youtube.com/watch?v=NVWVHiLx1sU    
+
