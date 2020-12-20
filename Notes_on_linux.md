@@ -3185,7 +3185,7 @@ Booting faster: https://m.youtube.com/watch?v=fTLsS_QZ8us
 
 Making C Less Dangerous in the Linux kernel  https://m.youtube.com/watch?v=FY9SbqTO5GQ
 
-
+How to compile the linux kernel  https://youtu.be/bBU7mT2lgPU
 
 
 
