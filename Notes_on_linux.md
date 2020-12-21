@@ -3189,4 +3189,6 @@ How to compile the linux kernel  https://youtu.be/bBU7mT2lgPU
 
 configuring linux kernel  https://m.youtube.com/watch?v=NVWVHiLx1sU    
 
+core dump tutorial https://m.youtube.com/watch?v=h8mtQ1FyoA4
+
 
