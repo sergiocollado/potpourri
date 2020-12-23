@@ -156,7 +156,6 @@ the field **kind** specifies the type of object.
 
 The field **metadata** defines basic object information like name and labels.
 
-
 ### Labels
 
 Labels are pairs of key and value identifiers. Labels are used to identify and select objects. So Labels do not provide uniqueness. Controllers use labels to group togethers in a set decoupled objects, instead fo idetifing them by names.
@@ -372,10 +371,7 @@ spec:
 
 other refernce: https://thenewstack.io/strategies-for-kubernetes-pod-placement-and-scheduling/
 
-
-
 links:
-
 
 https://kubernetes.io/
 
@@ -768,6 +764,34 @@ metadata:
 provisioner: kubernetes.io/gce-pd
 ```
 
+## CLUSTER MONITORIG
+
+The cluster should be monitored, and we should be able to get the information about how many nodes are running,
+cpus, memory usage, performance, networking statuses ...  there are many options to monitor all this parameters, like:
+
+- https://github.com/kubernetes-sigs/metrics-server
+
+- https://prometheus.io/
+
+- https://www.elastic.co/what-is/elk-stack
+
+
+ref : https://thenewstack.io/12-critical-kubernetes-health-conditions-you-need-to-monitor/
+
+12 health conditions to monitor:
+
+- cpu utilization
+- Disk usage
+- memory usage
+- number of processes running
+- network availability
+- jobs failures
+- peristent volumes failures
+- pod pending delays
+- stateful sets not ready
+- DaemonsSets not ready
+
+
 <hr>
 
 # HOW TO's
@@ -874,7 +898,6 @@ the data in the config map, is simply given as a list of key-value pairs.
 APP_THEME_COLOR: BLUE
 APP_MODE: PROD
 ```
-
 
 to create a configMap in an imperative way:
 
@@ -1232,7 +1255,6 @@ extra options:
       failureThreshold: 8
 ```
 A livenes probe can check if an application is running as expected. And it can test periodically if the application within the container is "healthy", in case the test fails the the container is considered "unheathy" and destroyed.  The test, can be a http test, or a tcp test, or run a command that do the test. A liveness probe is defined similar to the readiness probe. 
-
 
 ```
 apiVersion: v1
