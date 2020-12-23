@@ -2151,6 +2151,8 @@ https://www.youtube.com/watch?v=90kZRyPcRZw&t=462s
 
 For certification:
 
+https://www.cncf.io/certification/training/
+
 https://www.youtube.com/watch?v=rnemKrveZks&feature=youtu.be
 
 https://www.youtube.com/watch?v=z0VSJPdP674
