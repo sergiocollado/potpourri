@@ -600,7 +600,7 @@ Volumes can be of temporal (ephemeral) or persistent nature.
 Ephemeral Volumes are created and destroyed with the pod they belong to.
 
 
-### Ephemeral volumes
+### Volumes
 For example a pod definition with a NFS volume:
 
 ```
@@ -679,16 +679,16 @@ kind: Pod
 metadata:
  name: demo-pod
 spec:
-containers:
- - name: demo-container
- image: gcr.io/hello-app:1.0
-volumeMounts:
- - mountPath: /demo-pod
- name: pd-volume
-volumes:
-- name: pd-volume
- PersistentVolumeClaim:
-claimName: pd-volume-claim
+ containers:
+  - name: demo-container
+    image: gcr.io/hello-app:1.0
+ volumeMounts:
+  - mountPath: /demo-pod
+    name: pd-volume
+ volumes:
+ - name: pd-volume
+   PersistentVolumeClaim:
+   claimName: pd-volume-claim
 ```
 
 and the persistant volume claim:
@@ -722,6 +722,32 @@ spec:
        pdName: pd-disk
        fsType: ext4
 ```
+### types of persistent volumes
+
+There are a lot...
+
+- awsElasticBlockStore - AWS Elastic Block Store (EBS)
+- azureDisk - Azure Disk
+- azureFile - Azure File
+- cephfs - CephFS volume
+- cinder - Cinder (OpenStack block storage) (deprecated)
+- csi - Container Storage Interface (CSI)
+- fc - Fibre Channel (FC) storage
+- flexVolume - FlexVolume
+- flocker - Flocker storage
+- gcePersistentDisk - GCE Persistent Disk
+- glusterfs - Glusterfs volume
+- hostPath - HostPath volume (for single node testing only; WILL NOT WORK in a multi-node cluster; consider using local volume instead)
+- iscsi - iSCSI (SCSI over IP) storage
+- local - local storage devices mounted on nodes.
+- nfs - Network File System (NFS) storage
+- photonPersistentDisk - Photon controller persistent disk. (This volume type no longer works since the removal of the corresponding cloud provider.)
+- portworxVolume - Portworx volume
+- quobyte - Quobyte volume
+- rbd - Rados Block Device (RBD) volume
+- scaleIO - ScaleIO volume (deprecated)
+- storageos - StorageOS volume
+- vsphereVolume - vSphere VMDK volume
 
 
 ## Dynamic Volume Provisioning & Storage classes
