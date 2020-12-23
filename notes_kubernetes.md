@@ -595,7 +595,7 @@ https://kubernetes.io/docs/tasks/administer-cluster/network-policy-provider/weav
 
 https://kubernetes.io/docs/concepts/storage/volumes/
 
-Volumes can be of temporal or persistent nature.
+Volumes can be of temporal (ephemeral) or persistent nature.
 
 Ephemeral Volumes are created and destroyed with the pod they belong to.
 
@@ -611,16 +611,31 @@ metadata:
 spec:
 containers:
  - name: web
- image: nginx
-volumeMounts:
- - mountPath: /mnt/vol
- name: nfs
-volumes:
+   image: nginx
+   volumeMounts:    # here we mount the volume in the pod
+   - mountPath: /mnt/vol
+     name: nfs
+volumes:         # this is the volume resource
 - name: nfs
- server:10.1.1.2
+  server:10.1.1.2
      path: "/"
      readOnly: false
  ```
+ 
+ Or a definition of a volue, as folder from the node:
+ 
+ ```
+ ...
+ volumeMounts:    # here we mount the volume in the pod
+ - mountPath: /opt
+   name: data-volume
+volumes:         # this is the volume resource in the node
+- name: data-volume
+  hostPath:
+    path: data
+    type: Directory
+```
+
  
  Secrets and ConfigMaps are other example of ephemeral volumes.
  
