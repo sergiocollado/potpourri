@@ -1,3 +1,4 @@
+CNM - Container Network Model.
 CNI - Container Networking Interface.
 PIE  - Position-Independent Executables
 ASLR - Address space layout randomization
