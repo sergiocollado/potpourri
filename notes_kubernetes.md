@@ -2139,6 +2139,13 @@ spec:
  ```
  
  
+ ## K8s cluster from scratch
+ 
+ https://www.youtube.com/watch?v=uUupRagM7m0&list=PL2We04F3Y_41jYdadX55fdJplDvgNGENo&index=1
+ 
+ https://github.com/mmumshad/kubernetes-the-hard-way
+ 
+ 
  
 MINIKUBE. - 
 Minikube is a single node local kubernetes cluster - with this you can create an all-in-one kubernetes setup.
