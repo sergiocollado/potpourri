@@ -248,9 +248,11 @@ special directory names:
 - **du** - informs about **d**isk **u**sage.
 - **df** - informs about **d**isk **f**ilesystem.
 - **date** print or set the system date and time, or the last modification of a given file (-r, --reference=FILE) http://man7.org/linux/man-pages/man1/date.1.html
-- **scp** - secure copy  https://linux.die.net/man/1/scp
+- **scp** - secure copy  https://linux.die.net/man/1/scp (is better to use _rcp_ command)
+- **rcp** - remote file copy - copies files between machines https://linux.die.net/man/1/rcp
 - **rsync** -- a fast, versatile, remote (and local) file-copying tool https://linux.die.net/man/1/rsync
 - **dd** convert and copy a file. (used to do backups) http://man7.org/linux/man-pages/man1/dd.1.html
+- **watch** - execute a program periodically, showing output fullscreen  https://linux.die.net/man/1/watch
 
 ### Types of files in linux
 
