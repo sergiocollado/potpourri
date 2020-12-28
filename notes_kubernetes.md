@@ -555,6 +555,25 @@ Also,in addition to the ingress controller, we have to define a set of rules, re
 
 An ingress resource, will define rules, like routing all the traffic to a single application, or direct the traffic to different applications based on the url or the domain name. 
 
+
+## Cluster Networking needed Ports
+
+Some networking configurations must be met.
+
+Each node (master/s and workers) must have a **unique** host name. Beware, if there is a deployment based on cloning! 
+
+Certain ports must be also open:
+
+- Master, must accept connections in 6443 for kube-API
+- kubelet is on port 10250
+- kube-scheduler needs port 10251 open.
+- kube-controller-manager needs port 10252 open
+- the working nodes, expose services in the ports in the range: 30000-32767
+- ETCD server in on port 2379
+- ETCD clients in on port 2380
+
+reference: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#check-required-ports
+
 ## Network policies
 
 https://kubernetes.io/docs/concepts/cluster-administration/networki
