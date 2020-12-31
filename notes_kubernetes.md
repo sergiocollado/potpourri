@@ -393,6 +393,7 @@ https://cloud.google.com/kubernetes-engine/
 
 https://github.com/dysinger/learn-minikube
 
+
 ## kubectl command
 
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
@@ -576,7 +577,7 @@ reference: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm
 
 ## Network policies
 
-https://kubernetes.io/docs/concepts/cluster-administration/networki
+https://kubernetes.io/docs/concepts/services-networking/network-policies/
 
 ```
 apiVersion: networking.k8s.io/v1
