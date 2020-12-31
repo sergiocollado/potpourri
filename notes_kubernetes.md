@@ -672,6 +672,7 @@ https://kubernetes.io/docs/concepts/storage/volumes/#emptydir
 ### Persistent Volumes & Persistent Volume Claims
 
 https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+
 https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/
 
 A persistent volume has a livecycle that is not attached to the pod that is using it. Persistent storage makes it possible to deal with failures and 
@@ -1151,18 +1152,16 @@ spec:
             name: app-secret
 ```
 
+To define a Secret into a Pod, there are three ways:
 
-to define a Secret into a Pod, there are three ways:
-
-
-as enviroment variables: 
+As enviroment variables: 
 ```
 envFrom: 
   - secretRef:
        name: my-secret
 ```
 
-or as a single enviroment variables:
+Or as a single enviroment variables:
 ```
 env: 
   - name: Secret-password
@@ -1172,7 +1171,7 @@ env:
           key: Password
 ```
 
-mount the secrete as a volume in the pod:
+Or mount the secrete as a volume in the pod:
 
 ```
 volumes:
