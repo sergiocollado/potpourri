@@ -552,7 +552,7 @@ https://istio.io/
 
 An ingress controller must be deployed. For example, an nginx, and it can be deployed, just as any other deployment.
 
-Also,in addition to the ingress controller, we have to define a set of rules, related as **ingress resources**.
+Also, in addition to the ingress controller, we have to define a set of rules, related as **ingress resources**.
 
 An ingress resource, will define rules, like routing all the traffic to a single application, or direct the traffic to different applications based on the url or the domain name. 
 
@@ -578,6 +578,17 @@ reference: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm
 ## Network policies
 
 https://kubernetes.io/docs/concepts/services-networking/network-policies/
+
+https://kubernetes.io/docs/tasks/administer-cluster/declare-network-policy/
+
+Make sure you've configured a network provider with network policy support. There are a number of network providers that support NetworkPolicy, including:
+
+- Calico - https://docs.projectcalico.org/getting-started/kubernetes/
+- Cilium - https://docs.cilium.io/en/stable/intro/
+- Kube-router - https://github.com/cloudnativelabs/kube-router
+- Romana - https://github.com/romana/romana/wiki/Romana-policies
+- Weave Net - https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#npc
+
 
 ```
 apiVersion: networking.k8s.io/v1
