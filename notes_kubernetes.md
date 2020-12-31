@@ -2152,7 +2152,7 @@ MINIKUBE. -
 Minikube is a single node local kubernetes cluster - with this you can create an all-in-one kubernetes setup.
  
 
-tutorials:
+playgrounds:
 
 https://labs.play-with-k8s.com/
 
@@ -2162,6 +2162,10 @@ https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-in
 
 https://www.katacoda.com/courses/kubernetes/playground
 
+https://kodekloud.com/p/game-of-pods
+
+
+links: 
 
 https://github.com/dysinger/learn-minikube
 
