@@ -757,7 +757,38 @@ the terminal is launched
 
 ### Customizing the prompt
 
-This can be done through the enviromental varialbe PS1
+This can be done through the enviromental variable PS1
+
+### Aliases
+
+In the terminal is possible to define short-cuts for our custom made commands. For improved usability. For example:
+
+```
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias k='kubectl'
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -alF'
+alias ls='ls --color=auto'
+alias python='/usr/bin/python3.8'
+```
+
+to define an alias:
+
+```
+alias your_alias_name="your_alias_command"
+```
+
+to undefine an alias:
+
+```
+unalias your_alias_name="your_alias_command"
+```
+
+To have the alias always defined, you can define them in the configuration file of the terminal. For example, in bash, in the file .bashrc
+
 
 ### Open-terminal
 
@@ -798,11 +829,13 @@ The init program is controlled by the /etc/inittab file and is organized into ru
 The usual default run level is 3 or 5.
 
 ##### Advantages
+
 Established, well understood system.
 
 Easy to customize.
 
 ##### Disadvantages
+
 Slower to boot. A medium speed base LFS system takes 8-12 seconds where the boot time is measured from the first kernel message to the login prompt. Network connectivity is typically established about 2 seconds after the login prompt.
 
 Serial processing of boot tasks. This is related to the previous point. A delay in any process such as a file system check, will delay the entire boot process.
