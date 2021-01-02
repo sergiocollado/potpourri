@@ -269,3 +269,4 @@ How to compile the linux kernel  https://youtu.be/bBU7mT2lgPU
 
 configuring linux kernel  https://m.youtube.com/watch?v=NVWVHiLx1sU    
 
+Configuring a Custom Linux Kernel (5.6.7-gentoo)  https://youtu.be/NVWVHiLx1sU
