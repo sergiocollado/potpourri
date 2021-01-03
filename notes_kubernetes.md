@@ -2222,6 +2222,8 @@ https://www.youtube.com/watch?v=90kZRyPcRZw&t=462s
 
 For certification:
 
+https://github.com/kodekloudhub/certified-kubernetes-administrator-course
+
 https://www.cncf.io/certification/training/
 
 https://www.youtube.com/watch?v=rnemKrveZks&feature=youtu.be
