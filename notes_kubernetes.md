@@ -288,7 +288,7 @@ Some secure settings can be define at the container run engine level or at the p
 
 ### Service Accounts
 
-There are two types of accounts in kubernetes, user accounts and service accounts. Service accounts are for service programs, like prometheus or jenkins. 
+There are two types of accounts in kubernetes, user accounts and service accounts. Service accounts are for **service programs**, like prometheus or jenkins. 
 
 To create a service account
 
@@ -344,7 +344,6 @@ spec:
 ### Node Affinity
 
 reference:  https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/
-
 
 Node affinity allow us more complex capabilities to set a Pod placement in the nodes. 
 
@@ -581,7 +580,7 @@ https://kubernetes.io/docs/concepts/services-networking/network-policies/
 
 https://kubernetes.io/docs/tasks/administer-cluster/declare-network-policy/
 
-Make sure you've configured a network provider with network policy support. There are a number of network providers that support NetworkPolicy, including:
+**Make sure you've configured a network provider with network policy support. There are a number of network providers that support NetworkPolicy**, including:
 
 - Calico - https://docs.projectcalico.org/getting-started/kubernetes/
 - Cilium - https://docs.cilium.io/en/stable/intro/
@@ -960,6 +959,7 @@ kubectl edit pod <pod-name>
 
 example: https://www.youtube.com/watch?v=DFEOdnYw1WY
 
+to set pods resources, see: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 ## Howto Configuration Maps
 
@@ -1199,7 +1199,7 @@ reference: https://kubernetes.io/docs/tasks/inject-data-application/distribute-c
 Some secure settings can be define at the container run engine level or at the pod level. If configured at the pod level, those settings will be defined for all the containers within the pod. If defined in both places, the container and the pod, the pod settings will override the container settings.
 
 
-to add the Security Context at the container level, add it in the spec of the container.
+To add the Security Context at the container level, add it in the spec of the container.
 
 ```
 apiVersion: v1
@@ -1219,7 +1219,7 @@ spec:
           add: ["MAC_ADMIN"]
 ```
 
-to add the security context add the POD level, add it ad the specs of the pod
+To add the security context add the POD level, add it ad the specs of the po
 
 ```
 apiVersion: v1
@@ -1302,6 +1302,7 @@ spec:
 ```
 
 for a tcp probe:
+
 ```
     readinessProbe:
        tcpSocket:
@@ -1309,6 +1310,7 @@ for a tcp probe:
 ```
 
 for a script probe:
+
 ```
     readinessProbe:
         exec: 
@@ -1481,6 +1483,7 @@ kubectl -get pods --namespace=kube-system
 ``` 
 reference: https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-default-namespace/
 
+
 ## Howto Replica Controller
 
 reference: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/
@@ -1589,7 +1592,7 @@ to scale a replica set, we would need to update the desired number of replicas i
 ```
 kubectl replace -f replicaset-definition.yml
 ```
-another way to scale a replica set, is to run the 'scale' command: 
+other way to scale a replica set, is to run the 'scale' command: 
 
 ```
 kubectl scale --replicas=6 -f replicaset-definition.yml
@@ -1806,6 +1809,8 @@ kubectl create namespace dev
 ```
 
 ## Howto resource quota:
+
+reference: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 to limit resource in a namespace you use a resource quota, to define one:
 
@@ -2034,7 +2039,7 @@ spec:
                containerPort: 443
 ```
 
-then a service must be defined to publish the ingress controller
+Then a service must be defined to publish the ingress controller
 
 ```
 appVersion: v1
@@ -2056,7 +2061,7 @@ spec:
       name: nginx-ingress
 ```
 
-a service account with the required permissions, also needs to be created:
+A service account with the required permissions, also needs to be created:
 
 ```
 apiVersion: v1
@@ -2065,7 +2070,6 @@ metadata:
     name: nginx-ingress-serviceaccount
     # ....
 ```
-
 
 Also,in addition to the ingress controller, we have to define a set of rules, related as **ingress resources**.
 
@@ -2085,7 +2089,8 @@ spec:
          servicePort: 80
 ```
 
-to route the traffic according to URL:
+To route the traffic according to URL:
+
 ```
 # ingress-url-rule.yaml
 apiVersion: extensions/v1beta1
@@ -2105,8 +2110,7 @@ spec:
                 servicePort: 80
 ```
 
-
-or to make rules based on domain names:
+Or to make rules based on domain names:
 
 ```
 # ingress-domain-name-rule.yaml
@@ -2129,6 +2133,7 @@ spec:
                 serviceName: domainName_2_service # service name
                 servicePort: 80  
 ```
+
  ### How to Nodes
  
  to get the cluster info
@@ -2149,13 +2154,11 @@ spec:
  kubectl get nodes --show-labels
  ```
  
- 
  ## K8s cluster from scratch
  
  https://www.youtube.com/watch?v=uUupRagM7m0&list=PL2We04F3Y_41jYdadX55fdJplDvgNGENo&index=1
  
  https://github.com/mmumshad/kubernetes-the-hard-way
- 
  
  
 MINIKUBE. - 
@@ -2215,6 +2218,7 @@ https://flocker.readthedocs.io/en/latest/kubernetes-integra
 about Helm: https://www.youtube.com/watch?v=-ykwb1d0DXU
 
 https://www.youtube.com/watch?v=90kZRyPcRZw&t=462s
+
 
 For certification:
 
