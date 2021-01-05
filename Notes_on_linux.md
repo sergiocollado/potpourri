@@ -955,6 +955,29 @@ architecture dependant kernel code
  V 
 hardware platform
 
+## linux networking commands
+
+ - **ipconfig** print and manipulation of network interfaces and routes (better use the next command)
+ - **ip**  replacement for ipconfig
+ - **traceroute** traces pacekt's routes, used for troubleshooting networking issues
+ - **tracepath** like traceroute, without rout privileges
+ - **pintg** for checking conectivity
+ - **netstat** reports network information
+ - **ss** replacement for the netstat commmand
+ - **dig** report DNS info
+ - **nslookup** find DNS query
+ - **route** reports and edit of the route table
+ - **host** reports DNS look ups
+ - **arp** edit arp tables
+ - **iwconfig** configuration of wireless interface
+ - **hostname** identifies network interface
+ - **curl**
+ - **wget**
+ - **mtr** ping + tracepath in a single command
+ - **whois** report web site whois
+ - **ifplugstatus** report cable connnection
+
+
 ## BASH SCRIPTING
 
 ref: https://www.man7.org/linux/man-pages/man1/bash.1.html
