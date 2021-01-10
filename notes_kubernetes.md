@@ -876,6 +876,11 @@ To add labels, the command 'kubeclt label ...' is used:
  kubectl label [--overwrite] (-f FILENAME | TYPE NAME) KEY_1=VAL_1 ...KEY_N=VAL_N [--resource-version=version] [options]
 ```
 
+It is recommended to use labels in a way that describes the application, so they can be queried.
+
+recommended labels: https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
+
+
 ## Howto Pods
 
 A yaml file that defines a pod, would be like:
@@ -959,7 +964,7 @@ kubectl edit pod <pod-name>
 
 example: https://www.youtube.com/watch?v=DFEOdnYw1WY
 
-to set pods resources, see: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+To set pods resources, see: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 ## Howto Configuration Maps
 
@@ -1048,7 +1053,7 @@ spec:
 ```
 
 ```
-#configmap.yml definition
+#configmap.yaml definition
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -1068,7 +1073,7 @@ Secrets objects used to store sensitive information, like passwords, keys or per
 to create a secret imperatively:
 
 ```
-kubectl create secret generic <secre-name> --from literal=<key>=<value>
+kubectl create secret generic <secret-name> --from literal=<key>=<value>
 ```
 
 example:
@@ -1095,11 +1100,7 @@ kubectl create secret generic app-secret --from-file=app_secret.propierties
 to create a secret declaratively:
 
 ```
-kubectl create -f secret.data.yml
-```
-
-```
-#secret-data.yml
+#secret-data.yaml
 apiVersion: v1
 kind: Secret
 metadata: 
@@ -1109,8 +1110,13 @@ data:
     DB_USER: 45t6yuki
     DB_PASSWORD: p7ytgfcdew
 ```
+and command:
 
-to encode the strings, in a linux machine use:
+```
+kubectl create -f secret.data.yaml
+```
+
+To encode the strings, in a linux machine use:
 
 ```
 echo -m 'password' | base64
@@ -1198,7 +1204,6 @@ reference: https://kubernetes.io/docs/tasks/inject-data-application/distribute-c
 
 Some secure settings can be define at the container run engine level or at the pod level. If configured at the pod level, those settings will be defined for all the containers within the pod. If defined in both places, the container and the pod, the pod settings will override the container settings.
 
-
 To add the Security Context at the container level, add it in the spec of the container.
 
 ```
@@ -1237,11 +1242,11 @@ spec:
     command: ["sleep", "3600"]
 ```
 
-### Howto: Taints ant tolerations
+### Howto: taints ant tolerations
 
 Tains and tolerations are means to restrict Pods to run in certain Nodes. A node may define a given taint, and only pods that define toleRACtion to that taint can run in that node. 
 
-to define a taint:
+To define a taint:
 
 ```
 kubectl taint nodes <node-name>  <key>=<value>:<taint-effect>
@@ -1252,7 +1257,6 @@ there are three taint effects: NoSchedule, PreferNoSchedule, NoExectute.
 Taints are defined in Nodes, and tolerations are defined in Pods
 
 To define a toleration in a pod: 
-
 
 ```
 apiVersion: v1
@@ -1327,6 +1331,7 @@ extra options:
       periodSeconds: 15
       failureThreshold: 8
 ```
+
 A livenes probe can check if an application is running as expected. And it can test periodically if the application within the container is "healthy", in case the test fails the the container is considered "unheathy" and destroyed.  The test, can be a http test, or a tcp test, or run a command that do the test. A liveness probe is defined similar to the readiness probe. 
 
 ```
@@ -1370,7 +1375,7 @@ ref : https://thenewstack.io/12-critical-kubernetes-health-conditions-you-need-t
 
 ### Howto Multi-container Pods.
 
-to define several containers in a pod:
+To define several containers in a pod:
 
 ```
 apiVersion: v1
@@ -1385,11 +1390,11 @@ spec:
     image: nginx:1.15.12
     ports:
     - containerPort: 8080
-    
   - name: log-agent
     image: log-agent
 ```
-this is known as the sidecar pattern, but there are other patterns as the ambassador or the adapter.
+
+This is known as the sidecar pattern, but there are other patterns as the ambassador or the adapter.
 
 ## Howto Namespaces
 
