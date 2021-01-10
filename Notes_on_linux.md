@@ -789,6 +789,18 @@ unalias your_alias_name="your_alias_command"
 
 To have the alias always defined, you can define them in the configuration file of the terminal. For example, in bash, in the file .bashrc
 
+### Bash shortcuts
+
+ 
+|shortcut | description |
+| :---:  |  :---: |  
+| CTRL+a | moves the cursor to the begining of the line| 
+| CTRL+e | moves the cursor to the end of the line |
+| CTRL+l | clears the screen| 
+| CTRL+r| seach in the history of commands | 
+
+ref: https://www.linuxjournal.com/content/boost-productivity-bash-tips-and-tricks
+
 
 ### Open-terminal
 
