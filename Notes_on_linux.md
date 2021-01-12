@@ -1401,9 +1401,9 @@ done
 
 ### NETWORKING
 
-**ifconfig** - presents the current network configuration
+**ifconfig** - presents the current network configuration (although is better to use the more updated command **ip**)
 
-normally ethernet intefaces are named as eth0, eth1... and wireless interfeaces as wlan0, wlan1... although nowadays, the different distros use to use the **Predictable Network inteface Device Names**
+Normally ethernet intefaces are named as eth0, eth1... and wireless interfeaces as wlan0, wlan1... although nowadays, the different distros use to use the **Predictable Network inteface Device Names**
 
 https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
 
@@ -1412,28 +1412,29 @@ the configuration file is: _**/etc/sysconfig/network-scripts/ifcfg-exnoXXXX**_
 statistical info is in the file:  _**/proc/net/dev**_ and also in the files: _**sys/class/net/ethX/statistics**_
 
 
-enoXXXX - stands for **ethernet onboard**
+**enoXXXX** - stands for **ethernet onboard**
 
-lo -- stands for **loopback adress**
+**lo** -- stands for **loopback adress**
 
-to change the ip address, you must command:
+To change the ip address, you must command:
 
 ```bash
 sudo ifconfig enoXXXXX 192.1new_ip_address netmask 255.255.255.0
 ```
 
-to check the route - (shows the way to the next hub)
+To check the route - (shows the way to the next hub)
 
 ```bash
 route
 ```
-to change the route, you have to command:
+
+To change the route, you have to command:
 
 ```bash
 route add 192.34X.xxx.xxx enoXXXX
 ```
 
-to check everything is ok. you can ping adresses
+To check everything is ok. you can ping adresses
 
 ```bash
 ping 192.xxx.xxx.xx
@@ -1443,9 +1444,9 @@ ping 192.xxx.xxx.xx
 ping google.com
 ```
 
-to configure the network interface to be persistant, you have to edit the file _**/etc/sysconfig/network-scripts/ifcfg-enoXXX**_
+To configure the network interface to be persistant, you have to edit the file _**/etc/sysconfig/network-scripts/ifcfg-enoXXX**_
 
-so we can change the BOOTPROT (ocol) to static, and add the address information and netmask.
+So we can change the BOOTPROT (ocol) to static, and add the address information and netmask.
 
 ```
 BOOTPROTO=
@@ -1453,7 +1454,7 @@ IPADDR=192.168.XXX.XXX
 NETMASK=255.255.255.xxx
 ```
 
-to launch a network connection and attach it to a ip address, you do like:
+To launch a network connection and attach it to a ip address, you do like:
 
 ```bash
 $ sudo /sbin/ifconfig eth0 up 192.168.1.123
@@ -1466,14 +1467,16 @@ $ sudo /sbin/ifconfig eth0 up
 $ sudo /sbin/dhclient eth0
 ```
 
-the usual command used to be 'ifconfig', although nowadays the new utility 'ip' seems to be an improved version and is more efficient
+The usual command used to be 'ifconfig', although nowadays the new utility 'ip', it is an improved version and is more efficient
+
+https://linux.die.net/man/8/ip
 
 https://linux.die.net/man/7/netlink
 
 https://linux.die.net/man/2/ioctl
 
 
-the newer **ip** command can be used for many tasks like: manipulate routing, devices, policy routing and tunnels
+The newer **ip** command can be used for many tasks like: manipulate routing, devices, policy routing and tunnels
 
 https://linux.die.net/man/8/ip
 
@@ -1492,38 +1495,37 @@ or
  ip addr show 
 ``` 
 
-that will give the addresses of all the devices. Or in case a specific device is needed:
+That will display the addresses of all the devices. Or in case a specific device is needed:
 
 ```bash
  ip addr show eth0
 ``` 
 
- to check the info of one network interface.
+To check the info of one network interface.
 
 ```bash
 $ ip -s link show ethX
 ```
  
-to define the ip for a newtork interface
+To define the ip for a newtork interface
 ```bash
 $ sudo ip addr add 192.168.1.7 dev ethX
 ```
  
-to bring down a network interface
+To bring down a network interface
 ```bash
 $ sudo ip link set eth0 down
 ```
  
-to set the MTU (Maximun Transmision Unit) for a given network interface
+To set the MTU (Maximun Transmision Unit) for a given network interface
 ```bash
 $ sudo ip link set eth0 mtu 1480
 ```
 
-to define a network route:
+To define a network route:
 ```bash
 $ sudo ip route add 172.16.1.0/24 via 192.168.1.5
 ```
-
 
 Some playbook options are:
 
@@ -1536,6 +1538,7 @@ $ ip addr show eth0
 ```
 change its address
 Bring down eth0 and reconfigure to use a static address instead of DCHP,
+
 ```bash
 $ sudo ip link set eth0 down 
 $ sudo ip addr add 192.168.1.200 dev eth0 
@@ -1548,6 +1551,7 @@ $ sudo ip link set eth0 up
 $ sudo dhclient eth0
 ```
 check everything works as expected  after reboot
+
 ```bash
 $ sudo reboot
 ```
