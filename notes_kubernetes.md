@@ -76,6 +76,34 @@ more: https://www.youtube.com/watch?v=90kZRyPcRZw&t=462s
  
  the ETCD dababase keeps information with regard to: nodes, pods, configs, secrets, accounts, bindings, roles and more. 
  
+## kubectl command
+
+**kubectl** is the kubernets command line tool.
+
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+It is the command used to communicate with the kubernetes cluster, with the kube-API server, so the kubectl commands are transformed in APIs calls.
+
+Before anything the kubectl must be configured with the location and credentials of a given kubernetes cluster.  The configuration is  in a file in the home directory $HOME/.kube/config. The config file has the cluster name and the cluster credentials.  To edit this use the command: --kubeconfig
+
+If you want to view the configuration, just use the command:  'kubectl config view'.
+
+Or to get the cluster info,and the services running in it,  use the command: 'kubectl cluster-info'
+
+Sintaxis
+
+``` kubectl [command] [type] [name] [flags] ```
+
+ - **Commands**: get, describe, logs, exec …
+ - **Type**: pods, deployments, nodes …
+
+
+For example:
+
+``` kubectl get pods -- get a list and info about the pods. ```
+
+```kubectl describe pod <pod_name> -- get detailed info about a given pod. ```
+ 
 ## Kubernetes object model
 
 In Kubernetes objects, represent different persistent entities, that represent the containerized apps that are running and in which node.
@@ -212,7 +240,7 @@ Replication Controllers perform a similar role to the combination of ReplicaSets
  
 ### StatefulSet
 
-A StatefulSet is similar to a Deployment in that the Pods use the same container spec. The Pods created through Deployment are not given persistent identities, however; by contrast, Pods created using StatefulSet have unique persistent identities with stable network identity and persistent disk storage. So for persistent storage, the StatefulSet is the best option, defining a network storage. In A StatetufSet, the ordern in which the pods are created is also defined, this doesn`t happen in a Deployment.
+A StatefulSet is similar to a Deployment in that the Pods use the same container spec. The Pods created through Deployment are not given persistent identities, however; by contrast, Pods created using StatefulSet have unique persistent identities with stable network identity and persistent disk storage. So for persistent storage, the StatefulSet is the best option, defining a network storage. In A StatetufSet, the ordern in which the pods are created is also defined, this doesn't happen in a Deployment.
 
 StatefulSet is better use when the instances are needed to come up in a given order, and/or the instances need a stable name or network address. Watch out when defining a StatefulSet, because you have to define a Service name (headless Service)
 
@@ -392,32 +420,6 @@ https://cloud.google.com/kubernetes-engine/
 
 https://github.com/dysinger/learn-minikube
 
-
-## kubectl command
-
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/
-
-It is the command used to communicate with the kubernetes cluster, with the kube-API server, so the kubectl commands are transformed in APIs calls.
-
-Before anything the kubectl must be configured with the location and credentials of a given kubernetes cluster.  The configuration is  in a file in the home directory $HOME/.kube/config. The config file has the cluster name and the cluster credentials.  To edit this use the command: --kubeconfig
-
-If you want to view the configuration, just use the command:  'kubectl config view.
-
-Or to get the cluster info,and the services running in it,  use the command: 'kubectl cluster-info'
-
-Sintaxis
-
-``` kubectl [command] [type] [name] [flags] ```
-
- - **Commands**: get, describe, logs, exec …
- - **Type**: pods, deployments, nodes …
-
-
-For example:
-
-``` kubectl get pods -- get a list and info about the pods. ```
-
-```kubectl describe pod <pod_name> -- get detailed info about a given pod. ```
 
 ## Services
 
