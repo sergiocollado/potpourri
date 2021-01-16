@@ -26,6 +26,8 @@ Some of its features are:
  - Configuration managements
  - Storage orchestration
  - Batch execution.
+ 
+ refence: https://blog.risingstack.com/the-history-of-kubernetes/
 
 # How do Kubernetes works?
 
