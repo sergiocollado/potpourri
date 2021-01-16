@@ -400,9 +400,9 @@ spec:
                   - <label-value-2>
 ```
 
-other refernce: https://thenewstack.io/strategies-for-kubernetes-pod-placement-and-scheduling/
+other reference: https://thenewstack.io/strategies-for-kubernetes-pod-placement-and-scheduling/
 
-links:
+### links:
 
 https://kubernetes.io/
 
@@ -2165,12 +2165,21 @@ spec:
  kubectl get nodes --show-labels
  ```
  
- ## K8s cluster from scratch
+## K8s cluster from scratch
  
- https://www.youtube.com/watch?v=uUupRagM7m0&list=PL2We04F3Y_41jYdadX55fdJplDvgNGENo&index=1
+https://www.youtube.com/watch?v=uUupRagM7m0&list=PL2We04F3Y_41jYdadX55fdJplDvgNGENo&index=1
  
- https://github.com/mmumshad/kubernetes-the-hard-way
+https://github.com/mmumshad/kubernetes-the-hard-way
  
+ 
+## kubernetes recovery and backups
+
+reference: https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster
+
+reference: Disaster Recovery for your Kubernetes Clusters [I] - Andy Goldstein & Steve Kriss, Heptio : https://www.youtube.com/watch?v=qRPNuT080Hk
+
+refernce: https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/recovery.md
+
  
 MINIKUBE. - 
 Minikube is a single node local kubernetes cluster - with this you can create an all-in-one kubernetes setup.
