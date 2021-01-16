@@ -28,6 +28,8 @@ Some of its features are:
  - Batch execution.
  
  refence: https://blog.risingstack.com/the-history-of-kubernetes/
+ 
+ reference: https://cloud.google.com/blog/products/gcp/bringing-pokemon-go-to-life-on-google-cloud
 
 # How do Kubernetes works?
 
