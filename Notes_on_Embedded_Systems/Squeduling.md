@@ -742,7 +742,11 @@ EDF:  EARLIEST DEADLINE FIRST SCHEDULER:
 
 A Checklist for Writing Linux Real-Time Applications - John Ogness, Linutronix - https://www.youtube.com/watch?v=NrjXEaTSyrw 
 
+https://ogness.net/ese2020/ese2020_johnogness_rtchecklist.pdf
+
 https://wiki.linuxfoundation.org/realtime/rtl/blog#the_real-time_endgame_is_moving_quickly_now
+
+https://wiki.linuxfoundation.org/realtime/documentation/howto/applications/start
 
 https://www.kernel.org/doc/html/latest/scheduler/sched-deadline.html
 
