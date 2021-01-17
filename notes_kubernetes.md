@@ -582,6 +582,8 @@ reference: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm
 
 ## Network policies
 
+By default all pods have access to the rest of the pods, but this can be restricted with the use of network policies (for security reasons maybe ...)
+
 https://kubernetes.io/docs/concepts/services-networking/network-policies/
 
 https://kubernetes.io/docs/tasks/administer-cluster/declare-network-policy/
