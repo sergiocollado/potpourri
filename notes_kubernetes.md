@@ -22,7 +22,7 @@ Some of its features are:
  - Horizontal scaling: - scales automatically or manually.
  - Service discovery
  - Load balancing 
- - Automated rollbacks and rollaoust
+ - Automated rollbacks and rollaouts
  - Configuration managements
  - Storage orchestration
  - Batch execution.
