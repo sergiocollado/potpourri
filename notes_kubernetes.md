@@ -339,8 +339,13 @@ When a service account is created, it creates on token that would be used by a a
 kubectl describe serviceaccount my-service-account
 ```
 
-For every namespace create a service account a service account named "default" is automatically created. And when a new pod is created the default service account, and its token are automatically mounted into that pod as a volume mount. 
+**NOTE**: For every namespace create a service account a service account named "default" is automatically created. And when a new pod is created the default service account, and its token are automatically mounted into that pod as a volume mount. 
 
+To list the service accounts:
+
+```
+kubectl list serviceaccount
+```
 
 ### Taints ant tolerations
 
