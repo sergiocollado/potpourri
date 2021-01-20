@@ -2171,13 +2171,7 @@ spec:
  ```
  kubectl get nodes --show-labels
  ```
- 
-## K8s cluster from scratch
- 
-https://www.youtube.com/watch?v=uUupRagM7m0&list=PL2We04F3Y_41jYdadX55fdJplDvgNGENo&index=1
- 
-https://github.com/mmumshad/kubernetes-the-hard-way
- 
+
  
 ## kubernetes recovery and backups
 
@@ -2187,13 +2181,24 @@ reference: Disaster Recovery for your Kubernetes Clusters [I] - Andy Goldstein &
 
 refernce: https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/recovery.md
 
+
+## Howto: build a Kubernetes cluster
+
+https://github.com/kelseyhightower/kubernetes-the-hard-way
+
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
  
+https://www.youtube.com/watch?v=uUupRagM7m0&list=PL2We04F3Y_41jYdadX55fdJplDvgNGENo&index=1
+ 
+https://github.com/mmumshad/kubernetes-the-hard-way
+ 
+
+
+## Playgrounds:
+
 MINIKUBE. - 
 Minikube is a single node local kubernetes cluster - with this you can create an all-in-one kubernetes setup.
  
-
-playgrounds:
-
 https://labs.play-with-k8s.com/
 
 https://cloud.google.com/community/tutorials/developing-services-with-k8s
