@@ -143,6 +143,7 @@ Several Kubernetes controller objects:
  - pvc for PersistentVolumeClaims
  - sa for Service accounts
  - cm for ConfigMaps
+ - ds for deamonSet
  
 ## Pods
 
