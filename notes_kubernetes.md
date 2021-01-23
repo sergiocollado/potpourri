@@ -49,7 +49,7 @@ reference: https://kubernetes.io/docs/concepts/workloads/pods/
 
 For working with kubernetes, we work through the kube-API server. This component will allow us to declare commands to view or change the state of the cluster. 
 
-**kubctl command** - connect to kubeAPI server. Is the kuberntetes Command Line interface client. To manage the cluster and its applications. 
+**kubectl command** - connect to kubeAPI server. Is the kuberntetes Command Line interface client. To manage the cluster and its applications. 
 
 **ETCD** is the cluster database and it stores the state of the cluster. 
 
@@ -61,9 +61,9 @@ For working with kubernetes, we work through the kube-API server. This component
 
 **Kubelet** - is the agent of Kubernetes, in each node. It is responisble for receiving instrucctions from the kubernetes api master server and running pods on the nodes. https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
 
-**Kube-proxy** - handles network connectivity among the pods in the cluster. it monitors new services, and when a new service is create it creates new rules in each node, to fordware traffic to those services (for example defining ip-tables rules).
+**Kube-proxy** - handles network connectivity among the pods and services in the cluster. it monitors new services, and when a new service is create it creates new rules in each node, to fordward traffic to those services (for example defining ip-tables rules).
 
-**KuberAdm** - that can automate much of the initial setup of a cluster.
+**KuberAdm** - Automates part of the initial setup of a cluster.
 
 reference: https://kubernetes.io/docs/concepts/overview/components/
 
