@@ -995,7 +995,7 @@ hardware platform
 
 ref: https://www.man7.org/linux/man-pages/man1/bash.1.html
 
-ref: http://linuxcommand.org/lc3_learning_the_shell.php
+ref: https://tldp.org/LDP/abs/html/index.htm
 
 A very good reference is: https://linuxcommand.org/lc3_learning_the_shell.php
 
