@@ -791,7 +791,6 @@ To have the alias always defined, you can define them in the configuration file 
 
 ### Terminal shortcuts
 
- 
 |shortcut | description |
 | :---:  |  :---: |  
 | CTRL+a | moves the cursor to the begining of the line| 
@@ -998,6 +997,8 @@ ref: https://www.man7.org/linux/man-pages/man1/bash.1.html
 ref: https://tldp.org/LDP/abs/html/index.htm
 
 A very good reference is: https://linuxcommand.org/lc3_learning_the_shell.php
+
+ref: https://www.gnu.org/software/bash/manual/html_node/index.html#SEC_Contents
 
 ### LAUNCH A BASH SCRIPT
 
