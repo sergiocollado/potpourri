@@ -1429,6 +1429,11 @@ to display the pods in all the namespaces
 ```
 kubectl get pods --all-namespaces
 ```
+to display all the objects in a given namespace
+
+```
+kubectl get all -namespace <mynamespace>
+```
 
 to create a pod in a given namespace:
 
@@ -1477,6 +1482,18 @@ by default, we start in the default namespace, but if we want to move to another
 
 ```
 kubectl config set-context $(kubectl config current-context)  --namespace=dev
+```
+
+to get all the existing namespaces
+
+```
+kubectl get namespace
+```
+
+or in short
+
+```
+k get ns
 ```
 
 to manage resources in a given namespace, a resource quota can be defined:
