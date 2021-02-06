@@ -144,6 +144,7 @@ Several Kubernetes controller objects:
  - sa for Service accounts
  - cm for ConfigMaps
  - ds for deamonSet
+ - csr certificatesigningrequests
  
 ## Pods
 
