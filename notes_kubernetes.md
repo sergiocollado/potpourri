@@ -107,6 +107,20 @@ For example:
 ``` kubectl get pods -- get a list and info about the pods. ```
 
 ```kubectl describe pod <pod_name> -- get detailed info about a given pod. ```
+
+**NOTE**: 
+
+ it is recomended to apply the alias:
+ 
+ ```
+ alias k=kubectl
+ ```
+ 
+ and also set the autocompletion:
+ 
+ ```
+ source < (kubectl completion bash)
+ ```
  
 ## Kubernetes object model
 
