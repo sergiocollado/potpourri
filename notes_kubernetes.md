@@ -2185,6 +2185,37 @@ spec:
                 servicePort: 80  
 ```
 
+## How to create an user
+
+ref: https://discuss.kubernetes.io/t/how-to-create-user-in-kubernetes-cluster-and-give-it-access/9101/3
+
+first create the CSR (certificate signed request)
+
+```
+openssl genrsa -out newUser.key 2048
+openssl req -new -key newUser.key -out user1.csr
+```
+
+the admin should approve the csr:
+
+```
+openssl x509 -req -in user1.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out newUser.crt -days 500
+```
+
+next create the role or cluster role
+
+then create the role-bindings
+
+use it:
+
+```
+kubectl config set-credentials newUser --client-certificate=/root/newUser.crt --client-key=newUser.key
+```
+
+```
+kubectl config set-context newUser-context --cluster=kubernetes --namespace=test-namespace --user=newUser
+```
+
  ### How to Nodes
  
  to get the cluster info
