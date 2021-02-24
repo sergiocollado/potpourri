@@ -84,7 +84,7 @@ more: https://www.youtube.com/watch?v=90kZRyPcRZw&t=462s
 
 **kubectl** is the kubernets command line tool.
 
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/  <- REALLY HAVE A LOOT AT THIS!
 
 It is the command used to communicate with the kubernetes cluster, with the kube-API server, so the kubectl commands are transformed in APIs calls.
 
