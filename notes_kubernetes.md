@@ -204,6 +204,14 @@ the field **kind** specifies the type of object.
 
 The field **metadata** defines basic object information like name and labels.
 
+#### Static Pods
+
+  The kubelet can be configured to read pod's definitions files from given directory. The kubelet will read that directory and handle the creation of those pods, and also keep them alive (restart the pods) in case they crash. The pods defined in this way, are kwnown as **static-pods**. 
+  
+  The static-pods are managed by the node's kubelet, son even in case the control-plane fails, or the api-server is not working, those pods are still being managed for the node's kubelet.
+  
+  reference: https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/
+
 ### Labels
 
 Labels are pairs of key and value identifiers. Labels are used to identify and select objects. So Labels do not provide uniqueness. Controllers use labels to group togethers in a set decoupled objects, instead fo idetifing them by names.
@@ -1424,6 +1432,20 @@ spec:
 ```
 
 This is known as the sidecar pattern, but there are other patterns as the ambassador or the adapter.
+
+
+
+### Howto Static Pods
+
+  The kubelet can be configured to read pod's definitions files from given directory. The kubelet will read that directory and handle the creation of those pods, and also keep them alive (restart the pods) in case they crash. The pods defined in this way, are kwnown as **static-pods**. 
+  
+  The static-pods are managed by the node's kubelet, son even in case the control-plane fails, or the api-server is not working, those pods are still being managed for the node's kubelet.
+  
+  To define the static-pod configure the kubelet on the node to use this directory by running it with --pod-manifest-path=/etc/kubelet.d/ argument.
+  
+  Other way is to provide a configuration file, with the --config=kubeconfig.yaml option. And define the static-pod in that file: staticpodPath:<the directory>.
+ 
+  reference: https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/
 
 ## Howto Namespaces
 
