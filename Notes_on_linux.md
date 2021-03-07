@@ -492,6 +492,7 @@ to change the default permissions to read/write permissions for everybody.
 
 - top - prints the proceses : top(1) http://man7.org/linux/man-pages/man1/top.1.html
 - htop - like top- but with better inteface.
+- lscpu - display information about the systems cpus. Also its available in /proc/cpuinfo
 - uptime - how long has the system been running and its load. uptime(1) https://linux.die.net/man/1/uptime
 - ps - information about the processes - http://man7.org/linux/man-pages/man1/ps.1.html
 - pstree - ps in a tree http://man7.org/linux/man-pages/man1/pstree.1.html
