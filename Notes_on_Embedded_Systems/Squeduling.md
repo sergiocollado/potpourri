@@ -19,7 +19,12 @@ can react and perform inside a defined time-window or elapsed time, might be tha
 minutes or any time ... what is the key-point is inside a defined time period. That comes to mean, that whatever function, it
 will be done, inside a bounded time.
 
-It is usually seen as reat-time systems are death-line oriented insted of throught-put oriented (like servers). 
+It is usually seen as reat-time systems are death-line oriented insted of throught-put oriented (like servers).
+
+Under the name of real-time systems, sometimes more details are defined.
+
+- hard real-time system: that system in case it misses a death-line it results in risk of lifes, damage to propierties, significant financial loss. For example a flight control system.
+- soft real-time system: that system in case it misses a death-line it results in a loss of the service or quality of the service. For example: video or audio streaming
 
 
 DETERMINISTIC SYSTEMS:
