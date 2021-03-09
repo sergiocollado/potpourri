@@ -293,7 +293,7 @@ Event driven scheduled, or dynamic schedulers have some advantes, like they can 
 the right amount of CPU in data-driven systems, or jobs can be re-scheduled according to a change in priorities.
 
 
-STATIC SCHEDULER ( aka CLOCK DRIVEN SCHEDULER):
+STATIC SCHEDULER (aka CLOCK DRIVEN SCHEDULER):
 ==============================================
 
 An static scheduler, is simple and predictable, and these are two very appropiated and desirable properties for real-time systems.
@@ -467,6 +467,8 @@ D - relative deadline
 
 In the table, T1, would get the highest priority, because his period is the shortest (P=4)
 
+reference: https://en.wikipedia.org/wiki/Rate-monotonic_scheduling
+
 DEADLINE MONOTONIC SCHEDULER:
 ============================
 
@@ -613,9 +615,11 @@ RM test
 
 RM test can verify and guarantee timeline with the previous stated assumptions of the tasks. We define a limit called URM, as
 the utilization limit under which the system is guaranteed to be feaseble. The feaseability can be proven by comparing the total
-utilization U to the URM function. An the system is guaranteed to be feaseble if:
+utilization (U) to the URM function. An the system is guaranteed to be feaseble if:
 
 U =< URM(n) =< n*(2^(1/n) - 1) //n: number of tasks
+
+n*(2^(1/n)1) is knwon as the Rate Monotonic Least Upper Bound. (RM LUB).
 
 Consider the following task set:
 
@@ -1002,6 +1006,10 @@ TODO:
  [ ] Real-Time Linux Wiki: https://rt.wiki.kernel.org/index.php/Main_Page
  [ ] comment on linux panic!!
  
+    NPTL (Native POSIX Threads Library) is the GNU C library POSIX
+       threads implementation that is used on modern Linux systems.
+       
+https://man7.org/linux/man-pages/man7/nptl.7.html
 
 REFERENCE: https://www.gnu.org/software/libc/manual/html_node/index.html#Top
 
