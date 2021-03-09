@@ -777,6 +777,17 @@ https://www.kernel.org/doc/Documentation/scheduler/sched-deadline.txt
 Using KernelShark to analyze the real-time scheduler https://lwn.net/Articles/425583/
 
 
+check this below:
+
+http://www.embeddedlinux.org.cn/rtconforembsys/5107final/toc.html
+
+https://en.wikibooks.org/wiki/The_Linux_Kernel/Processing
+
+https://man7.org/linux/man-pages/man7/nptl.7.html
+
+https://computing.llnl.gov/tutorials/pthreads/
+
+
 
 Poor-mans profiler:
 -------------------
