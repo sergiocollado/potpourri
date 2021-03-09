@@ -787,7 +787,7 @@ https://man7.org/linux/man-pages/man7/nptl.7.html
 
 https://computing.llnl.gov/tutorials/pthreads/
 
-
+linux-kernel-in-a-nutshell: https://bootlin.com/doc/books/lkn.pdf
 
 Poor-mans profiler:
 -------------------
