@@ -96,7 +96,56 @@ net.ipv4.ip_fordward = 1
 ```
 
 
+## Linux for Real time
 
+for linux is possible to use extensions or patches for real-time
+
+Linux uses to run under a fair scheduling system
+- CFS completely fair schedule
+- CFQ completely fair queue for I/O
+
+the fair scheduling in linux is based on a round robin scheme, with some improvements as priority decay and other things, but you can even use a total round robin with SCHED_RR.
+
+But for real-time systems fair schedulers are not appropiate.
+
+So for linux, we have the POSIX RT extensions. 
+In multi-core systems, as we want determinism and simplicity, AMP (Asymetric Multi-processing) is preferred to SMP (Symetric Multi-processing), because SMP tends to load bance the cores, and this is not optimal for determinims. 
+
+For linux, the preferredy scheudling policy is SCHED_FIFO, because it is the policy priority preentive run to completion. Also basic synchronization mechanisms are needed, it can induce blocking but sometimes synchronization is needed. Also linux has included another scheduling policy EDF.
+
+In linux a NPLT thread stands as the structure of a service. https://man7.org/linux/man-pages/man7/nptl.7.htm
+
+https://en.wikipedia.org/wiki/Native_POSIX_Thread_Library
+
+pthreads in user space are mapped into kernel tasks
+
+RTOS on linux kernel dispacher runs:
+ - on Entry point into kernel following inintialization
+ - loops (idle) until task or tasks ar in the ready queue.
+    - dispatches the highest priority task from the ready queue
+    - Idle is not a task context, is a kernel context.
+ - tasks or threads become ready and are dispatched when:
+    - a sequencer or Interrupt Service Routine release ( as: semGive(), or sem_post())
+    - as a result of a system call( as: mq_send(), taskActivate(), pthread_create())
+    - the return of an ISR
+
+
+Reference: Scheduling Algorithms for Multiprogramming in a Hard-Real-Time Environment https://dl.acm.org/doi/10.1145/321738.321743
+
+
+NPTL provides a framework for:
+
+ - fixed priority preemptive
+    - rate monotonic
+    - deadline monotonic
+ 
+ - dynamic priority preemptive:
+    - edf
+    - llf 
+  
+ - non-preentive cooperation
+    - multi-frequency executive
+    - dataflow
 
 
 
