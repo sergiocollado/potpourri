@@ -147,6 +147,22 @@ NPTL provides a framework for:
     - multi-frequency executive
     - dataflow
 
+references:
+
+https://en.wikibooks.org/wiki/The_Linux_Kernel/Processing
+
+https://bootlin.com/doc/books/lkn.pdf
+
+https://www.kernel.org/doc/html/latest/scheduler/
+
+https://www.kernel.org/doc/html/latest/scheduler/sched-energy.html
+
+http://www.embeddedlinux.org.cn/rtconforembsys/5107final/toc.html
+
+https://hpc-tutorials.llnl.gov/posix/
+
+http://retis.sssup.it/~giorgio/paps/2005/rtsj05-rmedf.pdf
+
 
 
 
