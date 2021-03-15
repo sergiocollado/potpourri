@@ -163,8 +163,7 @@ https://hpc-tutorials.llnl.gov/posix/
 
 http://retis.sssup.it/~giorgio/paps/2005/rtsj05-rmedf.pdf
 
-
-
+how to compile PREMPT patch https://www.youtube.com/watch?v=RjTfKF7gcIo
 
 
 
