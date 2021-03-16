@@ -2318,6 +2318,8 @@ https://kodekloud.com/p/game-of-pods
 
 links: 
 
+https://github.com/kubernetes/community
+
 https://www.youtube.com/watch?v=X48VuDVv0do
 
 https://github.com/dysinger/learn-minikube
