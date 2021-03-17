@@ -40,12 +40,12 @@ void *counterThread(void *threadp)
 
 int main (int argc, char *argv[])
 {
-   int rc;
    int i;
 
    //open the syslogs
    openlog("logs", LOG_PID, LOG_USER);
-
+	
+   //retrieve the system's name
    struct utsname systemName;
    memset(&systemName, 0x00, sizeof(systemName));
    if( -1 != uname(&systemName))
@@ -68,10 +68,11 @@ int main (int argc, char *argv[])
    }
 
    //pthreads joint is needed, becuse otherwise the main pogram will not wait for 
-   //the threads and jus end.
+   //the threads and it could just end.
    for(i=0;i<NUM_THREADS;i++)
        pthread_join(threads[i], NULL);
 
+   //report completion
    printf("TEST COMPLETE\n");
 
    //close syslog
@@ -86,7 +87,7 @@ LIB_DIRS =
 CC=gcc
 
 CDEFS=
-CFLAGS= -O0 -g $(INCLUDE_DIRS) $(CDEFS)
+CFLAGS= -Wall -O0 -g $(INCLUDE_DIRS) $(CDEFS)
 LIBS= 
 
 HFILES= 
