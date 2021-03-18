@@ -905,6 +905,14 @@ ref : https://thenewstack.io/12-critical-kubernetes-health-conditions-you-need-t
 
 # HOW TO's
 
+## How to get a shell to a runnnig contaniner
+
+ref: https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/
+
+```
+kubectl exec --stdin --tty <your-pod> -- /bin/bash
+```
+
 ## How to labels
 
 To add labels, the command 'kubeclt label ...' is used:
