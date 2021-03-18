@@ -2296,7 +2296,24 @@ Once launched again the node can be maked as schedulabe again, with:
 ```
 kubectl uncordon node-i
 ```
+### troubleshooting working nodes
 
+https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/
+
+I would try:
+
+```
+>ssh <worker>
+
+>ps -ef | grep kubelet
+
+>systemctl status kubelet.service -l
+
+>journalctl -u kubelet -f
+
+>systemctl daemon-reload
+>systemctl restart kubelet
+```
 
 
 
