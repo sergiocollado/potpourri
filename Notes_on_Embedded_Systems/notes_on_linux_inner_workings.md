@@ -117,6 +117,8 @@ In linux a NPLT thread stands as the structure of a service. https://man7.org/li
 
 https://en.wikipedia.org/wiki/Native_POSIX_Thread_Library
 
+https://man7.org/linux/man-pages/man7/sched.7.html
+
 pthreads in user space are mapped into kernel tasks
 
 RTOS on linux kernel dispacher runs:
@@ -148,6 +150,8 @@ NPTL provides a framework for:
     - dataflow
 
 references:
+
+https://man7.org/linux/man-pages/man7/sched.7.html
 
 https://en.wikibooks.org/wiki/The_Linux_Kernel/Processing
 
