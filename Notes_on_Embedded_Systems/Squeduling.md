@@ -447,6 +447,8 @@ two monotonic scheduler will be covered:
 RATE MONOTONIC SCHEDULER:
 =========================
 
+The Rate Monotonic policy states that a service implementation with the highest frequency should have the highest priority. 
+
 The rate monotonic scheduler sets the priority of the tasks acording to the period (P) of the tasks, so those tasks with a shorten period,
 have a higher priority.
 
