@@ -165,6 +165,13 @@ http://retis.sssup.it/~giorgio/paps/2005/rtsj05-rmedf.pdf
 
 how to compile PREMPT patch https://www.youtube.com/watch?v=RjTfKF7gcIo
 
+### Linux posix threads 
+
+https://hpc-tutorials.llnl.gov/posix/
+
+https://en.wikipedia.org/wiki/POSIX
+
+https://www.amazon.com/POSIX-4-Programmers-Guide-Programming-World/dp/1565920740
 
 ### Time in linux
 
