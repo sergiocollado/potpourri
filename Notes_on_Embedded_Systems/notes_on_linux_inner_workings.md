@@ -166,4 +166,27 @@ http://retis.sssup.it/~giorgio/paps/2005/rtsj05-rmedf.pdf
 how to compile PREMPT patch https://www.youtube.com/watch?v=RjTfKF7gcIo
 
 
+### Time in linux
+
+ref: https://man7.org/linux/man-pages/man7/time.7.html
+
+linux with its posix rea-time extension support both: absolute and relative time
+
+Relative time is based in a hardware timer, based on PIT (Programmable Interval Timer) and TSC (Time Stamp Counter) or it is based in SCT (system Clock Time).
+
+https://man7.org/linux/man-pages/man8/hwclock.8.html
+
+Absolute time, that also is at times not really properly addresed as Real-time, is based on a baterry packed clock or in NTP (network time protocol).
+
+Some times it may be interesting using the Julian Calendar instead of the Gregorian calendar (the calendar we use). Because the Julian Calendar increases monotincally. Also is interesting using the UTC.
+
+Other time measurements TAI (Atomic Interantional Time), UTC, GPS ...
+
+https://man7.org/linux/man-pages/man4/rtc.4.html
+
+Posix RT- timer services for timeouts -> sem_timedwait()
+
+https://cyberglory.wordpress.com/2011/08/21/jiffies-in-linux-kernel/
+
+
 
