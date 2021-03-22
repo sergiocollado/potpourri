@@ -153,6 +153,8 @@ references:
 
 https://man7.org/linux/man-pages/man7/sched.7.html
 
+https://wiki.linuxfoundation.org/realtime/rtl/blog#the_real-time_endgame_is_moving_quickly_now
+
 https://en.wikibooks.org/wiki/The_Linux_Kernel/Processing
 
 https://bootlin.com/doc/books/lkn.pdf
