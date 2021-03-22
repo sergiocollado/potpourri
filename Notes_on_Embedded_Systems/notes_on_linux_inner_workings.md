@@ -177,6 +177,8 @@ https://hpc-tutorials.llnl.gov/posix/
 
 https://en.wikipedia.org/wiki/POSIX
 
+https://www.cs.utexas.edu/~witchel/372/lectures/POSIX_Linux_Threading.pdf
+
 https://www.amazon.com/POSIX-4-Programmers-Guide-Programming-World/dp/1565920740
 
 ### Time in linux
