@@ -205,3 +205,7 @@ https://cyberglory.wordpress.com/2011/08/21/jiffies-in-linux-kernel/
 
 
 
+
+
+
+linux kernel in a nutshell: https://bootlin.com/doc/books/lkn.pdf
