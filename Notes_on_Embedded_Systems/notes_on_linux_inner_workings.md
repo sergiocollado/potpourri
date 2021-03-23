@@ -119,6 +119,8 @@ https://en.wikipedia.org/wiki/Native_POSIX_Thread_Library
 
 https://man7.org/linux/man-pages/man7/sched.7.html
 
+https://www.kernel.org/doc/html/latest/scheduler/index.html
+
 pthreads in user space are mapped into kernel tasks
 
 RTOS on linux kernel dispacher runs:
@@ -207,5 +209,30 @@ https://cyberglory.wordpress.com/2011/08/21/jiffies-in-linux-kernel/
 
 
 
-
 linux kernel in a nutshell: https://bootlin.com/doc/books/lkn.pdf
+
+
+
+## Linux kernel development process
+
+https://www.kernel.org/doc/html/latest/process/development-process.html
+
+Linux kernel releases come every 2+ months (10 or 11 weeks). Releases are time based and not feature based. 
+
+When the new version is released a 2 week window is open for merging new pulls for the next release. so mantainers send signed git pull requests in that merge window. After that period is created the first relesase candidate, known as **rc1**. So new features are only included in this first merge window.
+
+At this point the release cycle goes into bug fixes-only mode. So release candidates are generated till mayor bug fixes and regressions are solved.
+
+When enough confidence on the quality of the code is reached, the stable version is released. 
+
+https://www.kernel.org/category/releases.html
+
+https://www.kernel.org/doc/linux/MAINTAINERS
+
+http://vger.kernel.org/vger-lists.html
+
+https://lore.kernel.org/lists.html
+
+https://git.kernel.org/
+
+
