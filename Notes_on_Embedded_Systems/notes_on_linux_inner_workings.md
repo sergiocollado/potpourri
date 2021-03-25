@@ -104,7 +104,7 @@ Linux uses to run under a fair scheduling system
 - CFS completely fair schedule
 - CFQ completely fair queue for I/O
 
-the fair scheduling in linux is based on a round robin scheme, with some improvements as priority decay and other things, but you can even use a total round robin with SCHED_RR.
+the fair scheduling in linux is based on a round robin scheme, with some improvements as priority decay and other things, but you can even use a total round robin with SCHED_RR (round-robin)
 
 But for real-time systems fair schedulers are not appropiate.
 
@@ -117,11 +117,19 @@ For linux real-time, the preferredy scheduling policy is SCHED_FIFO, because it 
 
 In linux a NPLT thread stands as the structure of a service. https://man7.org/linux/man-pages/man7/nptl.7.htm
 
+https://man7.org/linux/man-pages/man7/pthreads.7.html
+
 https://en.wikipedia.org/wiki/Native_POSIX_Thread_Library
 
 https://man7.org/linux/man-pages/man7/sched.7.html
 
 https://www.kernel.org/doc/html/latest/scheduler/index.html
+
+https://man7.org/linux/man-pages/man7/pthreads.7.html
+
+https://man7.org/linux/man-pages/man7/posixoptions.7.html
+
+https://man7.org/linux/man-pages/man7/standards.7.html
 
 
 pthreads in user space are mapped into kernel tasks
@@ -154,15 +162,55 @@ NPTL provides a framework for:
     - multi-frequency executive
     - dataflow
 
+different scheduling policies, for linux with real-time extensions: n <kernel/sched/rt.c>
+
+https://www.kernel.org/doc/html/latest/scheduler/index.html#
+
+SCHED_FIFO - priority preentive & run to completion. like RTOS. It is unfair and determistic. It is implemented with pthreads. 
+And runs at priority until:
+- complete and exit
+- yield, sleep, activate a higher priority or blocked on secondary resource (system call)
+- interrupt raised
+
+SCHED_RR (round-robin) - fixed priority preentive: fair, higher overhed (due the tasks rotation in time slices), and it is deterministic.
+
+SCHED_DEADLINE - dynamic priority alternative: adaptative and harder to model. this scheduler is also refered in the literature as EDF (Earliest death-line First) http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.517.771&rep=rep1&type=pdf
+
+SCHED_OTHER: - CFS (Completelly fair scheduler) fair and hard to model. it is a best effort, scalable scheduler.
+
+there are other schedulers as : SCHED_BATCH or SCHED_IDLE...
+
+
+for hard real-time is recomended SCHED_FIFO, and for soft-real is recommended SCHED_DEADLINE.
+
+
+
+linux preempt patch 
+
+https://rt.wiki.kernel.org/index.php/CONFIG_PREEMPT_RT_Patch
+
+overview: https://lwn.net/Articles/146861/
+
+https://wiki.linuxfoundation.org/realtime/documentation/howto/applications/preemptrt_setup
+
+https://www.kernel.org/doc/html/latest/scheduler/sched-rt-group.html
+
+
+
+
 references:
 
 https://man7.org/linux/man-pages/man7/sched.7.html
 
+https://www.kernel.org/doc/html/latest/scheduler/index.html#
+
+https://bootlin.com/doc/books/lkn.pdf
+
+a complete guide to linux scheduling: https://trepo.tuni.fi/bitstream/handle/10024/96864/GRADU-1428493916.pdf
+
 https://wiki.linuxfoundation.org/realtime/rtl/blog#the_real-time_endgame_is_moving_quickly_now
 
 https://en.wikibooks.org/wiki/The_Linux_Kernel/Processing
-
-https://bootlin.com/doc/books/lkn.pdf
 
 https://www.kernel.org/doc/html/latest/scheduler/
 
@@ -185,6 +233,7 @@ https://en.wikipedia.org/wiki/POSIX
 https://www.cs.utexas.edu/~witchel/372/lectures/POSIX_Linux_Threading.pdf
 
 https://www.amazon.com/POSIX-4-Programmers-Guide-Programming-World/dp/1565920740
+
 
 ### Time in linux
 
@@ -267,4 +316,6 @@ https://www.kernel.org/doc/html/latest/process/kernel-enforcement-statement.html
 
 
 
+How to configure the kernel: https://www.kernel.org/doc/Documentation/kbuild/kconfig.txt
 
+kernel documentation: https://www.kernel.org/doc/Documentation/
