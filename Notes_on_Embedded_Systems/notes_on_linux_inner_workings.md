@@ -218,6 +218,8 @@ linux kernel in a nutshell: https://bootlin.com/doc/books/lkn.pdf
 
 ## Linux kernel development process
 
+### Intro
+
 https://www.kernel.org/doc/html/latest/process/development-process.html
 
 Linux kernel releases come every 2+ months (10 or 11 weeks). Releases are time based and not feature based. 
@@ -237,5 +239,32 @@ http://vger.kernel.org/vger-lists.html
 https://lore.kernel.org/lists.html
 
 https://git.kernel.org/
+
+### Patches
+
+linux development is handled with git as a code repository. https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git
+
+https://git-scm.com/book/en/v2
+
+the code submitted in patches must be signed off
+
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html#sign-your-work-the-developer-s-certificate-of-origin
+
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes
+
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes
+ 
+and the patch prefixes are:  [PATCH], [PATCH RFC] or [RFC PATCH] or [PATCH v4] 
+
+
+### Codes of conduct
+
+https://www.kernel.org/doc/html/latest/process/code-of-conduct.htm
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/LICENSES/preferred/GPL-2.0
+
+https://www.kernel.org/doc/html/latest/process/kernel-enforcement-statement.html
+
+
 
 
