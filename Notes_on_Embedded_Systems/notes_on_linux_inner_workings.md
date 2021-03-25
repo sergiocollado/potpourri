@@ -111,7 +111,9 @@ But for real-time systems fair schedulers are not appropiate.
 So for linux, we have the POSIX RT extensions. 
 In multi-core systems, as we want determinism and simplicity, AMP (Asymetric Multi-processing) is preferred to SMP (Symetric Multi-processing), because SMP tends to load bance the cores, and this is not optimal for determinims. 
 
-For linux, the preferredy scheudling policy is SCHED_FIFO, because it is the policy priority preentive run to completion. Also basic synchronization mechanisms are needed, it can induce blocking but sometimes synchronization is needed. Also linux has included another scheduling policy EDF.
+For linux real-time systems we would preffer AMP policy, because each work/task, can be assigned to each corresponding core. For this we can use thread affinity and by-pass SMP in linux, and emulate then an AMP affinity. AMP makes easier to model the behavior of the system, and then its predicitility. 
+
+For linux real-time, the preferredy scheduling policy is SCHED_FIFO, because it is the policy priority preentive run to completion (this make it deterministic). Also basic synchronization mechanisms are needed, it can induce blocking but sometimes synchronization is needed. Also linux has included another scheduling policy EDF (Earliest Death-time First).
 
 In linux a NPLT thread stands as the structure of a service. https://man7.org/linux/man-pages/man7/nptl.7.htm
 
@@ -120,6 +122,7 @@ https://en.wikipedia.org/wiki/Native_POSIX_Thread_Library
 https://man7.org/linux/man-pages/man7/sched.7.html
 
 https://www.kernel.org/doc/html/latest/scheduler/index.html
+
 
 pthreads in user space are mapped into kernel tasks
 
