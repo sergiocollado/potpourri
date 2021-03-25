@@ -2386,6 +2386,9 @@ about Helm: https://www.youtube.com/watch?v=-ykwb1d0DXU
 
 https://www.youtube.com/watch?v=90kZRyPcRZw&t=462s
 
+https://www.youtube.com/watch?v=X48VuDVv0do
+
+https://www.youtube.com/watch?v=fy8SHvNZGeE
 
 For certification:
 
