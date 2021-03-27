@@ -319,3 +319,33 @@ https://www.kernel.org/doc/html/latest/process/kernel-enforcement-statement.html
 How to configure the kernel: https://www.kernel.org/doc/Documentation/kbuild/kconfig.txt
 
 kernel documentation: https://www.kernel.org/doc/Documentation/
+
+### Configuration of the development system
+
+https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview
+
+https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview
+
+It is recomended 3GB for the boot partition.
+
+The packaget build-essential is needed in the system.
+
+
+```
+sudo apt-get install build-essential vim git cscope libncurses-dev libssl-dev bison flex
+sudo apt-get install git-email
+```
+
+It is needed to check the minimal requirements to compile the kernel
+
+https://www.kernel.org/doc/html/latest/process/changes.html
+
+git-email is for sending patches through the **sendmail** configuration option once the **smtp** server is configured.
+
+example configuration for gmail: https://gist.github.com/jasonkarns/4354421, https://coderwall.com/p/qcsiew/setting-up-and-using-git-send-email-with-gmail
+
+https://www.kernel.org/doc/html/latest/process/email-clients.html
+
+
+
+
