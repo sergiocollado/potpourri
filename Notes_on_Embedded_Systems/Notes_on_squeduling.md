@@ -750,6 +750,12 @@ EDF:  EARLIEST DEADLINE FIRST SCHEDULER:
 
 
 
+
+
+references: https://www.amazon.com/-/es/Mark-Klein/dp/0792393619
+
+
+
 # HOW TO SCHEDULE LINUX REALTIME:
 
 A Checklist for Writing Linux Real-Time Applications - John Ogness, Linutronix - https://www.youtube.com/watch?v=NrjXEaTSyrw 
@@ -757,6 +763,8 @@ A Checklist for Writing Linux Real-Time Applications - John Ogness, Linutronix -
 https://ogness.net/ese2020/ese2020_johnogness_rtchecklist.pdf
 
 https://wiki.linuxfoundation.org/realtime/rtl/blog#the_real-time_endgame_is_moving_quickly_now
+
+a complete guide on linux scheduling: https://trepo.tuni.fi/bitstream/handle/10024/96864/GRADU-1428493916.pdf
 
 https://wiki.linuxfoundation.org/realtime/documentation/howto/applications/start
 
@@ -790,6 +798,8 @@ https://man7.org/linux/man-pages/man7/nptl.7.html
 https://computing.llnl.gov/tutorials/pthreads/
 
 linux-kernel-in-a-nutshell: https://bootlin.com/doc/books/lkn.pdf
+
+
 
 Poor-mans profiler:
 -------------------
