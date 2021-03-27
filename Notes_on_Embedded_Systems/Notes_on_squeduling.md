@@ -751,9 +751,25 @@ EDF:  EARLIEST DEADLINE FIRST SCHEDULER:
 
 
 
+# REFERENCES:
+
+
+ C.L. Liu, and J.W. Layland. Scheduling algorithms for multiprogramming in a hard-real-time
+environment. Journal of the Association for Computing Machinery, vol.20, (no.1), Jan. 1973. p.
+46-61.
+- http://citeseer.ist.psu.edu/liu73scheduling.html
+- 
+‣ J. Lehoczky, L. Sha, and Y. Ding. The rate monotonic scheduling algorithm: exact
+characterization and average case behavior. Proceedings of Real Time Systems Symposium, p.
+166-171, Dec. 1989.
+
+‣ Enrico Bini, Giorgio Buttazzo and Giuseppe Buttazzo, "Rate Monotonic Analysis: The Hyperbolic
+Bound", IEEE Transactions on Computers, Vol. 52, No. 7, pp. 933-942, July 2003.
+- http://feanor.sssup.it/~giorgio/paps/2003/ieeetc-hb.pdf
 
 references: https://www.amazon.com/-/es/Mark-Klein/dp/0792393619
 
+https://www.iiitd.edu.in/~amarjeet/EmSys2013/UCLA-EE202a-L05-RateMonotonic.pdf
 
 
 # HOW TO SCHEDULE LINUX REALTIME:
