@@ -286,6 +286,9 @@ mission critical applications that require provable dependability.
 Posix https://pubs.opengroup.org/onlinepubs/9699919799/functions/contents.html
 
 
+# ZEPHYR 
+
+https://www.zephyrproject.org/
 
 # POSIX 
 
