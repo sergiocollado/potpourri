@@ -282,6 +282,7 @@ https://www.cs.utexas.edu/~witchel/372/lectures/POSIX_Linux_Threading.pdf
 
 https://www.amazon.com/POSIX-4-Programmers-Guide-Programming-World/dp/1565920740
 
+posix real-time : https://www.ctr.unican.es/publications/mgh-1993a.pdf
 
 ### Time in linux
 
@@ -336,6 +337,7 @@ http://vger.kernel.org/vger-lists.html
 https://lore.kernel.org/lists.html
 
 https://git.kernel.org/
+
 
 ### Patches
 
