@@ -524,6 +524,7 @@ ISO 31000 - standards for risk management:
 - EN 60950-1:200 + A2:2013 - Information technology equipment. Safety general Standards.
 - ISO 14118 - Safety on Machinery - prevention of unexpected start-up
 - IEC 60079 Series Explosive Atmosphere Standards
+- ARINC 653 - Avionics Application Standard Software Interface
 
 ## Common points of the safety standards
 
@@ -551,6 +552,8 @@ requires of analisys, records and feedback of the development, testing and field
  MIL-HDBK-217 "Reliability Prediction of Electronic Equipment"
  
  ISO 9001
+ 
+ 
 
 ## Other stadards to observe
 
@@ -601,7 +604,8 @@ failure intensity
 - IEC/TR 62380, Reliability data handbook – Universal model for reliability prediction of
          electronics components, PCBs and equipment
 - IEC 62429, Reliability growth – Stress testing for early failures in unique complex systems
-
+- ARINC 653 (Avionics Application Standard Software Interface) is a software specification for space and time partitioning in safety-critical avionics real-time operating systems (RTOS).
+- 
 Ocupational safety:
 
 https://www.osha.gov/pls/oshaweb/owadisp.show_document?p_table=STANDARDS&p_id=9735
