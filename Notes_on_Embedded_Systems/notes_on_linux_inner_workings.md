@@ -185,6 +185,54 @@ for hard real-time is recomended SCHED_FIFO, and for soft-real is recommended SC
 
 
 
+```
+                                              ┌───────────────────────────────────────────────────┐
+                                              │                                                   │
+                                              │                                                   │
+                                              │                                                   │
+                                              │                                                   │
+                                              │                                                   │
+                                              │                                                   │
+                                                                                                  │
+                      ◄─────────────────  EXECUTING   ──────────────►                             │
+         Waiting on                                                    YielD anD                  │
+           ReSourceS                        ▲   │                          WakeUp                 │
+                                            │   │                                                 │
+  sigWait()    │                            │   │                            │                    │
+               │                            │   │ PREEMTED                   │                    │
+mutex_lock()   │                   DipacheD │   │   OR YIELD                 │   usleep()         │   Suspended a in an
+               │                            │   │   Sched_yield()            │                    │
+               │                            │   │                            │    pauSe()         │   exeption (Division by 0)
+               │                            │   │                            │                    │
+               │                            │   │                            │                    │
+               ▼        mutex_unlock()      │   ▼                            │                    │   sigsuspenD()
+                                                                             ▼                    │
+            PENDING   ─────────────────►    READY  ◄──────────────────   DELAYED                  │
+                                                                                                  │
+             │  ▲                            │  ▲                          ▲  │                   │
+             │  │                            │  │                          │  │                   │
+             │  │                            │  │                          │  │                   │
+             │  │                            │  │                          │  │                   │
+             │  │                            ▼  │                          │  │                   │
+             │  │                                                          │  │                   │
+             │  │                         SUPENDED                         │  │                   │
+             │  └──────────────────────                ────────────────────┘  │                   │
+             │                            + DELAYED                           │                   │
+             └────────────────────────►                ◄──────────────────────┘                   │
+                                           + PENDING                                              │
+                                                                                                  │
+                                               ▲                                                  │
+                                               │                                                  │
+                                               │                                                  │
+                                               │                                                  │
+                                               └──────────────────────────────────────────────────┘
+```
+
+
+
+
+
+
 linux preempt patch 
 
 https://rt.wiki.kernel.org/index.php/CONFIG_PREEMPT_RT_Patch
