@@ -751,6 +751,17 @@ EDF:  EARLIEST DEADLINE FIRST SCHEDULER:
 
 
 
+
+
+# LIMITATIONS IN THE RATE MONOTONIC THEORY
+
+- requires that the priorities are fixed
+- doesn't consider the importace of auxiliar service in addition to or instead of their request frequency or priority
+- Simplification of the model assuming T=D
+- Not considering additional resources needs, like shared memory neeeded at the same time as the CPU.
+- assuming that real-time services will be required on a peridic basis
+
+
 # REFERENCES:
 
 
@@ -767,9 +778,15 @@ characterization and average case behavior. Proceedings of Real Time Systems Sym
 Bound", IEEE Transactions on Computers, Vol. 52, No. 7, pp. 933-942, July 2003.
 - http://feanor.sssup.it/~giorgio/paps/2003/ieeetc-hb.pdf
 
+http://retis.sssup.it/~giorgio/paps/2005/rtsj05-rmedf.pdf
+
+
 references: https://www.amazon.com/-/es/Mark-Klein/dp/0792393619
 
+
 https://www.iiitd.edu.in/~amarjeet/EmSys2013/UCLA-EE202a-L05-RateMonotonic.pdf
+
+
 
 
 # HOW TO SCHEDULE LINUX REALTIME:
