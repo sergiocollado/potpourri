@@ -474,6 +474,8 @@ reference: https://en.wikipedia.org/wiki/Rate-monotonic_scheduling
 DEADLINE MONOTONIC SCHEDULER:
 ============================
 
+In the deadline monotonic scheduler the shortest deadline have the highiest priority. Note we don't say the "earliest" deadline because that would implie some dinamic priorities, and thats not the case for monotinc scheduling policies.
+
 In the deadline monotonic scheduler, the task with the smaller relative deadline has the highest priority, in the table, that would
 be T2, because its realtive deadline is the smallest (D=3).
 
