@@ -512,7 +512,7 @@ ISO 31000 - standards for risk management:
 - ISO 25119 - Agriculture
 - ISO 13849 & IEC 62061 - Machinery
 - IEC 60601 - Medical
-- DO-178 - Aircrafts
+- DO-178 B & C - Software Considerations in Airborne Systems and Equipment Certification
 - EN 50126 - 50126/8/9 Railway
 - IEC 61513 - Nuclear Power
 - IEC 50156 - Furnaces 
@@ -605,7 +605,7 @@ failure intensity
          electronics components, PCBs and equipment
 - IEC 62429, Reliability growth – Stress testing for early failures in unique complex systems
 - ARINC 653 (Avionics Application Standard Software Interface) is a software specification for space and time partitioning in safety-critical avionics real-time operating systems (RTOS).
-- 
+
 Ocupational safety:
 
 https://www.osha.gov/pls/oshaweb/owadisp.show_document?p_table=STANDARDS&p_id=9735
