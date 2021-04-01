@@ -17,10 +17,48 @@ Amazon Web Services.
 
 AWS free tier: https://aws.amazon.com/free/
 
-# INDEX
 
- - [S3 - Simple Storage Service](s3 - simple storage service.)
- - [CLOUD FRONT](CLOUD FRONT)
+INTRODUCTION to IAM (Identity and Access Management):
+=====================================================
+
+IAM provides the right users, the right access, the right resources at the right time.
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html
+
+there are two concepts that need to be clarified:
+- Authentication: the act of validating that an user is who they say they are.
+- Authorization: the process of giving users permissions to access a given resource or service
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/intro-structure.html#intro-structure-authentication
+
+IAM identities are three:
+- users (represents an user or an application)
+- groups (a collection of IAM users)
+- roles
+
+these identites are matched with identities policies 
+
+IAM, control access to AWS resources. Each IAM identity gets it own set of cryptographic keys. It sets the users privileges to control actions.
+Accesses can be time controlled: permanent or short term.
+
+IAM, enables EC2 roles, that means, that EC2 instances, can get roles.
+
+It can handle MFA(Multy Factor Authentification). FOBs cost something, and there is also a virtual FOB for Android&iOS.
+
+It also have STS(Security Token Service), is somewhat similar to Kerberos, in the sense it can expire AWS resource access.
+
+Best Practices: 
+
+-Once you created the Master account, create an IAM_root_account, to access your thing, this is actually a safe/falloff
+measurement.
+-Create master accounts, for the groups: Production, Dev, Test.
+
+
+More info:
+
+http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html
+
+http://aws.typepad.com/aws/2011/08/aws-identity-and-access-management-now-with-identify-federation.html
 
 
 # AWS S3 
@@ -142,7 +180,7 @@ EC2 service allows you to:
  https://aws.amazon.com/ec2/instance-types/
  
  
-## ELB( Elastic Load Balancer) 
+## ELB (Elastic Load Balancer) 
 
 there is 3 types of load balancer
 
@@ -186,7 +224,6 @@ there are different types of EBS: GP2, IO1, STI, SCI
 It is possible to get EBS snapshots, this is usefull for backups, or volume migrations.
 
 Also is possible to use encrypted EBS volumes.
-
  
 
 ## ADVANCED FEATURES OF S3
@@ -382,8 +419,8 @@ There is also Bandwidth charges
    - And $0.1 GB, in and aout accross AZs.
    
 
-INTRODUCTION TO VPC(Virtual Private Cloud):
-===========================================
+INTRODUCTION TO VPC (Virtual Private Cloud):
+============================================
 
 VPC stands for Virtual Private Cloud. VPC allows a logical isolation between your resources: From other constumers, and from internal 
 divisions or application tiers.
@@ -601,27 +638,6 @@ SQS user cases:
    - AWS order processing.
    - machine to machine messaging.
    
-INTRODUCTION to IAM(Identity and Access Management):
-====================================================
-
-IAM, control access to AWS resources. each user gets it own set of cryptographic keys. It sets the users privileges to control actions.
-Accesses can be time controlled: permanent or short term.
-
-IAM, enables EC2 roles, that means, that EC2 instances, can get roles.
-
-It can handle MFA(Multy Factor Authentification). FOBs cost something, and there is also a virtual FOB for Android&iOS.
-
-It also have STS(Security Token Service), is somewhat similar to Kerberos, in the sense it can expire AWS resource access.
-
-Best Practices: 
-
--Once you created the Master account, create an IAM_root_account, to access your thing, this is actually a safe/falloff
-measurement.
--Create master accounts, for the groups: Production, Dev, Test.
-
-More info:
-http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html
-http://aws.typepad.com/aws/2011/08/aws-identity-and-access-management-now-with-identify-federation.html
 
 INTRODUCTION TO ROUTE53:
 ========================
