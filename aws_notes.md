@@ -53,7 +53,11 @@ policies are defined by three mandatory elements
 - action: specifies the speciffic activities that are allowed or denied (each service have different actions -consult documentation)
 - resource: speficies the object or objects that the policy refers to. It is spefied with the ARN
 
-an example policy:
+https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_effect.html
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_action.html
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_resource.html
 
 ```
 {
@@ -66,6 +70,31 @@ an example policy:
 }
 ```
 
+and other optional elements:
+- principal specifies the principal that is allowed to access to the resource
+- condition: specify conditions when the policy is in effect.
+
+an example policy:
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": {
+    "Effect": "Allow",
+    "Principal": {"AWS": "arn:aws:iam::1234532349534:root"}
+    "Action": "ec2:RunInstances",
+    "Resource": "*",
+    "Condition": {
+         "StringLikeIfExists": {
+          "ec2:InstanceType": [
+             "t1.*",
+             "t2.*",
+             "m3.*"
+     ]}}
+   }  
+}
+```
+
 remember: EPARC
 - E effect
 - P principal
@@ -73,14 +102,15 @@ remember: EPARC
 - R resource
 - C condition
 
-remember always to use the principle of the least privileges.
 
+Also, there are resource-based policies and identity-based policies. and there are two types of identity-based policies: managed and in-lined policies.
 
-https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_effect.html
+Inline policies are created and embedded into IAM users, groups or roles. they use to be created when the identity is created and deleted when the identity is deleted.
 
-https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_action.html
+Managed policies are policies that you can attach to users, groups and roles. Within the managed policies there are two types: AWS managed policies and custom managed policies.
 
-https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_resource.html
+Remember always to use the principle of the least privileges.
+
 
 https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
 
@@ -100,6 +130,62 @@ Best Practices:
 -Once you created the Master account, create an IAM_root_account, to access your thing, this is actually a safe/falloff
 measurement.
 -Create master accounts, for the groups: Production, Dev, Test.
+
+Policies examples:
+
+1st example:
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+       "Sid": "ListObjectsInBucket",
+       "Action": [
+          "s3:ListBucket"
+          ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:s3:::socilamediabucket1"
+    },
+    {
+       "Sid": "ObjectActions",
+       "Action": [
+          "s3:*Object"
+          ],
+   
+   "Effect": "Allow",
+        "Resource": "arn:aws:s3:::socilamediabucket1/*"
+    }
+  ]
+}
+```
+
+
+2nd example:
+
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+       "Sid": "StartStopIfTags",
+       "Action": [
+          "ec2:DescribeTags",
+          "ec2:StartInstances",
+          "ec2:StopInstances"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:ec2:us-east-2:123546344567:instance/*",
+        "Condition": {
+           "StringEquals":  {
+              "ec2:ResourceTag/": "Project": "DataAnalytics"
+           }
+        }
+    }
+  ]
+}
+```
 
 
 More info:
