@@ -430,3 +430,116 @@ git format-patch -1 <commit ID>
 For everyday tinkering with the kernel, take into account the scripts: scripts/get_maintainer.pl and scripts/checkpatch.pl
 
 Also de e linux-kselftest repo
+
+
+### Writting a kernel patch
+
+ Clone a stable kernel
+ 
+ ```
+ git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux_stable
+cd linux_stable
+git branch -a | grep linux-5
+    remotes/origin/linux-5.0.y
+    remotes/origin/linux-5.1.y
+    remotes/origin/linux-5.2.y
+​git checkout linux-5.2.y
+ ```
+ 
+ Next you have to copy the configuration file from your current kernel, from /proc/config.gz or /boot, and copy it to  linux_stable/.config
+ 
+ for example:
+ 
+ ```
+ ls /boot
+config-5.0.0-20-generic        memtest86+.bin
+config-5.0.0-21-generic        memtest86+.elf  //< this is the latest configuration
+efi                            memtest86+_multiboot.bin
+grub                           System.map-5.0.0-20-generic
+initrd.img-5.0.0-20-generic    System.map-5.0.0-21-generic
+initrd.img-5.0.0-21-generic    vmlinuz-5.0.0-20-generic
+lost+found                     vmlinuz-5.0.0-21-generic
+
+cp /boot/<config-5.0.0-21-generic> .config
+```
+
+#### Compiling the kernel 
+
+Run the following command to generate a kernel configuration file based on the current configuration.
+
+```
+make oldconfig
+```
+
+Other way to tune the kernel your system is by using make localmodconfig. This option creates a configuration file based on the list of modules currently loaded on your system.
+
+```
+lsmod > /tmp/my-lsmod
+make LSMOD=/tmp/my-lsmod localmodconfig
+```
+
+Once this step is complete, it is time to compile the kernel. Using the -j option helps the compiles go faster. The -j option specifies the number of jobs (make commands) to run simultaneously:
+
+```
+make -j3 all
+```
+
+once the compilation is done, you can install it
+
+```
+su -c "make modules_install install"
+```
+
+this command will install the kernel, and execute 'update-grub' to add it to the grub menu. 
+
+before rebooting the system, we can store some logs to compare it later, and look for regression or new errors
+
+we use the dmesg with the -t option, to not display the timestamps
+
+```
+dmesg -t > dmesg_current
+dmesg -t -k > dmesg_kernel
+dmesg -t -l emerg > dmesg_current_emerg
+dmesg -t -l alert > dmesg_current_alert
+dmesg -t -l crit > dmesg_current_crit
+dmesg -t -l err > dmesg_current_err
+dmesg -t -l warn > dmesg_current_warn
+```
+
+It is expected to be clean:  emerg, alert, crit, and err level messages
+
+Before testing the new kernel, that we don't know if it will boot, a couple of safety measures:
+
+By default, grub tries to boot the default kernel, which is the newly installed kernel. We change the default grub configuration file /etc/default/grub to the boot menu, and pause for us to be able to select the kernel to boot.
+ 
+ 
+Booting the Kernel:
+
+Let’s take care of a couple of important steps before trying out the newly installed kernel. There is no guarantee that the new kernel will boot. As a safeguard, we want to make sure that there is at least one good kernel installed and we can select it from the boot menu. By default, grub tries to boot the default kernel, which is the newly installed kernel. We change the default grub configuration file /etc/default/grub to the boot menu, and pause for us to be able to select the kernel to boot.
+
+Please note that this option is specific to Ubuntu, and other distributions might have a different way to specify boot menu options.
+
+Increase the GRUB_TIMEOUT value to 10 seconds, so grub pauses in menu long enough to choose a kernel to boot:
+
+```
+Uncomment GRUB_TIMEOUT and set it to 10: GRUB_TIMEOUT=10
+Comment out GRUB_TIMEOUT_STYLE=hidden
+```
+
+If the newly installed kernel fails to boot, it is nice to be able to see the early messages to figure out why the kernel failed to boot.
+
+ 
+Enable printing early boot messages to vga using the earlyprintk=vga kernel boot option:
+
+```
+GRUB_CMDLINE_LINUX="earlyprintk=vga"
+```
+
+Run update-grub to update the grub configuration in /boot
+
+```
+sudo update-grub
+```
+
+Now, it is possibble to restart the system. Once the new kernel comes up, compare the saved dmesg from the old kernel with the new one, and see if there are any regressions. If the newly installed kernel fails to boot, you will have to boot a good kernel, and then investigate why the new kernel failed to boot.
+
