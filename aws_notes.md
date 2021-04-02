@@ -48,6 +48,7 @@ https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_res
 
 https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
 
+IAM policies allow acess to resources and be as granular as desired.  Different resoucres can be addresed with the ARN (Amazon Resource Name) 
 
 IAM, control access to AWS resources. Each IAM identity gets it own set of cryptographic keys. It sets the users privileges to control actions.
 Accesses can be time controlled: permanent or short term.
