@@ -397,5 +397,36 @@ example configuration for gmail: https://gist.github.com/jasonkarns/4354421, htt
 https://www.kernel.org/doc/html/latest/process/email-clients.html
 
 
+### Exploring the linux kernel sources
 
 
+You should create a directory, to git clone the linux repo, for example the mainline: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/ 
+
+```
+>> cd /linux_work
+>> git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git linux_mainline
+>> cd linux_mainline; ls -h
+
+arch          CREDITS                 drivers  ipc      lib          mm       scripts   usr
+block    crypto         fs               Kbuild      LICENSES     net      security  virt
+certs        cscope.out          include    Kconfig  MAINTAINERS  README      sound
+COPYING    Documentation  init     kernel       Makefile          samples  tools
+```
+
+You can use cregit-linux tool: https://cregit.linuxsources.org/
+
+for example: https://cregit.linuxsources.org/code/5.11/
+
+the most part of the linux kernel, is in the 'drivers' subdirectory.
+
+In 'arch' we can see all the supported architectures: https://cregit.linuxsources.org/code/5.11/arch/
+
+You can also use 'git log' to explore the different commmits. 
+
+```
+git format-patch -1 <commit ID>
+```
+
+For everyday tinkering with the kernel, take into account the scripts: scripts/get_maintainer.pl and scripts/checkpatch.pl
+
+Also de e linux-kselftest repo
