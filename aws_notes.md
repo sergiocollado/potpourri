@@ -33,10 +33,21 @@ https://docs.aws.amazon.com/IAM/latest/UserGuide/intro-structure.html#intro-stru
 
 IAM identities are three:
 - users (represents an user or an application)
-- groups (a collection of IAM users)
-- roles
+- groups (a collection of IAM users. A group is a way to attach policies to multiple users at one time)
+- roles (roles are assumed, doesnpt really belong to an user or application. An IAM user can assume a role to temporarily take on different permissions for a specific task.)
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html
 
 these identites are matched with identities policies 
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_effect.html
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_action.html
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_resource.html
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
+
 
 IAM, control access to AWS resources. Each IAM identity gets it own set of cryptographic keys. It sets the users privileges to control actions.
 Accesses can be time controlled: permanent or short term.
