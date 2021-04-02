@@ -38,7 +38,43 @@ IAM identities are three:
 
 https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html
 
+ARN: amazon resouce name
+
+```
+arn:<partition=aws>:<service>:<region>:<account_id>:<resource_id>
+arn:<partition=aws>:<service>:<region>:<account_id>:<resource_type>/<resouce_id>
+arn:<partition=aws>:<service>:<region>:<account_id>:<resource_id>:<resource_id>
+```
+
 these identites are matched with identities policies 
+
+policies are defined by three mandatory elements
+- effect: specifies if the effect results in an allow, or and explicit deny
+- action: specifies the speciffic activities that are allowed or denied (each service have different actions -consult documentation)
+- resource: speficies the object or objects that the policy refers to. It is spefied with the ARN
+
+an example policy:
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": {
+    "Effect": "Allow",
+    "Action": "ec2:RunInstances",
+    "Resource": "*"
+   }  
+}
+```
+
+remember: EPARC
+- E effect
+- P principal
+- A action
+- R resource
+- C condition
+
+remember always to use the principle of the least privileges.
+
 
 https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_effect.html
 
