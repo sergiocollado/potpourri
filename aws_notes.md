@@ -48,6 +48,8 @@ arn:<partition=aws>:<service>:<region>:<account_id>:<resource_id>:<resource_id>
 
 these identites are matched with identities policies 
 
+IAM policies allow acess to resources and be as granular as desired.  Different resources can be addresed with the ARN (Amazon Resource Name) 
+
 there two types of policies: identity policies and resources policies.
 
 policies are defined by three mandatory elements
@@ -118,12 +120,19 @@ Inline policies are created and embedded into IAM users, groups or roles. they u
 
 Managed policies are policies that you can attach to users, groups and roles. Within the managed policies there are two types: AWS managed policies and custom managed policies.
 
-Remember always to use the principle of the least privileges.
+Remember always to use the principle of the least privilege.
 
+roles are used to delegate access. In order to delegate permissions, it is needed to grant permitions through what is called a trust policy. A trust policy specifies 
+which trusted account members, or principals are allowed to assume the roles (it is really a resource policy as it is attached to a resource). Also it is needed the 
+permissions policy attached to the identity, allowing the identity to assume the role, (sts:AssumeRole), the way the role is assumed is through the AWS Security Token Service (STS). 
 
 https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
 
-IAM policies allow acess to resources and be as granular as desired.  Different resoucres can be addresed with the ARN (Amazon Resource Name) 
+roles are important because they are more secure, due roles, only provide short-term credentials. Roles are designted to delegate access to users and applications, and if needed this access can be easily revoqued. Also roles are reusable. Roles enforces the least previleges policy control. 
+
+
+
+
 
 IAM, control access to AWS resources. Each IAM identity gets it own set of cryptographic keys. It sets the users privileges to control actions.
 Accesses can be time controlled: permanent or short term.
