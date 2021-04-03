@@ -128,6 +128,22 @@ permissions policy attached to the identity, allowing the identity to assume the
 
 https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
 
+an example of a trust policy is:
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": {
+     "Effect": "Allow",
+     "Principal": {
+        "AWS": "arn:aws:iam::12345677654:root"   #account identifier
+     },
+     "Action": "sts:AssumeRole",
+     "Condition": {}
+  }
+}
+```
+
 roles are important because they are more secure, due roles, only provide short-term credentials. Roles are designted to delegate access to users and applications, and if needed this access can be easily revoqued. Also roles are reusable. Roles enforces the least previleges policy control. 
 
 
