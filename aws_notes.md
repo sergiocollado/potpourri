@@ -48,8 +48,10 @@ arn:<partition=aws>:<service>:<region>:<account_id>:<resource_id>:<resource_id>
 
 these identites are matched with identities policies 
 
+there two types of policies: identity policies and resources policies.
+
 policies are defined by three mandatory elements
-- effect: specifies if the effect results in an allow, or and explicit deny
+- effect: specifies if the effect results in an "Allow", or and explicit "Deny" or and implicit deny in case nothing is explicitly defined.
 - action: specifies the speciffic activities that are allowed or denied (each service have different actions -consult documentation)
 - resource: speficies the object or objects that the policy refers to. It is spefied with the ARN
 
@@ -71,8 +73,15 @@ https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_res
 ```
 
 and other optional elements:
-- principal specifies the principal that is allowed to access to the resource
+- principal specifies the principal (who) that is allowed to access to the resource
 - condition: specify conditions when the policy is in effect.
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html
+
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html
 
 an example policy:
 
