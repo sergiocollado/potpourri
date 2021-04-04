@@ -146,7 +146,33 @@ an example of a trust policy is:
 
 roles are important because they are more secure, due roles, only provide short-term credentials. Roles are designted to delegate access to users and applications, and if needed this access can be easily revoqued. Also roles are reusable. Roles enforces the least previleges policy control. 
 
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html
 
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-console.html
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html
+
+https://aws.amazon.com/identity/federation/
+
+IAM roles are especially important in the following scenarios: 
+
+Providing access to services like Amazon EC2 that need access to other AWS services.
+Providing access to users in other AWS accounts access to resources in your AWS account. 
+Providing access to identities that are stored externally through a corporate identity provider or a social media website. 
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios.html
+
+
+The AWS Security Token Service (STS) is a web service that enables you to request temporary, limited-privilege credentials for AWS Identity and Access Management (IAM) users or for users that you authenticate (federated users).
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html
+
+You may also want more information about the Assume Role API call
+
+https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html
 
 
 
