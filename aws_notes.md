@@ -18,8 +18,8 @@ Amazon Web Services.
 AWS free tier: https://aws.amazon.com/free/
 
 
-INTRODUCTION to IAM (Identity and Access Management):
-=====================================================
+# INTRODUCTION to IAM (Identity and Access Management) and policies
+
 
 IAM provides the right users, the right access, the right resources at the right time.
 
@@ -45,6 +45,8 @@ arn:<partition=aws>:<service>:<region>:<account_id>:<resource_id>
 arn:<partition=aws>:<service>:<region>:<account_id>:<resource_type>/<resouce_id>
 arn:<partition=aws>:<service>:<region>:<account_id>:<resource_id>:<resource_id>
 ```
+
+### Policies 
 
 these identites are matched with identities policies 
 
@@ -175,7 +177,6 @@ You may also want more information about the Assume Role API call
 https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html
 
 
-
 IAM, control access to AWS resources. Each IAM identity gets it own set of cryptographic keys. It sets the users privileges to control actions.
 Accesses can be time controlled: permanent or short term.
 
@@ -185,11 +186,6 @@ It can handle MFA(Multy Factor Authentification). FOBs cost something, and there
 
 It also have STS(Security Token Service), is somewhat similar to Kerberos, in the sense it can expire AWS resource access.
 
-Best Practices: 
-
--Once you created the Master account, create an IAM_root_account, to access your thing, this is actually a safe/falloff
-measurement.
--Create master accounts, for the groups: Production, Dev, Test.
 
 Policies examples:
 
@@ -253,6 +249,31 @@ More info:
 http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html
 
 http://aws.typepad.com/aws/2011/08/aws-identity-and-access-management-now-with-identify-federation.html
+
+
+
+### AWS SSO (Single Sign On access) - 
+ to manage user permissions in all the owned aws accounts, in a service named AWS Organizations. 
+ 
+https://aws.amazon.com/single-sign-on/
+
+### AWS Cloud Trail: 
+  to monitor resources activities. 
+  
+  https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html
+  
+  https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_iam-credential-report.html
+
+# TODO: review trust policies and passRole ... 
+
+### Best Practices: 
+
+-Once you created the Master account, create an IAM_root_account, to access your thing, this is actually a safe/falloff
+measurement.
+-Create master accounts, for the groups: Production, Dev, Test. Never use the root user.
+- Use roles whenever possible.
+- Remove old credentials (password and access keys, check them in the credentials report)
+- Use IAM access analyzer.
 
 
 # AWS S3 
