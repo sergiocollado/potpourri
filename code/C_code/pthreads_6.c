@@ -166,7 +166,7 @@ void get_uname()
     fgets(data, 512 , pf);
     
     //Format uname -a output
-    strcpy(str, "[COURSE:1][ASSIGNMENT:2]");
+    strcpy(str, "System Name: ");
 	strcat(str, data);
 	
 	//write to syslog with priority LOG_INFO
