@@ -195,6 +195,14 @@ int main (int argc, char *argv[])
    }
 
    printf("This system has %d processors with %d available\n", get_nprocs_conf(), get_nprocs());
+   /*
+          The function get_nprocs_conf() returns the number of processors
+       configured by the operating system.
+          The function get_nprocs() returns the number of processors
+       currently available in the system.  This may be less than the
+       number returned by get_nprocs_conf() because processors may be
+       offline (e.g., on hotpluggable systems).
+       */
 
    // get affinity set for main thread
    mainthread = pthread_self();
