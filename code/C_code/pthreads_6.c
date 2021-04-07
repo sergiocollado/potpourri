@@ -243,7 +243,6 @@ int main (int argc, char *argv[])
    print_scheduler();
    //system("sudo sh -c 'cat /dev/null > /var/log/syslog'"); // Truncate the syslog file
    //system("sudo sh -c ': > /var/log/syslog'"); // Clean syslog file
-   //system("logger -t \"[COURSE:1][ASSIGNMENT:3]\" `uname -a`"); // Send output of uname-a to syslog file
 
    pthread_create(&startthread,      // pointer to thread descriptor
                   &fifo_sched_attr,  // use FIFO RT max priority attributes
