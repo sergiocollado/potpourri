@@ -543,3 +543,29 @@ sudo update-grub
 
 Now, it is possibble to restart the system. Once the new kernel comes up, compare the saved dmesg from the old kernel with the new one, and see if there are any regressions. If the newly installed kernel fails to boot, you will have to boot a good kernel, and then investigate why the new kernel failed to boot.
 
+### Submitting patches
+
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+
+all the commits need to be signed-off:   git commit -s
+
+Kernel Configuration
+Let's work with the mainline kernel to create your first patch. By this time, if you completed the exercises from the previous chapters, you should already have the mainline kernel running on your system. While doing that, I asked you to copy the distribution configuration file to generate the kernel configuration. Now, let's talk about the kernel configuration.
+
+The Linux kernel is completely configurable. Drivers can be configured to be installed and completely disabled. Here are three options for driver installation:
+
+- Disabled
+- Built into the kernel (vmlinux image) to be loaded at boot time
+- Built as a module to be loaded as needed using modprobe.
+
+It is a good idea to configure drivers as modules, to avoid large kernel images. Modules (.ko files) can be loaded when the kernel detects hardware that matches the driver. Building drivers as modules allows them to be loaded on demand, instead of keeping them around in the kernel image even when the hardware is either not being used, or not even present on the system.
+
+We talked about generating the new configuration with the old configuration as the starting point. New releases often introduce new configuration variables and, in some cases, rename the configuration symbols. The latter causes problems, and make oldconfig might not generate a new working kernel.
+
+https://www.kernel.org/doc/html/latest/kbuild/kconfig.html
+
+Run make listnewconfig after copying the configuration from /boot to the .config file, to see a list of new configuration symbols. Kconfig make config is a good source about Kconfig and make config. Please refer to the Kernel Build System to understand the kernel build framework and the kernel makefiles.
+
+https://www.kernel.org/doc/html/latest/kbuild/index.html
+
+
