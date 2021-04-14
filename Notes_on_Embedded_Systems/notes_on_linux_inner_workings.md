@@ -284,6 +284,9 @@ https://www.amazon.com/POSIX-4-Programmers-Guide-Programming-World/dp/1565920740
 
 posix real-time : https://www.ctr.unican.es/publications/mgh-1993a.pdf
 
+https://www.gnu.org/software/libc/manual/html_node/POSIX.html#POSIX
+
+
 ### Time in linux
 
 ref: https://man7.org/linux/man-pages/man7/time.7.html
@@ -305,9 +308,6 @@ https://man7.org/linux/man-pages/man4/rtc.4.html
 Posix RT- timer services for timeouts -> sem_timedwait()
 
 https://cyberglory.wordpress.com/2011/08/21/jiffies-in-linux-kernel/
-
-
-
 
 
 linux kernel in a nutshell: https://bootlin.com/doc/books/lkn.pdf
