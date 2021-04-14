@@ -316,6 +316,16 @@ linux kernel in a nutshell: https://bootlin.com/doc/books/lkn.pdf
 
 ## Linux kernel development process
 
+references:
+
+what is a kernel: https://youtu.be/LLBrBBImJt4
+
+Tim Beale: Linux Kernel Development for Newbies: https://youtu.be/OkhOoBqLb3Y
+
+https://github.com/agelastic/eudyptula
+
+Write and Submit your first Linux kernel Patch: https://youtu.be/LLBrBBImJt4
+
 ### Intro
 
 https://www.kernel.org/doc/html/latest/process/development-process.html
