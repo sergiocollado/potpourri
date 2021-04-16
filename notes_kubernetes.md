@@ -13,6 +13,8 @@ An application and its dependencies, are called an image.  Software is needed to
 
 **Kubernetes** is an application for deploying containerized applications.  Kubernetes is a solution for container management and orchestations. The apps in them need to communicate over the network. Also, needs to be some network mechanism that makes it possible for the containers to find each other. 
 
+see: Kubernetes Concepts Explained  https://youtu.be/BOj1sgWVXko?list=RDCMUCeRY0LppLWdxWAymRANTb0g
+
 Kubernetes handles the deployment, scaling, load balancing, monitoring and logging of containerized applications. 
 
 Some of its features are:
