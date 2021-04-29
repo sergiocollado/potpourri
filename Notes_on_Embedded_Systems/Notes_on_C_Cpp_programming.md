@@ -10,3 +10,5 @@ CppCon 2019: Klaus Iglberger “Back to Basics: Move Semantics (part 1 of 2): ht
 Don’t blindly prefer emplace_back to push_back: https://quuxplusone.github.io/blog/2021/03/03/push-back-emplace-back/
 
 back to the basics - concurrency - https://youtu.be/F6Ipn7gCOsY
+
+notes on valgrind: https://aleksander.es/data/valgrind-memcheck.pdf
