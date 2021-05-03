@@ -409,7 +409,6 @@ https://www.kernel.org/doc/html/latest/process/email-clients.html
 
 ### Exploring the linux kernel sources
 
-
 You should create a directory, to git clone the linux repo, for example the mainline: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/ 
 
 ```
@@ -423,7 +422,7 @@ certs        cscope.out          include    Kconfig  MAINTAINERS  README      so
 COPYING    Documentation  init     kernel       Makefile          samples  tools
 ```
 
-You can use cregit-linux tool: https://cregit.linuxsources.org/
+You can use cregit-linux tool, to explore the code: https://cregit.linuxsources.org/
 
 for example: https://cregit.linuxsources.org/code/5.11/
 
@@ -439,7 +438,7 @@ git format-patch -1 <commit ID>
 
 For everyday tinkering with the kernel, take into account the scripts: scripts/get_maintainer.pl and scripts/checkpatch.pl
 
-Also de e linux-kselftest repo
+Also check the linux-kselftest repo
 
 
 ### Writting a kernel patch
@@ -504,7 +503,7 @@ this command will install the kernel, and execute 'update-grub' to add it to the
 
 before rebooting the system, we can store some logs to compare it later, and look for regression or new errors
 
-we use the dmesg with the -t option, to not display the timestamps
+we use the dmesg with the -t option, to not display the timestamps. This will make it easier later for comparation.
 
 ```
 dmesg -t > dmesg_current
@@ -522,6 +521,35 @@ Before testing the new kernel, that we don't know if it will boot, a couple of s
 
 By default, grub tries to boot the default kernel, which is the newly installed kernel. We change the default grub configuration file /etc/default/grub to the boot menu, and pause for us to be able to select the kernel to boot.
  
+in case dmesg_current length is zero, it is quite possible that the secure boot is enabled.  That will prevent to boot the new kernel as it is not signed. It is possible to disable temporaly the secure boot with the **mokutil** (MOK manager) 
+
+to check if the secure boot is enabled: 
+
+```
+mokutil --sb-state
+```
+https://askubuntu.com/questions/1119734/how-to-replace-or-remove-kernel-with-signed-kernels
+
+to disable validation:
+
+```
+sudo mokutil --disable-validation
+root password
+mok password: 12345678
+mok password: 12345678
+sudo reboot
+```
+to re-enable validation:
+
+```
+sudo mokutil --enable-validation
+root password
+mok password: 12345678
+mok password: 12345678
+sudo reboot
+```
+
+
  
 Booting the Kernel:
 
