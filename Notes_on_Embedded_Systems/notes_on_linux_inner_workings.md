@@ -445,8 +445,8 @@ Also check the linux-kselftest repo
 
  Clone a stable kernel
  
- ```
- git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux_stable
+```
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux_stable
 cd linux_stable
 git branch -a | grep linux-5
     remotes/origin/linux-5.0.y
@@ -548,18 +548,16 @@ mok password: 12345678
 mok password: 12345678
 sudo reboot
 ```
-
-
  
 Booting the Kernel:
 
 Let’s take care of a couple of important steps before trying out the newly installed kernel. There is no guarantee that the new kernel will boot. As a safeguard, we want to make sure that there is at least one good kernel installed and we can select it from the boot menu. By default, grub tries to boot the default kernel, which is the newly installed kernel. We change the default grub configuration file /etc/default/grub to the boot menu, and pause for us to be able to select the kernel to boot.
 
-Please note that this option is specific to Ubuntu, and other distributions might have a different way to specify boot menu options.
+Please note that this option only applies to Ubuntu, and other distributions might have a different way to specify boot menu options.
 
 Increase the GRUB_TIMEOUT value to 10 seconds, so grub pauses in menu long enough to choose a kernel to boot:
 
-```
+``` 
 Uncomment GRUB_TIMEOUT and set it to 10: GRUB_TIMEOUT=10
 Comment out GRUB_TIMEOUT_STYLE=hidden
 ```
@@ -587,8 +585,14 @@ https://www.kernel.org/doc/html/latest/process/submitting-patches.html
 
 all the commits need to be signed-off:   git commit -s
 
+it is needed to create a user-specific configuration file .gitconfig in the home directory with the real legal name.
+
+to accept a patch, the name, and signed-off-by must match.
+
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+https://www.kernel.org/doc/html/latest/process/kernel-enforcement-statement.html
+
 Kernel Configuration
-Let's work with the mainline kernel to create your first patch. By this time, if you completed the exercises from the previous chapters, you should already have the mainline kernel running on your system. While doing that, I asked you to copy the distribution configuration file to generate the kernel configuration. Now, let's talk about the kernel configuration.
 
 The Linux kernel is completely configurable. Drivers can be configured to be installed and completely disabled. Here are three options for driver installation:
 
@@ -598,12 +602,52 @@ The Linux kernel is completely configurable. Drivers can be configured to be ins
 
 It is a good idea to configure drivers as modules, to avoid large kernel images. Modules (.ko files) can be loaded when the kernel detects hardware that matches the driver. Building drivers as modules allows them to be loaded on demand, instead of keeping them around in the kernel image even when the hardware is either not being used, or not even present on the system.
 
-We talked about generating the new configuration with the old configuration as the starting point. New releases often introduce new configuration variables and, in some cases, rename the configuration symbols. The latter causes problems, and make oldconfig might not generate a new working kernel.
+A good option is generating the new configuration with the old configuration as the starting point. New releases often introduce new configuration variables and, in some cases, rename the configuration symbols. The latter causes problems, and make oldconfig might not generate a new working kernel.
 
 https://www.kernel.org/doc/html/latest/kbuild/kconfig.html
 
-Run make listnewconfig after copying the configuration from /boot to the .config file, to see a list of new configuration symbols. Kconfig make config is a good source about Kconfig and make config. Please refer to the Kernel Build System to understand the kernel build framework and the kernel makefiles.
+Run 'make listnewconfig' after copying the configuration from '/boot' to the .config file, to see a list of new configuration symbols. Kconfig make config is a good source about Kconfig and make config ( https://www.kernel.org/doc/html/latest/kbuild/kconfig.html ) . Please refer to the Kernel Build System to understand the kernel build framework and the kernel makefiles.
+
+https://www.kernel.org/doc/html/latest/kbuild/kconfig.html
 
 https://www.kernel.org/doc/html/latest/kbuild/index.html
+
+previously to any change create a new branch from the linux_mainline repository you cloned earlier to write your first patch. We will start by adding a remote first to do a rebase (pick up new changes made to the mainline).
+
+```
+cd linux_mainline
+git branch -a
+* master
+  remotes/linux/master
+  remotes/origin?HEAD -> origin/master
+  remotes/origin/master
+```
+
+Then  add git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git as the remote named linux. Adding a remote helps us fetch changes and choose a tag to rebase from.
+
+We can pick a tag to rebase to. In this case, there is only one new tag. Let’s hold off on the rebase and start writing a new patch
+
+To check out a branch do:
+
+```
+git checkout -b work
+master
+* work
+  remotes/linux/master
+  remotes/origin/HEAD -> origin/master
+```
+
+now you can make a change, to a driver, for example. You can list the modules with **lsmod**. You can find the .c and .h files for that driver in the linux kernel repository. 
+Or even searching through the Makefiles, or even with 'git grep' 
+
+for example with the uvcvideo driver is a USB Video Class (UVC) media driver for video input devices, such as webcams. It supports webcams on laptops. Let’s check the source files for this driver.
+
+you can look for it with:
+
+```
+git grep uvcvideo -- '*Makefile'
+drivers/media/usb/uvc/Makefile:uvcvideo-objs := uvc_driver.o uvc_queue.o uvc_v4l2.o uvc_video.o uvc_ctrl.o drivers/media/usb/uvc/Makefile:uvcvideo-objs += uvc_entity.o
+drivers/media/usb/uvc/Makefile:obj-$(CONFIG_USB_VIDEO_CLASS) += uvcvideo.o
+```
 
 
