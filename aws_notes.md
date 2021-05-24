@@ -1,5 +1,5 @@
+## FOREWORD:
 
-FOREWORD:
 · This are my personal notes, on the AWS Cloud. The aim of this docuent,is to clarify my ideas, by means
 of writting them down, and have a resource where quickly find answers to my doubts, based on my experience. 
 
@@ -16,7 +16,6 @@ and also: https://www.aws.training/LearningLibrary?tab=digital_courses
 Amazon Web Services.
 
 AWS free tier: https://aws.amazon.com/free/
-
 
 # INTRODUCTION to IAM (Identity and Access Management) and policies
 
@@ -250,8 +249,6 @@ http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html
 
 http://aws.typepad.com/aws/2011/08/aws-identity-and-access-management-now-with-identify-federation.html
 
-
-
 ### AWS SSO (Single Sign On access) - 
  to manage user permissions in all the owned aws accounts, in a service named AWS Organizations. 
  
@@ -312,6 +309,19 @@ By default, buckets are private, you have to edit the privileges if you need to.
 You can choose a geographical region where AWS S3, will store your Buckets. You
 should use a region, to optimize latency.
 
+## Different S3 tiers
+
+ - S3 standard
+ - S3-IA - Infrequent Access
+ - S3- One zone IA - Infrequent Access
+ - S3 Intellingent tiering
+ - S3 Glacier
+ - S3 Glacier Deep Archive
+
+## S3 secutiy and encription
+
+you can set bucket policies and acess control:
+
 ## ACCESS CONTROL:
 
 Objects, also have types of access control:
@@ -321,6 +331,9 @@ Objects, also have types of access control:
  - ACLs(Access Control Lists) - AWS console
  - Query string autentification - gives expiring acess.
  - AWS management console. (sign in: https://console.aws.amazon.com/s3.)
+
+S3 buckets can be configured to create acess logs, wich will log all request made to the S3 bucket. This can be send to another bucket, even another bucket in another accout.
+
  
 ### POLICIES
 Bucket policies, provide a centraliced access control to buckets and objects based on a variety of conditions.
@@ -374,10 +387,29 @@ Starts around 0.0X$ per GB/month for "standard" S3 - the fee gets cheaper, if yo
    
 Just have in mind, that data trasnsfer inside your region is **FREE!!!**
    
+## Encryption S3
+
+- Encryption in transit, with is achieved with SSL/TLS
+- SSE-S3: Encription at rest (server side), achieved with s3 managed keys- SSE- S3 (SSE: server side encryption) Aws manages the encryption keys.
+- SSE-KMS: AWS key manage service: AWS and client manage keys together: SSE-KMS
+- SSE-C: Server Side encryption with customer provided keys: SSE-C
+- Client side encryption. the client encrypts the file previously to its upload. 
+   
+ 
+ ## S3 WORM (write once read many) 
+ 
+A **service Object lock**, is used to store objecto wit WORM and it can prevent objects to be deleted or modified by an ammount of time or indefinetly. This can help to meet regulatory requirements, or protection agaist deletion.
+
+there are modes
+
+- governance mode: it allows some special permissions to alter retention's object, or delete the object if necesary
+- complient mode: a proctected object version can't be alterede, overwritten or deleted by any user, during the retention period. 
+
+lock objects can be individual objectso or applied across a whole bucket. 
+
    
 ### AWS free usage tier
 As part of the AWS Free Usage Tier, you can get started with Amazon S3 for free. Upon sign-up, new AWS customers receive 5 GB of Amazon S3 standard storage, 20,000 Get Requests, 2,000 Put Requests, and 15GB of data transfer out each month for one year.
-   
    
 ## AMAZON ELASTIC CLOUD COMPUTING aka: EC2
 
@@ -870,7 +902,6 @@ It supports all major record types
  -SPF (Sender Policy framework)
  -SVR (service locator)
  -TXT (text record)
- 
 
 
 # REFERENCES:
