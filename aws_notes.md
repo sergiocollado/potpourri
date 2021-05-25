@@ -407,6 +407,24 @@ there are modes
 
 lock objects can be individual objectso or applied across a whole bucket. 
 
+## Athena
+
+https://docs.aws.amazon.com/athena/index.html
+
+Is a service that lets you make sql queries to data in S3. it is serveles and price is per query. so it almost transform S3 in a database. 
+
+Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to setup or manage, and you pay only for the queries you run. To get started, simply point to your data in S3, define the schema, and start querying using standard SQL.
+
+### Macie
+
+https://docs.aws.amazon.com/macie/index.html
+
+PII (Personal Identifiable Information) 
+
+Mathie is a ML and NLP service to recognice in the storage PII or other sensitive data. It can be used to analize CloudTrail for suspicious activity or for compliance with PII, or/and preventing ID theft.
+
+Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover, classify, and help you protect your sensitive data in Amazon S3.
+
    
 ### AWS free usage tier
 As part of the AWS Free Usage Tier, you can get started with Amazon S3 for free. Upon sign-up, new AWS customers receive 5 GB of Amazon S3 standard storage, 20,000 Get Requests, 2,000 Put Requests, and 15GB of data transfer out each month for one year.
@@ -567,9 +585,14 @@ Cloud Front is a CDN - Content Delivery Network.
 It uses locations close to end user (Edges).
 Other populars CDNs are Akamai, Level 3.
 
+https://aws.amazon.com/cloudfront/
+
 ### DESCRIPTION:
 - Resources of static website assests: Images, CSS, JS, HTML, JSON.
 - Distributions: products, documents, data.
+    - web distributinon
+    - rtcp distributions: video streaming
+
 - Streaming: audio, video.
     Streaming uses propietary protocols, unlike http. Cloud Front uses Adobe/macromedia RTMP (Real Time Messaging Protocol), also the is
     an encrypted version: RTMPE (Real Time Messaging Protocol Encrypted)
@@ -599,13 +622,15 @@ Websites (CSS, JS, images references) or Applications (media players, web, mobil
 FINAL USER ACCESS:
 ==================
  
-When a final user access to a CDN (Content Delivery Network) URL, CloudFront directs the user to the closes edje, so it serves
+When a final user access to a CDN (Content Delivery Network) URL, CloudFront directs the user to the closes edge, so it serves
 the data faster.
 This is a pulling mechanism, so if the closes edje to a client, doesn't have the required data, that edje request the data to the
 the origin edge, and pull that data down local, so next time a client request the data in that location, it will already stored 
 in the closest edje, and serviced faster.
  
-  
+### sign urls vs cookies
+
+To restrict the access to cloud front use signed urls for single urls, or for several urls use cookies. 
  
 INTRODUCTION TO ELASTIC CACHE:
 ==============================
