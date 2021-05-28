@@ -2367,7 +2367,6 @@ https://www.linkedin.com/pulse/my-ckad-exam-experience-atharva-chauthaiwale/
 
 https://codeburst.io/resource-creation-tips-for-the-kubernetes-cka-ckd-certification-exam-740b70a13f97
 
-
 https://www.nginx.com/
 
 http://www.haproxy.org/
@@ -2394,6 +2393,17 @@ https://www.youtube.com/watch?v=X48VuDVv0do
 
 https://www.youtube.com/watch?v=fy8SHvNZGeE
 
+https://github.com/ContainerSolutions/kubernetes-examples
+
+https://github.com/kubernauts/practical-kubernetes-problems
+
+https://kubernetesbyexample.com/
+
+https://github.com/NodyHub/docker-k8s-resources/tree/master/k8s-pods
+
+ 
+ 
+ 
 For certification:
 
 https://github.com/kodekloudhub/certified-kubernetes-administrator-course
