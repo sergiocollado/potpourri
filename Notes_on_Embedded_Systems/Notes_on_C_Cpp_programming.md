@@ -13,7 +13,18 @@ back to the basics - concurrency - https://youtu.be/F6Ipn7gCOsY
 
 notes on valgrind: https://aleksander.es/data/valgrind-memcheck.pdf
 
-cppcon 2019 Basics of move semantics: https://www.youtube.com/watch?v=St0MNEU5b0o
+cppcon 2019: https://www.youtube.com/watch?v=u_ij0YNkFUs&list=RDCMUCMlGfpWw-RUdWX_JbLCukXg
+
+
+# exception guarantees
+
+https://en.cppreference.com/w/cpp/language/exceptions
+
+https://stackoverflow.com/questions/12137555/strong-exception-guarantee-vs-basic-exception-guarantee
+
+
+
+# cppcon 2019 Basics of move semantics: https://www.youtube.com/watch?v=St0MNEU5b0o
 
 we have 
 
@@ -144,6 +155,9 @@ remember the basic special member functions:
 
 Core Gideline C.20: If you can avoid defining default operations, do. : tHE RULE OF ZERO.
 
+
+### move constructor
+
 Lets assume the unique_ptr, is a raw pointer. 
 
 ```
@@ -172,13 +186,214 @@ Lets see the changes to the move constructor:     Widget( Widget&& w);
 - leave w in a valid, but undefined state. 
 
 
+so we can try to do the next:
+
+```
+class Widget {
+  private: 
+    int i{0};
+    std::string s{};
+    int* pi{nullptr};
+    
+  public: 
+    //...
+    //Move constructor:
+    Widget( Widget&& w) 
+      : i (w.i)
+      , s (w.s) // WATCH OUT! w is an l-value, so this actually makes copy!!!
+    // ...
+}
+```
+
+an easy work-around
+
+```
+class Widget {
+  private: 
+    int i{0};
+    std::string s{};
+    int* pi{nullptr};
+    
+  public: 
+    //...
+    //Move constructor:
+    Widget( Widget&& w) 
+      : i ( std::move(w.i) ) //this is of now difference, but as a rule of thumb is recommended move all members.
+      , s ( std::move(w.s) ) 
+      , pi( std::move(w.pi) )
+      {}
+    // ...
+}
+```
+
+at this moment, we have two objects pointing to the same memory directions, so the desctructor will try to delete the same position. So we have to explicity set the origin pointer to nullptr.
 
 
+```
+class Widget {
+  private: 
+    int i{0};
+    std::string s{};
+    int* pi{nullptr};
+    
+  public: 
+    //...
+    //Move constructor:
+    Widget( Widget&& w) 
+      : i ( std::move(w.i) ) //this is of now difference, but as a rule of thumb is recommended move all members.
+      , s ( std::move(w.s) ) 
+      , pi( std::move(w.pi) )
+      {
+        w.pi = nullptr;
+      }
+    // ...
+}
+```
 
+Core Guideline C.66: make move operations noexcept.
 
+so:  Widget( Widget&& w) noexcept;
 
+the reason is for performance. 
 
+Core Guideline C.64: A move operation should move and leave its source in a valid state.
 
+ -> w.i = 0; //optional, not done by default! - but you could save a little time if you don't write it. 
  
  
+Phase 1: moves
+```
+      : i ( std::move(w.i) ) //this is of now difference, but as a rule of thumb is recommended move all members.
+      , s ( std::move(w.s) ) 
+      , pi( std::move(w.pi) )
+```
+
+Phase 2: reset
+explicity dealing with pointes (raw), because they are special
+
+```       
+w.pi = nullptr;
+```
+
+### Move assigmnent operator
+
+```
+class Widget {
+  private: 
+    int i{0};
+    std::string s{};
+    int* pi{nullptr};
+    
+  public: 
+    //...
+   
+    //Move assigment operator
+    Widget& operator=( Widget&& w)
+    {
+      
+      return *this;
+    }
+
+    // ...
+}
+```
+
+
+```
+class Widget {
+  private: 
+    int i{0};
+    std::string s{};
+    int* pi{nullptr};
+    
+  public: 
+    //...
+   
+    //Move assigment operator
+    Widget& operator=( Widget&& w)
+    {
+      i = std::move(w.i);
+      s = std::move(w.s);
+      pi = std::move(w.pi);  //WARNING, WATCH OUT! you have just lost you pi value, you shoud delete it previously!!!
+      return *this;
+    }
+
+    // ...
+}
+```
+
+
+
+```
+class Widget {
+  private: 
+    int i{0};
+    std::string s{};
+    int* pi{nullptr};
+    
+  public: 
+    //...
+   
+    //Move assigment operator
+    Widget& operator=( Widget&& w) noexcept
+    {
+      delete pi;
+      i = std::move(w.i);
+      s = std::move(w.s);
+      pi = std::move(w.pi);  //WARNING, WATCH OUT! delete previously!
+      w.pi = nullptr;
+      w.i = 0;               // optional.
+      return *this;
+    }
+
+    // ...
+}
+```
+
+Phase 1: delete
+```
+      delete pi;
+```
+ 
+Phase 2: Member-wise move
+```
+      i = std::move(w.i);
+      s = std::move(w.s);
+      pi = std::move(w.pi); 
+´´´
+
+Phase 3: Reset
+
+```
+      w.pi = nullptr;
+      w.i = 0;               // optional.
+´´´
+
+if you don't need the phase1 and phase3, then you can use, just the default operator.
+
+>> The default move operations are generated if no copy operation or destructor is user-defined
+>> The default copy operations are generated if no move operations is user-defined 
+>> Note: =default or =delete count as user defined.
+
+RULE OF FIVE:
+Core guideline C.21: If you define or =delete any default operation, define or =delete them all. 
+
+Core guideline C.15: Prefer simple and conventional ways of passing information.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
