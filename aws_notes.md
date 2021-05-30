@@ -309,18 +309,27 @@ By default, buckets are private, you have to edit the privileges if you need to.
 You can choose a geographical region where AWS S3, will store your Buckets. You
 should use a region, to optimize latency.
 
-## Different S3 tiers
+## Different S3 tiers storeing policies
 
- - S3 standard
+ - S3 standard - ( "11 9's") - that means that if you have 1 million files stored there, you will loose one, every 10.000 years.It comes at greatest cost, but is the default.
  - S3-IA - Infrequent Access
  - S3- One zone IA - Infrequent Access
  - S3 Intellingent tiering
  - S3 Glacier
  - S3 Glacier Deep Archive
 
-## S3 secutiy and encription
+## S3 secutiy and encryption
 
 you can set bucket policies and acess control:
+
+ - encryption in transit: with SSL/TLS 
+
+Encryption at rest: 
+ - SS3-S3: S3 managed keys
+ - SSE- KMS: key managed service keys 
+ - SSE-C: server side encryption with customer keys
+
+Client side encription: user encrypts the files previous to upload them.
 
 ## ACCESS CONTROL:
 
@@ -334,7 +343,6 @@ Objects, also have types of access control:
 
 S3 buckets can be configured to create acess logs, wich will log all request made to the S3 bucket. This can be send to another bucket, even another bucket in another accout.
 
- 
 ### POLICIES
 Bucket policies, provide a centraliced access control to buckets and objects based on a variety of conditions.
 For example it can create a policie that gives a user write access:
@@ -354,22 +362,6 @@ More info about ACLs: http://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_Usi
  
 The bucket also saves some information about the files: type, creation date, ... (meta data)
 More info in: http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html
- 
-## STORING POLICIES:
-
-There are three ways to store policies:
-
- - **Standard** ( "11 9's") - that means that if you have 1 million files stored there, you will loose one, every 10.000 years.
-  - It comes at greatest cost, but is the default.
-  
- - **Reduced Redundancy Storage (RRS)** - is ("4 9s") - that is 99.99% durability over a given year- it means that if you have 10000 files there, you'll probable lose one every year.
-  - It cost is reduced about 20% / Great for reproducible assets
-  - RRS, can trigger notifications, on "object missing". </br>
-  
- - **Glaciar** it has ("11 9's), but is great draw back is queued retrieval -you cannot get it back in real time- 
-  - But is cost is about the 10% of the standard option - which make a great choise for archivals, and back-ups.
-  - Ref: http://docs.aws.amazon.com/amazonglacier/latest/dev/introduction.html </br>
-   
    
 ## PRICING:
 
@@ -382,7 +374,7 @@ Starts around 0.0X$ per GB/month for "standard" S3 - the fee gets cheaper, if yo
 
  - IN: FREE
  - OUT: Same Region: free
-  - Out of region: Starts at 0.0X$ GB/month.
+ - Out of region: Starts at 0.0X$ GB/month.
  - REQUEST al also costy: (PUT, GET, POST, LIST) - Starts at 0.00xx/1000 request.
    
 Just have in mind, that data trasnsfer inside your region is **FREE!!!**
@@ -396,7 +388,7 @@ Just have in mind, that data trasnsfer inside your region is **FREE!!!**
 - Client side encryption. the client encrypts the file previously to its upload. 
    
  
- ## S3 WORM (write once read many) 
+## S3 WORM (write once read many) 
  
 A **service Object lock**, is used to store objecto wit WORM and it can prevent objects to be deleted or modified by an ammount of time or indefinetly. This can help to meet regulatory requirements, or protection agaist deletion.
 
@@ -407,7 +399,7 @@ there are modes
 
 lock objects can be individual objectso or applied across a whole bucket. 
 
-## Athena
+### Athena
 
 https://docs.aws.amazon.com/athena/index.html
 
@@ -425,10 +417,10 @@ Mathie is a ML and NLP service to recognice in the storage PII or other sensitiv
 
 Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover, classify, and help you protect your sensitive data in Amazon S3.
 
-   
-### AWS free usage tier
-As part of the AWS Free Usage Tier, you can get started with Amazon S3 for free. Upon sign-up, new AWS customers receive 5 GB of Amazon S3 standard storage, 20,000 Get Requests, 2,000 Put Requests, and 15GB of data transfer out each month for one year.
-   
+
+https://aws.amazon.com/s3/faqs/
+
+
 ## AMAZON ELASTIC CLOUD COMPUTING aka: EC2
 
 It is a service that allows to provision virtual severs on demand. Each virtual server requested in known as a EC2 instance. anything you can do with a traditional server can be done with a EC2 instance. EC2 instances are flexible, and can be configured acconrding the needs. they support a variety of OS, like linux or windows. to select a given operating system, we choose a AMI (Amazon Machine Image). It is possible to launch one or several AMIs and create serveral instances with the same configuration. It is possible to set the image type, size, memory and netwoking capabilities, even the underling hardware. Also the configuration can be done programatically and automated. 
