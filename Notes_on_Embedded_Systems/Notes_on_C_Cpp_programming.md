@@ -15,6 +15,7 @@ notes on valgrind: https://aleksander.es/data/valgrind-memcheck.pdf
 
 cppcon 2019: https://www.youtube.com/watch?v=u_ij0YNkFUs&list=RDCMUCMlGfpWw-RUdWX_JbLCukXg
 
+l-values & r-values: https://www.youtube.com/watch?v=fbYknr-HPYE
 
 # exception guarantees
 
