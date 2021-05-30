@@ -417,7 +417,11 @@ Mathie is a ML and NLP service to recognice in the storage PII or other sensitiv
 
 Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover, classify, and help you protect your sensitive data in Amazon S3.
 
+### AWS Storage Gateway 
 
+It is a physical or virtual appliance that can be used to cache S3 locally at a customer's site.
+
+### AWS S3 FAQ
 https://aws.amazon.com/s3/faqs/
 
 
