@@ -425,7 +425,7 @@ It is a physical or virtual appliance that can be used to cache S3 locally at a 
 https://aws.amazon.com/s3/faqs/
 
 
-## AMAZON ELASTIC CLOUD COMPUTING aka: EC2
+# AMAZON ELASTIC CLOUD COMPUTING aka: EC2
 
 It is a service that allows to provision virtual severs on demand. Each virtual server requested in known as a EC2 instance. anything you can do with a traditional server can be done with a EC2 instance. EC2 instances are flexible, and can be configured acconrding the needs. they support a variety of OS, like linux or windows. to select a given operating system, we choose a AMI (Amazon Machine Image). It is possible to launch one or several AMIs and create serveral instances with the same configuration. It is possible to set the image type, size, memory and netwoking capabilities, even the underling hardware. Also the configuration can be done programatically and automated. 
 
@@ -440,6 +440,20 @@ EC2 service allows you to:
  
  https://aws.amazon.com/ec2/instance-types/
  
+ ### EC2 pricing models
+ 
+  - On demand: fixed rate, and no commitments.
+  - Reserved: provides a capacity reserve, with a discout. commintement 1 or 3 years.
+      - standard reserved instances
+      - convertible reserved instances
+      - scheduled reserverd instances
+  - On spot instances: its spare capacity that can be used. but the instance can be retrieved by AWS.
+  - Dedicades hosts: dedicated physical servers, and you can use your own sw lincenses. Useful for regulatory requirements, that dont support multi-tenant virtualization.
+
+
+### EC2 instances types
+ 
+ //TODO.
  
 ## ELB (Elastic Load Balancer) 
 
