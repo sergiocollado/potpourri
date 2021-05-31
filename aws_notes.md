@@ -455,6 +455,38 @@ EC2 service allows you to:
  
  //TODO.
  
+ - **F1**  FPGA
+ - **I3**  Hight Speed Storage
+ - **G3**  Graphics Intensive
+ - **H1**  High disk throuput
+ - **T3**  Lowest cost, general purpose
+ - **D2**  Dense storage 
+
+
+### EC2 Security groups
+
+A security group acts as a virtual firewall for your EC2 instances to control incoming and outgoing traffic. Inbound rules control the incoming traffic to your instance, and outbound rules control the outgoing traffic from your instance. When you launch an instance, you can specify one or more security groups.
+
+All inbound traffic is blocked by default, outbound traffic is allowed.
+
+And with security groups there is no way to blacklist a given port or a given IP. you need NACL for that.
+
+reference: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html
+
+### EBS Elastic Block Storage
+
+EBS provides storage for EC2
+
+five types:
+
+- **gp2**: General purpose (ssd). balance price and performace. max 16000 IOPS
+- **io1**: provisioned IOPS (ssd). Optimized for great ammout of input/output operations. max 64000 IOPS -for databases & mission crítical applications
+- **st1**: throupout optimized hard disk drive (no ssd). max 500 IOPS
+- **sc1**: cold hard disk drive. lowest cost.  MAX 250 IOPS
+- **standard**: magnetic. MAX 20-400 IOPs 
+
+
+
 ## ELB (Elastic Load Balancer) 
 
 there is 3 types of load balancer
