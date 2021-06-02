@@ -904,6 +904,7 @@ ref : https://thenewstack.io/12-critical-kubernetes-health-conditions-you-need-t
 - stateful sets not ready
 - DaemonsSets not ready
 
+topic autoscalling: https://learnk8s.io/kubernetes-autoscaling-strategies
 
 <hr>
 
@@ -2279,6 +2280,7 @@ reference: Disaster Recovery for your Kubernetes Clusters [I] - Andy Goldstein &
 
 refernce: https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/recovery.md
 
+autoscaling: https://learnk8s.io/kubernetes-autoscaling-strategies
 
 ## Howto: build a Kubernetes cluster
 
@@ -2401,7 +2403,7 @@ https://kubernetesbyexample.com/
 
 https://github.com/NodyHub/docker-k8s-resources/tree/master/k8s-pods
 
- 
+autoscaling: https://learnk8s.io/kubernetes-autoscaling-strategies
  
  
 For certification:
