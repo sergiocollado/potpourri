@@ -486,6 +486,15 @@ five types:
 - **standard**: magnetic. MAX 20-400 IOPs 
 
 
+### ENI
+ Elastic Network interface is a virtual network card
+### EN
+ Enhaced networking. Uses a single root i/o virtualization, to provide high networking capabilities on supported instance types.
+### EFA
+ Elastic Fabric Adapter: a network device that you can attach to a EC2 intance, to accelerate high performance computing (HPC) an ML applications. 
+ 
+ 
+
 
 ## ELB (Elastic Load Balancer) 
 
