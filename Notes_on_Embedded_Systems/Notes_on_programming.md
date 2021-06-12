@@ -1,6 +1,5 @@
 # NOTES ABOUT PROGRAMMING
 
-
 Unix-like systems use the ELF (executable and linking format) for these programs. 
 
 An ELF file is a relocatable object, with the following sections.
@@ -677,5 +676,38 @@ In a program, typically
  R0M -has the program code
  RAM - has the program data. 
 
-
-
+## ENDIANESS
+	
+The endianess indicates how data is ordered in memory. If it comes first the MSB (most significant byte) or the LSB (least significant type).
+So there are two possible orders: 
+	
+- Big endian: stores the MSB at the smallest address
+- Little endian: stores the LSB at the smallest address
+	
+example: uint32_t var=0xABCD1234
+	
+	
+```
+ uint32_t var=0xABCD1234
+    BIG ENDIAN
+address | value stored
+----------------------
+0x100         AB
+0x101         CD
+0x102         12
+0x103         34
+```
+	
+```
+uint32_t var=0xABCD1234
+    LITTLE ENDIAN
+address | value stored
+----------------------
+0x100         34
+0x101         12
+0x102         CD
+0x103         AB
+```
+	
+Endiannes only affects to the byte order of individual items, so it doesn't affect the order of elements in an array. 
+	
