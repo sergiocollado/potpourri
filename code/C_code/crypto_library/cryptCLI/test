@@ -1,0 +1,77 @@
+#!/bin/sh
+echo "TESTS"
+
+key=$(echo "c1abe5ec1e7a" | xxd -p -ri)
+echo "$key" > key_file
+touch key_empty_file
+
+code1=$(echo "85c984804616afcac98143e1acddcb8145a9a3cacd9b41fcb3d58c8f1c99" | xxd -p -ri)
+code2=$(echo "92c5908a43ebe1c19b6e4ff1a59397611ec9a4c4832b62d4ae959d6320caa4c49e633e91a2d899756edba8df976772c2a8dc6d7276b3a0d766393ea0a2d461793aeab2c875760ca8efb7" | xxd -p -ri)
+code3=$(echo "5a5607a0b4cd2b5602b6b4d369080cbbe1ab6a5b06cfe1b27e0e1281a7a476431f83b5e3765b1a97e1a97e50ea83e1bc705fea98e1b57a50ef21a5a27e2fea63a5e86c37e062afae0f4c" | xxd -p -ri)
+code4=$(echo "d7" | xxd -p -ri)
+code5=$(echo "1a8cbf503dba62aeb94e6cf875b3ec5426cc78ada80931ce45b3af4821cf5bb2ef4c2b8e59a4bc4375b8" | xxd -p -ri)
+
+decode1="Decoding seems to be correct."
+decode2="Status should be kept, so different code might yield same decoded string."
+decode3="Status should be kept, so different code might yield same decoded string."
+decode4="A"
+decode5="Must work for single characters as well."
+
+touch input_file_1
+echo "$code1" > input_file_1
+touch input_file_2
+echo "$code1$code2" > input_file_2
+touch input_file_big
+echo "$code1$code2$code3$code4$code5" > input_file_big
+
+
+echo "Test1 - check help"
+./crypt -h
+
+echo "\nTest2 - check version"
+./crypt -v 
+
+echo "\nTest3 - check k (key) option"
+echo "key: $key"
+echo "cat input_file_1: $(cat input_file_1)"
+echo "./crypt -k key input_file_1"
+./crypt -k $key input_file_1
+
+echo "\nTest4 - check -f (key file) option"
+echo "key_file: $(cat key_file)"
+echo "cat input_file_2: $(cat input_file_2)"
+echo "./crypt -f key_file input_file_2"
+./crypt -f key_file input_file_2
+
+echo "\nTest5 - check with invalid -f option (the file doesn't exist :error expected)"
+echo "./crypt -f no_file code1"
+./crypt -f no_file code1
+
+echo "\nTest6 - check key with empty file (error expected)"
+echo "./crytp -f key_empty_file code1"
+./crypt -f key_empty_file $code1
+
+echo "\nTest7 - check output file"
+echo "./crypt -f key_file -o output_file input_file_big"
+./crypt -f key_file -o output_file input_file_big
+echo "cat output_file:\n$(cat output_file)"
+
+echo "\nTest8 - check piped input"
+echo "\$code1\$code2\$code3 | ./crypt -f key_file"
+echo $code1$code2$code3 | ./crypt -f key_file 
+
+echo "\nTest9 - verify the symmetric cipher"
+echo "echo \"helloWold\" | ./crypt -k 12345"
+echo "helloWold" | ./crypt -k 12345
+
+echo "\necho \"YVY[Vf[[^\" | ./crypt -k 12345"
+echo "YVY[Vf[[^" | ./crypt -k 12345
+echo "\n"
+
+rm key_file
+rm key_empty_file
+rm input_file_1
+rm input_file_2
+rm output_file
+rm input_file_big
+
