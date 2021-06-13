@@ -479,6 +479,8 @@ Also check the linux-kselftest repo
 
 ### Writing a kernel patch
 
+$(uname -r) displays the running Kernel version .
+
  Clone the stable kernel tree
  
 ```
