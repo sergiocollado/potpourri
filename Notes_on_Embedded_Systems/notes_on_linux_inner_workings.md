@@ -235,6 +235,8 @@ mutex_lock()   │                   DipacheD │   │   OR YIELD              
 
 linux preempt patch 
 
+what is preempt_rt: https://linuxfoundation.org/blog/intro-to-real-time-linux-for-embedded-developers/
+
 https://rt.wiki.kernel.org/index.php/CONFIG_PREEMPT_RT_Patch
 
 overview: https://lwn.net/Articles/146861/
@@ -309,8 +311,24 @@ Posix RT- timer services for timeouts -> sem_timedwait()
 
 https://cyberglory.wordpress.com/2011/08/21/jiffies-in-linux-kernel/
 
-
 linux kernel in a nutshell: https://bootlin.com/doc/books/lkn.pdf
+
+
+
+
+## preempt_rt
+
+what is preempt_rt: https://linuxfoundation.org/blog/intro-to-real-time-linux-for-embedded-developers/
+
+https://wiki.linuxfoundation.org/realtime/preempt_rt_versions
+
+main website: https://wiki.linuxfoundation.org/realtime/start
+
+https://emlid.com/raspberry-pi-real-time-kernel/
+
+We’ve used cyclictest program to obtain data with the following parameters:
+
+cyclictest -l10000000 -m -n -a0 -t1 -p99 -i400 -h400 -q 
 
 
 
@@ -348,12 +366,24 @@ https://lore.kernel.org/lists.html
 
 https://git.kernel.org/
 
+#### kernel trees
+
+- linux_mainline: Linus releases mainline kernels and RC releases
+- linux_stable: stable releases branches
+- linux-next: code from many subsystems gets pulled into the tree and periodically is released for integration testing.
+
 
 ### Patches
 
 linux development is handled with git as a code repository. https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git
 
 https://git-scm.com/book/en/v2
+
+to generate a patch:
+
+```
+git format-patch -1 --pretty=fuller XXXXXXXX
+```
 
 the code submitted in patches must be signed off
 
@@ -422,6 +452,12 @@ certs        cscope.out          include    Kconfig  MAINTAINERS  README      so
 COPYING    Documentation  init     kernel       Makefile          samples  tools
 ```
 
+or to clone the stables
+
+```
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux_stable
+```
+
 You can use cregit-linux tool, to explore the code: https://cregit.linuxsources.org/
 
 for example: https://cregit.linuxsources.org/code/5.11/
@@ -441,9 +477,9 @@ For everyday tinkering with the kernel, take into account the scripts: scripts/g
 Also check the linux-kselftest repo
 
 
-### Writting a kernel patch
+### Writing a kernel patch
 
- Clone a stable kernel
+ Clone the stable kernel tree
  
 ```
 git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux_stable
@@ -480,14 +516,14 @@ Run the following command to generate a kernel configuration file based on the c
 make oldconfig
 ```
 
-Other way to tune the kernel your system is by using make localmodconfig. This option creates a configuration file based on the list of modules currently loaded on your system.
+Other way to tune the kernel your system is by using **make localmodconfig**. This option creates a configuration file based on the list of modules currently loaded on your system.
 
 ```
 lsmod > /tmp/my-lsmod
 make LSMOD=/tmp/my-lsmod localmodconfig
 ```
 
-Once this step is complete, it is time to compile the kernel. Using the -j option helps the compiles go faster. The -j option specifies the number of jobs (make commands) to run simultaneously:
+Once this step is complete, it is time to compile the kernel. Using the '-j' option helps the compiles go faster. The '-j' option specifies the number of jobs (make commands) to run simultaneously:
 
 ```
 make -j3 all
@@ -499,11 +535,11 @@ once the compilation is done, you can install it
 su -c "make modules_install install"
 ```
 
-this command will install the kernel, and execute 'update-grub' to add it to the grub menu. 
+This command will install the kernel, and execute 'update-grub' to add it to the grub menu. 
 
-before rebooting the system, we can store some logs to compare it later, and look for regression or new errors
+Before rebooting the system, we can store some logs to compare it later, and look for regression or new errors
 
-we use the dmesg with the -t option, to not display the timestamps. This will make it easier later for comparation.
+We use the dmesg with the -t option, to not display the timestamps. This will make it easier later for comparation.
 
 ```
 dmesg -t > dmesg_current
@@ -535,8 +571,8 @@ to disable validation:
 ```
 sudo mokutil --disable-validation
 root password
-mok password: 12345678
-mok password: 12345678
+mok password: 1234567
+mok password: 1234567
 sudo reboot
 ```
 to re-enable validation:
@@ -544,8 +580,8 @@ to re-enable validation:
 ```
 sudo mokutil --enable-validation
 root password
-mok password: 12345678
-mok password: 12345678
+mok password: 1234567
+mok password: 1234567
 sudo reboot
 ```
  
@@ -583,11 +619,17 @@ Now, it is possibble to restart the system. Once the new kernel comes up, compar
 
 https://www.kernel.org/doc/html/latest/process/submitting-patches.html
 
-all the commits need to be signed-off:   git commit -s
+All the commits need to be signed-off:   
 
-it is needed to create a user-specific configuration file .gitconfig in the home directory with the real legal name.
+```
+git commit -s
+```
 
-to accept a patch, the name, and signed-off-by must match.
+Configure the name= field with your full legal name
+
+It is needed to create a user-specific configuration file .gitconfig in the home directory with the real legal name.
+
+To accept a patch, the name, and signed-off-by must match.
 
 https://www.kernel.org/doc/html/latest/process/submitting-patches.html
 https://www.kernel.org/doc/html/latest/process/kernel-enforcement-statement.html
@@ -597,7 +639,7 @@ Kernel Configuration
 The Linux kernel is completely configurable. Drivers can be configured to be installed and completely disabled. Here are three options for driver installation:
 
 - Disabled
-- Built into the kernel (vmlinux image) to be loaded at boot time
+- Built into the kernel (vmlinux image) to be loaded at boot time (avoid for long booting times!)
 - Built as a module to be loaded as needed using modprobe.
 
 It is a good idea to configure drivers as modules, to avoid large kernel images. Modules (.ko files) can be loaded when the kernel detects hardware that matches the driver. Building drivers as modules allows them to be loaded on demand, instead of keeping them around in the kernel image even when the hardware is either not being used, or not even present on the system.
