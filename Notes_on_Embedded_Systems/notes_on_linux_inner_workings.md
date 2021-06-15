@@ -525,6 +525,18 @@ lsmod > /tmp/my-lsmod
 make LSMOD=/tmp/my-lsmod localmodconfig
 ```
 
+also, maybe better use:
+
+```
+make menuconfig
+```
+
+or 
+
+```
+make xconfig
+```
+
 Once this step is complete, it is time to compile the kernel. Using the '-j' option helps the compiles go faster. The '-j' option specifies the number of jobs (make commands) to run simultaneously:
 
 ```
