@@ -250,7 +250,7 @@ some common compiler options are:
  - v: verbose mode. displays more information.
 
 
-to check the current installed version of gcc, use the command:
+To check the current installed version of gcc, use the command:
 
 ```
 gcc -version
@@ -301,14 +301,16 @@ Libraries are precompiled code that can be added to a program in the linking pro
 
 There is two kinds of libraries: static libraries and shared (or dynamic) libraries:
 
-Static libraries have the extension '.a' (from __archive__ in linux systems) or '.lib' (in windows). When a static library is linked the machine code of the library functions is added to the program. The static libraries will be installed with the program as a part of the executable, they are linked into the executable.  They are created using the “archiver” gnu tool, the command 'ar'. 
+**Static libraries** have the extension '.a' (from __archive__ in linux systems) or '.lib' (in windows). When a static library is linked the machine code of the library functions is added to the program. The static libraries will be installed with the program as a part of the executable, they are linked into the executable.  They are created using the “archiver” gnu tool, the command 'ar'. 
 
-Shared (or dynamic) libraries: have the extension .so (wich stands for __shared object__ in linux) or .dll (in windows- dynamic linked libraries) in this the operating system loads the machine code of the libraries functions. So the program is smaller. The shared or dynamic libraries are linked at runtime with the executable. So they must be pre installed in the target. They are created with the “shared” flag. Their advantage is that multiple programs can use the same library. To create a shard library, it is needed to compile in gcc, with the -fPIC option, PIC, stands for Possition Independent Code. And link with the -shared option, this will combine object files into a shared library.
+**Shared (or dynamic) libraries**: have the extension .so (wich stands for __shared object__ in linux) or .dll (in windows- dynamic linked libraries) in this the operating system loads the machine code of the libraries functions. So the program is smaller. The shared or dynamic libraries are linked at runtime with the executable. So they must be pre installed in the target. They are created with the “shared” flag. Their advantage is that multiple programs can use the same library. To create a shard library, it is needed to compile in gcc, with the -fPIC option, PIC, stands for Possition Independent Code. And link with the -shared option, this will combine object files into a shared library.
 
 in linux:
 Files with the “.a” extension are static libraries.
 Files with the “.so” extension are dynamically linked shared object libraries. 
 
+reference: https://opensource.com/article/20/6/linux-libraries	
+	
 GCC uses the following environment variables:
 
 PATH: For searching the executables and run-time shared libraries 
@@ -331,7 +333,7 @@ https://www.gnu.org/software/make/manual/html_node/index.html
 http://www.cmake.org/
 
 
-### how to decide between static and dynamic libraries
+### How to decide between static and dynamic libraries
 
 With static libraries, programs will be bigger and harder to upgrade. But they will be easier to deploy.
 
@@ -344,7 +346,7 @@ A major advantage of shared libraries, is that they save space in the system whe
 
 Only the compilation of small projects is feasible directly invoking the compiler. For the rest of the projects, tools to compile it are used. This is known as build automation.
 
-Make is an executable generating application provided by GNU, it is separate from the GCC toolchain
+Make is an executable generating application provided by GNU, it is separate from the GCC toolchain.
 
 
 ### MAKE TARGETS AND RULES: 
@@ -477,7 +479,7 @@ We did use variables for example:  we used $@ for the object file name and $< fo
 
 Substitution reference: 
 
-the line: OBJECTS=$(SOURCES:.cc=.o) is known as a substitution reference.
+The line: OBJECTS=$(SOURCES:.cc=.o) is known as a substitution reference.
 this substitutes the value of a variable with alterations that you specify.
  It has the form $(var:x=y) and its meaning is to take the value of the variable var, 
  replace every x at the end of a word with y in that value, and substitute the
@@ -550,7 +552,7 @@ for example a make file that is can be used to cross compile:
 #  the platform has to be defined, like:
 #  make build PLATFORM=MSP432
 #  make build PLATFORM=HOST
-#------------------------------------------------------------------------------
+#-----------------------------------------------
 #include sources.mk
 
 # Add your Source files to this variable
@@ -660,14 +662,13 @@ The preprocessor allows us to create macros for code readability and also define
 
 its directives are preceded by a # simbol
 
-#define, #undef,
-#ifndef, #ifdef, #elif,#else, #endif
-#include,
-#warning, #error
-#pragma  --this one is not standard, so it will not be very portable.
+ - #define, #undef,		
+ - #ifndef, #ifdef, #elif,#else, #endif
+ - #include,
+ - #warning, #error
+ - #pragma  --this one is not standard, so it will not be very portable.
 
 Also the compile time switches: -D<macro_name>
-
 
 MEMORY
 
