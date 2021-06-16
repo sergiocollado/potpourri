@@ -518,6 +518,12 @@ Run the following command to generate a kernel configuration file based on the c
 make oldconfig
 ```
 
+'make oldconfig' reads the existing .config file that was used for an old kernel and prompts the user for options in the current kernel source that are not found in the file. This is useful when taking an existing configuration and moving it to a new kernel.
+
+reference: https://stackoverflow.com/questions/4178526/what-does-make-oldconfig-do-exactly-in-the-linux-kernel-makefile
+
+**Bonuses** make olddefconfig sets every option to their default value without asking interactively. It gets run automatically on make to ensure that the .config is consistent in case you've modified it manually like we did. 
+
 Other way to tune the kernel your system is by using **make localmodconfig**. This option creates a configuration file based on the list of modules currently loaded on your system.
 
 ```
@@ -536,6 +542,46 @@ or
 ```
 make xconfig
 ```
+
+you can get help:
+
+```
+sergio@debian:~/linux_work/linux_stable$ make help
+Cleaning targets:
+  clean		  - Remove most generated files but keep the config and
+                    enough build support to build external modules
+  mrproper	  - Remove all generated files + config + various backup files
+  distclean	  - mrproper + remove editor backup and patch files
+
+Configuration targets:
+  config	  - Update current config utilising a line-oriented program
+  nconfig         - Update current config utilising a ncurses menu based program
+  menuconfig	  - Update current config utilising a menu based program
+  xconfig	  - Update current config utilising a Qt based front-end
+  gconfig	  - Update current config utilising a GTK+ based front-end
+  oldconfig	  - Update current config utilising a provided .config as base
+  localmodconfig  - Update current config disabling modules not loaded
+                    except those preserved by LMC_KEEP environment variable
+  localyesconfig  - Update current config converting local mods to core
+                    except those preserved by LMC_KEEP environment variable
+  defconfig	  - New config with default from ARCH supplied defconfig
+  savedefconfig   - Save current config as ./defconfig (minimal config)
+  allnoconfig	  - New config where all options are answered with no
+  allyesconfig	  - New config where all options are accepted with yes
+  allmodconfig	  - New config selecting modules when possible
+  alldefconfig    - New config with all symbols set to default
+  randconfig	  - New config with random answer to all options
+  yes2modconfig	  - Change answers from yes to mod if possible
+  mod2yesconfig	  - Change answers from mod to yes if possible
+  listnewconfig   - List new options
+  helpnewconfig   - List new options and help text
+  olddefconfig	  - Same as oldconfig but sets new symbols to their
+                    default value without prompting
+  tinyconfig	  - Configure the tiniest possible kernel
+  testconfig	  - Run Kconfig unit tests (requires python3 and pytest)
+
+```
+
 
 Once this step is complete, it is time to compile the kernel. Using the '-j' option helps the compiles go faster. The '-j' option specifies the number of jobs (make commands) to run simultaneously:
 
