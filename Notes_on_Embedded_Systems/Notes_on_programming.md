@@ -655,6 +655,44 @@ clean:
 	rm -f $(OBJS) $(DEPS) $(ASMS) $(PREP) $(TARGET).out $(TARGET).map *.o *.i *.d *.asm
 
 ```
+							
+Another cross compilation example, imagine you want to compile from an intel 64 arch to a raspberry pi (32bits arch)
+				
+							
+references:
+							
+- https://stackoverflow.com/questions/19162072/how-to-install-the-raspberry-pi-cross-compiler-on-my-linux-host-machine
+-
+- 
+							
+you should get the toolchain first:
+						
+```
+project# apt-get install lib32stdc++6
+project# sudo apt-get install ia32-libs
+project# apt-get install lib32z1						
+```
+							
+```
+# from an intel 64 arch to a raspberry pi (32bits arch)
+c_cc = /files/project/toolchain/bin/arm-linux-gnueabihf-gcc
+c_cc_flags = -Wall 
+c_ld = /files/project/toolchain/bin/arm-linux-gnueabihf-gcc
+c_ld_flags = 
+syslibs = -lm 
+exec_name=hello
+
+all : hello.o
+	$(c_ld) $(c_ld_flags) -o $(exec_name) $< $(syslibs)
+
+%.o : %.c
+	$(c_cc) $(c_cc_flags) -o $@ -c $< 
+
+clean:
+	rm -rf *.o $(exec_name)
+```
+							
+							
 
 ## PREPROCESSOR
 
