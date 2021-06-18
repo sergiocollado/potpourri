@@ -662,15 +662,16 @@ Another cross compilation example, imagine you want to compile from an intel 64 
 references:
 							
 - https://stackoverflow.com/questions/19162072/how-to-install-the-raspberry-pi-cross-compiler-on-my-linux-host-machine
--
-- 
+- https://www.raspberrypi.org/forums/viewtopic.php?t=281576
+- https://hackaday.com/2016/02/03/code-craft-cross-compiling-for-the-raspberry-pi/
+- https://medium.com/@zw3rk/making-a-raspbian-cross-compilation-sdk-830fe56d75ba#bd07
 							
 you should get the toolchain first:
 						
 ```
-project# apt-get install lib32stdc++6
+project# sudo apt-get install lib32stdc++6
 project# sudo apt-get install ia32-libs
-project# apt-get install lib32z1						
+project# sudo apt-get install lib32z1						
 ```
 							
 ```
