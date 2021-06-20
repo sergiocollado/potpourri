@@ -908,6 +908,49 @@ topic autoscalling: https://learnk8s.io/kubernetes-autoscaling-strategies
 
 <hr>
 
+## KUBERNETES SECURITY
+
+reference: https://kubernetes.io/docs/concepts/security/overview/
+
+a cluster security can be structured in four levels (4 C's of cloud native security)
+- cloud
+- cluster
+- container
+- code
+
+### CIS benchmakrs
+
+CIS stands for Center of Internet Security, its goal is increase internet security.
+
+It is possible to get CIS benchmarks for different systems. 
+
+a tool to run security benchmarks, is : https://github.com/aquasecurity/kube-bench
+
+### k8s security primitives
+
+ - hosts: the access to the hosts must be secured, root user disabled, password access disabled, only ssh key based acesss available. 
+
+The most basic point of access is the kube-apiserver, so it has to be hardened, two main points: 
+ - authentification : Who can access?
+ - authoritation: What can they do?
+
+All the communications with kube-apiserver is done with TLS (which is an encrypted protocol) 
+
+In the cluster, by default, all the pods, can communicate with the other pods, but that can be restringed by means of defining network policies. 
+
+#### Authentification
+
+there are two main users
+- users: admins, developers
+- programs, applications... (services accouts)
+
+all users access is managed by the kube-apiservers, for examply by using kubectl. 
+
+A list with all the users, and paswords, can be given to the cluster with the option to the kube-apiserver: --basic-auth-file=<file-of-users> 
+ 
+Other option is instead of a file with the users details, is possible to use a static file with token, with the option: --token-auth-file=<file-token>
+
+
 # HOW TO's
 
 ## How to get a shell to a runnnig contaniner
