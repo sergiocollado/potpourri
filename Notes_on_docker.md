@@ -100,7 +100,7 @@ To name a container:
 docker run --name=<desired_name> <image>
 ```
 
-if a os is requested, you can use commands with it
+if a OS is requested, you can use commands with it
 
 ```
 docker run ubuntu <command like:sleep 42>
@@ -111,7 +111,9 @@ to automatically log in in a container with an os.
 ```
 docker run -it ubuntu <command: bash>
 ``` 
-or: 
+
+or
+
 ```
  sudo docker run -it --name myubuntu1 ubuntu:latest
 ```
@@ -127,14 +129,15 @@ docker exec <container-name> <command>
 to pass an enviroment variable
 ```
 docker run -e MY_VARIABLE=value <image>
+```
 
+To launch a container in a detached mode use -d
 
-To launch a container in a detached mode use -deletes
 ```
 docker run -d <image>
 ```
-the container will run in the background process, and will be detached from the terminal. 
 
+the container will run in the background process, and will be detached from the terminal. 
  
 To reattach to that container, use:
 
@@ -155,8 +158,8 @@ To map the local standard input to the input of the container, use the -i and t 
 docker run -it <image>
 ```
 
-i is for indectarctive
-t is for terminal
+- i is for interactive
+- t is for terminal
 
 Port mapping: To port mapping a container to it's docker engine
 
@@ -196,13 +199,13 @@ To log in the docker hub:
  docker login
  ```
  
- to uload a created image that has already been commited:
+ To uload a created image that has already been commited:
+ 
  ```
  docker push <image_name>
  ```
  
- 
- 
+
  
 DOCKER IMAGES
 
