@@ -276,6 +276,7 @@ http://retis.sssup.it/~giorgio/paps/2005/rtsj05-rmedf.pdf
 
 how to compile PREMPT patch https://www.youtube.com/watch?v=RjTfKF7gcIo
 
+
 ### Linux posix threads 
 
 https://hpc-tutorials.llnl.gov/posix/
@@ -345,6 +346,7 @@ Tim Beale: Linux Kernel Development for Newbies: https://youtu.be/OkhOoBqLb3Y
 https://github.com/agelastic/eudyptula
 
 Write and Submit your first Linux kernel Patch: https://youtu.be/LLBrBBImJt4
+
 
 ### Intro
 
@@ -543,7 +545,7 @@ lsmod > /tmp/my-lsmod
 make LSMOD=/tmp/my-lsmod localmodconfig
 ```
 
-A simler choice is use **make defconfig**, every kernel has a default configuration, so with the 'defconfig' option that default configuration is used.
+A simpler choice is use **make defconfig**, every kernel has a default configuration, so with the 'defconfig' option that default configuration is used.
 
 
 otherwise use: 
@@ -604,7 +606,29 @@ Once this step is complete, it is time to compile the kernel. Using the '-j' opt
 make -j3 all
 ```
 
-once the compilation is done, you can install it
+the end of compilation should be like ...
+
+```
+  ...
+  CC      arch/x86/boot/cpu.o
+  AS      arch/x86/boot/compressed/efi_thunk_64.o
+  CC      arch/x86/boot/compressed/misc.o
+  GZIP    arch/x86/boot/compressed/vmlinux.bin.gz
+  MKPIGGY arch/x86/boot/compressed/piggy.S
+  AS      arch/x86/boot/compressed/piggy.o
+  LD      arch/x86/boot/compressed/vmlinux
+  ZOFFSET arch/x86/boot/zoffset.h
+  OBJCOPY arch/x86/boot/vmlinux.bin
+  AS      arch/x86/boot/header.o
+  LD      arch/x86/boot/setup.elf
+  OBJCOPY arch/x86/boot/setup.bin
+  BUILD   arch/x86/boot/bzImage
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+```
+and it should create a 'vmlinux' image.
+
+
+Once the compilation is done, you can install it
 
 ```
 su -c "make modules_install install"
@@ -632,13 +656,14 @@ Before testing the new kernel, that we don't know if it will boot, a couple of s
 
 By default, grub tries to boot the default kernel, which is the newly installed kernel. We change the default grub configuration file /etc/default/grub to the boot menu, and pause for us to be able to select the kernel to boot.
  
-in case dmesg_current length is zero, it is quite possible that the secure boot is enabled.  That will prevent to boot the new kernel as it is not signed. It is possible to disable temporaly the secure boot with the **mokutil** (MOK manager) 
+In case dmesg_current length is zero, it is quite possible that the secure boot is enabled.  That will prevent to boot the new kernel as it is not signed. It is possible to disable temporaly the secure boot with the **mokutil** (MOK manager) 
 
-to check if the secure boot is enabled: 
+To check if the secure boot is enabled: 
 
 ```
 mokutil --sb-state
 ```
+
 https://askubuntu.com/questions/1119734/how-to-replace-or-remove-kernel-with-signed-kernels
 
 to disable validation:
