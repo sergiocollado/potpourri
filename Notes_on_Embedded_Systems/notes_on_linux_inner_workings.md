@@ -1,5 +1,7 @@
 # Notes on linux inner workings
 
+reference: https://www.kernel.org/doc/html/latest/
+
 ## Linux networking basics
 
 ### Switches
@@ -490,7 +492,7 @@ git branch -a | grep linux-5
     remotes/origin/linux-5.0.y
     remotes/origin/linux-5.1.y
     remotes/origin/linux-5.2.y
-​git checkout linux-5.2.y
+git checkout linux-5.2.y
  ```
  
  Next you have to copy the configuration file from your current kernel, from /proc/config.gz or /boot, and copy it to  linux_stable/.config
@@ -506,11 +508,21 @@ grub                           System.map-5.0.0-20-generic
 initrd.img-5.0.0-20-generic    System.map-5.0.0-21-generic
 initrd.img-5.0.0-21-generic    vmlinuz-5.0.0-20-generic
 lost+found                     vmlinuz-5.0.0-21-generic
+```
 
+The easy thing to do, is to copy your actual config file (in /boot/) and move it to where the linux source is, and name it as .config.
+
+```
 cp /boot/<config-5.0.0-21-generic> .config
 ```
 
 #### Compiling the kernel 
+
+refence: http://www.kroah.com/lkn/ -linux kernel in a nutshell
+
+the kernel configuration is in the file named .config at the top of the kernel source tree.
+
+you may need to install:  libelf-dev, libelf-devel or elfutils-libelf-devel
 
 Run the following command to generate a kernel configuration file based on the current configuration.
 
@@ -522,7 +534,7 @@ make oldconfig
 
 reference: https://stackoverflow.com/questions/4178526/what-does-make-oldconfig-do-exactly-in-the-linux-kernel-makefile
 
-**Bonuses** make olddefconfig sets every option to their default value without asking interactively. It gets run automatically on make to ensure that the .config is consistent in case you've modified it manually like we did. 
+**Bonuses** make olddefconfig sets every option to their default value without asking interactively. It gets run automatically on make to ensure that the .config is consistent in case you've modified it manually.
 
 Other way to tune the kernel your system is by using **make localmodconfig**. This option creates a configuration file based on the list of modules currently loaded on your system.
 
@@ -531,7 +543,10 @@ lsmod > /tmp/my-lsmod
 make LSMOD=/tmp/my-lsmod localmodconfig
 ```
 
-also, maybe better use:
+A simler choice is use **make defconfig**, every kernel has a default configuration, so with the 'defconfig' option that default configuration is used.
+
+
+otherwise use: 
 
 ```
 make menuconfig
@@ -685,7 +700,7 @@ All the commits need to be signed-off:
 git commit -s
 ```
 
-Configure the name= field with your full legal name
+Configure the 'name=' field with your full legal name
 
 It is needed to create a user-specific configuration file .gitconfig in the home directory with the real legal name.
 
@@ -751,5 +766,11 @@ git grep uvcvideo -- '*Makefile'
 drivers/media/usb/uvc/Makefile:uvcvideo-objs := uvc_driver.o uvc_queue.o uvc_v4l2.o uvc_video.o uvc_ctrl.o drivers/media/usb/uvc/Makefile:uvcvideo-objs += uvc_entity.o
 drivers/media/usb/uvc/Makefile:obj-$(CONFIG_USB_VIDEO_CLASS) += uvcvideo.o
 ```
+
+
+TODO: Linux security implementations - TPM, FDE, LUKS, HSM, etc.
+
+tpm : https://en.wikipedia.org/wiki/Trusted_Platform_Module && https://www.kernel.org/doc/html/latest/security/tpm/index.html
+
 
 
