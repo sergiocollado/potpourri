@@ -808,5 +808,7 @@ TODO: Linux security implementations - TPM, FDE, LUKS, HSM, etc.
 
 tpm : https://en.wikipedia.org/wiki/Trusted_Platform_Module && https://www.kernel.org/doc/html/latest/security/tpm/index.html
 
+UEFI Secure Boot: https://wiki.debian.org/SecureBoot
+
 
 
