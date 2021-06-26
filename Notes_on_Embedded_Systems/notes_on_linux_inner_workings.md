@@ -687,9 +687,9 @@ sudo reboot
  
 Booting the Kernel:
 
-Let’s take care of a couple of important steps before trying out the newly installed kernel. There is no guarantee that the new kernel will boot. As a safeguard, we want to make sure that there is at least one good kernel installed and we can select it from the boot menu. By default, grub tries to boot the default kernel, which is the newly installed kernel. We change the default grub configuration file /etc/default/grub to the boot menu, and pause for us to be able to select the kernel to boot.
+Let’s take care of a couple of important steps before trying out the newly installed kernel. There is no guarantee that the new kernel will boot. As a safeguard, we want to make sure that there is at least one good kernel installed and we can select it from the boot menu. By default, grub tries to boot the default kernel, which is the newly installed kernel. We change the default grub configuration file **/etc/default/grub** to the boot menu, and pause for us to be able to select the kernel to boot.
 
-Please note that this option only applies to Ubuntu, and other distributions might have a different way to specify boot menu options.
+Please note that this option only applies to Ubuntu and Debian, and other distributions might have a different way to specify boot menu options.
 
 Increase the GRUB_TIMEOUT value to 10 seconds, so grub pauses in menu long enough to choose a kernel to boot:
 
@@ -700,17 +700,28 @@ Comment out GRUB_TIMEOUT_STYLE=hidden
 
 If the newly installed kernel fails to boot, it is nice to be able to see the early messages to figure out why the kernel failed to boot.
 
- 
 Enable printing early boot messages to vga using the earlyprintk=vga kernel boot option:
 
 ```
 GRUB_CMDLINE_LINUX="earlyprintk=vga"
 ```
+For information in grub: **'info -f grub -n 'Simple configuration''**
 
-Run update-grub to update the grub configuration in /boot
+NOTE!: Run **update-grub** to update the grub configuration in /boot
 
 ```
 sudo update-grub
+```
+
+```
+sergio@debian:/etc/default$ sudo update-grub
+Generating grub configuration file ...
+Found background image: /usr/share/images/desktop-base/desktop-grub.png
+Found linux image: /boot/vmlinuz-5.12.10
+Found initrd image: /boot/initrd.img-5.12.10
+Found linux image: /boot/vmlinuz-4.19.0-16-amd64
+Found initrd image: /boot/initrd.img-4.19.0-16-amd64
+done
 ```
 
 Now, it is possibble to restart the system. Once the new kernel comes up, compare the saved dmesg from the old kernel with the new one, and see if there are any regressions. If the newly installed kernel fails to boot, you will have to boot a good kernel, and then investigate why the new kernel failed to boot.
