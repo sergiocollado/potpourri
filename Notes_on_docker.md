@@ -199,7 +199,7 @@ To log in the docker hub:
  docker login
  ```
  
- To uload a created image that has already been commited:
+ To upload a created image that has already been commited:
  
  ```
  docker push <image_name>
@@ -228,15 +228,22 @@ to setup multiple services it is possible to do it with docker compose. But this
 docker-compose up
 ```
 
+DOCKER FILE: 
+
+FROM : Download image
+WORDIR : workspace inside
+ENV: enviromental variables
+RUN: run a single command
+CMD: execute a command (can be used several times)
+COPY: copy from local docker
+EXPOSE: expose a listening port
+
+
+
 https://docs.docker.com/compose/
 
 
 https://github.com/dockersamples/example-voting-app
-
-
-DOCKER ENGINE
-
-Docker engine is a host wi
 
 
 
