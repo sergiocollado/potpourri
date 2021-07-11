@@ -804,6 +804,14 @@ drivers/media/usb/uvc/Makefile:obj-$(CONFIG_USB_VIDEO_CLASS) += uvcvideo.o
 ```
 
 
+
+
+
+TODO: 
+- Kernel-bypass techniques for high-speed network packet processing : https://youtu.be/MpjlWt7fvrw
+- Kernel-bypass networking for fun and profit : https://youtu.be/noqSZorzooc
+- Data plane development kit DPDK: DPDK deep-dive : https://youtu.be/VJ8CVN3oXMw
+
 TODO: Linux security implementations - TPM, FDE, LUKS, HSM, etc.
 
 tpm : https://en.wikipedia.org/wiki/Trusted_Platform_Module && https://www.kernel.org/doc/html/latest/security/tpm/index.html
