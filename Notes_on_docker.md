@@ -12,6 +12,15 @@ why?
 - containerize appliations
 - run each service/app with its own dependencies in separate containers.
 
+Docker is a set of products that virtualizes software in packages called containers. Containers are like VMs,
+enviroments that are isolated from each other and have their own software, libraries and configurations. Containers are more lightweight than
+VMs in that sense that they are running on a single OS kernel and therefore need fewer resources. Containers isolates
+applications from each other more efficient compared to VMs. Even though VMs are keeping applications on the same hardware 
+entirely separate from each other, they require their own OS and all the software, libraries and configurations that comes along
+with that. This is bulky, hard to maintain/upgrade and typically requires storage of gigabytes. Containers shares the same underlying OS kernel
+meanwhile VMs would need their own OS kernel. Containers are often measured in megabytes, use far less resources than VMs and start up very fast
+
+
 
 Run Docker containers?
 
@@ -206,8 +215,40 @@ To log in the docker hub:
  ```
  
 
- 
-DOCKER IMAGES
+## DOCKER COMPOSE
+
+to setup multiple services it is possible to do it with docker compose. But this works only within a given host. 
+
+```
+docker-compose up
+```
+
+## DOCKERFILE: 
+
+Each Docker container starts with a Dockerfile. A Dockerfile is a text file written in an easy-to-understand syntax that includes the instructions to build a Docker image.
+
+A Dockerfile specifies the operating system that will underlie the container, along with the languages, environmental variables, file locations, network ports, and other components it needs.
+
+The dockerifle also specifies what the container will actually be doing once we run it. 
+
+A very important field in every Dockerfile is the **entrypoint**. The entrypoint specifies which binary that will be executed when the container has started. 
+
+- FROM : Download image
+- WORDIR : workspace inside
+- ENV: enviromental variables
+- RUN: run a single command
+- CMD: execute a command (can be used several times)
+- COPY: copy from local docker
+- EXPOSE: expose a listening port
+
+
+## DOCKER IMAGE
+
+The Dockerfile will instruct docker build on how to make a docker image. Whereas the Dockerfile is the set of instructions that tells docker build how to make the image,
+a Docker image is a portable file containing the specifications for which software components the container will run and how.
+
+An image usually contains the repository it is stored in, a tag and an image ID. Once an image is created, it’s static. So making any mistakes for example in fetching some software packages from online will require a rebuild. 
+
 
 1- create a Dockerfile, and write down the instructions to setting up the application, like resolving dependincies, getting the source code, 
 and defining the entry point of the application. 
@@ -220,28 +261,9 @@ create a local image.
 3 - 'docker push' command to make it available in dockerhub.
 
 
-DOCKER COMPOSE
-
-to setup multiple services it is possible to do it with docker compose. But this works only within a given host. 
-
-```
-docker-compose up
-```
-
-DOCKER FILE: 
-
-FROM : Download image
-WORDIR : workspace inside
-ENV: enviromental variables
-RUN: run a single command
-CMD: execute a command (can be used several times)
-COPY: copy from local docker
-EXPOSE: expose a listening port
-
-
+refs:
 
 https://docs.docker.com/compose/
-
 
 https://github.com/dockersamples/example-voting-app
 
