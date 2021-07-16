@@ -247,8 +247,8 @@ https://wiki.linuxfoundation.org/realtime/documentation/howto/applications/preem
 
 https://www.kernel.org/doc/html/latest/scheduler/sched-rt-group.html
 
-
-
+A realtime developer's checklist:  https://lwn.net/Articles/837019/
+ 
 
 references:
 
@@ -275,6 +275,8 @@ https://hpc-tutorials.llnl.gov/posix/
 http://retis.sssup.it/~giorgio/paps/2005/rtsj05-rmedf.pdf
 
 how to compile PREMPT patch https://www.youtube.com/watch?v=RjTfKF7gcIo
+
+A realtime developer's checklist:  https://lwn.net/Articles/837019/
 
 
 ### Linux posix threads 
