@@ -457,6 +457,25 @@ https://cloud.google.com/kubernetes-engine/
 
 https://github.com/dysinger/learn-minikube
 
+## Kubernetes network model
+
+The kubernetes network model, sets:
+
+- every pod gets its own IP address
+- containers within a pod share the same IP address and can communicate freely between them
+- Pods can communicate with all the other pods in the cluster using the pod's IP addresses (without NAT) 
+- Pods isolation, or restriction between pod's communication is defined by using network policies. 
+
+Kubernetes has a simple basic network connectivity implementation, so it is common to use thrid party implementations (Calico, Cilium, Weave net, flannel ...) 
+that follow the CNI (container network interface)  [ https://betterprogramming.pub/about-kubernetes-cni-plugins-f0bcd60b5629 ]
+
+“CNI (Container Network Interface), a Cloud Native Computing Foundation project, consists of a specification and libraries for writing plugins to configure network interfaces in Linux containers, along with a number of supported plugins. CNI concerns itself only with network connectivity of containers and removing allocated resources when the container is deleted.”
+
+the main types of CNI plugins are:
+
+- network plugins, are responsible to connect the pod to the network 
+- IPAM (IP Address Manager) which are resoponsible for allocatin pod IP addresses. 
+
 
 ## Services
 
@@ -1465,7 +1484,6 @@ ref : https://thenewstack.io/12-critical-kubernetes-health-conditions-you-need-t
 - DaemonsSets not ready
 - crash loops
  
-
 ### Howto Multi-container Pods.
 
 To define several containers in a pod:
