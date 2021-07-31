@@ -732,6 +732,9 @@ Now, it is possibble to restart the system. Once the new kernel comes up, compar
 
 https://www.kernel.org/doc/html/latest/process/submitting-patches.html
 
+https://kernelnewbies.org/FirstKernelPatch
+
+
 All the commits need to be signed-off:   
 
 ```
