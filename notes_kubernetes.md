@@ -2386,6 +2386,7 @@ I would try:
 >journalctl -u kubelet -f
 
 >systemctl daemon-reload
+
 >systemctl restart kubelet
 ```
 
@@ -2470,5 +2471,7 @@ autoscaling: https://learnk8s.io/kubernetes-autoscaling-strategies
 - **Kubernetes Networking Intro and Deep-Dive - Bowei Du & Tim Hockin, Google**  https://youtu.be/tq9ng_Nz9j8
 - **Kernel-bypass techniques for high-speed network packet processing** https://youtu.be/MpjlWt7fvrw
 - **DPDK deep-dive** https://youtu.be/VJ8CVN3oXMw
+ 
+Understanding kubernetes by breaking it down: https://youtu.be/90kZRyPcRZw?list=RDCMUCvqbFHwN-nwalWPjPUKpvTA
  
  
