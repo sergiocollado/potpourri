@@ -157,6 +157,8 @@ Stop and Idle are special scheduling classes. Stop is used to schedule the per-c
 
  Per CPU there is a runqueue with is a group of all the runnable tasks. rq is defined at kernel/sched.c. The runqueue (rq) also handles some statistics about the CPU load, and scheduling domains for load balancing between the CPUs. 
 
+reference: https://oska874.gitbooks.io/process-scheduling-in-linux/content/chapter2.html
+
 
 ## Linux for Real time
 
