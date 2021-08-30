@@ -97,6 +97,66 @@ in the file: /etc/sysctl.conf
 net.ipv4.ip_fordward = 1
 ```
 
+## Linux scheduler
+
+The linux kernel is multithreaded. The scheuduler is the system that decides which task runs at each time. In linux the
+scheduling is based in threads, not in processes. 
+
+ Each task (that represents a thread) is defined with the structure 'struct task_struct' (include/linux/sched.d) 
+
+### Scheduling classes
+
+there are different scheduling classes, defined at include/linux/sched.h
+
+```
+struct sched_class {
+
+    const struct sched_class *next;
+    void (*enqueue_task) (struct rq *rq, struct task_struct *p, int flags);
+    void (*dequeue_task) (struct rq *rq, struct task_struct *p, int flags);
+    void (*yield_task) (struct rq *rq);
+    bool (*yield_to_task) (struct rq *rq, struct task_struct *p, bool preempt);
+    void (*check_preempt_curr) (struct rq *rq, struct task_struct *p, int flags);
+    struct task_struct * (*pick_next_task) (struct rq *rq);
+    void (*put_prev_task) (struct rq *rq, struct task_struct *p);
+#ifdef CONFIG_SMP
+    int (*select_task_rq)(struct task_struct *p, int sd_flag, int flags);
+    void (*pre_schedule) (struct rq *this_rq, struct task_struct *task);
+    void (*post_schedule) (struct rq *this_rq);
+    void (*task_waking) (struct task_struct *task);
+    void (*task_woken) (struct rq *this_rq, struct task_struct *task);
+    void (*set_cpus_allowed)(struct task_struct *p, const struct cpumask *newmask);
+    void (*rq_online)(struct rq *rq);
+    void (*rq_offline)(struct rq *rq);
+#endif
+    void (*set_curr_task) (struct rq *rq);
+    void (*task_tick) (struct rq *rq, struct task_struct *p, int queued);
+    void (*task_fork) (struct task_struct *p);
+    void (*switched_from) (struct rq *this_rq, struct task_struct *task);
+    void (*switched_to) (struct rq *this_rq, struct task_struct *task);
+    void (*prio_changed) (struct rq *this_rq, struct task_struct *task,  int oldprio);
+    unsigned int (*get_rr_interval) (struct rq *rq,  struct task_struct *task);
+#ifdef CONFIG_FAIR_GROUP_SCHED
+    void (*task_move_group) (struct task_struct *p, int on_rq);
+#endif
+};
+```
+this is a skeleton of function pointers. 
+
+all the scheduling classes in the linux kernel are in a linked list, ordered by highiest priority, and the next pointer, points to the next scheduler class. 
+
+The scheduler walksthrough the highest scheduling class, to the lowest scheduling class. 
+
+```
+stop_sched_class → rt_sched_class → fair_sched_class → idle_sched_class → NULL
+```
+
+Stop and Idle are special scheduling classes. Stop is used to schedule the per-cpu stop task which pre-empts everything and can be pre-empted by nothing, and Idle is used to schedule the per-cpu idle task (also called swapper task) which is run if no other task is runnable. The other two are for the previously mentioned real time and normal tasks.
+
+### The main runqueue (rq)
+
+ Per CPU there is a runqueue with is a group of all the runnable tasks. rq is defined at kernel/sched.c. The runqueue (rq) also handles some statistics about the CPU load, and scheduling domains for load balancing between the CPUs. 
+
 
 ## Linux for Real time
 
