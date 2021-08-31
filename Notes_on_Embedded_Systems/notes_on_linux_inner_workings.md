@@ -153,6 +153,31 @@ stop_sched_class → rt_sched_class → fair_sched_class → idle_sched_class �
 
 Stop and Idle are special scheduling classes. Stop is used to schedule the per-cpu stop task which pre-empts everything and can be pre-empted by nothing, and Idle is used to schedule the per-cpu idle task (also called swapper task) which is run if no other task is runnable. The other two are for the previously mentioned real time and normal tasks.
 
+#### SCHED_FIFO (First in First Out)
+
+it is a real time scheduling class, defined by POSIX. It runs to completion the higiest prioririty task, with preemptions. it is deterministic
+
+In general real-time tasks, will run until two causes
+- complete and exit
+- yield, sleep, activate a higher priority or blocked on secondary resource (system call)
+- interrupt raised
+ 
+#### SCHED_RR (Round Robin) 
+
+It is also a real-time scheduling scheme, in order of priority tasks run in a round-robin fashion. If a RT (realtime) task is running no other task will be allowed to have processor times. task priority is defined by its rt_priority. it is deterministic. It uses time slices. 
+
+In general real-time tasks, will run until two causes
+- complete and exit
+- yield, sleep, activate a higher priority or blocked on secondary resource (system call)
+- interrupt raised
+-
+
+#### SCHED_OTHER or SCHED_NORMAL
+
+it is the normal scheduling policy por linux. The CFS (Completely fair scheduler). The priority of this tasks in the "nice priority". The nice values ranges from -20 (highiest) to 19 (lowest priority) 
+
+https://www.skillsire.com/read-blog/180_linux-scheduler-profiling.html
+
 ### The main runqueue (rq)
 
  Per CPU there is a runqueue with is a group of all the runnable tasks. rq is defined at kernel/sched.c. The runqueue (rq) also handles some statistics about the CPU load, and scheduling domains for load balancing between the CPUs. 
@@ -294,6 +319,26 @@ mutex_lock()   │                   DipacheD │   │   OR YIELD              
 
 
 
+### Linux scheduler profiling
+
+#### ftrace
+
+Ftrace in an interal tracer, which can be used for tracing, debugging and analyzing latencies. 
+
+#### trace-cmd
+
+trace-cmd in a command that works with ftrace 
+
+#### kernel shark
+
+its a front-end for trace-cmnd 
+
+#### Perf
+
+ perf creates a dump for later analyzing the events. 
+ 
+references: https://www.skillsire.com/read-blog/180_linux-scheduler-profiling.html
+
 
 
 
@@ -360,7 +405,7 @@ https://www.gnu.org/software/libc/manual/html_node/POSIX.html#POSIX
 
 ref: https://man7.org/linux/man-pages/man7/time.7.html
 
-linux with its posix rea-time extension support both: absolute and relative time
+linux with its posix real-time extension support both: absolute and relative time
 
 Relative time is based in a hardware timer, based on PIT (Programmable Interval Timer) and TSC (Time Stamp Counter) or it is based in SCT (system Clock Time).
 
