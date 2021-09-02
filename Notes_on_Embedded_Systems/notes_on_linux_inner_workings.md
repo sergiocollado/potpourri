@@ -104,6 +104,96 @@ scheduling is based in threads, not in processes.
 
  Each task (that represents a thread) is defined with the structure 'struct task_struct' (include/linux/sched.d) 
 
+```
+struct task_struct {
+#ifdef CONFIG_THREAD_INFO_IN_TASK
+	/*
+	 * For reasons of header soup (see current_thread_info()), this
+	 * must be the first element of task_struct.
+	 */
+	struct thread_info		thread_info;
+#endif
+	/* -1 unrunnable, 0 runnable, >0 stopped: */
+	volatile long			state;
+
+	/*
+	 * This begins the randomizable portion of task_struct. Only
+	 * scheduling-critical items should be added above here.
+	 */
+	randomized_struct_fields_start
+
+	void				*stack;
+	refcount_t			usage;
+	/* Per task flags (PF_*), defined further below: */
+	unsigned int			flags;
+	unsigned int			ptrace;
+
+#ifdef CONFIG_SMP
+	struct llist_node		wake_entry;
+	int				on_cpu;
+#ifdef CONFIG_THREAD_INFO_IN_TASK
+	/* Current CPU: */
+	unsigned int			cpu;
+#endif
+	unsigned int			wakee_flips;
+	unsigned long			wakee_flip_decay_ts;
+	struct task_struct		*last_wakee;
+
+	/*
+	 * recent_used_cpu is initially set as the last CPU used by a task
+	 * that wakes affine another task. Waker/wakee relationships can
+	 * push tasks around a CPU where each wakeup moves to the next one.
+	 * Tracking a recently used CPU allows a quick search for a recently
+	 * used CPU that may be idle.
+	 */
+	int				recent_used_cpu;
+	int				wake_cpu;
+#endif
+	int				on_rq;
+
+	int				prio;
+	int				static_prio;
+	int				normal_prio;
+	unsigned int			rt_priority;
+
+	const struct sched_class	*sched_class;
+	struct sched_entity		se;
+	struct sched_rt_entity		rt;
+#ifdef CONFIG_CGROUP_SCHED
+	struct task_group		*sched_task_group;
+#endif
+	struct sched_dl_entity		dl;
+...
+```
+
+Each task can have different states (defined also at include/linux/sched.)
+
+reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/linux/sched.h?h=v5.4
+
+```
+/* Used in tsk->state: */
+#define TASK_RUNNING			0x0000
+#define TASK_INTERRUPTIBLE		0x0001
+#define TASK_UNINTERRUPTIBLE		0x0002
+#define __TASK_STOPPED			0x0004
+#define __TASK_TRACED			0x0008
+/* Used in tsk->exit_state: */
+#define EXIT_DEAD			0x0010
+#define EXIT_ZOMBIE			0x0020
+#define EXIT_TRACE			(EXIT_ZOMBIE | EXIT_DEAD)
+/* Used in tsk->state again: */
+#define TASK_PARKED			0x0040
+#define TASK_DEAD			0x0080
+#define TASK_WAKEKILL			0x0100
+#define TASK_WAKING			0x0200
+#define TASK_NOLOAD			0x0400
+#define TASK_NEW			0x0800
+#define TASK_STATE_MAX			0x1000
+```
+ 
+ 
+ 
+
 ### Scheduling classes
 
 there are different scheduling classes, defined at include/linux/sched.h
@@ -170,11 +260,19 @@ In general real-time tasks, will run until two causes
 - complete and exit
 - yield, sleep, activate a higher priority or blocked on secondary resource (system call)
 - interrupt raised
--
+
+
+#### SCHED_DEADLINE 
+
+In the Real-time literature SCHED_DEADLINE is the EDF (Earliest Dead-line First) scheduler
+
+This scheduling is more aggressive that SCHED_FIFO, but is harder to handle, and properly manage.
+
+reference: https://www.kernel.org/doc/html/latest/scheduler/sched-deadline.html
 
 #### SCHED_OTHER or SCHED_NORMAL
 
-it is the normal scheduling policy por linux. The CFS (Completely fair scheduler). The priority of this tasks in the "nice priority". The nice values ranges from -20 (highiest) to 19 (lowest priority) 
+It is the normal scheduling policy por linux. The CFS (Completely fair scheduler). The priority of this tasks in the "nice priority". The nice values ranges from -20 (highiest) to 19 (lowest priority) 
 
 https://www.skillsire.com/read-blog/180_linux-scheduler-profiling.html
 
