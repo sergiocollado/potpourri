@@ -1,6 +1,10 @@
 # Notes on linux inner workings
 
-reference: https://www.kernel.org/doc/html/latest/
+Index of Documentation for People Interested in Writing and/or Understanding the Linux Kernel: https://www.kernel.org/doc/html/latest/process/kernel-docs.html
+
+kernel coding style: https://www.kernel.org/doc/html/latest/process/coding-style.html
+
+mentorship series: https://events.linuxfoundation.org/lf-live-mentorship-series/
 
 ## Linux networking basics
 
@@ -190,13 +194,10 @@ reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr
 #define TASK_NEW			0x0800
 #define TASK_STATE_MAX			0x1000
 ```
- 
- 
- 
 
 ### Scheduling classes
 
-there are different scheduling classes, defined at include/linux/sched.h
+There are different scheduling classes, defined at include/linux/sched.h
 
 ```
 struct sched_class {
@@ -422,6 +423,8 @@ mutex_lock()   │                   DipacheD │   │   OR YIELD              
 #### ftrace
 
 Ftrace in an interal tracer, which can be used for tracing, debugging and analyzing latencies. 
+
+reference: https://www.youtube.com/watch?v=mlxqpNvfvEQ
 
 #### trace-cmd
 
@@ -741,7 +744,11 @@ make oldconfig
 
 'make oldconfig' reads the existing .config file that was used for an old kernel and prompts the user for options in the current kernel source that are not found in the file. This is useful when taking an existing configuration and moving it to a new kernel.
 
+WATCH OUT!: New releases often introduce new configuration variables and, in some cases, rename the configuration symbols. The latter causes problems, and make oldconfig might not generate a new working kernel. Run make listnewconfig after copying the configuration from /boot to the .config file, to see a list of new configuration symbols. 
+
 reference: https://stackoverflow.com/questions/4178526/what-does-make-oldconfig-do-exactly-in-the-linux-kernel-makefile
+
+reference: https://www.kernel.org/doc/html/latest/kbuild/kconfig.html
 
 **Bonuses** make olddefconfig sets every option to their default value without asking interactively. It gets run automatically on make to ensure that the .config is consistent in case you've modified it manually.
 
@@ -949,13 +956,16 @@ https://kernelnewbies.org/FirstKernelPatch
 
 All the commits need to be signed-off:   
 
+Create a .gitconfig file in your home directory.
+- Name is the full legal author name 
+- email is the email address for the commit 
+- signoff = true 
+
+reference: https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+
 ```
 git commit -s
 ```
-
-Configure the 'name=' field with your full legal name
-
-It is needed to create a user-specific configuration file .gitconfig in the home directory with the real legal name.
 
 To accept a patch, the name, and signed-off-by must match.
 
@@ -1020,7 +1030,83 @@ drivers/media/usb/uvc/Makefile:uvcvideo-objs := uvc_driver.o uvc_queue.o uvc_v4l
 drivers/media/usb/uvc/Makefile:obj-$(CONFIG_USB_VIDEO_CLASS) += uvcvideo.o
 ```
 
+kernel code style: https://www.kernel.org/doc/html/latest/process/coding-style.html
 
+https://events.linuxfoundation.org/mentorship-session-kernel-validation-with-kselftest/
+
+KERNEL TESTS 
+
+- The kernel CI: https://kernelci.org/
+- issues: https://lists.01.org/hyperkitty/
+- linaro QA: https://qa-reports.linaro.org/lkft/
+- buildBot: https://kerneltests.org/
+
+APPLYING PATCHES:
+
+ Each Linux patch is a self-contained change to the code that stands on its own, unless explicitly made part of a patch series. New patches are applied as follows:
+
+```
+patch -p1 < file.patch
+git apply --index file.patch
+```
+
+Either command will work; however, when a patch adds a new file and, if it is applied using the patch command, git does not know about the new files, and they will be treated as untracked files. The git diff command will not show the files in its output and the git status command will show the files as untracked. You can use git diff HEAD to see the changes.
+
+For the most part, there are no issues with building and installing kernels; however, the git reset --hard command will not remove the newly created files and a subsequent git pull will fail.
+
+SOLUTION1 
+When a patch that adds new files is applied using the patch command, run git clean to remove untracked files before running git reset --hard. For example, git clean -dfx will force the removal of untracked directories and files, ignoring any standard ignore rules specified in the .gitignore file. You could include the -q option to run git clean in quiet mode, if you do not care to know which files are removed.​
+
+SOLUTION2
+An alternate approach is to tell git to track the newly added files by running git apply --index file.patch. This will result in git applying the patch and adding the result to the index. Once this is done, git diff will show the newly added files in its output and git status will report the status correctly, tagging these files as newly created files.
+
+CHECK KERNEL LOGS
+
+```
+dmesg -t -l emerg
+dmesg -t -l crit
+dmesg -t -l alert
+dmesg -t -l err
+dmesg -t -l warn
+dmesg -t -k
+dmesg -t
+```
+
+STRESS TEST,
+
+ lauch several kernel compilations in parallel ... :/
+ 
+ ```
+ time make all
+ ```
+ 
+DEBUGING KERNEL PANICS 
+
+https://sanjeev1sharma.wordpress.com/tag/debug-kernel-panics/
+https://www.opensourceforu.com/2011/01/understanding-a-kernel-oops/
+
+Decode and Analyze the Panic Message
+Panic messages can be decoded using the decode_stacktrace.sh tool. Please refer to decode_stacktrace https://lwn.net/Articles/592724/ : make stack dump output useful again for details on how to use the tool.
+
+https://www.kernel.org/doc/html/latest/trace/events.html
+
+
+
+HOW TO BUILD THE KERNEL DOCUMENTATION
+
+There is a script which checks if you have all the needed dependencies to build the documentation. This script is called automatically when you run
+
+make htmldocs
+
+Alternatively, you can call the script directly by running:
+
+./scripts/sphinx-pre-install
+
+Once you have all the requirements, you can do the building by running:
+
+make htmldocs > doc_make.log 2>&1
+
+Check for warnings and other errors you might find and see if you can fix them.
 
 
 
