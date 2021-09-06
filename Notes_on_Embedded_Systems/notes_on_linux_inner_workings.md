@@ -1120,13 +1120,83 @@ TODO:
 - Steven Rostedt - Learning the Linux Kernel with tracing : https://youtu.be/JRyrhsx-L5Y
 - Design Microservice Architectures the Right Way: https://youtu.be/j6ow-UemzBc
 - Mastering Chaos - A Netflix Guide to Microservices : https://youtu.be/CZ3wIuvmHeM
--
+- tcddump: https://www.youtube.com/watch?v=hWc-ddF5g1I
 
 TODO: Linux security implementations - TPM, FDE, LUKS, HSM, etc.
 
 tpm : https://en.wikipedia.org/wiki/Trusted_Platform_Module && https://www.kernel.org/doc/html/latest/security/tpm/index.html
 
 UEFI Secure Boot: https://wiki.debian.org/SecureBoot
+
+
+
+
+
+## Notes on Linux kernel security overview 
+
+Notes on the talk https://www.youtube.com/watch?v=L7KHvKRfTzc&t=945s  - James Morris
+Other reference: https://www.youtube.com/watch?v=McuP1_mvE_g
+
+reference:  https://kernsec.org/
+
+DAC - Discrection Acess control - This was the UNIX security mechanism. Linux is based in UNIX. This was the first approach. 
+
+But UNIX was not desinged for security. DAC is not appropiate for the modern security threads. 
+
+POSIX ACL (Access Control List), are stensions of DACs. https://www.usenix.org/legacy/publications/library/proceedings/usenix03/tech/freenix03/full_papers/gruenbacher/gruenbacher_html/main.html
+https://linux.die.net/man/5/acl
+
+There is an audit subsitem in the kernel; check https://linux.die.net/man/8/auditctl. Implemented to comply with goverment certification requirementes (similar to C2 ¿?) 
+https://www.tecmint.com/linux-system-auditing-with-auditd-tool-on-centos-rhel/
+
+
+Other security mechanism is **seccommp** : https://man7.org/linux/man-pages/man2/seccomp.2.html  https://outflux.net/teach-seccomp/  
+
+Other security mechanism are **namespaces**: cgroup, ipc, network, pid, user, mount, uts, 
+
+APIS: clone(2), setns(2), unshare(2), pam_namespace(8) 
+
+In fact, linux containers are namespaces + cgroups, 
+
+- Linux Namespaces: https://medium.com/@teddyking/linux-namespaces-850489d3ccf
+- network namespaces: https://www.youtube.com/watch?v=j_UUnlVC2Ss
+- Introduction to Linux Network Namespaces: https://www.youtube.com/watch?v=_WgUwUf1d34
+- Understanding user namespaces - Michael Kerrisk: https://www.youtube.com/watch?v=83NOk8pmHi8
+- Cgroups, namespaces, and beyond: what are containers made from?: https://www.youtube.com/watch?v=sK5i-N34im8
+
+
+Regarding networking is the: **Netfilter**
+
+Also the **Cryptograpy API**, also the keys managers, key rings, tokens ... In userland: **keyctl(1)**
+
+serveral types of keys:
+
+- per process, session
+- trusted keys: TPM generated and sealed
+- encrypted keys: kernel generated and encrypted
+
+**LSM** : SELinux framework. Linux Security Modules: Allows, different access control schemes to be plugged into the kernel. https://www.starlab.io/blog/a-brief-tour-of-linux-security-modules
+
+- https://www.kernel.org/doc/html/v5.0/admin-guide/LSM/index.html
+- Overview and Recent Developments: seccomp and Small Linux Security Modules - Kees Cooke: https://www.youtube.com/watch?v=hTdXJbnnJ88
+- Inside the Linux Security Modules (LSM) - Vandana Salve, Prasme Systems: https://www.youtube.com/watch?v=RKBBPsp-TZ0
+- Tutorial: How to Write a Linux Security Module - Casey Schaufler: https://www.youtube.com/watch?v=4rFxZw3USIs
+
+**SELinux** Security Enhanced Linux: 
+- All objects & subjects have security labels,
+- All relevant security interactions are mediated via fine-graned generalized permissions. 
+- flexible security policies: separation of mechanism and policy 
+- policy centrally administered, and no overridable by user (include root)
+- helps contain breaches via least privilige
+- implemented in fedora family, android.
+
+**KSP** kernel Self protection project:(KSPP) hardening the kernel against an attack;
+
+- https://kernsec.org/wiki/index.php/Kernel_Self_Protection_Project
+- https://kernsec.org/wiki/index.php/Projects
+
+
+
 
 
 
