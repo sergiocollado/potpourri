@@ -103,8 +103,22 @@ net.ipv4.ip_fordward = 1
 
 ## Linux scheduler
 
-The linux kernel is multithreaded. The scheuduler is the system that decides which task runs at each time. In linux the
+ The linux kernel is multithreaded. The scheduler is the system that decides which task runs at each time. In linux the
 scheduling is based in threads, not in processes. 
+
+ The scheduler shares the cpu utilization between the tasks.
+ 
+ It selects the next task to run (on each CPU) when:
+ - running tasks ends
+ - running task sleeps (or waits for an event)
+ - a new task is created or a sleeping task wakes up
+ - running task time-slice is over.
+
+ The scheduler has scheduling policies with scheduling classes 
+ - The scheduling class with highier priority is served first
+ - a task can migrate between cpus, scheduling policies and scheduling classes
+ - the scheduling classes are: stop, dl (deadline), rt (real-time), cfs(complete fair scheudling), idle.
+
 
  Each task (that represents a thread) is defined with the structure 'struct task_struct' (include/linux/sched.d) 
 
@@ -199,6 +213,26 @@ reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr
 
 There are different scheduling classes, defined at include/linux/sched.h
 
+the scheduling classes are: stop, dl (deadline), rt (real-time), cfs(complete fair scheudling), idle.
+
+They are defined at: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/sched.h?h=v5.4#n1798
+
+```
+#define for_class_range(class, _from, _to) \
+	for (class = (_from); class != (_to); class = class->next)
+
+#define for_each_class(class) \
+	for_class_range(class, sched_class_highest, NULL)
+
+extern const struct sched_class stop_sched_class;
+extern const struct sched_class dl_sched_class;
+extern const struct sched_class rt_sched_class;
+extern const struct sched_class fair_sched_class;
+extern const struct sched_class idle_sched_class;
+```
+
+The following code is the code that represents a scheduling class.
+
 ```
 struct sched_class {
 
@@ -239,7 +273,7 @@ all the scheduling classes in the linux kernel are in a linked list, ordered by 
 The scheduler walksthrough the highest scheduling class, to the lowest scheduling class. 
 
 ```
-stop_sched_class → rt_sched_class → fair_sched_class → idle_sched_class → NULL
+stop_sched_class → dl_shed_class → rt_sched_class → fair_sched_class → idle_sched_class → NULL
 ```
 
 Stop and Idle are special scheduling classes. Stop is used to schedule the per-cpu stop task which pre-empts everything and can be pre-empted by nothing, and Idle is used to schedule the per-cpu idle task (also called swapper task) which is run if no other task is runnable. The other two are for the previously mentioned real time and normal tasks.
@@ -282,6 +316,14 @@ https://www.skillsire.com/read-blog/180_linux-scheduler-profiling.html
  Per CPU there is a runqueue with is a group of all the runnable tasks. rq is defined at kernel/sched.c. The runqueue (rq) also handles some statistics about the CPU load, and scheduling domains for load balancing between the CPUs. 
 
 reference: https://oska874.gitbooks.io/process-scheduling-in-linux/content/chapter2.html
+
+reference: BKK19-TR03 - The Linux Kernel Scheduler - Overview: https://www.youtube.com/watch?v=oOiaRHC9ZDg
+
+reference: https://linutronix.de/videos/2021_A_guided_tour_through_the_Preempt-RT_castle.mp4?m=1625133660&
+
+reference: https://linutronix.de/PDF/2021_A_guided_tour_through_the_Preempt-RT_castle.pdf?m=1625133387&
+
+reference: Real-Time Linux Kernel Scheduler: https://www.linuxjournal.com/article/10165
 
 
 ## Linux for Real time
