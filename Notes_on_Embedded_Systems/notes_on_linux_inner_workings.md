@@ -120,6 +120,59 @@ scheduling is based in threads, not in processes.
  - the scheduling classes are: stop, dl (deadline), rt (real-time), cfs(complete fair scheudling), idle.
 
 
+  _**_schedule()** is the main scheduler function: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/core.c#n6127
+
+  static struct task_struct ***pick_next_task()** : https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/core.c#n5547
+
+  reference: https://oska874.gitbooks.io/process-scheduling-in-linux/content/chapter5.html
+ 
+```
+/*
+ * Pick up the highest-prio task:
+ */
+static inline struct task_struct *
+__pick_next_task(struct rq *rq, struct task_struct *prev, struct rq_flags *rf)
+{
+	const struct sched_class *class;
+	struct task_struct *p;
+
+	/*
+	 * Optimization: we know that if all tasks are in the fair class we can
+	 * call that function directly, but only if the @prev task wasn't of a
+	 * higher scheduling class, because otherwise those lose the
+	 * opportunity to pull in more work from other CPUs.
+	 */
+	if (likely(prev->sched_class <= &fair_sched_class &&
+		   rq->nr_running == rq->cfs.h_nr_running)) {
+
+		p = pick_next_task_fair(rq, prev, rf);
+		if (unlikely(p == RETRY_TASK))
+			goto restart;
+
+		/* Assume the next prioritized class is idle_sched_class */
+		if (!p) {
+			put_prev_task(rq, prev);
+			p = pick_next_task_idle(rq);
+		}
+
+		return p;
+	}
+
+restart:
+	put_prev_task_balance(rq, prev, rf);
+
+	for_each_class(class) {
+		p = class->pick_next_task(rq);
+		if (p)
+			return p;
+	}
+
+	/* The idle class should always have a runnable task: */
+	BUG();
+}
+```
+
+
  Each task (that represents a thread) is defined with the structure 'struct task_struct' (include/linux/sched.d) 
 
 ```
@@ -213,7 +266,7 @@ reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr
 
 There are different scheduling classes, defined at include/linux/sched.h
 
-the scheduling classes are: stop, dl (deadline), rt (real-time), cfs(complete fair scheudling), idle.
+The scheduling classes are: stop, dl (deadline), rt (real-time), cfs(complete fair scheudling), idle.
 
 They are defined at: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/sched.h?h=v5.4#n1798
 
@@ -266,9 +319,9 @@ struct sched_class {
 #endif
 };
 ```
-this is a skeleton of function pointers. 
+This is a skeleton of function pointers. 
 
-all the scheduling classes in the linux kernel are in a linked list, ordered by highiest priority, and the next pointer, points to the next scheduler class. 
+All the scheduling classes in the linux kernel are in a linked list, ordered by highiest priority, and the next pointer, points to the next scheduler class. 
 
 The scheduler walksthrough the highest scheduling class, to the lowest scheduling class. 
 
@@ -276,7 +329,68 @@ The scheduler walksthrough the highest scheduling class, to the lowest schedulin
 stop_sched_class → dl_shed_class → rt_sched_class → fair_sched_class → idle_sched_class → NULL
 ```
 
-Stop and Idle are special scheduling classes. Stop is used to schedule the per-cpu stop task which pre-empts everything and can be pre-empted by nothing, and Idle is used to schedule the per-cpu idle task (also called swapper task) which is run if no other task is runnable. The other two are for the previously mentioned real time and normal tasks.
+Stop and Idle are special scheduling classes. Stop is used to schedule the per-cpu stop task which pre-empts everything and can be pre-empted by nothing. It is used only for maintinance within the kernel, to stop everything and run some kernel specific routines.
+
+
+Idle is used to schedule the per-cpu idle task (also called swapper task) which is run if no other task is runnable. The other two are for the previously mentioned real time and normal tasks. It is for CPU idle, so no tasks is associated with it
+
+### Scheduling classes and policies
+
+ - Stop
+    - no policy
+ - Deadline
+    - SCHED_DEADLINE
+ - Real Time
+    - SCHED_FIFO
+    - SCHED_RR
+ - Fair
+   - SCHED_NORMAL
+   - SCHED_BATCH
+   - SCHED_IDLE
+ - Idle
+   - no policy
+
+#### stop_sched_class (STOP)
+
+- stop_sched_class is the highiest priority class
+- only present in SMP, not in UP. Because it is used to stop other CPUs. 
+- it can preempt anything, and nothing can preempt it. 
+- it is a mechanism to stop running everything else and run a specific function on a CPU.
+- it has no scheduling policies
+- it is used for tasks migrations, cpu migration, RCU, ftrace, clockevents, etc...
+
+#### dl_sched_class (DEADLINE)
+
+ - Added by Dario Faggioli && Juri Lelli (3.14) (2013). it matches the EDF (Earliest Deadline first)
+ - Higiest priority class task in the system.
+ - policy is SCHED_DEADLINE
+ - implemented with a red-black tree (self balancing)
+ - used for periodic real time tasks 
+
+#### rt_sched_class (REAL TIME)
+
+- this matches the POSIX real-tasks specs
+- the priorities go from 0 to 99, being 0 the highest priority in kernel and 99 the lowest priority in user space
+- policies
+   - SCHED_FIFO: (First In First Out)
+   - SCHED_RR:   (Round Robin) by default 100 ms slice time.
+- implemented with linked lists
+- used for short tasks, latency sensitive.
+
+#### fair_sched_class
+
+	
+
+
+### Scheduling Policies
+
+#### SCHED_DEADLINE 
+
+In the Real-time literature SCHED_DEADLINE is the EDF (Earliest Dead-line First) scheduler. It the highes priority
+
+This scheduling is more aggressive that SCHED_FIFO, but is harder to handle, and properly manage.
+
+reference: https://www.kernel.org/doc/html/latest/scheduler/sched-deadline.html
 
 #### SCHED_FIFO (First in First Out)
 
@@ -296,20 +410,19 @@ In general real-time tasks, will run until two causes
 - yield, sleep, activate a higher priority or blocked on secondary resource (system call)
 - interrupt raised
 
-
-#### SCHED_DEADLINE 
-
-In the Real-time literature SCHED_DEADLINE is the EDF (Earliest Dead-line First) scheduler
-
-This scheduling is more aggressive that SCHED_FIFO, but is harder to handle, and properly manage.
-
-reference: https://www.kernel.org/doc/html/latest/scheduler/sched-deadline.html
-
 #### SCHED_OTHER or SCHED_NORMAL
 
 It is the normal scheduling policy por linux. The CFS (Completely fair scheduler). The priority of this tasks in the "nice priority". The nice values ranges from -20 (highiest) to 19 (lowest priority) 
 
 https://www.skillsire.com/read-blog/180_linux-scheduler-profiling.html
+
+### SCHED_BATCH
+
+It is when we want the task to run for longer, to take advantage of cashes for example. 
+
+### SCHED_IDLE 
+
+sCHED_IDLE is not the same as the schedule class 'idle'. SCHED_IDLE is for really low priority tasks.  
 
 ### The main runqueue (rq)
 
