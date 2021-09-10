@@ -175,7 +175,7 @@ restart:
 
  Each task (that represents a thread) is defined with the structure 'struct task_struct' (include/linux/sched.d) 
  
- reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/linux/sched.h#n723
+ reference: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/include/linux/sched.h?h=v5.4.144#n624
 
 ```
 struct task_struct {
@@ -270,7 +270,7 @@ There are different scheduling classes, defined at include/linux/sched.h
 
 The scheduling classes are: stop, dl (deadline), rt (real-time), cfs(complete fair scheudling), idle.
 
-They are defined at: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/sched.h?h=v5.4#n1798
+They are defined at: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/sched/sched.h?h=v5.4.144#n1802
 
 ```
 #define for_class_range(class, _from, _to) \
@@ -288,7 +288,7 @@ extern const struct sched_class idle_sched_class;
 
 The following code is the code that represents a scheduling class.
 
-reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/sched.h#n2112
+reference: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/sched/sched.h?h=v5.4.144#n1712
 
 ```
 struct sched_class {
@@ -363,7 +363,7 @@ Idle is used to schedule the per-cpu idle task (also called swapper task) which 
 - it has no scheduling policies
 - it is used for tasks migrations, cpu migration, RCU, ftrace, clockevents, etc...
 
-reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/stop_task.c
+reference: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/sched/stop_task.c?h=v5.4.144#n119
 
 #### dl_sched_class (DEADLINE)
 
@@ -373,7 +373,7 @@ reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr
  - implemented with a red-black tree (self balancing)
  - used for periodic real time tasks 
 
-reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/deadline.c
+reference: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/sched/deadline.c?h=v5.4.144#n2436
 
 #### rt_sched_class (REAL TIME)
 
@@ -385,7 +385,8 @@ reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr
 - implemented with linked lists
 - used for short tasks, latency sensitive.
 
-reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/rt.c
+reference: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/sched/rt.c?h=v5.4.144#n2369
+
 
 #### fair_sched_class CFS (Completelly Fair Scheduling)
 
@@ -400,7 +401,7 @@ reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr
 - the task priority is: 120 + nice value (-20 to +19)
 - used for all the system tasks. 
 
-reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/fair.c
+reference: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/sched/fair.c?h=v5.4.144#n10529
 
 #### idle_sched_class (Idle)
 
@@ -410,7 +411,7 @@ reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr
 - the idle thread runs when there is nothing else to run
 - idle thread may take the CPU to a lower power state.
 
-reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/idle.c
+reference: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/sched/idle.c?h=v5.4.144#n456
 
 ### Scheduling Policies
 
@@ -459,10 +460,26 @@ sCHED_IDLE is not the same as the schedule class 'idle'. SCHED_IDLE is for reall
 
  Per CPU there is a runqueue with is a group of all the runnable tasks. rq is defined at kernel/sched.c. The runqueue (rq) also handles some statistics about the CPU load, and scheduling domains for load balancing between the CPUs. 
  
- - Each CPU has an instance of 'struct rq'.
+ - Each CPU has an instance of 'struct rq'. 
  - Each runqueue has DL, RT and CFS runqueues with it
  - Runnable taks are enqueued on those runqueues.
  - Many more information is available in the rq. 
+
+reference: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/sched/sched.h?h=v5.4.144#n842
+
+the rq has inside it references to the runqueues fo the different classes
+
+
+```
+struct rq {
+...
+
+	struct cfs_rq		cfs;
+	struct rt_rq		rt;
+	struct dl_rq		dl;
+...
+
+```
  
 
 reference: https://oska874.gitbooks.io/process-scheduling-in-linux/content/chapter2.html
