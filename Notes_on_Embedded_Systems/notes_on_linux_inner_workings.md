@@ -469,7 +469,6 @@ reference: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree
 
 the rq has inside it references to the runqueues fo the different classes
 
-
 ```
 struct rq {
 ...
@@ -492,6 +491,9 @@ reference: https://linutronix.de/PDF/2021_A_guided_tour_through_the_Preempt-RT_c
 
 reference: Real-Time Linux Kernel Scheduler: https://www.linuxjournal.com/article/10165
 
+reference: YVR18-220:The Linux Kernel Scheduler (For Beginners):  https://www.youtube.com/watch?v=5WtnnzpwEuA&t=723s
+
+reference: BKK19-TR06 - Deep dive in the scheduler: https://www.youtube.com/watch?v=1xhK0cH2Dkg
 
 ## Linux for Real time
 
