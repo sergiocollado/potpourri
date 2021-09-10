@@ -174,6 +174,8 @@ restart:
 
 
  Each task (that represents a thread) is defined with the structure 'struct task_struct' (include/linux/sched.d) 
+ 
+ reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/linux/sched.h#n723
 
 ```
 struct task_struct {
@@ -286,6 +288,8 @@ extern const struct sched_class idle_sched_class;
 
 The following code is the code that represents a scheduling class.
 
+reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/sched.h#n2112
+
 ```
 struct sched_class {
 
@@ -353,19 +357,23 @@ Idle is used to schedule the per-cpu idle task (also called swapper task) which 
 #### stop_sched_class (STOP)
 
 - stop_sched_class is the highiest priority class
-- only present in SMP, not in UP. Because it is used to stop other CPUs. 
+- only present in SMP, not in User Plane. Because it is used to stop other CPUs. 
 - it can preempt anything, and nothing can preempt it. 
 - it is a mechanism to stop running everything else and run a specific function on a CPU.
 - it has no scheduling policies
 - it is used for tasks migrations, cpu migration, RCU, ftrace, clockevents, etc...
 
+reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/stop_task.c
+
 #### dl_sched_class (DEADLINE)
 
- - Added by Dario Faggioli && Juri Lelli (3.14) (2013). it matches the EDF (Earliest Deadline first)
+ - Added by Dario Faggioli && Juri Lelli (3.14) (2013). it matches the EDF (Earliest Deadline first) 
  - Higiest priority class task in the system.
  - policy is SCHED_DEADLINE
  - implemented with a red-black tree (self balancing)
  - used for periodic real time tasks 
+
+reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/deadline.c
 
 #### rt_sched_class (REAL TIME)
 
@@ -377,10 +385,32 @@ Idle is used to schedule the per-cpu idle task (also called swapper task) which 
 - implemented with linked lists
 - used for short tasks, latency sensitive.
 
-#### fair_sched_class
+reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/rt.c
 
-	
+#### fair_sched_class CFS (Completelly Fair Scheduling)
 
+- Scheduling Policies
+   - SCHED_NORMAL: for normal task
+   - SCHED_BATCH:  for cpu bounded tasks
+   - SCHED_IDLE:   for low priority tasks
+- Implemented with red-black trees (self-balancing)
+- tracks the virtual time of tasks (the amount of time a task has run) 
+- Task with shortes vruntime runs first
+- the priority affects the weight of the task, and that will affect the runtime
+- the task priority is: 120 + nice value (-20 to +19)
+- used for all the system tasks. 
+
+reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/fair.c
+
+#### idle_sched_class (Idle)
+
+- lowes priority scheduling tasks
+- no scheduling policies
+- One thread (idle) per CPU: "swapper/N"
+- the idle thread runs when there is nothing else to run
+- idle thread may take the CPU to a lower power state.
+
+reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/idle.c
 
 ### Scheduling Policies
 
@@ -391,6 +421,7 @@ In the Real-time literature SCHED_DEADLINE is the EDF (Earliest Dead-line First)
 This scheduling is more aggressive that SCHED_FIFO, but is harder to handle, and properly manage.
 
 reference: https://www.kernel.org/doc/html/latest/scheduler/sched-deadline.html
+
 
 #### SCHED_FIFO (First in First Out)
 
@@ -427,6 +458,12 @@ sCHED_IDLE is not the same as the schedule class 'idle'. SCHED_IDLE is for reall
 ### The main runqueue (rq)
 
  Per CPU there is a runqueue with is a group of all the runnable tasks. rq is defined at kernel/sched.c. The runqueue (rq) also handles some statistics about the CPU load, and scheduling domains for load balancing between the CPUs. 
+ 
+ - Each CPU has an instance of 'struct rq'.
+ - Each runqueue has DL, RT and CFS runqueues with it
+ - Runnable taks are enqueued on those runqueues.
+ - Many more information is available in the rq. 
+ 
 
 reference: https://oska874.gitbooks.io/process-scheduling-in-linux/content/chapter2.html
 
