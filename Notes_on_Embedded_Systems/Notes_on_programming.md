@@ -751,3 +751,36 @@ address | value stored
 	
 Endiannes only affects to the byte order of individual items, so it doesn't affect the order of elements in an array. 
 	
+# VIRTUAL MEMORY
+	
+reference: https://www.youtube.com/watch?v=qcBIvnQt0Bw&t=2s
+	
+Virtual memory tries to solve some problems:
+	
+ - what happens when a computer doesn't have enough RAM to run the programs.
+ - holes in the RAM address space. ... we can run out of memory in case multiple programs are run at the same time
+ - programs writing in others program's memory ... one progrma can corrupt the data of another program.
+	
+Let's suppose we have a computer system based in 32 bits. That means it has a 32 bit address space. 
+So, with a 32 bit space, it can access 2^32 bytes = 4G, from 0x00000000 to 0xFFFFFFFF, so that would
+mean that a program could acces a 4G  of memory access.. but what if the system doesn't have 4G of RAM? 	
+	
+The problems stated, are due that the programs have the same memory space.
+	
+Virtual memory solves this problems by means of indirection, giving the programs a virtual address space, 
+and converting then this virtual memory addresses to the real memory addresses in the hardware.
+
+In Virtual memory each program is mapped through virtual addresses to different directions of the RAM memory space (the physical memory space).
+Also, even if we system runs out of RAM, it can even map memory to the disk, because the system is using virtual memory indirecton.
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
