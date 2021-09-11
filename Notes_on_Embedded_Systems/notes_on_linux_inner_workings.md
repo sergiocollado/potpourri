@@ -123,8 +123,6 @@ scheduling is based in threads, not in processes.
   _**_schedule()** is the main scheduler function: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/core.c#n6127
 
   static struct task_struct ***pick_next_task()** : https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/kernel/sched/core.c#n5547
-
-  reference: https://oska874.gitbooks.io/process-scheduling-in-linux/content/chapter5.html
  
 ```
 /*
@@ -264,6 +262,11 @@ reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr
 #define TASK_STATE_MAX			0x1000
 ```
 
+  reference: https://oska874.gitbooks.io/process-scheduling-in-linux/content/chapter5.html
+  
+  reference: https://www.kernel.org/doc/html/latest/scheduler/index.html
+  
+  
 ### Scheduling classes
 
 There are different scheduling classes, defined at include/linux/sched.h
@@ -375,6 +378,8 @@ reference: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree
 
 reference: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/sched/deadline.c?h=v5.4.144#n2436
 
+reference: https://www.kernel.org/doc/html/latest/scheduler/sched-deadline.html
+
 #### rt_sched_class (REAL TIME)
 
 - this matches the POSIX real-tasks specs
@@ -387,6 +392,7 @@ reference: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree
 
 reference: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/sched/rt.c?h=v5.4.144#n2369
 
+reference: https://www.kernel.org/doc/html/latest/scheduler/sched-rt-group.html
 
 #### fair_sched_class CFS (Completelly Fair Scheduling)
 
@@ -402,6 +408,8 @@ reference: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree
 - used for all the system tasks. 
 
 reference: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/sched/fair.c?h=v5.4.144#n10529
+
+reference: https://www.kernel.org/doc/html/latest/scheduler/sched-design-CFS.html
 
 #### idle_sched_class (Idle)
 
@@ -480,7 +488,73 @@ struct rq {
 
 ```
  
+ 
+### Scheduler Topology
 
+ref: https://www.kernel.org/doc/html/latest/scheduler/sched-capacity.html?highlight=topology#scheduler-topology
+
+In the scheduler, it is describe what is refered as "CPU topoloy", this describes the memory/cache layouts, and what CPUs are sharing computing capacity (for example intel's hyperthreading), which CPUs are sharing the same caches (so it is possible to easily migrate tasks between CPUs without lossing the caches advantage [LLC: last level of Cache]), what CPUs are on the same dies, or if there is a numa system, it will describe the distance between nodes. 
+
+This described as:
+
+**Sched_domain** it the level in which is described the relation between CPUs
+
+**Sched_group** is a group of CPUs in a Sched_domain. (it is possible to have a sched_group of only one CPU)
+
+In the Sched_domain, flags are used to describe the dependecies between sched_groups
+
+- SD_ASYN_CPUPACITY: between the groups, there are different computing capacities (some CPUs are bigger than others: like in ARM big-little architecture)
+- SD_SHARE_CPUCAPACITY: the cpus in these groups will share some computing capacity.
+- SD_SHARE_POWERDOMAIN: in case there are cpus that share the same power domain
+- SD_SHARE_PKG_RESOURCES: when the cpus are sharing the cache and the access to the memory	
+
+### Build Domain
+
+In the scheduler the is a default sheduler topology, but it is possible to redefine it with **set_shed_topology()**, for each level, must provide cpu's mask, flags, name.
+
+All levels of the scheduler topology are defined at Init.
+
+It scheduler topology is rebuild at each topology change, for example: capacity update, cpu hotplug, cgroup partitioning
+
+reference: https://www.kernel.org/doc/html/latest/scheduler/sched-domains.html
+
+### Scheduler metrics
+
+Metrics are used to decide in which CPU place the tasks, to adjust the CPU performace (scale it frequency) 
+
+the main metrics are:
+
+- for CFS scheduler: vruntime
+- CPU capacity: the CPU computing capcity 
+- PELT: Per Entity Load Tracking (entity can be a task or a group of tasks) 
+
+#### vruntime
+
+v is for virtual. vruntime is the virtualruntime of CFS scheduler. It is virtual because the metric is ponderated according to the task.
+
+ - the vruntime is local for each CPU, it means the CPU that is running the task. 
+ - vruntime weights the real running time with priority of the task
+ - Nice 0 is the reference: vruntime == real runtime
+ - Nice < 0: vruntime increases slower than real time -> so from the scheduler point of view, it will try to give the task more running time.
+ - Nice > 0: vruntime increases faster than real time -> so from the scheudler point of view, it will try to provide less running time to that task.
+ - the vruntime will be normalized for a sleeping task, so the scheduler dont provide too much time to a sleeping task.
+ - the vruntime is normalized when a task is migrated to another CPU, so the scheduler don't provide too much time to a newly migrated task.
+
+This will try to give more running time to the task with highier priority (lower nice). 
+And the Scheduler, selects the next task, w/ lowerst vruntime. 
+
+So the nice priority is used to compute the weight that would be applied to the task. The desider goal is that when your nices is reduced in 1, (priority is incresed by one) it task would have a 10% increment on the runtime. The priorities are precomputed in **sched_prio_to_weight array*
+
+reference code: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/sched/core.c?h=v5.4.144#n8023
+
+reference code: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/sched/fair.c?h=v5.4.144#n7027
+
+- **sched_period** tipical time for run all the tasks.
+- **sched_slice** tipical time allocated for a given task.
+
+
+
+	
 reference: https://oska874.gitbooks.io/process-scheduling-in-linux/content/chapter2.html
 
 reference: BKK19-TR03 - The Linux Kernel Scheduler - Overview: https://www.youtube.com/watch?v=oOiaRHC9ZDg
@@ -494,6 +568,10 @@ reference: Real-Time Linux Kernel Scheduler: https://www.linuxjournal.com/articl
 reference: YVR18-220:The Linux Kernel Scheduler (For Beginners):  https://www.youtube.com/watch?v=5WtnnzpwEuA&t=723s
 
 reference: BKK19-TR06 - Deep dive in the scheduler: https://www.youtube.com/watch?v=1xhK0cH2Dkg
+
+reference: A Checklist for Writing Linux Real-Time Applications - John Ogness, Linutronix GmbH: https://www.youtube.com/watch?v=NrjXEaTSyrw
+
+reference: a guided tour to the preempt castle: https://linutronix.de/videos/2021_A_guided_tour_through_the_Preempt-RT_castle.mp4?m=1625133660&
 
 ## Linux for Real time
 
