@@ -73,6 +73,11 @@ if you want to identify your system, the 'uname' command is to be used. It will 
 ```bash
 > uname -a
 ```
+or:
+
+```
+cat /etc/or-release 
+```
 
 if you want to know if a given command is insatalled, or where is installed, the 'which' command is used. It will report where a given command is installed. 
 
