@@ -735,6 +735,7 @@ commands:
 
 #echo 1> tracing_on ##enable back it. !!watch out: there is no space between 1>
 
+#cat available_filter_functions ##list the available tracers
 ```
 There are several tracers. One of the most interesting ones for learning how the kernel works is the function tracer. 
 It let you see almost all the functions running on the kernel. 
@@ -750,7 +751,7 @@ Setting the filters:
 
 - by function name: `echo schedule> set_ftrace_filter`
 - by glob matches: `echo 'mutex' set_ftrace_filter`
-- by extended glob matches: `?raw_*lock> set_ftrace_filter`
+- by extended glob matches: `echo '?raw_*lock'> set_ftrace_filter`
 - appending the filter: `echo *rcu>> set_ftrace_filter
 - clearing the filter: `echo> set_trace_filter`	
 
