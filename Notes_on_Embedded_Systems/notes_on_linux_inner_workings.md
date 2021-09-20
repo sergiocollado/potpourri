@@ -713,8 +713,52 @@ mutex_lock()   │                   DipacheD │   │   OR YIELD              
 
 Ftrace in an interal tracer, which can be used for tracing, debugging and analyzing latencies. 
 
+It is a root only tool, and it is mount in /sys/kernel/tracing 
+
 reference: https://www.youtube.com/watch?v=mlxqpNvfvEQ
 
+reference: compressed talk: Kernel Recipes 2017 - Understanding the Linux Kernel via Ftrace - Steven Rostedt https://www.youtube.com/watch?v=2ff-7UTg5rE&list=PL4mdyC_fNm4C0G2ycAenfNItroxA4_dXU
+
+commands:
+
+```
+#cat trace
+#cat available-traces
+
+#echo function > current_tracer
+#cat trace
+
+#echo function_graph > current_tracer
+#cat trace
+
+#echo 0> tracing_on ##disables writing to the ring-buffer... so the overhead is still there.
+
+#echo 1> tracing_on ##enable back it. !!watch out: there is no space between 1>
+
+```
+There are several tracers. One of the most interesting ones for learning how the kernel works is the function tracer. 
+It let you see almost all the functions running on the kernel. 
+
+To limit the traces:
+- set_ftrace_filter
+- set_ftrace_notrace
+- set_ftrace_pid
+- set_graph_function
+- set_graph_notrace
+
+Setting the filters:
+
+- by function name: `echo schedule> set_ftrace_filter`
+- by glob matches: `echo 'mutex' set_ftrace_filter`
+- by extended glob matches: `?raw_*lock> set_ftrace_filter`
+- appending the filter: `echo *rcu>> set_ftrace_filter
+- clearing the filter: `echo> set_trace_filter`	
+
+
+
+references: https://jvns.ca/blog/2017/03/19/getting-started-with-ftrace/
+
+reference: https://lwn.net/Articles/608497/
 #### trace-cmd
 
 trace-cmd in a command that works with ftrace 
