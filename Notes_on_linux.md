@@ -1,12 +1,12 @@
 # Reference: manual (man) pages:
 
- - User commands: [:link:](http://man7.org/linux/man-pages/dir_section_1.html)
- - System calls: [:link:](http://man7.org/linux/man-pages/dir_section_2.html)
- - Library standard C: [:link:](http://man7.org/linux/man-pages/dir_section_3.html)
- - Devices [:link:](http://man7.org/linux/man-pages/dir_section_4.html)
- - Files systems [:link:](http://man7.org/linux/man-pages/dir_section_5.html)
- - Conventions & miscellaneous [:link:](http://man7.org/linux/man-pages/dir_section_7.html)
- - system Administration [:link:](http://man7.org/linux/man-pages/dir_section_8.html)
+ 1- User commands: [:link:](http://man7.org/linux/man-pages/dir_section_1.html)
+ 2- System calls: [:link:](http://man7.org/linux/man-pages/dir_section_2.html)
+ 3- Library standard C & functions: [:link:](http://man7.org/linux/man-pages/dir_section_3.html)
+ 4- Devices [:link:](http://man7.org/linux/man-pages/dir_section_4.html)
+ 5- Files systems [:link:](http://man7.org/linux/man-pages/dir_section_5.html)
+ 7- Conventions & miscellaneous [:link:](http://man7.org/linux/man-pages/dir_section_7.html)
+ 8-system Administration [:link:](http://man7.org/linux/man-pages/dir_section_8.html)
   
 <hr>
 
