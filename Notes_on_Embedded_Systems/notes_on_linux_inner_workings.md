@@ -715,7 +715,10 @@ Ftrace in an interal tracer, which can be used for tracing, debugging and analyz
 
 It is a root only tool, and it is mount in /sys/kernel/tracing 
 
-reference: https://www.youtube.com/watch?v=mlxqpNvfvEQ
+
+reference: https://www.kernel.org/doc/html/latest/trace/index.html
+
+ref: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_for_real_time/7/html/tuning_guide/appe-detailed_description_of_ftrace
 
 reference: compressed talk: Kernel Recipes 2017 - Understanding the Linux Kernel via Ftrace - Steven Rostedt https://www.youtube.com/watch?v=2ff-7UTg5rE&list=PL4mdyC_fNm4C0G2ycAenfNItroxA4_dXU
 
@@ -731,9 +734,9 @@ commands:
 #echo function_graph > current_tracer
 #cat trace
 
-#echo 0> tracing_on ##disables writing to the ring-buffer... so the overhead is still there.
+#echo 0 > tracing_on ##disables writing to the ring-buffer... so the overhead is still there.
 
-#echo 1> tracing_on ##enable back it. !!watch out: there is no space between 1>
+#echo 1 > tracing_on ##enable back it. !!watch out: there is no space between 1>
 
 #cat available_filter_functions ##list the available tracers
 ```
@@ -749,20 +752,53 @@ To limit the traces:
 
 Setting the filters:
 
-- by function name: `echo schedule> set_ftrace_filter`
-- by glob matches: `echo 'mutex' set_ftrace_filter`
-- by extended glob matches: `echo '?raw_*lock'> set_ftrace_filter`
-- appending the filter: `echo *rcu>> set_ftrace_filter
-- clearing the filter: `echo> set_trace_filter`	
+- by function name: `echo schedule > set_ftrace_filter`
+- by glob matches: `echo 'mutex' > set_ftrace_filter`
+- by extended glob matches: `echo '?raw_*lock' > set_ftrace_filter`
+- **appending** the filter: `echo '*rcu' >> set_ftrace_filter
+- clearing the filter: `echo > set_trace_filter`	
+
+one example to trace the scheduler:
+
+```
+#echo scheduler > set_ftrace_filter
+#echo function > current_tracer
+#cat trace
+```
+a neat trick to trace only a process we are interested in:
+
+```
+#echo 0> tracing_on
+#echo function> current_tracer
+#sh -c 'echo $$> set_ftrace_pid; echo 1> tracing_on;
+> exec echo hello
+#cat trace
+```
+
+Also is possible to use the `set_graph_function`. It is similar to set_ftrace_filter,
+but it picks a function to graph, and see what that function does.
+
+example:
+```
+#echo Sys_read> set_graph_function
+#echo function_graph> current_tracer
+#cat trace
+```
 
 
 
 references: https://jvns.ca/blog/2017/03/19/getting-started-with-ftrace/
 
+reference: https://www.youtube.com/watch?v=mlxqpNvfvEQ
+
 reference: https://lwn.net/Articles/608497/
+
+
 #### trace-cmd
 
 trace-cmd in a command that works with ftrace 
+
+reference: https://man7.org/linux/man-pages/man1/trace-cmd.1.html
 
 #### kernel shark
 
