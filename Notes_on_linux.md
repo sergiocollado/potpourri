@@ -1833,6 +1833,7 @@ https://akkadia.org/drepper/cpumemory.pdf
 - pmap - report memory map of a process - https://linux.die.net/man/1/pmap
 - systemctl -
 
+In the workst of cases, it is also possible scrap /proc, /proc has all the info about the running processes. But this may be not very portable. 
 
 ### system logs
 
@@ -1927,7 +1928,7 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
  - mmap, munmap - map or unmap files or devices into memory-  conforms with POSIX.1-2001. is defined in  <unistd.h> 
  - sysconf - get configuration information at run time-  #include <unistd.h> - POSIX.1 compatible - https://linux.die.net/man/3/sysconf
  - clock_getres, clock_gettime, clock_settime - clock and time functions - #include <time.h> - POSIX.1-2001.
- -  btrace - perform live tracing for block devices - http://man7.org/linux/man-pages/man8/btrace.8.html <br>
+ - btrace - perform live tracing for block devices - http://man7.org/linux/man-pages/man8/btrace.8.html <br>
  - mtrace, muntrace - malloc tracing - https://linux.die.net/man/3/mtrace
  
  
@@ -2036,7 +2037,7 @@ $>nmap -v host_name
 #### for scanning within an IP range
 
 ```bash
-$> nmap192.168.0.1-10
+$> nmap 192.168.0.1-10
 ```
 
 or using a wild card
@@ -2171,6 +2172,25 @@ service apache2 restart
 
 ```bash
 sudo apt-get install nginx-light -y
+```
+# Build root 
+
+ref: https://buildroot.org/
+
+It is a system for generating linux images. 
+
+ - reference: https://youtu.be/9vsu67uMcko
+
+```bash
+git clone git://git.buildroot.net/buildroot
+cd buildroot
+# in the /configs folder there are already ready configuration files 
+make <and_your_config_file>
+# this will create a .config file
+make menuconfig
+make
+# this will take a while
+cd output/images # the images are here: sdcard.image
 ```
 
 # GIT
