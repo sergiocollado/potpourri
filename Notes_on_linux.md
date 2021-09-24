@@ -980,7 +980,7 @@ hardware platform
  - **traceroute** traces pacekt's routes, used for troubleshooting networking issues
  - **tracepath** like traceroute, without rout privileges
  - **pintg** for checking conectivity
- - **netstat** reports network information
+ - **netstat** reports network information ... its deprecated and the **ss** command should be used instead
  - **ss** replacement for the netstat commmand
  - **dig** report DNS info
  - **nslookup** find DNS query
@@ -1590,7 +1590,7 @@ $ sudo reboot
 
 #### more about networking
 
- - netstat: network statistics - https://linux.die.net/man/8/netstat
+ - netstat: network statistics - https://linux.die.net/man/8/netstat  (deprecated and is better to use the command **ss**)
  - iptraf: info about network interfaces - Interactive Colorful IP LAN Monitor - https://linux.die.net/man/8/iptraf
  - tcpdump & tshark &  wireshark analysys of network and traffic
   
@@ -1884,7 +1884,7 @@ http://www.bootchart.org/  or  https://github.com/xrmx/bootchart
 
 # How to check for open network connectios, open ports or alike:
 
-Use the command **netstat** and filter with the options
+Use the command **netstat** and filter with the options (netstat is deprecated and it is better to use the **ss** command)
 
 ```bash
 netstat -tulpn
@@ -1971,7 +1971,8 @@ https://sourceware.org/gdb/onlinedocs/gdb/index.html#Top
  - vmstat: virtual memory statistics
  - lsof: list open files
  - tcpdump: network packet analyzer
- - netstat: network statistics
+ - netstat: network statistics (its deprecated and is better to use the ss command)
+ - ss
  - monitorix: system and network monitoring   https://www.monitorix.org/
  - iotop: Monitor Linux Disk I/O
  - iostat: Input / Output Statistics
