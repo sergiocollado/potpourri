@@ -711,14 +711,14 @@ mutex_lock()   │                   DipacheD │   │   OR YIELD              
 
 #### ftrace
 
-Ftrace in an interal tracer, which can be used for tracing, debugging and analyzing latencies. 
+Ftrace in an internal tracer (ftrace stands for Function Trace), which can be used for tracing, debugging and analyzing latencies. 
 
 It is a root only tool, and it is mount in /sys/kernel/tracing 
 
 
-reference: https://www.kernel.org/doc/html/latest/trace/index.html
-
-ref: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_for_real_time/7/html/tuning_guide/appe-detailed_description_of_ftrace
+ - reference: https://blogs.vmware.com/opensource/2019/11/12/ftrace-linux-kernel/
+ - reference: https://www.kernel.org/doc/html/latest/trace/index.html
+ - ref: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_for_real_time/7/html/tuning_guide/appe-detailed_description_of_ftrace
 
 reference: compressed talk: Kernel Recipes 2017 - Understanding the Linux Kernel via Ftrace - Steven Rostedt https://www.youtube.com/watch?v=2ff-7UTg5rE&list=PL4mdyC_fNm4C0G2ycAenfNItroxA4_dXU
 
@@ -785,13 +785,9 @@ example:
 #cat trace
 ```
 
-
-
-references: https://jvns.ca/blog/2017/03/19/getting-started-with-ftrace/
-
-reference: https://www.youtube.com/watch?v=mlxqpNvfvEQ
-
-reference: https://lwn.net/Articles/608497/
+ - references: https://jvns.ca/blog/2017/03/19/getting-started-with-ftrace/
+ - reference: https://www.youtube.com/watch?v=mlxqpNvfvEQ
+ - reference: https://lwn.net/Articles/608497/
 
 
 #### trace-cmd
@@ -809,7 +805,6 @@ its a front-end for trace-cmnd
  perf creates a dump for later analyzing the events. 
  
 references: https://www.skillsire.com/read-blog/180_linux-scheduler-profiling.html
-
 
 
 
