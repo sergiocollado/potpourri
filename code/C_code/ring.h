@@ -8,7 +8,7 @@
 struct ring {
     unsigned int size;
     char *buf;
-    volatile char *r, *w;
+    volatile char *r, *w;  // read and write pointers
 };
 
 /*
