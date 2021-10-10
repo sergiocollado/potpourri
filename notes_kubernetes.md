@@ -2353,7 +2353,7 @@ https://www.youtube.com/watch?v=uUupRagM7m0&list=PL2We04F3Y_41jYdadX55fdJplDvgNG
 https://github.com/mmumshad/kubernetes-the-hard-way
  
 
-## Howto: Udate Cluster OS
+## Howto: Update Cluster OS
 
 For a given node you drain all its workloads, so it's workload is migrated (killed and recreated) to other nodes in the cluster, for this use the command:
 
