@@ -2345,6 +2345,8 @@ autoscaling: https://learnk8s.io/kubernetes-autoscaling-strategies
 ## Howto: build a Kubernetes cluster
 
 https://github.com/kelseyhightower/kubernetes-the-hard-way
+ 
+https://github.com/robertojrojas/kubernetes-the-hard-way-raspberry-pi
 
 https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
  
