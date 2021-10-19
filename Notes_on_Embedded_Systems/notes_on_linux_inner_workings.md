@@ -6,6 +6,8 @@ kernel coding style: https://www.kernel.org/doc/html/latest/process/coding-style
 
 mentorship series: https://events.linuxfoundation.org/lf-live-mentorship-series/
 
+[linux kernel map](https://makelinux.github.io/kernel/map/)
+
 ## Linux networking basics
 
 ### Switches
