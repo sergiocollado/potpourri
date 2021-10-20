@@ -8,6 +8,8 @@ mentorship series: https://events.linuxfoundation.org/lf-live-mentorship-series/
 
 [linux kernel map](https://makelinux.github.io/kernel/map/)
 
+![linux kernel map](https://github.com/sergiocollado/potpourri/blob/master/image/Linux_kernel_map.png "Linux kernel map")
+
 ## Linux networking basics
 
 ### Switches
