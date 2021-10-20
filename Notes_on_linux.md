@@ -219,7 +219,7 @@ special directory names:
 **NOTE**: A path which begins with **/** is considered absolute because it specifies the exact filesystem location. Otherwise, it is considered relative and it is implicitly assumed your current directory is prepended.
 
 
-### Commands for working with files.
+### Commands for working with files
 
 - **touch**: creates a new file or updateds the edition time of the file
 - **output redirection: >**: it redirects, ex: echo "hello-world" > mytextfile.txt
@@ -258,6 +258,8 @@ special directory names:
 - **rsync** -- a fast, versatile, remote (and local) file-copying tool https://linux.die.net/man/1/rsync
 - **dd** convert and copy a file. (used to do backups) http://man7.org/linux/man-pages/man1/dd.1.html
 - **watch** - execute a program periodically, showing output fullscreen  https://linux.die.net/man/1/watch
+- **vim** - almost universal text editor
+
 
 ### Types of files in linux
 
@@ -356,10 +358,10 @@ A finer or more advanced control of access to files can be managed with the paqu
   
   To create a new user, the **useradd** command is used, and to remove one the **userdel** command is used, to modify a user account the **usermod** command is used. (-p flag to change a password). 
   
-  - useradd - create a new user or update default new user information. the password must be added with other command - https://linux.die.net/man/8/useradd
-  - userdel - delete a user account and related files - https://linux.die.net/man/8/userdel
-  - usermod - modify a user account - http://man7.org/linux/man-pages/man8/usermod.8.html
-  - passwd  - add or changes the password to a user - http://man7.org/linux/man-pages/man1/passwd.1.html
+  - **useradd** - create a new user or update default new user information. the password must be added with other command - https://linux.die.net/man/8/useradd
+  - **userdel** - delete a user account and related files - https://linux.die.net/man/8/userdel
+  - **usermod** - modify a user account - http://man7.org/linux/man-pages/man8/usermod.8.html
+  - **passwd**  - add or changes the password to a user - http://man7.org/linux/man-pages/man1/passwd.1.html
   
   Each user is identified by a uid (user identification).
   
@@ -367,7 +369,13 @@ A finer or more advanced control of access to files can be managed with the paqu
   
   To check the users in a system, you can check with: 'sudo cat _**/etc/password'**_. If you want to edit that file, it will need to use the command **'vipw'**, that will lock that file for other users. Also is possible that it will be necessary to exit the file _**/etc/shadow**_ for consistency, and that can be done with the command **'vipw -s'**.
   
-  
+### other commands related with users
+
+- **whoami** - displays your user
+- **who** - displays the list of current users
+- **last** - displays the last time the users were logged in.
+
+
 #### User directories
 
 In most linux distributions, the directories for the different users are placed in: _**/home/my_user**_
@@ -961,17 +969,17 @@ linux kernel space gives full access to the hardware,
 
 http://www.ibiblio.org/pub/Linux/docs/faqs/Threads-FAQ/html/Types.html
 
-user application 
- V
-gnu glibc             ..........user space /\
- V
-system call interface ............kernel space V
- V 
-kernel
- V 
-architecture dependant kernel code
- V 
-hardware platform
+user application <br>
+ V <br>
+gnu glibc             ..........user space /\ <br>
+ V <br>
+system call interface ............kernel space V <br>
+ V  <br>
+kernel  <br>
+ V  <br>
+architecture dependant kernel code  <br>
+ V  <br>
+hardware platform  <br>
 
 ## linux networking commands
 
@@ -983,6 +991,7 @@ hardware platform
  - **netstat** reports network information ... its deprecated and the **ss** command should be used instead
  - **ss** replacement for the netstat commmand
  - **dig** report DNS info
+ - **host** queries a dns host. example `host google.com`
  - **nslookup** find DNS query
  - **route** reports and edit of the route table
  - **host** reports DNS look ups
