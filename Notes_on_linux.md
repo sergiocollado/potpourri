@@ -342,7 +342,7 @@ A finer or more advanced control of access to files can be managed with the paqu
 - Sometimes it is needed to get all the permissions, for example when we want to install a program. For doing this we use the **sudo** command, it stands for "Switch User DO". To be possible to used the **sudo** command, the user must belong to the group: 'sudoers'.
 
 
-### Other users
+### normal users
 
   Using the commands **who** or **users** reports the current users logged into the system. the current users can be printed with the command **whoami**. 
   
@@ -374,6 +374,25 @@ A finer or more advanced control of access to files can be managed with the paqu
 - **whoami** - displays your user
 - **who** - displays the list of current users
 - **last** - displays the last time the users were logged in.
+- **id** - displays information about users
+
+### How to disable an user account
+
+to update the default shell for the user to a nologin shell. With the nologin shell the user will not be able to login to the system.
+
+```
+usermod -s /bin/nologin michael
+```
+
+remove the user from its groups
+
+```
+id michael
+deluser michael adminGroup
+id michael
+```
+
+and delete the user with the `userdel` command.
 
 
 #### User directories
@@ -398,6 +417,14 @@ to add a given user to a group, is done:
 ```bash
 > sudo usermod -a -G groupname username
 ```
+
+### Control access files
+
+the control access files are:
+
+ - /etc/password - contains basic information about the users of the system: user name, uid (user id), gid (group id), home directory, and default terminal. But this file itslef doesn't store any passwords.
+ - /etc/shadow   - user's passwords are stored in this file, but hashed.
+ - /etc/group    - stores information about all the user's groups
 
 ### Sudoers and sudo
 
@@ -983,7 +1010,7 @@ hardware platform  <br>
 
 ## linux networking commands
 
- - **ipconfig** print and manipulation of network interfaces and routes (better use the next command)
+ - **ifconfig** print and manipulation of network interfaces and routes (better use the next command)
  - **ip**  replacement for ipconfig
  - **traceroute** traces pacekt's routes, used for troubleshooting networking issues
  - **tracepath** like traceroute, without rout privileges
@@ -998,7 +1025,7 @@ hardware platform  <br>
  - **arp** edit arp tables
  - **iwconfig** configuration of wireless interface
  - **hostname** identifies network interface
- - **curl**
+ - **curl** client url
  - **wget**
  - **mtr** ping + tracepath in a single command
  - **whois** report web site whois
@@ -1924,7 +1951,7 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
  - heartbeat - Heartbeat subsystem for High-Availability Linux https://linux.die.net/man/8/heartbeat
  - uptime - Tell how long the system has been running.
  - gcov -  is a test coverage program. Use it in concert with GCC to analyze your programs to help create more efficient, faster running code and to discover untested parts of your program. https://linux.die.net/man/1/gcov   https://linux.die.net/man/1/arm-linux-gnu-gcov
- - gprof - display call graph profile data. "Gprof" calculates the amount of time spent in each routine. https://linux.die.net/man/1/gprof   and   https://www.maketecheasier.com/profile-c-program-linux-using-gprof/  
+ - gprof - "GNU profiler": display call graph profile data. "Gprof" calculates the amount of time spent in each routine. https://linux.die.net/man/1/gprof   and   https://www.maketecheasier.com/profile-c-program-linux-using-gprof/  
  - strace - trace system calls and signals - strace is a useful diagnostic, instructional, and debugging tool.- https://linux.die.net/man/1/strace
  - ltrace - A library call tracer - It intercepts and records the dynamic library calls which are called by the executed process and the signals which are received by that process. It can also intercept and print the system calls executed by the program. - https://linux.die.net/man/1/ltrace
  - ptrace - process trace - #include <sys/ptrace.h> - The ptrace() system call provides a means by which one process (the "tracer") may observe and control the execution of another process (the "tracee"), and examine and change the tracee's memory and registers. It is primarily used to implement breakpoint debugging and system call tracing. - https://linux.die.net/man/2/ptrace
