@@ -2088,6 +2088,11 @@ to exclude a given:
 $>nmap 192.168.0*  --exclude 192.168.1.5
 ```
 
+We can see what ports currently have services listening on them by running a quick command:
+
+```
+>sudo netstat -tulpn
+```
 
 #### ping discovery
 
@@ -2985,9 +2990,9 @@ restrictive licenses: derivative works are intended to remain open, and changes 
 
 permisive licenses: like BSD or Apache licenses. - dont need to be make public.
 
-## tips for hardening linux
+## Tips for hardening linux
 
- Keep boot dir as read-only	# vi /etc/fstab	then, Add the following line at the bottom "LABEL=/boot/boot ext2 defaults,ro 1 2"	in case of upgrade we need to reset the change 
+ Keep boot dir as read-only.  # vi /etc/fstab	then, Add the following line at the bottom "LABEL=/boot/boot ext2 defaults,ro 1 2"	in case of upgrade we need to reset the change 
 
 2. Review Logs Regularly 	in our case we have a log server that will be easy to modify local logs.	For example this is the dafault log files name and their usage: /var/log/message – Where whole system logs or current activity logs are available.	/var/log/auth.log – Authentication logs.	/var/log/kern.log – Kernel logs. /var/log/cron.log – Crond logs (cron job).	/var/log/maillog – Mail server logs.	/var/log/boot.log – System boot log. /var/log/mysqld.log – MySQL database server log file. /var/log/secure – Authentication log.	/var/log/utmp or /var/log/wtmp : Login records file.	/var/log/yum.log: Yum log files.
 
@@ -2995,11 +3000,13 @@ permisive licenses: like BSD or Apache licenses. - dont need to be make public.
 
 4. Disable SSH Login via Root
 
+```
 # useradd username	add password 
 # passwd username	provide sudo permissions to the newly added use
 
 r # echo 'username ALL=(ALL) ALL'
-
+```
+	
 ```
 >> /etc/sudoers	now it's time to disable root login 	
  ```
@@ -3015,10 +3022,18 @@ PermitRootLogin no
 ```
 
 Afterwards just save the file and exit the text editor.
+	
 Making changes to the SSH configuration file will require you to restart the service, on CentOS cloud servers use the following.
+
+```
 sudo systemctl restart sshd
+```
+	
 On systems running Ubuntu, the service is simply called SSH, the same will work with Debian.
+
+```
 sudo service ssh restart
+```
 
 In order to disable anyone logging in via SSH, you should access the file that is responsible for the configuration of SSH. The file has the following location:
  /etc/ssh/sshd_config
@@ -3194,7 +3209,7 @@ sudo firewall-cmd --get-active-zones
 19. use Shadow with Cracklib, to enforce sstrong passwords: http://www.linuxfromscratch.org/blfs/view/9.0/postlfs/cracklib.html 
 
 
-## Secure Shell aka ssh
+## Secure Shell (aka ssh)
 
 ssh is the secure shell. SSH is a network prototocol, like telnel, ftp, ...  SSH is a secure protocol, so the comunication is encrypted. SSH can be used for transmitting data, for transmitting commands of files, 
 
