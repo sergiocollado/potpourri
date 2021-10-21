@@ -1443,7 +1443,133 @@ done
   in case we need to define a local variable inside a function that has the same name as a global varible, we can use the keyword 'local' that way, this will define the variable like a local one, and it will not collide with any global variable.
 
 
-### NETWORKING
+
+## Secure Shell (aka ssh)
+
+ssh is the secure shell. SSH is a network prototocol, like telnel, ftp, ...  SSH is a secure protocol, so the comunication is encrypted. SSH can be used for transmitting data, for transmitting commands of files, 
+
+there are ssh clients or server, for mayor system platforms.
+
+to install a ssh server:
+
+to look for the packet: apt-cache search openssh
+
+### How to install a ssh server
+
+to install: 
+
+```
+sudo apt-get install openssh-server
+```
+
+### How to login to ssh
+
+To connet to a ssh server you command in a terminal as:
+
+```
+ssh username@remotelocation
+```
+
+remotelocation can be an ip address or a name
+
+if you left out your user name, it will attemp to connect with you local user name .
+
+
+you will be asked for your password. 
+
+basically almost any command you can run in the terminal you can also run it in the ssh shell
+
+to end the ssh connections you use the command: 'exit'.
+
+otherwise if you just close the terminal the process will still be open, and consumming resources. 
+
+
+## how to logout ssh
+
+ - CTR+D
+ - logout 
+ - exit
+
+
+## ssh authentification
+
+ There is two aproaches: one is password based and the second one is based in cryptographic keys. the later is much more secure.
+
+
+## How to generate a ssh_key
+
+ref: https://www.ssh.com/ssh/keygen/
+
+run the command: **ssh-keygen**
+
+the keys are stored in the file '.ssh/' 
+
+- id_rsa.pub is your public key and can be shared, while id_rsa is your private key and should be kept secret.
+
+the command **`ssh-add`** will keep the ssh keys if these are stored in the standard places.
+
+And with the command **`ssh-agent`** the passphase will be used automatically.
+
+
+## How to change the ssh port
+
+you can also change the default port in which ssh is using (for security reasons..)
+
+```bash
+sudo vim /etc/ssh/sshd_config
+```
+
+and in the port, you can edit and change it. Usually it uses the standard port 22 , but you can choose to change it for security reasons. so it is not easy to guess where you ssh port is.
+
+
+after that it is needed to restar the ssh server:
+
+```
+sudo /etc/init.d/ssh restart
+```
+
+you can test the service with: ssh localhost
+
+it should report an error.
+
+but if the newport is tested: ssh -p newportnumber localhost
+
+then it should ask for the password. 
+
+to stop the ssh server:
+
+```
+sudo /etc/init.d/ssh stop
+```
+	
+## How to disable ssh root account (for security reasons)
+
+For security reasons is interesting to disable the ssh as root account, following the principle of least privilige
+	
+The ssh config file must be edited
+	
+```
+vi /etc/ssh/sshd_config
+```
+add
+	
+```
+PermitRootLogin no
+```
+also to disable password based access, forcing to use only private keys, add:
+	
+```
+PasswordAuthentifaction no	
+```
+	
+Once done, restart the ssh service with:
+	
+```
+systemctl restart sshd
+```
+
+
+## NETWORKING
 
 **ifconfig** - presents the current network configuration (although is better to use the more updated command **ip**)
 
@@ -3108,7 +3234,7 @@ gufw
 
 After you open GUFW you will see it’s simple user interface. From there simply click on the slider button next to Status to turn it from OFF to ON
 
-14.Make your BIOS More Secure
+14. Make your BIOS More Secure
 This tip may not be directly Linux related but it is considered as a general security risk for most Linux distributions. After installing Linux on your computer, it is a good idea to disable any possibility of your computer to boot via USB, CD/DVD or other external drives. This means that nobody can overwrite your Linux and hence damage it or even try to access your drive by booting a Live OS. And this is just the tip of the iceberg of security threats when external boot is enabled. This is why, you should access BIOS on your system start up and go to the Boot tab from which disable the booting option from external drives:
 Image: https://sensorstechforum.com/wp-content/uploads/2017/07/bios-boot-tab-sensorstechforum.jpg
 
@@ -3209,104 +3335,7 @@ sudo firewall-cmd --get-active-zones
 19. use Shadow with Cracklib, to enforce sstrong passwords: http://www.linuxfromscratch.org/blfs/view/9.0/postlfs/cracklib.html 
 
 
-## Secure Shell (aka ssh)
-
-ssh is the secure shell. SSH is a network prototocol, like telnel, ftp, ...  SSH is a secure protocol, so the comunication is encrypted. SSH can be used for transmitting data, for transmitting commands of files, 
-
-there are ssh clients or server, for mayor system platforms.
-
-to install a ssh server:
-
-to look for the packet: apt-cache search openssh
-
-### How to install a ssh server
-
-to install: 
-
-```
-sudo apt-get install openssh-server
-```
-
-### How to login to ssh
-
-To connet to a ssh server you command in a terminal as:
-
-```
-ssh username@remotelocation
-```
-
-remotelocation can be an ip address or a name
-
-if you left out your user name, it will attemp to connect with you local user name .
-
-
-you will be asked for your password. 
-
-basically almost any command you can run in the terminal you can also run it in the ssh shell
-
-to end the ssh connections you use the command: 'exit'.
-
-otherwise if you just close the terminal the process will still be open, and consumming resources. 
-
-
-## how to logout ssh
-
- - CTR+D
- - logout 
- - exit
-
-
-## ssh authentification
-
- There is two aproaches: one is password based and the second one is based in cryptographic keys. the later is much more secure.
-
-
-## How to generate a ssh_key
-
-ref: https://www.ssh.com/ssh/keygen/
-
-run the command: **ssh-keygen**
-
-the keys are stored in the file '.ssh/' 
-
-- id_rsa.pub is your public key and can be shared, while id_rsa is your private key and should be kept secret.
-
-the command **`ssh-add`** will keep the ssh keys if these are stored in the standard places.
-
-And with the command **`ssh-agent`** the passphase will be used automatically.
-
-
-## How to change the ssh port
-
-you can also change the default port in which ssh is using (for security reasons..)
-
-```bash
-sudo vim /etc/ssh/sshd_config
-```
-
-and in the port, you can edit and change it. Usually it uses the standard port 22 , but you can choose to change it for security reasons. so it is not easy to guess where you ssh port is.
-
-
-after that it is needed to restar the ssh server:
-
-```
-sudo /etc/init.d/ssh restart
-```
-
-you can test the service with: ssh localhost
-
-it should report an error.
-
-but if the newport is tested: ssh -p newportnumber localhost
-
-then it should ask for the password. 
-
-to stop the ssh server:
-
-```
-sudo /etc/init.d/ssh stop
-```
-
+	
 # HOW TO: LINUX REALTIME:
 
 https://m.youtube.com/watch?v=BKkX9WASfpI
