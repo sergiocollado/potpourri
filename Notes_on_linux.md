@@ -1750,7 +1750,24 @@ test if it works after reboot.
 $ sudo reboot
 ```
 
-#### more about networking
+### How to know what ports are open
+
+```
+sudo lsof -i -P -n | grep LISTEN
+sudo netstat -tulpn | grep LISTEN
+sudo ss -tulpn | grep LISTEN
+sudo lsof -i:22 ## see a specific port such as 22 ##
+sudo nmap -sTU -O IP-address-Here
+```
+the tulpn options stands for
+
+-t : Show only TCP sockets on Linux
+-u : Display only UDP sockets on Linux
+-l : Show listening sockets. For example, TCP port 22 is opened by SSHD server.
+-p : List process name that opened sockets
+-n : Don’t resolve service names i.e. don’t use DNS
+
+### more about networking
 
  - netstat: network statistics - https://linux.die.net/man/8/netstat  (deprecated and is better to use the command **ss**)
  - iptraf: info about network interfaces - Interactive Colorful IP LAN Monitor - https://linux.die.net/man/8/iptraf
