@@ -220,7 +220,7 @@ ones can be dependent of the results of others tasks.- This states the problem o
 problem of priority inversion, if we are not careful.
 
 
-innter-TASKS DEPENDENCE:
+inter-TASKS DEPENDENCE:
 
 Sometimes, is usual, that some tasks (jobs) depend on others, because the need to keep a precedence, or because, the
 need some data to be processed by previous tasks. This is expressed as: Ja > Jb > Jc. 
@@ -307,7 +307,7 @@ The static scheduler is defined in a table, with 't' and 'T'.
 ```
 t - is the scheduling time (trigger time of the job)
 T - is the Task
-D - death-lines
+D - dead-lines
 ```
 
 The scheduling policy is the one that defines the tasks in the timeline in a way that no dead-line is violated. 
@@ -338,7 +338,7 @@ Example:
 
 - P: perido of the task. How often it has to be run
 - e: execution time. How long does it take to run the task
-- D: death-line
+- D: dead-line
  
 ```
 
@@ -361,7 +361,7 @@ is triggered, and the next job, that fits the task with the highest priority, ca
 scheduling is named as the 'tick' of the system. So the tasks are always scheduled at regular times when the 'tick' interrups
 the execution flow. 
 
-The drawback of this scheme, is that with frequent context and task wwitches, the scheduling overhead is
+The drawback of this scheme, is that with frequent context and task switches, the scheduling overhead is
 increased. If a high priority task is running and it is interrupted at the 'tick' time, but as it is the highest priority task
 and it is not blocked, it will be selected again as the task to be executed, so in this event, the context switch caused by
 the scheduling policy was completelly unnecesary.
@@ -383,7 +383,7 @@ As a downside is that this policy don't uses priorities to consider the schedule
 same exection time as a high priority task. this can be improved, taking into account the 'weigths' of each tasks, so the tasks
 will take more or less execution time, depending into it's execution time.
 
-- Disadvantage: It doesnt take into account priorities. 
+- Disadvantage: It doesn't take into account priorities. 
 
 CYCLIC SCHEDULING
 =================
@@ -432,7 +432,7 @@ There are many tipes to schedule taks, some strategies are:
 MONOTONIC SCHEDULING
 ====================
 
-Monotonic scheduling has the advantge when scheduling periodic jobs, becase they  base the selection of tasks executions, 
+Monotonic scheduling has the advantage when scheduling periodic jobs, becase they  base the selection of tasks executions, 
 on the time to death line or periods. That implies that is easier to systematically plan the system. So monotonic schedulers
 are simple jet effective because they can addapt the priorities of the tasks implicity during runtime.
 
