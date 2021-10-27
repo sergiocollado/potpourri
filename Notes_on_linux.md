@@ -3398,7 +3398,9 @@ core dump tutorial https://m.youtube.com/watch?v=h8mtQ1FyoA4
 # NOTES ON SELINUX
 
 ## Introduction
-
+	
+reference: http://www.selinuxproject.org/page/Main_Page
+	
 Security Enhaced Linux (SELinux) is a Linux Kernel Security Module (aka LSM) that provides a mechanism for supporting access control security policies, 
 including mandatory access control (MAC). SELinux is a label-based mandatory acess control. There are labeled processes on one side (subjects) and labeled
 resouces (objects) on other side, and the "allow" rueles regulate the relationship of subjects and objects
