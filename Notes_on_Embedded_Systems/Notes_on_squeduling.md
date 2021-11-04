@@ -477,11 +477,21 @@ reference: https://en.wikipedia.org/wiki/Rate-monotonic_scheduling
  - A2: Completion-time < Period
  - A3: Service requests are independent (no known phasing) 
  - A4: Run-time is known and deterministic (WCET (worst case execution time) may be used)
- - C1: Deadline = Period by definition - NOTE: Deadline monotonic (DM) is not dynamic priority policy. 
+ - C1: As simplification is assumed: Deadline = Period by definition - NOTE: Deadline monotonic (DM) is not dynamic priority policy. ALSO is diferent from Deadline driven (like EDF (earliest Deadline First) and LLF (Least Laxity Fist)), those are dynamic policies.
  - C2: Fixed priority, preemptive, run-to-completion scheduling
  - Critical Instant: longest response time for a service occurs when all system services are requested simultaneously (maximum interference case for lowest priority services)
  - No other shared resources. This is assumed im paper, but in real live, jobs share memory, input/outpus througputs ...
  
+About EDF and LLF
+
+EDF (Earliest Deadline Fist) aka Deadline driven scheduling: when the ready queue is updated, the scheduler must reassign all priorities according to each service's time remaining to deadline. (TTD: time to deadline) 
+
+LLF (Least Laxity Fist): when the ready queue is updated, the scheduler must re-assign all priorities acording to each service's (time remaining to deadline - execution time remaining) (TTD - TR (time remaining) 
+
+### Disadvantages of dynamic priorities scheduling policies.
+
+- Can have big overhead. 
+
 
 DEADLINE MONOTONIC SCHEDULER:
 ============================
@@ -709,12 +719,14 @@ URM(3) = 3 * (2^(1/3) -1) = 0.779
 
 Since U>= URM, but U =< 1, neither feaseability nor overloading can be guaranteed. We should apply more tests to verify the system.
 
+### Is it possible to achieve 100% utilization with RM?
 
+Yes, for harmonic cases and slack stealers (jobs designed to run in spare slots). 
 
 LST: Least Slack Time Scheduling:
 ==================================
 
-this scheduling strategy prioritizes the job with the least slack time. As a dynamic scheduling algorithm, this priority is evaluated at each tick.
+This scheduling strategy prioritizes the job with the least slack time. As a dynamic scheduling algorithm, this priority is evaluated at each tick.
 
 the remaining slack time is calculated as:
 
