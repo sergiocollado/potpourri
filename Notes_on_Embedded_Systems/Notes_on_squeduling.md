@@ -477,7 +477,7 @@ reference: https://en.wikipedia.org/wiki/Rate-monotonic_scheduling
  - A2: Completion-time < Period
  - A3: Service requests are independent (no known phasing) 
  - A4: Run-time is known and deterministic (WCET (worst case execution time) may be used)
- - C1: Deadline = Period by definition
+ - C1: Deadline = Period by definition - NOTE: Deadline monotonic (DM) is not dynamic priority policy. 
  - C2: Fixed priority, preemptive, run-to-completion scheduling
  - Critical Instant: longest response time for a service occurs when all system services are requested simultaneously (maximum interference case for lowest priority services)
  - No other shared resources. This is assumed im paper, but in real live, jobs share memory, input/outpus througputs ...
