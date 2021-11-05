@@ -443,6 +443,13 @@ two monotonic scheduler will be covered:
 - the rate monotonic scheduler (RM).
 - the deadline monotonic scheduler (DM).
 
+### LIMITATIONS IN THE RATE MONOTONIC THEORY
+
+- requires that the priorities are fixed
+- doesn't consider the importace of auxiliar service in addition to or instead of their request frequency or priority
+- Simplification of the model assuming T=D
+- Not considering additional resources needs, like shared memory neeeded at the same time as the CPU.
+- assuming that real-time services will be required on a peridic basis
 
 RATE MONOTONIC SCHEDULER:
 =========================
@@ -491,12 +498,14 @@ LLF (Least Laxity Fist): when the ready queue is updated, the scheduler must re-
 ### Disadvantages of dynamic priorities scheduling policies.
 
 - Can have big overhead. 
-
+- Failure mode is not deterministic
+- remaining execution time may be difficult to determine
+- difficult to debug dynamic priority when deadlines are missed
 
 DEADLINE MONOTONIC SCHEDULER:
 ============================
 
-In the deadline monotonic scheduler the shortest deadline have the highiest priority. Note we don't say the "earliest" deadline because that would implie some dinamic priorities, and thats not the case for monotinc scheduling policies.
+In the deadline monotonic scheduler the shortest deadline have the highiest priority. Note we don't say the "earliest" deadline because that would implie some dynamic priorities, and thats not the case for monotinc scheduling policies.
 
 In the deadline monotonic scheduler, the task with the smaller relative deadline has the highest priority, in the table, that would
 be T2, because its realtive deadline is the smallest (D=3).
@@ -505,7 +514,27 @@ NOTE:
 > In case no deadline is set for a task, the DM algorithm is the same as the RM algorithm, because the period is the implicit deadline
 > if nothing else is said.
 
+DM has also a feasiability test:
 
+Considering the nomenclature of S_1 is the highies priority service and S_n is the lowest priority service
+
+For all services, if the deadline interval (D) is long enough to contain the service execution time interval (C) plus all the 
+interfering execution time intervals. Then the service is feasible. If all services are feasible the the system is feasible: 
+
+∀ i: 1 =< i =< n: (C_i / D_i) + (I_i / D_i) =< 1.0 
+
+The interference is from services of higher priority.
+
+I_i = Sum(j=1 ... i-1) \[ D_i / T_i \] * C_j
+
+The interference to service S_i is due the preemption by all highier priority services from S_1 to S_i-1, and the total 
+interference time is the number of releases of S_j over the deadline interval D_i for S_i multiplied by S_j  execution time C_j
+for all S_j which have greater priority that S_i 
+
+D_i / T_j  <- Worst case number of releases of S_j over deadline intervals for S_i
+
+This test is an overestimation, due it considers that all the interferences are full, when they could be partial. But is useful as a feasibility test.  
+ 
 EXAMPLE RM (rate monotonic) SCHEDULING:
 ======================================
 
@@ -723,6 +752,56 @@ Since U>= URM, but U =< 1, neither feaseability nor overloading can be guarantee
 
 Yes, for harmonic cases and slack stealers (jobs designed to run in spare slots). 
 
+
+
+EXAMPLE: COMPARATION RM, EDF and LLF
+====================================
+
+```
+ Service  Period  WCET   frequency   f0_multiple  Utility
+   
+      S1    2       1    0.5            3.5         50%
+	  S2    5       1    0.2            1.4         20%
+	  S3    7       2    0.14286        1           28.57%
+	  
+ Total Utility: 98.57%
+ LCM: 70
+ LUB: 77.98%
+
+
+ time    |___1___|___2___|___3___|___4___|___5___|___6___|___7___||___8___|___9___|___...___
+																  |
+ RM                                                               |
+ S1      |.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..||..   ..|.. S1..|
+ S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..S2?..|..   ..||..   ..|..   ..|
+ S3      |..   ..|..   ..|..   ..|.. S3..|..   ..|..   ..|..   ..||.LATE!.|..   ..|  -> RM misses S3. S3 needs 2 times every 7 time units.
+																  |
+																  |
+EDF                                                               |
+ S1      |.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..||..   ..|..   ..|
+ S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..   ..|..   ..||.. S2..|..   ..|
+ S3      |..   ..|..   ..|..   ..|.. S3..|..   ..|.. S3..|..   ..||..   ..|..   ..|   -> EDF complies
+																  |
+																  |
+TTD : urgency                                                           |
+ S1      |.. 2 ..|.. X ..|.. 2 ..|.. X ..|.. 2 ..|.. X ..|.. 2 ..||.. X ..|.. 2 ..|   -> X means: doesn't care, it has comply with the scheduler for its period.
+ S2      |.. 5 ..|.. 4 ..|.. X ..|.. X ..|.. X ..|.. 5 ..|.. 4 ..||.. 3 ..|.. X ..|
+ S3      |.. 7 ..|.. 6 ..|.. 5 ..|.. 4 ..|.. 3 ..|.. 2 ..|.. X ..||.. 7 ..|.. 6 ..|
+																  |
+LLF                                                               |
+ S1      |.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..||..   ..|..   ..|
+ S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..   ..|..   ..||.. S2..|..   ..|
+ S3      |..   ..|..   ..|..   ..|.. S3..|..   ..|.. S3..|..   ..||..   ..|..   ..|   -> EDF complies
+																  |
+																  |
+TTD- TR : laxity                                                        |
+ S1      |.. 1 ..|.. X ..|.. 1 ..|.. X ..|.. 1 ..|.. X ..|.. 1 ..||.. X ..|.. 1 ..|
+ S2      |.. 4 ..|.. 3 ..|.. X ..|.. X ..|.. X ..|.. 4 ..|.. 3 ..||.. 2 ..|.. X ..|
+ S3      |.. 5 ..|.. 4 ..|.. 3 ..|.. 2 ..|.. 2 ..|.. 1 ..|.. X ..||.. 5 ..|.. 3 ..|
+ 
+
+```
+
 LST: Least Slack Time Scheduling:
 ==================================
 
@@ -773,7 +852,6 @@ We start marcking all the death-lines of the job:
 
 EDF:  EARLIEST DEADLINE FIRST SCHEDULER:
 ========================================
-
 
 
 
