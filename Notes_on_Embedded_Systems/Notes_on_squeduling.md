@@ -758,9 +758,8 @@ EXAMPLE: COMPARATION RM, EDF and LLF
 ====================================
 
 ```
- Service  Period  WCET   frequency   f0_multiple  Utility
-   
-      S1    2       1    0.5            3.5         50%
+      Service  Period  WCET   frequency   f0_multiple  Utility
+          S1    2       1    0.5            3.5         50%
 	  S2    5       1    0.2            1.4         20%
 	  S3    7       2    0.14286        1           28.57%
 	  
