@@ -666,8 +666,8 @@ The feasability of a schedule can be exhaustivily proven by simulating a timelin
 two hyper-periods (H) because the system can be feaseble in the first hyper-period, but if the deadline of the last task is
 inside the second hyper-period, this must be also taken into account.
 
-RM test
-=======
+RM test L LEAT UPPER BOUND (LUB)
+=================================
 
 RM test can verify and guarantee timeline with the previous stated assumptions of the tasks. We define a limit called URM, as
 the utilization limit under which the system is guaranteed to be feaseble. The feaseability can be proven by comparing the total
@@ -752,6 +752,63 @@ Since U>= URM, but U =< 1, neither feaseability nor overloading can be guarantee
 ### Is it possible to achieve 100% utilization with RM?
 
 Yes, for harmonic cases and slack stealers (jobs designed to run in spare slots). 
+
+RATE MONOTIC (RM) THEORY AND LEAST UPPER BOUND (LUB) AND CRITICAL TIME ZONE (CTZ)
+=================================================================================
+
+The utilization of a system is defined by the sum of each task computing times (C) times its period (T)
+
+Utilization: U = Sum (1..m) (C_i/T_i)  
+
+this has an upper limit that is: m * ( 2^(1/m) -1) # m is the number of services. 
+
+U = Sum (1..n) (C_i/T_i)  =<  m * ( 2^(1/m) -1)
+
+so for m = 2
+
+U = C1/T1 + C2/T2 =< 2 (2^(1/2)-1) = 0.83
+
+and for bigger values of m, this function limits to 70%. 
+
+U = 0.7 =< 2 (2^(1/2) -1)  =< 0.83 
+
+The LUB is a limit that asures feasibility, so if U < LUB, the system is guaranteed to be feasible. 
+But the LUB is an overestimation. It is possible system that go over the LUB and work. But further
+calculations need to be done to ensure that the systems would work.
+
+RM LUB is a SUFFICIENT feasibility test, but RM LUB is not a NECESSARY and SUFFICIENT feasibility test. 
+For example systems with harmonic periods can often have U=1.0 and be feasible. 
+
+lets see an example of a two services, that complies with LUB:
+
+```
+  S1:  T1 = 2, C1 = 1
+  S2:  T2 = 5, C2 = 1
+  
+  U  =  0.7  < 0.83 = LUB
+  
+  
+   time    |___S1___|___S2___|___S1___|___  ___|___S1___|___S2___|___S1___|___  ___|___S1___|___  ___|
+   
+   T2      |<---   -  -  -  -  T2  -  -  -  -  -  -  -->|<---  -  -  -  -  T2  -  -  -  -  -  -   -->|
+   T1      |<---  - T1 - --->|<---  - T1 - --->|<---  - T1 - --->|<---  - T1 - --->|<---  - T1 - --->|
+ ```
+ 
+An example of two services that doesn't comply wit LUB but works:
+
+```
+  S1:  T1 = 2, C1 = 1
+  S2:  T2 = 5, C2 = 2
+ 
+  U = 0.9  > 0.83 = LUB ... but the systems works
+ 
+  
+   time    |___S1___|___S2___|___S1___|___S2___|___S1___|___S2___|___S1___|___S2___|___S1___|___  ____|
+   
+   T2      |<---   -  -  -  -  T2  -  -  -  -  -  -  -->|<---   -  -  -  -  T2  -  -  -  -  -  -   -->|
+   T1      |<---  - T1 - --->|<---  - T1 - --->|<---  - T1 - --->|<---  - T1 - --->|<---  - T1 -  --->|
+   
+```
 
 
 
