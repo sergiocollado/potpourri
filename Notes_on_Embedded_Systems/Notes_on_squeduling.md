@@ -383,7 +383,8 @@ As a downside is that this policy don't uses priorities to consider the schedule
 same exection time as a high priority task. this can be improved, taking into account the 'weigths' of each tasks, so the tasks
 will take more or less execution time, depending into it's execution time.
 
-- Disadvantage: It doesn't take into account priorities. 
+- Disadvantage: It doesn't take into account priorities. Although there are implementations of schedulers based on priorities queues with round-robin schemes.
+
 
 CYCLIC SCHEDULING
 =================
