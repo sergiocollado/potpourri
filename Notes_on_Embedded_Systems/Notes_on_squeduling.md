@@ -785,13 +785,16 @@ lets see an example of a two services, that complies with LUB:
   S1:  T1 = 2, C1 = 1
   S2:  T2 = 5, C2 = 1
   
-  U  =  0.7  < 0.83 = LUB
+  U  = C1/T1 + C2/T2 = 0.7  < 0.83 = LUB =  2 (2^(1/2) -1)
   
+  The time analisys has to be done over the Least common multiple (LCM) of the periods: 2 and 5, which is 10
   
    time    |___S1___|___S2___|___S1___|___  ___|___S1___|___S2___|___S1___|___  ___|___S1___|___  ___|
    
    T2      |<---   -  -  -  -  T2  -  -  -  -  -  -  -->|<---  -  -  -  -  T2  -  -  -  -  -  -   -->|
    T1      |<---  - T1 - --->|<---  - T1 - --->|<---  - T1 - --->|<---  - T1 - --->|<---  - T1 - --->|
+   
+           0        1        2        3        4        5        6        7        8        9        10
  ```
  
 An example of two services that doesn't comply wit LUB but works:
@@ -800,14 +803,16 @@ An example of two services that doesn't comply wit LUB but works:
   S1:  T1 = 2, C1 = 1
   S2:  T2 = 5, C2 = 2
  
-  U = 0.9  > 0.83 = LUB ... but the systems works
+  U = C1/T1 + C2/T2 = 0.9  > 0.83 = LUB ... but the systems works
  
+ The time analisys has to be done over the Least common multiple (LCM) of the periods: 2 and 5, which is 10
   
    time    |___S1___|___S2___|___S1___|___S2___|___S1___|___S2___|___S1___|___S2___|___S1___|___  ____|
    
    T2      |<---   -  -  -  -  T2  -  -  -  -  -  -  -->|<---   -  -  -  -  T2  -  -  -  -  -  -   -->|
    T1      |<---  - T1 - --->|<---  - T1 - --->|<---  - T1 - --->|<---  - T1 - --->|<---  - T1 -  --->|
    
+           0        1        2        3        4        5        6        7        8        9        10
 ```
 
 
