@@ -970,6 +970,8 @@ A list with all the users, and paswords, can be given to the cluster with the op
 Other option is instead of a file with the users details, is possible to use a static file with token, with the option: --token-auth-file=<file-token>
 
 
+![kubernetes dificulty](https://github.com/sergiocollado/potpourri/blob/master/image/kubernetes_difficulty.jpg)
+ 
 # HOW TO's
 
 ## How to get a shell to a runnnig contaniner
