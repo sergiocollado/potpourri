@@ -827,7 +827,7 @@ we have an harmonic example
       Service  Period  WCET   frequency   f0_multiple  Utility
           S1    2       1     0.5            5           50%
 	  S2    5       1     0.2            2           20%
-	  S3    10      2     0.1            1           10%
+	  S3    10      2     0.1            1           30%
 	  
  Total Utility: 100%
  LCM: 10
