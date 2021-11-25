@@ -753,6 +753,7 @@ Since U>= URM, but U =< 1, neither feaseability nor overloading can be guarantee
 
 Yes, for harmonic cases and slack stealers (jobs designed to run in spare slots). 
 
+
 RATE MONOTIC (RM) THEORY AND LEAST UPPER BOUND (LUB) AND CRITICAL TIME ZONE (CTZ)
 =================================================================================
 
@@ -821,34 +822,39 @@ EXAMPLE: COMPARATION RM with RR/FAIR
 RR/Fair scheudling can fail, when RM can succed. 
 
 ```
-we hava an harmonic example 
+we have an harmonic example 
 
       Service  Period  WCET   frequency   f0_multiple  Utility
-          S1    2       1     0.5            5          50%
+          S1    2       1     0.5            5           50%
 	  S2    5       1     0.2            2           20%
-	  S3    10      2     0.1            1           28.57%
+	  S3    10      2     0.1            1           10%
 	  
  Total Utility: 100%
  LCM: 10
  LUB: 77.96%
 
 
- time    |___1___|___2___|___3___|___4___|___5___|___6___|___7___||___8___|___9___|___10__|
+ time    |___1___|___2___|___3___|___4___|___5___|___6___|___7___|___8___|___9___|___10__|
 																  
- RM                                                               |
- S1      |.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..||..   ..|.. S1..|..   ..|
- S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..S2 ..|..   ..||..   ..|..   ..|..   ..|
- S3      |..   ..|..   ..|..   ..|.. S3..|..   ..|..   ..|..   ..||.. S3..|..   ..|.. S3..|
+ RM        
+ 
+ S1      |.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|
+ S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..S2 ..|..   ..|..   ..|..   ..|..   ..|
+ S3      |..   ..|..   ..|..   ..|.. S3..|..   ..|..   ..|..   ..|.. S3..|..   ..|.. S3..|
 																 
 																 
- Fair                                              |
- S1      |.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..||..   ..|..   ..|..   ..|
- S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..   ..|..   ..||.. S2..|..   ..|..   ..|
- S3      |..   ..|..   ..|..   ..|.. S3..|..   ..|.. S3..|..   ..||..   ..|..   ..|..   ..|														
-
-
-
+ RR/Fair
+ 
+ S1      |.. S1..|..   ..|..   ..|.. s1..|..   ..|.. S1..|..   ..|.MISS!.|.. S1..|..   ..|
+ S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..   ..|.. S2..|..   ..|..   ..|..   ..|
+ S3      |..   ..|..   ..|.. s3..|..   ..|.. S3..|..   ..|..   ..|.. S3..|..   ..|..   ..|	
+                                                                                    ^^^^-and THIS IS FREE! 
+										
 ```
+
+real-time scheduling policies are superior than RR/fair scheduling policies... the more tast there are, the bigger the chance a RR/fair
+scheduler misses the task. On the other hand RR/fair scheduling, for example never starve services, that could happen with real-time
+policies...and also doesn't suffer from unbounded priority inversion.
 
 
 EXAMPLE: COMPARATION RM, EDF and LLF
