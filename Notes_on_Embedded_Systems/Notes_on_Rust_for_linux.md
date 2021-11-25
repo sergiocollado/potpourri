@@ -9,6 +9,8 @@ Rust in the Linux ecosystem : https://youtu.be/jTWdk0jYy54
 Rust for Linux: https://youtu.be/46Ky__Gid7M
 
 
+rust for linux mail-list: https://lore.kernel.org/rust-for-linux/
+
 August 31, 2020: Supporting Linux kernel development in Rust - https://lwn.net/Articles/829858/
 
 April 21, 2021: Rust heads into the kernel? - https://lwn.net/Articles/853423/
