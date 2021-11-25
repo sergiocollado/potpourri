@@ -666,7 +666,7 @@ The feasability of a schedule can be exhaustivily proven by simulating a timelin
 two hyper-periods (H) because the system can be feaseble in the first hyper-period, but if the deadline of the last task is
 inside the second hyper-period, this must be also taken into account.
 
-RM test L LEAT UPPER BOUND (LUB)
+RM test : LEAST UPPER BOUND (LUB)
 =================================
 
 RM test can verify and guarantee timeline with the previous stated assumptions of the tasks. We define a limit called URM, as
@@ -815,6 +815,40 @@ An example of two services that doesn't comply wit LUB but works:
            0        1        2        3        4        5        6        7        8        9        10
 ```
 
+EXAMPLE: COMPARATION RM with RR/FAIR 
+====================================
+
+RR/Fair scheudling can fail, when RM can succed. 
+
+```
+we hava an harmonic example 
+
+      Service  Period  WCET   frequency   f0_multiple  Utility
+          S1    2       1     0.5            5          50%
+	  S2    5       1     0.2            2           20%
+	  S3    10      2     0.1            1           28.57%
+	  
+ Total Utility: 100%
+ LCM: 10
+ LUB: 77.96%
+
+
+ time    |___1___|___2___|___3___|___4___|___5___|___6___|___7___||___8___|___9___|___10__|
+																  
+ RM                                                               |
+ S1      |.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..||..   ..|.. S1..|..   ..|
+ S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..S2 ..|..   ..||..   ..|..   ..|..   ..|
+ S3      |..   ..|..   ..|..   ..|.. S3..|..   ..|..   ..|..   ..||.. S3..|..   ..|.. S3..|
+																 
+																 
+ Fair                                              |
+ S1      |.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..||..   ..|..   ..|..   ..|
+ S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..   ..|..   ..||.. S2..|..   ..|..   ..|
+ S3      |..   ..|..   ..|..   ..|.. S3..|..   ..|.. S3..|..   ..||..   ..|..   ..|..   ..|														
+
+
+
+```
 
 
 EXAMPLE: COMPARATION RM, EDF and LLF
