@@ -1312,6 +1312,8 @@ cp /boot/<config-5.0.0-21-generic> .config
 
 refence: http://www.kroah.com/lkn/ -linux kernel in a nutshell
 
+example: https://youtu.be/NVWVHiLx1sU 
+
 the kernel configuration is in the file named .config at the top of the kernel source tree.
 
 you may need to install:  libelf-dev, libelf-devel or elfutils-libelf-devel
