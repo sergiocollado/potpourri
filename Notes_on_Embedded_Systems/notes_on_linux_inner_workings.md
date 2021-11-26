@@ -104,7 +104,7 @@ Only setting this value, will not persist in case the system is rebooted, or tur
 in the file: /etc/sysctl.conf
 net.ipv4.ip_fordward = 1
 ```
-## System calls
+# System calls
 
 ref: https://man7.org/linux/man-pages/man2/syscalls.2.html <br>
 ref: https://man7.org/linux/man-pages/man2/syscall.2.html
@@ -115,7 +115,7 @@ abstraction layer  to the user-space, so it can request read or write files, but
 the possible diffent file systems. Also this interface guards the systems, so the kernel can handle permissions, or 
 make sure that a user-space process doens't overlay with other user-space process. 
 
-### Syscall numbers.
+## Syscall numbers.
 
 Each syscall is assigned and identified with an unique number. When user-space call a syscall, it doens't invoque it by name. 
 Once this number is assined to a given syscall, this cannot be changed, because already compiled applications would break. 
@@ -140,7 +140,7 @@ root/include/linux/syscalls.h - Linux syscall interfaces (non-arch-specific): ht
 
 
 
-### syscalls files overview
+## Syscalls files overview
 
 32-bit system call numbers and entry vectors: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/syscalls/syscall_32.tbl?h=v5.4.144
 
