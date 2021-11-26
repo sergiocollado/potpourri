@@ -104,9 +104,9 @@ Only setting this value, will not persist in case the system is rebooted, or tur
 in the file: /etc/sysctl.conf
 net.ipv4.ip_fordward = 1
 ```
-## System calls aka syscalls. 
+## System calls
 
-ref: https://man7.org/linux/man-pages/man2/syscalls.2.html
+ref: https://man7.org/linux/man-pages/man2/syscalls.2.html <br>
 ref: https://man7.org/linux/man-pages/man2/syscall.2.html
 
 The kernel provides user-space a series of interfaces to interact whit the system, its hardware and underlying systems. 
