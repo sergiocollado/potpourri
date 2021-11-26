@@ -104,6 +104,217 @@ Only setting this value, will not persist in case the system is rebooted, or tur
 in the file: /etc/sysctl.conf
 net.ipv4.ip_fordward = 1
 ```
+## System calls aka syscalls. 
+
+ref: https://man7.org/linux/man-pages/man2/syscalls.2.html
+ref: https://man7.org/linux/man-pages/man2/syscall.2.html
+
+The kernel provides user-space a series of interfaces to interact whit the system, its hardware and underlying systems. 
+Those interfaces for example requests dynamic memory allocations, read or write files ... This interface provides and
+abstraction layer  to the user-space, so it can request read or write files, but doesn't need to handle 
+the possible diffent file systems. Also this interface guards the systems, so the kernel can handle permissions, or 
+make sure that a user-space process doens't overlay with other user-space process. 
+
+### Syscall numbers.
+
+Each syscall is assigned and identified with an unique number. When user-space call a syscall, it doens't invoque it by name. 
+Once this number is assined to a given syscall, this cannot be changed, because already compiled applications would break. 
+it exits a not implemented syscall: 'sys_ni_syscall()', that does nothing but return -ENOSYS error. The kernel keeps a list of regitered
+syscalls at 'sys_call_table'. It is architecture dependand, and usually defiend in entry.S.
+
+As noted in syscalls(2): https://man7.org/linux/man-pages/man2/syscalls.2.html
+
+Roughly speaking, the code belonging to the system call with number __NR_xxx defined in /usr/include/asm/unistd.h can be found in the Linux kernel source in the routine sys_xxx().
+
+For example to an x86 abd x86_64 arch: 
+
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/syscall_32.c?h=v5.4.144
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/syscall_64.c?h=v5.4.144
+
+This file contains the system call numbers, based on the layout of the x86-64 architecture: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/include/uapi/asm-generic/unistd.h?h=v5.4.144
+
+root/include/linux/syscalls.h - Linux syscall interfaces (non-arch-specific): https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/include/linux/syscalls.h?h=v5.4.144
+
+32-bit system call numbers and entry vectors: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/syscalls/syscall_32.tbl?h=v5.4.144
+
+
+
+
+### syscalls files overview
+
+32-bit system call numbers and entry vectors: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/syscalls/syscall_32.tbl?h=v5.4.144
+
+```
+#
+# 32-bit system call numbers and entry vectors
+#
+# The format is:
+# <number> <abi> <name> <entry point> <compat entry point>
+#
+# The __ia32_sys and __ia32_compat_sys stubs are created on-the-fly for
+# sys_*() system calls and compat_sys_*() compat system calls if
+# IA32_EMULATION is defined, and expect struct pt_regs *regs as their only
+# parameter.
+#
+# The abi is always "i386" for this file.
+#
+0	i386	restart_syscall		sys_restart_syscall		__ia32_sys_restart_syscall
+1	i386	exit			sys_exit			__ia32_sys_exit
+2	i386	fork			sys_fork			__ia32_sys_fork
+3	i386	read			sys_read			__ia32_sys_read
+4	i386	write			sys_write			__ia32_sys_write
+5	i386	open			sys_open			__ia32_compat_sys_open
+6	i386	close			sys_close			__ia32_sys_close
+7	i386	waitpid			sys_waitpid			__ia32_sys_waitpid
+8	i386	creat			sys_creat			__ia32_sys_creat
+9	i386	link			sys_link			__ia32_sys_link
+10	i386	unlink			sys_unlink			__ia32_sys_unlink
+11	i386	execve			sys_execve			__ia32_compat_sys_execve
+12	i386	chdir			sys_chdir			__ia32_sys_chdir
+13	i386	time			sys_time32			__ia32_sys_time32
+14	i386	mknod			sys_mknod			__ia32_sys_mknod
+15	i386	chmod			sys_chmod			__ia32_sys_chmod
+16	i386	lchown			sys_lchown16			__ia32_sys_lchown16
+...
+432	i386	fsmount			sys_fsmount			__ia32_sys_fsmount
+433	i386	fspick			sys_fspick			__ia32_sys_fspick
+434	i386	pidfd_open		sys_pidfd_open			__ia32_sys_pidfd_open
+435	i386	clone3			sys_clone3			__ia32_sys_clone3
+```
+
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/include/uapi/asm-generic/unistd.h?h=v5.4.144
+
+```
+/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+#include <asm/bitsperlong.h>
+
+/*
+ * This file contains the system call numbers, based on the
+ * layout of the x86-64 architecture, which embeds the
+ * pointer to the syscall in the table.
+ *
+ * As a basic principle, no duplication of functionality
+ * should be added, e.g. we don't use lseek when llseek
+ * is present. New architectures should use this file
+ * and implement the less feature-full calls in user space.
+ */
+
+#ifndef __SYSCALL
+#define __SYSCALL(x, y)
+#endif
+
+#if __BITS_PER_LONG == 32 || defined(__SYSCALL_COMPAT)
+#define __SC_3264(_nr, _32, _64) __SYSCALL(_nr, _32)
+#else
+#define __SC_3264(_nr, _32, _64) __SYSCALL(_nr, _64)
+#endif
+
+#ifdef __SYSCALL_COMPAT
+#define __SC_COMP(_nr, _sys, _comp) __SYSCALL(_nr, _comp)
+#define __SC_COMP_3264(_nr, _32, _64, _comp) __SYSCALL(_nr, _comp)
+#else
+#define __SC_COMP(_nr, _sys, _comp) __SYSCALL(_nr, _sys)
+#define __SC_COMP_3264(_nr, _32, _64, _comp) __SC_3264(_nr, _32, _64)
+#endif
+
+#define __NR_io_setup 0
+__SC_COMP(__NR_io_setup, sys_io_setup, compat_sys_io_setup)
+#define __NR_io_destroy 1
+__SYSCALL(__NR_io_destroy, sys_io_destroy)
+#define __NR_io_submit 2
+__SC_COMP(__NR_io_submit, sys_io_submit, compat_sys_io_submit)
+#define __NR_io_cancel 3
+__SYSCALL(__NR_io_cancel, sys_io_cancel)
+#if defined(__ARCH_WANT_TIME32_SYSCALLS) || __BITS_PER_LONG != 32
+#define __NR_io_getevents 4
+__SC_3264(__NR_io_getevents, sys_io_getevents_time32, sys_io_getevents)
+#endif
+
+/* fs/xattr.c */
+#define __NR_setxattr 5
+__SYSCALL(__NR_setxattr, sys_setxattr)
+#define __NR_lsetxattr 6
+__SYSCALL(__NR_lsetxattr, sys_lsetxattr)
+#define __NR_fsetxattr 7
+__SYSCALL(__NR_fsetxattr, sys_fsetxattr)
+#define __NR_getxattr 8
+__SYSCALL(__NR_getxattr, sys_getxattr)
+#define __NR_lgetxattr 9
+__SYSCALL(__NR_lgetxattr, sys_lgetxattr)
+#define __NR_fgetxattr 10
+__SYSCALL(__NR_fgetxattr, sys_fgetxattr)
+#define __NR_listxattr 11
+__SYSCALL(__NR_listxattr, sys_listxattr)
+#define __NR_llistxattr 12
+__SYSCALL(__NR_llistxattr, sys_llistxattr)
+#define __NR_flistxattr 13
+__SYSCALL(__NR_flistxattr, sys_flistxattr)
+#define __NR_removexattr 14
+__SYSCALL(__NR_removexattr, sys_removexattr)
+#define __NR_lremovexattr 15
+__SYSCALL(__NR_lremovexattr, sys_lremovexattr)
+#define __NR_fremovexattr 16
+__SYSCALL(__NR_fremovexattr, sys_fremovexattr)
+
+/* fs/dcache.c */
+#define __NR_getcwd 17
+__SYSCALL(__NR_getcwd, sys_getcwd)
+```
+
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/include/linux/syscalls.h?h=v5.4.144
+
+```
+/* SPDX-License-Identifier: GPL-2.0-only */
+/*
+ * syscalls.h - Linux syscall interfaces (non-arch-specific)
+ *
+ * Copyright (c) 2004 Randy Dunlap
+ * Copyright (c) 2004 Open Source Development Labs
+ */
+
+#ifndef _LINUX_SYSCALLS_H
+#define _LINUX_SYSCALLS_H
+
+...
+
+*
+ * These syscall function prototypes are kept in the same order as
+ * include/uapi/asm-generic/unistd.h. Architecture specific entries go below,
+ * followed by deprecated or obsolete system calls.
+ *
+ * Please note that these prototypes here are only provided for information
+ * purposes, for static analysis, and for linking from the syscall table.
+ * These functions should not be called elsewhere from kernel code.
+ *
+ * As the syscall calling convention may be different from the default
+ * for architectures overriding the syscall calling convention, do not
+ * include the prototypes if CONFIG_ARCH_HAS_SYSCALL_WRAPPER is enabled.
+ */
+#ifndef CONFIG_ARCH_HAS_SYSCALL_WRAPPER
+asmlinkage long sys_io_setup(unsigned nr_reqs, aio_context_t __user *ctx);
+asmlinkage long sys_io_destroy(aio_context_t ctx);
+asmlinkage long sys_io_submit(aio_context_t, long,
+			struct iocb __user * __user *);
+asmlinkage long sys_io_cancel(aio_context_t ctx_id, struct iocb __user *iocb,
+			      struct io_event __user *result);
+asmlinkage long sys_io_getevents(aio_context_t ctx_id,
+				long min_nr,
+				long nr,
+				struct io_event __user *events,
+				struct __kernel_timespec __user *timeout);
+asmlinkage long sys_io_getevents_time32(__u32 ctx_id,
+				__s32 min_nr,
+				__s32 nr,
+				struct io_event __user *events,
+				struct old_timespec32 __user *timeout);
+asmlinkage long sys_io_pgetevents(aio_context_t ctx_id,
+				long min_nr,
+				long nr,
+				struct io_event __user *events,
+				struct __kernel_timespec __user *timeout,
+				const struct __aio_sigset *sig);
+
+```
 
 ## Linux scheduler
 
