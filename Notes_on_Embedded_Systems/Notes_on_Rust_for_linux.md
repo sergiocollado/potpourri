@@ -1,15 +1,18 @@
 # Notes on Rust
 
-https://lkml.org/lkml/2021/4/14/1023
+**RFC**: https://lkml.org/lkml/2021/4/14/1023
 
-https://github.com/Rust-for-Linux
+**Oficial site**: https://github.com/Rust-for-Linux
+
+rust for linux mail-list: https://lore.kernel.org/rust-for-linux/
 
 Rust in the Linux ecosystem : https://youtu.be/jTWdk0jYy54
 
 Rust for Linux: https://youtu.be/46Ky__Gid7M
 
+## Videos: 
 
-rust for linux mail-list: https://lore.kernel.org/rust-for-linux/
+Oct 2, 2019: Writing Linux Kernel Modules in Safe Rust - https://www.youtube.com/watch?v=RyY01fRyGhM
 
 August 31, 2020: Supporting Linux kernel development in Rust - https://lwn.net/Articles/829858/
 
@@ -26,4 +29,3 @@ Sept 20, 2021: More Rust concepts for the kernel - https://lwn.net/Articles/8694
 Sept 28, 2021: Using Rust for kernel development - https://lwn.net/Articles/871061/
 
 Oct 4, 2021: Rust and GCC, two different ways - https://lwn.net/Articles/871283/
-
