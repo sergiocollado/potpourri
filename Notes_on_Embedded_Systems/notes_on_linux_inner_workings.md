@@ -137,6 +137,24 @@ root/include/linux/syscalls.h - Linux syscall interfaces (non-arch-specific): ht
 
 32-bit system call numbers and entry vectors: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/syscalls/syscall_32.tbl?h=v5.4.144
 
+## Syscall handler
+
+The code inuser space cannot call a system call directly, due it is in kernel-space and it is in a protected memory space. 
+So, the user-space applications must signal the kernel to execute a system call and have to somehow switch to kernel mode. 
+This is done by means to signal the kernel with a software interrupt. Call an exception and then, the
+system will switch to kernel mode and execute the exception handler. That exception handler will be the system call handler __**system_call()**__
+which is an architectural dependand call. 
+
+The system ust identify the system call number desired to be called. On x86, this is passed by puting the system call number in the __eax__ register. 
+Other architectures do something similar. This number is checked comparing tis value to NR_syscals to verify it is smaller, if it is not it returns, -ENOSYS. 
+If the verification is ok, then it is called: 
+
+```
+call *sys_call_table(, %eax, 4)
+```
+
+Not only the syscall number must be passed, but also the parameters needed for the syscall. Usually those are passed also in the other 
+registers.
 
 
 
