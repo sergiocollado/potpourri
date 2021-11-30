@@ -104,6 +104,8 @@ Only setting this value, will not persist in case the system is rebooted, or tur
 in the file: /etc/sysctl.conf
 net.ipv4.ip_fordward = 1
 ```
+
+
 # System calls
 
 ref: https://man7.org/linux/man-pages/man2/syscalls.2.html <br>
@@ -137,6 +139,8 @@ root/include/linux/syscalls.h - Linux syscall interfaces (non-arch-specific): ht
 
 32-bit system call numbers and entry vectors: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/syscalls/syscall_32.tbl?h=v5.4.144
 
+entry_32.S contains the system-call and low-level fault and trap handling routines : https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/entry_32.S?h=v5.4.144
+
 ## Syscall handler
 
 The code inuser space cannot call a system call directly, due it is in kernel-space and it is in a protected memory space. 
@@ -159,6 +163,43 @@ registers.
 
 
 ## Syscalls files overview
+
+entry_32.S contains the system-call and low-level fault and trap handling routines : https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/entry_32.S?h=v5.4.144
+
+```
+ SPDX-License-Identifier: GPL-2.0 */
+/*
+ *  Copyright (C) 1991,1992  Linus Torvalds
+ *
+ * entry_32.S contains the system-call and low-level fault and trap handling routines.
+ *
+ * Stack layout while running C code:
+ *	ptrace needs to have all registers on the stack.
+ *	If the order here is changed, it needs to be
+ *	updated in fork.c:copy_process(), signal.c:do_signal(),
+ *	ptrace.c and ptrace.h
+ *
+ *	 0(%esp) - %ebx
+ *	 4(%esp) - %ecx
+ *	 8(%esp) - %edx
+ *	 C(%esp) - %esi
+ *	10(%esp) - %edi
+ *	14(%esp) - %ebp
+ *	18(%esp) - %eax
+ *	1C(%esp) - %ds
+ *	20(%esp) - %es
+ *	24(%esp) - %fs
+ *	28(%esp) - %gs		saved iff !CONFIG_X86_32_LAZY_GS
+ *	2C(%esp) - orig_eax
+ *	30(%esp) - %eip
+ *	34(%esp) - %cs
+ *	38(%esp) - %eflags
+ *	3C(%esp) - %oldesp
+ *	40(%esp) - %oldss
+ */
+
+```
+
 
 32-bit system call numbers and entry vectors: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/syscalls/syscall_32.tbl?h=v5.4.144
 
@@ -334,7 +375,28 @@ asmlinkage long sys_io_pgetevents(aio_context_t ctx_id,
 
 ```
 
-## Linux scheduler
+# Interrupts and interrupt handlers. 
+
+Interrups allow the hardware to signal events and communicate to the kernel. The hardware will generate interrupts asynchronously to the processos's clock.
+The interrupt controller will signal interrupts to the processor, and the kernel will be notified to handle that interrupt. Thiferent devices generate different
+interrupts, so each interrupt can be addressed accordinly with a unique handler. Those interrupt values are called interrupt requests (IRQ) 
+
+Note!: similar to interrupts are the exceptions, what occour synchronoulsy with the processor's clock. Sometimes they are called synchronous interrupts. Those 
+exceptions happen when the processor executes a wrong instruction, like dividing by zero. Those exceptions are handled very much like interrupts in many architectures. 
+
+For a given interrupt , the kernel responds with the corresponding interrupt handler or interrupt service routine (ISR). Interrupt handlers are normal C functions, 
+that are invoked by the kernel, in response to interrupts. An interrupt is importat that is fast, so it doesn't halt the system. The minimum that the interupt handler
+has to do is to acknoledge te interrupt has been receibed. 
+
+To be as fast as possible, the the processing of interrupts is split in two parts: the top half and the bottom half. The top half is executed immediately upon receiving 
+the interrupt and performs the most critical work, and the rest is delayed and handled in the bottom half. The bottom half will run later. 
+
+reference: IRQs: the Hard, the Soft, the Threaded and the Preemptible - https://youtu.be/-pehAzaP1eg <br>
+reference: https://linux.die.net/lkmpg/x1256.html <br>
+reference: https://www.kernel.org/doc/html/latest/core-api/irq/index.html?highlight=irq <br>
+
+
+# Linux scheduler
 
  The linux kernel is multithreaded. The scheduler is the system that decides which task runs at each time. In linux the
 scheduling is based in threads, not in processes. 
