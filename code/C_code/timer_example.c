@@ -15,7 +15,7 @@ void timer_create(int num_secs, int num_nsecs)
  sigemptyset(&sa.sa_mask);
  sa.sa_flags = SA_SIGINFO;
  sa.sa_sigaction = timer_intr;
- if (sigaction(SIGRTMIN, &sa, NULL) < 0 ) { perror(“sigaction”); }
+ if (sigaction(SIGRTMIN, &sa, NULL) < 0 ) { perror(“sigaction”); exit(-1);}
  sig_spec.sigev_notify = SIGEV_SIGNAL;
  sig_spec.sigev_signo = SIGRTMIN;
   
@@ -28,7 +28,7 @@ void timer_create(int num_secs, int num_nsecs)
  tmr_setting.it_value.tv_nsec = 0;
  tmr_setting.it_interval.tv_sec = num_secs;
  tmr_setting.it_interval.tv_sec = num_nsecs;
- if (timer_settime(timer_h,0,&tmr_setting,NULL) < 0 ) { perror(“settimer”); }
+ if (timer_settime(timer_h,0,&tmr_setting,NULL) < 0 ) { perror(“settimer”); exit(-1); }
   
  /* wait for signals */
  sigemptyset(&allsigs);
