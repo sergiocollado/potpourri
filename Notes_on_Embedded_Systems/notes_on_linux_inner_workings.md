@@ -130,16 +130,24 @@ Roughly speaking, the code belonging to the system call with number __NR_xxx def
 
 For example to an x86 abd x86_64 arch: 
 
-https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/syscall_32.c?h=v5.4.144
-https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/syscall_64.c?h=v5.4.144
+ - https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/syscall_32.c?h=v5.4.144 <br>
+ - https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/syscall_64.c?h=v5.4.144 <br> 
 
-This file contains the system call numbers, based on the layout of the x86-64 architecture: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/include/uapi/asm-generic/unistd.h?h=v5.4.144
+This file contains the system call numbers, based on the layout of the x86-64 architecture:  
 
-root/include/linux/syscalls.h - Linux syscall interfaces (non-arch-specific): https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/include/linux/syscalls.h?h=v5.4.144
+ - https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/include/uapi/asm-generic/unistd.h?h=v5.4.144
 
-32-bit system call numbers and entry vectors: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/syscalls/syscall_32.tbl?h=v5.4.144
+root/include/linux/syscalls.h - Linux syscall interfaces (non-arch-specific): 
 
-entry_32.S contains the system-call and low-level fault and trap handling routines : https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/entry_32.S?h=v5.4.144
+ - https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/include/linux/syscalls.h?h=v5.4.144
+
+32-bit system call numbers and entry vectors: 
+
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/syscalls/syscall_32.tbl?h=v5.4.144
+
+entry_32.S contains the system-call and low-level fault and trap handling routines : 
+
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/entry/entry_32.S?h=v5.4.144
 
 ## Syscall handler
 
@@ -159,7 +167,6 @@ call *sys_call_table(, %eax, 4)
 
 Not only the syscall number must be passed, but also the parameters needed for the syscall. Usually those are passed also in the other 
 registers.
-
 
 
 ## Syscalls files overview
@@ -377,6 +384,13 @@ asmlinkage long sys_io_pgetevents(aio_context_t ctx_id,
 
 # Interrupts and interrupt handlers. 
 
+reference:https://www.kernel.org/doc/html/latest/core-api/irq/index.html<br>
+reference: https://linux.die.net/lkmpg/x1256.html <br>
+
+An IRQ is an interrupt request from a device. Currently they can come in over a pin, or over a packet. Several devices may be connected to the same pin thus sharing an IRQ.
+
+An IRQ number is a kernel identifier used to talk about a hardware interrupt source. Typically this is an index into the global irq_desc array, but except for what linux/interrupt.h implements the details are architecture specific.
+
 Interrups allow the hardware to signal events and communicate to the kernel. The hardware will generate interrupts asynchronously to the processos's clock.
 The interrupt controller will signal interrupts to the processor, and the kernel will be notified to handle that interrupt. Thiferent devices generate different
 interrupts, so each interrupt can be addressed accordinly with a unique handler. Those interrupt values are called interrupt requests (IRQ) 
@@ -393,7 +407,51 @@ the interrupt and performs the most critical work, and the rest is delayed and h
 
 reference: IRQs: the Hard, the Soft, the Threaded and the Preemptible - https://youtu.be/-pehAzaP1eg <br>
 reference: https://linux.die.net/lkmpg/x1256.html <br>
-reference: https://www.kernel.org/doc/html/latest/core-api/irq/index.html?highlight=irq <br>
+reference:https://www.kernel.org/doc/html/latest/core-api/irq/index.html<br>
+reference: https://www.kernel.org/doc/html/latest/core-api/genericirq.html <br>
+
+## /proc/interrupts
+
+The procfs filesystem is a virtual filesystem that is used to provide information and has information related to te interrupts of the system.
+
+
+To see the interrupts occurring on your system, run the command:
+```
+> watch -n1 "cat /proc/interrupts"
+
+           CPU0       CPU1
+ 0:         330          0   IO-APIC-edge      timer
+ 1:       11336          0   IO-APIC-edge      i8042
+ 4:           2          0   IO-APIC-edge
+ 6:           3          0   IO-APIC-edge      floppy
+ ...
+NMI:          0          0   Non-maskable interrupts
+LOC:    5806923    6239132   Local timer interrupts
+ ...
+ ```
+ 
+The watch command executes another command periodically, in this case "cat /proc/interrups". The -n1 option tells watch to execute the command every second.
+
+Teh funcion that displays that information is **show_interrupts()**, and is architecture dependant. 
+
+reference: https://www.linuxjournal.com/content/watch-live-interrupts#:~:text=To%20see%20the%20interrupts%20occurring,6239132%20Local%20timer%20interrupts%20...
+
+## Irq implementation
+Some basic functions for implementing new interrupt handlers 
+
+- to register a new interrupt handler:  **request_irq()**
+- to freeing an interrupt handler: **free_irq()**
+- to declare and interrupt handler: **intr_handler()**
+
+The way to implement an interrupt handler is with **request_irq()** to get your interrupt handler called when the relevant IRQ is received. This function receives the IRQ number, the name of the function, flags, a name for /proc/interrupts and a parameter to pass to the interrupt handler. Usually there is a certain number of IRQs available. How many IRQs there are is hardware dependant. The flags can include SA_SHIRQ to indicate you're willing to share the IRQ with other interrupt handlers (usually because a number of hardware devices sit on the same IRQ) and SA_INTERRUPT to indicate this is a fast interrupt. This function will only succeed if there isn't already a handler on this IRQ, or if you're both willing to share.
+	
+There are three main levels of abstraction in the interrupt code:
+ 
+ - High-level driver API
+ - High-level IRQ flow handlers
+ - Chip-level hardware encapsulation
+
+Detailed information is here: https://www.kernel.org/doc/html/latest/core-api/genericirq.html
 
 
 # Linux scheduler
