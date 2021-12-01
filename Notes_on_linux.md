@@ -162,23 +162,25 @@ The local settings of the system can be identified with the command **locale**
 The linux file system usually has the following file hierarchy structure:
 
  - **/** (top level directory, named the root directory)
-    - **/bin** essential user command binaries
-    - **/sbin** essential system binaries
+    - **/bin** Commands needed during bootup that might be used by normal users (probably after bootup).
+    - **/sbin** Like /bin, but the commands are not intended for normal users, although they may use them if necessary and allowed. /sbin is not usually in the default path of normal users, but will be in root's default path.
     - **/etc** configuration files
-    - **/dev** device and special files
+    - **/dev** Device files. These are special files that help the user interface with the various devices on the system.
     - **/proc** kernel and processes informative file system: information about the system and running processes
     - **/sys** kernel and system information
     - **/var** variable files (as logs)
     - **/tmp** temporary files
     - **/usr** user programms
     - **/home** home directory
-    - **/boot** bootloader files and the linux kernel - the kernel is the file named: vmlinuz.
-    - **/lib** system libraries
+    - **/boot** bootloader files and the linux kernel - the kernel is the file named: vmlinuz. Here there are files used by the bootstrap loader, (e.g., LILO or GRUB). Kernel images are often kept here instead of in the root directory. If there are many kernel images, the directory can easily grow rather big, and it might be better to keep it in a separate filesystem. 
+    - **/lib** Shared libraries needed by the programs on the root filesystem.
     - **/opt** optional add-ons
-    - **/mnt** mount directories
+    - **/mnt** Mount point for temporary mounts 
     - **/media** removable devices or where new volue
     - **/srv** service data
     
+reference: https://linux.die.net/sag/root-fs.html
+
 Depending on the linux version, the list of the filesystem, may be different. 
     
 The reference to this file structure, is defined at:  https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.pdf
