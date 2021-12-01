@@ -453,6 +453,24 @@ There are three main levels of abstraction in the interrupt code:
 
 Detailed information is here: https://www.kernel.org/doc/html/latest/core-api/genericirq.html
 
+### irq related files
+
+-Check the folder: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/irq?h=v5.4.144
+
+ - https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/irq/handle.c?h=v5.4.144
+
+```
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Copyright (C) 1992, 1998-2006 Linus Torvalds, Ingo Molnar
+ * Copyright (C) 2005-2006, Thomas Gleixner, Russell King
+ *
+ * This file contains the core interrupt handling code. Detailed
+ * information is available in Documentation/core-api/genericirq.rst
+ *
+ */
+
+```
 
 # Linux scheduler
 
