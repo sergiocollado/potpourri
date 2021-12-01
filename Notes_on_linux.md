@@ -24,6 +24,8 @@ time line of Unix based systems:   https://www.levenez.com/unix/
 
 Formal introduction: https://linux.die.net/Intro-Linux/
 
+Administrator guide: https://linux.die.net/sag/index.html
+
 Debian administrator handbook: https://debian-handbook.info/browse/stable/
 
 <hr>
