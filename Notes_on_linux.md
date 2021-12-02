@@ -397,9 +397,10 @@ usermod -s /bin/nologin michael
 remove the user from its groups
 
 ```
-id michael
+id michael      # take note of his groups
 deluser michael adminGroup
-id michael
+id michael      # check if the groupt has been removed
+userdel michael @ delete the user michael
 ```
 
 and delete the user with the `userdel` command.
@@ -428,13 +429,76 @@ to add a given user to a group, is done:
 > sudo usermod -a -G groupname username
 ```
 
-### Control access files
+### Control access files for users
 
 the control access files are:
 
  - /etc/password - contains basic information about the users of the system: user name, uid (user id), gid (group id), home directory, and default terminal. But this file itslef doesn't store any passwords.
  - /etc/shadow   - user's passwords are stored in this file, but hashed.
  - /etc/group    - stores information about all the user's groups
+
+So /etc/password, can look like:
+
+```
+root@controlplane:~# cat /etc/passwd 
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:101:102:systemd Network Management,,,:/run/systemd/netif:/usr/sbin/nologin
+systemd-resolve:x:102:103:systemd Resolver,,,:/run/systemd/resolve:/usr/sbin/nologin
+sshd:x:104:65534::/run/sshd:/usr/sbin/nologin
+admin:x:1000:1000::/home/admin:/bin/bash
+david:x:2323:2323::/home/david:/bin/sh
+```
+
+And /etc/shadow, can look like: 
+
+```
+root@controlplane:~# cat /etc/shadow
+root:$6$xyD2JtAg$18v8Q7.Fj661Tj6xlrq2V1lUwv1gFAo9cGZvip/QCBs6K4xculGxgRxPJrTb4tAcgLqQcI0MVNmxJf84T8OIq/:18828:0:99999:7:::
+daemon:*:18810:0:99999:7:::
+bin:*:18810:0:99999:7:::
+sys:*:18810:0:99999:7:::
+sync:*:18810:0:99999:7:::
+proxy:*:18810:0:99999:7:::
+backup:*:18810:0:99999:7:::
+list:*:18810:0:99999:7:::
+nobody:*:18810:0:99999:7:::
+systemd-network:*:18828:0:99999:7:::
+systemd-resolve:*:18828:0:99999:7:::
+sshd:*:18828:0:99999:7:::
+admin:$6$KhLjsx8m$Fx7SIypRT
+david:!:18963:0:99999:7:::
+```
+
+And /etc/group, can look like:
+
+```
+root@controlplane:~# cat /etc/group 
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:
+tty:x:5:
+sudo:x:27:admin
+backup:x:34:
+shadow:x:42:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+ssh:x:106:
+admin:x:1000:
+david:x:2323:
+```
 
 ### Sudoers and sudo
 
