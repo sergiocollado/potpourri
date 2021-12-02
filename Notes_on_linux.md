@@ -379,6 +379,13 @@ A finer or more advanced control of access to files can be managed with the paqu
   
   To check the users in a system, you can check with: 'sudo cat _**/etc/password'**_. If you want to edit that file, it will need to use the command **'vipw'**, that will lock that file for other users. Also is possible that it will be necessary to exit the file _**/etc/shadow**_ for consistency, and that can be done with the command **'vipw -s'**.
   
+  For example, to reate a user named 'sam' on system, and the new user's home directory be /opt/sam. His Login shell be /bin/bash and uid be 2328. And also 'sam' a member of the 'admin' group:
+  
+  ```
+  > useradd -d /opt/sam -s /bin/bash -G admin -u 2328 sam
+  ```
+  
+  
 ### other commands related with users
 
 - **whoami** - displays your user
