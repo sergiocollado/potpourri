@@ -1361,3 +1361,31 @@ https://www.internalpointers.com/post/understanding-meaning-lvalues-and-rvalues-
 online C 11 standard: http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf
 
 online C++ standard: http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf
+
+
+
+
+Interesting github repos: 
+
+- https://github.com/freeCodeCamp/freeCodeCamp
+- https://github.com/jwasham/coding-interview-university
+- https://github.com/ewolff/microservices-praxisbuch.de
+- https://github.com/ewolff/continuous-delivery-buch.de
+- https://github.com/kamranahmedse/developer-roadmap
+- https://github.com/sindresorhus/awesome
+- https://github.com/inputsh/awesome-linux#readme
+- https://github.com/zoidbergwill/awesome-ebpf#readme
+- https://github.com/donnemartin/system-design-primer
+- https://github.com/ohmyzsh/ohmyzsh
+- https://github.com/jlevy/the-art-of-command-line
+- https://github.com/The-Art-of-Hacking/h4cker
+- https://github.com/ossu/computer-science
+- http://gaia.cs.umass.edu/kurose_ross/online_lectures.htm
+- https://github.com/yangshun/tech-interview-handbook
+- https://github.com/nigelpoulton/TheK8sBook
+- https://github.com/trimstray/the-book-of-secret-knowledge
+- https://github.com/ripienaar/free-for-dev
+- https://github.com/sdmg15/Best-websites-a-programmer-should-visit
+
+
+
