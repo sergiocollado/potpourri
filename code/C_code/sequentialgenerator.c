@@ -9,7 +9,7 @@
 //
 // AMP Configuration (check core status with "lscpu"):
 //
-// 1) Uses SCEHD_FIFO - https://man7.org/linux/man-pages//man7/sched.7.html
+// 1) Uses SCHED_FIFO - https://man7.org/linux/man-pages//man7/sched.7.html
 // 2) Sequencer runs on core 1
 // 3) EVEN thread indexes run on core 2
 // 4) ODD thread indexes run on core 3
