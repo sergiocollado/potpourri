@@ -1393,6 +1393,7 @@ Interesting github repos:
 - https://github.com/trimstray/the-book-of-secret-knowledge
 - https://github.com/ripienaar/free-for-dev
 - https://github.com/sdmg15/Best-websites-a-programmer-should-visit
+- shell command language standard: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18
 
 
 
