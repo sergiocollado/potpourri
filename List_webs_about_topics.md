@@ -1370,7 +1370,14 @@ online C++ standard: http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n42
  - https://blog.jez.io/vim-as-an-ide/
  - https://refactoring.guru/design-patterns/
  - https://developers.redhat.com/blog/2020/08/27/developing-micro-microservices-in-c-on-red-hat-openshift#
- - 
+ - https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units-es
+ - https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units
+ - https://www.slashroot.in/linux-booting-process-step-step-tutorial-understanding-linux-boot-sequence
+ - https://www.slashroot.in/how-does-traceroute-work-and-examples-using-traceroute-command
+ - https://www.slashroot.in/how-dns-works
+ - https://www.slashroot.in/what-mbr-and-gpt-partition-table
+ - https://www.slashroot.in/how-are-passwords-stored-linux-understanding-hashing-shadow-utils
+ - IRQs: the Hard, the Soft, the Threaded and the Preemptible : https://youtu.be/-pehAzaP1eg
 
 Interesting github repos: 
 
