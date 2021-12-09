@@ -288,11 +288,10 @@ For example, for the ARM architecture:
 
 More on:
 
-GCC Manual "Using the GNU Compiler Collection (GCC)" @ http://gcc.gnu.org/onlinedocs.
-
-GNU 'make' manual @ http://www.gnu.org/software/make/manual/make.html.
-
-Robert Mecklenburg, "Managing Projects with GNU Make", 3rd Edition, 2004.
+ - GCC Manual "Using the GNU Compiler Collection (GCC)" @ http://gcc.gnu.org/onlinedocs.
+ - GNU 'make' manual @ http://www.gnu.org/software/make/manual/make.html.
+ - Robert Mecklenburg, "Managing Projects with GNU Make", 3rd Edition, 2004.
+ - fast reference: https://makefiletutorial.com/#makefile-cookbook
 
 
 ## LIBRARIES:
