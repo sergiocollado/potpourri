@@ -1362,8 +1362,15 @@ online C 11 standard: http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf
 
 online C++ standard: http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf
 
-
-
+ - https://stackoverflow.com/questions/449827/virtual-functions-and-performance-c
+ - https://www.agner.org/optimize/
+ - https://medium.com/@abhichavhan/demystifying-virtual-functions-vtable-and-vptr-in-c-bf56f11f7cc7
+ - https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units-es
+ - https://linuxtect.com/linux-sysctl-command-tutorial/
+ - https://blog.jez.io/vim-as-an-ide/
+ - https://refactoring.guru/design-patterns/
+ - https://developers.redhat.com/blog/2020/08/27/developing-micro-microservices-in-c-on-red-hat-openshift#
+ - 
 
 Interesting github repos: 
 
