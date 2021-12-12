@@ -8,7 +8,7 @@
 // sequence a set of periodic services for problems 
 //
 
-/* For this example: Timing Diagram Emulation - RM Succeeds, Fair Fails
+/* For this example: Above the LUB - disharmonic - failure
 
 
 | TASK  | PERIOD |  FREQ  | MULT. FREQ |  WCET | UTILITY |
