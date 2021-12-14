@@ -975,7 +975,7 @@ EDF:  EARLIEST DEADLINE FIRST SCHEDULER:
 environment. Journal of the Association for Computing Machinery, vol.20, (no.1), Jan. 1973. p.
 46-61.
 - http://citeseer.ist.psu.edu/liu73scheduling.html
-- 
+
 ‣ J. Lehoczky, L. Sha, and Y. Ding. The rate monotonic scheduling algorithm: exact
 characterization and average case behavior. Proceedings of Real Time Systems Symposium, p.
 166-171, Dec. 1989.
@@ -984,11 +984,11 @@ characterization and average case behavior. Proceedings of Real Time Systems Sym
 Bound", IEEE Transactions on Computers, Vol. 52, No. 7, pp. 933-942, July 2003.
 - http://feanor.sssup.it/~giorgio/paps/2003/ieeetc-hb.pdf
 
+- Buttazzo, Giorgio C. "Rate monotonic vs. EDF: judgment day." Real-Time Systems 29.1 (2005): 5-26.  
+
 http://retis.sssup.it/~giorgio/paps/2005/rtsj05-rmedf.pdf
 
-
 references: https://www.amazon.com/-/es/Mark-Klein/dp/0792393619
-
 
 https://www.iiitd.edu.in/~amarjeet/EmSys2013/UCLA-EE202a-L05-RateMonotonic.pdf
 
