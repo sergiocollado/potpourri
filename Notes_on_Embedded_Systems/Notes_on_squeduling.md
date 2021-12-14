@@ -852,7 +852,7 @@ we have an harmonic example
 										
 ```
 
-real-time scheduling policies are superior than RR/fair scheduling policies... the more tast there are, the bigger the chance a RR/fair
+Real-time scheduling policies are superior than RR/fair scheduling policies... the more tast there are, the bigger the chance a RR/fair
 scheduler misses the task. On the other hand RR/fair scheduling, for example never starve services, that could happen with real-time
 policies...and also doesn't suffer from unbounded priority inversion.
 
@@ -904,8 +904,54 @@ TTD- TR : laxity    / TTD (time to dead-line) TR (time remaining)
 
 ```
 
+EDF:  EARLIEST DEADLINE FIRST SCHEDULER:
+========================================
+
+### LIMITATIONS IN THE RATE MONOTONIC THEORY
+
+- requires that the priorities are fixed
+- doesn't consider the importace of auxiliar service in addition to or instead of their request frequency or priority
+- Simplification of the model assuming T=D
+- Not considering additional resources needs, like shared memory neeeded at the same time as the CPU.
+- assuming that real-time services will be required on a peridic basis
+
+EDF is almost a dynamic priority scheduling policy. It is based in the TTD (time to deadline), which encodes the sense
+of urgency of the task. This has been proved to be an optimal strategy. EDF actually works in systems where RM doesn't.
+And also its utilizations can be highier that RM. EDF also is adaptative, so services in the background are better supported
+than for RM. 
+
+So every time the task queue changes, that is to say a execution slice is run, the priorities has to be calculated again, 
+that is check the TTD of the systems tasks, to know what will be the next task. This calculation actually it makes more
+complicated the system. 
+
+```
+      Service  Period  WCET   frequency   f0_multiple  Utility
+          S1    2       1    0.5            3.5         50%
+	  S2    5       1    0.2            1.4         20%
+	  S3    7       2    0.14286        1           28.57%
+	  
+EDF                                                               |
+ S1      |.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..||..   ..|..   ..|
+ S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..   ..|..   ..||.. S2..|..   ..|
+ S3      |..   ..|..   ..|..   ..|.. S3..|..   ..|.. S3..|..   ..||..   ..|..   ..|  
+			
+TTD: time to dead-line //   -> X means: doesn't care, it has comply with the scheduler for its period														  
+TTD : urgency                                                           
+ S1      |.. 2 ..|.. X ..|.. 2 ..|.. X ..|.. 2 ..|.. X ..|.. 2 ..||.. X ..|.. 2 ..| 
+ S2      |.. 5 ..|.. 4 ..|.. X ..|.. X ..|.. X ..|.. 5 ..|.. 4 ..||.. 3 ..|.. X ..|
+ S3      |.. 7 ..|.. 6 ..|.. 5 ..|.. 4 ..|.. 3 ..|.. 2 ..|.. X ..||.. 7 ..|.. 6 ..|
+	
+```
+
+EDF is recommended to be used in soft-realtime systems. Systems in which failing a deadline is not critical. 
+
+
+reference: Buttazzo, Giorgio C. "Rate monotonic vs. EDF: judgment day." Real-Time Systems 29.1 (2005): 5-26.  
+
+ 
 LST: Least Slack Time Scheduling:
 ==================================
+
 
 This scheduling strategy prioritizes the job with the least slack time. As a dynamic scheduling algorithm, this priority is evaluated at each tick.
 
@@ -951,21 +997,6 @@ We start marcking all the death-lines of the job:
 ... TODO:
 
 
-
-EDF:  EARLIEST DEADLINE FIRST SCHEDULER:
-========================================
-
-
-
-
-
-# LIMITATIONS IN THE RATE MONOTONIC THEORY
-
-- requires that the priorities are fixed
-- doesn't consider the importace of auxiliar service in addition to or instead of their request frequency or priority
-- Simplification of the model assuming T=D
-- Not considering additional resources needs, like shared memory neeeded at the same time as the CPU.
-- assuming that real-time services will be required on a peridic basis
 
 
 # REFERENCES:
