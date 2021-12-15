@@ -6,7 +6,7 @@
 
 **Throughput**. (1) amount of work that can be performed by a computer system or component in a given period of time (ISO/IEC/IEEE 24765:2017 Systems and software engineering-Vocabulary) (2) rate (i.e., the average number per time unit with respect to the rating interval) of all tasks of a task type submitted to the SUT (ISO/IEC 14756:1999 Information technology -- Measurement and rating of performance of computer-based software systems, 4.24) Note: Usually throughput is defined by the rate of terminated tasks during a period of time. " Copyright©, 2018, IEEE. Used by permission."
 
-**jitter**. 
+**jitter**: Is the variation in time, or the uncernainity on the time between the expected time at which an event should take place and the real time at which it takes place... It can be expressed as an average, or as a maximum variation.
 
 
 
