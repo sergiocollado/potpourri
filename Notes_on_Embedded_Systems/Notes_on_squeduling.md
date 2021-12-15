@@ -816,10 +816,21 @@ An example of two services that doesn't comply wit LUB but works:
            0        1        2        3        4        5        6        7        8        9        10
 ```
 
+## RM failure mode
+
+In case that RM fails a deadline, the failure mode, is that the tasks with lower priorities fail first. 
+Actually this is a very safe way to fail, because in RM the lowest priority, are supposed to be the less
+critical tasks. This makes this failure mode has a lower impact, that if the case would be that the most
+critical task missed their deadlines. 
+
+
+
 EXAMPLE: COMPARATION RM with RR/FAIR 
 ====================================
 
 RR/Fair scheudling can fail, when RM can succed. 
+
+**note:** RR stands for Round Robin.
 
 ```
 we have an harmonic example 
@@ -915,14 +926,19 @@ EDF:  EARLIEST DEADLINE FIRST SCHEDULER:
 - Not considering additional resources needs, like shared memory neeeded at the same time as the CPU.
 - assuming that real-time services will be required on a peridic basis
 
+### EDF descritption
+
 EDF is almost a dynamic priority scheduling policy. It is based in the TTD (time to deadline), which encodes the sense
-of urgency of the task. This has been proved to be an optimal strategy. EDF actually works in systems where RM doesn't.
-And also its utilizations can be highier that RM. EDF also is adaptative, so services in the background are better supported
+of urgency of the task. The task with the smallest TTD is the one, with the highiest priority. 
+
+This has been proved to be an optimal strategy. EDF actually works in systems where RM fails to meet the deadlines.
+
+Also EDF is a scheduling policy that can achieve highier utilizations that RM. EDF also is adaptative, so services in the background are better supported
 than for RM. 
 
-So every time the task queue changes, that is to say a execution slice is run, the priorities has to be calculated again, 
+So every time the task queue changes, that is to say: "an execution slice is ran", the priorities have to be calculated again, 
 that is check the TTD of the systems tasks, to know what will be the next task. This calculation actually it makes more
-complicated the system. 
+complicated the system, and makes the switch to the next task, more "expensive" that in the RM scheduler. This is a small disadvantage compared to RM. 
 
 ```
       Service  Period  WCET   frequency   f0_multiple  Utility
@@ -945,8 +961,24 @@ TTD : urgency
 
 EDF is recommended to be used in soft-realtime systems. Systems in which failing a deadline is not critical. 
 
+**Note** for systems that have harmonic tasks, EDF and RM result always in the same scheduling, so actually, it is
+best to go for RM system, because it doesn't have the overhead of calculating the TTD, so that will result in saving
+computation time. 
 
-reference: Buttazzo, Giorgio C. "Rate monotonic vs. EDF: judgment day." Real-Time Systems 29.1 (2005): 5-26.  
+### EDF failure mode
+
+The big downside of EDF, is what is known as the "domino failure", this type of failure can be seen, in those
+systems in which the TTD calculation of the tasks produces the same values for more than one task, that may lead
+to a domino failure. 
+
+Also, there is the issue, that there is no really a warning, or hint, that the scheduling is going to fail. In case
+of an overload. Also, in case of a failure, which task would fail, is not guaranteed, so the first task to fail, could
+be the most critical one, that makes this scheduling policy much more riscky in case of failure. 
+
+This severe failure mode, is the reason why EDF is preferred as a policy for soft-real-time systems, in which missing a
+deadline have not catastrophic consequences. 
+
+Reference: Buttazzo, Giorgio C. "Rate monotonic vs. EDF: judgment day." Real-Time Systems 29.1 (2005): 5-26.  
 
  
 LST: Least Slack Time Scheduling:
