@@ -1458,6 +1458,7 @@ https://github.com/agelastic/eudyptula
 
 Write and Submit your first Linux kernel Patch: https://youtu.be/LLBrBBImJt4
 
+reference: https://www.slideshare.net/SamsungOSG/a-survivors-guide-to-contributing-to-the-linux-kernel
 
 ### Intro
 
@@ -1628,6 +1629,21 @@ The easy thing to do, is to copy your actual config file (in /boot/) and move it
 ```
 cp /boot/<config-5.0.0-21-generic> .config
 ```
+
+#### the kernel build system
+
+reference: https://www.linuxjournal.com/content/kbuild-linux-kernel-build-system
+reference: https://www.kernel.org/doc/html/latest/kbuild/index.html
+
+The kernel has its own build system: the Kernel build sistem: Kbuild.
+
+It has four main components:
+
+ - config symbols: conditions to conditionally compile code, include or exclude components.
+ - kconfig files: files that define the possible config sysmbols. 'make menuconfig' reads the config sysmbols for the kconfig files.
+ - .config file: files that stored the value of the confi sysmbols. 'make menuconfig' is used to give those values, or the file edited directly.
+ - makefiles: normal makefiles
+
 
 #### Compiling the kernel 
 
