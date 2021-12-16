@@ -2,9 +2,13 @@
 
 Index of Documentation for People Interested in Writing and/or Understanding the Linux Kernel: https://www.kernel.org/doc/html/latest/process/kernel-docs.html
 
-kernel coding style: https://www.kernel.org/doc/html/latest/process/coding-style.html
+Kernel coding style: https://www.kernel.org/doc/html/latest/process/coding-style.html
 
-mentorship series: https://events.linuxfoundation.org/lf-live-mentorship-series/
+Mentorship series: https://events.linuxfoundation.org/lf-live-mentorship-series/
+
+Linux kernel labs: https://linux-kernel-labs.github.io/refs/heads/master/
+
+Linux Inside: https://0xax.gitbooks.io/linux-insides/content/
 
 [linux kernel map](https://makelinux.github.io/kernel/map/)
 
