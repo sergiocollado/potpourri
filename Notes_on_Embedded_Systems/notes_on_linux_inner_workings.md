@@ -152,13 +152,13 @@ https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/x86/e
 
 ## Syscall handler
 
-The code inuser space cannot call a system call directly, due it is in kernel-space and it is in a protected memory space. 
+The code in user-space cannot call a system call directly, due it is in kernel-space and it is in a protected memory space. 
 So, the user-space applications must signal the kernel to execute a system call and have to somehow switch to kernel mode. 
 This is done by means to signal the kernel with a software interrupt. Call an exception and then, the
-system will switch to kernel mode and execute the exception handler. That exception handler will be the system call handler __**system_call()**__
+system will switch to kernel-mode and execute the exception handler. That exception handler will be the system call handler __**system_call()**__
 which is an architectural dependand call. 
 
-The system ust identify the system call number desired to be called. On x86, this is passed by puting the system call number in the __eax__ register. 
+The system has to identify the system call number desired to be called. On x86, this is passed by puting the system call number in the __eax__ register. 
 Other architectures do something similar. This number is checked comparing tis value to NR_syscals to verify it is smaller, if it is not it returns, -ENOSYS. 
 If the verification is ok, then it is called: 
 
@@ -388,7 +388,7 @@ asmlinkage long sys_io_pgetevents(aio_context_t ctx_id,
 reference:https://www.kernel.org/doc/html/latest/core-api/irq/index.html<br>
 reference: https://linux.die.net/lkmpg/x1256.html <br>
 
-An IRQ is an interrupt request from a device. Currently they can come in over a pin, or over a packet. Several devices may be connected to the same pin thus sharing an IRQ.
+An IRQ is an **interrupt request** from a device. Currently they can come in over a pin, or over a packet. Several devices may be connected to the same pin thus sharing an IRQ.
 
 An IRQ number is a kernel identifier used to talk about a hardware interrupt source. Typically this is an index into the global irq_desc array, but except for what linux/interrupt.h implements the details are architecture specific.
 
@@ -396,25 +396,22 @@ Interrups allow the hardware to signal events and communicate to the kernel. The
 The interrupt controller will signal interrupts to the processor, and the kernel will be notified to handle that interrupt. Thiferent devices generate different
 interrupts, so each interrupt can be addressed accordinly with a unique handler. Those interrupt values are called interrupt requests (IRQ) 
 
-Note!: similar to interrupts are the exceptions, what occour synchronoulsy with the processor's clock. Sometimes they are called synchronous interrupts. Those 
-exceptions happen when the processor executes a wrong instruction, like dividing by zero. Those exceptions are handled very much like interrupts in many architectures. 
+Note!: similar to **interrupts** are the **exceptions**, that occour synchronoulsy with the processor's clock. Sometimes they are called synchronous interrupts. Those exceptions happen when the processor executes a wrong instruction, like dividing by zero. Those exceptions are handled very much like interrupts in many architectures. 
 
-For a given interrupt , the kernel responds with the corresponding interrupt handler or interrupt service routine (ISR). Interrupt handlers are normal C functions, 
-that are invoked by the kernel, in response to interrupts. An interrupt is importat that is fast, so it doesn't halt the system. The minimum that the interupt handler
-has to do is to acknoledge te interrupt has been receibed. 
+For a given interrupt, the kernel responds with the corresponding interrupt handler or interrupt service routine (ISR). Interrupt handlers are normal C functions, that are invoked by the kernel, in response to interrupts. An interrupt is importat that is fast, so it doesn't halt the system. The minimum that the interupt handler has to do is to acknoledge the interrupt has been receibed. 
 
-To be as fast as possible, the the processing of interrupts is split in two parts: the top half and the bottom half. The top half is executed immediately upon receiving 
-the interrupt and performs the most critical work, and the rest is delayed and handled in the bottom half. The bottom half will run later. 
+To be as fast as possible, the processing of interrupts is split in two parts: the **top half** and the **bottom half**. The top half is executed immediately upon receiving the interrupt and performs the most critical work, and the rest is delayed and handled in the bottom half. The bottom half will run later. 
+
+As interrupts are desired to be as fast as possible, the top half of the interrupt, has to be as brief as possible. 
 
 reference: IRQs: the Hard, the Soft, the Threaded and the Preemptible - https://youtu.be/-pehAzaP1eg <br>
 reference: https://linux.die.net/lkmpg/x1256.html <br>
-reference:https://www.kernel.org/doc/html/latest/core-api/irq/index.html<br>
+reference: https://www.kernel.org/doc/html/latest/core-api/irq/index.html<br>
 reference: https://www.kernel.org/doc/html/latest/core-api/genericirq.html <br>
 
 ## /proc/interrupts
 
 The procfs filesystem is a virtual filesystem that is used to provide information and has information related to te interrupts of the system.
-
 
 To see the interrupts occurring on your system, run the command:
 ```
@@ -593,6 +590,26 @@ MODULE_LICENSE("GPL");
  */
 
 ```
+
+## Bottom Halves
+
+The bottom halves continue the process, stated by the interrupt handler and the top halves. This should be the most of the work, as the first part
+should be as fast as possible, but never the less some minimum work, as acknoledge the reception of the interrupt, and copy the needed data. 
+
+This division between top and bottom halves is needed, due the interrupt handler runs asyncrously, and it interrupts other routines. Not only that,
+when the interrupt handle runs, it runs with the current interrupt disable, in the best case, and if it is the worst case, interrupt handlers registered
+with SA_INTERRUPT, run with all local interrupts disabled. The goal of the bottom halves is to minimize the time in the interrupt handle, so interrupts are
+disabled for the minimun time. Bottom halves, can run, with the interrupts enabled. 
+
+There are several ways to implement bottom halves: 
+
+ - softirqs
+ - tasklts 
+ - workqueues
+
+
+
+
 
 # Linux scheduler
 
