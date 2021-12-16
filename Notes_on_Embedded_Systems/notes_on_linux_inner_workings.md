@@ -612,7 +612,29 @@ There are several ways to implement bottom halves:
  - workqueues
 
 
+## Softirqs
 
+It is the basic mechanis for bottom haves. Tasklets are implemented on top of them. 
+
+Softirqs are allocated statically at compile time. Softirqs represetned by the structure 'softirq_action' defined in <linux/interrupt.h>
+
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/include/linux/interrupt.h?h=v5.4.144#n541
+
+```
+struct softirq_action
+{
+	void	(*action)(struct softirq_action *);
+};
+```
+an array of this structure is defined at: kernel/softirq.c
+
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/kernel/softirq.c?h=v5.4.144#n55
+
+```
+static struct softirq_action softirq_vec[NR_SOFTIRQS] __cacheline_aligned_in_smp;
+```
+
+So actually it is not possible to allocate more that NR_SOFTIRQS.
 
 
 # Linux scheduler
