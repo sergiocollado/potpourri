@@ -10,16 +10,24 @@
 
 /* For this example:  Timing Diagram Emulation - Non-Harmonic, Below LUB, Feasible, Margin (Safe) 
 
-
 | TASK  | PERIOD |  FREQ  | MULT. FREQ |  WCET | UTILITY |
 |  S1   |    2   |   0.5  |    7.5     |   1   |   50%   |
 |  S2   |   10   |   0.1  |    1.5     |   1   |   10%   |
 |  S3   |   15   |   0.66 |    1       |   2   |   13%   |
 
 LUB = 77.98%
-LCM = 30 // period for repetition
+LCM = 30    // period for repetition
 U_tot = 73.33%
 slack_time = 26.67%
+
+0ms    10ms   20ms   30ms   40     50     60    70      80     90  [ms]
+|--S1--|--S2--|--S1--|--S3--|--S1--|--S3--|--S1--|-SLACK-|--S1--|-SLACK- >
+
+100    110    120    130    140    150    160    170    180    190  [ms]
+|--S1--|--S2--|--S1--|-SLACK|--S1--|--S3--|--S1--|--S3--|--S1--|--S3--  >
+
+200    210    220    230    240    250    260    270    280    290  [ms]
+|--S1--|--S2--|--S1--|-SLACK|--S1--|-SLACK|--S1--|-SLACK|--S1--|-SLACK-  >
 
 */
 
@@ -86,7 +94,8 @@ double getTimeMsec(void);
 double realtime(struct timespec *tsptr);
 void print_scheduler(void);
 void fibonacciForXms(float timeMs);
-
+int get_uname(char * msg)
+	
 int main(void)
 {
     //struct timespec current_time_val;
@@ -439,6 +448,22 @@ void fibonacciForXms(float timeMs)
     //printf("Execution time: %f\n", end_time - start_time); 
 }
 
+int get_uname(char* msg) {
+    FILE*   fp;
+    int     c;
+
+    if(msg == NULL)                 /* check for NULL pointer */
+        return -1;
+
+    fp = popen("uname -a", "r");    /* execute 'uname -a' command */
+    if(fp == NULL)
+        return -1;
+    
+    while( (c = fgetc(fp)) != EOF)  /* get chars while end of file */
+        *msg++ = c;                 /* write c into msg buffer     */
+    
+    return 0;
+}
 /*
 The expected output would be:
 Dec 13 13:16:57 debian sequencer[1976]: [COURSE:2][ASSIGNMENT:1]: Linux debian 4.19.0-16-amd64 #1 SMP Debian 4.19.181-1 (2021-03-19) x86_64
