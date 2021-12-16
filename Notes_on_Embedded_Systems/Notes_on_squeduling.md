@@ -935,8 +935,7 @@ deadline have not catastrophic consequences.
 Reference: Buttazzo, Giorgio C. "Rate monotonic vs. EDF: judgment day." Real-Time Systems 29.1 (2005): 5-26.  
 
  
-## LSF: Least Slack First or LST: Least Slack Time Scheduling:
-
+## LSF: Least Slack First or LST: Least Slack Time Scheduling or LLF: Least Laxity first
 
 
 This scheduling strategy prioritizes the job with the least slack time. As a dynamic scheduling algorithm, this priority is evaluated at each tick.
@@ -946,6 +945,7 @@ The remaining slack time is calculated as:
 ```
 slack_time = death_line_time -  current_time - remaining_execution_time = TTD - TR
 
+Laxity = TTD - TR
 TTD: time to deadline
 TR: remaining execution time
 ```
@@ -953,10 +953,12 @@ TR: remaining execution time
 In case the job has not been executed yet, then the slack time equals the execution time.
 
 One advantage of LSF over EDF, is that while EDF fails, whithout warning, in LSF, as we are coputing the lack time, the scheduler,
-knows, beforehand, if it is going to fail a dead-line.
+knows, beforehand, if it is going to fail a dead-line. So the failure mode is better that EDF. 
 
 One disadvantage regarding LFS compared with EDF, is that the remaining time, is hard to compute.   
 
+In some scenarios LSF, can switch tasks innecesarly, doing innecesary context switches. This has resulted in other scheduilng policy: 
+ELLF, enhaced least laxity first, 
 
 
 -------
