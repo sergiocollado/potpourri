@@ -868,52 +868,6 @@ scheduler misses the task. On the other hand RR/fair scheduling, for example nev
 policies...and also doesn't suffer from unbounded priority inversion.
 
 
-EXAMPLE: COMPARATION RM, EDF and LLF
-====================================
-
-```
-      Service  Period  WCET   frequency   f0_multiple  Utility
-          S1    2       1    0.5            3.5         50%
-	  S2    5       1    0.2            1.4         20%
-	  S3    7       2    0.14286        1           28.57%
-	  
- Total Utility: 98.57%
- LCM: 70
- LUB: 77.98%
-
-
- time    |___1___|___2___|___3___|___4___|___5___|___6___|___7___||___8___|___9___|___...___
-																  
- RM                                                               |
- S1      |.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..||..   ..|.. S1..|
- S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..S2?..|..   ..||..   ..|..   ..|
- S3      |..   ..|..   ..|..   ..|.. S3..|..   ..|..   ..|..   ..||.LATE!.|..   ..|  -> RM misses S3. S3 needs 2 times every 7 time units.
-																  
-																  
-EDF                                                               |
- S1      |.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..||..   ..|..   ..|
- S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..   ..|..   ..||.. S2..|..   ..|
- S3      |..   ..|..   ..|..   ..|.. S3..|..   ..|.. S3..|..   ..||..   ..|..   ..|   -> EDF complies
-			
-TTD: time to dead-line															  
-TTD : urgency                                                           |
- S1      |.. 2 ..|.. X ..|.. 2 ..|.. X ..|.. 2 ..|.. X ..|.. 2 ..||.. X ..|.. 2 ..|   -> X means: doesn't care, it has comply with the scheduler for its period.
- S2      |.. 5 ..|.. 4 ..|.. X ..|.. X ..|.. X ..|.. 5 ..|.. 4 ..||.. 3 ..|.. X ..|
- S3      |.. 7 ..|.. 6 ..|.. 5 ..|.. 4 ..|.. 3 ..|.. 2 ..|.. X ..||.. 7 ..|.. 6 ..|
-																  
-LLF                                                               |
- S1      |.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..||..   ..|..   ..|
- S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..   ..|..   ..||.. S2..|..   ..|
- S3      |..   ..|..   ..|..   ..|.. S3..|..   ..|.. S3..|..   ..||..   ..|..   ..|   -> EDF complies
-																  
-TT																  
-TTD- TR : laxity    / TTD (time to dead-line) TR (time remaining)                                                    
- S1      |.. 1 ..|.. X ..|.. 1 ..|.. X ..|.. 1 ..|.. X ..|.. 1 ..||.. X ..|.. 1 ..|
- S2      |.. 4 ..|.. 3 ..|.. X ..|.. X ..|.. X ..|.. 4 ..|.. 3 ..||.. 2 ..|.. X ..|
- S3      |.. 5 ..|.. 4 ..|.. 3 ..|.. 2 ..|.. 2 ..|.. 1 ..|.. X ..||.. 5 ..|.. 3 ..|
- 
-
-```
 
 EDF:  EARLIEST DEADLINE FIRST SCHEDULER:
 ========================================
@@ -981,18 +935,31 @@ deadline have not catastrophic consequences.
 Reference: Buttazzo, Giorgio C. "Rate monotonic vs. EDF: judgment day." Real-Time Systems 29.1 (2005): 5-26.  
 
  
-LST: Least Slack Time Scheduling:
-==================================
+## LSF: Least Slack First or LST: Least Slack Time Scheduling:
+
 
 
 This scheduling strategy prioritizes the job with the least slack time. As a dynamic scheduling algorithm, this priority is evaluated at each tick.
 
-the remaining slack time is calculated as:
+The remaining slack time is calculated as:
 
-slack_time = death_line_time -  current_time - remaining_execution_time
+```
+slack_time = death_line_time -  current_time - remaining_execution_time = TTD - TR
 
-in case the job has not been executed yet, then the slack time equals the execution time.
+TTD: time to deadline
+TR: remaining execution time
+```
 
+In case the job has not been executed yet, then the slack time equals the execution time.
+
+One advantage of LSF over EDF, is that while EDF fails, whithout warning, in LSF, as we are coputing the lack time, the scheduler,
+knows, beforehand, if it is going to fail a dead-line.
+
+One disadvantage regarding LFS compared with EDF, is that the remaining time, is hard to compute.   
+
+
+
+-------
 
 Example LST:
 
@@ -1029,6 +996,53 @@ We start marcking all the death-lines of the job:
 ... TODO:
 
 
+
+EXAMPLE: COMPARATION RM, EDF and LLF
+====================================
+
+```
+      Service  Period  WCET   frequency   f0_multiple  Utility
+          S1    2       1    0.5            3.5         50%
+	  S2    5       1    0.2            1.4         20%
+	  S3    7       2    0.14286        1           28.57%
+	  
+ Total Utility: 98.57%
+ LCM: 70
+ LUB: 77.98%
+
+
+ time    |___1___|___2___|___3___|___4___|___5___|___6___|___7___||___8___|___9___|___...___
+																  
+ RM                                                               |
+ S1      |.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..||..   ..|.. S1..|
+ S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..S2?..|..   ..||..   ..|..   ..|
+ S3      |..   ..|..   ..|..   ..|.. S3..|..   ..|..   ..|..   ..||.LATE!.|..   ..|  -> RM misses S3. S3 needs 2 times every 7 time units.
+																  
+																  
+EDF                                                               |
+ S1      |.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..||..   ..|..   ..|
+ S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..   ..|..   ..||.. S2..|..   ..|
+ S3      |..   ..|..   ..|..   ..|.. S3..|..   ..|.. S3..|..   ..||..   ..|..   ..|   -> EDF complies
+			
+TTD: time to dead-line															  
+TTD : urgency                                                           |
+ S1      |.. 2 ..|.. X ..|.. 2 ..|.. X ..|.. 2 ..|.. X ..|.. 2 ..||.. X ..|.. 2 ..|   -> X means: doesn't care, it has comply with the scheduler for its period.
+ S2      |.. 5 ..|.. 4 ..|.. X ..|.. X ..|.. X ..|.. 5 ..|.. 4 ..||.. 3 ..|.. X ..|
+ S3      |.. 7 ..|.. 6 ..|.. 5 ..|.. 4 ..|.. 3 ..|.. 2 ..|.. X ..||.. 7 ..|.. 6 ..|
+																  
+LLF                                                               |
+ S1      |.. S1..|..   ..|.. S1..|..   ..|.. S1..|..   ..|.. S1..||..   ..|..   ..|
+ S2      |..   ..|.. S2..|..   ..|..   ..|..   ..|..   ..|..   ..||.. S2..|..   ..|
+ S3      |..   ..|..   ..|..   ..|.. S3..|..   ..|.. S3..|..   ..||..   ..|..   ..|   -> EDF complies
+																  
+TT																  
+TTD- TR : laxity    / TTD (time to dead-line) TR (time remaining)                                                    
+ S1      |.. 1 ..|.. X ..|.. 1 ..|.. X ..|.. 1 ..|.. X ..|.. 1 ..||.. X ..|.. 1 ..|
+ S2      |.. 4 ..|.. 3 ..|.. X ..|.. X ..|.. X ..|.. 4 ..|.. 3 ..||.. 2 ..|.. X ..|
+ S3      |.. 5 ..|.. 4 ..|.. 3 ..|.. 2 ..|.. 2 ..|.. 1 ..|.. X ..||.. 5 ..|.. 3 ..|
+ 
+
+```
 
 
 # REFERENCES:
