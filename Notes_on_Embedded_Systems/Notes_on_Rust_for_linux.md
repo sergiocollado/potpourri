@@ -10,6 +10,8 @@ Rust in the Linux ecosystem : https://youtu.be/jTWdk0jYy54
 
 Rust for Linux: https://youtu.be/46Ky__Gid7M
 
+Documentation: https://rust-for-linux.github.io/docs/kernel/ 
+
 ## Videos: 
 
 Oct 2, 2019: Writing Linux Kernel Modules in Safe Rust - https://www.youtube.com/watch?v=RyY01fRyGhM
