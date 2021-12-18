@@ -6,6 +6,8 @@
 
 Main work: https://github.com/Rust-for-Linux/linux
 
+Contribute: https://github.com/Rust-for-Linux/linux/contribute
+
 rust for linux mail-list: https://lore.kernel.org/rust-for-linux/
 
 Rust in the Linux ecosystem : https://youtu.be/jTWdk0jYy54
