@@ -974,7 +974,7 @@ knows, beforehand, if it is going to fail a dead-line. So the failure mode is be
 
 One disadvantage regarding LFS compared with EDF, is that the remaining time, is hard to compute.   
 
-In some scenarios LSF, can switch tasks innecesarly, doing innecesary context switches. This has resulted in other scheduilng policy: 
+In some scenarios LSF, can switch tasks innecesarly, doing innecesary context switches (thrasing). This has resulted in other scheduilng policy: 
 ELLF, enhaced least laxity first, 
 
 
@@ -1013,6 +1013,18 @@ We start marcking all the death-lines of the job:
 0     1     2     3     4     5     6     7     8      time
 ```
 ... TODO:
+
+
+### References for LLF
+
+The Least Laxity First (or Least Slack First) was described by the following paper as a more optimal alternative to EDF, which was originally described by Liu and Layland and called "Deadline Driven" scheduling.
+
+Dertouzos, Michael L., and Aloysius K. Mok. "Multiprocessor online scheduling of hard-real-time tasks." IEEE Transactions on software engineering 15.12 (1989): 1497-1506.  
+
+The LLF policy suffers from thrashing that looks like RR (Round Robin) in certain scenarios, so an enhanced algorithm has been suggested that detects this condition and recovers by using EDF to avoid thrashing.  The enhancement is describe in the following paper.
+
+Hildebrandt, Jens, Frank Golatowski, and Dirk Timmermann. "Scheduling  coprocessor for enhanced least-laxity-first scheduling in hard real-time  systems." Proceedings of 11th Euromicro Conference on Real-Time Systems. Euromicro RTS'99. IEEE, 1999.  
+
 
 
 
@@ -1118,6 +1130,8 @@ Laxity table (TTD-TR)
  S1:   2      X      X      2      X      X      2      X      X      2      X      X       2      X      X     2      X      X    
  S2:   4      3      3      X      X      X      4      3      2      2      1      X       4      3      3     2      1      X    
  S3:   6      5      4      3      2      2      2      1      X      6      5      4       4      3      2     2      1      0    
+ 
+NOTE: In this last example notice the thrasing, in which the tasks rotate doing unnecessary context sutiches: S1 -> S2 -> S3 -> S1 -> S2 -> S3
 
 ```
 
