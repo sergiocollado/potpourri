@@ -880,7 +880,7 @@ EDF:  EARLIEST DEADLINE FIRST SCHEDULER:
 - Not considering additional resources needs, like shared memory neeeded at the same time as the CPU.
 - assuming that real-time services will be required on a peridic basis
 
-### EDF descritption
+### EDF description
 
 EDF is almost a dynamic priority scheduling policy. It is based in the TTD (time to deadline), which encodes the sense
 of urgency of the task. The task with the smallest TTD is the one, with the highiest priority. 
@@ -934,7 +934,24 @@ deadline have not catastrophic consequences.
 
 Reference: Buttazzo, Giorgio C. "Rate monotonic vs. EDF: judgment day." Real-Time Systems 29.1 (2005): 5-26.  
 
- 
+### references for EDF
+
+Stankovic, John A., et al. "Fundamentals of EDF scheduling." Deadline Scheduling for Real-Time Systems. Springer, Boston, MA, 1998. 27-65.  
+
+Students at University of Colorado who are on the Colorado.edu domain or loggegd in via VPN should be able to download the PDF text.
+
+Papers on deadline driven scheduling that may also be interesting:
+
+Golatowski, Frank, et al. "Framework for validation, test and analysis  of real-time scheduling algorithms and scheduler implementations." Proceedings 13th IEEE International Workshop on Rapid System Prototyping. IEEE, 2002.  
+
+Wilding, Matthew. "A machine-checked proof of the optimality of a real-time scheduling policy." International Conference on Computer Aided Verification. Springer, Berlin, Heidelberg, 1998.  
+
+Baek, Hyeongboo, Hoon Sung Chwa, and Jinkyu Lee. "Beyond  Implicit-Deadline Optimality: A Multiprocessor Scheduling Framework for  Constrained-Deadline Tasks." 2017 IEEE Real-Time Systems Symposium (RTSS). IEEE, 2017.  
+
+Mok, Aloysius Ka-Lau. Fundamental design problems of distributed systems for the hard-real-time environment. Dissertation. Massachusetts Institute of Technology, 1983.
+
+
+
 ## LSF: Least Slack First or LST: Least Slack Time Scheduling or LLF: Least Laxity first
 
 
@@ -1043,8 +1060,67 @@ TTD- TR : laxity    / TTD (time to dead-line) TR (time remaining)
  S2      |.. 4 ..|.. 3 ..|.. X ..|.. X ..|.. X ..|.. 4 ..|.. 3 ..||.. 2 ..|.. X ..|
  S3      |.. 5 ..|.. 4 ..|.. 3 ..|.. 2 ..|.. 2 ..|.. 1 ..|.. X ..||.. 5 ..|.. 3 ..|
  
+```
+
+Other example:
 
 ```
+For this example: - Non-Harmonic, RM Failure, EDF and LLF Success
+
+| TASK  | PERIOD |  FREQ  | MULT. FREQ |  WCET | UTILITY |
+|  S1   |    3   |   0.33 |    3       |   1   |   33.3% |
+|  S2   |    6   |   0.16 |    1.5     |   2   |   33.3% |
+|  S3   |    9   |   0.11 |    1       |   3   |   33.3% |
+
+
+LUB = 77.98
+LCM = 18       // period for repetition
+U_tot = 100%
+
+
+RM schedule:
+
+0ms    10ms   20ms   30ms   40     50     60    70      80     90     100    110    120    130    140    150    160    170    180   [ms]
+|--S1--|--S2--|--S2--|--S1--|--S3--|--S3--|--S1--|--S2--|--S2--|--S1--|--MISSED-S3--|--S1--|--S2--|--S2--|--S1--|--S1--|--S3--|--S3--|
+                                                              ^^^ Here S2 misses the deadline, doesn't manage to do 3 computation slices in the 9 slices period!!
+<--------T1----------><--------T1---------><--------T1---------><--------T1---------><--------T1---------><--------T1---------><--------T1--------->
+<--------------------T2-------------------><--------------------T2------------------><--------------------T2------------------> ...          
+<------------------------------T3------------------------------><------------------------------T3------------------------------> ...
+
+          
+EDF schedule:
+
+    0ms    10ms   20ms   30ms   40     50     60    70      80     90     100    110    120    130    140    150    160    170    180   [ms]
+    |--S1--|--S2--|--S2--|--S1--|--S3--|--S3--|--S1--|--S3--|--S2--|--S1--|--S2--|--S3--|--S1--|--S2--|--S2--|--S1--|--S3--|--S3--| ...
+
+    <--------T1----------><--------T1---------><--------T1---------><--------T1---------><--------T1---------><--------T1---------><--------T1--------->
+    <--------------------T2-------------------><--------------------T2------------------><--------------------T2------------------> ...          
+    <------------------------------T3------------------------------><------------------------------T3------------------------------> ...
+
+Urgency table (TTD: TIME TO DEADLINE)
+
+ S1:    3      X      X      3     X      X       3      X      X       3     X      X      3       X     X      3     X      X
+ S2:    6      5      4      X     X      X       6      5      4       3     2      X      6       5     4      X     X      X
+ S3:    9      8      7      6     5      4       3      2      X       9     8      7      6       5     4      3     2      x
+
+
+LFF schedule: 
+ 
+    0ms    10ms   20ms   30ms   40     50     60    70      80     90     100    110    120    130    140    150    160    170    180   [ms]
+    |--S1--|--S2--|--S2--|--S1--|--S3--|--S3--|--S1--|--S3--|--S2--|--S1--|--S2--|--S3--|--S1--|--S2--|--S3--|--S1--|--S2--|--S3--| ...
+
+    <--------T1----------><--------T1---------><--------T1---------><--------T1---------><--------T1---------><--------T1---------><--------T1--------->
+    <--------------------T2-------------------><--------------------T2------------------><--------------------T2------------------> ...          
+    <------------------------------T3------------------------------><------------------------------T3------------------------------> ...
+
+Laxity table (TTD-TR)
+
+ S1:   2      X      X      2      X      X      2      X      X      2      X      X       2      X      X     2      X      X    
+ S2:   4      3      3      X      X      X      4      3      2      2      1      X       4      3      3     2      1      X    
+ S3:   6      5      4      3      2      2      2      1      X      6      5      4       4      3      2     2      1      0    
+
+```
+
 
 
 # REFERENCES:
