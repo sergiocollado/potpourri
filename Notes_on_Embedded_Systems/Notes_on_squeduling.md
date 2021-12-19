@@ -1147,6 +1147,7 @@ references: https://www.amazon.com/-/es/Mark-Klein/dp/0792393619
 
 https://www.iiitd.edu.in/~amarjeet/EmSys2013/UCLA-EE202a-L05-RateMonotonic.pdf
 
+The evolution of real-time linux: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.151.6125&rep=rep1&type=pdf
 
 
 
