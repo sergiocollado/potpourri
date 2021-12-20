@@ -1,5 +1,27 @@
 //reference: https://docs.oracle.com/cd/E19205-01/820-0619/geosb/index.html
 
+/*
+The term 'deadlock' describes a condition in which two or more threads are blocked (hung) forever because they are waiting for each other.
+There are many causes of deadlocks such as erroneous program logic, inappropriate use of synchronizations and barriers. 
+This example focuses on deadlocks that are caused by the inappropriate use of mutual exclusion locks. 
+This type of deadlock is commonly encountered in multi-threaded applications. 
+
+The Dining Philosophers Scenario:
+
+The dining philosophers scenario is a classic which is structured as follows. Five philosophers, numbered zero to four,
+are sitting at a round table, thinking. As time passes, different individuals become hungry and decide to eat. There is
+bowl of noodles on the table but each philosopher only has one chopstick to use. In order to eat, they must share chopsticks.
+The chopstick to the left of each philosopher (as they sit facing the table) has the same number as that philosopher.
+
+Each philosopher first reaches for his own chopstick which is the one with his number. When he has his assigned chopstick, 
+he reaches for the chopstick assigned to his neighbor. After he has both chopsticks, he can eat.
+After eating, he returns the chopsticks to their original positions on the table, one on either side.
+The process is repeated until there are no more noodles.
+
+An actual deadlock occurs when every philosopher is holding his own chopstick and waiting for the one from his neighbor to become available.
+In this situation, nobody can eat and the philosophers are in a deadlock.
+*/
+
 #include <pthread.h>
 #include <stdio.h>
 #include <unistd.h>
