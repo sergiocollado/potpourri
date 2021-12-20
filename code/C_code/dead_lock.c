@@ -1,4 +1,4 @@
-// A deadlock is one issue that can happen when sharing resources between different tasks.
+// A deadlock is one issue that can happen when sharing resources between different tasks. It is a circular wait.
 
 // a Thread 1 holds the resource A and also request B
 // a Thread 2 holds the resource B and also request A
