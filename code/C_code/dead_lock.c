@@ -1,5 +1,7 @@
 // A deadlock is one issue that can happen when sharing resources between different tasks. It is a circular wait.
 
+//The term 'deadlock' describes a condition in which two or more threads are blocked (hung) forever because they are waiting for each other.
+
 // a Thread 1 holds the resource A and also request B
 // a Thread 2 holds the resource B and also request A
 
