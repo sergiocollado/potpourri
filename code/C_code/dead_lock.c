@@ -1,3 +1,15 @@
+// A deadlock is one issue that can happen when sharing resources between different tasks.
+
+// a Thread 1 holds the resource A and also request B
+// a Thread 2 holds the resource B and also request A
+
+// the taks will block each others indefitely. This is and unbounded blocking.
+
+// this is what happens in the dining philosophers problem.
+
+// in a system, the watchdog, would try to solve this by reseting the system. 
+
+
 #include <pthread.h>
 #include <stdio.h>
 #include <sched.h>
