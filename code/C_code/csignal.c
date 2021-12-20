@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-/** signals are a sw interruptions **/
+/** signals are sw interruptions **/
 
 /** signals are very useful for example when the program 
 suddently stops, and you can have the change to close file handles,
