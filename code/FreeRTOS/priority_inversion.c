@@ -8,6 +8,20 @@ In the simple case, the high priority task (Task H) would be blocked as long as 
 This is known as “bounded priority inversion,” as the length of time of the inversion is bounded by however long the low priority 
 task is in the critical section (holding the lock).
 
+``` 
+ Priority
+   ^                                  Task H is blocked trying to get the lock!
+   |                                  V 
+3  |                         [ Task H ]                  [ Critical Section | task H ]
+   |                         |        |                  |                           |
+   |                         |        |                  |                           |
+1  |               [ Task L *|        [ Critical Section]|                           [ Task L ] ... 
+   |       task L gets lock ^ 
+   |
+   ---------------------------------------------------------------------------------------------------> time
+     
+```
+
 Unbounded priority inversion occurs when a medium priority task (Task M) interrupts Task L while it holds the lock.
 It’s called “unbounded” because Task M can now effectively block Task H for any amount of time, as Task M is preempting 
 Task L (which still holds the lock).
