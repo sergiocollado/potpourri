@@ -15,6 +15,7 @@ task is in the critical section (holding the lock).
 3  |                         [ Task H ]                  [ Critical Section | task H ]
    |                         |        |                  |                           |
    |                         |        |                  |                           |
+   |                         |        |                  |                           |
 1  |               [ Task L *|        [ Critical Section]|                           [ Task L ] ... 
    |       task L gets lock ^ 
    |
