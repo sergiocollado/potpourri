@@ -389,8 +389,10 @@ asmlinkage long sys_io_pgetevents(aio_context_t ctx_id,
 
 # Interrupts and interrupt handlers. 
 
-reference:https://www.kernel.org/doc/html/latest/core-api/irq/index.html<br>
+reference: https://www.kernel.org/doc/html/latest/core-api/irq/index.html<br>
 reference: https://linux.die.net/lkmpg/x1256.html <br>
+reference: Understanding Linux Interrupt Subsystem - Priya Dixit, Samsung Semiconductor India Research https://youtu.be/LOCsN3V1ECE?list=RDCMUCfX55Sx5hEFjoC3cNs6mCUQ <br>
+
 
 An IRQ is an **interrupt request** from a device. Currently they can come in over a pin, or over a packet. Several devices may be connected to the same pin thus sharing an IRQ.
 
