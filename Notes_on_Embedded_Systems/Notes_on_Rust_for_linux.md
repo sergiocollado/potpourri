@@ -36,3 +36,5 @@ Sept 20, 2021: More Rust concepts for the kernel - https://lwn.net/Articles/8694
 Sept 28, 2021: Using Rust for kernel development - https://lwn.net/Articles/871061/
 
 Oct 4, 2021: Rust and GCC, two different ways - https://lwn.net/Articles/871283/
+
+Nov 11, 2021: Mentorship Session: Rust for Linux: Writing Safe Abstractions & Drivers - https://www.youtube.com/watch?v=3VU0hfsbHdc
