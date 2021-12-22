@@ -391,15 +391,14 @@ asmlinkage long sys_io_pgetevents(aio_context_t ctx_id,
 
 reference: https://www.kernel.org/doc/html/latest/core-api/irq/index.html<br>
 reference: https://linux.die.net/lkmpg/x1256.html <br>
-reference: Understanding Linux Interrupt Subsystem - Priya Dixit, Samsung Semiconductor India Research https://youtu.be/LOCsN3V1ECE?list=RDCMUCfX55Sx5hEFjoC3cNs6mCUQ <br>
 
 
 An IRQ is an **interrupt request** from a device. Currently they can come in over a pin, or over a packet. Several devices may be connected to the same pin thus sharing an IRQ.
 
-An IRQ number is a kernel identifier used to talk about a hardware interrupt source. Typically this is an index into the global irq_desc array, but except for what linux/interrupt.h implements the details are architecture specific.
+An **IRQ number** is a kernel identifier used to talk about a hardware interrupt source. Typically this is an index into the global irq_desc array, but except for what linux/interrupt.h implements the details are architecture specific.
 
 Interrups allow the hardware to signal events and communicate to the kernel. The hardware will generate interrupts asynchronously to the processos's clock.
-The interrupt controller will signal interrupts to the processor, and the kernel will be notified to handle that interrupt. Thiferent devices generate different
+The **interrupt controller** will signal interrupts to the processor, and the kernel will be notified to handle that interrupt. Diferent devices generate different
 interrupts, so each interrupt can be addressed accordinly with a unique handler. Those interrupt values are called interrupt requests (IRQ) 
 
 Note!: similar to **interrupts** are the **exceptions**, that occour synchronoulsy with the processor's clock. Sometimes they are called synchronous interrupts. Those exceptions happen when the processor executes a wrong instruction, like dividing by zero. Those exceptions are handled very much like interrupts in many architectures. 
@@ -411,9 +410,31 @@ To be as fast as possible, the processing of interrupts is split in two parts: t
 As interrupts are desired to be as fast as possible, the top half of the interrupt, has to be as brief as possible. 
 
 reference: IRQs: the Hard, the Soft, the Threaded and the Preemptible - https://youtu.be/-pehAzaP1eg <br>
+reference: Understanding Linux Interrupt Subsystem - https://youtu.be/LOCsN3V1ECE?list=RDCMUCfX55Sx5hEFjoC3cNs6mCUQ <br>
 reference: https://linux.die.net/lkmpg/x1256.html <br>
 reference: https://www.kernel.org/doc/html/latest/core-api/irq/index.html<br>
 reference: https://www.kernel.org/doc/html/latest/core-api/genericirq.html <br>
+
+## Interrupt types
+
+There are different types of interrupts accordging to its classification
+
+**Hardware interrutps**, caused by external devices, timers, network cards, or the keyboard are examples of hardware interrupts
+ 
+**Software interrupts**, caused by special instructions, like page-faults, overflows, or division by zero. 
+ 
+**Maskable interrutps** - can be ingnored. Those can be delayed.
+
+**Non maskable interrupts** - cannot be ignored. This could be a critical event, like hardware failure.
+
+**Shared interrupts**, different hardware, can share interrupts among some devices.
+
+**Sporius interrupts**, these are interrupts of very short duration, those are considered as glitches (sporius.c) 
+
+**GIC specific interrutps**, ARM Generic Interrupt Controller. PPI, SPI, SGI.
+ - PPI : Private Peripheral Interrupt. Interrupts private to one core, and cannot be executed in other core. 
+ - SPI : Shared Peripheral Interrupts. Interrupts that can be shared between cores.
+ - SGI : Used for interprocess communication. 
 
 ## /proc/interrupts
 
@@ -439,6 +460,62 @@ The watch command executes another command periodically, in this case "cat /proc
 Teh funcion that displays that information is **show_interrupts()**, and is architecture dependant. 
 
 reference: https://www.linuxjournal.com/content/watch-live-interrupts#:~:text=To%20see%20the%20interrupts%20occurring,6239132%20Local%20timer%20interrupts%20...
+
+## important data sturcutres
+
+ - struct irq_domain - https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/include/linux/irqdomain.h?h=v5.4.144#n134
+ - struct irq_desc - the interrupt description structure for a given irq
+ - struct irq_chip - https://www.kernel.org/doc/html/latest/core-api/genericirq.html#c.irq_chip
+ - struct irq_data - https://www.kernel.org/doc/html/latest/core-api/genericirq.html#c.irq_data
+
+This structures are connected one with each other:
+
+```
+irq_domain -> irq_desc -> irq_data -> irq_domain && irq_chip
+```
+
+### irq_domain
+ 
+This structure is used for hardware interrupt number translation. The interrupt number for a particular device given in a device tree
+is the iq_number, and the interrupt's controller local interrupt number is called hardware iq number. When there is only
+a single interrupt controller in the system, the same irq_number that is from the device tree can be used as controller local 
+irq number that is hardware iq, butin the system with multiple controllers the kernel must ensure that each one gets 
+assigned non-overlapping allocations of iq_number, for that reason is neede a mechanism to separate controller local 
+interrupt number from the linux iq_number. The controller local number is alerted using irq_domain operations. 
+
+irq_domain -> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/include/linux/irqdomain.h?h=v5.4.144#n134
+
+```
+struct irq_domain {                            // struct irq_domain - Hardware interrupt number translation object
+	struct list_head link;                 // Element in global irq_domain list.
+	const char *name;                      // Name of interrupt domain
+	const struct irq_domain_ops *ops;      // Pointer to irq_domain methods
+	void *host_data;                       // private data pointer for use by owner. Not touched by irq_domain core code.
+	unsigned int flags;                    // host per irq_domain flags
+	unsigned int mapcount;                 //
+
+	/* Optional data */
+	struct fwnode_handle *fwnode;          // Pointer to firmware node associated with the irq_domain.
+	enum irq_domain_bus_token bus_token;  
+	struct irq_domain_chip_generic *gc;    // Pointer to a list of generic chips.
+#ifdef	CONFIG_IRQ_DOMAIN_HIERARCHY
+	struct irq_domain *parent;             // Pointer to parent irq_domain to support hierarchy irq_domains
+#endif
+#ifdef CONFIG_GENERIC_IRQ_DEBUGFS
+	struct dentry		*debugfs_file;
+#endif
+
+	/* reverse map data. The linear map gets appended to the irq_domain */  //  Revmap data, used internally by irq_domain
+	irq_hw_number_t hwirq_max;             // The largest hwirq that can be set for controllers that support direct mapping
+	unsigned int revmap_direct_max_irq;
+	unsigned int revmap_size;              // Size of the linear map table @linear_revmap[]
+	struct radix_tree_root revmap_tree;    // Radix map tree for hwirqs that don't fit in the linear map
+	struct mutex revmap_tree_mutex;
+	unsigned int linear_revmap[];          // Linear table of hwirq->virq reverse mappings
+};
+```
+
+
 
 ## Irq implementation
 
