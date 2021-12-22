@@ -461,7 +461,7 @@ Teh funcion that displays that information is **show_interrupts()**, and is arch
 
 reference: https://www.linuxjournal.com/content/watch-live-interrupts#:~:text=To%20see%20the%20interrupts%20occurring,6239132%20Local%20timer%20interrupts%20...
 
-## important data sturcutres
+## important data stuctures
 
  - struct irq_domain - https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/include/linux/irqdomain.h?h=v5.4.144#n134
  - struct irq_desc - the interrupt description structure for a given irq
