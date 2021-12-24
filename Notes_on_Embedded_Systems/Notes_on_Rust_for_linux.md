@@ -4,6 +4,8 @@
 
 **Oficial site**: https://github.com/Rust-for-Linux
 
+https://github.com/Rust-for-Linux/rust-out-of-tree-module
+
 Main work: https://github.com/Rust-for-Linux/linux
 
 Contribute: https://github.com/Rust-for-Linux/linux/contribute
@@ -16,6 +18,9 @@ Rust in the Linux ecosystem : https://youtu.be/jTWdk0jYy54
 Rust for Linux: https://youtu.be/46Ky__Gid7M
 
 Documentation: https://rust-for-linux.github.io/docs/kernel/ 
+
+
+
 
 ## Videos: 
 
