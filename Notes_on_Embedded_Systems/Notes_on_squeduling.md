@@ -1232,7 +1232,51 @@ are code that fits to RUW: read-update-write. For example: i = i+1.
 It would be expected 2 as a result, but we got 1, because the order of the routines.
 
 
+### Priority inversion
 
+//reference: https://www.digikey.com/en/maker/projects/introduction-to-rtos-solution-to-part-11-priority-inversion/abf4b8f7cd4a4c70bece35678d178321
+
+
+Priority inversion is a bug that occurs when a high priority task is indirectly preempted by a low priority task. For example,
+the low priority task holds a mutex that the high priority task must wait for to continue executing.
+In the simple case, the high priority task (Task H) would be blocked as long as the low priority task (Task L) held the lock. 
+This is known as “bounded priority inversion,” as the length of time of the inversion is bounded by however long the low priority 
+task is in the critical section (holding the lock).
+
+``` 
+ Priority
+   ^                                  Task H is blocked trying to get the lock!
+   |                                  V 
+3  |                         [ Task H ]                  [ Critical Section | task H ]
+   |                         |        |                  |                           |
+   |                         |        |                  |                           |
+   |                         |        |                  |                           |
+1  |               [ Task L  |        [ Critical Section]|                           [ Task L ] ... 
+   |       task L gets lock ^ 
+   |
+   +--------------------------------------------------------------------------------------------------> time
+     
+```
+
+Unbounded priority inversion occurs when a medium priority task (Task M) interrupts Task L while it holds the lock.
+It’s called “unbounded” because Task M can now effectively block Task H for any amount of time, as Task M is preempting 
+Task L (which still holds the lock).
+
+
+``` 
+ Priority
+   ^                                  Task H is blocked trying to get the lock!
+   |                                  V 
+3  |                         [ Task H ]                                        [ Critical Section | task H ]
+   |                         |        |                                        |                           |
+2  |                         |        |  [MEDIUM PRIO TASK] ... WatchDog!! ... |                           |
+   |                         |        |                    |                   |                           |
+1  |               [ Task L  |        [ ]                  |                                               [ Task L ] ... 
+   |      
+   |
+   +--------------------------------------------------------------------------------------------------> time
+     
+```
 
 ## What really happened on Mars Rover Pathfinder
 
