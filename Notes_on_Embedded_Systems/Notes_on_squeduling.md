@@ -1434,6 +1434,8 @@ Second, Dave Wilner did talk to me about this problem before he gave his talk. I
 
 <hr>
 
+reference: Real-time Programming with the C++ Standard Library - Timur Doumler - CppCon 2021 :  https://www.youtube.com/watch?v=Tof5pRedskI
+
 <hr>
 
 
