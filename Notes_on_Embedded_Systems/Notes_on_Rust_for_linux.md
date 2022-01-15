@@ -10,6 +10,8 @@ Main work: https://github.com/Rust-for-Linux/linux
 
 Contribute: https://github.com/Rust-for-Linux/linux/contribute
 
+Quick start: https://github.com/Rust-for-Linux/linux/blob/rust/Documentation/rust/quick-start.rst
+
 
 rust for linux mail-list: https://lore.kernel.org/rust-for-linux/
 
