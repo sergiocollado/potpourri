@@ -1,0 +1,2 @@
+gcc -o server mq_server.c -lrt
+gcc -o client mq_client.c -lrt
