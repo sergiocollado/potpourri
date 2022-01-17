@@ -7,7 +7,7 @@
  *  DEALINGS IN THE SOFTWARE.
  */
 // compile with: g++ watchdog.cpp -std=c++17 -lpthread
-
+// reference: http://www.atakansarioglu.com/multi-thread-watchdog-cpp/
  
 #include <iostream>
 #include <unordered_map>
