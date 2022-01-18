@@ -1389,6 +1389,7 @@ Interesting github repos:
 - https://github.com/sindresorhus/awesome
 - https://github.com/inputsh/awesome-linux#readme
 - https://github.com/zoidbergwill/awesome-ebpf#readme
+- https://github.com/iovisor/bcc
 - https://github.com/donnemartin/system-design-primer
 - https://github.com/ohmyzsh/ohmyzsh
 - https://github.com/jlevy/the-art-of-command-line
