@@ -1,6 +1,8 @@
 // from: https://stackoverflow.com/questions/3056307/how-do-i-use-mqueue-in-a-c-program-on-a-linux-based-system
 // ref: https://users.cs.cf.ac.uk/Dave.Marshall/C/node25.html#SECTION002500000000000000000
 /*
+https://man7.org/linux/man-pages/man7/mq_overview.7.html
+
 mq_open() -- Connects to, and optionally creates, a named message queue.
 
 mq_close() -- Ends the connection to an open message queue.
