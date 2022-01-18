@@ -15,6 +15,7 @@ mq_notify() -- Notifies a process or thread that a message is available in the q
 
 mq_setattr() -- Set or get message queue attributes.
 */
+// reference: https://www.opensourceforu.com/2021/05/the-usefulness-of-posix-message-queues/
 
 //compile: gcc -o client mq_client.c -lrt
 
