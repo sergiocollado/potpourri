@@ -9,6 +9,8 @@
 // compile with: g++ watchdog.cpp -std=c++17 -lpthread
 // reference: http://www.atakansarioglu.com/multi-thread-watchdog-cpp/
  
+// A watchdog timer is one method of recovering from software resource deadlock or when a system fail to respond.
+
 #include <iostream>
 #include <unordered_map>
 #include <list>
