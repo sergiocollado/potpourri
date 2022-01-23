@@ -1,3 +1,4 @@
+RAID - Reduntant Array of Inexpesive Disk
 CMS - Content Management System.
 CNM - Container Network Model.
 CNI - Container Networking Interface.
