@@ -293,6 +293,9 @@ More on:
  - Robert Mecklenburg, "Managing Projects with GNU Make", 3rd Edition, 2004.
  - fast reference: https://makefiletutorial.com/#makefile-cookbook
 
+There are more copilers than gcc. For exampe llvm:
+	
+ -llvm: https://llvm.org/docs/GettingStarted.html#getting-started-with-llvm
 
 ## LIBRARIES:
 
