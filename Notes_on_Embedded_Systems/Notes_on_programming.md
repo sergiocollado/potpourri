@@ -296,7 +296,9 @@ More on:
 There are more copilers than gcc. For exampe llvm:
 	
  -llvm: https://llvm.org/docs/GettingStarted.html#getting-started-with-llvm
-
+ - https://llvm.org
+	
+	
 ## LIBRARIES:
 
 Libraries are precompiled code that can be added to a program in the linking process.
