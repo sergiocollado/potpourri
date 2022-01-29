@@ -1278,6 +1278,8 @@ Task L (which still holds the lock).
      
 ```
 
+<hr> <br> <br> <br> <br> <hr>
+
 ## What really happened on Mars Rover Pathfinder
 
 reference: http://www.cs.cornell.edu/courses/cs614/1999sp/papers/pathfinder.html
@@ -1426,9 +1428,63 @@ Second, Dave Wilner did talk to me about this problem before he gave his talk. I
 
 ...
 
-
 ```
 
+## Toyota Unintended Acceleration case study
+
+It seems there was a bug in some Toyota models that caused unintended acceleration.
+
+The victims are estimated in several tens, and injured may be in hundreds. First reports
+happened in early 2000s. But nothing was really studied until 2009. 
+
+Initially the cause was set on floor mats causing accelerator pedal entrapment.
+In 2009, appeared as the mats explanation, wasn't really valid, as I didn't explain
+all the cases. Next, a stiky pedal was suspected... and discarded as explanation again.
+
+NASA experts were called to investigate the case. One of the systems they investigated
+were the ETCS (Electronic Throttle Control System). The ECU (Electronic Control Unit) 
+had a main chip, and a monitor chip. This system was suppoused to be safe critical 
+(so it fails, there is a risk of injury or even deaths). The conclusions of this team,
+didn't exonerate the system, but could not found a defect. Although the investigation
+identified a specific concurrency defect, but this could not cause the unintended 
+acceleration.
+
+In the following cases studies, technical witnesses, expressed that the source code was defective,
+and that it contained bugs. 
+
+Also the ETCS architecture, had a single point of failure, if the monitoring chip failed,
+nothing prevented that. If due an electromagnetic failure occurred and the monitorig 
+chip, reported a false signal to the main chip, there was no way to identify the situation. 
+
+Toyota didn't fully followed MISRA guidelines for automotive safety. It appears the 
+safe MISRA C subset, wasn't used. A code analisys reported over 2000 gobal variable declarations
+with different types, not all the global declarations were declared as 'volatile', over 300
+casts that altered value, multiple declarations of globals, and uninitialized variables,
+and in the code recursion was used, what is a risk for stack overflow. 
+
+The design presumably included an interrupt, to kick the watchdog in time, thus rendering
+it ineficcient and defeating its purpouse. And the design ignored the RTOS error codes. 
+The OSEK RTOS was not certified. And the system worked over 80%, which is above LUB limit
+for rate-monotonic.
+
+There was not bug tracking system, no formal reviews, and no configuration management, 
+and no formal specification used.
+
+The code, was spaghetti code, and its ciclomatic-complexity was extremilly high. 
+
+The expert technical witnesses testified, that the ETCS, most likely contained
+bugs that were the cause of the accidents. 
+
+
+References:
+
+- A Case Study of Toyota Unintended Acceleration and Software Safety: https://www.youtube.com/watch?v=DKHa7rxkvK8&t=17s
+
+- https://www.eetimes.com/toyota-case-single-bit-flip-that-killed/#
+
+- https://www.eetimes.com/toyota-trial-transcript-reveals-task-x-clues/
+
+- https://en.wikipedia.org/wiki/Sudden_unintended_acceleration
 
 
 
