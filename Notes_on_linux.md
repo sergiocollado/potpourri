@@ -84,17 +84,30 @@ if you want to identify your system, the 'uname' command is to be used. It will 
 or:
 
 ```
-cat /etc/os-release 
+> cat /etc/os-release 
 ```
+
+To know the name of your system, run the command: 
+
+```
+> hostname
+```
+
+or to get the architecture of you system, run:
+
+```
+> arch
+``` 
+
 
 if you want to know if a given command is insatalled, or where is installed, the 'which' command is used. It will report where a given command is installed. 
 
 ```bash
->which which
->/usr/bin/which
+> which which
+> /usr/bin/which
 ``` 
 
-this at least tells us that the command is there and finds itself : )
+This at least tells us that the command is there and finds itself : )
 
 If you want to be sure that a module is or isn't insalled you can use the following:
 
