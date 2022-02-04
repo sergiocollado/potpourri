@@ -99,6 +99,13 @@ or to get the architecture of you system, run:
 > arch
 ``` 
 
+also the command 'lscpu' will report great detail of the system.
+
+```
+> lscpu
+```
+
+
 
 if you want to know if a given command is insatalled, or where is installed, the 'which' command is used. It will report where a given command is installed. 
 
