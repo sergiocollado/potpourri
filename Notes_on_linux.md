@@ -266,7 +266,7 @@ special directory names:
 - **wc**: counts the number of lines, words and characters in a file.
 - **more**: prints a screen from a text file.
 - **less**: prints a screen from a text file. Less has more options that the **more** command, following the saying: *less is more*
-- **grep**: search text through files and match patterns. [https://linux.die.net/man/1/grep]
+- **grep**: **g**lobally search a **r**egular **e**xpression and **p**rint. search text through files and match patterns. [https://linux.die.net/man/1/grep]
 - **find**: search for files in a directory hierarchy, to find the location of files.  https://linux.die.net/man/1/find
 - **locate**: find files by name, based on updatedb.  https://linux.die.net/man/1/locate
 - **diff** and **sdiff**: identify differences between files. usually use: **diff -Nur**
