@@ -1404,4 +1404,8 @@ Interesting github repos:
 - shell command language standard: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18
 
 
+Other interesting github repos:
+
+ - https://github.com/jarrocha/psockets
+ - 
 
