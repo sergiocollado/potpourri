@@ -2193,6 +2193,36 @@ serveral types of keys:
 - https://kernsec.org/wiki/index.php/Kernel_Self_Protection_Project
 - https://kernsec.org/wiki/index.php/Projects
 
+## Brief overview of the memory
+
+### The Virtual File System (VFS)
+
+El sistema de arechivo mirtual (virtual filesystem) , es un mecanimo de abstracción que permite al kernel de linux usar 
+distinos sisteemas de archvios, sin conocimento de su funcionamiento interno y sus detales de uso.
+
+La abstracicón del VFS, se consigue utilizando un modelo común para el uso de archivos, el cual es el fundamento del uso
+de cualquier archivo en linux, y para cualquier sistema de archivos. Por medio de funciones a punteros y otros métodos orientados
+a objetos, el interfaz comun para el acceso a archivos, provee un entorno (framework)que se ha de cumpllir para
+trabajar con cualuquier sistema de archivos en linux. Este framework proveee los hoos, para relere, crear lins, 
+sincorinzacion y demás operaciones .... y la implementación de cada sistema de archvios registra las funciones para
+ejecutar las operaciónes de las que sea capaz. 
+
+Este planteaminento, fuerza a que la mayoria de sistemas de archivos compartan conceptos. Por ejemplo, 
+el VFS,, funciona usadno inodoes, superblocks y 'directory entries'. Un sistema de archivos que no tenga origenes en Unix
+psiblemente carezca de esos cnceptos, y simplemente ha de 'cope with it', por ejemplo los sistemas de archivos FAT, o NTFS. 
+
+Las ventajas de VFS son remacables. Una sincle llamada del sistema peude leer de cualquier sistema de archivos en any medium. 
+Una única utilidad/programa, puede coopiar de cualqueir sistema de archivos en cualquier otro. Todos los sistemas
+de archivos suportan los mismos conceptos, interfaces y llamadas. 
+
+Por ejemplo cuando un programa lanza una llamada del sistma system call 'read()', la libreria de C provee las definiciones
+de las llamadas del sistema, asi que desde user-space, a través de la llaamda de sistema pasa al kernel, , le kernel figures out
+el objeto que backs the given file descriptor. Then the kernel, calls the fitting fuction associeated with the backing object. 
+Para los sistemas de archvios, esto es parte del código que implementa el sistema de archivos. Entonces lée los datos del 
+medio físico y los devuelve al user-space, donde la llamada 'read()' returns y el programa continua su ejecución, 
+
+### The Page Cache
+... continuará....
 
 
 
