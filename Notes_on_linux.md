@@ -105,6 +105,11 @@ also the command 'lscpu' will report great detail of the system.
 > lscpu
 ```
 
+or:
+
+```
+cat /proc/cpuinfo
+```
 
 
 if you want to know if a given command is insatalled, or where is installed, the 'which' command is used. It will report where a given command is installed. 
