@@ -2200,26 +2200,52 @@ serveral types of keys:
 El sistema de arechivo mirtual (virtual filesystem) , es un mecanimo de abstracción que permite al kernel de linux usar 
 distinos sisteemas de archvios, sin conocimento de su funcionamiento interno y sus detales de uso.
 
+The virtual file system (VFS), is an abstraction mechanism that allows the linux kernel, use different file systems, 
+without the knowledge ot their inner workings or use details. 
+
 La abstracicón del VFS, se consigue utilizando un modelo común para el uso de archivos, el cual es el fundamento del uso
 de cualquier archivo en linux, y para cualquier sistema de archivos. Por medio de funciones a punteros y otros métodos orientados
 a objetos, el interfaz comun para el acceso a archivos, provee un entorno (framework)que se ha de cumpllir para
 trabajar con cualuquier sistema de archivos en linux. Este framework proveee los hoos, para relere, crear lins, 
 sincorinzacion y demás operaciones .... y la implementación de cada sistema de archvios registra las funciones para
 ejecutar las operaciónes de las que sea capaz. 
+the 
+
+The VFS abstraction, is achieved using a common model for all the files. That model is the base to use any file in linux, 
+and for all the different file systems. By means of pointers to funcions and other object oriented methods, the common interface
+to work with the files, provides a framework that has to work for every file system implemented in linux. This framework provides the
+methods to create, read, create links, syncronize and other operations ... and the implementation of the file system 
+register the functions that the file system is able to perform.
 
 Este planteaminento, fuerza a que la mayoria de sistemas de archivos compartan conceptos. Por ejemplo, 
 el VFS,, funciona usadno inodoes, superblocks y 'directory entries'. Un sistema de archivos que no tenga origenes en Unix
 psiblemente carezca de esos cnceptos, y simplemente ha de 'cope with it', por ejemplo los sistemas de archivos FAT, o NTFS. 
 
+This approach, makes that the most of the file systems share behaviors. For example, the VFS, works based on the use
+of inodes, superblocks, and directory entries. A file system that is not based in Unix, most possible lacks those concepts, 
+but has to cope wit it. For example the FAT or NFTS file systems. 
+
+
+
 Las ventajas de VFS son remacables. Una sincle llamada del sistema peude leer de cualquier sistema de archivos en any medium. 
 Una única utilidad/programa, puede coopiar de cualqueir sistema de archivos en cualquier otro. Todos los sistemas
 de archivos suportan los mismos conceptos, interfaces y llamadas. 
+
+The advanteges of VFS are remarkables. Only one system call can read any file, on any media. A unique program/application
+can copy from any file system ot any other. All the file systems are based on the same concepts, interfaces and calls. 
 
 Por ejemplo cuando un programa lanza una llamada del sistma system call 'read()', la libreria de C provee las definiciones
 de las llamadas del sistema, asi que desde user-space, a través de la llaamda de sistema pasa al kernel, , le kernel figures out
 el objeto que backs the given file descriptor. Then the kernel, calls the fitting fuction associeated with the backing object. 
 Para los sistemas de archvios, esto es parte del código que implementa el sistema de archivos. Entonces lée los datos del 
 medio físico y los devuelve al user-space, donde la llamada 'read()' returns y el programa continua su ejecución, 
+
+For example when a given program calls the system call 'read()', the C library provides the definitions of the system calls, 
+so from the user-space, the system call, moves into the kernel. Then the kernel figures out the objects that backs the given 
+file descriptor, and calls the fitting function asssociated with the backing object. For the file systems this is part of the
+code that implements the file system. Then the data is read from the physical medium, and the data is returned to user-space, 
+where the 'read()' call returns, and the program continues its execution.
+
 
 ### The Page Cache
 ... continuará....
