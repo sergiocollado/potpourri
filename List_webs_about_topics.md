@@ -1402,6 +1402,9 @@ Interesting github repos:
 - https://github.com/ripienaar/free-for-dev
 - https://github.com/sdmg15/Best-websites-a-programmer-should-visit
 - shell command language standard: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18
+- https://github.com/vasanthk/how-web-works
+- https://github.com/kamranahmedse/developer-roadmap
+- https://github.com/donnemartin/system-design-primer
 
 
 Other interesting github repos:
