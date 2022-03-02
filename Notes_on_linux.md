@@ -967,7 +967,7 @@ $ sudo apt-get install Nautilus-open-terminal
 To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
 
 
-### linux booting
+### Linux booting
 
 Booting a Linux system involves several tasks. The process must mount both virtual and real file systems, initialize devices, activate swap, check file systems for integrity, mount any swap partitions or files, set the system clock, bring up networking, start any daemons required by the system, and accomplish any other custom tasks needed by the user. This process must be organized to ensure the tasks are performed in the correct order but, at the same time, be executed as fast as possible.
 
@@ -1116,7 +1116,7 @@ architecture dependant kernel code  <br>
  V  <br>
 hardware platform  <br>
 
-## linux networking commands
+## Linux networking commands
 
  - **ifconfig** print and manipulation of network interfaces and routes (better use the next command)
  - **ip**  replacement for ipconfig
@@ -1896,6 +1896,58 @@ cat /etc/services
  - iptraf: info about network interfaces - Interactive Colorful IP LAN Monitor - https://linux.die.net/man/8/iptraf
  - tcpdump & tshark &  wireshark analysys of network and traffic
   
+
+## UFW - uncomplicated firewall
+
+The internal packet filtering system, (the net filter) can be handled by means of the IP tables. Iptalbes is the most common
+took to inteface with the linux firewall, althought it has a learning curve. The UFW, (uncomplicated firewall) is a simpler
+solution. 
+
+to install ufw
+
+```
+apt-get install ufw
+```
+once installed enable it
+
+```
+systemctl enable ufw
+systemctl start ufw
+```
+
+the ufw status can be checked as:
+
+```
+ufw status
+```
+
+to allow outgoing connections
+
+```
+ufw default allow outgoing
+```
+
+to add a default deny for incoming connections
+
+```
+ufw default deny incoming
+```
+
+to add an allow rule: 
+
+```
+ufw allow from 172.16.0/28 to any port 22 proto tcp
+```
+to activate the firewall: 
+
+```
+ufw enable
+```
+
+to check the status of the rules: 
+```
+ufw status
+```
 
 ### check system file system
 
