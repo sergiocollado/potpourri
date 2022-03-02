@@ -1860,6 +1860,8 @@ $ sudo reboot
 
 ### How to know what ports are open
 
+Several commands can be used: 
+
 ```
 sudo lsof -i -P -n | grep LISTEN
 sudo netstat -tulpn | grep LISTEN
@@ -1874,6 +1876,19 @@ the tulpn options stands for
 -l : Show listening sockets. For example, TCP port 22 is opened by SSHD server.
 -p : List process name that opened sockets
 -n : Don’t resolve service names i.e. don’t use DNS
+
+
+To check if a port is used, and listening, use a command such: 
+
+```
+netstat -an | grep -w LISTEN
+```
+
+To know what are those ports used for, in case of an ubunto based distribution, it can be checked in the etc/services file
+
+```
+cat /etc/services
+```
 
 ### more about networking
 
