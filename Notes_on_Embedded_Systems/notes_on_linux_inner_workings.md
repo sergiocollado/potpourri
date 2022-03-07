@@ -2219,6 +2219,22 @@ file descriptor, and calls the fitting function asssociated with the backing obj
 code that implements the file system. Then the data is read from the physical medium, and the data is returned to user-space, 
 where the 'read()' call returns, and the program continues its execution.
 
+You can see the struct that has all the function pointers for any file at: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/linux/fs.h#n1981
+
+```
+struct file_operations {
+	struct module *owner;
+	loff_t (*llseek) (struct file *, loff_t, int);
+	ssize_t (*read) (struct file *, char __user *, size_t, loff_t *);
+	ssize_t (*write) (struct file *, const char __user *, size_t, loff_t *);
+	ssize_t (*read_iter) (struct kiocb *, struct iov_iter *);
+	ssize_t (*write_iter) (struct kiocb *, struct iov_iter *);
+...
+```
+
+The __ user tag, indicates that this information, comes from user space.
+
+
 
 ### The Page Cache
 ... continuará....
