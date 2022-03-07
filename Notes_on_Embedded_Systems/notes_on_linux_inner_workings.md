@@ -115,6 +115,8 @@ net.ipv4.ip_fordward = 1
 ref: https://man7.org/linux/man-pages/man2/intro.2.html <br>
 ref: https://man7.org/linux/man-pages/man2/syscalls.2.html <br>
 ref: https://man7.org/linux/man-pages/man2/syscall.2.html
+ref: https://lwn.net/Articles/604287/
+ref: https://lwn.net/Articles/604515/
 
 The kernel provides user-space a series of interfaces to interact whit the system, its hardware and underlying systems. 
 Those interfaces for example requests dynamic memory allocations, read or write files ... This interface provides and
