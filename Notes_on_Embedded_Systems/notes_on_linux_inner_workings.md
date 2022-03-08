@@ -2236,10 +2236,11 @@ struct file_operations {
 
 The __ user tag, indicates that this information, comes from user space.
 
-
+reference: https://www.kernel.org/doc/html/v5.16/filesystems/index.html
 
 ### The Page Cache
 ... continuará....
+
 
 
 
