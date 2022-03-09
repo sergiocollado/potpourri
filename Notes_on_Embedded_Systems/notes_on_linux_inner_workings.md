@@ -2238,6 +2238,9 @@ The __ user tag, indicates that this information, comes from user space.
 
 reference: https://www.kernel.org/doc/html/v5.16/filesystems/index.html
 
+And example of how to write a VFS: https://github.com/torvalds/linux/blob/2c271fe77d52a0555161926c232cd5bc07178b39/fs/ramfs/inode.c#L12
+
+
 ### The Page Cache
 ... continuará....
 
