@@ -47,3 +47,14 @@ Oct 4, 2021: Rust and GCC, two different ways - https://lwn.net/Articles/871283/
 Nov 11, 2021: Mentorship Session: Rust for Linux: Writing Safe Abstractions & Drivers - https://www.youtube.com/watch?v=3VU0hfsbHdc
 
 Nov 13, 2021: Rust for linux: Rust for Linux
+
+
+
+
+
+
+## Others
+
+- https://github.com/d0u9/Linux-Device-Driver
+- https://austincminor.com/20211030000942-ramfs_rust.html
+
