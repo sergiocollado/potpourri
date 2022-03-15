@@ -124,6 +124,73 @@ abstraction layer  to the user-space, so it can request read or write files, but
 the possible diffent file systems. Also this interface guards the systems, so the kernel can handle permissions, or 
 make sure that a user-space process doens't overlay with other user-space process. 
 
+
+## visualizing syscalls with strace
+
+With the strace application it is possible to get the system calls of an application for example
+
+```
+strace ls mytext.txt
+```
+
+```
+sergio@debian:~$ strace ls mytext.txt
+execve("/usr/bin/ls", ["ls", "mytext.txt"], 0x7ffd50072ff8 /* 47 vars */) = 0
+brk(NULL)                               = 0x5585d8765000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=96140, ...}) = 0
+mmap(NULL, 96140, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7fe69b9f8000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0@k\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=155296, ...}) = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fe69b9f6000
+mmap(NULL, 2259632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fe69b7ce000
+mprotect(0x7fe69b7f3000, 2093056, PROT_NONE) = 0
+mmap(0x7fe69b9f2000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x24000) = 0x7fe69b9f2000
+...
+mprotect(0x7fe69ba37000, 4096, PROT_READ) = 0
+munmap(0x7fe69b9f8000, 96140)           = 0
+set_tid_address(0x7fe69b572650)         = 19158
+set_robust_list(0x7fe69b572660, 24)     = 0
+rt_sigaction(SIGRTMIN, {sa_handler=0x7fe69b5796b0, sa_mask=[], sa_flags=SA_RESTORER|SA_SIGINFO, sa_restorer=0x7fe69b585730}, NULL, 8) = 0
+rt_sigaction(SIGRT_1, {sa_handler=0x7fe69b579740, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART|SA_SIGINFO, sa_restorer=0x7fe69b585730}, NULL, 8) = 0
+rt_sigprocmask(SIG_UNBLOCK, [RTMIN RT_1], NULL, 8) = 0
+prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+statfs("/sys/fs/selinux", 0x7ffef371fe30) = -1 ENOENT (No such file or directory)
+statfs("/selinux", 0x7ffef371fe30)      = -1 ENOENT (No such file or directory)
+brk(NULL)                               = 0x5585d8765000
+brk(0x5585d8786000)                     = 0x5585d8786000
+openat(AT_FDCWD, "/proc/filesystems", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0444, st_size=0, ...}) = 0
+...
+lstat("mytext.txt", 0x5585d8766b68)     = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale/locale.alias", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=2995, ...}) = 0
+...
+openat(AT_FDCWD, "/usr/share/locale/en/LC_MESSAGES/libc.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+write(2, ": No such file or directory", 27: No such file or directory) = 27
+write(2, "\n", 1
+)                       = 1
+close(1)                                = 0
+close(2)                                = 0
+exit_group(2)                           = ?
++++ exited with 2 +++
+
+```
+
+if we check the first call:
+
+```
+execve("/usr/bin/ls", ["ls", "mytext.txt"], 0x7ffd50072ff8 /* 47 vars */) = 0
+```
+
+It is 'execve' the call to invoque a program. Then it is the binary to execute "/usr/bin/ls",
+then the parameters passed to 'main()', arg0, is the name of the program "ls", then the 
+first parameter, the file: "mytext.txt", and then a pointer to the enviroment variables "/* 47 vars*/".
+
+
 ## Syscall numbers.
 
 Each syscall is assigned and identified with an unique number. When user-space call a syscall, it doens't invoque it by name. 
