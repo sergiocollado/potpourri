@@ -1713,7 +1713,8 @@ cp /boot/<config-5.0.0-21-generic> .config
 
 #### the kernel build system
 
-reference: https://www.linuxjournal.com/content/kbuild-linux-kernel-build-system
+reference: https://www.linuxjournal.com/content/kbuild-linux-kernel-build-system 
+
 reference: https://www.kernel.org/doc/html/latest/kbuild/index.html
 
 The kernel has its own build system: the Kernel build sistem: Kbuild.
@@ -1728,13 +1729,15 @@ It has four main components:
 
 #### Compiling the kernel 
 
-refence: http://www.kroah.com/lkn/ -linux kernel in a nutshell
+reference: http://www.kroah.com/lkn/ -linux kernel in a nutshell
+
+reference: https://www.cyberciti.biz/tips/compiling-linux-kernel-26.html
 
 example: https://youtu.be/NVWVHiLx1sU 
 
-the kernel configuration is in the file named .config at the top of the kernel source tree.
+The kernel configuration is in the file named .config at the top of the kernel source tree.
 
-you may need to install:  libelf-dev, libelf-devel or elfutils-libelf-devel
+You may need to install:  libelf-dev, libelf-devel or elfutils-libelf-devel
 
 Run the following command to generate a kernel configuration file based on the current configuration.
 
