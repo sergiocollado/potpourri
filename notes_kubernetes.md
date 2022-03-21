@@ -969,8 +969,19 @@ A list with all the users, and paswords, can be given to the cluster with the op
  
 Other option is instead of a file with the users details, is possible to use a static file with token, with the option: --token-auth-file=<file-token>
 
+More links:
 
+ - admission controllers: https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
+ 
+ 
+ 
+ 
+ <br> <br> <br>
+ 
 ![kubernetes dificulty](https://github.com/sergiocollado/potpourri/blob/master/image/kubernetes_difficulty.jpg)
+ 
+  <br> <br> <br>
+  <br> <br> <br>
  
 # HOW TO's
 
