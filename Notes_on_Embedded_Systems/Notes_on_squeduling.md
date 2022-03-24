@@ -1488,6 +1488,31 @@ References:
 
 
 
+## C-17 cargo jet
+
+references: 
+
+ - https://www.latimes.com/archives/la-xpm-1992-05-08-fi-1962-story.html
+ - https://www.gao.gov/products/t-imtec-92-17
+ 
+```
+AO Says C-17 Is Riddled With Computer Problems
+
+he McDonnell Douglas C-17 cargo jet is plagued with serious computer hardware and software problems, resulting in part from shortcuts taken by the company and by a failure by the Air Force to effectively manage the task, according to a General Accounting Office report obtained Thursday.
+
+The GAO report is the first public finding that the C-17 has serious computerization problems, though Air Force documents have hinted before that the computer system lacks adequate capacity and that its development has fallen behind schedule.
+
+“In fact, the C-17 is a good example of how not to manage software development when procuring a major weapon,” according to the GAO report, which was requested by Rep. John Conyers (D-Mich.), chairman of the House Government Operations Committee.
+
+...
+```
+
+
+
+
+
+
+
 <hr>
 
 reference: Real-time Programming with the C++ Standard Library - Timur Doumler - CppCon 2021 :  https://www.youtube.com/watch?v=Tof5pRedskI
