@@ -57,4 +57,5 @@ Nov 13, 2021: Rust for linux: Rust for Linux
 
 - https://github.com/d0u9/Linux-Device-Driver
 - https://austincminor.com/20211030000942-ramfs_rust.html
+- rust mutex: https://github.com/Rust-for-Linux/linux/commit/be5ff7d29d5b4da2706cc5384f38d7e417bc26f5
 
