@@ -1551,6 +1551,25 @@ done
   in case we need to define a local variable inside a function that has the same name as a global varible, we can use the keyword 'local' that way, this will define the variable like a local one, and it will not collide with any global variable.
 
 
+### terminal PS1 and colors
+
+It is posible to change the prompt of the terminal
+
+- ref: https://www.maketecheasier.com/8-useful-and-interesting-bash-prompts/
+
+and also use diferent colors
+
+ - ref: https://misc.flogisoft.com/bash/tip_colors_and_formatting
+
+check
+
+```
+echo -e "\e[38;5;82mHello \e[38;5;198mWorld"
+```
+
+
+
+
 
 ## Secure Shell (aka ssh)
 
