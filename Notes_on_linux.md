@@ -1556,13 +1556,18 @@ done
 It is posible to change the prompt of the terminal
 
 - ref: https://www.maketecheasier.com/8-useful-and-interesting-bash-prompts/
-
+- ref: https://www.howtogeek.com/307701/how-to-customize-and-colorize-your-bash-prompt/#:~:text=To%20change%20your%20Bash%20prompt
+- ref: https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Controlling-the-Prompt
 and also use diferent colors
 
  - ref: https://misc.flogisoft.com/bash/tip_colors_and_formatting
  - ref: https://linux.die.net/man/4/console_codes
- - 
-check
+ 
+check:
+
+```
+PS1="[\d \t] \u@\h\n\w\$ "
+```
 
 ```bash
 echo -e "\e[38;5;82mHello \e[38;5;198mWorld"
@@ -1642,7 +1647,7 @@ otherwise if you just close the terminal the process will still be open, and con
  - exit
 
 
-## ssh authentification
+## SSH authentification
 
  There is two aproaches: one is password based and the second one is based in cryptographic keys. the later is much more secure.
 
@@ -2306,7 +2311,7 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
 2>&1 : stderr is redirected to stdout -- in this case stdout already is redirected to /dev/null --
 & : run the process in the background (as a daemon)
 
-## for Real time
+## For Real time
 
  - ionice - get/set program io scheduling class and priority https://linux.die.net/man/1/ionice
  - heartbeat - Heartbeat subsystem for High-Availability Linux https://linux.die.net/man/8/heartbeat
@@ -2345,7 +2350,7 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
   https://www.bootchart.org/
   
   
-### for debugging: gdb
+### For debugging: gdb
 
 main website: https://www.gnu.org/software/gdb/
 
@@ -2362,7 +2367,7 @@ http://www.brendangregg.com/blog/2016-08-09/gdb-example-ncurses.html
 https://sourceware.org/gdb/onlinedocs/gdb/index.html#Top
 
 
-### tools to monitor linux systems
+### Tools to monitor linux systems
 
  - top and htop: Linux process ponitoring
  - vmstat: virtual memory statistics
@@ -2387,7 +2392,7 @@ https://sourceware.org/gdb/onlinedocs/gdb/index.html#Top
  - lltn   https://lttng.org/docs/#doc-getting-started
  
   
-#### how to create timers:
+#### How to create timers:
 
  timer_create - create a POSIX per-process timer  http://man7.org/linux/man-pages/man2/timer_create.2.html
  
