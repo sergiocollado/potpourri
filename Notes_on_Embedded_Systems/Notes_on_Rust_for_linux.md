@@ -48,7 +48,7 @@ Nov 11, 2021: Mentorship Session: Rust for Linux: Writing Safe Abstractions & Dr
 
 Nov 13, 2021: Rust for linux: Rust for Linux
 
-
+Marz 25, 2022: https://www.youtube.com/watch?v=fVEeqo40IyQ
 
 
 
