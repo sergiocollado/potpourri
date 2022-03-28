@@ -2005,6 +2005,40 @@ to verify the system file system:
 cat /proc/filesystem | less
 ```
 
+## SYSCTL
+
+reference: https://www.kernel.org/doc/Documentation/sysctl/README
+
+Sysctl is a means of configuring certain aspects of the kernel
+at run-time, and the /proc/sys/ directory is there so that you
+don't even need special tools to do it!
+In fact, there are only four things needed to use these config
+facilities:
+- a running Linux system
+- root access
+- common sense (this is especially hard to come by these days)
+- knowledge of what all those values mean
+
+As a quick 'ls /proc/sys' will show, the directory consists of
+several (arch-dependent?) subdirs. Each subdir is mainly about
+one part of the kernel, so you can do configuration on a piece
+by piece basis, or just some 'thematic frobbing'.
+
+The subdirs are about:
+ - abi/		execution domains & personalities
+ - debug/
+ - dev/		device specific information (eg dev/cdrom/info)
+ - fs/		specific filesystems, filehandle, inode, dentry and quota tuning
+		binfmt_misc <Documentation/admin-guide/binfmt-misc.rst>
+ - kernel/	global kernel info / tuning miscellaneous stuff
+ - net/		networking stuff, for documentation look in:
+		<Documentation/networking/>
+ - proc/
+ - vm/		memory management tuning
+		buffer and cache management
+ - user/	Per user per user namespace limits
+
+
 
 ### Memory analisys in linux systems
 
