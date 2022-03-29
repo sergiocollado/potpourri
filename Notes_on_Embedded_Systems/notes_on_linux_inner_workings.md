@@ -2018,8 +2018,10 @@ done
 Now, it is possibble to restart the system. Once the new kernel comes up, compare the saved dmesg from the old kernel with the new one, and see if there are any regressions. If the newly installed kernel fails to boot, you will have to boot a good kernel, and then investigate why the new kernel failed to boot.
 
 ### How the kernel is tested
-  
+ 
+ - Kernel Testing Guide: https://www.kernel.org/doc/html/latest/dev-tools/testing-overview.html
  - How are Linux device drivers being tested? : https://marcelosc.gitlab.io/how-is-linux-tested/
+ - https://events.linuxfoundation.org/mentorship-session-kernel-validation-with-kselftest/
  - and more...
  - 
 ### Submitting patches
@@ -2092,12 +2094,12 @@ master
   remotes/origin/HEAD -> origin/master
 ```
 
-now you can make a change, to a driver, for example. You can list the modules with **lsmod**. You can find the .c and .h files for that driver in the linux kernel repository. 
+Now you can make a change, to a driver, for example. You can list the modules with **lsmod**. You can find the .c and .h files for that driver in the linux kernel repository. 
 Or even searching through the Makefiles, or even with 'git grep' 
 
-for example with the uvcvideo driver is a USB Video Class (UVC) media driver for video input devices, such as webcams. It supports webcams on laptops. Let’s check the source files for this driver.
+For example with the uvcvideo driver is a USB Video Class (UVC) media driver for video input devices, such as webcams. It supports webcams on laptops. Let’s check the source files for this driver.
 
-you can look for it with:
+You can look for it with:
 
 ```
 git grep uvcvideo -- '*Makefile'
@@ -2105,9 +2107,9 @@ drivers/media/usb/uvc/Makefile:uvcvideo-objs := uvc_driver.o uvc_queue.o uvc_v4l
 drivers/media/usb/uvc/Makefile:obj-$(CONFIG_USB_VIDEO_CLASS) += uvcvideo.o
 ```
 
-kernel code style: https://www.kernel.org/doc/html/latest/process/coding-style.html
+Kernel code style: https://www.kernel.org/doc/html/latest/process/coding-style.html
 
-https://events.linuxfoundation.org/mentorship-session-kernel-validation-with-kselftest/
+ - https://events.linuxfoundation.org/mentorship-session-kernel-validation-with-kselftest/
 
 KERNEL TESTS 
 
