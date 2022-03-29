@@ -1778,7 +1778,7 @@ The easy thing to do, is to copy your actual config file (in /boot/) and move it
 cp /boot/<config-5.0.0-21-generic> .config
 ```
 
-#### the kernel build system
+#### The kernel build system
 
 reference: https://www.linuxjournal.com/content/kbuild-linux-kernel-build-system 
 
@@ -2017,6 +2017,11 @@ done
 
 Now, it is possibble to restart the system. Once the new kernel comes up, compare the saved dmesg from the old kernel with the new one, and see if there are any regressions. If the newly installed kernel fails to boot, you will have to boot a good kernel, and then investigate why the new kernel failed to boot.
 
+### How the kernel is tested
+  
+ - How are Linux device drivers being tested? : https://marcelosc.gitlab.io/how-is-linux-tested/
+ - and more...
+ - 
 ### Submitting patches
 
 https://www.kernel.org/doc/html/latest/process/submitting-patches.html
