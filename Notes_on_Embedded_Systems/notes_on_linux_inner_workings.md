@@ -2327,6 +2327,7 @@ And example of how to write a VFS: https://github.com/torvalds/linux/blob/2c271f
 
 - https://wiki.linuxfoundation.org/networking/sk_buff
 - https://wiki.linuxfoundation.org/networking/kernel_flow
+- https://wiki.linuxfoundation.org/networking/start
 - socket buffer sctructure: skb  - http://vger.kernel.org/~davem/skb.html
 
 
