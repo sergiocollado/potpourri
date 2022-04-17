@@ -39,6 +39,8 @@ containers are running intantances of images.
 
 https://docs.docker.com/get-started/
 
+https://github.com/docker/getting-started
+
 
 HOW TO INSTALL DOCKER IN A LINUX MACHINE
 
