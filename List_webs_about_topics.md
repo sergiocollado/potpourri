@@ -1414,3 +1414,6 @@ Other interesting github repos:
  - https://github.com/jarrocha/xwbserver
  - https://github.com/alfonsosanchezbeato/car-distance-finder
 
+Nice:
+ - https://wizardzines.com/comics/ 
+ - https://xkcd.com/archive/
