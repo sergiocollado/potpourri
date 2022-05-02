@@ -1378,6 +1378,7 @@ online C++ standard: http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n42
  - https://www.slashroot.in/what-mbr-and-gpt-partition-table
  - https://www.slashroot.in/how-are-passwords-stored-linux-understanding-hashing-shadow-utils
  - IRQs: the Hard, the Soft, the Threaded and the Preemptible : https://youtu.be/-pehAzaP1eg
+ - https://github.com/danistefanovic/build-your-own-x !!!
 
 Interesting github repos: 
 
@@ -1406,6 +1407,7 @@ Interesting github repos:
 - https://github.com/kamranahmedse/developer-roadmap
 - https://github.com/donnemartin/system-design-primer
 - https://github.com/jwasham/coding-interview-university
+- https://github.com/danistefanovic/build-your-own-x !!!
 
 
 Other interesting github repos:
