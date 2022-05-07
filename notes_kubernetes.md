@@ -2391,6 +2391,11 @@ https://www.youtube.com/watch?v=uUupRagM7m0&list=PL2We04F3Y_41jYdadX55fdJplDvgNG
  
 https://github.com/mmumshad/kubernetes-the-hard-way
  
+## Howto: debug pods
+ 
+In need to debug the container application container use Crictl and Nerdctl and debug the issue quickly
+ 
+ref: https://github.com/kubernetes-sigs/cri-tools/blob/master/docs/crictl.md
 
 ## Howto: Update Cluster OS
 
