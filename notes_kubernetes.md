@@ -134,6 +134,15 @@ export do="--dry-run=client -o yaml"    # k get pod x $do
 export now="--force --grace-period 0"   # k delete pod x $now
  ```
  
+ and to make vim use 2 spaces for a tab edit ~/.vimrc to contain:
+
+```
+set tabstop=2
+set expandtab
+set shiftwidth=2
+```
+
+ 
 ## Kubernetes object model
 
 In Kubernetes objects, represent different persistent entities, that represent the containerized apps that are running and in which node.
