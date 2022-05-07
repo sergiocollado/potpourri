@@ -998,6 +998,10 @@ More links:
 
 NOTE: Other tools you might have to be familar with are sysdig (https://github.com/draios/sysdig)  or tracee (https://github.com/aquasecurity/tracee)
  
+ kube-bench is a tool that checks whether Kubernetes is deployed securely by running the checks documented in the CIS Kubernetes Benchmark. 
+ 
+ ref: https://github.com/aquasecurity/kube-bench
+ 
  
  
  <br> <br> <br>
