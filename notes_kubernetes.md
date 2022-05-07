@@ -124,6 +124,16 @@ For example:
  source < (kubectl completion bash)
  ```
  
+ or also: 
+ 
+```
+alias k=kubectl                         # will already be pre-configured
+
+export do="--dry-run=client -o yaml"    # k get pod x $do 
+
+export now="--force --grace-period 0"   # k delete pod x $now
+ ```
+ 
 ## Kubernetes object model
 
 In Kubernetes objects, represent different persistent entities, that represent the containerized apps that are running and in which node.
