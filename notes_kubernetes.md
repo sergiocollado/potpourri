@@ -992,6 +992,11 @@ More links:
 
  - admission controllers: https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
  
+#### Threat detection
+ 
+ Falco (https://falco.org/) , the open-source cloud-native runtime security project, is the de facto Kubernetes threat detection engine.
+
+NOTE: Other tools you might have to be familar with are sysdig (https://github.com/draios/sysdig)  or tracee (https://github.com/aquasecurity/tracee)
  
  
  
