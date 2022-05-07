@@ -2397,6 +2397,14 @@ In need to debug the container application container use Crictl and Nerdctl and 
  
 ref: https://github.com/kubernetes-sigs/cri-tools/blob/master/docs/crictl.md
 
+## Howto: know running config of api-server
+ 
+ssh the master node, 
+ 
+ ```
+ ps aux | grep kube-apiserver
+ ```
+ 
 ## Howto: Update Cluster OS
 
 For a given node you drain all its workloads, so it's workload is migrated (killed and recreated) to other nodes in the cluster, for this use the command:
