@@ -2364,8 +2364,18 @@ kubectl config set-context newUser-context --cluster=kubernetes --namespace=test
  to get the pods
  
  ```
- kubectl get nodes
+ kubectl get nodes -o wide
  ```
+ 
+ the '-o wide' is for getting extra info, like the node's IP, OS images ...
+ 
+ ```
+k8s@terminal:~$ kk get node -o wide
+NAME               STATUS   ROLES                  AGE   VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION     CONTAINER-RUNTIME
+cluster1-master1   Ready    control-plane,master   90d   v1.23.1   192.168.100.11   <none>        Ubuntu 20.04.3 LTS   5.4.0-81-generic   containerd://1.5.5
+cluster1-worker1   Ready    <none>                 90d   v1.23.1   192.168.100.12   <none>        Ubuntu 20.04.3 LTS   5.4.0-81-generic   containerd://1.5.5
+cluster1-worker2   Ready    <none>                 90d   v1.23.1   192.168.100.13   <none>        Ubuntu 20.04.3 LTS   5.4.0-81-generic   containerd://1.5.5 
+```
  
  to get the nodes with their labels
  
