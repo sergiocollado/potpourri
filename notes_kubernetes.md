@@ -699,6 +699,10 @@ https://romana.io/
 
 https://kubernetes.io/docs/tasks/administer-cluster/network-policy-provider/weave-network-policy/
 
+### a curated list of network policies
+
+ref: https://github.com/ahmetb/kubernetes-network-policy-recipes
+
 
 ## Volumes
 
