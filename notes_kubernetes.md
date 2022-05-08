@@ -2364,7 +2364,7 @@ kubectl config set-credentials newUser --client-certificate=/root/newUser.crt --
 kubectl config set-context newUser-context --cluster=kubernetes --namespace=test-namespace --user=newUser
 ```
 
-### How to Nodes
+### Howto: Nodes
  
  To get the cluster info
  
@@ -2444,6 +2444,21 @@ ssh the master node,
 ## Howto: kuberneteds dashboard
  
  ref: https://github.com/kubernetes/dashboard/tree/master/docs
+ 
+## Howto: etcd
+ 
+For handling etcd directly, there is need for identifcation, and easy way to get it is checking into the kube-apiserver.yaml, 
+ for what it is using:
+ 
+ ```
+cat /etc/kubernetes/manifests/kube-apiserver.yaml | grep etcd
+    - --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt
+    - --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
+    - --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key
+    - --etcd-servers=https://127.0.0.1:2379 # optional since we're on same node****
+ ```
+ Now you can use it in your command for etcd.
+ 
  
 ## Howto: Update Cluster OS
 
