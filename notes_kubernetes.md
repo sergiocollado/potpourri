@@ -2372,7 +2372,8 @@ kubectl config set-context newUser-context --cluster=kubernetes --namespace=test
  ```
  kubectl get nodes --show-labels
  ```
- 
+
+
 ## kubernetes recovery and backups
 
 reference: https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster
@@ -2382,6 +2383,7 @@ reference: Disaster Recovery for your Kubernetes Clusters [I] - Andy Goldstein &
 refernce: https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/recovery.md
 
 autoscaling: https://learnk8s.io/kubernetes-autoscaling-strategies
+ 
 
 ## Howto: build a Kubernetes cluster
 
@@ -2395,11 +2397,13 @@ https://www.youtube.com/watch?v=uUupRagM7m0&list=PL2We04F3Y_41jYdadX55fdJplDvgNG
  
 https://github.com/mmumshad/kubernetes-the-hard-way
  
+ 
 ## Howto: debug pods
  
 In need to debug the container application container use Crictl and Nerdctl and debug the issue quickly
  
 ref: https://github.com/kubernetes-sigs/cri-tools/blob/master/docs/crictl.md
+ 
 
 ## Howto: know running config of api-server
  
@@ -2408,6 +2412,10 @@ ssh the master node,
  ```
  ps aux | grep kube-apiserver
  ```
+ 
+## Howto: kuberneteds dashboard
+ 
+ ref: https://github.com/kubernetes/dashboard/tree/master/docs
  
 ## Howto: Update Cluster OS
 
