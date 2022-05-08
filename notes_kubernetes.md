@@ -2459,6 +2459,16 @@ cat /etc/kubernetes/manifests/kube-apiserver.yaml | grep etcd
  ```
  Now you can use it in your command for etcd.
  
+ So, to read directly a secret mysecret, in a namespace mynamespace it would be: 
+ 
+ ```
+ user@cluster-master:~# ETCDCTL_API=3 etcdctl \
+--cert /etc/kubernetes/pki/apiserver-etcd-client.crt \
+--key /etc/kubernetes/pki/apiserver-etcd-client.key \
+--cacert /etc/kubernetes/pki/etcd/ca.crt get /registry/secrets/mynamespace/mysecret
+ 
+ ```
+ 
  
 ## Howto: Update Cluster OS
 
