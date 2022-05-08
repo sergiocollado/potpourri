@@ -1021,7 +1021,7 @@ ref: https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-runnin
 kubectl exec --stdin --tty <your-pod> -- /bin/bash
 ```
 
-## How to labels
+## Howto labels
 
 To add labels, the command 'kubeclt label ...' is used:
 
@@ -1031,7 +1031,13 @@ To add labels, the command 'kubeclt label ...' is used:
 
 It is recommended to use labels in a way that describes the application, so they can be queried.
 
-recommended labels: https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
+Recommended labels: https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
+ 
+For example to add a label to a given node:
+ 
+```
+kubectl label node cluster1-worker1 security=apparmor
+```
 
 
 ## Howto Pods
@@ -1564,30 +1570,34 @@ This is known as the sidecar pattern, but there are other patterns as the ambass
 
 ## Howto Namespaces
 
-to get the namespaces
+To get the namespaces
 
 ```
 kubectl get namespaces
 ```
 
-to get the pods in a given namespace:
+To get the pods in a given namespace:
 
 ```
 kubectl get pods --namespace=kube-system
 ```
 
-to display the pods in all the namespaces
+To display the pods in all the namespaces
 
 ```
-kubectl get pods --all-namespaces
+kubectl get pods --all-namespaces -o wide
 ```
-to display all the objects in a given namespace
+ 
+Instead of '--all-namespaces', it can be used: '-A'
+ 
+ 
+To display all the objects in a given namespace
 
 ```
 kubectl get all -namespace <mynamespace>
 ```
 
-to create a pod in a given namespace:
+To create a pod in a given namespace:
 
 ```
 kubectl create -f mypod-def.yaml --namespace=dev
@@ -2152,6 +2162,7 @@ STORAGES ABSTRACTIONS
 **Volumes** are the method by which you attach storage to a Pod.
 Some Volumes are ephemeral, meaning they have the same life span as the pod they are attached to. Other volumes are persistent, meaning they can outlive a Pod. 
  
+reference for policy recipes: https://github.com/ahmetb/kubernetes-network-policy-recipes
  
 # Authentication, authorization and admission control
 
@@ -2162,7 +2173,7 @@ To access and manage kubernetes there are three stages:
 - admission control: software modules that can handle requests based on extra information.
 
  
- ## HowTo Ingress
+## HowTo Ingress
 
 Ingress allows users access the application using a single external url, that can be configured to run throught different services of the cluster. Althought the ingress must still be published as a service.
 
@@ -2333,7 +2344,7 @@ openssl genrsa -out newUser.key 2048
 openssl req -new -key newUser.key -out user1.csr
 ```
 
-the admin should approve the csr:
+The admin should approve the csr:
 
 ```
 openssl x509 -req -in user1.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out newUser.crt -days 500
@@ -2353,15 +2364,15 @@ kubectl config set-credentials newUser --client-certificate=/root/newUser.crt --
 kubectl config set-context newUser-context --cluster=kubernetes --namespace=test-namespace --user=newUser
 ```
 
- ### How to Nodes
+### How to Nodes
  
- to get the cluster info
+ To get the cluster info
  
  ```
  kubectl cluster-info
  ```
  
- to get the pods
+ To get the more info about nodes
  
  ```
  kubectl get nodes -o wide
@@ -2381,6 +2392,13 @@ cluster1-worker2   Ready    <none>                 90d   v1.23.1   192.168.100.1
  
  ```
  kubectl get nodes --show-labels
+ ```
+ 
+ To add a label to a node:
+ 
+ ```
+ kubectl label -h # to get examples
+ kubectl label node cluster1-worker1 security=apparmor
  ```
 
 
