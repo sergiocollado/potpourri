@@ -1002,7 +1002,7 @@ NOTE: Other tools you might have to be familar with are sysdig (https://github.c
  
  ref: https://github.com/aquasecurity/kube-bench
  
- 
+ also ref: https://kubernetes.io/docs/tutorials/security/apparmor/
  
  <br> <br> <br>
  
