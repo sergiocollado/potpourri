@@ -3123,6 +3123,26 @@ ADDING FILES.
 - git am
 
 
+For updating a pull request in GitHub is as easy as committing the wanted changes into existing branch
+(that was used with pull request), but often it is also wanted to squash the changes into single commit:
+
+```
+git checkout yourbranch
+git rebase -i origin/master
+
+# Edit command names accordingly
+  pick   1fc6c95 My pull request
+  squash 6b2481b Hack hack - will be discarded
+  squash dd1475d Also discarded
+
+git push -f origin yourbranch
+```
+	
+...and now the pull request contains only one commit.
+
+
+	
+
 # GERRIT
 
 ref: https://gerrit-review.googlesource.com/Documentation/intro-gerrit-walkthrough.html
