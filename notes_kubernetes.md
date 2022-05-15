@@ -1405,6 +1405,26 @@ spec:
     command: ["sleep", "3600"]
 ```
 
+ Other good idea, is limit the posibility of the container to change files in the system, and only use
+ the /tmp directory, for that use:
+ 
+ ```
+ ...
+       containers:
+      - image: busybox:1.32.0
+        name: busybox
+        securityContext:                  
+          readOnlyRootFilesystem: true    
+        volumeMounts:                     
+        - mountPath: /tmp                 
+          name: temp-vol                 
+      volumes:                          
+      - name: temp-vol             
+        emptyDir: {}        
+ ...
+ ```
+ 
+ 
 ### Howto: taints ant tolerations
 
 Tains and tolerations are means to restrict Pods to run in certain Nodes. A node may define a given taint, and only pods that define toleRACtion to that taint can run in that node. 
