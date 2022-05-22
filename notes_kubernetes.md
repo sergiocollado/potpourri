@@ -1940,7 +1940,7 @@ For manually scaling a deployment.
 
  ```kubectl scale deployment <deployment_name> --replicas=N ```
 
-ejample : 
+example : 
 
   ```kubectl scale --replicas=3 deployment nginx-deployment```
 
@@ -1951,6 +1951,13 @@ Also, you can perform autoscaling
 To define a deploy period to perform another scale action:
 
 --horizontal-pod-autoscaler-downscale-delay
+ 
+ To expose a deployment with a service
+ 
+ ```
+ # Create a service for an nginx deployment, which serves on port 80 and connects to the containers on port 8000
+  kubectl expose deployment nginx --port=80 --target-port=8000
+ ```
 
 ## Howto Rollout
 
