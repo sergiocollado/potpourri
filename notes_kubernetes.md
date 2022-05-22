@@ -960,6 +960,19 @@ a cluster security can be structured in four levels (4 C's of cloud native secur
 - container
 - code
 
+Kubernetes security is based on the topics:
+
+- Cluster setup: that is cluster configuration and setup in a secure way
+- Cluster hardening: techniques that increase a cluster security
+- System Hardening: protection of the operating system and infraestructures
+- Minimizing microservices vulnerabilities: techniques to secure microservices applications
+- Supply chain security: ensuring that the code an applications used in the cluster don't became a thread to the cluster
+- Monitoring, loggging and runtime security: detection and diagnosis of potential security breaks.
+
+
+- 
+
+
 ### CIS benchmakrs
 
 CIS stands for Center of Internet Security, its goal is increase internet security.
