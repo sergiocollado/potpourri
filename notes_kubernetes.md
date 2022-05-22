@@ -1030,6 +1030,24 @@ NOTE: Other tools you might have to be familar with are sysdig (https://github.c
  
 # HOW TO's
 
+## Howto start with a cluster
+ 
+ To retrieve general information from a cluster your are not used to, use:
+ 
+ ```
+ k8s@terminal:~$ kubectl cluster-info
+ 
+ k8s@terminal:~$ kubectl get node -o wide
+ 
+ k8s@terminal:~$ kubectl config view
+ 
+ k8s@terminal:~$ kubectl config view --raw
+ 
+ k8s@terminal:~$ kubectl get ns
+ 
+ k8s@terminal:~$ kubectl get all --all-namespaces
+ ```
+ 
 ## How to get a shell to a runnnig contaniner
 
 ref: https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/
@@ -1590,8 +1608,6 @@ spec:
 ```
 
 This is known as the sidecar pattern, but there are other patterns as the ambassador or the adapter.
-
-
 
 ### Howto Static Pods
 
