@@ -3798,3 +3798,10 @@ The subjet is Alice and there are two objects
   
   Labels (also known as context) is a string with 5 parameters: user, role, type, level and category
   
+# Notes on AppArmor
+	
+AppArmor is other Linux security module
+	
+- ref: https://apparmor.net/
+- ref: https://ubuntu.com/server/docs/security-apparmor#
+	
