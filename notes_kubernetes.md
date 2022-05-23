@@ -1000,6 +1000,11 @@ An ingress manage access from outside the cluster. They can work on top of servi
 
 reference: https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
 
+to quickly create the certificates you can use:
+
+```
+openssl req -nodes -ew -x509 -keyout tls-ingres.key -out tls-ingress.crt -subj "/CN-ingress.test"
+```
 
 #### CIS benchmakrs
 
