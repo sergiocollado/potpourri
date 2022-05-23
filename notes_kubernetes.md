@@ -1036,7 +1036,12 @@ It is possible to get CIS benchmarks for different systems.
 
 A tool to run security benchmarks, is Kube-bench: https://github.com/aquasecurity/kube-bench
 
-### k8s security primitives
+#### Tips for dockerfiles
+
+- Don't use root user. 
+- Don't open not needed ports
+
+#### k8s security primitives
 
  - hosts: the access to the hosts must be secured, root user disabled, password access disabled, only ssh key based acesss available. 
 
