@@ -969,17 +969,38 @@ Kubernetes security is based on the topics:
 - Supply chain security: ensuring that the code an applications used in the cluster don't became a thread to the cluster
 - Monitoring, loggging and runtime security: detection and diagnosis of potential security breaks.
 
+### Cluster setup
 
-- 
+#### Network policies
+Network policies are used to restrict communication between pods. Remember that for having network policies plugins must be used. This is important because if a pod is compromised, from there, other pods can be compromised. 
 
+An example for deny all network communications is at: https://kubernetes.io/docs/concepts/services-networking/network-policies/#allow-all-ingress-traffic
 
-### CIS benchmakrs
+```
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-all-ingress
+spec:
+  podSelector: {} # the selector {}, implies selecting all the pods in the given namespace!!
+  ingress:
+  - {}
+  policyTypes:
+  - Ingress
+```
+
+Network policies can be added, so with a given deny-all network policy but with other
+specific network policy that allows communication between two pods, those two pods, 
+would be able to communicate. 
+
+#### CIS benchmakrs
 
 CIS stands for Center of Internet Security, its goal is increase internet security.
 
 It is possible to get CIS benchmarks for different systems. 
 
-a tool to run security benchmarks, is : https://github.com/aquasecurity/kube-bench
+A tool to run security benchmarks, is Kube-bench: https://github.com/aquasecurity/kube-bench
 
 ### k8s security primitives
 
@@ -1008,6 +1029,10 @@ Other option is instead of a file with the users details, is possible to use a s
 More links:
 
  - admission controllers: https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
+
+
+ 
+ 
  
 #### Threat detection
  
