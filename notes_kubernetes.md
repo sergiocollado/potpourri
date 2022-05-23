@@ -1008,6 +1008,14 @@ Control plane listening ports (for kubeadm defaults)
 | 10251 | kube-scheduler |
 | 10252 | kube-controller-manager |
 
+and for the worker nodes:
+
+| POrts | User |
+| ----------- | ----------- |
+| 10250 | kubelet api |
+| 300000-32767 | nodeport services |
+
+
 #### Ingress with TLS
 
 An ingress manage access from outside the cluster. They can work on top of services.
@@ -1053,13 +1061,10 @@ A list with all the users, and paswords, can be given to the cluster with the op
 Other option is instead of a file with the users details, is possible to use a static file with token, with the option: --token-auth-file=<file-token>
 
 More links:
-
  - admission controllers: https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
 
+ 
 
- 
- 
- 
 #### Threat detection
  
  Falco (https://falco.org/) , the open-source cloud-native runtime security project, is the de facto Kubernetes threat detection engine.
