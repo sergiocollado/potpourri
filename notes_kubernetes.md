@@ -1084,6 +1084,8 @@ NOTE: Other tools you might have to be familar with are sysdig (https://github.c
   <br> <br> <br>
   <br> <br> <br>
  
+ <hr>
+ 
 # HOW TO's
 
 ## Howto start with a cluster
