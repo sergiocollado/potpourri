@@ -908,6 +908,17 @@ the terminal is launched
 
 This can be done through the enviromental variable PS1
 
+For example, to add the git branch in the prompt, add to the .bashrc:
+
+```
+# Git branch in prompt.
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1="\u@\h \W\[033[32m\]\$(parse_git_branch)\[033[00m\] $ "
+```
+
+
 ### Aliases
 
 In the terminal is possible to define short-cuts for our custom made commands. For improved usability. For example:
@@ -930,7 +941,7 @@ to define an alias:
 alias your_alias_name="your_alias_command"
 ```
 
-to undefine an alias:
+To undefine an alias:
 
 ```
 unalias your_alias_name="your_alias_command"
@@ -953,9 +964,9 @@ ref: https://www.linuxjournal.com/content/boost-productivity-bash-tips-and-trick
 
 ### Open-terminal
 
-It is a program that lets you open a terminal in any window from the desktop manager.
+It is a program that lets you open a terminal in any window from the desktop manager. Its very usefull.
 
-you can install it with:
+You can install it with:
 
 ```bash
 $ sudo yum install nautilus-open-terminal
@@ -966,6 +977,11 @@ $ sudo apt-get install Nautilus-open-terminal
 
 To view the processes that are running, the command **ps** is used. Using **ps** alone, will report the processes that are running from that shell. To check all the processes running in the machine, it is used: **ps -a**. Each proces can be identified by a PID (Process Identinfication Number). In case of need to abort a certain process, the command **kill** can be used.
 
+To see all the processes in the system, use:
+
+```
+ps -aux
+```
 
 ### Linux booting
 
@@ -1352,7 +1368,6 @@ the possible operators are:
 | -x file   | is file executable by you?   | 
 
 
-
 | condition for string evaluations| text | 
 | :---         |     :---:      |  
 | string | is it non empty? | 
@@ -1369,8 +1384,6 @@ the possible operators are:
 | ==  | equals?  | 
 |  !=  | different?   | 
 | !   | NOT operator    | 
-
-
 
 ### IF statements
 
@@ -1403,7 +1416,6 @@ if [ -d "$JAVA_HOME/bin" ]
 then
     PATH="$JAVA_HOME/bin:$PATH"
 ```
-
 
 ### arrays
 arrays are lits of elements.
@@ -1597,7 +1609,15 @@ done
 exit 0
 ```
 
+Example to add the git branch in the prompt (add to .bashrc)
 
+```
+# Git branch in prompt.
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1="\u@\h \W\[033[32m\]\$(parse_git_branch)\[033[00m\] $ "
+```
 
 
 ## Secure Shell (aka ssh)
