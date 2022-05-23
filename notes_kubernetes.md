@@ -994,6 +994,20 @@ Network policies can be added, so with a given deny-all network policy but with 
 specific network policy that allows communication between two pods, those two pods, 
 would be able to communicate. 
 
+#### Securing node enpoints
+
+K8s uses some ports for communications. Be aware those need to be proctected
+
+Control plane listening ports (for kubeadm defaults)
+
+| POrts | User |
+| ----------- | ----------- |
+| 6443 | k8s api server |
+| 2379-2380 | etcd |
+| 10250 | kuberlet API |
+| 10251 | kube-scheduler |
+| 10252 | kube-controller-manager |
+
 #### Ingress with TLS
 
 An ingress manage access from outside the cluster. They can work on top of services.
