@@ -1118,6 +1118,10 @@ ref: https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-runnin
 ```
 kubectl exec --stdin --tty <your-pod> -- /bin/bash
 ```
+ 
+```
+kubectl exec -it <your-container> -- /bin/sh # or any other terminal
+```
 
 ## Howto labels
 
@@ -2564,7 +2568,7 @@ ssh the master node,
  ps aux | grep kube-apiserver
  ```
  
-## Howto: kuberneteds dashboard
+## Howto: kubernetes dashboard
  
  ref: https://github.com/kubernetes/dashboard/tree/master/docs
  
