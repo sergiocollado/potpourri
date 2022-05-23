@@ -994,6 +994,13 @@ Network policies can be added, so with a given deny-all network policy but with 
 specific network policy that allows communication between two pods, those two pods, 
 would be able to communicate. 
 
+#### Ingress with TLS
+
+An ingress manage access from outside the cluster. They can work on top of services.
+
+reference: https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
+
+
 #### CIS benchmakrs
 
 CIS stands for Center of Internet Security, its goal is increase internet security.
