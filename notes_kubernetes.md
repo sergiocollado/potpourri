@@ -996,7 +996,9 @@ would be able to communicate.
 
 #### Securing node enpoints
 
-K8s uses some ports for communications. Be aware those need to be proctected
+K8s uses some ports for communications. Be aware those need to be protected.
+
+Use newtwork segmentation and firewalls to limit the acces to k8s API.
 
 Control plane listening ports (for kubeadm defaults)
 
@@ -1008,7 +1010,7 @@ Control plane listening ports (for kubeadm defaults)
 | 10251 | kube-scheduler |
 | 10252 | kube-controller-manager |
 
-and for the worker nodes:
+and for the workers:
 
 | POrts | User |
 | ----------- | ----------- |
