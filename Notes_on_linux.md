@@ -3832,3 +3832,7 @@ AppArmor is other Linux security module
 - ref: https://apparmor.net/
 - ref: https://ubuntu.com/server/docs/security-apparmor#
 	
+AppArmor profile can work in two modes:
+
+	- Complain mode: AA will gnerate a report on what the program is doing. This is useful, to know what a program does normally
+	- Enforce mode: loaded a profile in enforme comde, and AA will prevent the program form doing anything it is not allowed to by the profile.  
