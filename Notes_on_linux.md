@@ -765,8 +765,8 @@ The first step is to update the sources
 
 there are several shells /command lines / terminals available in linux. 
 
-http://man7.org/linux/man-pages/man1/bash.1.html
-
+ - http://man7.org/linux/man-pages/man1/bash.1.html
+ - https://linuxcommand.org/index.php
 
 those are defined in the file: /etc/shells
 
@@ -874,7 +874,7 @@ To delete a enviromental variable use the command 'unset'
 
 PATH, is the enviromental varible that defines the order in which directories will be checked for looking for programs. those directories will be checked from the begining to the end.
 
-is common that you want to update your PATH variable, it is done like follows:
+It is common that you want to update your PATH variable, it is done like follows:
 
 ```bash
 export JAVA_HOME="/path/to/java/home"
@@ -917,7 +917,14 @@ parse_git_branch() {
 }
 export PS1="\u@\h \W\[033[32m\]\$(parse_git_branch)\[033[00m\] $ "
 ```
+Or to create a minimalistic prompt:
 
+```
+GREEN="\e[1,92m"
+CYAN="\e[1;36m"
+NC='\033[0m'
+export PS1="${CYAN][\W]${GREEN}>>>${NC} "
+```
 
 ### Aliases
 
@@ -935,7 +942,7 @@ alias ls='ls --color=auto'
 alias python='/usr/bin/python3.8'
 ```
 
-to define an alias:
+To define an alias:
 
 ```
 alias your_alias_name="your_alias_command"
@@ -959,8 +966,8 @@ To have the alias always defined, you can define them in the configuration file 
 | CTRL+r| seach in the history of commands | 
 | arrows up & down| move up or down in the history of commands | 
 
-ref: https://www.linuxjournal.com/content/boost-productivity-bash-tips-and-tricks
-
+ - ref: https://www.linuxjournal.com/content/boost-productivity-bash-tips-and-tricks
+ 
 
 ### Open-terminal
 
@@ -1076,7 +1083,7 @@ Those file will generate the ones under /boot, when is run update-grub or grub2-
  - System.map - the kernel symbolic table.
  
  
-# kernel messages
+# Kernel messages
 
 kernel messages are printed with: 
 
@@ -1329,7 +1336,7 @@ AND operator is &&. the term at the right will only be executed if the term in t
 OR operator is ||.  the term at the right will only be executed if the term in the left is false.
 
 
-#### conditional expressions
+#### Conditional expressions
 
 Conditionals expressions are indicated a condition inside double brackets: [[ ]]
 
@@ -1417,7 +1424,7 @@ then
     PATH="$JAVA_HOME/bin:$PATH"
 ```
 
-### arrays
+### Arrays
 arrays are lits of elements.
 
 ```bash
@@ -1461,7 +1468,7 @@ or you can modify a given element with the square brackets
 weekdays[7]=monday
 ```
 
-### brace expansion
+### Brace expansion
 
 brace expansion is a way to create series of strings. it uses curly braquets and two periods to indicate it.
 
