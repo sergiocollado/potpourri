@@ -89,6 +89,12 @@ or:
 > cat /etc/os-release 
 ```
 
+or:
+
+```
+> cat /etc/*release* 
+```
+
 To know the name of your system, run the command: 
 
 ```
