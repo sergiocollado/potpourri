@@ -1419,3 +1419,7 @@ Other interesting github repos:
 Nice:
  - https://wizardzines.com/comics/ 
  - https://xkcd.com/archive/
+
+Distributed systems:
+ - https://www.csd.uoc.gr/~hy556/material.html
+ - https://www.distributedsystemscourse.com/
