@@ -2710,6 +2710,15 @@ https://kubernetesbyexample.com/
 https://github.com/NodyHub/docker-k8s-resources/tree/master/k8s-pods
 
 autoscaling: https://learnk8s.io/kubernetes-autoscaling-strategies
+
+ 
+## Preparation for CKS
+
+ - https://github.com/walidshaari/Certified-Kubernetes-Security-Specialist
+ - https://github.com/moabukar/CKS-Exercises-Certified-Kubernetes-Security-Specialist
+ - https://killercoda.com/killer-shell-cks
+ - k8s security playlist: https://www.youtube.com/playlist?list=PLeLcvrwLe1859Rje9gHrD1KEp4y5OXApB
+ 
  
 ## More advanced topics: 
  
