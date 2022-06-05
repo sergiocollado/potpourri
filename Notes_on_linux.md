@@ -2360,14 +2360,45 @@ netstat -tulpn
 ```
 if the command is run as root, then the program that is using those connections will be shown. 
 
+## Example
+
+### QUESTION 
+
+ An unknown process is bound to the port 8088.
+ Identify the process and prevent it from running again by stopping and
+ disabling any associated services. Finally, remove the package that was
+ responsible for starting this process.
+
+
+### ANSWER 
+
+Check the process which is bound to port 8088 on this node using **netstat**:
+
+controlplane $ netstat -natulp | grep 8088
+This shows that the the process openlitespeed is the one which is using this port. Check if any service is running with the same name:
+
+controlplane $ systemctl list-units  -t service --state active | grep -i openlitespeed
+lshttpd.service                    loaded active running OpenLiteSpeed HTTP Server
+This shows that a service called openlitespeed is managed by lshttpd.service which is currently active.
+
+Next, stop the service and disable it:
+
+controlplane $ systemctl stop lshttpd
+controlplane $ systemctl disable lshttpdxx
+Finally, check for the package by the same name:
+
+controlplane $ apt list --installed | grep openlitespeed
+Uninstall the package:
+
+controlplane $ apt remove openlitespeed -y
+
 ## How to automaticaly mount a volume at boot
 
 Define it in the file: /etc/fstab.
 
-
 # Run a script as a background daemon
 
-it is possible with '&':
+It is possible with '&':
 
 ```bash
 nohup node myscript.js > /dev/null 2>1 &
