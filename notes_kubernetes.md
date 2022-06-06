@@ -2639,7 +2639,7 @@ I would try:
  
 ## CKS playgrounds
  
-### vim setup
+### 1 vim setup
  
  https://killercoda.com/killer-shell-cks/scenario/vim-setup
  
@@ -2671,7 +2671,7 @@ Settings explained:
  - tabstop: amount of spaces used for tab
  - shiftwidth: amount of spaces used during indentation
  
- ### Apiserver Crash - Configure a wrong argument
+ ### 2 Apiserver Crash - Configure a wrong argument
  
  -  https://killercoda.com/killer-shell-cks/scenario/apiserver-crash
 
@@ -2698,7 +2698,7 @@ Log locations to check:
  
 #### Solution
 
-# always make a backup !
+ always make a backup !
  ```
 cp /etc/kubernetes/manifests/kube-apiserver.yaml ~/kube-apiserver.yaml.ori
  ```
@@ -2730,7 +2730,116 @@ Now undo the change and continue
  Smart people use a backup
 cp ~/kube-apiserver.yaml.ori /etc/kubernetes/manifests/kube-apiserver.yaml
 
+### 3 Apiserver Misconfigured
+ 
+The Apiserver manifest contains errors
+Make sure to have solved the previous Scenario Apiserver Crash.
 
+The Apiserver is not coming up, the manifest is misconfigured in 3 places. Fix it.
+
+
+#### Log Locations
+
+Log locations to check:
+
+/var/log/pods
+/var/log/containers
+crictl ps + crictl logs
+docker ps + docker logs (in case when Docker is used)
+kubelet logs: /var/log/syslog or journalctl
+Issues
+
+For your changes to apply you might have to:
+
+move the kube-apiserver.yaml out of the manifests directory
+ 
+wait for apiserver container to be gone (watch crictl ps )
+ 
+move the manifest back in and wait for apiserver coming back up
+ 
+Some users report that they need to restart the kubelet (service kubelet restart ) but in theory this shouldn't be necessary.
+
+
+#### Solution 1
+
+The kubelet cannot even create the Pod/Container. Check the kubelet logs in syslog for issues.
+
+
+cat /var/log/syslog | grep kube-apiserver
+
+There is wrong YAML in the manifest at metadata;
+
+
+#### Solution 2
+
+After fixing the wrong YAML there still seems to be an issue with a wrong parameter.
+
+
+Check logs in /var/log/pods.
+ ```
+Error: Error: unknown flag: --authorization-modus.
+ ```
+The correct parameter is --authorization-mode.
+
+ 
+#### Solution 3
+
+After fixing the wrong parameter, the pod/container might be up, but gets restarted.
+
+
+Check container logs or /var/log/pods, where we should find:
+
+```
+Error while dialing dial tcp 127.0.0.1:23000: connect:connection refused
+ ```
+ 
+ ```
+controlplane $ tail /var/log/pods/kube-system_kube-apiserver-controlplane_a13718837cd435b11935594dc0d74a3b/kube-apiserver/
+1.log  2.log  
+controlplane $ tail /var/log/pods/kube-system_kube-apiserver-controlplane_a13718837cd435b11935594dc0d74a3b/kube-apiserver/2.log
+ ...
+ 2022-06-06T19:22:38.951728409Z stderr F W0606 19:22:38.951564       1 clientconn.go:1331] [core] grpc: addrConn.createTransport failed to connect to {127.0.0.1:23000 127.0.0.1 <nil> 0 <nil>}. Err: connection error: desc = "transport: Error while dialing dial tcp 127.0.0.1:23000: connect: connection refused". Reconnecting...
+ ```
+
+Check the container logs: the ETCD connection seems to be wrong. Set the correct port on which ETCD is running (check the ETCD manifest)
+
+It should be --etcd-servers=https://127.0.0.1:2379
+ 
+ 
+ ### 4 Apiserver NodeRestriction
+ 
+Verify the issue
+The Kubelet on node01 shouldn't be able to set Node labels
+
+starting with node-restriction.kubernetes.io/*
+on other Nodes than itself
+Verify this is not restricted atm by performing the following actions as the Kubelet from node01 :
+
+add label killercoda/one=123 to Node controlplane
+add label node-restriction.kubernetes.io/one=123 to Node node01
+ 
+#### Tip
+
+We can contact the Apiserver as the Kubelet by using the Kubelet kubeconfig
+
+```
+export KUBECONFIG=/etc/kubernetes/kubelet.conf
+k get node
+```
+
+#### Solution
+
+ ```
+ssh node01
+    export KUBECONFIG=/etc/kubernetes/kubelet.conf
+    k label node controlplane killercoda/one=123 # works but should be restricted
+    k label node node01 node-restriction.kubernetes.io/one=123 # works but should be restricted
+ ```
+
+ 
+ 
+
+ 
 
 ## Playgrounds:
 
