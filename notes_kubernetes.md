@@ -2636,6 +2636,101 @@ I would try:
 >systemctl restart kubelet
 ```
 
+ 
+## CKS playgrounds
+ 
+### vim setup
+ 
+ https://killercoda.com/killer-shell-cks/scenario/vim-setup
+ 
+ We look at important Vim settings if you like to work with YAML during the K8s exams.
+
+#### Settings
+First create or open (if already exists) file .vimrc :
+
+ ```
+vim ~/.vimrc
+ ```
+Now enter (in insert-mode activated with i) the following lines, you need to remember these:
+
+  ```
+set expandtab
+set tabstop=2
+set shiftwidth=2
+  ```
+Save and close the file by pressing Esc followed by :x and Enter.
+
+#### Explanation
+Whenever you open Vim now as the current user, these settings will be used.
+
+If you ssh onto a different server, these settings will not be transferred.
+
+Settings explained:
+
+ - expandtab: use spaces for tab
+ - tabstop: amount of spaces used for tab
+ - shiftwidth: amount of spaces used during indentation
+ 
+ ### Apiserver Crash - Configure a wrong argument
+ 
+ -  https://killercoda.com/killer-shell-cks/scenario/apiserver-crash
+
+The idea here is to misconfigure the Apiserver in different ways, then check possible log locations for errors.
+
+You should be very comfortable with situations where the Apiserver is not coming back up.
+
+Configure the Apiserver manifest with a new argument '--this-is-very-wrong'.
+
+Check if the Pod comes back up and what logs this causes.
+
+Fix the Apiserver again.
+
+
+#### Log Locations
+
+Log locations to check:
+
+ - /var/log/pods
+ - /var/log/containers
+ - crictl ps + crictl logs
+ - docker ps + docker logs (in case when Docker is used)
+ - kubelet logs: /var/log/syslog or journalctl
+ 
+#### Solution
+
+# always make a backup !
+ ```
+cp /etc/kubernetes/manifests/kube-apiserver.yaml ~/kube-apiserver.yaml.ori
+ ```
+ 
+ make the change
+  ```
+vim /etc/kubernetes/manifests/kube-apiserver.yaml
+ ```
+ 
+ wait till container restarts
+  ```
+watch crictl ps
+ ```
+ 
+ check for apiserver pod
+  ```
+k -n kube-system get pod
+ ```
+ 
+Apiserver is not coming back, we messed up!
+
+
+#### check pod logs
+cat /var/log/pods/kube-system_kube-apiserver-controlplane_a3a455d471f833137588e71658e739da/kube-apiserver/X.log
+> 2022-01-26T10:41:12.401641185Z stderr F Error: unknown flag: --this-is-very-wrong
+
+Now undo the change and continue
+
+ Smart people use a backup
+cp ~/kube-apiserver.yaml.ori /etc/kubernetes/manifests/kube-apiserver.yaml
+
+
 
 ## Playgrounds:
 
