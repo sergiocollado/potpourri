@@ -2708,6 +2708,7 @@ ref: https://linux.die.net/man/7/gittutorial-2 <br>
 https://linux.die.net/man/7/gitworkflows <br>
 https://linux.die.net/man/7/gitglossary <br>
 
+easy way to learn: https://learngitbranching.js.org/
 
 ```bash
 usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
