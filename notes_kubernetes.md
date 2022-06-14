@@ -2643,8 +2643,8 @@ I would try:
  1. Codebase - usually with Git or other version control system. 
  2. Dependencies - apps usually depend on various tools or libraries, those are not part of the app, but the app depend on them. A 12factor app avoids depending on OS-level dependencies, so this ensures that the app can run more easily in any enviroment. One solution is bunddle dependencies on the app itself. For solving this, dependencies managment tools can be used, or other solution is to use containers, and run the app in a container that coplies with the expected dependencies. 
  3. Config - Configuration is data that is different between deployments of the app. This separate  configuration from source code. So the same source code can run in different enviroments with different configurations. To manage configuration in k8s, configMaps are used, also Secrets.
- 4. Backing services
- 5. Build, releasee, run
+ 4. Backing services - BAckig service is another app that our base inteacts with, such a database or other exernal API. The info needed to connect to that back service is configurable, so the backend is easily changeable with the configuration. In K8s, this is made by means the Services, configured by means of configMaps and secrets. 
+ 5. Build, release, run
  6. Processes
  7. Port binding
  8. Concurrency
