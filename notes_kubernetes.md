@@ -2645,7 +2645,7 @@ I would try:
  3. Config - Configuration is data that is different between deployments of the app. This separate  configuration from source code. So the same source code can run in different enviroments with different configurations. To manage configuration in k8s, configMaps are used, also Secrets.
  4. Backing services - BAckig service is another app that our base inteacts with, such a database or other exernal API. The info needed to connect to that back service is configurable, so the backend is easily changeable with the configuration. In K8s, this is made by means the Services, configured by means of configMaps and secrets. 
  5. Build, release, run - these are 3 stages of the life cicle of the sw development process. This is how the code is deployed. The release stage, is the one that provides the enviroment specific configuration. In k8s, delployments help us to manage the desired statef for the application, and provide it with the configuration (with configMaps & secrets). This implements the release stage. 
- 6. Processes
+ 6. Processes - 1 app runs as 1 or more processes, ultimatelly managed by the host Os. These processes are stateless. These processes don't directly share anything between different processes. For non-stateless processes databases or similar are used. 
  7. Port binding
  8. Concurrency
  9. Disposability
