@@ -30,7 +30,7 @@ Debian administrator handbook: https://debian-handbook.info/browse/stable/
 
 <hr>
 
-For starters, open a terminal, well through a short cut, or in many distros with: **Alt + Ctrl + t***
+For starters, open a terminal, well through a short cut, or in many distros with: **Alt + Ctrl + t**
 
 At the console, is easy to get help if needed, checking the manual pages: for it the 'man' command is used:
 
