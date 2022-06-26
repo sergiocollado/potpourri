@@ -2198,6 +2198,7 @@ TODO:
 - Design Microservice Architectures the Right Way: https://youtu.be/j6ow-UemzBc
 - Mastering Chaos - A Netflix Guide to Microservices : https://youtu.be/CZ3wIuvmHeM
 - tcddump: https://www.youtube.com/watch?v=hWc-ddF5g1I
+- Device trees for dummies! https://www.youtube.com/watch?v=m_NyYEBxfn8
 
 TODO: Linux security implementations - TPM, FDE, LUKS, HSM, etc.
 
@@ -2329,7 +2330,9 @@ And example of how to write a VFS: https://github.com/torvalds/linux/blob/2c271f
 - https://wiki.linuxfoundation.org/networking/kernel_flow
 - https://wiki.linuxfoundation.org/networking/start
 - socket buffer sctructure: skb  - http://vger.kernel.org/~davem/skb.html
-
+- Linux Networking - eBPF, XDP, DPDK, VPP - What does all that mean? (by Andree Toonk) : https://youtu.be/hO2tlxURXJ0
+- Linux packet journey,napi, hardware queue,skb : https://youtu.be/6Fl1rsxk4JQ
+- Device trees for dummies! https://www.youtube.com/watch?v=m_NyYEBxfn8
 
 
 
