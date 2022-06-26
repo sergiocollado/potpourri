@@ -2646,7 +2646,7 @@ I would try:
  4. Backing services - BAckig service is another app that our base inteacts with, such a database or other exernal API. The info needed to connect to that back service is configurable, so the backend is easily changeable with the configuration. In K8s, this is made by means the Services, configured by means of configMaps and secrets. 
  5. Build, release, run - these are 3 stages of the life cicle of the sw development process. This is how the code is deployed. The release stage, is the one that provides the enviroment specific configuration. In k8s, delployments help us to manage the desired statef for the application, and provide it with the configuration (with configMaps & secrets). This implements the release stage. 
  6. Processes - 1 app runs as 1 or more processes, ultimatelly managed by the host Os. These processes are stateless. These processes don't directly share anything between different processes. For non-stateless processes databases or similar are used. 
- 7. Port binding
+ 7. Port binding - 12factor based applications doesn't depend on external webservers, they fend by themselves. So the application can bind itself to network traffic, and then binds itserfl directly to ports, to listen ofr incomming traffic. One of the common conflicts, is that only 1 process can listen on a port per host. So in a given server, this can be a little of a challenge. But in k8s each pod has its own network namespace and cluster IP address. That means that ports only need to be unique to the pod, and pods, can communicate easily with each other. 
  8. Concurrency
  9. Disposability
  10. Dev/prod parity
