@@ -15,3 +15,13 @@ As a disadvange: it is more complex.
 
 Due distrubuted systems are complex, are considered an advanced topic in computer science.
 
+## Why build a distributed system?
+
+- Scaling
+- Reliability
+- Dependency on th ecloud
+- performance (latency/bandwidth)
+- uptime requirments
+
+
+
