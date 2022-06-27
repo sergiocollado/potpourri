@@ -2647,7 +2647,7 @@ I would try:
  5. Build, release, run - these are 3 stages of the life cicle of the sw development process. This is how the code is deployed. The release stage, is the one that provides the enviroment specific configuration. In k8s, delployments help us to manage the desired statef for the application, and provide it with the configuration (with configMaps & secrets). This implements the release stage. 
  6. Processes - 1 app runs as 1 or more processes, ultimatelly managed by the host Os. These processes are stateless. These processes don't directly share anything between different processes. For non-stateless processes databases or similar are used. 
  7. Port binding - 12factor based applications doesn't depend on external webservers, they fend by themselves. So the application can bind itself to network traffic, and then binds itserfl directly to ports, to listen ofr incomming traffic. One of the common conflicts, is that only 1 process can listen on a port per host. So in a given server, this can be a little of a challenge. But in k8s each pod has its own network namespace and cluster IP address. That means that ports only need to be unique to the pod, and pods, can communicate easily with each other. 
- 8. Concurrency
+ 8. Concurrency - this is to run multiple copies of the software at the same time. In 12 factor it means running multiple processes running at the same time, doing diffenet things. And this allows to sacale the system, running additional copies of the program. In k8s, this means runnning more pods. To scale up an applications, it is only neeeded multiple pods, to achieve concurrency. This is easily done with deployments. 
  9. Disposability
  10. Dev/prod parity
  11. Logs
