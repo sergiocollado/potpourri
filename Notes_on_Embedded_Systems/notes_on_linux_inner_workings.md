@@ -2199,6 +2199,7 @@ TODO:
 - Mastering Chaos - A Netflix Guide to Microservices : https://youtu.be/CZ3wIuvmHeM
 - tcddump: https://www.youtube.com/watch?v=hWc-ddF5g1I
 - Device trees for dummies! https://www.youtube.com/watch?v=m_NyYEBxfn8
+- Different I/O access methods for linux: https://www.youtube.com/watch?v=27Xz21RJoUA
 
 TODO: Linux security implementations - TPM, FDE, LUKS, HSM, etc.
 
