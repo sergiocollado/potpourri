@@ -1,4 +1,10 @@
-# Reference: manual (man) pages:
+# Notes on linux
+
+According to the official page of the Linux kernel:
+
+Linux is a clone of the operating system Unix, written from scratch by Linus Torvalds with assistance from a loosely-knit team of hackers across the Net. It aims towards POSIX and Single UNIX Specification compliance.
+
+## manual pages, where to find help, and references
 
  - 1- User commands: [:link:](http://man7.org/linux/man-pages/dir_section_1.html)
  - 2- System calls: [:link:](http://man7.org/linux/man-pages/dir_section_2.html)
