@@ -1145,12 +1145,69 @@ architecture dependant kernel code  <br>
  V  <br>
 hardware platform  <br>
 
+## How to set and configure linux networking
+
+The basic data is to define the local IP (in a static or dinamic way) the net mask, and the gateway IP. Also the DNS. 
+
+references: <br>
+- https://ubuntu.com/server/docs/network-configuration
+- https://wiki.debian.org/NetworkConfiguration
+
+For the configuration, most problably the root user should be user
+
+To check the network interface use the **ifconfig** commmand:'eth0' is the network cable, and 'lo' is the loop-back interface
+
+the netwrok interfaces are defined at: **/etc/network/interfaces.d**
+
+```
+#The primary network interface
+auto eth0
+iface eth0 inet static
+address 192.168.100.190
+netmask 255.255.255.0
+gateway 192.168.100.1
+```
+'static' is a static definition, in which the addresses will be defined in the file, and not with a DHCP server.
+
+To use a DHCP server:
+
+```
+#The primary network interface
+auto eth0
+iface eth0 inet dhcp
+
+# commented out
+#address 192.168.100.190
+#netmask 255.255.255.0
+#gateway 192.168.100.1
+```
+to force the changes to take effect
+
+```
+service networking restart
+```
+
+or 
+
+```
+/etc/init.d/networking restart
+```
+
+And then we can check again the network interface with the conmmand 'ifconfig'. Even check it doing a ping to the gateway. 
+
+To check the DNS, we read the file **/etc/resolv.conf**, there each line stands for a given DNS. 
+
+Thre is other file, where the names are manually assigned: **/etc/hosts**
+
+To activate a given interface, use: `ifconfig eth0 up/down`. To configure the promiscous mode `ifconfig eth0 promisc' and to remove it
+`ifconfig eth0 -promisc`.
+
 ## Linux networking commands
 
  - **ifconfig** print and manipulation of network interfaces and routes (better use the next command)
  - **ip**  replacement for ipconfig
  - **traceroute** traces pacekt's routes, used for troubleshooting networking issues
- - **tracepath** like traceroute, without rout privileges
+ - **tracepath** like traceroute, without root privileges
  - **pintg** for checking conectivity
  - **netstat** reports network information ... its deprecated and the **ss** command should be used instead
  - **ss** replacement for the netstat commmand
@@ -1167,7 +1224,6 @@ hardware platform  <br>
  - **mtr** ping + tracepath in a single command
  - **whois** report web site whois
  - **ifplugstatus** report cable connnection
-
 
 ## BASH SCRIPTING
 
