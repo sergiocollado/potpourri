@@ -1,6 +1,6 @@
 ## FOREWORD:
 
-· This are my personal notes, on the AWS Cloud. The aim of this docuent,is to clarify my ideas, by means
+These are my personal notes, on the AWS Cloud. The aim of this docuent,is to clarify my ideas, by means
 of writting them down, and have a resource where quickly find answers to my doubts, based on my experience. 
 
 Short Introductory videos: https://aws.amazon.com/es/training/intro_series/
@@ -17,7 +17,14 @@ Amazon Web Services.
 
 AWS free tier: https://aws.amazon.com/free/
 
-# INTRODUCTION to IAM (Identity and Access Management) and policies
+
+## Regions and availability zones
+
+AWS has different locations around the world, where it locates its servers. Inside each region, there are several availability zones,
+in different locations, with different power supplies, facilities ... 
+
+
+## INTRODUCTION to IAM (Identity and Access Management) and policies
 
 
 IAM provides the right users, the right access, the right resources at the right time.
