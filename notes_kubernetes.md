@@ -2636,7 +2636,7 @@ I would try:
 >systemctl restart kubelet
 ```
 
-## Howto create applications for k8s
+## Howto create applications for k8s - 12 factor design methodology
  
  Base your design in https://12factor.net/, the twelve-factor methodology. 
  
@@ -2648,7 +2648,7 @@ I would try:
  6. Processes - 1 app runs as 1 or more processes, ultimatelly managed by the host Os. These processes are stateless. These processes don't directly share anything between different processes. For non-stateless processes databases or similar are used. 
  7. Port binding - 12factor based applications doesn't depend on external webservers, they fend by themselves. So the application can bind itself to network traffic, and then binds itserfl directly to ports, to listen ofr incomming traffic. One of the common conflicts, is that only 1 process can listen on a port per host. So in a given server, this can be a little of a challenge. But in k8s each pod has its own network namespace and cluster IP address. That means that ports only need to be unique to the pod, and pods, can communicate easily with each other. 
  8. Concurrency - this is to run multiple copies of the software at the same time. In 12 factor it means running multiple processes running at the same time, doing diffenet things. And this allows to sacale the system, running additional copies of the program. In k8s, this means runnning more pods. To scale up an applications, it is only neeeded multiple pods, to achieve concurrency. This is easily done with deployments. 
- 9. Disposability
+ 9. Disposability - is all about disposable processes. those processes have to been able to be dispossable, and easily replazable, in case they crash. Stateless contaniners are easy to dispose off. K8s manages those stateles containers. In k8s pods are replaced when ever needed, automatically my means of deployments.
  10. Dev/prod parity
  11. Logs
  12. Admin Processes
