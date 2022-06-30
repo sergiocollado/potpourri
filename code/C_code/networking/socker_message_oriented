@@ -1,0 +1,39 @@
+     UDP- message oriented comunication
+      +--------------------------------+
+
+
+    SERVER
+
+  +----------+
+  | socket() |
+  +----+-----+
+       |
+  +----v-----+                 CLIENT
+  |  bind()  |
+  +----+-----+
+       |
+ +-----v------+             +----------+
+ | recvfrom() |             | socket() |
+ +-----+------+             +----+-----+
+       |                         |
+       v            data         |
+-blocks until               +----v-----+
+data is received- <------+  | sendto() |
+       +                    +----+-----+
+       |                         |
+       |                         |
+  +----v-----+    data     +-----v------+
+  | sendto() | +---------> + recvfrom() |
+  +----+-----+             +-----+------+
+       |                         |
+       v                         v
+
+       .                         .
+       .                         .
+
+  +---------+               +---------+
+  | close() |               | close() |
+  +---------+               +---------+
+
+
+////https://www.gnu.org/software/libc/manual/html_node/Sockets.html
