@@ -100,5 +100,24 @@ The goal is to turn this case is to turn into fails stop:
 | Fail Stop | Checkpoint & recover or Replicate & fail over | worry about partitions Network protocol handles the rest | 
 | Byzantine | Attempt to transform into fail stop | worry about partitions Network protocol handles the rest | 
 
+## Byzantine Fault Tolerance
+
+How to design and build a distrubuted system that can survive the workt possible errors in the system?
+
+A node, with some malfuction, which send incorrect of conflicting messages, is known as a 'traitor node'. 
+
+This can be cause as a flaky node in the sytem, o by a malicious node (owned by an adversary). 
+
+## what assumptions are to be taken?
+
+- can all nodes see all messages? some? none?
+- do nodes fail? how about the network?
+- finite computation?
+- static or dynamic adversary? 
+- bounded communication time?
+- fully connected network?
+- randomized algorithms?
+
+
 
 
