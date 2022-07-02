@@ -2912,7 +2912,7 @@ to ignore files with:  .gitignore
 
 REFERENCES:
 
-references are labels associated to commit's SHA hash value. The reference **master** points to the master branch. A branch label points to the latest commit in a brach, its tip. actually branch labels are implemented only as refereces to given commits. the referenes are stored in the .git/refs directory. local branch references are in the .git/refs/heads directory. 
+References are labels associated to commit's SHA hash value. The reference **master** points to the master branch. A branch label points to the latest commit in a brach, its tip. actually branch labels are implemented only as refereces to given commits. the referenes are stored in the .git/refs directory. local branch references are in the .git/refs/heads directory. 
 
 **NOTE**: The _**“master”**_ branch in Git is not a special branch. It is exactly like any other branch. The only reason nearly every repository has one is that the git init command creates it by default and most people don’t bother to change it.
 
@@ -3250,6 +3250,66 @@ ADDING FILES.
 - git am
 
 
+
+## SSH keypair setup for GitHub (or GitHub/GitLab/BitBucket, etc, etc)
+
+### Create a repo.
+
+Make sure there is at least one file in it (even just the README.md)
+
+### Generate a SSH key pair (private/public):
+
+```
+ssh-keygen -t rsa -C "your_email@example.com"
+```
+	
+or even better:
+
+```
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+	
+### Copy the contents of the public SSH key
+
+macOS:
+```
+pbcopy < ~/.ssh/id_rsa.pub
+```
+GNU/Linux (requires the xclip package):
+```
+xclip -sel clip < ~/.ssh/id_rsa.pub
+```
+Windows Command Line:
+```
+type %userprofile%\.ssh\id_rsa.pub | clip
+```
+Git Bash on Windows / Windows PowerShell:
+```
+cat ~/.ssh/id_rsa.pub | clip
+```
+or of course copy it via your favorite editor, cat, or whatever suits your needs :)
+
+### Copy the public SSH key to GitHub
+
+Copy the contents of the to your SSH keys to your GitHub account settings (https://github.com/settings/keys).
+Test the SSH key:
+```
+ssh -T git@github.com
+```
+Change directory into the local clone of your repository (if you're not already there) and run:
+```
+git remote set-url origin git@github.com:username/your-repository.git
+```
+Now try editing a file (try the README) and then do:
+```
+git add -A
+git commit -am "Update README.md"
+git push
+```
+You should not be asked for a username or password. If it works, your SSH key is correctly configured.
+	
+### Updating a PR (pull request) in github
+	
 For updating a pull request in GitHub is as easy as committing the wanted changes into existing branch
 (that was used with pull request), but often it is also wanted to squash the changes into single commit:
 
@@ -3266,9 +3326,6 @@ git push -f origin yourbranch
 ```
 	
 ...and now the pull request contains only one commit.
-
-
-	
 
 # GERRIT
 
