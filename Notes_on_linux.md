@@ -3294,7 +3294,7 @@ or of course copy it via your favorite editor, cat, or whatever suits your needs
 Copy the contents of the to your SSH keys to your GitHub account settings (https://github.com/settings/keys).
 Test the SSH key:
 ```
-ssh -T git@github.com
+ssh -T git@github.com -v
 ```
 Change directory into the local clone of your repository (if you're not already there) and run:
 ```
