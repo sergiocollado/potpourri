@@ -67,7 +67,7 @@ Usually systems are resiliant to categories of failures, and those categories ar
 ### Partitioin failure
 
 At least 2 component of the system continue to run, but cannot communicate. Usually partition failuer, is a temporal issue, 
-but they have to be taken into account in order to design a robust algorithm. The solution to a partition can be a trade-off between the system's reliability and consistency. -> CAP priinciple: Consistensy Availability Partitioning (Eric Brewer) https://en.wikipedia.org/wiki/CAP_theorem
+but they have to be taken into account in order to design a robust algorithm. The solution to a partition can be a trade-off between the system's reliability and consistency. -> CAP principle: Consistency - Availability - Partitioning tolerance (Eric Brewer) https://en.wikipedia.org/wiki/CAP_theorem
 
 To detect a partition, the cuorum algorithm is used:
 
@@ -95,7 +95,7 @@ The goal is to turn this case is to turn into fails stop:
 - timeouts
 
 
-|    | NOde | Network |
+|    | Node | Network |
 | --- | --- | --- | 
 | Fail Stop | Checkpoint & recover or Replicate & fail over | worry about partitions Network protocol handles the rest | 
 | Byzantine | Attempt to transform into fail stop | worry about partitions Network protocol handles the rest | 
@@ -117,6 +117,37 @@ This can be cause as a flaky node in the sytem, o by a malicious node (owned by 
 - bounded communication time?
 - fully connected network?
 - randomized algorithms?
+
+## The two generals problem
+
+The two gernerals problem is a consensus problem. A consensus problem, is a problem in which two nodes
+of the distributed system have to agree. 
+
+In this problem, there are two armies: A and B, and they need to agree if they attack army C in the morning, or retreat. If both armies attack army C in the morning, they would win. But if only one army attacks army C
+it would be defeated. 
+
+The generals of armies A and B, can only communicate though couriers, and the couriers have to go through 
+the territory of army C, so may or may not make it to the other general. 
+
+So, the two generals have to have a protocol, or a series of messages, that allow them to reach and comfirm a consensus of when to attack. What kind of messages or protocols should they use to achieve the consensus?
+
+It can be proof that there is no perfect solution to this problem. 
+
+In a distributed problem, the network is the byzantine general. 
+
+In practice, we suppouse the enemy general is not considered perfectly byzantine. 
+
+How would be the problem, if the network works, an the nodes of the system are the ones that are corrupted, 
+that is what is know as the "Byzantine generals problem", this is a seminal paper by: Leslie, Lamport and Robert in 1982. In this case, one of the general is a traitor. 
+
+For the 3 generals and 1 traitor, there is no solution. So, how many generals do we need to solve the issue?
+In the paper, is the lemma, that there is no solution for (3m+1) generals, when there is more that m traitors. That is if there is more that 1/3 of the generals are traitors.
+
+references:
+- https://en.wikipedia.org/wiki/Two_Generals%27_Problem
+- https://lamport.azurewebsites.net/pubs/byz.pdf
+- https://pmg.csail.mit.edu/papers/bft-tocs.pdf
+
 
 
 
