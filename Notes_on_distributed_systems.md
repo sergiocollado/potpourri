@@ -149,6 +149,24 @@ references:
 - https://pmg.csail.mit.edu/papers/bft-tocs.pdf
 
 
+## SLIs, SLOs and SLAs
+
+Those are metrics that inform abut the performance and reliability of
+a distributed system.
+
+SLI, stands for Service Level Indicator. It is what it is being 
+measured, for example, an uptime. Or how long does it take to
+respond to a query to the system. SLIs are important because if a 
+metric is monitored, then that is the first stept, in the case
+it wants to be improved. 
+
+SLO, stands for Service Level Objetive, those try to represent how 
+good the expected inidicators are, or how good should those be.
+
+SLA, stands for Service Level Agreement, is an SLO, plus the consecuences
+in case the system doesn't perform as expected in the SLA. This is
+useful, for contract relations. 
+
 
 
 
