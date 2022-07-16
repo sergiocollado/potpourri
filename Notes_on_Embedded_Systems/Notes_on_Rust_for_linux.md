@@ -44,11 +44,16 @@ Sept 28, 2021: Using Rust for kernel development - https://lwn.net/Articles/8710
 
 Oct 4, 2021: Rust and GCC, two different ways - https://lwn.net/Articles/871283/
 
-Nov 11, 2021: Mentorship Session: Rust for Linux: Writing Safe Abstractions & Drivers - https://www.youtube.com/watch?v=3VU0hfsbHdc
-
 Nov 13, 2021: Rust for linux: Rust for Linux
 
 Marz 25, 2022: https://www.youtube.com/watch?v=fVEeqo40IyQ
+
+Mentorship Session: Rust for Linux: Writing Safe Abstractions & Drivers: https://youtu.be/3VU0hfsbHdc
+
+Mentorship Session: Rust for Linux: Code Documentation & Tests: https://youtu.be/J8yoUQKEY5g
+
+Mentorship Session: Writing Linux Kernel Modules in Rust: https://youtu.be/-l-8WrGHEGI
+
 
 
 
