@@ -703,6 +703,8 @@ https://kubernetes.io/docs/tasks/administer-cluster/network-policy-provider/weav
 
 ref: https://github.com/ahmetb/kubernetes-network-policy-recipes
 
+- A tutorial for network policies: https://editor.cilium.io/?id=Ie5Ud3y1KEK50zrx
+
 
 ## Volumes
 
