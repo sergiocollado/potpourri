@@ -84,8 +84,8 @@ cat config-`uname -r` | grep CONFIG_MODULES
 
 ## Types of modules
 
-- In-source tree: mdoules presen tin the linux kernel source code
-- Out-of-tree: modules not present in lthe linux kernel s
+- In-source tree: modules present in the linux kernel source code
+- Out-of-tree: modules not present in the linux kernel 
 
 All modules start out as "out-of-tree" developments, that can be compiled using the 
 condtex of a source-tree. 
@@ -94,15 +94,130 @@ Once a module gets accepted to be included, it becomes an in-tree module.
 
 ## Basic commands
 
-- List modules: (lsmod) lsmod ges its information by reading the file /proc/module (previously) or /sys/module
-- module information: (modinfo) : prints the information of the module
+- lsmod: List modules, lsmod ges its information by reading the file /proc/module (previously) or /sys/module
+- modinfo: module information, prints the information of the module
+  
 
+## Hello World kernel module
+  
+  In C/C++ programming the main() function is the entry point and exit point
+  
+  Kernel modules must have al least two funcions:
+  - a start (initialization function): which is called when the module is loaded into the kernel
+  - an end funcion (cleanup), which is called just befor it si removed
+  
+  This is done with the module_init() and module_exit() macros
+  
+ ### Licensing
+  
+  Module should specify which license you are using MODULE_LICENSE() macro
+  
+  - "GPL" GNU plublic lincese v2 or later
+  - GPL v2
+  - GPL and addictional rights
+  - Dual BSD/GPL
+  - Dual MIT/GPL
+  - Dual MPL/GPL
+  - Propietary (non-free-modules)
+  
+  ### Header files
+  
+  All kernel modules needs to include "linux/module.h" for macro expansion of module_init and module_exit.
+  
+  "linux/kernel.h" only for the macro expansion for the printk() log level.
+  
+  ### HelloWorldModule.c
+  
+  ```
+  #include <linux/kernel>
+  #include <linux/module>
+  
+  MODULE_LICENSE("GPL")
+  
+  static int test_hello_init(void)
+  {
+      printk(KERN_INFO "%s: In init\n", __func__);
+  }
+  
+  static void test_hello_exit(void)
+  {
+       printk(KERN_INFO "%s: In exit\n", __func__);
+  }
+  
+  module_init(test_hello_init);
+  module_exit(test_hello_exit);
+  ```
+  
+### compiling it
+  
+to compiile the module, the kermel make file is needed
+  
+```
+ls /lib/modules/'uname -r'/bulid/Makefile
+```
+  
+use the make, with the -C option, that indicates to use the makefile indicated in the folder by -C
+  
+``` 
+make -C /lib/modules/`uname -r/build/
+``` 
+just this, will not be enought. this makefile uses a makefile, so a small makefile needs to be added
+  
+ 
+```
+cat Makefile
+obj-m := hello.o
+```
+ 
+obj-m : stands for module. 
+  
+```
+make -C /lib/modules/'uname -r'/build/ M={PWD} modules
+```
+ 
+The file .ko, should be generated 
+ 
+At to this point, this is an out-of-tree module. To load it to the kernel, the 'insmod' command is used.
+  
+```
+sudo insmod ./helloWorld.ko
+lsmod # to check if the module indeed has been loaded
+sudo rmmod helloWorld # to remove the module
+```
+  
+In the code there is a 'printk', this is not printed in the console, for that the command 'dmesg' is needed.
+  
 
+### compile and clean module commands
 
+ ```
+  make -C /lib/modules/`uname -r`/build M=${PWD} modules
+  make -C /lib/modules/`uname -r`/build M=${PWD} clean
+ ```
+  
+The -C option state to to change the directory provided
+  
+The M= argument causes the Makefile tomove back into your module source directory before trying to build modules. 
+  
+The kernel Makefile will read the local makefile to findout what to build, this is indicated by writing: obj-m +=HelloWorldModule.o
 
+### Cross compiling kernel modules
+  
+There are two variables that the kernel uses to select the target architecture: 
+  - ARCH
+  - CROSS_COMPILE
+  
+The default vaues for both are found in the top-level Makefile and the values of both may be overridden on the command line.
+  
+ARCH: architecture targetes as the kernel knows it.
+  
+CROSS_COMPILE: set this to the prefix of your toolchain (including the trailing dash "-")
+So if the toolchain is invoked as say x86_64-pc-linux-gnu-gcc, just remove the trailing gcc and that is what should be used: x86_64-pc-linux-gnu-.
+  
+```
+$ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..../output/build/linux-X.Y:Z m=${PWD} modules  
+```
 
-
-
-
+  
 
 
