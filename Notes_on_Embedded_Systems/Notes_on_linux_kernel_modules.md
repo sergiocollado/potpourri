@@ -221,3 +221,8 @@ $ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..
   
 
 
+  
+  
+  
+  Reference: https://lwn.net/Kernel/LDD3/
+  
