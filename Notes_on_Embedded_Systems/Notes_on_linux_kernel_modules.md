@@ -11,20 +11,20 @@ A device driver has three sides
 
 ## What is a kernel module?
 
-Tradicinaly the way to add code to the kernel was to recompile the kernel and reboot the system.
+Tradicionaly the way to add code to the kernel was to recompile the kernel and reboot the system.
 
 Kernel modules, are a piece of ccode that can be load/inserted  and unloaded/removed form the kernel whenever needed.
 
 It can be refered by other names:
 
 - Loadable kernel modules (LKM)
-- modules
+- Modules
 
 Its extension is .ko (Kernel Object)
 
 ## Standard location for kernel modules
 
-Moudeles are located in the /lib/modules/<kernel version> direcory of the rootfs by default
+Modules are located in the /lib/modules/<kernel version> direcory of the rootfs by default
 
 to check them: 
 
@@ -37,7 +37,7 @@ finx . -name '*.ko' | wc -l # to count the number of kernel modules
 
 A kernel module doesn't have to be a device driver. 
 
-A driver is liek a sub-class of module
+A driver is like a sub-class of module
 
 modules are used for:
 - device dirvers
