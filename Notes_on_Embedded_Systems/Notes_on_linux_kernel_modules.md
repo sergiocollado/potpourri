@@ -94,8 +94,8 @@ Once a module gets accepted to be included, it becomes an in-tree module.
 
 - lsmod: List modules, lsmod ges its information by reading the file /proc/module (previously) or /sys/module
 - modinfo: module information, prints the information of the module
-- insmod: 
-  
+- insmod: used like: `sudo insmod ./mymodule.ko` to load modules
+- rmmod: to remove modules
 
 ## Hello World kernel module
   
@@ -207,6 +207,8 @@ The `M=` argument causes the Makefile tomove back into your module source direct
 The kernel Makefile will read the local makefile to findout what to build, this is indicated by writing: obj-m +=HelloWorldModule.o
 
 ### Cross compiling kernel modules
+    
+It is possible to emulate other architectures with QUEMU, and make developments for those other architectures, for that we need to cross compile.
   
 There are two variables that the kernel uses to select the target architecture: 
   - ARCH
@@ -217,8 +219,9 @@ The default vaues for both are found in the top-level Makefile and the values of
 ARCH: architecture targetes as the kernel knows it.
   
 CROSS_COMPILE: set this to the prefix of your toolchain (including the trailing dash "-")
-So if the toolchain is invoked as say x86_64-pc-linux-gnu-gcc, just remove the trailing gcc and that is what should be used: x86_64-pc-linux-gnu-.
+So if the toolchain is invoked as say x86_64-pc-linux-gnu-gcc, just remove the trailing gcc and that is what should be used: `x86_64-pc-linux-gnu-`.
   
+example:
 ```
 $ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..../output/build/linux-X.Y:Z m=${PWD} modules  
 ```
@@ -371,6 +374,75 @@ clean:
    make -C /lib/modules/`uname -r`/build M=${PWD} clean  
 ```
 
+### dmesg command
+  
+`dmesg` is used to control or print the kernel ring buffer, that has the log of the kernel eveents
+  
+The kernel keeps all the event logs in a ring bugger. This is done to avoid the boot logs being lost until the syslog daemon starts and collects them and stores them in /var/log/dmesg.
+  
+- to clear the ring buffer. You may need to lauch it with sudo (for permissions)
+ ```
+  dmesg -c # will clear the ring buffer after printing (by default in the console). C stands for Clear
+  dmesg -C # will clear the ring buffer, but will not print its contents
+ ```
+
+- to don't print the time stamps
+ ```
+  dmesg -t # will not print the timestamps
+ ```
+- restrict dmesg command to list of levels
+ ```
+  dmesg -l err,warn # will print only error and warn messages
+ ```
+- print human readable timestamps
+ ```
+  dmesg -T # will print timestamps in readable format. watch out! the timestamp could be inaccurate.
+ ```
+- Display the log level in the output
+ ```
+  dmesg  -x # will print the log level in the output
+ ```
+- You can combine the options, so dmesg -Tx will print both human friendly and loglevel
+ ```
+  dmesg -Tx
+ ```
+- To follow/update messages
+ ```
+  dmesg -w & # the & is to run it in background. 
+ ``` 
+
+### kernel module without an exit function?
+  
+When the is not exit function, the module will not be possible to be removed. When try to be removed, it
+will report an EBUSY module. This is defined in `kernel/module.c` at `SYSCALL_DEFINE2(delete_module, ...`
+  
+### kernel module without an init function?
+  
+The module may be loaded, but it will do nothing at the beginig. This is defined at kernel/module.c at `SYSCALL_DEFINE3(init_module, ...`
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
 Reference: https://lwn.net/Kernel/LDD3/
