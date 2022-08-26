@@ -261,10 +261,10 @@ all:
    make -C /lib/modules/`uname -r`/build/build M=${PWD} modules
   
 clean:
-   make -C /lib/modules/ùname -r/build M=${PWD} clean
+   make -C /lib/modules/`uname -r`/build M=${PWD} clean
 ```
 
-### What happens we do insmod in a module
+### What happens when we do insmod in a module
   
   The kernel module is a piece of kernel code (.ko in elf format) which can be added to the running kernel, and when loaded can be removed from the kernel.
   
@@ -300,7 +300,7 @@ all:
    make -C /lib/modules/`uname -r`/build/build M=${PWD} modules
   
 clean:
-   make -C /lib/modules/ùname -r/build M=${PWD} clean  
+   make -C /lib/modules/`uname -r`/build M=${PWD} clean  
 ```
   
 if we check the name of the modules, with lsmode, we would find the linux module
@@ -309,7 +309,7 @@ if we check the name of the modules, with lsmode, we would find the linux module
  
 We can have a module in several files. For example:
   
-HelloWorldModule.c
+HelloWorldModule.c:
   
 ```
   #include <linux/kernel>
@@ -332,9 +332,46 @@ HelloWorldModule.c
   module_init(test_hello_init);
   module_exit(test_hello_exit);
 ```
+ 
+and the file func.c:
+```
+#include <linux/kernel.h>
+void func(void)
+{
+    printk(KERN_INFO "Hey there!");
+}
+```
+
+The module must be udpated, to add the file:
+  
+```
+obj-m := linux.o
+linux-objs := hello.o func.o
+  
+all:
+   make -C /lib/modules/`uname -r`/build/build M=${PWD} modules
+  
+clean:
+   make -C /lib/modules/`name -r`/build M=${PWD} clean  
+```
+
+### Two kernel modules in a single makefile
+
+You can use a single makefile to generate more than one modules.
+
+  ```
+obj-m := hello1.o
+obj-m += hello2.o
+# or also obj-m := hello1.o hello2.o
+
+all:
+   make -C /lib/modules/`uname -r`/build/build M=${PWD} modules
+  
+clean:
+   make -C /lib/modules/`uname -r`/build M=${PWD} clean  
+```
+
   
   
-  
-  
-  Reference: https://lwn.net/Kernel/LDD3/
+Reference: https://lwn.net/Kernel/LDD3/
  
