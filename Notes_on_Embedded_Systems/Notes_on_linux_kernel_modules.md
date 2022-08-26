@@ -61,9 +61,7 @@ when they are requested to be loaded.
 
 ## Disadvanteges of kernel modules
 
-1. Size: Moudle management consumes unpeable kernel memory. A basic kernel with a number of modules loaded will 
-consume more memory than an equivalen kernel with the dirvers compiled into th ekernel image itself. This can be
-an issue on machines with limited physical memory
+1. Size: Moudle management consumes unpeable kernel memory. A basic kernel with a number of modules loaded will consume more memory than an equivalen kernel with the dirvers compiled into th ekernel image itself. This can be an issue on machines with limited physical memory
 
 2. As the kernel modules are loaded very late in the boot process, hence core funcionality has to go 
 in the vase kernel (e.g. memory management)
@@ -96,6 +94,7 @@ Once a module gets accepted to be included, it becomes an in-tree module.
 
 - lsmod: List modules, lsmod ges its information by reading the file /proc/module (previously) or /sys/module
 - modinfo: module information, prints the information of the module
+- insmod: 
   
 
 ## Hello World kernel module
@@ -120,37 +119,38 @@ Once a module gets accepted to be included, it becomes an in-tree module.
   - Dual MPL/GPL
   - Propietary (non-free-modules)
   
-  ### Header files
+### Header files
   
   All kernel modules needs to include "linux/module.h" for macro expansion of module_init and module_exit.
   
   "linux/kernel.h" only for the macro expansion for the printk() log level.
   
-  ### HelloWorldModule.c
+### HelloWorldModule.c
   
-  ```
+```
   #include <linux/kernel>
   #include <linux/module>
   
   MODULE_LICENSE("GPL")
   
-  static int test_hello_init(void)
+  static int __init test_hello_init(void)
   {
       printk(KERN_INFO "%s: In init\n", __func__);
+      return 0;
   }
   
-  static void test_hello_exit(void)
+  static void __exit test_hello_exit(void)
   {
        printk(KERN_INFO "%s: In exit\n", __func__);
   }
   
   module_init(test_hello_init);
   module_exit(test_hello_exit);
-  ```
+```
   
-### compiling it
+### Compiling it
   
-to compiile the module, the kermel make file is needed
+To compiile the module, the kermel make file is needed
   
 ```
 ls /lib/modules/'uname -r'/bulid/Makefile
@@ -188,16 +188,21 @@ sudo rmmod helloWorld # to remove the module
 In the code there is a 'printk', this is not printed in the console, for that the command 'dmesg' is needed.
   
 
-### compile and clean module commands
+### Compile and clean module commands
 
+ To build a module, use:
  ```
   make -C /lib/modules/`uname -r`/build M=${PWD} modules
+ ```
+  
+ T clean the module: 
+ ```
   make -C /lib/modules/`uname -r`/build M=${PWD} clean
  ```
   
-The -C option state to to change the directory provided
+The `-C` option state to to change the directory provided, instead of using the current directory use the one provided by the -C option.
   
-The M= argument causes the Makefile tomove back into your module source directory before trying to build modules. 
+The `M=` argument causes the Makefile tomove back into your module source directory before trying to build modules. 
   
 The kernel Makefile will read the local makefile to findout what to build, this is indicated by writing: obj-m +=HelloWorldModule.o
 
@@ -218,11 +223,118 @@ So if the toolchain is invoked as say x86_64-pc-linux-gnu-gcc, just remove the t
 $ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..../output/build/linux-X.Y:Z m=${PWD} modules  
 ```
 
+ ### Printk
   
+ `Printf()` is a function from the standard C library. `printk()` is a kernel level function.
+  
+`printk' function is called with one argumet:
+  
+ ```
+ printk(KERN_log_prority "hello world!");
+ ```
+ The log_priority is one of eight values, predefined in linx/kernel.h,
+  
+ - EMERG, ALERT, CRIT, ERR, WARNING, NOTICE, INFO, DEBUG
+  
+ `printk()`writes in the kernel buffer.
+  
+### Simplified makefile
+  
+So to build a module, the command is use:
+  
+```
+make -C /lib/modules/`uname -r`/build/build M=${PWD} modules
+```
+  
+and to clean the module, the command:
+  
+```
+make -C /lib/modules/ùname -r/build M=${PWD} clean
+```
 
+This is a bit bothersome, so a new makefile can be used:
+  
+```
+obj-m := hello.o
+  
+all:
+   make -C /lib/modules/`uname -r`/build/build M=${PWD} modules
+  
+clean:
+   make -C /lib/modules/ùname -r/build M=${PWD} clean
+```
 
+### What happens we do insmod in a module
+  
+  The kernel module is a piece of kernel code (.ko in elf format) which can be added to the running kernel, and when loaded can be removed from the kernel.
+  
+1- It calls init_Module() to inform the querken that a module is attemp to be loaded an transfers the control to the kernel 
+  
+2- In the kernel, `sys_init_module()`is run. It does the following operations
+  - Verify that the user has the permissions to load the moduel
+  - The load_module function is called
+  - The load_module function assigns temporary memory and copies the elf module from the user space to kernel memory using 'copy_from_user'.
+  - Checks the sanity of the ELF file.
+  - Based on the ELF file interpretation, it generates offset in the temporary memory space allocated. This is called the convenience variables
+  - User arguments to the module are also copied to the kernel memory
+  - Symbol resolution is done
+  - The load_module function returns a reference to the kernel module.
+  - The reference to the module returned by load_module is added to a doubly linked list that has a list of all the modules loaded in the system.
+  
+  
+### What happens if a -1 is returned from the init function.
+  
+Tradicionaly in linux a function that returns zero means success, and a non zero means failure.
+  
+The loading of the module would fail, and the module will not be loaded. It can be tested with lsmod.
+  
+### How to give another name to a module.
+
+modify the makefile like:
+  
+```
+obj-m := linux.o
+linux-objs := hello.o
+  
+all:
+   make -C /lib/modules/`uname -r`/build/build M=${PWD} modules
+  
+clean:
+   make -C /lib/modules/ùname -r/build M=${PWD} clean  
+```
+  
+if we check the name of the modules, with lsmode, we would find the linux module
+  
+### Module composed of several files
+ 
+We can have a module in several files. For example:
+  
+HelloWorldModule.c
+  
+```
+  #include <linux/kernel>
+  #include <linux/module>
+  
+  MODULE_LICENSE("GPL")
+  
+  static int __init test_hello_init(void)
+  {
+      printk(KERN_INFO "%s: In init\n", __func__);
+      furnc();
+      return 0;
+  }
+  
+  static void __exit test_hello_exit(void)
+  {
+       printk(KERN_INFO "%s: In exit\n", __func__);
+  }
+  
+  module_init(test_hello_init);
+  module_exit(test_hello_exit);
+```
+  
   
   
   
   Reference: https://lwn.net/Kernel/LDD3/
-  
+ 
