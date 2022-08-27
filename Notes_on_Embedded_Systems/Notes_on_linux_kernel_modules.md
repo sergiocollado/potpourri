@@ -466,7 +466,7 @@ The module may be loaded, but it will do nothing at the beginig. This is defined
       static inline exitcallt_t __exittest(void)     \
       { return extinfn; }           \
       void cleanup_module(void) __attribute__((alias(#exitfn)));
- ´´´
+ ```
  
 The purpose of defining `__inittest` function is to check during compile time, the function passed to `module_init()` macro is compatible wit the `initcall_t` type
   
