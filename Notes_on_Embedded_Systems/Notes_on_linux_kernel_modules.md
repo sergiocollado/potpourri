@@ -95,6 +95,7 @@ Once a module gets accepted to be included, it becomes an in-tree module.
 - lsmod: List modules, lsmod ges its information by reading the file /proc/module (previously) or /sys/module
 - modinfo: module information, prints the information of the module
 - insmod: used like: `sudo insmod ./mymodule.ko` to load modules
+- modprobe: add or remove modules
 - rmmod: to remove modules
 
 ## Hello World kernel module
@@ -226,9 +227,24 @@ example:
 $ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..../output/build/linux-X.Y:Z m=${PWD} modules  
 ```
 
+ ### Overview of compiling kernel modules
+  
+  Kernel use the kbuild system to build the kernel modules. The kbuild system reads the assignment of `obj-m := modulename.o` from the local makefile. The the kbuild system knows that it has to build the "modulename.o" and will look for "modulename.c" for the source. 
+  
+   In case the files are not pressent in the directory passsed to `M=`, the compiling will stop with an error. If the files are present the source file is compiled to a modulename.", and "modulename.mod.c" is created which is compiled to "modulename.mod.o"
+  
+  The modulename.mod.c is a file that basically contains the information about th emodule (Version information etc)  
+  
+  The mdoulename.o and the modulename.mod.o are linekd together by modpost in the next stage to create the "modulename.ko"
+  
+  The file "module.symvers" will contain any of the external symobls that is defined in your module and not present in the module.symvers of the kernel.
+  
+  The file "modules.order" is used in case several modules are compiled together, it will list out th eorder in which the compiilation and createion of .ko is done. 
+  
+  
  ### Printk
   
- `Printf()` is a function from the standard C library. `printk()` is a kernel level function.
+`printf()` is a function from the standard C library. `printk()` is a kernel level function.
   
 `printk' function is called with one argumet:
   
@@ -420,6 +436,75 @@ will report an EBUSY module. This is defined in `kernel/module.c` at `SYSCALL_DE
   
 The module may be loaded, but it will do nothing at the beginig. This is defined at kernel/module.c at `SYSCALL_DEFINE3(init_module, ...`
 
+### insmod vs modprove
+  
+- `insmod` loads the module given 0insmod /path/to/module.ko' 
+- `modprobe` loads the module only in /lib/moduels/$(uname -r) 'modprobe /home/test/hello.ko' will not work
+  
+- `insmod` dependencies if present are not loaded
+- `modprobe` calculates dependencies, and loads the dependencies and then the main module.
+  
+`modprobe` depends on the tool `depmod`to calculate the dependencies. `depmod` calculates the dependencies of all the modules present in /lib/modules/$(uname -r) folder, and places the dependencies information in /lib/modules/$(uname -r)/modules.dep file. See `man depmod`.
+  
+ It is possible to reload the modules.dep file with `depmod -a`
+  
+### Understanding module_init & module_exit functions
+  
+ On `insmod` the function passed in the `module_init` is called, and on `rmmod` the argument passed in `module_exit` is called
+  
+ Lets review the definiton of thos macros, defined in linux/module.h
+  
+ ```
+  /* Each module must use one moude_init(). */
+  #define module_init(intifn)                \
+      static inline intcall_t __inittest(void)      \
+      { return initfn; }           \
+      int init_module(void) __attribute__((alias(#initfn)));
+  
+  /* This is only required if you wnat to be unloadable. */
+  #define module_exit(exitfn)          \
+      static inline exitcallt_t __exittest(void)     \
+      { return extinfn; }           \
+      void cleanup_module(void) __attribute__((alias(#exitfn)));
+ ´´´
+ 
+The purpose of defining `__inittest` function is to check during compile time, the function passed to `module_init()` macro is compatible wit the `initcall_t` type
+  
+`initcall_t` is defined in linux/init.h (is defined as a function pointer)
+  
+  ```
+  typedef int (*initcall_t)(void);
+  ```
+  
+ If it is declared a module_init functino which returns void instead of int, the compiler will thrown a warning
+  
+  The gcc attribuete alias is used to sepcify multiple aliases (other names) for a given symbol (function/variable)  
+  
+  The `alias` attribute of gcc is used to assign another name to the init module, so you can have a better name for tye driver. ( eg. cdrom_inint instead of initd_modue), so not each driver has a init_module named function. 
+  
+  It would be possible to create a module without a module_init or module_exit functions, if the module had init_module(void) and cleanup_module(void) functions. But we would lost the chance to have dedicated names for those functions. 
+
+  
+  
+  
+  
+ 
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
   
   
