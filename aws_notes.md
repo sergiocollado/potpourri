@@ -280,8 +280,7 @@ measurement.
 - Use IAM access analyzer.
 
 
-# AWS S3 
-# Simple Storage Service.
+# AWS S3: Simple Storage Service.
 
 references:
 - http://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html
@@ -432,7 +431,7 @@ It is a physical or virtual appliance that can be used to cache S3 locally at a 
 https://aws.amazon.com/s3/faqs/
 
 
-# AMAZON ELASTIC CLOUD COMPUTING aka: EC2
+# AMAZON ELASTIC CLOUD COMPUTING aka EC2
 
 It is a service that allows to provision virtual severs on demand. Each virtual server requested in known as a EC2 instance. anything you can do with a traditional server can be done with a EC2 instance. EC2 instances are flexible, and can be configured acconrding the needs. they support a variety of OS, like linux or windows. to select a given operating system, we choose a AMI (Amazon Machine Image). It is possible to launch one or several AMIs and create serveral instances with the same configuration. It is possible to set the image type, size, memory and netwoking capabilities, even the underling hardware. Also the configuration can be done programatically and automated. 
 
@@ -493,14 +492,21 @@ five types:
 - **standard**: magnetic. MAX 20-400 IOPs 
 
 
-### ENI
- Elastic Network interface is a virtual network card
-### EN
- Enhaced networking. Uses a single root i/o virtualization, to provide high networking capabilities on supported instance types.
-### EFA
- Elastic Fabric Adapter: a network device that you can attach to a EC2 intance, to accelerate high performance computing (HPC) an ML applications. 
+## Networking with EC2:
+
+### ENI: Elastic Network Interface
+ Elastic Network interface is a virtual network card - for basic day-to-day networking. 
+### EN: Enhaced Networking
+ Enhaced networking. Uses a single root i/o virtualization (SR-IOV),  to provide high networking capabilities on supported instance types. It vary speeds bewteen 10Gbps to 100 Gbps. 
+### EFA: Elastic Fabric Adapter
+ Elastic Fabric Adapter: a network device that you can attach to a EC2 intance, to accelerate high performance computing (HPC) and machine learning applications. 
  
- 
+## Optimiziong EC2 with placement groups
+
+There are three types of placement groups
+ - Cluster - grouping of instances in a same availability zone. Indicated for applications with low network latency and/or hight throughtput. (because the instances are closer)
+ - Spread - Indivudal critical EC2 instances are spreaded in diferent hardware, so this is recommented when there are a small number of critical instances (it is more reliabably in case of hardware failure)
+ - Partition - multipell EC2 instances have its own set of racks. So each rack has its own network and power source. This also makes the application more reliable in case of hardware failure.
 
 
 ## ELB (Elastic Load Balancer) 
