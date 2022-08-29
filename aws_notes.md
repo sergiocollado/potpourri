@@ -481,14 +481,14 @@ reference: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-grou
 
 ### EBS Elastic Block Storage
 
-EBS provides storage for EC2
+EBS (Elasting  Block Storage) provides storage for EC2
 
 five types:
 
-- **gp2**: General purpose (ssd). balance price and performace. max 16000 IOPS
-- **io1**: provisioned IOPS (ssd). Optimized for great ammout of input/output operations. max 64000 IOPS -for databases & mission crítical applications
-- **st1**: throupout optimized hard disk drive (no ssd). max 500 IOPS
-- **sc1**: cold hard disk drive. lowest cost.  MAX 250 IOPS
+- **gp2, gp3**: General purpose (ssd). balance price and performace. Gp3 is x4 faster than gp2
+- **io1, io2**: Provisioned IOPS (ssd). Optimized for great ammout of input/output operations. max 64000 IOPS -for databases & mission crítical applications
+- **st1**: Throupout optimized hard disk drive (no ssd). max 500 IOPS - designed for throughput-intensive workloads. (big data, data warehouses ...)
+- **sc1**: cold hard disk drive. lowest cost.  MAX 250 IOPS. 
 - **standard**: magnetic. MAX 20-400 IOPs 
 
 
@@ -543,12 +543,12 @@ a very interesting feature, is that when an ASG(auto scaling group) works with a
 
 ## EBS (Elastic Block Storage)
 
-it is a network drive to attach to the instances when they drive. 
+EBS (Elastic Block Storage) is a network drive to attach to the instances when they drive. 
 it can be detached from one EC2 instance and attached to another.
 
-they are defined by sotorage capacity and IOPS input output per second.
+They are defined by sotorage capacity and IOPS input output per second.
 
-there are different types of EBS: GP2, IO1, STI, SCI
+There are different types of EBS: GP2, GP3, IO1, STI, SCI
 
 It is possible to get EBS snapshots, this is usefull for backups, or volume migrations.
 
@@ -1026,7 +1026,7 @@ Its a certification that evaluates the expertise in developing and manteining ap
 Amazon S3 is designed to be languaje neutral, and to be used with the supported interfaces to store and retrieve objects.
 
 
- 
+
  # AWS LEX
   AWS LEX is a service to build chat bots, also known as conversational interfaces, that use natural language processing, deep learning and ASP (advanced speech recognition).
  
