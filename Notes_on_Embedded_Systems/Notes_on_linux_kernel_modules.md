@@ -484,7 +484,75 @@ The purpose of defining `__inittest` function is to check during compile time, t
   
   It would be possible to create a module without a module_init or module_exit functions, if the module had init_module(void) and cleanup_module(void) functions. But we would lost the chance to have dedicated names for those functions. 
 
+ ### Passing parameters to kernel modules
   
+ It is possilbe to pass parameters to a modules. Passing pametes may be intersting to change the behavior of the module, for example to enable/disable debug logs, or tu suppor different workgin modes. 
+  
+  Passing parameters to a module is declared in moduleparam.h file
+  
+  ```
+  #define module_params(name, type, perm)
+     module_param_named(name, name, type, perm)
+  ```
+  
+  name: name of the variable <br>
+  type: type of the variable. Supported types are charp (char pointer) , bool, invbool, long, chort, uint, unlong, ushort <br>
+  per: permissions fo rthe sysfs entry <br>
+  EgS_IRUGO: Only read by all users <br>
+         0 : No sysfs entry <br>
+  It is possible to use numberic values line 0644 for permissions entry.
+  
+  Example: 
+  ```
+  #include <linux/kernel.h>
+  #include <linux/module.h>
+  
+  MODULE_LICENSE("GPL");
+  char* name = "Embedded";
+  int loop_count = 1;
+  module_param(name, charp, S_IRUGO);
+  module_param(loop_count, int, S_IRUGO);
+  
+  static int test_arguments_init(void) 
+  {
+      int i; 
+      printk(KERN_INFO"%s: In init\n", __func__);
+      printk(KERN_INFO"%s: Loop count: %d\n", __func__, loop_count);
+      for( i = 0; i < loop_count; i++) 
+          printk(KERN_INFO"%s: Hi %s\n", __func__, name);
+      return 0;
+  }
+                                 
+  static void test_arguments_exit(void)
+  {
+       printk(KERN_INFO"%s: In exit\n", __func__);                              
+  }
+  
+  module_init(test_arguments_init);
+  module_exit(test_arguments_exit);
+  MODULE_AUTHOR("Nemo");
+  MODULE_DESCRIPTION("Arguments Passing Example");
+  ```
+  
+  This module can be tested with:
+                                 
+ ```
+ sudo dmesg -C
+ sudo insmod ./arguments.ko
+ dmesg                          
+ ```
+ to give value to the parameter
+  
+ ```
+ dufo rmmod arguments                                
+ sudo dmesg -C
+ sudo insmod ./arguments.ko loop_count=5 name="Hello world!"
+ dmesg                          
+ ```
+  
+  If we use `modinfo` it will report the usage of parametes in the modules.
+                                 
+  Also if chekc `/sys/module/arguments/parameters/` the parameters are visible, and you can `cat` their values.
   
   
   
