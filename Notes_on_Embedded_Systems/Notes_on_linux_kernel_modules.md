@@ -40,7 +40,7 @@ A kernel module doesn't have to be a device driver.
 A driver is like a sub-class of module
 
 modules are used for:
-- device dirvers
+- device drivers
 - file system
 - system calls
 - network drivers: dirvers implementing a network protocol
@@ -55,7 +55,7 @@ when they are requested to be loaded.
 
 3. A bug in driver which is compiled as a part of kernel will sotp system from loading, whereas module allows systems to load. 
 
-4. faster to mantain and debug
+4. Faster to mantain and debug
 
 5. Makes it easier to manatain multiple machines on a single kernel base
 
@@ -496,7 +496,7 @@ The purpose of defining `__inittest` function is to check during compile time, t
   ```
   
   name: name of the variable <br>
-  type: type of the variable. Supported types are charp (char pointer) , bool, invbool, long, chort, uint, unlong, ushort <br>
+  type: type of the variable. Supported types are charp (char pointer) , bool, invbool (inverse bool), long, chort, uint, unlong, ushort <br>
   per: permissions fo rthe sysfs entry <br>
   EgS_IRUGO: Only read by all users <br>
          0 : No sysfs entry <br>
@@ -546,16 +546,82 @@ The purpose of defining `__inittest` function is to check during compile time, t
  ```
  dufo rmmod arguments                                
  sudo dmesg -C
- sudo insmod ./arguments.ko loop_count=5 name="Hello world!"
+ sudo insmod ./arguments.ko loop_count=5 name="Nemo"
  dmesg                          
  ```
   
   If we use `modinfo` it will report the usage of parametes in the modules.
                                  
-  Also if chekc `/sys/module/arguments/parameters/` the parameters are visible, and you can `cat` their values.
+  Also if check `/sys/module/arguments/parameters/` the parameters are visible, and you can `cat` their values. So in case it is needed to check the values of already loaded modules, it is possible to check them in this way.
   
+  In the case if incorrect values are passed to the module parameters, an error reporting invalid parameters will appear.
+                                
+  For module parameters of builtin modules, those are passed throught the command line: <br>
+  syntax: `<module_name>.<parameter_name>=value` <br>
   
+  To pass parameter to modules loaded with `modprobe` this is used with th efile `/etc/modprobe.conf', modprove reads that file for the parameters.
   
+  To pass multiple words as a parameter, has to be done like: 
+  ```
+  sudo insmod ./module_name.ko name='"Hello World!"' 
+  ```
+  this happens because if we only use simple quotes `''` or double quotes `""` the shell removes hos quotes an passes it to 
+  insmod, so aboit add single quotes over a string. 
+  
+  In case it is needed to pass an array as a parameter, then it is needed to use the macro `module_param_array()`, instead of the `module_param()` function
+  
+  ```
+  # define module_param(name, type, perm)
+  
+  · module_param_array: a parameter which is an array 
+  · @name: the anme of the arrray variable
+  · @type: tye type 
+  · @nump: optional pointer filled wiin with the nuber written
+  · @perm: visibility in sysfs
+  
+  #define module_param_array(name, type, nump, perm)
+  ```
+  
+  and to pass the array parameter: <br>
+  ```
+  sudo insmod ./module_name.ko param_array=1,2,3
+  ```  
+  
+  and example: 
+  
+  ```
+  #include <linux/kernel.h>
+  #include <linux/module.h>
+  #include <linux/moduleparam.h>
+  
+  MODULE_LICENSE("GPL");
+  
+  int param_array[4];
+  static int argc_count = 0;
+  module_param_array(param_array, int, &argc_count, S_IWUSR | S_IRUSR);
+  
+  static int __init test_arguments_init(void)
+  {
+          int i = 0;
+          printk("%s\n", __func__);
+          printk("%Argc count:%d\n", argc_count);
+          printk("Array elements:\n");
+          for (i=0; i < sizeof(param_array)/sizeof(param_array[i]); ++i) {
+              printk("%d:\t%d\n", i, param_array[i]);                                                         
+          }
+          return 0;
+  }
+                                                                   
+  static void __exit test_arguments_exit(void)
+  {
+          printk("%s\n", __func__);                      
+  }
+  
+  module_init(test_arguments_init);
+  module_exit(test_arguments_exit);
+  MODULE_AUTHOR("Nemo");
+  MODULE_DESCRIPTION("Arguments Passing Array Example");
+  ```
  
 
   
