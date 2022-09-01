@@ -623,6 +623,65 @@ The purpose of defining `__inittest` function is to check during compile time, t
   MODULE_DESCRIPTION("Arguments Passing Array Example");
   ```
  
+### Symbol and symbol table
+
+A symbol is name given to a space in memory, like: data (variables) or instructions (functions). 
+                                                                   
+A symbol table is a data sttrcuture created by the compiler containing all the symbols used in the program.
+                                                                   
+Every kerenl image build has a symbol table with it. The Linux kernel symbol table contains names and addresses of all the 
+kernel symbols. When the kernel is installed it will be pressen in `/boot/System.map-<linux-version>
+ 
+TODO: GET SCREENSHOT EXMAPLE!!
+  
+When a new function is defined in a moudle, the default behavior of this function is local, only the
+module which the function is defined can access it, it cannot be accessed by other modules
+  
+  To export this module it is needed to use EXPORT_SYMBOL or EXPORT_SYMBOL_GPL
+  
+- `EXPORT_SYMBOL' : the exported symbol can be used by any kernel module
+- `EXPORT_SYMBOL_GPL` : the exported symbol can be used by only GPL licensed code.
+  
+  
+The difference between System.map and /proc/cakksyms
+  
+ - `/proc/kallsysms`: contains the symbols of dynamically loaded modules as well as builtin modules
+ - `system.map` : contains symbols of only builtin modules.
+  
+Example of exporting a function:
+  
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/jiffies.h>
+ 
+MODULE_LICENSE("GPL");
+ 
+void print_jiffies(void)
+ {
+     printk(KERNEL_INFO "%s: Jiffies:%ld\n", __func__, jiffies);
+ }
+  
+static int test_export_init(void)
+{
+     printk(KERN_INFO "%s: In init\n", __func__);
+     return 0;
+}
+
+static void test_export_exit(void)
+{
+     printk(KERN_INFO "%s: In exit\n", __func__);  
+}
+  
+EXPORT_SYSMBOL_GPL(print_jiffies);
+  
+module_init(test_export_init);
+module_exit(tests_export_exit);
+```
+
+To check if the symbol has ben exported, load it: `sudo insmod ./symbold_export.ko'  and check: `cat /proc/kallsyms |grep print_jiffies`
+ 
+ 
 
   
   
