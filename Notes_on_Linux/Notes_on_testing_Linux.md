@@ -7,6 +7,8 @@ Reference: https://docs.kernel.org/dev-tools/testing-overview.html
 reference: https://docs.kernel.org/dev-tools/kselftest.html <br>
 reference: https://kselftest.wiki.kernel.org/ <br>
 reference: https://linuxfoundation.org/wp-content/uploads/Mentorship-Session_-Kernel-Validation-With-Kselftest.pdf <br> 
+reference: https://www.youtube.com/watch?v=LQUGxewY1GI "How to write your first kernel selftest" - Michael Ellerman (LCA 2021 Online)
+reference: https://www.youtube.com/watch?v=mpO_iDEMqWQ "Mentorship Session: Kernel Validation With Kselftest"
 
 The purpose of kselftest is to provide kernel developers and end-users a quick method of running tests against the Linux kernel. 
 
@@ -26,7 +28,7 @@ make -C tools/testing/selftests #you may have to use sudo
 
 for cleaning
 ```
-make keselftests-clean
+make kselftests-clean
 ```
 
 For building and running
@@ -45,6 +47,7 @@ running a subtest of testss
 ```
 make --silent -C toos/testing/selftest/timers #build  the timer tests
 make --silent -C tools/testing/selftests/timers run_tests # run timer tests
+make --silent -C tools/testing/selftests/size run_tests summary=1 # reports a summary
 ```
 
 running tests for a single of multiple sub-systmes using the TARGET variable
@@ -95,5 +98,100 @@ make --silent TARGETS=timers O=/tmp/kselftest kselftest
    # builds and runs all non-desctructive tests in tools/selftests/timers
    # executables are created in 0=/tmp/kselftest/timers
 ```
+
+### install kselftest
+
+The tests can be installed anywhwere you want. The kselftest_install.sh creates run_kselftest.sh, the script provides all the enviroment to run the test.
+
+```
+.cd tools/testing/selftests
+./kselftest_install.sh <install location>
+./kselftests_install.sh /tmp
+```
+
+The TARGET option can be used to select a subset of the tests to build
+
+```
+make kselftests-install TARGETS="breakpoints timers"
+```
+
+### Generation of a kselftest tar ball
+
+to generate a tar tool in tools/testing/selftests 
+
+```
+cd tools/testing/selftests
+./gen_kselftests_tar.sh [tar | targz | tarbaz2 | tarxz] # default is .gz
+```
+
+This is useful for installation on an external DUT (Device Under Tests).
+
+
+### kselftest example
+
+In `/tools/testing/selftests/user`, in the Makefile we can see the used tests.
+
+```
+#!/bin/sh
+# SPDX-License-Identifier: GPL-2.0
+# Runs copy_to/from_user infratructure using test_user_copy kernel module
+
+# Kselftest framework requirment - SKIP code is 4.
+ksfts_skip=4
+
+if ! /sbin/modprove -q -n tests_user_copy; then
+        echo "user: module test_user_copy is not found [SKIP]"
+        exit $ksft_skip
+fi
+if /sbin/modprobe -q test_user_copy; then
+        /sbin/modprobe -q -r test_user_copy
+        echo "user_copy: ok"
+else
+        echo "user_copy: ok"
+else 
+        echo "user_copy: [FAIL]"
+        exit 1
+fi
+```
+
+
+### build/cross-build tests for specific configs
+
+Individual tests add config file with required dependecies
+```
+ls tools/testing/selftests/*/config
+```
+
+`make kselftest-merget`generates kernel config to include individual test config file
+
+```
+cd tools/testing/selftests
+ls */configs
+```
+
+For example: cpugreq/config
+
+It will show the particular test requires all the kernel configuration to be enabled to run. I 
+
+If use `kselftest-merge`, it takes all the config file into a single config file for kernel to build. 
+
+```
+cd ../../..
+make kselftest-merge
+```
+
+what does, it takes all the config options and enable them in .config, it will generate a config for you and then
+you can build the kernel wit all those options enabled. 
+
+
+
+
+
+
+
+
+
+
+
 
 
