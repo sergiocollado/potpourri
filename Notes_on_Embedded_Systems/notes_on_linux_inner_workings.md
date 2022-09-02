@@ -2335,5 +2335,7 @@ And example of how to write a VFS: https://github.com/torvalds/linux/blob/2c271f
 - Linux packet journey,napi, hardware queue,skb : https://youtu.be/6Fl1rsxk4JQ
 - Device trees for dummies! https://www.youtube.com/watch?v=m_NyYEBxfn8
 
+## Other references for laters
 
+- Mentorship Session: Trust and the Linux Kernel Development Model https://youtu.be/YhDVC7-QgkI
 
