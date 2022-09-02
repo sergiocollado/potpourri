@@ -673,7 +673,7 @@ static void test_export_exit(void)
      printk(KERN_INFO "%s: In exit\n", __func__);  
 }
   
-EXPORT_SYSMBOL_GPL(print_jiffies);
+EXPORT_SYMBOL_GPL(print_jiffies);
   
 module_init(test_export_init);
 module_exit(tests_export_exit);
@@ -681,7 +681,11 @@ module_exit(tests_export_exit);
 
 To check if the symbol has ben exported, load it: `sudo insmod ./symbold_export.ko'  and check: `cat /proc/kallsyms |grep print_jiffies`
  
- 
+ ### Module stacking
+  
+  Module stacking is when new modules use the symobls exported by older modules.
+  
+  
 
   
   
