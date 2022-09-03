@@ -34,6 +34,7 @@ make kselftests-clean
 For building and running
 ```
 make -C tools/testing/selftests run_tests
+make kselftest
 ```
 
 For cross compiling:
