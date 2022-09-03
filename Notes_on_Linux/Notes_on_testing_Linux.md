@@ -35,6 +35,7 @@ For building and running
 ```
 make -C tools/testing/selftests run_tests
 make kselftest
+make summary=1 kselftest # outputs a summary
 ```
 
 For cross compiling:
