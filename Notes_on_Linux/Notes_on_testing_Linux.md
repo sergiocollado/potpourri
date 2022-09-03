@@ -99,9 +99,9 @@ make --silent TARGETS=timers O=/tmp/kselftest kselftest
    # executables are created in 0=/tmp/kselftest/timers
 ```
 
-### install kselftest
+### Install kselftest
 
-The tests can be installed anywhwere you want. The kselftest_install.sh creates run_kselftest.sh, the script provides all the enviroment to run the test.
+The tests can be installed anywhere you want. The kselftest_install.sh creates run_kselftest.sh, the script provides all the enviroment to run the test.
 
 ```
 .cd tools/testing/selftests
@@ -114,6 +114,13 @@ The TARGET option can be used to select a subset of the tests to build
 ```
 make kselftests-install TARGETS="breakpoints timers"
 ```
+
+to run all the tests that were successfully build: 
+
+```
+./run_kselftests.sh -s # -s is for summary
+```
+
 
 ### Generation of a kselftest tar ball
 
