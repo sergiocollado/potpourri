@@ -129,8 +129,9 @@ Once a module gets accepted to be included, it becomes an in-tree module.
 ### HelloWorldModule.c
   
 ```
-  #include <linux/kernel>
-  #include <linux/module>
+#include <linux/module.h>       /* Needed by all modules */
+#include <linux/kernel.h>       /* Needed for KERN_INFO */
+#include <linux/init.h>         /* Needed for the macros __init __exit */
   
   MODULE_LICENSE("GPL")
   
