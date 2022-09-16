@@ -502,13 +502,13 @@ The purpose of defining `__inittest` function is to check during compile time, t
   
   The `alias` attribute of gcc is used to assign another name to the init module, so you can have a better name for tye driver. ( eg. cdrom_inint instead of initd_modue), so not each driver has a init_module named function. 
   
-  It would be possible to create a module without a module_init or module_exit functions, if the module had init_module(void) and cleanup_module(void) functions. But we would lost the chance to have dedicated names for those functions. 
+  It is possible to create a module without a `module_init` or `module_exit` functions, if the module had init_module(void) and cleanup_module(void) functions. But we would lost the chance to have dedicated names for those functions. 
 
  ### Passing parameters to kernel modules
   
  It is possilbe to pass parameters to a modules. Passing pametes may be intersting to change the behavior of the module, for example to enable/disable debug logs, or tu suppor different workgin modes. 
   
-  Passing parameters to a module is declared in moduleparam.h file
+  Passing parameters to a module is declared in `moduleparam.h` file
   
   ```
   #define module_params(name, type, perm)
@@ -517,7 +517,7 @@ The purpose of defining `__inittest` function is to check during compile time, t
   
   name: name of the variable <br>
   type: type of the variable. Supported types are charp (char pointer) , bool, invbool (inverse bool), long, chort, uint, unlong, ushort <br>
-  per: permissions fo rthe sysfs entry <br>
+  perm: permissions fo rthe sysfs entry <br>
   EgS_IRUGO: Only read by all users <br>
          0 : No sysfs entry <br>
   It is possible to use numberic values line 0644 for permissions entry.
@@ -593,11 +593,11 @@ The purpose of defining `__inittest` function is to check during compile time, t
   ```
   # define module_param(name, type, perm)
   
-  · module_param_array: a parameter which is an array 
-  · @name: the anme of the arrray variable
-  · @type: tye type 
-  · @nump: optional pointer filled wiin with the nuber written
-  · @perm: visibility in sysfs
+  - module_param_array: a parameter which is an array 
+  - @name: the anme of the arrray variable
+  - @type: tye type 
+  - @nump: optional pointer filled wiin with the nuber written
+  - @perm: visibility in sysfs
   
   #define module_param_array(name, type, nump, perm)
   ```
@@ -747,8 +747,6 @@ module_init(module1_init);
 module_exit(module1_exit);
 ```
 
-  
-  
 ```
 #include <linux/module.h>       /* Needed by all modules */
 #include <linux/kernel.h>       /* Needed for KERN_INFO */
@@ -880,7 +878,7 @@ Metadata can be added to a module, with the macros:
   
 It is possible to add custom iformation like: `MODULE_INFORMATION(<your_tag_name>, <your_tag_value>)`
   
-### objdum of a ko file
+### objdump of a .ko file
   
  A .ko file is an ELF object. And ELF object file consist on various named sections, for example the .text 
 section contains the executable code that the loaded loads. 
@@ -895,12 +893,173 @@ To see the contents of the .modinfo section
 ```
 objdump --section-heades --section=.modinfo --full-contents ./<module_name>.ko
 ```
-  
-  
-  
-  
 
+### How to dump a kernel stack
   
+Calling `dup_stack()` will casue a stack trace to be printed at that point.
+
+So a sample module:
+  
+```
+#include <linux/module.h>
+#include <linux/kernel.h>
+  
+MODULE_LICENSE("GPL");
+static int myinit(void)
+{
+    pr_info("dump_stac myinit\n");
+    dump_stack();
+    pr_info("dump_stack after\n");
+    return 0;
+}
+  
+static void myexit(void)
+{
+    pr_info("myexit\n");  
+}
+module_init(myinit);
+module_exit(myexit);
+```
+  
+### kernel panic
+  
+A kernel panic is an error in the kernel code. On a kerenl panic, the kernel stop running immediately to 
+avoid data loss or other damage.
+  
+The reason to stop running is to protect the computer. 
+  
+Possible reason:
+ - Hardware of software issue (for example unable to finish or complete the init process)
+ - Bug in kernel driver
+ - Incompatible devices (like RAM)
+  
+When the kernel decides to Panic, it calls the `panic()` function, which dumps some debug information
+and depending on the configuration reboots the system.
+  
+By default, the kerenl will not reboot on kernel panic. There are two ways to instruct the kerenl to reboot:
+ 
+  - kernel command line: add "panic=N" to the kernel command line, so the kernel reboots after N seconds
+  - Proc file system: `echo N > /proc/sys/kernel/panic`, for the kernel to reboot after N seconds on reboot. Notice this setting is not persistant after reboot. 
+  
+An example of a force panic: 
+  
+```
+#include <linux/module.h>
+#include <linux/kernel.h>
+MODULE_LICENSE("GPL");
+  
+static int test_panic_init(void)
+{
+    printk(KERN_INFO "%s: In init\n", __FUNC__);
+    panic("Hello kernel! I'm causing the PANIC!!\n"); // this will shut down or reboot depending on the options.
+    return 0;
+}
+  
+static void test_panic_exit(void)
+{
+    printk(KERN_INFO "%s: In exit\n", __FUNC__);
+}
+module_init(test_panic_init);
+module_exit(test_panic_exit);
+```
+  
+### kernel Oops
+  
+an oops is similar to a segfault in user space. The kernel throws oops message when an exception such as
+accesing invalid memory location happens in the kernel code.
+  
+Upon oops, the kernel perfomrs the following operation:
+  
+ - kills the offencidng process
+ - prints information which can helpl the developeers to debug
+ - continues execut9oin. Note: after oops, the system cannot be trusted further as the some of the locks or structures may not be cleaned up
+  
+An oops message contains the following information:
+ - processor status
+ - contents of the CPU registers at the time of exception
+ - stack trace
+ - call trace
+  
+An example to force an oops
+  
+  
+```
+#include <linux/module.h>
+#include <linux/kernel.h>
+MODULE_LICENSE("GPL");
+  
+static int test_oops_init(void)
+{
+    printk(KERN_INFO "%s: In init\n", __FUNC__);
+    // try to dereference an invalid location
+    *(int*)0x13 = 'a';
+    return 0;
+}
+  
+static void test_oops_exit(void)
+{
+    printk(KERN_INFO "%s: In exit\n", __FUNC__);
+}
+module_init(test_oops_init);
+module_exit(test_oops_exit);
+```
+  
+### Kernel BUG_ON()/BUG() and WARN_ON()
+  
+BUG_ON() is a macro. It is used as:
+  - BUG_ON(condition)
+  - if (condition) BUG()
+  
+BUG_ON() It does:
+  - prints content of the registers.
+  - prints stack trace.
+  - current process dies.
+  
+WARN_ON() macro does:
+  - prints the contents of the registers.
+  - prints stack trace. 
+
+### Prepocessor symbols in tthe make file
+    
+```
+obj-m := hello.o
+  
+# kbuild undestands a make variable named CFLAGS_modulename.o to add specific C flags when compiling this unit
+CFLAGS_hello.o := -DDEBUG
+# this will be applied to all of the source files compiled for your module withthe makefile
+# ccflags-y := -DDEBUG
+  
+all:
+   make -C /lib/modules/`uname -r`/build/build M=${PWD} modules
+  
+clean:
+   make -C /lib/modules/`uname -r`/build M=${PWD} clean
+```
+  
+  
+```
+#include <linux/module.h>
+#include <linux/kernel.h>
+MODULE_LICENSE("GPL");
+  
+static int test_hello_init(void)
+{
+#ifdef DEBUG
+    printk(KERN_INFO "%s: In init\n", __FUNC__);
+#endif
+    return 0;
+}
+  
+static void test_hello_exit(void)
+{
+#ifdef DEBUG
+    printk(KERN_INFO "%s: In exit\n", __FUNC__);
+#endif
+}
+  
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```  
   
 
   
