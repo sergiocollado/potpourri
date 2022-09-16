@@ -120,11 +120,30 @@ Once a module gets accepted to be included, it becomes an in-tree module.
   - Dual MPL/GPL
   - Propietary (non-free-modules)
   
+  In case a module doesn't specify a license, it can be compiled, although it will report a warning. It will be able to be loaded into the kernel, but reporting `module license unspecified taints kernel`.
+  
+  In case an incorrect license is defined, it will compile, but when the module is loaded, it will report that the kernel is tainted. 
+  
+  
+### Tainted kernel
+  
+  A taint kernel, means that it is not supported by the community. On top of that, some debuggin functionallyty and API calls may be disalbe when the kernel is tainted.
+  
+  The kernel may became tainted by several reasons:
+   - uses of propietary license
+   - use of stagin drivers (which are part of the kernel source code but not fully tested)
+   - use of out-of-tree modules that are not include with the linux kernel source code
+   - certain critical error conditions, such machine check exceptions and kernel oopses.
+  
+To check if a given moudle is tainted, check the file `/proc/sys/kernel/tainted`. If it retursn 0, the
+kernel is not tainted, any other number, indicates the reason it why it is. To decode that number use
+the script `kernel-chktaint`:  https://git.kernel.org/pub/scm/linux/kernel/git/torvals/linux.git/plain/tools/debugging/kerenl-chktaint
+  
 ### Header files
   
-  All kernel modules needs to include "linux/module.h" for macro expansion of module_init and module_exit.
+  All kernel modules needs to include `linux/module.h` for macro expansion of module_init and module_exit.
   
-  "linux/kernel.h" only for the macro expansion for the printk() log level.
+  `linux/kernel.h` only for the macro expansion for the printk() log level.
   
 ### HelloWorldModule.c
   
@@ -545,7 +564,7 @@ The purpose of defining `__inittest` function is to check during compile time, t
  to give value to the parameter
   
  ```
- dufo rmmod arguments                                
+ sudo rmmod arguments                                
  sudo dmesg -C
  sudo insmod ./arguments.ko loop_count=5 name="Nemo"
  dmesg                          
@@ -566,8 +585,8 @@ The purpose of defining `__inittest` function is to check during compile time, t
   ```
   sudo insmod ./module_name.ko name='"Hello World!"' 
   ```
-  this happens because if we only use simple quotes `''` or double quotes `""` the shell removes hos quotes an passes it to 
-  insmod, so aboit add single quotes over a string. 
+  
+  This happens because if we only use simple quotes `''` or double quotes `""` the shell removes hos quotes an passes it to `insmod`, so about add single quotes over a string. 
   
   In case it is needed to pass an array as a parameter, then it is needed to use the macro `module_param_array()`, instead of the `module_param()` function
   
