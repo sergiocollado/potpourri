@@ -1060,11 +1060,30 @@ static void test_hello_exit(void)
 module_init(test_hello_init);
 module_exit(test_hello_exit);
 ```  
-  
 
+ ### Process management in the linux kernel
+  
+  The number of CPUs in the system is determined by checking the file `/proc/cpuinfo`, there is the information about all the processors. You can run: `cat /proc/cpuinfo | grep processor | wc -l`. 
+  
+   Also the instruction: The function `get_nprocs_conf()` returns the number of processors configured by the operating system. he function `get_nprocs()` returns the number of processors currently available in the system. Ref: https://linux.die.net/man/3/get_nprocs. Also the macro: `num_online_cpus()`, Ref: https://0xax.gitbooks.io/linux-insides/content/Concepts/linux-cpu-2.html
   
   
+  The Linux kernel internally refers to processes s tasks. The kernel stores a list of process in a circular doble linked list called the task list. 
   
+  The Linux kernel scheduler task unit, is the thread, not a program. 
+  
+  Each tas/process/thread is represented in kernel in the struct task_struct, deffined at 'linux/sched.h'. 
+  
+  Lets try to write a module which reads the circular lined list and prits the following information: name, id, state. 
+  
+  The different states of a task are:
+  
+  - TASK_RUNNING (R): task is either currently running or on a run-queu wainting to run
+  - TASK_INTERRUMPIBLES (S): Task is sleeping/blocked. CAn be runnable/awaekn by a signal
+  - TASK_UNINTERRUMPIBLE (D): Similar to TASK_INTERRUMPIBLE, but doesn't wake up on a signal
+  - TASK_STOPPED (T): Process execution has stopped. This happens when he task receives: SIGSTOP, SIGTSTP, SIGTTIN or SIGTTOU signals or if it receives any signal while it is being debuggerd. 
+  
+  You can retrieve those statuses using the command 'ps -el'
   
   
   
