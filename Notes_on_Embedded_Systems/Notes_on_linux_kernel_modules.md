@@ -1078,8 +1078,8 @@ module_exit(test_hello_exit);
   
   The different states of a task are:
   
-  - TASK_RUNNING (R): task is either currently running or on a run-queu wainting to run
-  - TASK_INTERRUMPIBLES (S): Task is sleeping/blocked. CAn be runnable/awaekn by a signal
+  - TASK_RUNNING (R (running)): task is either currently running or on a run-queu wainting to run
+  - TASK_INTERRUMPIBLES (S (sleeping)): Task is sleeping/blocked. CAn be runnable/awaekn by a signal
   - TASK_UNINTERRUMPIBLE (D): Similar to TASK_INTERRUMPIBLE, but doesn't wake up on a signal
   - TASK_STOPPED (T): Process execution has stopped. This happens when he task receives: SIGSTOP, SIGTSTP, SIGTTIN or SIGTTOU signals or if it receives any signal while it is being debuggerd. 
   
