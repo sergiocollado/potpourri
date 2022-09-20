@@ -1085,7 +1085,82 @@ module_exit(test_hello_exit);
   
   You can retrieve those statuses using the command 'ps -el'
   
+  ```
+  #include <linux/kernel.h>
+  #include <linux/module.h>
+  #include <linux/sched/signal.h>
   
+  char buffer[256];
+  char* get_task_state(long state)
+  {
+      switch (state) {
+          case TASK_RUNNING:
+              return "TASK RUNNING";
+          case TASK_INTERRUPTIBLE:
+              return "TASK INTERRPTIBLE";
+          case TASK_UNINTERRUPTIBLE:
+              return "TASK UNINTERRUPTIBLE";
+          case __TASK_STOPPED:
+              return "__TASK_STOPPED";
+          case __TASK_TRACED:
+              return "__TASK_TRACED";
+          default:
+          {
+              sprintf(buffer, "Unknown type:%ld\n", state);
+              return buffer;
+          }
+      }
+  }
+  
+  static int test_task_init(void)
+  {
+      struct task_struct* task_list;
+      unsigned int process_count = 0;
+      /* define for_each_process(p) <
+         for (P = &init_task; (p = next_task(p)) != &init_task; )
+         */
+      for_each_process(task_list) {
+          pr_info("task: %s\tPID:%dtate:%s\n", task_list->comm, task_list->pid, get_task_state(last_list->state));
+          process_count++;
+      }
+      pr_info("Number of processes: %u\n", process_count);
+      return 0;
+  }
+  
+  static void test_task_exit(void)
+  {
+      pr_info(%s: in exit\n", __func__);
+  }
+                                         
+  MODULE_LICENSE("GPL");
+  module_init(test_tasks_init);
+  module_exit(test_tasks_exit);
+  ```
+  
+  So, when writing a module, to retrieve information about the current working process that is running in the kernek, it is needed to read the `task_struct` of the corresponding process.
+  
+  The kernel provides an easy way to do this, by means of the macro `current`, which alwiays returns a pointer to the current executing process task_struct.  This macro has to be implemented for each architecture. Some architectures store this in a register while other store them in the botom of the kerel stack of processes. 
+  
+ ```
+ #include <linux/module.h>
+ #include <linux/init.h>
+ #include <linux.sched.h>
+ #include <asm/current.h>
+  
+static void current_exit(void)
+{
+   printk("current pid: %d, current process: %s\n", current->pid, current->comm);
+}
+
+static int current_init(void)
+{
+   printk("current pid: %d, current process: %sn", current->pid, current->comm);
+}
+  
+MODULE_LICENSE("GPL");
+module_init(current_init);
+module_exit(current_exit);
+```
   
   
   
