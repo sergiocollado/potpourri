@@ -1157,14 +1157,174 @@ static int current_init(void)
    printk("current pid: %d, current process: %sn", current->pid, current->comm);
 }
   
-MODULE_LICENSE("GPL");
+
 module_init(current_init);
 module_exit(current_exit);
 ```
   
+ Other example: 
+  
+ ```
+ #include <linux/init.h>
+ #include <linux/module.h>
+ #include <linux/moduleparam.h>
+ #include <linux.sched.h>
+ #include <linux/sched/signal.h>
+  
+ MODULE_LICENSE("GPL");
+ 
+ static unsigned int PID = 1;
+ module_param(PID, uint, 0400);
+  
+ void print_task(struct task_struct* task)
+ {
+      printk("process: %s, paret process: %s\n", task->comm, task->parent->com); 
+ }
+  
+ static int init_find_task(void)
+ {
+     strcut task_struc* task = NULL;
+     
+     for_each_process(task) {
+         if (task->pid == (pid_t)PID) {
+             print_task(task); 
+         }
+     }
+ }
+  
+ static void exit_find_task(void)
+ {
+     printk("GOOD BYE: find_task!!\n"); 
+ }
+  
+ module_init(init_find_task);
+ module_exit(exit_find_task);
+ ```
+ A parameter PID for the module is defined, the module looks for the process with that PID, and prints its information: name, and parent name. 
+  
+Every process has an VAS (virtual address space). This VAS, can be read in `/proc/<pid>/maps`, this will retrieve the address space. 
+ 
+ In the kernel, the VAS or process memory map, can be found int the `struct mm_struct` which container th elist of proces VMAs (virtual memory addresses), page tables, etc...
+  
+  All information related to the process address space is included in an object called the memory descriptor of type `mm_struct`, accessible via `current->mm`
+
+ ```
+ struct mm_struct {
+     /* Pointer to the head of the list of memory region objects */
+     struct vm_area_struct* mmap;
+     
+     /* Pointer to the root of the red-back tree of memory region objects*/
+     struct rb_root mm_rb;
+  
+     /* Pointer to the last referenced memory region object*/  
+     struct vm_area_strcut* mmap_cache;
+    
+     ...
+  };
+ ```
+  
+  Linux implements a memory region by meanos of an objecto fo type `vm_area_struct`
+  
+  ```
+  struct vm_area_struct {
+      struct mm_struct* vm_mm;  // pointer to the memory descriptor that owns the region
+      unsigned long vm_start;   // First linear address inside the region
+      unsigned long vm_end;     // First linear address after the region
+  }
+  ```
   
   
+   Each memory region descriptor identifies a linear addess intterval; vm_end-vm_start indicates the lenght of the memory region. 
   
+   All the regions owned by a process are linked in a simple list.
+  
+   Regions appear in the list in ascending order by memory addresses.
+  
+  
+ Example for retrieving a process memory map:
+ 
+  ```
+ #include <linux/init.h>
+ #include <linux/module.h>
+ #include <linux/moduleparam.h>
+ #include <linux/list.h>
+ #include <linux/mm.h>
+ #include <linux/mm_types.h>
+ #include <linux/proc_fs.h>
+ #include <linux/version.h>
+ #include <linux.sched.h>
+ #include <linux/sched/signal.h>
+  
+ static unsigned int PID = 1;
+ module_param(PID, uint, 0400);
+  
+ struct dentry* file_entr(struct file* pfile)
+ {
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(3,19,0)
+    return pfile->f_path.dentry;
+ #else
+    return pfile->f_dentry;
+  
+ }
+
+ void print_vmarea_node(struct vm_area_struct* vmnode)
+ {
+      printk("0x%lx - 0x%lx\t", vmnode->vm_start, vmnode->vm_end);
+      if (vmnode->vm_flags & VM_READ)
+           printk(KERN_CONT"r");
+      else
+           printk(KERN_CONT"-");
+      
+      if (vmnode->vm_flags & VM_WRITE)
+           printk(KERN_CONT"w");
+      else 
+           printk(KERN_CONT"-");
+  
+      if (vmnode->vm_flags & VM_SHARED)
+           printk(KERN_CONT"s");
+      else 
+           printk(KERN_CONT"p");
+      print_vm_file(vmnode);
+ }
+ 
+static void print_vm_list(struct vm_area_struct*  vmlist) 
+{
+    struct vm_area_struct* vmnode = vmlist; 
+    while (vmnode != NULL)
+    {
+         print_vmarea_ndoe(vmnode);
+         vmnode = vmnode->vm_next;
+    }
+}  
+ 
+void print_mm_struct(struct mm_struct* mm)
+{
+     printk("code : [0x%lx, 0x%lx]\n", mm->start_code, mm->end_code);
+     printk("data : [0x%lx, 0x%lx]\n", mm->start_data, mm->end_data);
+     printk("heap : [0x%lx, 0x%lx]\n", mm->start_brk, mm->brk);
+     printk("stack: [0x%lx\n"], mm->start_stack);
+     print_vm_list(mm->mmap);
+}
+  
+static int init_find_task(void)
+{
+     struct task_struct* task = NULL;
+  
+     for_each_process(task) {
+          if (task->pid == (pid_t)PID) {
+              print_mm_struct(task->mm);
+          }
+     }
+  
+     return 0;
+}
+  
+static void exit_find_task(void)
+{
+    print("good bye: find_task!\n");
+}
+  
+  ``` 
   
   
   
