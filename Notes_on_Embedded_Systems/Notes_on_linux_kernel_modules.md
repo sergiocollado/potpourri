@@ -1326,19 +1326,236 @@ static void exit_find_task(void)
   
   ``` 
   
+### Kernel Threads
+  
+A kernel Thread is a Linux Task running only in kernel mode. It is not created by running fork() or clone() stste call. Kernel Threads helps the kernel to perform operation in the background. Both kernel threads and user-threads are represented by the same struct `task-struct`. The main difference is that thre is no address space in the kernel thread, so the `mm` variable is set to NULL.
+  
+To use kernel threads use the API at <linux/kthread.h> 
+  
+  ```
+  struct task_struct* kthread_create(int (*threadfn)(void* data), void* data, const char name[], ...)
+  ```
+  parameters:
+  - threadfn: the function which thread should run
+  - data: arguments for thread function
+  - name: printf style format for the name of kernel thrad. 
+  - return value: pointer to struct task_struct
+  
+  Note that the `kthread_create()` only creates the thread but doesn't run the thread, for that it is needd to call `wake_up_process()` with the return value of the `kthread_create()` as argument. 
+  
+  There is also function that creats the kernel thread an runs it callin `wake_up_process()`:
+  
+  ```
+  struct task_struct* kthread_run(int (*threadfn)(void* data), void* data, const char name[], ...)
+  ```
+  
+  To stop a kthread: 
+  
+  ```
+  int kthread_stop(strcut task_struct* k);
+  ```
+  
+  Note: if the kthread is not stopd in the `module_exit`, and `Oops` will be addressed.
+  
+  `kthread_stop()` is a blocking call, it waits until the function executed by the thread exits. `kthread_stop()` flag stes a variabl ein the task_struct variable which the function running in while(1) shoud check in each of tis loops. 
+  
+  ```
+  int threadfunc(void* data)
+  {
+      while(!kthread_should_stop()
+      {
+           // do work here
+      }
+      return 0;
+  }
+  ```
+  
+  If `ktrhead_stop()`is call and, the kthread had already finished (because the underliying function is not a loop, and may already finished), there will be an `Oops` message. Remember that after an Oops is got, the kernel is considered to be tainted. 
+ 
+  In the case in a module, we dont call `kthread_stop()` at the exit function, and the kthread is still running, then a `Oops` will also happen.
+  
+  In a module, in case it is needed in which processosr the code is running, use the function `smp_processor_id()`
   
   
   
+ #### kthread module examples:
+  
+  ```
+ #include <linux/init.h>
+ #include <linux/module.h>
+ #include <linux/kdev_t>
+ #include <linux/fs.h>
+ #include <linux/cdev.h>
+ #include <linux/device.h>
+ #include <linux/slab.h>      // kmalloc()
+ #include <linux/uaccess.h>   // copy_to/from_user()
+ #include <linux/kthread.h>   // kernel threads
+ #include <linux.sched.h>     // task_struct
+ #include <linux/delay.h>
+  
+  MODULE_LICENSE("GPL");
+  
+  static struct task_struct* my_thread;
+  
+  int thread_function(void* pv)
+  {
+      int i = 0;
+      while(!kthread_should_stop()) 
+      {
+          printk(KERN_INFO "In thread Funciton %d\n", i++);
+          msleep(1000);
+      }
+      return 0;
+  }
+    
+  static int __int my_driver_init(void)
+  {
+      my_thread = kthread_create(thread_function, NULL, "myThread");
+      if (my_thread) {
+          wake_up_process(my_thread);
+          return 0;
+      } else {
+          printk(KERN_ERR "Cannot create kthread\n");
+          return -1;
+      }
+  }
+  
+  void __exit my_driver_exit(void)
+  {
+      kthread_stop(my_thread);
+      printk(KERN_INFO "Device Driver Removed!\n");
+  }
+  
+  module_init(my_driver_init);
+  module_exit(my_driver_exit);
+  ``` 
+  
+ ```
+  MODULE_LICENSE("GPL");
+  static int print_running_thread(void* data)
+  {
+      while(!kthread_should_stop()) {
+          struct task_struct* task_list;
+          for_each_process(task_list) {
+              if (task_list->state == TASK_RUNNING)
+                 PR_INFO("Process: %s\tPID:[%d]\State:%s\n", 
+                          task_list->comm,  // this is the name of the task
+                          task_list->pid,
+                          get_task_state(task_list->state));
+          }
+          msleep(500);
+      }
+  }
+  
+  static int test_task_init(void)
+  {
+      pr_info("%s: In init\n", __func__);
+      print_thread = kthread_run(print_running_thread, NULL, "print_running_cpu");
+      return 0;
+  }
+ ...
+ ```
+ 
+Example of 2 kthreads running in parallel: 
+  
+```
+#include <linux/delay.h>  // usleep_range()
+#include <linux/kernel.h>
+#include <linux/kthread.h>
+#include <linux/module.h>
+
+MODULE_LICENSE("GPL");
+  
+static struct task_struct *kthread1, *kthread2;
+  
+static int work_func1(void* data)
+{
+   int i = 0;
+   while (!kthread_should_stop()) {
+      pr_info("1 %d\n", i);
+      usleep_range(1000000, 1000001);
+      i++;
+      if (i == 10) { i = 0; }
+   }
+   return 0;
+}
+
+static int work_func2(void* data)
+{
+    int i = 0;
+    while (!kthread_should_stop()) {
+       pr_info("2 %d\n", i);
+       usleep_range(1000000, 1000001);
+       i++;
+       if (i == 10) { i = 0; }
+     }
+    return 0;
+}
+
+static int myinit(void)
+{
+    kthread1 = kthread_create(work_func1, NULL, "mykthread1");
+    kthread2 = kthread_create(work_func2, NULL, "mykthread2");
+    wake_up_process(kthread1);
+    wake_up_process(kthread2);
+    return 0;
+}
+  
+static void myexit(void)
+{
+     kthread_stop(kthread1);
+     kthread_stop(kthread2);
+}
+```
+
+```
+#include <linux/delay.h>  // usleep_range()
+#include <linux/kernel.h>
+#include <linux/kthread.h>
+#include <linux/module.h>
+
+MODULE_LICENSE("GPL");
+  
+static styruct task_struct* my_task = NULL;
+  
+static int my_kthread(void* data) {
+   char* string = (char*)data;
+   
+   pr_info("my kthread data: %s\n", str);
+   pr_info("my kthread smp_processor_id: %d\n", smp_processor_id());
+   while (!kthread_should_stop()) {
+      msleep(5000);
+      pr_info("my kthread running in processor: %d\n", smp_processor_id()); 
+   }
+}
   
   
+static int __init my_init(void)
+{
+   pr_info("Init\n");
+   pr_info("smp_processor_id: %d\n", smp_processor_id());
   
+   my_task = kthread_run(my_kthread, "hello! my kthread", "mykthread-%s", "test");
   
+   pr_info("Init finished\n");
+   return 0;
+}
   
+static void __exit my_exit(void)
+{
+   pr_info("Exit\n");
+   pr_info("smp_processor_id: %d\n", smp_porcessor_id());
   
+   if (my_task) {
+       pr_info("stop_kthread\n");
+       kthread_stop(my_task);
+   }
   
+   pr_info("Exit finsihed\n");
+}
+```
   
-  
-  
+
   
 Reference: https://lwn.net/Kernel/LDD3/
  
