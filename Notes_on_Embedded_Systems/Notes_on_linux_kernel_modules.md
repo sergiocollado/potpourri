@@ -1595,6 +1595,65 @@ To do this, compare the macro `LINUX_VERSION_CODE` TO THE MACRO `KERNEL_VERSION`
   
 - UTS_RELEASE: this macro expands to a string describing the version of the kernel. It is included in the file: `<generated/utsrelease.h>`
 
+
+### Modules macros: __init __exit, __initdata and __exitdata
+ 
+ #### __init
+  
+ `__init` is a macro defined at `<linux/init.h>`.
+  
+ ```
+  #define __init __section(.init.text)
+  #define __section(S)   __attribute__((__section__(#S)))
+  #define __init __attribute__ ((__sectin__ (".init.text")))
+ ```
+The `__init` macro informs the compiler to place this functino in a specila section(.init.text) and this memory is discarted after the function call. 
+ 
+The functinos specified usgin module_init are initialization functions, that run only once. So th ekernel can free RAM by removing memory used by this particular function. So functions marked using `__init` are discarded after the function call.
+  
+  #### __exit
+  
+  The `__exit` macro is defined in `<linux/init.h>`
+  
+  ```
+  #define __exit __section(.exit.text)
+  ```
+  
+  When the kernel module is configured as a builtin mdouel instead of a loadable module, thrre is no need for the exit function.
+  
+  Adding the `__exit` macro causes the compiler to discardd this function when the module is configured as builtin. This saves on code space as the exit functions won't be called. 
+  
+  For loadable modules, this macro doesn't have any effect. 
+  
+#### __initdata and __exit data
+
+  `__initdata` should only be used in the module_init() code. 
+  
+```
+#define __initdata __attribute__ ((__section__ (".init.data")))
+#define __exitdata __attribute__ ((__section__ (".exit.data")))
+```
+  
+`__init`/`__exit` is for functions and `__initdata`/`__exitdata` is for variables.
+  
+
+### How to list the build-in kernel modules?
+  
+Kernel modules are code that can be loaded and unloaded into the kernel on demmand.
+It can be configured in two ways:
+   - build-in (part of the kernel) : it is always present
+   - loadable: can be loaded/unloaded as needed.
+  
+- `lsmod` command list all the kernel code configued as LKM
+- `modules.builtin` file list all moudles that are build into the kernel
+
+ Use:  `$grep module_name /lib/modules/$(uname -r)/modules.builtin`
+  
+
+
+ 
+  
+  
   
   
   
