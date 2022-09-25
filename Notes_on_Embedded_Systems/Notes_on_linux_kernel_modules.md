@@ -13,7 +13,7 @@ A device driver has three sides
 
 Tradicionaly the way to add code to the kernel was to recompile the kernel and reboot the system.
 
-Kernel modules, are a piece of ccode that can be load/inserted  and unloaded/removed form the kernel whenever needed.
+Kernel modules, are a piecefs of ccode that can be load/inserted  and unloaded/removed form the kernel whenever needed.
 
 It can be refered by other names:
 
@@ -645,14 +645,13 @@ The purpose of defining `__inittest` function is to check during compile time, t
  
 ### Symbol and symbol table
 
-A symbol is name given to a space in memory, like: data (variables) or instructions (functions). 
+A symbol is a name given to a space in memory, like: data (variables) or instructions (functions). 
                                                                    
-A symbol table is a data sttrcuture created by the compiler containing all the symbols used in the program.
+A symbol table is a data strcuture created by the compiler containing all the symbols used in the program.
                                                                    
-Every kerenl image build has a symbol table with it. The Linux kernel symbol table contains names and addresses of all the 
-kernel symbols. When the kernel is installed it will be pressen in `/boot/System.map-<linux-version>
+Every kernel image build has a symbol table with it. The Linux kernel symbol table contains names and addresses of all the kernel symbols. When the kernel is installed it will be pressen in `/boot/System.map-<linux-version>
  
-TODO: GET SCREENSHOT EXMAPLE!!
+TODO: GET SCREENSHOT EXAMPLE!!
   
 When a new function is defined in a moudle, the default behavior of this function is local, only the
 module which the function is defined can access it, it cannot be accessed by other modules
