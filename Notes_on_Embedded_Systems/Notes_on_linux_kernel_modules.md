@@ -1555,7 +1555,52 @@ static void __exit my_exit(void)
 }
 ```
   
+### Modules for several linux kernels
+  
+In different linux kernel version, there are functions that change its signaruture, that is to say functions that change its argumets, for example `access_ok`: 
+  
+Before 5.0 linux kernel version: 
+ 
+  ```
+  int access_ok(int type, void* addr, unsigned long size);
+  ```
+  
+After 5.0 linux kernel version:
+  
+  ```
+  int access_ok(void* addr, unsigned long size);
+  ```
+  
+To support multiple kernel versions, that would mean having code conditional compilation directives: 
+- LINUX_VERSION_CODE
+- KERNEL_VERSION
+- UTS_RELEASE  
+  
+To do this, compare the macro `LINUX_VERSION_CODE` TO THE MACRO `KERNEL_VERSION`
+  
+- LINUX_VERSION_CODE: this macro expands to the binary representation of the kernel version. One byte for each part of the verson release number. E.g.: 0.0.0 = 0x050000 = 327680. 
+  
+  This macro `LINUX_VERSION_CODE`uis defined in the header file `<linux/version.h>`
+  
+  ```
+  LINUX_VERSION_CODE = $(VERSION) * 65536 + $(PATCHLEVERL) * 256 + $(SUBLEVEL)
+  E.g: 5.0.0 = 5*65536 + 0*256 + 0 = 327680 
+  ```
 
+- KERNEL_VERSION: this macro is used to bild an integer code form the indiviudal nubmers that build up a version number. It is defined in the file: `<linux/version.h>`
+  
+  ```
+  #define LINUX_VERSION_CODE 327698 
+  #define KERNEL_VERSION(a,b,c) (((a) << 16) + ((b) << 8) + (c)) 
+  ```
+  
+- UTS_RELEASE: this macro expands to a string describing the version of the kernel. It is included in the file: `<generated/utsrelease.h>`
+
+  
+  
+  
+  
+  
   
 Reference: https://lwn.net/Kernel/LDD3/
  
