@@ -93,10 +93,11 @@ Once a module gets accepted to be included, it becomes an in-tree module.
 ## Basic commands
 
 - lsmod: List modules, lsmod ges its information by reading the file /proc/module (previously) or /sys/module
-- modinfo: module information, prints the information of the module
-- insmod: used like: `sudo insmod ./mymodule.ko` to load modules
-- modprobe: add or remove modules
-- rmmod: to remove modules
+- modinfo: module information, prints the information of the module.
+- insmod: used like: `sudo insmod ./mymodule.ko` to load modules.
+- modprobe: add or remove modules.
+- rmmod: to remove modules.
+- depmod: reports dependecies between modules.
 
 ## Hello World kernel module
   
@@ -1649,9 +1650,18 @@ It can be configured in two ways:
 
  Use:  `$grep module_name /lib/modules/$(uname -r)/modules.builtin`
   
+  
+### How to load a module automatically during boot
+  
+help `man 5 modules`
+  
+  In the system there is a file `etc/modules` which contains the names of the kernel modules that are to be loaded at boot time, one per line. Arguments can be given in the same line as the module name. Lines beginning with a '#' are ignored. 
 
-
- 
+ So create a symbolic link: 
+  
+```
+sudo ln -s /<path_to_module>/<custom_module>.ko /lib/modules/`uname -r`/kernel/drivers/misc 
+```
   
   
   
