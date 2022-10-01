@@ -1648,7 +1648,7 @@ It can be configured in two ways:
 - `lsmod` command list all the kernel code configued as LKM
 - `modules.builtin` file list all moudles that are build into the kernel
 
- Use:  `$grep module_name /lib/modules/$(uname -r)/modules.builtin`
+Use:  `$grep module_name /lib/modules/$(uname -r)/modules.builtin`
   
   
 ### How to load a module automatically during boot
@@ -1663,6 +1663,33 @@ help `man 5 modules`
 sudo ln -s /<path_to_module>/<custom_module>.ko /lib/modules/`uname -r`/kernel/drivers/misc 
 ```
   
+### Blacklisting kernel modules
+  
+Blacklisting modules, will prevent the kernel module to be loaded. 
+ 
+This may be necessary because: 
+   - associated ahrdware in not needed
+   - loading a given module may cause problems. Lie two modules tring to handle the same hardware.
+  
+To blacklist a module, create a `.conf` file (any name with .conf will do) inside /etc/modprove.d/ and append a line for each module to be blacklisted, using the `blacklist` keyword.
+  
+Then run the following command to rebuild initramfs `sudo update-initramfs -u`. In the next reboot, the module will be blacklilsted.
+  
+ It is also possible to blacklist a module from the bootloader. Simply add `module_blacklist=module1,module2,module3` to ther bootloader kernel lline. This can be really useful, in case a broken module prevents the system to boot. 
+  
+  For example with Grub, edit the file `/etc/default/grup` and at the option: `GRUP_CMDLINE_LINUX` append: `module_blaclist=<module_name>`. Then update the grub configuration file with : `sudo update-grub`, and reboot the system. 
+  
+### passsing parameters to modprobe. 
+  
+ The command `modprobe` is used to load modules during boot, to load parameters in case are needed, then create a file `/etc/modprove.d/` with a `.conf` extension (any name will do). And then use the `module_name` and `parameter_name=<value>`. 
+  
+### systool
+  
+  `systool` can be used to print the values of files preset in the module's /sys/ directory. 
+  
+  ```
+  systool -vm <module_name>
+  ```
   
   
   
