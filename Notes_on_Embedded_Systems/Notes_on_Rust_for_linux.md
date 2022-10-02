@@ -21,7 +21,7 @@ Rust for Linux: https://youtu.be/46Ky__Gid7M
 
 Documentation: https://rust-for-linux.github.io/docs/kernel/ 
 
-
+article: https://www.memorysafety.org/blog/memory-safety-in-linux-kernel/
 
 
 ## Videos: 
