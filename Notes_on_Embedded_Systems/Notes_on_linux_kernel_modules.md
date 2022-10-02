@@ -1,5 +1,8 @@
 # NOTES ON LINUX DEVICE DRIVERS
 
+  
+Reference: https://lwn.net/Kernel/LDD3/
+
 ## What is a device driver.
 
 A device driver is a code, that contrals a given tye of device in the compuer.
@@ -274,7 +277,7 @@ $ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..
  ```
  The log_priority is one of eight values, predefined in linx/kernel.h,
   
- - EMERG, ALERT, CRIT, ERR, WARNING, NOTICE, INFO, DEBUG
+ - EMERG, ALERT, CRIT, ERR, WARNING, NOTICE, INFO, DEBUG, DEFAULT
   
  `printk()`writes in the kernel buffer.
   
@@ -1685,17 +1688,88 @@ Then run the following command to rebuild initramfs `sudo update-initramfs -u`. 
   
 ### systool
   
-  `systool` can be used to print the values of files preset in the module's /sys/ directory. 
+  `systool` can be used to print the values of files present in the module's /sys/ directory. 
   
   ```
   systool -vm <module_name>
   ```
   
+### Printk
+ 
+`printf()` is a function from the standard C library. `printk()` is a kernel level function.
+  
+`printk' function is called with one argumet:
+  
+ ```
+ printk(KERN_log_prority "hello world!");
+ ```
+ The log_priority is one of eight values, predefined in linx/kernel.h,
+  
+ - EMERG, ALERT, CRIT, ERR, WARNING, NOTICE, INFO, DEBUG, DEFAULT
+  
+ `printk()`writes in the kernel buffer.
+  
+ #### printk ring buffer
+ `printk` is implemented using a ring buffer in the kernel wit a size of __LOG_BUG_LEN bytes, where that value equlas (1 << CONFIG_LOG_BUF_SHIFT). 
+ 
+ If `printk`is continually used, the ring-buffer will be overflowed. 
+  
+ ```
+  cat /boot/config-`uname -r` | grepo CONFIG_LOG_BUF_SHIFT
+ ```
+  
+ `CONFIG_LOG_BUF_SHIFT` can be configured from menuconfig, or the KCONFIG file.
+  
+  ```
+  make menuconfig -> General Setup -> Kernel log buffer size
+  ```
+
+#### log levels
+  
+The log levels hare defined at `kernel.h`. 
+  
+  
+#### default log level
+  
+ If not sepecified the log level, the default log level will be used. The default log level 
+can be checked at `/proc/sys/kernel/printk` 
+  
+ The default level is associatex with:
+   - console_loglevel: level under which the messages are logged on the console device 
+   - default_message_loglevel: priority level that is associated by default with messages for which no priority value is specified
+   - minimum_console_loglevel: minimum level to allow a message to be logged on the console device
+   - maximum_console_loglevel: maximum level
+  
+  ```
+  echo 8 > /porc/sys/kernel/printk # will change the console_loglevel
+  ```
+  
+ #### what is a console?
+  
+  In linux, a console is a device to which text is written to and text is readed from. 
+  
+  By default, the console is the (text-mode) screen and keyboard. One can switch to that console by pressing Ctrl+Alt+Fn, where n is 1 to 6. 
+  
+  When the system is booted, the kernel prints a lot of messages, like "initializing this... ", "initializing that..." . These all get printed via printk that sends the message to the console driver. 
+ 
+  ####  So why don't the kernel messages appear when in graphics mode?
+  
+  In Linux, graphics mode is implemented not inside the kernel (and thus in cannont print messages in graphics mode), but as a usermode process called X, or X server.
+  
+  Every program that wants to display a window, sends a message via PIC to the X server and says how it (the X server) should draw the window.
+  
+   Tis message passing is implemented in a shared library, son from the application writer point of view, it is just a call to a function that displays the window.
+  
+   Xterm is one of the many graphical applications (Konsole and gnome-terminal are the other well-known programs that emulates a terminal.
   
   
   
   
   
   
-Reference: https://lwn.net/Kernel/LDD3/
+  
+  
+  
+  
+
  
