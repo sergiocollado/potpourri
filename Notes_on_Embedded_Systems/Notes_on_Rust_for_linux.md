@@ -54,7 +54,7 @@ Mentorship Session: Rust for Linux: Code Documentation & Tests: https://youtu.be
 
 Mentorship Session: Writing Linux Kernel Modules in Rust: https://youtu.be/-l-8WrGHEGI
 
-Kangrejos 2022: https://kangrejos.com/
+Kangrejos 2022: https://kangrejos.com/  & https://paulmck.livejournal.com/68136.html
 
 LPC 2022: https://youtu.be/Xw9pKeJ-4Bw?list=PLVsQ_xZBEyN0daQRmKO4ysrjkSzaLI6go&t=4320
 
