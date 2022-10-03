@@ -2,7 +2,8 @@
 
   
 Reference: https://lwn.net/Kernel/LDD3/ <br>
-Linux Kernel module programming guide: https://linux.die.net/lkmpg/index.h
+Linux Kernel module programming guide: https://linux.die.net/lkmpg/index.h <br>
+kernel newbies : https://kernelnewbies.org/FirstKernelPatch <br>
 
 ## What is a device driver.
 
