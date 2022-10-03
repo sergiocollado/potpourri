@@ -114,6 +114,8 @@ Once a module gets accepted to be included, it becomes an in-tree module.
   
  ### Licensing
   
+  reference: https://docs.kernel.org/process/license-rules.html#kernel-licensing
+  
   Module should specify which license you are using MODULE_LICENSE() macro
   
   - "GPL" GNU plublic lincese v2 or later
