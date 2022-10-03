@@ -10,6 +10,8 @@ Linux kernel labs: https://linux-kernel-labs.github.io/refs/heads/master/
 
 Linux Inside: https://0xax.gitbooks.io/linux-insides/content/
 
+Kernel play guide: https://nskernel.gitbook.io/kernel-play-guide/
+
 [linux kernel map](https://makelinux.github.io/kernel/map/)
 
 ![linux kernel map](https://github.com/sergiocollado/potpourri/blob/master/image/Linux_kernel_map.png "Linux kernel map")
