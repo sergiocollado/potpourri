@@ -14,6 +14,8 @@ Kernel play guide: https://nskernel.gitbook.io/kernel-play-guide/
 
 Linux Kernel module programming guide: https://linux.die.net/lkmpg/index.html
 
+Kernel newbies: kernel newbies : https://kernelnewbies.org/FirstKernelPatch 
+
 [linux kernel map](https://makelinux.github.io/kernel/map/)
 
 ![linux kernel map](https://github.com/sergiocollado/potpourri/blob/master/image/Linux_kernel_map.png "Linux kernel map")
