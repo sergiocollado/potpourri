@@ -1,7 +1,8 @@
 # NOTES ON LINUX DEVICE DRIVERS
 
   
-Reference: https://lwn.net/Kernel/LDD3/
+Reference: https://lwn.net/Kernel/LDD3/ <br>
+Linux Kernel module programming guide: https://linux.die.net/lkmpg/index.h
 
 ## What is a device driver.
 
