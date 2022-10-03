@@ -73,3 +73,5 @@ LPC 2022: https://youtu.be/Xw9pKeJ-4Bw?list=PLVsQ_xZBEyN0daQRmKO4ysrjkSzaLI6go&t
     - https://github.com/y86-dev/pinned-init
     - https://github.com/y86-dev/rfcs/blob/field-projection/text/3318-field-pojection.md 
     - https://github.com/rust-lang/rfcs/blob/master/text/2349-pin.md
+    - https://y86-dev.github.io/blog/return-value-optimization/placement-by-return.html
+    - https://github.com/rust-lang/rfcs/pull/3318
