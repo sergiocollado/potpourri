@@ -21,7 +21,11 @@ Rust for Linux: https://youtu.be/46Ky__Gid7M
 
 Documentation: https://rust-for-linux.github.io/docs/kernel/ 
 
+lwn.net More rust concepts for the kernel: https://lwn.net/Articles/869428/
+
 article: https://www.memorysafety.org/blog/memory-safety-in-linux-kernel/
+
+
 
 
 ## Videos: 
@@ -63,6 +67,7 @@ LPC 2022: https://youtu.be/Xw9pKeJ-4Bw?list=PLVsQ_xZBEyN0daQRmKO4ysrjkSzaLI6go&t
 
 ## Others
 
+- https://lwn.net/Articles/869428/
 - https://github.com/d0u9/Linux-Device-Driver
 - https://austincminor.com/20211030000942-ramfs_rust.html
 - rust simple mutex: https://github.com/Rust-for-Linux/linux/commit/47e93d46eaca3a3648837eb6f5ae136812a28831
