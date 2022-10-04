@@ -523,6 +523,7 @@ The purpose of defining `__inittest` function is to check during compile time, t
   - `module_param()`
   - `module_param_array()`
   - `module_param_string()`
+  - `MODULE_PARM_DESC()` for documenting arguments
   
   Passing parameters to a module is declared in `moduleparam.h` file
   
