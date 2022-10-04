@@ -1021,6 +1021,8 @@ module_exit(test_oops_exit);
 ```
   
 ### Kernel BUG_ON()/BUG() and WARN_ON()
+ 
+reference: https://kernelnewbies.org/FAQ/BUG
   
 BUG_ON() is a macro. It is used as:
   - BUG_ON(condition)
@@ -1035,7 +1037,7 @@ WARN_ON() macro does:
   - prints the contents of the registers.
   - prints stack trace. 
 
-### Prepocessor symbols in tthe make file
+### Prepocessor symbols in the `Makefile`
     
 ```
 obj-m := hello.o
@@ -1077,7 +1079,7 @@ module_init(test_hello_init);
 module_exit(test_hello_exit);
 ```  
 
- ### Process management in the linux kernel
+ ### Process management in the Linux kernel
   
   The number of CPUs in the system is determined by checking the file `/proc/cpuinfo`, there is the information about all the processors. You can run: `cat /proc/cpuinfo | grep processor | wc -l`. 
   
@@ -1088,7 +1090,7 @@ module_exit(test_hello_exit);
   
   The Linux kernel scheduler task unit, is the thread, not a program. 
   
-  Each tas/process/thread is represented in kernel in the struct task_struct, deffined at 'linux/sched.h'. 
+  Each task/process/thread is represented in kernel in the struct task_struct, deffined at 'linux/sched.h'. 
   
   Lets try to write a module which reads the circular lined list and prits the following information: name, id, state. 
   
