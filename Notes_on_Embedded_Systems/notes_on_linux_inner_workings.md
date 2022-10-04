@@ -6,6 +6,8 @@ Kernel coding style: https://www.kernel.org/doc/html/latest/process/coding-style
 
 HOWTO do Linux kernel development: https://docs.kernel.org/process/howto.html 
 
+Linux kernel coding style: https://www.kernel.org/doc/html/latest/process/coding-style.html
+
 Mentorship series: https://events.linuxfoundation.org/lf-live-mentorship-series/
 
 Linux kernel labs: https://linux-kernel-labs.github.io/refs/heads/master/
