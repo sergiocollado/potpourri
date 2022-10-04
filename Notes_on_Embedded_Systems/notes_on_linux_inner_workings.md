@@ -14,6 +14,8 @@ Linux kernel labs: https://linux-kernel-labs.github.io/refs/heads/master/
 
 Linux Inside: https://0xax.gitbooks.io/linux-insides/content/
 
+The Linux Kernel Module Programming Guide: https://sysprog21.github.io/lkmpg/
+
 Kernel play guide: https://nskernel.gitbook.io/kernel-play-guide/
 
 Linux Kernel module programming guide: https://linux.die.net/lkmpg/index.html
