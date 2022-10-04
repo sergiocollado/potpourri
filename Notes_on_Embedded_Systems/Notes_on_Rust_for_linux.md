@@ -73,6 +73,7 @@ LPC 2022: https://youtu.be/Xw9pKeJ-4Bw?list=PLVsQ_xZBEyN0daQRmKO4ysrjkSzaLI6go&t
 - rust simple mutex: https://github.com/Rust-for-Linux/linux/commit/47e93d46eaca3a3648837eb6f5ae136812a28831
 - rust mutex: https://github.com/Rust-for-Linux/linux/commit/be5ff7d29d5b4da2706cc5384f38d7e417bc26f5
 - rust modules: https://github.com/wedsonaf/linux/commits/lf-session
+- https://lkml.org/lkml/2022/9/19/1105
 - about pinning: 
     - https://y86-dev.github.io/blog/safe-pinned-initialization/overview.html
     - https://github.com/y86-dev/pinned-init
