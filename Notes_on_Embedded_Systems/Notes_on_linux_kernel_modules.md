@@ -517,7 +517,12 @@ The purpose of defining `__inittest` function is to check during compile time, t
 
  ### Passing parameters to kernel modules
   
- It is possilbe to pass parameters to a modules. Passing pametes may be intersting to change the behavior of the module, for example to enable/disable debug logs, or tu suppor different workgin modes. 
+ It is possible to pass parameters to a module. Passing parameters may be interesting to change the behavior of the module, for example to enable/disable debug logs, or tu suppor different workgin modes. 
+  
+  The macros for passing parameters are: 
+  - `module_param()`
+  - `module_param_array()`
+  - `module_param_string()`
   
   Passing parameters to a module is declared in `moduleparam.h` file
   
