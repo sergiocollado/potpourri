@@ -16,6 +16,8 @@ Linux Inside: https://0xax.gitbooks.io/linux-insides/content/
 
 The Linux Kernel Module Programming Guide: https://sysprog21.github.io/lkmpg/
 
+To quickly expore the kernel code -> Elixir cross reference: https://elixir.bootlin.com/linux/latest/source/kernel
+
 Kernel play guide: https://nskernel.gitbook.io/kernel-play-guide/
 
 Linux Kernel module programming guide: https://linux.die.net/lkmpg/index.html
