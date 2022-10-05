@@ -10,6 +10,8 @@ Linux kernel documentation: https://www.kernel.org/doc/Documentation/
 
 Linux kernel coding style: https://www.kernel.org/doc/html/latest/process/coding-style.html
 
+email list: https://lore.kernel.org/
+
 Mentorship series: https://events.linuxfoundation.org/lf-live-mentorship-series/
 
 Linux kernel labs: https://linux-kernel-labs.github.io/refs/heads/master/
