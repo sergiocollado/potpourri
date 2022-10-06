@@ -8,6 +8,7 @@ The Linux Kernel Module Programming Guide: https://sysprog21.github.io/lkmpg/ <b
 How to build modules: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/kbuild/modules.rst <br>
 Linux kernel makefiles: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/kbuild/makefiles.rst <br>
 Kernel newbies : https://kernelnewbies.org/FirstKernelPatch <br>
+Linux device drivers tutorials: https://embetronicx.com/linux-device-driver-tutorials/ <br>
 
 ## What is a device driver.
 
