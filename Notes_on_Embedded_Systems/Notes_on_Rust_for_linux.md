@@ -100,7 +100,8 @@ RUN apt-get update && apt-get install -y \
     libclang-dev \
     libncurses-dev \
     lld \
-    llvm
+    llvm \
+    libelf-dev 
 
 ENV USER_NAME dev
 ARG host_uid=1000
