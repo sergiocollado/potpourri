@@ -82,3 +82,36 @@ LPC 2022: https://youtu.be/Xw9pKeJ-4Bw?list=PLVsQ_xZBEyN0daQRmKO4ysrjkSzaLI6go&t
     - https://y86-dev.github.io/blog/return-value-optimization/placement-by-return.html
     - https://github.com/rust-lang/rfcs/pull/3318
     - https://kangrejos.com/Pinning%20in%20Rust.pdf
+
+
+rust-dev dockerfile: (reference: https://github.com/mabembedded/dockerfiles/blob/main/Dockerfile.rust)
+
+```
+FROM rust
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    bison \
+    clang \
+    flex \
+    git \
+    git-core \
+    libclang-dev \
+    libncurses-dev \
+    lld \
+    llvm
+
+ENV USER_NAME dev
+ARG host_uid=1000
+ARG host_gid=1000
+RUN groupadd -g $host_gid $USER_NAME && \
+    useradd -g $host_gid -m -s /bin/bash -u $host_uid $USER_NAME
+
+USER dev
+
+WORKDIR /home/dev
+
+RUN rustup component add rust-src
+RUN cargo install --locked --version 0.56.0 bindgen
+```
