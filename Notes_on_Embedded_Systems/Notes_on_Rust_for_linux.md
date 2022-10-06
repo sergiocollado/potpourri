@@ -198,7 +198,7 @@ cp ../examples/inittap ./etc
 # go back to linux and run it. 
 qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img
 
-# still there is the wargin about : can't run "/etc/inti.d/rcS": No such file or directory
+# still there is the wargin about : can't run "etc/inti.d/rcS": No such file or directory
 # and that file is interesting because it allows to run commands at the boot
 
 # Also is the complain it can find /proc. Just create /proc
@@ -207,6 +207,133 @@ mkdir /proc
 mount -t proc none /proc
 
 # create the file:  "/etc/inti.d/rcS", and there add the commands to mount /proc
+
+#sergio@debian:~/busybox/_install$ vi etc/init.d/rcS
+mkdir -p /proc
+mount -t proc none /proc
+
+# make the file executable
+#sergio@debian:~/busybox/_install$ chmod a+x  etc/init.d/rcS
+
+# regenerate the image 
+#sergio@debian:~/busybox/_install$  find . | cpio -H newc -o | gzip > ./ramdisk.img
+
+# now we can boot, and to get out use the command: poweroff
+
+# move to th elinux folder.
+
+#sergio@debian:~/linux$   make LLVM=1 menuconfig
+
+# configure: Main Menu -> Kernel hacking -> Sample kerenl code -> Rust samples -> Echo server module 
+
+# building the kernel again it will include the echo server
+
+# we may want to edit the code, to get some otutput
+
+# vi samples/rust/rust_echo_server.rs 
++ pr_info!("Hello from echo server\n"); 
+
+# make LLVM=1 -j32
+
+# boot the machine 
+qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img
+
+# after booting, in the messages check for the text string "Hello from echo server", 
+# that proofs that the echo_server_module has been loaded. 
+
+the echo server listens to port 8080, and repeats back the received messages. 
+
+# use the command `netstat`
+#if we try to connect, nothing will happen
+VM# nc 127.0.0.1 8080
+VM# ifconfig
+#... the network interfece is not setup
+#enable loopback with:
+VM# ifconfig lo up 
+# now it is possible to connect to the echo sever
+VM# nc 127.0.0.1 8080
+... write some random text to see if it is repeated back
+
+# it is interting to have those interfaces up, So please add it to the interface. at etc/init.d/rcS + ipconfig lo up
+
+# exit with poweroff
+
+# another intersting thing to enable is to enable a NIC. for this use the command: 
+qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139 
+
+# launch the machine, and check the interfaces with: ip link
+
+VM# udhcpc -i eth 
+
+with the previos command, the dhcp is lauched
+
+add in busybox: 
+#sergio@debian:~/busybox/_install$ mkdir -p usr/share/udhcpc
+#sergio@debian:~/busybox/_install$ cp ../examples/udhcp/simple.script usr/share/udhcpc/default.script 
+
+# with this one file of the busybox examples is copied into that directory: usr/share/udhcpc
+
+# update the init script to: 
+#sergio@debian:~/busybox/_install$ vi etc/init.d/rcS
+mkdir -p /proc             # creates /proc
+mount -t proc none /proc   # mounts /proc filesystem
+ifconfig lo up             # start loopback
+udhcpc -i eth0             # udpates dhcp
+
+# rebuild the image 
+#sergio@debian:~/busybox/_install$  find . | cpio -H newc -o | gzip > ./ramdisk.img
+# relauch the machine
+qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139 
+
+#if we check ifconfig, the network interface should be up, so networking is active. 
+# this allows to go from the VM to the outside world! 
+# with this we can connect to the VM. 
+
+# add an option for fowareing ports in the VM. We are forwarding the port 5555 local machine to the port 23 of the VM
+qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139,hostfwd=tcp::5555-:23
+
+# ..other topic, mounting /dev 
+VM# mount -t devtmps none /dev
+VM# ld /dev # now it should be populated
+VM# mkdir /dev/pts
+VM# mount -t devpts nodev /dev/pts
+VM#  telnetd -l /bin/sh                  # now it is possible to run telnetd
+
+from other ternminal, try to connect
+
+#sergio@debian$ telnet localhost 5555
+Trying 127.0.0.1... 
+Connected to localhost.
+Escape character is '^}]'.
+
+# ... and now we are in the VM :)
+
+# lets add those commands into the init script: 
+#sergio@debian:~/busybox/_install$ vi etc/init.d/rcS
+mkdir -p /proc             # creates /proc
+mount -t proc none /proc   # mounts /proc filesystem
+ifconfig lo up             # start loopback
+udhcpc -i eth0             # udpates dhcp
+mkdir -p /dev/
+mount -t devtmpfs none /dev
+mkdir -p /dev/pts
+mount -t devpts none /dev/pts
+
+# rebuild the image 
+#sergio@debian:~/busybox/_install$  find . | cpio -H newc -o | gzip > ./ramdisk.img
+
+# launch the VM
+qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139,hostfwd=tcp::5555-:23
+
+# try to telnet it
+telnet localhost 5555
+
+# other  thing to tacke is forward other port 5556 to the port of the echo_server. 
+qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139,hostfwd=tcp::5555-:23,hostfwd=tcp::5556-:8080
+
+# so from the local machine, it is possible to cnect to th echo server previouly configured.
+nc localhost 5556
+
 
 
 ```
