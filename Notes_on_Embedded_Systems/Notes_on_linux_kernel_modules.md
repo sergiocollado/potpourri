@@ -23,7 +23,7 @@ A device driver has three sides
 
 Tradicionaly the way to add code to the kernel was to recompile the kernel and reboot the system.
 
-Kernel modules, are a piecefs of ccode that can be load/inserted  and unloaded/removed form the kernel whenever needed.
+Kernel modules, are a pieces of code that can be load/inserted and unloaded/removed form the kernel whenever needed.
 
 It can be refered by other names:
 
