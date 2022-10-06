@@ -101,7 +101,8 @@ RUN apt-get update && apt-get install -y \
     libncurses-dev \
     lld \
     llvm \
-    libelf-dev 
+    libelf-dev \
+    qemu-kvm 
 
 ENV USER_NAME dev
 ARG host_uid=1000
