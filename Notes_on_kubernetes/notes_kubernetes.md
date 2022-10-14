@@ -33,6 +33,8 @@ Some of its features are:
  
  reference: https://cloud.google.com/blog/products/gcp/bringing-pokemon-go-to-life-on-google-cloud
 
+ reference:  A Brief History of Kubernetes, Its Uses, and Its Issues  https://youtu.be/StlZwvsq9tc
+
 # How do Kubernetes works?
 
 Each thing Kubernetes manages is viewed as an object. And it’s attributes and states can be changed. Kubernetes works with declarative management, so the expected state of each object has to be defined. And kubernetes, will handle how to have that object in that declared state.
