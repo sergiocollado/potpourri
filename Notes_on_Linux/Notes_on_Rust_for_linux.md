@@ -56,6 +56,7 @@ article: https://www.memorysafety.org/blog/memory-safety-in-linux-kernel/
 - rust mutex: https://github.com/Rust-for-Linux/linux/commit/be5ff7d29d5b4da2706cc5384f38d7e417bc26f5
 - rust modules: https://github.com/wedsonaf/linux/commits/lf-session
 - https://lkml.org/lkml/2022/9/19/1105
+- the pull request to enter Linux: https://lore.kernel.org/lkml/202210010816.1317F2C@keescook/
 - about pinning: 
     - https://y86-dev.github.io/blog/safe-pinned-initialization/overview.html
     - https://github.com/y86-dev/pinned-init
