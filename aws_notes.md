@@ -868,8 +868,7 @@ If you try to put part in, and part out, you will have a network lag, that will 
  the IG.
  
  
-Introduction to SNS(Simple Notification Service):
-=================================================
+## Introduction to SNS(Simple Notification Service):
 
 Reference: https://docs.aws.amazon.com/sns/latest/dg/welcome.html
 
@@ -883,54 +882,47 @@ SNS, have API & AWS_console support. So you can programmatically launch actions,
 
 Is based in a Push system, (contrary to a Pull system), so subscribers , get notifications when they are producced.
  
-SNS setup:
-==========
+### SNS setup:
+
 
 - First, you create, what is call: a Topic. -think of it as a mailbox or email alias.
 - Then, you add subscribers.
 - Subscribers, have to confirm (http, email, or SQS(Amazon Simple Qeue Service) with permissions).
 - Then you send messages to the Topic, and the subscribers, will receive the message.
 
-SNS subscriber types:
-=====================
+### SNS subscriber types:
 
 - http/s: any http/s endpoint, doesn't matter if it belongs to AWS or not. this is really usefull for programmatically consume notifications.
 - emai/email-JSON: good for humans/ programmatically consumption.
 - SMS: good for humans- really good for ALERTS.
 - SQS: good for logging, and automation. [ref: https://aws.amazon.com/sqs/]
 
-SNS best practices:
-===================
+### SNS best practices:
 
 - Subscribe to a 2nd SQS service for http/sms/email notifications; this allows workers, to get notifications from SQS(Amazon Simple Qeue Service) and log the processes- if the primary subscriber, don't receive the message, you have a copy with the SQS, and can be inmediatly re-processed by workers, or for logging.
 
 Note, that SNS is push-based service, while SQS is a polling based service! 
 
-Introduction to SES(Simple Email Service):
-==========================================
+## Introduction to SES(Simple Email Service):
 
-SES(Simple Email Service) allows to send emails, to external users of AWS.
-Useful for bulk/marketing emails.
+SES(Simple Email Service) allows to send emails, to external users of AWS. Useful for bulk/marketing emails.
 
 PLEASE: check/comply with CAN-SPAM Compliance.
 
-SNS vs SES:
-===========
+### SNS vs SES:
 
 -SNS emails/subscriptions must be confirmed.
 -SNS only supports plain text.
 -SNS cannot customize emails per customer.
 
-SES best practices:
-===================
+### SES best practices:
 
-- Send emails directly from EC2 servers: It's best to create a EC2 role with SES capability.
--You can directly launch that server into that role, and send over the SMPT relay- its also recommended to use SMPT, but not the API.
--Comply with the CAN-SPAM rules.
--Use SPF, Sender ID, and DKIM.
+ - Send emails directly from EC2 servers: It's best to create a EC2 role with SES capability.
+ - You can directly launch that server into that role, and send over the SMPT relay- its also recommended to use SMPT, but not the API.
+ - Comply with the CAN-SPAM rules.
+ - Use SPF, Sender ID, and DKIM.
 
-INTRODUCTION TO SQS(Simple Qeue Service):
-=========================================
+## INTRODUCTION TO SQS(Simple Qeue Service):
 
 - You can work with qeues, it check calls and posts. You can batch process the work.
 - Qeues or "posting notes" are efficient and scalable systems.
@@ -976,9 +968,23 @@ SQS user cases:
    - AWS order processing.
    - machine to machine messaging.
    
+## Introduction to API Gateway
 
-INTRODUCTION TO ROUTE53:
-========================
+Reference: https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html
+
+IT IS A FRONT-DOOR FOR YOUR APPLICATIONS!!
+
+ AWS API Gateway is a service to create, publish, mantain, and monitor APIs. This allows an API that will work as the "front door" for applications for your back-end services, as Elastic compute clouds EC2, aws lambda or web applications. 
+ 
+ API Gateway creates RESTful APIs that:
+  - Are HTTP-based.
+  - Enable stateless client-server communication.
+  - Implement standard HTTP methods such as GET, POST, PUT, PATCH, and DELETE.
+ 
+From the security point of view, use WAF (Web Applitacion Firewall) to protect your endpoints. 
+
+
+## INTRODUCTION TO ROUTE53:
 
 Route53, is the Amanzons distributed DNS for AWS.
 
@@ -1041,9 +1047,7 @@ Amazon S3 is designed to be languaje neutral, and to be used with the supported 
  
   Cloudfront also can improve our security as it uses features as OAI (Original Access Identity), so it restrict uderlying data through use only through Cloudfront operations, this includes protection from several exploits, safeguards, as AWS WAF, a web application firewall, and AWS Shield, a sevice that protects against DDoS attacks
  
- # AWS API GATEWAY
- AWS API Gateway is a service to create, pubilsh, mantain, and monitor APIs. This allows an API that will work as the "front door" cffro applications for your back-end services, as Elastic compute clouds EC2, aws lambda or web applications
- 
+
 
  
  
