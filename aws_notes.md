@@ -871,6 +871,8 @@ If you try to put part in, and part out, you will have a network lag, that will 
 Introduction to SNS(Simple Notification Service):
 =================================================
 
+Reference: https://docs.aws.amazon.com/sns/latest/dg/welcome.html
+
 SNS(Simple Notification Service) is used to send internal notifications inside AWS: 
 -from an application or an user.
 -to an application or an user.
@@ -885,9 +887,9 @@ SNS setup:
 ==========
 
 - First, you create, what is call: a Topic. -think of it as a mailbox or email alias.
-- then, you add subscribers.
-- subscribers, have to confirm (http, email, or SQS(Amazon Simple Qeue Service) with permissions).
-- then you send messages to the Topic, and the subscribers, will receive the message.
+- Then, you add subscribers.
+- Subscribers, have to confirm (http, email, or SQS(Amazon Simple Qeue Service) with permissions).
+- Then you send messages to the Topic, and the subscribers, will receive the message.
 
 SNS subscriber types:
 =====================
@@ -900,9 +902,9 @@ SNS subscriber types:
 SNS best practices:
 ===================
 
-- Subscribe to a 2nd SQS service for http/sms/email notificqations; this allows workers, to get notifications from SQS(Amazon Simple
-Qeue Service) and logg the processes- if the primary subscriber, dont receive the message, you have a copy with the SQS, and can be
-inmediatly re-processed by workers, or for logging.
+- Subscribe to a 2nd SQS service for http/sms/email notifications; this allows workers, to get notifications from SQS(Amazon Simple Qeue Service) and log the processes- if the primary subscriber, don't receive the message, you have a copy with the SQS, and can be inmediatly re-processed by workers, or for logging.
+
+Note, that SNS is push-based service, while SQS is a polling based service! 
 
 Introduction to SES(Simple Email Service):
 ==========================================
