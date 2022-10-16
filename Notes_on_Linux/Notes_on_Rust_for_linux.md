@@ -244,11 +244,22 @@ mount -t proc none /proc
 qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img
 
 # after booting, in the messages check for the text string "Hello from echo server", 
-# that proofs that the echo_server_module has been loaded. 
+# that proofs that the echo_server_module has been loaded
+# [    2.232579] rust_echo_server: Hello from echo server
+
 
 the echo server listens to port 8080, and repeats back the received messages. 
 
-# use the command `netstat`
+# use the command `netstat -a`
+
+~ # netstat -a
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node Path
+netstat: /proc/net/unix: No such file or directory
+
 #if we try to connect, nothing will happen
 VM# nc 127.0.0.1 8080
 VM# ifconfig
@@ -264,7 +275,7 @@ VM# nc 127.0.0.1 8080
 # exit with poweroff
 
 # another intersting thing to enable is to enable a NIC. for this use the command: 
-qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139 
+qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/_install/ramdisk.img -nic user,model=rtl839 
 
 # launch the machine, and check the interfaces with: ip link
 
