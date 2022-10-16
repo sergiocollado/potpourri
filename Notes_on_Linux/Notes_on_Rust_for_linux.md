@@ -138,9 +138,9 @@ nproc # to count number of cpus
 make LLVM=1 -j32 # compile whit 32 cpus
 
 cd busybox 
-make defconfig # make default configuration
+~/busybox$ make defconfig # make default configuration
 # we want to build busybox statically
-make menuconfig # check: --Settings -> --Build Options -> Build static binary (no shared libs) 
+~/busybox$ make menuconfig # check: --Settings -> --Build Options -> Build static binary (no shared libs) 
 # with this it is no needed add a libc image
 
 make -j32
@@ -186,30 +186,34 @@ make install # this create a directory call __install which is our image, the im
 sergio@debian:~/busybox$ cd $HOME/linux
 sergio@debian:~/linux$ 
 
-qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img
+#now qemu is installed, it it is not installed yet, then execute: sudo apt install qemu-kvm
+sergio@debian:~/linux$ qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/_install/ramdisk.img
 # qemu: could not load kernel 'vmlinux': No such file or directory # this error is due the kernel has not been compiled yet: make LLVM=1 -j32
 
-CTRL +  A + X to get out of it.
+# use CTRL +  A and then press: X to get out of it.
 
-cp ../examples/inittap ./etc
-# modify the file, removign the tty2::askfirst-/bin/sh to  ... tty5
+# create a etc directory
+~/busybox/_install$ mkdir etc
+# copy the intitab from the busybox examples:
+~/busybox/_install$ cp ../examples/inittap ./etc
+# modify the file, removing the tty2::askfirst-/bin/sh to  ... tty5
 # regenerate the image. 
 #sergio@debian:~/busybox/_install$  find . | cpio -H newc -o | gzip > ./ramdisk.img
 
 # go back to linux and run it. 
-qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img
+~/linux$ qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img
 
 # still there is the wargin about : can't run "etc/inti.d/rcS": No such file or directory
 # and that file is interesting because it allows to run commands at the boot
 
-# Also is the complain it can find /proc. Just create /proc
+# Also is the complaint it cannot find /proc. Just create /proc
 mkdir /proc
 # mount a proc filesystem there
 mount -t proc none /proc
 
 # create the file:  "/etc/inti.d/rcS", and there add the commands to mount /proc
-
-#sergio@debian:~/busybox/_install$ vi etc/init.d/rcS
+#sergio@debian:~/busybox/_install$ mkdir -p etc/init.d/
+#sergio@debian:~/busybox/_install$ vim etc/init.d/rcS
 mkdir -p /proc
 mount -t proc none /proc
 
@@ -226,7 +230,7 @@ mount -t proc none /proc
 #sergio@debian:~/linux$   make LLVM=1 menuconfig
 
 # configure: Main Menu -> Kernel hacking -> Sample kerenl code -> Rust samples -> Echo server module 
-
+# you may need to enable the samples:  Depends on: SAMPLES [=y] && SAMPLES_RUST [=y]   
 # building the kernel again it will include the echo server
 
 # we may want to edit the code, to get some otutput
@@ -234,7 +238,7 @@ mount -t proc none /proc
 # vi samples/rust/rust_echo_server.rs 
 + pr_info!("Hello from echo server\n"); 
 
-# make LLVM=1 -j32
+# ~/linux$ make LLVM=1 -j32
 
 # boot the machine 
 qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img
