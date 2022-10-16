@@ -1,4 +1,5 @@
-reference: https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e
+reference: https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e <br>
+reference: https://mudongliang.github.io/2017/09/12/how-to-build-a-custom-linux-kernel-for-qemu.html <br>
 
 ## Common
 
