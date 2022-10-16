@@ -139,8 +139,8 @@ make LLVM=1 -j32 # compile whit 32 cpus
 
 cd busybox 
 make defconfig # make default configuration
-
-make menuconfig # check settings -> --Build Options -> Build static binary (no shared libs) 
+# we want to build busybox statically
+make menuconfig # check: --Settings -> --Build Options -> Build static binary (no shared libs) 
 # with this it is no needed add a libc image
 
 make -j32
