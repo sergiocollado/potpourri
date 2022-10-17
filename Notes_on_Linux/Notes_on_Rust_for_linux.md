@@ -298,8 +298,8 @@ udhcpc -i eth0             # udpates dhcp
 
 # rebuild the image 
 #sergio@debian:~/busybox/_install$  find . | cpio -H newc -o | gzip > ./ramdisk.img
-# relauch the machine
-qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139 
+# relaunch the machine
+qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139 
 
 #if we check ifconfig, the network interface should be up, so networking is active. 
 # this allows to go from the VM to the outside world! 
@@ -313,7 +313,7 @@ VM# mount -t devtmps none /dev
 VM# ld /dev # now it should be populated
 VM# mkdir /dev/pts
 VM# mount -t devpts nodev /dev/pts
-VM#  telnetd -l /bin/sh                  # now it is possible to run telnetd
+VM# telnetd -l /bin/sh                  # now it is possible to run telnetd
 
 from other ternminal, try to connect
 
@@ -339,13 +339,13 @@ mount -t devpts none /dev/pts
 #sergio@debian:~/busybox/_install$  find . | cpio -H newc -o | gzip > ./ramdisk.img
 
 # launch the VM
-qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139,hostfwd=tcp::5555-:23
+qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139,hostfwd=tcp::5555-:23
 
 # try to telnet it
 telnet localhost 5555
 
 # other  thing to tacke is forward other port 5556 to the port of the echo_server. 
-qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139,hostfwd=tcp::5555-:23,hostfwd=tcp::5556-:8080
+qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139,hostfwd=tcp::5555-:23,hostfwd=tcp::5556-:8080
 
 # so from the local machine, it is possible to cnect to th echo server previouly configured.
 nc localhost 5556
