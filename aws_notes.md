@@ -993,11 +993,25 @@ The workloads run in EC2 or Fargate (Fargate is recommended as it scales better)
 
 Somtimes is better to use AWS lambda. AWS lambda has an 15 minutes time limit. So for long-time jobs, is better to use AWS Batchs. Also lambda, has limited disk space. For custom run-times is better AWS Batch.
 
+## AWS MQ (Message Queue)
 
+Amazon MQ is a managed message broker service that makes it easy to migrate to a message broker in the cloud. A message broker allows software applications and components to communicate using various programming languages, operating systems, and formal messaging protocols. Currently, Amazon MQ supports Apache ActiveMQ and RabbitMQ engine types.
 
+This is is relevant in case you need to migrate an appication, and you are using message queues. Also Amazon MQ requires private networking, like VPC, while SQS and SNS are publicly accessible by default. 
 
+## AWS step functions
 
+reference: https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html
 
+AWS Step Functions is a serverless orchestration service that lets you integrate with AWS Lambda functions and other AWS services to build business-critical applications. Through Step Functions' graphical console, you see your application’s workflow as a series of event-driven steps.
+
+Step Functions is based on state machines and tasks. A state machine is a workflow. A task is a state in a workflow that represents a single unit of work that another AWS service performs. Each step in a workflow is a state.
+
+With Step Functions' built-in controls, you examine the state of each step in your workflow to make sure that your application runs in order and as expected. Depending on your use case, you can have Step Functions call AWS services, such as Lambda, to perform tasks. You can create workflows that process and publish machine learning models. You can have Step Functions control AWS services, such as AWS Glue, to create extract, transform, and load (ETL) workflows. You also can create long-running, automated workflows for applications that require human interaction.
+
+There is two exection types: 
+- Standard workforws: which are good for long-time runing, auditable executiions.
+- Express workflows: which are good for high-event-rate executions.
 
 ## INTRODUCTION TO ROUTE53:
 
