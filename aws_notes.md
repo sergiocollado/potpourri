@@ -983,6 +983,21 @@ IT IS A FRONT-DOOR FOR YOUR APPLICATIONS!!
  
 From the security point of view, use WAF (Web Applitacion Firewall) to protect your endpoints. 
 
+## AWS BATCH
+
+reference: https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html
+
+AWS Batch helps you to run batch computing workloads on the AWS Cloud. Batch computing is a common way for developers, scientists, and engineers to access large amounts of compute resources. AWS Batch removes the undifferentiated heavy lifting of configuring and managing the required infrastructure, similar to traditional batch computing software. This service can efficiently provision resources in response to jobs submitted in order to eliminate capacity constraints, reduce compute costs, and deliver results quickly.
+
+The workloads run in EC2 or Fargate (Fargate is recommended as it scales better). EC2 may be a better opiton, for example, when you need a certain AMI, or forme thatn 4 vCPU or if you need an GPU or Arm-based Graviont. , or anything needing more than 30 GiB of memory, or in there is a large number of jogbs. 
+
+Somtimes is better to use AWS lambda. AWS lambda has an 15 minutes time limit. So for long-time jobs, is better to use AWS Batchs. Also lambda, has limited disk space. For custom run-times is better AWS Batch.
+
+
+
+
+
+
 
 ## INTRODUCTION TO ROUTE53:
 
