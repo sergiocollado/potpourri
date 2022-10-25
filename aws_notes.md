@@ -868,7 +868,7 @@ If you try to put part in, and part out, you will have a network lag, that will 
  the IG.
  
  
-## Introduction to SNS(Simple Notification Service):
+## AWS SNS(Simple Notification Service):
 
 Reference: https://docs.aws.amazon.com/sns/latest/dg/welcome.html
 
@@ -882,47 +882,46 @@ SNS, have API & AWS_console support. So you can programmatically launch actions,
 
 Is based in a Push system, (contrary to a Pull system), so subscribers , get notifications when they are producced.
  
-### SNS setup:
-
+#### SNS setup:
 
 - First, you create, what is call: a Topic. -think of it as a mailbox or email alias.
 - Then, you add subscribers.
 - Subscribers, have to confirm (http, email, or SQS(Amazon Simple Qeue Service) with permissions).
 - Then you send messages to the Topic, and the subscribers, will receive the message.
 
-### SNS subscriber types:
+#### SNS subscriber types:
 
 - http/s: any http/s endpoint, doesn't matter if it belongs to AWS or not. this is really usefull for programmatically consume notifications.
 - emai/email-JSON: good for humans/ programmatically consumption.
 - SMS: good for humans- really good for ALERTS.
 - SQS: good for logging, and automation. [ref: https://aws.amazon.com/sqs/]
 
-### SNS best practices:
+#### SNS best practices:
 
 - Subscribe to a 2nd SQS service for http/sms/email notifications; this allows workers, to get notifications from SQS(Amazon Simple Qeue Service) and log the processes- if the primary subscriber, don't receive the message, you have a copy with the SQS, and can be inmediatly re-processed by workers, or for logging.
 
 Note, that SNS is push-based service, while SQS is a polling based service! 
 
-## Introduction to SES(Simple Email Service):
+### AWS SES(Simple Email Service):
 
 SES(Simple Email Service) allows to send emails, to external users of AWS. Useful for bulk/marketing emails.
 
 PLEASE: check/comply with CAN-SPAM Compliance.
 
-### SNS vs SES:
+#### SNS vs SES:
 
 -SNS emails/subscriptions must be confirmed.
 -SNS only supports plain text.
 -SNS cannot customize emails per customer.
 
-### SES best practices:
+#### SES best practices:
 
  - Send emails directly from EC2 servers: It's best to create a EC2 role with SES capability.
  - You can directly launch that server into that role, and send over the SMPT relay- its also recommended to use SMPT, but not the API.
  - Comply with the CAN-SPAM rules.
  - Use SPF, Sender ID, and DKIM.
 
-## INTRODUCTION TO SQS(Simple Qeue Service):
+### AWS SQS(Simple Qeue Service):
 
 - You can work with qeues, it check calls and posts. You can batch process the work.
 - Qeues or "posting notes" are efficient and scalable systems.
@@ -968,7 +967,7 @@ SQS user cases:
    - AWS order processing.
    - machine to machine messaging.
    
-## Introduction to API Gateway
+### Introduction to API Gateway
 
 Reference: https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html
 
@@ -983,7 +982,7 @@ IT IS A FRONT-DOOR FOR YOUR APPLICATIONS!!
  
 From the security point of view, use WAF (Web Applitacion Firewall) to protect your endpoints. 
 
-## AWS BATCH
+### AWS BATCH
 
 reference: https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html
 
@@ -993,13 +992,13 @@ The workloads run in EC2 or Fargate (Fargate is recommended as it scales better)
 
 Somtimes is better to use AWS lambda. AWS lambda has an 15 minutes time limit. So for long-time jobs, is better to use AWS Batchs. Also lambda, has limited disk space. For custom run-times is better AWS Batch.
 
-## AWS MQ (Message Queue)
+### AWS MQ (Message Queue)
 
 Amazon MQ is a managed message broker service that makes it easy to migrate to a message broker in the cloud. A message broker allows software applications and components to communicate using various programming languages, operating systems, and formal messaging protocols. Currently, Amazon MQ supports Apache ActiveMQ and RabbitMQ engine types.
 
 This is is relevant in case you need to migrate an appication, and you are using message queues. Also Amazon MQ requires private networking, like VPC, while SQS and SNS are publicly accessible by default. 
 
-## AWS step functions
+### AWS step functions
 
 reference: https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html
 
@@ -1030,6 +1029,32 @@ It supports all major record types
  -TXT (text record)
 
 
+## SERVERLESS ARCHITECTURE
+
+Serverless allows you to execute code, in response of an event, an letting AWS handle it. You only  pay for the provisioned resources and the lenght of the runtime. 
+
+### Lamda
+
+reference: https://docs.aws.amazon.com/lambda/?icmpid=docs_homepage_serverless
+
+With AWS Lambda, you can run code without provisioning or managing servers. You pay only for the compute time that you consume—there's no charge when your code isn't running. You can run code for virtually any type of application or backend service—all with zero administration. Just upload your code and Lambda takes care of everything required to run and scale your code with high availability. You can set up your code to automatically trigger from other AWS services or call it directly from any web or mobile app.
+
+For writing a lambda there are several points to take care of:
+- **Runtime**: need to select from an available runtime or birng your own. This is the enviroment your code will run in. 
+- **Permissions**: If your lambda function needs to make an AWS API call, you will need to attach a role. 
+- **Networking**: Optionally define the VPC, subnet and security groups your functions are part of.
+- **Resources**: Define the amout of memory that will be neede, and how much CPU and RAM gets. (remeber max time 15 minutes! and max 10 GiB of RAM!)
+- **Trigger**: which is the event that will fire the lambda function.
+
+Note: Lambda excss in running samll and lightweigth functions. (ideal for microservices)
+
+
+
+
+
+
+
+
 # REFERENCES:
 https://aws.amazon.com/es/documentation/s3/ </br>
 https://aws.amazon.com/certification/faqs/ </br>
@@ -1057,11 +1082,9 @@ Its a certification that evaluates the expertise in developing and manteining ap
 - Writing code that optimices performance of AWS services
 - Code-level application security( IAM, credentials, encription, ...)
 
-
 # AWS S3 APIs
 
 Amazon S3 is designed to be languaje neutral, and to be used with the supported interfaces to store and retrieve objects.
-
 
 
  # AWS LEX
