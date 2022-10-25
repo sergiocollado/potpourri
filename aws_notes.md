@@ -1048,9 +1048,11 @@ For writing a lambda there are several points to take care of:
 
 Note: Lambda excss in running samll and lightweigth functions. (ideal for microservices)
 
+### AWS Serverless Application Repository
 
-
-
+reference https://aws.amazon.com/serverless/serverlessrepo/
+ 
+The AWS Serverless Application Repository is a managed repository for serverless applications. It enables teams, organizations, and individual developers to store and share reusable applications, and easily assemble and deploy serverless architectures in powerful new ways. Using the Serverless Application Repository, you don't need to clone, build, package, or publish source code to AWS before deploying it. Instead, you can use pre-built applications from the Serverless Application Repository in your serverless architectures, helping you and your teams reduce duplicated work, ensure organizational best practices, and get to market faster. Integration with AWS Identity and Access Management (IAM) provides resource-level control of each application, enabling you to publicly share applications with everyone or privately share them with specific AWS accounts. To share an application you've built, publish it to the AWS Serverless Application Repository.
 
 
 
