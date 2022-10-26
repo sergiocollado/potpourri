@@ -65,7 +65,9 @@ article: https://www.memorysafety.org/blog/memory-safety-in-linux-kernel/
     - https://y86-dev.github.io/blog/return-value-optimization/placement-by-return.html
     - https://github.com/rust-lang/rfcs/pull/3318
     - https://kangrejos.com/Pinning%20in%20Rust.pdf
-
+- https://lwn.net/SubscriberLink/910762/e103310fccf871d3/
+- https://blog.hedwing.dev/linux-kernel/intro_to_linux
+- https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
 
 rust-dev dockerfile: (reference: https://github.com/mabembedded/dockerfiles/blob/main/Dockerfile.rust)
 
