@@ -191,14 +191,14 @@ an infinite loop in an user-space program cannot block the system.
 
 In the kernel space, until 2.6 kernel, the kernel itself was not preepmtible. As soon as a thread entered the kernel, it could not be preempted to execute another thread. The processor could be used to execute another thread  when a syscal was terminated, or when the current thread explicitl asked toe scheduler to run another thread using the schedule(). That meant that an infinete loop in the kernel code would block the entire system.
 
-However, this absernce of preemption in the kernel caused several problems with regard to latency and scalability. 
+However, this absence of preemption in the kernel caused several problems with regard to latency and scalability. 
 
 The kernel preemption was introduced in the 2.6 kernel, and one can enable or disable it using the CONFIG_PREEMPT option. Thus an infinite loop in the kernel code cannot longer block the entire system.
 
 The kernel was done preemptible to reduce the dispach latency of the user mode processes. the dealay between the time they become runnable and the time they actually beging running. Processes perfonrming timely scheduled tasks (such as external hardware controllers, monitors, ...) really benfit from kernel preemption because it reduces the risk of being delayed by another process running in kernel mode. 
 
 kernel preemption can happen: 
-- when returngin to kernel-space from an interrupt handler.
+- when returning to kernel-space from an interrupt handler.
 - when kernel code becomes preemptible again
 - if a task in the kernel sxplicitly calls `schedule()`
 - if a task in the kernel blcoks (which results in a cal to `schedule()`.
@@ -206,13 +206,81 @@ kernel preemption can happen:
 Example: 
  While a given process A executes and exception handler (necessaly in kernel mode), a higher priority process B comes runnable. 
  
- This could hapen, for instance, if an IRQ occurs and the corresponding handler awakens process B.
+ This could happen, for instance, if an IRQ occurs and the corresponding handler awakens process B.
  As the kernel is preemptive, a forced process switch replaces process A with B.
  The exception handler is left unfinished and will be resumed only when the scheduler selects again process A for execution. 
  
- 
+ Kernel pre-emption does not help in the overall throughput of the system. Instead, it seeks for better responsiveness.
 
+The idea here is that normally kernel functions are only interrupted by hardware causes: Either external interrupts, or IO wait cases, where it voluntarily gives away control to the scheduler. A pre-emptive kernel instead also interrupts and suspends kernel functions just like it would interrupt processes in user mode. The system is more responsive, as processes e.g. handling mouse input, are woken up even while heavy work is done inside the kernel.
+
+Pre-emption on kernel level makes things harder for the kernel developer: The kernel function cannot be suspended only voluntarily or by interrupt handlers (which are somewhat a controlled environment), but also by any other process due to the scheduler. Care has to be taken to e.g. avoid deadlocks: A thread locks resource A but needing resource B is interrupted by another thread which locks resource B, but then needs resource A.
+
+ #### Reentrancy
  
+ A kernel control path denotes the sequence of instruction executed by the kernel to handle a system call, and execption or an interrupt.
+ 
+ The Linux kernel is reentrant. This means that several processes may be executing in kernel mode at the same time. 
+ 
+ On single-core systems only one process can progress at a time, but many can be blocked in the kernel mode when waiting for the CPU or the completion of some I/O operation. 
+ 
+ Example: 
+   After issuing a read to a disk on behalf of a process, the kernel lets the disk controller handle it and resumes executing other processes. 
+   An interrupt notifies the kernel when the device has satisfied the read, so the former proces can resume the execution. 
+   
+The reentrancy functions types in the linux kernel can be: 
+ - Reentrant functions: they don't user/modify global data structures
+ - Non reentrant functions: functions that modify global data strcutures but use locking mechanisms. 
+
+reference: https://www.quora.com/What-is-meant-by-a-reentrant-kernel <br>
+reference: https://teleedu.wordpress.com/2012/11/25/preemptive-and-reentrant-kernel/ <br>
+reference: http://www.linfo.org/kernel_mode.html <br> 
+reference: https://stackoverflow.com/questions/1163846/what-is-a-reentrant-kernel <br>
+
+A re-entrant kernel enables a process (and it’s threads) to give away the CPU while in kernel mode. They do not hinder other processes from also entering kernel mode. This behavior allows CPU to be shared among multiple processes.
+
+A typical use case is IO wait. The process wants to read a file. It calls a kernel function for this. Inside the kernel function, the disk controller is asked for the data. Getting the data will take some time and the function is blocked during that time.
+
+With a re-entrant kernel, the scheduler will assign the CPU to another process (kernel thread) until an interrupt from the disk controller indicates that the data is available and our thread can be resumed. This process can still access IO (which needs kernel functions), like user input. The system stays responsive and CPU time waste due to IO wait is reduced.
+
+All Unix kernels are reentrant. This means that several processes may be executing in Kernel Mode at the same time. Of course, on uniprocessor systems, only one process can progress, but many can be blocked in Kernel Mode when waiting for the CPU or the completion of some I/O operation.
+
+If a hardware interrupt occurs, a reentrant kernel is able to suspend the current running process even if that process is in Kernel Mode. This capability is very important, because it improves the throughput of the device controllers that issue interrupts.
+
+Ex: The Linux kernel Version 2.6 (which was introduced in late 2003) is preemptive. That is, a process running in kernel mode can be suspended in order to run a different process. This can be an important benefit for real time applications (i.e., systems which must respond to external events nearly simultaneously). Unix-like kernels are also re-entrant, which means that several processes can be in kernel mode simultaneously. However, on a single-processor system, only one process, regardless of its mode, will be progressing in the CPU at any point in time, and the others will be temporarily blocked until their turns.
+
+### Synchronization and critical regions: problems and solutions
+
+Implementing a reentrant kernel requires the use of synchronization. 
+
+If a kernel control path is suspended while acting on a kernel data structure, no other kernel control path should be 
+allowed to act on the same data structure unless it has been reset to a consistent state. 
+
+Otherwise, the interaction of the two control paths could corrupt the stored information. 
+
+When the outcome of a computation depends on how two or more processes are scheduled, the code is incorrect. We say that there is a race condition. 
+	  
+A **race condition** happens when multiple threads/processes/routines try to access and modify the same data. So one overwrites the value of other, resulting in an incorrect value. When race conditions arise, is known in software as **critical-sections** which  are code that fits to **RUW**: `read-update-write`. For example: `i = i+1`.
+
+```
+routine 1           routine 2
+read i = 0   
+                    read i = 0
+increment i+1 = 1
+                    imcrement i+1 = 1
+write 1 
+                    write 1 // this overwrites the resulti
+```
+
+we would be expecting 2 as a result, but we got 1, because the order of the routines
+	   
+Any section of code that should be finished by each process that begins it before another process can enter it is called **critical region**. 
+
+The sources of concurrency on the kernel are:
+- Interrupts: an interrupt can happen asynchronously at almost any time, interrupting the current executing code
+- Softirqs and tasklets: the kernel can raise or schedule a softirq or tasklet at almost any time.
+- Sleeping and synchronization with user space: Task in the kernel can sleep and thus invoke the scheduler, resulting in running of a new process
+- Symetrical multiprocessor: two or more processors can execute kernel code at exactly the same time. 
 
 
 
