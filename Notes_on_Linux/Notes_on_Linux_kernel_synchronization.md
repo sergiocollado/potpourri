@@ -1,5 +1,8 @@
 # Notes on Linux kernel synchronization
 
+reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/
+
+
 ## Concurrency 
 
 Concurrency is the ability to handle multiple tasks/process with the illusioin or reallyti of simulatanety
@@ -17,6 +20,9 @@ To find the number of processors in the system, use:
 grep -c ^processor /proc/cpuinfo
 nproc
 lshw
+grep NR_CPUS /boot/config-`uname -r`  # this is the max number of processors that a SMP kernel could support
+# For modules: use the function `num_online_cpus()` to get the number of cpus online # you can use it in a module.
+# For modules: use the function `smp_processor_id()` to report the current processor number on which the kernel is running.
 ```
 
 To find the processor in which a task/process is running: 
@@ -280,7 +286,50 @@ The sources of concurrency on the kernel are:
 - Interrupts: an interrupt can happen asynchronously at almost any time, interrupting the current executing code
 - Softirqs and tasklets: the kernel can raise or schedule a softirq or tasklet at almost any time.
 - Sleeping and synchronization with user space: Task in the kernel can sleep and thus invoke the scheduler, resulting in running of a new process
-- Symetrical multiprocessor: two or more processors can execute kernel code at exactly the same time. 
+- Symetrical multiprocessor (SMP): two or more processors can execute kernel code at exactly the same time. 
+
+### Example module for porcesor id of kernel thread
+
+```
+static struct task_struct *my_thread;
+
+int thread_function(void *pv)
+{
+    int i=0;
+    while(!kthread_should_stop()) {
+        printk(KERN_INFO "Processor id:%d\t In thread function %d\n", smp_processor_id(), i++);
+	msleep(1000);
+    }
+    return 0;
+}
+
+static int __init my_driver_init(void)
+{
+    pr_info("%s: In init NR_CPUS=%d\n", __func__, NR_CPUS);
+    pr_info("Number of cpus availables: %d\n", num_online_cpus());
+    pr_info("%s: processor id:%d\n", __func__, smp_processor_id());
+    my_thread = ktrhead_create(thread_function, NULL, "myThread");
+    if (my_thread) {
+        wake_up_process(my_thread);
+	return 0;
+    } else {
+        print(KERN_ERR "Cannot crate kthread\n");
+	return -1;
+    }
+}
+
+void __exit my_driver_exit(void)
+{
+    kthread_stop(my_thread);
+}
+
+module_init(my_driver_init);
+module_exit(my_driver_exit);
+MODULE_LICENSE("GPL");
+```
+
+If we run this module, we can see that in a multi-core system, the reported CPUS, will change. Everytime we hit sleep, the
+scheduler() will reassign the code to a cpu.
 
 
 
