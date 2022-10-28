@@ -1064,6 +1064,27 @@ The usual workflow is: <br>
 Dockerfile -> build and Image -> store (upload) the image into a Registry -> Download the image from a registry & run a continer, copyiing the image created.
 
 
+#### Running containers in ECS (Elastic Container Service) or EKS (Elastic Kubernetes Service)
+
+Amazon Elastic Container Service (Amazon ECS) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage Docker containers on a cluster of Amazon EC2 instances.
+
+reference: https://docs.aws.amazon.com/ecs/ <br>
+reference: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html <br>
+
+- ECS can manage lots of containers. It will allocate it and keep them online. 
+- ELB integration: containers iwll be properly registered with the load balancers as they come online and offline.
+- Role integration: containers can have individual roles attached to them, making security easy. 
+- Easy to use: very easy to setup and scale.
+
+For a solution more cross-platform appropiate, use then Kubernetes (K8s), its AWS version is named EKS (Elastic Kubernetes Service) 
+
+Comparation between ECS and EKS: 
+
+- ECS is easier to use. AWS is bet used when you don't want to depend entirelly on AWS.
+
+
+
+
 
 
 
