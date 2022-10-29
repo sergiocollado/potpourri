@@ -9,6 +9,7 @@ How to build modules: https://git.kernel.org/pub/scm/linux/kernel/git/stable/lin
 Linux kernel makefiles: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/kbuild/makefiles.rst <br>
 Kernel newbies : https://kernelnewbies.org/FirstKernelPatch <br>
 Linux device drivers tutorials: https://embetronicx.com/linux-device-driver-tutorials/ <br>
+about kallsyms_lookup_name() +5.7: https://xcellerator.github.io/posts/linux_rootkits_11/
 
 ## What is a device driver.
 
