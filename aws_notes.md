@@ -1064,7 +1064,7 @@ The usual workflow is: <br>
 Dockerfile -> build and Image -> store (upload) the image into a Registry -> Download the image from a registry & run a continer, copyiing the image created.
 
 
-#### Running containers in ECS (Elastic Container Service) or EKS (Elastic Kubernetes Service)
+### Running containers in ECS (Elastic Container Service) or EKS (Elastic Kubernetes Service)
 
 Amazon Elastic Container Service (Amazon ECS) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage Docker containers on a cluster of Amazon EC2 instances.
 
@@ -1081,6 +1081,31 @@ For a solution more cross-platform appropiate, use then Kubernetes (K8s), its AW
 Comparation between ECS and EKS: 
 
 - ECS is easier to use. AWS is bet used when you don't want to depend entirelly on AWS.
+
+
+### AWS Fargate
+
+reference: https://docs.aws.amazon.com/AmazonECS/latest/userguide/what-is-fargate.html
+
+AWS Fargate is a technology that you can use with Amazon ECS to run containers without having to manage servers or clusters of Amazon EC2 instances. With Fargate, you no longer have to provision, configure, or scale clusters of virtual machines to run containers. This removes the need to choose server types, decide when to scale your clusters, or optimize cluster packing.
+
+When you run your Amazon ECS tasks and services with the Fargate launch type or a Fargate capacity provider, you package your application in containers, specify the Operating System, CPU and memory requirements, define networking and IAM policies, and launch the application. Each Fargate task has its own isolation boundary and does not share the underlying kernel, CPU resources, memory resources, or elastic network interface with another task.
+
+It works for both ECS and EKS. Fargate is more of a feature of ECS or EKS
+
+EC2 is better to be used in long running applications. Fargate is better when containers don't need to run all the time. But for short code that can be encapsulated in a fucntion lambda is better. 
+
+### EventBridge (CloudWatch evernts)
+
+reference: https://docs.aws.amazon.com/eventbridge/
+
+Amazon EventBridge is a serverless event bus service that makes it easy to connect your applications with data from a variety of sources. EventBridge delivers a stream of real-time data from your own applications, software-as-a-service (SaaS) applications, and AWS services and routes that data to targets such as AWS Lambda. You can set up routing rules to determine where to send your data to build application architectures that react in real time to all of your data sources. EventBridge enables you to build event-driven architectures that are loosely coupled and distributed.
+
+- **Define patterns**: ther  rule to be invoked based on an event happening or scheduled
+- **Select event bus**: and AWS-based envet or custom event=
+- **Select target**: What happens when the event is received? a lambda function, or post to an SQS queu, or send an email?
+
+
 
 
 
