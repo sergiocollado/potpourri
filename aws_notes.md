@@ -1095,7 +1095,7 @@ It works for both ECS and EKS. Fargate is more of a feature of ECS or EKS
 
 EC2 is better to be used in long running applications. Fargate is better when containers don't need to run all the time. But for short code that can be encapsulated in a fucntion lambda is better. 
 
-### EventBridge (CloudWatch evernts)
+### EventBridge (CloudWatch events)
 
 reference: https://docs.aws.amazon.com/eventbridge/
 
@@ -1104,6 +1104,21 @@ Amazon EventBridge is a serverless event bus service that makes it easy to conne
 - **Define patterns**: ther  rule to be invoked based on an event happening or scheduled
 - **Select event bus**: and AWS-based envet or custom event=
 - **Select target**: What happens when the event is received? a lambda function, or post to an SQS queu, or send an email?
+
+EventBridge (Cloudwatch events) is the fastest way to respond to an AWS event. Also it is the main glue to really build your serverless application, as it can repsond to any AWS API call. 
+
+### Storing custom docker images in Amazon ECR (Elastic Container Registriy)
+
+reference: https://docs.aws.amazon.com/AmazonECR/latest/userguide/what-is-ecr.html
+
+Amazon Elastic Container Registry (Amazon ECR) is a fully managed Docker container registry that makes it easy for developers to store, manage, and deploy Docker container images.
+
+Amazon Elastic Container Registry (Amazon ECR) is an AWS managed container image registry service that is secure, scalable, and reliable. Amazon ECR supports private repositories with resource-based permissions using AWS IAM. This is so that specified users or Amazon EC2 instances can access your container repositories and images. You can use your preferred CLI to push, pull, and manage Docker images, Open Container Initiative (OCI) images, and OCI compatible artifacts.
+
+Amazon ECR Public, is a similar service, but for pubilc image repositories. 
+
+
+
 
 
 
