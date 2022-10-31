@@ -13,7 +13,7 @@
   +----+-----+
        |
   +----v-----+             +---------------+
-  |  bind()  |             | getaddrinfo() |      
+  |  bind()  |             | getaddrinfo() |    getaddrinfo() is usefull because you can work with IPv4/IPv6 independently
   +----+-----+             +-----+---------+
        |                         |
  +-----v------+             +----------+
@@ -41,3 +41,5 @@ data is received- <------+  | sendto() |
 
 
 ////https://www.gnu.org/software/libc/manual/html_node/Sockets.html
+
+socket options: https://linux.die.net/man/3/setsockopt
