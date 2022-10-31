@@ -6,11 +6,11 @@
 
 +---------------+
 | getaddrinfo() |
-+----+----------+
-     |
-  +----------+                 CLIENT
++-----+---------+
+      |
+  +----------+
   | socket() |
-  +----+-----+
+  +----+-----+                 CLIENT
        |
   +----v-----+             +---------------+
   |  bind()  |             | getaddrinfo() |    getaddrinfo() is usefull because you can work with IPv4/IPv6 independently
