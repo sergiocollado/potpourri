@@ -4,7 +4,10 @@
 
   SERVER                      CLIENT
 
-
++---------------+
+| getaddrinfo() |
++----+----------+
+     |
 +----------+
 | socket() |
 +----+-----+
@@ -13,10 +16,10 @@
 | bind()   |
 +----+-----+
      |
-+----v-----+
-| listen() |                
-+----+-----+
-     |
++----v-----+              +---------------+
+| listen() |              | getaddrinfo() |   getaddrinfo() is usefull because you can work with IPv4/IPv6 independently
++----+-----+              +-----+---------+
+     |                          |
 +----v-----+               +----------+
 | accept() |               | socket() |
 +----+-----+               +----+-----+
