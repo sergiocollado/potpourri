@@ -1,7 +1,7 @@
 # Notes on Linux kernel synchronization
 
-reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/
-
+reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/ <br>
+reference: http://gauss.ececs.uc.edu/Courses/c4029/videos.html
 
 ## Concurrency 
 
@@ -330,6 +330,317 @@ MODULE_LICENSE("GPL");
 
 If we run this module, we can see that in a multi-core system, the reported CPUS, will change. Everytime we hit sleep, the
 scheduler() will reassign the code to a cpu.
+
+## Per CPU variables
+
+reference: https://0xax.gitbooks.io/linux-insides/content/Concepts/linux-cpu-1.html
+
+This is the simplest and most efficient synchronization technique consists of declaring kernel variables as per-CPU varialbes.
+
+Basically a per CPU varibles is an aray of data structures, one element per each PCU in the system.
+
+A CPU should not access the elements fo the array corresponding to other CPU.
+
+It can freely read and modify its own element without fera of race conditions, because it is the only CPU entitled to do so.
+
+The elemets of the per-CPU array are aligned in main memory so that each data structure falls on a different line of the hardware cache. 
+
+Example of per-CPU variables:
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/proc_fs.h>
+#incldue <linux/seq_file.h>
+#include <linux/uaccess.h>
+#include <linux/miscdevice.h>
+
+#define COMPANY_NAME "linux"
+
+MODULE_LICENSE("gpl");
+static struct proc_dir_entry *file_pde; //pde -rpoc directory entry
+unsigned int percpu_data[NR_CPUS]; /* NR_CPU: number of CPUs */
+
+static int cpu_show(strcut seq_file *m, void *v)
+{
+    int i;
+    for (i = 0; i < num_online_cpuss(); i++)
+        seq_printf(m, "Processor %d:%u\n", i, percpu_data[i]);
+    return 0;
+}
+
+static int my_open(struct indoe *inode, strcut file *file)
+{
+    return single_open(file, cpu_show, NULL);
+}
+
+static sszie_t proc_write_cpu(struct file *file, const char *buffer, size_t count, loff_t *data)
+{
+    unsigned cahr buff[10];
+    unsigned int user_val;
+    int cpu;
+    
+    pr_info("%s\n", __func__);
+    if (copy_from_user(buff, buffer, count))
+    {
+        return -EFAULT;
+    }
+    else 
+    {
+        buf[count] = '\0';
+	user_val = simple_strtoul(buf, NULL, 10);
+	
+	cpu = get_cpu(); /* get current processor and disable kernel preemption */
+	percpu_data[cpu] = user_val;
+	printk("percpu_data on cpu=%d is %u\n", cpu, percpu_data[cpu]);
+	put_cpu(); /* enable kernel preemption */
+    }
+    return count;
+}
+
+static struct file_operations cpu_ops = {
+    .owner = THIS_MODULE,
+    .open = my_open, 
+    .read = seq_read,
+    .llseek = seq_lseek,
+    .write = proc_write_cpu,
+}; 
+
+static int hello_init(void)
+{
+    pr_info("%s: In init\n", __func__);
+    
+    file_pde = proc_create("percpu", 0644, NULL, &cpu_ops);
+    if (!file_pde) {
+        pr_err("%s: error createing proc file\n", __func__);
+	return -1;
+    }
+    return 0;
+}
+
+static void hello_exit(void)
+{
+    pr_info("%s: In exit\n", __func__);
+    remove_proc_entry("percpu", NULL);
+}
+
+module_init(hello_init);
+module_exit(hello_exit);
+```
+
+Once loaded the module we can check: `cat /proc/percpu`, then writhe to the file : `sudo chmod 666 /proc/percpu && echo '5' > /proc/percpu`. And check again:`cat /proc/percpu`. And then `watch echo '5' > /proc/percpu`
+
+So, `get_cpu()` on top of returning the current processor number also disables kernel preemption. `put_cpu()` enables kernel preemption. 
+
+Disable kernel preemtion is needed, because if a kernel control path gets the address of its local copy of a per-CPU variable, and then it is preempted and moved to another CPU: the address still refers to the element of the previous CPU. 
+
+After kernel 2.6, a new interfec nknow as percpu, was created. It uses: <linux/percpu.h>. To create a per-CPU variable at compile time use the macro: 
+
+```
+DEFINE_PER_CPU(type, name);
+```
+
+This creates an instance of variable of type 'type', named 'name', for each CPU on the system. Eg:
+
+```
+DEFINE_PER_CPU(int, i);
+DEFINE_PER_CPU(int[3], my_array);
+```
+
+In case it is needed a decalaration of the variable elsewhere, to avoid compiile warnings, use the macro: 
+
+```
+DECLARE_PER_CPU(type, name);
+```
+
+You can handle the variables with the `get_cpu_var()` and `put_cpu_var()` routines.
+
+A call to `get_cpu_var()` returns an lvalue for the given variable on the current processor. it also disables preemption, which `put_cpu_var()` correspoindgly enables. 
+
+An `lvalue` (locator value) is a nomeclature, that represents an object that has a given address in memory (for example, any value which is defined). 
+
+Example of the interface:
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/percpu.h>
+
+MODULE_LICENSE("GPL");
+
+static DEFINE_PER_CPU (long, percpuvar) = 5;
+
+static int __init test_hello_init(void)
+{
+     int cpu;
+     pr_info("percpuvar=%ld\n", get_cpu_var(percpuvar)++); /* get_cpu_var() will desable kernel preemption */
+     cpu = smp_processor_id ();
+     printk("current cpu = %d\n", cpu);
+     put_cpu_var(percpuvar);                               /* put_cpu_var() will enable back the kernel preemption */
+     pr_info("percpuvar=%ld\n", get_cpu_var(percpuvar));
+     cpu = smp_processor_id ();
+     printk("current cpu = %d\n", cpu);
+     put_cpu_var(percpuvar);
+     
+     return -1;
+}
+
+static void __exit test_hello_exit(void)
+{
+    pr_info("%s: In exit\n", __func__);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+`smp_processor_id()` returns the current processor number, between 0 and NR_CPUS . These values are not necessarily continuous: to get a number between 0 and smp_num_cpus() (the number of actual processors in this machine), the `cpu_number_map()` function is used to map the processor id to a logical number. `cpu_logical_map()` does the reverse.
+
+reference: https://www.kernel.org/doc/htmldocs/kernel-hacking/routines-processorids.html
+
+If it is needed another processor's copy of the variable, use: `per_cpu(variable, int cpu_id)`. In case to implement code that involves one processor reaching into each other's per-CPU variables, you need to implement a lockging schemer that makes the access safe. 
+
+Example: 
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/percpu.h>
+
+MODULE_LICENSE("GPL");
+
+DEFINE_PER_CPU(int, counter);
+
+static int __int test_hello_init(void)
+{
+    int num_cpus = num_online_cpus();
+    int i = 0;
+    int val; 
+    
+    pr_info("Number of cpus available:%d\n", num_cpus);
+    for (i = 0; i < num_cpus; i++) {
+        int value = per_cpu(counter, i);
+	pr_info("Value of counter is %d at Processor: %d\n", value, i);
+    }
+     
+    get_cpu_var(counter) = 10;   /* disabling preemption */
+    pr_info("Printing counter value of all processor after updateing current processor: %d\n", smp_processor_id());
+    put_cpu_var(counter);        /* enabling preemption */
+    
+    for (i = 0; i< num_cpus; i++) {
+        int value = per_cpu(counter, i);
+        pr_info("Value of counter is %d at Processor: %d\n", value, i);
+    }
+    
+    return -1;
+}
+
+...
+
+```
+
+Example of `for_each_online_cpu()`:
+
+```
+... 
+static DEFINE_PER_CPU (long, percpuvar) = 5;
+
+static int __int test_hello_init(void)
+{
+    int i = 0;
+    
+    for_each_online_cpu(i) {
+        int value = per_cpu(counter, i);
+	pr_info("Value of counter is %d at Processor: %d\n", value, i);
+    }
+
+    get_cpu_var(counter) = 10;
+    pr_info("Printing counter value fo all processors after udpateing current processor: %d\n", smp_processor_id());
+    put_cpu_var(counter);
+    
+    for_each_online_cpu(i) {
+        int value = per_cpu(counter, i);
+	pr_info("Value of counter is %d at Processor: %d\n", value, i);
+    }
+
+    return -1;
+}
+...
+```
+
+### Per-CPU data at runtime
+
+Dynaically allocated per-CPU variables are also possible:
+
+```
+void *alloc_percpu(type); /* a macro */
+void *__alloc_percpu(size_t size, size_t align);
+void free_peercpu(const void *);
+```
+
+The `alloc_percpu()` macro allocates one instance of an object of the given type for every processor on the system.
+
+It is a wrapper around `__alloc_percpu()`, which takes the actual number of tytes to allocate as parameter and the number of bytes on which to algin the allocation.
+
+```
+struct abc = alloc_percpu(struct abc);
+```
+is the same as:
+```
+struct abc = __alloc_percpu(sizeof (struct abc), __alignof__ (struct abc)); 
+```
+
+A call to `alloc_percpu()` or `__alloc_percpu()` returns a pinter, which is used to indirectly reference the dynamically create pre-CPU data. 
+
+A corresponding call to `free_percpu()` frees the given data on all processors. 
+
+ - `get_cpu_var(ptr)` - returns a void pointer to this processos's copy of ptr
+ - `put_cpu_var(ptr)` - done, enable kernel preemptin. 
+
+Example: 
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/percpu.h>
+
+MODULE_LICENSE("GPL");
+
+static int *dyanmic_counter; 
+
+static int __init test_hello_init(void)
+{
+    int cpu = get_cpu();                             /* disable preemtion */
+    int i;
+    dynamic_counter = alloc_percpu(int);             /* dynamic memory allocation */
+    pr_info("cpu: %d\n", cpu);
+    *per_cpu_ptr(dynamic_counter, cpu) = 1000; 
+    put_cpu();                                       /* enable back preemtion */
+    for (i = 0; i < num_online_cpus(); i++)
+        pr_info("cpu:%d\tcounter:%d\n", i, *per_cpu_ptr(dynamic_counter, i));
+    free_percpu(dynamic_counter);                    /* release the dynamic memory */
+    return 0;
+}
+
+static void __exit test_hell_exit(void)
+{
+    pr_info("%s: In exit\n", __func__);
+}
+
+/* sample output
+cpu: 3
+cpu: 0    counter:0
+cpu: 1    counter:0
+cpu: 2    counter:0
+cpu: 3    counter:1000
+cpu: 4    counter:0
+cpu: 5    counter:0
+*/
+```
+
+### Issues with per CPU variables
+
+The problem with per-CPU variables are the interrruts. Whle per-CPU variables provide protection againsts concurrent accesses from serveral CPUs, they don't provide protection againsts accesses from asynchronous functions (interrupt handlers and deferrable funtions). In those cases, additional synchroinzation primitives are required. 
 
 
 
