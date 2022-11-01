@@ -1082,6 +1082,20 @@ Comparation between ECS and EKS:
 
 - ECS is easier to use. AWS is bet used when you don't want to depend entirelly on AWS.
 
+### AWS EKS Anywhere
+
+reference: https://anywhere.eks.amazonaws.com/docs/
+
+EKS Anywhere provides a means of managing Kubernetes clusters using the same operational excellence and practices that Amazon Web Services uses for its Amazon Elastic Kubernetes Service (Amazon EKS). Based on EKS Distro, EKS Anywhere adds methods for deploying, using, and managing Kubernetes clusters that run in your own data centers. Its goal is to include full lifecycle management of multiple Kubernetes clusters that are capable of operating completely independently of any AWS services.
+The tenets of the EKS Anywhere project are:
+
+- Simple: Make using a Kubernetes distribution simple and boring (reliable and secure).
+- Opinionated Modularity: Provide opinionated defaults about the best components to include with Kubernetes, but give customers the ability to swap them out
+- Open: Provide open source tooling backed, validated and maintained by Amazon
+- Ubiquitous: Enable customers and partners to integrate a Kubernetes distribution in the most common tooling.
+- Stand Alone: Provided for use anywhere without AWS dependencies
+
+Better with AWS: Enable AWS customers to easily adopt additional AWS services
 
 ### AWS Fargate
 
@@ -1117,13 +1131,27 @@ Amazon Elastic Container Registry (Amazon ECR) is an AWS managed container image
 
 Amazon ECR Public, is a similar service, but for pubilc image repositories. 
 
+### AWS Aurora Serverless
 
+reference: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.Aurora_Fea_Regions_DB-eng.Feature.ServerlessV1.html
 
+Aurora Serverless is an on-demand, auto-scaling feature designed to be a cost-effective approach to running intermittent or unpredictable workloads on Amazon Aurora. It automatically starts up, shuts down, and scales capacity up or down, as needed by your applications, using a single DB instance in each cluster.
 
+### AWS X ray
 
+reference: https://docs.aws.amazon.com/xray/?icmpid=docs_homepage_devtools
 
+AWS X-Ray makes it easy for developers to analyze the behavior of their distributed applications by providing request tracing, exception collection, and profiling capabilities.  
 
+It is a service that collects application data about the resquests and responses of your applications. 
 
+It integrates wit many services as EC2 Lambda, and API gateway. 
+
+### AWS AppSync
+
+reference: https://docs.aws.amazon.com/appsync/?icmpid=docs_homepage_serverless
+
+AWS AppSync is an enterprise-level, fully managed GraphQL service with real-time data synchronization and offline programming features.
 
 
 
@@ -1144,21 +1172,7 @@ https://aws.amazon.com/training/intro_series/ </br>
 https://aws.amazon.com/es/training/intro_series/ </br>
 http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html </br>
 https://www.youtube.com/user/AmazonWebServices </br>
- 
-# CERTIFICATIONS:
 
-The first certification is the:
-
-## AWS Certified Developer - Associate:
-Its a certification that evaluates the expertise in developing and manteining applications in the AWS platform.
-
-- Understandin of core AWS services, use, best practices, and basic architecures
-- AWS S3, DinamoDB, SQS, SNS, SWS, EB, CF.
-- Choose the apropiate AWS services for a given application.
-- Kwnoledge AWS SDKs to interact with AWS services with you application
-- Profincy in deploying, developing and designing cloud based services of AWS.
-- Writing code that optimices performance of AWS services
-- Code-level application security( IAM, credentials, encription, ...)
 
 # AWS S3 APIs
 
@@ -1177,49 +1191,4 @@ Amazon S3 is designed to be languaje neutral, and to be used with the supported 
  
   Cloudfront also can improve our security as it uses features as OAI (Original Access Identity), so it restrict uderlying data through use only through Cloudfront operations, this includes protection from several exploits, safeguards, as AWS WAF, a web application firewall, and AWS Shield, a sevice that protects against DDoS attacks
  
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
- 
- 
- 
- 
- 
-    
-
-
-
-
 
