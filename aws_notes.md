@@ -3,6 +3,8 @@
 These are my personal notes, on the AWS Cloud. The aim of this docuent,is to clarify my ideas, by means
 of writting them down, and have a resource where quickly find answers to my doubts, based on my experience. 
 
+reference: https://docs.aws.amazon.com/
+
 Short Introductory videos: https://aws.amazon.com/es/training/intro_series/
 
 and: https://www.aws.training/LearningLibrary
@@ -1155,6 +1157,66 @@ AWS AppSync is an enterprise-level, fully managed GraphQL service with real-time
 
 
 
+## SECURITY
+
+### Attacks
+
+#### DDos
+
+A Distributed Denial of Service (DDoS) attack is an attack that attemps to make your sistem or applications unavailable to the end users.
+
+This can be achieved by several mechanims, suche sync floods, large packets floods, or sending massive number of messages with botnets.
+
+#### Layer 4 attack: SYN flood
+
+A layer 4 DDoS attack, also known as SYN fllod attack. It works at the transport layer (layer 4) of TCP. It flood the system wit SYN request, causing a great lost of resources (In the 3-way handshake)
+
+#### Aplification/Reflection attacks
+
+Attacks like: NTP, SSDP, NDS, CharGEN, SNMP attacks ...
+
+This is where an attacker  may send a third-party server (such an NTP(network time protocol) server) a request sugin a spoofed IP address. 
+
+#### Layer 7 attack
+
+A layer 7 attack occurs where a web server receives a flood of GET or POST requests usually from a botnet or similar. 
+
+### AWS CloudTrail and how to log AWS API calls
+
+reference: https://docs.aws.amazon.com/cloudtrail/?icmpid=docs_homepage_mgmtgov
+
+With AWS CloudTrail, you can monitor your AWS deployments in the cloud by getting a history of AWS API calls for your account, including API calls made by using the AWS Management Console, the AWS SDKs, the command line tools, and higher-level AWS services. You can also identify which users and accounts called AWS APIs for services that support CloudTrail, the source IP address from which the calls were made, and when the calls occurred. You can integrate CloudTrail into applications using the API, automate trail creation for your organization, check the status of your trails, and control how administrators turn CloudTrail logging on and off.
+
+
+### Protecting applications with AWS Shield.
+
+reference: https://docs.aws.amazon.com/shield/?icmpid=docs_homepage_security
+
+AWS provides two levels of protection against DDoS attacks: AWS Shield Standard and AWS Shield Advanced. AWS Shield Standard is automatically included at no extra cost beyond what you already pay for AWS WAF and your other AWS services. For added protection against DDoS attacks, AWS offers AWS Shield Advanced. AWS Shield Advanced provides expanded DDoS attack protection for your Amazon EC2 instances, Elastic Load Balancing load balancers, Amazon CloudFront distributions, and Amazon Route 53 hosted zones.
+
+It handles layer 3 and 4.
+
+### AWS WAF
+
+reference: https://docs.aws.amazon.com/waf/?icmpid=docs_homepage_security
+
+AWS WAF is a web application firewall that lets you monitor web requests that are forwarded to Amazon CloudFront distributions or an Application Load Balancer. You can also use AWS WAF to block or allow requests based on conditions that you specify, such as the IP addresses that requests originate from or values in the requests.
+
+It handles layer 7. So in need to block layer 7 DDoS attacks or SQL injection and cross-site scripting, use WAF. Also in need to block access to specific countries or IP addresses use WAF.
+
+#### related services
+
+For additional protection against distributed denial of service (DDoS) attacks, AWS also offers AWS Shield Advanced. AWS Shield Advanced provides expanded DDoS attack protection for your Amazon CloudFront distributions, Amazon Route 53 hosted zones, and Elastic Load Balancing load balancers. AWS Shield Advanced incurs additional charges (about $3000 per month).
+
+AWS Firewall Manager simplifies your AWS WAF administration and maintenance tasks across multiple accounts and resources. With AWS Firewall Manager, you set up your firewall rules just once. The service automatically applies your rules across your accounts and resources, even as you add new resources.
+
+
+
+
+
+
+
+
 
 
 
@@ -1185,7 +1247,7 @@ Amazon S3 is designed to be languaje neutral, and to be used with the supported 
  https://docs.aws.amazon.com/lex/latest/dg/what-is.html
  
  
- # AWS CLOUDFRONT
+ # AWS CloudFront
  
  AWS Cloudfront is the AWS service for CDN (Content Delivery Networks). AWS Cloundfront can retrieve data from S3 buckets, or EC2, OR ELB , and serve its data from its data centers known as "edge locations", that are all around the world. So Cloudfront can serve cached data to user all around, and this can even be more cost effective that directly serving the data from S3 buckets
  
