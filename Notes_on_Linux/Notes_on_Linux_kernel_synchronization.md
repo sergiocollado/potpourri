@@ -11,7 +11,7 @@ Concurrency is the ability to handle multiple tasks/process with the illusioin o
 In single core enviroments, concurrency is achieved via a process called contex-switching, e.g. at a particular time period only a single task 
 gets executed, but tasks run interleaving between them very fasts given the illusion of running simultaneoulsy.
 
-IN a multi-core enviroment (parallelism) every core can execute different tasks.
+In a multi-core enviroment (parallelism) every core can execute different tasks.
 
 Reference: Concurrency is not Parallelism by Rob Pike: https://www.youtube.com/watch?v=oV9rvDllKEg
 
@@ -642,6 +642,35 @@ cpu: 5    counter:0
 ### Issues with per CPU variables
 
 The problem with per-CPU variables are the interrruts. Whle per-CPU variables provide protection againsts concurrent accesses from serveral CPUs, they don't provide protection againsts accesses from asynchronous functions (interrupt handlers and deferrable funtions). In those cases, additional synchroinzation primitives are required. 
+
+## Atomic Operations
+
+Several assemply language instruction are of the tryp RUW: Read Update Write. So they access a given memory location twice: the firs time to read the old value, and the second time to write a new value. 
+
+Suppose that two kernel control paths running on two CPUs try to "read-update-write" the same meory location at the same time, by executing non-atomic operatoins. 
+
+At first, both CPUs try to read the same lcoatin, but the mrmory arbiter (the hardware circuit that serializes accesses to the RAM chips) steps in to grant access to one of them and delay the other.
+
+ However, when teh first read operation has completed, the delayed CPU reads exactly the same (old) value from the memory location. 
+ 
+  Both CPUs then try to write the same (new) value to the memory location; again, the bus memory access is serialized by the memory arbiter, and eventually both write oeprations succed. 
+  
+  However, the global result is incorrct because both CPUs wirte the same (new) value. Ths, the two inter-leaving "read-update-write" operaton act as a sinbgle one.
+
+
+```
+code: i = i+1;
+
+routine 1           routine 2
+read i = 0   
+                    read i = 0
+increment i+1 = 1
+                    imcrement i+1 = 1
+write 1 
+                    write 1 // this overwrites the resulti
+```
+
+This code section is known as a **critical section**
 
 
 
