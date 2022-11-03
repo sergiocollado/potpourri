@@ -21,6 +21,7 @@ To find the number of processors in the system, use:
 grep -c ^processor /proc/cpuinfo
 nproc
 lshw
+lscpus # info from  /proc/cpuinfo
 grep NR_CPUS /boot/config-`uname -r`  # this is the max number of processors that a SMP kernel could support
 # For modules: use the function `num_online_cpus()` to get the number of cpus online # you can use it in a module.
 # For modules: use the function `smp_processor_id()` to report the current processor number on which the kernel is running.
