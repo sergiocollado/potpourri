@@ -674,4 +674,106 @@ write 1
 This code section is known as a **critical section**
 
 
+### Atomic operations
+
+The easiest way to prevent race conditions due to "read-modify-write" instructions is by ensuering that such oerpations are atomic at the chip level.
+
+Every such operation must be executed in a single instruction without being interrupted in the middle and avoiding accesses to the same memory location by other CPUs. 
+
+Most CPUs instruction set architectures define instruction opcodes that can perform atomic read-modify-write operations on a memory location. 
+
+In general, special lock instructions are used to prevent the other processors in the system from working until the current processor has completed the next action. 
+
+Whe you write C code, you cannot guarantee that the compiler will use an atomic instruction for an operation like a = a +1 or even for a++.
+
+Thus, the Linux kernel provides a sepcial atomi_t type (an atommically accessible counter) and some special fucntions and macros that act on atomic_t variables.
+
+```
+Header file: <asm/atomic.h>
+typedef struct { volatile int counter; } atomic_t; // take into account the keyworkd "volatile"
+```
+
+Because the atomic data types are ultimately implemented with normal C types, the kernel encapsulates standard variables in a structure that can no longer be processes with normal operatos such as ++. 
+
+What happens to atomic variables when the kernel is compilded with SMP support? It works the same way as for normal variables (only atomic_t encapsulation is observed) because there is no interfence from other processors. 
+
+To initialize an use an atomic variable: 
+
+```
+atomic_t i; //define i
+atomic_t i = ATOMIC_INIT(1); // define and initialize i
+
+void atomic_int(atomic_t *i); // add 1 to *i
+void atomic_dec(atomic_t *i); // substract 1 from *i
+
+void atomic_set(atomic_t *i, int j); // atomically set counter i to value specified in j
+int atomic_read(atomic_t *i); // read value of the atomic counter i
+
+void atomic_add(int val, atomic_t *i); // atomic add val to atomic counter i
+void atomic_sub(int val, atomic_t *i); // atomic substract val from counter i
+```
+
+Example: 
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <asm/atomic.h>
+
+atomic_t val = ATOMIC_INIT(0);
+MODULE_LICENSE("GPL");
+
+static int test_hello_init(void)
+{
+    pr_info("%s: Value after init: %d\n", __func__, atomic_read(&val)); 
+    atomic_set(&val, 4);
+    pr_info("%s: Value after setting to 4: %d\n", __func__, atomic_read(&val)); 
+    atomic_dec("%s: value after decrementing: %d\n", __func__, atomic_read(&val));
+    atomic_inc(&val);
+    pr_info("%s: VAlue after incrementing:%d\n", __func__, atomic_read(&val)); 
+    atomic_add(3, &val);
+    pr_info("%s: value after adding 3: %d\n", __func__, atomic_read(&val));
+    atomic_sub(2, &val);
+    pr_info("%s: value after substracting 2: %d\n", __func__, atomic_read(&val));
+    return -1;
+}
+
+static void test_hello_exit(void)
+{
+    pr_info(%s: in exit\n", __func__);
+}
+...
+
+```
+
+### Common uses of atomic operations
+
+The most common use of atomic integer operations is to implement counters. Proctecting a sole counter with a complex locking scheme is an overkill, so instead developers use `atomic_inc()` and `atomic_dec()` which are much lighter in weight. 
+
+### Atomic operation and tests
+
+These operations are architecture dependant:
+
+```
+int atomic_dec_and_test(atomic_t *i); // atomic Substract 1 from *i and return 1 if the result is zero; 0 otherwise
+
+int atomic_int_and_test(atomic_t *i); // atomic Add 1 to *i and return 1 if the result is zero; 0 otherwise
+
+// atomically substract val from *i and return 1 if the  result is zero; otherwise 0
+int atomic_sub_and_test(int val, atomic_t *i);
+
+// atomically add val to *i and return 1 if the rrestu is negative; otherwise 0
+int atomic_add_negative(int val, atomic_t *i);
+```
+
+
+
+
+
+
+
+
+
+
+
 
