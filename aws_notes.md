@@ -154,7 +154,7 @@ an example of a trust policy is:
 }
 ```
 
-roles are important because they are more secure, due roles, only provide short-term credentials. Roles are designted to delegate access to users and applications, and if needed this access can be easily revoqued. Also roles are reusable. Roles enforces the least previleges policy control. 
+Roles are important because they are more secure, due roles, only provide short-term credentials. Roles are designted to delegate access to users and applications, and if needed this access can be easily revoqued. Also roles are reusable. Roles enforces the least previleges policy control. 
 
 https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html
 
@@ -1196,7 +1196,7 @@ AWS provides two levels of protection against DDoS attacks: AWS Shield Standard 
 
 It handles layer 3 and 4.
 
-### AWS WAF
+### AWS WAF (Web Application Firewall)
 
 reference: https://docs.aws.amazon.com/waf/?icmpid=docs_homepage_security
 
@@ -1211,11 +1211,175 @@ For additional protection against distributed denial of service (DDoS) attacks, 
 AWS Firewall Manager simplifies your AWS WAF administration and maintenance tasks across multiple accounts and resources. With AWS Firewall Manager, you set up your firewall rules just once. The service automatically applies your rules across your accounts and resources, even as you add new resources.
 
 
+### AWS GuardDuty 
+
+reference: https://docs.aws.amazon.com/guardduty/?icmpid=docs_homepage_security
+
+Thread detection based on AI.
+
+Amazon GuardDuty is a continuous security monitoring service. Amazon GuardDuty can help to identify unexpected and potentially unauthorized or malicious activity in your AWS environment. 
 
 
+### AWS Firewall manager
+
+reference: https://docs.aws.amazon.com/firewall-manager/?icmpid=docs_homepage_security
+
+AWS Firewall Manager simplifies your AWS WAF administration and maintenance tasks across multiple accounts and resources. With AWS Firewall Manager, you set up your firewall rules just once. The service automatically applies your rules across your accounts and resources, even as you add new resources.
 
 
+#### related services
 
+AWS WAF is a web application firewall that lets you monitor web requests that are forwarded to Amazon CloudFront distributions or an Application Load Balancer. You can also use AWS WAF to block or allow requests based on conditions that you specify, such as the IP addresses that requests originate from or values in the requests.
+
+For additional protection against distributed denial of service (DDoS) attacks, AWS also offers AWS Shield Advanced. AWS Shield Advanced provides expanded DDoS attack protection for your Amazon CloudFront distributions, Amazon Route 53 hosted zones, and Elastic Load Balancing load balancers. AWS Shield Advanced incurs additional charges.
+
+### Macie: Monitoring S3 buckets with Macie
+
+reference: https://docs.aws.amazon.com/macie/latest/user/what-is-macie.html <br>
+reference: https://docs.aws.amazon.com/macie/latest/user/monitoring-s3.html <br>
+video: https://youtu.be/CenD1dq3xj8
+
+Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to help you discover, monitor, and protect sensitive data in your AWS environment.
+
+NOTE: it is great for HIPAA and GDPR compliance!! 
+
+NOTE: Macie can create alerts to send to EventBridge, and integrate it with your event management system. !!
+
+Macie automates the discovery of sensitive data, such as personally identifiable information (PII) and financial data, to provide you with a better understanding of the data that your organization stores in Amazon Simple Storage Service (Amazon S3). Macie also provides you with an inventory of your S3 buckets, and it automatically evaluates and monitors those buckets for security and access control. Within minutes, Macie can identify and report overly permissive or unencrypted buckets for your organization.
+
+If Macie detects sensitive data or potential issues with the security or privacy of your data, it creates detailed findings for you to review and remediate as necessary. You can review and analyze these findings directly in Macie, or monitor and process them by using other services, applications, and systems.
+
+When you enable Amazon Macie for your AWS account, Macie automatically generates and begins maintaining a complete inventory of your Amazon Simple Storage Service (Amazon S3) buckets in the current AWS Region. Macie also begins monitoring and evaluating the buckets for security and access control. If Macie detects an event that reduces the security or privacy of an S3 bucket, Macie creates a policy finding for you to review and remediate as necessary.
+
+To also monitor S3 buckets for the presence of sensitive data, you can create and run sensitive data discovery jobs that analyze bucket objects on a daily, weekly, or monthly basis. If you do this and Macie detects sensitive data in an object, Macie creates a sensitive data finding to notify you of the sensitive data that Macie found.
+
+In addition to findings, Macie provides constant visibility into the security and privacy of your Amazon S3 data. To assess the security posture of your data and determine where to take action, you can use the Summary dashboard on the console. This dashboard provides a snapshot of aggregated statistics for your Amazon S3 data. The statistics include data for key security metrics such as the number of buckets that are publicly accessible, don’t encrypt new objects by default, or are shared with other AWS accounts. The dashboard also displays groups of aggregated findings data for your account—for example, the names of 1–5 buckets that have the most findings for the preceding seven days. You can drill down on each statistic to view its supporting data. If you prefer to query the statistics programmatically, you can use the Amazon S3 Data Source Statistics resource of the Amazon Macie API.
+
+### AWS Inspector
+
+reference: https://docs.aws.amazon.com/inspector/latest/user/what-is-inspector.html
+
+Amazon Inspector is a vulnerability management service that continuously scans your AWS workloads for vulnerabilities. Amazon Inspector automatically discovers and scans Amazon EC2 instances and container images residing in Amazon Elastic Container Registry (Amazon ECR) for software vulnerabilities and unintended network exposure.
+
+When a software vulnerability or network issue is discovered, Amazon Inspector creates a finding. A finding describes the vulnerability, identifies the affected resource, rates the severity of the vulnerability, and provides remediation guidance. Details of a finding for your account can be analyzed in multiple ways using the Amazon Inspector console, or you can view and process your findings through other AWS services
+
+### AWS KMS (Key Management Service)
+
+reference: https://docs.aws.amazon.com/kms/
+
+AWS Key Management Service (AWS KMS) is an encryption and key management service scaled for the cloud. AWS KMS keys and functionality are used by other AWS services, and you can use them to protect data in your own applications that use AWS.
+
+CMK i s the Customer Master Key, it is a logical representation of a master key. The CMK includes metadata, such the key ID, creation date, description, and key state. 
+
+HSM is Hardware Security Module, it is a device that safeguards and manages digital keys and performs encrypiton and decryption functions. They include crypto processors. 
+
+#### KMS vs Cloud HSM
+
+KMS: 
+ - Shared tenancy of the underlying hardware
+ - Automatic key rotation
+ - Automatig key generation
+
+CloudHSM: 
+ - Dedicated HSM to you
+ - Full control of underlying hardware
+ - Full control of users, groups, keys ...
+ - No automatic key rotation
+
+### AWS Secret Manager
+
+reference: https://docs.aws.amazon.com/secretsmanager/?icmpid=docs_homepage_security
+
+AWS Secrets Manager helps you to securely encrypt, store, and retrieve credentials for your databases and other services. Instead of hardcoding credentials in your apps, you can make calls to Secrets Manager to retrieve your credentials whenever needed. Secrets Manager helps you protect access to your IT resources and data by enabling you to rotate and manage access to your secrets.
+
+
+### AWS Systems Manager Parameter Store
+
+reference: https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html
+
+Parameter Store, a capability of AWS Systems Manager, provides secure, hierarchical storage for configuration data management and secrets management. You can store data such as passwords, database strings, Amazon Machine Image (AMI) IDs, and license codes as parameter values. You can store values as plain text or encrypted data. You can reference Systems Manager parameters in your scripts, commands, SSM documents, and configuration and automation workflows by using the unique name that you specified when you created the parameter. To get started with Parameter Store, open the Systems Manager console. In the navigation pane, choose Parameter Store.
+
+Parameter Store is also integrated with Secrets Manager. You can retrieve Secrets Manager secrets when using other AWS services that already support references to Parameter Store parameters. 
+
+NOTE: Parameter Store, is free. But has a limit of 10000 parameters, and don't have key rotation. !!!
+
+### Sharing S3 objects with presigned URLs
+
+reference: https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html
+
+All objects and buckets are private by default. However, you can use a presigned URL to optionally share objects or allow your customers/users to upload objects to buckets without AWS security credentials or permissions.
+
+You can use presigned URLs to generate a URL that can be used to access your Amazon S3 buckets. When you create a presigned URL, you associate it with a specific action. You can share the URL, and anyone with access to it can perform the action embedded in the URL as if they were the original signing user. The URL will expire and no longer work when it reaches its expiration time.
+
+
+### AWS Certificate Manager
+
+reference: https://docs.aws.amazon.com/acm/?icmpid=docs_homepage_crypto <br>
+video: https://youtu.be/bWPTq8z1vFY
+
+AWS Certificate Manager (ACM) helps you to provision, manage, and renew publicly trusted TLS certificates on AWS based websites.
+
+Note: It is a free service,  And automatically renew SSL certificates and rotate the old ones, with new certifiacats with supported AWS services. 
+
+### AWS Audit Manager
+
+reference: https://docs.aws.amazon.com/audit-manager/?icmpid=docs_homepage_security
+
+AWS Audit Manager helps you continuously audit your AWS usage to simplify how you manage risk and compliance with regulations and industry standards. AWS Audit Manager makes it easier to evaluate whether your policies, procedures, and activities—also known as controls—are operating as intended. The service offers prebuilt frameworks with controls that are mapped to well-known industry standards and regulations, full customization of frameworks and controls, and automated collection and organization of evidence as designed by each control requirement.
+
+Note, if you are in need of continuous audit for complingin with HIPPA or GPRD, use this service.
+
+### AWS Artifact
+
+reference: https://docs.aws.amazon.com/artifact/?icmpid=docs_homepage_security
+
+AWS Artifact is a web service that enables you to download AWS security and compliance documents such as ISO certifications and SOC (Service Orgainzation Control) reports, PCI (Payment Card Industry), GDPR, HIPAA ...
+
+### AWS Cognito
+
+reference: https://docs.aws.amazon.com/cognito/?icmpid=docs_homepage_security
+video: https://www.youtube.com/watch?v=8a0vtkWJIA4
+
+It is an authentication engine.
+
+Amazon Cognito handles user authentication and authorization for your web and mobile apps. With user pools, you can easily and securely add sign-up and sign-in functionality to your apps. With identity pools (federated identities), your apps can get temporary credentials that grant users access to specific AWS resources, whether the users are anonymous or are signed in.
+
+The two main components of Cognito are user pools and identinty pools.
+
+User pools are directories of users that provide sign-up and sign-in options for your application.
+
+Identity pools allow to give the users access to other AWS services. 
+
+### AWS Detective
+
+reference: https://docs.aws.amazon.com/detective/?icmpid=docs_homepage_security
+video: https://www.youtube.com/watch?v=Rz8MvzPfTZA
+
+Amazon Detective makes it easy to analyze, investigate, and quickly identify the root cause of security findings or suspicious activities. Detective automatically collects log data from your AWS resources and uses machine learning, statistical analysis, and graph theory to help you visualize and conduct faster and more efficient security investigations.
+
+Note: Don't confuse inspector wich is an automated vulnerability management service that continuasly scans EC2 and  container workloads for software vulnerabilities with Detective which anayzes the root cause of an event. 
+
+
+### AWS Network firewall
+
+reference: https://docs.aws.amazon.com/network-firewall/?icmpid=docs_homepage_security
+
+AWS Network Firewall is a stateful, managed, network firewall and intrusion detection and prevention service for your virtual private cloud (VPC).
+
+### AWS Security Hub
+
+reference: https://docs.aws.amazon.com/securityhub/?icmpid=docs_homepage_security
+
+AWS Security Hub provides you with a comprehensive view of the security state of your AWS resources. Security Hub collects security data from across AWS accounts and services, and helps you analyze your security trends to identify and prioritize the security issues across your AWS environment.
+
+## FRONT-END WEB AND MOBILE
+
+### AWS Amplify
+
+reference: https://docs.aws.amazon.com/amplify/?icmpid=docs_homepage_fewebmobile <br>
+video: https://youtu.be/uRbGMZ9oPjw
+
+Use AWS Amplify to develop and deploy cloud-powered mobile and web apps. The Amplify Framework is a comprehensive set of SDKs, libraries, tools, and documentation for client app development. Amplify provides a continuous delivery and hosting service for web applications.
 
 
 
