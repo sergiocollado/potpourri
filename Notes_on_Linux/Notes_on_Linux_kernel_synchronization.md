@@ -738,11 +738,13 @@ static int test_hello_init(void)
     return -1;
 }
 
-static void test_hello_exit(void)
+static_void test_hello_exit(void)
 {
-    pr_info(%s: in exit\n", __func__);
+    pr_info("%s: in exit\n", __func__);
 }
-...
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
 
 ```
 
@@ -762,18 +764,148 @@ int atomic_int_and_test(atomic_t *i); // atomic Add 1 to *i and return 1 if the 
 // atomically substract val from *i and return 1 if the  result is zero; otherwise 0
 int atomic_sub_and_test(int val, atomic_t *i);
 
-// atomically add val to *i and return 1 if the rrestu is negative; otherwise 0
+// atomically add val to *i and return 1 if the result is negative; otherwise 0
 int atomic_add_negative(int val, atomic_t *i);
 ```
 
+Example: 
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <asm/atomic.h>
+
+atomic_t val = ATOMIC_INIT(0);
+MODULE_LICENSE("GPL"); 
+static int test_hello_init(void)
+{
+    pr_info("%s: value after init: %d\n", __func__, atomic_rad(&val));
+    atomic_set(&val, 4);
+    pr_info("%s: value after setting to 4:%d\n", __func__, atomic_read(&val));
+    pr_info("%s: atomic_sub_and_test(4), %d\n", __func__, atomic_sub_and_test(4, &val));
+    pr_info("%s: atomic_add_negative(-1)): %d\n", __func__, atomic_add_negative(-1, &val));
+    pr_info("%s: atomic_inc_and_test:%d\n", __func__,  atomic_inc_and_test(&val));
+    pr_info("%s: atomic_inc_and_test:%d\n", __func__, atomic_inc_and_test(&val));
+    pr_info("%s: atomic_dec_and_test:%d\n", __func__, atomic_dec_and_test(&val));
+    pr_info("%s: atomic_dec_and_test:%d\n", __func__, atomic_dec_and_test(&val));
+    
+    return -1;
+}
+
+static_void test_hello_exit(void)
+{
+    pr_info("%s: in exit\n", __func__);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+
+```
+
+### Atomic add/substract and return 
+
+```
+int atomic_add_return(int val, atomic_t *i); // atomically add val to *i and return the result.
+int atomic_sub_return(int val, atomic_t *i); // atomically substract val from *i and return the result.
+int atomic_inc_return(atomic_t *i); // atomically increment *i by one and return the result.
+int atomic_dec_return(atomic_t *i); // atomically decrement *i by one and retturn the result.
+```
+Example: 
 
 
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <asm/atomic.h>
 
+atomic_t val = ATOMIC_INIT(0);
+MODULE_LICENSE("GPL");
 
+static int test_hello_init(void)
+{
+    pr_info("%s: value after init: %d\n", __func__, atomic_read(&val));
+    atomic_set(&val, 4);
+    pr_info("%s: value after setting to 4: %d\n", __func__, atomic_read(&val));
+    pr_info("%s: atomic_add_return(3): %d\n", __func__, atomic_add_return(3, &val));
+    pr_info("%s: atomic_sub_return(2): %d\n", __func__, atomic_sub_return(2, &val));
+    pr_info("%s: atomic_inc_return: %d\n", __func__, atomic_inc_return(&val));
+    pr_info("%s: atomic_dec_return: %d\n", __func__, atomic_dec_return(&val));
+    
+    return -1;
+}
 
+static_void test_hello_exit(void)
+{
+    pr_info("%s: in exit\n", __func__);
+}
 
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
 
+### More atomic operations
 
+```
+int atomic_fetch_add(int val, atomic_t *i); // atomically adds val to i and return pre-addition value at i
+int atomic_fetch_sub(int val, atomic_t *v); // atomically substract val from i, and return pre-substract value at i
+
+// reads the value at location i, and checkis if it is equal to old, if true swaps value at v with new and always returns value read at i
+int atomic_cmpxchg(atomic_t *i, int old, int new); 
+
+// swaps the oldvalue stored at location in with new, and returns old value i
+int atomic_xchg(atomic_t *i, int new);
+```
+
+### 64 bits atomic operations
+
+Many processor architectues have 64-bit atomic instructions, but we need atomic64_t in order to support the perf_conunter subsystem.
+
+This adds and implementation of 64-bits atomci operations using hashed spinlocks to provide atomicitiy 
+
+```
+typedef struct {
+    long long counter;
+} atomic64_t;
+```
+
+This functions have the naming convention `atomic64_*()`.
+
+### Atomic Bitwise operations
+
+The kernel also provides a faimly of functons that operate at the bit level.
+
+Header file: `<asm/bitops.h>` <br>
+These functions operate on generic pointer. There i sno equivalent of the atomic integer atomic_t.
+
+Arguments:
+ - Bit number: 0 -31 for 32 bit machines and 0 - 64 for 64-bit machines
+ - Pointer with valid address
+
+```
+void set_bit(int nr, volatile unsigned long *addr); // atomically set the bit nr in location starting from addr
+void clear_bit(int nr, volatile unsigned long *addr); // atomically clear the nr-th bit starting from addr.
+void change_bit(int nr, volatile unsigned long *addr); // atomicallyy flip the value of the nr-th bit starting from addr. 
+
+// atomically set the bit nr in the lcoation starting form p, and return old value at the nr-th bit.
+int test_and_set_bit(unsigned int nr, volatile unsigend long *p);
+
+// atomically clear the bit in nr in the location starting from p, and return old value at the nr-th bit.
+int test_and_clear_bit(unsigned int nr, volatile unsigned long *p);
+
+// atomically flip the bit nr in the lcoation starting from p, and return old value at the nr-th bit.
+int test_and_change_bit(unsigned int nr, volatile unsigned long *p);
+
+```
+
+### Non atomic Bitwise operations
+
+The kernel also provides non-atomic versions of all the bitwise functions. 
+
+They behave indentically to their atomic siblings, except they do not guarantee atomicity, and their names are prefixed with double undersores. 
+
+For example, the non-atomic form of `test_bit()` is `__test_bit()`
+
+If you do not require atomicity (say, for example, because a lock already protects your dta), these variants of the bitwise functions might be faster. 
 
 
 
