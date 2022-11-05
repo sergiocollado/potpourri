@@ -4,7 +4,7 @@ reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/ <br>
 reference: EEC3-4029 Operating Systems: http://gauss.ececs.uc.edu/Courses/c4029/videos.html <br>
 refernece: linux-kernel-labs: https://linux-kernel-labs.github.io/refs/heads/master/index.html <br>
 
-## Concurrency 
+## CONCURRENCY
 
 Concurrency is the ability to handle multiple tasks/process with the illusioin or reallyti of simulatanety
 
@@ -333,7 +333,7 @@ MODULE_LICENSE("GPL");
 If we run this module, we can see that in a multi-core system, the reported CPUS, will change. Everytime we hit sleep, the
 scheduler() will reassign the code to a cpu.
 
-## Per CPU variables
+## PER CPU VARIABLES
 
 reference: https://0xax.gitbooks.io/linux-insides/content/Concepts/linux-cpu-1.html
 
@@ -644,7 +644,7 @@ cpu: 5    counter:0
 
 The problem with per-CPU variables are the interrruts. Whle per-CPU variables provide protection againsts concurrent accesses from serveral CPUs, they don't provide protection againsts accesses from asynchronous functions (interrupt handlers and deferrable funtions). In those cases, additional synchroinzation primitives are required. 
 
-## Atomic Operations
+## ATOMIC OPERATIONS
 
 Several assemply language instruction are of the tryp RUW: Read Update Write. So they access a given memory location twice: the firs time to read the old value, and the second time to write a new value. 
 
@@ -906,6 +906,52 @@ They behave indentically to their atomic siblings, except they do not guarantee 
 For example, the non-atomic form of `test_bit()` is `__test_bit()`
 
 If you do not require atomicity (say, for example, because a lock already protects your dta), these variants of the bitwise functions might be faster. 
+
+
+## SPINLOCKS
+
+reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/linux-sync-1.html
+
+The problem wit atomic operations, its that they can only work with CPU work and double work size. Atomics cannot work with shared data structures of custom size. 
+
+In real life, critical regions can be mode that one line. And these code paths should execute atomically to avoid race conditions. To ensure atomicity of suche code blocks, **locks** are used. 
+
+### Spinlocks
+
+The most common lock in the Linux kerenl is the spin-lock.
+
+Spin lock are used to protect **short code sections** that comprise just a few C statements and are therefore quickly executed and exited. 
+
+A spin lock is a lock that can be held by at most one thread of execution. 
+
+An spin-lock is a low-level sycnhronization mechanism which in simple words, is a variable that represents two states: 
+- adquired
+- released
+
+When the thread tries to adquire the lock wich is already adquired, the thread loops/spins waiting for the lock to become available. 
+
+When the thread tries to adcquire lock which is available (released), the thread acquires the lock and continues. 
+
+### Spin-lock API
+
+To use header locks, the header file needed is: `<linux/spinlock.h>`, and the data structure is: `spinlock_t`.
+
+```
+DEFINE_SPINLOCK(my_lock);  // == spinlock_t my_lock = __SPIN_LOCK_UNLOCED(my_lock);
+
+From <linux/spinlock_types.h>
+#define DEFINE_SPINLOCK(x) spinlock_t x = __SPIN_LOCK_UNLOCKED(x)
+
+// to lock a spin lock
+void spin_unlock(spinlock_t *lock);
+
+// to unlock a spin lock
+void spin_unlock(spinlock_t *lock);
+```
+
+
+
+
 
 
 
