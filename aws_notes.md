@@ -1381,6 +1381,32 @@ video: https://youtu.be/uRbGMZ9oPjw
 
 Use AWS Amplify to develop and deploy cloud-powered mobile and web apps. The Amplify Framework is a comprehensive set of SDKs, libraries, tools, and documentation for client app development. Amplify provides a continuous delivery and hosting service for web applications.
 
+### AWS Device Farm 
+
+reference: https://docs.aws.amazon.com/devicefarm/?icmpid=docs_homepage_fewebmobile
+
+AWS Device Farm is an app testing service that enables you to test your iOS, Android and Fire OS apps on real, physical phones and tablets that are hosted by AWS. The service allows you to upload your own tests or use built-in, script-free compatibility tests.
+
+### AWS Pinpoint 
+
+reference: https://docs.aws.amazon.com/pinpoint/?icmpid=docs_homepage_fewebmobile
+
+Amazon Pinpoint helps you engage your customers by sending them email, SMS and voice messages, and push notifications. You can use Amazon Pinpoint to send targeted messages (such as promotions and retention campaigns), as well as transactional messages (such as order confirmations and password reset messages).
+
+
+## MEDIA
+
+### AWS Elastic Transcoder
+
+reference: https://docs.aws.amazon.com/elastic-transcoder/?icmpid=docs_homepage_mediasvcs
+
+Amazon Elastic Transcoder lets you convert media files that you have stored in Amazon S3 into media files in the formats required by consumer playback devices. For example, you can convert large, high-quality digital media files into formats that users can play back on mobile devices, tablets, web browsers, and connected televisions.
+
+### AWS Kinesis
+
+reference: https://docs.aws.amazon.com/kinesis/?icmpid=docs_homepage_analytics
+
+Capture, process, and store video streams for analytics and machine learning.
 
 
 
