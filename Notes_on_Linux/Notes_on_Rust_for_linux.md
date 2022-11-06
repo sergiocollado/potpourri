@@ -52,10 +52,7 @@ article: https://www.memorysafety.org/blog/memory-safety-in-linux-kernel/
 - https://lwn.net/Articles/869428/
 - https://github.com/d0u9/Linux-Device-Driver
 - https://austincminor.com/20211030000942-ramfs_rust.html
-- rust simple mutex: https://github.com/Rust-for-Linux/linux/commit/47e93d46eaca3a3648837eb6f5ae136812a28831
-- rust mutex: https://github.com/Rust-for-Linux/linux/commit/be5ff7d29d5b4da2706cc5384f38d7e417bc26f5
-- rust modules: https://github.com/wedsonaf/linux/commits/lf-session
-- static assert: https://github.com/Rust-for-Linux/linux/pull/269
+
 - https://lkml.org/lkml/2022/9/19/1105
 - the pull request to enter Linux: https://lore.kernel.org/lkml/202210010816.1317F2C@keescook/
 - about pinning: 
@@ -71,6 +68,19 @@ article: https://www.memorysafety.org/blog/memory-safety-in-linux-kernel/
 - https://lwn.net/SubscriberLink/910762/e103310fccf871d3/
 - https://blog.hedwing.dev/linux-kernel/intro_to_linux
 - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
+
+
+### interestig commits
+- rust simple mutex: https://github.com/Rust-for-Linux/linux/commit/47e93d46eaca3a3648837eb6f5ae136812a28831
+- rust mutex: https://github.com/Rust-for-Linux/linux/commit/be5ff7d29d5b4da2706cc5384f38d7e417bc26f5
+- rust modules: https://github.com/wedsonaf/linux/commits/lf-session
+- static assert: https://github.com/Rust-for-Linux/linux/pull/269
+- https://github.com/Darksonn/linux/commit/8ef510d25f353c9c2e240e067e232b459e737a90
+- https://github.com/Darksonn/linux/commit/ff03d355219af7a4156de81b77b2f423ff3d8a47
+
+
+
+### Others 2
 
 rust-dev dockerfile: (reference: https://github.com/mabembedded/dockerfiles/blob/main/Dockerfile.rust)
 
