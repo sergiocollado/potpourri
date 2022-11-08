@@ -1409,6 +1409,33 @@ reference: https://docs.aws.amazon.com/kinesis/?icmpid=docs_homepage_analytics
 Capture, process, and store video streams for analytics and machine learning.
 
 
+## AUTOMATION
+
+Automation is interesting because manual operations are more prone to errors, also usually is faster. 
+
+### AWS CloudFormation
+
+reference: https://docs.aws.amazon.com/cloudformation/?icmpid=docs_homepage_mgmtgov
+
+AWS CloudFormation enables you to create and provision AWS infrastructure deployments predictably and repeatedly. It helps you leverage AWS products such as Amazon EC2, Amazon Elastic Block Store, Amazon SNS, Elastic Load Balancing, and Auto Scaling to build highly reliable, highly scalable, cost-effective applications in the cloud without worrying about creating and configuring the underlying AWS infrastructure. AWS CloudFormation enables you to use a template file to create and delete a collection of resources together as a single unit (a stack).
+
+### AWS Beanstalk
+
+reference: https://docs.aws.amazon.com/elastic-beanstalk/?icmpid=docs_homepage_compute
+
+!¡ It is like a PaaS wizard for apps.
+
+With AWS Elastic Beanstalk, you can quickly deploy and manage applications in the AWS Cloud without worrying about the infrastructure that runs those applications. AWS Elastic Beanstalk reduces management complexity without restricting choice or control. You simply upload your application, and AWS Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.
+
+### AWS Systems Manager
+
+reference: https://docs.aws.amazon.com/systems-manager/?icmpid=docs_homepage_mgmtgov
+
+AWS Systems Manager gives you visibility and control of your infrastructure on AWS. Systems Manager provides a unified user interface so you can view operational data from multiple AWS services and enables you to automate operational tasks across your AWS resources.
+
+
+
+
 
 
 
