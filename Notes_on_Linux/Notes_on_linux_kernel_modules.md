@@ -1,7 +1,7 @@
 # NOTES ON LINUX DEVICE DRIVERS
 
   
-References: https://lwn.net/Kernel/LDD3/ <br>
+References: https://lwn.net/Kernel/LDD3/  & http://www.makelinux.net/ldd3/?u=chp-5-sect-5.shtml <br>
 Linux Kernel module programming guide: https://linux.die.net/lkmpg/  <br>
 kernel modules info: https://www.kernel.org/doc/Documentation/kbuild/modules.txt <br>
 The Linux Kernel Module Programming Guide: https://sysprog21.github.io/lkmpg/ <br>
