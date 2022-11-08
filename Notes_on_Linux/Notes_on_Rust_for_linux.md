@@ -68,6 +68,7 @@ article: https://www.memorysafety.org/blog/memory-safety-in-linux-kernel/
 - https://lwn.net/SubscriberLink/910762/e103310fccf871d3/
 - https://blog.hedwing.dev/linux-kernel/intro_to_linux
 - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
+- A first look at Rust in the 6.1 kernel: https://lwn.net/Articles/910762/
 
 
 ### interestig commits
