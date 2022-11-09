@@ -1433,6 +1433,7 @@ reference: https://docs.aws.amazon.com/systems-manager/?icmpid=docs_homepage_mgm
 
 AWS Systems Manager gives you visibility and control of your infrastructure on AWS. Systems Manager provides a unified user interface so you can view operational data from multiple AWS services and enables you to automate operational tasks across your AWS resources.
 
+## CACHING 
 
 
 
