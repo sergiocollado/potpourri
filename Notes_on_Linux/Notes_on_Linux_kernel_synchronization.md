@@ -910,7 +910,9 @@ If you do not require atomicity (say, for example, because a lock already protec
 
 ## SPINLOCKS
 
-reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/linux-sync-1.html
+reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/linux-sync-1.html <br>
+reference: https://www.kernel.org/doc/html/latest/locking/locktypes.html <br>
+reference: https://www.kernel.org/doc/html/latest/locking/spinlocks.html#lesson-1-spin-locks <br>
 
 The problem wit atomic operations, its that they can only work with CPU work and double work size. Atomics cannot work with shared data structures of custom size. 
 
@@ -947,10 +949,236 @@ void spin_unlock(spinlock_t *lock);
 
 // to unlock a spin lock
 void spin_unlock(spinlock_t *lock);
+
+// to initialize a spin lock at run time
+void spin_lock_init(spinlock_t *lock);
 ```
 
+Example: 
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/spinlock.h>
+
+MODULE_LICENSE("GPL");
+
+DEFINE_SPINLOCK(my_lock);
+
+static int __Int test_hello_init(void)
+{
+    spin_lock(&my_lock);
+    pr_info("Starting critical region\n");
+    pr_info("Ending critical region\n");
+    spin_unlock(&my_lock);
+    return -1
+}
+
+static void __exit test_hello_exit(void)
+{
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+To initialize a spin lock at run time use: `void spin_lock_init(spinlock_t *lock);`
 
 
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/spinlock.h>
+#include <linux/slab.h>
+
+MODULE_LICENSE("GPL");
+
+spinlock_t *my_lock;
+
+static int __Int test_hello_init(void)
+{
+    my_lock = kmalloc(sizeof(spinlock_t), GFP_KERNEL);
+    spin_lock_init(my_lock);    // run time initializing the spin lock.
+    spin_lock(my_lock);
+    pr_info("Starting critical region\n");
+    pr_info("Ending critical region\n");
+    spin_unlock(&my_lock);
+    kfree(my_Lock)
+    return -1
+}
+
+static void __exit test_hello_exit(void)
+{
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+Example of two kernel threads: a write thread and a read thread.
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/spinlock.h>
+#include <linux/slab.h>
+#include <linux/delay.h>
+#include <linux/kthread.h>
+#include <linux/sched.h>
+
+MODULE_LICENSE("GPL");
+
+unsigned int counter; // shared data
+DEFINE_SPINLOCK(counter_lock);
+struct task_struct *read_thread, *write_thread;
+
+static int writer_function(void *data)
+{
+    while(!kthread_should_stop()) {
+        spin_lock(&counter_lock);
+	counter++;
+	spin_unlock(&counter_lock);
+	msleep(500);
+    }
+    do_exit(0);
+}
+
+static int read_function(void *data)
+{
+    while(!kthread_should_stop()) {
+        spin_lock(&counter_lock);
+	pr_info("counter: %d\n", counter);
+	spin_unlock(&counter_lock);
+	msleep(500);
+    }
+    do_exit(0);
+}
+
+static int __init my_mod_init(void)
+{
+    pr_info("entering module. ºn");
+    counter = 0;
+    
+    read_thread = kthread_run(read_function, NULL, "read_thread");
+    write_thread = kthread_run(writer_function, NULL, "write-thread");
+    
+    return 0;
+}
+
+... 
+
+```
+
+**Watch Out!** in case you try to adquire an spin lock aready adquierd by you, you will spin waiting for youself to release the lock, being efectively in a deadlock. Example, try the following: 
+
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/spinlock.h>
+
+MODULE_LICENSE("GPL");
+
+DEFINE_SPINLOCK(my_lock);
+
+static int __Int test_hello_init(void)
+{
+    spin_lock(&my_lock);
+    spin_lock(&my_lock);   // YOU WILL SPIN FOREVER! DEADLOCK!!
+    pr_info("Starting critical region\n");
+    pr_info("Ending critical region\n");
+    spin_unlock(&my_lock);
+    return -1
+}
+
+static void __exit test_hello_exit(void)
+{
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+Example of imploementing a busyloop using spinlock in a char driver
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess..h>
+#include <linux/spinlock.h>
+
+int base_minor = 0;
+char *device_name = "msg";
+int count = 1;
+dev_t devicenumber; 
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static strut cdev mycdev;
+
+#define MAX_SIZE (1024)
+char kernel_buffer[MAX_SIZE];
+int buffer_index;
+MODULE_LINCESE("GPL");
+
+DEFINE_SPINLOCK(my_lock);
+
+static int device_open(struct inode *inode, struct file *file)
+{
+    pr_info("%s trying to acquire spinloc on processor:%d\n", __func__, smp_processor_id());
+    spin_lock(&my_lock);
+    pr_info(%s: spinlock acquierd on processor: %d\n", __func__, smp_processor_id());
+    file_f_pos = 0;
+    buffer_index = 0;
+    return 0;
+}
+
+static int device_release( struct inode *inode, struct file *file)
+{
+    pr_info("%s\n", __func__);
+    pr_info("%s: spinlock released on processor: %d\n", __func__, smp_processor_id());
+    spin_unlock(&my_lock);
+    return 0;
+}
+
+
+
+
+static int test_hello_init(void)
+{
+    class = class_create(THIS_MODULE, "myclass");
+    
+    if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+        printk("device number resgistered\n");
+	printk("major number received:%d\n", MAJOR(devicenumber));
+	
+	device = device_create(class, NULL, devicenumber, NULL, device_name);
+	cdev_init(&mycdev, &device_fops);
+	mycdev.owner = THIS_MODULE;
+	cdev_add(&mycdev, devicenumber, count);
+    }
+    else 
+         printk("device number regristration failed!\n");
+    return 0;
+}
+
+static void test_hello_exit(void)
+{
+    device_destroy(class, devicenumber);
+    class_destroy(class);
+    cdev_del(&mycdev);
+    unregister_chrdev_region(devicenmber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+
+```
 
 
 
