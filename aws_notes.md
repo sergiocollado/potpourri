@@ -1435,7 +1435,34 @@ AWS Systems Manager gives you visibility and control of your infrastructure on A
 
 ## CACHING 
 
+There are 4 caching solutions
+- CloudFront
+- ElasticChache
+- DAX Dinamo DB Accelerator
+- Global Accelerator 
 
+### AWS CloudFront
+ 
+reference: https://docs.aws.amazon.com/cloudfront/?icmpid=docs_homepage_networking
+
+ AWS Cloudfront is the AWS service for CDN (Content Delivery Networks). AWS Cloundfront can retrieve data from S3 buckets, or EC2, OR ELB , and serve its data from its data centers known as "edge locations", that are all around the world. So Cloudfront can serve cached data to user all around, and this can even be more cost effective that directly serving the data from S3 buckets
+ 
+  Cloudfront also can improve our security as it uses features as OAI (Original Access Identity), so it restrict uderlying data through use only through Cloudfront operations, this includes protection from several exploits, safeguards, as AWS WAF, a web application firewall, and AWS Shield, a sevice that protects against DDoS attacks
+ 
+
+### AWS ElasticCache
+
+refence: https://docs.aws.amazon.com/elasticache/?icmpid=docs_homepage_databases 
+
+Amazon ElastiCache makes it easy to set up, manage, and scale distributed in-memory cache environments in the AWS Cloud. It provides a high performance, resizable, and cost-effective in-memory cache, while removing complexity associated with deploying and managing a distributed cache environment. ElastiCache works with both the Redis and Memcached engines; to see which works best for you, see the Comparing Memcached and Redis topic in either user guide.
+
+### Global Accelerator
+
+reference: https://docs.aws.amazon.com/global-accelerator/?icmpid=docs_homepage_networking
+
+Note!!: IP caching!!
+
+AWS Global Accelerator is a network layer service in which you create accelerators to improve the security, availability, and performance of your applications for local and global users. Depending on the type of accelerator that you choose, you can gain additional benefits, such as improving availability or mapping users to specific destination endpoints.
 
 
 
@@ -1465,10 +1492,3 @@ Amazon S3 is designed to be languaje neutral, and to be used with the supported 
  https://docs.aws.amazon.com/lex/latest/dg/what-is.html
  
  
- # AWS CloudFront
- 
- AWS Cloudfront is the AWS service for CDN (Content Delivery Networks). AWS Cloundfront can retrieve data from S3 buckets, or EC2, OR ELB , and serve its data from its data centers known as "edge locations", that are all around the world. So Cloudfront can serve cached data to user all around, and this can even be more cost effective that directly serving the data from S3 buckets
- 
-  Cloudfront also can improve our security as it uses features as OAI (Original Access Identity), so it restrict uderlying data through use only through Cloudfront operations, this includes protection from several exploits, safeguards, as AWS WAF, a web application firewall, and AWS Shield, a sevice that protects against DDoS attacks
- 
-
