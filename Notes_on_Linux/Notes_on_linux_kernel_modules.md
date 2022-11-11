@@ -280,7 +280,9 @@ $ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..
   
   
  ### Printk
-  
+ 
+ reference: https://www.kernel.org/doc/html/latest/core-api/printk-basics.html 
+
 `printf()` is a function from the standard C library. `printk()` is a kernel level function.
   
 `printk' function is called with one argumet:
