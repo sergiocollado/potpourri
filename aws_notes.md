@@ -1467,6 +1467,39 @@ Note!!: IP caching!!
 
 AWS Global Accelerator is a network layer service in which you create accelerators to improve the security, availability, and performance of your applications for local and global users. Depending on the type of accelerator that you choose, you can gain additional benefits, such as improving availability or mapping users to specific destination endpoints.
 
+## DATA MIGRATION
+
+reference: https://aws.amazon.com/snowball/resources/ <br>
+video: https://youtu.be/6nKH0ceFkiQ
+
+### Snow
+
+reference: https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snowcone-what-is-snowcone.html
+
+reference: snowedge : https://docs.aws.amazon.com/snowball/latest/developer-guide/whatisedge.html
+
+### Storage Gateway
+
+reference: https://docs.aws.amazon.com/storagegateway/latest/APIReference/Welcome.html
+
+AWS Storage Gateway is the service that connects an on-premises software appliance with cloud-based storage to provide seamless and secure integration between an organization's on-premises IT environment and the AWS storage infrastructure. The service enables you to securely upload data to the AWS Cloud for cost effective backup and rapid disaster recovery.
+
+This can be very effective for a data migration into AWS cloud, or for a long-term pairing of a local architecture with AWS.
+
+#### File gateway
+
+reference: https://docs.aws.amazon.com/filegateway/latest/files3/what-is-file-s3.html
+
+Amazon S3 File Gateway –Amazon S3 File Gateway supports a file interface into Amazon Simple Storage Service (Amazon S3) and combines a service and a virtual software appliance. By using this combination, you can store and retrieve objects in Amazon S3 using industry-standard file protocols such as Network File System (NFS) and Server Message Block (SMB). The software appliance, or gateway, is deployed into your on-premises environment as a virtual machine (VM) running on VMware ESXi, Microsoft Hyper-V, or Linux Kernel-based Virtual Machine (KVM) hypervisor. The gateway provides access to objects in S3 as files or file share mount points. 
+
+### AWS DataSync
+
+reference: https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html <br>
+video: https://youtu.be/_qhTF-gB-JE
+
+AWS DataSync is an online data transfer service that simplifies, automates, and accelerates moving data between storage systems and services.
+
+This service is more oritented to one-time migration from on-premise storate to the AWS cloud. On the oder hand Storage Gateway is more oriented for the cases in which it is desired to have an hybrid architecture with on-premise storage and cloud storage.
 
 
 
