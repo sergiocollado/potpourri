@@ -130,6 +130,8 @@ The steps to build:
 /src/linux$ make allnoconfig qemu-busybox-min.config
 /src/linux$ make LLVM=1 allnoconfig qemu-busybox-min.config #this configuration is for fast development.
 
+# the config: qemu-busybox-min.config, should be in /kernel/configs
+
 # ... but with this .config rust will not be enabled. 
 # merged configuration written to .config (needs make)
 #
