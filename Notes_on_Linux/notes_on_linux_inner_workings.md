@@ -1656,6 +1656,20 @@ https://git.kernel.org/
 - linux_stable: stable releases branches
 - linux-next: code from many subsystems gets pulled into the tree and periodically is released for integration testing.
 
+### Download the kernel
+
+To download the kernel with git:
+
+```
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+```
+
+to download the stable branch:
+
+```
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+cd linux-stable
+```
 
 ### Patches
 
@@ -1712,7 +1726,9 @@ sudo apt-get install git-email
 
 It is needed to check the minimal requirements to compile the kernel
 
+```
 https://www.kernel.org/doc/html/latest/process/changes.html
+```
 
 git-email is for sending patches through the **sendmail** configuration option once the **smtp** server is configured.
 
@@ -1742,11 +1758,11 @@ or to clone the stables
 git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux_stable
 ```
 
-You can use cregit-linux tool, to explore the code: https://cregit.linuxsources.org/
+You can use cregit-linux tool, to explore the code: https://cregit.linuxsources.org/ <br>
 
-for example: https://cregit.linuxsources.org/code/5.11/
+for example: https://cregit.linuxsources.org/code/5.11/  <br>
 
-the most part of the linux kernel, is in the 'drivers' subdirectory.
+The most part of the linux kernel, is in the 'drivers' subdirectory.
 
 In 'arch' we can see all the supported architectures: https://cregit.linuxsources.org/code/5.11/arch/
 
