@@ -1465,6 +1465,8 @@ reference: https://docs.aws.amazon.com/global-accelerator/?icmpid=docs_homepage_
 
 Note!!: IP caching!!
 
+Global Accelerator is a netowriking service that sends user's traffic throught AWS'S global network infraestructure. It can increase performance and help deal with IP caching.
+
 AWS Global Accelerator is a network layer service in which you create accelerators to improve the security, availability, and performance of your applications for local and global users. Depending on the type of accelerator that you choose, you can gain additional benefits, such as improving availability or mapping users to specific destination endpoints.
 
 ## DATA MIGRATION
