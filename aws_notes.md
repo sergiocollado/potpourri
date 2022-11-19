@@ -1503,6 +1503,48 @@ AWS DataSync is an online data transfer service that simplifies, automates, and 
 
 This service is more oritented to one-time migration from on-premise storate to the AWS cloud. On the oder hand Storage Gateway is more oriented for the cases in which it is desired to have an hybrid architecture with on-premise storage and cloud storage.
 
+## GOVERNANCE
+
+### AWS Organizations
+
+reference: https://docs.aws.amazon.com/organizations/?icmpid=docs_homepage_mgmtgov
+
+AWS Organizations is an account management service that enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage. AWS Organizations includes account management and consolidated billing capabilities that enable you to better meet the budgetary, security, and compliance needs of your business. As an administrator of an organization, you can create accounts in your organization and invite existing accounts to join the organization.
+
+AWS Organizations is a free governance tool, taht allows to create an manage multiple AWS accoutns from a single location rather than jumping from account to account. 
+
+ - Its a best practice to create a speciffic account dedicated to logging. CloudTrail suppors logs aggregation. Then logs can be centralized into one account.
+ - It is possible to easily create and destroy new AWS accounts through an API. 
+ - Reserved Instances (RI) can be shared across all accounts. 
+ - Billing management: You will have a centralized account for billing.
+ - Services Control Policies (SCP) these policies can create limits to what users can do (even the root account!!).
+ 
+### AWS RAM (Resource Access Manager)
+
+reference: https://docs.aws.amazon.com/ARG/?icmpid=docs_homepage_security
+
+The AWS RAM is a free service that allows you to share AWS resoruces with other accounts within your organization. AWS RAM allows you to easily share resources rather thatn having to create duplicate copies in your different accounts. 
+
+You can share: 
+ - VPC subnets
+ - transit gateways 
+ - License manager
+ - route 53 resolver
+ - dedicated hosts
+ - ... 
+
+### AWS Config
+
+reference: https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html
+
+AWS Config provides a detailed view of the configuration of AWS resources in your AWS account. This includes how the resources are related to one another and how they were configured in the past so that you can see how the configurations and relationships change over time.
+
+ 
+
+
+
+
+
 
 
 
