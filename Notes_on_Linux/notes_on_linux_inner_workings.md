@@ -34,6 +34,676 @@ Linux kernel workbook: https://lkw.readthedocs.io/en/latest/index.html
 
 ![linux kernel map](https://github.com/sergiocollado/potpourri/blob/master/image/Linux_kernel_map.png "Linux kernel map")
 
+
+
+
+
+
+
+## Linux kernel development process
+
+references:
+
+what is a kernel: https://youtu.be/LLBrBBImJt4
+
+Tim Beale: Linux Kernel Development for Newbies: https://youtu.be/OkhOoBqLb3Y
+
+https://github.com/agelastic/eudyptula
+
+Write and Submit your first Linux kernel Patch: https://youtu.be/LLBrBBImJt4
+
+reference: https://www.slideshare.net/SamsungOSG/a-survivors-guide-to-contributing-to-the-linux-kernel
+
+### Intro
+
+https://www.kernel.org/doc/html/latest/process/development-process.html
+
+Linux kernel releases come every 2+ months (10 or 11 weeks). Releases are time based and not feature based. 
+
+When the new version is released a 2 week window is open for merging new pulls for the next release. so mantainers send signed git pull requests in that merge window. After that period is created the first relesase candidate, known as **rc1**. So new features are only included in this first merge window.
+
+At this point the release cycle goes into bug fixes-only mode. So release candidates are generated till mayor bug fixes and regressions are solved.
+
+When enough confidence on the quality of the code is reached, the stable version is released. 
+
+https://www.kernel.org/category/releases.html
+
+https://www.kernel.org/doc/linux/MAINTAINERS
+
+http://vger.kernel.org/vger-lists.html
+
+https://lore.kernel.org/lists.html
+
+https://git.kernel.org/
+
+#### kernel trees
+
+- linux_mainline: Linus releases mainline kernels and RC releases
+- linux_stable: stable releases branches
+- linux-next: code from many subsystems gets pulled into the tree and periodically is released for integration testing.
+
+### Download the kernel
+
+To download the kernel with git:
+
+```
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+```
+
+to download the stable branch:
+
+```
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+cd linux-stable
+```
+
+### Patches
+
+Linux development is handled with git as a code repository. https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git
+
+https://git-scm.com/book/en/v2
+
+to generate a patch:
+
+```
+git format-patch -1 --pretty=fuller XXXXXXXX
+```
+
+the code submitted in patches must be signed off
+
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html#sign-your-work-the-developer-s-certificate-of-origin
+
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes
+
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes
+ 
+and the patch prefixes are:  [PATCH], [PATCH RFC] or [RFC PATCH] or [PATCH v4] 
+
+### To apply a patch:
+
+reference: https://www.kernel.org/doc/html/v4.10/process/applying-patches.html <br>
+
+To apply a patch from an email (gmail): <br>
+reference: https://stackoverflow.com/questions/23594843/applying-email-patch-with-git <br>
+
+You can apply patches from email-formatted patch using any raw data viewer.
+
+For example, GMail, in the current interface, has support for it. You can apply a patch as a commit from a mail message following these steps:
+
+   - Open the GMail web page in the message with patch data
+   - Click at the ellipsis icon located at top-right of this message
+   - Click at "Show Original". A new tab will open with the content of the message.
+   - Click at "Copy to clipboard"
+   - Open a terminal and change current directory to git-based root project directory
+   - Certify that the working copy is clean
+   - Run `git am
+   - Paste the code
+   - Type Ctrl-D to finish the insertion
+
+more references: <br>
+- https://kernelnewbies.org/FAQ/HowToApplyAPatch
+
+
+### Codes of conduct
+
+https://www.kernel.org/doc/html/latest/process/code-of-conduct.htm
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/LICENSES/preferred/GPL-2.0
+
+https://www.kernel.org/doc/html/latest/process/kernel-enforcement-statement.html
+
+
+
+How to configure the kernel: https://www.kernel.org/doc/Documentation/kbuild/kconfig.txt
+
+kernel documentation: https://www.kernel.org/doc/Documentation/
+
+
+### Configuration of the development system
+
+https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview
+
+https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview
+
+It is recomended 3GB for the boot partition.
+
+The packaget build-essential is needed in the system.
+
+
+```
+sudo apt-get install build-essential vim git cscope libncurses-dev libssl-dev bison flex
+sudo apt-get install git-email
+```
+
+It is needed to check the minimal requirements to compile the kernel
+
+```
+https://www.kernel.org/doc/html/latest/process/changes.html
+```
+
+git-email is for sending patches through the **sendmail** configuration option once the **smtp** server is configured.
+
+example configuration for gmail: https://gist.github.com/jasonkarns/4354421, https://coderwall.com/p/qcsiew/setting-up-and-using-git-send-email-with-gmail
+
+https://www.kernel.org/doc/html/latest/process/email-clients.html
+
+
+### Exploring the linux kernel sources
+
+You should create a directory, to git clone the linux repo, for example the mainline: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/ 
+
+```
+>> cd /linux_work
+>> git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git linux_mainline
+>> cd linux_mainline; ls -h
+
+arch          CREDITS                 drivers  ipc      lib          mm       scripts   usr
+block    crypto         fs               Kbuild      LICENSES     net      security  virt
+certs        cscope.out          include    Kconfig  MAINTAINERS  README      sound
+COPYING    Documentation  init     kernel       Makefile          samples  tools
+```
+
+or to clone the stables
+
+```
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux_stable
+```
+
+You can use cregit-linux tool, to explore the code: https://cregit.linuxsources.org/ <br>
+
+for example: https://cregit.linuxsources.org/code/5.11/  <br>
+
+The most part of the linux kernel, is in the 'drivers' subdirectory.
+
+In 'arch' we can see all the supported architectures: https://cregit.linuxsources.org/code/5.11/arch/
+
+You can also use 'git log' to explore the different commmits. 
+
+```
+git format-patch -1 <commit ID>
+```
+
+For everyday tinkering with the kernel, take into account the scripts: scripts/get_maintainer.pl and scripts/checkpatch.pl
+
+Also check the linux-kselftest repo
+
+
+### Writing a kernel patch
+
+$(uname -r) displays the running Kernel version .
+
+ Clone the stable kernel tree
+ 
+```
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux_stable
+cd linux_stable
+git branch -a | grep linux-5
+    remotes/origin/linux-5.0.y
+    remotes/origin/linux-5.1.y
+    remotes/origin/linux-5.2.y
+git checkout linux-5.2.y
+ ```
+ 
+ Next you have to copy the configuration file from your current kernel, from /proc/config.gz or /boot, and copy it to  linux_stable/.config
+ 
+ for example:
+ 
+ ```
+ ls /boot
+config-5.0.0-20-generic        memtest86+.bin
+config-5.0.0-21-generic        memtest86+.elf  //< this is the latest configuration
+efi                            memtest86+_multiboot.bin
+grub                           System.map-5.0.0-20-generic
+initrd.img-5.0.0-20-generic    System.map-5.0.0-21-generic
+initrd.img-5.0.0-21-generic    vmlinuz-5.0.0-20-generic
+lost+found                     vmlinuz-5.0.0-21-generic
+```
+
+The easy thing to do, is to copy your actual config file (in /boot/) and move it to where the linux source is, and name it as .config.
+
+```
+cp /boot/<config-5.0.0-21-generic> .config
+```
+To submint a patch: https://www.kernel.org/doc/html/v6.0/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes
+
+#### The kernel build system
+
+reference: https://www.linuxjournal.com/content/kbuild-linux-kernel-build-system 
+
+reference: https://www.kernel.org/doc/html/latest/kbuild/index.html
+
+The kernel has its own build system: the Kernel build sistem: Kbuild.
+
+It has four main components:
+
+ - config symbols: conditions to conditionally compile code, include or exclude components.
+ - kconfig files: files that define the possible config sysmbols. 'make menuconfig' reads the config sysmbols for the kconfig files.
+ - .config file: files that stored the value of the confi sysmbols. 'make menuconfig' is used to give those values, or the file edited directly.
+ - makefiles: normal makefiles
+
+
+#### Compiling the kernel 
+
+reference: http://www.kroah.com/lkn/ -linux kernel in a nutshell
+
+reference: https://www.cyberciti.biz/tips/compiling-linux-kernel-26.html
+
+example: https://youtu.be/NVWVHiLx1sU 
+
+The kernel configuration is in the file named .config at the top of the kernel source tree.
+
+You may need to install:  libelf-dev, libelf-devel or elfutils-libelf-devel
+
+Run the following command to generate a kernel configuration file based on the current configuration.
+
+```
+make oldconfig
+```
+
+'make oldconfig' reads the existing .config file that was used for an old kernel and prompts the user for options in the current kernel source that are not found in the file. This is useful when taking an existing configuration and moving it to a new kernel.
+
+WATCH OUT!: New releases often introduce new configuration variables and, in some cases, rename the configuration symbols. The latter causes problems, and make oldconfig might not generate a new working kernel. Run make listnewconfig after copying the configuration from /boot to the .config file, to see a list of new configuration symbols. 
+
+reference: https://stackoverflow.com/questions/4178526/what-does-make-oldconfig-do-exactly-in-the-linux-kernel-makefile
+
+reference: https://www.kernel.org/doc/html/latest/kbuild/kconfig.html
+
+**Bonuses** make olddefconfig sets every option to their default value without asking interactively. It gets run automatically on make to ensure that the .config is consistent in case you've modified it manually.
+
+Other way to tune the kernel your system is by using **make localmodconfig**. This option creates a configuration file based on the list of modules currently loaded on your system.
+
+```
+lsmod > /tmp/my-lsmod
+make LSMOD=/tmp/my-lsmod localmodconfig
+```
+
+A simpler choice is use **make defconfig**, every kernel has a default configuration, so with the 'defconfig' option that default configuration is used.
+
+
+otherwise use: 
+
+```
+make menuconfig
+```
+
+or 
+
+```
+make xconfig
+```
+
+you can get help:
+
+```
+sergio@debian:~/linux_work/linux_stable$ make help
+Cleaning targets:
+  clean		  - Remove most generated files but keep the config and
+                    enough build support to build external modules
+  mrproper	  - Remove all generated files + config + various backup files
+  distclean	  - mrproper + remove editor backup and patch files
+
+Configuration targets:
+  config	  - Update current config utilising a line-oriented program
+  nconfig         - Update current config utilising a ncurses menu based program
+  menuconfig	  - Update current config utilising a menu based program
+  xconfig	  - Update current config utilising a Qt based front-end
+  gconfig	  - Update current config utilising a GTK+ based front-end
+  oldconfig	  - Update current config utilising a provided .config as base
+  localmodconfig  - Update current config disabling modules not loaded
+                    except those preserved by LMC_KEEP environment variable
+  localyesconfig  - Update current config converting local mods to core
+                    except those preserved by LMC_KEEP environment variable
+  defconfig	  - New config with default from ARCH supplied defconfig
+  savedefconfig   - Save current config as ./defconfig (minimal config)
+  allnoconfig	  - New config where all options are answered with no
+  allyesconfig	  - New config where all options are accepted with yes
+  allmodconfig	  - New config selecting modules when possible
+  alldefconfig    - New config with all symbols set to default
+  randconfig	  - New config with random answer to all options
+  yes2modconfig	  - Change answers from yes to mod if possible
+  mod2yesconfig	  - Change answers from mod to yes if possible
+  listnewconfig   - List new options
+  helpnewconfig   - List new options and help text
+  olddefconfig	  - Same as oldconfig but sets new symbols to their
+                    default value without prompting
+  tinyconfig	  - Configure the tiniest possible kernel
+  testconfig	  - Run Kconfig unit tests (requires python3 and pytest)
+
+```
+
+
+Once this step is complete, it is time to compile the kernel. Using the '-j' option helps the compiles go faster. The '-j' option specifies the number of jobs (make commands) to run simultaneously:
+
+```
+make -j3 all
+```
+
+the end of compilation should be like ...
+
+```
+  ...
+  CC      arch/x86/boot/cpu.o
+  AS      arch/x86/boot/compressed/efi_thunk_64.o
+  CC      arch/x86/boot/compressed/misc.o
+  GZIP    arch/x86/boot/compressed/vmlinux.bin.gz
+  MKPIGGY arch/x86/boot/compressed/piggy.S
+  AS      arch/x86/boot/compressed/piggy.o
+  LD      arch/x86/boot/compressed/vmlinux
+  ZOFFSET arch/x86/boot/zoffset.h
+  OBJCOPY arch/x86/boot/vmlinux.bin
+  AS      arch/x86/boot/header.o
+  LD      arch/x86/boot/setup.elf
+  OBJCOPY arch/x86/boot/setup.bin
+  BUILD   arch/x86/boot/bzImage
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+```
+and it should create a 'vmlinux' image.
+
+
+Once the compilation is done, you can install it
+
+```
+su -c "make modules_install install"
+```
+
+This command will install the kernel, and execute 'update-grub' to add it to the grub menu. 
+
+Before rebooting the system, we can store some logs to compare it later, and look for regression or new errors
+
+We use the dmesg with the -t option, to not display the timestamps. This will make it easier later for comparation.
+
+```
+dmesg -t > dmesg_current
+dmesg -t -k > dmesg_kernel
+dmesg -t -l emerg > dmesg_current_emerg
+dmesg -t -l alert > dmesg_current_alert
+dmesg -t -l crit > dmesg_current_crit
+dmesg -t -l err > dmesg_current_err
+dmesg -t -l warn > dmesg_current_warn
+```
+
+It is expected to be clean:  emerg, alert, crit, and err level messages
+
+Before testing the new kernel, that we don't know if it will boot, a couple of safety measures:
+
+By default, grub tries to boot the default kernel, which is the newly installed kernel. We change the default grub configuration file /etc/default/grub to the boot menu, and pause for us to be able to select the kernel to boot.
+ 
+In case dmesg_current length is zero, it is quite possible that the secure boot is enabled.  That will prevent to boot the new kernel as it is not signed. It is possible to disable temporaly the secure boot with the **mokutil** (MOK manager) 
+
+To check if the secure boot is enabled: 
+
+```
+mokutil --sb-state
+```
+
+https://askubuntu.com/questions/1119734/how-to-replace-or-remove-kernel-with-signed-kernels
+
+to disable validation:
+
+```
+sudo mokutil --disable-validation
+root password
+mok password: 1234567
+mok password: 1234567
+sudo reboot
+```
+to re-enable validation:
+
+```
+sudo mokutil --enable-validation
+root password
+mok password: 1234567
+mok password: 1234567
+sudo reboot
+```
+NOTE: if the kernel fails, and you need to remove it: https://askubuntu.com/questions/176322/removing-old-kernel-entries-in-grub
+
+```
+for kernels build from source: 
+The solution is to manually delete all the files related to the old kernels in the /boot folder and run sudo update-grub. The extra entries vanished
+```
+
+
+Booting the Kernel:
+
+Let’s take care of a couple of important steps before trying out the newly installed kernel. There is no guarantee that the new kernel will boot. As a safeguard, we want to make sure that there is at least one good kernel installed and we can select it from the boot menu. By default, grub tries to boot the default kernel, which is the newly installed kernel. We change the default grub configuration file **/etc/default/grub** to the boot menu, and pause for us to be able to select the kernel to boot.
+
+Please note that this option only applies to Ubuntu and Debian, and other distributions might have a different way to specify boot menu options.
+
+Increase the GRUB_TIMEOUT value to 10 seconds, so grub pauses in menu long enough to choose a kernel to boot:
+
+``` 
+Uncomment GRUB_TIMEOUT and set it to 10: GRUB_TIMEOUT=10
+Comment out GRUB_TIMEOUT_STYLE=hidden
+```
+
+If the newly installed kernel fails to boot, it is nice to be able to see the early messages to figure out why the kernel failed to boot.
+
+Enable printing early boot messages to vga using the earlyprintk=vga kernel boot option:
+
+```
+GRUB_CMDLINE_LINUX="earlyprintk=vga"
+```
+For information in grub: **'info -f grub -n 'Simple configuration''**
+
+NOTE!: Run **update-grub** to update the grub configuration in /boot
+
+```
+sudo update-grub
+```
+
+```
+sergio@debian:/etc/default$ sudo update-grub
+Generating grub configuration file ...
+Found background image: /usr/share/images/desktop-base/desktop-grub.png
+Found linux image: /boot/vmlinuz-5.12.10
+Found initrd image: /boot/initrd.img-5.12.10
+Found linux image: /boot/vmlinuz-4.19.0-16-amd64
+Found initrd image: /boot/initrd.img-4.19.0-16-amd64
+done
+```
+
+Now, it is possibble to restart the system. Once the new kernel comes up, compare the saved dmesg from the old kernel with the new one, and see if there are any regressions. If the newly installed kernel fails to boot, you will have to boot a good kernel, and then investigate why the new kernel failed to boot.
+
+### How the kernel is tested
+ 
+ - Kernel Testing Guide: https://www.kernel.org/doc/html/latest/dev-tools/testing-overview.html
+ - How are Linux device drivers being tested? : https://marcelosc.gitlab.io/how-is-linux-tested/
+ - https://events.linuxfoundation.org/mentorship-session-kernel-validation-with-kselftest/
+ - and more...
+ - 
+### Submitting patches
+
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+
+https://kernelnewbies.org/FirstKernelPatch
+
+
+All the commits need to be signed-off:   
+
+Create a .gitconfig file in your home directory.
+- Name is the full legal author name 
+- email is the email address for the commit 
+- signoff = true 
+
+reference: https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+
+```
+git commit -s
+```
+
+To accept a patch, the name, and signed-off-by must match. 
+
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html <br>
+https://www.kernel.org/doc/html/latest/process/kernel-enforcement-statement.html <br>
+
+Kernel Configuration
+
+The Linux kernel is completely configurable. Drivers can be configured to be installed and completely disabled. Here are three options for driver installation:
+
+- Disabled
+- Built into the kernel (vmlinux image) to be loaded at boot time (avoid for long booting times!)
+- Built as a module to be loaded as needed using modprobe.
+
+It is a good idea to configure drivers as modules, to avoid large kernel images. Modules (.ko files) can be loaded when the kernel detects hardware that matches the driver. Building drivers as modules allows them to be loaded on demand, instead of keeping them around in the kernel image even when the hardware is either not being used, or not even present on the system.
+
+A good option is generating the new configuration with the old configuration as the starting point. New releases often introduce new configuration variables and, in some cases, rename the configuration symbols. The latter causes problems, and make oldconfig might not generate a new working kernel.
+
+https://www.kernel.org/doc/html/latest/kbuild/kconfig.html
+
+Run 'make listnewconfig' after copying the configuration from '/boot' to the .config file, to see a list of new configuration symbols. Kconfig make config is a good source about Kconfig and make config ( https://www.kernel.org/doc/html/latest/kbuild/kconfig.html ) . Please refer to the Kernel Build System to understand the kernel build framework and the kernel makefiles.
+
+https://www.kernel.org/doc/html/latest/kbuild/kconfig.html
+
+https://www.kernel.org/doc/html/latest/kbuild/index.html
+
+previously to any change create a new branch from the linux_mainline repository you cloned earlier to write your first patch. We will start by adding a remote first to do a rebase (pick up new changes made to the mainline).
+
+```
+cd linux_mainline
+git branch -a
+* master
+  remotes/linux/master
+  remotes/origin?HEAD -> origin/master
+  remotes/origin/master
+```
+
+Then  add git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git as the remote named linux. Adding a remote helps us fetch changes and choose a tag to rebase from.
+
+We can pick a tag to rebase to. In this case, there is only one new tag. Let’s hold off on the rebase and start writing a new patch
+
+To check out a branch do:
+
+```
+git checkout -b work
+master
+* work
+  remotes/linux/master
+  remotes/origin/HEAD -> origin/master
+```
+
+Now you can make a change, to a driver, for example. You can list the modules with **lsmod**. You can find the .c and .h files for that driver in the linux kernel repository. 
+Or even searching through the Makefiles, or even with 'git grep' 
+
+For example with the uvcvideo driver is a USB Video Class (UVC) media driver for video input devices, such as webcams. It supports webcams on laptops. Let’s check the source files for this driver.
+
+You can look for it with:
+
+```
+git grep uvcvideo -- '*Makefile'
+drivers/media/usb/uvc/Makefile:uvcvideo-objs := uvc_driver.o uvc_queue.o uvc_v4l2.o uvc_video.o uvc_ctrl.o drivers/media/usb/uvc/Makefile:uvcvideo-objs += uvc_entity.o
+drivers/media/usb/uvc/Makefile:obj-$(CONFIG_USB_VIDEO_CLASS) += uvcvideo.o
+```
+
+Kernel code style: https://www.kernel.org/doc/html/latest/process/coding-style.html
+
+ - https://events.linuxfoundation.org/mentorship-session-kernel-validation-with-kselftest/
+
+KERNEL TESTS 
+
+- The kernel CI: https://kernelci.org/
+- issues: https://lists.01.org/hyperkitty/
+- linaro QA: https://qa-reports.linaro.org/lkft/
+- buildBot: https://kerneltests.org/
+
+APPLYING PATCHES:
+
+ Each Linux patch is a self-contained change to the code that stands on its own, unless explicitly made part of a patch series. New patches are applied as follows:
+
+```
+patch -p1 < file.patch
+git apply --index file.patch
+```
+
+Either command will work; however, when a patch adds a new file and, if it is applied using the patch command, git does not know about the new files, and they will be treated as untracked files. The git diff command will not show the files in its output and the git status command will show the files as untracked. You can use git diff HEAD to see the changes.
+
+For the most part, there are no issues with building and installing kernels; however, the git reset --hard command will not remove the newly created files and a subsequent git pull will fail.
+
+SOLUTION1 
+When a patch that adds new files is applied using the patch command, run git clean to remove untracked files before running git reset --hard. For example, git clean -dfx will force the removal of untracked directories and files, ignoring any standard ignore rules specified in the .gitignore file. You could include the -q option to run git clean in quiet mode, if you do not care to know which files are removed.​
+
+SOLUTION2
+An alternate approach is to tell git to track the newly added files by running git apply --index file.patch. This will result in git applying the patch and adding the result to the index. Once this is done, git diff will show the newly added files in its output and git status will report the status correctly, tagging these files as newly created files.
+
+CHECK KERNEL LOGS
+
+```
+dmesg -t -l emerg
+dmesg -t -l crit
+dmesg -t -l alert
+dmesg -t -l err
+dmesg -t -l warn
+dmesg -t -k
+dmesg -t
+```
+
+STRESS TEST,
+
+ lauch several kernel compilations in parallel ... :/
+ 
+ ```
+ time make all
+ ```
+ 
+DEBUGING KERNEL PANICS 
+
+https://sanjeev1sharma.wordpress.com/tag/debug-kernel-panics/
+https://www.opensourceforu.com/2011/01/understanding-a-kernel-oops/
+
+Decode and Analyze the Panic Message
+Panic messages can be decoded using the decode_stacktrace.sh tool. Please refer to decode_stacktrace https://lwn.net/Articles/592724/ : make stack dump output useful again for details on how to use the tool.
+
+https://www.kernel.org/doc/html/latest/trace/events.html
+
+
+
+HOW TO BUILD THE KERNEL DOCUMENTATION
+
+There is a script which checks if you have all the needed dependencies to build the documentation. This script is called automatically when you run
+
+make htmldocs
+
+Alternatively, you can call the script directly by running:
+
+./scripts/sphinx-pre-install
+
+Once you have all the requirements, you can do the building by running:
+
+make htmldocs > doc_make.log 2>&1
+
+Check for warnings and other errors you might find and see if you can fix them.
+
+
+
+TODO: 
+- Kernel-bypass techniques for high-speed network packet processing : https://youtu.be/MpjlWt7fvrw
+- Kernel-bypass networking for fun and profit : https://youtu.be/noqSZorzooc
+- Data plane development kit DPDK: DPDK deep-dive : https://youtu.be/VJ8CVN3oXMw
+- Linux Networking - eBPF, XDP, DPDK, VPP - What does all that mean? (by Andree Toonk) : https://youtu.be/hO2tlxURXJ0
+- Linux packet journey,napi, hardware queue,skb : https://youtu.be/6Fl1rsxk4JQ
+- Introduction to Memory Management in Linux :  https://youtu.be/7aONIVSXiJ8
+- Steven Rostedt - Learning the Linux Kernel with tracing : https://youtu.be/JRyrhsx-L5Y
+- Design Microservice Architectures the Right Way: https://youtu.be/j6ow-UemzBc
+- Mastering Chaos - A Netflix Guide to Microservices : https://youtu.be/CZ3wIuvmHeM
+- tcddump: https://www.youtube.com/watch?v=hWc-ddF5g1I
+- Device trees for dummies! https://www.youtube.com/watch?v=m_NyYEBxfn8
+- Different I/O access methods for linux: https://www.youtube.com/watch?v=27Xz21RJoUA
+
+TODO: Linux security implementations - TPM, FDE, LUKS, HSM, etc.
+
+tpm : https://en.wikipedia.org/wiki/Trusted_Platform_Module && https://www.kernel.org/doc/html/latest/security/tpm/index.html
+
+UEFI Secure Boot: https://wiki.debian.org/SecureBoot
+
+
+
+
+
+
+
+
+
+
 ## Linux networking basics
 
 ### Switches
@@ -1611,637 +2281,6 @@ https://emlid.com/raspberry-pi-real-time-kernel/
 We’ve used cyclictest program to obtain data with the following parameters:
 
 cyclictest -l10000000 -m -n -a0 -t1 -p99 -i400 -h400 -q 
-
-
-
-## Linux kernel development process
-
-references:
-
-what is a kernel: https://youtu.be/LLBrBBImJt4
-
-Tim Beale: Linux Kernel Development for Newbies: https://youtu.be/OkhOoBqLb3Y
-
-https://github.com/agelastic/eudyptula
-
-Write and Submit your first Linux kernel Patch: https://youtu.be/LLBrBBImJt4
-
-reference: https://www.slideshare.net/SamsungOSG/a-survivors-guide-to-contributing-to-the-linux-kernel
-
-### Intro
-
-https://www.kernel.org/doc/html/latest/process/development-process.html
-
-Linux kernel releases come every 2+ months (10 or 11 weeks). Releases are time based and not feature based. 
-
-When the new version is released a 2 week window is open for merging new pulls for the next release. so mantainers send signed git pull requests in that merge window. After that period is created the first relesase candidate, known as **rc1**. So new features are only included in this first merge window.
-
-At this point the release cycle goes into bug fixes-only mode. So release candidates are generated till mayor bug fixes and regressions are solved.
-
-When enough confidence on the quality of the code is reached, the stable version is released. 
-
-https://www.kernel.org/category/releases.html
-
-https://www.kernel.org/doc/linux/MAINTAINERS
-
-http://vger.kernel.org/vger-lists.html
-
-https://lore.kernel.org/lists.html
-
-https://git.kernel.org/
-
-#### kernel trees
-
-- linux_mainline: Linus releases mainline kernels and RC releases
-- linux_stable: stable releases branches
-- linux-next: code from many subsystems gets pulled into the tree and periodically is released for integration testing.
-
-### Download the kernel
-
-To download the kernel with git:
-
-```
-git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
-```
-
-to download the stable branch:
-
-```
-git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
-cd linux-stable
-```
-
-### Patches
-
-linux development is handled with git as a code repository. https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git
-
-https://git-scm.com/book/en/v2
-
-to generate a patch:
-
-```
-git format-patch -1 --pretty=fuller XXXXXXXX
-```
-
-the code submitted in patches must be signed off
-
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html#sign-your-work-the-developer-s-certificate-of-origin
-
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes
-
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes
- 
-and the patch prefixes are:  [PATCH], [PATCH RFC] or [RFC PATCH] or [PATCH v4] 
-
-
-### Codes of conduct
-
-https://www.kernel.org/doc/html/latest/process/code-of-conduct.htm
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/LICENSES/preferred/GPL-2.0
-
-https://www.kernel.org/doc/html/latest/process/kernel-enforcement-statement.html
-
-
-
-How to configure the kernel: https://www.kernel.org/doc/Documentation/kbuild/kconfig.txt
-
-kernel documentation: https://www.kernel.org/doc/Documentation/
-
-### Configuration of the development system
-
-https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview
-
-https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview
-
-It is recomended 3GB for the boot partition.
-
-The packaget build-essential is needed in the system.
-
-
-```
-sudo apt-get install build-essential vim git cscope libncurses-dev libssl-dev bison flex
-sudo apt-get install git-email
-```
-
-It is needed to check the minimal requirements to compile the kernel
-
-```
-https://www.kernel.org/doc/html/latest/process/changes.html
-```
-
-git-email is for sending patches through the **sendmail** configuration option once the **smtp** server is configured.
-
-example configuration for gmail: https://gist.github.com/jasonkarns/4354421, https://coderwall.com/p/qcsiew/setting-up-and-using-git-send-email-with-gmail
-
-https://www.kernel.org/doc/html/latest/process/email-clients.html
-
-
-### Exploring the linux kernel sources
-
-You should create a directory, to git clone the linux repo, for example the mainline: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/ 
-
-```
->> cd /linux_work
->> git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git linux_mainline
->> cd linux_mainline; ls -h
-
-arch          CREDITS                 drivers  ipc      lib          mm       scripts   usr
-block    crypto         fs               Kbuild      LICENSES     net      security  virt
-certs        cscope.out          include    Kconfig  MAINTAINERS  README      sound
-COPYING    Documentation  init     kernel       Makefile          samples  tools
-```
-
-or to clone the stables
-
-```
-git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux_stable
-```
-
-You can use cregit-linux tool, to explore the code: https://cregit.linuxsources.org/ <br>
-
-for example: https://cregit.linuxsources.org/code/5.11/  <br>
-
-The most part of the linux kernel, is in the 'drivers' subdirectory.
-
-In 'arch' we can see all the supported architectures: https://cregit.linuxsources.org/code/5.11/arch/
-
-You can also use 'git log' to explore the different commmits. 
-
-```
-git format-patch -1 <commit ID>
-```
-
-For everyday tinkering with the kernel, take into account the scripts: scripts/get_maintainer.pl and scripts/checkpatch.pl
-
-Also check the linux-kselftest repo
-
-
-### Writing a kernel patch
-
-$(uname -r) displays the running Kernel version .
-
- Clone the stable kernel tree
- 
-```
-git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux_stable
-cd linux_stable
-git branch -a | grep linux-5
-    remotes/origin/linux-5.0.y
-    remotes/origin/linux-5.1.y
-    remotes/origin/linux-5.2.y
-git checkout linux-5.2.y
- ```
- 
- Next you have to copy the configuration file from your current kernel, from /proc/config.gz or /boot, and copy it to  linux_stable/.config
- 
- for example:
- 
- ```
- ls /boot
-config-5.0.0-20-generic        memtest86+.bin
-config-5.0.0-21-generic        memtest86+.elf  //< this is the latest configuration
-efi                            memtest86+_multiboot.bin
-grub                           System.map-5.0.0-20-generic
-initrd.img-5.0.0-20-generic    System.map-5.0.0-21-generic
-initrd.img-5.0.0-21-generic    vmlinuz-5.0.0-20-generic
-lost+found                     vmlinuz-5.0.0-21-generic
-```
-
-The easy thing to do, is to copy your actual config file (in /boot/) and move it to where the linux source is, and name it as .config.
-
-```
-cp /boot/<config-5.0.0-21-generic> .config
-```
-
-#### The kernel build system
-
-reference: https://www.linuxjournal.com/content/kbuild-linux-kernel-build-system 
-
-reference: https://www.kernel.org/doc/html/latest/kbuild/index.html
-
-The kernel has its own build system: the Kernel build sistem: Kbuild.
-
-It has four main components:
-
- - config symbols: conditions to conditionally compile code, include or exclude components.
- - kconfig files: files that define the possible config sysmbols. 'make menuconfig' reads the config sysmbols for the kconfig files.
- - .config file: files that stored the value of the confi sysmbols. 'make menuconfig' is used to give those values, or the file edited directly.
- - makefiles: normal makefiles
-
-
-#### Compiling the kernel 
-
-reference: http://www.kroah.com/lkn/ -linux kernel in a nutshell
-
-reference: https://www.cyberciti.biz/tips/compiling-linux-kernel-26.html
-
-example: https://youtu.be/NVWVHiLx1sU 
-
-The kernel configuration is in the file named .config at the top of the kernel source tree.
-
-You may need to install:  libelf-dev, libelf-devel or elfutils-libelf-devel
-
-Run the following command to generate a kernel configuration file based on the current configuration.
-
-```
-make oldconfig
-```
-
-'make oldconfig' reads the existing .config file that was used for an old kernel and prompts the user for options in the current kernel source that are not found in the file. This is useful when taking an existing configuration and moving it to a new kernel.
-
-WATCH OUT!: New releases often introduce new configuration variables and, in some cases, rename the configuration symbols. The latter causes problems, and make oldconfig might not generate a new working kernel. Run make listnewconfig after copying the configuration from /boot to the .config file, to see a list of new configuration symbols. 
-
-reference: https://stackoverflow.com/questions/4178526/what-does-make-oldconfig-do-exactly-in-the-linux-kernel-makefile
-
-reference: https://www.kernel.org/doc/html/latest/kbuild/kconfig.html
-
-**Bonuses** make olddefconfig sets every option to their default value without asking interactively. It gets run automatically on make to ensure that the .config is consistent in case you've modified it manually.
-
-Other way to tune the kernel your system is by using **make localmodconfig**. This option creates a configuration file based on the list of modules currently loaded on your system.
-
-```
-lsmod > /tmp/my-lsmod
-make LSMOD=/tmp/my-lsmod localmodconfig
-```
-
-A simpler choice is use **make defconfig**, every kernel has a default configuration, so with the 'defconfig' option that default configuration is used.
-
-
-otherwise use: 
-
-```
-make menuconfig
-```
-
-or 
-
-```
-make xconfig
-```
-
-you can get help:
-
-```
-sergio@debian:~/linux_work/linux_stable$ make help
-Cleaning targets:
-  clean		  - Remove most generated files but keep the config and
-                    enough build support to build external modules
-  mrproper	  - Remove all generated files + config + various backup files
-  distclean	  - mrproper + remove editor backup and patch files
-
-Configuration targets:
-  config	  - Update current config utilising a line-oriented program
-  nconfig         - Update current config utilising a ncurses menu based program
-  menuconfig	  - Update current config utilising a menu based program
-  xconfig	  - Update current config utilising a Qt based front-end
-  gconfig	  - Update current config utilising a GTK+ based front-end
-  oldconfig	  - Update current config utilising a provided .config as base
-  localmodconfig  - Update current config disabling modules not loaded
-                    except those preserved by LMC_KEEP environment variable
-  localyesconfig  - Update current config converting local mods to core
-                    except those preserved by LMC_KEEP environment variable
-  defconfig	  - New config with default from ARCH supplied defconfig
-  savedefconfig   - Save current config as ./defconfig (minimal config)
-  allnoconfig	  - New config where all options are answered with no
-  allyesconfig	  - New config where all options are accepted with yes
-  allmodconfig	  - New config selecting modules when possible
-  alldefconfig    - New config with all symbols set to default
-  randconfig	  - New config with random answer to all options
-  yes2modconfig	  - Change answers from yes to mod if possible
-  mod2yesconfig	  - Change answers from mod to yes if possible
-  listnewconfig   - List new options
-  helpnewconfig   - List new options and help text
-  olddefconfig	  - Same as oldconfig but sets new symbols to their
-                    default value without prompting
-  tinyconfig	  - Configure the tiniest possible kernel
-  testconfig	  - Run Kconfig unit tests (requires python3 and pytest)
-
-```
-
-
-Once this step is complete, it is time to compile the kernel. Using the '-j' option helps the compiles go faster. The '-j' option specifies the number of jobs (make commands) to run simultaneously:
-
-```
-make -j3 all
-```
-
-the end of compilation should be like ...
-
-```
-  ...
-  CC      arch/x86/boot/cpu.o
-  AS      arch/x86/boot/compressed/efi_thunk_64.o
-  CC      arch/x86/boot/compressed/misc.o
-  GZIP    arch/x86/boot/compressed/vmlinux.bin.gz
-  MKPIGGY arch/x86/boot/compressed/piggy.S
-  AS      arch/x86/boot/compressed/piggy.o
-  LD      arch/x86/boot/compressed/vmlinux
-  ZOFFSET arch/x86/boot/zoffset.h
-  OBJCOPY arch/x86/boot/vmlinux.bin
-  AS      arch/x86/boot/header.o
-  LD      arch/x86/boot/setup.elf
-  OBJCOPY arch/x86/boot/setup.bin
-  BUILD   arch/x86/boot/bzImage
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-```
-and it should create a 'vmlinux' image.
-
-
-Once the compilation is done, you can install it
-
-```
-su -c "make modules_install install"
-```
-
-This command will install the kernel, and execute 'update-grub' to add it to the grub menu. 
-
-Before rebooting the system, we can store some logs to compare it later, and look for regression or new errors
-
-We use the dmesg with the -t option, to not display the timestamps. This will make it easier later for comparation.
-
-```
-dmesg -t > dmesg_current
-dmesg -t -k > dmesg_kernel
-dmesg -t -l emerg > dmesg_current_emerg
-dmesg -t -l alert > dmesg_current_alert
-dmesg -t -l crit > dmesg_current_crit
-dmesg -t -l err > dmesg_current_err
-dmesg -t -l warn > dmesg_current_warn
-```
-
-It is expected to be clean:  emerg, alert, crit, and err level messages
-
-Before testing the new kernel, that we don't know if it will boot, a couple of safety measures:
-
-By default, grub tries to boot the default kernel, which is the newly installed kernel. We change the default grub configuration file /etc/default/grub to the boot menu, and pause for us to be able to select the kernel to boot.
- 
-In case dmesg_current length is zero, it is quite possible that the secure boot is enabled.  That will prevent to boot the new kernel as it is not signed. It is possible to disable temporaly the secure boot with the **mokutil** (MOK manager) 
-
-To check if the secure boot is enabled: 
-
-```
-mokutil --sb-state
-```
-
-https://askubuntu.com/questions/1119734/how-to-replace-or-remove-kernel-with-signed-kernels
-
-to disable validation:
-
-```
-sudo mokutil --disable-validation
-root password
-mok password: 1234567
-mok password: 1234567
-sudo reboot
-```
-to re-enable validation:
-
-```
-sudo mokutil --enable-validation
-root password
-mok password: 1234567
-mok password: 1234567
-sudo reboot
-```
-NOTE: if the kernel fails, and you need to remove it: https://askubuntu.com/questions/176322/removing-old-kernel-entries-in-grub
-
-```
-for kernels build from source: 
-The solution is to manually delete all the files related to the old kernels in the /boot folder and run sudo update-grub. The extra entries vanished
-```
-
-
-Booting the Kernel:
-
-Let’s take care of a couple of important steps before trying out the newly installed kernel. There is no guarantee that the new kernel will boot. As a safeguard, we want to make sure that there is at least one good kernel installed and we can select it from the boot menu. By default, grub tries to boot the default kernel, which is the newly installed kernel. We change the default grub configuration file **/etc/default/grub** to the boot menu, and pause for us to be able to select the kernel to boot.
-
-Please note that this option only applies to Ubuntu and Debian, and other distributions might have a different way to specify boot menu options.
-
-Increase the GRUB_TIMEOUT value to 10 seconds, so grub pauses in menu long enough to choose a kernel to boot:
-
-``` 
-Uncomment GRUB_TIMEOUT and set it to 10: GRUB_TIMEOUT=10
-Comment out GRUB_TIMEOUT_STYLE=hidden
-```
-
-If the newly installed kernel fails to boot, it is nice to be able to see the early messages to figure out why the kernel failed to boot.
-
-Enable printing early boot messages to vga using the earlyprintk=vga kernel boot option:
-
-```
-GRUB_CMDLINE_LINUX="earlyprintk=vga"
-```
-For information in grub: **'info -f grub -n 'Simple configuration''**
-
-NOTE!: Run **update-grub** to update the grub configuration in /boot
-
-```
-sudo update-grub
-```
-
-```
-sergio@debian:/etc/default$ sudo update-grub
-Generating grub configuration file ...
-Found background image: /usr/share/images/desktop-base/desktop-grub.png
-Found linux image: /boot/vmlinuz-5.12.10
-Found initrd image: /boot/initrd.img-5.12.10
-Found linux image: /boot/vmlinuz-4.19.0-16-amd64
-Found initrd image: /boot/initrd.img-4.19.0-16-amd64
-done
-```
-
-Now, it is possibble to restart the system. Once the new kernel comes up, compare the saved dmesg from the old kernel with the new one, and see if there are any regressions. If the newly installed kernel fails to boot, you will have to boot a good kernel, and then investigate why the new kernel failed to boot.
-
-### How the kernel is tested
- 
- - Kernel Testing Guide: https://www.kernel.org/doc/html/latest/dev-tools/testing-overview.html
- - How are Linux device drivers being tested? : https://marcelosc.gitlab.io/how-is-linux-tested/
- - https://events.linuxfoundation.org/mentorship-session-kernel-validation-with-kselftest/
- - and more...
- - 
-### Submitting patches
-
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html
-
-https://kernelnewbies.org/FirstKernelPatch
-
-
-All the commits need to be signed-off:   
-
-Create a .gitconfig file in your home directory.
-- Name is the full legal author name 
-- email is the email address for the commit 
-- signoff = true 
-
-reference: https://www.kernel.org/doc/html/latest/process/submitting-patches.html
-
-```
-git commit -s
-```
-
-To accept a patch, the name, and signed-off-by must match.
-
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html
-https://www.kernel.org/doc/html/latest/process/kernel-enforcement-statement.html
-
-Kernel Configuration
-
-The Linux kernel is completely configurable. Drivers can be configured to be installed and completely disabled. Here are three options for driver installation:
-
-- Disabled
-- Built into the kernel (vmlinux image) to be loaded at boot time (avoid for long booting times!)
-- Built as a module to be loaded as needed using modprobe.
-
-It is a good idea to configure drivers as modules, to avoid large kernel images. Modules (.ko files) can be loaded when the kernel detects hardware that matches the driver. Building drivers as modules allows them to be loaded on demand, instead of keeping them around in the kernel image even when the hardware is either not being used, or not even present on the system.
-
-A good option is generating the new configuration with the old configuration as the starting point. New releases often introduce new configuration variables and, in some cases, rename the configuration symbols. The latter causes problems, and make oldconfig might not generate a new working kernel.
-
-https://www.kernel.org/doc/html/latest/kbuild/kconfig.html
-
-Run 'make listnewconfig' after copying the configuration from '/boot' to the .config file, to see a list of new configuration symbols. Kconfig make config is a good source about Kconfig and make config ( https://www.kernel.org/doc/html/latest/kbuild/kconfig.html ) . Please refer to the Kernel Build System to understand the kernel build framework and the kernel makefiles.
-
-https://www.kernel.org/doc/html/latest/kbuild/kconfig.html
-
-https://www.kernel.org/doc/html/latest/kbuild/index.html
-
-previously to any change create a new branch from the linux_mainline repository you cloned earlier to write your first patch. We will start by adding a remote first to do a rebase (pick up new changes made to the mainline).
-
-```
-cd linux_mainline
-git branch -a
-* master
-  remotes/linux/master
-  remotes/origin?HEAD -> origin/master
-  remotes/origin/master
-```
-
-Then  add git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git as the remote named linux. Adding a remote helps us fetch changes and choose a tag to rebase from.
-
-We can pick a tag to rebase to. In this case, there is only one new tag. Let’s hold off on the rebase and start writing a new patch
-
-To check out a branch do:
-
-```
-git checkout -b work
-master
-* work
-  remotes/linux/master
-  remotes/origin/HEAD -> origin/master
-```
-
-Now you can make a change, to a driver, for example. You can list the modules with **lsmod**. You can find the .c and .h files for that driver in the linux kernel repository. 
-Or even searching through the Makefiles, or even with 'git grep' 
-
-For example with the uvcvideo driver is a USB Video Class (UVC) media driver for video input devices, such as webcams. It supports webcams on laptops. Let’s check the source files for this driver.
-
-You can look for it with:
-
-```
-git grep uvcvideo -- '*Makefile'
-drivers/media/usb/uvc/Makefile:uvcvideo-objs := uvc_driver.o uvc_queue.o uvc_v4l2.o uvc_video.o uvc_ctrl.o drivers/media/usb/uvc/Makefile:uvcvideo-objs += uvc_entity.o
-drivers/media/usb/uvc/Makefile:obj-$(CONFIG_USB_VIDEO_CLASS) += uvcvideo.o
-```
-
-Kernel code style: https://www.kernel.org/doc/html/latest/process/coding-style.html
-
- - https://events.linuxfoundation.org/mentorship-session-kernel-validation-with-kselftest/
-
-KERNEL TESTS 
-
-- The kernel CI: https://kernelci.org/
-- issues: https://lists.01.org/hyperkitty/
-- linaro QA: https://qa-reports.linaro.org/lkft/
-- buildBot: https://kerneltests.org/
-
-APPLYING PATCHES:
-
- Each Linux patch is a self-contained change to the code that stands on its own, unless explicitly made part of a patch series. New patches are applied as follows:
-
-```
-patch -p1 < file.patch
-git apply --index file.patch
-```
-
-Either command will work; however, when a patch adds a new file and, if it is applied using the patch command, git does not know about the new files, and they will be treated as untracked files. The git diff command will not show the files in its output and the git status command will show the files as untracked. You can use git diff HEAD to see the changes.
-
-For the most part, there are no issues with building and installing kernels; however, the git reset --hard command will not remove the newly created files and a subsequent git pull will fail.
-
-SOLUTION1 
-When a patch that adds new files is applied using the patch command, run git clean to remove untracked files before running git reset --hard. For example, git clean -dfx will force the removal of untracked directories and files, ignoring any standard ignore rules specified in the .gitignore file. You could include the -q option to run git clean in quiet mode, if you do not care to know which files are removed.​
-
-SOLUTION2
-An alternate approach is to tell git to track the newly added files by running git apply --index file.patch. This will result in git applying the patch and adding the result to the index. Once this is done, git diff will show the newly added files in its output and git status will report the status correctly, tagging these files as newly created files.
-
-CHECK KERNEL LOGS
-
-```
-dmesg -t -l emerg
-dmesg -t -l crit
-dmesg -t -l alert
-dmesg -t -l err
-dmesg -t -l warn
-dmesg -t -k
-dmesg -t
-```
-
-STRESS TEST,
-
- lauch several kernel compilations in parallel ... :/
- 
- ```
- time make all
- ```
- 
-DEBUGING KERNEL PANICS 
-
-https://sanjeev1sharma.wordpress.com/tag/debug-kernel-panics/
-https://www.opensourceforu.com/2011/01/understanding-a-kernel-oops/
-
-Decode and Analyze the Panic Message
-Panic messages can be decoded using the decode_stacktrace.sh tool. Please refer to decode_stacktrace https://lwn.net/Articles/592724/ : make stack dump output useful again for details on how to use the tool.
-
-https://www.kernel.org/doc/html/latest/trace/events.html
-
-
-
-HOW TO BUILD THE KERNEL DOCUMENTATION
-
-There is a script which checks if you have all the needed dependencies to build the documentation. This script is called automatically when you run
-
-make htmldocs
-
-Alternatively, you can call the script directly by running:
-
-./scripts/sphinx-pre-install
-
-Once you have all the requirements, you can do the building by running:
-
-make htmldocs > doc_make.log 2>&1
-
-Check for warnings and other errors you might find and see if you can fix them.
-
-
-
-TODO: 
-- Kernel-bypass techniques for high-speed network packet processing : https://youtu.be/MpjlWt7fvrw
-- Kernel-bypass networking for fun and profit : https://youtu.be/noqSZorzooc
-- Data plane development kit DPDK: DPDK deep-dive : https://youtu.be/VJ8CVN3oXMw
-- Linux Networking - eBPF, XDP, DPDK, VPP - What does all that mean? (by Andree Toonk) : https://youtu.be/hO2tlxURXJ0
-- Linux packet journey,napi, hardware queue,skb : https://youtu.be/6Fl1rsxk4JQ
-- Introduction to Memory Management in Linux :  https://youtu.be/7aONIVSXiJ8
-- Steven Rostedt - Learning the Linux Kernel with tracing : https://youtu.be/JRyrhsx-L5Y
-- Design Microservice Architectures the Right Way: https://youtu.be/j6ow-UemzBc
-- Mastering Chaos - A Netflix Guide to Microservices : https://youtu.be/CZ3wIuvmHeM
-- tcddump: https://www.youtube.com/watch?v=hWc-ddF5g1I
-- Device trees for dummies! https://www.youtube.com/watch?v=m_NyYEBxfn8
-- Different I/O access methods for linux: https://www.youtube.com/watch?v=27Xz21RJoUA
-
-TODO: Linux security implementations - TPM, FDE, LUKS, HSM, etc.
-
-tpm : https://en.wikipedia.org/wiki/Trusted_Platform_Module && https://www.kernel.org/doc/html/latest/security/tpm/index.html
-
-UEFI Secure Boot: https://wiki.debian.org/SecureBoot
 
 
 
