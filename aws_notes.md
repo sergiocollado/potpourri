@@ -1539,9 +1539,11 @@ reference: https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig
 
 AWS Config provides a detailed view of the configuration of AWS resources in your AWS account. This includes how the resources are related to one another and how they were configured in the past so that you can see how the configurations and relationships change over time.
 
- 
+### AWS Directory Service
 
+reference: https://docs.aws.amazon.com/directoryservice/latest/admin-guide/what_is.html
 
+AWS Directory Service provides multiple ways to use Microsoft Active Directory (AD) with other AWS services. Directories store information about users, groups, and devices, and administrators use them to manage access to information and resources. AWS Directory Service provides multiple directory choices for customers who want to use existing Microsoft AD or Lightweight Directory Access Protocol (LDAP)–aware applications in the cloud. It also offers those same choices to developers who need a directory to manage users, groups, devices, and access.
 
 
 
