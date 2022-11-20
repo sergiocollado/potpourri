@@ -1568,7 +1568,9 @@ There are 4 different types of budgets to create:
 - Reservation Budgets: how efiicient are the RIs?
 - Saving plangs budgets
 
+### AWS Cost and usage report
 
+reference: https://docs.aws.amazon.com/cur/latest/userguide/what-is-cur.html
 
 
 
