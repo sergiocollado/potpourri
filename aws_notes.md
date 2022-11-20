@@ -1545,6 +1545,31 @@ reference: https://docs.aws.amazon.com/directoryservice/latest/admin-guide/what_
 
 AWS Directory Service provides multiple ways to use Microsoft Active Directory (AD) with other AWS services. Directories store information about users, groups, and devices, and administrators use them to manage access to information and resources. AWS Directory Service provides multiple directory choices for customers who want to use existing Microsoft AD or Lightweight Directory Access Protocol (LDAP)–aware applications in the cloud. It also offers those same choices to developers who need a directory to manage users, groups, devices, and access.
 
+### AWS Cost Management & Cost Explorer
+
+reference: https://docs.aws.amazon.com/cost-management/latest/userguide/what-is-costmanagement.html
+
+AWS Cost Explorer is a feature that you can use to visualize your cost data for further analysis. Using it, you can filter graphs by several different values. This includes Availability Zone, AWS service, and AWS Region, It also includes other specifics such as custom cost allocation tag, Amazon EC2 instance type, and purchase option. If you use consolidated billing, you can also filter by member account. In addition, you can see a forecast of future costs based on your historical cost data.
+
+### AWS Budgets
+
+reference: https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html
+
+You can use AWS Budgets to track and take action on your AWS costs and usage. You can use AWS Budgets to monitor your aggregate utilization and coverage metrics for your Reserved Instances (RIs) or Savings Plans.  If you're new to AWS Budgets, see Best practices for AWS Budgets.
+
+ - View your billing information
+ - Create Amazon CloudWatch alarms
+ - Create Amazon Simple Notification Service (Amazon SNS) notifications
+
+There are 4 different types of budgets to create:
+
+- Cost budges: how much is the expending?
+- Usage Budgets: how much is used?
+- Reservation Budgets: how efiicient are the RIs?
+- Saving plangs budgets
+
+
+
 
 
 
