@@ -219,7 +219,7 @@ sergio@debian:~/linux$ qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../
 #sergio@debian:~/busybox/_install$  find . | cpio -H newc -o | gzip > ./ramdisk.img
 
 # go back to linux and run it. 
-~/linux$ qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img
+~/linux$ qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img
 
 # still there is the wargin about : can't run "etc/inti.d/rcS": No such file or directory
 # and that file is interesting because it allows to run commands at the boot
