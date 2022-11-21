@@ -191,7 +191,7 @@ make install # this create a directory call __install which is our image, the im
 # these are the files that will make the image that will be installed later. 
 # the tool used to build the image is `cpio`
 
-#sergio@debian:~/busybox/_install$ find . | cpio -H newc -o | gzip > ./ramdisk.image
+#sergio@debian:~/busybox/_install$ find . | cpio -H newc -o | gzip > ./ramdisk.img
 
 #sergio@debian:~/busybox/_install$  find . | cpio -H newc -o | gzip > ./ramdisk.img
 #5314 blocks
