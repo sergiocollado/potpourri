@@ -16,6 +16,8 @@ Linux is a clone of the operating system Unix, written from scratch by Linus Tor
   
 <hr>
 
+Linux information project:  http://www.linfo.org/newbies.html
+
 In the case there are references to several of the previous chapters, those references are indicated within a parenthesis, ie:
 
 swapoff(8) and swapoff(2)
