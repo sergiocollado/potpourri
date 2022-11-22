@@ -1568,10 +1568,67 @@ There are 4 different types of budgets to create:
 - Reservation Budgets: how efiicient are the RIs?
 - Saving plangs budgets
 
-### AWS Cost and usage report
+### AWS Cost and usage report (AWS CUR)
 
 reference: https://docs.aws.amazon.com/cur/latest/userguide/what-is-cur.html
 
+The AWS Cost and Usage Reports (AWS CUR) contains the most comprehensive set of cost and usage data available. You can use Cost and Usage Reports to publish your AWS billing reports to an Amazon Simple Storage Service (Amazon S3) bucket that you own. You can receive reports that break down your costs by the hour, day, or month, by product or product resource, or by tags that you define yourself. AWS updates the report in your bucket once a day in comma-separated value (CSV) format. Y
+
+AWS Cost and Usage Reports tracks your AWS usage and provides estimated charges associated with your account. Each report contains line items for each unique combination of AWS products, usage type, and operation that you use in your AWS account. You can customize the AWS Cost and Usage Reports to aggregate the information either by the hour, day, or month.
+
+AWS Cost and Usage Reports can do the following:
+
+    - Deliver report files to your Amazon S3 bucket
+    - Update the report up to three times a day
+    - Create, retrieve, and delete your reports using the AWS CUR API Reference
+
+### AWS Savings plans
+
+reference: https://docs.aws.amazon.com/savingsplans/?icmpid=docs_homepage_cloudfin
+
+Savings Plans is a flexible pricing model that helps you save a significant percentage on Amazon EC2 and Fargate usage. Savings Plans provide low prices on EC2 and Fargate in exchange for a commitment to a consistent amount of usage for a one-year or three-year term.
+
+### AWS Trusted Advisor
+
+reference: https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html
+
+Trusted Advisor draws upon best practices learned from serving hundreds of thousands of AWS customers. Trusted Advisor inspects your AWS environment, and then makes recommendations when opportunities exist to save money, improve system availability and performance, or help close security gaps. 
+
+### AWS Control Tower
+
+reference: https://docs.aws.amazon.com/controltower/?icmpid=docs_homepage_mgmtgov
+
+AWS Control Tower is a service that enables you to enforce and manage governance rules for security, operations, and compliance at scale across all your organizations and accounts in the AWS Cloud.
+
+### AWS License manager
+
+reference: https://docs.aws.amazon.com/license-manager/?icmpid=docs_homepage_mgmtgov
+
+AWS License Manager streamlines the process of bringing software vendor licenses to the AWS Cloud. As you build out cloud infrastructure on AWS, you can save costs by repurposing your existing license inventory for use with cloud resources. License Manager reduces the risk of licensing overages and penalties with inventory tracking that is tied directly to AWS resources.
+
+### AWS Health
+
+reference: https://docs.aws.amazon.com/health/?icmpid=docs_homepage_mgmtgov
+
+AWS Health provides personalized information about events that can affect your AWS infrastructure, guides you through scheduled changes, and accelerates the troubleshooting of issues that affect your AWS resources and accounts.
+
+### AWS Service Catalog
+
+references: https://docs.aws.amazon.com/servicecatalog/?icmpid=docs_homepage_mgmtgov
+
+AWS Service Catalog enables IT administrators to create, manage, and distribute portfolios of approved products to end users, who can then access the products they need in a personalized portal. Typical products include servers, databases, websites, or applications that are deployed using AWS resources (for example, an Amazon EC2 instance or an Amazon RDS database). You can control which users have access to specific products to enforce compliance with organizational business standards, manage product lifecycles, and help users find and launch products with confidence.
+
+### AWS Proton
+
+reference: https://docs.aws.amazon.com/proton/?icmpid=docs_homepage_mgmtgov
+
+AWS Proton creates and manages standardized infrastructure and deployment tooling for developers and their serverless and container-based applications.
+
+### AWS Well architecture tool
+
+reference: https://docs.aws.amazon.com/wellarchitected/?icmpid=docs_homepage_mgmtgov
+
+Use the AWS Well-Architected Tool to review your workloads against current Amazon Web Services architectural best practices. The AWS Well-Architected Tool measures the workload and provides recommendations on how to improve your architecture.
 
 
 
