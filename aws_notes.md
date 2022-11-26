@@ -1514,6 +1514,21 @@ With AWS DMS, you can perform one-time migrations, and you can replicate ongoing
 At a basic level, AWS DMS is a server in the AWS Cloud that runs replication software. You create a source and target connection to tell AWS DMS where to extract from and load to. Then you schedule a task that runs on this server to move your data. AWS DMS creates the tables and associated primary keys if they don't exist on the target. You can precreate the target tables yourself if you prefer. Or you can use AWS Schema Conversion Tool (AWS SCT) to create some or all of the target tables, indexes, views, triggers, and so on. 
 
 
+## BIG DATA
+
+### Redshift
+
+reference: https://docs.aws.amazon.com/redshift/
+
+Amazon Redshift is a fast, fully managed, petabyte-scale data warehouse service that makes it simple and cost-effective to efficiently analyze all your data using your existing business intelligence tools. It is optimized for datasets ranging from a few hundred gigabytes to a petabyte or more and costs less than $1,000 per terabyte per year, a tenth the cost of most traditional data warehousing solutions.
+
+### AWS ELASTIC MAP REDUCE (EMP)
+
+reference: https://docs.aws.amazon.com/emr/?icmpid=docs_homepage_analytics
+
+Amazon EMR is a web service that makes it easy to process vast amounts of data efficiently using Apache Hadoop and services offered by Amazon Web Services. 
+
+
 ## GOVERNANCE
 
 ### AWS Organizations
