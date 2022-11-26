@@ -1503,6 +1503,17 @@ AWS DataSync is an online data transfer service that simplifies, automates, and 
 
 This service is more oritented to one-time migration from on-premise storate to the AWS cloud. On the oder hand Storage Gateway is more oriented for the cases in which it is desired to have an hybrid architecture with on-premise storage and cloud storage.
 
+### AWS Database Migration Service
+
+reference: https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html
+
+AWS Database Migration Service (AWS DMS) is a cloud service that makes it easy to migrate relational databases, data warehouses, NoSQL databases, and other types of data stores. You can use AWS DMS to migrate your data into the AWS Cloud or between combinations of cloud and on-premises setups.
+
+With AWS DMS, you can perform one-time migrations, and you can replicate ongoing changes to keep sources and targets in sync. If you want to migrate to a different database engine, you can use the AWS Schema Conversion Tool (AWS SCT) to translate your database schema to the new platform. You then use AWS DMS to migrate the data. Because AWS DMS is a part of the AWS Cloud, you get the cost efficiency, speed to market, security, and flexibility that AWS services offer.
+
+At a basic level, AWS DMS is a server in the AWS Cloud that runs replication software. You create a source and target connection to tell AWS DMS where to extract from and load to. Then you schedule a task that runs on this server to move your data. AWS DMS creates the tables and associated primary keys if they don't exist on the target. You can precreate the target tables yourself if you prefer. Or you can use AWS Schema Conversion Tool (AWS SCT) to create some or all of the target tables, indexes, views, triggers, and so on. 
+
+
 ## GOVERNANCE
 
 ### AWS Organizations
