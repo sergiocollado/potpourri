@@ -1,6 +1,6 @@
 ## FOREWORD:
 
-These are my personal notes, on the AWS Cloud. The aim of this docuent,is to clarify my ideas, by means
+These are my personal notes, on the AWS Cloud. The aim of this document,is to clarify my ideas, by means
 of writting them down, and have a resource where quickly find answers to my doubts, based on my experience. 
 
 reference: https://docs.aws.amazon.com/
