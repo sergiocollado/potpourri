@@ -1528,6 +1528,62 @@ reference: https://docs.aws.amazon.com/emr/?icmpid=docs_homepage_analytics
 
 Amazon EMR is a web service that makes it easy to process vast amounts of data efficiently using Apache Hadoop and services offered by Amazon Web Services. 
 
+### AWS KINESIS
+
+reference: https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-kinesis.html
+
+Amazon EMR clusters can read and process Amazon Kinesis streams directly, using familiar tools in the Hadoop ecosystem such as Hive, Pig, MapReduce, the Hadoop Streaming API, and Cascading. You can also join real-time data from Amazon Kinesis with existing data on Amazon S3, Amazon DynamoDB, and HDFS in a running cluster. You can directly load the data from Amazon EMR to Amazon S3 or DynamoDB for post-processing activities.
+
+There are 2 major types:
+ - Data streams: real-time streaming for ingesting data
+ - Data firehose: data transfer tool to get information to S3, Redshift, ElasticSearch ... close to real-time
+
+ ### AWS Quicksight
+ 
+ reference: https://docs.aws.amazon.com/quicksight/
+ 
+ Amazon QuickSight is a fast business analytics service to build visualizations, perform ad hoc analysis, and quickly get business insights from your data. Amazon QuickSight seamlessly discovers AWS data sources, enables organizations to scale to hundreds of thousands of users, and delivers fast and responsive query performance by using the Amazon QuickSight Super-fast, Parallel, In-Memory, Calculation Engine (SPICE).
+ 
+### AWS Athena & Glue
+
+reference: https://docs.aws.amazon.com/athena/
+
+kind of serverless SQL <br>
+
+Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to setup or manage, and you pay only for the queries you run. To get started, simply point to your data in S3, define the schema, and start querying using standard SQL.
+
+reference: https://docs.aws.amazon.com/glue/
+
+kind of serverless ETL (Extract, Translform, Load) <br>
+
+ AWS Glue is a scalable, serverless data integration service that makes it easy to discover, prepare, and combine data for analytics, machine learning, and application development.
+ 
+ The usual way to handle it is:
+ 
+ ```
+ S3 -> AWS Glue crawlers -> AWS Glue Data Catalog -> Amazon Athena -> Amazon QuickShight
+ ```
+
+### AWS Data pipeline
+
+reference: https://docs.aws.amazon.com/data-pipeline/?icmpid=docs_homepage_analytics
+
+To automate data-driven workflows and automate it. <br>
+
+AWS Data Pipeline is a web service that you can use to automate the movement and transformation of data. With AWS Data Pipeline, you can define data-driven workflows, so that tasks can be dependent on the successful completion of previous tasks.
+
+### AWS MSK (Managed Streamming for Apache Kafka)
+
+reference: https://docs.aws.amazon.com/msk/index.html
+
+Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that makes it easy for you to build and run applications that use Apache Kafka to process streaming data. It is serverless!! 
+
+### AWS OpenSearch service
+
+reference: https://docs.aws.amazon.com/opensearch-service/?icmpid=docs_homepage_analytics
+
+Amazon OpenSearch Service is a managed service that makes it easy to deploy, operate, and scale OpenSearch, a popular open-source search and analytics engine. OpenSearch Service also offers security options, high availability, data durability, and direct access to the OpenSearch API.
+
 
 ## GOVERNANCE
 
