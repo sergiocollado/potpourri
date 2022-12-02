@@ -80,4 +80,29 @@ The characteristics of a given runlevel determine which services are halted and 
 The S* and K*. are the **Start** and **Kill** routines
 
 
+## Systemd
 
+reference: https://www.linux.com/training-tutorials/understanding-and-using-systemd/ <br>
+reference: https://wiki.archlinux.org/title/systemd
+
+Systemd is controversial for several reasons: It’s a replacement for something that a lot of Linux users don’t think needs to be replaced.
+
+Our beloved /etc/inittab is no more. Instead, we have a /etc/systemd/system/ directory chock-full of symlinks to files in /usr/lib/systemd/system/. /usr/lib/systemd/system/ contains init scripts; to start a service at boot it must be linked to /etc/systemd/system/. The systemctl command does this for you when you enable a new service. 
+
+The main command used to introspect and control systemd is _**systemctl*__.
+
+Some (not exhaustive) components of systemd are:
+
+   - systemd-boot — simple UEFI boot manager;
+   - systemd-cryptenroll(1) — Enroll PKCS#11, FIDO2, TPM2 token/devices to LUKS2 encrypted volumes;
+   - systemd-firstboot — basic system setting initialization before first boot;
+   - systemd-homed — portable human-user accounts;
+   - systemd-logind(8) — session management;
+   - systemd-networkd — network configuration management;
+   - systemd-nspawn — light-weight namespace container;
+   - systemd-resolved — network name resolution;
+   - systemd-sysusers(8) — creates system users and groups and adds users to groups at package installation or boot time;
+   - systemd-timesyncd — system time synchronization across the network;
+   - systemd/Journal — system logging;
+   - systemd/Timers — monotonic or realtime timers for controlling .service files or events, reasonable alternative to cron.
+   - systemd-stub(7) — a UEFI boot stub used for creating unified kernel images.
