@@ -82,6 +82,7 @@ The S* and K*. are the **Start** and **Kill** routines
 
 ## Systemd
 
+reference: systemd project https://systemd.io/ <br>
 reference: https://www.linux.com/training-tutorials/understanding-and-using-systemd/ <br>
 reference: https://wiki.archlinux.org/title/systemd
 
@@ -106,3 +107,8 @@ Some (not exhaustive) components of systemd are:
    - systemd/Journal — system logging;
    - systemd/Timers — monotonic or realtime timers for controlling .service files or events, reasonable alternative to cron.
    - systemd-stub(7) — a UEFI boot stub used for creating unified kernel images.
+
+
+SysV init starts thins one at a time, but Systemd, allows for parallel initialization of system services. 
+
+
