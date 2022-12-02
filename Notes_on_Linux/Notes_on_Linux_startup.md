@@ -77,4 +77,7 @@ The characteristics of a given runlevel determine which services are halted and 
         
 ![init_files](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/init_files.png)
 
+The S* and K*. are the **Start** and **Kill** routines
+
+
 
