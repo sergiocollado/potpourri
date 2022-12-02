@@ -75,4 +75,6 @@ The characteristics of a given runlevel determine which services are halted and 
         6 — Reboot <br>
         
         
-        
+![init_files](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/init_files.png)
+
+
