@@ -222,7 +222,7 @@ sergio@debian:~/linux$ qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../
 #sergio@debian:~/busybox/_install$  find . | cpio -H newc -o | gzip > ./ramdisk.img
 
 # go back to linux and run it. 
-~/linux$ qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img
+~/linux$ qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/_install/ramdisk.img
 
 # still there is the wargin about : can't run "etc/inti.d/rcS": No such file or directory
 # and that file is interesting because it allows to run commands at the boot
@@ -262,7 +262,7 @@ mount -t proc none /proc
 # ~/linux$ make LLVM=1 -j32
 
 # boot the machine 
-qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img
+qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/_install/ramdisk.img
 
 # after booting, in the messages check for the text string "Hello from echo server", 
 # that proofs that the echo_server_module has been loaded
