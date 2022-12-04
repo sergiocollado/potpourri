@@ -216,7 +216,7 @@ sergio@debian:~/linux$ qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../
 # create a etc directory
 ~/busybox/_install$ mkdir etc
 # copy the intitab from the busybox examples:
-~/busybox/_install$ cp ../examples/inittap ./etc
+~/busybox/_install$ cp ../examples/inittab ./etc
 # modify the file, removing the tty2::askfirst-/bin/sh to  ... tty5
 # regenerate the image. 
 #sergio@debian:~/busybox/_install$  find . | cpio -H newc -o | gzip > ./ramdisk.img
@@ -295,8 +295,8 @@ VM# nc 127.0.0.1 8080
 
 # exit with poweroff
 
-# another intersting thing to enable is to enable a NIC. for this use the command: 
-qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/_install/ramdisk.img -nic user,model=rtl839 
+# another intersting thing to enable is to enable a NIC (network interface card). for this use the command: 
+qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/_install/ramdisk.img -nic user,model=rtl8139 
 
 # launch the machine, and check the interfaces with: ip link
 
@@ -323,10 +323,10 @@ udhcpc -i eth0             # udpates dhcp
 qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139 
 
 #if we check ifconfig, the network interface should be up, so networking is active. 
-# this allows to go from the VM to the outside world! 
+# this allows to go from the VM to the outside world!!!
 # with this we can connect to the VM. 
 
-# add an option for fowareing ports in the VM. We are forwarding the port 5555 local machine to the port 23 of the VM
+# add an option for fowarding ports in the VM. We are forwarding the port 5555 local machine to the port 23 of the VM
 qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139,hostfwd=tcp::5555-:23
 
 # ..other topic, mounting /dev 
@@ -336,7 +336,7 @@ VM# mkdir /dev/pts
 VM# mount -t devpts nodev /dev/pts
 VM# telnetd -l /bin/sh                  # now it is possible to run telnetd
 
-from other ternminal, try to connect
+from other terminal, try to connect:
 
 #sergio@debian$ telnet localhost 5555
 Trying 127.0.0.1... 
@@ -360,18 +360,18 @@ mount -t devpts none /dev/pts
 #sergio@debian:~/busybox/_install$  find . | cpio -H newc -o | gzip > ./ramdisk.img
 
 # launch the VM
-qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139,hostfwd=tcp::5555-:23
+qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/_install/ramdisk.img -nic user,model=rtl8139,hostfwd=tcp::5555-:23
 
 # try to telnet it
 telnet localhost 5555
 
 # other  thing to tacke is forward other port 5556 to the port of the echo_server. 
-qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139,hostfwd=tcp::5555-:23,hostfwd=tcp::5556-:8080
+qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/_install/ramdisk.img -nic user,model=rtl8139,hostfwd=tcp::5555-:23,hostfwd=tcp::5556-:8080
 
 # so from the local machine, it is possible to cnect to th echo server previouly configured.
 nc localhost 5556
 
-
+Rust analyzer: https://youtu.be/tPs1uRqOnlk?t=3564
 
 ```
 
