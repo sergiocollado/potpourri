@@ -373,5 +373,37 @@ nc localhost 5556
 
 Rust analyzer: https://youtu.be/tPs1uRqOnlk?t=3564
 
+
+sergio@laptop:~/repos/rust-for-linux$ sudo make LLVM=1 -j12 rust-analyzer
+[sudo] password for sergio: 
+make[1]: rustc: No such file or directory
+/bin/sh: 1: rustc: not found
+Traceback (most recent call last):
+  File "/home/sergio/repos/rust-for-linux/./scripts/generate_rust_analyzer.py", line 141, in <module>
+    main()
+  File "/home/sergio/repos/rust-for-linux/./scripts/generate_rust_analyzer.py", line 134, in main
+    "crates": generate_crates(args.srctree, args.objtree, args.sysroot_src),
+  File "/home/sergio/repos/rust-for-linux/./scripts/generate_rust_analyzer.py", line 15, in generate_crates
+    with open(objtree / "include" / "generated" / "rustc_cfg") as fd:
+FileNotFoundError: [Errno 2] No such file or directory: 'include/generated/rustc_cfg'
+make[1]: *** [rust/Makefile:392: rust-analyzer] Error 1
+make: *** [Makefile:1837: rust-analyzer] Error 2
+
+
+...just create 'include/generarted/rust_cfg' and run the command again. 
+this will create a file: rust-project.json for the rust LSP server
+
+make LLVM=1 -j12 rustfmtcheck # check the formating
+
+make LLVM=1 -j12 rustfmt # format it
+
+make LLVM=1 -j12 rustdoc # generate documentation
+
+make LLVM=1 -j12 CLIPPY=1 # linter
+
+make LLVM=1 -j12 rusttest # run tests on the host
+
+It is possible to enable KUNITS and rust tests for KUNITs.
+
 ```
 
