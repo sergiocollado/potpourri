@@ -1,6 +1,6 @@
 # List of webs about interesting stuff
 
-Awesome!! https://www.microsoft.com/en-us/research/project/tuva-richard-feynman/?from=http%3A%2F%2Fresearch.microsoft.com%2Fapps%2Ftools%2Ftuva%2Findex.html#data=3
+Awesome!! https://www.feynmanlectures.caltech.edu/
 
 tech dictionary: https://techterms.com/
 
