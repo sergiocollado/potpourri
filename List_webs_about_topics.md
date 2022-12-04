@@ -1423,3 +1423,10 @@ Nice:
 Distributed systems:
  - https://www.csd.uoc.gr/~hy556/material.html
  - https://www.distributedsystemscourse.com/
+ - https://pdos.csail.mit.edu/6.824/
+ - https://github.com/Sorosliu1029/6.824
+ 
+computer science
+ - http://www.cs.cmu.edu/afs/cs/academic/class/15213-f17/www/schedule.html
+ - https://github.com/Sorosliu1029/CSAPP-Labs
+
