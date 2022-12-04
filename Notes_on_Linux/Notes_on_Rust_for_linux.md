@@ -118,6 +118,7 @@ WORKDIR /home/dev
 
 RUN git clone https://github.com/Rust-for-Linux/linux.git 
 RUN git clone https://github.com/mirror/busybox.git
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 RUN rustup component add rust-src
 RUN cd $HOME/linux && cargo install --locked --version $(scripts/min-tool-version.sh bindgen) bindgen
 RUN cd $HOME/linux && rustup override set $(scripts/min-tool-version.sh rustc)
