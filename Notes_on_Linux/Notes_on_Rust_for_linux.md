@@ -25,6 +25,7 @@ lwn.net More rust concepts for the kernel: https://lwn.net/Articles/869428/
 
 article: https://www.memorysafety.org/blog/memory-safety-in-linux-kernel/
 
+kernel crate: https://rust-for-linux.github.io/docs/kernel/
 
 ## Videos: 
 
