@@ -44,6 +44,7 @@ kernel crate: https://rust-for-linux.github.io/docs/kernel/
  - Mentorship Session: Rust for Linux: Code Documentation & Tests: https://youtu.be/J8yoUQKEY5g
  - Mentorship Session: Writing Linux Kernel Modules in Rust: https://youtu.be/-l-8WrGHEGI
  - files from the previous video: https://drive.google.com/drive/folders/1nmUhDVJxCKolkDN64U7Brm4kBQrvUGPq
+ - commits from the previous session: https://github.com/wedsonaf/linux/commits/lf-session
  - Kangrejos 2022: https://kangrejos.com/  & https://paulmck.livejournal.com/68136.html
  - LPC 2022: https://youtu.be/Xw9pKeJ-4Bw?list=PLVsQ_xZBEyN0daQRmKO4ysrjkSzaLI6go&t=4320
  - Mentorship Session: Setting Up an Environment for Writing Linux Kernel Modules in Rust: https://www.youtube.com/watch?v=tPs1uRqOnlk
