@@ -25,9 +25,10 @@ Due distrubuted systems are complex, are considered an advanced topic in compute
 
 - Scaling
 - Reliability
+- Failure resiliance
 - Dependency on th ecloud
-- performance (latency/bandwidth)
-- uptime requirments
+- Performance (latency/bandwidth/parallelims computing)
+- Uptime requirments
 
 ## Topics in distributed systems
 
