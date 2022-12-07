@@ -11,6 +11,7 @@ Other references:
 ## What is a distributed system?
 
 A distributed system, is a system which is not centralized on a single computer. So it is divided over several computer. 
+Usually a distributed system is a group of cooperative computers communicating whith each other through a computer network.
 
 This has some advantages:
 - more robust, can tolerate failures of the computers that compose the system.
