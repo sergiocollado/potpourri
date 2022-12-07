@@ -3,6 +3,11 @@
 
 Notes based on http://www.distributedsystemscourse.com/
 
+Other references: 
+- https://www.youtube.com/watch?v=cQP8WApzIQQ&list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB
+- https://pdos.csail.mit.edu/6.824/
+- https://github.com/Sorosliu1029/6.824
+
 ## What is a distributed system?
 
 A distributed system, is a system which is not centralized on a single computer. So it is divided over several computer. 
