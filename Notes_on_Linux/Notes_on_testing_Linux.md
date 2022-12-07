@@ -194,7 +194,15 @@ what does, it takes all the config options and enable them in .config, it will g
 you can build the kernel wit all those options enabled. 
 
 
+## KUnit
 
+reference: https://kunit.dev/
+
+KUnit is a lightweight unit testing framework for the Linux kernel. These tests are able to be run locally on a developer’s workstation without a VM or special hardware.
+
+KUnit is heavily inspired by JUnit, Python’s unittest.mock, and Googletest/Googlemock for C++. KUnit provides facilities for defining unit test cases, grouping related test cases into test suites, providing common infrastructure for running tests, and more.
+
+User-Mode-Linux is a Linux architecture (ARCH=um) which builds the kernel as a normal user-mode binary. It's used, amonst other things, as the default architecture for KUnit tests, and acts as a very fast, lightweight platform for running and testing kernel code.
 
 
 
