@@ -1,5 +1,6 @@
 // reference: https://doc.rust-lang.org/std/net/struct.TcpListener.html
 // reference: https://riptutorial.com/rust/example/4404/a-simple-tcp-client-and-server-application--echo
+// reference: https://github.com/PacktPublishing/Network-Programming-with-Rust
 
 use std::thread;
 use std::net::{TcpListener, TcpStream, Shutdown};
