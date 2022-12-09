@@ -13,6 +13,10 @@ also:  https://aws.amazon.com/getting-started/
 
 and also: https://www.aws.training/LearningLibrary?tab=digital_courses
 
+To create architecture diagrams, use: https://app.diagrams.net/
+
+AWS architecture examples: https://aws.amazon.com/architecture/reference-architecture-diagrams
+
 # [AWS](https://aws.amazon.com/)
 
 Amazon Web Services.
