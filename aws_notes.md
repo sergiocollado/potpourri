@@ -24,13 +24,13 @@ Amazon Web Services.
 AWS free tier: https://aws.amazon.com/free/
 
 
-## Regions and availability zones
+## Regions and availability zones (AZ)
 
 AWS has different locations around the world, where it locates its servers. Inside each region, there are several availability zones,
 in different locations, with different power supplies, facilities ... 
 
 
-## INTRODUCTION to IAM (Identity and Access Management) and policies
+## AWS IAM (Identity and Access Management) and policies
 
 
 IAM provides the right users, the right access, the right resources at the right time.
@@ -60,11 +60,11 @@ arn:<partition=aws>:<service>:<region>:<account_id>:<resource_id>:<resource_id>
 
 ### Policies 
 
-these identites are matched with identities policies 
+These identites are matched with identities policies .
 
 IAM policies allow acess to resources and be as granular as desired.  Different resources can be addresed with the ARN (Amazon Resource Name) 
 
-there two types of policies: identity policies and resources policies.
+There two types of policies: identity policies and resources policies.
 
 policies are defined by three mandatory elements
 - effect: specifies if the effect results in an "Allow", or and explicit "Deny" or and implicit deny in case nothing is explicitly defined.
@@ -96,7 +96,6 @@ https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_pri
 
 https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html
 
-
 https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html
 
 an example policy:
@@ -120,7 +119,7 @@ an example policy:
 }
 ```
 
-remember: EPARC
+remember: `EPARC
 - E effect
 - P principal
 - A action
