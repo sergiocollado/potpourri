@@ -131,8 +131,7 @@ This can be cause as a flaky node in the sytem, o by a malicious node (owned by 
 The two generals problem is a consensus problem. A consensus problem, is a problem in which two nodes
 of the distributed system have to agree. 
 
-In this problem, there are two armies: A and B, and they need to agree if they attack army C in the morning, or retreat. If both armies attack army C in the morning, they would win. But if only one army attacks army C
-it would be defeated. 
+In this problem, there are two armies: A and B, and they need to agree if they attack army C in the morning, or retreat. If both armies attack army C in the morning, they would win. But if only one army attacks army C, that army would be defeated. 
 
 The generals of armies A and B, can only communicate though couriers, and the couriers have to go through 
 the territory of an enemy army C, so may or may not make it to the other general. 
