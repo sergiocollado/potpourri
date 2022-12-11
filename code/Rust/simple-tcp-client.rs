@@ -3,6 +3,7 @@
 // reference: https://riptutorial.com/rust/example/4404/a-simple-tcp-client-and-server-application--echo
 // reference: https://github.com/PacktPublishing/Network-Programming-with-Rust/blob/master/Chapter03/tcp-client.rs
 // reference: https://github.com/PacktPublishing/Network-Programming-with-Rust/blob/master/Chapter03/tcp-client-timeout.rs
+// https://stevedonovan.github.io/rust-gentle-intro/7-shared-and-networking.html#a-better-way-to-resolve-addresses
 
 use std::net::{TcpStream};
 use std::str;
