@@ -2,6 +2,7 @@
 // reference: https://doc.rust-lang.org/std/net/struct.TcpListener.html
 // reference: https://riptutorial.com/rust/example/4404/a-simple-tcp-client-and-server-application--echo
 // https://github.com/aswathy-Packt/Network-Programming-with-Rust
+// https://stevedonovan.github.io/rust-gentle-intro/7-shared-and-networking.html#a-better-way-to-resolve-addresses
 
 use std::thread;
 use std::net::{TcpListener, TcpStream, Shutdown};
