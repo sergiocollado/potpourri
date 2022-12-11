@@ -2,7 +2,9 @@
 
 reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/ <br>
 reference: EEC3-4029 Operating Systems: http://gauss.ececs.uc.edu/Courses/c4029/videos.html <br>
-refernece: linux-kernel-labs: https://linux-kernel-labs.github.io/refs/heads/master/index.html <br>
+reference: linux-kernel-labs: https://linux-kernel-labs.github.io/refs/heads/master/index.html <br>
+reference: https://github.com/shemminger/kernel-examples  -Locking and concurrency in Linux kernel examples <br>
+
 
 ## CONCURRENCY
 
