@@ -1,10 +1,13 @@
+// https://doc.rust-lang.org/std/net/index.html#
 // reference: https://doc.rust-lang.org/std/net/struct.TcpListener.html
 // reference: https://riptutorial.com/rust/example/4404/a-simple-tcp-client-and-server-application--echo
-// reference: https://github.com/PacktPublishing/Network-Programming-with-Rust
+// https://github.com/aswathy-Packt/Network-Programming-with-Rust
 
 use std::thread;
 use std::net::{TcpListener, TcpStream, Shutdown};
 use std::io::{Read, Write};
+use std::env;
+use std::process;
 
 fn handle_client(mut stream: TcpStream) {
     let mut data = [ 0 as u8; 50]; // using 50 byte buffer
@@ -23,9 +26,20 @@ fn handle_client(mut stream: TcpStream) {
 }
 
 fn main() {
-    let listener = TcpListener::bind("0.0.0.0:3333").unwrap();
+    let args: Vec<String> = env::args().collect();
+    println!("{:?}", args);
+
+    if args.len() > 2 {
+        println!("usage is: ./tcp_server <port number>");
+        process::exit(1);
+    }
+
+    let port = &args[1];
+    println!("port: {}", port);
+
+    let listener = TcpListener::bind("0.0.0.0:".to_owned() + port).expect("Bind failed!");
     // accept connections and process them, spawning a new thread for each one
-    println!("Server listening on port 3333");
+    println!("Server listening on port {}", port);
     for stream in listener.incoming() {
         match stream {
             Ok(stream) => {
