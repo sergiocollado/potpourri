@@ -24,6 +24,7 @@ fn main() {
     println!("address: {}", address); 
     println!("port: {}", port); 
 
+    // help connect: https://doc.rust-lang.org/std/net/struct.TcpStream.html#method.connect
     let mut stream = TcpStream::connect(address.to_owned() + ":" + port).expect("Could not connect to the server");
 
     let mut input = String::new();
