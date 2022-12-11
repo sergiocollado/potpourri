@@ -1,3 +1,4 @@
+// https://doc.rust-lang.org/std/net/index.html#
 // reference: https://doc.rust-lang.org/std/net/struct.TcpListener.html
 // reference: https://riptutorial.com/rust/example/4404/a-simple-tcp-client-and-server-application--echo
 // reference: https://github.com/PacktPublishing/Network-Programming-with-Rust/blob/master/Chapter03/tcp-client.rs
@@ -6,10 +7,23 @@
 use std::net::{TcpStream};
 use std::str;
 use std::io::{self, BufRead, BufReader, Write};
+use std::{env, process};
 
 fn main() {
+    let args : Vec<String> = env::args().collect();
 
-    let mut stream = TcpStream::connect("localhost:3333").expect("Could not connect to the server");
+    if args.len() > 4 || args.len() < 3 {
+        println!("usage is: ./tcp_client <address> <port>");
+        process::exit(1);
+    }
+
+    let address = &args[1];
+    let port = &args[2];
+
+    println!("address: {}", address); 
+    println!("port: {}", port); 
+
+    let mut stream = TcpStream::connect(address.to_owned() + ":" + port).expect("Could not connect to the server");
 
     let mut input = String::new();
     let mut buffer : Vec<u8> = Vec::new();
@@ -25,4 +39,3 @@ fn main() {
     }
 
 }
-
