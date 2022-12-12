@@ -25,13 +25,15 @@ fn main() {
     println!("address: {}", address); 
     println!("port: {}", port); 
 
-    // connect: https://doc.rust-lang.org/std/net/struct.TcpStream.html#method.connect
     let mut stream = TcpStream::connect(address.to_owned() + ":" + port).expect("Could not connect to the server");
 
     let mut input = String::new();
     let mut buffer : Vec<u8> = Vec::new();
 
     loop {
+        input.clear();
+        buffer.clear();
+        
         io::stdin().read_line(&mut input).expect("Failed to read from stdin");
         stream.write(input.as_bytes()).expect("Failed to write to server");
 
