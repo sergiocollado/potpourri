@@ -72,7 +72,8 @@ kernel crate: https://rust-for-linux.github.io/docs/kernel/
 - https://blog.hedwing.dev/linux-kernel/intro_to_linux
 - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
 - A first look at Rust in the 6.1 kernel: https://lwn.net/Articles/910762/
-
+- Rust in the 6.2 kernel: https://lwn.net/Articles/914458/
+- 
 
 ### interestig commits
 - rust simple mutex: https://github.com/Rust-for-Linux/linux/commit/47e93d46eaca3a3648837eb6f5ae136812a28831
@@ -81,7 +82,7 @@ kernel crate: https://rust-for-linux.github.io/docs/kernel/
 - static assert: https://github.com/Rust-for-Linux/linux/pull/269
 - https://github.com/Darksonn/linux/commit/8ef510d25f353c9c2e240e067e232b459e737a90
 - https://github.com/Darksonn/linux/commit/ff03d355219af7a4156de81b77b2f423ff3d8a47
-
+- rust: new api for initialization: https://github.com/Rust-for-Linux/linux/pull/909/files#diff-20432b0044e991d44b184c5bfa4cd92681e119758c93ba9fef5f4c629de688f1
 
 
 ### Others 2
