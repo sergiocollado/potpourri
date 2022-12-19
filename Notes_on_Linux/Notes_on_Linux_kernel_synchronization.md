@@ -4,6 +4,8 @@ reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/ <br>
 reference: EEC3-4029 Operating Systems: http://gauss.ececs.uc.edu/Courses/c4029/videos.html <br>
 reference: linux-kernel-labs: https://linux-kernel-labs.github.io/refs/heads/master/index.html <br>
 reference: https://github.com/shemminger/kernel-examples  -Locking and concurrency in Linux kernel examples <br>
+reference: https://github.com/PacktPublishing/Linux-Kernel-Programming/blob/master/Linux-Kernel-Programming-(Part-2)/Linux%20Kernel%20Programming%20Part%202%20-%20Char%20Device%20Drivers%20and%20Kernel%20Synchronization_eBook.pdf  <br>
+
 
 
 ## CONCURRENCY
