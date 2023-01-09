@@ -8,8 +8,8 @@ reference: https://docs.kernel.org/dev-tools/kselftest.html <br>
 reference: https://kselftest.wiki.kernel.org/ <br>
 reference: https://github.com/torvalds/linux/blob/master/Documentation/dev-tools/kselftest.rst <br>
 reference: https://linuxfoundation.org/wp-content/uploads/Mentorship-Session_-Kernel-Validation-With-Kselftest.pdf <br> 
-reference: https://www.youtube.com/watch?v=LQUGxewY1GI "How to write your first kernel selftest" - Michael Ellerman (LCA 2021 Online)
-reference: https://www.youtube.com/watch?v=mpO_iDEMqWQ "Mentorship Session: Kernel Validation With Kselftest"
+reference: https://www.youtube.com/watch?v=LQUGxewY1GI "How to write your first kernel selftest" - Michael Ellerman (LCA 2021 Online) <br>
+reference: https://www.youtube.com/watch?v=mpO_iDEMqWQ "Mentorship Session: Kernel Validation With Kselftest" <br>
 
 The purpose of kselftest is to provide kernel developers and end-users a quick method of running tests against the Linux kernel. 
 
