@@ -198,7 +198,8 @@ you can build the kernel wit all those options enabled.
 
 reference: https://kunit.dev/ <br>
 reference: https://www.youtube.com/watch?v=507n-t0sfcU LPC2019 - KUnit - Unit Testing for the Linux Kernel <br>
-reference: For general information about KUnit and `kunit.py`, please refer to `Documentation/dev-tools/kunit/start.rst`.
+reference: For general information about KUnit and `kunit.py`, please refer to `Documentation/dev-tools/kunit/start.rst`. <br>
+reference: https://docs.kernel.org/dev-tools/kunit/
 
 KUnit is a lightweight unit testing framework for the Linux kernel. These tests are able to be run locally on a developer’s workstation without a VM or special hardware.
 
