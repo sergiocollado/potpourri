@@ -285,6 +285,7 @@ $ make ARCH=um O=.kunit --jobs=24
 [20:23:05] Testing complete. Ran 391 tests: passed: 384, skipped: 7
 [20:23:05] Elapsed time: 65.065s total, 2.901s configuring, 61.347s building, 0.787s running
 ``` 
+./tools/testing/kunit/kunit.py run --make_options LLVM=1 --arch=um
 
 
 
