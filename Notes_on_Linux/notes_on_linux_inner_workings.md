@@ -133,7 +133,7 @@ For example, GMail, in the current interface, has support for it. You can apply 
    - Click at "Copy to clipboard"
    - Open a terminal and change current directory to git-based root project directory
    - Certify that the working copy is clean
-   - Run `git am
+   - Run `git am`
    - Paste the code
    - Type Ctrl-D to finish the insertion
 
