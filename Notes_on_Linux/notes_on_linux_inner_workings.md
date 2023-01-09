@@ -99,9 +99,10 @@ cd linux-stable
 
 ### Patches
 
-Linux development is handled with git as a code repository. https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git
+Linux development is handled with git as a code repository. 
 
-https://git-scm.com/book/en/v2
+ - https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git
+ - https://git-scm.com/book/en/v2
 
 to generate a patch:
 
@@ -109,13 +110,9 @@ to generate a patch:
 git format-patch -1 --pretty=fuller XXXXXXXX
 ```
 
-the code submitted in patches must be signed off
-
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html#sign-your-work-the-developer-s-certificate-of-origin
-
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes
-
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes
+the code submitted in patches must be signed off:
+ - https://www.kernel.org/doc/html/latest/process/submitting-patches.html#sign-your-work-the-developer-s-certificate-of-origin
+ - https://www.kernel.org/doc/html/latest/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes
  
 and the patch prefixes are:  [PATCH], [PATCH RFC] or [RFC PATCH] or [PATCH v4] 
 
