@@ -6,6 +6,8 @@
 
 https://github.com/Rust-for-Linux/rust-out-of-tree-module
 
+Documentation: https://github.com/Rust-for-Linux/linux/tree/rust/Documentation/rust
+
 Main work: https://github.com/Rust-for-Linux/linux
 
 Contribute: https://github.com/Rust-for-Linux/linux/contribute
