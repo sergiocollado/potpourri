@@ -204,12 +204,84 @@ KUnit is heavily inspired by JUnit, Python’s unittest.mock, and Googletest/Goo
 
 UML (User-Mode-Linux) is a Linux architecture (ARCH=um) which builds the kernel as a normal user-mode binary. It's used, amonst other things, as the default architecture for KUnit tests, and acts as a very fast, lightweight platform for running and testing kernel code.
 
+To run KUnit tests, you’ll need to provide a ‘kunitconfig’ file, which contains the list of test modules to build, and their dependencies.
 
+Once you have the kunitconfig file, just run:
 
+```
+./tools/testing/kunit/kunit.py run
+```
 
+Also, You may want to run KUnit with flags like:
 
+```
+./tools/testing/kunit/kunit.py run --timeout=30 --jobs=24 --defconfig
+``` 
 
+The `--defconfig` flag, uses an default kunitconfig in the kernel source.
 
+For more information on the different flags, use: `./tools/testing/kunit/kunit.py run --help`.
+
+This will build a UML (User Mode Linux) kernel, run the specified tests, and print the results (nicely formatted) to the screen.
+
+```
+sergio@laptop:~/repos/linux$ ./tools/testing/kunit/kunit.py run --timeout=30 --jobs=24 --alltests
+[20:22:00] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[20:22:03] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=24
+/usr/bin/ld: warning: arch/x86/um/vdso/vdso.o: missing .note.GNU-stack section implies executable stack
+/usr/bin/ld: NOTE: This behaviour is deprecated and will be removed in a future version of the linker
+/usr/bin/ld: warning: .tmp_vmlinux.kallsyms1 has a LOAD segment with RWX permissions
+/usr/bin/ld: warning: .tmp_vmlinux.kallsyms1.o: missing .note.GNU-stack section implies executable stack
+/usr/bin/ld: NOTE: This behaviour is deprecated and will be removed in a future version of the linker
+/usr/bin/ld: warning: .tmp_vmlinux.kallsyms2 has a LOAD segment with RWX permissions
+/usr/bin/ld: warning: .tmp_vmlinux.kallsyms2.o: missing .note.GNU-stack section implies executable stack
+/usr/bin/ld: NOTE: This behaviour is deprecated and will be removed in a future version of the linker
+/usr/bin/ld: warning: vmlinux has a LOAD segment with RWX permissions
+
+[20:23:04] Starting KUnit Kernel (1/1)...
+[20:23:04] ============================================================
+[20:23:05] =============== time_test_cases (1 subtest) ================
+[20:23:05] [PASSED] time64_to_tm_test_date_range
+[20:23:05] ================= [PASSED] time_test_cases =================
+[20:23:05] ================== resource (2 subtests) ===================
+[20:23:05] [PASSED] resource_test_union
+[20:23:05] [PASSED] resource_test_intersection
+[20:23:05] ==================== [PASSED] resource =====================
+[20:23:05] ================ sysctl_test (10 subtests) =================
+[20:23:05] [PASSED] sysctl_test_api_dointvec_null_tbl_data
+[20:23:05] [PASSED] sysctl_test_api_dointvec_table_maxlen_unset
+[20:23:05] [PASSED] sysctl_test_api_dointvec_table_len_is_zero
+[20:23:05] [PASSED] sysctl_test_api_dointvec_table_read_but_position_set
+[20:23:05] [PASSED] sysctl_test_dointvec_read_happy_single_positive
+[20:23:05] [PASSED] sysctl_test_dointvec_read_happy_single_negative
+[20:23:05] [PASSED] sysctl_test_dointvec_write_happy_single_positive
+[20:23:05] [PASSED] sysctl_test_dointvec_write_happy_single_negative
+[20:23:05] [PASSED] sysctl_test_api_dointvec_write_single_less_int_min
+[20:23:05] [PASSED] sysctl_test_api_dointvec_write_single_greater_int_max
+
+...
+
+[20:23:05] ============== mctp_test_route_input_sk_keys ===============
+[20:23:05] [PASSED] direct match
+[20:23:05] [PASSED] flipped src/dest
+[20:23:05] [PASSED] peer addr mismatch
+[20:23:05] [PASSED] tag value mismatch
+[20:23:05] [PASSED] TO mismatch
+[20:23:05] [PASSED] broadcast response
+[20:23:05] [PASSED] any local match
+[20:23:05] ========== [PASSED] mctp_test_route_input_sk_keys ==========
+[20:23:05] ====================== [PASSED] mctp =======================
+[20:23:05] ============================================================
+[20:23:05] Testing complete. Ran 391 tests: passed: 384, skipped: 7
+[20:23:05] Elapsed time: 65.065s total, 2.901s configuring, 61.347s building, 0.787s running
+``` 
 
 
 
