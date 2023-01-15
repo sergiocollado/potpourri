@@ -10,9 +10,9 @@ reference: Linux kernel memory model: https://www.open-std.org/jtc1/sc22/wg21/do
 
 ## CONCURRENCY
 
-Concurrency is the ability to handle multiple tasks/process with the illusioin or reallyti of simulatanety
+Concurrency is the ability to handle multiple tasks/process with the illusion or really of simulatanety
 
-In single core enviroments, concurrency is achieved via a process called contex-switching, e.g. at a particular time period only a single task 
+In single core enviroments, concurrency is achieved via a process called context-switching, e.g. at a particular time period only a single task 
 gets executed, but tasks run interleaving between them very fasts given the illusion of running simultaneoulsy.
 
 In a multi-core enviroment (parallelism) every core can execute different tasks.
@@ -37,7 +37,7 @@ To find the processor in which a task/process is running:
 ps -eaF | less
 ```
 
-The PSR colummn reports in which CPU is the process running.
+The `PSR` colummn reports in which CPU is the process running.
 
 ### Multiprocessors systems
 
@@ -84,7 +84,7 @@ So this model is simple and workable for small multi-processors, but it will fal
 
 #### Simetric Multriprocesors (SMP)
 
-There is one copy os the operating system in memory but any cpu can run it. This is the model of the linux kernel intiially.
+There is one copy of the operating system in memory but any cpu can run it. This is the model of the linux kernel intially.
 
 The advantage of this model is that it removes the bottleneck of the previous models.
 
@@ -99,35 +99,36 @@ then it just waits. In this way, any CPU can run the operating system, but only 
 
  But in the case of having many CPUs, for example 20 CPUs, there will be long queues of CPUs wainting to get in.
 Fortunately, it is easy to improve. Many parts of the operating system are independent of one another. For
-example, there is no proble wit one CPU running the scheduler wihle another CPU si handling a file system
+example, there is no problem wit one CPU running the scheduler wihle another CPU is handling a file system
 call and a thrird one wi processing a page fault.
 
- This observation leads to splitting the operating system nto independen critical regiions that don not interact
+ This observation leads to splitting the operating system into independent critical regions that don't interact
 with one another. Each critical region is protected by its own mutex, son only one CPU at a time can execute it.
  
 ### Preemtion and context switching in Linux kernel
 
 #### What is preemption?
 
-Preemption means forcefully taking away of the processor from one process and allocating it to another process.  Switching
+Preemption means forcefully taking away of the processor from one process and allocating it to another process. 
 
 Switching from one running task/process to anothe process is known as contex switch. 
 
 In the linux kernel, the scheduler is called after each timer interrupt (that is, quite a few times per second).
 It determines what process si to run next on a variety of factors, including prioriy, time already run, scheduling policy...
 
-The difference betwwen preemption and context switching?
+#### what is the difference between preemption and context switching?
 
 - Preemption : firing of a timer interrupt is preemting the current running process and running the interrupt service 
 routing of timer interrupts.
 - Context switch: what happens when the kernel alters the state of the processors (the registers, mode and stack) between one process thread's context and another. 
 `context_switch()` function is called in the kernel. 
 
-To search for the context_switch in the linux kernel code: 
+To search for the `context_switch` in the linux kernel code: 
 
 ```
 grep -nr 'context_switch()'
 ```
+
 It is defined at: https://elixir.bootlin.com/linux/v6.0/source/kernel/sched/core.c#L5131
 
 ```
@@ -192,7 +193,7 @@ context_switch(struct rq *rq, struct task_struct *prev,
 	return finish_task_switch(prev);
 }
 ```
-MM is the memory management, defined in the strcut mm_struct \*mm.
+`MM` is the memory management, defined in the struct `mm_struct`
 
 #### Preemtion in user and kernel spaces
 
@@ -201,7 +202,7 @@ In user-space, the programs are always preemptible. The kernel interrupts user-s
 So the kernel doesn't wayt fo ruser-space programs to explicity release the processor. This means that
 an infinite loop in an user-space program cannot block the system.
 
-In the kernel space, until 2.6 kernel, the kernel itself was not preepmtible. As soon as a thread entered the kernel, it could not be preempted to execute another thread. The processor could be used to execute another thread  when a syscal was terminated, or when the current thread explicitl asked toe scheduler to run another thread using the schedule(). That meant that an infinete loop in the kernel code would block the entire system.
+In the kernel space, until 2.6 kernel, the kernel itself was not preemptible. As soon as a thread entered the kernel, it could not be preempted to execute another thread. The processor could be used to execute another thread when a `syscall` was terminated, or when the current thread explicitly asked the scheduler to run another thread using the `schedule()`. That meant that an infinete loop in the kernel code would block the entire system.
 
 However, this absence of preemption in the kernel caused several problems with regard to latency and scalability. 
 
