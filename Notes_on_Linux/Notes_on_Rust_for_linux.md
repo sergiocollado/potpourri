@@ -61,6 +61,7 @@ kernel crate: https://rust-for-linux.github.io/docs/kernel/
 - https://lkml.org/lkml/2022/9/19/1105
 - the pull request to enter Linux: https://lore.kernel.org/lkml/202210010816.1317F2C@keescook/
 - about pinning: 
+    - https://rust-lang.github.io/async-book/04_pinning/01_chapter.html
     - https://y86-dev.github.io/blog/safe-pinned-initialization/overview.html
     - https://github.com/y86-dev/pinned-init
     - https://github.com/y86-dev/rfcs/blob/field-projection/text/3318-field-pojection.md 
