@@ -425,7 +425,12 @@ computer vision: https://homepages.inf.ed.ac.uk/rbf/HIPR2/wksheets.htm
 electronic signatures standard: ETSI TS 102 042
 
 
-# INDUSTRIAL manufacturers
+## Economy:
+
+- 1994 lecture: https://youtu.be/72Pq5zKEi_g
+
+
+## INDUSTRIAL manufacturers
 
 http://www.apator.com/en
 
