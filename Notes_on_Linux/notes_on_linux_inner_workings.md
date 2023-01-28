@@ -2410,7 +2410,9 @@ And example of how to write a VFS: https://github.com/torvalds/linux/blob/2c271f
 ## RCU
  
  - https://paulmck.livejournal.com/69622.html
- - 
+ - The RCU api, 2019 edition: https://lwn.net/Articles/777036/
+
+
 ## Other references for laters
 
 - Mentorship Session: Trust and the Linux Kernel Development Model https://youtu.be/YhDVC7-QgkI
