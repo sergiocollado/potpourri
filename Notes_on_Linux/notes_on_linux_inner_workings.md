@@ -1,5 +1,7 @@
 # Notes on linux inner workings
 
+- By the way, the best way to search the kernel code online is: https://elixir.bootlin.com/linux/latest/source/include/linux
+
 Index of Documentation for People Interested in Writing and/or Understanding the Linux Kernel: https://www.kernel.org/doc/html/latest/process/kernel-docs.html
 
 Kernel coding style: https://www.kernel.org/doc/html/latest/process/coding-style.html
