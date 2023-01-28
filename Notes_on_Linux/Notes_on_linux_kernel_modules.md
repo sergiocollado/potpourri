@@ -668,7 +668,7 @@ The purpose of defining `__inittest` function is to check during compile time, t
   MODULE_DESCRIPTION("Arguments Passing Array Example");
   ```
  
-### Symbol and symbol table
+### Symbols and symbol table
 
 A symbol is a name given to a space in memory, like: data (variables) or instructions (functions). 
                                                                    
@@ -687,7 +687,7 @@ module which the function is defined can access it, it cannot be accessed by oth
 - `EXPORT_SYMBOL_GPL` : the exported symbol can be used by only GPL licensed code.
   
   
-The difference between System.map and /proc/cakksyms
+The difference between System.map and /proc/kallsyms
   
  - `/proc/kallsysms`: contains the symbols of dynamically loaded modules as well as builtin modules
  - `system.map` : contains symbols of only builtin modules.
@@ -729,6 +729,8 @@ To check if the symbol has ben exported, load it: `sudo insmod ./symbold_export.
  ### Export a variable or a function
   
 Use: `EXPORT_SYMBOL(<variable_name>)`.
+  
+You can check how the macro is defined here: https://elixir.bootlin.com/linux/latest/source/include/linux/export.h#L56
   
 To check if it was exported, use: `cat /proc/kallsyms | grep <exported_symbol>`
   
