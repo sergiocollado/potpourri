@@ -1,4 +1,4 @@
-# NOTES ON LINUX DEVICE DRIVERS
+# NOTES ON LINUX KERNEL MODULES
 
   
 References: https://lwn.net/Kernel/LDD3/  & http://www.makelinux.net/ldd3/?u=chp-5-sect-5.shtml <br>
