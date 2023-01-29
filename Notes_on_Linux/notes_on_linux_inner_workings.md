@@ -1,4 +1,4 @@
-# Notes on linux inner workings
+# Notes on Linux inner workings
 
 - By the way, the best way to search the kernel code online is: https://elixir.bootlin.com/linux/latest/source/include/linux
 
