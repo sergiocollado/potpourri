@@ -28,7 +28,7 @@ fn main() {
         }
     });
     while status.lock().unwrap().jobs_completed < 10 {
-        println!("waiting... ");
+        println!("waiting... {:?}", status.lock().unwrap().jobs_completed);
         thread::sleep(Duration::from_millis(500));
     }
 }
@@ -36,12 +36,12 @@ fn main() {
 /*
 Output: 
                                                     
-waiting... 
-waiting... 
-waiting... 
-waiting... 
-waiting... 
-waiting... 
+waiting... 0
+waiting... 1
+waiting... 3
+waiting... 5
+waiting... 7
+waiting... 9
 */
 
 // `Arc` is an Atomic Reference Counted pointer that allows safe, shared access
