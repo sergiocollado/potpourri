@@ -91,7 +91,8 @@ kernel crate: https://rust-for-linux.github.io/docs/kernel/
 - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
 - A first look at Rust in the 6.1 kernel: https://lwn.net/Articles/910762/
 - Rust in the 6.2 kernel: https://lwn.net/Articles/914458/
-- 
+- https://hackmd.io/Yp2D8H_hRtuiGD2yYFZyLA
+- https://research.nccgroup.com/2023/02/06/rustproofing-linux-part-1-4-leaking-addresses/
 
 ### interestig commits
 - rust simple mutex: https://github.com/Rust-for-Linux/linux/commit/47e93d46eaca3a3648837eb6f5ae136812a28831
