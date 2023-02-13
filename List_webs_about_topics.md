@@ -428,6 +428,14 @@ electronic signatures standard: ETSI TS 102 042
 ## Economy:
 
 - 1994 lecture: https://youtu.be/72Pq5zKEi_g
+- https://www.jesushuertadesoto.com/articles/
+- https://datosmacro.expansion.com/
+- https://www.longtermtrends.net/
+- https://www.gurufocus.com/
+- https://www.jesushuertadesoto.com/articles/
+- https://www.berkshirehathaway.com/letters/letters.html
+- https://valueinvestorinsight.com/
+- https://seekingalpha.com/
 
 
 ## INDUSTRIAL manufacturers
