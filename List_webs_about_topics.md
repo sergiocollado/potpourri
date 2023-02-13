@@ -436,6 +436,7 @@ electronic signatures standard: ETSI TS 102 042
 - https://www.berkshirehathaway.com/letters/letters.html
 - https://valueinvestorinsight.com/
 - https://seekingalpha.com/
+- https://numantiapatrimonio.com/
 
 
 ## INDUSTRIAL manufacturers
