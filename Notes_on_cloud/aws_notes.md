@@ -7,6 +7,8 @@ reference: https://docs.aws.amazon.com/
 
 Short Introductory videos: https://aws.amazon.com/es/training/intro_series/
 
+hands-on labs: https://aws.amazon.com/getting-started/hands-on/
+
 and: https://www.aws.training/LearningLibrary
 
 also:  https://aws.amazon.com/getting-started/
