@@ -3,21 +3,17 @@
 These are my personal notes, on the AWS Cloud. The aim of this document,is to clarify my ideas, by means
 of writting them down, and have a resource where quickly find answers to my doubts, based on my experience. 
 
-reference: https://docs.aws.amazon.com/
+ - reference: https://docs.aws.amazon.com/
+ - how to create a billing alarm: https://asf.alaska.edu/how-to/data-recipes/create-a-billing-alarm/
+ - Short Introductory videos: https://aws.amazon.com/es/training/intro_series/
+ - hands-on labs: https://aws.amazon.com/getting-started/hands-on/
+ - and: https://www.aws.training/LearningLibrary
+ - also:  https://aws.amazon.com/getting-started/
+ - and also: https://www.aws.training/LearningLibrary?tab=digital_courses
 
-Short Introductory videos: https://aws.amazon.com/es/training/intro_series/
-
-hands-on labs: https://aws.amazon.com/getting-started/hands-on/
-
-and: https://www.aws.training/LearningLibrary
-
-also:  https://aws.amazon.com/getting-started/
-
-and also: https://www.aws.training/LearningLibrary?tab=digital_courses
 
 To create architecture diagrams, use: https://app.diagrams.net/
-
-AWS architecture examples: https://aws.amazon.com/architecture/reference-architecture-diagrams
+- AWS architecture examples: https://aws.amazon.com/architecture/reference-architecture-diagrams
 
 # [AWS](https://aws.amazon.com/)
 
