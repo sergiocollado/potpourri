@@ -437,7 +437,7 @@ electronic signatures standard: ETSI TS 102 042
 - https://valueinvestorinsight.com/
 - https://seekingalpha.com/
 - https://numantiapatrimonio.com/
-
+- https://invertirenbolsa.info/historico_dividendos.htm
 
 ## INDUSTRIAL manufacturers
 
