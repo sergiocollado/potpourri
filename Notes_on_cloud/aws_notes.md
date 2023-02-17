@@ -15,6 +15,11 @@ of writting them down, and have a resource where quickly find answers to my doub
 To create architecture diagrams, use: https://app.diagrams.net/
 - AWS architecture examples: https://aws.amazon.com/architecture/reference-architecture-diagrams
 
+### tutorials 
+ - https://aws.amazon.com/getting-started/hands-on/build-web-app-s3-lambda-api-gateway-dynamodb/
+
+
+
 # [AWS](https://aws.amazon.com/)
 
 Amazon Web Services.
