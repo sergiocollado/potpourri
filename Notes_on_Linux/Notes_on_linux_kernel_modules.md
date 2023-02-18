@@ -193,7 +193,7 @@ the script `kernel-chktaint`:  https://git.kernel.org/pub/scm/linux/kernel/git/t
 To compiile the module, the kermel make file is needed
   
 ```
-ls /lib/modules/'uname -r'/bulid/Makefile
+ls /lib/modules/'uname -r'/build/Makefile
 ```
   
 use the make, with the -C option, that indicates to use the makefile indicated in the folder by -C
@@ -235,7 +235,7 @@ In the code there is a 'printk', this is not printed in the console, for that th
   make -C /lib/modules/`uname -r`/build M=${PWD} modules
  ```
   
- T clean the module: 
+ To clean the module: 
  ```
   make -C /lib/modules/`uname -r`/build M=${PWD} clean
  ```
