@@ -295,7 +295,7 @@ The sources of concurrency on the kernel are:
 - Sleeping and synchronization with user space: Task in the kernel can sleep and thus invoke the scheduler, resulting in running of a new process
 - Symetrical multiprocessor (SMP): two or more processors can execute kernel code at exactly the same time. 
 
-### Example module for porcesor id of kernel thread
+### Example module for procesor id of kernel thread
 
 ```
 static struct task_struct *my_thread;
