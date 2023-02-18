@@ -14,6 +14,8 @@ Kernel newbies : https://kernelnewbies.org/FirstKernelPatch <br>
 Linux device drivers tutorials: https://embetronicx.com/linux-device-driver-tutorials/ <br>
 about kallsyms_lookup_name() +5.7: https://xcellerator.github.io/posts/linux_rootkits_11/ <br>
 
+Fast Linux Kernel Testing with QEMU: https://ncmiller.dev/2016/05/14/linux-and-qemu.html
+
 The kernel API: https://www.kernel.org/doc/htmldocs/kernel-api/index.html
 
 ## What is a device driver.
