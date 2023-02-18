@@ -350,7 +350,7 @@ qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -ni
 # with this we can connect to the VM. 
 
 # add an option for fowarding ports in the VM. We are forwarding the port 5555 local machine to the port 23 of the VM
-qemu-system-x86-64 -nographic -kernel vmlinux -initrd ../busybox/ramdisk.img -nic user,model=rtl8139,hostfwd=tcp::5555-:23
+qemu-system-x86_64 -nographic -kernel vmlinux -initrd ../busybox/_install/ramdisk.img -nic user,model=rtl8139,hostfwd=tcp::5555-:23
 
 # ..other topic, mounting /dev 
 VM# mount -t devtmps none /dev
