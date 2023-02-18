@@ -116,7 +116,7 @@ Switching from one running task/process to anothe process is known as contex swi
 In the linux kernel, the scheduler is called after each timer interrupt (that is, quite a few times per second).
 It determines what process si to run next on a variety of factors, including prioriy, time already run, scheduling policy...
 
-#### what is the difference between preemption and context switching?
+#### What is the difference between preemption and context switching?
 
 - Preemption : firing of a timer interrupt is preemting the current running process and running the interrupt service 
 routing of timer interrupts.
@@ -231,7 +231,7 @@ Pre-emption on kernel level makes things harder for the kernel developer: The ke
 
  #### Reentrancy
  
- A kernel control path denotes the sequence of instruction executed by the kernel to handle a system call, and execption or an interrupt.
+ A kernel control path denotes the sequence of instruction executed by the kernel to handle a system call, and exeption or an interrupt.
  
  The Linux kernel is reentrant. This means that several processes may be executing in kernel mode at the same time. 
  
@@ -651,13 +651,13 @@ The problem with per-CPU variables are the interrruts. Whle per-CPU variables pr
 
 ## ATOMIC OPERATIONS
 
-Several assemply language instruction are of the tryp RUW: Read Update Write. So they access a given memory location twice: the firs time to read the old value, and the second time to write a new value. 
+Several assemply language instruction are of the tupe RUW: Read-Update-Write. So they access a given memory location twice: the firs time to read the old value, and the second time to write a new value. 
 
 Suppose that two kernel control paths running on two CPUs try to "read-update-write" the same meory location at the same time, by executing non-atomic operatoins. 
 
 At first, both CPUs try to read the same lcoatin, but the mrmory arbiter (the hardware circuit that serializes accesses to the RAM chips) steps in to grant access to one of them and delay the other.
 
- However, when teh first read operation has completed, the delayed CPU reads exactly the same (old) value from the memory location. 
+ However, when the first read operation has completed, the delayed CPU reads exactly the same (old) value from the memory location. 
  
   Both CPUs then try to write the same (new) value to the memory location; again, the bus memory access is serialized by the memory arbiter, and eventually both write oeprations succed. 
   
@@ -681,7 +681,7 @@ This code section is known as a **critical section**
 
 ### Atomic operations
 
-The easiest way to prevent race conditions due to "read-modify-write" instructions is by ensuering that such oerpations are atomic at the chip level.
+The easiest way to prevent race conditions due to "read-modify-write" instructions is by ensuring that such operations are atomic at the chip level.
 
 Every such operation must be executed in a single instruction without being interrupted in the middle and avoiding accesses to the same memory location by other CPUs. 
 
@@ -689,9 +689,9 @@ Most CPUs instruction set architectures define instruction opcodes that can perf
 
 In general, special lock instructions are used to prevent the other processors in the system from working until the current processor has completed the next action. 
 
-Whe you write C code, you cannot guarantee that the compiler will use an atomic instruction for an operation like a = a +1 or even for a++.
+When you write C code, you cannot guarantee that the compiler will use an atomic instruction for an operation like `a = a +1` or even for `a++`.
 
-Thus, the Linux kernel provides a sepcial atomi_t type (an atommically accessible counter) and some special fucntions and macros that act on atomic_t variables.
+Thus, the Linux kernel provides a sepcial atomic_t type (an atomically accessible counter) and some special functions and macros that act on atomic_t variables.
 
 ```
 Header file: <asm/atomic.h>
