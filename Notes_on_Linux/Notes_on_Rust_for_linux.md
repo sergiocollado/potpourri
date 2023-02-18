@@ -269,11 +269,11 @@ mount -t proc none /proc
 
 # now we can boot, and to get out use the command: poweroff
 
-# move to th elinux folder.
+# move to the linux folder.
 
 #sergio@debian:~/linux$   make LLVM=1 menuconfig
 
-# configure: Main Menu -> Kernel hacking -> Sample kerenl code -> Rust samples -> Echo server module 
+# configure: Main Menu -> Kernel hacking -> Sample kernel code -> Rust samples -> Echo server module 
 # you may need to enable the samples:  Depends on: SAMPLES [=y] && SAMPLES_RUST [=y]   
 # building the kernel again it will include the echo server
 
