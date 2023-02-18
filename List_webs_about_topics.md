@@ -438,6 +438,10 @@ electronic signatures standard: ETSI TS 102 042
 - https://seekingalpha.com/
 - https://numantiapatrimonio.com/
 - https://invertirenbolsa.info/historico_dividendos.htm
+- https://www.finect.com/usuario/Josetrecet/articulos/que-etf-fondo-cotizado
+- https://foro.masdividendos.com/
+- https://www.visualcapitalist.com/
+- 
 
 ## INDUSTRIAL manufacturers
 
