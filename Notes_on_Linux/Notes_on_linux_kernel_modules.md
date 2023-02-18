@@ -192,7 +192,7 @@ the script `kernel-chktaint`:  https://git.kernel.org/pub/scm/linux/kernel/git/t
   
 ### Compiling it
   
-To compiile the module, the kermel make file is needed
+To compile the module, the kernel make file is needed
   
 ```
 ls /lib/modules/'uname -r'/build/Makefile
@@ -274,13 +274,13 @@ $ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..
   
    In case the files are not pressent in the directory passsed to `M=`, the compiling will stop with an error. If the files are present the source file is compiled to a modulename.", and "modulename.mod.c" is created which is compiled to "modulename.mod.o"
   
-  The modulename.mod.c is a file that basically contains the information about th emodule (Version information etc)  
+  The `modulename.mod.c` is a file that basically contains the information about th emodule (Version information etc)  
   
-  The mdoulename.o and the modulename.mod.o are linekd together by modpost in the next stage to create the "modulename.ko"
+  The `modulename.o` and the `modulename.mod.o` are linked together by `modpost` in the next stage to create the `modulename.ko`
   
-  The file "module.symvers" will contain any of the external symobls that is defined in your module and not present in the module.symvers of the kernel.
+  The file `module.symvers` will contain any of the external symobls that is defined in your module and not present in the `module.symvers` of the kernel.
   
-  The file "modules.order" is used in case several modules are compiled together, it will list out th eorder in which the compiilation and createion of .ko is done. 
+  The file `modules.order` is used in case several modules are compiled together, it will list out the order in which the compilation and creation of .ko is done. 
   
   
  ### Printk
@@ -382,7 +382,7 @@ HelloWorldModule.c:
   static int __init test_hello_init(void)
   {
       printk(KERN_INFO "%s: In init\n", __func__);
-      furnc();
+      func();
       return 0;
   }
   
@@ -470,9 +470,9 @@ The kernel keeps all the event logs in a ring bugger. This is done to avoid the 
   dmesg -w & # the & is to run it in background. 
  ``` 
 
-### kernel module without an exit function?
+### Is possible a kernel module without an exit function?
   
-When the is not exit function, the module will not be possible to be removed. When try to be removed, it
+When there is not exit function, the module will not be possible to be removed. When try to be removed, it
 will report an EBUSY module. This is defined in `kernel/module.c` at `SYSCALL_DEFINE2(delete_module, ...`
   
 ### kernel module without an init function?
