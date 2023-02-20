@@ -2419,4 +2419,5 @@ And example of how to write a VFS: https://github.com/torvalds/linux/blob/2c271f
 ## Other references for laters
 
 - Mentorship Session: Trust and the Linux Kernel Development Model https://youtu.be/YhDVC7-QgkI
-
+- https://thenewstack.io/demystifying-linux-kernel-initialization/
+- A Whistlestop Tour of Embedded Linux:  https://www.youtube.com/watch?v=wwtWS0OcQJI&t=1034s
