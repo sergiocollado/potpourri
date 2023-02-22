@@ -1,3 +1,6 @@
+//reference: https://www.youtube.com/watch?v=4GU2YNsHrwg&t=4s
+//reference: https://youtu.be/RVvVQpIy6zc
+
 #include <iostream>
 #include <string>
 #include <vector>
