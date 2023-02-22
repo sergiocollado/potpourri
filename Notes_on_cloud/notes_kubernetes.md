@@ -497,6 +497,10 @@ the main types of CNI plugins are:
 - network plugins, are responsible to connect the pod to the network 
 - IPAM (IP Address Manager) which are resoponsible for allocatin pod IP addresses. 
 
+also see: 
+
+- What is Istio: https://www.redhat.com/en/topics/microservices/what-is-istio
+- What's a service mesh? https://www.redhat.com/en/topics/microservices/what-is-a-service-mesh
 
 ## Services
 
