@@ -377,6 +377,12 @@ Once this step is complete, it is time to compile the kernel. Using the '-j' opt
 make -j3 all
 ```
 
+or to use all processors
+
+```
+make -j$(nproc)
+```
+
 the end of compilation should be like ...
 
 ```
@@ -399,6 +405,11 @@ Kernel: arch/x86/boot/bzImage is ready  (#1)
 and it should create a 'vmlinux' image.
 
 
+
+```
+make modules
+```
+
 Once the compilation is done, you can install it
 
 ```
@@ -406,6 +417,10 @@ su -c "make modules_install install"
 ```
 
 This command will install the kernel, and execute 'update-grub' to add it to the grub menu. 
+
+```
+update-grub
+```
 
 Before rebooting the system, we can store some logs to compare it later, and look for regression or new errors
 
