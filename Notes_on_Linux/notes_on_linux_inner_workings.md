@@ -416,6 +416,13 @@ Once the compilation is done, you can install it
 su -c "make modules_install install"
 ```
 
+Then install the kernel (in case you want to update/test the kernel)
+
+```
+make install 
+```
+
+
 This command will install the kernel, and execute 'update-grub' to add it to the grub menu. 
 
 ```
