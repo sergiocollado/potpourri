@@ -23,7 +23,7 @@ The kernel API: https://www.kernel.org/doc/htmldocs/kernel-api/index.html
 A device driver is a code, that contrals a given tye of device in the compuer.
 
 A device driver has three sides
-- one side talks to the kernen
+- one side talks to the kernel
 - one side talks to the hardware
 - one side talks to the user. 
 
@@ -117,6 +117,8 @@ Once a module gets accepted to be included, it becomes an in-tree module.
 - rmmod: to remove modules.
 - depmod: reports dependecies between modules.
 
+ reference: https://www.tecmint.com/load-and-unload-kernel-modules-in-linux/
+  
 ## Hello World kernel module
   
   In C/C++ programming the main() function is the entry point and exit point
