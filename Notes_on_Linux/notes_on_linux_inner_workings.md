@@ -170,7 +170,7 @@ The packaget build-essential is needed in the system.
 
 
 ```
-sudo apt-get install build-essential vim git cscope libncurses-dev libssl-dev bison flex
+sudo apt-get install build-essential gcc make vim git cscope libncurses-dev libssl-dev bison flex
 sudo apt-get install git-email
 ```
 
@@ -2424,4 +2424,7 @@ And example of how to write a VFS: https://github.com/torvalds/linux/blob/2c271f
 - Understanding the Linux Kernel Initcall Mechanism: https://kernelnewbies.org/Documents/InitcallMechanism
 - A Whistlestop Tour of Embedded Linux:  https://www.youtube.com/watch?v=wwtWS0OcQJI&t=1034s
 - Make Linux safer… or die trying: https://www.theregister.com/2023/02/14/make_linux_safer_p1/
+- https://www.phoronix.com/news/Linux-6.3-Networking-BIG-TCP
+- BIG TCP: https://lwn.net/Articles/883713/
+
 
