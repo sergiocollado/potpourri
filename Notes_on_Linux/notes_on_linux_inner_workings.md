@@ -422,8 +422,9 @@ Then install the kernel (in case you want to update/test the kernel)
 make install 
 ```
 
+reference: https://www.cyberciti.biz/tips/compiling-linux-kernel-26.html
 
-This command will install the kernel, and execute 'update-grub' to add it to the grub menu. 
+This command will install the kernel, and execute 'update-grub' to add it to the grub menu: 
 
 ```
 update-grub
