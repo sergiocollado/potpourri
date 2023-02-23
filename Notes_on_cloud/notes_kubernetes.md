@@ -2947,7 +2947,7 @@ autoscaling: https://learnk8s.io/kubernetes-autoscaling-strategies
  - https://github.com/moabukar/CKS-Exercises-Certified-Kubernetes-Security-Specialist
  - https://killercoda.com/killer-shell-cks
  - k8s security playlist: https://www.youtube.com/playlist?list=PLeLcvrwLe1859Rje9gHrD1KEp4y5OXApB
- 
+ - https://sysdig.com/blog/top-owasp-kubernetes/
  
 ## More advanced topics: 
  
