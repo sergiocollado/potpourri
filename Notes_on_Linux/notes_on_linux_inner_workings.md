@@ -283,11 +283,10 @@ It has four main components:
 
 #### Compiling the kernel 
 
-reference: http://www.kroah.com/lkn/ -linux kernel in a nutshell
-
-reference: https://www.cyberciti.biz/tips/compiling-linux-kernel-26.html
-
-example: https://youtu.be/NVWVHiLx1sU 
+ - reference: http://www.kroah.com/lkn/ -linux kernel in a nutshell
+ - reference: https://www.cyberciti.biz/tips/compiling-linux-kernel-26.html
+ - example: https://youtu.be/NVWVHiLx1sU 
+ - example: https://www.youtube.com/watch?v=APQY0wUbBow
 
 The kernel configuration is in the file named .config at the top of the kernel source tree.
 
