@@ -429,6 +429,18 @@ This command will install the kernel, and execute 'update-grub' to add it to the
 update-grub
 ```
 
+Summing up the steps to compile and install the kernel:
+
+```
+make defconfig
+make menuconfig
+make -j$(nproc)
+make modules
+sudo make modules_install install
+sudo make install
+sudo update-grub
+```
+
 Before rebooting the system, we can store some logs to compare it later, and look for regression or new errors
 
 We use the dmesg with the -t option, to not display the timestamps. This will make it easier later for comparation.
