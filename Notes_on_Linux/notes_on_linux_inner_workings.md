@@ -285,8 +285,10 @@ It has four main components:
 
  - reference: http://www.kroah.com/lkn/ -linux kernel in a nutshell
  - reference: https://www.cyberciti.biz/tips/compiling-linux-kernel-26.html
+ - reference: https://rev2.vasanthdeveloper.com/compiling-the-linux-kernel-on-ubuntu-debian/index.html
  - example: https://youtu.be/NVWVHiLx1sU 
  - example: https://www.youtube.com/watch?v=APQY0wUbBow
+ - example: https://youtu.be/E4yRcmQqvWM
 
 The kernel configuration is in the file named .config at the top of the kernel source tree.
 
@@ -402,7 +404,6 @@ the end of compilation should be like ...
 Kernel: arch/x86/boot/bzImage is ready  (#1)
 ```
 and it should create a 'vmlinux' image.
-
 
 
 ```
