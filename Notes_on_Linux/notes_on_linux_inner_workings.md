@@ -170,7 +170,7 @@ The packaget build-essential is needed in the system.
 
 
 ```
-sudo apt-get install -y build-essential gcc make vim git cscope libncurses-dev libssl-dev bison flex libelf-dev
+sudo apt-get install -y build-essential gcc make vim bc git cscope rsync libncurses-dev libssl-dev bison flex libelf-dev
 sudo apt-get install git-email
 ```
 
