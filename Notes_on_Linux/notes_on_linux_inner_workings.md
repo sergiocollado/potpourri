@@ -432,6 +432,7 @@ update-grub
 Summing up the steps to compile and install the kernel:
 
 ```
+make help
 make defconfig
 make menuconfig
 make -j$(nproc)
