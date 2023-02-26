@@ -15,9 +15,12 @@ of writting them down, and have a resource where quickly find answers to my doub
 To create architecture diagrams, use: https://app.diagrams.net/
 - AWS architecture examples: https://aws.amazon.com/architecture/reference-architecture-diagrams
 
-### tutorials 
+### tutorials
+ - setting up the AWS enviroment: https://aws.amazon.com/getting-started/guides/setup-environment/
  - https://aws.amazon.com/getting-started/hands-on/build-web-app-s3-lambda-api-gateway-dynamodb/
-
+ - how to control costs in free tier: https://aws.amazon.com/getting-started/hands-on/control-your-costs-free-tier-budgets/
+ - automate cost anomally detection: https://aws.amazon.com/aws-cost-management/aws-cost-anomaly-detection/
+ - estimate costs for your architecture solution: https://calculator.aws/#/
 
 
 # [AWS](https://aws.amazon.com/)
