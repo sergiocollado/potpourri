@@ -2956,6 +2956,6 @@ autoscaling: https://learnk8s.io/kubernetes-autoscaling-strategies
 - **Kernel-bypass techniques for high-speed network packet processing** https://youtu.be/MpjlWt7fvrw
 - **DPDK deep-dive** https://youtu.be/VJ8CVN3oXMw
  
-Understanding kubernetes by breaking it down: https://youtu.be/90kZRyPcRZw?list=RDCMUCvqbFHwN-nwalWPjPUKpvTA
- 
- 
+ - Understanding kubernetes by breaking it down: https://youtu.be/90kZRyPcRZw?list=RDCMUCvqbFHwN-nwalWPjPUKpvTA
+ - 4 kubernetes patterns: https://itnext.io/4-container-design-patterns-for-kubernetes-a8593028b4cd
+
