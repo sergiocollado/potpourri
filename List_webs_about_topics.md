@@ -429,9 +429,7 @@ electronic signatures standard: ETSI TS 102 042
 
 - 1994 lecture: https://youtu.be/72Pq5zKEi_g
 - https://www.jesushuertadesoto.com/articles/
-- https://datosmacro.expansion.com/
 - https://www.longtermtrends.net/
-- https://www.gurufocus.com/
 - https://www.jesushuertadesoto.com/articles/
 - https://www.berkshirehathaway.com/letters/letters.html
 - https://valueinvestorinsight.com/
@@ -441,7 +439,16 @@ electronic signatures standard: ETSI TS 102 042
 - https://www.finect.com/usuario/Josetrecet/articulos/que-etf-fondo-cotizado
 - https://foro.masdividendos.com/
 - https://www.visualcapitalist.com/
-- 
+
+### Economy data
+- https://datosmacro.expansion.com/
+- https://tradingeconomics.com/
+- https://www.visualcapitalist.com/
+- https://www.gurufocus.com/
+- https://www.tradingview.com/
+- https://fred.stlouisfed.org/
+- https://www.ecb.europa.eu/stats/html/index.en.html
+
 
 ## INDUSTRIAL manufacturers
 
