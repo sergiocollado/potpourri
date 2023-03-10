@@ -34,6 +34,8 @@ Some of its features are:
  reference: https://cloud.google.com/blog/products/gcp/bringing-pokemon-go-to-life-on-google-cloud
 
  reference:  A Brief History of Kubernetes, Its Uses, and Its Issues  https://youtu.be/StlZwvsq9tc
+ 
+ reference: Microservice Architecture and System Design with Python & Kubernetes https://youtu.be/hmkF77F9TLw
 
 # How do Kubernetes works?
 
@@ -2951,6 +2953,7 @@ autoscaling: https://learnk8s.io/kubernetes-autoscaling-strategies
  
 ## More advanced topics: 
  
+- Microservice Architecture and System Design with Python & Kubernetes https://youtu.be/hmkF77F9TLw
 - Five Technical Challenges to Optimize Kubernetes for 5G Deployments: https://platform9.com/blog/five-technical-challenges-to-optimize-kubernetes-for-5g-deployments/
 - **Kubernetes Networking Intro and Deep-Dive - Bowei Du & Tim Hockin, Google**  https://youtu.be/tq9ng_Nz9j8
 - **Kernel-bypass techniques for high-speed network packet processing** https://youtu.be/MpjlWt7fvrw
