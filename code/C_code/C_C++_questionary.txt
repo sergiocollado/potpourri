@@ -1,0 +1,219 @@
+
+
+PART 1: Please answer the following questions (recommended time: 20 min ~  1 min per question)
+
+
+What is the difference between Struct and Union keywords?
+
+Both of them are types agregations, but wiht different features. 
+
+ A Struct is a data type, that comprises other data types. All those sub data types are of public nature.
+
+An Union, is data type, that has space (memory) for different sub-data type. For example, a defined unión  based upon a char, int and float type will allocate memory for support any of those types. But only will allocate one of these subtypes at a given time.
+
+
+
+What is the difference between Stack and Heap memory allocation?
+
+In the memory model of a computer, in the RAM there are two common memory regions that serve different purposes, those are the Heap and the Stack.
+
+The Stack mainly will be used, to store value of local variables or function parameters in different function calls. 
+
+The Heap is a memory región that will serve to allocate dynamic memory, as that used when malloc(), new() or similar functions are called.
+
+
+Explain the const, static and volatile keywords. What would imply a const volatile variable declaration?
+
+Const, static and volatile keywords, are variable definitors in C.
+
+Const: stands for constant, but it actually is better understood as a “read only”.  A variable defined with const, will trigger an error if it is given a new value
+
+Static:  the “static” keyword actually holds different meanings depending on where it is used in the code. 
+In a C file, if a function is defined as static, it stands to mean, that the function is “private” to that source file. It cannot be used from another file.
+
+Volatile: the “volatile” keyword, indicate that a given varible is most problable to have its value changed in another file, so the compiler must not made any assumptions about it and prevent performance optimizations to be made in the code that uses that variable, because it could modify the expected behavior. 
+
+
+Const Volatile:  This keyword combo is usually used in embedded systems, very often wit MMR (memory managed registers) as those used with analog inputs or other data ports. The const part, indicates that it will be udpated in other part of the code, and in the given file it should not be writen, (read only). The volatile indicates that the value of the variable will be udpated in another file.
+
+
+
+What is the difference between a linked list and an array?
+
+An array is a sequentially stored collection of data and is size is setted at its creation, 
+A linked list is a structure of a given data, and two pointers one, that points to the previous element and one that points to the next elements. They dont need to be allocated sequentially. It usually supports several operations like insert nodes, that are not supported by arrays.
+
+
+
+
+What is a system call? What is the difference between a system call and a function call?
+
+A system call is a call to the operating system. In standard OS a given program runs in user space, or with user privileges, an its memory space is restricted. A system call is a call to the operating system, so it runs in priviliged mode, and its meory space is not restricted, usually it can access everywhere if needed.
+
+
+
+Describe what happens in a function call.
+
+
+
+
+
+What is the MMU?
+Is the memory management unit, is a system to support the translaction between the lineal memory space to the physical memory, and handling the virtual memory if needed.
+
+
+What are interrupts? Why do we need them?
+
+Interrupts are a system interruptions in the normal flow of a program. They are usefull because it allow us to do sevelar things difficult to do otherwise, as trigger interruptions to timer, or capturing analog data, or pulses.
+
+
+
+
+
+What is the difference between API and ABI?
+
+API, is an application program interface, usually are the function call to interface to a library or a given code.
+
+ABI is application binary interface, those are the rules to follow in the stack, as how to use register, or the order of the parameters in a function call in the stac.
+
+
+Does a C program start from main?
+
+In the code, yes, also may have a previos allocation of data, and it really is lauched from the system loader
+
+
+
+What is f(0) in virtual f(0) = 0 ?
+
+
+
+
+
+What does it mean when a constructor in a class is followed by = delete? By = default?
+
+
+
+
+
+What are dynamic_cast, static_cast, const_cast, reinterpret_cast?
+
+Casting redefinition keywords in c++
+
+
+
+
+What are shared_ptr, unique_ptr?
+
+Those are a type of smart pointers. 
+
+Shared_pointers, are used mainly to point to several elements, and those pointers will only will be deleted when the last of the shared pointer will be deleted. So it makes easier to use the “free” command. 
+
+Unique_ptr, is a type of pointer, that it is unique, so it cannot have a copy. 
+
+
+Define the data structure std::vector from the basic C++ library
+
+
+
+
+
+Assuming a Lector class, what is the difference between:
+Lector l;
+Lector *l = new Lector();
+From the memory standpoint, in case you need to manage a big amount of data, which option would you use? And on the contrary?
+
+The first one is a static declaration, and the second one is a dynamic declaration an it will be stored in the heap. 
+
+If the system has to handle lots of data I would use a dynamic approach as I can dispose of it when I want. 
+
+What is Defensive Programming? Mention a few good practices
+
+Is the programming style that focus on preventing errors.
+
+Good practices: keep it simple!, always check input data and parametes, check function return values, always handle exceptions or error reports, have fallback strategies, and error handling functions.
+
+
+
+What is MISRA?
+
+A code standard focused in safety, created by the AUTOSAR consortium
+
+
+
+What shall be considered when using dynamic allocation in critical systems?
+
+Not really, dynamic allocations is prone to fatal errors, and due to that is better to avoid it.
+
+
+
+
+
+
+PART 2: The following code written in C has (at least) 6 issues. Please document errors you can find (recommended time: 10 min)
+	
+	struct sensor_struct 
+	{ 
+		int status; 
+		uint8 value;
+	}; 
+	 
+	read_sensor(struct sensor_struct sensor) 
+	{ 
+		while (!sensor->status); 
+		{ 
+			if (sensor->value < 0) 
+				sensor->value += 1024; 
+			return sensor->value; 
+		} 
+	}
+	
+
+
+The function read_sensor is missing a return type in the definition
+In the function the input parameter should be: (sensor_struct sensor)
+while (!sensor->status);   - sensor is used as a pointer, and it is not.
+while (!sensor->status);  - the semicolon is wrong
+sensor->value += 1024;   – value is a uint8 and will overflow with +=1024. 
+sensor->value < 0 – value is a uint8, and it will never have a value less that 0 . this will complain at compiling time.
+
+
+PART 3: Write a C program to copy characters from char *ptr1 to char *ptr2. Please comment the code well and state any assumptions you make. Please explain the considerations about the underlying system that need to be taken in account.
+(recommended time: 30 min)
+
+
+#include <stdio.h>
+#include <string.h>
+#define STR_LEN 1000
+
+
+int main () {
+   //the destination string should have at least the same elements that the source string 
+   char src[STR_LEN];
+   char dest[STR_LEN];
+   char *result; 
+  
+   //request input string 
+   scanf("%[^\n]%*c", src);
+
+   //clear the destination string.
+   memset(dest, '\0', sizeof(dest));
+
+   //copy the string. The strncpy is safer that strcpy
+   result = strncpy(dest, src, sizeof(dest)); 
+
+   // if the operation succeds the function returns the  
+
+   if (result == dest) 
+   {
+      printf("string copied OK); 
+      return(0);//return succedd
+   }
+   else 
+   {
+      printf("string copied NOK);
+      return(1); //report failure
+   } 
+  
+   return(1);
+}
+
