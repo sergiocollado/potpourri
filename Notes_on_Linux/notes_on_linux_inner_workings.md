@@ -2462,5 +2462,6 @@ And example of how to write a VFS: https://github.com/torvalds/linux/blob/2c271f
 - Make Linux safer… or die trying: https://www.theregister.com/2023/02/14/make_linux_safer_p1/
 - https://www.phoronix.com/news/Linux-6.3-Networking-BIG-TCP
 - BIG TCP: https://lwn.net/Articles/883713/
+- Linux Kernel Oops!: https://nakedsecurity.sophos.com/2023/03/13/linux-gets-double-quick-double-update-to-fix-kernel-oops/
 
 
