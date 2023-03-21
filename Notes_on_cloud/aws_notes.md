@@ -21,8 +21,11 @@ To create architecture diagrams, use: https://app.diagrams.net/
  - how to control costs in free tier: https://aws.amazon.com/getting-started/hands-on/control-your-costs-free-tier-budgets/
  - automate cost anomally detection: https://aws.amazon.com/aws-cost-management/aws-cost-anomaly-detection/
  - estimate costs for your architecture solution: https://calculator.aws/#/
-
-
+ - Highly Available Web Application Workshop: https://catalog.us-east-1.prod.workshops.aws/workshops/3de93ad5-ebbe-4258-b977-b45cdfe661f1/en-US
+ - Networking workshop: https://catalog.workshops.aws/networking/en-US
+ - Hands-on firewall workshop: https://catalog.us-east-1.prod.workshops.aws/workshops/d071f444-e854-4f3f-98c8-025fa0d1de2f/en-US
+ - Networking workshops: https://workshops.aws/card/NETWORK
+ - 
 # [AWS](https://aws.amazon.com/)
 
 Amazon Web Services.
