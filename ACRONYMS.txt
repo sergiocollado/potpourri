@@ -1,3 +1,5 @@
+RPO - Recovery Point Objetive
+RTO - Recovery Time Objetive
 RAID - Reduntant Array of Inexpesive (or Independent) Disks
 CMS - Content Management System.
 CNM - Container Network Model.
