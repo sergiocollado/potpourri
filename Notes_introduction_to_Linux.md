@@ -659,7 +659,7 @@ to change the default permissions to read/write permissions for everybody.
 - ps - information about the processes - http://man7.org/linux/man-pages/man1/ps.1.html
 - pstree - ps in a tree http://man7.org/linux/man-pages/man1/pstree.1.html
 - trace - info about system call and traces (also theck strace, ptrace and ltrace).
-- perf - perf tools https://es.m.wikipedia.org/wiki/Perf_(Linux)   https://perf.wiki.kernel.org/index.php/Main_Page   https://man7.org/linux/man-pages/man1/perf.1.html
+- perf - perf tools https://es.m.wikipedia.org/wiki/Perf_(Linux)   https://perf.wiki.kernel.org/index.php/Main_Page   https://man7.org/linux/man-pages/man1/perf.1.html   https://www.brendangregg.com/perf.html
 - pmap - info about process memory stats http://man7.org/linux/man-pages/man1/pmap.1.html
 - vmstats -info about the virtual memory statistics, and block I/O. http://man7.org/linux/man-pages/man1/pmap.1.html
 - free  - info about meomry usage: free(1) http://man7.org/linux/man-pages/man1/free.1.html
@@ -1212,6 +1212,7 @@ To activate a given interface, use: `ifconfig eth0 up/down`. To configure the pr
 
 ## Linux networking commands
 
+ - **tc** traffic control - show/manipulate traffic control settings.
  - **ifconfig** print and manipulation of network interfaces and routes (better use the next command)
  - **ip**  replacement for ipconfig
  - **traceroute** traces pacekt's routes, used for troubleshooting networking issues
