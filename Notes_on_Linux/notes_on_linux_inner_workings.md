@@ -2463,5 +2463,6 @@ And example of how to write a VFS: https://github.com/torvalds/linux/blob/2c271f
 - https://www.phoronix.com/news/Linux-6.3-Networking-BIG-TCP
 - BIG TCP: https://lwn.net/Articles/883713/
 - Linux Kernel Oops!: https://nakedsecurity.sophos.com/2023/03/13/linux-gets-double-quick-double-update-to-fix-kernel-oops/
+- Tun/tap interfaces: https://backreference.org/2010/03/26/tuntap-interface-tutorial/index.html
 
 
