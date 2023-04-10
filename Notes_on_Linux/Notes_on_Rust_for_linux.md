@@ -11,7 +11,8 @@ Languaje reference:
   - https://rust-lang.github.io/async-book/01_getting_started/01_chapter.html   
   - https://github.com/rust-lang/rustlings                                      
   - https://github.com/rust-lang/rustlings/tree/rustlings-1   
-
+  - little book of rust macros: https://github.com/DanielKeep/tlborm            
+  - little book of rust macros updated: https://github.com/Veykril/tlborm     
 
 ## Rust for linux
 
