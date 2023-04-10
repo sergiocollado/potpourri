@@ -18,7 +18,8 @@ Languaje reference:
 
 **RFC**: https://lkml.org/lkml/2021/4/14/1023
 
-**Oficial site**: https://github.com/Rust-for-Linux
+**Oficial site**: https://github.com/Rust-for-Linux <br>
+ - https://rust-for-linux.com/
 
 **website documentation**: https://rust-for-linux.com/
 
