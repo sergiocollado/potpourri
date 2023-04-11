@@ -925,11 +925,11 @@ In real life, critical regions can be mode that one line. And these code paths s
 
 ### Spinlocks
 
-The most common lock in the Linux kerenl is the spin-lock.
+The most common lock in the Linux kernel is the spin-lock.
 
 Spin lock are used to protect **short code sections** that comprise just a few C statements and are therefore quickly executed and exited. 
 
-A spin lock is a lock that can be held by at most one thread of execution. 
+A spin lock is a lock that can be held by at most one thread of execution, that also means at most 1 CPU.
 
 An spin-lock is a low-level sycnhronization mechanism which in simple words, is a variable that represents two states: 
 - adquired
@@ -939,12 +939,17 @@ When the thread tries to adquire the lock wich is already adquired, the thread l
 
 When the thread tries to adcquire lock which is available (released), the thread acquires the lock and continues. 
 
+#### Why use spin-locks instead of atomics
+
+Atomics only work for variables of one or two words. But in cases where the critical section is some lines of code, atomics don't solve
+the issue. For that spin-locks are used.
+
 ### Spin-lock API
 
 To use header locks, the header file needed is: `<linux/spinlock.h>`, and the data structure is: `spinlock_t`.
 
 ```
-DEFINE_SPINLOCK(my_lock);  // == spinlock_t my_lock = __SPIN_LOCK_UNLOCED(my_lock);
+DEFINE_SPINLOCK(my_lock);  // this is equivalent to: spinlock_t my_lock = __SPIN_LOCK_UNLOCED(my_lock);
 
 From <linux/spinlock_types.h>
 #define DEFINE_SPINLOCK(x) spinlock_t x = __SPIN_LOCK_UNLOCKED(x)
@@ -970,7 +975,7 @@ MODULE_LICENSE("GPL");
 
 DEFINE_SPINLOCK(my_lock);
 
-static int __Int test_hello_init(void)
+static int __init test_hello_init(void)
 {
     spin_lock(&my_lock);
     pr_info("Starting critical region\n");
@@ -1075,7 +1080,7 @@ static int __init my_mod_init(void)
 
 ```
 
-**Watch Out!** in case you try to adquire an spin lock aready adquierd by you, you will spin waiting for youself to release the lock, being efectively in a deadlock. Example, try the following: 
+**Watch Out!** in case you try to adquire an spin lock aready adquired by you, you will spin waiting for youself to release the lock, being efectively in a deadlock. Example, try the following: 
 
 
 ```
@@ -1150,9 +1155,6 @@ static int device_release( struct inode *inode, struct file *file)
     spin_unlock(&my_lock);
     return 0;
 }
-
-
-
 
 static int test_hello_init(void)
 {
