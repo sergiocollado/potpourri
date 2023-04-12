@@ -107,6 +107,7 @@ kernel crate: https://rust-for-linux.github.io/docs/kernel/
 - https://github.com/Darksonn/linux/commit/8ef510d25f353c9c2e240e067e232b459e737a90
 - https://github.com/Darksonn/linux/commit/ff03d355219af7a4156de81b77b2f423ff3d8a47
 - rust: new api for initialization: https://github.com/Rust-for-Linux/linux/pull/909/files#diff-20432b0044e991d44b184c5bfa4cd92681e119758c93ba9fef5f4c629de688f1
+- rust: rust: Introduce jiffies-based timer support : https://github.com/fbq/linux-rust/commit/c31a2a3ce7420b43bda2c6f1b43227baf0d13661
 
 
 ### Others 2
