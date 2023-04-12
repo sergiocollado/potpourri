@@ -13,6 +13,7 @@ Linux kernel makefiles: https://git.kernel.org/pub/scm/linux/kernel/git/stable/l
 Kernel newbies : https://kernelnewbies.org/FirstKernelPatch <br>
 Linux device drivers tutorials: https://embetronicx.com/linux-device-driver-tutorials/ <br>
 about kallsyms_lookup_name() +5.7: https://xcellerator.github.io/posts/linux_rootkits_11/ <br>
+linux device driver series: https://embetronicx.com/tutorials/linux/device-drivers/linux-device-driver-part-1-introduction/ <br>
 
 Fast Linux Kernel Testing with QEMU: https://ncmiller.dev/2016/05/14/linux-and-qemu.html
 
