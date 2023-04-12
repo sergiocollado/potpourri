@@ -1107,8 +1107,8 @@ DEFINE_SPINLOCK(my_lock);
 static int __Int test_hello_init(void)
 {
     spin_lock(&my_lock);
-    spin_lock(&my_lock);   // YOU WILL SPIN FOREVER! DEADLOCK!!
     pr_info("Starting critical region\n");
+    spin_lock(&my_lock);   // YOU WILL SPIN FOREVER! DEADLOCK!!
     pr_info("Ending critical region\n");
     spin_unlock(&my_lock);
     return -1
