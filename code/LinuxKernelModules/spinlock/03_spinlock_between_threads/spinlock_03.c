@@ -1,11 +1,9 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
-//#include <linux/slab.h>
 #include <linux/delay.h>
 #include <linux/spinlock.h>
 #include <linux/kthread.h>
-//#include <linux/sched.h>
 
 unsigned int counter; /* shared data: */
 DEFINE_SPINLOCK(counter_lock);
