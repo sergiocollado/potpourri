@@ -918,6 +918,7 @@ If you do not require atomicity (say, for example, because a lock already protec
 reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/linux-sync-1.html <br>
 reference: https://www.kernel.org/doc/html/latest/locking/locktypes.html <br>
 reference: https://www.kernel.org/doc/html/latest/locking/spinlocks.html#lesson-1-spin-locks <br>
+reference: https://lwn.net/Kernel/Index/#Spinlocks
 
 The problem wit atomic operations, its that they can only work with CPU work and double work size. Atomics cannot work with shared data structures of custom size. 
 
