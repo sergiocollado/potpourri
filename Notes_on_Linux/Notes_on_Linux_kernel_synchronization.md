@@ -1092,7 +1092,7 @@ MODULE_LICENSE("GPL");
 
 ```
 
-**Watch Out!** in case you try to adquire an spin lock aready adquired by you, you will spin waiting for youself to release the lock, being efectively in a deadlock. Example, try the following: 
+**Watch Out!** in case you try to adquire an spin lock aready adquired by you, you will spin waiting for youself to release the lock, like you are already spinning, thuse you are being efectively in a deadlock. Example, try the following: 
 
 
 ```
@@ -1122,7 +1122,7 @@ module_init(test_hello_init);
 module_exit(test_hello_exit);
 ```
 
-Example of imploementing a busyloop using spinlock in a char driver
+Example of implementing a busyloop using spinlock in a char driver
 
 ```
 #include <linux/kernel.h>
