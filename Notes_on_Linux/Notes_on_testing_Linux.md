@@ -232,10 +232,10 @@ CONFIG_LIST_KUNIT_TEST=y
 ```
 
 
-Once you have the kunitconfig file, just run:
+Once you have the kunitconfig file, just run your desired test:
 
 ```
-./tools/testing/kunit/kunit.py run
+./tools/testing/kunit/kunit.py run "longest-symbol"
 ```
 
 Also, You may want to run KUnit with flags like:
