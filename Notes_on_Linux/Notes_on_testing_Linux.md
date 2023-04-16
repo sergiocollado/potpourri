@@ -218,11 +218,19 @@ cd $PATH_TO_LINUX_REPO
 cp tools/testing/kunit/configs/default.config .kunit/.kunitconfig
 ``` 
 
+Then, you have to update: `.kunit/.kunitconfig` 
+
 We can then add any other Kconfig options. For example:
 
 ```
 CONFIG_LIST_KUNIT_TEST=y
 ```
+
+```
+./tools/testing/kunit/kunit.py config
+./tools/testing/kunit/kunit.py build
+```
+
 
 Once you have the kunitconfig file, just run:
 
