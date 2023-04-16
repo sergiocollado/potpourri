@@ -209,7 +209,20 @@ KUnit is heavily inspired by JUnit, Python’s unittest.mock, and Googletest/Goo
 
 UML (User-Mode-Linux) is a Linux architecture (ARCH=um) which builds the kernel as a normal user-mode binary. It's used, amonst other things, as the default architecture for KUnit tests, and acts as a very fast, lightweight platform for running and testing kernel code.
 
-To run KUnit tests, you’ll need to provide a ‘kunitconfig’ file, which contains the list of test modules to build, and their dependencies.
+To run KUnit tests, you’ll need to provide a ‘.kunitconfig’ file, which contains the list of test modules to build, and their dependencies.
+
+To create a `.kunitconfig`, using the KUnit defconfig:
+
+```
+cd $PATH_TO_LINUX_REPO
+cp tools/testing/kunit/configs/default.config .kunit/.kunitconfig
+``` 
+
+We can then add any other Kconfig options. For example:
+
+```
+CONFIG_LIST_KUNIT_TEST=y
+```
 
 Once you have the kunitconfig file, just run:
 
