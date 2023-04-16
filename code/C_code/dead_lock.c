@@ -11,6 +11,7 @@
 
 // in a system, the watchdog, would try to solve this by reseting the system. 
 
+// reference: https://www.baeldung.com/cs/os-deadlock
 
 #include <pthread.h>
 #include <stdio.h>
