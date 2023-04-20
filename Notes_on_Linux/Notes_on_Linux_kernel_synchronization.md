@@ -1278,8 +1278,61 @@ module_exit(test_hello_exit);
 
 To test it, remember to add permissions to the chardev `sudo chmod 666 /dev/msg`
 
+#### spin_trylock
 
-There is also other call: `int spin_trylock(spinloc_t *lock)`, it returns zero, in case the lock is not available, in case it is available, it returns no zero. 
+There is also other call: `int spin_trylock(spinloc_t *lock)`, it returns zero, in case the lock is not available, in case it is available it will adquire it, it returns no zero. 
 
+#### Usage of a spinlock when the resource is shared between a process and an interrupt context
 
+In case a process is executing and it takes a log, and then there is an interrupt, and the interrupt handler, also wants to adquire that lock, then the
+interrupt handler will start to spin in the loop, and the process will not be able to continue and release the spin-lock, so it is efectively a dead-lock situation.
 
+The solution to this, is to disable interrupts before adquiring the spin-lock, and enable back the interrupts after releasing the spinlock. 
+
+The functions to do that are:
+
+```
+DEFINE_SPINLOCK(mylock);
+unsigned long flags;
+
+spin_lock_irqsave(&mylock, flags);
+/* critical section */
+spin_unlock_irqrestore(&mylock, flags);
+```
+
+The flags are needed, because if the interruptions were already disabled before the spinlock, when the spinlock is released, we would restore the interruptins back, when that is not desired. For that the flags, are used to store the state of the interrupts.
+
+In case it is known that the interrupts are enabled, thern there is not need to restore back their status, and then, it can be used: 
+
+```
+DEFINE_SPINLOCK(mylock);
+unsigned long flags;
+
+spin_lock_irq(&mylock);
+/* critical section */
+spin_unlock_irq(&mylock);
+```
+
+#### Is the kernel preemption disabled when spinlock is acquired?
+
+When the kernel adquires a spin-lock, preepmtion is disabled on the current processor. Otherwise, if the kernel adquires a spin-lock, and it is preempted by a task that also wants that spinlock, then the task will never be able to adquire it, and it would be a dead-lock situation. 
+
+There are methods to lock/unlock kernel preemption.
+
+#### Relevant points to consider when using a spin-lock
+
+ - If a spin-lock is adquired but not released, the system will be rendered unusable. All processors, including the one that adquired the spinlock, will sooner or later arrive at a point where they must enter the critical section. So the CPUs will go in an endless loop, waiting the spin-lock to be released, but the system is in a dead-lock state.
+
+ - Spin-lock should not be adquired for long time, because during that period, all CPUs waiting for the lock to be released are no longer available for other productive tasks. 
+
+ - Code that is protected by spin-locks, must not go so sleep, or use functions that can go to sleep, i.e.: kmalloc. Remember, when the spin-lock is adquired, preemption is disabled on that CPU, but another CPU can try to continue that thread, and then adquire the lock which is already taken, causing then a dead-lock. 
+
+#### spin-locks in single processor systems
+
+There is two situations: 
+ - When CONFIG_PREEMPT is not set, that is the kernel preemption is disabled: so spin-lock are deined as `nop` operations, because critical sections cannot be enterd by several CPUSs at the same time. 
+ - When CONFIG_PREEMTP is set, then the preemption is disabled when the spin-lock is adquired, and enabled back when the spin-lock is released.
+
+#### Implementation of the spin-lock
+
+reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/linux-sync-1.html <br>
