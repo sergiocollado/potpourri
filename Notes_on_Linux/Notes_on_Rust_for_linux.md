@@ -13,6 +13,7 @@ Languaje reference:
   - https://github.com/rust-lang/rustlings/tree/rustlings-1   
   - little book of rust macros: https://github.com/DanielKeep/tlborm            
   - little book of rust macros updated: https://github.com/Veykril/tlborm     
+  - https://google.github.io/comprehensive-rust/welcome-day-4.html
   - https://github.com/ferrous-systems/teaching-material/tree/main/assignments
 
 ## Rust for linux
