@@ -1336,3 +1336,11 @@ There is two situations:
 #### Implementation of the spin-lock
 
 reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/linux-sync-1.html <br>
+
+A spinlock is a mutual exclusiion device that can have two states: locked & unlocked
+
+It is usually implemented as a single bit. 
+
+The "test and set" operaton must be don in an atomic operaton, so only one thread can obtain the lock, evein if several are spinning in a given time. 
+
+Spinlocks are build on top of hardware-specific atomic instructions. The actual implemetation, thus, changes for every processor architecture. 
