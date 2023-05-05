@@ -1397,7 +1397,8 @@ struct semaphore {
 - count: amout available resources
 - wait_list: list of processes which are waiting to adquire a lock.
 
-#### Methods
+### Semaphore's API
+
 
 Initialization:
 
@@ -1418,13 +1419,7 @@ void down(struct semaphore *sem);
 void up(struct semaphore *sem);
 ```
 
-
-### Semaphore's API
-
-
-
-
-### example 
+### Example 
 
 ```
 #include <linux/kernel.h>
