@@ -1377,6 +1377,48 @@ With semaphores, a number of tasks to hold the lock at a time can be specified w
 
 Counting semaphores are not used to enforce mutual exclusion because they enable multiple threads of execution in the critical region at once. Couting semaphores have other use-cases, but are not used very much in the kernel code. 
 
+### Semaphore's implementation
+
+It is in `kernel/locking/semaphore.c`
+
+Header file: <linux/semaphore.h>
+
+Data structure: struct semaphore
+
+```
+struct semaphore {
+    raw_spinlock_t     lock;
+    unsigned int       count;
+    struct list_head   wait_list;
+}
+```
+
+- lock: spinlock for a semaphore data protection
+- count: amout available resources
+- wait_list: list of processes which are waiting to adquire a lock.
+
+#### Methods
+
+Initialization:
+
+- Dynamic: `void sema_init(struct semaphore *sem, int val); // where val is the initial value to assign to the semaphore
+- Static: <br>
+```
+DEFINE SEMAPHORE(name)
+
+#define DEFINE_SEMAPHORE(name) \
+   struct semaphore name = __SEMAPHORE_INITIALIZER(name, 1)
+```
+
+- P() 	--> down: decrements the value of the semaphore
+- V()   --> up: increments the value of the semaphore
+
+```
+void down(struct semaphore *sem);
+void up(struct semaphore *sem);
+```
+
+
 ### Semaphore's API
 
 
@@ -1397,14 +1439,15 @@ struct semaphore *mysem;
 static int __init test_hello_init(void)
 {
     mysem = kmalloc(sizeof(mysem), GFP_KERNEL);
-    /* Counter is 1 so binary semaphore */
-    sema_init(mysem, 1);
+    sema_init(mysem, 4);
+    pr_info("semaphore count:%d\n", mysem->count);
     down(mysem);
+    pr_info("semaphore count:%d\n", mysem->count);
     pr_info("Starting critical region\n");
     pr_info("Ending critical region\n");
     up(mysem);
-    kfree(mysem);
-    return -1; // this will the instalation fail
+    pr_info("semaphore count:%d\n", mysem->count);
+    return -1;  // this will make fail the module installation
 }
 
 static void __exit test_hello_exit(void)
