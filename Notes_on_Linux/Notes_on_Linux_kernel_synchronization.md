@@ -1351,6 +1351,8 @@ Spinlocks are build on top of hardware-specific atomic instructions. The actual 
 
 Semaphores in Linux are like sleeping locks.
 
+reference: https://sites.cs.ucsb.edu/~rich/class/cs170/notes/Semaphores/index.html
+
 #### What happens when the semaphore lock is unavailable?
 
 The semaphore places the task onto a wait queue and puts the task to sleep.
@@ -1361,3 +1363,54 @@ The processor is then free to execute other code.
 
 One of the tasks on the wait queue is awakened so that it can then acquire the semaphore. 
 
+
+### Types of Semaphore
+
+Spin locks allow only one task to hold the lock at a time.
+
+With semaphores, a number of tasks to hold the lock at a time can be specified while initializing/declaring semaphore. This value is called as usage count or simply count.
+
+
+- Count = 1	--> 	Binary Sempahore, used for mutual exclusion
+- Count > 1	-->	Counting Semaphore
+
+
+Counting semaphores are not used to enforce mutual exclusion because they enable multiple threads of execution in the critical region at once. Couting semaphores have other use-cases, but are not used very much in the kernel code. 
+
+### Semaphore's API
+
+
+
+
+### example 
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/semaphore.h>
+#include <linux/slab.h>
+
+MODULE_LICENSE("GPL");
+
+struct semaphore *mysem;
+
+static int __init test_hello_init(void)
+{
+    mysem = kmalloc(sizeof(mysem), GFP_KERNEL);
+    /* Counter is 1 so binary semaphore */
+    sema_init(mysem, 1);
+    down(mysem);
+    pr_info("Starting critical region\n");
+    pr_info("Ending critical region\n");
+    up(mysem);
+    kfree(mysem);
+    return -1; // this will the instalation fail
+}
+
+static void __exit test_hello_exit(void)
+{
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
