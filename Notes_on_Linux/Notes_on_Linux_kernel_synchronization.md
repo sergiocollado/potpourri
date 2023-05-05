@@ -1344,3 +1344,20 @@ It is usually implemented as a single bit.
 The "test and set" operaton must be don in an atomic operaton, so only one thread can obtain the lock, evein if several are spinning in a given time. 
 
 Spinlocks are build on top of hardware-specific atomic instructions. The actual implemetation, thus, changes for every processor architecture. 
+
+
+
+## Semaphores
+
+Semaphores in Linux are like sleeping locks.
+
+#### What happens when the semaphore lock is unavailable?
+
+The semaphore places the task onto a wait queue and puts the task to sleep.
+
+The processor is then free to execute other code. 
+
+#### What happens after the semaphore becomes available?
+
+One of the tasks on the wait queue is awakened so that it can then acquire the semaphore. 
+
