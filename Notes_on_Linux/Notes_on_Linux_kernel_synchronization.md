@@ -1452,3 +1452,8 @@ static void __exit test_hello_exit(void)
 module_init(test_hello_init);
 module_exit(test_hello_exit);
 ```
+
+`down()` decrements the counter by 1, if `count >= 0` then the task can enter the critical section. Otherwise the task is placed on the wait list and goes to sleep.
+
+`up()` increments the counter by 1, and releases the critical section.
+
