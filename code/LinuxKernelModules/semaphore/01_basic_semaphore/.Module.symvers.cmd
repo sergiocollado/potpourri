@@ -1,1 +1,0 @@
-cmd_/home/sergio/repos/potpourri/code/LinuxKernelModules/semaphore/01_basic_semaphore/Module.symvers := sed 's/ko$$/o/' /home/sergio/repos/potpourri/code/LinuxKernelModules/semaphore/01_basic_semaphore/modules.order | scripts/mod/modpost -m -a  -o /home/sergio/repos/potpourri/code/LinuxKernelModules/semaphore/01_basic_semaphore/Module.symvers -e -i Module.symvers   -T -

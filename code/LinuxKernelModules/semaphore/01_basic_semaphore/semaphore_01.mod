@@ -1,1 +1,0 @@
-/home/sergio/repos/potpourri/code/LinuxKernelModules/semaphore/01_basic_semaphore/semaphore_01.o
