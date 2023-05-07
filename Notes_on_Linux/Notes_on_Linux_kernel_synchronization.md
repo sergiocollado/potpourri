@@ -1435,7 +1435,7 @@ void down(struct semaphore *sem);
 int down_interruptible(struct semaphore *sem);
 ```
 - `down()` places the calling process in the `TASK_UNINTERRUMPIBLE` state when it sleeps.
-- `down_interrumptible()` places the calling process to sleep in the `TASK_INTERRUMPTIBLE` state. If the task receives a signal while waiting for the semaphore, it is awakaned and down interruptible() returns `-EINTR`. 
+- `down_interrumptible()` places the calling process to sleep in the `TASK_INTERRUMPTIBLE` state. If the task receives a signal while waiting for the semaphore, it is awakaned and down interruptible() returns `-EINTR`. You can check the status of the task with `ps`.
 
 
 
