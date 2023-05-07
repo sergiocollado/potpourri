@@ -10,7 +10,9 @@ struct semaphore *mysem;
 static int __init test_hello_init(void)
 {
     mysem = kmalloc(sizeof(mysem), GFP_KERNEL);
-    sema_init(mysem, 4);
+    sema_init(mysem, 4); // as 4 is given as initial value this is a 
+			 // counting semaphore, if the initial value
+			 // was 1 it would be a binary semaphore
     pr_info("semaphore count:%d\n", mysem->count);
     down(mysem);
     pr_info("semaphore count:%d\n", mysem->count);
