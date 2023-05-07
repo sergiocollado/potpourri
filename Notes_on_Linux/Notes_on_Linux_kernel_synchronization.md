@@ -1400,7 +1400,7 @@ struct semaphore {
 ### Semaphore's API
 
 
-Initialization:
+#### Initialization:
 
 - Dynamic: `void sema_init(struct semaphore *sem, int val); // where val is the initial value to assign to the semaphore`
 - Static: <br>
@@ -1413,15 +1413,29 @@ DEFINE SEMAPHORE(name)
 
 - P() 	--> down: decrements the value of the semaphore
 - V()   --> up: increments the value of the semaphore
+- 
+
+
+#### Lock and release
+
+```
+void down(struct semaphore *sem);
+void up(struct semaphore *sem);
+```
+
+- `down()` decrements the counter by 1, if `count >= 0` then the task can enter the critical section. Otherwise the task is placed on the wait list and goes to sleep.
+- `up()` increments the counter by 1, and releases the critical section.
+
+
+#### Other calls
 
 ```
 void up(struct semaphore *sem);
 void down(struct semaphore *sem);
 int down_interruptible(struct semaphore *sem);
 ```
-
-- down() places the calling process in the `TASK_UNINTERRUMPIBLE` state when it sleeps.
-- down_interrumptible() places the calling process to sleep in the `TASK_INTERRUMPTIBLE` state. If the task receives a signal while waiting for the semaphore, it is awakaned and down interruptible() returns `-EINTR`. 
+- `down()` places the calling process in the `TASK_UNINTERRUMPIBLE` state when it sleeps.
+- `down_interrumptible()` places the calling process to sleep in the `TASK_INTERRUMPTIBLE` state. If the task receives a signal while waiting for the semaphore, it is awakaned and down interruptible() returns `-EINTR`. 
 
 
 
