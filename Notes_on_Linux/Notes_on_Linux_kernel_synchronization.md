@@ -1402,7 +1402,7 @@ struct semaphore {
 
 Initialization:
 
-- Dynamic: `void sema_init(struct semaphore *sem, int val); // where val is the initial value to assign to the semaphore
+- Dynamic: `void sema_init(struct semaphore *sem, int val); // where val is the initial value to assign to the semaphore`
 - Static: <br>
 ```
 DEFINE SEMAPHORE(name)
