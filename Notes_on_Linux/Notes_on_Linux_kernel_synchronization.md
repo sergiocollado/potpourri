@@ -1455,7 +1455,12 @@ struct semaphore *mysem;
 static int __init test_hello_init(void)
 {
     mysem = kmalloc(sizeof(mysem), GFP_KERNEL);
-    sema_init(mysem, 4);
+    sema_init(mysem, 4);  // the inital value is 4, so this is
+                          // a conting semaphore, and it cannot 
+			  // be used for mutual exclusion. 
+			  // If the initial value was 1, then it
+			  // would be a binary semaphore and could
+			  // be used for mutual exclusion.
     pr_info("semaphore count:%d\n", mysem->count);
     down(mysem);
     pr_info("semaphore count:%d\n", mysem->count);
