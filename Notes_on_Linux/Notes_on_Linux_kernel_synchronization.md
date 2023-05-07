@@ -1413,7 +1413,6 @@ DEFINE SEMAPHORE(name)
 
 - P() 	--> down: decrements the value of the semaphore
 - V()   --> up: increments the value of the semaphore
-- 
 
 
 #### Lock and release
@@ -1433,11 +1432,12 @@ void up(struct semaphore *sem);
 void up(struct semaphore *sem);
 void down(struct semaphore *sem);
 int down_interruptible(struct semaphore *sem);
+int down_timeout(struct semaphore *sem, long jiffies);
 ```
 - `down()` places the calling process in the `TASK_UNINTERRUMPIBLE` state when it sleeps.
 - `down_interrumptible()` places the calling process to sleep in the `TASK_INTERRUMPTIBLE` state. If the task receives a signal while waiting for the semaphore, it is awakaned and down interruptible() returns `-EINTR`. You can check the status of the task with `ps`.
 - `down_trylock()` If the semaphore is not available at the time of the call, `down_trylock` returns with a nonzero return value.
-
+- `down_timeout()` Attemps to adquire the semaphore. If no more tasks are allowed the semaphore, calling this function will put the task to sleep. If the semaphore is not released within the specified number of jiffies, this function returns `-ETIME`. It returns 0 if the semaphore is adquired. 
 
 
 ### Example 
