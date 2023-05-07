@@ -1371,7 +1371,7 @@ Spin locks allow only one task to hold the lock at a time.
 With semaphores, a number of tasks to hold the lock at a time can be specified while initializing/declaring semaphore. This value is called as usage count or simply count.
 
 
-- Count = 1	--> 	Binary Sempahore, used for mutual exclusion
+- Count = 1	--> 	Binary Semaphore, used for mutual exclusion
 - Count > 1	-->	Counting Semaphore
 
 
@@ -1381,9 +1381,9 @@ Counting semaphores are not used to enforce mutual exclusion because they enable
 
 It is in `kernel/locking/semaphore.c`
 
-Header file: <linux/semaphore.h>
+Header file: `<linux/semaphore.h>`
 
-Data structure: struct semaphore
+Data structure: `struct semaphore`
 
 ```
 struct semaphore {
@@ -1421,9 +1421,7 @@ int down_interruptible(struct semaphore *sem);
 ```
 
 - down() places the calling process in the `TASK_UNINTERRUMPIBLE` state when it sleeps.
-- down_interrumptible() places the calling process to sleep in the `TASK_INTERRUMPTIBLE` state
-
-If the task receives a signal while waiting for the semaphore, it is awakaned and down interruptible() returns `-EINTR`. 
+- down_interrumptible() places the calling process to sleep in the `TASK_INTERRUMPTIBLE` state. If the task receives a signal while waiting for the semaphore, it is awakaned and down interruptible() returns `-EINTR`. 
 
 
 
