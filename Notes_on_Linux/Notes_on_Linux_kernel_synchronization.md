@@ -6,6 +6,7 @@ reference: linux-kernel-labs: https://linux-kernel-labs.github.io/refs/heads/mas
 reference: https://github.com/shemminger/kernel-examples  -Locking and concurrency in Linux kernel examples <br>
 reference: https://github.com/PacktPublishing/Linux-Kernel-Programming/blob/master/Linux-Kernel-Programming-(Part-2)/Linux%20Kernel%20Programming%20Part%202%20-%20Char%20Device%20Drivers%20and%20Kernel%20Synchronization_eBook.pdf  <br>
 reference: Linux kernel memory model: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0124r6.html <br>
+reference: https://www.cs.bham.ac.uk/~exr/lectures/systems/08_09/docs/kernelAPI/ <br>
 
 
 ## CONCURRENCY
