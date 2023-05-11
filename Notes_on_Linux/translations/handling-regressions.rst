@@ -10,8 +10,22 @@ Documentation/admin-guide/reporting-regressions.rst, which covers the topic from
 user's point of view; if you never read that text, go and at least skim over it
 before continuing here.
 
+
+Gestionando regresiones
++++++++++++++++++++++++
+
+*No causamos regresiones* -- este documento describe la que es la "primera regla
+del desarrollo del kernel de Linux" implica en la práctica para los desarrolladores. 
+Y complementa la documentación: Documentation/admin-guide/reporting-regressions.rst,
+que cubre el tema dessde el punto de vista de un usuario; si nunca ha leido ese texto, 
+realice al menos una lectura rápida del mismo antes de continuar. 
+
+
 The important bits (aka "The TL;DR")
 ====================================
+
+Las partes importanes
+=====================
 
 #. Ensure subscribers of the `regression mailing list <https://lore.kernel.org/regressions/>`_
    (regressions@lists.linux.dev) quickly become aware of any new regression
@@ -22,6 +36,15 @@ The important bits (aka "The TL;DR")
       CCed.
 
     * Forward or bounce any reports submitted in bug trackers to the list.
+
+#.  Asegurarse que los subscriptores a la lista `regression mailing list <https://lore.kernel.org/regressions/>`_
+    (regressions@lists.linux.dev)  son conocedores con rapidez de cualquier
+    nuevo reporte de regresion:
+    
+    * Cuando se reciva un correo que no incluyó a la lista, incluyala en el bucle 
+    de correos, mandando un breve "Reply-all" con la lista en CC. 
+    
+    * Mande o rebote cualquier reporte originado en gestores de bugs a la lista. 
 
 #. Make the Linux kernel regression tracking bot "regzbot" track the issue (this
    is optional, but recommended):
