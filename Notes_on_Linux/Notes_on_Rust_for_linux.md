@@ -15,6 +15,9 @@ Languaje reference:
   - little book of rust macros updated: https://github.com/Veykril/tlborm     
   - https://google.github.io/comprehensive-rust/welcome-day-4.html
   - https://github.com/ferrous-systems/teaching-material/tree/main/assignments
+  
+  - blog. how to module in rust: - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
+  - blog. how to write a module in rust: https://www.jackos.io/rust-kernel/rust-for-linux.html#adding-the-rust-module
 
 ## Rust for linux
 
