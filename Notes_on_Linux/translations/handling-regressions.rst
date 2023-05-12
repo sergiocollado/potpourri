@@ -41,7 +41,7 @@ Las partes importanes
     (regressions@lists.linux.dev)  son conocedores con rapidez de cualquier
     nuevo reporte de regresion:
     
-    * Cuando se reciva un correo que no incluyó a la lista, incluyala en el bucle 
+    * Cuando se reciba un correo que no incluyó a la lista, incluyala en el bucle 
     de correos, mandando un breve "Reply-all" con la lista en CC. 
     
     * Mande o rebote cualquier reporte originado en gestores de bugs a la lista. 
@@ -58,6 +58,23 @@ Las partes importanes
 
     * When forwarding reports from a bug tracker to the regressions list (see
       above), include a paragraph like the following::
+
+       #regzbot introduced: v5.13..v5.14-rc1
+       #regzbot from: Some N. Ice Human <some.human@example.com>
+       #regzbot monitor: http://some.bugtracker.example.com/ticket?id=123456789
+
+#. Hacer que el bot del kernel de Linux "regzbot" realize seguimento del incidente
+   (esto es opciona, pero recomendado).
+   
+    * Para reportes enviados por correo, verificar si contiene luna linea como  
+      ``#regzbot introduced v5.13..v5.14-rc1``. Si no, mandar una respuesta (con la
+      lsta de regresiones en CC) que contenga un parrafo como el siguente, lo que 
+      le indica a regzbot cuando empezó a suceder el incidente::
+      
+     #regzbot ^introduced 1f2e3d4c5b6a
+
+    * Cuando se mandar reportes desde un gestor de incidentes a la lista de regresiones
+      (ver más arriba), incluir un parrafo como el siguiente::
 
        #regzbot introduced: v5.13..v5.14-rc1
        #regzbot from: Some N. Ice Human <some.human@example.com>
