@@ -1,4 +1,4 @@
-	# PROTOBUFS
+# PROTOBUFS
 
 references:
  - https://protobuf.dev/
@@ -6,7 +6,7 @@ references:
  - https://github.com/protocolbuffers/protobuf/releases
  - https://github.com/protobuf-c/protobuf-c
 
-## What is serialization/deserialization?
+## What is serialization/deserialization (marshaling/demarshaling)?
 
 Serialization is the process of converting a data object—a combination of code and data represented within 
 a region of data storage—into a series of bytes that saves the state of the object in an easily transmittable form.
