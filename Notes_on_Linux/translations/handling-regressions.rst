@@ -37,7 +37,7 @@ Las partes importanes
 
     * Forward or bounce any reports submitted in bug trackers to the list.
 
-#.  Asegurarse que los subscriptores a la lista `regression mailing list <https://lore.kernel.org/regressions/>`_
+#.  Asegurarse que los suscriptores a la lista `regression mailing list <https://lore.kernel.org/regressions/>`_
     (regressions@lists.linux.dev)  son conocedores con rapidez de cualquier
     nuevo reporte de regresion:
     
@@ -64,11 +64,11 @@ Las partes importanes
        #regzbot monitor: http://some.bugtracker.example.com/ticket?id=123456789
 
 #. Hacer que el bot del kernel de Linux "regzbot" realize seguimento del incidente
-   (esto es opciona, pero recomendado).
+   (esto es opcional, pero recomendado).
    
-    * Para reportes enviados por correo, verificar si contiene luna linea como  
+    * Para reportes enviados por correo, verificar si contiene alguna linea como  
       ``#regzbot introduced v5.13..v5.14-rc1``. Si no, mandar una respuesta (con la
-      lsta de regresiones en CC) que contenga un parrafo como el siguente, lo que 
+      lista de regresiones en CC) que contenga un parrafo como el siguiente, lo que 
       le indica a regzbot cuando empezó a suceder el incidente::
       
        #regzbot ^introduced 1f2e3d4c5b6a
@@ -86,16 +86,16 @@ Las partes importanes
    :ref:`Documentation/process/5.Posting.rst <development_posting>`.
    
 #. Cuando se manden fixes para las regressiones, añadir etiquets "Link:" a 
-   la descripcion, aputnado a todos los sitios donde se informó de incidente, 
-   como se indica en  Documentation/process/submitting-patches.rst  y
+   la descripcion, apuntado a todos los sitios donde se informó de incidente, 
+   como se indica en el documento: Documentation/process/submitting-patches.rst  y
    :ref:`Documentation/process/5.Posting.rst <development_posting>`.
 
 #. Try to fix regressions quickly once the culprit has been identified; fixes
    for most regressions should be merged within two weeks, but some need to be
    resolved within two or three days.
    
-#. Intentar arreglar las regresiones rápidamente una vez el culpable ha sido identificado;
-   las correccions para la mayor parte de las regresiones deberian ser integradas en menos 
+#. Intentar arreglar las regresiones rápidamente una vez la causa haya sido identificada;
+   las correcciones para la mayor parte de las regresiones deberian ser integradas en menos 
    de dos semanas, pero algunas pueden resolverse en dos o tres días. 
 
 
@@ -116,6 +116,9 @@ Puntos básicos importantes más en detalle
 What to do when receiving regression reports
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Qué hacer cuando se recibe un aviso de regresion.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Ensure the Linux kernel's regression tracker and others subscribers of the
 `regression mailing list <https://lore.kernel.org/regressions/>`_
 (regressions@lists.linux.dev) become aware of any newly reported regression:
@@ -129,6 +132,21 @@ Ensure the Linux kernel's regression tracker and others subscribers of the
    to the list. Consider checking the list archives beforehand, if the reporter
    already forwarded the report as instructed by
    Documentation/admin-guide/reporting-issues.rst.
+   
+Asegurar que el programa de gestion de regresiones del kernel de Linux y los
+suscritos a la lista de correo `regression mailing list <https://lore.kernel.org/regressions/>`_
+(regressions@lists.linux.dev) son conocedores the cualquier nuevo informe de regresion: 
+
+ * Cuando se recive un informe por email que no tienen en CC la lista, inmediatamente
+   meterla en el la cadena de emails mandado al menos un breve "Reply-all" con la lista en CC;
+   Intentar asegurar que la lista es añadida en CC de nuevo en caso de que alguna
+   repuesta la omita de la lista. 
+   
+ * Si un informe enviado a un gestor de defectos, llega a su correo, reenvielo o 
+   rebotelo a la lista. Cosidere verificar los archivos de la lista de antemano, si 
+   la persona que lo ha informado, lo ha enviado anteriormente, como se indica en 
+   Documentation/admin-guide/reporting-issues.rst.
+ 
 
 When doing either, consider making the Linux kernel regression tracking bot
 "regzbot" immediately start tracking the issue:
@@ -148,6 +166,29 @@ When doing either, consider making the Linux kernel regression tracking bot
    you want to see tracked; that's important, as regzbot will later look out
    for patches with "Link:" tags pointing to the report in the archives on
    lore.kernel.org.
+   
+
+
+Cuando se realice cualquiera de las acciones anteriores, considerar inmediatamente
+iniciar el seguimiento de la regresion con "regzbot" el gestor de regresiones del kernel de Linux.
+
+ * Para los informes enviados por email, verificar si se ha incluido un commando a "regzbot", como
+   ``#regzbot introduced 1f2e3d4c5b6a``. Si no es asi, envie una respuesta (con la lista
+   de regressiones en CC) con un parrafo como el siguiente:: 
+
+       #regzbot ^introduced: v5.13..v5.14-rc1
+
+   Esto indica a regzbot el rango de versiones en el cual es defecto comenzó a suceder;
+   Puede especificar un rango usando los identificadores de los commits así como
+   un único commit, en caso el informate haya identificado el commit causante con 'bisect'.
+   
+   Tenga en cuenta que el acento circunflejo (^) antes de "introduced": Esto indica a 
+   regzbot, que debe tratar el email padre (el que ha sido respondido) como el informe
+   inicial para la regresion que quiere ser seguida. Esto es importante, ya que regzbot
+   buscará más tarde parches con etiquetas "Link:" que apunten al al informe ne los
+   archivos de lore.kernel.org. 
+   
+  
 
  * When forwarding a regressions reported to a bug tracker, include a paragraph
    with these regzbot commands::
@@ -158,9 +199,27 @@ When doing either, consider making the Linux kernel regression tracking bot
 
    Regzbot will then automatically associate patches with the report that
    contain "Link:" tags pointing to your mail or the mentioned ticket.
+   
+   
+ * Cuando mande informes de regresiones a un gestor de defectos, incluya un 
+   parrafo con los siguientes comandos a regzbot::
+   
+       #regzbot introduced: 1f2e3d4c5b6a
+       #regzbot from: Some N. Ice Human <some.human@example.com>
+       #regzbot monitor: http://some.bugtracker.example.com/ticket?id=123456789
+     
+   Regzbot asociará automaticamente parches con el informe que contengan las
+   etiquetas "Link:" apuntando a su email o el ticket indicado. 
+   
+   
 
 What's important when fixing regressions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Qué es imporate cuando se arreglan regresiones
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 You don't need to do anything special when submitting fixes for regression, just
 remember to do what Documentation/process/submitting-patches.rst,
