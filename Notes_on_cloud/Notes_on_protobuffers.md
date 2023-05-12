@@ -3,6 +3,7 @@
 references:
  - https://protobuf.dev/
  - https://protobuf.dev/getting-started/cpptutorial/
+ - https://github.com/protocolbuffers/protobuf/releases
  - https://github.com/protobuf-c/protobuf-c
 
 ## What is serialization/deserialization?
