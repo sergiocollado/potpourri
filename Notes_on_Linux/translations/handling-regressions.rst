@@ -71,7 +71,7 @@ Las partes importanes
       lsta de regresiones en CC) que contenga un parrafo como el siguente, lo que 
       le indica a regzbot cuando empezó a suceder el incidente::
       
-     #regzbot ^introduced 1f2e3d4c5b6a
+       #regzbot ^introduced 1f2e3d4c5b6a
 
     * Cuando se mandar reportes desde un gestor de incidentes a la lista de regresiones
       (ver más arriba), incluir un parrafo como el siguiente::
@@ -84,18 +84,33 @@ Las partes importanes
    description pointing to all places where the issue was reported, as
    mandated by Documentation/process/submitting-patches.rst and
    :ref:`Documentation/process/5.Posting.rst <development_posting>`.
+   
+#. Cuando se manden fixes para las regressiones, añadir etiquets "Link:" a 
+   la descripcion, aputnado a todos los sitios donde se informó de incidente, 
+   como se indica en  Documentation/process/submitting-patches.rst  y
+   :ref:`Documentation/process/5.Posting.rst <development_posting>`.
 
 #. Try to fix regressions quickly once the culprit has been identified; fixes
    for most regressions should be merged within two weeks, but some need to be
    resolved within two or three days.
+   
+#. Intentar arreglar las regresiones rápidamente una vez el culpable ha sido identificado;
+   las correccions para la mayor parte de las regresiones deberian ser integradas en menos 
+   de dos semanas, pero algunas pueden resolverse en dos o tres días. 
 
 
 All the details on Linux kernel regressions relevant for developers
 ===================================================================
 
+Todos los detalles importantes para desarrolladers en la regresiones de kernel de Linux
+=======================================================================================
+
 
 The important basics in more detail
 -----------------------------------
+
+Puntos básicos importantes más en detalle
+-----------------------------------------
 
 
 What to do when receiving regression reports
