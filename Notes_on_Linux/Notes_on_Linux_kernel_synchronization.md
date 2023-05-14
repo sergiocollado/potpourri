@@ -1484,3 +1484,39 @@ module_exit(test_hello_exit);
 
 `up()` increments the counter by 1, and releases the critical section.
 
+
+## Mutexes
+
+Almost all the semaphores found in the Linux kernel are used for mutual exclusion by count of 1 (binary semaphores).
+
+Using semaphores for mutual exclusion is overhead, so kernel provides a new interface: mutex (short for 'mutual exclusion').
+
+The mutex subsystem checks and enforces the following rules:
+
+- Only one task can hold the mutex at a time
+- Whoever locked a mutex must unlock it. That is it is not possible to lock a mutex in a context, and unlock it in another context.
+- Recursive locks and unlocks are not allowed.
+- Process cannot exit while holding a mutex. 
+- Mutex cannot be adquired from an interrupt handler. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
