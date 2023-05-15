@@ -1487,6 +1487,10 @@ module_exit(test_hello_exit);
 
 ## Mutexes
 
+references:
+- https://lwn.net/Articles/164802/
+- https://docs.kernel.org/locking/mutex-design.html
+
 Almost all the semaphores found in the Linux kernel are used for mutual exclusion by count of 1 (binary semaphores).
 
 Using semaphores for mutual exclusion is overhead, so kernel provides a new interface: mutex (short for 'mutual exclusion').
@@ -1499,9 +1503,104 @@ The mutex subsystem checks and enforces the following rules:
 - Process cannot exit while holding a mutex. 
 - Mutex cannot be adquired from an interrupt handler. 
 
+### Differences between mutexes and semaphores
+
+The ownership concept, only applies to mutexes, not to semaphores
+
+### What happens when a process tries to adquire a mutex lock? 
+
+When adquiring a mutex, there are three possible paths:
+ - fast path
+ - mid path
+ - slow path
+
+The path to be taken depends on the state of mutex:
+
+reference: https://docs.kernel.org/locking/mutex-design.html
+
+#### Fast pach
+ Taken when no process has adquired the mutex
+ 
+#### Mid path (optimistic spinning)
+ When the mutex is not available, it tries to go for mid path. Also called as optimistic spinning.
+ 
+ This path will only be executed if there are no other processes ready to run having high priority 
+ and the owner of mutex is **running**.
+ 
+ In this path, tries to spin using MCS lock hoping the owner will release the lock soon. 
+ 
+ Avoid expensive context switch. 
+ 
+ #### Slow path
+ 
+ Last resort. This path acts as a semaphore lock. If the lock is unable to be adquired by the process, 
+ the task is added to wait queue. It sleeps until woken up by the unlock path. 
+ 
+ In this path, tries to spin using MCS lock (proposed by Mellor-Crummey and Scott)  hoping the owner will release the lock soon. 
+ 
+ 
+ ### Mutex implementation
+ 
+ Mutexes are represented by 'struct mutex', defined in include/linux/mutex.h and implemented in kernel/locking/mutex.c. These locks use an atomic variable (->owner) to keep track of the lock state during its lifetime. Field owner actually contains struct task_struct * to the current lock owner and it is therefore NULL if not currently owned.
+
+file: kernel/locking/mutex.c
+
+header file: <linux/mutex.h>
+
+data structure: struct_mutex
+
+```
+strutc mutex {
+    atomic_long_t    owner;       // using for both, holding lock state, and reference to owner (task_struct) who adquired it.
+    spinlock_t       wait_lock;   // used for atomic updating wait_list
+    struct list_head wait_list;
+}
+```
+
+### Mutex API
 
 
+Statically define the mutex:
+```
+DEFINE_MUTEX(name);
+```
 
+Dynamically initialize the mutex:
+```
+mutex_init(mutex);
+```
+
+Acquire the mutex, uninterruptible:
+```
+void mutex_lock(struct mutex *lock);
+void mutex_lock_nested(struct mutex *lock, unsigned int subclass);
+int  mutex_trylock(struct mutex *lock);
+```
+
+Acquire the mutex, interruptible:
+```
+int mutex_lock_interruptible_nested(struct mutex *lock,
+                                    unsigned int subclass);
+int mutex_lock_interruptible(struct mutex *lock);
+```
+
+Acquire the mutex, interruptible, if dec to 0:
+
+```
+int atomic_dec_and_mutex_lock(atomic_t *cnt, struct mutex *lock);
+```
+
+Unlock the mutex:
+
+```
+void mutex_unlock(struct mutex *lock);
+```
+
+Test if the mutex is taken:
+
+```
+int mutex_is_locked(struct mutex *lock);
+```
 
 
 
