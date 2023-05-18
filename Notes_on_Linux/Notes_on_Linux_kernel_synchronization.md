@@ -919,8 +919,9 @@ If you do not require atomicity (say, for example, because a lock already protec
 reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/linux-sync-1.html <br>
 reference: https://www.kernel.org/doc/html/latest/locking/locktypes.html <br>
 reference: https://www.kernel.org/doc/html/latest/locking/spinlocks.html#lesson-1-spin-locks <br>
-reference: https://lwn.net/Kernel/Index/#Spinlocks
-reference: https://embetronicx.com/tutorials/linux/device-drivers/spinlock-in-linux-kernel-1/
+reference: https://docs.kernel.org/locking/spinlocks.html#lesson-1-spin-locks <br>
+reference: https://lwn.net/Kernel/Index/#Spinlocks <br>
+reference: https://embetronicx.com/tutorials/linux/device-drivers/spinlock-in-linux-kernel-1/ <br>
 
 The problem wit atomic operations, its that they can only work with CPU work and double work size. Atomics cannot work with shared data structures of custom size. 
 
@@ -1508,7 +1509,7 @@ The mutex subsystem checks and enforces the following rules:
 The ownership concept, only applies to mutexes, not to semaphores
 
 
-| Requirment |  Recommended |
+| Requirement |  Recommended lock|
 | -- | -- | 
 | Long overhead locking | spinlock |
 | short lock hold time | spinlock |
@@ -1517,6 +1518,7 @@ The ownership concept, only applies to mutexes, not to semaphores
 | need to sleep while holding lock | mutex | 
 | ownership | mutex | 
 
+Unless the strict semantics of mutexes are unsuitable and/or the critical region prevents the lock from being shared, always prefer them to any other locking primitive.
 
 ### What happens when a process tries to adquire a mutex lock? 
 
@@ -1623,8 +1625,65 @@ Test if the mutex is taken:
 ```
 int mutex_is_locked(struct mutex *lock); // returns 1 if locked, 0 if unlocked.
 ```
+### Can you sleep in mutexes
+
+Yes you can sleep in mutexes, where you cannot sleep or call functions that may sleep is in **spinlocks**.
 
 
+
+## Read Write Locks
+
+references:
+- https://docs.kernel.org/locking/spinlocks.html#lesson-2-reader-writer-spinlocks
+
+
+The synchronization techniques discussed till now have one drawback: they don't differenciate between situations in 
+which: 
+ - data structures are simply read.
+ - data structures are actively updated. 
+
+- **Read** (an operation which doesn't change the value of the variable) access can be provided to multiple tasks at concurrent time.
+- **Write** access must only be provided to one task at a time. 
+
+The kernel provides additional semaphore and spinlock versions for the previous requirement, as the read operation is perfomed
+more often that the write operation. 
+
+1.- read/write spinlocks (the writing is exclusive, only one task at a time)
+2.- read/write semaphores (the writing is exclusive, only one task at a time)
+
+Those are also known as shared/exclusive or concurrent/exclusive locks
+
+- shared --> readers
+- exclusive --> writers
+
+### read write locks API
+
+Data structure: `struct rwlock_t`
+
+Header file: `<linux/rwlock_types.h>`
+
+Initialization:
+
+- static: `DEFINE_RWLOCK(x)`
+- dynamic: `rwlock_init(lock)`
+
+lock/unlock:
+ 
+ - readers:
+
+```
+read_lock(&my_rwlock);
+/** critical section (read only)**/
+read_unlock((&my_rwlock);
+```
+
+ - writers:
+
+```
+write_lock(&my_rwlock);
+/** critical section (read and write)**/
+write_unlock(&my_rwlock);
+```
 
 
 
