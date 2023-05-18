@@ -1507,6 +1507,17 @@ The mutex subsystem checks and enforces the following rules:
 
 The ownership concept, only applies to mutexes, not to semaphores
 
+
+| Requirment |  Recommended |
+| -- | -- | 
+| Long overhead locking | spinlock |
+| short lock hold time | spinlock |
+| long lock hold time | mutex |
+| need to lock from interrumpible context | spinlock |
+| need to sleep while holding lock | mutex | 
+| ownership | mutex | 
+
+
 ### What happens when a process tries to adquire a mutex lock? 
 
 When adquiring a mutex, there are three possible paths:
@@ -1576,6 +1587,9 @@ void mutex_lock(struct mutex *lock);
 void mutex_lock_nested(struct mutex *lock, unsigned int subclass);
 int  mutex_trylock(struct mutex *lock);
 ```
+the `mutex_trylock()` tryes to adquire the  mutex, and returns `1` if successful, or `0` otherwise. 
+
+
 
 Acquire the mutex, interruptible:
 ```
@@ -1583,6 +1597,14 @@ int mutex_lock_interruptible_nested(struct mutex *lock,
                                     unsigned int subclass);
 int mutex_lock_interruptible(struct mutex *lock);
 ```
+The `mutex_lock_interruptible()` places the process in the `TASK_UNINTERRUMPIBLE` state when it sleeps. It returns `0` if the mutex is adquired, or `-EINTR` if the task receives a signal while waiting for the mutex. 
+
+
+```
+mutex_lock_killable(struct mutex *lock)
+```
+`mutex_lock_killable()` places the calling process in the `TASK_KILLABLE` state when it sleeps, only fatal signal can interrupt it. It returns `0` if the mutex is adquired, or `-EINTR` when the task receives a fatal signal while waiting for unlocking the mutex. 
+
 
 Acquire the mutex, interruptible, if dec to 0:
 
@@ -1599,7 +1621,7 @@ void mutex_unlock(struct mutex *lock);
 Test if the mutex is taken:
 
 ```
-int mutex_is_locked(struct mutex *lock);
+int mutex_is_locked(struct mutex *lock); // returns 1 if locked, 0 if unlocked.
 ```
 
 
