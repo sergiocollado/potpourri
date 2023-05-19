@@ -1,4 +1,5 @@
 //from the real-time-embedded-systems course
+// references  Multithreaded Programming Guide: https://docs.oracle.com/cd/E19455-01/806-5257/index.html 
 
 #include <pthread.h>
 #include <stdlib.h>
