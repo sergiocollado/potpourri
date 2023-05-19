@@ -8,6 +8,7 @@
 // this is the main program
 // hello I am a thread running!
 // ----------------------------------------
+// references  Multithreaded Programming Guide: https://docs.oracle.com/cd/E19455-01/806-5257/index.html 
 
 #include <iostream>
 #include <string>
