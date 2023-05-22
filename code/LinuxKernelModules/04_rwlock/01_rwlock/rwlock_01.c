@@ -24,20 +24,12 @@ static int write_threadfn(void *arg)
 		write_unlock(&mylock);
 		pr_info("processor:%d released write lock\n", smp_processor_id());
 	}
-
-	if (counter >= 100)
-	{
-		kthread_stop(thread1);
-		kthread_stop(thread2);
-		kthread_stop(thread3);
-	}
-
 	return 0;
 }
 
 static int read_threadfn(void *arg)
 {
-	while(!kthread_should_stop() && counter < 100)
+	while(!kthread_should_stop() && counter <= 100)
 	{
 		pr_info("processor:%d trying to acquire read lock\n", smp_processor_id());
 		read_lock(&mylock);
