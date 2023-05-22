@@ -31,6 +31,7 @@ references:
 - https://www.techtarget.com/searchnetworking/feature/An-overview-of-3GPP-5G-releases-and-what-each-one-means#:~:text=3GPP%20meets%20four%20times%20a,user%20needs%20evolve%20over%20time.
 - https://en.wikipedia.org/wiki/5G
 - https://mobilepacketcore.com/5g-introduction/
+- https://telecompedia.net/5g-core-network-overview/
 
 - simple 5g architecture video: https://www.youtube.com/watch?v=Q6YxHz_07zk
 - 5g architecture: https://www.youtube.com/watch?v=aGEAQJ7U1tA
