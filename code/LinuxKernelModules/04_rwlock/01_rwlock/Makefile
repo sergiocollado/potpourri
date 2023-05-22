@@ -1,4 +1,4 @@
-obj-m += mutex_02.o
+obj-m += rwlock_01.o
 
 PWD := $(CURDIR)
 
