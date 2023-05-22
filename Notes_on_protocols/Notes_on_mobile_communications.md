@@ -33,6 +33,7 @@ references:
 - https://mobilepacketcore.com/5g-introduction/
 
 - simple 5g architecture video: https://www.youtube.com/watch?v=Q6YxHz_07zk
+- 5g architecture: https://www.youtube.com/watch?v=aGEAQJ7U1tA
 
 
 5G is the 5th generation of mobile networks. It offers highier data rates, and
