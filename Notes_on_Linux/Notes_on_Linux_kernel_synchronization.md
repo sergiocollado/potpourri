@@ -754,6 +754,25 @@ module_exit(test_hello_exit);
 
 ```
 
+### Atomics API
+
+reference: https://www.cs.bham.ac.uk/~exr/lectures/systems/08_09/docs/kernelAPI/
+
+```
+atomic_read --  read atomic variable
+atomic_set --  set atomic variable
+atomic_add --  add integer to atomic variable
+atomic_sub --  subtract the atomic variable
+atomic_sub_and_test --  subtract value from variable and test result
+atomic_inc --  increment atomic variable
+atomic_dec --  decrement atomic variable
+atomic_dec_and_test --  decrement and test
+atomic_inc_and_test --  increment and test
+atomic_add_negative --  add and test if negative
+get_unaligned --  get value from possibly mis-aligned location
+put_unaligned --  put value to a possibly mis-aligned location
+```
+
 ### Common uses of atomic operations
 
 The most common use of atomic integer operations is to implement counters. Proctecting a sole counter with a complex locking scheme is an overkill, so instead developers use `atomic_inc()` and `atomic_dec()` which are much lighter in weight. 
