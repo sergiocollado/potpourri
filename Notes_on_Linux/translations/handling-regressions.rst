@@ -461,13 +461,20 @@ How to deal with changes where a risk of regression is known
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Cómo tratar con cambios donde se sabe que hay riesgo de regresión
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Evaluate how big the risk of regressions is, for example by performing a code
 search in Linux distributions and Git forges. Also consider asking other
 developers or projects likely to be affected to evaluate or even test the
 proposed change; if problems surface, maybe some solution acceptable for all
 can be found.
+
+Evaluar cómo de grande es el reisgo de una regresión, por ejemplo realizando
+una búsqueda en las distribuciiones de linux y en Git forges. Considerar 
+también preguntar a otros desarrolladores o proyectos que pudieran ser 
+afectados para evaluar o incluso testear el cambio propuesto; si apareciesen 
+problemas, quizás se pudiera encontrar una solución aceptable para todos.
+
 
 If the risk of regressions in the end seems to be relatively small, go ahead
 with the change, but let all involved parties know about the risk. Hence, make
@@ -476,6 +483,18 @@ merged, tell the Linux kernel's regression tracker and the regressions mailing
 list about the risk, so everyone has the change on the radar in case reports
 trickle in. Depending on the risk, you also might want to ask the subsystem
 maintainer to mention the issue in his mainline pull request.
+
+Si al final, el riesgo de la regressión parece ser relativamente pequeño, 
+entonces adelante con el cambio, pero siempre informar a todas las partes involucradas
+del posible riesgo. Por tanto, asegurarse que el la descripción del parche, 
+se hace explicito este hecho. Una vez el cambio ha sido integrado, informar
+al gestor de regressiones de Linux y a las listas de correo de regressiones 
+sobre el riesgo, de manera que cualquiera que tenga el cambio en el radar, 
+en el caso de que aparezcan reportes. Dependiendo del riesgo, quizás se 
+quiera preguntar al mantenedor del subsistema, que mencione el hecho en su 
+linea principal de desarrollo. 
+
+
 
 What else is there to known about regressions?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
