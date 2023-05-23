@@ -453,8 +453,14 @@ series precedentes.
 More aspects regarding regressions developers should be aware of
 ----------------------------------------------------------------
 
+Más aspectos sobre regresiones que los desarrolladores deben saber
+------------------------------------------------------------------
+
 
 How to deal with changes where a risk of regression is known
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Cómo tratar con cambios donde se sabe que hay riesgo de regresión
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Evaluate how big the risk of regressions is, for example by performing a code
