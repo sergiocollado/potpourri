@@ -499,6 +499,9 @@ linea principal de desarrollo.
 What else is there to known about regressions?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+¿Qué más hay que saber sobre regresiones?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Check out Documentation/admin-guide/reporting-regressions.rst, it covers a lot
 of other aspects you want might want to be aware of:
 
@@ -510,18 +513,40 @@ of other aspects you want might want to be aware of:
 
  * how to handle tricky situations, e.g. when a regression is caused by a
    security fix or when fixing a regression might cause another one
+   
+Repasar la documentación Documentation/admin-guide/reporting-regressions.rst, 
+esta cubre otros aspectos a tener a encuenta y conocer:
+ 
+ * la finalidad de la "regla de no regresión"
+ 
+ * que incidentes no se califican como regresión
+ 
+ * quien es el responsable de identificar la causa raíz de una regresión
+ 
+ * como gestionar situaciones difíciles, como por ejemplo cuando una 
+   regresión es causada por una corrección de seguridad o cuando una 
+   regresión causa otra
 
 Whom to ask for advice when it comes to regressions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A quién preguntar por consejo cuando se trata de regresiones
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Send a mail to the regressions mailing list (regressions@lists.linux.dev) while
 CCing the Linux kernel's regression tracker (regressions@leemhuis.info); if the
 issue might better be dealt with in private, feel free to omit the list.
 
+Mandar un emal a la lista de correo de regresiones (regressions@lists.linux.dev)
+y CC al seguidor de regressiones del kernel de Linux (regressions@leemhuis.info);
+Si el incidente pudiera ser mejor gestionarlo en privado, puede omitirse la lista.
+
 
 More about regression tracking and regzbot
 ------------------------------------------
 
+Más sobre la gestión de regresiones con regzbot
+-----------------------------------------------
 
 Why the Linux kernel has a regression tracker, and why is regzbot used?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
