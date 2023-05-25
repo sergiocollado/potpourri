@@ -18,8 +18,9 @@ Languaje reference:
   
   - blog. how to module in rust: - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
   - blog. how to write a module in rust: https://www.jackos.io/rust-kernel/rust-for-linux.html#adding-the-rust-module
-  - blog. rust kernel module: hello world https://wusyong.github.io/posts/rust-kernel-module-01/
   - blog. https://www.jackos.io/rust-kernel/rust-for-linux.html
+  - blog. rust module getting startedhttps://wusyong.github.io/posts/rust-kernel-module-00/
+  - blog. rust kernel module: hello world https://wusyong.github.io/posts/rust-kernel-module-01/
 
 ## Rust for linux
 
