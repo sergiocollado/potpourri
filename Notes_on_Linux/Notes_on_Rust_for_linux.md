@@ -18,6 +18,8 @@ Languaje reference:
   
   - blog. how to module in rust: - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
   - blog. how to write a module in rust: https://www.jackos.io/rust-kernel/rust-for-linux.html#adding-the-rust-module
+  - blog. rust kernel module: hello world https://wusyong.github.io/posts/rust-kernel-module-01/
+  - blog. https://www.jackos.io/rust-kernel/rust-for-linux.html
 
 ## Rust for linux
 
@@ -52,6 +54,8 @@ lwn.net More rust concepts for the kernel: https://lwn.net/Articles/869428/
 article: https://www.memorysafety.org/blog/memory-safety-in-linux-kernel/
 
 kernel crate: https://rust-for-linux.github.io/docs/kernel/
+
+https://discourse.ubuntu.com/t/ubuntu-kernel-is-getting-rusty-in-lunar/34977
 
 ## Videos: 
 
@@ -103,6 +107,8 @@ kernel crate: https://rust-for-linux.github.io/docs/kernel/
 - Rust in the 6.2 kernel: https://lwn.net/Articles/914458/
 - https://hackmd.io/Yp2D8H_hRtuiGD2yYFZyLA
 - https://research.nccgroup.com/2023/02/06/rustproofing-linux-part-1-4-leaking-addresses/
+- rust kernel module: hello world https://wusyong.github.io/posts/rust-kernel-module-01/
+
 
 ### interestig commits
 - rust simple mutex: https://github.com/Rust-for-Linux/linux/commit/47e93d46eaca3a3648837eb6f5ae136812a28831
@@ -113,7 +119,6 @@ kernel crate: https://rust-for-linux.github.io/docs/kernel/
 - https://github.com/Darksonn/linux/commit/ff03d355219af7a4156de81b77b2f423ff3d8a47
 - rust: new api for initialization: https://github.com/Rust-for-Linux/linux/pull/909/files#diff-20432b0044e991d44b184c5bfa4cd92681e119758c93ba9fef5f4c629de688f1
 - rust: rust: Introduce jiffies-based timer support : https://github.com/fbq/linux-rust/commit/c31a2a3ce7420b43bda2c6f1b43227baf0d13661
-
 
 ### Others 2
 
