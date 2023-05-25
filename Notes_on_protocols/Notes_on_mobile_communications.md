@@ -55,7 +55,7 @@ The 5G System architecture consists of the following network functions (NF):
 -	Data Network (DN), e.g. operator services, Internet access or 3rd party services.
 -	Unstructured Data Storage Function (UDSF).
 -	Network Exposure Function (NEF).
--	Network Repository Function (NRF): The NRF supports discovery mechanisms that allows 5G elements to discover each other and get updated status of the desired elements. The NRF supports the following functions: Maintains the profiles of the available NF instances and their supported services in the 5G core network.
+-	Network Repository Function (NRF): The NRF supports discovery mechanisms that allows 5G elements to discover each other and get updated status of the desired elements. The NRF supports the following functions: Maintains the profiles of the available NF instances and their supported services in the 5G core network. The NRF supports discovery mechanisms that allows 5G elements to discover each other and get updated status of the desired elements. Reference: https://www.etsi.org/deliver/etsi_ts/129500_129599/129510/16.04.00_60/ts_129510v160400p.pdf
 -	Network Slice Admission Control Function (NSACF).
 -	Network Slice-specific and SNPN Authentication and Authorization Function (NSSAAF).
 -	Network Slice Selection Function (NSSF).
@@ -70,7 +70,7 @@ The 5G System architecture consists of the following network functions (NF):
 -	(Radio) Access Network ((R)AN).
 -	5G-Equipment Identity Register (5G-EIR).
 -	Network Data Analytics Function (NWDAF).
--	CHarging Function (CHF).
+-	CHarging Function (CHF). Reference: https://www.etsi.org/deliver/etsi_ts/132200_132299/132290/15.04.00_60/ts_132290v150400p.pdf
 -	Time Sensitive Networking AF (TSN AF).
 -	Time Sensitive Communication and Time Synchronization Function (TSCTSF).
 -	Data Collection Coordination Function (DCCF).
