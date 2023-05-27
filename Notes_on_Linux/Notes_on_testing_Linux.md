@@ -315,3 +315,17 @@ $ make ARCH=um O=.kunit --jobs=24
 
 
 To start looking into writing tests, you can look into: `tools/testing/kunit/kunit.py and the example test under lib/kunit/kunit-example-test.c`
+
+
+## LTP Linux Test Project
+
+reference:
+- https://github.com/linux-test-project/ltp
+- https://ltp.sourceforge.net/documentation/how-to/ltp.php
+- https://www.redhat.com/sysadmin/linux-test-project-ltp
+- https://linuxlink.timesys.com/docs/wiki/engineering/HOWTO_Use_LTP
+
+Linux Test Project is a joint project started by SGI, OSDL and Bull developed and maintained by IBM, Cisco, Fujitsu, SUSE, Red Hat, Oracle and others. The project goal is to deliver tests to the open source community that validate the reliability, robustness, and stability of Linux.
+
+The LTP testsuite contains a collection of tools for testing the Linux kernel and related features. Our goal is to improve the Linux kernel and system libraries by bringing test automation to the testing effort. Interested open source contributors are encouraged to join.
+
