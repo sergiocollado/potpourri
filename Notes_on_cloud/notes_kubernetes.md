@@ -503,6 +503,8 @@ also see:
 
 - What is Istio: https://www.redhat.com/en/topics/microservices/what-is-istio
 - What's a service mesh? https://www.redhat.com/en/topics/microservices/what-is-a-service-mesh
+- https://dev.to/leandronsp/kubernetes-101-part-viii-networking-fundamentals-mo7
+
 
 ## Services
 
@@ -2889,6 +2891,8 @@ links:
 https://github.com/kubernetes/community
 
 https://www.youtube.com/watch?v=X48VuDVv0do
+ 
+https://dev.to/leandronsp/kubernetes-101-part-i-the-fundamentals-23a1
 
 https://github.com/dysinger/learn-minikube
 
