@@ -652,6 +652,18 @@ while. Hence, it's best to tell regzbot about every regression, except when you
 immediately write a fix and commit it to a tree regularly merged to the affected
 kernel series.
 
+
+¿He de informar a regzbot cada regresión que encuentre? 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Idealmente si: todos somos humanos y olvidamos fácilmente los problemas cuando
+algo más importante aparece inesperadamente -- por ejemplo un problema mayor
+en el kernel de Linux o algo en la vida real que nos mantenga alejados de los
+teclados por un tiempo. Por eso es mejor informar a regzbot sobre cada
+regresión, excepto cuando inmediatamente escribimos un parche y los mandamos
+al árbol de desarrollo en el que se integran habitualmente a la serie del kernel. 
+
+
 How to see which regressions regzbot tracks currently?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -661,11 +673,27 @@ for the latest info; alternatively, `search for the latest regression report
 which regzbot normally sends out once a week on Sunday evening (UTC), which is a
 few hours before Linus usually publishes new (pre-)releases.
 
+¿Cómo ver qué regresiones esta siguiendo regbot actualmente?
+
+Verifique el `interfaz web de regzbot <https://linux-regtracking.leemhuis.info/regzbot/>`_
+para ver la última información; o `busque el último informe de regresiones
+<https://lore.kernel.org/lkml/?q=%22Linux+regressions+report%22+f%3Aregzbot>`_,
+el cual suele ser enviado por regzbot una vez a la semana el domingo por la noche (UTC),
+lo cual es unas horas antes de que Linus normalmete anuncie las "(pre-)releases".
+
 What places is regzbot monitoring?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Regzbot is watching the most important Linux mailing lists as well as the git
 repositories of linux-next, mainline, and stable/longterm.
+
+¿Qué sítios supervisa regzbot?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Regzbot supervisa las listas de corro más importantes de Linux, como también
+las de los repositorios linux-next, mainline y stable/longterm.
+
+
 
 What kind of issues are supposed to be tracked by regzbot?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -675,6 +703,15 @@ regular issues. But it's okay for the Linux kernel's regression tracker if you
 use regzbot to track severe issues, like reports about hangs, corrupted data,
 or internal errors (Panic, Oops, BUG(), warning, ...).
 
+¿Qué tipos de incidentes han de ser monitorizados por regzbot?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+El bot debe hacer seguimiento de las regresiones, y por tanto por favor, 
+no involucre a regzbot para incidencias normales. Pero es correcto para
+el gestor de incidencias de kernel de Linux, monitorizar incidentes
+graves, como informes sobre cuelgues, corrupción de datos o errores
+internos (Panic, Oops, BUG(), warning, ...).
+
+
 Can I add regressions found by CI systems to regzbot's tracking?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -682,6 +719,15 @@ Feel free to do so, if the particular regression likely has impact on practical
 use cases and thus might be noticed by users; hence, please don't involve
 regzbot for theoretical regressions unlikely to show themselves in real world
 usage.
+
+¿Puedo añadir una regression detectada por un sistema de CI al seguimiento de regzbot?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sientase libre de hacero, si la regresión en concreto puede tener un impacto en 
+casos de uso práctiocs y por tanto ser detectado por los usuarios; Así, por favor
+no involucre a regzbot en regresiones teóricas que dificilmente pudieran 
+manifestarse en un uso real. 
+
 
 How to interact with regzbot?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
