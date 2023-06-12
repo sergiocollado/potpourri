@@ -7,6 +7,7 @@ Languaje reference:
   - https://doc.rust-lang.org/book                                              
   - https://doc.rust-lang.org/rust-by-example                                   
   - https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/
+  - https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/effective-rust.html
   - https://doc.rust-lang.org/nomicon/                                          
   - https://rust-lang.github.io/async-book/01_getting_started/01_chapter.html   
   - https://github.com/rust-lang/rustlings                                      
