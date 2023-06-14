@@ -3,7 +3,8 @@
 
 ## Rust programming language references:
 
-Languaje reference:                                                           
+Languaje reference:             
+  - https://stevedonovan.github.io/rust-gentle-intro/
   - https://doc.rust-lang.org/book                                              
   - https://doc.rust-lang.org/rust-by-example                                   
   - https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/
@@ -20,7 +21,7 @@ Languaje reference:
   - blog. how to module in rust: - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
   - blog. how to write a module in rust: https://www.jackos.io/rust-kernel/rust-for-linux.html#adding-the-rust-module
   - blog. https://www.jackos.io/rust-kernel/rust-for-linux.html
-  - blog. rust module getting startedhttps://wusyong.github.io/posts/rust-kernel-module-00/
+  - blog. rust module getting started https://wusyong.github.io/posts/rust-kernel-module-00/
   - blog. rust kernel module: hello world https://wusyong.github.io/posts/rust-kernel-module-01/
 
 ## Rust for linux
