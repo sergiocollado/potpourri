@@ -1784,12 +1784,139 @@ module_exit(test_hello_exit);
 ```
 
 
+## Semaphores RWLocks
+
+Header file: <linux/rwsem.h>
+
+Data structure: struct rw_semaphore
+
+Implementation: kernel/locking/rwsem.c
+
+## Semaphores RWLocks API
+
+### Initialization:
+
+Static: `DECLARE_RWSEM(name)`
+
+Dynamic: `init_rwsem(struct rw_semaphore *sem)`
+
+All reader-writer semaphores are mutexes that is, their usage count is 1 (binary semaphores, oposed to counting semaphores).
+They enforce mutual exclusion only for writers, not readers. 
+
+Example of initialization: 
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/rwsem.h>
+#include <linux/slab.h>
+
+MODULE_LICENSE("GPL");
+
+struct rw_semaphore *mysem;
+
+static int __init test_hello_init(void)
+{
+    mysem = kmalloc(sizeof(mysem), GFP_KERNEL);
+    init_rwsem(mysem);
+    pr_info("count:%ld\n", atomic_long_read(&mysem->count));
+    kfree(mysem);
+    return -1;
+}
+
+static void __exit test_hello_exit(void)
+{
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+### Lock/Unlock
+
+Readers: 
+
+```
+void down_read(struct rw_semaphore *sem);
+   // critical section
+void up_read(struct rw_semaphore *sem);
+```
+
+Writers:
 
 
+```
+void down_write(struct rw_semaphore *sem);
+  // critical section
+void up_write(struct rw_semaphore *sem);
+```
 
+Note: down_read/write may put the calling process into an uninterruptible sleep.
 
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/rwsem.h>
+#include <linux/slab.h>
+#include <linux/kthread.h>
+#include <linux/delay.h>
 
+MODULE_LICENSE("GPL");
 
+DECLARE_RWSEM(mylock);
+static struct task_struct *thread1, *thread2, *thread3;
+
+int counter = 0;
+
+static int write_threadfn(void *arg)
+{
+	while(!kthread_should_stop())
+	{
+		pr_info("processor:%d trying to acquire write lock\n", smp_processor_id());
+		down_write(&mylock);
+		pr_info("processor:%d acquired write lock\n", smp_processor_id());
+		counter++;
+		msleep(5000);
+		up_write(&mylock);
+		pr_info("processor%d released write lock\n", smp_processor_id());
+	}
+	return 0;
+}
+
+static int read_threadfn(void *arg)
+{
+	while(!kthread_should_stop())
+	{
+		pr_info("processor:%d trying to acquire read lock\n", smp_processor_id());
+		down_read(&mylock);
+		pr_info("processor:%d acquired read lock\n", smp_processor_id());
+		pr_info("processor%d\t counter:%d\n", smp_processor_id(), counter);
+		msleep(2000);
+		up_read(&mylock);
+		pr_info("processor:%d releasing read lock\n", smp_processor_id());
+	}
+	return 0;
+}
+
+static int __init test_hello_init(void)
+{
+    thread1 = kthread_run(read_threadfn, NULL, "thread1");
+    thread2 = kthread_run(read_threadfn, NULL, "thread2");
+    thread3 = kthread_run(write_threadfn, NULL, "thread2");
+
+    return 0;
+}
+
+static void __exit test_hello_exit(void)
+{
+	kthread_stop(thread1);
+	kthread_stop(thread2);
+	kthread_stop(thread3);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
 
 
 
