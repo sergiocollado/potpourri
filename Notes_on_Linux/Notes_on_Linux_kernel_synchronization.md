@@ -1704,8 +1704,28 @@ write_lock(&my_rwlock);
 write_unlock(&my_rwlock);
 ```
 
+### What happens when read lock is called and after it write lock is called?
 
+For example the next code snippet: 
 
+```
+read_lock(&mylock);
+write_lock(&mylock);
+```
+
+Executing this code will cause a deadlock, as write_lock() will spin until all readers have released the lock.
+
+### Recursive read locks
+
+For the same thread, is safe to recursively obtain the same read lock.
+
+### What happens when writer is waiting and reader arrives?
+
+What happens when a read_lock is held and a writer is waiting for exclusive access and a new reader arrives?
+
+Who is given a chance? 
+
+whoever comes first it is served.
 
 
 
