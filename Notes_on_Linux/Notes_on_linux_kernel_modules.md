@@ -129,7 +129,7 @@ Once a module gets accepted to be included, it becomes an in-tree module.
   - a start (initialization function): which is called when the module is loaded into the kernel
   - an end funcion (cleanup), which is called just befor it si removed
   
-  This is done with the module_init() and module_exit() macros
+  This is done with the `module_init()` and `module_exit()` macros
   
  ### Licensing
   
