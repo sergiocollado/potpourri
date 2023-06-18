@@ -112,12 +112,12 @@ Once a module gets accepted to be included, it becomes an in-tree module.
 
 ## Basic commands
 
-- lsmod: List modules, lsmod ges its information by reading the file /proc/module (previously) or /sys/module
-- modinfo: module information, prints the information of the module.
-- insmod: used like: `sudo insmod ./mymodule.ko` to load modules.
-- modprobe: add or remove modules.
-- rmmod: to remove modules.
-- depmod: reports dependecies between modules.
+- `lsmod`: List modules, lsmod ges its information by reading the file /proc/module (previously) or /sys/module
+- `modinfo`: module information, prints the information of the module.
+- `insmod`: used like: `sudo insmod ./mymodule.ko` to load modules.
+- `modprobe`: add or remove modules.
+- `rmmod`: to remove modules.
+- `depmod`: reports dependecies between modules.
 
  reference: https://www.tecmint.com/load-and-unload-kernel-modules-in-linux/
   
