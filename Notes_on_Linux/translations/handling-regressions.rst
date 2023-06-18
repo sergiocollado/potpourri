@@ -656,7 +656,7 @@ kernel series.
 ¿He de informar a regzbot cada regresión que encuentre? 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Idealmente si: todos somos humanos y olvidamos fácilmente los problemas cuando
+Idealmente sí: todos somos humanos y olvidamos fácilmente los problemas cuando
 algo más importante aparece inesperadamente -- por ejemplo un problema mayor
 en el kernel de Linux o algo en la vida real que nos mantenga alejados de los
 teclados por un tiempo. Por eso es mejor informar a regzbot sobre cada
@@ -674,6 +674,7 @@ which regzbot normally sends out once a week on Sunday evening (UTC), which is a
 few hours before Linus usually publishes new (pre-)releases.
 
 ¿Cómo ver qué regresiones esta siguiendo regbot actualmente?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Verifique el `interfaz web de regzbot <https://linux-regtracking.leemhuis.info/regzbot/>`_
 para ver la última información; o `busque el último informe de regresiones
@@ -732,9 +733,17 @@ manifestarse en un uso real.
 How to interact with regzbot?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+¿Cómo interactuar con regzbot?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 By using a 'regzbot command' in a direct or indirect reply to the mail with the
 regression report. These commands need to be in their own paragraph (IOW: they
 need to be separated from the rest of the mail using blank lines).
+
+Usando el comando 'regzbot' en una respuesta directa o indirecta al correo con
+el informe de regresión. Ese comando necesita estar en su propio párrafo (debe
+estar separado del resto del text usando lineas en blanco):
+
 
 One such command is ``#regzbot introduced <version or commit>``, which makes
 regzbot consider your mail as a regressions report added to the tracking, as
@@ -742,13 +751,28 @@ already described above; ``#regzbot ^introduced <version or commit>`` is another
 such command, which makes regzbot consider the parent mail as a report for a
 regression which it starts to track.
 
+Por ejemplo ``#regzbot introduced <version or commit>``, que hace que regzbot
+considere el correo como un informe de regressión que se ha de añadir al seguimiento,
+como se ha descrito anteriormente; ``#regzbot ^introduced <version or commit>`` es
+otro ejemplo del comando, el cual indica a regzbot que considere el email 
+anterior como el informe de una regressión que se ha de comenzar a monitorizar. 
+
 Once one of those two commands has been utilized, other regzbot commands can be
 used in direct or indirect replies to the report. You can write them below one
 of the `introduced` commands or in replies to the mail that used one of them
 or itself is a reply to that mail:
 
+Una vez uno de esos dos comandos se ha utilizado, se pueden usar otros comandos
+regzbot en respuestas directas o indirectas al infomre. Puede escribirlos debajo
+de uno de los comandos anteriormente usados o en las respuestas al correo en el
+que se uso como respuesta a ese correo: 
+
  * Set or update the title::
 
+       #regzbot title: foo
+       
+ * Definir o actualizar el título::       
+ 
        #regzbot title: foo
 
  * Monitor a discussion or bugzilla.kernel.org ticket where additions aspects of
@@ -761,24 +785,56 @@ or itself is a reply to that mail:
    will consider all messages in that thread or ticket as related to the fixing
    process.
 
+ * Monitorizar una discusión o un tiquet de bugzilla.kernel.org donde aspectos
+ adicionales del incidente o de la corrección se están comentando -- por ejemplo
+ presentar un parche que corrige la regresión::
+
+       #regzbot monitor: https://lore.kernel.org/all/30th.anniversary.repost@klaava.Helsinki.FI/
+       
+  Monitorizar solamente funciona para lore.kernel.org y bugzilla.kernel.org; regzbot
+  considerará todos los mensajes en ese hilo o el tiquet como relacionados al 
+  proceso de corrección.      
+     
  * Point to a place with further details of interest, like a mailing list post
    or a ticket in a bug tracker that are slightly related, but about a different
    topic::
 
        #regzbot link: https://bugzilla.kernel.org/show_bug.cgi?id=123456789
 
+ * Indicar a un lugar donde más detalles de interes, como un mensaje en una lista
+ de correo o un tiquet en un gestor de incidencias que pueden estar levemente relacionados, 
+ pero con un tema diferente::
+ 
+       #regzbot link: https://bugzilla.kernel.org/show_bug.cgi?id=123456789
+       
+       
  * Mark a regression as fixed by a commit that is heading upstream or already
    landed::
 
        #regzbot fixed-by: 1f2e3d4c5d
+       
+ * Anotar una regression como corregida por un commit quee se ha mandado aguas arriba 
+ o se ha publicado::
+ 
+        #regzbot fixed-by: 1f2e3d4c5d
 
  * Mark a regression as a duplicate of another one already tracked by regzbot::
 
        #regzbot dup-of: https://lore.kernel.org/all/30th.anniversary.repost@klaava.Helsinki.FI/
+       
+ * Anotar una regresión como un duplicado de otra que ya es seguida por regzbot::
+ 
+        #regzbot dup-of: https://lore.kernel.org/all/30th.anniversary.repost@klaava.Helsinki.FI/
 
  * Mark a regression as invalid::
 
        #regzbot invalid: wasn't a regression, problem has always existed
+       
+ * Anotar una regressión como invalida::
+ 
+       #regzbot invalid: wasn't a regression, problem has always existed
+       
+       
 
 Is there more to tell about regzbot and its commands?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -789,6 +845,16 @@ kernel's regression tracking bot can be found on its
 contains a `getting started guide <https://gitlab.com/knurd42/regzbot/-/blob/main/docs/getting_started.md>`_
 and `reference documentation <https://gitlab.com/knurd42/regzbot/-/blob/main/docs/reference.md>`_
 which both cover more details than the above section.
+
+¿Algo más que decir sombre regzbot y sus comandos?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Hay información más detallada y actualizada sobre el bot de seguimiento de
+regresiones del kernel de Linux en: `project page <https://gitlab.com/knurd42/regzbot>`_,
+y entre otros contiene una  `guia de inicio <https://gitlab.com/knurd42/regzbot/-/blob/main/docs/getting_started.md>`_
+y `documentación de referencia <https://gitlab.com/knurd42/regzbot/-/blob/main/docs/reference.md>`_
+ambos contienen más detalles que las secciones anteriores. 
+
 
 Quotes from Linus about regression
 ----------------------------------
