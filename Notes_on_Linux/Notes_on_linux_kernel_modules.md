@@ -17,7 +17,8 @@ linux device driver series: https://embetronicx.com/tutorials/linux/device-drive
 
 Fast Linux Kernel Testing with QEMU: https://ncmiller.dev/2016/05/14/linux-and-qemu.html
 
-The kernel API: https://www.kernel.org/doc/htmldocs/kernel-api/index.html
+The kernel API: https://www.kernel.org/doc/htmldocs/kernel-api/index.html <br>
+reference: linux kernel API cheatsheet: https://www.cs.bham.ac.uk/~exr/lectures/systems/08_09/docs/kernelAPI/ <br>
 
 ## What is a device driver.
 
