@@ -1757,4 +1757,4 @@ Amazon S3 is designed to be languaje neutral, and to be used with the supported 
  
 # lab: how to create an EC2 instance with the wizard
 
-![]([image link](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/Launch_EC2_instance_lab/Launch_an_EC2_instance_002.png))
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/Launch_EC2_instance_lab/Launch_an_EC2_instance_001.png))
