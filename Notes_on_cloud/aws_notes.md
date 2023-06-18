@@ -1784,3 +1784,5 @@ Amazon S3 is designed to be languaje neutral, and to be used with the supported 
 ![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/Launch_EC2_instance_lab/Launch_an_EC2_instance_013.png))
 
 ![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/Launch_EC2_instance_lab/Launch_an_EC2_instance_014.png))
+
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/Launch_EC2_instance_lab/Launch_an_EC2_instance_015.png))
