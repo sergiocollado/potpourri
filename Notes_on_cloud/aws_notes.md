@@ -1755,7 +1755,7 @@ Amazon S3 is designed to be languaje neutral, and to be used with the supported 
  https://docs.aws.amazon.com/lex/latest/dg/what-is.html
  
  
-# lab: how to create an EC2 instance with the wizard
+# How to create an EC2 instance with the wizard
 
 ![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/Launch_EC2_instance_lab/Launch_an_EC2_instance_001.png)
 
@@ -1786,3 +1786,30 @@ Amazon S3 is designed to be languaje neutral, and to be used with the supported 
 ![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/Launch_EC2_instance_lab/Launch_an_EC2_instance_014.png)
 
 ![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/Launch_EC2_instance_lab/Launch_an_EC2_instance_015.png)
+
+# Create an EC2 instance and attach an EBS storage volume
+
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_001.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_002.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_003.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_004.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_005.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_006.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_007.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_008.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_009.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_010.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_011.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_012.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_013.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_014.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_015.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_016.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_017.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_018.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_019.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_020.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_021.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_022.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_023.png)
+![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_cloud/images/create_an_EC2_instance_with_aditional_EBS_storage/pic_024.png)
