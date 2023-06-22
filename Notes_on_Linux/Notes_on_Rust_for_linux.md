@@ -18,6 +18,7 @@ Languaje reference:
   - https://google.github.io/comprehensive-rust/welcome-day-4.html
   - https://github.com/ferrous-systems/teaching-material/tree/main/assignments
   
+  
   - blog. how to module in rust: - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
   - blog. how to write a module in rust: https://www.jackos.io/rust-kernel/rust-for-linux.html#adding-the-rust-module
   - blog. https://www.jackos.io/rust-kernel/rust-for-linux.html
@@ -32,6 +33,8 @@ Languaje reference:
  - https://rust-for-linux.com/
 
 **website documentation**: https://rust-for-linux.com/
+
+- https://lore.kernel.org/rust-for-linux/
 
 https://github.com/Rust-for-Linux/rust-out-of-tree-module
 
