@@ -452,6 +452,8 @@ electronic signatures standard: ETSI TS 102 042
 - https://fred.stlouisfed.org/
 - https://www.ecb.europa.eu/stats/html/index.en.html
 - https://morningstar.es/es/
+- https://goldprice.org/gold-price-history.html
+- https://www.justetf.com/en/
 
 
 ## INDUSTRIAL manufacturers
