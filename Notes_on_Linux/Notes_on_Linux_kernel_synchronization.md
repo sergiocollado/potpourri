@@ -1854,6 +1854,23 @@ void up_write(struct rw_semaphore *sem);
 
 Note: down_read/write may put the calling process into an uninterruptible sleep.
 
+
+```
+int down_read_trylock(struct rw_semaphore *sem);
+int down_write_trylock(struct rw_semaphore *sem);
+```
+**Note**: Both return 1 if the lock is successfully acquired and 0 if it is currently contended. This is the opposite of normal semaphore behavior!
+
+
+
+Reader-writer semaphores have a unique method which is not present in a reader-writer spinlocks
+```struct rw_semaphore *sem
+void downgrade_write(struct rw_semaphore *sem)
+```
+This function atomically converts an aquired write lock to a read lock.
+
+Where can this be used? Used in situations where write lock is needed for a quick change, followed by a longer period of read-only access. 
+
 ```
 #include <linux/kernel.h>
 #include <linux/module.h>
@@ -1918,6 +1935,14 @@ static void __exit test_hello_exit(void)
 module_init(test_hello_init);
 module_exit(test_hello_exit);
 ```
+
+
+## Sequential locks
+
+Read-write lock is a special lock mechanism which allows concurrent access for read-only operations. An exclusive lock is needed for writing or modifing data. 
+A writer process can't adquiere a lock as long as at least one reader process which acquired a lock holds it. This may lead to a problem called starvation, where
+writer process may sometimes need to wait long time for the lock. 
+
 
 
 
