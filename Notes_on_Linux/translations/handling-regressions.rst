@@ -859,8 +859,15 @@ ambos contienen más detalles que las secciones anteriores.
 Quotes from Linus about regression
 ----------------------------------
 
+Citas de Linus sobre regresiones
+--------------------------------
+
+
 Find below a few real life examples of how Linus Torvalds expects regressions to
 be handled:
+
+Debajo se encuentran unos ejemplos reales de como Linus Torvalds espera que se gestionen
+las regresiones:
 
  * From `2017-10-26 (1/2)
    <https://lore.kernel.org/lkml/CA+55aFwiiQYJ+YoLKCXjN_beDVfu38mg=Ggg5LFOcqHE8Qi7Zw@mail.gmail.com/>`_::
@@ -884,6 +891,30 @@ be handled:
        three weeks means that I will revert, and I will stop pulling apparmor
        requests until the people involved understand how kernel development
        is done.
+
+ * De 2017-10-26 (1/2)
+   <https://lore.kernel.org/lkml/CA+55aFwiiQYJ+YoLKCXjN_beDVfu38mg=Ggg5LFOcqHE8Qi7Zw@mail.gmail.com/>`_::
+
+     Si romopes la configuracion de los espacios de usuaro ESO ES UNA REGRESIÓN.
+
+     No esta bien decir "pero nosotros arreglaremos la configuración del espacio de usuario". 
+
+     Realmente. NO ESTÁ BIEN. 
+
+     [...]
+
+     La primera regla es: 
+
+     - no causamos regresiones
+
+     y el corolario es que cuando una regressión pasa, lo admitimos y lo 
+     arreglamos, en vez de echar la culpa al espacio de usuario.
+
+     El hecho de que aparentemente se haya negado la regresión durante
+     tres semanas, significa que lo revertiré y dejaré de integrar peticiones
+     de apparmor hasta que la gente involucrada entienda como se hace
+     el desarrollo del kernel. 
+
 
  * From `2017-10-26 (2/2)
    <https://lore.kernel.org/lkml/CA+55aFxW7NMAMvYhkvz1UPbUTUJewRt6Yb51QAx5RtrWOwjebg@mail.gmail.com/>`_::
