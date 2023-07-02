@@ -846,7 +846,7 @@ contains a `getting started guide <https://gitlab.com/knurd42/regzbot/-/blob/mai
 and `reference documentation <https://gitlab.com/knurd42/regzbot/-/blob/main/docs/reference.md>`_
 which both cover more details than the above section.
 
-¿Algo más que decir sombre regzbot y sus comandos?
+¿Algo más que decir sobre regzbot y sus comandos?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Hay información más detallada y actualizada sobre el bot de seguimiento de
@@ -980,6 +980,53 @@ las regresiones:
        up". Whoever broke something gets to fix it too.
 
        And we simply do not break user space.
+
+ * De `2017-10-26 (2/2)
+   <https://lore.kernel.org/lkml/CA+55aFxW7NMAMvYhkvz1UPbUTUJewRt6Yb51QAx5RtrWOwjebg@mail.gmail.com/>`_::
+
+       La gente deberia sentirse libre de actualizar su kernel y simplemente
+       no preocuparse por ello.
+
+       Me niego a introducir una limitación del tipo "solo puede actualizar
+       el kernel si actualiza otro programa". Si el kernel trabaja para tí,
+       la regla es que continue trabajando para tí. 
+
+       Ha habido algunas excepciones, pero son pocas y separadas entre sí, y generalmente
+       tienen una razón fundamental para haber sucedido, que era básicamente
+       inevitable, y la gente intentó intensamente evitarlas. Quizás no podamos
+       mantener el hardware más depués de que han pasado décadas y nadie los usa
+       con kernel modernos. Quizás haya una problema de seguridad serio con como
+       hicimos las cosas, y la gente dependa de un modelo fundamentalmente roto. 
+       Quizás haya algun otro roto fundamental, que tenga que tener una flag 
+       y por razones muy fundamentales. 
+
+
+       And notice that this is very much about *breaking* peoples environments.
+
+
+       Y yo seriamente me negare a coger código de gente que no entiende y 
+       honra esta sencilla regla.
+
+       Y esta regla no va a cambiar. 
+
+       Y sí, me doy cuenta que el kernel es "especial" en este respecto. Y 
+       estoy orgulloso de ello.
+
+       Nosotros rompemos la API dentro del kernel todo el tiempo. Y arreglaremos
+       los problemas internos diciendo "tu ahora necesitas hacer XYZ", pero 
+       entonces es sobre la API interna del kernel, y la gente que hace esto 
+       entonces tendrá obviamente que arreglar todos los usos de esa API del 
+       kernel. Nadie puede decir "ahora yo he roto la API que usas, y ahora
+       tu necesitas arreglarlo". Quién rompa algo, lo arregla también. 
+
+       TODO: FIXX & FINISH
+
+
+
+
+
+
+
 
  * From `2020-05-21
    <https://lore.kernel.org/all/CAHk-=wiVi7mSrsMP=fLXQrXK_UimybW=ziLOwSzFTtoXUacWVQ@mail.gmail.com/>`_::
