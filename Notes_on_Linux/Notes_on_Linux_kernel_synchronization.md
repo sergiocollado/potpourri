@@ -1939,6 +1939,8 @@ module_exit(test_hello_exit);
 
 ## Sequential locks
 
+reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/linux-sync-6.html
+
 Read-write lock is a special lock mechanism which allows concurrent access for read-only operations. An exclusive lock is needed for writing or modifing data. 
 A writer process can't adquiere a lock as long as at least one reader process which acquired a lock holds it. This may lead to a problem called starvation, where
 writer process may sometimes need to wait long time for the lock. 
