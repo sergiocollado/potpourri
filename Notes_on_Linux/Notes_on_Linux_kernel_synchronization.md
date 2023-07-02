@@ -1943,6 +1943,158 @@ Read-write lock is a special lock mechanism which allows concurrent access for r
 A writer process can't adquiere a lock as long as at least one reader process which acquired a lock holds it. This may lead to a problem called starvation, where
 writer process may sometimes need to wait long time for the lock. 
 
+A lot of effort has been put into developing synchronization primitives that avoid locks.Lock free and wait free synchronization plays a major role in RTOS, 
+where time guarantees must be given. 
+
+Two synchronization mechanisms were added in 2.6 kernel to totally remove locking on the reader side:
+
+- sequence lock
+- RCU (read copy update)
+
+### Seqlocks/sequence locks
+
+Where added in linux 2.6, to provide a fast and lock-free access to shared resources. 
+
+The difference between a reader-writer lock and a sequence lock , is that the writer lock is given a higher priority when compared to reader lock. And the writer lock 
+is allowed to modify the shared data, even when they are reader in critical section. 
+
+The reader locks are in charge to check if the read valid data. If a write access took place while the data was readed, the data is invalid and has to be 
+readed again. Identification of write accesses is realized with a counter. 
+
+When a writer lock is already in a critical section and another writer lock arrives, the writer-lock uses an spin-lock for mutual exclusion hence will not 
+interfere with the other writer. The lock is present always for writers, but not for readers. 
+
+### When to uise a sequence lock 
+
+- When there is a small amount of data to be protected
+- the data has a lot of readers or is frequently accessed
+- the data has few writers
+- It is important that writers not to be starved for access.
+
+### How sequence locks work 
+
+Sequence locks internaly use a sequence counter (an integer type), and a spin-lock.
+
+Data structure: `seqlock_t`
+
+Header file: linux/seqlock.h
+
+```
+typedef struct seqcount {
+	unsigned sequence;
+} seqcount_t;
+
+typedef struct {
+	struct seqcount_t seqcount; 	// sequence counter
+	spinlock_t lock;		// lock to atomic update in case of writers
+} seqlock_t;
+```
+
+### sequence lock API
+
+Static : `DEFINE_SEQLOCK(x)`
+
+Dinamic : `seqlock_init()` 
+
+#### Write operation
+
+Writers must take out exclusive access before making changes to the protected data.
+
+```
+write_seqlock(&mylock);
+/* make changes here*/
+write_sequnlock(&mylock);
+```
+
+- `write_seqlock(&mylock); ` locks the spinlock and increments the sequence number. 
+- `write_sequnlock(&mylock);` increments the sequence number again, then releases the spinlock.
+
+#### Read operation
+
+In the read operation no locking is required when you are using trying to read. 
+
+Each reader must read the sequence number twice.
+ - 1. before reading the data
+ - 2. after reading the data
+  
+And verify wether they both are the same or not. 
+
+- When there was no writer during the read operation: then the value of the sequence counter will be the same. 
+- When there was writer during the write operation: the value of the sequence counter will not be the same. The
+important point here is that while the writer is operating, the sequence number would be odd. 
+
+```
+unsigned int seq;
+
+do {
+	seq = read_seqbegin(&the_lock);
+	/* Make a copy of the data of interest */
+} while read_seqretry(&the_lock, seq);
+```
+
+`read_seqbegin`  -->     Returns the current sequence number.
+
+`read_seqretry`	-->	Returns 1 if the value of seq local variable is odd.
 
 
+Example:
 
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/seqlock.h>
+#include <linux/slab.h>
+#include <linux/kthread.h>
+#include <linux/delay.h>
+
+MODULE_LICENSE("GPL");
+
+DEFINE_SEQLOCK(mylock);
+static struct task_struct *thread1, *thread2, *thread3, *thread4;
+
+int counter = 0;
+
+static int write_threadfn(void *arg)
+{
+	pr_info("processor:%d trying to acquire write seq lock\n", smp_processor_id());
+	write_seqlock(&mylock);
+	pr_info("processor:%d acquired write lock\n", smp_processor_id());
+	counter++;
+	mdelay(7000);
+	write_sequnlock(&mylock);
+	pr_info("processor%d released write lock\n", smp_processor_id());
+	return 0;
+}
+
+static int read_threadfn(void *arg)
+{
+	unsigned int seq;
+	int mycounter;
+	pr_info("processor:%d starting seqread\n", smp_processor_id());
+	do
+	{
+		seq = read_seqbegin(&mylock);
+		mycounter = counter;
+		pr_info("processor%d:seq read mycounter:%d\n", smp_processor_id(), mycounter);
+	}while (read_seqretry(&mylock, seq));
+	pr_info("processor:%d completed seqread\n", smp_processor_id());
+	pr_info("processor%d\t counter:%d\n", smp_processor_id(), mycounter);
+	return 0;
+}
+
+static int __init test_hello_init(void)
+{
+	thread1 = kthread_run(read_threadfn, NULL, "thread1");
+	thread2 = kthread_run(write_threadfn, NULL, "thread2");
+	thread3 = kthread_run(read_threadfn, NULL, "thread3");
+	thread4 = kthread_run(write_threadfn, NULL, "thread4");
+	return 0;
+}
+
+static void __exit test_hello_exit(void)
+{
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
