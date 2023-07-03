@@ -319,7 +319,7 @@ To start looking into writing tests, you can look into: `tools/testing/kunit/kun
 
 ## LTP Linux Test Project
 
-reference:
+references:
 - https://github.com/linux-test-project/ltp
 - https://ltp.sourceforge.net/documentation/how-to/ltp.php
 - https://www.redhat.com/sysadmin/linux-test-project-ltp
