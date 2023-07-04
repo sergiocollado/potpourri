@@ -204,6 +204,7 @@ reference: https://www.youtube.com/watch?v=507n-t0sfcU LPC2019 - KUnit - Unit Te
 reference: For general information about KUnit and `kunit.py`, please refer to `Documentation/dev-tools/kunit/start.rst`. <br>
 reference: https://mairacanal.github.io/kernel-symbol-table-compilation-more/ <br>
 reference: https://mairacanal.github.io/from-selftests-to-KUnit/
+reference: https://docs.kernel.org/dev-tools/kunit/start.html#writing-your-first-test
 
 KUnit is a lightweight unit testing framework for the Linux kernel. These tests are able to be run locally on a developer’s workstation without a VM or special hardware.
 
@@ -316,6 +317,7 @@ $ make ARCH=um O=.kunit --jobs=24
 
 To start looking into writing tests, you can look into: `tools/testing/kunit/kunit.py and the example test under lib/kunit/kunit-example-test.c`
 
+Writing your first test: https://docs.kernel.org/dev-tools/kunit/start.html#writing-your-first-test
 
 ## LTP Linux Test Project
 
@@ -327,5 +329,5 @@ references:
 
 Linux Test Project is a joint project started by SGI, OSDL and Bull developed and maintained by IBM, Cisco, Fujitsu, SUSE, Red Hat, Oracle and others. The project goal is to deliver tests to the open source community that validate the reliability, robustness, and stability of Linux.
 
-The LTP testsuite contains a collection of tools for testing the Linux kernel and related features. Our goal is to improve the Linux kernel and system libraries by bringing test automation to the testing effort. Interested open source contributors are encouraged to join.
+The LTP testsuite contains a collection of tools for testing the Linux kernel and related features. The goal is to improve the Linux kernel and system libraries by bringing test automation to the testing effort. Interested open source contributors are encouraged to join.
 
