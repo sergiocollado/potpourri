@@ -2485,4 +2485,10 @@ And example of how to write a VFS: https://github.com/torvalds/linux/blob/2c271f
 - Linux Kernel Oops!: https://nakedsecurity.sophos.com/2023/03/13/linux-gets-double-quick-double-update-to-fix-kernel-oops/
 - Tun/tap interfaces: https://backreference.org/2010/03/26/tuntap-interface-tutorial/index.html
 
+## And other referencces for elaborate later ...
 
+XArray: 
+ - https://docs.kernel.org/core-api/xarray.html
+ - The design and implementation of the XArray : https://www.youtube.com/watch?v=v0C9_Fp-co4
+ - XArray: One Data Structure To Rule Them All : https://www.youtube.com/watch?v=-Bw-HWcrnss
+ - Matthew Wilcox: How Linux handles IO errors -- PGCon 2018 : https://www.youtube.com/watch?v=74c19hwY2oE
