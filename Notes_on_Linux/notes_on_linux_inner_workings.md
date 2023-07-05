@@ -2484,6 +2484,7 @@ And example of how to write a VFS: https://github.com/torvalds/linux/blob/2c271f
 - BIG TCP: https://lwn.net/Articles/883713/
 - Linux Kernel Oops!: https://nakedsecurity.sophos.com/2023/03/13/linux-gets-double-quick-double-update-to-fix-kernel-oops/
 - Tun/tap interfaces: https://backreference.org/2010/03/26/tuntap-interface-tutorial/index.html
+- kprobes: https://ish-ar.io/kprobes-in-a-nutshell/
 
 ## And other referencces for elaborate later ...
 
