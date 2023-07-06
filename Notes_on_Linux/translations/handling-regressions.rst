@@ -987,21 +987,52 @@ las regresiones:
        La gente deberia sentirse libre de actualizar su kernel y simplemente
        no preocuparse por ello.
 
-       Me niego a introducir una limitación del tipo "solo puede actualizar
+       Me niego a imponer una limitación del tipo "solo puede actualizar
        el kernel si actualiza otro programa". Si el kernel trabaja para tí,
        la regla es que continue trabajando para tí. 
 
        Ha habido algunas excepciones, pero son pocas y separadas entre sí, y generalmente
        tienen una razón fundamental para haber sucedido, que era básicamente
-       inevitable, y la gente intentó intensamente evitarlas. Quizás no podamos
-       mantener el hardware más depués de que han pasado décadas y nadie los usa
-       con kernel modernos. Quizás haya una problema de seguridad serio con como
+       inevitable, y la gente intentó evitarlas por todos los medios. Quizás no podamos
+       mantener el hardware más, depués de que han pasado décadas y nadie los usa
+       con kernel modernos. Quizás haya un problema de seguridad serio con cómo
        hicimos las cosas, y la gente dependa de un modelo fundamentalmente roto. 
-       Quizás haya algun otro roto fundamental, que tenga que tener una flag 
-       y por razones muy fundamentales. 
+       Quizás haya algun otro roto fundamental, que tenga que tener una _flag_ 
+       y por razones internas y fundamentales. 
 
 
        And notice that this is very much about *breaking* peoples environments.
+
+       Y notesé que esto trata sobre *romper* los entornos de la gente.
+
+       Behavioral changes happen, and maybe we don't even support some
+       feature any more. There's a number of fields in /proc/<pid>/stat that
+       are printed out as zeroes, simply because they don't even *exist* in
+       the kernel any more, or because showing them was a mistake (typically
+       an information leak). But the numbers got replaced by zeroes, so that
+       the code that used to parse the fields still works. The user might not
+       see everything they used to see, and so behavior is clearly different,
+       but things still _work_, even if they might no longer show sensitive
+       (or no longer relevant) information.
+
+       Cambios de comportamiento pasas, y quizás no se mantengan algunas
+       funcionalidades más. Hay un número de campos en /proc/<pid>/stat que
+       se imprimen como ceros, simplemente porque ni si quiera existen ya en 
+       kernel, o porque mostrarlos era un error (tipicamente una fuga de 
+       información). Pero los números se sustituyeron por ceros, asi que
+       el código que se usaba para parsar esos campos todavia existe. El 
+       usuario puede no ver todo lo que podía ver antes, y por eso el comportamiento
+       es claramente diferente, pero las cosas todavía _funcionan_, incluso si
+       no se puede mostrar información sensible (o que no es ya importante).
+
+       But if something actually breaks, then the change must get fixed or
+       reverted. And it gets fixed in the *kernel*. Not by saying "well, fix
+       your user space then". It was a kernel change that exposed the
+       problem, it needs to be the kernel that corrects for it, because we
+       have a "upgrade in place" model. We don't have a "upgrade with new
+       user space".
+
+
 
 
        Y yo seriamente me negare a coger código de gente que no entiende y 
