@@ -3,6 +3,7 @@
 reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/ <br>
 reference: EEC3-4029 Operating Systems: http://gauss.ececs.uc.edu/Courses/c4029/videos.html <br>
 reference: linux-kernel-labs: https://linux-kernel-labs.github.io/refs/heads/master/index.html <br>
+refernece: https://lwn.net/Kernel/Index/#Locking_mechanisms <br>
 reference: https://github.com/shemminger/kernel-examples  -Locking and concurrency in Linux kernel examples <br>
 reference: https://github.com/PacktPublishing/Linux-Kernel-Programming/blob/master/Linux-Kernel-Programming-(Part-2)/Linux%20Kernel%20Programming%20Part%202%20-%20Char%20Device%20Drivers%20and%20Kernel%20Synchronization_eBook.pdf  <br>
 reference: Linux kernel memory model: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0124r6.html <br>
@@ -1939,7 +1940,7 @@ module_exit(test_hello_exit);
 
 ## Sequential locks
 
-reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/linux-sync-6.html
+reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/linux-sync-6.html <br>
 
 Read-write lock is a special lock mechanism which allows concurrent access for read-only operations. An exclusive lock is needed for writing or modifing data. 
 A writer process can't adquiere a lock as long as at least one reader process which acquired a lock holds it. This may lead to a problem called starvation, where
@@ -1953,7 +1954,11 @@ Two synchronization mechanisms were added in 2.6 kernel to totally remove lockin
 - sequence lock
 - RCU (read copy update)
 
-### Seqlocks/sequence locks
+## Seqlocks/sequence locks
+
+reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/linux-sync-6.html <br>
+reference: Driver porting: mutual exclusion with seqlocks: https://lwn.net/Articles/22818/ <br>
+reference: The seqcount latch lock type: https://lwn.net/Articles/831540/ <br>
 
 Where added in linux 2.6, to provide a fast and lock-free access to shared resources. 
 
@@ -1997,6 +2002,18 @@ typedef struct {
 Static : `DEFINE_SEQLOCK(x)`
 
 Dinamic : `seqlock_init()` 
+
+
+```
+static inline unsigned read_seqbegin(const seqlock_t *sl);
+static inline unsigned read_seqretry(const seqlock_t *sl, unsigned start);
+static inline void write_seqlock(seqlock_t *sl);
+static inline void write_sequnlock(seqlock_t *sl);
+static inline void write_seqlock_irq(seqlock_t *sl);
+static inline void write_sequnlock_irq(seqlock_t *sl);
+static inline void read_seqlock_excl(seqlock_t *sl)
+static inline void read_sequnlock_excl(seqlock_t *sl)
+```
 
 #### Write operation
 
