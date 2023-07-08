@@ -1,43 +1,18 @@
 # Notes on ChatGPT prompt engineering for developers
 
-Welcome to this course on ChatGPT Prompt Engineering for Developers. 
-I'm thrilled to have with me Isa Fulford to 
-teach this along with me. She is a member of 
-the technical staff of OpenAI and had built 
-the popular ChatGPT Retrieval plugin and a large 
-part of her work has been teaching people 
-how to use LLM or Large Language Model 
-technology in products. She's also contributed to the OpenAI Cookbook that 
-teaches people prompting. So thrilled 
-to have you with me. 
-And I'm thrilled to be here and share some prompting 
-best practices with you all. 
-So, there's been a lot of material on the internet 
-for prompting with articles like 30 prompts everyone 
-has to know. A lot of that has been focused on the 
-chatGPT web user interface, which many people are using to 
-do specific and often one-off tasks. But, I think 
-the power of LLMs, large language models, as a 
-developer tool, that is using API calls to LLMs to quickly build 
-software applications, I think that is still very underappreciated. 
- 
-In fact, my team at AI Fund, which is a sister company to 
-DeepLearning.ai, has been working with many startups on 
-applying these technologies to many different 
-applications, and it's been exciting to see what LLM APIs 
-can enable developers to very quickly build. So, in this 
-course, we'll share with you some of the 
-possibilities for what you can do, as well as 
-best practices for how you can do them. 
-There's a lot of material to cover. First, you'll learn some prompting best 
+# Introduction
+
+First, you'll learn some prompting best 
 practices for software development, then we'll cover some 
 common use cases, summarizing, inferring, transforming, expanding, and 
 then you'll build a chatbot 
 using an LLM. We hope that this will spark your imagination about new 
 applications that you can build. 
+
 So in the development of large language models or LLMs, 
 there have been broadly two types of LLMs, which I'm 
-going to refer to as base LLMs and instruction-tuned LLMs. 
+going to refer to as base LLMs and instruction-tuned LLMs.
+
 So, base LLM has been trained to predict 
 the next word based on text training data, often trained 
 on a large amount of data from the 
@@ -47,6 +22,7 @@ upon a time there was a unicorn, it may complete
 this, that is it may predict the next several words are that 
 live in a magical forest with all unicorn 
 friends. 
+
 But if you were to prompt us with what is the capital of France, 
 then based on what articles on the internet might have, it's 
 quite possible that the base LLM will complete 
