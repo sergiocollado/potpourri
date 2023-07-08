@@ -451,8 +451,23 @@ Actual solution:
 """
 response = get_completion(prompt)
 print(response)
-Model Limitations: Hallucinations
+```
+
+## Model Limitations: Hallucinations
+
+Some times, it can make up things. :/ this is a knwon issue of the models.
+
+So the hallucinations, are statements that sound plausible but are not true.
+
+For reducing the hallucinations: 
+
+ - firs find relevant information.
+ - then answer the question based on the relevant information
+
+
 Boie is a real company, the product name is not real.
+
+```
 prompt = f"""
 Tell me about AeroGlide UltraSlim Smart Toothbrush by Boie
 """
