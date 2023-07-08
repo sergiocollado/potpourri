@@ -13,6 +13,10 @@ So in the development of large language models or LLMs,
 there have been broadly two types of LLMs, which I'm 
 going to refer to as base LLMs and instruction-tuned LLMs.
 
+  - Base LLM
+  - Instruction tunned LLVM
+
+### Base LLM
 So, base LLM has been trained to predict 
 the next word based on text training data, often trained 
 on a large amount of data from the 
@@ -31,6 +35,7 @@ so on, because articles on the internet could
 quite plausibly be lists of quiz questions about the 
 country of France. 
 
+### Instruction tunned LLVM
 In contrast, an instruction-tuned LLM, which is where a lot of 
 momentum of LLM research and practice has been going, an 
 instruction-tuned LLM has been trained to follow instructions. So, if you 
