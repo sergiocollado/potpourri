@@ -1,5 +1,8 @@
 # Notes on ChatGPT prompt engineering for developers
 
+reference: https://www.deeplearning.ai/short-courses/ <br>
+reference: https://platform.openai.com/overview <br>
+
 # Introduction
 
 First, you'll learn some prompting best 
