@@ -2485,6 +2485,7 @@ And example of how to write a VFS: https://github.com/torvalds/linux/blob/2c271f
 - Linux Kernel Oops!: https://nakedsecurity.sophos.com/2023/03/13/linux-gets-double-quick-double-update-to-fix-kernel-oops/
 - Tun/tap interfaces: https://backreference.org/2010/03/26/tuntap-interface-tutorial/index.html
 - kprobes: https://ish-ar.io/kprobes-in-a-nutshell/
+- Build a minimal Linux with only Busybox in 1 hour: https://youtu.be/asnXWOUKhTA?list=PLw27zZE-QQB9z59AI0EnAE998NSSJ4k9p
 
 ## And other referencces for elaborate later ...
 
