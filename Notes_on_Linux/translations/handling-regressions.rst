@@ -1000,9 +1000,6 @@ las regresiones:
        Quizás haya algun otro roto fundamental, que tenga que tener una _flag_ 
        y por razones internas y fundamentales. 
 
-
-       And notice that this is very much about *breaking* peoples environments.
-
        Y notesé que esto trata sobre *romper* los entornos de la gente.
 
        Behavioral changes happen, and maybe we don't even support some
@@ -1015,10 +1012,10 @@ las regresiones:
        but things still _work_, even if they might no longer show sensitive
        (or no longer relevant) information.
 
-       Cambios de comportamiento pasas, y quizás no se mantengan algunas
+       Cambios de comportamiento pasan, y quizás no se mantengan algunas
        funcionalidades más. Hay un número de campos en /proc/<pid>/stat que
-       se imprimen como ceros, simplemente porque ni si quiera existen ya en 
-       kernel, o porque mostrarlos era un error (tipicamente una fuga de 
+       se imprimen como ceros, simplemente porque ni siquiera existen ya en 
+       kernel, o porque mostrarlos era un error (típica una fuga de 
        información). Pero los números se sustituyeron por ceros, asi que
        el código que se usaba para parsar esos campos todavia existe. El 
        usuario puede no ver todo lo que podía ver antes, y por eso el comportamiento
@@ -1032,32 +1029,37 @@ las regresiones:
        have a "upgrade in place" model. We don't have a "upgrade with new
        user space".
 
-
-
-
-       Y yo seriamente me negare a coger código de gente que no entiende y 
-       honra esta sencilla regla.
+       Pero si algo realmente se rompe, entonces el cambio debe de arreglarse
+       o revertirse. Y se arregla en el *kernel*. No diciendo "bueno, arreglaremos
+       tu espacio de usuario". Ha sido un cambio en el kernel el que creo
+       el problema, entonces ha de ser el kernel el que lo corrija, porque 
+       tenemos un modelo de "actualización". Pero no tenemos una "actualización
+       con el nuevo espacio de usuario". 
+       
+       Y yo seriamente me negaré a coger código de gente que no entiende y 
+       honre esta sencilla regla.
 
        Y esta regla no va a cambiar. 
 
        Y sí, me doy cuenta que el kernel es "especial" en este respecto. Y 
        estoy orgulloso de ello.
 
-       Nosotros rompemos la API dentro del kernel todo el tiempo. Y arreglaremos
-       los problemas internos diciendo "tu ahora necesitas hacer XYZ", pero 
-       entonces es sobre la API interna del kernel, y la gente que hace esto 
+       Y he visto, y puedo señalar, muchos proyectos que dicen "Tenemos que  
+       romper ese caso de uso para poder hacer progresos" o "estabas basandote
+       en comportamientos no documentados, debe ser duro ser tú" o "hay una forma
+       mejor de hacer lo que quiees hacer, y tienes que cambiar a esa nueva forma",
+       y yo simplmente no pienso que eso sea aceptable fuera de una fase alfa muy 
+       temprana que tenga usuarios experimentales que saben a lo que se han apuntado.
+       El kernel no ha estado en esta situción en las dos últimas décadas. 
+
+       Nosotros rompemos la API _dentro_ del kernel todo el tiempo. Y arreglaremos
+       los problemas internos diciendo "tú ahora necesitas hacer XYZ", pero 
+       entonces es sobre la API interna del kernel y la gente que hace esto 
        entonces tendrá obviamente que arreglar todos los usos de esa API del 
-       kernel. Nadie puede decir "ahora yo he roto la API que usas, y ahora
-       tu necesitas arreglarlo". Quién rompa algo, lo arregla también. 
+       kernel. Nadie puede decir "ahora, yo he roto la API que usas, y ahora
+       tú necesitas arreglarlo". Quién rompa algo, lo arregla también. 
 
-       TODO: FIXX & FINISH
-
-
-
-
-
-
-
+       Y nosotros, simplemente, no rompemos el espacio de usuario. 
 
  * From `2020-05-21
    <https://lore.kernel.org/all/CAHk-=wiVi7mSrsMP=fLXQrXK_UimybW=ziLOwSzFTtoXUacWVQ@mail.gmail.com/>`_::
