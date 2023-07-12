@@ -34,6 +34,8 @@ Linux kernel workbook: https://lkw.readthedocs.io/en/latest/index.html
 
 Multimedia and Television Support on Linux: https://www.linuxtv.org/ & https://www.kernel.org/doc/html/v4.9/media/uapi/v4l/v4l2.html 
 
+Let's code a Linux Driver: https://www.youtube.com/watch?v=x1Y203vH-Dc&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
+
 
 
 
