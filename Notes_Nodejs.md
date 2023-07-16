@@ -304,6 +304,8 @@ nohup:  doesn't allow termination of the process even in the event the stty is f
 
 
 
+videos tutorials playlist from freecode camp: https://www.youtube.com/playlist?list=PLWKjhJtqVAbmGQoa3vFjeRbRADAOC9drk
+
 
 
 
