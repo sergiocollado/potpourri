@@ -2578,6 +2578,7 @@ quemu-system-x86_64 -kernel bzImage -initrd initrd.img
 - Tun/tap interfaces: https://backreference.org/2010/03/26/tuntap-interface-tutorial/index.html
 - kprobes: https://ish-ar.io/kprobes-in-a-nutshell/
 - Build a minimal Linux with only Busybox in 1 hour: https://youtu.be/asnXWOUKhTA?list=PLw27zZE-QQB9z59AI0EnAE998NSSJ4k9p
+- Bootlin: Linux debugging, profiling, tracing and performance analysis training ...  https://bootlin.com/doc/training/debugging/debugging-slides.pdf
 
 ## And other referencces for elaborate later ...
 
