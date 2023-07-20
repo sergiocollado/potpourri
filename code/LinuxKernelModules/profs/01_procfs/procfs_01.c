@@ -23,6 +23,9 @@ static ssize_t procfile_read(struct file *file_pointer, char __user *buffer,
 	int len = sizeof(s);
 	ssize_t ret = len;
 
+	// be careful with the read function, if it nevers return 0,
+	// it will be called endlessly.
+
 	if (*offset >= len || copy_to_user(buffer, s, len)) {
 		pr_info("copy_to_user failed\n");
 		ret = 0;
