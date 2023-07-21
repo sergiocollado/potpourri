@@ -29,8 +29,9 @@ static ssize_t procfile_read(struct file *file_pointer, char __user *buffer,
 	char s[13] = "HelloWorld!\n";
 	int len = sizeof(s);
 	ssize_t ret = len;
+	int repeat = 3;
 
-	if (*offset >= len || copy_to_user(buffer, s, len))
+	if (*offset >= repeat*len || copy_to_user(buffer, s, len))
 	{
 		pr_info("copy_to_user failed\n");
 		pr_info("offset: %lld\n", *offset);
