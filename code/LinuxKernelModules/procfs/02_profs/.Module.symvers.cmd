@@ -1,1 +1,0 @@
-cmd_/home/sergio/repos/potpourri/code/LinuxKernelModules/profs/02_profs/Module.symvers := sed 's/ko$$/o/' /home/sergio/repos/potpourri/code/LinuxKernelModules/profs/02_profs/modules.order | scripts/mod/modpost -m -a  -o /home/sergio/repos/potpourri/code/LinuxKernelModules/profs/02_profs/Module.symvers -e -i Module.symvers   -T -
