@@ -26,9 +26,6 @@ static struct proc_dir_entry *our_proc_file;
 /* the buffer used to store characters for this module */
 static char* procfs_buffer;
 
-/* the size of the buffer */
-static unsigned long procfs_buffer_size = 0;
-
 /* define my_list structure */
 struct my_list {
 	struct list_head list;
@@ -37,12 +34,12 @@ struct my_list {
 
 /* for reading the list */
 struct my_list *read_cursor = NULL;
-int read_counter = 0;
+
 /* define list nodes counter */
 ssize_t num_nodes = 0;
 
 /* declare and init the head node of the linked list */
-LIST_HEAD(Head_Node);
+LIST_HEAD(head_node);
 
 /* mutex to protect the list */
 DEFINE_MUTEX(my_lock);
@@ -51,54 +48,37 @@ static ssize_t procfile_read(struct file *file_pointer, char __user *buffer,
 			     size_t buffer_length, loff_t *offset)
 {
 	int len = procfs_buffer_max_size;
-	char* string = NULL;
+	struct my_list *tmp = NULL;
 
 	if (read_cursor == NULL) {
-		mutex_lock(&my_lock);
-		read_cursor = list_first_entry_or_null(&Head_Node, struct my_list, list);
-		read_counter = 0;
-		mutex_unlock(&my_lock);
-		if (!read_cursor) {
-			pr_info("empty list\n");
+		read_cursor = list_first_entry_or_null(&head_node, struct my_list, list);
+		if (!read_cursor)
 			return 0;
-		}
-		string = read_cursor->message;
 	} else {
-		mutex_lock(&my_lock);
 		read_cursor = list_next_entry(read_cursor, list);
-		read_counter += 1;
-		mutex_unlock(&my_lock);
-
-		string = read_cursor->message;
-
-		if (read_counter >= num_nodes) {
-			read_counter = 0;
-			read_cursor = NULL;
-			return 0;
-		}
 	}
 
-	if (string)
-		len = strlen(string);
-
-	mutex_unlock(&my_lock);
-	if ((*offset >= buffer_length)
-	    || (string && copy_to_user(buffer, string, len))
-	    || (read_counter >= num_nodes))
-	{
-		pr_info("copy_to_user() failed\n");
-		read_counter = 0;
-		read_cursor = NULL;
-		len = 0;
-	} else {
-		pr_info("procfile read %s-(len:%d):%s\n",
+	mutex_lock(&my_lock);
+	list_for_each_entry_safe_from(read_cursor, tmp, &head_node, list) {
+		len = strlen(read_cursor->message);
+		if ((*offset >= buffer_length)
+			|| copy_to_user(buffer, read_cursor->message, len)) {
+			pr_info("copy_to_user() failed\n");
+			mutex_unlock(&my_lock);
+			return 0;
+		} else {
+			pr_info("procfile read %s- (len:%d):%s\n",
 				file_pointer->f_path.dentry->d_name.name,
 				len, read_cursor->message);
-		*offset += len;
+			offset += len;
+			mutex_unlock(&my_lock);
+			return len;
+		}
 	}
 	mutex_unlock(&my_lock);
 
-	return len;
+	read_cursor = NULL;
+	return 0;
 }
 
 static ssize_t procfile_write(struct file *file, const char __user *buff,
@@ -106,6 +86,7 @@ static ssize_t procfile_write(struct file *file, const char __user *buff,
 {
 	struct my_list *temp_node = NULL;
 	char *temp_message = NULL;
+        unsigned long procfs_buffer_size = 0;
 
 	/* always validate __user inputs */
 	if (NULL == buff || len == 0)
@@ -123,10 +104,11 @@ static ssize_t procfile_write(struct file *file, const char __user *buff,
 	*off += procfs_buffer_size;
 
 	/* generate new element for the list */
-	temp_node = kmalloc(sizeof(struct my_list), GFP_KERNEL);
-	temp_message = kmalloc(procfs_buffer_size + 1, GFP_KERNEL);
+	temp_node = kzalloc(sizeof(struct my_list), GFP_KERNEL);
+	temp_message = kzalloc(procfs_buffer_size + 2, GFP_KERNEL);
 	strncpy(temp_message, procfs_buffer, procfs_buffer_size);
-	temp_message[procfs_buffer_size] = '\0';
+	temp_message[procfs_buffer_size +1] = '\0';
+	temp_message[procfs_buffer_size] = '\n';
 	temp_node->message = temp_message;
 	pr_info("message writen(len:%ld): %s\n",
 			strlen(temp_node->message), temp_node->message);
@@ -134,7 +116,7 @@ static ssize_t procfile_write(struct file *file, const char __user *buff,
 	/* add new element to the list */
 	INIT_LIST_HEAD(&temp_node->list);
 	mutex_lock(&my_lock);
-	list_add_tail(&temp_node->list, &Head_Node);
+	list_add_tail(&temp_node->list, &head_node);
 	num_nodes ++;
 	mutex_unlock(&my_lock);
 
@@ -171,14 +153,13 @@ static int __init procfs2_init(void)
 
 static void __exit procfs2_exit(void)
 {
-	// free the list
 	struct my_list *cursor, *temp;
 	ssize_t count = 0;
 
 	pr_info("expected num_nodes: %ld\n", num_nodes);
 
 	/* traverse the list and delete it */
-	list_for_each_entry_safe(cursor, temp, &Head_Node, list) {
+	list_for_each_entry_safe(cursor, temp, &head_node, list) {
 		pr_info("release message(len:%ld): %s",
 				strlen(cursor->message), cursor->message);
 		kfree(cursor->message);
