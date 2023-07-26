@@ -25,7 +25,9 @@ Languaje reference:
   - blog. https://www.jackos.io/rust-kernel/rust-for-linux.html
   - blog. rust module getting started https://wusyong.github.io/posts/rust-kernel-module-00/
   - blog. rust kernel module: hello world https://wusyong.github.io/posts/rust-kernel-module-01/
-
+  - coccinelle for linux: this is the link to the talk: https://gitlab.inria.fr/coccinelle/coccinelleforrust/-/blob/main/talks/rfl.pdf
+  - rust analyzer: https://rust-analyzer.github.io/manual.html
+    
 ## Rust for linux
 
 **RFC**: https://lkml.org/lkml/2021/4/14/1023
