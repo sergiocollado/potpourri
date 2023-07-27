@@ -36,6 +36,8 @@ Multimedia and Television Support on Linux: https://www.linuxtv.org/ & https://w
 
 Let's code a Linux Driver: https://www.youtube.com/watch?v=x1Y203vH-Dc&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
 
+Linux standards (ELF, DWARF, FHS ...) : https://refspecs.linuxfoundation.org/index.shtml
+
 
 
 
