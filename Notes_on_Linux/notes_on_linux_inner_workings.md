@@ -1678,6 +1678,12 @@ reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr
   reference: https://oska874.gitbooks.io/process-scheduling-in-linux/content/chapter5.html
   
   reference: https://www.kernel.org/doc/html/latest/scheduler/index.html
+
+  reference: Graphing Tools for Scheduler Tracing:  https://inria.hal.science/hal-04001993/preview/RR-9498.pdf
+
+  reference: ftrace - function tracer. https://docs.kernel.org/trace/ftrace.html.
+
+  reference: https://www.trace-cmd.org/
   
   
 ### Scheduling classes
