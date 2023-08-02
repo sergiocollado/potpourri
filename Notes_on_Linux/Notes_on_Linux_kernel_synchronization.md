@@ -9,7 +9,7 @@ reference: https://github.com/PacktPublishing/Linux-Kernel-Programming/blob/mast
 reference: Linux kernel memory model: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0124r6.html <br>
 reference: https://www.cs.bham.ac.uk/~exr/lectures/systems/08_09/docs/kernelAPI/ <br>
 reference: linux kernel API cheatsheet: https://www.cs.bham.ac.uk/~exr/lectures/systems/08_09/docs/kernelAPI/ <br>
-reference: https://embetronicx.com/tutorials/linux/device-drivers/ <br>
+reference: https://embetronicx.com/tutorials/linux/device-drivers/linux-device-driver-part-1-introduction/ <br>
 
 
 ## CONCURRENCY
