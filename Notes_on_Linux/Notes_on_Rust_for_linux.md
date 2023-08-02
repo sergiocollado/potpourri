@@ -39,9 +39,13 @@ Languaje reference:
 
 - https://lore.kernel.org/rust-for-linux/
 
+https://docs.kernel.org/rust/quick-start.html
+
 https://github.com/Rust-for-Linux/rust-out-of-tree-module
 
 Documentation: https://github.com/Rust-for-Linux/linux/tree/rust/Documentation/rust
+
+- https://docs.kernel.org/rust/quick-start.html
 
 Main work: https://github.com/Rust-for-Linux/linux
 
