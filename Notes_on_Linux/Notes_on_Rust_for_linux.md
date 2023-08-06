@@ -27,6 +27,8 @@ Languaje reference:
   - blog. rust kernel module: hello world https://wusyong.github.io/posts/rust-kernel-module-01/
   - coccinelle for linux: this is the link to the talk: https://gitlab.inria.fr/coccinelle/coccinelleforrust/-/blob/main/talks/rfl.pdf
   - rust analyzer: https://rust-analyzer.github.io/manual.html
+  - https://github.com/rust-unofficial/awesome-rust
+  - https://sunjay.dev/learn-game-dev/intro.html
     
 ## Rust for linux
 
