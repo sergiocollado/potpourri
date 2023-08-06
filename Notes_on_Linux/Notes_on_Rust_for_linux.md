@@ -19,6 +19,8 @@ Languaje reference:
   - https://google.github.io/comprehensive-rust/welcome-day-4.html
   - https://github.com/ferrous-systems/teaching-material/tree/main/assignments
   
+
+<br>
   
   - blog. how to module in rust: - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
   - blog. how to write a module in rust: https://www.jackos.io/rust-kernel/rust-for-linux.html#adding-the-rust-module
