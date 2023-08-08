@@ -1553,7 +1553,7 @@ The path to be taken depends on the state of mutex:
 
 reference: https://docs.kernel.org/locking/mutex-design.html
 
-#### Fast pach
+#### Fast path
  Taken when no process has adquired the mutex
  
 #### Mid path (optimistic spinning)
@@ -1647,11 +1647,56 @@ Test if the mutex is taken:
 ```
 int mutex_is_locked(struct mutex *lock); // returns 1 if locked, 0 if unlocked.
 ```
-### Can you sleep in mutexes
+### Can you sleep in mutexes?
 
 Yes you can sleep in mutexes, where you cannot sleep or call functions that may sleep is in **spinlocks**.
 
+### Mutex example
 
+reference: https://sysprog21.github.io/lkmpg/#mutex
+
+```
+/* 
+ * example_mutex.c 
+ */ 
+#include <linux/module.h> 
+#include <linux/mutex.h> 
+#include <linux/printk.h> 
+ 
+static DEFINE_MUTEX(mymutex); 
+ 
+static int __init example_mutex_init(void) 
+{ 
+    int ret; 
+ 
+    pr_info("example_mutex init\n"); 
+ 
+    ret = mutex_trylock(&mymutex); 
+    if (ret != 0) { 
+        pr_info("mutex is locked\n"); 
+ 
+        if (mutex_is_locked(&mymutex) == 0) 
+            pr_info("The mutex failed to lock!\n"); 
+ 
+        mutex_unlock(&mymutex); 
+        pr_info("mutex is unlocked\n"); 
+    } else 
+        pr_info("Failed to lock\n"); 
+ 
+    return 0; 
+} 
+ 
+static void __exit example_mutex_exit(void) 
+{ 
+    pr_info("example_mutex exit\n"); 
+} 
+ 
+module_init(example_mutex_init); 
+module_exit(example_mutex_exit); 
+ 
+MODULE_DESCRIPTION("Mutex example"); 
+MODULE_LICENSE("GPL");
+```
 
 ## Read Write Locks
 
