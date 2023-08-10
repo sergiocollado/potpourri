@@ -2,6 +2,14 @@
 
 Just points to ByteByteGo publications
 
+### 8/10/2023 4 ways of identification
+
+- ssh keys
+- oauth tokes
+- ssl certificates
+- credetials (usr/password)
+
+reference: https://www.youtube.com/channel/UCZgt6AzoyjslHTC9dz0UoTw/community?lb=Ugkx0o-l3C8qw6Kk2hKydrl9L_LOrHhBUWtB
 
 
 ### OAuth 2.0 explained
