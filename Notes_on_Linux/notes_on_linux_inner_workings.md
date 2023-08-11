@@ -2595,3 +2595,14 @@ XArray:
  - The design and implementation of the XArray : https://www.youtube.com/watch?v=v0C9_Fp-co4
  - XArray: One Data Structure To Rule Them All : https://www.youtube.com/watch?v=-Bw-HWcrnss
  - Matthew Wilcox: How Linux handles IO errors -- PGCon 2018 : https://www.youtube.com/watch?v=74c19hwY2oE
+
+
+Linux containers the hard way:
+
+- https://hackaday.com/2023/08/07/linux-containers-the-hard-way/
+- https://github.com/lucavallin/barco
+- https://redhatgov.io/workshops/containers_the_hard_way/
+
+<br>
+
+- https://redhatgov.io/workshops/selinux_policy/
