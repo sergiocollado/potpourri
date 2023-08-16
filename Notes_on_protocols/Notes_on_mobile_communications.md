@@ -1,3 +1,19 @@
+## Some nomenclature:
+
+- Time Division Multiple Access (TDMA)
+- Orthogonal Frequency-Division Multiplexing (OFDM)
+- Code Division Multiple Access (CDMA)
+- Internet protocol (IP)
+- General packet radio service (GPRS)
+- Global System for Mobile Communications (GSM)
+- evolution of UMTS referred to as Long Term Evolution (LTE)
+- Internet Engineering Task Force (IETF)
+- Mobile IP
+- 3rd Generation Partnership Project (3GPP)
+- 3rd Generation Partnership Project 2 (3GGP/2)
+- Worldwide Interoperability for Microwave Access (WiMAX)
+
+
 # Mobile communications evolution
 
 
@@ -17,7 +33,24 @@ https://en.wikipedia.org/wiki/Comparison_of_mobile_phone_standards
 
 https://www.3gpp.org/
 
+## A brief description of a mobile network:
 
+reference: https://patents.google.com/patent/US9479917B1/en
+
+A typical mobile service provider network, or “mobile network,” includes a core packet-switched network, a transport network, and one or more radio access networks. The core packet-switched network for the mobile network establishes logical connections, known as bearers, among the many service nodes on a path between a wireless device, attached to one of the radio access networks, and a packet data network (PDN). The service nodes then utilize the bearers to transport subscriber traffic exchanged between the wireless device and the PDN, which may include, for example, the Internet, an enterprise intranet, a layer 3 VPN, and a service provider's private network. Various PDNs provide a variety of packet-based data services to wireless devices to enable the wireless devices to exchange service data with application or other servers of the PDNs. In addition, while primarily described with respect to service providers and mobile service provider networks, a mobile network may be deployed by many different types of entities, including enterprises and government agencies. Accordingly, the term “mobile network” may be used herein to encompass many different types of cellular network architectures and operators.
+
+
+Mobile networks perform detailed and accurate monitoring of service usage so that proper charging information can be generated for potentially millions of customers in order to provide revenue for the service providers. In general, there are three distinct aspects to the process that translates service use into a bill for services—charging, rating and billing. Charging gathers statistics regarding service usage for each customer. Rating is the process of determining how much each service used costs each particular customer according to the service contract. Billing is the process of generated a customer's invoice for services.
+The mobile network gateway anchors subscriber sessions and executes network access control functions including charging control (also known as Policy and Charging Enforcement Function for 3GPP networks), which refers to the process of associating packets that belong to a service data flow to a charging key and applying online charging and/or offline charging, as appropriate (a charging key includes information used by the charging online and offline charging servers for rating purposes). Accordingly, the mobile network gateway collects charging information related to the external data network usage and to network resource usage, such as the amount of data categorized by quality of service (QoS), the user protocols, and the usage of the packet data protocol (PDP) address.
+
+
+A mobile network gateway typically cooperates with online and offline charging server to perform the charging and rating processes in order to generate the charging information. In general, offline charging denotes a charging mechanism in which charging information does not affect, in real-time, the service(s) rendered. The network reports resource usage to the billing domains after the resource usage has occurred. By contrast, online charging can affect, in real-time, the service(s) rendered and therefore requires a direct interaction between the mobile network gateway and the online charging server for subscriber session and/or service(s) control. An online charging server typically maintains subscriber accounts that may be queried prior to granting permission to use requested network resources.
+
+
+One application of online charging is credit control, in which delivery of subscriber services to a subscriber by the mobile network is predicated upon adequate credit in the form of a prepaid subscription, for instance. Example subscriber services include network (e.g., Internet) access, Session Initiation Protocol (SIP) services, messaging services, gaming services, and download services. For credit control, the mobile network gateway and online charging server cooperate to debit subscriber credit by rating services rendered in real-time and monitoring the subscriber account to ensure adequate credit prior to initiation of a chargeable event. The mobile network gateway and online charging server may deny the subscriber access to the requested service in the absence of adequate credit.
+
+
+A single subscriber may use multiple services accessible by the mobile service provider network as part of a subscriber session. For example, during a single network access session of a subscriber session, a subscriber may use several Hypertext Transfer Protocol (HTTP) services. In some cases, the multiple services of the network access session may be subject to different cost and therefore require differential rating. To improve scalability for such scenarios, the mobile network gateway is able to consolidate different services that are subject to the same cost and rating type into a rating group, which is associated with a charging key. A subscriber session can include one or more rating groups each associated with one or more services for which the mobile network gateway applies credit control, i.e., associating packets to a rating group charging key for the services and applying online or offline charging, as appropriate. Aside from rating however, other attributes and actions of a multi-service subscriber session, such as quality of service (QoS), event triggers, and credit control failure handling, are common to all the services carried within the session bearer and are applied at the bearer level
 
 
 ## 5G:
