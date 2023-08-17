@@ -2665,6 +2665,15 @@ I would try:
  11. Logs - Logs with K8s container logging. - In the twelve factor methodology logs are treated as time-ordered event streams. But twelve factor applications write logs to to output stream (stdout) and rely on another tool to capture them. K8s captures the data written to stdout by containers, and it is exposed by the k8s api. 
  12. Admin Processes with Jobs - Admin processes are one-off or on-demmand maintenace tasks, such as database migrations or help scripts. In a twelve factor app, we want to maintain the code for those admin processes in the same codebase as the application itself. Also we want to execute those admin processes in an identical enviroment to the actual application itself. K8s can provide that function by means of Jobs: jobs help manage to one-off executions in the cluster. A job runs a contanier until its execution completes and also handle re-trying executions if it fails. Jobs can run admin processes in the cluster, and in the **same enviroment** as the main application rutime.
 
+## Principles for cloud-native architecture
+
+reference: https://cloud.google.com/blog/products/application-development/5-principles-for-cloud-native-architecture-what-it-is-and-how-to-master-it
+
+1.- Principle 1: Design for automation
+2.- Principle 2: Be smart with state. design components to be stateless wherever you can.
+3.- Principle 3: Favor managed services
+4.- Principle 4: Practice defense in depth
+5.- Principle 5: Always be architecting
  
 ## CKS playgrounds
  
