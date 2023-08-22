@@ -2364,6 +2364,15 @@ wip....
 
 ### Ford Pinto
 
+### Therac-25
+
+Medical radiation device gonne wrong
+
+references: 
+ - https://youtu.be/YsyaQuopfZM
+ - https://youtu.be/Ap0orGCiou8
+
+
 #### Genesis Solar Wind Probe:
 Went to Space, took samples of the solar wind, come back to Earth, but failed to open the parachutes : S
 the MIB, resolved that the accelerometer sensor that was supposed to trigger the parachutes was mounted upside-down...  yahpp!
