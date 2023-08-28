@@ -18,7 +18,7 @@ Languaje reference:
   - https://blog.logrocket.com/macros-in-rust-a-tutorial-with-examples/#whatarerustmacros
   - https://google.github.io/comprehensive-rust/welcome-day-4.html
   - https://github.com/ferrous-systems/teaching-material/tree/main/assignments
-  
+  - effective rust: https://www.lurklurk.org/effective-rust/
 
 <br>
   
