@@ -41,10 +41,11 @@ reference: https://tldp.org/LDP/sag/html/init-process.html
 
 ### SysV Init Runlevels
 
-reference: https://web.mit.edu/rhel-doc/4/RH-DOCS/rhel-rg-en-4/s1-boot-init-shutdown-sysv.html <br>
-reference: https://tldp.org/LDP/sag/html/run-levels-intro.html
+ - reference: https://web.mit.edu/rhel-doc/4/RH-DOCS/rhel-rg-en-4/s1-boot-init-shutdown-sysv.html <br>
+ - reference: https://tldp.org/LDP/sag/html/run-levels-intro.html <br>
 
-	The SysV init runlevel system provides a standard process for controlling which programs init launches or halts when initializing a runlevel. SysV init was chosen because it is easier to use and more flexible than the traditional BSD-style init process.
+	**The SysV init runlevel system provides a standard process for controlling which programs init launches or halts when initializing a runlevel. SysV init was chosen because it is easier to use and more flexible than the traditional BSD-style init process.**
+
 
 The configuration files for SysV init are located in the /etc/rc.d/ directory. Within this directory, are the rc, rc.local, rc.sysinit, and, optionally, the rc.serial scripts as well as the following directories:
 
