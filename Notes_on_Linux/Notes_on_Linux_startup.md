@@ -2,7 +2,7 @@
 
 ## LSB (Linux Standard Base)
 
-LSB is a joint project between the LF (Linux Foundation) and several Linux distributions, to promote and develop a set of open standards to increase 
+LSB (Linux Standard Base) is a joint project between the LF (Linux Foundation) and several Linux distributions, to promote and develop a set of open standards to increase 
 compatibility among Linux distributions, and enable software application run on any compliant system even in binary form. 
 
 https://refspecs.linuxfoundation.org/lsb.shtml
