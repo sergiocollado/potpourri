@@ -1776,6 +1776,22 @@ Idle is used to schedule the per-cpu idle task (also called swapper task) which 
  - Idle
    - no policy
 
+
+-reference: https://intellipaat.com/community/62280/linux-schedother-schedfifo-and-schedrr-differences
+
+SCHED_FIFO and SCHED_RR are called as "real-time" policies. They implement these fixed-priority real-time scheduling specified by the POSIX standard. Tasks with certain policies preempt every different task, which can easily go into starvation (if they don't release the CPU).
+
+The difference between these SCHED_FIFO and SCHED_RR is that between the jobs with equal preference, SCHED_RR performs one round-robin with some certain timeslice; SCHED_FIFO, instead, requires the task to explicitly yield one processor.
+
+SCHED_OTHER is one common round-robin time-sharing scheduling policy that schedules a job for a specific timeslice depending on each other tasks working in your system.
+
+Update: since Linux 3.14, there is an extra policy called SCHED_DEADLINE. This policy executes the Constant Bandwidth Server (CBS) algorithm on the head of the Earliest Deadline First queues. Each duty under this policy is allowed a deadline, and the earliest-deadline task is executed. The best source describing the algorithm is Deadline scheduling in the Linux kernel.
+
+Update 2: since Linux 4.13, SCHED_DEADLINE should replace CBS with the Greedy Reclamation of Unused Bandwidth (GRUB) algorithm.
+
+Update 3: since Linux 6.6, EEVDF CPU scheduler (The "Earliest Eligible Virtual Deadline First" (EEVDF) scheduling algorithm) -> https://lwn.net/Articles/925371/  
+
+
 #### stop_sched_class (STOP)
 
 - stop_sched_class is the highiest priority class
