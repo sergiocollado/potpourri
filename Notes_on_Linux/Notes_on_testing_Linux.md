@@ -331,3 +331,22 @@ Linux Test Project is a joint project started by SGI, OSDL and Bull developed an
 
 The LTP testsuite contains a collection of tools for testing the Linux kernel and related features. The goal is to improve the Linux kernel and system libraries by bringing test automation to the testing effort. Interested open source contributors are encouraged to join.
 
+
+## Sparse
+
+references:
+ - https://en.wikipedia.org/wiki/Sparse
+ - https://lwn.net/Articles/689907/
+ - https://www.kernel.org/doc/html/latest/dev-tools/sparse.html
+ - https://sparse.docs.kernel.org
+
+
+Sparse is a computer software tool designed to find possible coding faults in the Linux kernel.[2] Unlike other such tools, this static analysis tool was initially designed to only flag constructs that were likely to be of interest to kernel developers, such as the mixing of pointers to user and kernel address spaces.
+
+## Runtime locking correctness validator
+
+references: 
+ - https://www.kernel.org/doc/Documentation/locking/lockdep-design.txt
+
+   
+
