@@ -44,7 +44,7 @@ File systems ---> Pseudo filesystems ---> sysfs file system support ---> yes
 Build the kernel:
 
 ````
-time make -j8
+time make -j($nproc)
 ````
 
 ````
