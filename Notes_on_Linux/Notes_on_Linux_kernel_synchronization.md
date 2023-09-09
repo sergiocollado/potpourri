@@ -2163,3 +2163,102 @@ static void __exit test_hello_exit(void)
 module_init(test_hello_init);
 module_exit(test_hello_exit);
 ```
+
+
+## RCU (Read Copy Update) Locks
+
+- reference: https://lwn.net/Articles/262464/
+- reference: https://www.kernel.org/doc/html/latest/RCU/whatisRCU.html
+- reference: https://www.linuxfoundation.org/webinars/unraveling-rcu-usage-mysteries
+- reference: https://www.linuxfoundation.org/webinars/unraveling-rcu-usage-mysteries-additional-use-cases
+- reference: https://www.kernel.org/doc/html/next/RCU/whatisRCU.html
+- reference: https://www.kernel.org/doc/html/latest/RCU/
+
+The RCU was added in version 2.5. 
+
+RCU supports concurrency between single updater(producer) and multiple readers (consumers). Often used to update, 
+linked lists, which are used all over the kernel. 
+
+RCU is best used in the scenarios: 
+ - Many reads
+ - rare writes
+ - write has priority over read.
+
+The problem with read/write locks is that those are expensive as they use atomic increment/decrement operations for the reader count.
+
+The problem with seq locks is that they cannot be used with pointers, and only work with basic types like integer etc ... 
+
+Readers need the retry operation. 
+
+RCU solves those problems, to have a pointer to a shared resource and no locks in the reader. Avoid reader to retry the operation. 
+
+The constrains of RCU:
+
+- Access to shared resource should be mostly read, with very rare write.
+- Cannot sleep into region protected by RCU.
+- Protected resource should only be accessed via pointer. 
+
+For RCU the read operation, no locking is required.
+
+For RCU the write operation, locking is required.
+
+RCU allows read access to happen concurrently with write updates. 
+
+Note: RCU updaters/writers cannot block readers or force them to retry their accesses like seqlocks. 
+
+The Linux kernel uses many structures that are readed a lot, but rarely written, thus fitting very well for use with RCU:
+
+- Virtual File system: directory entry caches (dentry)
+- Networking: Routing tables. Every outgoing packet requires to check routing table to determine which interface should be used. 
+
+#### How RCU works?
+
+As readers do not check if the data they read is consistent (like seqlocks), writer have to apply all their changes with one atomical operation. 
+
+RCU keeps track of all users of the pointers to the shared data structure: 
+
+When a shared data structure is going to change (being written), it:
+ - first create a copy of the structure
+ - perform the change
+ - After all the readers have finished reading on the old copy, pointer is updated.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
