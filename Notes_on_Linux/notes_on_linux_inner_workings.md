@@ -2569,7 +2569,15 @@ quemu-system-x86_64 -kernel bzImage -initrd initrd.img
 # in need of killing qemu: killall qemu*
 ```
 
+## Linux kernel contextes
 
+- reference: https://stackoverflow.com/questions/47063693/atomic-context-and-process-context-interrupt-context
+
+**Process Context** - Regular processes and syscall invocations execute in this context and it can be interrupted by IRQs
+
+**Atomic Context** - IRQs are generally executed in this context and they don't belong to any specific process, but rather are invoked by some device(ignore exceptions for simplicity). Once the interrupt context sleeps or gives up the CPU, it cannot be awakened. So it is also called atomic context.
+
+A basic principle of the kernel is that in an interrupt or atomic context, the kernel cannot access user space, and the kernel cannot sleep.
 
 ## Linux networking
 
@@ -2604,7 +2612,7 @@ quemu-system-x86_64 -kernel bzImage -initrd initrd.img
 - Build a minimal Linux with only Busybox in 1 hour: https://youtu.be/asnXWOUKhTA?list=PLw27zZE-QQB9z59AI0EnAE998NSSJ4k9p
 - Bootlin: Linux debugging, profiling, tracing and performance analysis training ...  https://bootlin.com/doc/training/debugging/debugging-slides.pdf
 
-## And other referencces for elaborate later ...
+## And other references for elaborate later ...
 
 XArray: 
  - https://docs.kernel.org/core-api/xarray.html
