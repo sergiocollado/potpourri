@@ -336,6 +336,7 @@ The LTP testsuite contains a collection of tools for testing the Linux kernel an
 
 references:
  - https://en.wikipedia.org/wiki/Sparse
+ - https://kernelnewbies.org/Sparse (how to install)
  - https://lwn.net/Articles/689907/
  - https://www.kernel.org/doc/html/latest/dev-tools/sparse.html
  - https://sparse.docs.kernel.org
