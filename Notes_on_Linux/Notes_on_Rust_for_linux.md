@@ -43,37 +43,22 @@ Languaje reference:
 **website documentation**: https://rust-for-linux.com/
 
 - https://lore.kernel.org/rust-for-linux/
-
-https://docs.kernel.org/rust/quick-start.html
-
-https://github.com/Rust-for-Linux/rust-out-of-tree-module
-
-Documentation: https://github.com/Rust-for-Linux/linux/tree/rust/Documentation/rust
-
+- https://hackmd.io/team/rust-for-linux-?nav=overview
 - https://docs.kernel.org/rust/quick-start.html
-
-Main work: https://github.com/Rust-for-Linux/linux
-
-Contribute: https://github.com/Rust-for-Linux/linux/contribute
-
-Quick start: https://github.com/Rust-for-Linux/linux/blob/rust/Documentation/rust/quick-start.rst
-
-
-rust for linux mail-list: https://lore.kernel.org/rust-for-linux/
-
-Rust in the Linux ecosystem : https://youtu.be/jTWdk0jYy54
-
-Rust for Linux: https://youtu.be/46Ky__Gid7M
-
-Documentation: https://rust-for-linux.github.io/docs/kernel/ 
-
-lwn.net More rust concepts for the kernel: https://lwn.net/Articles/869428/
-
-article: https://www.memorysafety.org/blog/memory-safety-in-linux-kernel/
-
-kernel crate: https://rust-for-linux.github.io/docs/kernel/
-
-https://discourse.ubuntu.com/t/ubuntu-kernel-is-getting-rusty-in-lunar/34977
+- https://github.com/Rust-for-Linux/rust-out-of-tree-module
+- Documentation: https://github.com/Rust-for-Linux/linux/tree/rust/Documentation/rust
+- https://docs.kernel.org/rust/quick-start.html
+- Main work: https://github.com/Rust-for-Linux/linux
+- Contribute: https://github.com/Rust-for-Linux/linux/contribute
+- Quick start: https://github.com/Rust-for-Linux/linux/blob/rust/Documentation/rust/quick-start.rst
+- rust for linux mail-list: https://lore.kernel.org/rust-for-linux/
+- Rust in the Linux ecosystem : https://youtu.be/jTWdk0jYy54
+- Rust for Linux: https://youtu.be/46Ky__Gid7M
+- Documentation: https://rust-for-linux.github.io/docs/kernel/ 
+- lwn.net More rust concepts for the kernel: https://lwn.net/Articles/869428/
+- article: https://www.memorysafety.org/blog/memory-safety-in-linux-kernel/
+- kernel crate: https://rust-for-linux.github.io/docs/kernel/
+- https://discourse.ubuntu.com/t/ubuntu-kernel-is-getting-rusty-in-lunar/34977
 
 ## Videos: 
 
