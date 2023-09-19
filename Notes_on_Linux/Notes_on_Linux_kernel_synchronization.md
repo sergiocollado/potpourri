@@ -2169,10 +2169,16 @@ module_exit(test_hello_exit);
 
 - reference: https://lwn.net/Articles/262464/
 - reference: https://www.kernel.org/doc/html/latest/RCU/whatisRCU.html
+- reference: what is RCU 2013 Paul McKenny at IISc: https://youtu.be/obDzjElRj9c?list=PLIlI4QbmdBqH9-L1QOq6O5Yxt-YVjRsFZ
+- reference: rcu playlist: https://www.youtube.com/watch?v=obDzjElRj9c&list=PLIlI4QbmdBqH9-L1QOq6O5Yxt-YVjRsFZ
 - reference: https://www.linuxfoundation.org/webinars/unraveling-rcu-usage-mysteries
 - reference: https://www.linuxfoundation.org/webinars/unraveling-rcu-usage-mysteries-additional-use-cases
 - reference: https://www.kernel.org/doc/html/next/RCU/whatisRCU.html
 - reference: https://www.kernel.org/doc/html/latest/RCU/
+- reference: Kernel Recipes 2019 - RCU in 2019: https://youtu.be/bsyXDAouI6E
+- reference: RCU's First-Ever CVE, and How I Lived to Tell the Tale: https://youtu.be/hZX1aokdNiY
+- reference: So What Has RCU Done Lately?: https://youtu.be/9rNVyyPjoC4
+- reference: Changes in RCU over the past few years - Paul E. McKenney: https://youtu.be/JLhDW7yjp60
 
 The RCU was added in version 2.5. 
 
