@@ -53,9 +53,7 @@ One application of online charging is credit control, in which delivery of subsc
 A single subscriber may use multiple services accessible by the mobile service provider network as part of a subscriber session. For example, during a single network access session of a subscriber session, a subscriber may use several Hypertext Transfer Protocol (HTTP) services. In some cases, the multiple services of the network access session may be subject to different cost and therefore require differential rating. To improve scalability for such scenarios, the mobile network gateway is able to consolidate different services that are subject to the same cost and rating type into a rating group, which is associated with a charging key. A subscriber session can include one or more rating groups each associated with one or more services for which the mobile network gateway applies credit control, i.e., associating packets to a rating group charging key for the services and applying online or offline charging, as appropriate. Aside from rating however, other attributes and actions of a multi-service subscriber session, such as quality of service (QoS), event triggers, and credit control failure handling, are common to all the services carried within the session bearer and are applied at the bearer level
 
 
-## 5G:
-
-## Notes on 5G
+# Notes on 5G
 
 references:
 - https://www.3gpp.org/technologies/5g-system-overview
@@ -64,23 +62,21 @@ references:
 - https://www.techtarget.com/searchnetworking/feature/An-overview-of-3GPP-5G-releases-and-what-each-one-means#:~:text=3GPP%20meets%20four%20times%20a,user%20needs%20evolve%20over%20time.
 - https://en.wikipedia.org/wiki/5G
 - https://mobilepacketcore.com/5g-introduction/
-- https://telecompedia.net/5g-core-network-overview/
 
 - simple 5g architecture video: https://www.youtube.com/watch?v=Q6YxHz_07zk
-- 5g architecture: https://www.youtube.com/watch?v=aGEAQJ7U1tA
 
 
 5G is the 5th generation of mobile networks. It offers highier data rates, and
 lower latencies that previous generation. Also new user cases, that didn't exist 
 in previous generations.
 
-### 5G main new uses
+## 5G main new uses
 
 - eMMB: Enhaced Mobile Broad-Band: Provides connections up to 10 Gbps, instead 1 Gbps as in 4G.
 - mMTC: Massive Machine Type Communications: used to connect massive number of device, for example for IoT. Provides connection for 1000000 devices per km^2, compared to 100000 in 4G. 
 - URLLC: Ultra-Reliable and Low Latency Communications: Latency coud be 1 ms, instead of 10 ms in 4G. This could be usefull for self-driving cars, drone controls ... 
 
-### Network functions
+## Network functions
 
 The 5G System architecture consists of the following network functions (NF):
 -	Authentication Server Function (AUSF): The AUSF authenticates UEs and stores authentication keys.
@@ -88,7 +84,7 @@ The 5G System architecture consists of the following network functions (NF):
 -	Data Network (DN), e.g. operator services, Internet access or 3rd party services.
 -	Unstructured Data Storage Function (UDSF).
 -	Network Exposure Function (NEF).
--	Network Repository Function (NRF): The NRF supports discovery mechanisms that allows 5G elements to discover each other and get updated status of the desired elements. The NRF supports the following functions: Maintains the profiles of the available NF instances and their supported services in the 5G core network. The NRF supports discovery mechanisms that allows 5G elements to discover each other and get updated status of the desired elements. Reference: https://www.etsi.org/deliver/etsi_ts/129500_129599/129510/16.04.00_60/ts_129510v160400p.pdf
+-	Network Repository Function (NRF): The NRF supports discovery mechanisms that allows 5G elements to discover each other and get updated status of the desired elements. The NRF supports the following functions: Maintains the profiles of the available NF instances and their supported services in the 5G core network.
 -	Network Slice Admission Control Function (NSACF).
 -	Network Slice-specific and SNPN Authentication and Authorization Function (NSSAAF).
 -	Network Slice Selection Function (NSSF).
@@ -103,7 +99,7 @@ The 5G System architecture consists of the following network functions (NF):
 -	(Radio) Access Network ((R)AN).
 -	5G-Equipment Identity Register (5G-EIR).
 -	Network Data Analytics Function (NWDAF).
--	CHarging Function (CHF). Reference: https://www.etsi.org/deliver/etsi_ts/132200_132299/132290/15.04.00_60/ts_132290v150400p.pdf
+-	CHarging Function (CHF).
 -	Time Sensitive Networking AF (TSN AF).
 -	Time Sensitive Communication and Time Synchronization Function (TSCTSF).
 -	Data Collection Coordination Function (DCCF).
@@ -120,3 +116,87 @@ The functional descriptions of these Network Functions and entities are specifie
 -	Trusted Non-3GPP Gateway Function (TNGF).
 -	Wireline Access Gateway Function (W-AGF).
 -	Trusted WLAN Interworking Function (TWIF).
+
+
+## Comparation nodes between 4G and 5G:
+
+
+| 5G \ 4G |  MME  |  S-GW  |  P-GW  |  HSS  |  PCRF  |  AF   |  New  |  Name |
+| :---    | :---| |  :---: | :---:  | :---: | :---:  | :---: | :---: | :---  |
+|  AMF    |   X   |        |        |       |        |       |       |  Access and Movility Management Function     |
+|  SMF    |   X   |        |   X    |       |        |       |       |  Session Management Function     |
+|  UPF    |       |    X   |   X    |       |        |       |       |  User Plane Function     |
+|  PCF    |       |        |        |       |    X   |       |       |  Policy Control Function     |
+|  AUSF   |       |        |        |   X   |        |       |       |  Authentication Server Function     |
+|  UDM    |       |        |        |   X   |        |       |       |  Unified Data Management      |
+|  AF     |       |        |        |       |        |   X   |       |  Application Function     |
+|  NEF    |       |        |        |       |        |       |   X   |  Network Exposure Function     |
+|  NRF    |       |        |        |       |        |       |   X   |  Network Repository Function     |
+|  NSSF   |       |        |        |       |        |       |   X   |  Network Slice Selection Function     |
+
+
+AMF is responsible for movility management. 
+
+HSS is done it both: UDM and AUSF. UDM sends the authentication to AUSF, in order to make the subscriber
+authetication during registration. 
+
+SMF (Session Management Function) provides the session management functionality. SMF also does the job of giving IPs to the UE (user equipment).
+
+UPF ( User Plane Function) has some functions of 4G S-GW and P-GW. Those were responsible for data traffic, and UPF handles that data transport. 
+So the data traffic comes from UE to the UPF, so UPF can be thought as the gateway to internet or other networks.
+
+Subscriber autentication during registration is managed by AUSF, wich obtains authentication vectors from UDM. 
+AUSF and UDM substitute the functionality of HSS in 4G.
+
+UDM is responsbile for generating the authentication vectors (requested by AUSF) with is similar to 4G MME. It
+does this using the subscriber profiles stored in UDR. UDR is like a database to store subscriber's information, 
+aplication specific data, and policies data.
+
+Policy control is similar to the one in 4G core network but in 5G it is controllerd by PCF and PCF has someextra an new
+functions compared to PCRF in 4G. 
+
+AMF request the PCF the access and mobility policies. One of the fucntionalities of PCF is make resources reservations, 
+for other services using HTTP, or XML based interface. 
+
+NSSF is a new core network functionality in 5G, its goal is to provide a virtual network slices of RAN, core and transfer
+networks.
+
+NEF (Network Exposure Function) and Network Function Repository Function (NRF) are new functions introduced in 5G. 
+
+## Network repository function: NRF
+
+It is a database reporsitory that keeps the information of all network functions in the network provider. 
+
+It enables discovery of services. 
+
+reference: https://www.etsi.org/deliver/etsi_ts/129500_129599/129510/16.04.00_60/ts_129510v160400p.pdf
+
+reference: https://www.etsi.org/deliver/etsi_ts/129500_129599/129510/17.06.00_60/ts_129510v170600p.pdf
+
+## Service Communication Proxy: SCP
+
+The Service Communication Proxy (SCP) is a new HTTP/2-based network function enabling dynamic scaling and management of communication 
+and services in the 5G network. The SCP has a role that in some ways can be compared with its predecessors, such as the
+Signaling Transfer Point (STP), the central signaling router used in 2G and 3G to route SS7 signaling messages, 
+as well as the Diameter Signaling Controller (DSC) doing the same for Diameter messages in 4G.
+ 
+A key difference with these legacy routers is that the SCP can be responsible to resolve Network Function (NF) discovery requests
+via communication with the Network Repository Function (NRF), and can initiate Domain Name Server (DNS A-record) IP address lookups
+to a DNS to locate every live instance for every available Network Function.
+
+reference: https://moniem-tech.com/questions/what-is-service-communication-proxy-scp-in-5g/
+reference: https://www.etsi.org/deliver/etsi_ts/129500_129599/129510/17.06.00_60/ts_129510v170600p.pdf
+
+
+## Access and Mobility function: AMF
+
+references: 
+
+- https://emblasoft.com/blog/exploring-the-3gpp-amf-access-mobility-management-function#:~:text=In%205G%2C%20AMF%20terminates%20the,i.e.%2C%20access%20subscribed%20services).
+- https://www.techtrained.com/network-function-access-mobility-management-function-amf-in-5g-core-network-5g-system-5gs/
+- https://mobilepacketcore.com/5g-network-architecture/
+- https://www.youtube.com/watch?v=eFn1REiUisk
+- https://www.youtube.com/watch?v=Q6YxHz_07zk&t=4s
+
+
+
