@@ -22,17 +22,17 @@ Languaje reference:
 
 <br>
 
-  - rust for linux brief introduction: https://rustmagazine.org/issue-1/rust-for-linux-brief-introduction/
-  - blog. how to module in rust: - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
-  - blog. how to write a module in rust: https://www.jackos.io/rust-kernel/rust-for-linux.html#adding-the-rust-module
-  - blog. https://www.jackos.io/rust-kernel/rust-for-linux.html
-  - blog. rust module getting started https://wusyong.github.io/posts/rust-kernel-module-00/
-  - blog. rust kernel module: hello world https://wusyong.github.io/posts/rust-kernel-module-01/
-  - coccinelle for linux: this is the link to the talk: https://gitlab.inria.fr/coccinelle/coccinelleforrust/-/blob/main/talks/rfl.pdf
-  - rust analyzer: https://rust-analyzer.github.io/manual.html
-  - https://github.com/rust-unofficial/awesome-rust
-  - https://sunjay.dev/learn-game-dev/intro.html
-  - game dev in rust: https://www.youtube.com/playlist?list=PLn3eTxaOtL2M-VkAeqk0p3Xn7byveJ9qX
+ - rust for linux brief introduction: https://rustmagazine.org/issue-1/rust-for-linux-brief-introduction/
+ - blog. how to module in rust: - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
+ - blog. how to write a module in rust: https://www.jackos.io/rust-kernel/rust-for-linux.html#adding-the-rust-module
+ - blog. https://www.jackos.io/rust-kernel/rust-for-linux.html
+ - blog. rust module getting started https://wusyong.github.io/posts/rust-kernel-module-00/
+ - blog. rust kernel module: hello world https://wusyong.github.io/posts/rust-kernel-module-01/
+ - coccinelle for linux: this is the link to the talk: https://gitlab.inria.fr/coccinelle/coccinelleforrust/-/blob/main/talks/rfl.pdf
+ - rust analyzer: https://rust-analyzer.github.io/manual.html
+ - https://github.com/rust-unofficial/awesome-rust
+ - https://sunjay.dev/learn-game-dev/intro.html
+ - game dev in rust: https://www.youtube.com/playlist?list=PLn3eTxaOtL2M-VkAeqk0p3Xn7byveJ9qX
     
 ## Rust for linux
 
