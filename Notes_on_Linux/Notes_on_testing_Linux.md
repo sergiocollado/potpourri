@@ -350,4 +350,7 @@ references:
  - https://www.kernel.org/doc/Documentation/locking/lockdep-design.txt
 
    
+## Kernel Memory Leak Detector
 
+references:
+ - https://www.kernel.org/doc/html/v4.9/dev-tools/kmemleak.html
