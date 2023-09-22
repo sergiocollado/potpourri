@@ -124,6 +124,10 @@ Languaje reference:
 - https://github.com/Darksonn/linux/commit/ff03d355219af7a4156de81b77b2f423ff3d8a47
 - rust: new api for initialization: https://github.com/Rust-for-Linux/linux/pull/909/files#diff-20432b0044e991d44b184c5bfa4cd92681e119758c93ba9fef5f4c629de688f1
 - rust: rust: Introduce jiffies-based timer support : https://github.com/fbq/linux-rust/commit/c31a2a3ce7420b43bda2c6f1b43227baf0d13661
+- Support for filesystem abstractions: https://github.com/Rust-for-Linux/linux/issues/1004
+- RUST: add module_params macro https://github.com/Rust-for-Linux/linux/commit/62af8b3d3723cf12e932d2b9a8797a18bb9baa70
+- RUST NVME: https://github.com/Rust-for-Linux/linux/compare/rust-next...metaspace:linux:nvme
+- 
 
 ### Others 2
 
