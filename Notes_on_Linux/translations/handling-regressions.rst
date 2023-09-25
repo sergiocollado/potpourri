@@ -1061,24 +1061,43 @@ las regresiones:
 
        Y nosotros, simplemente, no rompemos el espacio de usuario. 
 
- * From `2020-05-21
+ * De `2020-05-21
    <https://lore.kernel.org/all/CAHk-=wiVi7mSrsMP=fLXQrXK_UimybW=ziLOwSzFTtoXUacWVQ@mail.gmail.com/>`_::
 
        The rules about regressions have never been about any kind of
        documented behavior, or where the code lives.
 
+       Las reglas sobre regresiones nunca han sido sobre ningún tipo de 
+       comportamiento documentado, o dónde está situado el código.
+
        The rules about regressions are always about "breaks user workflow".
 
+       Las reglas sobre regresiones son siempre sobre "roturas en el
+       flujo de trabajo del usuario".
+
        Users are literally the _only_ thing that matters.
+
+       Los usuarios son literalmente la _única_ cosa que importa.
 
        No amount of "you shouldn't have used this" or "that behavior was
        undefined, it's your own fault your app broke" or "that used to work
        simply because of a kernel bug" is at all relevant.
 
+       Argumentaciones como "no deberia haber usado esto" o "ese comportamiento
+       es indefinido, es su su culpa que su aplicación no funcione" o 
+       "eso solia funcionar únicamente por un bug del kernel" son 
+       irrelevantes.
+
        Now, reality is never entirely black-and-white. So we've had things
        like "serious security issue" etc that just forces us to make changes
        that may break user space. But even then the rule is that we don't
        really have other options that would allow things to continue.
+
+       Ahora, la realidad nunca es blanca o negra. Así hemos tenido situaciones
+       como "un serio incidente de seguridad" etc que solamente nos fuerza
+       a hacer cambios que pueden romper el espacio de usuario. Pero incluso
+       entonces la regla es que realmente no hay otras opciones para que
+       las cosas sigan funcionando. 
 
        And obviously, if users take years to even notice that something
        broke, or if we have sane ways to work around the breakage that
