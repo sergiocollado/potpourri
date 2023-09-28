@@ -52,6 +52,8 @@ references:
 
 what is a kernel: https://youtu.be/LLBrBBImJt4
 
+Getting to Know the Linux Kernel: A Beginner's Guide: https://www.youtube.com/watch?v=QatE61Ynwrw
+
 Tim Beale: Linux Kernel Development for Newbies: https://youtu.be/OkhOoBqLb3Y
 
 https://github.com/agelastic/eudyptula
