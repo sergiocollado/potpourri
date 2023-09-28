@@ -939,6 +939,7 @@ If you do not require atomicity (say, for example, because a lock already protec
 ## SPINLOCKS
 
 reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/linux-sync-1.html <br>
+reference: http://gauss.ececs.uc.edu/Courses/c4029/videos/05Feb16_4029.ogv
 reference: https://www.kernel.org/doc/html/latest/locking/locktypes.html <br>
 reference: https://www.kernel.org/doc/html/latest/locking/spinlocks.html#lesson-1-spin-locks <br>
 reference: https://docs.kernel.org/locking/spinlocks.html#lesson-1-spin-locks <br>
