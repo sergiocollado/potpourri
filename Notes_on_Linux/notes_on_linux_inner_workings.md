@@ -2,6 +2,8 @@
 
 - By the way, the best way to search the kernel code online is: https://elixir.bootlin.com/linux/latest/source/include/linux
 
+Core Knowledge That Modern Linux Kernel Developer Should Have: https://www.linuxjournal.com/content/core-knowledge-modern-linux-kernel-developer-should-have
+
 Index of Documentation for People Interested in Writing and/or Understanding the Linux Kernel: https://www.kernel.org/doc/html/latest/process/kernel-docs.html
 
 Kernel coding style: https://www.kernel.org/doc/html/latest/process/coding-style.html
