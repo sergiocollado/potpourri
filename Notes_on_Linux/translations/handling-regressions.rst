@@ -1105,91 +1105,181 @@ las regresiones:
        handful of users, and they can use a kernel command line to work
        around it" kind of things) we've also been a bit less strict.
 
+       Y obiamente, is los usuarios tardan años en darse cuenta que algo
+       se ha roto, o si hay formas adecuadas para sortear la rotura que
+       no causen muchos problemas para los usuarios (por ejemplo: "hay un
+       puñado de usuarios, y estos pueden usar la linea de comandos del 
+       kernel para evitarlos"; ese tipo de casos), en esos casos se ha sido
+       un poco menos estricto.
+
        But no, "that was documented to be broken" (whether it's because the
        code was in staging or because the man-page said something else) is
        irrelevant. If staging code is so useful that people end up using it,
        that means that it's basically regular kernel code with a flag saying
        "please clean this up".
 
+       Pero no, "eso que está documentado que está roto" (si es dado a que
+       el código estába en preparación o porque el manual dice otra cosa) eso 
+       es irrelevante. Si preparar el código es tan útil que la gente, 
+       acaba usandlo, esto implica que básicamente es código del kernel con 
+       una señal diciendo "por favor limpiar esto". 
+
        The other side of the coin is that people who talk about "API
        stability" are entirely wrong. API's don't matter either. You can make
        any changes to an API you like - as long as nobody notices.
 
+       El otro lado de la moneda es que la getne que habla sobre "estabilidad
+       de las APIs" están totalmente equivocados. Las APIs tampoco importan.
+       Se puede hacer cualquier cambio que se quiera a una API ... siempre y 
+       cuando nadie se de cuenta.
+
        Again, the regression rule is not about documentation, not about
        API's, and not about the phase of the moon.
 
+       De nuevo, la regla de las regresiones no trata sobre la documentacion, 
+       tampoco sobre las APIs y tampoco sobre las fases de la Luna. 
+
        It's entirely about "we caused problems for user space that used to work".
 
- * From `2017-11-05
+       Únicamente trata sobre "hemos causado problemas al espacio de usuario que
+       antes funcionaba". 
+
+ * De `2017-11-05
    <https://lore.kernel.org/all/CA+55aFzUvbGjD8nQ-+3oiMBx14c_6zOj2n7KLN3UsJ-qsd4Dcw@mail.gmail.com/>`_::
 
        And our regression rule has never been "behavior doesn't change".
        That would mean that we could never make any changes at all.
 
+       Y nuestra regla sobre las regresiones nunca ha sido "el comportamiento
+       no cambia". Eso podria significar que nunca podríamos hacer ningún
+       cambio.
+
        For example, we do things like add new error handling etc all the
        time, which we then sometimes even add tests for in our kselftest
        directory.
 
+       Por ejemplo, hacemos cosas como añadir una nueva gestión de 
+       errores etc todo el tiempo, con lo cual a veces incluso añadimos
+       tests en el directorio de kselftest.
+
        So clearly behavior changes all the time and we don't consider that a
        regression per se.
+
+       Así que claramente cambia el comportamiento todo el timepo y 
+       nosotros no consideramos eso una regressión per se.
 
        The rule for a regression for the kernel is that some real user
        workflow breaks. Not some test. Not a "look, I used to be able to do
        X, now I can't".
 
- * From `2018-08-03
+       La regla para regresiones para el kernel es para cuando se
+       rompe algo en el espacio de usuario. No en algún test. No en
+       "mira, antes podía hacer X, y ahora no puedo". 
+
+ * De `2018-08-03
    <https://lore.kernel.org/all/CA+55aFwWZX=CXmWDTkDGb36kf12XmTehmQjbiMPCqCRG2hi9kw@mail.gmail.com/>`_::
 
        YOU ARE MISSING THE #1 KERNEL RULE.
 
+       ESTÁS OLVIDANDO LA REGLA #1 DEL KERNEL.
+
        We do not regress, and we do not regress exactly because your are 100% wrong.
+
+       No hacemos regresiones, y no hacemos regresiones porque estás 100% equivocado.
 
        And the reason you state for your opinion is in fact exactly *WHY* you
        are wrong.
 
+       Y la razón que apuntas en tú opinion es exactamente *PORQUÉ* estás equivocado.
+
        Your "good reasons" are pure and utter garbage.
+
+       Tus "buenas razones" son honradas y pura basura. 
 
        The whole point of "we do not regress" is so that people can upgrade
        the kernel and never have to worry about it.
 
+       El punto de "no hacemos regresiones" es que la gente pueda actualizar
+       el kernel y nunca han de preocuparse por ello. 
+
        > Kernel had a bug which has been fixed
+
+       > El kernel tiene un bug que ha de ser arreglado
 
        That is *ENTIRELY* immaterial.
 
+       Eso es *ENTERAMENTE* insustancial. 
+
        Guys, whether something was buggy or not DOES NOT MATTER.
 
+       Chicos, si algo estaba roto o no NO IMPORTA.
+
        Why?
+
+       Porqué?
 
        Bugs happen. That's a fact of life. Arguing that "we had to break
        something because we were fixing a bug" is completely insane. We fix
        tens of bugs every single day, thinking that "fixing a bug" means that
        we can break something is simply NOT TRUE.
 
+       Los errores pasan. Eso es una hecho de la vida. Discutir que
+       "tenemos que romper algo porque estábamos arreglando un error" es
+       una locura. Arreglamos decenas de errores cada dia, pensando que 
+       "arreglando un bug" significa que podemos romper otra cosa es algo 
+       que simplemente NO ES VERDAD.
+
        So bugs simply aren't even relevant to the discussion. They happen,
        they get found, they get fixed, and it has nothing to do with "we
        break users".
 
+       Así que los bugs no son realmente relevantes para la discusión. Estos
+       suceden y se detectan, se arreglan, y no tienen nada que ver con 
+       "rompemos a los usuarios".
+
        Because the only thing that matters IS THE USER.
 
+       Porque la única cosa que impora ES EL USUARIO.
+
        How hard is that to understand?
+
+       ¿Cómo de complicado es eso de comprender?
 
        Anybody who uses "but it was buggy" as an argument is entirely missing
        the point. As far as the USER was concerned, it wasn't buggy - it
        worked for him/her.
 
+       Cualquier porsona que use "pero no funcionaba correctamente" es
+       un argumento no tiene la razón. Con respecto al USUARIO, no era
+       erroneo - funcionaba para él/ella. 
+
        Maybe it worked *because* the user had taken the bug into account,
        maybe it worked because the user didn't notice - again, it doesn't
        matter. It worked for the user.
 
+       Quizás funcionaba *porque* el usuario habia tenido el bug en cuenta, 
+       y quizás funcionaba porque el usuario no lo había notado - de nuevo
+       no importa. Funcionaba para el usuario. 
+
        Breaking a user workflow for a "bug" is absolutely the WORST reason
        for breakage you can imagine.
+
+       Romper el flujo del trabajo de un usuario, debido a un "bug" es la
+       PEOR razón que se pueda usar. 
 
        It's basically saying "I took something that worked, and I broke it,
        but now it's better". Do you not see how f*cking insane that statement
        is?
 
+       Es básicamente decir "He cogido algo que funcionaba, y lo he roto,
+       pero ahora es mejor". ¿No ves que un argumento como este es j*didamente 
+       absurdo?
+
        And without users, your program is not a program, it's a pointless
        piece of code that you might as well throw away.
+
+       y sin usuarios, tu programa no es un programa, es una pieza de 
+       código sin finalidad que puedes perfectamente tirár a la basura.
 
        Seriously. This is *why* the #1 rule for kernel development is "we
        don't break users". Because "I fixed a bug" is absolutely NOT AN
@@ -1197,71 +1287,128 @@ las regresiones:
        MUCH BIGGER bug by "fixing" something that the user clearly didn't
        even care about.
 
+       Seriamente. Esto es *porque* la regla #1 para el desarrollo del 
+       kernel es "no rompemos el espacio de usuario". Porque "He arreglado
+       un error" PARA NADA ES UN ARGUMENTO si esa correción del código
+       rompe el espacio de usuario.
+
        And dammit, we upgrade the kernel ALL THE TIME without upgrading any
        other programs at all. It is absolutely required, because flag-days
        and dependencies are horribly bad.
+
+       si actualizamos el kernel TODO EL TIEMPO, sin actualizar ningún otro
+       programa en absoluto. Y esto es absolutamente necesario, porque 
+       las dependecias son terribles. 
 
        And it is also required simply because I as a kernel developer do not
        upgrade random other tools that I don't even care about as I develop
        the kernel, and I want any of my users to feel safe doing the same
        time.
 
+       Y esto es necesario simplemente porque yo como desarrollador del
+       kernel no actualizo al azar otras herramientas que ni si quiera me
+       importan como desarrollador del kernel, y yo quiero que mis usuarios
+       se sientas a salvo haciendo lo mismo. 
+
        So no. Your rule is COMPLETELY wrong. If you cannot upgrade a kernel
        without upgrading some other random binary, then we have a problem.
 
- * From `2021-06-05
+       Así que no. Tu regla está COMPLETAMENTE equivocada. Si no puedes
+       actualizar el kernel sin actualizar otro binario al azar, entonces
+       tenemos un problema. 
+
+ * De `2021-06-05
    <https://lore.kernel.org/all/CAHk-=wiUVqHN76YUwhkjZzwTdjMMJf_zN4+u7vEJjmEGh3recw@mail.gmail.com/>`_::
 
        THERE ARE NO VALID ARGUMENTS FOR REGRESSIONS.
 
+       NO HAY ARGUMENTOS VÁLIDOS PARA UNA REGRESIÓN. 
+
        Honestly, security people need to understand that "not working" is not
        a success case of security. It's a failure case.
 
+       Honestamente, la gente se seguridad necesita entender que "no funciona"
+       no es una caso de exito sobre seguridad. Es un caso de fallo.
+
        Yes, "not working" may be secure. But security in that case is *pointless*.
 
- * From `2011-05-06 (1/3)
+       Si, "no funciona" puede ser seguro. Pero en este caso es totalmente inutil.
+
+ * De `2011-05-06 (1/3)
    <https://lore.kernel.org/all/BANLkTim9YvResB+PwRp7QTK-a5VNg2PvmQ@mail.gmail.com/>`_::
 
        Binary compatibility is more important.
+
+       La compatibilidad de binarios es más importante. 
 
        And if binaries don't use the interface to parse the format (or just
        parse it wrongly - see the fairly recent example of adding uuid's to
        /proc/self/mountinfo), then it's a regression.
 
+       Y si los binarios no usan el interface para parsear el formato
+       (o justamente lo parsea incorrectamente - como el reciente ejemplo
+       de añadir uuid al /proc/self/mountinfo), entonces es una regresión.
+
        And regressions get reverted, unless there are security issues or
        similar that makes us go "Oh Gods, we really have to break things".
+
+       Y las regresiones se revierten, a menos que haya problemas de 
+       seguridad o similares que nos hagan decir "Dios mío, realmente
+       tenemos que romper las cosas". 
 
        I don't understand why this simple logic is so hard for some kernel
        developers to understand. Reality matters. Your personal wishes matter
        NOT AT ALL.
 
+       No entinedo porqué esta simple lógica es tan dificil para algunos
+       desarrolladores del kernel. La realidad importa. Sus deseos personales
+       NO IMPORTAN NADA. 
+
        If you made an interface that can be used without parsing the
        interface description, then we're stuck with the interface. Theory
        simply doesn't matter.
 
+       Si se crea un interface que puede usarse sin parsear la 
+       descripción del interface, entonces estaḿos atascados en el interface.
+       La teoría simplemente no importa. 
+
        You could help fix the tools, and try to avoid the compatibility
        issues that way. There aren't that many of them.
 
-   From `2011-05-06 (2/3)
+       Podrias alludar a arreglar las herramientas, e intentar evitar los
+       errores de compatibilidad de ese modo. No hay tampoco tantos de esos. 
+
+   De `2011-05-06 (2/3)
    <https://lore.kernel.org/all/BANLkTi=KVXjKR82sqsz4gwjr+E0vtqCmvA@mail.gmail.com/>`_::
 
        it's clearly NOT an internal tracepoint. By definition. It's being
        used by powertop.
 
-   From `2011-05-06 (3/3)
+       Esto es claramente NO es un tracepoint enterno. Por definicions. Y está
+       siendo usado por powertop.
+
+   De `2011-05-06 (3/3)
    <https://lore.kernel.org/all/BANLkTinazaXRdGovYL7rRVp+j6HbJ7pzhg@mail.gmail.com/>`_::
 
        We have programs that use that ABI and thus it's a regression if they break.
 
- * From `2012-07-06 <https://lore.kernel.org/all/CA+55aFwnLJ+0sjx92EGREGTWOx84wwKaraSzpTNJwPVV8edw8g@mail.gmail.com/>`_::
+       Tenemos programas que usan esa ABI y si eso se rompe eso es una regresión.
+
+ * De `2012-07-06 <https://lore.kernel.org/all/CA+55aFwnLJ+0sjx92EGREGTWOx84wwKaraSzpTNJwPVV8edw8g@mail.gmail.com/>`_::
 
        > Now this got me wondering if Debian _unstable_ actually qualifies as a
        > standard distro userspace.
 
+       > Ahora esto me ha dejado preguntandome si Debian _inestable_ realmente califica
+       > como espacio de usuario estandar.
+
        Oh, if the kernel breaks some standard user space, that counts. Tons
        of people run Debian unstable
 
- * From `2019-09-15
+       Oh, si el kernel rompe algun espacio de usuario estandar, eso cuenta. 
+       Muchisima gente usa Debian inestable.
+
+ * De `2019-09-15
    <https://lore.kernel.org/lkml/CAHk-=wiP4K8DRJWsCo=20hn_6054xBamGKF2kPgUzpB5aMaofA@mail.gmail.com/>`_::
 
        One _particularly_ last-minute revert is the top-most commit (ignoring
