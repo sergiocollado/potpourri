@@ -2018,7 +2018,7 @@ readed again. Identification of write accesses is realized with a counter.
 When a writer lock is already in a critical section and another writer lock arrives, the writer-lock uses an spin-lock for mutual exclusion hence will not 
 interfere with the other writer. The lock is present always for writers, but not for readers. 
 
-### When to uise a sequence lock 
+### When to use a sequence lock 
 
 - When there is a small amount of data to be protected
 - the data has a lot of readers or is frequently accessed
@@ -2060,6 +2060,11 @@ static inline void write_seqlock_irq(seqlock_t *sl);
 static inline void write_sequnlock_irq(seqlock_t *sl);
 static inline void read_seqlock_excl(seqlock_t *sl)
 static inline void read_sequnlock_excl(seqlock_t *sl)
+// for use in interrupts:
+write_seqlock_irq(seqlock_t *sl);
+write_sequnlock_irq(seqlock_t *sl);
+write_seqlock_irqsave(seqlock_t *sl);
+write_seqlock_irqrestore(seqlock_t *sl, unsigned long flags);
 ```
 
 #### Write operation
@@ -2164,6 +2169,18 @@ static void __exit test_hello_exit(void)
 module_init(test_hello_init);
 module_exit(test_hello_exit);
 ```
+#### Is kernel preemption disabled using sequence locks?
+
+Kernel preemption is disabled in writers, because those adquire an lock
+
+For readers there is kernel preemption. 
+
+#### Limitations of sequence locks
+
+Seqlocks cannot be used with pointers. It can be only used for normal data like integers, booleans ...
+
+The reason, is that the pointer can already be freed, in that case dereferencing that pointer will cause an Oops. 
+
 
 
 ## RCU (Read Copy Update) Locks
