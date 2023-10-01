@@ -2274,7 +2274,8 @@ rcu_assign_pointer(global, new_ptr);
 ```
 
 The reason for this weird assignation, is that a CPU/Compiler can try to perform 
-optimizations in the assignation:
+optimizations in the assignation (The CPU or compiler may change the order of 
+execution of the lines of code).
 
 ```
 struct my_data *new_ptr;
@@ -2288,6 +2289,49 @@ The compiler/CPU may try to perform optimizations in any of the last 3 lines.
 To avoid the optimizations to mess the code, memory barriers must be used. 
 
 #### RCU Read operation
+
+It is forbidden to simply de-reference the pointer, protected by RCU region.
+
+You need to use the `rcu_derefernece()` function.
+
+Additionally, the code that de-references the pointer and uses the result needs to be
+embraced by calls to `rcu_read_lock()` and `rcu_read_unlock()`.
+
+- `rcu_read_lock()` - marK the beginning of an RCU read-side critical section.
+- `rcu_read_unlock()` - mark the end of an RCU read-side critical section.
+- `rcu_derefernece()` - dereferences RCU, must be used between instances of `rcu_read_lock()` and `rcu_read_unlock()`.
+
+```
+struct my_data
+{
+	int key;
+	int val;
+};
+
+struct my_data *global = NULL;
+global = kmalloc(sizeof(struct my_data), GFP_KERNEL);
+```
+
+To perform the read operation: 
+
+```
+struct my_data *tmp;
+rcu_read_lock();
+
+tmp = rcu_dereference(global);
+if (tmp != NULL) {
+	pr_info("key:%d\tval:%d\n", tmp->key, tmp->val);
+}
+rcu_read_unlock();
+```
+
+The reason to do this dereference in this weird way, is again to avoid posible
+optimizations (changes in the order of execution of the lines of code) performend
+by CPUs or the compiler. 
+
+`rcu_dereference()` internally uses memory barrier instructions/compiler 
+directives to avoid those possible (wrong) optimizations. 
+
 
 
 
