@@ -2170,6 +2170,8 @@ module_exit(test_hello_exit);
 
 - reference: https://lwn.net/Articles/262464/
 - reference: https://www.kernel.org/doc/html/latest/RCU/whatisRCU.html
+- reference: CS 134 OS—22: RCU—Intro: https://youtu.be/--f3V-JLHt0
+- reference: CS 134 OS—22: RCU—Implementation: https://youtu.be/5964Io_BoL0
 - reference: what is RCU 2013 Paul McKenny at IISc: https://youtu.be/obDzjElRj9c?list=PLIlI4QbmdBqH9-L1QOq6O5Yxt-YVjRsFZ
 - reference: rcu playlist: https://www.youtube.com/watch?v=obDzjElRj9c&list=PLIlI4QbmdBqH9-L1QOq6O5Yxt-YVjRsFZ
 - reference: https://www.linuxfoundation.org/webinars/unraveling-rcu-usage-mysteries
@@ -2332,15 +2334,331 @@ by CPUs or the compiler.
 `rcu_dereference()` internally uses memory barrier instructions/compiler 
 directives to avoid those possible (wrong) optimizations. 
 
+#### freeing memory
+
+RCU should free after waiting for pre-existing RCU readers to complete.
+
+RCU waits on "RCU read-side critical sections". 
+
+```
+rcu_read_lock();
+...
+critical section
+...
+rcu_read_unlock();
+
+```
+
+The basic idea behind RCU is to split update/write into two phases:
+- removal
+- reclamation
+
+**Removal**: Replaces references to data items with the latests.
+
+**Reclamation**: freeing the old reference. 
+
+#### RCU synchronize
+
+`synchronize_rcu()`: the calling process is blocked until all pre-existing RCU read-side
+critical sections on all CPUs have completed. After the function returns, it is safe to 
+free the memory associated with the old pointer. 
+
+- `synchronize_rcu()`: waits until all rcu critical sections have been completed (in other processors). 
+
+Note: `synchronize_rcu()` will not necessarily wait for any subsequent RCU rea-side 
+critical sections to complete. 
+
+```
+		CPU 0			CPU 1 				CPU 2
+1.	rcu_read_lock();
+2.				enters `synchronize_rcu()`
+3.								rcu_read_lock();
+4.	rcu_read_unlock();
+5.				exits `synchronize_rcu()`
+6.								rcu_read_unlock();
+```
+
+#### call_rcu 
+
+Another way to avoid blocking is to register a callback which will be called when all
+the read-side critical sections are completed. This is done with the function `call_rcu()`:
+
+```
+void call_rcu(struct rcu_head *head, rcu_callback_t func);
+```
+
+This requires that an instance of `rcu_head` is embedded. 
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/slab.h>
+#include <linux/rcupdate.h>
+#include <linux/kthread.h>
+#include <linux/delay.h>
+
+MODULE_LICENSE("GPL");
+
+struct task_struct *thread1, *thread2, *thread3;
+
+typedef struct my_data
+{
+	int key;
+	int val;
+	struct rcu_head rhead;
+
+}my_data;
+
+my_data *global_ptr = NULL;
+
+static void rcu_free(struct rcu_head *head)
+{
+	my_data *data = container_of(head, my_data, rhead);
+        pr_info("%s:processor:%d\tfreeing existing data\n", __func__, smp_processor_id());
+        kfree(data);
+}
+
+static int write_thread_fn(void *arg)
+{
+	while(!kthread_should_stop())
+	{
+		my_data *tmp_ptr = global_ptr;
+		my_data *new_ptr = kmalloc(sizeof(my_data), GFP_KERNEL);
+		memcpy(new_ptr, global_ptr, sizeof(my_data));
+		new_ptr->key++;
+		new_ptr->val++;
+		rcu_assign_pointer(global_ptr, new_ptr);
+		pr_info("%s: processor:%d write complete\n\n", __func__, smp_processor_id());
+		call_rcu(&tmp_ptr->rhead, rcu_free);
+		msleep(3000);
+	}
+	return 0;
+}
+
+static int read_thread_fn(void *arg)
+{
+	while(!kthread_should_stop())
+	{
+		my_data *ptr = NULL;
+		rcu_read_lock();
+		ptr = rcu_dereference(global_ptr);
+		if (ptr != NULL)
+			pr_info("%s:processor:%d\tkey:%d\t val:%d\n", __func__, smp_processor_id(), 
+						ptr->key, ptr->val);
+		else
+			pr_info("%s write thread did not yet start\n", __func__);
+		rcu_read_unlock();
+		msleep(3000);
+	}
+	return 0;
+}
+
+static int __init test_hello_init(void)
+{
+	global_ptr = kmalloc(sizeof(my_data), GFP_KERNEL);
+	global_ptr->key = 1;
+	global_ptr->val = 1001;
+
+	thread1 = kthread_run(read_thread_fn, NULL, "read_thread1");
+	thread2 = kthread_run(write_thread_fn, NULL, "write_thread1");
+	thread3 = kthread_run(read_thread_fn, NULL, "read_thread2");
+	return 0;
+}
+
+static void __exit test_hello_exit(void)
+{
+	kthread_stop(thread1);
+	kthread_stop(thread2);
+	kthread_stop(thread3);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+#### Can RCU nest critical sections? 
+
+Is it correct a code like this?
+
+```
+static int read_thread_fn(void *arg)
+{
+	my_data *ptr = NULL;
+	rcu_read_lock();
+	ptr = rcu_dereference(global_ptr);
+	pr_info("%s:key:%d\t val:%d\n", __func__, ptr->key, ptr->val);
+	rcu_read_lock();
+	ptr = rcu_dereference(global_ptr);
+	pr_info("%s:key:%d\t val:%d\n", __func__, ptr->key, ptr->val);
+	rcu_read_unlock();
+	rcu_read_unlock();
+
+	return 0;
+}
+```
+
+Yes. As no locking is being done, it is ok to nest it. But watch out because 
+the code cannot explicitly block or sleep.
+
+#### How RCU synchronize internally?
+
+We know RCU read-side critical sections delimited by rcu_read_lock() and rcu_read_unlock() are not permitted to block or sleep. 
+
+Therefore, when a given CPU executes a context switch, we are guaranteed that any prior RCU read-side critical sections will have completed. 
+
+`synchronize_cpu()` returns as soon as all the CPU's have completed one context switch.
+
+#### RCU terminology
+
+**Quiescent state**: Any code that is not in an RCU read-side critical section
+
+Readers could see stale data if they enter the read-side critical section before the writer finished updating.
+
+Writer has to wait until all the readers drop their references to the stale data or they have entered the quiescent state.
+
+**Grace Period**: The above time span is called the grace period
+
+```
+		Grace period ends after all CPUs execute a context switch
+
+				------------------	Context Switch
+				|	RCU	 |	    |
+				V       Reader   V          V
+	CPU0		----------------------------------------
 
 
+	
+					------------------	Context Switch
+					|	RCU	 |	    |
+					V       Reader   V          V
+	CPU1		---------------------------------------------------
+
+					Synchronize_rcu()
+						|
+						V
+	CPU2		---------------------------------------------------------
+						|	Grace	      |
+						|	Period	      |
+						-----------------------
+```
+
+   
+	
+#### RCU Variants of linked list API
 
 
+```
+Header File: <linux/rculist.h>
+
+void INIT_LIST_HEAD_RCU(struct list_head *list);
+
+void list_add_rcu(struct list_head *new, struct list_head *head);
+
+void list_add_tail_rcu(struct list_head *new, struct list_head *head);
+
+void list_del_rcu(struct list_head *entry);
+
+list_entry_rcu(ptr, type, member);
+
+list_for_each_entry_rcu(pos, head, member);
+```
+
+RCU can have multiple-readers, but in case of multiple writers, then locks must be used (spinlock). 
+
+```
+//Is this code concurrency safe
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/rculist.h>
+#include <linux/slab.h>
+#include <linux/spinlock.h>
 
 
+MODULE_LICENSE("GPL");
 
+DEFINE_SPINLOCK(mylock);
 
+typedef struct my_data
+{
+	struct list_head list;
+	int key;
+	int data;
 
+}my_data;
+
+LIST_HEAD(listhead);
+
+void insert(int key, int data)
+{
+	my_data *ptr;
+	spin_lock(&mylock);
+	ptr = kmalloc(sizeof(*ptr), GFP_KERNEL);
+	ptr->key = key;
+	ptr->data = data;
+	list_add_tail_rcu(&(ptr->list), &listhead);
+	spin_unlock(&mylock);
+}
+
+my_data *search(int key)
+{
+	my_data *ptr;
+
+	list_for_each_entry_rcu(ptr, &listhead, list) {
+		if (ptr->key == key)
+			return ptr;
+	}
+	return NULL;
+}
+
+void delete(int key)
+{
+	my_data *ptr;
+	
+	ptr = search(key);
+	if (ptr != NULL) {
+		list_del_rcu(&(ptr->list));
+		kfree(ptr);
+	}
+
+}
+
+void print_list(void)
+{
+	my_data *ptr;
+
+	list_for_each_entry_rcu(ptr, &listhead, list) {
+		pr_info("key:%d\t value:%d\n", ptr->key, ptr->data);
+	}
+}
+
+static int __init test_hello_init(void)
+{
+	insert(1, 1000);
+	insert(2, 1001);
+	insert(3, 1002);
+
+	pr_info("printing list\n");
+	print_list();
+	pr_info("deleting key 2\n");
+	delete(2);
+	pr_info("printing list\n");
+	print_list();
+	return 0;
+}
+
+static void __exit test_hello_exit(void)
+{
+    pr_info("%s: In exit\n", __func__);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+#### Advantages of RCU
+
+- Performance
+- Deadlock inmunity (no locks are used)
+- Realtime latency (because no locks are used, so there is no blocking)
 
 
 
