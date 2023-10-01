@@ -2188,8 +2188,8 @@ linked lists, which are used all over the kernel.
 
 RCU is best used in the scenarios: 
  - Many reads
- - rare writes
- - write has priority over read.
+ - Rare writes
+ - Write has priority over read.
 
 The problem with read/write locks is that those are expensive as they use atomic increment/decrement operations for the reader count.
 
@@ -2228,6 +2228,67 @@ When a shared data structure is going to change (being written), it:
  - first create a copy of the structure
  - perform the change
  - After all the readers have finished reading on the old copy, pointer is updated.
+
+#### RCU Design
+
+The core of the RCU is based on two primitives:
+- RCU read-side critical section: rcu_read_lock/rcu_write_lock
+- RCU synchronization section: sycronize_rcu/call_rcu()
+
+Developers can use RCU read-side critical section and RCU synchronization to build data structures 
+that allow concurrent reading during updates. 
+
+Header File: <linux/rcupdate.h> 
+
+#### RCU API
+
+- rcu_read_lock()
+- rcu_read_unlock()
+- synchronize_rcu() / call_rcu()
+- rcu_assign_pointer()
+- rcu_dereference()
+
+#### RCU Write operation
+
+It is forbidden to assign a new pointer to a pointer that is protected by RCU. Use the function 	
+`rcu_assign_pointer()`. 
+
+For example, we have the following structure: 
+
+```
+struct my_data
+{
+	int key;
+	int val;
+};
+
+struct my_data *global = NULL;
+```
+To perform the assign operation: 
+```
+struct my_data *new_ptr;
+new ptr = kmalloc(sizeof(struct my_data), GFP_KERNEL);
+new_ptr->key = 1;
+new_ptr->data = 12345;
+rcu_assign_pointer(global, new_ptr);
+```
+
+The reason for this weird assignation, is that a CPU/Compiler can try to perform 
+optimizations in the assignation:
+
+```
+struct my_data *new_ptr;
+new ptr = kmalloc(sizeof(struct my_data), GFP_KERNEL);
+new_ptr->key = 1;
+new_ptr->data = 12345;
+global = ptr;
+```
+The compiler/CPU may try to perform optimizations in any of the last 3 lines. 
+
+To avoid the optimizations to mess the code, memory barriers must be used. 
+
+#### RCU Read operation
+
 
 
 
