@@ -1,6 +1,7 @@
 #Converting between different String types in Rust
 
 reference: https://profpatsch.de/notes/rust-string-conversions
+reference: All Rust string types explained: https://youtu.be/CpvzeyzgQdw
 
 ```
 let s: String = ...
