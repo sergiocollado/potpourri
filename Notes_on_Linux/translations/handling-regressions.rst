@@ -15,7 +15,7 @@ Gestionando regresiones
 +++++++++++++++++++++++
 
 *No causamos regresiones* -- este documento describe la que es la "primera regla
-del desarrollo del kernel de Linux" implica en la práctica para los desarrolladores. 
+del desarrollo del kernel de Linux" y qué implica en la práctica para los desarrolladores. 
 Y complementa la documentación: Documentation/admin-guide/reporting-regressions.rst,
 que cubre el tema dessde el punto de vista de un usuario; si nunca ha leido ese texto, 
 realice al menos una lectura rápida del mismo antes de continuar. 
@@ -24,8 +24,8 @@ realice al menos una lectura rápida del mismo antes de continuar.
 The important bits (aka "The TL;DR")
 ====================================
 
-Las partes importanes
-=====================
+Las partes importantes
+======================
 
 #. Ensure subscribers of the `regression mailing list <https://lore.kernel.org/regressions/>`_
    (regressions@lists.linux.dev) quickly become aware of any new regression
@@ -38,13 +38,13 @@ Las partes importanes
     * Forward or bounce any reports submitted in bug trackers to the list.
 
 #.  Asegurarse que los suscriptores a la lista `regression mailing list <https://lore.kernel.org/regressions/>`_
-    (regressions@lists.linux.dev)  son conocedores con rapidez de cualquier
-    nuevo reporte de regresion:
+    (regressions@lists.linux.dev) son conocedores con rapidez de cualquier
+    nuevo informe de regresion:
     
-    * Cuando se reciba un correo que no incluyó a la lista, incluyala en el bucle 
-    de correos, mandando un breve "Reply-all" con la lista en CC. 
+    * Cuando se reciba un correo que no incluyó a la lista, incluyala en la
+    conversación de los correos, mandando un breve "Reply-all" con la lista en CC. 
     
-    * Mande o rebote cualquier reporte originado en gestores de bugs a la lista. 
+    * Mande o redirija cualquier informe originado en los gestores de bugs a la lista. 
 
 #. Make the Linux kernel regression tracking bot "regzbot" track the issue (this
    is optional, but recommended):
@@ -66,14 +66,14 @@ Las partes importanes
 #. Hacer que el bot del kernel de Linux "regzbot" realize seguimento del incidente
    (esto es opcional, pero recomendado).
    
-    * Para reportes enviados por correo, verificar si contiene alguna linea como  
+    * Para reportes enviados por correo, verificar si contiene alguna línea como  
       ``#regzbot introduced v5.13..v5.14-rc1``. Si no, mandar una respuesta (con la
       lista de regresiones en CC) que contenga un parrafo como el siguiente, lo que 
       le indica a regzbot cuando empezó a suceder el incidente::
       
        #regzbot ^introduced 1f2e3d4c5b6a
 
-    * Cuando se mandar reportes desde un gestor de incidentes a la lista de regresiones
+    * Cuando se mandar informes desde un gestor de incidentes a la lista de regresiones
       (ver más arriba), incluir un parrafo como el siguiente::
 
        #regzbot introduced: v5.13..v5.14-rc1
@@ -85,8 +85,8 @@ Las partes importanes
    mandated by Documentation/process/submitting-patches.rst and
    :ref:`Documentation/process/5.Posting.rst <development_posting>`.
    
-#. Cuando se manden fixes para las regressiones, añadir etiquets "Link:" a 
-   la descripcion, apuntado a todos los sitios donde se informó de incidente, 
+#. Cuando se manden correciones para las regresiones, añadir etiquetas "Link:" a 
+   la descripcion, apuntado a todos los sitios donde se informó del incidente, 
    como se indica en el documento: Documentation/process/submitting-patches.rst  y
    :ref:`Documentation/process/5.Posting.rst <development_posting>`.
 
@@ -95,7 +95,7 @@ Las partes importanes
    resolved within two or three days.
    
 #. Intentar arreglar las regresiones rápidamente una vez la causa haya sido identificada;
-   las correcciones para la mayor parte de las regresiones deberian ser integradas en menos 
+   las correcciones para la mayor parte de las regresiones deberían ser integradas en menos 
    de dos semanas, pero algunas pueden resolverse en dos o tres días. 
 
 
