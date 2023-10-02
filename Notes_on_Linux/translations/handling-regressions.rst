@@ -1415,11 +1415,23 @@ las regresiones:
        the version change itself) done just before the release, and while
        it's very annoying, it's perhaps also instructive.
 
+       Una reversión _particular_ en el último minuto es el el último commit
+       (no teniendo en cuenta el el propio cambio de versión) justo antes
+       de la liberación, y aunque es bastánte incómodo, quizás también es 
+       instructivo. 
+
        What's instructive about it is that I reverted a commit that wasn't
        actually buggy. In fact, it was doing exactly what it set out to do,
        and did it very well. In fact it did it _so_ well that the much
        improved IO patterns it caused then ended up revealing a user-visible
        regression due to a real bug in a completely unrelated area.
+
+       Lo que es instructivo sobre esto es que he revertido un commit que no
+       teniá ningún error. De hecho, hacia exáctamente lo que pretendía, y lo
+       hacia muy bien. De hecho lo hacía _tan_ bien que los muy mejorados
+       patrones de IO que causaba han acabado revelando una regressión observarble
+       desde el espacio de usuario, debido a un error real en un componente
+       no relacionado en absoluto. 
 
        The actual details of that regression are not the reason I point that
        revert out as instructive, though. It's more that it's an instructive
@@ -1429,12 +1441,28 @@ las regresiones:
        another problem, and as such caused a kernel upgrade to fail for a
        user. So it got reverted.
 
+       De todas maneras, los detalles actuales de esta regresion no son la
+       razón por la que señalo esto como intructivo. Es más que es un ejemplo
+       ilustrativo sobre lo que cuenta como una regresión, y lo que conlleva
+       la regla del kernel de "no regresiones". El commit que ha sido revertido
+       no cambiaba ningúna API, y no introducia ningún error nuevo en el código.
+       Pero acabó expoiniendo otro problema, y como eso causaba que la 
+       actualización del kernel fallara para el usuario. Así que ha sido 
+       revertido.
+
        The point here being that we revert based on user-reported _behavior_,
        not based on some "it changes the ABI" or "it caused a bug" concept.
        The problem was really pre-existing, and it just didn't happen to
        trigger before. The better IO patterns introduced by the change just
        happened to expose an old bug, and people had grown to depend on the
        previously benign behavior of that old issue.
+
+       El foco aquí es que hemos hecho la reversión basandonos el el 
+       coMportamiento reportado en el espacio de usaurio, no basado en 
+       conceptos como "cambios de ABI" o "provocaba un error". Los mejores
+       patrones de IO que se han presentado debido al cambio únicamente han
+       expuesto un viejo error, y la gente ya dependía del benigno comportamiento
+       de ese viejo error.
 
        And never fear, we'll re-introduce the fix that improved on the IO
        patterns once we've decided just how to handle the fact that we had a
@@ -1447,14 +1475,36 @@ las regresiones:
        re-introduced (perhaps even backported as a stable patch) once we have
        consensus about the issue it exposed.
 
+       Y que no haya miedo, reintroduciremos el arreglo que mejoraba los
+       patrones de IO una vez hayamos decidido como gestionar el hecho de
+       que hay una interacción incorrecta con un inerface en el que la 
+       gente dependia de ese comportamiento previo. Es únicamente que tenemos
+       que ver cómo gestionamos y cómo lo hacemos (no hay menos de tres
+       parches diferentes de tres desarrolladores distintos que estamos 
+       evaluando, ... puede haber más por llegar). Mientras tanto, he 
+       revertido lo que exponía el problema a los usuarios de esta release, 
+       incluso cuado espero que el fix será reintroducido (quizás insertado
+       a posteriormente como un parche estabe) una vez llegemos a una acuerdo
+       sobre cómo se ha de exponer el error. 
+
        Take-away from the whole thing: it's not about whether you change the
        kernel-userspace ABI, or fix a bug, or about whether the old code
        "should never have worked in the first place". It's about whether
        something breaks existing users' workflow.
 
+       Lo que hay que recordar de todo el asunto no es sobre si el cambio 
+       de kernel-espacio-de-usuario ABI, o la corrección de un error, o si el 
+       código antiguo "en primer lugar nunca deberia haber estado ahí". Es 
+       sobre si algo rompe el actual flujo de trabajo del usuario.
+
        Anyway, that was my little aside on the whole regression thing.  Since
        it's that "first rule of kernel programming", I felt it is perhaps
        worth just bringing it up every once in a while
+
+       De todas formas, esto era mi pequeña aclaración en todo este 
+       tema de la regresión. Ya que es la "primera regla de la programación
+       del kernel", me ha parecido que quizás es bueno mencionarlo de
+       vez en cuando. 
 
 ..
    end-of-content
