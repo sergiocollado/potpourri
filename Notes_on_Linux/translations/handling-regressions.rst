@@ -17,7 +17,7 @@ Gestionando regresiones
 *No causamos regresiones* -- este documento describe la que es la "primera regla
 del desarrollo del kernel de Linux" y qué implica en la práctica para los desarrolladores. 
 Y complementa la documentación: Documentation/admin-guide/reporting-regressions.rst,
-que cubre el tema dessde el punto de vista de un usuario; si nunca ha leido ese texto, 
+que cubre el tema desde el punto de vista de un usuario; si nunca ha leído ese texto, 
 realice al menos una lectura rápida del mismo antes de continuar. 
 
 
@@ -39,9 +39,9 @@ Las partes importantes
 
 #.  Asegurarse que los suscriptores a la lista `regression mailing list <https://lore.kernel.org/regressions/>`_
     (regressions@lists.linux.dev) son conocedores con rapidez de cualquier
-    nuevo informe de regresion:
+    nuevo informe de regresión:
     
-    * Cuando se reciba un correo que no incluyó a la lista, incluyala en la
+    * Cuando se reciba un correo que no incluyó a la lista, incluyalo en la
     conversación de los correos, mandando un breve "Reply-all" con la lista en CC. 
     
     * Mande o redirija cualquier informe originado en los gestores de bugs a la lista. 
@@ -68,13 +68,13 @@ Las partes importantes
    
     * Para reportes enviados por correo, verificar si contiene alguna línea como  
       ``#regzbot introduced v5.13..v5.14-rc1``. Si no, mandar una respuesta (con la
-      lista de regresiones en CC) que contenga un parrafo como el siguiente, lo que 
+      lista de regresiones en CC) que contenga un párrafo como el siguiente, lo que 
       le indica a regzbot cuando empezó a suceder el incidente::
       
        #regzbot ^introduced 1f2e3d4c5b6a
 
     * Cuando se mandar informes desde un gestor de incidentes a la lista de regresiones
-      (ver más arriba), incluir un parrafo como el siguiente::
+      (ver más arriba), incluir un párrafo como el siguiente::
 
        #regzbot introduced: v5.13..v5.14-rc1
        #regzbot from: Some N. Ice Human <some.human@example.com>
@@ -85,8 +85,8 @@ Las partes importantes
    mandated by Documentation/process/submitting-patches.rst and
    :ref:`Documentation/process/5.Posting.rst <development_posting>`.
    
-#. Cuando se manden correciones para las regresiones, añadir etiquetas "Link:" a 
-   la descripcion, apuntado a todos los sitios donde se informó del incidente, 
+#. Cuando se manden correcciones para las regresiones, añadir etiquetas "Link:" a 
+   la descripción, apuntado a todos los sitios donde se informó del incidente, 
    como se indica en el documento: Documentation/process/submitting-patches.rst  y
    :ref:`Documentation/process/5.Posting.rst <development_posting>`.
 
@@ -102,7 +102,7 @@ Las partes importantes
 All the details on Linux kernel regressions relevant for developers
 ===================================================================
 
-Todos los detalles importantes para desarrolladers en la regresiones de kernel de Linux
+Todos los detalles importantes para desarrolladores en la regresiones de kernel de Linux
 =======================================================================================
 
 
@@ -116,7 +116,7 @@ Puntos básicos importantes más en detalle
 What to do when receiving regression reports
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Qué hacer cuando se recibe un aviso de regresion.
+Qué hacer cuando se recibe un aviso de regresión.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Ensure the Linux kernel's regression tracker and others subscribers of the
@@ -133,17 +133,17 @@ Ensure the Linux kernel's regression tracker and others subscribers of the
    already forwarded the report as instructed by
    Documentation/admin-guide/reporting-issues.rst.
    
-Asegurar que el programa de gestion de regresiones del kernel de Linux y los
+Asegurar que el programa de gestión de regresiones del kernel de Linux y los
 suscritos a la lista de correo `regression mailing list <https://lore.kernel.org/regressions/>`_
-(regressions@lists.linux.dev) son conocedores the cualquier nuevo informe de regresion: 
+(regressions@lists.linux.dev) son conocedores the cualquier nuevo informe de regresión: 
 
- * Cuando se recive un informe por email que no tienen en CC la lista, inmediatamente
+ * Cuando se recibe un informe por email que no tienen en CC la lista, inmediatamente
    meterla en el la cadena de emails mandado al menos un breve "Reply-all" con la lista en CC;
    Intentar asegurar que la lista es añadida en CC de nuevo en caso de que alguna
    repuesta la omita de la lista. 
    
- * Si un informe enviado a un gestor de defectos, llega a su correo, reenvielo o 
-   rebotelo a la lista. Cosidere verificar los archivos de la lista de antemano, si 
+ * Si un informe enviado a un gestor de defectos, llega a su correo, reenvíelo o 
+   redirijalo a la lista. Considere verificar los archivos de la lista de antemano, si 
    la persona que lo ha informado, lo ha enviado anteriormente, como se indica en 
    Documentation/admin-guide/reporting-issues.rst.
  
@@ -169,9 +169,9 @@ When doing either, consider making the Linux kernel regression tracking bot
    
 
 Cuando se realice cualquiera de las acciones anteriores, considerar inmediatamente
-iniciar el seguimiento de la regresion con "regzbot" el gestor de regresiones del kernel de Linux.
+iniciar el seguimiento de la regresión con "regzbot" el gestor de regresiones del kernel de Linux.
 
- * Para los informes enviados por email, verificar si se ha incluido un commando a "regzbot", como
+ * Para los informes enviados por email, verificar si se ha incluido un comando a "regzbot", como
    ``#regzbot introduced 1f2e3d4c5b6a``. Si no es asi, envie una respuesta (con la lista
    de regressiones en CC) con un parrafo como el siguiente:: 
 
@@ -183,7 +183,7 @@ iniciar el seguimiento de la regresion con "regzbot" el gestor de regresiones de
    
    Tenga en cuenta que el acento circunflejo (^) antes de "introduced": Esto indica a 
    regzbot, que debe tratar el email padre (el que ha sido respondido) como el informe
-   inicial para la regresion que quiere ser seguida. Esto es importante, ya que regzbot
+   inicial para la regresión que quiere ser seguida. Esto es importante, ya que regzbot
    buscará más tarde parches con etiquetas "Link:" que apunten al al informe ne los
    archivos de lore.kernel.org. 
    
@@ -201,13 +201,13 @@ iniciar el seguimiento de la regresion con "regzbot" el gestor de regresiones de
    
    
  * Cuando mande informes de regresiones a un gestor de defectos, incluya un 
-   parrafo con los siguientes comandos a regzbot::
+   párrafo con los siguientes comandos a regzbot::
    
        #regzbot introduced: 1f2e3d4c5b6a
        #regzbot from: Some N. Ice Human <some.human@example.com>
        #regzbot monitor: http://some.bugtracker.example.com/ticket?id=123456789
      
-   Regzbot asociará automaticamente parches con el informe que contengan las
+   Regzbot asociará automáticamente parches con el informe que contengan las
    etiquetas "Link:" apuntando a su email o el ticket indicado. 
    
    
@@ -216,7 +216,7 @@ What's important when fixing regressions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-Qué es imporate cuando se arreglan regresiones
+Qué es importante cuando se arreglan regresiones
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -237,7 +237,7 @@ Documentation/process/stable-kernel-rules.rst already explain in more detail:
 
 
 No se necesita hacer nada especial cuando se mandan las correcciones para las
-regresiones unicamente recordar lo que se explica en los documentos: 
+regresiones únicamente recordar lo que se explica en los documentos: 
 Documentation/process/submitting-patches.rst,
 :ref:`Documentation/process/5.Posting.rst <development_posting>`, y 
 Documentation/process/stable-kernel-rules.rst 
@@ -247,10 +247,10 @@ Documentation/process/stable-kernel-rules.rst
        Link: https://lore.kernel.org/r/30th.anniversary.repost@klaava.Helsinki.FI/
        Link: https://bugzilla.kernel.org/show_bug.cgi?id=1234567890
 
- * Añadir la etiqueta "Fixes:" para indicar el commit causante de la regresion.
+ * Añadir la etiqueta "Fixes:" para indicar el commit causante de la regresión.
  
  * Si el culpable ha sido mergeado en un ciclo de desarrollo anterior, marcar
-   explicitamente el fix para retroimportarlo usando la etiqueta ``Cc: stable@vger.kernel.org`` tag.
+   explícitamente el fix para retro-importarlo usando la etiqueta ``Cc: stable@vger.kernel.org`` tag.
  
 
 
@@ -264,7 +264,7 @@ reports for regression with changes resolving them.
 Todo esto se espera y es importante en una regresión, ya que estas etiquetas son
 de gran valor para todos (incluido usted) que pueda estar mirando en ese incidente
 semanas, meses o años después. Estas etiquetas son tambień cruciales para las
-herramientas y scripts usados por otros desarrolladores del kernel o distribuiciones
+herramientas y scripts usados por otros desarrolladores del kernel o distribuciones
 de Linux; una de esas herramientas es regzbot, el cual depende mucho de las etiquetas
 "Link:" para asociar los informes por regresiones con los cambios que las 
 resuelven.
@@ -273,7 +273,7 @@ resuelven.
 Prioritize work on fixing regressions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Priorizacion del trabajo en arreglar regresiones
+Priorización del trabajo en arreglar regresiones
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You should fix any reported regression as quickly as possible, to provide
@@ -288,13 +288,13 @@ outdated and thus potentially insecure kernel version for more than two weeks
 after a regression's culprit was identified", and "downgrade to a still
 supported kernel series that lack required features".
 
-Se deberian arreglar y reportar regresiones tan rápido como sea posible, para
+Se deberían arreglar y reportar regresiones tan rápido como sea posible, para
 proveer a los usuarios afectados con una solución en el tiempo y prevenir 
 que más usuarios del incidente; de todos modos los desarrolladores necesitan 
 dedicar el tiempo suficiente y asegurar correcciones que no causen problemas
 adicionales. 
 
-Al final de todos modos, los desarrolladores deberian hacer lo posible parra
+Al final de todos modos, los desarrolladores deberían hacer lo posible parra
 evitar a los usuarios situaciones donde una regresión les deje solo tres 
 opciones: "ejecutar el kernel con una regresión que afecta seriamente al uso",
 "continuar ejecutando una versión desfasada y potencialmente insegura del
@@ -324,15 +324,15 @@ unas reglas generales, en orden de importancia:
    together with necessary fixes, as this might be the least dangerous and
    quickest way to fix a regression.
    
- * Considerar siempre revertir los commits reponsables y re-aplicarlos después,
-   junto con las correciiones necesarias, ya que esto puede la forma
+ * Considerar siempre revertir los commits responsables y re-aplicarlos después,
+   junto con las correcciones necesarias, ya que esto puede la forma
    menos peligrosa y más rápida de arreglar la regresión.
 
  * Developers should handle regressions in all supported kernel series, but are
    free to delegate the work to the stable team, if the issue probably at no
    point in time occurred with mainline.
    
- * Los desarrolladores deberian gestionar la regresión en todos los kernels
+ * Los desarrolladores deberían gestionar la regresión en todos los kernels
    soportados de la serie, pero son libres de delegar el trabajo al equipo 
    permanente el incidente no hubiese ocurrido en la linea principal. 
 
@@ -343,13 +343,13 @@ unas reglas generales, en orden de importancia:
    and postpone the release if necessary, for example if multiple such changes
    show up in his inbox.
    
- * Intentar resolver cualquier regressión que apareciera en el ciclo de
+ * Intentar resolver cualquier regresión que apareciera en el ciclo de
    desarrollo antes de que este acabe. Si se teme que una corrección pudiera
    ser demasiado arriesgada para aplicarla días antes de una liberación de
-   la linea principal de desarrollo, dejar decidir a Linus: mandele la 
-   corrección a el de forma separada, tan pronto como sea posible con 
+   la línea principal de desarrollo, dejar decidir a Linus: mandele la 
+   corrección a él de forma separada, tan pronto como sea posible con 
    una explicación de la situación. El podrá decidir, y posponer la 
-   liberación si fuese necesario, por ejemplo si apareciesen multiples 
+   liberación si fuese necesario, por ejemplo si aparecieran múltiples 
    cambios como ese. 
 
  * Address regressions in stable, longterm, or proper mainline releases with
@@ -358,11 +358,11 @@ unas reglas generales, en orden de importancia:
    important, to ensure all the improvements and fixes are ideally tested
    together for at least one week before Linus releases a new mainline version.
    
- * Gestione las regresiones en la rama estable, de largo termino, o la 
+ * Gestione las regresiones en la rama estable, de largo término, o la 
    propia rama principal de las versiones, con más urgencia que la regresiones
-   en las pre-liberacioens. Esto cambia despues de la liberación de la 
+   en las preliberaciones. Esto cambia después de la liberación de la 
    quinta pre-liberación, aka "-rc5": la rama principal entonces se vuelve
-   más importante, asegurar que todas las mejoras y correciones son idealmente
+   más importante, asegurar que todas las mejoras y correcciones son idealmente
    testeados juntos por al menos una semana antes de que Linux libere la
    nueva versión en la rama principal. 
 
@@ -379,11 +379,11 @@ unas reglas generales, en orden de importancia:
 
     * the development cycle of the latest proper mainline release
     
- * Intentae arreglar regresiones en un intervalo de una semana después de que
+ * Intentar arreglar regresiones en un intervalo de una semana después de que
    se ha identificado el responsable, si el incidente fue introducido en 
    alguno de los siguientes casos:
    
-    * una version estable/largo-plazo reciente
+    * una versión estable/largo-plazo reciente
     
     * en el último ciclo de desarrollo de la rama principal
 
@@ -414,11 +414,11 @@ unas reglas generales, en orden de importancia:
    adicionales son aceptables para regresiones de rendimiento y otros 
    incidentes que son molestos, pero no bloquean a nadie la ejecución de 
    Linux (a menos que se un incidente en el ciclo de desarrollo actual, en 
-   ese caso se deberia gestionar antes de la liberación de la versión). Unas
+   ese caso se debería gestionar antes de la liberación de la versión). Unas
    semanas son aceptables si la regresión únicamente puede ser arreglada 
    con un cambio arriesgado y al mismo tiempo únicamente afecta a unos pocos
-   usuarios; tabién está bien si se usa tanto tiempo como fuera
-   necesario si la regressión está presente en la segunda versión más nueva de 
+   usuarios; también está bien si se usa tanto tiempo como fuera
+   necesario si la regresión está presente en la segunda versión más nueva de 
    largo plazo del kernel.
 
 Note: The aforementioned time frames for resolving regressions are meant to
@@ -440,13 +440,13 @@ regressions in stable and longterm kernels need to be handled quickly, as fixes
 need to be merged in mainline before they can be backported to older series.
 
 Se espera que los mantenedores de los subsistemas, ayuden en conseguir esos
-tiempos, haciendo revisiones con protitud y gestionando con rapidez los parches
+tiempos, haciendo revisiones con prontitud y gestionando con rapidez los parches
 aceptados. Esto puede resultar en tener que mandar peticiones de git-pull 
 antes o de forma más frecuente que lo normal; dependiendo del arreglo, 
-podria incluso ser acceptabe saltarse la verificación en linux-next. Especialmente
+podría incluso ser aceptable saltarse la verificación en linux-next. Especialmente
 para las correcciones en las ramas de los kernels estable y de largo plazo
-necesitan ser gestinadas rápidamente, y las correcciones necesitan ser 
-incluidas en la rama principal antes de que puedan ser retroincludias a las
+necesitan ser gestionadas rápidamente, y las correcciones necesitan ser 
+incluidas en la rama principal antes de que puedan ser incluidas posteriormente a las
 series precedentes. 
 
 
@@ -469,8 +469,8 @@ developers or projects likely to be affected to evaluate or even test the
 proposed change; if problems surface, maybe some solution acceptable for all
 can be found.
 
-Evaluar cómo de grande es el reisgo de una regresión, por ejemplo realizando
-una búsqueda en las distribuciiones de linux y en Git forges. Considerar 
+Evaluar cómo de grande es el riesgo de una regresión, por ejemplo realizando
+una búsqueda en las distribuciones de linux y en Git forges. Considerar 
 también preguntar a otros desarrolladores o proyectos que pudieran ser 
 afectados para evaluar o incluso testear el cambio propuesto; si apareciesen 
 problemas, quizás se pudiera encontrar una solución aceptable para todos.
@@ -484,15 +484,15 @@ list about the risk, so everyone has the change on the radar in case reports
 trickle in. Depending on the risk, you also might want to ask the subsystem
 maintainer to mention the issue in his mainline pull request.
 
-Si al final, el riesgo de la regressión parece ser relativamente pequeño, 
+Si al final, el riesgo de la regresión parece ser relativamente pequeño, 
 entonces adelante con el cambio, pero siempre informar a todas las partes involucradas
 del posible riesgo. Por tanto, asegurarse que el la descripción del parche, 
-se hace explicito este hecho. Una vez el cambio ha sido integrado, informar
-al gestor de regressiones de Linux y a las listas de correo de regressiones 
+se hace explícito este hecho. Una vez el cambio ha sido integrado, informar
+al gestor de regresiones de Linux y a las listas de correo de regresiones 
 sobre el riesgo, de manera que cualquiera que tenga el cambio en el radar, 
 en el caso de que aparezcan reportes. Dependiendo del riesgo, quizás se 
 quiera preguntar al mantenedor del subsistema, que mencione el hecho en su 
-linea principal de desarrollo. 
+línea principal de desarrollo. 
 
 
 
@@ -538,8 +538,8 @@ Send a mail to the regressions mailing list (regressions@lists.linux.dev) while
 CCing the Linux kernel's regression tracker (regressions@leemhuis.info); if the
 issue might better be dealt with in private, feel free to omit the list.
 
-Mandar un emal a la lista de correo de regresiones (regressions@lists.linux.dev)
-y CC al seguidor de regressiones del kernel de Linux (regressions@leemhuis.info);
+Mandar un email a la lista de correo de regresiones (regressions@lists.linux.dev)
+y CC al seguidor de regresiones del kernel de Linux (regressions@leemhuis.info);
 Si el incidente pudiera ser mejor gestionarlo en privado, puede omitirse la lista.
 
 
@@ -563,11 +563,11 @@ occasionally helped by other people. Neither of them are paid to do this,
 that's why regression tracking is done on a best effort basis.
 
 Reglas como "no regresiones" necesitan asegurar que se cumplen, de otro modo
-se romperían acidentalmente o a propósito. La historia ha mostrado que esto es
-verdád también para el kernel de Linux. Esto es por lo que Thorsten Leemhuis
-se ofreció como voluntiario para dar una solución a esto, con el gestor de 
+se romperían accidentalmente o a propósito. La historia ha mostrado que esto es
+verdad también para el kernel de Linux. Esto es por lo que Thorsten Leemhuis
+se ofreció como voluntario para dar una solución a esto, con el gestor de 
 regresiones del kernel de Linux. A nadie se le paga por hacer esto, y esa
-es la razón por la gestion de regresiones es un servicio con el "mejor esfuerzo". 
+es la razón por la gestión de regresiones es un servicio con el "mejor esfuerzo". 
 
 Earlier attempts to manually track regressions have shown it's an exhausting and
 frustrating work, which is why they were abandoned after a while. To prevent
@@ -577,9 +577,9 @@ everyone involved.
 
 Intentos anteriores de gestionar manualmente las regresiones han demostrado que
 es una tarea extenuante y frustrante, y por esa razón se dejaron de hacer
-despúes de un tiempo. Para evitar que volviese a suceder esto, Thorsten
-desarrollo regbot para facilitar el trabajo, con el obejtivo a largo plazo de
-automatizar la gestion de regresiones tanto como fuese posible para cualquiera
+después de un tiempo. Para evitar que volviese a suceder esto, Thorsten
+desarrollo regbot para facilitar el trabajo, con el objetivo a largo plazo de
+automatizar la gestión de regresiones tanto como fuese posible para cualquiera
 que estuviese involucrado.
 
 How does regression tracking work with regzbot?
@@ -594,9 +594,9 @@ with "Link:" tags; replies to such patch postings are tracked as well.
 Combined this data provides good insights into the current state of the fixing
 process.
 
-El bot espera a las respuestas de los informes de las regresiones indentificadas.
-Adiconalmente mira si se han publicado o enviado parches que hagan referencia a
-esos informes lon la etiqueta: "Link:"; respuestas a esos parches también se 
+El bot espera a las respuestas de los informes de las regresiones identificadas.
+Adicionalmente mira si se han publicado o enviado parches que hagan referencia a
+esos informes con la etiqueta: "Link:"; respuestas a esos parches también se 
 siguen. Combinando esta información, también proporciona una buena imagen del 
 estado actual del proceso de corrección. 
 
@@ -618,7 +618,7 @@ sure to do something that was expected long before regzbot came to light: add
 fixed.
 
 Para desarrolladores normalmente no hay un trabajo adicional que realizar, 
-únicamente necesitan asegurarse una cosa, que ya se hacia mucho antes de que 
+únicamente necesitan asegurarse una cosa, que ya se hacía mucho antes de que 
 regzbot apareciera: añadir las etiquetas "Link:" a la descripción del parche
 apuntando a todos los informes sobre el error corregido.
 
@@ -636,8 +636,8 @@ into the weekly reports sent by regzbot.
 
 Hacerlo es por el bien de todo el mundo, como los mantenedores del kernel,
 como Linus Torvalds dependen parcialmente en regzbot para seguir su trabajo --
-por ejemplo cuando deciden liberar una nueva version o ampliar la fase de 
-desarrollo. Pra esto necesitan conocer todas las regresiones que están sin 
+por ejemplo cuando deciden liberar una nueva versión o ampliar la fase de 
+desarrollo. Para esto necesitan conocer todas las regresiones que están sin 
 corregir; para esto, es conocido que Linux mira los informes semanales que
 manda regzbot. 
 
@@ -680,7 +680,7 @@ Verifique el `interfaz web de regzbot <https://linux-regtracking.leemhuis.info/r
 para ver la última información; o `busque el último informe de regresiones
 <https://lore.kernel.org/lkml/?q=%22Linux+regressions+report%22+f%3Aregzbot>`_,
 el cual suele ser enviado por regzbot una vez a la semana el domingo por la noche (UTC),
-lo cual es unas horas antes de que Linus normalmete anuncie las "(pre-)releases".
+lo cual es unas horas antes de que Linus normalmente anuncie las "(pre-)releases".
 
 What places is regzbot monitoring?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -691,7 +691,7 @@ repositories of linux-next, mainline, and stable/longterm.
 ¿Qué sítios supervisa regzbot?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Regzbot supervisa las listas de corro más importantes de Linux, como también
+Regzbot supervisa las listas de correo más importantes de Linux, como también
 las de los repositorios linux-next, mainline y stable/longterm.
 
 
@@ -724,9 +724,9 @@ usage.
 ¿Puedo añadir una regression detectada por un sistema de CI al seguimiento de regzbot?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Sientase libre de hacero, si la regresión en concreto puede tener un impacto en 
-casos de uso práctiocs y por tanto ser detectado por los usuarios; Así, por favor
-no involucre a regzbot en regresiones teóricas que dificilmente pudieran 
+Siéntase libre de hacerlo, si la regresión en concreto puede tener un impacto en 
+casos de uso prácticos y por tanto ser detectado por los usuarios; Así, por favor
+no involucre a regzbot en regresiones teóricas que difícilmente pudieran 
 manifestarse en un uso real. 
 
 
@@ -742,7 +742,7 @@ need to be separated from the rest of the mail using blank lines).
 
 Usando el comando 'regzbot' en una respuesta directa o indirecta al correo con
 el informe de regresión. Ese comando necesita estar en su propio párrafo (debe
-estar separado del resto del text usando lineas en blanco):
+estar separado del resto del texto usando líneas en blanco):
 
 
 One such command is ``#regzbot introduced <version or commit>``, which makes
@@ -755,7 +755,7 @@ Por ejemplo ``#regzbot introduced <version or commit>``, que hace que regzbot
 considere el correo como un informe de regressión que se ha de añadir al seguimiento,
 como se ha descrito anteriormente; ``#regzbot ^introduced <version or commit>`` es
 otro ejemplo del comando, el cual indica a regzbot que considere el email 
-anterior como el informe de una regressión que se ha de comenzar a monitorizar. 
+anterior como el informe de una regresión que se ha de comenzar a monitorizar. 
 
 Once one of those two commands has been utilized, other regzbot commands can be
 used in direct or indirect replies to the report. You can write them below one
@@ -763,7 +763,7 @@ of the `introduced` commands or in replies to the mail that used one of them
 or itself is a reply to that mail:
 
 Una vez uno de esos dos comandos se ha utilizado, se pueden usar otros comandos
-regzbot en respuestas directas o indirectas al infomre. Puede escribirlos debajo
+regzbot en respuestas directas o indirectas al informe. Puede escribirlos debajo
 de uno de los comandos anteriormente usados o en las respuestas al correo en el
 que se uso como respuesta a ese correo: 
 
@@ -801,7 +801,7 @@ que se uso como respuesta a ese correo:
 
        #regzbot link: https://bugzilla.kernel.org/show_bug.cgi?id=123456789
 
- * Indicar a un lugar donde más detalles de interes, como un mensaje en una lista
+ * Indicar a un lugar donde más detalles de interés, como un mensaje en una lista
  de correo o un tiquet en un gestor de incidencias que pueden estar levemente relacionados, 
  pero con un tema diferente::
  
@@ -813,7 +813,7 @@ que se uso como respuesta a ese correo:
 
        #regzbot fixed-by: 1f2e3d4c5d
        
- * Anotar una regression como corregida por un commit quee se ha mandado aguas arriba 
+ * Anotar una regression como corregida por un commit que se ha mandado aguas arriba 
  o se ha publicado::
  
         #regzbot fixed-by: 1f2e3d4c5d
@@ -830,7 +830,7 @@ que se uso como respuesta a ese correo:
 
        #regzbot invalid: wasn't a regression, problem has always existed
        
- * Anotar una regressión como invalida::
+ * Anotar una regresión como inválida::
  
        #regzbot invalid: wasn't a regression, problem has always existed
        
@@ -853,7 +853,7 @@ Hay información más detallada y actualizada sobre el bot de seguimiento de
 regresiones del kernel de Linux en: `project page <https://gitlab.com/knurd42/regzbot>`_,
 y entre otros contiene una  `guia de inicio <https://gitlab.com/knurd42/regzbot/-/blob/main/docs/getting_started.md>`_
 y `documentación de referencia <https://gitlab.com/knurd42/regzbot/-/blob/main/docs/reference.md>`_
-ambos contienen más detalles que las secciones anteriores. 
+Ambos contienen más detalles que las secciones anteriores. 
 
 
 Quotes from Linus about regression
@@ -895,9 +895,9 @@ las regresiones:
  * De 2017-10-26 (1/2)
    <https://lore.kernel.org/lkml/CA+55aFwiiQYJ+YoLKCXjN_beDVfu38mg=Ggg5LFOcqHE8Qi7Zw@mail.gmail.com/>`_::
 
-     Si romopes la configuracion de los espacios de usuaro ESO ES UNA REGRESIÓN.
+     Si rompes la configuración de los espacios de usuario ESO ES UNA REGRESIÓN.
 
-     No esta bien decir "pero nosotros arreglaremos la configuración del espacio de usuario". 
+     No está bien decir "pero nosotros arreglaremos la configuración del espacio de usuario". 
 
      Realmente. NO ESTÁ BIEN. 
 
@@ -907,7 +907,7 @@ las regresiones:
 
      - no causamos regresiones
 
-     y el corolario es que cuando una regressión pasa, lo admitimos y lo 
+     y el corolario es que cuando una regresión pasa, lo admitimos y lo 
      arreglamos, en vez de echar la culpa al espacio de usuario.
 
      El hecho de que aparentemente se haya negado la regresión durante
@@ -984,23 +984,23 @@ las regresiones:
  * De `2017-10-26 (2/2)
    <https://lore.kernel.org/lkml/CA+55aFxW7NMAMvYhkvz1UPbUTUJewRt6Yb51QAx5RtrWOwjebg@mail.gmail.com/>`_::
 
-       La gente deberia sentirse libre de actualizar su kernel y simplemente
+       La gente debería sentirse libre de actualizar su kernel y simplemente
        no preocuparse por ello.
 
        Me niego a imponer una limitación del tipo "solo puede actualizar
        el kernel si actualiza otro programa". Si el kernel trabaja para tí,
-       la regla es que continue trabajando para tí. 
+       la regla es que continúe trabajando para tí. 
 
        Ha habido algunas excepciones, pero son pocas y separadas entre sí, y generalmente
        tienen una razón fundamental para haber sucedido, que era básicamente
        inevitable, y la gente intentó evitarlas por todos los medios. Quizás no podamos
-       mantener el hardware más, depués de que han pasado décadas y nadie los usa
+       mantener el hardware más, después de que han pasado décadas y nadie los usa
        con kernel modernos. Quizás haya un problema de seguridad serio con cómo
-       hicimos las cosas, y la gente dependa de un modelo fundamentalmente roto. 
-       Quizás haya algun otro roto fundamental, que tenga que tener una _flag_ 
+       hicimos las cosas, y la gente depende de un modelo fundamentalmente roto. 
+       Quizás haya algún otro roto fundamental, que tenga que tener una _flag_ 
        y por razones internas y fundamentales. 
 
-       Y notesé que esto trata sobre *romper* los entornos de la gente.
+       Y nótese que esto trata sobre *romper* los entornos de la gente.
 
        Behavioral changes happen, and maybe we don't even support some
        feature any more. There's a number of fields in /proc/<pid>/stat that
@@ -1047,10 +1047,10 @@ las regresiones:
        Y he visto, y puedo señalar, muchos proyectos que dicen "Tenemos que  
        romper ese caso de uso para poder hacer progresos" o "estabas basandote
        en comportamientos no documentados, debe ser duro ser tú" o "hay una forma
-       mejor de hacer lo que quiees hacer, y tienes que cambiar a esa nueva forma",
-       y yo simplmente no pienso que eso sea aceptable fuera de una fase alfa muy 
+       mejor de hacer lo que quieres hacer, y tienes que cambiar a esa nueva forma",
+       y yo simplemente no pienso que eso sea aceptable fuera de una fase alfa muy 
        temprana que tenga usuarios experimentales que saben a lo que se han apuntado.
-       El kernel no ha estado en esta situción en las dos últimas décadas. 
+       El kernel no ha estado en esta situación en las dos últimas décadas. 
 
        Nosotros rompemos la API _dentro_ del kernel todo el tiempo. Y arreglaremos
        los problemas internos diciendo "tú ahora necesitas hacer XYZ", pero 
@@ -1083,9 +1083,9 @@ las regresiones:
        undefined, it's your own fault your app broke" or "that used to work
        simply because of a kernel bug" is at all relevant.
 
-       Argumentaciones como "no deberia haber usado esto" o "ese comportamiento
+       Argumentaciones como "no debería haber usado esto" o "ese comportamiento
        es indefinido, es su su culpa que su aplicación no funcione" o 
-       "eso solia funcionar únicamente por un bug del kernel" son 
+       "eso solía funcionar únicamente por un bug del kernel" son 
        irrelevantes.
 
        Now, reality is never entirely black-and-white. So we've had things
@@ -1105,10 +1105,10 @@ las regresiones:
        handful of users, and they can use a kernel command line to work
        around it" kind of things) we've also been a bit less strict.
 
-       Y obiamente, is los usuarios tardan años en darse cuenta que algo
+       Y obviamente, si los usuarios tardan años en darse cuenta que algo
        se ha roto, o si hay formas adecuadas para sortear la rotura que
        no causen muchos problemas para los usuarios (por ejemplo: "hay un
-       puñado de usuarios, y estos pueden usar la linea de comandos del 
+       puñado de usuarios, y estos pueden usar la línea de comandos del 
        kernel para evitarlos"; ese tipo de casos), en esos casos se ha sido
        un poco menos estricto.
 
@@ -1119,16 +1119,16 @@ las regresiones:
        "please clean this up".
 
        Pero no, "eso que está documentado que está roto" (si es dado a que
-       el código estába en preparación o porque el manual dice otra cosa) eso 
+       el código estaba en preparación o porque el manual dice otra cosa) eso 
        es irrelevante. Si preparar el código es tan útil que la gente, 
-       acaba usandlo, esto implica que básicamente es código del kernel con 
+       acaba usando, esto implica que básicamente es código del kernel con 
        una señal diciendo "por favor limpiar esto". 
 
        The other side of the coin is that people who talk about "API
        stability" are entirely wrong. API's don't matter either. You can make
        any changes to an API you like - as long as nobody notices.
 
-       El otro lado de la moneda es que la getne que habla sobre "estabilidad
+       El otro lado de la moneda es que la gente que habla sobre "estabilidad
        de las APIs" están totalmente equivocados. Las APIs tampoco importan.
        Se puede hacer cualquier cambio que se quiera a una API ... siempre y 
        cuando nadie se de cuenta.
@@ -1136,7 +1136,7 @@ las regresiones:
        Again, the regression rule is not about documentation, not about
        API's, and not about the phase of the moon.
 
-       De nuevo, la regla de las regresiones no trata sobre la documentacion, 
+       De nuevo, la regla de las regresiones no trata sobre la documentación, 
        tampoco sobre las APIs y tampoco sobre las fases de la Luna. 
 
        It's entirely about "we caused problems for user space that used to work".
@@ -1190,7 +1190,7 @@ las regresiones:
        And the reason you state for your opinion is in fact exactly *WHY* you
        are wrong.
 
-       Y la razón que apuntas en tú opinion es exactamente *PORQUÉ* estás equivocado.
+       Y la razón que apuntas en tú opinión es exactamente *PORQUÉ* estás equivocado.
 
        Your "good reasons" are pure and utter garbage.
 
@@ -1239,7 +1239,7 @@ las regresiones:
 
        Because the only thing that matters IS THE USER.
 
-       Porque la única cosa que impora ES EL USUARIO.
+       Porque la única cosa que importa ES EL USUARIO.
 
        How hard is that to understand?
 
@@ -1249,7 +1249,7 @@ las regresiones:
        the point. As far as the USER was concerned, it wasn't buggy - it
        worked for him/her.
 
-       Cualquier porsona que use "pero no funcionaba correctamente" es
+       Cualquier persona que use "pero no funcionaba correctamente" es
        un argumento no tiene la razón. Con respecto al USUARIO, no era
        erroneo - funcionaba para él/ella. 
 
@@ -1257,7 +1257,7 @@ las regresiones:
        maybe it worked because the user didn't notice - again, it doesn't
        matter. It worked for the user.
 
-       Quizás funcionaba *porque* el usuario habia tenido el bug en cuenta, 
+       Quizás funcionaba *porque* el usuario había tenido el bug en cuenta, 
        y quizás funcionaba porque el usuario no lo había notado - de nuevo
        no importa. Funcionaba para el usuario. 
 
@@ -1279,7 +1279,7 @@ las regresiones:
        piece of code that you might as well throw away.
 
        y sin usuarios, tu programa no es un programa, es una pieza de 
-       código sin finalidad que puedes perfectamente tirár a la basura.
+       código sin finalidad que puedes perfectamente tirar a la basura.
 
        Seriously. This is *why* the #1 rule for kernel development is "we
        don't break users". Because "I fixed a bug" is absolutely NOT AN
@@ -1289,7 +1289,7 @@ las regresiones:
 
        Seriamente. Esto es *porque* la regla #1 para el desarrollo del 
        kernel es "no rompemos el espacio de usuario". Porque "He arreglado
-       un error" PARA NADA ES UN ARGUMENTO si esa correción del código
+       un error" PARA NADA ES UN ARGUMENTO si esa corrección del código
        rompe el espacio de usuario.
 
        And dammit, we upgrade the kernel ALL THE TIME without upgrading any
@@ -1298,7 +1298,7 @@ las regresiones:
 
        si actualizamos el kernel TODO EL TIEMPO, sin actualizar ningún otro
        programa en absoluto. Y esto es absolutamente necesario, porque 
-       las dependecias son terribles. 
+       las dependencias son terribles. 
 
        And it is also required simply because I as a kernel developer do not
        upgrade random other tools that I don't even care about as I develop
@@ -1306,9 +1306,9 @@ las regresiones:
        time.
 
        Y esto es necesario simplemente porque yo como desarrollador del
-       kernel no actualizo al azar otras herramientas que ni si quiera me
+       kernel no actualizo al azar otras herramientas que ni siquiera me
        importan como desarrollador del kernel, y yo quiero que mis usuarios
-       se sientas a salvo haciendo lo mismo. 
+       se sientan a salvo haciendo lo mismo. 
 
        So no. Your rule is COMPLETELY wrong. If you cannot upgrade a kernel
        without upgrading some other random binary, then we have a problem.
@@ -1328,7 +1328,7 @@ las regresiones:
        a success case of security. It's a failure case.
 
        Honestamente, la gente se seguridad necesita entender que "no funciona"
-       no es una caso de exito sobre seguridad. Es un caso de fallo.
+       no es un caso de éxito sobre seguridad. Es un caso de fallo.
 
        Yes, "not working" may be secure. But security in that case is *pointless*.
 
@@ -1339,13 +1339,13 @@ las regresiones:
 
        Binary compatibility is more important.
 
-       La compatibilidad de binarios es más importante. 
+       La compatibilidad de los binarios es más importante. 
 
        And if binaries don't use the interface to parse the format (or just
        parse it wrongly - see the fairly recent example of adding uuid's to
        /proc/self/mountinfo), then it's a regression.
 
-       Y si los binarios no usan el interface para parsear el formato
+       Y si los binarios no usan el interfaz para parsear el formato
        (o justamente lo parsea incorrectamente - como el reciente ejemplo
        de añadir uuid al /proc/self/mountinfo), entonces es una regresión.
 
@@ -1360,7 +1360,7 @@ las regresiones:
        developers to understand. Reality matters. Your personal wishes matter
        NOT AT ALL.
 
-       No entinedo porqué esta simple lógica es tan dificil para algunos
+       No entiendo porqué esta simple lógica es tan difícil para algunos
        desarrolladores del kernel. La realidad importa. Sus deseos personales
        NO IMPORTAN NADA. 
 
@@ -1384,7 +1384,7 @@ las regresiones:
        it's clearly NOT an internal tracepoint. By definition. It's being
        used by powertop.
 
-       Esto es claramente NO es un tracepoint enterno. Por definicions. Y está
+       Esto claramente NO es un tracepoint interno. Por definición. Y está
        siendo usado por powertop.
 
    De `2011-05-06 (3/3)
@@ -1400,13 +1400,13 @@ las regresiones:
        > standard distro userspace.
 
        > Ahora esto me ha dejado preguntandome si Debian _inestable_ realmente califica
-       > como espacio de usuario estandar.
+       > como espacio de usuario estándar.
 
        Oh, if the kernel breaks some standard user space, that counts. Tons
        of people run Debian unstable
 
-       Oh, si el kernel rompe algun espacio de usuario estandar, eso cuenta. 
-       Muchisima gente usa Debian inestable.
+       Oh, si el kernel rompe algún espacio de usuario estándar, eso cuenta. 
+       Muchísima gente usa Debian inestable.
 
  * De `2019-09-15
    <https://lore.kernel.org/lkml/CAHk-=wiP4K8DRJWsCo=20hn_6054xBamGKF2kPgUzpB5aMaofA@mail.gmail.com/>`_::
@@ -1417,7 +1417,7 @@ las regresiones:
 
        Una reversión _particular_ en el último minuto es el el último commit
        (no teniendo en cuenta el el propio cambio de versión) justo antes
-       de la liberación, y aunque es bastánte incómodo, quizás también es 
+       de la liberación, y aunque es bastante incómodo, quizás también es 
        instructivo. 
 
        What's instructive about it is that I reverted a commit that wasn't
@@ -1427,9 +1427,9 @@ las regresiones:
        regression due to a real bug in a completely unrelated area.
 
        Lo que es instructivo sobre esto es que he revertido un commit que no
-       teniá ningún error. De hecho, hacia exáctamente lo que pretendía, y lo
-       hacia muy bien. De hecho lo hacía _tan_ bien que los muy mejorados
-       patrones de IO que causaba han acabado revelando una regressión observarble
+       tenía ningún error. De hecho, hacía exactamente lo que pretendía, y lo
+       hacía muy bien. De hecho lo hacía _tan_ bien que los muy mejorados
+       patrones de IO que causaba han acabado revelando una regresión observable
        desde el espacio de usuario, debido a un error real en un componente
        no relacionado en absoluto. 
 
@@ -1441,12 +1441,12 @@ las regresiones:
        another problem, and as such caused a kernel upgrade to fail for a
        user. So it got reverted.
 
-       De todas maneras, los detalles actuales de esta regresion no son la
-       razón por la que señalo esto como intructivo. Es más que es un ejemplo
+       De todas maneras, los detalles actuales de esta regresión no son la
+       razón por la que señalo esto como instructivo. Es más que es un ejemplo
        ilustrativo sobre lo que cuenta como una regresión, y lo que conlleva
        la regla del kernel de "no regresiones". El commit que ha sido revertido
-       no cambiaba ningúna API, y no introducia ningún error nuevo en el código.
-       Pero acabó expoiniendo otro problema, y como eso causaba que la 
+       no cambiaba ningúna API, y no introducía ningún error nuevo en el código.
+       Pero acabó exponiendo otro problema, y como eso causaba que la 
        actualización del kernel fallara para el usuario. Así que ha sido 
        revertido.
 
@@ -1457,8 +1457,8 @@ las regresiones:
        happened to expose an old bug, and people had grown to depend on the
        previously benign behavior of that old issue.
 
-       El foco aquí es que hemos hecho la reversión basandonos el el 
-       coMportamiento reportado en el espacio de usaurio, no basado en 
+       El foco aquí es que hemos hecho la reversión basándonos en el 
+       coMportamiento reportado en el espacio de usuario, no basado en 
        conceptos como "cambios de ABI" o "provocaba un error". Los mejores
        patrones de IO que se han presentado debido al cambio únicamente han
        expuesto un viejo error, y la gente ya dependía del benigno comportamiento
@@ -1476,15 +1476,15 @@ las regresiones:
        consensus about the issue it exposed.
 
        Y que no haya miedo, reintroduciremos el arreglo que mejoraba los
-       patrones de IO una vez hayamos decidido como gestionar el hecho de
-       que hay una interacción incorrecta con un inerface en el que la 
-       gente dependia de ese comportamiento previo. Es únicamente que tenemos
+       patrones de IO una vez hayamos decidido cómo gestionar el hecho de
+       que hay una interacción incorrecta con un interfaz en el que la 
+       gente dependía de ese comportamiento previo. Es únicamente que tenemos
        que ver cómo gestionamos y cómo lo hacemos (no hay menos de tres
        parches diferentes de tres desarrolladores distintos que estamos 
        evaluando, ... puede haber más por llegar). Mientras tanto, he 
        revertido lo que exponía el problema a los usuarios de esta release, 
        incluso cuado espero que el fix será reintroducido (quizás insertado
-       a posteriormente como un parche estabe) una vez llegemos a una acuerdo
+       a posteriormente como un parche estable) una vez lleguemos a una acuerdo
        sobre cómo se ha de exponer el error. 
 
        Take-away from the whole thing: it's not about whether you change the
@@ -1494,7 +1494,7 @@ las regresiones:
 
        Lo que hay que recordar de todo el asunto no es sobre si el cambio 
        de kernel-espacio-de-usuario ABI, o la corrección de un error, o si el 
-       código antiguo "en primer lugar nunca deberia haber estado ahí". Es 
+       código antiguo "en primer lugar nunca debería haber estado ahí". Es 
        sobre si algo rompe el actual flujo de trabajo del usuario.
 
        Anyway, that was my little aside on the whole regression thing.  Since
@@ -1519,3 +1519,5 @@ las regresiones:
    is available under CC-BY-4.0, as versions of this text that were processed
    (for example by the kernel's build system) might contain content taken from
    files which use a more restrictive license.
+
+
