@@ -2678,7 +2678,9 @@ module_exit(test_hello_exit);
 - Realtime latency (because no locks are used, so there is no blocking)
 
 
+## Lockdep
 
+reference: https://www.kernel.org/doc/Documentation/locking/lockdep-design.txt
 
 
 
