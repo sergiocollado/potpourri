@@ -1,5 +1,7 @@
 # Notes on Linux interrupt and bottom halves
 
+reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html#interrupt-handling-in-linux
+
 ## What is an interrupt?
 
 An interrupt is an input signal to the processor, sent by the hardware peripherals when they need processor attention. 
