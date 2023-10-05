@@ -32,4 +32,34 @@ Only after that, the CPU will read the incoming packet.
      - also called as exceptions/traps
      - examples: divide-by-zero, system call, page fault
     
-    
+## Exceptions
+
+Exceptions are classified as faults, traps, and abort, depending on the way they are reported and whether the instruction 
+that caused the exception can be restared, without loss of programs. 
+
+Traps increment the instruction pointer, faults don't, and aborts "explode". 
+
+- Faults: These can be corrected and the programmer may continue as if nothing happened. Eg. page fault 
+- Traps: Traps are reported inmediately after the execution of the trapping instruction. Eg. int instruction
+- Aborts: Some severe unrecoverable error. Eg. hardware failure
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
