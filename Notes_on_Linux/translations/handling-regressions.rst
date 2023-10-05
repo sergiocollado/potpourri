@@ -1,41 +1,17 @@
 .. SPDX-License-Identifier: (GPL-2.0+ OR CC-BY-4.0)
 .. See the bottom of this file for additional redistribution information.
 
-Handling regressions
-++++++++++++++++++++
-
-*We don't cause regressions* -- this document describes what this "first rule of
-Linux kernel development" means in practice for developers. It complements
-Documentation/admin-guide/reporting-regressions.rst, which covers the topic from a
-user's point of view; if you never read that text, go and at least skim over it
-before continuing here.
-
-
 Gestionando regresiones
 +++++++++++++++++++++++
 
 *No causamos regresiones* -- este documento describe la que es la "primera regla
 del desarrollo del kernel de Linux" y qué implica en la práctica para los desarrolladores. 
-Y complementa la documentación: Documentation/admin-guide/reporting-regressions.rst,
+Y complementa la documentación Documentation/admin-guide/reporting-regressions.rst,
 que cubre el tema desde el punto de vista de un usuario; si nunca ha leído ese texto, 
 realice al menos una lectura rápida del mismo antes de continuar. 
 
-
-The important bits (aka "The TL;DR")
-====================================
-
 Las partes importantes
 ======================
-
-#. Ensure subscribers of the `regression mailing list <https://lore.kernel.org/regressions/>`_
-   (regressions@lists.linux.dev) quickly become aware of any new regression
-   report:
-
-    * When receiving a mailed report that did not CC the list, bring it into the
-      loop by immediately sending at least a brief "Reply-all" with the list
-      CCed.
-
-    * Forward or bounce any reports submitted in bug trackers to the list.
 
 #.  Asegurarse que los suscriptores a la lista `regression mailing list <https://lore.kernel.org/regressions/>`_
     (regressions@lists.linux.dev) son conocedores con rapidez de cualquier
@@ -45,23 +21,6 @@ Las partes importantes
     conversación de los correos, mandando un breve "Reply-all" con la lista en CC. 
     
     * Mande o redirija cualquier informe originado en los gestores de bugs a la lista. 
-
-#. Make the Linux kernel regression tracking bot "regzbot" track the issue (this
-   is optional, but recommended):
-
-    * For mailed reports, check if the reporter included a line like ``#regzbot
-      introduced v5.13..v5.14-rc1``. If not, send a reply (with the regressions
-      list in CC) containing a paragraph like the following, which tells regzbot
-      when the issue started to happen::
-
-       #regzbot ^introduced 1f2e3d4c5b6a
-
-    * When forwarding reports from a bug tracker to the regressions list (see
-      above), include a paragraph like the following::
-
-       #regzbot introduced: v5.13..v5.14-rc1
-       #regzbot from: Some N. Ice Human <some.human@example.com>
-       #regzbot monitor: http://some.bugtracker.example.com/ticket?id=123456789
 
 #. Hacer que el bot del kernel de Linux "regzbot" realize seguimento del incidente
    (esto es opcional, pero recomendado).
@@ -80,61 +39,26 @@ Las partes importantes
        #regzbot from: Some N. Ice Human <some.human@example.com>
        #regzbot monitor: http://some.bugtracker.example.com/ticket?id=123456789
 
-#. When submitting fixes for regressions, add "Link:" tags to the patch
-   description pointing to all places where the issue was reported, as
-   mandated by Documentation/process/submitting-patches.rst and
-   :ref:`Documentation/process/5.Posting.rst <development_posting>`.
-   
 #. Cuando se manden correcciones para las regresiones, añadir etiquetas "Link:" a 
    la descripción, apuntado a todos los sitios donde se informó del incidente, 
    como se indica en el documento: Documentation/process/submitting-patches.rst  y
    :ref:`Documentation/process/5.Posting.rst <development_posting>`.
 
-#. Try to fix regressions quickly once the culprit has been identified; fixes
-   for most regressions should be merged within two weeks, but some need to be
-   resolved within two or three days.
-   
 #. Intentar arreglar las regresiones rápidamente una vez la causa haya sido identificada;
    las correcciones para la mayor parte de las regresiones deberían ser integradas en menos 
    de dos semanas, pero algunas pueden resolverse en dos o tres días. 
 
-
-All the details on Linux kernel regressions relevant for developers
-===================================================================
-
 Todos los detalles importantes para desarrolladores en la regresiones de kernel de Linux
 =======================================================================================
-
-
-The important basics in more detail
------------------------------------
 
 Puntos básicos importantes más en detalle
 -----------------------------------------
 
-
-What to do when receiving regression reports
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 Qué hacer cuando se recibe un aviso de regresión.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Ensure the Linux kernel's regression tracker and others subscribers of the
-`regression mailing list <https://lore.kernel.org/regressions/>`_
-(regressions@lists.linux.dev) become aware of any newly reported regression:
-
- * When you receive a report by mail that did not CC the list, immediately bring
-   it into the loop by sending at least a brief "Reply-all" with the list CCed;
-   try to ensure it gets CCed again in case you reply to a reply that omitted
-   the list.
-
- * If a report submitted in a bug tracker hits your Inbox, forward or bounce it
-   to the list. Consider checking the list archives beforehand, if the reporter
-   already forwarded the report as instructed by
-   Documentation/admin-guide/reporting-issues.rst.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    
 Asegurar que el programa de gestión de regresiones del kernel de Linux y los
-suscritos a la lista de correo `regression mailing list <https://lore.kernel.org/regressions/>`_
+subscritos a la lista de correo `regression mailing list <https://lore.kernel.org/regressions/>`_
 (regressions@lists.linux.dev) son conocedores the cualquier nuevo informe de regresión: 
 
  * Cuando se recibe un informe por email que no tienen en CC la lista, inmediatamente
@@ -145,28 +69,7 @@ suscritos a la lista de correo `regression mailing list <https://lore.kernel.org
  * Si un informe enviado a un gestor de defectos, llega a su correo, reenvíelo o 
    redirijalo a la lista. Considere verificar los archivos de la lista de antemano, si 
    la persona que lo ha informado, lo ha enviado anteriormente, como se indica en 
-   Documentation/admin-guide/reporting-issues.rst.
- 
-
-When doing either, consider making the Linux kernel regression tracking bot
-"regzbot" immediately start tracking the issue:
-
- * For mailed reports, check if the reporter included a "regzbot command" like
-   ``#regzbot introduced 1f2e3d4c5b6a``. If not, send a reply (with the
-   regressions list in CC) with a paragraph like the following:::
-
-       #regzbot ^introduced: v5.13..v5.14-rc1
-
-   This tells regzbot the version range in which the issue started to happen;
-   you can specify a range using commit-ids as well or state a single commit-id
-   in case the reporter bisected the culprit.
-
-   Note the caret (^) before the "introduced": it tells regzbot to treat the
-   parent mail (the one you reply to) as the initial report for the regression
-   you want to see tracked; that's important, as regzbot will later look out
-   for patches with "Link:" tags pointing to the report in the archives on
-   lore.kernel.org.
-   
+   Documentation/admin-guide/reporting-issues.rst.   
 
 Cuando se realice cualquiera de las acciones anteriores, considerar inmediatamente
 iniciar el seguimiento de la regresión con "regzbot" el gestor de regresiones del kernel de Linux.
@@ -186,20 +89,7 @@ iniciar el seguimiento de la regresión con "regzbot" el gestor de regresiones d
    inicial para la regresión que quiere ser seguida. Esto es importante, ya que regzbot
    buscará más tarde parches con etiquetas "Link:" que apunten al al informe ne los
    archivos de lore.kernel.org. 
-   
-  
-
- * When forwarding a regressions reported to a bug tracker, include a paragraph
-   with these regzbot commands::
-
-       #regzbot introduced: 1f2e3d4c5b6a
-       #regzbot from: Some N. Ice Human <some.human@example.com>
-       #regzbot monitor: http://some.bugtracker.example.com/ticket?id=123456789
-
-   Regzbot will then automatically associate patches with the report that
-   contain "Link:" tags pointing to your mail or the mentioned ticket.
-   
-   
+    
  * Cuando mande informes de regresiones a un gestor de defectos, incluya un 
    párrafo con los siguientes comandos a regzbot::
    
@@ -209,32 +99,9 @@ iniciar el seguimiento de la regresión con "regzbot" el gestor de regresiones d
      
    Regzbot asociará automáticamente parches con el informe que contengan las
    etiquetas "Link:" apuntando a su email o el ticket indicado. 
-   
-   
 
-What's important when fixing regressions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-Qué es importante cuando se arreglan regresiones
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-You don't need to do anything special when submitting fixes for regression, just
-remember to do what Documentation/process/submitting-patches.rst,
-:ref:`Documentation/process/5.Posting.rst <development_posting>`, and
-Documentation/process/stable-kernel-rules.rst already explain in more detail:
-
- * Point to all places where the issue was reported using "Link:" tags::
-
-       Link: https://lore.kernel.org/r/30th.anniversary.repost@klaava.Helsinki.FI/
-       Link: https://bugzilla.kernel.org/show_bug.cgi?id=1234567890
-
- * Add a "Fixes:" tag to specify the commit causing the regression.
-
- * If the culprit was merged in an earlier development cycle, explicitly mark
-   the fix for backporting using the ``Cc: stable@vger.kernel.org`` tag.
-
+Qué es importante cuando se corrigen regresiones
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 No se necesita hacer nada especial cuando se mandan las correcciones para las
 regresiones únicamente recordar lo que se explica en los documentos: 
@@ -251,15 +118,7 @@ Documentation/process/stable-kernel-rules.rst
  
  * Si el culpable ha sido mergeado en un ciclo de desarrollo anterior, marcar
    explícitamente el fix para retro-importarlo usando la etiqueta ``Cc: stable@vger.kernel.org`` tag.
- 
 
-
-All this is expected from you and important when it comes to regression, as
-these tags are of great value for everyone (you included) that might be looking
-into the issue weeks, months, or years later. These tags are also crucial for
-tools and scripts used by other kernel developers or Linux distributions; one of
-these tools is regzbot, which heavily relies on the "Link:" tags to associate
-reports for regression with changes resolving them.
 
 Todo esto se espera y es importante en una regresión, ya que estas etiquetas son
 de gran valor para todos (incluido usted) que pueda estar mirando en ese incidente
