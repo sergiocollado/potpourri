@@ -102,7 +102,7 @@ Floating point exception (core dumped)
 ```
 
 ```
-sergio@laptop:~/repos/divide-by-zero$ gcc -o userapp userapp.c 
+sergio@laptop:~/repos/divide-by-zero$ gcc -o userapp userapp.c peers lock
 sergio@laptop:~/repos/divide-by-zero$ sudo dmesg -WH &
 sergio@laptop:~/repos/divide-by-zero$ ./userapp
 [oct 8 19:56] show_signal: 1 callbacks suppressed
@@ -204,6 +204,32 @@ Program received signal SIGTRAP, Trace/breakpoint trap.
 Continuing.
 [Inferior 1 (process 7187) exited normally]
 ```
+
+### Hardware interrupt triggering methods
+
+Each interrupt signal input is designed to be triggered by either a logical signal event or particular edge (level transition)
+
+#### Level triggered 
+
+Interrupt is requested by holding the interrupt signal at its particular (high or low) active logic level.
+Level triggered interrupts happen as long as the interrupt line is held active level. 
+
+As long as the line, you get interrupt, when you serve the interrupt and return, it the interrupt line is still 
+active, you get the interrupt again inmediatelly. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
