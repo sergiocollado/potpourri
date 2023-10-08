@@ -335,16 +335,22 @@ The LTP testsuite contains a collection of tools for testing the Linux kernel an
 ## Sparse
 
 references:
+ - https://sparse.docs.kernel.org/en/latest/
  - https://en.wikipedia.org/wiki/Sparse
  - https://kernelnewbies.org/Sparse (how to install)
  - https://lwn.net/Articles/689907/
  - https://www.kernel.org/doc/html/latest/dev-tools/sparse.html
- - https://sparse.docs.kernel.org
 
 
 Sparse is a computer software tool designed to find possible coding faults in the Linux kernel.[2] Unlike other such tools, this static analysis tool was initially designed to only flag constructs that were likely to be of interest to kernel developers, such as the mixing of pointers to user and kernel address spaces.
 
-## Runtime locking correctness validator
+Sparse, the semantic parser, provides a compiler frontend capable of parsing most of ANSI C as well as many GCC extensions, and a collection of sample compiler backends, including a static analyzer also called sparse. Sparse provides a set of annotations designed to convey semantic information about types, such as what address space pointers point to, or what locks function acquires or releases.
+
+Linus Torvalds started writing Sparse in 2003, initially targeting issues such as mixing pointers to user address space and pointers to kernel address space.
+
+Josh Triplett was Sparse’s first maintainer in 2006. This role was taken over by Christopher Li in 2009 and by Luc Van Oostenryck in late 2018.
+
+## lockdep : Runtime locking correctness validator
 
 references: 
  - https://www.kernel.org/doc/Documentation/locking/lockdep-design.txt
