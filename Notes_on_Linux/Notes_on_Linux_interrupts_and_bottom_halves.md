@@ -54,10 +54,11 @@ A general protection fault may occur for various reasons, the most common:
 - trying to access an unimlemented register (like mov cr6, eax)
 - the saved instruction pointer points to the instruction which causes the exception
 
-
+#### Example 1
 So for example for a divide by zero problem:
 
 ```c
+  // divide_by_zero.c
   1 #include <stdio.h>                                                               
   2                                                                                  
   3 int main()                                                                       
@@ -85,6 +86,32 @@ sergio@laptop:~/repos/divide-by-zero$ ./div_by_zero.c
 [oct 8 16:43] traps: div_by_zero.c[6315] trap divide error ip:55d9a6c7b13c sp:7ffc0f832c10 error:0 in div_by_zero.c[55d9a6c7b000+1000]
 Floating point exception (core dumped)
 ```
+
+#### Example 2
+
+```c
+  //  userapp.c 
+  1 #include <stdio.h>                                                               
+  2 #include </usr/include/sys/io.h>                                                 
+  3                                                                                  
+  4 int main()                                                                       
+  5 {                                                                                
+  6 »       outb(0x80, 0x00);                                                        
+  7 »       return 0;                                                                
+  8 }   
+```
+
+```
+sergio@laptop:~/repos/divide-by-zero$ gcc -o userapp userapp.c 
+sergio@laptop:~/repos/divide-by-zero$ sudo dmesg -WH &
+sergio@laptop:~/repos/divide-by-zero$ ./userapp
+[oct 8 19:56] show_signal: 1 callbacks suppressed
+[  +0,000006] traps: userapp[4589] general protection fault ip:55c13b8c4140 sp:7fff1bd28c70 error:0 in userapp[55c13b8c4000+1000]
+Segmentation fault (core dumped)
+```
+
+In this case we are attemping to write to a memory that it is now allow, we don't have access writes, so a general protection fault is triggered.
+
 
 We can see it should be a fault, but in linux is denominated as a trap. 
 
