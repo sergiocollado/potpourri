@@ -129,31 +129,16 @@ de Linux; una de esas herramientas es regzbot, el cual depende mucho de las etiq
 resuelven.
 
 
-Prioritize work on fixing regressions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 Priorización del trabajo en arreglar regresiones
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You should fix any reported regression as quickly as possible, to provide
-affected users with a solution in a timely manner and prevent more users from
-running into the issue; nevertheless developers need to take enough time and
-care to ensure regression fixes do not cause additional damage.
-
-In the end though, developers should give their best to prevent users from
-running into situations where a regression leaves them only three options: "run
-a kernel with a regression that seriously impacts usage", "continue running an
-outdated and thus potentially insecure kernel version for more than two weeks
-after a regression's culprit was identified", and "downgrade to a still
-supported kernel series that lack required features".
-
-Se deberían arreglar y reportar regresiones tan rápido como sea posible, para
+Se deberían reportar y corregir regresiones tan rápido como sea posible, para
 proveer a los usuarios afectados con una solución en el tiempo y prevenir 
 que más usuarios del incidente; de todos modos los desarrolladores necesitan 
 dedicar el tiempo suficiente y asegurar correcciones que no causen problemas
 adicionales. 
 
-Al final de todos modos, los desarrolladores deberían hacer lo posible parra
+Al final, los desarrolladores deberían hacer lo posible parra
 evitar a los usuarios situaciones donde una regresión les deje solo tres 
 opciones: "ejecutar el kernel con una regresión que afecta seriamente al uso",
 "continuar ejecutando una versión desfasada y potencialmente insegura del
@@ -161,47 +146,22 @@ kernel por más de dos semanas después de que el causante de una regresión
 fuese identificado", y "rebajarse a una versión soportada del kernel que no
 tenga las funcionalidades requeridas".
 
-
-
-How to realize this depends a lot on the situation. Here are a few rules of
-thumb for you, in order or importance:
-
 Cómo se ejecuta esto depende mucho de la situación. A continuación se presentan
 unas reglas generales, en orden de importancia:
 
-
- * Prioritize work on handling regression reports and fixing regression over all
-   other Linux kernel work, unless the latter concerns acute security issues or
-   bugs causing data loss or damage.
-   
  * Priorizar el trabajo en la gestión de los informes de la regresión y 
    arreglar la regressión por encima de cualquier otro trabajo en el kernel
    de Linux, a menos que lo último afecte profundamente a efectos de 
    seguridad, o cause errorer en los que haya pérdida o daño de datos. 
 
- * Always consider reverting the culprit commits and reapplying them later
-   together with necessary fixes, as this might be the least dangerous and
-   quickest way to fix a regression.
-   
  * Considerar siempre revertir los commits responsables y re-aplicarlos después,
    junto con las correcciones necesarias, ya que esto puede la forma
    menos peligrosa y más rápida de arreglar la regresión.
 
- * Developers should handle regressions in all supported kernel series, but are
-   free to delegate the work to the stable team, if the issue probably at no
-   point in time occurred with mainline.
-   
  * Los desarrolladores deberían gestionar la regresión en todos los kernels
    soportados de la serie, pero son libres de delegar el trabajo al equipo 
    permanente el incidente no hubiese ocurrido en la linea principal. 
 
- * Try to resolve any regressions introduced in the current development before
-   its end. If you fear a fix might be too risky to apply only days before a new
-   mainline release, let Linus decide: submit the fix separately to him as soon
-   as possible with the explanation of the situation. He then can make a call
-   and postpone the release if necessary, for example if multiple such changes
-   show up in his inbox.
-   
  * Intentar resolver cualquier regresión que apareciera en el ciclo de
    desarrollo antes de que este acabe. Si se teme que una corrección pudiera
    ser demasiado arriesgada para aplicarla días antes de una liberación de
@@ -211,12 +171,6 @@ unas reglas generales, en orden de importancia:
    liberación si fuese necesario, por ejemplo si aparecieran múltiples 
    cambios como ese. 
 
- * Address regressions in stable, longterm, or proper mainline releases with
-   more urgency than regressions in mainline pre-releases. That changes after
-   the release of the fifth pre-release, aka "-rc5": mainline then becomes as
-   important, to ensure all the improvements and fixes are ideally tested
-   together for at least one week before Linus releases a new mainline version.
-   
  * Gestione las regresiones en la rama estable, de largo término, o la 
    propia rama principal de las versiones, con más urgencia que la regresiones
    en las preliberaciones. Esto cambia después de la liberación de la 
@@ -231,13 +185,6 @@ unas reglas generales, en orden de importancia:
    includes mainline, as issues like compile errors otherwise might prevent many
    testers or continuous integration systems from testing the series.
 
- * Aim to fix regressions within one week after the culprit was identified, if
-   the issue was introduced in either:
-
-    * a recent stable/longterm release
-
-    * the development cycle of the latest proper mainline release
-    
  * Intentar arreglar regresiones en un intervalo de una semana después de que
    se ha identificado el responsable, si el incidente fue introducido en 
    alguno de los siguientes casos:
@@ -246,11 +193,6 @@ unas reglas generales, en orden de importancia:
     
     * en el último ciclo de desarrollo de la rama principal
 
-   In the latter case (say Linux v5.14), try to address regressions even
-   quicker, if the stable series for the predecessor (v5.13) will be abandoned
-   soon or already was stamped "End-of-Life" (EOL) -- this usually happens about
-   three to four weeks after a new mainline release.
-   
    En el último caso (por ejemplo v5.14), intentar gestionar las regresiones
    incluso más rápido, si la versión estable precedente (v5.13) ha de ser
    abandonada pronto o ya se ha etiquetado como de final de vida (EOL de 
@@ -258,16 +200,6 @@ unas reglas generales, en orden de importancia:
    tres o cuatro semanas después de una liberación de una versión en la 
    rama principal. 
 
- * Try to fix all other regressions within two weeks after the culprit was
-   found. Two or three additional weeks are acceptable for performance
-   regressions and other issues which are annoying, but don't prevent anyone
-   from running Linux (unless it's an issue in the current development cycle,
-   as those should ideally be addressed before the release). A few weeks in
-   total are acceptable if a regression can only be fixed with a risky change
-   and at the same time is affecting only a few users; as much time is
-   also okay if the regression is already present in the second newest longterm
-   kernel series.
-   
  * Intentar arreglar cualquier otra regresión en un periodo de dos semanas
    después de que el culpable haya sido identificado. Dos o tres semanas
    adicionales son aceptables para regresiones de rendimiento y otros 
@@ -280,23 +212,11 @@ unas reglas generales, en orden de importancia:
    necesario si la regresión está presente en la segunda versión más nueva de 
    largo plazo del kernel.
 
-Note: The aforementioned time frames for resolving regressions are meant to
-include getting the fix tested, reviewed, and merged into mainline, ideally with
-the fix being in linux-next at least briefly. This leads to delays you need to
-account for.
-
 Nota: Los intervalos de tiempo mencionados anteriormente para la resolución 
 de las regresiones, incluyen la verificación de esta, revisión e inclusión 
 en la rama principal, idealmente con la correción incluida en la rama 
 "linux-next" al menos brevemente. Esto conllevará retrasos que también se tienen
 tener en cuenta. 
-
-Subsystem maintainers are expected to assist in reaching those periods by doing
-timely reviews and quick handling of accepted patches. They thus might have to
-send git-pull requests earlier or more often than usual; depending on the fix,
-it might even be acceptable to skip testing in linux-next. Especially fixes for
-regressions in stable and longterm kernels need to be handled quickly, as fixes
-need to be merged in mainline before they can be backported to older series.
 
 Se espera que los mantenedores de los subsistemas, ayuden en conseguir esos
 tiempos, haciendo revisiones con prontitud y gestionando con rapidez los parches
@@ -309,39 +229,17 @@ incluidas en la rama principal antes de que puedan ser incluidas posteriormente 
 series precedentes. 
 
 
-More aspects regarding regressions developers should be aware of
-----------------------------------------------------------------
-
 Más aspectos sobre regresiones que los desarrolladores deben saber
 ------------------------------------------------------------------
 
-
-How to deal with changes where a risk of regression is known
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 Cómo tratar con cambios donde se sabe que hay riesgo de regresión
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Evaluate how big the risk of regressions is, for example by performing a code
-search in Linux distributions and Git forges. Also consider asking other
-developers or projects likely to be affected to evaluate or even test the
-proposed change; if problems surface, maybe some solution acceptable for all
-can be found.
 
 Evaluar cómo de grande es el riesgo de una regresión, por ejemplo realizando
 una búsqueda en las distribuciones de linux y en Git forges. Considerar 
 también preguntar a otros desarrolladores o proyectos que pudieran ser 
 afectados para evaluar o incluso testear el cambio propuesto; si apareciesen 
 problemas, quizás se pudiera encontrar una solución aceptable para todos.
-
-
-If the risk of regressions in the end seems to be relatively small, go ahead
-with the change, but let all involved parties know about the risk. Hence, make
-sure your patch description makes this aspect obvious. Once the change is
-merged, tell the Linux kernel's regression tracker and the regressions mailing
-list about the risk, so everyone has the change on the radar in case reports
-trickle in. Depending on the risk, you also might want to ask the subsystem
-maintainer to mention the issue in his mainline pull request.
 
 Si al final, el riesgo de la regresión parece ser relativamente pequeño, 
 entonces adelante con el cambio, pero siempre informar a todas las partes involucradas
@@ -353,10 +251,6 @@ en el caso de que aparezcan reportes. Dependiendo del riesgo, quizás se
 quiera preguntar al mantenedor del subsistema, que mencione el hecho en su 
 línea principal de desarrollo. 
 
-
-
-What else is there to known about regressions?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ¿Qué más hay que saber sobre regresiones?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
