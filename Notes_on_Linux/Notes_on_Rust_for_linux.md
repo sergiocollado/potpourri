@@ -34,8 +34,9 @@ Languaje reference:
  - https://github.com/rust-unofficial/awesome-rust
  - https://sunjay.dev/learn-game-dev/intro.html
  - game dev in rust: https://www.youtube.com/playlist?list=PLn3eTxaOtL2M-VkAeqk0p3Xn7byveJ9qX
- - bingen : https://rust-lang.github.io/rust-bindgen/introduction.html
- - bingen : https://apollolabsblog.hashnode.dev/rust-ffi-and-bindgen-integrating-embedded-c-code-in-rust
+ - bindgen: https://fitzgeraldnick.com/2016/12/14/using-libbindgen-in-build-rs.html
+ - bindgen : https://rust-lang.github.io/rust-bindgen/introduction.html
+ - bindgen : https://apollolabsblog.hashnode.dev/rust-ffi-and-bindgen-integrating-embedded-c-code-in-rust
     
 ## Rust for linux
 
