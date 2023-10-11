@@ -24,6 +24,7 @@ Languaje reference:
 <br>
 
  - rust for linux brief introduction: https://rustmagazine.org/issue-1/rust-for-linux-brief-introduction/
+ - https://docs.kernel.org/rust/quick-start.html
  - blog. how to module in rust: - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
  - blog. how to write a module in rust: https://www.jackos.io/rust-kernel/rust-for-linux.html#adding-the-rust-module
  - blog. https://www.jackos.io/rust-kernel/rust-for-linux.html
