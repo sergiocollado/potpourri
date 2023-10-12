@@ -217,6 +217,41 @@ Level triggered interrupts happen as long as the interrupt line is held active l
 As long as the line, you get interrupt, when you serve the interrupt and return, it the interrupt line is still 
 active, you get the interrupt again inmediatelly. 
 
+#### Edge triggered
+
+Interrupt is requested by a level transition on the interrupt line. 
+ - Falling edge (high to low)
+ - Rising edge (Low to high)
+
+These interrupts are issued per transition and not repeated. E.g. in networking when the packet queue goes from
+empty to non-empty. This makes it critical to never miss an edge triggered interrupt, because failure to handle
+one interrupt result in no further interrupts from happening. 
+
+### Masking
+
+Processors typically have an internal interrupt mask register. This allows selective enabling and disabling 
+of hardware interrupts. 
+
+Each interrupt signal is associated with a bit in the mask register
+- Bit = 1, Interrupt enabled
+- Bit = 0, Interrupt disabled
+
+When the interrupt is disabled, the associated interrupt signal will be ignored by the processor. 
+
+Maskable interrupts: Interrupts which can be enabled/disabled.
+
+Non maskable interrupts: Interrupts which cannot be disabled. Example: NMI, timeout signal from watchdog timer. 
+
+For example the 8086 processor has two hardware interrupt signals:
+
+- NMI non-maskable interrupt
+- INTR Interrupt request (maskable interrupt)
+
+How to support more than two interrupts?
+
+It would be very unproductive to make a ton of INTR pins on the CPU for all of them.
+
+To solve this problem a special chip was invented, the interrupt controller. 
 
 
 
