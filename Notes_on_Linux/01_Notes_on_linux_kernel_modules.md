@@ -1790,7 +1790,7 @@ can be checked at `/proc/sys/kernel/printk`
   
   In Linux, graphics mode is implemented not inside the kernel (and thus in cannont print messages in graphics mode), but as a usermode process called X, or X server.
   
-  Every program that wants to display a window, sends a message via PIC to the X server and says how it (the X server) should draw the window.
+  Every program that wants to display a window, sends a message via PIC (Programmable Interrupt Controller) to the X server and says how it (the X server) should draw the window.
   
    Tis message passing is implemented in a shared library, son from the application writer point of view, it is just a call to a function that displays the window.
   
