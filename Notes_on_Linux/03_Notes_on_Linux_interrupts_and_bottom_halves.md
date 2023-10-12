@@ -121,7 +121,7 @@ To implement breakpoints on the x86 architecture, software interrupts (also know
 
 Breakpoints are implemented on the CPU by a special trap called int 3.
 
-int is 0x86 jargon for "trap instruction" - a call to a predefined interrupts handler. 
+`int` is 0x86 jargon for "trap instruction" - a call to a predefined interrupts handler. 
 
 x86 supports the int instruction with a 8-bit operand specifying the number of the interrupt that occurred.
 
