@@ -1,6 +1,8 @@
 # Notes on Linux interrupt and bottom halves
 
-reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html#interrupt-handling-in-linux
+- reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html#interrupt-handling-in-linux
+- reference: https://en.wikipedia.org/wiki/Interrupt_vector_table
+- reference: https://en.wikipedia.org/wiki/Interrupt_handler
 
 ### What is an interrupt?
 
@@ -252,6 +254,62 @@ How to support more than two interrupts?
 It would be very unproductive to make a ton of INTR pins on the CPU for all of them.
 
 To solve this problem a special chip was invented, the interrupt controller. 
+
+### Programable interrupt controller (PIC) 
+
+The Intel 8259 Programmable Interrupt Controller (PIC) is one of the most important chips making the x86 architecture.
+
+reference: https://en.wikipedia.org/wiki/Intel_8259
+
+It allows multiplexing the single INT line on the x86 processor to multiple interrupts lines.
+Interrupt lines can be assigned various hardware priority levels, as well as a programmable interrupt masking.
+
+Each PIC has 8 interrupts lines called Interrupt ReQuests (IRQ), numbered from 0 to 7. 
+PIC has one output line which connects the INTR line to the CPU. 
+
+A device supporting interrupts has an output pin used for signalling an Interrupt ReQuest (IRQ)
+
+CPU will know that some devices requires its inmediate attention, and the processor will ask the PIC which 
+of the 8 input lines (IRQx) was the source of the interruption.
+
+#### Why call Interrupt ReQuest (IRQ)
+
+Peripheral devices cannot directly force interrupts, but has to request them via the PIC, we call them IRQ
+or Interrupt ReQuests. 
+
+#### Dual PIC
+
+Soon 8 lines were not enough. To increase the total number of interrupt lines two 8259 PIC controllers
+(master and slave) were connected in cascade (Dual PIC). 
+
+- IRQs from 0 to 7 where processed with the first Intel 8259 PIC (master)
+- IRQs from 8 to 15 are processed with the second Intel 8259 PIC (slave)
+
+Only the master is connected to the CPU and can signal about the incomming interrupts.
+It there is an interrupt on lines 8-15, the second PIC (slave) will signal about it to the master
+on the line IRQ 2, and after that the master will signal the CPU. 
+
+#### Port Interface
+
+Two separate dedicated ports in the x86 IO-port space for each connected PIC
+
+- Master PIC - 0x20, 0x21
+- Slave  PIC - 0xA0, 0xA1
+
+```
+# cat /proc/ioports | grep -i pic
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
