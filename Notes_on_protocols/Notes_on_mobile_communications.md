@@ -39,24 +39,21 @@ reference: https://patents.google.com/patent/US9479917B1/en
 
 A typical mobile service provider network, or “mobile network,” includes a core packet-switched network, a transport network, and one or more radio access networks. The core packet-switched network for the mobile network establishes logical connections, known as bearers, among the many service nodes on a path between a wireless device, attached to one of the radio access networks, and a packet data network (PDN). The service nodes then utilize the bearers to transport subscriber traffic exchanged between the wireless device and the PDN, which may include, for example, the Internet, an enterprise intranet, a layer 3 VPN, and a service provider's private network. Various PDNs provide a variety of packet-based data services to wireless devices to enable the wireless devices to exchange service data with application or other servers of the PDNs. In addition, while primarily described with respect to service providers and mobile service provider networks, a mobile network may be deployed by many different types of entities, including enterprises and government agencies. Accordingly, the term “mobile network” may be used herein to encompass many different types of cellular network architectures and operators.
 
-
 Mobile networks perform detailed and accurate monitoring of service usage so that proper charging information can be generated for potentially millions of customers in order to provide revenue for the service providers. In general, there are three distinct aspects to the process that translates service use into a bill for services—charging, rating and billing. Charging gathers statistics regarding service usage for each customer. Rating is the process of determining how much each service used costs each particular customer according to the service contract. Billing is the process of generated a customer's invoice for services.
 The mobile network gateway anchors subscriber sessions and executes network access control functions including charging control (also known as Policy and Charging Enforcement Function for 3GPP networks), which refers to the process of associating packets that belong to a service data flow to a charging key and applying online charging and/or offline charging, as appropriate (a charging key includes information used by the charging online and offline charging servers for rating purposes). Accordingly, the mobile network gateway collects charging information related to the external data network usage and to network resource usage, such as the amount of data categorized by quality of service (QoS), the user protocols, and the usage of the packet data protocol (PDP) address.
 
-
 A mobile network gateway typically cooperates with online and offline charging server to perform the charging and rating processes in order to generate the charging information. In general, offline charging denotes a charging mechanism in which charging information does not affect, in real-time, the service(s) rendered. The network reports resource usage to the billing domains after the resource usage has occurred. By contrast, online charging can affect, in real-time, the service(s) rendered and therefore requires a direct interaction between the mobile network gateway and the online charging server for subscriber session and/or service(s) control. An online charging server typically maintains subscriber accounts that may be queried prior to granting permission to use requested network resources.
-
 
 One application of online charging is credit control, in which delivery of subscriber services to a subscriber by the mobile network is predicated upon adequate credit in the form of a prepaid subscription, for instance. Example subscriber services include network (e.g., Internet) access, Session Initiation Protocol (SIP) services, messaging services, gaming services, and download services. For credit control, the mobile network gateway and online charging server cooperate to debit subscriber credit by rating services rendered in real-time and monitoring the subscriber account to ensure adequate credit prior to initiation of a chargeable event. The mobile network gateway and online charging server may deny the subscriber access to the requested service in the absence of adequate credit.
 
 
 A single subscriber may use multiple services accessible by the mobile service provider network as part of a subscriber session. For example, during a single network access session of a subscriber session, a subscriber may use several Hypertext Transfer Protocol (HTTP) services. In some cases, the multiple services of the network access session may be subject to different cost and therefore require differential rating. To improve scalability for such scenarios, the mobile network gateway is able to consolidate different services that are subject to the same cost and rating type into a rating group, which is associated with a charging key. A subscriber session can include one or more rating groups each associated with one or more services for which the mobile network gateway applies credit control, i.e., associating packets to a rating group charging key for the services and applying online or offline charging, as appropriate. Aside from rating however, other attributes and actions of a multi-service subscriber session, such as quality of service (QoS), event triggers, and credit control failure handling, are common to all the services carried within the session bearer and are applied at the bearer level
 
-
 # Notes on 5G
 
 references:
 - https://www.3gpp.org/technologies/5g-system-overview
+- https://www.itu.int/en/mediacentre/backgrounders/Pages/5G-fifth-generation-of-mobile-technologies.aspx
 - https://www.etsi.org/technologies/5G
 - System architecture for the 5G System:  https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144
 - https://www.techtarget.com/searchnetworking/feature/An-overview-of-3GPP-5G-releases-and-what-each-one-means#:~:text=3GPP%20meets%20four%20times%20a,user%20needs%20evolve%20over%20time.
@@ -70,11 +67,98 @@ references:
 lower latencies that previous generation. Also new user cases, that didn't exist 
 in previous generations.
 
+IMT-2020 standard defines the requirements for 5G
+
+
+## SDN (Software defined networking)
+
+Data plane is where the data is actually flowing through, and where all  the switching happens. 
+
+Control plane, is the central controller which makes the decisions about how to route traffic. Control plane can be centralized or distributed. 
+
+The reason for separating control plane and data plane, is because it causes massive improvement in the throughput. 
+
+
 ## 5G main new uses
+
+There are new use case not presetn in previous mobile generations:
 
 - eMMB: Enhaced Mobile Broad-Band: Provides connections up to 10 Gbps, instead 1 Gbps as in 4G.
 - mMTC: Massive Machine Type Communications: used to connect massive number of device, for example for IoT. Provides connection for 1000000 devices per km^2, compared to 100000 in 4G. 
 - URLLC: Ultra-Reliable and Low Latency Communications: Latency coud be 1 ms, instead of 10 ms in 4G. This could be usefull for self-driving cars, drone controls ... 
+
+
+
+## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
+
+5g is aware that the adoption of 5G networks will not happen in a day. The firs step is comply with  eMMB: Enhaced Mobile Broad-Band, 
+the other key points:  mMTC(Massive Machine Type Communications) and URLLC (Ultra-Reliable and Low Latency Communications) will come later. 
+
+So the migration path for every operator MNO will be a little different, and the 3gpp consortium has given a lot of options to the 
+operatators to choose from. 
+
+From the RAN (Radio Access Network) point of view, there are: 
+ - LTE RAN
+ - 5G RAN
+ - Master LTE RAN + Support 5G RAN. The 5G ran connects to the core network though the LTE RAN.
+ - Master 5G RAN + Support LTE RAN. 
+ 
+ From the core network point of view, the options are: 
+ - LTE EPC (Evolved Packet Core) (the core of a 4G network)
+ - 5G Core
+ 
+ 
+ 
+ | Connectivity Options | Core Network | Master RAT | Secondary RAT | 3GPP term | 3GPP release |
+ | : -- : |  : -- : |  : -- : |  : -- : |  : -- : |  : -- : | 
+ | Option 1 | EPC | LTE | - | LTE | Rel. 8|
+ | Option 3 | EPC | LTE | NR | EN-DC | Rel. 15, Dec 2017|
+ | Option 2 | 5G  | NR | - | NR | Rel. 15, June 2018|
+ | Option 4 | 5G  | NR | eLTE | NE-DC | Rel. 15, March 2019|
+ | Option 5 | 5G  | eLTE | - | eLTE | Rel. 15, June 2018|
+ | Option 7 | 5G  | eLTE | NR | NGEN-DC | Rel. 15, March 2019|
+
+ 
+ 
+ 
+ references: 
+ - https://www.gsma.com/futurenetworks/wp-content/uploads/2018/04/Road-to-5G-Introduction-and-Migration_FINAL.pdf
+ - https://blog.3g4g.co.uk/2017/10/5g-architecture-options-for-deployments.html
+ - https://devopedia.org/5g-deployment-options
+ - https://www.ericsson.com/en/reports-and-papers/ericsson-technology-review/articles/simplifying-the-5g-ecosystem-by-reducing-architecture-options
+ 
+ 
+ 
+ ## 5G Deployment architectures:
+ 
+ At the 3gpp RT 21.915, two deployment options are defined for 5G:
+ 
+ - NSA (Non-Stand Alone) architecture, where the 5G radio access network (AN) and its New Radio (NR) 
+ interface is used in conjunction with the existing LTE and EPC infraestructure Core Network (respectively
+ 4G radio and 4G core), thus making the NR technology available without network replacement. In this configuration, 
+ only the 4G services are supported, but enjoying the capacities offered by the 5G New Radio (lower lattency, etc). 
+ The NSA is also known as "E-UTRA-NR Dual connectivity (EN-DC)" or "Architecture Option 3". 
+ 
+ - SA (Stand-Alone) architecture, where the NR is connected to the 5G CN. Only in this configurartion, the
+ full set of 5G Phase 1 services are supported. SA is known as "Architecture Option 2". 
+ 
+ Benefits of 5g NSA: 
+ - deliver high-speed connectivity to consumers with 5G-enabled services
+ - leverage existing network investments in transpor and mobile core. 
+ 
+ Benefits of 5g SA: 
+ - MNOs can launch new 5G services such as smart cities, and smart factories. 
+ - It is fully virtualized, cloud-native architecture (CNA), which introduces new ways to develop, deploy and manage services. 
+ - The architecture enables end to end slicing to logically separate services. 
+ - Automation drives up efficencies while driving down the cost of operating the network. 
+ - By standardizing on a cloud-native approach, MNOs can also rely on best of breed innovation from vendors and open-source communities. 
+ - By choosing a cloud-native microservice-based architecture, MNOs can also decide on a variety of deployment models such as on-prem
+ private cloud, public cloud, or hybrid to meet their bussines objetives. 
+ 
+ references:
+  - https://www.gsma.com/futurenetworks/wiki/5g-implementation-guidelines/
+  - https://www.gsma.com/futurenetworks/wp-content/uploads/2019/03/5G-Implementation-Guidelines-NSA-Option-3-v2.1.pdf
+ 
 
 ## Network functions
 
@@ -197,6 +281,4 @@ references:
 - https://mobilepacketcore.com/5g-network-architecture/
 - https://www.youtube.com/watch?v=eFn1REiUisk
 - https://www.youtube.com/watch?v=Q6YxHz_07zk&t=4s
-
-
 
