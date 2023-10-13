@@ -8,6 +8,7 @@
 - reference: https://en.wikipedia.org/wiki/Interrupt_handler
 - reference: https://tldp.org/HOWTO/Plug-and-Play-HOWTO-7.html
 - reference: https://people.freebsd.org/~jhb/papers/bsdcan/2007/article/article.html
+- reference: https://en.wikipedia.org/wiki/Advanced_Programmable_Interrupt_Controller
 
 ### What is an interrupt?
 
@@ -354,6 +355,82 @@ responsible for programming the interrupt router.
 
 - reference: https://tldp.org/HOWTO/Plug-and-Play-HOWTO-7.html
 - reference: https://people.freebsd.org/~jhb/papers/bsdcan/2007/article/article.html
+
+#### APIC (Advanced PIC)
+
+The PIC method only works for a single processor systems.
+
+PIC can only send interrupts to one CPU, and in a multiprocessor system it is desired to load CPUs in a balanced way.
+
+The solution to this problem was the new APIC interface (Advanced PIC).
+
+It is comprised of two components: 
+ - IO-APIC - Interfaces with Devices.
+ - LAPIC - the local APIC - Interfaces with CPU.
+
+reference: https://en.wikipedia.org/wiki/Advanced_Programmable_Interrupt_Controller
+
+##### LAPIC 
+
+Each processor in a multiprocessor system consists on a LAPIC (local APIC). Responsible for: 
+- receiving various interrupts requests and delivering them to the processor.
+- handling prioritization of interrupts
+- sending interrupts to other processors (known as inter processor interrutps or IPIs)
+
+LAPIC can be connected directly to I/O devices via local interrupt inputs (timer, thermal sensor) or
+throught IOAPIC via external interrupts. 
+
+LAPIC can generate interrupts due to interrupt requests received from various sources: 
+ - IPIs received from other processors.
+ - Interrupts coming from LINT or EXTINT
+
+##### I/O PIC
+
+Connects to the devices to allow device interrupt requests to be routed to LAPIC(s).
+There can be one or more IOAPIC in the system. Each IOAPIC has 24 interruption lines. 
+IOAPIC receives interrupts requests from the devices and sends them to LAPIC(s) based
+upon the redirection table entries (RTE) programmed in the IOAPIC. 
+
+Note: to maintain backward compatibility, APIC emulates 8259 PIC. 
+
+###### Detection
+
+The CPUID.01h:EDX[bit 9] flag specifies whether a CPU has a build-in local APIC. 
+
+
+#### CPUID
+
+CPUID is an x86 opcode which stands for CPU Identification.
+
+The CPUID instruction can be used to retrieve various amount of information about your cpu: 
+ - vendor string
+ - model number
+ - size of the internal caches
+ - list of CPU features
+
+```
+man 4 cpuid
+```
+
+The cpuid driver is not auto-loaded. On modular kernels you might need to use the following 
+command to load it explicitly before use: 
+
+```
+modprobe cpuid
+```
+
+Most of the information in cpuid is reported by the kernel in cooked form either in /proc/cpuinfo
+
+```
+cat /proc/cpuinfo | grep - i apicid
+```
+apicid: An unique ID given to each logical processor upon startup. 
+
+
+
+
+
+
 
 
 
