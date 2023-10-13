@@ -206,7 +206,7 @@ The functional descriptions of these Network Functions and entities are specifie
 
 
 | 5G \ 4G |  MME  |  S-GW  |  P-GW  |  HSS  |  PCRF  |  AF   |  New  |  Name |
-| :---    | :---| |  :---: | :---:  | :---: | :---:  | :---: | :---: | :---  |
+|  :---     |  :----: |   :----:  |   :----:   |   :----:  |  :----:   |  :----: |   :----:  |   :----:   |
 |  AMF    |   X   |        |        |       |        |       |       |  Access and Movility Management Function     |
 |  SMF    |   X   |        |   X    |       |        |       |       |  Session Management Function     |
 |  UPF    |       |    X   |   X    |       |        |       |       |  User Plane Function     |
