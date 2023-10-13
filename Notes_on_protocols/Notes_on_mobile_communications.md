@@ -110,7 +110,7 @@ From the RAN (Radio Access Network) point of view, there are:
  
  
  | Connectivity Options | Core Network | Master RAT | Secondary RAT | 3GPP term | 3GPP release |
- | : -- : |  : -- : |  : -- : |  : -- : |  : -- : |  : -- : | 
+ |   :----:  |   :----:  |   :----:  |   :----:  |   :----:  |    :----:  | 
  | Option 1 | EPC | LTE | - | LTE | Rel. 8|
  | Option 3 | EPC | LTE | NR | EN-DC | Rel. 15, Dec 2017|
  | Option 2 | 5G  | NR | - | NR | Rel. 15, June 2018|
