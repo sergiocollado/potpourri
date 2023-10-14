@@ -251,69 +251,35 @@ en el caso de que aparezcan reportes. Dependiendo del riesgo, quizás se
 quiera preguntar al mantenedor del subsistema, que mencione el hecho en su 
 línea principal de desarrollo. 
 
-
 ¿Qué más hay que saber sobre regresiones?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Check out Documentation/admin-guide/reporting-regressions.rst, it covers a lot
-of other aspects you want might want to be aware of:
-
- * the purpose of the "no regressions rule"
-
- * what issues actually qualify as regression
-
- * who's in charge for finding the root cause of a regression
-
- * how to handle tricky situations, e.g. when a regression is caused by a
-   security fix or when fixing a regression might cause another one
-     
-   
-Repasar la documentación Documentation/admin-guide/reporting-regressions.rst, 
+Repasar la documentación: Documentation/admin-guide/reporting-regressions.rst, 
 esta cubre otros aspectos a tener a encuenta y conocer:
  
  * la finalidad de la "regla de no regresión"
  
- * que incidentes no se califican como regresión
+ * que incidencias no se califican como regresión
  
- * quien es el responsable de identificar la causa raíz de una regresión
+ * quién es el responsable de identificar la causa raíz de una regresión
  
  * como gestionar situaciones difíciles, como por ejemplo cuando una 
    regresión es causada por una corrección de seguridad o cuando una 
    regresión causa otra
 
-Whom to ask for advice when it comes to regressions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 A quién preguntar por consejo cuando se trata de regresiones
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Send a mail to the regressions mailing list (regressions@lists.linux.dev) while
-CCing the Linux kernel's regression tracker (regressions@leemhuis.info); if the
-issue might better be dealt with in private, feel free to omit the list.
 
 Mandar un email a la lista de correo de regresiones (regressions@lists.linux.dev)
 y CC al seguidor de regresiones del kernel de Linux (regressions@leemhuis.info);
 Si el incidente pudiera ser mejor gestionarlo en privado, puede omitirse la lista.
 
 
-More about regression tracking and regzbot
-------------------------------------------
-
 Más sobre la gestión de regresiones con regzbot
 -----------------------------------------------
 
-Why the Linux kernel has a regression tracker, and why is regzbot used?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 ¿Porqué el kernel de Linux tiene un gestor de regresiones, y porqué se usa regzbot?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Rules like "no regressions" need someone to ensure they are followed, otherwise
-they are broken either accidentally or on purpose. History has shown this to be
-true for the Linux kernel as well. That's why Thorsten Leemhuis volunteered to
-keep an eye on things as the Linux kernel's regression tracker, who's
-occasionally helped by other people. Neither of them are paid to do this,
-that's why regression tracking is done on a best effort basis.
 
 Reglas como "no regresiones" necesitan asegurar que se cumplen, de otro modo
 se romperían accidentalmente o a propósito. La historia ha mostrado que esto es
@@ -322,89 +288,42 @@ se ofreció como voluntario para dar una solución a esto, con el gestor de
 regresiones del kernel de Linux. A nadie se le paga por hacer esto, y esa
 es la razón por la gestión de regresiones es un servicio con el "mejor esfuerzo". 
 
-Earlier attempts to manually track regressions have shown it's an exhausting and
-frustrating work, which is why they were abandoned after a while. To prevent
-this from happening again, Thorsten developed regzbot to facilitate the work,
-with the long term goal to automate regression tracking as much as possible for
-everyone involved.
-
-Intentos anteriores de gestionar manualmente las regresiones han demostrado que
+Intentos iniciales de gestionar manualmente las regresiones han demostrado que
 es una tarea extenuante y frustrante, y por esa razón se dejaron de hacer
 después de un tiempo. Para evitar que volviese a suceder esto, Thorsten
 desarrollo regbot para facilitar el trabajo, con el objetivo a largo plazo de
 automatizar la gestión de regresiones tanto como fuese posible para cualquiera
 que estuviese involucrado.
 
-How does regression tracking work with regzbot?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 ¿Cómo funciona el seguimiento de regresiones con regzbot?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The bot watches for replies to reports of tracked regressions. Additionally,
-it's looking out for posted or committed patches referencing such reports
-with "Link:" tags; replies to such patch postings are tracked as well.
-Combined this data provides good insights into the current state of the fixing
-process.
-
-El bot espera a las respuestas de los informes de las regresiones identificadas.
+El bot monitoriza a las respuestas de los informes de las regresiones identificadas.
 Adicionalmente mira si se han publicado o enviado parches que hagan referencia a
 esos informes con la etiqueta: "Link:"; respuestas a esos parches también se 
 siguen. Combinando esta información, también proporciona una buena imagen del 
 estado actual del proceso de corrección. 
 
-Regzbot tries to do its job with as little overhead as possible for both
-reporters and developers. In fact, only reporters are burdened with an extra
-duty: they need to tell regzbot about the regression report using the ``#regzbot
-introduced`` command outlined above; if they don't do that, someone else can
-take care of that using ``#regzbot ^introduced``.
-
 Regzbot intenta hacer todo este trabajo con tan poco retraso como sea posible
-para tanto la gente que lo reporta como los desarrolladores. De hecho, solo 
+tanto para la gente que lo reporta, como para los desarrolladores. De hecho, solo 
 los informantes son requeridos para una tarea adicional: necesitan informar
 a regzbot con el comando ``#regzbot introduced`` indicado anteriormente; si 
 no hacen esto, alguien más puede hacerlo usando ``#regzbot ^introduced``.
 
-For developers there normally is no extra work involved, they just need to make
-sure to do something that was expected long before regzbot came to light: add
-"Link:" tags to the patch description pointing to all reports about the issue
-fixed.
-
-Para desarrolladores normalmente no hay un trabajo adicional que realizar, 
+Para los desarrolladores normalmente no hay un trabajo adicional que realizar, 
 únicamente necesitan asegurarse una cosa, que ya se hacía mucho antes de que 
 regzbot apareciera: añadir las etiquetas "Link:" a la descripción del parche
 apuntando a todos los informes sobre el error corregido.
 
-Do I have to use regzbot?
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
 ¿Tengo que usar regzbot?
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-It's in the interest of everyone if you do, as kernel maintainers like Linus
-Torvalds partly rely on regzbot's tracking in their work -- for example when
-deciding to release a new version or extend the development phase. For this they
-need to be aware of all unfixed regression; to do that, Linus is known to look
-into the weekly reports sent by regzbot.
-
-Hacerlo es por el bien de todo el mundo, como los mantenedores del kernel,
+Hacerlo es por el bien de todo el mundo, tanto los mantenedores del kernel,
 como Linus Torvalds dependen parcialmente en regzbot para seguir su trabajo --
 por ejemplo cuando deciden liberar una nueva versión o ampliar la fase de 
 desarrollo. Para esto necesitan conocer todas las regresiones que están sin 
 corregir; para esto, es conocido que Linux mira los informes semanales que
 manda regzbot. 
-
-
-Do I have to tell regzbot about every regression I stumble upon?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Ideally yes: we are all humans and easily forget problems when something more
-important unexpectedly comes up -- for example a bigger problem in the Linux
-kernel or something in real life that's keeping us away from keyboards for a
-while. Hence, it's best to tell regzbot about every regression, except when you
-immediately write a fix and commit it to a tree regularly merged to the affected
-kernel series.
-
 
 ¿He de informar a regzbot cada regresión que encuentre? 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -416,16 +335,6 @@ teclados por un tiempo. Por eso es mejor informar a regzbot sobre cada
 regresión, excepto cuando inmediatamente escribimos un parche y los mandamos
 al árbol de desarrollo en el que se integran habitualmente a la serie del kernel. 
 
-
-How to see which regressions regzbot tracks currently?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Check `regzbot's web-interface <https://linux-regtracking.leemhuis.info/regzbot/>`_
-for the latest info; alternatively, `search for the latest regression report
-<https://lore.kernel.org/lkml/?q=%22Linux+regressions+report%22+f%3Aregzbot>`_,
-which regzbot normally sends out once a week on Sunday evening (UTC), which is a
-few hours before Linus usually publishes new (pre-)releases.
-
 ¿Cómo ver qué regresiones esta siguiendo regbot actualmente?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -435,27 +344,12 @@ para ver la última información; o `busque el último informe de regresiones
 el cual suele ser enviado por regzbot una vez a la semana el domingo por la noche (UTC),
 lo cual es unas horas antes de que Linus normalmente anuncie las "(pre-)releases".
 
-What places is regzbot monitoring?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Regzbot is watching the most important Linux mailing lists as well as the git
-repositories of linux-next, mainline, and stable/longterm.
-
 ¿Qué sítios supervisa regzbot?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Regzbot supervisa las listas de correo más importantes de Linux, como también
 las de los repositorios linux-next, mainline y stable/longterm.
 
-
-
-What kind of issues are supposed to be tracked by regzbot?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The bot is meant to track regressions, hence please don't involve regzbot for
-regular issues. But it's okay for the Linux kernel's regression tracker if you
-use regzbot to track severe issues, like reports about hangs, corrupted data,
-or internal errors (Panic, Oops, BUG(), warning, ...).
 
 ¿Qué tipos de incidentes han de ser monitorizados por regzbot?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -466,14 +360,6 @@ graves, como informes sobre cuelgues, corrupción de datos o errores
 internos (Panic, Oops, BUG(), warning, ...).
 
 
-Can I add regressions found by CI systems to regzbot's tracking?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Feel free to do so, if the particular regression likely has impact on practical
-use cases and thus might be noticed by users; hence, please don't involve
-regzbot for theoretical regressions unlikely to show themselves in real world
-usage.
-
 ¿Puedo añadir una regression detectada por un sistema de CI al seguimiento de regzbot?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -482,27 +368,12 @@ casos de uso prácticos y por tanto ser detectado por los usuarios; Así, por fa
 no involucre a regzbot en regresiones teóricas que difícilmente pudieran 
 manifestarse en un uso real. 
 
-
-How to interact with regzbot?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 ¿Cómo interactuar con regzbot?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-By using a 'regzbot command' in a direct or indirect reply to the mail with the
-regression report. These commands need to be in their own paragraph (IOW: they
-need to be separated from the rest of the mail using blank lines).
 
 Usando el comando 'regzbot' en una respuesta directa o indirecta al correo con
 el informe de regresión. Ese comando necesita estar en su propio párrafo (debe
 estar separado del resto del texto usando líneas en blanco):
-
-
-One such command is ``#regzbot introduced <version or commit>``, which makes
-regzbot consider your mail as a regressions report added to the tracking, as
-already described above; ``#regzbot ^introduced <version or commit>`` is another
-such command, which makes regzbot consider the parent mail as a report for a
-regression which it starts to track.
 
 Por ejemplo ``#regzbot introduced <version or commit>``, que hace que regzbot
 considere el correo como un informe de regressión que se ha de añadir al seguimiento,
@@ -510,33 +381,14 @@ como se ha descrito anteriormente; ``#regzbot ^introduced <version or commit>`` 
 otro ejemplo del comando, el cual indica a regzbot que considere el email 
 anterior como el informe de una regresión que se ha de comenzar a monitorizar. 
 
-Once one of those two commands has been utilized, other regzbot commands can be
-used in direct or indirect replies to the report. You can write them below one
-of the `introduced` commands or in replies to the mail that used one of them
-or itself is a reply to that mail:
-
 Una vez uno de esos dos comandos se ha utilizado, se pueden usar otros comandos
 regzbot en respuestas directas o indirectas al informe. Puede escribirlos debajo
 de uno de los comandos anteriormente usados o en las respuestas al correo en el
 que se uso como respuesta a ese correo: 
 
- * Set or update the title::
-
-       #regzbot title: foo
-       
  * Definir o actualizar el título::       
  
        #regzbot title: foo
-
- * Monitor a discussion or bugzilla.kernel.org ticket where additions aspects of
-   the issue or a fix are discussed -- for example the posting of a patch fixing
-   the regression::
-
-       #regzbot monitor: https://lore.kernel.org/all/30th.anniversary.repost@klaava.Helsinki.FI/
-
-   Monitoring only works for lore.kernel.org and bugzilla.kernel.org; regzbot
-   will consider all messages in that thread or ticket as related to the fixing
-   process.
 
  * Monitorizar una discusión o un tiquet de bugzilla.kernel.org donde aspectos
  adicionales del incidente o de la corrección se están comentando -- por ejemplo
@@ -547,12 +399,6 @@ que se uso como respuesta a ese correo:
   Monitorizar solamente funciona para lore.kernel.org y bugzilla.kernel.org; regzbot
   considerará todos los mensajes en ese hilo o el tiquet como relacionados al 
   proceso de corrección.      
-     
- * Point to a place with further details of interest, like a mailing list post
-   or a ticket in a bug tracker that are slightly related, but about a different
-   topic::
-
-       #regzbot link: https://bugzilla.kernel.org/show_bug.cgi?id=123456789
 
  * Indicar a un lugar donde más detalles de interés, como un mensaje en una lista
  de correo o un tiquet en un gestor de incidencias que pueden estar levemente relacionados, 
@@ -560,44 +406,20 @@ que se uso como respuesta a ese correo:
  
        #regzbot link: https://bugzilla.kernel.org/show_bug.cgi?id=123456789
        
-       
- * Mark a regression as fixed by a commit that is heading upstream or already
-   landed::
-
-       #regzbot fixed-by: 1f2e3d4c5d
-       
- * Anotar una regression como corregida por un commit que se ha mandado aguas arriba 
+ * Identificar una regression como corregida por un commit que se ha mandado aguas arriba 
  o se ha publicado::
  
         #regzbot fixed-by: 1f2e3d4c5d
 
- * Mark a regression as a duplicate of another one already tracked by regzbot::
 
-       #regzbot dup-of: https://lore.kernel.org/all/30th.anniversary.repost@klaava.Helsinki.FI/
-       
- * Anotar una regresión como un duplicado de otra que ya es seguida por regzbot::
+ * Identificar una regresión como un duplicado de otra que ya es seguida por regzbot::
  
         #regzbot dup-of: https://lore.kernel.org/all/30th.anniversary.repost@klaava.Helsinki.FI/
 
- * Mark a regression as invalid::
-
-       #regzbot invalid: wasn't a regression, problem has always existed
-       
- * Anotar una regresión como inválida::
+ * Identificar una regresión como inválida::
  
        #regzbot invalid: wasn't a regression, problem has always existed
        
-       
-
-Is there more to tell about regzbot and its commands?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-More detailed and up-to-date information about the Linux
-kernel's regression tracking bot can be found on its
-`project page <https://gitlab.com/knurd42/regzbot>`_, which among others
-contains a `getting started guide <https://gitlab.com/knurd42/regzbot/-/blob/main/docs/getting_started.md>`_
-and `reference documentation <https://gitlab.com/knurd42/regzbot/-/blob/main/docs/reference.md>`_
-which both cover more details than the above section.
 
 ¿Algo más que decir sobre regzbot y sus comandos?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -608,9 +430,6 @@ y entre otros contiene una  `guia de inicio <https://gitlab.com/knurd42/regzbot/
 y `documentación de referencia <https://gitlab.com/knurd42/regzbot/-/blob/main/docs/reference.md>`_
 Ambos contienen más detalles que las secciones anteriores. 
 
-
-Quotes from Linus about regression
-----------------------------------
 
 Citas de Linus sobre regresiones
 --------------------------------
