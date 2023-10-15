@@ -492,7 +492,7 @@ Look into arch/x86/include/asm/traps.h. For example: https://elixir.bootlin.com/
 #define X86_TRAP_VE		20	/* Virtualization Exception */
 #define X86_TRAP_CP		21	/* Control Protection Exception */
 #define X86_TRAP_VC		29	/* VMM Communication Exception */
-#define X86_TRAP_IRET		32	/* IRET Exception */
+#define X86_TRAP_IRET	32	/* IRET Exception */
 
 #endif
 ```
@@ -502,6 +502,11 @@ Look into arch/x86/include/asm/traps.h. For example: https://elixir.bootlin.com/
 The IDT is a linear table of 258 entries which associates an interrupt handler with each interrupt vector. 
 
 When an interrupt is fired, the CPU looks at the IDT table, and finds what method needs to be called. 
+
+Each descriptor is of size 8 bytes (on x86) and 16 bytes (on x86_64)
+
+During early boot, the architecure-specific branch of the kernel code sets up the IDT in memory and programs
+the IDTR register (special 0x86 register) of the processor with the physical start address and length of the IDT. 
 
 
 
