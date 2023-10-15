@@ -3,6 +3,7 @@
 
 ## Interrupts 
 
+- reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html
 - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html#interrupt-handling-in-linux
 - reference: https://en.wikipedia.org/wiki/Interrupt_vector_table
 - reference: https://en.wikipedia.org/wiki/Interrupt_handler
@@ -426,6 +427,21 @@ cat /proc/cpuinfo | grep - i apicid
 ```
 apicid: An unique ID given to each logical processor upon startup. 
 
+We can check on the system log, the "apic" messages: 
+
+```
+sudo dmesg | grep -i apic
+```
+
+#### What happens when there is an interrupt?
+
+The device asserts IRQ of I/O APIC. 
+
+I/O APIC transfer interrupt to LAPIC. 
+
+LAPIC asserts CPU interrupts.
+
+After current instrucction completes CPU senses interrupt line and obtains the IRQ number from LAPIC, jumps to the interrupt handler. 
 
 
 
