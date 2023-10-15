@@ -20,6 +20,7 @@ Languaje reference:
   - https://google.github.io/comprehensive-rust/welcome-day-4.html
   - https://github.com/ferrous-systems/teaching-material/tree/main/assignments
   - effective rust: https://www.lurklurk.org/effective-rust/
+  - awesome rust - curated list of resources: https://github.com/lemunozm/awesome-rust
 
 <br>
 
