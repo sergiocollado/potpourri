@@ -433,7 +433,7 @@ We can check on the system log, the "apic" messages:
 sudo dmesg | grep -i apic
 ```
 
-#### What happens when there is an interrupt?
+### What happens when there is an interrupt?
 
 The device asserts IRQ of I/O APIC. 
 
@@ -443,6 +443,65 @@ LAPIC asserts CPU interrupts.
 
 After current instrucction completes CPU senses interrupt line and obtains the IRQ number from LAPIC, jumps to the interrupt handler. 
 
+
+### How does the hardware find the interrupt handler? 
+
+#### Interrupt vector (IV)
+
+On x86 each interrupt or exception is identified by a number between 0 and 255. Intel calls this number a vector. 
+
+The interrupt vector is used by the interrupt-handling mechanisms to locate the system-software service routine
+assigned to the exception or interrupt.
+
+Up to 256 unique interrupt vectors are available in x86.
+
+The number or interrupt vectors or entry points supported by a CPU differs based on the CPU architecture. 
+
+The first 32 vectors are reserved for predefined exceptions and interrupt conditions. 
+
+Look into arch/x86/include/asm/traps.h. For example: https://elixir.bootlin.com/linux/latest/source/arch/x86/include/asm/trapnr.h
+
+```
+// https://elixir.bootlin.com/linux/latest/source/arch/x86/include/asm/trapnr.h
+/* SPDX-License-Identifier: GPL-2.0 */
+#ifndef _ASM_X86_TRAPNR_H
+#define _ASM_X86_TRAPNR_H
+
+/* Interrupts/Exceptions */
+
+#define X86_TRAP_DE		 0	/* Divide-by-zero */
+#define X86_TRAP_DB		 1	/* Debug */
+#define X86_TRAP_NMI	 2	/* Non-maskable Interrupt */
+#define X86_TRAP_BP		 3	/* Breakpoint */
+#define X86_TRAP_OF		 4	/* Overflow */
+#define X86_TRAP_BR		 5	/* Bound Range Exceeded */
+#define X86_TRAP_UD		 6	/* Invalid Opcode */
+#define X86_TRAP_NM		 7	/* Device Not Available */
+#define X86_TRAP_DF		 8	/* Double Fault */
+#define X86_TRAP_OLD_MF	 9	/* Coprocessor Segment Overrun */
+#define X86_TRAP_TS		10	/* Invalid TSS */
+#define X86_TRAP_NP		11	/* Segment Not Present */
+#define X86_TRAP_SS		12	/* Stack Segment Fault */
+#define X86_TRAP_GP		13	/* General Protection Fault */
+#define X86_TRAP_PF		14	/* Page Fault */
+#define X86_TRAP_SPURIOUS	15	/* Spurious Interrupt */
+#define X86_TRAP_MF		16	/* x87 Floating-Point Exception */
+#define X86_TRAP_AC		17	/* Alignment Check */
+#define X86_TRAP_MC		18	/* Machine Check */
+#define X86_TRAP_XF		19	/* SIMD Floating-Point Exception */
+#define X86_TRAP_VE		20	/* Virtualization Exception */
+#define X86_TRAP_CP		21	/* Control Protection Exception */
+#define X86_TRAP_VC		29	/* VMM Communication Exception */
+#define X86_TRAP_IRET		32	/* IRET Exception */
+
+#endif
+```
+
+#### Interrupt descriptor table (IDT)
+
+The IDT is a linear table of 258 entries which associates an interrupt handler with each interrupt vector. 
+
+When an interrupt is fired, the CPU looks at the IDT table, and finds what method needs to be called. 
 
 
 
