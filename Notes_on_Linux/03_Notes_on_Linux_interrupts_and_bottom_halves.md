@@ -4,12 +4,13 @@
 ## Interrupts 
 
 - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html
-- reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html#interrupt-handling-in-linux
 - reference: https://en.wikipedia.org/wiki/Interrupt_vector_table
 - reference: https://en.wikipedia.org/wiki/Interrupt_handler
 - reference: https://tldp.org/HOWTO/Plug-and-Play-HOWTO-7.html
 - reference: https://people.freebsd.org/~jhb/papers/bsdcan/2007/article/article.html
 - reference: https://en.wikipedia.org/wiki/Advanced_Programmable_Interrupt_Controller
+- reference: https://elixir.bootlin.com/linux/v6.5.7/source/include/linux/interrupt.h
+- reference: https://elixir.bootlin.com/linux/v6.5.7/source/arch/x86/kernel/irq.c
 
 ### What is an interrupt?
 
@@ -511,6 +512,8 @@ the IDTR register (special 0x86 register) of the processor with the physical sta
 
 ## Interrupt Handling in Linux Kernel
 
+- reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html#interrupt-handling-in-linux
+
 1. Whenever an interrupt occurs, assembly instructions in linux kernel are executed, which
 	locates relevant vector descriptor by multiplying reported vector number by size of vector number(8/16)
 	and adding the result to the base address of IDT.
@@ -526,6 +529,7 @@ the IDTR register (special 0x86 register) of the processor with the physical sta
 ```
 	arch/x86/kernel/irq.c
 ```
+reference: https://elixir.bootlin.com/linux/v6.5.7/source/arch/x86/kernel/irq.c
 
 3. Finds IRQ number in saved %EAX register
 
