@@ -518,7 +518,7 @@ the IDTR register (special 0x86 register) of the processor with the physical sta
 	locates relevant vector descriptor by multiplying reported vector number by size of vector number(8/16)
 	and adding the result to the base address of IDT.
 
-2. common_interrupt: arch/x86/entry/entry_64.S:
+2. common_interrupt: [arch/x86/entry/entry_64.S](https://elixir.bootlin.com/linux/v6.5.7/source/arch/x86/entry/entry_64.S):
 	- saves the context of the running process
 	- This includes instruction pointer (IP), stack pointer and other registers needed to resume the process again
 	- This context is usually saved on the stack.
