@@ -519,10 +519,12 @@ the IDTR register (special 0x86 register) of the processor with the physical sta
 	and adding the result to the base address of IDT.
 
 2. common_interrupt: arch/x86/entry/entry_64.S:
-	1. saves the context of the running process
-	2. This includes instruction pointer (IP), stack pointer and other registers needed to resume the process again
-	3. This context is usually saved on the stack.
-	4. Then the context is changed to interrupt stack. 
+	- saves the context of the running process
+	- This includes instruction pointer (IP), stack pointer and other registers needed to resume the process again
+	- This context is usually saved on the stack.
+	- Then the context is changed to interrupt stack.
+
+reference: https://elixir.bootlin.com/linux/v6.5.7/source/arch/x86/entry/entry_64.S
 
 2. Finally it arrives at do_IRQ(). do_IRQ() is the common function for all hardware interrupts
 
