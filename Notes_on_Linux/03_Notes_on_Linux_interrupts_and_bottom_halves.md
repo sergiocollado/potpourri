@@ -685,6 +685,7 @@ When the interrupt is released, using the `free_irq()` function, you must send t
 - reference: https://elixir.bootlin.com/linux/v6.5.7/source/drivers/tty/vt/defkeymap.map
 - reference: https://unix.stackexchange.com/questions/424273/capturing-keypresses-at-kernel-level
 - reference: https://github.com/MemoryDealer/linux-keylogger
+- reference: https://github.com/jarun/spy/blob/master/spy.c
 
 When a key is pressed, the keyboard controller informs PIC to cause an interrupt.
 
