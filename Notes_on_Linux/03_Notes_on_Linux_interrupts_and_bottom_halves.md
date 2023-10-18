@@ -677,7 +677,153 @@ void free_irq(unsigned int irq_no, void *dev);
 
 When the interrupt is released, using the `free_irq()` function, you must send the same pointer value (dev) along with the same interrupt number (irq_no).
 
+### Example: keyboard interrupt
 
+- reference: https://stackoverflow.com/questions/33836541/linux-kernel-how-to-capture-a-key-press-and-replace-it-with-another-key
+- reference: https://unix.stackexchange.com/questions/545274/how-does-a-keyboard-press-get-processed-in-the-linux-kernel
+- reference: https://elixir.bootlin.com/linux/v6.5.7/source/drivers/tty/vt/keyboard.c
+- reference: https://elixir.bootlin.com/linux/v6.5.7/source/drivers/tty/vt/defkeymap.map
+- reference: https://unix.stackexchange.com/questions/424273/capturing-keypresses-at-kernel-level
+
+When a key is pressed, the keyboard controller informs PIC to cause an interrupt.
+
+IRQ #1 is the keyboard interrupt, so when a key is pressed, IRQ 1 is sent to the PIC. 
+
+PIC tells the CPU an interrupt occurred.
+
+When the CPU acknowledges the "interrupt occurred" signal, the PIC chip sends the interrupt number (between 00h and FFh, or 0 and 255 decimal) to the CPU.
+
+For each key pressed on the keyboard, it generates two interrupts (pressed and release).
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+
+MODULE_LICENSE("GPL");
+
+static int irq = 1,  dev = 0xaa, counter = 0;
+
+static irqreturn_t keyboard_handler(int irq, void *dev)
+{
+        pr_info("Keyboard Counter:%d\n", counter++);
+        return IRQ_NONE;
+}
+
+/* registering irq */
+static int test_interrupt_init(void)
+{
+        pr_info("%s: In init\n", __func__);
+        return request_irq(irq, keyboard_handler, IRQF_SHARED,"my_keyboard_handler", &dev);
+}
+
+static void test_interrupt_exit(void)
+{
+        pr_info("%s: In exit\n", __func__);
+        synchronize_irq(irq); /* synchronize interrupt */
+        free_irq(irq, &dev);
+}
+
+module_init(test_interrupt_init);
+module_exit(test_interrupt_exit);
+```
+You can check the interrupt handler has been installed properly with  `cat /proc/interrupt`, and at IRQ 1 you should see the name "my_keyboard_handler". 
+
+A keyboard generates two scan codes for each key typed on the system, one scan code for press and the other for release.
+
+Release scan code is 128 (80h) plus the press scan code
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+
+MODULE_LICENSE("GPL");
+
+const unsigned char kbdus[128] =    /* these are the scan codes */
+{
+  0,  27, '1', '2', '3', '4', '5', '6', '7', '8',	/* 9 */
+  '9', '0', '-', '=', '\b',	/* Backspace */
+  '\t',			/* Tab */
+  'q', 'w', 'e', 'r',	/* 19 */
+  't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\n',	/* Enter key */
+    0,			/* 29   - Control */
+  'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';',	/* 39 */
+ '\'', '`',   0,		/* Left shift */
+ '\\', 'z', 'x', 'c', 'v', 'b', 'n',			/* 49 */
+  'm', ',', '.', '/',   0,				/* Right shift */
+  '*',
+    0,	/* Alt */
+  ' ',	/* Space bar */
+    0,	/* Caps lock */
+    0,	/* 59 - F1 key ... > */
+    0,   0,   0,   0,   0,   0,   0,   0,
+    0,	/* < ... F10 */
+    0,	/* 69 - Num lock*/
+    0,	/* Scroll Lock */
+    0,	/* Home key */
+    0,	/* Up Arrow */
+    0,	/* Page Up */
+  '-',
+    0,	/* Left Arrow */
+    0,
+    0,	/* Right Arrow */
+  '+',
+    0,	/* 79 - End key*/
+    0,	/* Down Arrow */
+    0,	/* Page Down */
+    0,	/* Insert Key */
+    0,	/* Delete Key */
+    0,   0,   0,
+    0,	/* F11 Key */
+    0,	/* F12 Key */
+    0,	/* All other keys are undefined */
+};
+
+
+static int irq = 1,  dev = 0xaa; /* IRQ 1: number for keyboard (i8042) */
+
+#define KBD_DATA_REG        0x60    /* I/O port for keyboard data */
+#define KBD_SCANCODE_MASK   0x7f
+#define KBD_STATUS_MASK     0x80
+
+static irqreturn_t keyboard_handler(int irq, void *dev)
+{
+	char scancode;
+	scancode = inb(KBD_DATA_REG);
+        /* refererence inb: https://linux.die.net/man/2/inb */
+        /* This module is not cross-platform (will work only on x86 architecture, because it's using inb() function) */
+        /* #define KBD_DATA_REG	0x60  Keyboard data register (R/W)  */
+        /* https://elixir.bootlin.com/linux/v6.5.7/source/kernel/debug/kdb/kdb_keyboard.c#L21 */
+
+	pr_info("Character %c %s\n",
+			kbdus[scancode & KBD_SCANCODE_MASK],
+			scancode & KBD_STATUS_MASK ? "Released" : "Pressed");
+        /* It's performing slow I/O operation (I mean pr_info()) in hardware IRQ handler,
+           which should be avoided (ideally threaded IRQs should be used)).*/
+
+        return IRQ_NONE;
+}
+
+/* registering irq */
+static int test_interrupt_init(void)
+{
+        pr_info("%s: In init\n", __func__);
+        return request_irq(irq, keyboard_handler, IRQF_SHARED,"my_keyboard_handler", &dev);
+}
+
+static void test_interrupt_exit(void)
+{
+        pr_info("%s: In exit\n", __func__);
+        synchronize_irq(irq); /* synchronize interrupt */
+        free_irq(irq, &dev);
+}
+
+module_init(test_interrupt_init);
+module_exit(test_interrupt_exit);
+```
 
 
 
