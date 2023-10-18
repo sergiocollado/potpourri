@@ -11,6 +11,8 @@
 - reference: https://en.wikipedia.org/wiki/Advanced_Programmable_Interrupt_Controller
 - reference: https://elixir.bootlin.com/linux/v6.5.7/source/include/linux/interrupt.h
 - reference: https://elixir.bootlin.com/linux/v6.5.7/source/arch/x86/kernel/irq.c
+- reference: https://linux.die.net/HOWTO/KernelAnalysis-HOWTO.html#toc1
+
 
 ### What is an interrupt?
 
@@ -537,17 +539,143 @@ reference: https://elixir.bootlin.com/linux/v6.5.7/source/arch/x86/kernel/irq.c
 
 4. Calls handle_irq which will finally call our registered interrupt handler.
 
+### Interrupt statistics
+
+To check the interrupt statistics: 
+
+```
+$ cat /proc/interrupts
+```
+reference: https://linux.die.net/man/5/proc
+
+/proc/interrupts <br>
+This is used to record the number of interrupts per CPU per IO device. Since Linux 2.6.24, for the i386 and x86_64 architectures, at least, this also includes interrupts internal to the system (that is, not associated with a device as such), such as NMI (nonmaskable interrupt), LOC (local timer interrupt), and for SMP systems, TLB (TLB flush interrupt), RES (rescheduling interrupt), CAL (remote function call interrupt), and possibly others. Very easy to read formatting, done in ASCII.
+
+```
+$ cat /proc/interrupts
+
+           CPU0       CPU1       CPU2       CPU3       CPU4       CPU5       
+   0:          2          0          0          0          0          0   IO-APIC    2-edge      timer
+   1:        458          0          0          0       6154          0   IO-APIC    1-edge      i8042
+   8:          0          0          0          0          0          1   IO-APIC    8-edge      rtc0
+   9:          0          0          0          0          0          0   IO-APIC    9-fasteoi   acpi
+  12:          0          0          0      22185          0          0   IO-APIC   12-edge      i8042
+  14:          0          0          0          0          0          0   IO-APIC   14-edge      ata_piix
+  15:          0          0          0          0          0          0   IO-APIC   15-edge      ata_piix
+  16:          0      19541          0          0          0          0   IO-APIC   16-fasteoi   vmwgfx, snd_ens1371
+  17:       9825          0      47519          0          0          0   IO-APIC   17-fasteoi   ehci_hcd:usb1, i
+```
+
+ - Column 1:  IRQ number the file shows only interrupts corresponding to installed handlers
+
+ - Column 2:  counter of the number of interrupts received. A column is present for each processor on the system
+
+ - Column 3/4: Type of the interrupt and device that handles the interrupt.
+           -  For x86.
+           -  XT-PIC — This is the old AT computer interrupts. 8259
+           -  IO-APIC 
+
+ - Column 5:  device associated with this interrupt. This name is supplied by the devname parameter to request_irq(),
+            
 
 
+#### Difference between  IO-APIC-fasteoi and IO-APIC-edge?
 
 
+The difference lies in the way the interrupts are triggered.
+
+The `-edge` interrupt are edge triggered.
+
+The `-fasteoi` interrupts are level interrupts that are triggered until the interrupt event is acknowledged in the programmable interrupt controller (PIC). 
+
+The EOI stands for End Of Interrupt.
+
+### Watch Interrupts
+
+To see the interrupts occurring on your system, run the command:
+
+```
+$ watch -n1 "cat /proc/interrupts"
+```
+
+The watch command executes another command periodically, in this case `cat /proc/interrupts`
+
+The `-n1` option tells watch to execute the command every second
+
+`-d` option of watch highlight  the  differences  between successive updates
+
+```
+$ watch -n 0.1 -d 'cat /proc/interrupts'
+```
+
+`--no-title / -t` option of watch Turn off the header showing the interval, command, and current time at the top of the display, as well as the following blank line.
+
+```
+$ watch -n 0.1 -d --no-title 'cat /proc/interrupts'
+```
+
+### PCI interrutps 
+
+`lspci` is a utility for displaying information about PCI buses in the system and devices connected to them.
+
+By default, it shows a brief list of devices. Use the options described below to request 
+either a more verbose output or output intended for parsing by other programs.
+
+reference: https://man7.org/linux/man-pages/man8/lspci.8.html
+
+```
+$ lspci | grep -i Ethernet
+
+$ lspci -s 02:01 -v
+```
+
+### Interrupt Handlers
 
 
+Interrupt handlers are the responsibility of the driver managing the hardware.
 
+If the device uses interrupts, then driver must register one interrupt handler.
 
+#### Registering an interrupt handler
 
+Header File: <linux/interrupt.h>
 
+```
+int request_irq(unsigned int irq,
+        irq_handler_t handler,
+        unsigned long flags,
+        const char *name,
+        void *dev);
+```
 
+#### Parameters:
+
+```
+irq     --> The interrupt number being requested
+            For some devices,for example legacy PC devices such as the system timer or keyboard, this value is typically hard-coded.
+            For most other devices, it is probed or otherwise determined programmatically and dynamically.
+
+handler   --> function pointer to the actual interrupt handler that services this interrupt.
+              invoked whenever the operating system receives the interrupt
+              typedef irqreturn_t (*irq_handler_t)(int, void *);
+
+flags     --> bitmask of options related to interrupt management.
+
+name      --> Name to be displayed in /proc/interrupts
+
+dev       --> Used for shared Interrupt Lines
+```
+
+#### Return Value:
+
+Success  -->    Returns Zero
+Failure  -->    Non-Zero Value
+
+```               
+void free_irq(unsigned int irq_no, void *dev);
+```
+
+When the interrupt is released, using the `free_irq()` function, you must send the same pointer value (dev) along with the same interrupt number (irq_no).
 
 
 
