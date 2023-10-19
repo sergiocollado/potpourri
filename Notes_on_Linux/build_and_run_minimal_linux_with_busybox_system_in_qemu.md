@@ -4,6 +4,7 @@ reference: https://mudongliang.github.io/2017/09/12/how-to-build-a-custom-linux-
 reference: http://blog.vmsplice.net/2011/02/near-instant-kernel-development-cycle.html <br>
 reference: https://mgalgs.io/2015/05/16/how-to-build-a-custom-linux-kernel-for-qemu-2015-edition.html <br>
 reference: https://youtu.be/LyWlpuntdU4 <br>
+reference: https://www.youtube.com/watch?v=asnXWOUKhTA
 
 ## Common
 
