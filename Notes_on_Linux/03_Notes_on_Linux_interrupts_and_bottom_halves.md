@@ -3,7 +3,7 @@
 
 ## Interrupts 
 
-- refernece: MUST READ LDD3: https://static.lwn.net/images/pdf/LDD3/ch10.pdf
+- reference: MUST READ LDD3: https://static.lwn.net/images/pdf/LDD3/ch10.pdf
 - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html
 - reference: https://en.wikipedia.org/wiki/Interrupt_vector_table
 - reference: https://en.wikipedia.org/wiki/Interrupt_handler
@@ -909,6 +909,102 @@ module_init(my_init);
 module_exit(my_exit);
 ```
 
+## request_irq
+
+It is defined at: https://elixir.bootlin.com/linux/v6.5.7/source/include/linux/interrupt.h#L165
+
+```
+/**
+ * request_irq - Add a handler for an interrupt line
+ * @irq:	The interrupt line to allocate
+ * @handler:	Function to be called when the IRQ occurs.
+ *		Primary handler for threaded interrupts
+ *		If NULL, the default primary handler is installed
+ * @flags:	Handling flags
+ * @name:	Name of the device generating this interrupt
+ * @dev:	A cookie passed to the handler function
+ *
+ * This call allocates an interrupt and establishes a handler; see
+ * the documentation for request_threaded_irq() for details.
+ */
+static inline int __must_check
+request_irq(unsigned int irq, irq_handler_t handler, unsigned long flags,
+	    const char *name, void *dev)
+{
+	return request_threaded_irq(irq, handler, NULL, flags, name, dev);
+}
+
+```
+
+### Return value of interrupt handlers
+
+Interrupt handlers return an irqreturn_t value.
+
+ - `IRQ_NONE`            interrupt was not from this device or was not handled
+ - `IRQ_HANDLED`         interrupt was handled by this device
+
+### Interrupt flags
+
+The third parameter of `request_irq`, `flags can be either a zero or a bit mask 
+of one or more flags defined in <linux/interrupt.>
+
+```
+/*
+ * These flags used only by the kernel as part of the
+ * irq handling routines.
+ *
+ * IRQF_SHARED - allow sharing the irq among several devices
+ * IRQF_PROBE_SHARED - set by callers when they expect sharing mismatches to occur
+ * IRQF_TIMER - Flag to mark this interrupt as timer interrupt
+ * IRQF_PERCPU - Interrupt is per cpu
+ * IRQF_NOBALANCING - Flag to exclude this interrupt from irq balancing
+ * IRQF_IRQPOLL - Interrupt is used for polling (only the interrupt that is
+ *                registered first in a shared interrupt is considered for
+ *                performance reasons)
+ * IRQF_ONESHOT - Interrupt is not reenabled after the hardirq handler finished.
+ *                Used by threaded interrupts which need to keep the
+ *                irq line disabled until the threaded handler has been run.
+ * IRQF_NO_SUSPEND - Do not disable this IRQ during suspend.  Does not guarantee
+ *                   that this interrupt will wake the system from a suspended
+ *                   state.  See Documentation/power/suspend-and-interrupts.rst
+ * IRQF_FORCE_RESUME - Force enable it on resume even if IRQF_NO_SUSPEND is set
+ * IRQF_NO_THREAD - Interrupt cannot be threaded
+ * IRQF_EARLY_RESUME - Resume IRQ early during syscore instead of at device
+ *                resume time.
+ * IRQF_COND_SUSPEND - If the IRQ is shared with a NO_SUSPEND user, execute this
+ *                interrupt handler after suspending interrupts. For system
+ *                wakeup devices users need to implement wakeup detection in
+ *                their interrupt handlers.
+ * IRQF_NO_AUTOEN - Don't enable IRQ or NMI automatically when users request it.
+ *                Users will enable it explicitly by enable_irq() or enable_nmi()
+ *                later.
+ * IRQF_NO_DEBUG - Exclude from runnaway detection for IPI and similar handlers,
+ *		   depends on IRQF_PERCPU.
+ */
+#define IRQF_SHARED		0x00000080
+#define IRQF_PROBE_SHARED	0x00000100
+#define __IRQF_TIMER		0x00000200
+#define IRQF_PERCPU		0x00000400
+#define IRQF_NOBALANCING	0x00000800
+#define IRQF_IRQPOLL		0x00001000
+#define IRQF_ONESHOT		0x00002000
+#define IRQF_NO_SUSPEND		0x00004000
+#define IRQF_FORCE_RESUME	0x00008000
+#define IRQF_NO_THREAD		0x00010000
+#define IRQF_EARLY_RESUME	0x00020000
+#define IRQF_COND_SUSPEND	0x00040000
+#define IRQF_NO_AUTOEN		0x00080000
+#define IRQF_NO_DEBUG		0x00100000
+```
+
+`IRQF_SHARED` informs the kernel that the interrupt can be shared with other devices.
+
+If this flag is not set, then if there is already a handler associated with the requested interrupt, 
+the request for interrupt will fail. 
+
+`request_irq` return `-EBUSY` which means that the interrupt was already requested by another device driver. 
+
+On success it returns 0. 
 
 
 
