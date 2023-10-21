@@ -461,7 +461,7 @@ Up to 256 unique interrupt vectors are available in x86.
 
 The number or interrupt vectors or entry points supported by a CPU differs based on the CPU architecture. 
 
-The first 32 vectors are reserved for predefined exceptions and interrupt conditions. 
+The first 32 vector entries are reserved for predefined exceptions and interrupt conditions. 
 
 Look into arch/x86/include/asm/traps.h. For example: https://elixir.bootlin.com/linux/latest/source/arch/x86/include/asm/trapnr.h
 
@@ -475,14 +475,14 @@ Look into arch/x86/include/asm/traps.h. For example: https://elixir.bootlin.com/
 
 #define X86_TRAP_DE		 0	/* Divide-by-zero */
 #define X86_TRAP_DB		 1	/* Debug */
-#define X86_TRAP_NMI	 2	/* Non-maskable Interrupt */
+#define X86_TRAP_NMI	         2	/* Non-maskable Interrupt */
 #define X86_TRAP_BP		 3	/* Breakpoint */
 #define X86_TRAP_OF		 4	/* Overflow */
 #define X86_TRAP_BR		 5	/* Bound Range Exceeded */
 #define X86_TRAP_UD		 6	/* Invalid Opcode */
 #define X86_TRAP_NM		 7	/* Device Not Available */
 #define X86_TRAP_DF		 8	/* Double Fault */
-#define X86_TRAP_OLD_MF	 9	/* Coprocessor Segment Overrun */
+#define X86_TRAP_OLD_MF	         9	/* Coprocessor Segment Overrun */
 #define X86_TRAP_TS		10	/* Invalid TSS */
 #define X86_TRAP_NP		11	/* Segment Not Present */
 #define X86_TRAP_SS		12	/* Stack Segment Fault */
@@ -496,8 +496,7 @@ Look into arch/x86/include/asm/traps.h. For example: https://elixir.bootlin.com/
 #define X86_TRAP_VE		20	/* Virtualization Exception */
 #define X86_TRAP_CP		21	/* Control Protection Exception */
 #define X86_TRAP_VC		29	/* VMM Communication Exception */
-#define X86_TRAP_IRET	32	/* IRET Exception */
-
+#define X86_TRAP_IRET	        32	/* IRET Exception */
 #endif
 ```
 
@@ -513,7 +512,7 @@ During early boot, the architecure-specific branch of the kernel code sets up th
 the IDTR register (special 0x86 register) of the processor with the physical start address and length of the IDT. 
 
 
-## Interrupt Handling in Linux Kernel
+## Interrupt handling in Linux Kernel
 
 - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html#interrupt-handling-in-linux
 
@@ -529,12 +528,12 @@ the IDTR register (special 0x86 register) of the processor with the physical sta
 
 reference: https://elixir.bootlin.com/linux/v6.5.7/source/arch/x86/entry/entry_64.S
 
-2. Finally it arrives at do_IRQ(). do_IRQ() is the common function for all hardware interrupts
+2. Finally it arrives at `do_IRQ()`. `do_IRQ()` is the common function for all hardware interrupts
 
 ```
 	arch/x86/kernel/irq.c
 ```
-reference: https://elixir.bootlin.com/linux/v6.5.7/source/arch/x86/kernel/irq.c
+ - reference: https://elixir.bootlin.com/linux/v6.5.7/source/arch/x86/kernel/irq.c
 
 3. Finds IRQ number in saved %EAX register
 
@@ -547,9 +546,11 @@ To check the interrupt statistics:
 ```
 $ cat /proc/interrupts
 ```
-reference: https://linux.die.net/man/5/proc
+ - reference: https://linux.die.net/man/5/proc
 
-/proc/interrupts <br>
+```
+# cat /proc/interrupts
+```
 This is used to record the number of interrupts per CPU per IO device. Since Linux 2.6.24, for the i386 and x86_64 architectures, at least, this also includes interrupts internal to the system (that is, not associated with a device as such), such as NMI (nonmaskable interrupt), LOC (local timer interrupt), and for SMP systems, TLB (TLB flush interrupt), RES (rescheduling interrupt), CAL (remote function call interrupt), and possibly others. Very easy to read formatting, done in ASCII.
 
 ```
@@ -629,7 +630,7 @@ $ lspci | grep -i Ethernet
 $ lspci -s 02:01 -v
 ```
 
-### Interrupt Handlers
+### Interrupt handlers
 
 
 Interrupt handlers are the responsibility of the driver managing the hardware.
@@ -933,12 +934,13 @@ request_irq(unsigned int irq, irq_handler_t handler, unsigned long flags,
 {
 	return request_threaded_irq(irq, handler, NULL, flags, name, dev);
 }
-
 ```
+
+`void *dev` can be used to share or pass data with the interrupt handle. 
 
 ### Return value of interrupt handlers
 
-Interrupt handlers return an irqreturn_t value.
+Interrupt handlers return an `irqreturn_t` value.
 
  - `IRQ_NONE`            interrupt was not from this device or was not handled
  - `IRQ_HANDLED`         interrupt was handled by this device
@@ -947,6 +949,8 @@ Interrupt handlers return an irqreturn_t value.
 
 The third parameter of `request_irq`, `flags can be either a zero or a bit mask 
 of one or more flags defined in <linux/interrupt.>
+
+- reference: https://elixir.bootlin.com/linux/v6.5.8/source/include/linux/interrupt.h#L40
 
 ```
 /*
@@ -997,17 +1001,108 @@ of one or more flags defined in <linux/interrupt.>
 #define IRQF_NO_DEBUG		0x00100000
 ```
 
-`IRQF_SHARED` informs the kernel that the interrupt can be shared with other devices.
+ - `IRQF_SHARED` informs the kernel that the interrupt can be shared with other devices.
 
 If this flag is not set, then if there is already a handler associated with the requested interrupt, 
 the request for interrupt will fail. 
 
-`request_irq` return `-EBUSY` which means that the interrupt was already requested by another device driver. 
+`request_irq` return `-EBUSY` which means that the interrupt was already requested by another device driver withou `IRQF_SHARED`. 
 
 On success it returns 0. 
 
+ - `IRQF_NOBALANCING` Flag to exclude this interrupt from irq balancing. The purpouse of IRQ balancing is to distribute hardware interrupts across processors on a
+   multiprocessor system in order to increase performance. Setting this flag forbids to set any CPU affinity for the requested interrupt handler. 
+
+### Example of a module that checks all the interrupts that are not being shared
+
+```
+#include <linux/interrupt.h>
+#include <linux/kernel.h>
+#include <linux/module.h>
+
+#define MAX_IRQS 256
+
+static int irqs[MAX_IRQS];
+int dev = 1;
+
+static irqreturn_t handler(int irq, void *dev)
+{
+	//pr_info("irq:%d\n", irq); /*commented because this will be bothersome if a interrupt is continuosly being triggered */
+	return IRQ_NONE;            /* we return IRQ_NONE because we are just observing */
+}
+
+static int myinit(void)
+{
+	int ret, i;irqreturn_t
+
+	for (i = 0; i < MAX_IRQS; ++i) {
+		ret = request_irq(
+			i,
+			handler,
+			IRQF_SHARED,
+			"myirqhandler0",
+			&dev
+		);
+		irqs[i] = ret;
+		if (ret == -EBUSY)
+			pr_err("request_irq failed irq = %d ret = %d\n", i, ret);
+	}
+	return 0;
+}
+
+static void myexit(void)
+{
+	int i;
+
+	for (i = 0; i < MAX_IRQS; ++i) {
+		if (!irqs[i]) {
+			free_irq(i, &dev);
+		}
+	}
+}
+
+module_init(myinit)
+module_exit(myexit)
+MODULE_LICENSE("GPL");
+```
+
+### /proc/irq
+
+Starting with the 2.4 kernel, Linux has gained the ability to assign certain IRQs to specific processors (or groups of processors). This is known as **SMP IRQ affinity**.
+
+The interrupt affinity value for a particular IRQ number is stored in the associated `/proc/irq/IRQ_NUMBER/smp_affinity` file, which can be viewed and modified by the root user. 
+
+The value stored in this file is a hexadecimal bit-mask representing all CPU cores in the system
+`/proc/irq/irq_number/smp_affinity_list` contains cpu list
+
+Example: 
+
+```
+$ cat /proc/irq/1/smp_affinity
+
+00000000,00000000,00000000,00000038
+```
+like: 
+```
+0x38 = 0011 1000 . couting from the left, zero indexed, that points to CPUs 3, 4 and 5. 
+```
+
+This mean keyboard interrupt can occur in CPU 3, 4, 5
 
 
+Setting this value to 1, as follows, means that only CPU 0 can service this interrupt:
+
+```
+# echo 1 >/proc/irq/1/smp_affinity # 1 will point to cpu zero: 0001 
+# cat /proc/irq/1/smp_affinity
+1 
+```
+
+Commas can be used to delimit smp_affinity values for discrete 32-bit groups. This is required on systems with more than 32 cores. 
+
+`/proc/irq/default_smp_affinity` specifies default affinity mask that applies to all non-active IRQs.
+
+Once IRQ is allocated/activated its affinity bitmask will be set to the default mask
 
 
 
