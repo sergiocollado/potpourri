@@ -150,6 +150,30 @@ For example, GMail, in the current interface, has support for it. You can apply 
 more references: <br>
 - https://kernelnewbies.org/FAQ/HowToApplyAPatch
 
+### To send a patch with gmail
+
+```
+$ git config --global sendemail.smtpserver smtp.gmail.com
+$ git config --global sendemail.smtpserverport 587
+$ git config --global sendemail.smtpencryption tls
+$ git config --global sendemail.smtpuser your_email@gmail.com
+```
+
+references: 
+- https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-send-email.html
+- https://stackoverflow.com/questions/68238912/how-to-configure-and-use-git-send-email-to-work-with-gmail-to-email-patches-to
+- https://gist.github.com/jasonkarns/4354421
+- https://stackoverflow.com/questions/68238912/how-to-configure-and-use-git-send-email-to-work-with-gmail-to-email-patches-to/68238913#68238913
+- https://gist.github.com/winksaville/dd69a860d0d05298d1945ceff048ce46
+- https://git-scm.com/docs/git-send-email#_use_gmail_as_the_smtp_server
+- https://stackoverflow.com/questions/28038662/how-to-solve-unable-to-initialize-smtp-properly-when-using-using-git-send-ema
+- https://morefedora.blogspot.com/2009/02/configuring-git-send-email-to-use-gmail.html
+- https://mudongliang.github.io/2018/03/20/setting-up-git-send-email-with-gmail-to-send-linux-kernel-patch.html
+- https://mudongliang.github.io/2018/03/20/one-simple-patch-to-linux-kernel.html
+- https://medium.com/@akram009.ma/using-git-send-email-with-gmail-7a2c036ee3cb
+- https://blog.bisect.de/2012/01/how-to-send-patches-via-git-send-email.html
+
+
 
 ### Codes of conduct
 
