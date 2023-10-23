@@ -189,6 +189,37 @@ vim 0001-fix-one-dead-link-in-ia64-xen.txt.patch
 git send-email --subject-prefix="PATCH v2"  --smtp-server /usr/bin/msmtp --to corbet@lwn.net --to yamada.masahiro@socionext.com --to slyfox@gentoo.org --to tony.luck@intel.com --to bjorn.forsman@gmail.com --to mudongliangabcd@gmail.com -cc linux-doc@vger.kernel.org -cc linux-kernel@vger.kernel.org 0001-fix-one-dead-link-in-ia64-xen.txt.patch
 
 ```
+```
+sergio@laptop:~/repos/my-rust-4-linux$ git format-patch -1
+0001-Kunit-to-check-the-longest-symbol-length.patch
+
+
+sergio@laptop:~/repos/my-rust-4-linux$ ./scripts/checkpatch.pl 0001-Kunit-to-check-the-longest-symbol-length.patch 
+Traceback (most recent call last):
+  File "/home/sergio/repos/my-rust-4-linux/scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+WARNING: added, moved or deleted file(s), does MAINTAINERS need updating?
+#53: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 141 lines checked
+
+NOTE: For some of the reported defects, checkpatch may be able to
+      mechanically convert to the typical style using --fix or --fix-inplace.
+
+0001-Kunit-to-check-the-longest-symbol-length.patch has style problems, please review.
+
+NOTE: If any of the errors are false positives, please report
+      them to the maintainer, see CHECKPATCH in MAINTAINERS.
+
+
+sergio@laptop:~/repos/my-rust-4-linux$ ./scripts/get_maintainer.pl lib/kunit
+Brendan Higgins <brendan.higgins@linux.dev> (maintainer:KERNEL UNIT TESTING FRAMEWORK (KUnit))
+David Gow <davidgow@google.com> (maintainer:KERNEL UNIT TESTING FRAMEWORK (KUnit))
+linux-kselftest@vger.kernel.org (open list:KERNEL UNIT TESTING FRAMEWORK (KUnit))
+kunit-dev@googlegroups.com (open list:KERNEL 
+```
 
 
 ### Codes of conduct
