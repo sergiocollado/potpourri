@@ -152,13 +152,6 @@ more references: <br>
 
 ### To send a patch with gmail
 
-```
-$ git config --global sendemail.smtpserver smtp.gmail.com
-$ git config --global sendemail.smtpserverport 587
-$ git config --global sendemail.smtpencryption tls
-$ git config --global sendemail.smtpuser your_email@gmail.com
-```
-
 references: 
 - https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-send-email.html
 - https://stackoverflow.com/questions/68238912/how-to-configure-and-use-git-send-email-to-work-with-gmail-to-email-patches-to
@@ -173,6 +166,29 @@ references:
 - https://medium.com/@akram009.ma/using-git-send-email-with-gmail-7a2c036ee3cb
 - https://blog.bisect.de/2012/01/how-to-send-patches-via-git-send-email.html
 
+
+```
+$ git config --global sendemail.smtpserver smtp.gmail.com
+$ git config --global sendemail.smtpserverport 587
+$ git config --global sendemail.smtpencryption tls
+$ git config --global sendemail.smtpuser your_email@gmail.com
+```
+
+```
+# generate the patch
+git format-patch -1
+vim 0001-fix-one-dead-link-in-ia64-xen.txt.patch
+
+# check the patch
+./scripts/checkpatch.pl 0001-fix-one-dead-link-in-ia64-xen.txt.patch
+
+# get manteiner list
+./scripts/get_maintainer.pl Documentation/ia64/ -f
+
+# send patch
+git send-email --subject-prefix="PATCH v2"  --smtp-server /usr/bin/msmtp --to corbet@lwn.net --to yamada.masahiro@socionext.com --to slyfox@gentoo.org --to tony.luck@intel.com --to bjorn.forsman@gmail.com --to mudongliangabcd@gmail.com -cc linux-doc@vger.kernel.org -cc linux-kernel@vger.kernel.org 0001-fix-one-dead-link-in-ia64-xen.txt.patch
+
+```
 
 
 ### Codes of conduct
