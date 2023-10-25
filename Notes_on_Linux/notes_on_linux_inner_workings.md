@@ -156,6 +156,7 @@ references:
 - https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-send-email.html
 - https://stackoverflow.com/questions/68238912/how-to-configure-and-use-git-send-email-to-work-with-gmail-to-email-patches-to
 - https://gist.github.com/jasonkarns/4354421
+- https://support.google.com/accounts/answer/185833?hl=en
 - https://stackoverflow.com/questions/68238912/how-to-configure-and-use-git-send-email-to-work-with-gmail-to-email-patches-to/68238913#68238913
 - https://gist.github.com/winksaville/dd69a860d0d05298d1945ceff048ce46
 - https://git-scm.com/docs/git-send-email#_use_gmail_as_the_smtp_server
