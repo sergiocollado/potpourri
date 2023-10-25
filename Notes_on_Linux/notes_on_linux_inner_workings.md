@@ -159,6 +159,7 @@ references:
 - https://stackoverflow.com/questions/68238912/how-to-configure-and-use-git-send-email-to-work-with-gmail-to-email-patches-to/68238913#68238913
 - https://gist.github.com/winksaville/dd69a860d0d05298d1945ceff048ce46
 - https://git-scm.com/docs/git-send-email#_use_gmail_as_the_smtp_server
+- https://www.freedesktop.org/wiki/Software/PulseAudio/HowToUseGitSendEmail/
 - https://stackoverflow.com/questions/28038662/how-to-solve-unable-to-initialize-smtp-properly-when-using-using-git-send-ema
 - https://morefedora.blogspot.com/2009/02/configuring-git-send-email-to-use-gmail.html
 - https://mudongliang.github.io/2018/03/20/setting-up-git-send-email-with-gmail-to-send-linux-kernel-patch.html
@@ -188,6 +189,7 @@ vim 0001-fix-one-dead-link-in-ia64-xen.txt.patch
 # send patch
 git send-email --subject-prefix="PATCH v2"  --smtp-server /usr/bin/msmtp --to corbet@lwn.net --to yamada.masahiro@socionext.com --to slyfox@gentoo.org --to tony.luck@intel.com --to bjorn.forsman@gmail.com --to mudongliangabcd@gmail.com -cc linux-doc@vger.kernel.org -cc linux-kernel@vger.kernel.org 0001-fix-one-dead-link-in-ia64-xen.txt.patch
 
+git send-email --to xx@mail.com 0001-your.patch
 ```
 ```
 sergio@laptop:~/repos/my-rust-4-linux$ git format-patch -1
