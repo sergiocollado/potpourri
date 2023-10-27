@@ -784,43 +784,23 @@ las regresiones:
  * De `2011-05-06 (1/3)
    <https://lore.kernel.org/all/BANLkTim9YvResB+PwRp7QTK-a5VNg2PvmQ@mail.gmail.com/>`_::
 
-       Binary compatibility is more important.
-
        La compatibilidad de los binarios es más importante. 
-
-       And if binaries don't use the interface to parse the format (or just
-       parse it wrongly - see the fairly recent example of adding uuid's to
-       /proc/self/mountinfo), then it's a regression.
 
        Y si los binarios no usan el interfaz para parsear el formato
        (o justamente lo parsea incorrectamente - como el reciente ejemplo
        de añadir uuid al /proc/self/mountinfo), entonces es una regresión.
 
-       And regressions get reverted, unless there are security issues or
-       similar that makes us go "Oh Gods, we really have to break things".
-
        Y las regresiones se revierten, a menos que haya problemas de 
        seguridad o similares que nos hagan decir "Dios mío, realmente
        tenemos que romper las cosas". 
-
-       I don't understand why this simple logic is so hard for some kernel
-       developers to understand. Reality matters. Your personal wishes matter
-       NOT AT ALL.
 
        No entiendo porqué esta simple lógica es tan difícil para algunos
        desarrolladores del kernel. La realidad importa. Sus deseos personales
        NO IMPORTAN NADA. 
 
-       If you made an interface that can be used without parsing the
-       interface description, then we're stuck with the interface. Theory
-       simply doesn't matter.
-
        Si se crea un interface que puede usarse sin parsear la 
        descripción del interface, entonces estaḿos atascados en el interface.
        La teoría simplemente no importa. 
-
-       You could help fix the tools, and try to avoid the compatibility
-       issues that way. There aren't that many of them.
 
        Podrias alludar a arreglar las herramientas, e intentar evitar los
        errores de compatibilidad de ese modo. No hay tampoco tantos de esos. 
@@ -828,29 +808,18 @@ las regresiones:
    De `2011-05-06 (2/3)
    <https://lore.kernel.org/all/BANLkTi=KVXjKR82sqsz4gwjr+E0vtqCmvA@mail.gmail.com/>`_::
 
-       it's clearly NOT an internal tracepoint. By definition. It's being
-       used by powertop.
-
        Esto claramente NO es un tracepoint interno. Por definición. Y está
        siendo usado por powertop.
 
    De `2011-05-06 (3/3)
    <https://lore.kernel.org/all/BANLkTinazaXRdGovYL7rRVp+j6HbJ7pzhg@mail.gmail.com/>`_::
 
-       We have programs that use that ABI and thus it's a regression if they break.
-
        Tenemos programas que usan esa ABI y si eso se rompe eso es una regresión.
 
  * De `2012-07-06 <https://lore.kernel.org/all/CA+55aFwnLJ+0sjx92EGREGTWOx84wwKaraSzpTNJwPVV8edw8g@mail.gmail.com/>`_::
 
-       > Now this got me wondering if Debian _unstable_ actually qualifies as a
-       > standard distro userspace.
-
        > Ahora esto me ha dejado preguntandome si Debian _inestable_ realmente califica
        > como espacio de usuario estándar.
-
-       Oh, if the kernel breaks some standard user space, that counts. Tons
-       of people run Debian unstable
 
        Oh, si el kernel rompe algún espacio de usuario estándar, eso cuenta. 
        Muchísima gente usa Debian inestable.
@@ -858,20 +827,10 @@ las regresiones:
  * De `2019-09-15
    <https://lore.kernel.org/lkml/CAHk-=wiP4K8DRJWsCo=20hn_6054xBamGKF2kPgUzpB5aMaofA@mail.gmail.com/>`_::
 
-       One _particularly_ last-minute revert is the top-most commit (ignoring
-       the version change itself) done just before the release, and while
-       it's very annoying, it's perhaps also instructive.
-
-       Una reversión _particular_ en el último minuto es el el último commit
-       (no teniendo en cuenta el el propio cambio de versión) justo antes
+       Una reversión _en particular_ en el último minuto en el último commit
+       (no teniendo en cuenta el propio cambio de versión) justo antes
        de la liberación, y aunque es bastante incómodo, quizás también es 
        instructivo. 
-
-       What's instructive about it is that I reverted a commit that wasn't
-       actually buggy. In fact, it was doing exactly what it set out to do,
-       and did it very well. In fact it did it _so_ well that the much
-       improved IO patterns it caused then ended up revealing a user-visible
-       regression due to a real bug in a completely unrelated area.
 
        Lo que es instructivo sobre esto es que he revertido un commit que no
        tenía ningún error. De hecho, hacía exactamente lo que pretendía, y lo
@@ -879,14 +838,6 @@ las regresiones:
        patrones de IO que causaba han acabado revelando una regresión observable
        desde el espacio de usuario, debido a un error real en un componente
        no relacionado en absoluto. 
-
-       The actual details of that regression are not the reason I point that
-       revert out as instructive, though. It's more that it's an instructive
-       example of what counts as a regression, and what the whole "no
-       regressions" kernel rule means. The reverted commit didn't change any
-       API's, and it didn't introduce any new bugs. But it ended up exposing
-       another problem, and as such caused a kernel upgrade to fail for a
-       user. So it got reverted.
 
        De todas maneras, los detalles actuales de esta regresión no son la
        razón por la que señalo esto como instructivo. Es más que es un ejemplo
@@ -897,30 +848,12 @@ las regresiones:
        actualización del kernel fallara para el usuario. Así que ha sido 
        revertido.
 
-       The point here being that we revert based on user-reported _behavior_,
-       not based on some "it changes the ABI" or "it caused a bug" concept.
-       The problem was really pre-existing, and it just didn't happen to
-       trigger before. The better IO patterns introduced by the change just
-       happened to expose an old bug, and people had grown to depend on the
-       previously benign behavior of that old issue.
-
-       El foco aquí es que hemos hecho la reversión basándonos en el 
-       coMportamiento reportado en el espacio de usuario, no basado en 
+       El foco aquí, es que hemos hecho la reversión basándonos en el 
+       comportamiento reportado en el espacio de usuario, no basado en 
        conceptos como "cambios de ABI" o "provocaba un error". Los mejores
        patrones de IO que se han presentado debido al cambio únicamente han
        expuesto un viejo error, y la gente ya dependía del benigno comportamiento
        de ese viejo error.
-
-       And never fear, we'll re-introduce the fix that improved on the IO
-       patterns once we've decided just how to handle the fact that we had a
-       bad interaction with an interface that people had then just happened
-       to rely on incidental behavior for before. It's just that we'll have
-       to hash through how to do that (there are no less than three different
-       patches by three different developers being discussed, and there might
-       be more coming...). In the meantime, I reverted the thing that exposed
-       the problem to users for this release, even if I hope it will be
-       re-introduced (perhaps even backported as a stable patch) once we have
-       consensus about the issue it exposed.
 
        Y que no haya miedo, reintroduciremos el arreglo que mejoraba los
        patrones de IO una vez hayamos decidido cómo gestionar el hecho de
@@ -934,19 +867,10 @@ las regresiones:
        a posteriormente como un parche estable) una vez lleguemos a una acuerdo
        sobre cómo se ha de exponer el error. 
 
-       Take-away from the whole thing: it's not about whether you change the
-       kernel-userspace ABI, or fix a bug, or about whether the old code
-       "should never have worked in the first place". It's about whether
-       something breaks existing users' workflow.
-
        Lo que hay que recordar de todo el asunto no es sobre si el cambio 
        de kernel-espacio-de-usuario ABI, o la corrección de un error, o si el 
        código antiguo "en primer lugar nunca debería haber estado ahí". Es 
        sobre si algo rompe el actual flujo de trabajo del usuario.
-
-       Anyway, that was my little aside on the whole regression thing.  Since
-       it's that "first rule of kernel programming", I felt it is perhaps
-       worth just bringing it up every once in a while
 
        De todas formas, esto era mi pequeña aclaración en todo este 
        tema de la regresión. Ya que es la "primera regla de la programación
