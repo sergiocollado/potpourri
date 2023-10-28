@@ -2089,7 +2089,9 @@ reference: a guided tour to the preempt castle: https://linutronix.de/videos/202
 
 ## Linux for Real time
 
-for linux is possible to use extensions or patches for real-time
+- reference: An introduction to real-time Linux : https://youtu.be/-wAo6bWh4jM
+
+For linux is possible to use extensions or patches for real-time
 
 Linux uses to run under a fair scheduling system
 - CFS completely fair schedule
