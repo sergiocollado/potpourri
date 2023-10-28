@@ -22,7 +22,7 @@ Las partes importantes
     
     * Mande o redirija cualquier informe originado en los gestores de bugs a la lista. 
 
-#. Hacer que el bot del kernel de Linux "regzbot" realice seguimento del incidente
+#. Hacer que el bot del kernel de Linux "regzbot" realice el seguimento del incidente
    (esto es opcional, pero recomendado).
    
     * Para reportes enviados por correo, verificar si contiene alguna línea como  
@@ -82,7 +82,7 @@ iniciar el seguimiento de la regresión con "regzbot" el gestor de regresiones d
 
    Esto indica a regzbot el rango de versiones en el cual es defecto comenzó a suceder;
    Puede especificar un rango usando los identificadores de los commits así como
-   un único commit, en caso en el que el informate haya identificado el commit causante con 'bisect'.
+   un único commit, en caso en el que el informante haya identificado el commit causante con 'bisect'.
    
    Tenga en cuenta que el acento circunflejo (^) antes de "introduced": Esto indica a 
    regzbot, que debe tratar el email padre (el que ha sido respondido) como el informe
@@ -178,12 +178,6 @@ unas reglas generales, en orden de importancia:
    más importante, asegurar que todas las mejoras y correcciones son idealmente
    testeados juntos por al menos una semana antes de que Linux libere la
    nueva versión en la rama principal. 
-
- * Fix regressions within two or three days, if they are critical for some
-   reason -- for example, if the issue is likely to affect many users of the
-   kernel series in question on all or certain architectures. Note, this
-   includes mainline, as issues like compile errors otherwise might prevent many
-   testers or continuous integration systems from testing the series.
 
  * Intentar arreglar regresiones en un intervalo de una semana después de que
    se ha identificado el responsable, si el incidente fue introducido en 
