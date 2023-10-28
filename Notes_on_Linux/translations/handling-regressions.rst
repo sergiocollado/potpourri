@@ -6,7 +6,7 @@ Gestionando regresiones
 
 *No causamos regresiones* -- este documento describe la que es la "primera regla
 del desarrollo del kernel de Linux" y qué implica en la práctica para los desarrolladores. 
-Y complementa la documentación Documentation/admin-guide/reporting-regressions.rst,
+Y complementa la documentación: Documentation/admin-guide/reporting-regressions.rst,
 que cubre el tema desde el punto de vista de un usuario; si nunca ha leído ese texto, 
 realice al menos una lectura rápida del mismo antes de continuar. 
 
@@ -17,12 +17,12 @@ Las partes importantes
     (regressions@lists.linux.dev) son conocedores con rapidez de cualquier
     nuevo informe de regresión:
     
-    * Cuando se reciba un correo que no incluyó a la lista, incluyalo en la
+    * Cuando se reciba un correo que no incluyó a la lista, inclúyalo en la
     conversación de los correos, mandando un breve "Reply-all" con la lista en CC. 
     
     * Mande o redirija cualquier informe originado en los gestores de bugs a la lista. 
 
-#. Hacer que el bot del kernel de Linux "regzbot" realize seguimento del incidente
+#. Hacer que el bot del kernel de Linux "regzbot" realice seguimento del incidente
    (esto es opcional, pero recomendado).
    
     * Para reportes enviados por correo, verificar si contiene alguna línea como  
@@ -64,7 +64,7 @@ subscritos a la lista de correo `regression mailing list <https://lore.kernel.or
  * Cuando se recibe un informe por email que no tienen en CC la lista, inmediatamente
    meterla en el la cadena de emails mandado al menos un breve "Reply-all" con la lista en CC;
    Intentar asegurar que la lista es añadida en CC de nuevo en caso de que alguna
-   repuesta la omita de la lista. 
+   respuesta la omita de la lista. 
    
  * Si un informe enviado a un gestor de defectos, llega a su correo, reenvíelo o 
    redirijalo a la lista. Considere verificar los archivos de la lista de antemano, si 
@@ -75,19 +75,19 @@ Cuando se realice cualquiera de las acciones anteriores, considerar inmediatamen
 iniciar el seguimiento de la regresión con "regzbot" el gestor de regresiones del kernel de Linux.
 
  * Para los informes enviados por email, verificar si se ha incluido un comando a "regzbot", como
-   ``#regzbot introduced 1f2e3d4c5b6a``. Si no es asi, envie una respuesta (con la lista
-   de regressiones en CC) con un parrafo como el siguiente:: 
+   ``#regzbot introduced 1f2e3d4c5b6a``. Si no es así, envíe una respuesta (con la lista
+   de regresiones en CC) con un párrafo como el siguiente:: 
 
        #regzbot ^introduced: v5.13..v5.14-rc1
 
    Esto indica a regzbot el rango de versiones en el cual es defecto comenzó a suceder;
    Puede especificar un rango usando los identificadores de los commits así como
-   un único commit, en caso el informate haya identificado el commit causante con 'bisect'.
+   un único commit, en caso en el que el informate haya identificado el commit causante con 'bisect'.
    
    Tenga en cuenta que el acento circunflejo (^) antes de "introduced": Esto indica a 
    regzbot, que debe tratar el email padre (el que ha sido respondido) como el informe
    inicial para la regresión que quiere ser seguida. Esto es importante, ya que regzbot
-   buscará más tarde parches con etiquetas "Link:" que apunten al al informe ne los
+   buscará más tarde parches con etiquetas "Link:" que apunten al al informe de los
    archivos de lore.kernel.org. 
     
  * Cuando mande informes de regresiones a un gestor de defectos, incluya un 
@@ -150,9 +150,9 @@ Cómo se ejecuta esto depende mucho de la situación. A continuación se present
 unas reglas generales, en orden de importancia:
 
  * Priorizar el trabajo en la gestión de los informes de la regresión y 
-   arreglar la regressión por encima de cualquier otro trabajo en el kernel
+   arreglar la regresión por encima de cualquier otro trabajo en el kernel
    de Linux, a menos que lo último afecte profundamente a efectos de 
-   seguridad, o cause errorer en los que haya pérdida o daño de datos. 
+   seguridad, o cause errores en los que haya pérdida o daño de datos. 
 
  * Considerar siempre revertir los commits responsables y re-aplicarlos después,
    junto con las correcciones necesarias, ya que esto puede la forma
@@ -160,7 +160,7 @@ unas reglas generales, en orden de importancia:
 
  * Los desarrolladores deberían gestionar la regresión en todos los kernels
    soportados de la serie, pero son libres de delegar el trabajo al equipo 
-   permanente el incidente no hubiese ocurrido en la linea principal. 
+   permanente el incidente no hubiese ocurrido en la línea principal. 
 
  * Intentar resolver cualquier regresión que apareciera en el ciclo de
    desarrollo antes de que este acabe. Si se teme que una corrección pudiera
@@ -214,7 +214,7 @@ unas reglas generales, en orden de importancia:
 
 Nota: Los intervalos de tiempo mencionados anteriormente para la resolución 
 de las regresiones, incluyen la verificación de esta, revisión e inclusión 
-en la rama principal, idealmente con la correción incluida en la rama 
+en la rama principal, idealmente con la corrección incluida en la rama 
 "linux-next" al menos brevemente. Esto conllevará retrasos que también se tienen
 tener en cuenta. 
 
@@ -259,11 +259,11 @@ esta cubre otros aspectos a tener a encuenta y conocer:
  
  * la finalidad de la "regla de no regresión"
  
- * que incidencias no se califican como regresión
+ * qué incidencias no se califican como regresión
  
  * quién es el responsable de identificar la causa raíz de una regresión
  
- * como gestionar situaciones difíciles, como por ejemplo cuando una 
+ * cómo gestionar situaciones difíciles, como por ejemplo cuando una 
    regresión es causada por una corrección de seguridad o cuando una 
    regresión causa otra
 
@@ -278,7 +278,7 @@ Si el incidente pudiera ser mejor gestionarlo en privado, puede omitirse la list
 Más sobre la gestión de regresiones con regzbot
 -----------------------------------------------
 
-¿Porqué el kernel de Linux tiene un gestor de regresiones, y porqué se usa regzbot?
+¿Por qué el kernel de Linux tiene un gestor de regresiones, y por qué se usa regzbot?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Reglas como "no regresiones" necesitan asegurar que se cumplen, de otro modo
@@ -298,7 +298,7 @@ que estuviese involucrado.
 ¿Cómo funciona el seguimiento de regresiones con regzbot?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-El bot monitoriza a las respuestas de los informes de las regresiones identificadas.
+El bot monitoriza las respuestas de los informes de las regresiones identificadas.
 Adicionalmente mira si se han publicado o enviado parches que hagan referencia a
 esos informes con la etiqueta: "Link:"; respuestas a esos parches también se 
 siguen. Combinando esta información, también proporciona una buena imagen del 
@@ -344,7 +344,7 @@ para ver la última información; o `busque el último informe de regresiones
 el cual suele ser enviado por regzbot una vez a la semana el domingo por la noche (UTC),
 lo cual es unas horas antes de que Linus normalmente anuncie las "(pre-)releases".
 
-¿Qué sítios supervisa regzbot?
+¿Qué sitios supervisa regzbot?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Regzbot supervisa las listas de correo más importantes de Linux, como también
@@ -441,28 +441,6 @@ be handled:
 Debajo se encuentran unos ejemplos reales de como Linus Torvalds espera que se gestionen
 las regresiones:
 
- * From `2017-10-26 (1/2)
-   <https://lore.kernel.org/lkml/CA+55aFwiiQYJ+YoLKCXjN_beDVfu38mg=Ggg5LFOcqHE8Qi7Zw@mail.gmail.com/>`_::
-
-       If you break existing user space setups THAT IS A REGRESSION.
-
-       It's not ok to say "but we'll fix the user space setup".
-
-       Really. NOT OK.
-
-       [...]
-
-       The first rule is:
-
-        - we don't cause regressions
-
-       and the corollary is that when regressions *do* occur, we admit to
-       them and fix them, instead of blaming user space.
-
-       The fact that you have apparently been denying the regression now for
-       three weeks means that I will revert, and I will stop pulling apparmor
-       requests until the people involved understand how kernel development
-       is done.
 
  * De 2017-10-26 (1/2)
    <https://lore.kernel.org/lkml/CA+55aFwiiQYJ+YoLKCXjN_beDVfu38mg=Ggg5LFOcqHE8Qi7Zw@mail.gmail.com/>`_::
@@ -488,71 +466,6 @@ las regresiones:
      el desarrollo del kernel. 
 
 
- * From `2017-10-26 (2/2)
-   <https://lore.kernel.org/lkml/CA+55aFxW7NMAMvYhkvz1UPbUTUJewRt6Yb51QAx5RtrWOwjebg@mail.gmail.com/>`_::
-
-       People should basically always feel like they can update their kernel
-       and simply not have to worry about it.
-
-       I refuse to introduce "you can only update the kernel if you also
-       update that other program" kind of limitations. If the kernel used to
-       work for you, the rule is that it continues to work for you.
-
-       There have been exceptions, but they are few and far between, and they
-       generally have some major and fundamental reasons for having happened,
-       that were basically entirely unavoidable, and people _tried_hard_ to
-       avoid them. Maybe we can't practically support the hardware any more
-       after it is decades old and nobody uses it with modern kernels any
-       more. Maybe there's a serious security issue with how we did things,
-       and people actually depended on that fundamentally broken model. Maybe
-       there was some fundamental other breakage that just _had_ to have a
-       flag day for very core and fundamental reasons.
-
-       And notice that this is very much about *breaking* peoples environments.
-
-       Behavioral changes happen, and maybe we don't even support some
-       feature any more. There's a number of fields in /proc/<pid>/stat that
-       are printed out as zeroes, simply because they don't even *exist* in
-       the kernel any more, or because showing them was a mistake (typically
-       an information leak). But the numbers got replaced by zeroes, so that
-       the code that used to parse the fields still works. The user might not
-       see everything they used to see, and so behavior is clearly different,
-       but things still _work_, even if they might no longer show sensitive
-       (or no longer relevant) information.
-
-       But if something actually breaks, then the change must get fixed or
-       reverted. And it gets fixed in the *kernel*. Not by saying "well, fix
-       your user space then". It was a kernel change that exposed the
-       problem, it needs to be the kernel that corrects for it, because we
-       have a "upgrade in place" model. We don't have a "upgrade with new
-       user space".
-
-       And I seriously will refuse to take code from people who do not
-       understand and honor this very simple rule.
-
-       This rule is also not going to change.
-
-       And yes, I realize that the kernel is "special" in this respect. I'm
-       proud of it.
-
-       I have seen, and can point to, lots of projects that go "We need to
-       break that use case in order to make progress" or "you relied on
-       undocumented behavior, it sucks to be you" or "there's a better way to
-       do what you want to do, and you have to change to that new better
-       way", and I simply don't think that's acceptable outside of very early
-       alpha releases that have experimental users that know what they signed
-       up for. The kernel hasn't been in that situation for the last two
-       decades.
-
-       We do API breakage _inside_ the kernel all the time. We will fix
-       internal problems by saying "you now need to do XYZ", but then it's
-       about internal kernel API's, and the people who do that then also
-       obviously have to fix up all the in-kernel users of that API. Nobody
-       can say "I now broke the API you used, and now _you_ need to fix it
-       up". Whoever broke something gets to fix it too.
-
-       And we simply do not break user space.
-
  * De `2017-10-26 (2/2)
    <https://lore.kernel.org/lkml/CA+55aFxW7NMAMvYhkvz1UPbUTUJewRt6Yb51QAx5RtrWOwjebg@mail.gmail.com/>`_::
 
@@ -574,32 +487,15 @@ las regresiones:
 
        Y nótese que esto trata sobre *romper* los entornos de la gente.
 
-       Behavioral changes happen, and maybe we don't even support some
-       feature any more. There's a number of fields in /proc/<pid>/stat that
-       are printed out as zeroes, simply because they don't even *exist* in
-       the kernel any more, or because showing them was a mistake (typically
-       an information leak). But the numbers got replaced by zeroes, so that
-       the code that used to parse the fields still works. The user might not
-       see everything they used to see, and so behavior is clearly different,
-       but things still _work_, even if they might no longer show sensitive
-       (or no longer relevant) information.
-
        Cambios de comportamiento pasan, y quizás no se mantengan algunas
        funcionalidades más. Hay un número de campos en /proc/<pid>/stat que
        se imprimen como ceros, simplemente porque ni siquiera existen ya en 
        kernel, o porque mostrarlos era un error (típica una fuga de 
-       información). Pero los números se sustituyeron por ceros, asi que
-       el código que se usaba para parsar esos campos todavia existe. El 
+       información). Pero los números se sustituyeron por ceros, así que
+       el código que se usaba para parsear esos campos todavía existe. El 
        usuario puede no ver todo lo que podía ver antes, y por eso el comportamiento
        es claramente diferente, pero las cosas todavía _funcionan_, incluso si
        no se puede mostrar información sensible (o que no es ya importante).
-
-       But if something actually breaks, then the change must get fixed or
-       reverted. And it gets fixed in the *kernel*. Not by saying "well, fix
-       your user space then". It was a kernel change that exposed the
-       problem, it needs to be the kernel that corrects for it, because we
-       have a "upgrade in place" model. We don't have a "upgrade with new
-       user space".
 
        Pero si algo realmente se rompe, entonces el cambio debe de arreglarse
        o revertirse. Y se arregla en el *kernel*. No diciendo "bueno, arreglaremos
@@ -683,7 +579,7 @@ las regresiones:
    <https://lore.kernel.org/all/CA+55aFzUvbGjD8nQ-+3oiMBx14c_6zOj2n7KLN3UsJ-qsd4Dcw@mail.gmail.com/>`_::
 
        Y nuestra regla sobre las regresiones nunca ha sido "el comportamiento
-       no cambia". Eso podria significar que nunca podríamos hacer ningún
+       no cambia". Eso podría significar que nunca podríamos hacer ningún
        cambio.
 
        Por ejemplo, hacemos cosas como añadir una nueva gestión de 
@@ -691,7 +587,7 @@ las regresiones:
        tests en el directorio de kselftest.
 
        Así que claramente cambia el comportamiento todo el tiempo y 
-       nosotros no consideramos eso una regressión per se.
+       nosotros no consideramos eso una regresión per se.
 
        La regla para regresiones para el kernel es para cuando se
        rompe algo en el espacio de usuario. No en algún test. No en
@@ -717,7 +613,7 @@ las regresiones:
 
        Chicos, si algo estaba roto o no, NO IMPORTA.
 
-       Porqué?
+       ¿Porqué?
 
        Los errores pasan. Eso es un hecho de la vida. Discutir que
        "tenemos que romper algo porque estábamos arreglando un error" es
@@ -729,15 +625,13 @@ las regresiones:
        suceden y se detectan, se arreglan, y no tienen nada que ver con 
        "rompemos a los usuarios".
 
-       Because the only thing that matters IS THE USER.
-
        Porque la única cosa que importa ES EL USUARIO.
 
        ¿Cómo de complicado es eso de comprender?
 
        Cualquier persona que use "pero no funcionaba correctamente" es
        un argumento no tiene la razón. Con respecto al USUARIO, no era
-       erroneo - funcionaba para él/ella. 
+       erróneo - funcionaba para él/ella. 
 
        Quizás funcionaba *porque* el usuario había tenido el bug en cuenta, 
        y quizás funcionaba porque el usuario no lo había notado - de nuevo
@@ -890,5 +784,3 @@ las regresiones:
    is available under CC-BY-4.0, as versions of this text that were processed
    (for example by the kernel's build system) might contain content taken from
    files which use a more restrictive license.
-
-
