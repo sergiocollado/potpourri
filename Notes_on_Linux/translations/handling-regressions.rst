@@ -1,11 +1,11 @@
 .. SPDX-License-Identifier: (GPL-2.0+ OR CC-BY-4.0)
 .. See the bottom of this file for additional redistribution information.
 
-Gestionando regresiones
-+++++++++++++++++++++++
+Gestion de regresiones
+++++++++++++++++++++++
 
 *No causamos regresiones* -- este documento describe la que es la "primera regla
-del desarrollo del kernel de Linux" y qué implica en la práctica para los desarrolladores. 
+del desarrollo del kernel de Linux" y que implica en la práctica para los desarrolladores. 
 Y complementa la documentación: Documentation/admin-guide/reporting-regressions.rst,
 que cubre el tema desde el punto de vista de un usuario; si nunca ha leído ese texto, 
 realice al menos una lectura rápida del mismo antes de continuar. 
