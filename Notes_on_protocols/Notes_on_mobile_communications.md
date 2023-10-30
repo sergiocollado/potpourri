@@ -59,6 +59,7 @@ references:
 - https://www.techtarget.com/searchnetworking/feature/An-overview-of-3GPP-5G-releases-and-what-each-one-means#:~:text=3GPP%20meets%20four%20times%20a,user%20needs%20evolve%20over%20time.
 - https://en.wikipedia.org/wiki/5G
 - https://mobilepacketcore.com/5g-introduction/
+- https://www.sharetechnote.com/html/5G/Handbook_5G_Index.html
 
 - simple 5g architecture video: https://www.youtube.com/watch?v=Q6YxHz_07zk
 
@@ -87,7 +88,14 @@ There are new use case not presetn in previous mobile generations:
 - mMTC: Massive Machine Type Communications: used to connect massive number of device, for example for IoT. Provides connection for 1000000 devices per km^2, compared to 100000 in 4G. 
 - URLLC: Ultra-Reliable and Low Latency Communications: Latency coud be 1 ms, instead of 10 ms in 4G. This could be usefull for self-driving cars, drone controls ... 
 
+## 5g timeline
 
+5g related 3gpp releases:
+- Rel-19
+- Rel-18
+- Rel-17
+- Rel-17
+- Rel-15
 
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
 
@@ -108,9 +116,8 @@ From the RAN (Radio Access Network) point of view, there are:
  - 5G Core
  
  
- 
  | Connectivity Options | Core Network | Master RAT | Secondary RAT | 3GPP term | 3GPP release |
- |   :----:  |   :----:  |   :----:  |   :----:  |   :----:  |    :----:  | 
+ | : -- : |  : -- : |  : -- : |  : -- : |  : -- : |  : -- : | 
  | Option 1 | EPC | LTE | - | LTE | Rel. 8|
  | Option 3 | EPC | LTE | NR | EN-DC | Rel. 15, Dec 2017|
  | Option 2 | 5G  | NR | - | NR | Rel. 15, June 2018|
@@ -118,8 +125,6 @@ From the RAN (Radio Access Network) point of view, there are:
  | Option 5 | 5G  | eLTE | - | eLTE | Rel. 15, June 2018|
  | Option 7 | 5G  | eLTE | NR | NGEN-DC | Rel. 15, March 2019|
 
- 
- 
  
  references: 
  - https://www.gsma.com/futurenetworks/wp-content/uploads/2018/04/Road-to-5G-Introduction-and-Migration_FINAL.pdf
@@ -158,6 +163,86 @@ From the RAN (Radio Access Network) point of view, there are:
  references:
   - https://www.gsma.com/futurenetworks/wiki/5g-implementation-guidelines/
   - https://www.gsma.com/futurenetworks/wp-content/uploads/2019/03/5G-Implementation-Guidelines-NSA-Option-3-v2.1.pdf
+ 
+
+## 5G Core enabling technologies 
+
+The 5G core relies on the following technologies:
+
+- Virtualization:
+- Cloud Native
+- Containers
+- Microservices
+- Automation and orchestration
+
+### Virtualization
+
+Traditionally mobile core applications relied on propietary custom HW. In this HW the OEMs deployed their custom applications.
+That dedicated HW equiptment was optimized for a given speed and performance and had a fixed capacity. Capacity incrase often
+required HW update or add additional resources (CPU, storage, memory...). That model is not cost effective nowadays. 
+
+Virtualization allows running applications on virtual machines, which run on COTS hw. This enables decoupling of the
+application and HW and therefore offers great flexibility at a lower cost. 
+
+
+### Cloud Native
+
+Cloud native architectures have gained a lot of attention as operators try to follow the same architecture principles as hyperscallers like Google, Amazon ...
+
+Cloud native is not a single concept but instead is a set of principles. Some of these: 
+
+- Infraestructure agnostic - apps don't depend on HW and resources. 
+- Software decomposition and Life Cycle Management - apps run in smaller and manageable pieces unlike a monolithic application. 
+- Resilience - due the distributed nature of applications impact on local maintenance of faults is isolated to local instances and doesn't affect overall functionality. 
+- Orchestration and Automation - Apps can be managed using orchestrators like Kubernetes or OpenStak. Turn-up/down, scaling and mainteinance (upgrade, logging ...) is automated. 
+
+### Containers 
+
+Containers are independent hosts for applications that use a single, stripped-down version of an operating system to run. 
+
+Virtual machines are a full version of an operating system. Containers run a virtualized workload, processed by an application 
+broken up into microservicies, making them more ligthweight and flexible than VM. 
+
+vm can run a full, unaltered aplication orchestated by an hypervisor. 
+
+Both scale up and down quickly an easily. 
+
+### Microservices
+
+Microservices refers to the architectural and organizational approach to software development where applicantion is composed of smaller 
+independent services that interact with each other over well defined APIs. 
+
+Form the basis for service based architecture (SBA).
+
+Several benefits: 
+- Components have limited scope  and therefore changes can be made quickly and efficently. 
+- Instances can be added, removed on demand adding ease scalability.
+- Independent software upgrades
+- Ease of debugging due to limited scope of components. 
+
+#### Automation
+
+5G needs to support rapid scaling up/down and life cycle management of network applications (turn up/down, upgrade, logging etc)
+
+Automation technologies for orchestration can help achieve these goals. 
+
+So far SON (Self-Optimized-networks) capabilities have been leveraged on the RAN side. For example - automatic neighbor relations
+
+Operators 
+
+## 5G core architecture
+
+There are two ways of virtualizing the architecture: 
+ - serviced base architecture view
+ - point to point interface based architecture
+ 
+ 
+ ### SBA (Serviced Base Architecture)
+ 
+ - reference: https://www.3gpp.org/technologies/5g-system-overview
+ 
+ TODO: make the drawing
+ 
  
 
 ## Network functions
@@ -206,7 +291,7 @@ The functional descriptions of these Network Functions and entities are specifie
 
 
 | 5G \ 4G |  MME  |  S-GW  |  P-GW  |  HSS  |  PCRF  |  AF   |  New  |  Name |
-|  :---     |  :----: |   :----:  |   :----:   |   :----:  |  :----:   |  :----: |   :----:  |   :----:   |
+| :---    | :---| |  :---: | :---:  | :---: | :---:  | :---: | :---: | :---  |
 |  AMF    |   X   |        |        |       |        |       |       |  Access and Movility Management Function     |
 |  SMF    |   X   |        |   X    |       |        |       |       |  Session Management Function     |
 |  UPF    |       |    X   |   X    |       |        |       |       |  User Plane Function     |
@@ -282,3 +367,57 @@ references:
 - https://www.youtube.com/watch?v=eFn1REiUisk
 - https://www.youtube.com/watch?v=Q6YxHz_07zk&t=4s
 
+AMF interacts with NG-RAN over the N2 interface.
+
+AMF interacts with the UE (user equipment) over N1 interface for authentication, registration and handovers. Also responsible for paging of idle mode UEs.
+
+AMF interacts with SMF (Session Management Function) with the N11 interface
+
+One UE is connected to one AMF at a time. 
+
+AMF relays all session management-reltaed signals between the SMF (session management function) and UE. 
+
+Relays all SMS messages between UE and SMSF (SMS function)
+
+Relay for Location service messages between UE and LMF (Location Management Function)
+
+Unlike 4G UEs in 5G have specific interface between UE and AMF, known as N1. 
+
+Relay for messages between UE and PCF (Policy Control Function).
+
+Includes security functionality for authentication, authorization of UE (in cooperation with AUSF (Authentication User Server Function) and UDM (Unified Data Management)).
+
+Responsible for deriving keys for integrity and ciphering - RRC and User plane.
+
+In many ways is similar to the 4G MME (Mobility Management Entity).
+
+AMF Interfaces with MME in 4G for context transfer when interworking with EPC is deployed, by means of the interface N26. 
+
+### AMF registration state
+
+
+
+
+
+## Going further
+
+The 5G system is described in over a thousand 3GPP Technical Reports (TRs) and Technical Specifications (TSs).
+
+To help you find more information, e.g. on the dynamic behaviour of 5GS (procedures, etc) or on some specific aspect of 5G, some key TRs and TSs are listed here:
+
+[TS 22.261](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3107), "Service requirements for the 5G system".
+[TS 23.501](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144), "System architecture for the 5G System (5GS)"
+[TS 23.502](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3145) "Procedures for the 5G System (5GS)
+[TS 32.240](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=1896) “Charging management; Charging architecture and principles".
+[TS 24.501](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3370) "Non-Access-Stratum (NAS) protocol for 5G System (5GS); Stage 3"
+[TS 38.300](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3191) "NR; NR and NG-RAN Overall description; Stage-2"
+Referenced Specifications:
+[TS 22.278](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=641), "Service requirements for the Evolved Packet System (EPS)".
+[TS 22.011](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=566), "Service accessibility".
+[TS 22.101](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=605), "Service aspects; Service principles".
+[TS 22.185](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=605), "Service requirements for V2X services".
+[TS 22.071](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=584), "Location Services (LCS); Service description".
+[TS 22.115](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=608), "Service aspects; Charging and billing".
+[TS 22.153](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=617), "Multimedia priority service".
+[TS 22.173](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=620), "IP Multimedia Core Network Subsystem (IMS) Multimedia Telephony Service and supplementary services".
+[TS 22.186](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3180), "Service requirements for enhanced V2X scenarios".
