@@ -2510,6 +2510,7 @@ serveral types of keys:
 
 - https://kernsec.org/wiki/index.php/Kernel_Self_Protection_Project
 - https://kernsec.org/wiki/index.php/Projects
+- https://redhatgov.io/workshops/selinux_policy/
 
 ## Brief overview of the memory
 
