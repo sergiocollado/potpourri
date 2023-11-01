@@ -13,11 +13,23 @@
 - reference: https://elixir.bootlin.com/linux/v6.5.7/source/include/linux/interrupt.h
 - reference: https://elixir.bootlin.com/linux/v6.5.7/source/arch/x86/kernel/irq.c
 - reference: https://linux.die.net/HOWTO/KernelAnalysis-HOWTO.html#toc1
+- reference: https://docs.kernel.org/core-api/irq/index.html
 
 
 ### What is an interrupt?
 
+- reference: https://docs.kernel.org/core-api/irq/concepts.html
+
 An interrupt is an input signal to the processor, sent by the hardware peripherals when they need processor attention. 
+
+An IRQ is an interrupt request from a device. Currently they can come in over a pin, or over a packet. Several devices may be connected to the same pin thus sharing an IRQ.
+
+An IRQ number is a kernel identifier used to talk about a hardware interrupt source. Typically this is an index into the global irq_desc array, but except for what linux/interrupt.h implements the details are architecture specific.
+
+An IRQ number is an enumeration of the possible interrupt sources on a machine. Typically what is enumerated is the number of input pins on all of the interrupt controller in the system. In the case of ISA what is enumerated are the 16 input pins on the two i8259 interrupt controllers.
+
+Architectures can assign additional meaning to the IRQ numbers, and are encouraged to in the case where there is any manual configuration of the hardware involved. The ISA IRQs are a classic example of assigning this kind of additional meaning.
+
 
 ### What is the purpose of the interrupts?
 
@@ -1068,6 +1080,8 @@ MODULE_LICENSE("GPL");
 
 ### SMP IRQ affinity & /proc/irq
 
+reference: https://docs.kernel.org/core-api/irq/irq-affinity.html
+
 Starting with the 2.4 kernel, Linux has gained the ability to assign certain IRQs to specific processors (or groups of processors). This is known as **SMP IRQ affinity**.
 
 The interrupt affinity value for a particular IRQ number is stored in the associated `/proc/irq/IRQ_NUMBER/smp_affinity` file, which can be viewed and modified by the root user. 
@@ -1174,12 +1188,12 @@ On x86 the `local_irq_disable()` is a simple `cli` and `local_irq_enable()` is a
 
 ### Why do we need to disable interrupts?
 
-Disabling interrupts, you can guarantee that an interrupt handler will not preempt your current code.
+Disabling interrupts, you can guarantee that an **interrupt handler will not preempt your current code**.
 
-Disabling interrupts also disables kernel preemption.
+Disabling interrupts also **disables kernel preemption**.
 
-Note: Disabling kernel preemption does not provide protection from concurrent access from another processor.
-Use locks to prevent another processor from accessing shared data simultaneously.
+**Note**: Disabling kernel preemption does not provide protection from concurrent access from another processor.
+In this case use **locks** to prevent another processor from accessing shared data simultaneously.
 
 ```
 #include <linux/module.h>
@@ -1205,4 +1219,64 @@ MODULE_LICENSE("GPL");
 module_init(my_init);
 module_exit(my_exit);
 ```
+
+### Saving interrupt state before disabling interrupts
+
+`local_irq_disable()` routine is dangerous if some of interrupts were already disabled prior to its invocation.
+
+The corresponding call to `local_irq_enable()` unconditionally enables interrupts, despite the fact that they were off to begin with.
+
+`local_irq_save(flags)`; saves the interrupt state on flags and disables interrupt on that processor.
+
+`local_irq_restore(flags)`; restores the previous interrupt state and enables interrupt on that processor. 
+
+```
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/delay.h>
+#include <linux/irqflags.h>
+
+static int __init my_init(void)
+{
+	unsigned long flags;
+	pr_info("module is loaded on processor:%d\n", smp_processor_id());
+	local_irq_save(flags);
+	pr_info("flags:%02lx\n", flags);
+	mdelay(1000L);
+	local_irq_restore(flags);
+	return 0;
+}
+
+static void __exit my_exit(void)
+{
+}
+
+MODULE_LICENSE("GPL");
+module_init(my_init);
+module_exit(my_exit);
+```
+
+### Disabling a specific interrupt line
+
+Disabling a specific interrupt line is also known as "masking out an interrupt line" .
+
+Example: you might want to disable delivery of a device’s interrupts before manipulating its state.
+
+```
+void disable_irq(unsigned int irq); //Disables a given interrupt line in interrupt controller.
+			            // this disables delivery of the given interrupt to all processors in system
+
+void enable_irq(unsigned int irq);
+```
+
+Note: `disable_irq` does not return until any executing handler completes. <br>
+	callers are assured that
+		a) new interrupts will not be delivered on the given line,
+		b) any already executing handlers have exited
+
+
+
+
+
+
 
