@@ -2187,6 +2187,7 @@ The reason, is that the pointer can already be freed, in that case dereferencing
 
 - reference: https://lwn.net/Articles/262464/
 - reference: https://www.kernel.org/doc/html/latest/RCU/whatisRCU.html
+- reference: https://docs.kernel.org/RCU/Design/Requirements/Requirements.html#a-tour-through-rcu-s-requirements
 - reference: CS 134 OS—22: RCU—Intro: https://youtu.be/--f3V-JLHt0
 - reference: CS 134 OS—22: RCU—Implementation: https://youtu.be/5964Io_BoL0
 - reference: what is RCU 2013 Paul McKenny at IISc: https://youtu.be/obDzjElRj9c?list=PLIlI4QbmdBqH9-L1QOq6O5Yxt-YVjRsFZ
