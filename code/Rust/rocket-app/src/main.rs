@@ -2,9 +2,12 @@
 
 use rocket::serde::json::{Value, json};
 use rocket::response::status;
+use rocket::request::{FromRequest, Request, Outcome};
+use rocket::http::Status;
 
 // https://en.wikipedia.org/wiki/Basic_access_authentication
-struct BasicAuth {
+// to test it: curl localhost:8000/rustaceans -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
+pub struct BasicAuth {
     pub username: String,
     pub password: String,
 }
@@ -24,7 +27,7 @@ impl BasicAuth {
 
     fn from_base64_encoded(base64_string: &str) -> Option<BasicAuth> {
         let decoded = base64::decode(base64_string).ok()?;
-        let decoded_str = String::from_utf(decoded).ok()?;
+        let decoded_str = String::from_utf8(decoded).ok()?;
         let split = decoded_str.split(":").collect::<Vec<_>>();
 
         // if exactrly the usrename & password pari are present:
@@ -41,8 +44,24 @@ impl BasicAuth {
     }
 }
 
+#[rocket::async_trait]
+impl<'r> FromRequest<'r> for BasicAuth {
+    type Error = ();
+
+    async fn from_request(request: &'r Request<'_>) -> Outcome<Self, Self::Error> {
+        let auth_header = request.headers().get_one("Authorization");
+        if let Some(auth_header) = auth_header {
+            if let Some(auth) = Self::from_authorization_header(auth_header) {
+                return Outcome::Success(auth)
+            }
+        }
+
+        Outcome::Failure((Status::Unauthorized, ())) // 401
+    }
+}
+
 #[get("/rustaceans")]
-fn get_rustaceans() -> Value {
+fn get_rustaceans(_auth: BasicAuth) -> Value {
     json!([{ "id": 1, "name": "John Smith" } , { "id": 2, "name" : "John Smith again"}])
 }
 
@@ -71,6 +90,11 @@ fn not_found() -> Value {
     json!("Not found!")
 }
 
+#[catch(401)]
+fn unauthorized() -> Value {
+    json!("Invalid/Missing authorization")
+}
+
 #[rocket::main]
 async fn main() {
     let _ = rocket::build()
@@ -82,7 +106,8 @@ async fn main() {
             delete_rustacean
         ])
         .register("/", catchers![
-            not_found
+            not_found,
+            unauthorized
         ])
         .launch()
         .await;
