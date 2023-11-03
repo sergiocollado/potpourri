@@ -1439,13 +1439,15 @@ Interesting github repos:
 - https://github.com/donnemartin/system-design-primer
 - https://github.com/jwasham/coding-interview-university
 - https://github.com/danistefanovic/build-your-own-x !!!
-- https://github.com/rear relax and recovery - linux disaster recover solution 
+- https://github.com/rear relax and recovery - linux disaster recover solution
+- https://dev.to/kumarkalyan/top-5-github-repositories-to-achieve-system-design-mastery-27n4
 
 Other interesting github repos:
 
  - https://github.com/jarrocha/psockets
  - https://github.com/jarrocha/xwbserver
  - https://github.com/alfonsosanchezbeato/car-distance-finder
+ - https://dev.to/kumarkalyan/top-5-github-repositories-to-achieve-system-design-mastery-27n4
 
 Nice:
  - https://wizardzines.com/comics/ 
@@ -1460,4 +1462,5 @@ Distributed systems:
 computer science
  - http://www.cs.cmu.edu/afs/cs/academic/class/15213-f17/www/schedule.html
  - https://github.com/Sorosliu1029/CSAPP-Labs
+ - https://dev.to/kumarkalyan/top-5-github-repositories-to-achieve-system-design-mastery-27n4
 
