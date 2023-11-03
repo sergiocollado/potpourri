@@ -1,11 +1,13 @@
-reference: https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e <br>
-reference: https://gist.github.com/ncmiller/d61348b27cb17debd2a6c20966409e86  <br>
-reference: https://mudongliang.github.io/2017/09/12/how-to-build-a-custom-linux-kernel-for-qemu.html <br>
-reference: http://blog.vmsplice.net/2011/02/near-instant-kernel-development-cycle.html <br>
-reference: https://mgalgs.io/2015/05/16/how-to-build-a-custom-linux-kernel-for-qemu-2015-edition.html <br>
-reference: https://youtu.be/LyWlpuntdU4 <br>
-reference: https://youtu.be/asnXWOUKhTA <br>
-reference: https://youtu.be/c4j6z2huJxs <br>
+reference:
+-  https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e 
+-  https://gist.github.com/ncmiller/d61348b27cb17debd2a6c20966409e86  
+-  https://mudongliang.github.io/2017/09/12/how-to-build-a-custom-linux-kernel-for-qemu.html 
+-  http://blog.vmsplice.net/2011/02/near-instant-kernel-development-cycle.html 
+-  https://mgalgs.io/2015/05/16/how-to-build-a-custom-linux-kernel-for-qemu-2015-edition.html 
+-  https://youtu.be/LyWlpuntdU4
+-  https://youtu.be/asnXWOUKhTA 
+-  https://youtu.be/c4j6z2huJxs 
+-  Build a embedded linux using buildroot: https://youtu.be/ysoi0bn66oM
 
 ## Common
 
