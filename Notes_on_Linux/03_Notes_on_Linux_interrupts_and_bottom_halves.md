@@ -3,17 +3,19 @@
 
 ## Interrupts 
 
-- reference: MUST READ LDD3: https://static.lwn.net/images/pdf/LDD3/ch10.pdf
-- reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html
-- reference: https://en.wikipedia.org/wiki/Interrupt_vector_table
-- reference: https://en.wikipedia.org/wiki/Interrupt_handler
-- reference: https://tldp.org/HOWTO/Plug-and-Play-HOWTO-7.html
-- reference: https://people.freebsd.org/~jhb/papers/bsdcan/2007/article/article.html
-- reference: https://en.wikipedia.org/wiki/Advanced_Programmable_Interrupt_Controller
-- reference: https://elixir.bootlin.com/linux/v6.5.7/source/include/linux/interrupt.h
-- reference: https://elixir.bootlin.com/linux/v6.5.7/source/arch/x86/kernel/irq.c
-- reference: https://linux.die.net/HOWTO/KernelAnalysis-HOWTO.html#toc1
-- reference: https://docs.kernel.org/core-api/irq/index.html
+references:
+- MUST READ LDD3: https://static.lwn.net/images/pdf/LDD3/ch10.pdf
+- https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html
+- https://en.wikipedia.org/wiki/Interrupt_vector_table
+- https://en.wikipedia.org/wiki/Interrupt_handler
+- https://tldp.org/HOWTO/Plug-and-Play-HOWTO-7.html
+- https://people.freebsd.org/~jhb/papers/bsdcan/2007/article/article.html
+- https://en.wikipedia.org/wiki/Advanced_Programmable_Interrupt_Controller
+- https://elixir.bootlin.com/linux/v6.5.7/source/include/linux/interrupt.h
+- https://elixir.bootlin.com/linux/v6.5.7/source/arch/x86/kernel/irq.c
+- https://linux.die.net/HOWTO/KernelAnalysis-HOWTO.html#toc1
+- https://docs.kernel.org/core-api/irq/index.html
+- IRQs: the Hard, the Soft, the Threaded and the Preemptible : https://youtu.be/-pehAzaP1eg
 
 
 ### What is an interrupt?
