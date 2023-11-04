@@ -2201,6 +2201,14 @@ The reason, is that the pointer can already be freed, in that case dereferencing
 - reference: So What Has RCU Done Lately?: https://youtu.be/9rNVyyPjoC4
 - reference: Changes in RCU over the past few years - Paul E. McKenney: https://youtu.be/JLhDW7yjp60
 
+About memory barriers reference:
+ - http://gauss.ececs.uc.edu/Courses/c4029/videos/15Feb16_4029.ogv
+ - http://gauss.ececs.uc.edu/Courses/c4029/videos/17Feb16_4029.ogv
+ - https://www.kernel.org/doc/Documentation/memory-barriers.txt
+ - https://elinux.org/images/a/ab/Bueso.pdf
+ - https://mirrors.edge.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfbook-1c.2023.06.11a.pdf
+ - Memory Barriers: a Hardware View for Software Hackers. https://www.puppetmastertrading.com/images/hwViewForSwHackers.pdf
+
 The RCU was added in version 2.5. 
 
 RCU supports concurrency between single updater(producer) and multiple readers (consumers). Often used to update, 
