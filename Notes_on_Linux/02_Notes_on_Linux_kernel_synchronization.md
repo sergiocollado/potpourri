@@ -1,15 +1,16 @@
 # Notes on Linux kernel synchronization
 
-reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/ <br>  
-reference: EEC3-4029 Operating Systems: http://gauss.ececs.uc.edu/Courses/c4029/videos.html <br>
-reference: linux-kernel-labs: https://linux-kernel-labs.github.io/refs/heads/master/index.html <br>
-reference: https://lwn.net/Kernel/Index/#Locking_mechanisms <br>
-reference: https://github.com/shemminger/kernel-examples  -Locking and concurrency in Linux kernel examples <br>
-reference: https://github.com/PacktPublishing/Linux-Kernel-Programming/blob/master/Linux-Kernel-Programming-(Part-2)/Linux%20Kernel%20Programming%20Part%202%20-%20Char%20Device%20Drivers%20and%20Kernel%20Synchronization_eBook.pdf  <br>
-reference: Linux kernel memory model: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0124r6.html <br>
-reference: https://www.cs.bham.ac.uk/~exr/lectures/systems/08_09/docs/kernelAPI/ <br>
-reference: linux kernel API cheatsheet: https://www.cs.bham.ac.uk/~exr/lectures/systems/08_09/docs/kernelAPI/ <br>
-reference: https://embetronicx.com/linux-device-driver-tutorials/ <br>
+references:
+- https://0xax.gitbooks.io/linux-insides/content/SyncPrim/
+- EEC3-4029 Operating Systems: http://gauss.ececs.uc.edu/Courses/c4029/videos.html 
+- linux-kernel-labs: https://linux-kernel-labs.github.io/refs/heads/master/index.html 
+- https://lwn.net/Kernel/Index/#Locking_mechanisms <br>
+- https://github.com/shemminger/kernel-examples  -Locking and concurrency in Linux kernel examples 
+- https://github.com/PacktPublishing/Linux-Kernel-Programming/blob/master/Linux-Kernel-Programming-(Part-2)/Linux%20Kernel%20Programming%20Part%202%20-%20Char%20Device%20Drivers%20and%20Kernel%20Synchronization_eBook.pdf  
+- Linux kernel memory model: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0124r6.html 
+- https://www.cs.bham.ac.uk/~exr/lectures/systems/08_09/docs/kernelAPI/ 
+- linux kernel API cheatsheet: https://www.cs.bham.ac.uk/~exr/lectures/systems/08_09/docs/kernelAPI/ 
+- https://embetronicx.com/linux-device-driver-tutorials/ 
 
 
 ## CONCURRENCY
