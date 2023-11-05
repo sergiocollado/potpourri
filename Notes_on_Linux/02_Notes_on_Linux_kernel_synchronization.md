@@ -939,15 +939,16 @@ If you do not require atomicity (say, for example, because a lock already protec
 
 ## SPINLOCKS
 
-reference: https://0xax.gitbooks.io/linux-insides/content/SyncPrim/linux-sync-1.html <br>
-reference: http://gauss.ececs.uc.edu/Courses/c4029/videos/05Feb16_4029.ogv <br>
-reference: https://www.kernel.org/doc/html/latest/locking/locktypes.html <br>
-reference: https://www.kernel.org/doc/html/latest/locking/spinlocks.html#lesson-1-spin-locks <br>
-reference: https://docs.kernel.org/locking/spinlocks.html#lesson-1-spin-locks <br>
-reference: https://lwn.net/Kernel/Index/#Spinlocks <br>
-reference: https://embetronicx.com/tutorials/linux/device-drivers/spinlock-in-linux-kernel-1/ <br>
+references:
+ - https://0xax.gitbooks.io/linux-insides/content/SyncPrim/linux-sync-1.html <br>
+ - http://gauss.ececs.uc.edu/Courses/c4029/videos/05Feb16_4029.ogv <br>
+ - https://www.kernel.org/doc/html/latest/locking/locktypes.html <br>
+ - https://www.kernel.org/doc/html/latest/locking/spinlocks.html#lesson-1-spin-locks <br>
+ - https://docs.kernel.org/locking/spinlocks.html#lesson-1-spin-locks <br>
+ - https://lwn.net/Kernel/Index/#Spinlocks <br>
+ - https://embetronicx.com/tutorials/linux/device-drivers/spinlock-in-linux-kernel-1/ <br>
 
-The problem wit atomic operations, its that they can only work with CPU work and double work size. Atomics cannot work with shared data structures of custom size. 
+The problem wit atomic operations, is that they can only work with CPU words and double words size. Atomics cannot work with shared data structures of custom size. 
 
 In real life, critical regions can be mode that one line. And these code paths should execute atomically to avoid race conditions. To ensure atomicity of suche code blocks, **locks** are used. 
 
