@@ -5,9 +5,14 @@ mod auth;
 use auth::BasicAuth;
 use rocket::serde::json::{Value, json};
 use rocket::response::status;
+use rocket_sync_db_pools::database;
+
+// to use a sqlite database we need to install diesel_cli
+#[database("sqlite")]
+struct DbConn(diesel::SqliteConnection);
 
 #[get("/rustaceans")]
-fn get_rustaceans(_auth: BasicAuth) -> Value {
+fn get_rustaceans(_auth: BasicAuth, _db: DbConn) -> Value {
     json!([{ "id": 1, "name": "John Smith" } , { "id": 2, "name" : "John Smith again"}])
 }
 
@@ -55,6 +60,7 @@ async fn main() {
             not_found,
             unauthorized
         ])
+        .attach(DbConn::fairing())
         .launch()
         .await;
 }
