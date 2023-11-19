@@ -182,6 +182,9 @@ $ git config --global sendemail.smtpuser your_email@gmail.com
 git format-patch -1 --base=auto
 vim 0001-fix-one-dead-link-in-ia64-xen.txt.patch
 
+# to generate a given version of the patch
+git foormat-patch -1 --base=auto -subject-prefix="PATCH v2"
+
 # check the patch
 ./scripts/checkpatch.pl 0001-fix-one-dead-link-in-ia64-xen.txt.patch
 
@@ -189,7 +192,7 @@ vim 0001-fix-one-dead-link-in-ia64-xen.txt.patch
 ./scripts/get_maintainer.pl Documentation/ia64/ -f
 
 # send patch
-git send-email --subject-prefix="PATCH v2"  --smtp-server /usr/bin/msmtp --to corbet@lwn.net --to yamada.masahiro@socionext.com --to slyfox@gentoo.org --to tony.luck@intel.com --to bjorn.forsman@gmail.com --to mudongliangabcd@gmail.com -cc linux-doc@vger.kernel.org -cc linux-kernel@vger.kernel.org 0001-fix-one-dead-link-in-ia64-xen.txt.patch
+git send-email  --smtp-server /usr/bin/msmtp --to corbet@lwn.net --to yamada.masahiro@socionext.com --to slyfox@gentoo.org --to tony.luck@intel.com --to bjorn.forsman@gmail.com --to mudongliangabcd@gmail.com -cc linux-doc@vger.kernel.org -cc linux-kernel@vger.kernel.org 0001-fix-one-dead-link-in-ia64-xen.txt.patch
 
 git send-email --to xx@mail.com 0001-your.patch
 ```
