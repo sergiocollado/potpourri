@@ -153,6 +153,7 @@ more references: <br>
 ### To send a patch with gmail
 
 references: 
+- https://flusp.ime.usp.br/git/sending-patches-by-email-with-git/
 - https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-send-email.html
 - https://stackoverflow.com/questions/68238912/how-to-configure-and-use-git-send-email-to-work-with-gmail-to-email-patches-to
 - https://gist.github.com/jasonkarns/4354421
