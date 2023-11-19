@@ -178,7 +178,7 @@ $ git config --global sendemail.smtpuser your_email@gmail.com
 
 ```
 # generate the patch
-git format-patch -1
+git format-patch -1 --base=auto
 vim 0001-fix-one-dead-link-in-ia64-xen.txt.patch
 
 # check the patch
