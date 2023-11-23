@@ -454,6 +454,8 @@ electronic signatures standard: ETSI TS 102 042
 - https://morningstar.es/es/
 - https://goldprice.org/gold-price-history.html
 - https://www.justetf.com/en/
+- international country risk guide: https://www.prsgroup.com/explore-our-products/icrg/
+- 
 
 
 ## INDUSTRIAL manufacturers
