@@ -4,6 +4,7 @@ These are my personal notes, on the AWS Cloud. The aim of this document,is to cl
 of writting them down, and have a resource where quickly find answers to my doubts, based on my experience. 
 
  - reference: https://docs.aws.amazon.com/
+ - freecodecamp: https://www.freecodecamp.org/news/free-107-hour-aws-cloud-project-bootcamp/
  - how to create a billing alarm: https://asf.alaska.edu/how-to/data-recipes/create-a-billing-alarm/
  - Short Introductory videos: https://aws.amazon.com/es/training/intro_series/
  - hands-on labs: https://aws.amazon.com/getting-started/hands-on/
