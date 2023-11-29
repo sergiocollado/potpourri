@@ -34,10 +34,13 @@ number is build in the integrity+authentification mechanism.
 
 ### SSL/TLS main components
 
-- Client: initiates the SSL/TLS handshake
-- Server: receives the SSL/TLS handshake
-- Certificate Authority (CA)
+- Client: initiates the SSL/TLS handshake. The client is only optionally authenticated with a certificate, it is not mandatory and the client authentification with certificates is done rarely.
+- Server: receives the SSL/TLS handshake. The server is always authenticated with a certificate. 
+- Certificate Authority (CA): CA is the entity that issues certificates, and it is trusted by the client and the server. If the client trust the CA, and the CA provides a certificate to the server, then the client trust the server. Five organization certificate most of the internet: IdentTrust (owns Let's Encrypt), DigiCert, Sectigo (Comodo), GoDaddy, GlobalSign
 
+For having server and client both authenticated with a certificate, mutual TLS or mTLS is used.
+
+reference: https://w3techs.com/technologies/overview/ssl_certificate
 
 
 
