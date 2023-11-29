@@ -19,3 +19,8 @@ Both terms are diferent versions of the same protocol. Actually there are differ
 
 TLS RFC: https://datatracker.ietf.org/doc/html/rfc8446
 
+### How SSL/TLS protects the communications?
+
+- Confidenciality: Data is only accessible to the legit parties, it should be ineligible to not legit parties. (Encryption)
+- Integrity: Data cannot be modified between legites parties. It doesn't protect tampering with the data or data modification, but provideds mechanisms of detection in case the comunications has been tampered with. (Hashing)
+- Authentication: The legit parties identities are validated. (PKI - Public Key Infratestructure)
