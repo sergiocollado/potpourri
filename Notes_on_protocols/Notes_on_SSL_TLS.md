@@ -50,10 +50,15 @@ Everyone uses TLS, but is common to refere to it to SSL.
 
 SSL v3.0 was deprecated because of the poodle attack: https://www.acunetix.com/blog/web-security-zone/what-is-poodle-attack/
 
- - SSL V.10 developed by Netscape in 1994, but never was publicy released, and was quite full of flaws
- - SSL v.20 developed by Netscape in 1995, total redesign, but was also full of flaws.
- - SSL v.30 developed by Netscape in 1996, and it was a complete redesign, and was secure. It introduced the concept of certificate chains. Use of RSA and Diffie-Hellman key exchanges protocols. RFC 6101: https://datatracker.ietf.org/doc/html/rfc6101
+ - SSL v1.0 developed by Netscape in 1994, but never was publicy released, and was quite full of flaws
+ - SSL v2.0 developed by Netscape in 1995, total redesign, but was also full of flaws.
+ - SSL v3.0 developed by Netscape in 1996, and it was a complete redesign, and was secure. It introduced the concept of certificate chains. Use of RSA and Diffie-Hellman key exchanges protocols. RFC 6101: https://datatracker.ietf.org/doc/html/rfc6101
 
+Netscape give ownership of the protocol to the IETF (Internet Engineering Task Force)
 
+ - TLS v1.0 . In 1999, introduces HMAC, and requires support for extra key exchanges. Main attack "Beast attack"
+   - TLS v.1.1 in 2006, rfc 4346
+ - TLS v2.0 . In 2008, rfc 5246, added AEAD ciphers. (Authenticated Encryption with Associated Data).
+ - TLS v3.0 . In 2018, rfc 8446 (https://datatracker.ietf.org/doc/html/rfc8446). It has big changes with respect to the previous versions. 
 
 
