@@ -42,5 +42,13 @@ For having server and client both authenticated with a certificate, mutual TLS o
 
 reference: https://w3techs.com/technologies/overview/ssl_certificate
 
+### SSL/TLS versions
+
+There are many versions of SSL/TLS. As tech and attacks have evolved the protocols have evolved also. 
+
+Everyone uses TLS, but is common to refere to it to SSL. 
+
+SSL 3.0 was deprecated because of the poodle attack: https://www.acunetix.com/blog/web-security-zone/what-is-poodle-attack/
+
 
 
