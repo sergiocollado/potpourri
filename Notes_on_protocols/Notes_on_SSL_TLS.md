@@ -24,3 +24,12 @@ TLS RFC: https://datatracker.ietf.org/doc/html/rfc8446
 - Confidenciality: Data is only accessible to the legit parties, it should be ineligible to not legit parties. (Encryption)
 - Integrity: Data cannot be modified between legites parties. It doesn't protect tampering with the data or data modification, but provideds mechanisms of detection in case the comunications has been tampered with. (Hashing)
 - Authentication: The legit parties identities are validated. (PKI - Public Key Infratestructure)
+
+Usually when these 3 properties appear, we comment on: Anti-Replay and Non-repudiation
+
+- Anty-replay: repeat a message, to maliciously try to reply the communication. This is avoided, by adding a number that indicates the message sequence. That way, anti-replay is prevented. In TLS, that sequence
+number is build in the integrity+authentification mechanism.
+
+- Non-repudiation: Repudiate is to refuse a message. Non-repudiation is a mechanism that avoids a receiver to repudiate a message. Non-repudiation is also achieved by means of integrity and authentification.
+
+- 
