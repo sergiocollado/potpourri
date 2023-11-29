@@ -1,5 +1,5 @@
 
-#Intro
+# Intro
 
 Most of the internet is based on using the protocols:
  - HTML: Hyper Text Markup Language (web sites)
@@ -32,4 +32,4 @@ number is build in the integrity+authentification mechanism.
 
 - Non-repudiation: Repudiate is to refuse a message. Non-repudiation is a mechanism that avoids a receiver to repudiate a message. Non-repudiation is also achieved by means of integrity and authentification.
 
-- 
+
