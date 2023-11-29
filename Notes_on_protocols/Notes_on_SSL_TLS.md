@@ -48,7 +48,12 @@ There are many versions of SSL/TLS. As tech and attacks have evolved the protoco
 
 Everyone uses TLS, but is common to refere to it to SSL. 
 
-SSL 3.0 was deprecated because of the poodle attack: https://www.acunetix.com/blog/web-security-zone/what-is-poodle-attack/
+SSL v3.0 was deprecated because of the poodle attack: https://www.acunetix.com/blog/web-security-zone/what-is-poodle-attack/
+
+ - SSL V.10 developed by Netscape in 1994, but never was publicy released, and was quite full of flaws
+ - SSL v.20 developed by Netscape in 1995, total redesign, but was also full of flaws.
+ - SSL v.30 developed by Netscape in 1996, and it was a complete redesign, and was secure. It introduced the concept of certificate chains. Use of RSA and Diffie-Hellman key exchanges protocols. RFC 6101: https://datatracker.ietf.org/doc/html/rfc6101
+
 
 
 
