@@ -61,4 +61,27 @@ Netscape give ownership of the protocol to the IETF (Internet Engineering Task F
  - TLS v2.0 . In 2008, rfc 5246, added AEAD ciphers. (Authenticated Encryption with Associated Data).
  - TLS v3.0 . In 2018, rfc 8446 (https://datatracker.ietf.org/doc/html/rfc8446). It has big changes with respect to the previous versions. 
 
+## Cryptography 
+
+- reference: https://crypto.stanford.edu/~dabo/courses/OnlineCrypto/
+
+### Hashing 
+
+- reference: https://en.wikipedia.org/wiki/Cryptographic_hash_function
+
+Hashing is a mathematical algorithm that takes as an input a message of arbitrary length and produces as an output (digest) a "fingerprint" of the original message. 
+
+The desired properties of hashing are: 
+- infeaseable to produce a given digest
+- imposible to extract the original message
+- slight changes on the input produce drastic differences on the output
+- the resulting digest is fixed size
+
+Collisions: A collision is when two messages have the same hash digest. Unfortunatelly those are unavoidable as a byproduct of the fixed width. 
+  
+The most common hashing algorithms are: 
+- md5 (128 bits)
+- SHA/SHA1 (160 bits)
+- SHA2 family
+  
 
