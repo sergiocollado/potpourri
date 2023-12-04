@@ -408,6 +408,7 @@ to update its capabilities or re-negotiate protocol parameters (Mobility Registr
 The Initial Registration procedure involves execution of Network Access Control functions as defined in clause 5.2 (i.e. user authentication and access authorization based on subscription profiles in UDM). As result of the Registration procedure, the identifier of the serving AMF serving the UE in the access through which the UE has registered will be registered in UDM.
 The registration management procedures are applicable over both 3GPP access and Non-3GPP access. The 3GPP and Non-3GPP RM states are independent of each other, see clause 5.3.2.4.
 
+TAU - Tracking Area Update ; TAI - Tracking Area see TS 37.340
 
 Two RM states are used in the UE and the AMF that reflect the registration status of the UE in the selected PLMN:
 RM-DEREGISTERED.
