@@ -13,6 +13,8 @@ Sometimes you want to send private information through internet (like passwords)
 
 ### What is SSL and TLS?
 
+- refernece: https://youtu.be/aCDgFH1i2B0
+
 SSL stands for Secure Socket Layer, and is the protocol that Netscape proposed in 1994. 
 
 TLS stands for Transport Layer Security, in 1999 the IETF got the maintenance of SSL, and the protocol was renamed as TLS. 
@@ -134,7 +136,7 @@ There are two types of key based encryption:
 
 - DSA
 - RSA 
-- Diffie-Hellman
+- Diffie-Hellman : https://youtu.be/NmM9HA2MQGI
 - ECDSA
 - ECDH
 
