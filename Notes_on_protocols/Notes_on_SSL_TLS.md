@@ -96,7 +96,11 @@ simply hashing a message something else must be done: Both parties must agree on
 
 This usage of digest + secret key, provides the properties of: Integrity + Authentification. 
 
-This concept of (Message + secret key), is known as **MAC: Message Authentification Code**. 
+This concept of (Message + secret key), is known as **MAC: Message Authentification Code**. The industry standard for creating a MAC is named HMAC (Hashed Based Message Authentification Code RFC 2104). 
+
+- reference: https://en.wikipedia.org/wiki/HMAC
+
+### Encryption 
 
 
 
