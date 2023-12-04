@@ -83,5 +83,26 @@ The most common hashing algorithms are:
 - md5 (128 bits)
 - SHA/SHA1 (160 bits)
 - SHA2 family
+
+### Data Integrity
+
+Hashing is used to provide data integrity.
+
+So when a message is send, is is computed by a hashing algorithm and a digest would be generated. Then, both the message and digest would be send, and the receiver
+would calculate independently the digest again, and compare it with the provided digest. 
+
+This has a weak point: the issue with this implementation, is that a man in the middle attack, would be able to recalculate a digest, from a modified messages. This proves, that 
+simply hashing a message something else must be done: Both parties must agree on a secret key, then, the sender can combine the secret key with the digest to generate a new digest. 
+
+This usage of digest + secret key, provides the properties of: Integrity + Authentification. 
+
+This concept of (Message + secret key), is known as **MAC: Message Authentification Code**. 
+
+
+
+
+
+
+
   
 
