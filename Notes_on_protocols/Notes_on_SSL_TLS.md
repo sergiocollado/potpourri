@@ -125,6 +125,7 @@ There are two types of key based encryption:
   - ideally used for limited size communications. 
 
 - reference: https://www.freecodecamp.org/news/encryption-explained-in-plain-english/
+- reference: comparition symmetric vs asymmetric encryption: https://youtu.be/o_g-M7UBqI8
 
 #### List of symmetric encryption algorithms
 
