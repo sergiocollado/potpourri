@@ -1,5 +1,7 @@
 
-# Intro
+# Notes on SSL/TLS
+
+## Fundamentals
 
 Most of the internet is based on using the protocols:
  - HTML: Hyper Text Markup Language (web sites)
@@ -101,6 +103,41 @@ This concept of (Message + secret key), is known as **MAC: Message Authentificat
 - reference: https://en.wikipedia.org/wiki/HMAC
 
 ### Encryption 
+
+Encryption is for having confidentiality, meaning only the intended receiver can interpret the messages. 
+
+Simple encryption: get an input text or message and transforms it into a ciphered text. The downside of the simple encryption, is that it doesn't scale, you cannot use the same encryption scheme with all the different message recipients, otherwise all the recipients would be able to decrypt the messages for other recipients. It would be needed a new encription algorithm for every new intended recipient, and every encription algorithm should be kept secret, and it could not be a public known algorithm. 
+
+As oposed to simple encryption, is the **key based encryption**, which uses known vetted algorithms with a secret key. As different secret keys are used for each user, the ciphered text is different for every user. 
+
+There are two types of key based encryption:
+- symmetric encryption: encrypt and decrypt using the same keys.
+  - is faster that asymmetric encryption
+  - cypher text is almost the same size as the plain original text
+  - the key for the encryption must be shared, so it is less secure that asymetric encryption.
+  - ideally used for buld big data communications
+- asymmetric encryption: encrytp and decrypt using different keys. Asymmetric encryption are based non-reversible mathematic operations. One of the keys in known as the **public key** and the other as **private key**.
+  - is slower than symmetric encryption.
+  - it has cipher expansion, so the encrypted text is larger than the original plain text.
+  - the privat key is never shared, so it is more secure than symmetric encription.
+  - ideally used for limited size communications. 
+
+- reference: https://www.freecodecamp.org/news/encryption-explained-in-plain-english/
+
+#### List of symmetric encryption algorithms
+
+- 3DES
+- AES
+- ChaCha20 
+
+#### List of asymmetric encryption algorithms
+
+- DSA
+- RSA 
+- Diffie-Hellman
+- ECDSA
+- ECDH
+
 
 
 
