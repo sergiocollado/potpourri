@@ -416,29 +416,40 @@ RM-REGISTERED.
 #### RM-DEREGISTERED state  
 
 In the RM-DEREGISTERED state, the UE is not registered with the network. The UE context in AMF holds no valid location or routing information for the UE so the UE is not reachable by the AMF. However, some parts of UE context may still be stored in the UE and the AMF e.g. to avoid running an authentication procedure during every Registration procedure.
+
 In the RM-DEREGISTERED state, the UE shall:
-attempt to register with the selected PLMN using the Initial Registration procedure if it needs to receive service that requires registration (see clause 4.2.2.2 of TS 23.502).
-remain in RM-DEREGISTERED state if receiving a Registration Reject upon Initial Registration (see clause 4.2.2.2 of TS 23.502).
-enter RM-REGISTERED state upon receiving a Registration Accept (see clause 4.2.2.2 of TS 23.502).
+
+- attempt to register with the selected PLMN using the Initial Registration procedure if it needs to receive service that requires registration (see clause 4.2.2.2 of TS 23.502).
+- remain in RM-DEREGISTERED state if receiving a Registration Reject upon Initial Registration (see clause 4.2.2.2 of TS 23.502).
+- enter RM-REGISTERED state upon receiving a Registration Accept (see clause 4.2.2.2 of TS 23.502).
+- 
 When the UE RM state in the AMF is RM-DEREGISTERED, the AMF shall:
+
  - when applicable, accept the Initial Registration of a UE by sending a Registration Accept to this UE and enter RM-REGISTERED state for the UE (see clause 4.2.2.2 of TS 23.502); or
  - when applicable, reject the Initial Registration of a UE by sending a Registration Reject to this UE (see clause 4.2.2.2 of TS 23.502).
 
 #### RM-REGISTERED state 
 
 In the RM-REGISTERED state, the UE is registered with the network. In the RM-REGISTERED state, the UE can receive services that require registration with the network.
+
 In the RM-REGISTERED state, the UE shall:
 perform Mobility Registration Update procedure if the current TAI of the serving cell (see TS 37.340) is not in the list of TAIs that the UE has received from the network in order to maintain the registration and enable the AMF to page the UE;
 
 NOTE:
 Additional considerations for Mobility Registration Update in case of NR satellite access are provided in clause 5.4.11.6.
+
 perform Periodic Registration Update procedure triggered by expiration of the periodic update timer to notify the network that the UE is still active.
+
 perform a Mobility Registration Update procedure to update its capability information or to re-negotiate protocol parameters with the network;
+
 perform Deregistration procedure (see clause 4.2.2.3.1 of TS 23.502), and enter RM-DEREGISTERED state, when the UE needs to be no longer registered with the PLMN. The UE may decide to deregister from the network at any time.
-enter RM-DEREGISTERED state when receiving a Registration Reject message or a Deregistration message. The actions of the UE depend upon the 'cause value' in the Registration Reject or Deregistration message. See clause 4.2.2 of TS 23.502.
+
+Enter RM-DEREGISTERED state when receiving a Registration Reject message or a Deregistration message. The actions of the UE depend upon the 'cause value' in the Registration Reject or Deregistration message. See clause 4.2.2 of TS 23.502.
+
 When the UE RM state in the AMF is RM-REGISTERED, the AMF shall:
-perform Deregistration procedure (see clause 4.2.2.3.2 of TS 23.502, clause 4.2.2.3.3 of TS 23.502), and enter RM-DEREGISTERED state for the UE, when the UE needs to be no longer registered with the PLMN. The network may decide to deregister the UE at any time;
-perform Implicit Deregistration at any time after the Implicit Deregistration timer expires. The AMF shall enter RM-DEREGISTERED state for the UE after Implicit Deregistration;
+
+ - perform Deregistration procedure (see clause 4.2.2.3.2 of TS 23.502, clause 4.2.2.3.3 of TS 23.502), and enter RM-DEREGISTERED state for the UE, when the UE needs to be no longer registered with the PLMN. The network may decide to deregister the UE at any time;
+ - perform Implicit Deregistration at any time after the Implicit Deregistration timer expires. The AMF shall enter RM-DEREGISTERED state for the UE after Implicit Deregistration;
 when applicable, accept or reject Registration Requests or Service Requests from the UE.
 
 
