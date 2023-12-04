@@ -138,6 +138,11 @@ There are two types of key based encryption:
 - ECDSA
 - ECDH
 
+## Public and private keys
+
+Asymmetric encrytpion uses 2 keys, public and private keys to work. 
+
+- reference: https://youtu.be/_zyKvPvh808?si=ZCCHzJVRzENrvPdb
 
 
 
