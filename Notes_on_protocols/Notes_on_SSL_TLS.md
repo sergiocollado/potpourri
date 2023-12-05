@@ -147,7 +147,24 @@ Asymmetric encrytpion uses 2 keys, public and private keys to work.
 
 - reference: https://youtu.be/_zyKvPvh808?si=ZCCHzJVRzENrvPdb
 
+### How SSL/TLS uses encryption
 
+SSL/TLS has to comply with: 
+- Confidenciality: Data is only accessible to the client and server. Encription
+- Integrity: Data is not modified between client and server. Hashing (MAC Message Authentification Code) 
+- Authentication: client/server are who they say they are. PKI.
+
+ Asymmetric encription is used for an initial key exchange, so it is possible for the client and server continue the communication with symmetric encription. 
+
+ Note: In Linux you can generate asymmetric keys with the command `ssh-keygen`.
+
+ The CA (Certificate Authority) is an entity that is trusted by the client, and the CA generates a certificate, and that certificate has a link to a given set of asymmetric key pair to an identity. And the certificate is signed by the CA, so we have authentication for the certificate itself, and can be sure it has be unmodified. So as it is authenticated and unmodified the secret keys derived form the certificate are authenticaed. 
+
+ The three actors: client, server and certificate authority are what is known as PKI: Public Key Infraestructure. 
+
+ 
+
+  
 
 
 
