@@ -160,7 +160,7 @@ SSL/TLS has to comply with:
 
  The CA (Certificate Authority) is an entity that is trusted by the client, and the CA generates a certificate, and that certificate has a link to a given set of asymmetric key pair to an identity. And the certificate is signed by the CA, so we have authentication for the certificate itself, and can be sure it has be unmodified. So as it is authenticated and unmodified the secret keys derived form the certificate are authenticaed. 
 
- The three actors: client, server and certificate authority are what is known as PKI: Public Key Infraestructure. 
+ These three actors: client, server and certificate authority are what is known as PKI: Public Key Infraestructure. 
 
  
 
