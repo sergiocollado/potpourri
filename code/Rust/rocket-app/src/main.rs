@@ -55,8 +55,12 @@ async fn get_rustaceans(_auth: BasicAuth, db: DbConn) -> Value {
 }
 
 #[get("/rustaceans/<id>")]
-fn view_rustacean(id: i32, _auth: BasicAuth) -> Value {
-    json!([{ "id": id, "name": "John Smith" }])
+async fn view_rustacean(id: i32, _auth: BasicAuth, db: DbConn) -> Value {
+    db.run(move |c| {
+        let rustacean = rustaceans::table.find(id).get_result::<Rustacean>(c).expect("DB error when selecting rustacean");
+        json!(rustacean)
+    }).await
+    // test this with: curl localhost:8000/rustaceans/1 -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
 }
 
 #[post("/rustaceans", format = "json", data = "<new_rustacean>")]
@@ -67,16 +71,35 @@ async fn create_rustacean(_auth: BasicAuth, db: DbConn, new_rustacean: Json<NewR
     }).await
     // test this with:
     // curl localhost:8000/rustaceans -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==' -d '{"name":"Foo", "email":"foo@bar.com"}' -H 'Content-type: application/json'
+    // curl localhost:8000/rustaceans/ -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==' -d '{"name":"John", "email":"John@doe.com"}' -H 'Content-type: application/json'
+    // view the rustaceans:
+    // curl localhost:8000/rustaceans/1 -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
+    // check there are 2 rustaceans
 }
 
-#[put("/rustaceans/<id>", format = "json")]
-fn update_rustacean(id: i32, _auth: BasicAuth) -> Value {
-    json!([{ "id": id, "name": "John Smith" }])
+#[put("/rustaceans/<id>", format = "json", data = "<rustacean>")]
+async fn update_rustacean(id: i32, _auth: BasicAuth, db: DbConn, rustacean: Json<Rustacean>) -> Value {
+    db.run(move |c| {
+        let result = diesel::update(rustaceans::table.find(id)).set((
+                rustaceans::name.eq(rustacean.name.to_owned()),
+                rustaceans::email.eq(rustacean.email.to_owned())
+            )).execute(c).expect("DB error when updating");
+        json!(result)
+    }).await
+    // test this with:
+    // curl localhost:8000/rustaceans/1 -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==' -d '{"name":"FooZ", "email":"fooZ@bar.com"}' -H 'Content-type: application/json' -X PUT
+    // curl localhost:8000/rustaceans/1 -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
 }
 
-#[delete("/rustaceans/<_id>", format = "json")]
-fn delete_rustacean(_id: i32, _auth: BasicAuth) -> status::NoContent {
-    status::NoContent
+#[delete("/rustaceans/<id>")]
+async fn delete_rustacean(id: i32, _auth: BasicAuth, db: DbConn) -> status::NoContent {
+    db.run(move |c| {
+        diesel::delete(rustaceans::table.find(id)).execute(c).expect("DB error when deleting");
+        status::NoContent
+    }).await
+    // test with: curl localhost:8000/rustaceans/1 -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==' -X DELETE
+    // verify with: curl localhost:8000/rustaceans/ -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
+    // the entry should have dissapeared.
 }
 
 #[catch(404)]
@@ -90,7 +113,7 @@ fn unauthorized() -> Value {
 }
 
 #[catch(422)]
-fn unprocessable() -> JsonValue {
+fn unprocessable() -> Value {
     json!("422: Invalid entity. Probably some missing fields?")
 }
 
