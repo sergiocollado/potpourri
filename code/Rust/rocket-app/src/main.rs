@@ -6,11 +6,11 @@ mod models;
 
 use diesel::prelude::*;
 use auth::BasicAuth;
-use rocket::serde::json::{Value, json};
+use rocket::serde::json::{Value, json, Json};
 use rocket::response::status;
 use rocket_sync_db_pools::database;
 use schema::rustaceans;
-use models::Rustacean;
+use models::{ Rustacean, NewRustacean};
 
 // To use a sqlite database we need to install diesel_cli
 // Diesel CLI tools needs to be installed wit `cargo install diesel cli`
@@ -27,7 +27,7 @@ use models::Rustacean;
 // In the up.sql file, define:
 // ```
 // CREATE TABLE rustaceans (
-// id INTEGER PRIMARY KEY AUTOINCREMENT,
+// id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 // name VARCHAR NOT NULL,
 // email VARCHAR NOT NULL,
 // created at TIMESTAMP NOT NULL DEFAUL CURRENT_TIMESTAMP
@@ -51,6 +51,7 @@ async fn get_rustaceans(_auth: BasicAuth, db: DbConn) -> Value {
         let rustaceans = rustaceans::table.order(rustaceans::id.desc()).limit(1000).load::<Rustacean>(c).expect("DB error");
         json!(rustaceans)
     }).await
+    // test this with: curl localhost:8000/rustaceans -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
 }
 
 #[get("/rustaceans/<id>")]
@@ -58,9 +59,14 @@ fn view_rustacean(id: i32, _auth: BasicAuth) -> Value {
     json!([{ "id": id, "name": "John Smith" }])
 }
 
-#[post("/rustaceans", format = "json")]
-fn create_rustacean(_auth: BasicAuth) -> Value {
-    json!([{ "id": 3, "name": "John Smith" }])
+#[post("/rustaceans", format = "json", data = "<new_rustacean>")]
+async fn create_rustacean(_auth: BasicAuth, db: DbConn, new_rustacean: Json<NewRustacean>) -> Value {
+    db.run( |c| {
+        let result = diesel::insert_into(rustaceans::table).values(new_rustacean.into_inner()).execute(c).expect("DB error when inserting");
+        json!(result)
+    }).await
+    // test this with:
+    // curl localhost:8000/rustaceans -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==' -d '{"name":"Foo", "email":"foo@bar.com"}' -H 'Content-type: application/json'
 }
 
 #[put("/rustaceans/<id>", format = "json")]
@@ -75,12 +81,17 @@ fn delete_rustacean(_id: i32, _auth: BasicAuth) -> status::NoContent {
 
 #[catch(404)]
 fn not_found() -> Value {
-    json!("Not found!")
+    json!("404: Not found!")
 }
 
 #[catch(401)]
 fn unauthorized() -> Value {
-    json!("Invalid/Missing authorization")
+    json!("401: Invalid/Missing authorization")
+}
+
+#[catch(422)]
+fn unprocessable() -> JsonValue {
+    json!("422: Invalid entity. Probably some missing fields?")
 }
 
 #[rocket::main]
@@ -95,7 +106,8 @@ async fn main() {
         ])
         .register("/", catchers![
             not_found,
-            unauthorized
+            unauthorized,
+            unprocessable
         ])
         .attach(DbConn::fairing()) // check connection with the database
         .launch()
