@@ -6,12 +6,21 @@ mod models;
 mod repositories;
 
 use auth::BasicAuth;
+use diesel::result::Error::NotFound;
+use rocket::http::Status;
 use rocket::serde::json::{Value, json, Json};
-use rocket::response::status;
+use rocket::response::status::{self, Custom};
 use rocket_sync_db_pools::database;
 use models::{ Rustacean, NewRustacean};
 use repositories::RustaceanRepository;
 
+
+// To handle a web API, rocket is used: https://rocket.rs/
+//
+// Rocket: A web framework for  Rust that makes it simple to write fast,
+// type-safe, secure web applications with incredible usability, productivity
+// and performance.
+//
 // To use a sqlite database we need to install diesel_cli
 //
 // "Diesel" is a Safe, Extensible ORM and Query Builder for Rust: https://diesel.rs/
@@ -53,31 +62,36 @@ use repositories::RustaceanRepository;
 struct DbConn(diesel::SqliteConnection); // database connection
 
 #[get("/rustaceans")]
-async fn get_rustaceans(_auth: BasicAuth, db: DbConn) -> Value {
+async fn get_rustaceans(_auth: BasicAuth, db: DbConn) -> Result<Value, Custom<Value>> {
     db.run(|c| {
-        let rustaceans = RustaceanRepository::find_multiple(c, 100)
-            .expect("DB error when getting rustaceans");
-        json!(rustaceans)
+        RustaceanRepository::find_multiple(c, 100)
+            .map(|rustaceans| json!(rustaceans))
+            .map_err(|e| Custom(Status::InternalServerError, json!(e.to_string())))
     }).await
-    // test this with: curl localhost:8000/rustaceans -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
+    // test this with: curl localhost:8000/rustaceans -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==' -I
 }
 
 #[get("/rustaceans/<id>")]
-async fn view_rustacean(id: i32, _auth: BasicAuth, db: DbConn) -> Value {
+async fn view_rustacean(id: i32, _auth: BasicAuth, db: DbConn) -> Result<Value, Custom<Value>> {
     db.run(move |c| {
-        let rustacean = RustaceanRepository::find(c, id)
-            .expect("DB error when viewing the rustaceans");
-        json!(rustacean)
+         RustaceanRepository::find(c, id)
+            .map(|rustacean| json!(rustacean))
+            .map_err(|e|
+                     match e {
+                        NotFound => Custom(Status::NotFound, json!(e.to_string())), // 404 error
+                        _ => Custom(Status::InternalServerError, json!(e.to_string()))
+                     }
+            )
     }).await
     // test this with: curl localhost:8000/rustaceans/1 -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
 }
 
 #[post("/rustaceans", format = "json", data = "<new_rustacean>")]
-async fn create_rustacean(_auth: BasicAuth, db: DbConn, new_rustacean: Json<NewRustacean>) -> Value {
+async fn create_rustacean(_auth: BasicAuth, db: DbConn, new_rustacean: Json<NewRustacean>) ->  Result<Value, Custom<Value>>{
     db.run( |c| {
-        let result = RustaceanRepository::create(c, new_rustacean.into_inner())
-            .expect("DB error when inserting");
-        json!(result)
+         RustaceanRepository::create(c, new_rustacean.into_inner())
+            .map(|rustacean| json!(rustacean))
+            .map_err(|e| Custom(Status::InternalServerError, json!(e.to_string())))
     }).await
     // test this with:
     // curl localhost:8000/rustaceans -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==' -d '{"name":"Foo", "email":"foo@bar.com"}' -H 'Content-type: application/json'
@@ -88,11 +102,14 @@ async fn create_rustacean(_auth: BasicAuth, db: DbConn, new_rustacean: Json<NewR
 }
 
 #[put("/rustaceans/<id>", format = "json", data = "<rustacean>")]
-async fn update_rustacean(id: i32, _auth: BasicAuth, db: DbConn, rustacean: Json<Rustacean>) -> Value {
+async fn update_rustacean(id: i32, _auth: BasicAuth, db: DbConn, rustacean: Json<Rustacean>) ->  Result<Value, Custom<Value>>{
+    if RustaceansRepository::find(c, id).is_err() {
+        return Err(status::Custom(rocket::http::Status::NotFound, String::from("Rustacean not found")))
+    }
     db.run(move |c| {
-        let result = RustaceanRepository::save(c, id, rustacean.into_inner())
-            .expect("DB error when updating");
-        json!(result)
+        RustaceanRepository::save(c, id, rustacean.into_inner())
+            .map(|rustacean| json!(rustacean))
+            .map_err(|e| Custom(Status::InternalServerError, json!(e.to_string())))
     }).await
     // test this with:
     // curl localhost:8000/rustaceans/1 -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==' -d '{"name":"FooZ", "email":"fooZ@bar.com"}' -H 'Content-type: application/json' -X PUT
@@ -100,11 +117,14 @@ async fn update_rustacean(id: i32, _auth: BasicAuth, db: DbConn, rustacean: Json
 }
 
 #[delete("/rustaceans/<id>")]
-async fn delete_rustacean(id: i32, _auth: BasicAuth, db: DbConn) -> status::NoContent {
+async fn delete_rustacean(id: i32, _auth: BasicAuth, db: DbConn) -> Result<status::NoContent, Custom<Value>> {
+    if RustaceansRepository::find(c, id).is_err() {
+        return Err(status::Custom(rocket::http::Status::NotFound, String::from("Cant delete. Rustacean not found")))
+    }
     db.run(move |c| {
         RustaceanRepository::delete(c, id)
-            .expect("DB error when deleting");
-        status::NoContent
+            .map(|_| status::NoContent)
+            .map_err(|e| Custom(Status::InternalServerError, json!(e.to_string())))
     }).await
     // test with: curl localhost:8000/rustaceans/1 -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==' -X DELETE
     // verify with: curl localhost:8000/rustaceans/ -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
