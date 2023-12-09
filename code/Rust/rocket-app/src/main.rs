@@ -6,6 +6,8 @@ mod models;
 mod repositories;
 
 use auth::BasicAuth;
+use rocket::{Rocket, Build};
+use rocket::fairing::AdHoc;
 use diesel::result::Error::NotFound;
 use rocket::http::Status;
 use rocket::serde::json::{Value, json, Json};
@@ -103,9 +105,6 @@ async fn create_rustacean(_auth: BasicAuth, db: DbConn, new_rustacean: Json<NewR
 
 #[put("/rustaceans/<id>", format = "json", data = "<rustacean>")]
 async fn update_rustacean(id: i32, _auth: BasicAuth, db: DbConn, rustacean: Json<Rustacean>) ->  Result<Value, Custom<Value>>{
-    if RustaceansRepository::find(c, id).is_err() {
-        return Err(status::Custom(rocket::http::Status::NotFound, String::from("Rustacean not found")))
-    }
     db.run(move |c| {
         RustaceanRepository::save(c, id, rustacean.into_inner())
             .map(|rustacean| json!(rustacean))
@@ -118,9 +117,6 @@ async fn update_rustacean(id: i32, _auth: BasicAuth, db: DbConn, rustacean: Json
 
 #[delete("/rustaceans/<id>")]
 async fn delete_rustacean(id: i32, _auth: BasicAuth, db: DbConn) -> Result<status::NoContent, Custom<Value>> {
-    if RustaceansRepository::find(c, id).is_err() {
-        return Err(status::Custom(rocket::http::Status::NotFound, String::from("Cant delete. Rustacean not found")))
-    }
     db.run(move |c| {
         RustaceanRepository::delete(c, id)
             .map(|_| status::NoContent)
@@ -146,6 +142,21 @@ fn unprocessable() -> Value {
     json!("422: Invalid entity. Probably some missing fields?")
 }
 
+async fn run_db_migrations(rocket: Rocket<Build>) -> Rocket<Build> {
+    use diesel_migrations::{embed_migrations, EmbeddedMigrations, MigrationHarness};
+
+    const MIGRATIONS: EmbeddedMigrations = embed_migrations!(); // this will read the list of
+                                                                   // migrations
+    DbConn::get_one(&rocket)
+        .await
+        .expect("Unable to retrieve connection")
+        .run(|c| {
+            c.run_pending_migrations(MIGRATIONS).expect("Migrations failed");
+        })
+        .await;
+    rocket
+}
+
 #[rocket::main]
 async fn main() {
     let _ = rocket::build()
@@ -162,6 +173,7 @@ async fn main() {
             unprocessable
         ])
         .attach(DbConn::fairing()) // check connection with the database
+        .attach(AdHoc::on_ignite("Diesel migrations", run_db_migrations))
         .launch()
         .await;
 }
