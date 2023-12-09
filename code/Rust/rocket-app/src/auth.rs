@@ -1,7 +1,8 @@
 use rocket::request::{FromRequest, Request, Outcome};
 use rocket::http::Status;
 
-// https://en.wikipedia.org/wiki/Basic_access_authentication
+// How basic authentincation works?: https://en.wikipedia.org/wiki/Basic_access_authentication
+//
 // to test it: curl localhost:8000/rustaceans -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
 // to create a new rustacean: curl localhost:8000/rustaceans -X POST -H 'Content-type: application/json' -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
 // to update a rustacean: curl localhost:8000/rustaceans/1 -X PUT -H 'Content-type: application/json' -H 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
