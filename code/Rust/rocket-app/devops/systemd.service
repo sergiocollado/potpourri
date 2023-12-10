@@ -1,0 +1,36 @@
+[Unit]
+Description=My Rocket application
+
+[Service]
+User=sergio
+Group=www-data
+# The user www-data should own this directory
+WorkingDirectory=/var/www/rocket-app/
+Environment="ROCKET_ENV=prod"
+Environment="ROCKET_ADDRESS=127.0.0.1"
+# in case we want to access it from the internet,
+# the ip used in ROCKET_ADDRESS=0.0.0.0
+# that will ensure the application is accessible from everywhere.
+Environment="ROCKET_PORT=8000"
+# to access from the internet, we would use the port 80,
+# which is the standard for internet access.
+Environment="ROCKET_DATABASES={sqlite={url=./database.sqlite}}"
+ExecStart=/var/www/rocket-app/rocket-app
+
+[Install]
+WantedBy=multi-user.target
+
+# reference: https://linuxhandbook.com/create-systemd-services/
+
+# to install in systemd, we must change to root, for having access rights
+# go to /etc/systemd/system for devian based enviroments. Name the file
+# like rocket-app.service, and save this file.
+# To launch the service: 'systemctl start rocket-app'.
+# Also enable the applicaton: 'systemctl enable rocket-app'. This will
+# start the service always on system startup.
+# In case we want to stop it: 'systemctl stop rocket-app'.
+# In case we want to reload it: 'systemctl restart rocket-app'.
+# In case we don't want to launch it after boot: 'systemctl disable rocket-app'.
+
+
+

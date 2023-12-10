@@ -177,3 +177,9 @@ async fn main() {
         .launch()
         .await;
 }
+
+// to run the final applicaton, just build like:
+//'cargo build --release'
+// and launch it with: './target/release/rocket-app'.
+// to set the database url, define a local variable, and it will be check by Rocket
+// 'ROCKET_DATABASES={sqlite={url=./database.sqlite}} ./rocket-app
