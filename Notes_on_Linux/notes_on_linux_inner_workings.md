@@ -2716,3 +2716,4 @@ Linux containers the hard way:
 <br>
 
 - https://redhatgov.io/workshops/selinux_policy/
+- Kernel Magnifier: A Linux Kernel Execution Flow Research Tool for Upcomming Kernel Hackers (and Veterans): https://github.com/hgn/kernel-magnifier
