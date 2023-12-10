@@ -32,5 +32,3 @@ WantedBy=multi-user.target
 # In case we want to reload it: 'systemctl restart rocket-app'.
 # In case we don't want to launch it after boot: 'systemctl disable rocket-app'.
 
-
-
