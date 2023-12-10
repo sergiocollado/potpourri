@@ -97,7 +97,7 @@ The RISC-V ISA is broken up into two parts:
 - 
 To understand why the specification is broken up into two different parts, we must first understand a bit about computer architecture and security. Historically, processors used hierarchical protection domains, often called protection rings, to protect data and code from malicious actors.
 
-![protection rigs](https://commons.wikimedia.org/w/index.php?curid=8950144)
+![protection rigs](https://commons.wikimedia.org/wiki/File:Priv_rings.svg)
 
 
 he most privileged code runs in “Ring 0” and has access to the entire system. The processor will decide which privileges to grant executing code based on the privilege level. As an example, accessing memory by physical address may be restricted to “Ring 0” such that other rings must reference the virtual address space. Typically the processor can run in only one of the privilege modes at a time and there are special instructions to move between modes. All of these details can change from system to system, however they must follow the rules set out in the specification documents of a given architecture.
