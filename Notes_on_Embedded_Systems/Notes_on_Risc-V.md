@@ -94,7 +94,7 @@ The RISC-V ISA is broken up into two parts:
 
 - Volume 1, Unprivileged Specification
 - Volume 2, Privileged Specification
-- 
+  
 To understand why the specification is broken up into two different parts, we must first understand a bit about computer architecture and security. Historically, processors used hierarchical protection domains, often called protection rings, to protect data and code from malicious actors.
 
 ![protection rigs](https://upload.wikimedia.org/wikipedia/commons/2/2f/Priv_rings.svg)
