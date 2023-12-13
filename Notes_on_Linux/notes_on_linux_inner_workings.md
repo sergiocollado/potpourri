@@ -2717,3 +2717,11 @@ Linux containers the hard way:
 
 - https://redhatgov.io/workshops/selinux_policy/
 - Kernel Magnifier: A Linux Kernel Execution Flow Research Tool for Upcomming Kernel Hackers (and Veterans): https://github.com/hgn/kernel-magnifier
+  
+<br>
+
+Control-flow integrity for the kernel: <br>
+Control-flow integrity (CFI) is a technique used to reduce the ability to redirect the execution of a program's code in attacker-specified ways. The Clang compiler has some features that can assist in maintaining control-flow integrity:
+
+- https://lwn.net/Articles/810077/
+- https://source.android.com/docs/security/test/kcfi
