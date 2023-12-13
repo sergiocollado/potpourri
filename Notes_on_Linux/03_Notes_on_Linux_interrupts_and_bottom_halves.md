@@ -6,6 +6,8 @@
 references:
 - MUST READ LDD3: https://static.lwn.net/images/pdf/LDD3/ch10.pdf
 - https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html
+- https://sysprog21.github.io/lkmpg/#scheduling-tasks
+- https://sysprog21.github.io/lkmpg/#interrupt-handlers
 - https://en.wikipedia.org/wiki/Interrupt_vector_table
 - https://en.wikipedia.org/wiki/Interrupt_handler
 - https://tldp.org/HOWTO/Plug-and-Play-HOWTO-7.html
