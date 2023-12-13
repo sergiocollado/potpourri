@@ -11,8 +11,17 @@ scheduler implemented by Ingo Molnar and merged in Linux 2.6.23.  It is the
 replacement for the previous vanilla scheduler's SCHED_OTHER interactivity
 code.
 
+CFS viene de las siglas en inglés de "Gestor te tareas totalmente justo"
+("Completely Fair Scheduler"), y es el nuevo gesto de tareas de escritorio
+implementado por Ingo Molnar e integrado en Linux 2.6.23. Es el sustituto
+para el previo gestor de tareas SCHED_OTHER.
+
 80% of CFS's design can be summed up in a single sentence: CFS basically models
 an "ideal, precise multi-tasking CPU" on real hardware.
+
+El 80% del diseño de CFS puede ser resumido en una única frase: CFS
+básicamente modela una "CPU ideal, precisa y multi-tarea" sobre hardware
+real.
 
 "Ideal multi-tasking CPU" is a (non-existent  :-)) CPU that has 100% physical
 power and which can run each task at precise equal speed, in parallel, each at
