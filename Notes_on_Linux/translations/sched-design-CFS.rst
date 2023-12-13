@@ -34,14 +34,29 @@ specifies when its next timeslice would start execution on the ideal
 multi-tasking CPU described above.  In practice, the virtual runtime of a task
 is its actual runtime normalized to the total number of running tasks.
 
+En un hardware real, podemos ejecutar una única tarea a la vez, asi que
+se ha usado el concepto the "tiempo de ejecución virtual". El tiempo
+de ejecución virtual de una tarea, especifica cuando la siguiente porción
+de ejecución pdría empezar en la CPU ideal multi-tarea descrita anteriormente.
+En la práctica, el tiempo de ejecución virtual de una tarea es el 
+tiempo de ejecución real normalizado con repsecto al número total de 
+tareas ejecutandose.
 
 
 2.  FEW IMPLEMENTATION DETAILS
 ==============================
 
+2. UNOS CUANTOS DETALLES DE IMPLEMENTACIÓN
+==========================================
+
 In CFS the virtual runtime is expressed and tracked via the per-task
 p->se.vruntime (nanosec-unit) value.  This way, it's possible to accurately
 timestamp and measure the "expected CPU time" a task should have gotten.
+
+En CFS, el tiempo de ejecución virtual se expresa y se monitoriza por
+cada tarea, en su valor de p->se.vruntime (en unidades de nanosegundos).
+De este modo, es posible temporizar con precisión y medir el "tiempo  
+de CPU esperado" que una tarea debería tener. 
 
    Small detail: on "ideal" hardware, at any time all tasks would have the same
    p->se.vruntime value --- i.e., tasks would execute simultaneously and no task
