@@ -62,20 +62,38 @@ de CPU esperado" que una tarea debería tener.
    p->se.vruntime value --- i.e., tasks would execute simultaneously and no task
    would ever get "out of balance" from the "ideal" share of CPU time.
 
+   Un pequeño detalle: en hardware "ideal", en cualquier momento todas las 
+   tareas pueden tener el mismo valor de p->se.vruntime --- i.e., tareas
+   se podrian ejecutar simultaneamente y ninguna tarea podria escaparse del 
+   "balance" de la partición "ideal" del tiempo compartido de la CPU.
+
 CFS's task picking logic is based on this p->se.vruntime value and it is thus
 very simple: it always tries to run the task with the smallest p->se.vruntime
 value (i.e., the task which executed least so far).  CFS always tries to split
 up CPU time between runnable tasks as close to "ideal multitasking hardware" as
 possible.
 
+La lógica de elección del tareas de CFS se basa en el valor de p->se.vruntime
+y por tanto es muy sencialla: siempre intenta ejecutar la tarea con el valor
+p->se.vruntime más pequeño (i.e., la tarea que se ha ejecutado menos hasta el
+momento). CFS siempre intenta dividir el espacio de tiempo entre tareas 
+en ejecución tan próximo a la "ejecución multitarea ideal del hardware" como
+sea posible. 
+
 Most of the rest of CFS's design just falls out of this really simple concept,
 with a few add-on embellishments like nice levels, multiprocessing and various
 algorithm variants to recognize sleepers.
 
+El resto del diseño de CFS simplemente se escapa de este simple concepto, 
+con unos cuantos añadidos como los niveles "nice", multi-tarea y varias
+variantes del algoritmo para identificar tareas "durmiendo". 
 
 
 3.  THE RBTREE
 ==============
+
+4. El RBTREE
+============
 
 CFS's design is quite radical: it does not use the old data structures for the
 runqueues, but it uses a time-ordered rbtree to build a "timeline" of future
