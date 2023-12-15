@@ -23,6 +23,7 @@ Languaje reference:
   - awesome rust - curated list of resources: https://github.com/lemunozm/awesome-rust
   - https://docs.rust-embedded.org/book/intro/index.html
   - rust async: https://rust-lang.github.io/async-book/
+  - rustup: https://rust-lang.github.io/rustup/
 
 <br>
 
