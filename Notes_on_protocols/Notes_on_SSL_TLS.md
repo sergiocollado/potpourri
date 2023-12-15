@@ -162,7 +162,19 @@ SSL/TLS has to comply with:
 
  These three actors: client, server and certificate authority are what is known as PKI: Public Key Infraestructure. 
 
- 
+ ### RSA
+
+ - reference: https://manansingh.github.io/Cryptolab-Offline/c14-rsa.html
+ - reference: how it works: https://youtu.be/qph77bTKJTM
+ - reference: https://www.infoworld.com/article/3650488/understand-the-rsa-encryption-algorithm.html
+
+RSA stands for Rivest, Shamir and Adleman, which are the last name of the creators of the algorithm (1977)
+
+RSA is the most common asymetric enchription algorithm, RSA creates a pair of keys, one to encrypt and the other to decrypt. 
+
+Other encryption algorityhms are DH/DSA.
+
+
 
   
 
