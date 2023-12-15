@@ -25,6 +25,7 @@ You can see passing selftests here: https://staging.kernelci.org/test/ <br>
 
 For building:
 ```
+make headers
 make -C tools/testing/selftests #you may have to use sudo
 ```
 
