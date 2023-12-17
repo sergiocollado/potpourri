@@ -93,6 +93,7 @@ Languaje reference:
  - Kangrejos 2022: https://kangrejos.com/  & https://paulmck.livejournal.com/68136.html
  - LPC 2022: https://youtu.be/Xw9pKeJ-4Bw?list=PLVsQ_xZBEyN0daQRmKO4ysrjkSzaLI6go&t=4320
  - Mentorship Session: Setting Up an Environment for Writing Linux Kernel Modules in Rust: https://www.youtube.com/watch?v=tPs1uRqOnlk
+ - Mentorship Session: Writing Linux Kernel Modules in Rust: https://www.youtube.com/watch?v=-l-8WrGHEGI
  - The Linux Kernel Gets Rusty - Jonathan Corbet, RUST and the Linux Kernal Development: https://youtu.be/gVC1gp2PS8U
 
 
