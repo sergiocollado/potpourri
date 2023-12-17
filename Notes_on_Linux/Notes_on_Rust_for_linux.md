@@ -187,6 +187,9 @@ RUN make LLVM=1 allnoconfig qemu-busybox-min.config rust.config
 
 The steps to build: 
 
+- reference:  Mentorship Session: Setting Up an Environment for Writing Linux Kernel Modules in Rust: https://www.youtube.com/watch?v=tPs1uRqOnlk
+- reference: https://rustypenguin.medium.com/setting-environment-for-writing-linux-kernel-modules-in-rust-78ea20242f75
+
 ```
 /src/linux$ make allnoconfig qemu-busybox-min.config
 /src/linux$ make LLVM=1 allnoconfig qemu-busybox-min.config #this configuration is for fast development.
