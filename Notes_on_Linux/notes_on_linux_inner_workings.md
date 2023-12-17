@@ -521,7 +521,7 @@ Summing up the steps to compile and install the kernel:
 
 ```
 make help
-cd /boot/config-$(uname -r) ./.config # in debian based distros
+cp /boot/config-$(uname -r) ./.config # in debian based distros
 make menuconfig
 make -j$(nproc)
 make modules
