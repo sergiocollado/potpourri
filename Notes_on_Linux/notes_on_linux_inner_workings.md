@@ -1,51 +1,30 @@
 # Notes on Linux inner workings
 
-- By the way, the best way to search the kernel code online is: https://elixir.bootlin.com/linux/latest/source/include/linux
-
-Core Knowledge That Modern Linux Kernel Developer Should Have: https://www.linuxjournal.com/content/core-knowledge-modern-linux-kernel-developer-should-have
-
-Index of Documentation for People Interested in Writing and/or Understanding the Linux Kernel: https://www.kernel.org/doc/html/latest/process/kernel-docs.html
-
-Kernel coding style: https://www.kernel.org/doc/html/latest/process/coding-style.html
-
-HOWTO do Linux kernel development: https://docs.kernel.org/process/howto.html 
-
-Linux kernel documentation: https://www.kernel.org/doc/Documentation/
-
-Linux kernel coding style: https://www.kernel.org/doc/html/latest/process/coding-style.html
-
-email list: https://lore.kernel.org/
-
-Mentorship series: https://events.linuxfoundation.org/lf-live-mentorship-series/
-
-Linux kernel labs: https://linux-kernel-labs.github.io/refs/heads/master/
-
-Linux Inside: https://0xax.gitbooks.io/linux-insides/content/
-
-The Linux Kernel Module Programming Guide: https://sysprog21.github.io/lkmpg/
-
-To quickly expore the kernel code -> Elixir cross reference: https://elixir.bootlin.com/linux/latest/source/kernel
-
-Kernel play guide: https://nskernel.gitbook.io/kernel-play-guide/
-
-Linux Kernel module programming guide: https://linux.die.net/lkmpg/index.html
-
-Kernel newbies: kernel newbies : https://kernelnewbies.org/FirstKernelPatch
-
-Linux kernel workbook: https://lkw.readthedocs.io/en/latest/index.html 
-
-Multimedia and Television Support on Linux: https://www.linuxtv.org/ & https://www.kernel.org/doc/html/v4.9/media/uapi/v4l/v4l2.html 
-
-Let's code a Linux Driver: https://www.youtube.com/watch?v=x1Y203vH-Dc&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
-
-Linux standards (ELF, DWARF, FHS ...) : https://refspecs.linuxfoundation.org/index.shtml
-
-
-
-
 [linux kernel map](https://makelinux.github.io/kernel/map/)
 
 ![linux kernel map](https://github.com/sergiocollado/potpourri/blob/master/image/Linux_kernel_map.png "Linux kernel map")
+
+
+- By the way, the best way to search the kernel code online is: https://elixir.bootlin.com/linux/latest/source/include/linux
+ - Core Knowledge That Modern Linux Kernel Developer Should Have: https://www.linuxjournal.com/content/core-knowledge-modern-linux-kernel-developer-should-have
+ - Index of Documentation for People Interested in Writing and/or Understanding the Linux Kernel: https://www.kernel.org/doc/html/latest/process/kernel-docs.html
+ - Kernel coding style: https://www.kernel.org/doc/html/latest/process/coding-style.html
+ - HOWTO do Linux kernel development: https://docs.kernel.org/process/howto.html 
+ - Linux kernel documentation: https://www.kernel.org/doc/Documentation/
+ - Linux kernel coding style: https://www.kernel.org/doc/html/latest/process/coding-style.html
+ - email list: https://lore.kernel.org/
+ - Mentorship series: https://events.linuxfoundation.org/lf-live-mentorship-series/
+ - Linux kernel labs: https://linux-kernel-labs.github.io/refs/heads/master/
+ - Linux Inside: https://0xax.gitbooks.io/linux-insides/content/
+ - The Linux Kernel Module Programming Guide: https://sysprog21.github.io/lkmpg/
+ - To quickly expore the kernel code -> Elixir cross reference: https://elixir.bootlin.com/linux/latest/source/kernel
+ - Kernel play guide: https://nskernel.gitbook.io/kernel-play-guide/
+ - Linux Kernel module programming guide: https://linux.die.net/lkmpg/index.html
+ - Kernel newbies: kernel newbies : https://kernelnewbies.org/FirstKernelPatch
+ - Linux kernel workbook: https://lkw.readthedocs.io/en/latest/index.html 
+ - Multimedia and Television Support on Linux: https://www.linuxtv.org/ & https://www.kernel.org/doc/html/v4.9/media/uapi/v4l/v4l2.html 
+ - Let's code a Linux Driver: https://www.youtube.com/watch?v=x1Y203vH-Dc&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
+ - Linux standards (ELF, DWARF, FHS ...) : https://refspecs.linuxfoundation.org/index.shtml
 
 
 ## Linux kernel development process
