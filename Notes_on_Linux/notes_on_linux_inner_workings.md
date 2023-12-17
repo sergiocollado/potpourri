@@ -30,22 +30,16 @@
 ## Linux kernel development process
 
 references:
-
-what is a kernel: https://youtu.be/LLBrBBImJt4
-
-Getting to Know the Linux Kernel: A Beginner's Guide: https://www.youtube.com/watch?v=QatE61Ynwrw
-
-Tim Beale: Linux Kernel Development for Newbies: https://youtu.be/OkhOoBqLb3Y
-
-https://github.com/agelastic/eudyptula
-
-Write and Submit your first Linux kernel Patch: https://youtu.be/LLBrBBImJt4
-
-reference: https://www.slideshare.net/SamsungOSG/a-survivors-guide-to-contributing-to-the-linux-kernel
+ - what is a kernel: https://youtu.be/LLBrBBImJt4
+ - Getting to Know the Linux Kernel: A Beginner's Guide: https://www.youtube.com/watch?v=QatE61Ynwrw
+ - Tim Beale: Linux Kernel Development for Newbies: https://youtu.be/OkhOoBqLb3Y
+ - Kernel challenges: https://github.com/agelastic/eudyptula
+ - Write and Submit your first Linux kernel Patch: https://youtu.be/LLBrBBImJt4
+ - https://www.slideshare.net/SamsungOSG/a-survivors-guide-to-contributing-to-the-linux-kernel
 
 ### Intro
 
-https://www.kernel.org/doc/html/latest/process/development-process.html
+- reference: https://www.kernel.org/doc/html/latest/process/development-process.html
 
 Linux kernel releases come every 2+ months (10 or 11 weeks). Releases are time based and not feature based. 
 
@@ -55,15 +49,12 @@ At this point the release cycle goes into bug fixes-only mode. So release candid
 
 When enough confidence on the quality of the code is reached, the stable version is released. 
 
-https://www.kernel.org/category/releases.html
-
-https://www.kernel.org/doc/linux/MAINTAINERS
-
-http://vger.kernel.org/vger-lists.html
-
-https://lore.kernel.org/lists.html
-
-https://git.kernel.org/
+More references:
+ - https://www.kernel.org/category/releases.html
+ - https://www.kernel.org/doc/linux/MAINTAINERS
+ - http://vger.kernel.org/vger-lists.html
+ - https://lore.kernel.org/lists.html
+ - https://git.kernel.org/
 
 #### kernel trees
 
