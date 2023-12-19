@@ -24,6 +24,7 @@ Languaje reference:
   - https://docs.rust-embedded.org/book/intro/index.html
   - rust async: https://rust-lang.github.io/async-book/
   - rustup: https://rust-lang.github.io/rustup/
+  - https://reintech.io/blog/understanding-implementing-rust-variance-lifetimes
 
 <br>
 
