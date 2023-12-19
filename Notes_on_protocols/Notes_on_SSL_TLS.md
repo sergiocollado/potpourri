@@ -90,6 +90,7 @@ Netscape give ownership of the protocol to the IETF (Internet Engineering Task F
 
 ### Hashing 
 
+- reference: https://youtu.be/HHQ2QP_upGM?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
 - reference: https://en.wikipedia.org/wiki/Cryptographic_hash_function
 
 Hashing is a mathematical algorithm that takes as an input a message of arbitrary length and produces as an output (digest) a "fingerprint" of the original message. 
@@ -109,6 +110,8 @@ The most common hashing algorithms are:
 
 ### Data Integrity
 
+- reference: https://youtu.be/doN3lzzNEIM?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
+
 Hashing is used to provide data integrity.
 
 So when a message is send, is is computed by a hashing algorithm and a digest would be generated. Then, both the message and digest would be send, and the receiver
@@ -124,6 +127,8 @@ This concept of (Message + secret key), is known as **MAC: Message Authentificat
 - reference: https://en.wikipedia.org/wiki/HMAC
 
 ### Encryption 
+
+- reference: https://youtu.be/o_g-M7UBqI8?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
 
 Encryption is for having confidentiality, meaning only the intended receiver can interpret the messages. 
 
@@ -162,11 +167,14 @@ There are two types of key based encryption:
 
 ## Public and private keys
 
+- reference: https://youtu.be/_zyKvPvh808?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
+
 Asymmetric encrytpion uses 2 keys, public and private keys to work. 
 
-- reference: https://youtu.be/_zyKvPvh808?si=ZCCHzJVRzENrvPdb
 
 ### How SSL/TLS uses encryption
+
+- reference: https://youtu.be/aCDgFH1i2B0?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
 
 SSL/TLS has to comply with: 
 - Confidenciality: Data is only accessible to the client and server. Encription
@@ -180,6 +188,10 @@ SSL/TLS has to comply with:
  The CA (Certificate Authority) is an entity that is trusted by the client, and the CA generates a certificate, and that certificate has a link to a given set of asymmetric key pair to an identity. And the certificate is signed by the CA, so we have authentication for the certificate itself, and can be sure it has be unmodified. So as it is authenticated and unmodified the secret keys derived form the certificate are authenticaed. 
 
  These three actors: client, server and certificate authority are what is known as PKI: Public Key Infraestructure. 
+
+### PKI 
+
+- refernece: https://youtu.be/Jefr7wFLu3M?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
 
  ### RSA
 
