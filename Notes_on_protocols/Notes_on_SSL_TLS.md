@@ -25,11 +25,15 @@ TLS RFC: https://datatracker.ietf.org/doc/html/rfc8446
 
 ### How SSL/TLS protects the communications?
 
+- reference: https://youtu.be/WfR3ZAP96mQ?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
+
 - Confidenciality: Data is only accessible to the legit parties, it should be ineligible to not legit parties. (Encryption)
 - Integrity: Data cannot be modified between legites parties. It doesn't protect tampering with the data or data modification, but provideds mechanisms of detection in case the comunications has been tampered with. (Hashing)
 - Authentication: The legit parties identities are validated. (PKI - Public Key Infratestructure)
 
 Usually when these 3 properties appear, we comment on: Anti-Replay and Non-repudiation
+
+- reference: https://youtu.be/26lZ-akbfrQ?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
 
 - Anti-replay: repeat a message, to maliciously try to reply the communication. This is avoided, by adding a number that indicates the message sequence. That way, anti-replay is prevented. In TLS, that sequence
 number is build in the integrity+authentification mechanism.
@@ -37,6 +41,9 @@ number is build in the integrity+authentification mechanism.
 - Non-repudiation: Repudiate is to refuse a message. Non-repudiation is a mechanism that avoids a receiver to repudiate a message. Non-repudiation is also achieved by means of integrity and authentification.
 
 ### SSL/TLS main components
+
+- reference: https://youtu.be/C7Y4UEBJ0Og?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
+- reference: https://www.youtube.com/watch?v=Jefr7wFLu3M&list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY&index=12
 
 - Client: initiates the SSL/TLS handshake. The client is only optionally authenticated with a certificate, it is not mandatory and the client authentification with certificates is done rarely.
 - Server: receives the SSL/TLS handshake. The server is always authenticated with a certificate. 
