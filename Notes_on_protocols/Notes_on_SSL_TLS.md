@@ -44,7 +44,11 @@ number is build in the integrity+authentification mechanism.
 
 For having server and client both authenticated with a certificate, mutual TLS or mTLS is used.
 
-reference: https://w3techs.com/technologies/overview/ssl_certificate
+ - reference: https://w3techs.com/technologies/overview/ssl_certificate
+
+### PKI 
+
+- reference: https://www.youtube.com/watch?v=Jefr7wFLu3M&list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY&index=12
 
 ### SSL/TLS versions
 
@@ -165,6 +169,7 @@ SSL/TLS has to comply with:
 
  ### RSA
 
+ - reference: https://youtu.be/Pq8gNbvfaoM?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
  - reference: https://manansingh.github.io/Cryptolab-Offline/c14-rsa.html
  - reference: how it works: https://youtu.be/qph77bTKJTM
  - reference: https://www.infoworld.com/article/3650488/understand-the-rsa-encryption-algorithm.html
@@ -177,11 +182,24 @@ Other encryption algorityhms are DH/DSA.
 
 ### Diffie-Hellman (DH)
 
+- reference: https://youtu.be/KXq065YrpiU?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
+- 
 The Diffie-Hellman protocol is an asymetric encryption algorithm which allows two parties to share a secret over an
 unsecure communication medium. The shared secret never is send over the insecure medium. 
 
 - reference: https://www.securecoding.com/blog/diffie-hellman-key-exchange/
 - reference: https://cryptobook.nakov.com/key-exchange/diffie-hellman-key-exchange
+
+### Digital Signature Algorithm  (DSA)
+
+- reference: https://www.youtube.com/watch?v=iS1nK4G6EtA
+- reference: https://en.wikipedia.org/wiki/Digital_Signature_Algorithm
+
+DSA is other encryption mechanism, but can only be used for signatures. 
+
+DSA has only two operations:
+ - signature generation
+ - signature verification
 
 
 
