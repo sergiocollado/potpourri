@@ -1,6 +1,8 @@
 
 # Notes on SSL/TLS
 
+- Intro: https://youtu.be/VcV4T8cL3xw
+
 ## Fundamentals
 
 Most of the internet is based on using the protocols:
@@ -13,7 +15,7 @@ Sometimes you want to send private information through internet (like passwords)
 
 ### What is SSL and TLS?
 
-- refernece: https://youtu.be/aCDgFH1i2B0
+- reference: https://youtu.be/aCDgFH1i2B0
 
 SSL stands for Secure Socket Layer, and is the protocol that Netscape proposed in 1994. 
 
@@ -26,6 +28,7 @@ TLS RFC: https://datatracker.ietf.org/doc/html/rfc8446
 ### How SSL/TLS protects the communications?
 
 - reference: https://youtu.be/WfR3ZAP96mQ?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
+- reference: https://youtu.be/VcV4T8cL3xw
 
 - Confidenciality: Data is only accessible to the legit parties, it should be ineligible to not legit parties. (Encryption)
 - Integrity: Data cannot be modified between legites parties. It doesn't protect tampering with the data or data modification, but provideds mechanisms of detection in case the comunications has been tampered with. (Hashing)
@@ -58,6 +61,9 @@ For having server and client both authenticated with a certificate, mutual TLS o
 - reference: https://www.youtube.com/watch?v=Jefr7wFLu3M&list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY&index=12
 
 ### SSL/TLS versions
+
+- reference: https://youtu.be/_KgZNF8nQvE?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
+- reference: https://youtu.be/fk0-UqwVNqY?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
 
 There are many versions of SSL/TLS. As tech and attacks have evolved the protocols have evolved also. 
 
