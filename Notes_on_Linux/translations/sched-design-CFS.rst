@@ -37,7 +37,7 @@ is its actual runtime normalized to the total number of running tasks.
 En un hardware real, podemos ejecutar una única tarea a la vez, asi que
 se ha usado el concepto the "tiempo de ejecución virtual". El tiempo
 de ejecución virtual de una tarea, especifica cuando la siguiente porción
-de ejecución pdría empezar en la CPU ideal multi-tarea descrita anteriormente.
+de ejecución podría empezar en la CPU ideal multi-tarea descrita anteriormente.
 En la práctica, el tiempo de ejecución virtual de una tarea es el 
 tiempo de ejecución real normalizado con repsecto al número total de 
 tareas ejecutandose.
@@ -275,23 +275,44 @@ estas políticas excepto SCHED_IDLE.
 6.  SCHEDULING CLASSES
 ======================
 
+6. CLASES DE GESTION
+====================
+
 The new CFS scheduler has been designed in such a way to introduce "Scheduling
 Classes," an extensible hierarchy of scheduler modules.  These modules
 encapsulate scheduling policy details and are handled by the scheduler core
 without the core code assuming too much about them.
 
+El nuevo gestor de tareas CFS ha sido diseñado de tal modo para introducir
+"clases de gestión" una jerarquia ampliable de módulos de gestión. Estos 
+módulos encapsulan los detalles de las politicas de gestion y son manejadas
+por el núcleo del gestor de areas sin que este tenga que asumir mucho 
+sobre estas clases.
+
 sched/fair.c implements the CFS scheduler described above.
+
+sched/fair.c implementa el gestor de tareas CFS descrito arriba. 
 
 sched/rt.c implements SCHED_FIFO and SCHED_RR semantics, in a simpler way than
 the previous vanilla scheduler did.  It uses 100 runqueues (for all 100 RT
 priority levels, instead of 140 in the previous scheduler) and it needs no
 expired array.
 
+sched/rt.c implementa la semántica de SCHED_FIFO y SCHED_RR, de una forma
+más sencilla que el gestor de tareas anterior. Usa 100 colas de ejecución
+(por todos los 100 niveles de prioridad RT, en vez de las 140 que necesitaba
+el gestor de tareas anterior) y no necesita las listas de expiración.
+
 Scheduling classes are implemented through the sched_class structure, which
 contains hooks to functions that must be called whenever an interesting event
 occurs.
 
+Las clases de gestión de tareas son implementadas por medio de la estructura
+sched_class, la cual tiene llamadas a las funciones que debben de llamarse
+cuando quiera que ocurra un evento interesante.
+
 This is the (partial) list of the hooks:
+Esta es la lista parcial de llamadas:
 
  - enqueue_task(...)
 
@@ -299,11 +320,19 @@ This is the (partial) list of the hooks:
    It puts the scheduling entity (task) into the red-black tree and
    increments the nr_running variable.
 
+   LLamada cuando una tarea entra en el estado de lista para ejecución.
+   Pone la entidad a ser gestionada (la tarea) en el árbol rojo-negro
+   e incrementa la variable nr_running.
+
  - dequeue_task(...)
 
    When a task is no longer runnable, this function is called to keep the
    corresponding scheduling entity out of the red-black tree.  It decrements
    the nr_running variable.
+
+   Cuando una tarea deja de ser ejecutable, esta función se llama para 
+   mantener a la entidad gestionada fuera del árbol rojo-negor. Esto 
+   decrementa la variable nr_running.
 
  - yield_task(...)
 
@@ -311,24 +340,41 @@ This is the (partial) list of the hooks:
    compat_yield sysctl is turned on; in that case, it places the scheduling
    entity at the right-most end of the red-black tree.
 
+   Esta función es basicamente desecolar seguido por encolar, a menos que 
+   sysctl compat_yeld esté activado; en ese caso, situa la entidad a gestionar 
+   en la parte más hacia la derecha del árbol rojo-negro.
+
  - check_preempt_curr(...)
 
    This function checks if a task that entered the runnable state should
    preempt the currently running task.
 
+   Esta función comprueba si una tarea que ha entrado en el estado de
+   poder ser ejecutada, podría remplazar a la tarea que actualmente
+   se esté ejecutando.
+
  - pick_next_task(...)
 
    This function chooses the most appropriate task eligible to run next.
+
+   Esta función elige la tarea más apropiada para ser ejecutada a continuación.
 
  - set_curr_task(...)
 
    This function is called when a task changes its scheduling class or changes
    its task group.
 
+   Esta función se llama cuando una tarea cambia su clase de gestión o 
+   cambia su grupo de tareas.
+
  - task_tick(...)
 
    This function is mostly called from time tick functions; it might lead to
    process switch.  This drives the running preemption.
+
+   Esta función es llamada la mayoria de las veces desde la función de timepo
+   tick; esto puede llevar a un cambio de procesos. Esto dirige el reemplazo
+   de las tareas. 
 
 
 
