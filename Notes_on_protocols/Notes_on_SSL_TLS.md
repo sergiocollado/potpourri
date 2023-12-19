@@ -73,6 +73,7 @@ Netscape give ownership of the protocol to the IETF (Internet Engineering Task F
 
 - reference: https://crypto.stanford.edu/~dabo/courses/OnlineCrypto/
 - reference: https://cryptobook.nakov.com/
+- reference: https://www.youtube.com/watch?v=_TixdHlCMu4&list=PL7d8iOq_0_CWAfs_z4oQnCuVc6yr7W5Fp
 
 ### Hashing 
 
