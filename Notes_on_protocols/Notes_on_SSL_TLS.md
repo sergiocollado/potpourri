@@ -68,6 +68,7 @@ Netscape give ownership of the protocol to the IETF (Internet Engineering Task F
 ## Cryptography 
 
 - reference: https://crypto.stanford.edu/~dabo/courses/OnlineCrypto/
+- refernece: https://cryptobook.nakov.com/
 
 ### Hashing 
 
@@ -173,6 +174,18 @@ RSA stands for Rivest, Shamir and Adleman, which are the last name of the creato
 RSA is the most common asymetric enchription algorithm, RSA creates a pair of keys, one to encrypt and the other to decrypt. 
 
 Other encryption algorityhms are DH/DSA.
+
+### Diffie-Hellman (DH)
+
+The Diffie-Hellman protocol is an asymetric encryption algorithm which allows two parties to share a secret over an
+unsecure communication medium. The shared secret never is send over the insecure medium. 
+
+- reference: https://www.securecoding.com/blog/diffie-hellman-key-exchange/
+- reference: https://cryptobook.nakov.com/key-exchange/diffie-hellman-key-exchange
+
+
+
+
 
 
 
