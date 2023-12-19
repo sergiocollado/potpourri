@@ -184,7 +184,7 @@ Other encryption algorityhms are DH/DSA.
 ### Diffie-Hellman (DH)
 
 - reference: https://youtu.be/KXq065YrpiU?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
-- 
+
 The Diffie-Hellman protocol is an asymetric encryption algorithm which allows two parties to share a secret over an
 unsecure communication medium. The shared secret never is send over the insecure medium. 
 
@@ -195,12 +195,16 @@ unsecure communication medium. The shared secret never is send over the insecure
 
 - reference: https://www.youtube.com/watch?v=iS1nK4G6EtA
 - reference: https://en.wikipedia.org/wiki/Digital_Signature_Algorithm
+- reference: https://www.youtube.com/watch?v=ANsg4wIQFn4
 
 DSA is other encryption mechanism, but can only be used for signatures. 
 
 DSA has only two operations:
  - signature generation
  - signature verification
+
+A note on caution about using random numbers, if you repeat the random number, it is possible to break the 
+encryption. To prevent this use for example the RFC 6979 how to generate random numbers deterministically based on the message.
 
 
 
