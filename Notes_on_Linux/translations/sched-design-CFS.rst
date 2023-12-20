@@ -415,30 +415,45 @@ SCHED_FIFO y SCHED_RR).
 CONFIG_FAIR_GROUP_SCHED permits to group CFS (i.e., SCHED_NORMAL and
 SCHED_BATCH) tasks.
 
+CONFIG_FAIR_GROUP_SCHED permite agrupar tareas de CFS (i.e., SCHED_NORMAL y 
+SCHED_BATCH).
+
    These options need CONFIG_CGROUPS to be defined, and let the administrator
    create arbitrary groups of tasks, using the "cgroup" pseudo filesystem.  See
    Documentation/admin-guide/cgroup-v1/cgroups.rst for more information about this filesystem.
 
+   Estas opcioens necesitan CONFIG_CGROUPS para ser definidas, y permintir
+   al administrador crear grupos arbitrarios de tareas, usando el pseudo 
+   sistema de archivos "cgroup". Vease la documentación para más información
+   sobre este sistema de archivos: Documentation/admin-guide/cgroup-v1/cgroups.rst
+
 When CONFIG_FAIR_GROUP_SCHED is defined, a "cpu.shares" file is created for each
 group created using the pseudo filesystem.  See example steps below to create
 task groups and modify their CPU share using the "cgroups" pseudo filesystem::
+
+Cuando CONFIG_FAIR_GROUP_SCHED es definido, un archivo "cpu.shares" es creado por
+cada grupo creado usado en el pseudo sistema de archivos. Veanse por ejemplo los 
+pasos a continuación para crear grupos de tareas y modificar cuanto comparten de
+la CPU usando el pseudo sistema de archivos "cgroup" ::
 
 	# mount -t tmpfs cgroup_root /sys/fs/cgroup
 	# mkdir /sys/fs/cgroup/cpu
 	# mount -t cgroup -ocpu none /sys/fs/cgroup/cpu
 	# cd /sys/fs/cgroup/cpu
 
-	# mkdir multimedia	# create "multimedia" group of tasks
-	# mkdir browser		# create "browser" group of tasks
+	# mkdir multimedia	# crear un grupo de tareas "multimedia"
+	# mkdir browser		# crear un grupo de tareas "browser"
 
 	# #Configure the multimedia group to receive twice the CPU bandwidth
 	# #that of browser group
+	# #Configurar el grupo multimedia para tener el doble de tiempo de CPU
+	# #que el grupo browser
 
 	# echo 2048 > multimedia/cpu.shares
 	# echo 1024 > browser/cpu.shares
 
-	# firefox &	# Launch firefox and move it to "browser" group
+	# firefox &	# Lanzar firefox y moverlo al grupo "browser"
 	# echo <firefox_pid> > browser/tasks
 
-	# #Launch gmplayer (or your favourite movie player)
+	# #Lanzar gmplayer (o su programa favorito de reproducción de películas)
 	# echo <movie_player_pid> > multimedia/tasks
