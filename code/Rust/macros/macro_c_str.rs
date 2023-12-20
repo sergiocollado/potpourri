@@ -1,4 +1,5 @@
 // reference: https://rust-for-linux.github.io/docs/kernel/macro.c_str.html
+// playground: https://rust-for-linux.github.io/docs/kernel/macro.c_str.html
 
 use std::str;
 use core::fmt::{self, Write};
