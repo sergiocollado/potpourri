@@ -31,27 +31,27 @@ Languaje reference:
 
 <br>
 
- - https://docs.kernel.org/rust/index.html
- - rust for linux brief introduction: https://rustmagazine.org/issue-1/rust-for-linux-brief-introduction/
- - https://docs.kernel.org/rust/quick-start.html
- - blog. how to module in rust: - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
- - blog. how to write a module in rust: https://www.jackos.io/rust-kernel/rust-for-linux.html#adding-the-rust-module
- - blog. https://www.jackos.io/rust-kernel/rust-for-linux.html
- - blog. rust module getting started https://wusyong.github.io/posts/rust-kernel-module-00/
- - blog. rust kernel module: hello world https://wusyong.github.io/posts/rust-kernel-module-01/
- - coccinelle for linux: this is the link to the talk: https://gitlab.inria.fr/coccinelle/coccinelleforrust/-/blob/main/talks/rfl.pdf
- - rust analyzer: https://rust-analyzer.github.io/manual.html
- - https://github.com/rust-unofficial/awesome-rust
- - https://sunjay.dev/learn-game-dev/intro.html
- - game dev in rust: https://www.youtube.com/playlist?list=PLn3eTxaOtL2M-VkAeqk0p3Xn7byveJ9qX
- - bindgen: https://fitzgeraldnick.com/2016/12/14/using-libbindgen-in-build-rs.html
- - bindgen : https://rust-lang.github.io/rust-bindgen/introduction.html
- - bindgen : https://apollolabsblog.hashnode.dev/rust-ffi-and-bindgen-integrating-embedded-c-code-in-rust
+  - https://docs.kernel.org/rust/index.html
+  - rust for linux brief introduction: https://rustmagazine.org/issue-1/rust-for-linux-brief-introduction/
+  - https://docs.kernel.org/rust/quick-start.html
+  - blog. how to module in rust: - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
+  - blog. how to write a module in rust: https://www.jackos.io/rust-kernel/rust-for-linux.html#adding-the-rust-module
+  - blog. https://www.jackos.io/rust-kernel/rust-for-linux.html
+  - blog. rust module getting started https://wusyong.github.io/posts/rust-kernel-module-00/
+  - blog. rust kernel module: hello world https://wusyong.github.io/posts/rust-kernel-module-01/
+  - coccinelle for linux: this is the link to the talk: https://gitlab.inria.fr/coccinelle/coccinelleforrust/-/blob/main/talks/rfl.pdf
+  - rust analyzer: https://rust-analyzer.github.io/manual.html
+  - https://github.com/rust-unofficial/awesome-rust
+  - https://sunjay.dev/learn-game-dev/intro.html
+  - game dev in rust: https://www.youtube.com/playlist?list=PLn3eTxaOtL2M-VkAeqk0p3Xn7byveJ9qX
+  - bindgen: https://fitzgeraldnick.com/2016/12/14/using-libbindgen-in-build-rs.html
+  - bindgen : https://rust-lang.github.io/rust-bindgen/introduction.html
+  - bindgen : https://apollolabsblog.hashnode.dev/rust-ffi-and-bindgen-integrating-embedded-c-code-in-rust
 
- - https://wusyong.github.io/posts/rust-kernel-module-00/
- - https://wusyong.github.io/posts/rust-kernel-module-01/
- - https://wusyong.github.io/posts/rust-kernel-module-02/
- - https://wusyong.github.io/posts/rust-kernel-module-03/
+  - https://wusyong.github.io/posts/rust-kernel-module-00/
+  - https://wusyong.github.io/posts/rust-kernel-module-01/
+  - https://wusyong.github.io/posts/rust-kernel-module-02/
+  - https://wusyong.github.io/posts/rust-kernel-module-03/
 
 ## Design
 - reference: https://github.com/fishinabarrel/linux-kernel-module-rust/
@@ -149,11 +149,10 @@ The kernel is inherently multi-threaded: kernel resources can be accessed from m
 
 
 Nice intro:
-- https://wusyong.github.io/posts/rust-kernel-module-00/
-- https://wusyong.github.io/posts/rust-kernel-module-01/
-- https://wusyong.github.io/posts/rust-kernel-module-02/
-- https://wusyong.github.io/posts/rust-kernel-module-03/
-
+ - https://wusyong.github.io/posts/rust-kernel-module-00/
+ - https://wusyong.github.io/posts/rust-kernel-module-01/
+ - https://wusyong.github.io/posts/rust-kernel-module-02/
+ - https://wusyong.github.io/posts/rust-kernel-module-03/
 
 
 ### interestig commits
@@ -168,6 +167,7 @@ Nice intro:
 - Support for filesystem abstractions: https://github.com/Rust-for-Linux/linux/issues/1004
 - RUST: add module_params macro https://github.com/Rust-for-Linux/linux/commit/62af8b3d3723cf12e932d2b9a8797a18bb9baa70
 - RUST NVME: https://github.com/Rust-for-Linux/linux/compare/rust-next...metaspace:linux:nvme
+- rust: crates in other kernel directories: https://lore.kernel.org/rust-for-linux/ca2cd71c-0aa1-4365-961c-c10737a9e9a6@gmail.com/T/#m44915f4a18ba9f2b033e186690d964ef8da3e965
 
 
 ### Others 2
