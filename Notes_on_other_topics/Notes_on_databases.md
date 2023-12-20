@@ -5,3 +5,5 @@ References:
  - https://www.tsql.info/sql-tutorial.php
  - https://www.tsql.info/
  - https://learnsql.com/blog/sql-server-cheat-sheet/
+ - https://learn.microsoft.com/en-us/sql/sql-server/
+
