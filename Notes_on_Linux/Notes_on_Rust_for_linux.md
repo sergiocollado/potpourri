@@ -45,7 +45,13 @@ Languaje reference:
  - bindgen: https://fitzgeraldnick.com/2016/12/14/using-libbindgen-in-build-rs.html
  - bindgen : https://rust-lang.github.io/rust-bindgen/introduction.html
  - bindgen : https://apollolabsblog.hashnode.dev/rust-ffi-and-bindgen-integrating-embedded-c-code-in-rust
-    
+
+ - https://wusyong.github.io/posts/rust-kernel-module-00/
+ - https://wusyong.github.io/posts/rust-kernel-module-01/
+ - https://wusyong.github.io/posts/rust-kernel-module-02/
+ - https://wusyong.github.io/posts/rust-kernel-module-03/
+
+
 ## Rust for linux
 
 **RFC**: https://lkml.org/lkml/2021/4/14/1023
