@@ -283,11 +283,11 @@ Classes," an extensible hierarchy of scheduler modules.  These modules
 encapsulate scheduling policy details and are handled by the scheduler core
 without the core code assuming too much about them.
 
-El nuevo gestor de tareas CFS ha sido diseñado de tal modo para introducir
-"clases de gestión" una jerarquia ampliable de módulos de gestión. Estos 
-módulos encapsulan los detalles de las politicas de gestion y son manejadas
-por el núcleo del gestor de areas sin que este tenga que asumir mucho 
-sobre estas clases.
+El nuevo gestor de tareas CFS ha sido diseñado de tal modo para incluir
+"clases de gestión", una jerarquia ampliable de módulos que pueden tener
+distintas políticas gestión de tareas. Estos módulos encapsulan los 
+detalles de las politicas de gestion y son manejadas por el núcleo del
+gestor de tareas sin que este tenga que presuponer mucho sobre estas clases.
 
 sched/fair.c implements the CFS scheduler described above.
 
