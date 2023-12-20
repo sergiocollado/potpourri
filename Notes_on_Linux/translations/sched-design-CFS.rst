@@ -382,17 +382,35 @@ Esta es la lista parcial de llamadas:
 7.  GROUP SCHEDULER EXTENSIONS TO CFS
 =====================================
 
+7.  EXTENSIONES DE GRUPOS PARA CFS
+==================================
+
 Normally, the scheduler operates on individual tasks and strives to provide
 fair CPU time to each task.  Sometimes, it may be desirable to group tasks and
 provide fair CPU time to each such task group.  For example, it may be
 desirable to first provide fair CPU time to each user on the system and then to
 each task belonging to a user.
 
+Normalmente, el gestor de tareas opera en tareas individuales e intenta
+proporcionar una cantidad justa de CPU a cada tarrea. Algunas veces, puede
+ser deseable agrupar las tareas y proporcionarles una cantidad justa 
+de tiempo de CPU a cada una de las tareas de ese grupo. Por ejemplo, 
+podria ser deseable que primero se proporcione una catidad justa de 
+tiempo de CPU a cada usuario del sistema y después a cada tarea
+que pertenezca a un usuario. 
+
 CONFIG_CGROUP_SCHED strives to achieve exactly that.  It lets tasks to be
 grouped and divides CPU time fairly among such groups.
 
+CONFIG_CGROUP_SCHED destaca en conseguir exactamente eso. Perminte a las 
+tareas ser agrupadas y divide el tiempo de CPU de forma just entre esos
+gruupos. 
+
 CONFIG_RT_GROUP_SCHED permits to group real-time (i.e., SCHED_FIFO and
 SCHED_RR) tasks.
+
+CONFIG_RT_GROUP_SCHED permite agrupar tareas de tiempo real (i.e., 
+SCHED_FIFO y SCHED_RR).
 
 CONFIG_FAIR_GROUP_SCHED permits to group CFS (i.e., SCHED_NORMAL and
 SCHED_BATCH) tasks.
