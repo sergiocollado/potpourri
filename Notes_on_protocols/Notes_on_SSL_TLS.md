@@ -233,6 +233,8 @@ encryption. To prevent this use for example the RFC 6979 how to generate random 
 
 
 
+## x509 certificates and keys
+
 
 
 
