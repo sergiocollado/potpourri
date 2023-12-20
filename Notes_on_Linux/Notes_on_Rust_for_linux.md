@@ -128,6 +128,7 @@ Languaje reference:
 - https://hackmd.io/Yp2D8H_hRtuiGD2yYFZyLA
 - https://research.nccgroup.com/2023/02/06/rustproofing-linux-part-1-4-leaking-addresses/
 - rust kernel module: hello world https://wusyong.github.io/posts/rust-kernel-module-01/
+- Linux kernel modules in safe Rust: https://github.com/fishinabarrel/linux-kernel-module-rust/
 
 
 ### interestig commits
@@ -142,7 +143,7 @@ Languaje reference:
 - Support for filesystem abstractions: https://github.com/Rust-for-Linux/linux/issues/1004
 - RUST: add module_params macro https://github.com/Rust-for-Linux/linux/commit/62af8b3d3723cf12e932d2b9a8797a18bb9baa70
 - RUST NVME: https://github.com/Rust-for-Linux/linux/compare/rust-next...metaspace:linux:nvme
-- 
+
 
 ### Others 2
 
