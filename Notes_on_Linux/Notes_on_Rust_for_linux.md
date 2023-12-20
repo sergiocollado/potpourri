@@ -73,6 +73,7 @@ Languaje reference:
 - article: https://www.memorysafety.org/blog/memory-safety-in-linux-kernel/
 - kernel crate: https://rust-for-linux.github.io/docs/kernel/
 - https://discourse.ubuntu.com/t/ubuntu-kernel-is-getting-rusty-in-lunar/34977
+- R4L in space: https://lwn.net/Articles/954974/ - https://evlproject.org/overview/
 
 ## Videos: 
 
@@ -97,6 +98,7 @@ Languaje reference:
  - Mentorship Session: Setting Up an Environment for Writing Linux Kernel Modules in Rust: https://www.youtube.com/watch?v=tPs1uRqOnlk
  - Mentorship Session: Writing Linux Kernel Modules in Rust: https://www.youtube.com/watch?v=-l-8WrGHEGI
  - The Linux Kernel Gets Rusty - Jonathan Corbet, RUST and the Linux Kernal Development: https://youtu.be/gVC1gp2PS8U
+ - Dec 12, 2023: High Stability Rust in Kernel by Kernel CI - Arisu Tachibana, Cybertrust Japan Co. : https://youtu.be/w4nhuQ00VV0
 
 
 ## Others
