@@ -51,6 +51,15 @@ Languaje reference:
  - https://wusyong.github.io/posts/rust-kernel-module-02/
  - https://wusyong.github.io/posts/rust-kernel-module-03/
 
+## Design
+- reference: https://github.com/fishinabarrel/linux-kernel-module-rust/
+
+We run bindgen on the kernel headers to generate automatic Rust FFI bindings. bindgen is powered by Clang, so we use the kernel's own build system to determine the appropriate CFLAGS. Then we write safe bindings to these types (see the various files inside src/).
+
+Each kernel module in Rust lives in a staticlib crate, which generates a .a file. We pass this object to the Linux kernel's own module build system for linking into a .ko.
+
+The kernel is inherently multi-threaded: kernel resources can be accessed from multiple userspace processes at once, which causes multiple threads of execution inside the kernel to handle system calls (or interrupts). Therefore, the KernelModule type is Sync, so all data shared by a kernel module must be safe to access concurrently (such as by implementing locking).
+
 
 ## Rust for linux
 
@@ -135,6 +144,14 @@ Languaje reference:
 - https://research.nccgroup.com/2023/02/06/rustproofing-linux-part-1-4-leaking-addresses/
 - rust kernel module: hello world https://wusyong.github.io/posts/rust-kernel-module-01/
 - Linux kernel modules in safe Rust: https://github.com/fishinabarrel/linux-kernel-module-rust/
+
+
+Nice intro:
+- https://wusyong.github.io/posts/rust-kernel-module-00/
+- https://wusyong.github.io/posts/rust-kernel-module-01/
+- https://wusyong.github.io/posts/rust-kernel-module-02/
+- https://wusyong.github.io/posts/rust-kernel-module-03/
+
 
 
 ### interestig commits
