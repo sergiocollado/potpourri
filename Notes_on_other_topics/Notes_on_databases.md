@@ -6,4 +6,5 @@ References:
  - https://www.tsql.info/
  - https://learnsql.com/blog/sql-server-cheat-sheet/
  - https://learn.microsoft.com/en-us/sql/sql-server/
+ - https://www.sqlservertutorial.net/
 
