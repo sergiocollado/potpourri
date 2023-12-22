@@ -519,7 +519,7 @@ Look into arch/x86/include/asm/traps.h. For example: https://elixir.bootlin.com/
 
 #### Interrupt descriptor table (IDT)
 
-The IDT is a linear table of 258 entries which associates an interrupt handler with each interrupt vector. 
+The IDT (Interrupt Descriptor Table) is a linear table of 258 entries which associates an interrupt handler with each interrupt vector. 
 
 When an interrupt is fired, the CPU looks at the IDT table, and finds what method needs to be called. 
 
@@ -534,8 +534,8 @@ the IDTR register (special 0x86 register) of the processor with the physical sta
 - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html#interrupt-handling-in-linux
 
 1. Whenever an interrupt occurs, assembly instructions in linux kernel are executed, which
-	locates relevant vector descriptor by multiplying reported vector number by size of vector number(8/16)
-	and adding the result to the base address of IDT.
+locates relevant vector descriptor by multiplying reported vector number by size of vector number(8/16)
+and adding the result to the base address of IDT.
 
 2. common_interrupt: [arch/x86/entry/entry_64.S](https://elixir.bootlin.com/linux/v6.5.7/source/arch/x86/entry/entry_64.S):
 	- saves the context of the running process
@@ -563,6 +563,12 @@ To check the interrupt statistics:
 ```
 $ cat /proc/interrupts
 ```
+or to see how those change dinamically:
+
+```
+$ watch -d -n 1 cat /proc/interrupts | less
+```
+
  - reference: https://linux.die.net/man/5/proc
 
 ```
