@@ -32,6 +32,7 @@ Languaje reference:
 
 <br>
 
+ Other resources:
   - https://docs.kernel.org/rust/index.html
   - rust for linux brief introduction: https://rustmagazine.org/issue-1/rust-for-linux-brief-introduction/
   - https://docs.kernel.org/rust/quick-start.html
@@ -128,7 +129,8 @@ The kernel is inherently multi-threaded: kernel resources can be accessed from m
 
 - https://lkml.org/lkml/2022/9/19/1105
 - the pull request to enter Linux: https://lore.kernel.org/lkml/202210010816.1317F2C@keescook/
-- about pinning: 
+- about pinning:
+    - https://fasterthanli.me/articles/pin-and-suffering
     - https://rust-lang.github.io/async-book/04_pinning/01_chapter.html
     - https://y86-dev.github.io/blog/safe-pinned-initialization/overview.html
     - https://github.com/y86-dev/pinned-init
@@ -138,7 +140,6 @@ The kernel is inherently multi-threaded: kernel resources can be accessed from m
     - https://github.com/rust-lang/rfcs/pull/3318
     - https://kangrejos.com/Pinning%20in%20Rust.pdf
     - The perils of pinning: https://lwn.net/Articles/907876/
-
 - https://lwn.net/SubscriberLink/910762/e103310fccf871d3/
 - https://blog.hedwing.dev/linux-kernel/intro_to_linux
 - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
