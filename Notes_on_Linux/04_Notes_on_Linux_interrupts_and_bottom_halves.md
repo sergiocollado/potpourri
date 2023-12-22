@@ -1423,20 +1423,37 @@ If a function sleeps, you cannot use it from your interrupt handler
 
 Examples: kmalloc with GFP_KERNEL, ssleep.
 
-reference: https://stackoverflow.com/questions/57987140/difference-between-interrupt-context-and-process-context
+ - reference: https://stackoverflow.com/questions/57987140/difference-between-interrupt-context-and-process-context
 
 ### Process Context
+
+ - reference: https://stackoverflow.com/questions/57987140/difference-between-interrupt-context-and-process-context
+
 One of the most important parts of a process are the executing program code. This code was read in from a executable file and executed within the program's address space. Normal program execution occurs in User-space. When a program executes a system call or triggers an exception, it enters Kernel-space. At this point, the kernel are said to being "executing on behalf of the process" and are in process context. When in process context, the current macro is valid. Upon exiting the kernel, the process resumes execution in User-space, unless a higher-priority process have become runnable In the interim (transition period), in which case the scheduler is invoked to select the higher priority process.
 
 ### Interrupt Context
+
+ - reference: https://stackoverflow.com/questions/57987140/difference-between-interrupt-context-and-process-context
+
 When executing a interrupt handler or bottom half, the kernel is in interrupt context.Recall That process context is the mode of operation the kernel are in while it's executing on behalf of a process-- For example, executing a system call or running a kernel thread. In process context, the current macro points to the associated task. Furthermore, because a process is coupled to the kernel in process context (because the process is connected to the kernel in the same way as the process above), process context can SleeP or otherwise invoke the scheduler.
 
 Interrupt context, on the other hand, was not associated with a process. The current macro isn't relevant (although it points to the interrupted process). Without a backing process (because there is no process background), interrupt context cannot sleep-how would it ever reschedule? (or how to reschedule it again?) Therefore, cannot call certain functions from interrupt context. If A function sleeps, you cannot use it from your interrupt handler--this limits the functions so one can call from an Interrupt handler. (This is the limit on what functions can be used in an interrupt handler).
 
+### User context 
+
+- reference: https://www.kernel.org/doc/html/latest/kernel-hacking/hacking.html#user-context
+
+User context is when you are coming in from a system call or other trap: like userspace, you can be preempted by more important tasks and by interrupts. You can sleep, by calling schedule().
+
+**Note**: You are always in user context on module load and unload, and on operations on the block device layer.
+
+In user context, the current pointer (indicating the task we are currently executing) is valid, and in_interrupt() (include/linux/preempt.h) is false.
+
+__**Warning**__: Beware that if you have preemption or softirqs disabled, `in_interrupt()` will return a false positive.
+
 ### How to find out if we are in an interrupt context?
 
-in_interrupt()
-====================
+Using the function `in_interrupt()` 
 
 Header File: <linux/preempt.h>
 
@@ -1642,3 +1659,162 @@ Various Mechanisms available for Bottom Half
  - Timers
 
    
+### Threaded IRQs
+
+An alternative to using formal bottom-half mechanisms is threaded interrupt handlers.
+
+Threaded interrupt handlers seeks to reduce the time spent with interrupts disabled to bare minimum, pushing the rest of the processing out into kernel threads.
+
+With threaded IRQs, the way you register an interrupt handler is a bit simplified.
+
+You do not even have to schedule the bottom half yourself. The core does that for us.
+
+The bottom half is then executed in a dedicated kernel thread. 
+
+```
+int request_threaded_irq (unsigned int irq,
+		irq_handler_t handler,
+		irq_handler_t thread_fn,
+		unsigned long irqflags,
+		const char * devname,
+		void * dev_id);
+```
+
+#### Difference between request_irq and request_threaded_irq
+
+```
+irq_handler_t thread_fn
+
+request_threaded_irq() breaks handler code in two parts, 
+	handler and 
+	thread function
+```
+
+Now, the main functionality of the handler is to intimate hardware that it has received the interrupt and wake up thread function
+
+As soon as handler finishes, processor is in process context. 
+```
+kernel/irq/manage.c --- setup_irq_thread
+```
+priority of the thread is set to `MAX_USER_RT_PRIO/2` which is higher than regular processes
+
+Example: 
+```
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+
+#define SHARED_IRQ 19
+static int irq = SHARED_IRQ, my_dev_id, irq_counter = 0;
+module_param(irq, int, S_IRUGO);
+
+static irqreturn_t my_interrupt(int irq, void *dev_id)
+{
+	pr_info("%s\n", __func__);
+	return IRQ_NONE;
+}
+
+static irqreturn_t my_threaded_interrupt(int irq, void *dev_id)
+{
+	pr_info("%s\n", __func__);
+	return IRQ_NONE;
+}
+
+static int __init my_init(void)
+{
+	int ret;
+	ret =  (request_threaded_irq(irq, 
+			my_interrupt, my_threaded_interrupt,
+			IRQF_SHARED, "my_interrupt", &my_dev_id)); 
+	
+	if (ret != 0)
+	{
+	
+		pr_info("Failed to reserve irq %d, ret:%d\n", irq, ret);
+		return -1;
+	}
+	pr_info("Successfully loading ISR handler\n");
+	return 0;
+}
+
+static void __exit my_exit(void)
+{
+	synchronize_irq(irq);
+	free_irq(irq, &my_dev_id);
+	pr_info("Successfully unloading,  irq_counter = %d\n", irq_counter);
+}
+
+MODULE_LICENSE("GPL");
+module_init(my_init);
+module_exit(my_exit);
+```
+
+### Why is the threaded handler not being executed even after thread is created?
+
+When the hard-IRQ handler (handler function) function returns IRQ_WAKE_THREAD, 
+
+the kthread associated with this bottom half will be scheduled, invoking the thread_fn
+
+The thread_fn function must return IRQ_HANDLED when complete.
+
+After being executed, the kthread will not be rescheduled again until the IRQ is triggered again and the hard-IRQ returns IRQ_WAKE_THREAD
+
+So the example should be:
+
+```
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+
+#define SHARED_IRQ 19
+static int irq = SHARED_IRQ, my_dev_id, irq_counter = 0;
+module_param(irq, int, S_IRUGO);
+
+static irqreturn_t my_interrupt(int irq, void *dev_id)
+{
+	pr_info("%s\n", __func__);
+	return IRQ_WAKE_THREAD;
+}
+
+static irqreturn_t my_threaded_interrupt(int irq, void *dev_id)
+{
+	pr_info("%s\n", __func__);
+	return IRQ_NONE;
+}
+
+static int __init my_init(void)
+{
+	int ret;
+	ret =  (request_threaded_irq(irq, 
+			my_interrupt, my_threaded_interrupt,
+			IRQF_SHARED, "my_interrupt", &my_dev_id)); 
+	
+	if (ret != 0)
+	{
+	
+		pr_info("Failed to reserve irq %d, ret:%d\n", irq, ret);
+		return -1;
+	}
+	pr_info("Successfully loading ISR handler\n");
+	return 0;
+}
+
+static void __exit my_exit(void)
+{
+	synchronize_irq(irq);
+	free_irq(irq, &my_dev_id);
+	pr_info("Successfully unloading,  irq_counter = %d\n", irq_counter);
+}
+
+MODULE_LICENSE("GPL");
+module_init(my_init);
+module_exit(my_exit);
+```
+
+to identify the threads that are kthread belonging to a threaded handler, use:
+
+```
+ps -ef | grep irq/
+```
