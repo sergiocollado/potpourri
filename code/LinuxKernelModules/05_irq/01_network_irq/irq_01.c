@@ -10,7 +10,7 @@ static irqreturn_t my_interrupt(int irq, void *dev_id)
 {
 	irq_counter++;
 	pr_info("In the ISR: counter = %d\n", irq_counter);
-	return IRQ_NONE;	/* we return IRQ_NONE because we are just observing */
+	return  IRQ_NONE;	/* we return IRQ_NONE because we are just observing */
 }
 
 static int __init my_init(void)
