@@ -11,7 +11,8 @@ Languaje reference:
   - https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/
   - https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/effective-rust.html
   - https://doc.rust-lang.org/nomicon/                                          
-  - https://rust-lang.github.io/async-book/01_getting_started/01_chapter.html   
+  - https://rust-lang.github.io/async-book/01_getting_started/01_chapter.html
+  - async: red and blue functions: https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/
   - https://github.com/rust-lang/rustlings                                      
   - https://github.com/rust-lang/rustlings/tree/rustlings-1   
   - little book of rust macros: https://github.com/DanielKeep/tlborm            
