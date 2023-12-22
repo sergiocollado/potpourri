@@ -517,6 +517,28 @@ Look into arch/x86/include/asm/traps.h. For example: https://elixir.bootlin.com/
 #endif
 ```
 
+```
+ NMI:     Non-maskable interrupts
+ LOC:     Local timer interrupts
+ SPU:     Spurious interrupts
+ PMI:     Performance monitoring interrupts
+ IWI:     IRQ work interrupts
+ RTR:     APIC ICR read retries
+ RES:     Rescheduling interrupts
+ CAL:     Function call interrupts
+ TLB:     TLB shootdowns
+ TRM:     Thermal event interrupts
+ THR:     Threshold APIC interrupts
+ DFR:     Deferred Error APIC interrupts
+ MCE:     Machine check exceptions
+ MCP:     Machine check polls
+ PIN:     Posted-interrupt notification event
+ NPI:     Nested posted-interrupt event
+ PIW:     Posted-interrupt wakeup event
+
+```
+
+
 #### Interrupt descriptor table (IDT)
 
 The IDT (Interrupt Descriptor Table) is a linear table of 258 entries which associates an interrupt handler with each interrupt vector. 
@@ -532,6 +554,7 @@ the IDTR register (special 0x86 register) of the processor with the physical sta
 ## Interrupt handling in Linux Kernel
 
 - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html#interrupt-handling-in-linux
+- reference: https://www.cs.montana.edu/courses/spring2005/518/Hypertextbook/jim/media/interrupts_on_linux.pdf
 
 1. Whenever an interrupt occurs, assembly instructions in linux kernel are executed, which
 locates relevant vector descriptor by multiplying reported vector number by size of vector number(8/16)
@@ -566,7 +589,7 @@ $ cat /proc/interrupts
 or to see how those change dinamically:
 
 ```
-$ watch -d -n 1 cat /proc/interrupts | less
+$ watch -d -n 1 cat /proc/interrupts
 ```
 
  - reference: https://linux.die.net/man/5/proc
