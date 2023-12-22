@@ -18,6 +18,7 @@ references:
 - https://linux.die.net/HOWTO/KernelAnalysis-HOWTO.html#toc1
 - https://docs.kernel.org/core-api/irq/index.html
 - IRQs: the Hard, the Soft, the Threaded and the Preemptible : https://youtu.be/-pehAzaP1eg
+- https://www.oreilly.com/library/view/understanding-the-linux/0596005652/ch04s06.html
 
 
 ### What is an interrupt?
@@ -1267,20 +1268,273 @@ Disabling a specific interrupt line is also known as "masking out an interrupt l
 Example: you might want to disable delivery of a device’s interrupts before manipulating its state.
 
 ```
-void disable_irq(unsigned int irq); //Disables a given interrupt line in interrupt controller.
+void disable_irq(unsigned int irq); // Disables a given interrupt line in interrupt controller.
 			            // this disables delivery of the given interrupt to all processors in system
 
 void enable_irq(unsigned int irq);
 ```
 
 Note: `disable_irq` does not return until any executing handler completes. <br>
-	callers are assured that
+	Callers are ensured that:
 		a) new interrupts will not be delivered on the given line,
 		b) any already executing handlers have exited
 
+### disable_irq_nosync
+
+`void disable_irq_nosync(unsigned int irq);`
+
+The function `disable_irq_nosync()` does not wait for current handlers to complete.
+
+`void synchronize_irq(unsigned int irq);`
+
+The function `synchronize_irq()` waits for a specific interrupt handler to exit, if it is executing, before returning.
+
+`synchronize_irq()` spins until no interrupt handler is running for the given IRQ.
+
+### What happens if i call disable_irq twice and enable_irq once?
+
+Calls to these functions nest.
+
+For each call to `disable_irq()` or `disable_irq_nosync()` on a given interrupt line, a corresponding call to enable_irq() is required. 
+
+Only on the last call to `enable_irq()` is the interrupt line actually enabled.
+
+For example, if `disable_irq()` is called twice, the interrupt line is not actually reenabled until the second call to `enable_irq()`.
 
 
+### What happens if I disable interrupt line shared among multiple interrupt handlers?
 
+Disabling the line disables interrupt delivery for all devices on the line.
+
+Therefore, drivers for newer devices tend not to use these interfaces.
+
+Because PCI devices have to support interrupt line sharing by specification, they should not use these interfaces at all.
+
+Thus, `disable_irq()` and friends are found more often in drivers for older legacy devices, such as the PC parallel port.
+
+
+### irqs_disabled()
+
+The macro `irqs_disabled()`, returns nonzero if the interrupt system on the local processor is disabled.
+
+Header File: <linux/irqflags.h>
+
+```
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/delay.h>
+#include <linux/irqflags.h>
+
+void is_irq_disabled(void)
+{
+	if (irqs_disabled())
+		pr_info("IRQ Disabled\n");
+	else
+		pr_info("IRQ Enabled\n");
+}
+
+static int __init my_init(void)
+{
+	pr_info("module is loaded on processor:%d\n", smp_processor_id());
+	local_irq_disable();
+	is_irq_disabled();
+	mdelay(10000L);;
+	local_irq_enable();
+	is_irq_disabled();
+	return 0;
+}
+
+static void __exit my_exit(void)
+{
+}
+
+MODULE_LICENSE("GPL");
+module_init(my_init);
+module_exit(my_exit);
+```
+
+### Interrupt Context
+
+When executing a interrupt handler, the kernel is in interrupt context
+
+We know process context is the mode of operation the kernel is in while it is executing on behalf of a process.
+
+Eg. Executing a system call.
+
+As interrupt context is not backed with process, you cannot sleep in interrupt context.
+
+If a function sleeps, you cannot use it from your interrupt handler 
+
+Examples: kmalloc with GFP_KERNEL, ssleep.
+
+reference: https://stackoverflow.com/questions/57987140/difference-between-interrupt-context-and-process-context
+
+### Process Context
+One of the most important parts of a process are the executing program code. This code was read in from a executable file and executed within the program's address space. Normal program execution occurs in User-space. When a program executes a system call or triggers an exception, it enters Kernel-space. At this point, the kernel are said to being "executing on behalf of the process" and are in process context. When in process context, the current macro is valid. Upon exiting the kernel, the process resumes execution in User-space, unless a higher-priority process have become runnable In the interim (transition period), in which case the scheduler is invoked to select the higher priority process.
+
+### Interrupt Context
+When executing a interrupt handler or bottom half, the kernel is in interrupt context.Recall That process context is the mode of operation the kernel are in while it's executing on behalf of a process-- For example, executing a system call or running a kernel thread. In process context, the current macro points to the associated task. Furthermore, because a process is coupled to the kernel in process context (because the process is connected to the kernel in the same way as the process above), process context can SleeP or otherwise invoke the scheduler.
+
+Interrupt context, on the other hand, was not associated with a process. The current macro isn't relevant (although it points to the interrupted process). Without a backing process (because there is no process background), interrupt context cannot sleep-how would it ever reschedule? (or how to reschedule it again?) Therefore, cannot call certain functions from interrupt context. If A function sleeps, you cannot use it from your interrupt handler--this limits the functions so one can call from an Interrupt handler. (This is the limit on what functions can be used in an interrupt handler).
+
+### How to find out if we are in an interrupt context?
+
+in_interrupt()
+====================
+
+Header File: <linux/preempt.h>
+
+To find out whether you are running in interrupt context or process context:
+ - `in_interrupt()` returns non zero if the kernel is performing any type of interrupt handling.
+ - `in_interrupt()` returns zero if the kernel is in process context.
+
+You can use that macro to know if you can or not allocate memory, for example: 
+
+```
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/interrupt.h>
+#include <linux/slab.h>
+
+
+#define SHARED_IRQ 12
+static int irq = SHARED_IRQ, my_dev_id, irq_counter = 0;
+module_param(irq, int, S_IRUGO);
+
+void *alloc_mem(unsigned int size)
+{
+	// depending on the value of in_Interrupt()
+	// we can allocate memory or not.
+	if (in_interrupt()) {
+		return kmalloc(size, GFP_ATOMIC);  // iGFP_ATOMIC n case of interrupt context
+	} else {
+		return kmalloc(size, GFP_KERNEL);  // GFP_KERNEL in case of process context
+	}
+}
+
+static irqreturn_t my_interrupt(int irq, void *dev_id)
+{
+	void *mem = alloc_mem(1024);
+	kfree(mem);
+	return IRQ_NONE;	/* we return IRQ_NONE because we are just observing */
+}
+
+static int __init my_init(void)
+{
+	void *mem = alloc_mem(1024);
+	kfree(mem);
+	if (request_irq
+	    (irq, my_interrupt, IRQF_SHARED, "my_interrupt", &my_dev_id)) {
+		pr_info("Failed to reserve irq %d\n", irq);
+		return -1;
+	}
+	pr_info("Successfully loading ISR handler\n");
+	return 0;
+}
+
+static void __exit my_exit(void)
+{
+	synchronize_irq(irq);
+	free_irq(irq, &my_dev_id);
+	pr_info("Successfully unloading,  irq_counter = %d\n", irq_counter);
+}
+
+MODULE_LICENSE("GPL");
+module_init(my_init);
+module_exit(my_exit);
+```
+
+### Some debuging: printing the call stack 
+
+Use the function `dump_stack();`:
+
+```
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/interrupt.h>
+
+#define SHARED_IRQ 12
+static int irq = SHARED_IRQ, my_dev_id, irq_counter = 0;
+module_param(irq, int, S_IRUGO);
+
+static irqreturn_t my_interrupt(int irq, void *dev_id)
+{
+	dump_stack();
+	return IRQ_NONE;	/* we return IRQ_NONE because we are just observing */
+}
+
+static int __init my_init(void)
+{
+	if (request_irq
+	    (irq, my_interrupt, IRQF_SHARED, "my_interrupt", &my_dev_id)) {
+		pr_info("Failed to reserve irq %d\n", irq);
+		return -1;
+	}
+	pr_info("Successfully loading ISR handler\n");
+	return 0;
+}
+
+static void __exit my_exit(void)
+{
+	synchronize_irq(irq);
+	free_irq(irq, &my_dev_id);
+	pr_info("Successfully unloading,  irq_counter = %d\n", irq_counter);
+}
+
+MODULE_LICENSE("GPL");
+module_init(my_init);
+module_exit(my_exit);
+```
+
+### Can we use current macro inside interrupt handler?
+
+It will point to the interrupted process.
+
+```
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/interrupt.h>
+#include <linux/sched.h>
+#include <asm/current.h>
+
+#define SHARED_IRQ 12
+static int irq = SHARED_IRQ, my_dev_id, irq_counter = 0;
+module_param(irq, int, S_IRUGO);
+
+static irqreturn_t my_interrupt(int irq, void *dev_id)
+{
+	irq_counter++;
+	pr_info("In the ISR: counter = %d\n", irq_counter);
+	pr_info("current pid : %d , current process : %s\n",current->pid, current->comm);
+	return IRQ_NONE;	/* we return IRQ_NONE because we are just observing */
+}
+
+static int __init my_init(void)
+{
+	if (request_irq
+	    (irq, my_interrupt, IRQF_SHARED, "my_interrupt", &my_dev_id)) {
+		pr_info("Failed to reserve irq %d\n", irq);
+		return -1;
+	}
+	pr_info("Successfully loading ISR handler\n");
+	return 0;
+}
+
+static void __exit my_exit(void)
+{
+	synchronize_irq(irq);
+	free_irq(irq, &my_dev_id);
+	pr_info("Successfully unloading,  irq_counter = %d\n", irq_counter);
+}
+
+MODULE_LICENSE("GPL");
+module_init(my_init);
+module_exit(my_exit);
+```
+
+### What happens if we sleep() in the interrupt handler?
+
+It will crash :/
 
 
 
