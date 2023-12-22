@@ -1369,7 +1369,7 @@ Because PCI devices have to support interrupt line sharing by specification, the
 Thus, `disable_irq()` and friends are found more often in drivers for older legacy devices, such as the PC parallel port.
 
 
-### irqs_disabled()
+### `irqs_disabled()`
 
 The macro `irqs_disabled()`, returns nonzero if the interrupt system on the local processor is disabled.
 
@@ -1605,7 +1605,7 @@ module_init(my_init);
 module_exit(my_exit);
 ```
 
-### What happens if we sleep() in the interrupt handler?
+### What happens if we `sleep()` in the interrupt handler?
 
 It will crash :/
 	
@@ -1750,7 +1750,7 @@ module_init(my_init);
 module_exit(my_exit);
 ```
 
-### Why is the threaded handler not being executed even after thread is created?
+#### Why is the threaded handler not being executed even after thread is created?
 
 When the hard-IRQ handler (handler function) function returns IRQ_WAKE_THREAD, 
 
