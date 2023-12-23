@@ -1839,7 +1839,7 @@ Specifying this flag is mandatory if the primary handler is set to NULL.
 
 The default primary handler does nothing more than to return IRQ WAKE THREAD to wake up a kernel thread to execute the thread fn IRQ handler.
 
-kernel/irq/manage.c 	-->	irq_default_primary_handler
+`kernel/irq/manage.c 	-->	irq_default_primary_handler`
 
 
 ```
@@ -1863,7 +1863,6 @@ static unsigned int gpio_button = 15;
 
 MODULE_LICENSE("GPL");
 uint32_t *mem;
-
 
 void set_gpio_pulldown(unsigned int gpio)
 {
@@ -1930,4 +1929,180 @@ static void test_hello_exit(void)
 
 module_init(test_hello_init);
 module_exit(test_hello_exit);
+```
+
+#### debuging: printing call trace in threaded irqs
+
+Use the function `dump_stack()`
+
+```
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+
+#define SHARED_IRQ 19
+static int irq = SHARED_IRQ, my_dev_id, irq_counter = 0;
+module_param(irq, int, S_IRUGO);
+
+static irqreturn_t my_interrupt(int irq, void *dev_id)
+{
+	pr_info("%s\n", __func__);
+	return IRQ_WAKE_THREAD;
+}
+
+static irqreturn_t my_threaded_interrupt(int irq, void *dev_id)
+{
+	dump_stack();
+	return IRQ_NONE;
+}
+
+static int __init my_init(void)
+{
+	int ret;
+	ret =  (request_threaded_irq(irq, 
+			my_interrupt, my_threaded_interrupt,
+			IRQF_SHARED, "my_interrupt", &my_dev_id)); 
+	
+	if (ret != 0)
+	{
+	
+		pr_info("Failed to reserve irq %d, ret:%d\n", irq, ret);
+		return -1;
+	}
+	pr_info("Successfully loading ISR handler\n");
+	return 0;
+}
+
+static void __exit my_exit(void)
+{
+	synchronize_irq(irq);
+	free_irq(irq, &my_dev_id);
+	pr_info("Successfully unloading,  irq_counter = %d\n", irq_counter);
+}
+
+MODULE_LICENSE("GPL");
+module_init(my_init);
+module_exit(my_exit);
+```
+
+### Printing PID and process name in threaded irqs.
+
+Use the macro current.
+
+```
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+#include <linux/sched.h>
+
+#define SHARED_IRQ 19
+static int irq = SHARED_IRQ, my_dev_id, irq_counter = 0;
+module_param(irq, int, S_IRUGO);
+
+static irqreturn_t my_interrupt(int irq, void *dev_id)
+{
+	pr_info("%s\n", __func__);
+	return IRQ_WAKE_THREAD;
+}
+
+static irqreturn_t my_threaded_interrupt(int irq, void *dev_id)
+{
+	pr_info("COMM:%s\t PID:%d\n", current->comm, current->pid);
+	return IRQ_NONE;
+}
+
+static int __init my_init(void)
+{
+	int ret;
+	ret =  (request_threaded_irq(irq, 
+			my_interrupt, my_threaded_interrupt,
+			IRQF_SHARED, "my_interrupt", &my_dev_id)); 
+	
+	if (ret != 0)
+	{
+	
+		pr_info("Failed to reserve irq %d, ret:%d\n", irq, ret);
+		return -1;
+	}
+	pr_info("Successfully loading ISR handler\n");
+	return 0;
+}
+
+static void __exit my_exit(void)
+{
+	synchronize_irq(irq);
+	free_irq(irq, &my_dev_id);
+	pr_info("Successfully unloading,  irq_counter = %d\n", irq_counter);
+}
+
+MODULE_LICENSE("GPL");
+module_init(my_init);
+module_exit(my_exit);
+```
+
+#### How to check that the interrupts are enable or disabled:
+
+```
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+#include <linux/sched.h>
+#include <linux/irqflags.h>
+
+#define SHARED_IRQ 19
+static int irq = SHARED_IRQ, my_dev_id, irq_counter = 0;
+module_param(irq, int, S_IRUGO);
+
+void is_irq_disabled(void)
+{
+        if (irqs_disabled())
+                pr_info("IRQ Disabled\n");
+        else
+                pr_info("IRQ Enabled\n");
+}
+
+
+static irqreturn_t my_interrupt(int irq, void *dev_id)
+{
+	is_irq_disabled();
+	return IRQ_WAKE_THREAD;
+}
+
+static irqreturn_t my_threaded_interrupt(int irq, void *dev_id)
+{
+	pr_info("COMM:%s\t PID:%d\n", current->comm, current->pid);
+	is_irq_disabled();
+	return IRQ_NONE;
+}
+
+static int __init my_init(void)
+{
+	int ret;
+	ret =  (request_threaded_irq(irq, 
+			my_interrupt, my_threaded_interrupt,
+			IRQF_SHARED, "my_interrupt", &my_dev_id)); 
+	
+	if (ret != 0)
+	{
+	
+		pr_info("Failed to reserve irq %d, ret:%d\n", irq, ret);
+		return -1;
+	}
+	pr_info("Successfully loading ISR handler\n");
+	return 0;
+}
+
+static void __exit my_exit(void)
+{
+	synchronize_irq(irq);
+	free_irq(irq, &my_dev_id);
+	pr_info("Successfully unloading,  irq_counter = %d\n", irq_counter);
+}
+
+MODULE_LICENSE("GPL");
+module_init(my_init);
+module_exit(my_exit);
 ```
