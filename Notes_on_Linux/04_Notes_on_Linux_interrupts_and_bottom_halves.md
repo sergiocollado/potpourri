@@ -1612,6 +1612,7 @@ It will crash :/
 
 ## Threaded interrupts: Top Half and Bottom Half
 
+
 Two important goals of interrupt handler are:
 
 #### Execution Time
@@ -1660,6 +1661,8 @@ Various Mechanisms available for Bottom Half
 
    
 ### Threaded IRQs
+
+- reference: https://embetronicx.com/tutorials/linux/device-drivers/threaded-irq-in-linux-kernel/
 
 An alternative to using formal bottom-half mechanisms is threaded interrupt handlers.
 
