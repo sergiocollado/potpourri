@@ -1772,15 +1772,28 @@ So the example should be:
 static int irq = SHARED_IRQ, my_dev_id, irq_counter = 0;
 module_param(irq, int, S_IRUGO);
 
+void print_context(void)
+{
+        if (in_interrupt()) {
+                pr_info("Code is running in interrupt context\n");
+        } else {
+                pr_info("Code is running in process context\n");
+        }
+
+}
+
+
 static irqreturn_t my_interrupt(int irq, void *dev_id)
 {
 	pr_info("%s\n", __func__);
+	print_context();
 	return IRQ_WAKE_THREAD;
 }
 
 static irqreturn_t my_threaded_interrupt(int irq, void *dev_id)
 {
 	pr_info("%s\n", __func__);
+	print_context();
 	return IRQ_NONE;
 }
 
@@ -1807,14 +1820,114 @@ static void __exit my_exit(void)
 	free_irq(irq, &my_dev_id);
 	pr_info("Successfully unloading,  irq_counter = %d\n", irq_counter);
 }
-
-MODULE_LICENSE("GPL");
-module_init(my_init);
-module_exit(my_exit);
 ```
 
 to identify the threads that are kthread belonging to a threaded handler, use:
 
 ```
 ps -ef | grep irq/
+```
+
+
+#### IRQF_ONESHOT
+
+The interrupt is not reenabled after the IRQ handler finishes.
+
+This flag is required for threaded interrupts which need to keep the interrupt line disabled until the threaded handler has run.
+
+Specifying this flag is mandatory if the primary handler is set to NULL.
+
+The default primary handler does nothing more than to return IRQ WAKE THREAD to wake up a kernel thread to execute the thread fn IRQ handler.
+
+kernel/irq/manage.c 	-->	irq_default_primary_handler
+
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/gpio.h>
+#include <linux/delay.h>
+#include <linux/interrupt.h>
+
+#define GPIO_BASE               0x3f200000      // GPIO controller 
+#define GPIO_SIZE               0xb4
+
+#define GPFSEL0_OFFSET          0x00
+#define GPSET0_OFFSET           0x07
+#define GPCLR0_OFFSET           0x0A
+#define GPPUD_OFFSET		0x25
+#define GPPUDCLK0_OFFSET	0x26
+
+static unsigned int irq_number;
+static unsigned int gpio_button = 15;
+
+MODULE_LICENSE("GPL");
+uint32_t *mem;
+
+
+void set_gpio_pulldown(unsigned int gpio)
+{
+	int register_index = gpio/32;
+	unsigned int value = (1 << (gpio % 32));
+
+	mem = (uint32_t *)ioremap(GPIO_BASE, GPIO_SIZE);
+	iowrite32(0x01, mem + GPPUD_OFFSET); //enable pull down
+	// Wait 150 cycles
+	udelay(2000);
+	//Write to GPPUDCLK0/1 to clock the control signal into the GPIO pads you wish to modify
+	iowrite32(value, mem + GPPUDCLK0_OFFSET + register_index);	
+	// Wait 150 cycles
+	udelay(2000);
+	//Write to GPPUD to remove the control signal
+	iowrite32(0x00, mem + GPPUD_OFFSET);
+	//Write to GPPUDCLK0/1 to remove the clock
+	iowrite32(0x00, mem + GPPUDCLK0_OFFSET + register_index);	
+
+	iounmap(mem);
+}
+
+static irqreturn_t  button_threaded_handler(int irq, void *dev_id)
+{
+        pr_info("threaded irq:%d\n", irq);
+	mdelay(4000);
+        return IRQ_HANDLED;
+}
+
+static int test_hello_init(void)
+{
+	pr_info("%s: In init\n", __func__);
+
+	if (!gpio_is_valid(gpio_button)){
+		pr_info("Invalid GPIO:%d\n", gpio_button);
+		return -ENODEV;
+	}
+
+	pr_info("gpio button:%d is valid\n", gpio_button);
+	if (gpio_request(gpio_button, "my_button")) {
+		pr_info("GPIO Request Failed on gpio:%d\n", gpio_button);
+		return -EINVAL;
+	}
+	pr_info("GPIO Request successful on gpio:%d\n", gpio_button);
+	gpio_direction_output(gpio_button, 0);
+	gpio_direction_input(gpio_button);
+	gpio_set_debounce(gpio_button, 1000);      // Debounce the button with a delay of 1000ms
+	set_gpio_pulldown(gpio_button);
+	irq_number = gpio_to_irq(gpio_button);
+        pr_info("irq number:%d\n", irq_number);
+
+	return request_threaded_irq(irq_number, NULL, button_threaded_handler,
+			IRQF_TRIGGER_FALLING | IRQF_ONESHOT, 
+			"button_interrupt",
+			NULL);
+}
+
+static void test_hello_exit(void)
+{
+	pr_info("%s: In exit\n", __func__);
+	free_irq(irq_number, NULL);
+	gpio_free(gpio_button);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
 ```
