@@ -2367,7 +2367,6 @@ It takes two parameters:
 
 ### Raising your softirq
 
-
 To mark it pending, so it is run at the next invocation of `do_softirq()`, call `raise_softirq()`.
 
 Softirqs are most often raised from within interrupt handlers.
@@ -2394,6 +2393,29 @@ If the same softirq is raised again while it is executing, another processor can
 This means that any shared data even global data used only within the soft irq handler needs proper locking.
 
 most softirq handlers resort to per-processor data (data unique to each processor and thus not requiring locking) and other tricks to avoid explicit locking and provide excellent scalability.
+
+
+To compile it, the whole Linux kernel has to be compiled: 
+
+so this file is moved into the rpi `cp ./hello.c ~/raspberrypi/linux/drivers/misc`
+
+```
+cp ./hello.c ~/raspberrypi/linux/drivers/misc
+cd drivers/misc
+vi Makefile
+# add: obj-y += hello.o // this will compile the file in the kernel image
+cd ../..
+# now compile the kernel
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j$(nproc)
+# move the image to the rpi
+scp arch/arm/boot/zImage pi@192.168.0.102:/home/pi/kernel2.img
+# now we go into the rpi
+sudo cp kernel2.img /boot/
+sync
+sudo reboot 
+```
+
+you can check the new soft irq with `cat /proc/interrupts`. or `cat /proc/softirqs`
 
 
 
@@ -2444,15 +2466,45 @@ void set_gpio_pulldown(unsigned int gpio)
 	iounmap(mem);
 }
 
+// <<<<< this function will report the context in which the softirq is running 
+void print_context(void)  
+{
+
+        if (in_interrupt()) {
+                pr_info("Code is running in interrupt context\n");
+        } else {
+                pr_info("Code is running in process context\n");
+        }
+}
+
+// <<<< this function will report if the irq are enabled or disabled.
+void is_irq_disabled(void)
+{
+        if (irqs_disabled())
+                pr_info("IRQ Disabled\n");
+        else
+                pr_info("IRQ Enabled\n");
+}
+
+// <<<< this is the softirq handler
 void my_action(struct softirq_action *h)
 {
         pr_info("my_action\n");
+        print_context();                // this will print the context, being a softirq, this should be an interrupt context
+        irq_disabled();                 // here, in the softirq handler, the IRQs should be enabled. So the interrupt handler, can preempt tine softirq handler. Whereas hardirq run with interrupts disabled. 
+        pr_info("current pid : %d , current process : %s\n",current->pid, current->comm);  // the process here should be `swapper`that is the interrupt process.
+        dump_stack();                  // in the stack should be the function __do_softirq()
 }
 
 static irqreturn_t  button_handler(int irq, void *dev_id)
 {
         pr_info("irq:%d\n", irq);
-	raise_softirq(MY_SOFTIRQ);
+        print_context();               // this will print the context, being a softirq, this should be an interrupt context
+	raise_softirq(MY_SOFTIRQ);     // <<<< here the new softirq is raised
+                                       // this will mark the softirq as pending
+        irq_disabled();                // here, in the inerrupt handler, the IRQs should be disabled.
+        pr_info("current pid : %d , current process : %s\n",current->pid, current->comm); // the process here should be `swapper`that is the interrupt process.
+        dump_stack();
         return IRQ_HANDLED;
 }
 
@@ -2477,7 +2529,7 @@ static int test_hello_init(void)
 	set_gpio_pulldown(gpio_button);
 	irq_number = gpio_to_irq(gpio_button);
         pr_info("irq number:%d\n", irq_number);
-	open_softirq(MY_SOFTIRQ, my_action);
+	open_softirq(MY_SOFTIRQ, my_action);       // <<<<< here the handler to the new softirq is rregistered
 	return request_irq(irq_number, button_handler,
 			IRQF_TRIGGER_FALLING,
 			"button_interrupt",
