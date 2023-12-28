@@ -24,6 +24,7 @@ references:
 ### What is an interrupt?
 
 - reference: https://docs.kernel.org/core-api/irq/concepts.html
+- reference: https://embetronicx.com/tutorials/linux/device-drivers/interrupts-in-linux-kernel/
 
 An interrupt is an input signal to the processor, sent by the hardware peripherals when they need processor attention. 
 
@@ -201,7 +202,7 @@ i equals to: 5
 Trace/breakpoint trap (core dumped)
 ```
 
-but if we debug the program with gcc: 
+but if the program is debugged with gcc: 
 
 ```
 sergio@laptop:~/repos/divide-by-zero$ gdb ./int3 
@@ -2486,6 +2487,22 @@ void is_irq_disabled(void)
                 pr_info("IRQ Enabled\n");
 }
 
+// <<<< print the context
+void print_context(void)
+{
+        if (in_irq()) {
+                pr_info("Code is running in hard irq context\n");
+        } else {
+                pr_info("Code is NOT running in hard irq context\n");
+        }
+
+        if (in_softirq()) {
+                pr_info("Code is running in soft irq context\n");
+        } else {
+                pr_info("Code is NOT running in soft irq context\n");
+        }
+}
+
 // <<<< this is the softirq handler
 void my_action(struct softirq_action *h)
 {
@@ -2493,10 +2510,12 @@ void my_action(struct softirq_action *h)
         print_context();                // this will print the context, being a softirq, this should be an interrupt context
         irq_disabled();                 // here, in the softirq handler, the IRQs should be enabled. So the interrupt handler, can preempt tine softirq handler. Whereas hardirq run with interrupts disabled. 
         pr_info("current pid : %d , current process : %s\n",current->pid, current->comm);  // the process here should be `swapper`that is the interrupt process.
+        pr_info("my_action processor id:%d\n", smp_processor_id());                        // info about the processor id
+        print_context();               // the interrupt handler should run in soft interrupt context (irq enabled)
         dump_stack();                  // in the stack should be the function __do_softirq()
 }
 
-static irqreturn_t  button_handler(int irq, void *dev_id)
+static irqreturn_t button_handler(int irq, void *dev_id)
 {
         pr_info("irq:%d\n", irq);
         print_context();               // this will print the context, being a softirq, this should be an interrupt context
@@ -2504,6 +2523,8 @@ static irqreturn_t  button_handler(int irq, void *dev_id)
                                        // this will mark the softirq as pending
         irq_disabled();                // here, in the inerrupt handler, the IRQs should be disabled.
         pr_info("current pid : %d , current process : %s\n",current->pid, current->comm); // the process here should be `swapper`that is the interrupt process.
+        pr_info("my_action processor id:%d\n", smp_processor_id());                        // info about the processor id
+        print_context();               // the interrupt handler should run in hard interrupt context (irq disabled)
         dump_stack();
         return IRQ_HANDLED;
 }
@@ -2529,7 +2550,7 @@ static int test_hello_init(void)
 	set_gpio_pulldown(gpio_button);
 	irq_number = gpio_to_irq(gpio_button);
         pr_info("irq number:%d\n", irq_number);
-	open_softirq(MY_SOFTIRQ, my_action);       // <<<<< here the handler to the new softirq is rregistered
+	open_softirq(MY_SOFTIRQ, my_action);       // <<<<< here the handler to the new softirq is registered
 	return request_irq(irq_number, button_handler,
 			IRQF_TRIGGER_FALLING,
 			"button_interrupt",
@@ -2558,5 +2579,171 @@ clean:
         make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -C /home/linuxtrainer/raspberrypi/linux M=$(PWD) clean
 ```
 
+
+### Important Points related to softirqs
+
+1. Compile Time:
+  - Declared at compile time in an enumerator.
+  - Not suitable for linux kernel modules.
+
+2. Execution:
+  - Executed as early as possible.
+     - After return of a top handler and before return to a system call.
+  - This is achieved by giving a high priority to the executed softirq handlers.
+
+3. Parallel:
+ - Softirqs can run in parallel.
+ - Each processor has its own softirq bitmap.
+ - One softirq cannot be scheduled twice on the same processor.
+ - One softirq may run in parallel on other.
+
+4. Priority:
+ - Kernel iterates over the softirq bitmap, least significant bit (LSB) first, and execute the associated softirq handlers.
+	
+
+### ksoftirqd
+
+- reference: https://www.oreilly.com/library/view/linux-device-drivers/9781785280009/4924e580-97c8-4b45-8226-c900a49e27e0.xhtml
+
+Softirqs are executed as long as the processor-local softirq bitmap is set.
+
+Since softirqs are bottom halves and thus remain interruptible during execution, 
+
+the system can find itself in a state where it does nothing else than 
+	serving interrupts and 
+	softirqs
+
+incoming interrupts may schedule softirqs what leads to another iteration over the bitmap.
+
+Such processor-time monopolization by softirqs is acceptable under high workloads (e.g., high IO or network traffic), but it is generally undesirable for a longer period of time since (user) processes cannot be executed.
+
+### how to solfe the processor-time monopilziation by softirqs
+
+After the tenth iteration(MAX_SOFTIRQ_RESTART) over the softirq bitmap, the kernel schedules the so-called ksoftirqd kernel thread, which takes control over the execution of softirqs.
+
+Each processor has its own kernel thread called ksoftirqd/n, where n is the number of the processor
+
+This processor-local kernel thread then executes softirqs as long as any bit in the softirq bitmap is set.
+
+The aforementioned processor-monopolization is thus avoided by deferring softirq execution into process context (i.e., kernel thread), so that the ksoftirqd can be preempted by any other (user) process.
+
+To check for the softirq threads use:
+```
+ ps -ef | grep ksoftirqd/
+```
+
+The spawn_ksoftirqd function starts these threads.
+
+It is called early in the boot process.
+
+```
+static __init int spawn_ksoftirqd(void)
+{
+        cpuhp_setup_state_nocalls(CPUHP_SOFTIRQ_DEAD, "softirq:dead", NULL,
+                                  takeover_tasklets);
+        BUG_ON(smpboot_register_percpu_thread(&softirq_threads));
+
+        return 0;
+}
+early_initcall(spawn_ksoftirqd);
+```
+
+File: kernel/softirq.c
+
+Each ksoftirqd/n kernel thread runs the run_ksoftirqd()
+
+```
+static void run_ksoftirqd(unsigned int cpu)
+{
+        local_irq_disable();
+        if (local_softirq_pending()) {
+                /*
+                 * We can safely run softirq on inline stack, as we are not deep
+                 * in the task stack here.
+                 */
+                __do_softirq();
+                local_irq_enable();
+                cond_resched();
+                return;
+        }
+        local_irq_enable();
+}
+```
+
+If we want to check/test the ksoftirq, we can raise the softirq more that the max time:
+
+```
+void my_action(struct softirq_action *h)
+{
+	static int i = 0;
+        pr_info("my_action\n");
+	pr_info("current pid : %d , current process : %s\n",current->pid, current->comm);
+	if (i++ <= 10)
+		raise_softirq(MY_SOFTIRQ);
+}
+```
+
+### Checking how many softirq are pending
+
+It is 32-bit mask of pending softirqs. 
+
+To check the number of pending irq use the function: `local_softirq_pending()` 
+
+```
+
+void my_action(struct softirq_action *h)
+{
+        pr_info("softirq started on processor id:%d\n", smp_processor_id());
+	pr_info("local_softirq_pending:%02x\n", local_softirq_pending());
+        pr_info("softirq ended on processor id:%d\n", smp_processor_id());
+}
+
+static irqreturn_t  button_handler(int irq, void *dev_id)
+{
+        pr_info("irq:%d, processor id:%d\n", irq, smp_processor_id());
+	pr_info("local_softirq_pending:%02x\n", local_softirq_pending());
+	raise_softirq(MY_SOFTIRQ);
+	pr_info("local_softirq_pending:%02x\n", local_softirq_pending());
+        return IRQ_HANDLED;
+}
+```
+
+### When are pending softirqs run?
+
+Pending softirq handlers are checked and executed at various points in the kernel code.
+
+	a) After the completion of hard interrupt handlers with IRQ Lines Enabled
+	   - do_IRQ() function finishes handling an I/O interrupt and invokes the `irq_exit()`
+
+	b) Call to functions like `local_bh_enable()` or `spin_unlock_bh()`
+
+	c) When one of the special ksoftirqd/n kernel threads is awakened
+
+### in_softirq
+
+You can tell you are in a softirq (or tasklet) using the `in_softirq()` macro.
+
+### Disabling/Enabling Softirqs
+
+If a softirq shares data with user context, you have two problems.
+ - The current user context can be interrupted by a softirq
+ - The critical region could be entered from another CPU
+
+#### Solution to  first problem: the current user context can be interrupted by a softirq
+
+```
+void local_bh_disable() - Disable softirq and tasklet processing on the local processor
+
+void local_bh_enable()	- Enable softirq and tasklet processing on the local processor
+```
+The calls can be nested only the final call to local_bh_enable() actually enables bottom halves.
+
+#### Locking Between User Context and Softirqs
+
+```
+spin_lock_bh()	- Disables softirqs on the CPU and then grabs the lock
+
+spin_unlock_bh() - Release lock and enable softirqs
+```
 
 
