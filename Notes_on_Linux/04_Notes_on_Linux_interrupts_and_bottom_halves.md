@@ -109,6 +109,14 @@ A general protection fault may occur for various reasons, the most common:
 - trying to access an unimlemented register (like mov cr6, eax)
 - the saved instruction pointer points to the instruction which causes the exception
 
+
+[interrupt_vector_source_and_cause]: https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/amd64_interrutp_vector_source_and_cause.png "interrupt vector source and cause"
+
+[interrupt_vector_classification]: https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/amd64_interrutp_vector_classification.png "interrupt vector classification"
+
+[interrupt_vector_classification_cont]: https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/amd64_interrupt_vector_classification_cont.png "interrupt vector classification cont"
+
+
 #### Example 1
 So for example for a divide by zero problem:
 
