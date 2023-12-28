@@ -186,12 +186,45 @@ In c++ the static keyword has other two uses:
 
 
 ## BITWISE OPERATORS
-You have the following declaration: “uint8_t a”. Please write the code to: *
+You have the following declaration: “uint8_t a”. Please write the code to: 
+
 Set the least significant bit in a:
 Set the sixth bit:
 Set the ith bit:
 Unset the ith bit:
 
+## PREPROCESSOR MACROS
+Do you know what preprocessor macros are and how they work? *
+Can you see any errors in the following macro: #define MUL(a,b) a * b
+How would you fix the macro?
+
+That macro doesn't check types. So if the types don't use that * operation it would
+crash.
+The expasion can be wrong, so it would be more precise to write: (a)*(b)
+
+## POINTERS AND MEMORY LOCATIONS
+Read the declarations and the
+piece of code below: *
+Can you answer to the following
+questions?
+1) What is the value of the variable iters in
+function()?
+2) Can you tell what will be the output in
+function()?
+3) Can you tell the output in main()?
+
+```
+#include "studio.h"
+#include <stdint.h>
+#include <string.h>
+
+typedef struct {
+	uint8_t	 first_array[16];
+	uint16_t value;
+	uint8_t second_array[16];
+} data_t;
+
+```
 
 
 
