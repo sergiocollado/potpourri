@@ -102,17 +102,18 @@ Traps increment the instruction pointer, faults don't, and aborts "explode".
 ### General protection Fault
 
 A general protection fault may occur for various reasons, the most common:
+ - segment error (privilege, type, limit, read/write rights).
+ - executing priviledged instructions while CPL (current privilege level) is not equal to 0.
+ - writing a 1 in a reserved register field.
+ - referencing or accessing a null-descriptor.
+ - trying to access an unimlemented register (like mov cr6, eax)
+ - the saved instruction pointer points to the instruction which causes the exception
 
-- segment error (privilege, type, limit, read/write rights).
-- executing priviledged instructions while CPL (current privilege level) is not equal to 0.
-- writing a 1 in a reserved register field.
-- referencing or accessing a null-descriptor.
-- trying to access an unimlemented register (like mov cr6, eax)
-- the saved instruction pointer points to the instruction which causes the exception
 
+### HW datasheets examples about interrupts: 
 
-- reference: HW Intel interrupts: https://cdrdv2.intel.com/v1/dl/getContent/671190
-- reference: HW Amd64 interrupts: https://www.scs.stanford.edu/05au-cs240c/lab/amd64/AMD64-2.pdf
+ - reference: HW Intel interrupts: https://cdrdv2.intel.com/v1/dl/getContent/671190
+ - reference: HW Amd64 interrupts: https://www.scs.stanford.edu/05au-cs240c/lab/amd64/AMD64-2.pdf
 
 ![interrupt_vector_source_and_cause](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/amd64_interrutp_vector_source_and_cause.png)
 
