@@ -6,6 +6,7 @@
 references:
 - MUST READ LDD3: https://static.lwn.net/images/pdf/LDD3/ch10.pdf
 - https://www.kernel.org/doc/html/latest/core-api/genericirq.html
+- https://0xax.gitbooks.io/linux-insides/content/Interrupts/linux-interrupts-1.html
 - https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html
 - https://sysprog21.github.io/lkmpg/#scheduling-tasks
 - https://sysprog21.github.io/lkmpg/#interrupt-handlers
@@ -26,6 +27,7 @@ references:
 
 - reference: https://docs.kernel.org/core-api/irq/concepts.html
 - reference: https://www.kernel.org/doc/html/latest/core-api/genericirq.html
+- reference: https://0xax.gitbooks.io/linux-insides/content/Interrupts/linux-interrupts-1.html
 - reference: https://embetronicx.com/tutorials/linux/device-drivers/interrupts-in-linux-kernel/
 
 An interrupt is an input signal to the processor, sent by the hardware peripherals when they need processor attention. 
