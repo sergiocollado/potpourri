@@ -10,6 +10,101 @@ reference:
 -  https://youtu.be/c4j6z2huJxs 
 -  Build a embedded linux using buildroot: https://youtu.be/ysoi0bn66oM
 
+
+
+
+# Building a minimal linux system with busybox
+
+reference: https://youtu.be/asnXWOUKhTA?list=PLw27zZE-QQB9z59AI0EnAE998NSSJ4k9p
+
+```
+#!/bin/bash
+
+# reference: https://youtu.be/asnXWOUKhTA?list=PLw27zZE-QQB9z59AI0EnAE998NSSJ4k9p
+# we will need a kernel and a root partition, and in that root partition we will install busybox
+
+KERNEL_VERSION=5.15.6
+BUSYBOX_VERSION=1.34.1
+
+mkdir -p src
+cd src
+
+	# Kernel: donwload, unpack, default configuration and compile
+	
+	KERNEL_MAJOR=$(echo $KERNEL_VERSION | sed 's/\[0-9]*)[^0-9].*/\1/')
+	wget https://mirrors.edge.kernel.org/pub/linux/kernel/v$KERNEL_MAJOR/linux-$KERNEL_VERSION.tar.gz
+	tar -xf linux-$KERNEL_VERSION.tar.xz
+	cd linux-$KERNEL_VERSION
+	
+		make defconfig
+		make -j$(nproc) || exit
+	cd ..
+	
+	# Busybox: download, unpack
+	wget https://busybox.net/downloads/busybox-$BUSYBOX_VERSION.tar.bz2
+	tar -xf busybox-$BUSYBOX_VERSION.tar.bz2
+	cd busybox-$BUSYBOX_VERSION
+		
+		make defconfig
+		# we need a static build of busybox. So the libraries are build into the executable binary
+		sed 's/^.*CONFIG_STATIC[^_].*$/CONFIG_STATIC=y/g' -i .config	
+		make -j$(nproc)|| exit
+	
+		# you need to install musl at least in manjaro based systems
+		# sudo packman -s musl kernel-headers-musl
+		# make CC=musl-gcc -j$(nproc) busybox || exit
+	
+	cd ..
+	
+cd ..
+
+# now pull the compiled kernel from the source directory 
+cp src/linux-$KERNEL_VERSION/arch/x86_64/boot/bzImage ./
+
+# we need a root drive: initrd
+mkdir initrd
+cd initrd 
+
+	# create standard directories
+	mkdir -p bin dev proc sys
+	cd bin
+	
+		cp ../../src/busybox-$BUSYBOX_VERSION/busybox ./
+		
+		for prog in $(./busybox --list); do
+		# iterate through all the programs and create sym links
+			ln -s /bin/busybox ./$prog
+		done
+
+	cd ..
+	
+	# tell the kernel what to do at start up, for that we create a init script
+	echo '#!/bin/sh' > init
+	echo 'mount -t sysfs sysfs /sys' >> init
+	echo 'mount -t proc proc /proc' >> init
+	echo 'mount -t devtmpfs udev /dev' >> init
+	echo 'sysctl -w kernel.printk="2 4 1 7"' >> init
+	echo 'clear' >> init
+	echo '/bin/sh' >> init
+	echo 'poweroff -f' >> init # turn the hw off when the terminal is exited.
+	
+	chmod -R 777 . # maybe we are overdoing here
+	
+	find . | cpio -o -H newc > ../initrd.img
+		
+cd ..
+
+# launch the system
+quemu-system-x86_64 -kernel bzImage -initrd initrd.img
+
+# you can use also: -nographic -append 'console=tyyS0' 
+# so you handle a serial interface
+# in need of killing qemu: killall qemu*
+```
+
+
+
+# other build
 ## Common
 
 ````
