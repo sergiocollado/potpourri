@@ -1429,16 +1429,24 @@ Examples: kmalloc with GFP_KERNEL, ssleep.
 ### Process Context
 
  - reference: https://stackoverflow.com/questions/57987140/difference-between-interrupt-context-and-process-context
+ - reference: https://stackoverflow.com/questions/47063693/atomic-context-and-process-context-interrupt-context
+
+Process Context - Regular processes and syscall invocations execute in this context and it can be interrupted by IRQs
 
 One of the most important parts of a process are the executing program code. This code was read in from a executable file and executed within the program's address space. Normal program execution occurs in User-space. When a program executes a system call or triggers an exception, it enters Kernel-space. At this point, the kernel are said to being "executing on behalf of the process" and are in process context. When in process context, the current macro is valid. Upon exiting the kernel, the process resumes execution in User-space, unless a higher-priority process have become runnable In the interim (transition period), in which case the scheduler is invoked to select the higher priority process.
 
-### Interrupt Context
+### Interrupt ontext or atomic context
 
  - reference: https://stackoverflow.com/questions/57987140/difference-between-interrupt-context-and-process-context
+ - reference: https://stackoverflow.com/questions/47063693/atomic-context-and-process-context-interrupt-context
 
 When executing a interrupt handler or bottom half, the kernel is in interrupt context.Recall That process context is the mode of operation the kernel are in while it's executing on behalf of a process-- For example, executing a system call or running a kernel thread. In process context, the current macro points to the associated task. Furthermore, because a process is coupled to the kernel in process context (because the process is connected to the kernel in the same way as the process above), process context can SleeP or otherwise invoke the scheduler.
 
 Interrupt context, on the other hand, was not associated with a process. The current macro isn't relevant (although it points to the interrupted process). Without a backing process (because there is no process background), interrupt context cannot sleep-how would it ever reschedule? (or how to reschedule it again?) Therefore, cannot call certain functions from interrupt context. If A function sleeps, you cannot use it from your interrupt handler--this limits the functions so one can call from an Interrupt handler. (This is the limit on what functions can be used in an interrupt handler).
+
+IRQs are generally executed in this context and they don't belong to any specific process, but rather are invoked by some device(ignore exceptions for simplicity). Once the interrupt context sleeps or gives up the CPU, it cannot be awakened. So it is also called atomic context.
+
+A basic principle of the kernel is that in an interrupt or atomic context, the kernel cannot access user space, and the kernel cannot sleep.
 
 ### User context 
 
