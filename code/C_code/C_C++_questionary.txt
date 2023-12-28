@@ -224,6 +224,25 @@ typedef struct {
 	uint8_t second_array[16];
 } data_t;
 
+static void function(data_t *data) {
+	int i;
+	uint16_t *ptr = (uint16_t *) data;
+	int iters  = sizeof(data_t) / sizeof(uint16_t);
+
+	for (i = 0; i < iters; i++) {
+		printf("ptr = %x\n", ptr);
+ 		*ptr = (uint16_t) i;
+		ptr++;
+ 	}
+}
+
+int main(void) {
+	data_t data;
+        memset(&data, 0, sizeof(data_t));
+	function(&data);
+	printf("%d\n", data.value);
+}
+
 ```
 
 
