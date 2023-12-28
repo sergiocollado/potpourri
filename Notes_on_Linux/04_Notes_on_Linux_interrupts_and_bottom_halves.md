@@ -7,6 +7,7 @@ references:
 - MUST READ LDD3: https://static.lwn.net/images/pdf/LDD3/ch10.pdf
 - https://www.kernel.org/doc/html/latest/core-api/genericirq.html
 - https://0xax.gitbooks.io/linux-insides/content/Interrupts/linux-interrupts-1.html
+- https://cdrdv2.intel.com/v1/dl/getContent/671190
 - https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html
 - https://sysprog21.github.io/lkmpg/#scheduling-tasks
 - https://sysprog21.github.io/lkmpg/#interrupt-handlers
@@ -109,6 +110,9 @@ A general protection fault may occur for various reasons, the most common:
 - trying to access an unimlemented register (like mov cr6, eax)
 - the saved instruction pointer points to the instruction which causes the exception
 
+
+- reference: HW Intel interrupts: https://cdrdv2.intel.com/v1/dl/getContent/671190
+- reference: HW Amd64 interrupts: https://www.scs.stanford.edu/05au-cs240c/lab/amd64/AMD64-2.pdf
 
 ![interrupt_vector_source_and_cause](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/amd64_interrutp_vector_source_and_cause.png)
 
