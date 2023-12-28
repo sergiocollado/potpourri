@@ -1,6 +1,8 @@
 # NOTES ABOUT PROGRAMMING
 
-Unix-like systems use the ELF (executable and linking format) for these programs. 
+Unix-like systems use the ELF (executable and linking format) for these programs. http://www.skyfree.org/linux/references/ELF_Format.pdf
+
+- How programs get run: https://lwn.net/Articles/631631/
 
 An ELF file is a relocatable object, with the following sections.
 
@@ -64,16 +66,11 @@ local variables are stored in the stack. But dynamic allocated memory goes into 
 
 
 references:
-
-https://www.linuxjournal.com/article/6463
-
-https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html
-
-https://en.wikipedia.org/wiki/Data_segment
-
-http://www.c-faq.com/
-
-https://medium.com/@tyastropheus/the-magic-black-box-of-gcc-explained-54f991f4f6a2
+ - https://www.linuxjournal.com/article/6463
+ - https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html
+ - https://en.wikipedia.org/wiki/Data_segment
+ - http://www.c-faq.com/
+ - https://medium.com/@tyastropheus/the-magic-black-box-of-gcc-explained-54f991f4f6a2
 
 examples for other architectures other than x86:
 http://downloads.ti.com/docs/esd/SLAU131O/Content/SLAU131O_HTML/program-loading-and-running.html
@@ -81,19 +78,15 @@ http://downloads.ti.com/docs/esd/SLAU131O/Content/SLAU131O_HTML/program-loading-
 http://www.ti.com/lit/ug/slau131u/slau131u.pdf
 
 
-elf standard:
-
-http://www.sco.com/developers/devspecs/gabi41.pdf
+ - elf standard: http://www.sco.com/developers/devspecs/gabi41.pdf
 
 
 readelf command:
-
-https://linux.die.net/man/1/readelf
-
-https://manybutfinite.com/post/anatomy-of-a-program-in-memory/
+ - https://linux.die.net/man/1/readelf
+ - https://manybutfinite.com/post/anatomy-of-a-program-in-memory/
 
 
-objdump
+objdump: <br>
 
 https://linux.die.net/man/1/objdump
 
@@ -310,31 +303,25 @@ There is two kinds of libraries: static libraries and shared (or dynamic) librar
 **Shared (or dynamic) libraries**: have the extension .so (wich stands for __shared object__ in linux) or .dll (in windows- dynamic linked libraries) in this the operating system loads the machine code of the libraries functions. So the program is smaller. The shared or dynamic libraries are linked at runtime with the executable. So they must be pre installed in the target. They are created with the “shared” flag. Their advantage is that multiple programs can use the same library. To create a shard library, it is needed to compile in gcc, with the -fPIC option, PIC, stands for Possition Independent Code. And link with the -shared option, this will combine object files into a shared library.
 
 in linux:
-Files with the “.a” extension are static libraries.
-Files with the “.so” extension are dynamically linked shared object libraries. 
+ - Files with the “.a” extension are static libraries.
+ - Files with the “.so” extension are dynamically linked shared object libraries. 
 
 reference: https://opensource.com/article/20/6/linux-libraries	
 	
 GCC uses the following environment variables:
 
-PATH: For searching the executables and run-time shared libraries 
-
-CPATH: For searching the include-paths for headers. It is searched after paths specified in -I<dir> options.
-
-C_INCLUDE_PATH and CPLUS_INCLUDE_PATH can be used to specify C and C++ headers if the particular language was indicated in pre-processing.
-
-LIBRARY_PATH: For searching library-paths for link libraries. It is searched after paths specified in -L<dir> options.
-
+ - PATH: For searching the executables and run-time shared libraries 
+ - CPATH: For searching the include-paths for headers. It is searched after paths specified in -I<dir> options.
+ - C_INCLUDE_PATH and CPLUS_INCLUDE_PATH can be used to specify C and C++ headers if the particular language was indicated in pre-processing.
+ - LIBRARY_PATH: For searching library-paths for link libraries. It is searched after paths specified in -L<dir> options.
 
 the program: "make" is a program for compiling and building programs or libraries from source code. It is part of the build-essential package.
 
 references: 
 
-https://www.gnu.org/software/make/
-
-https://www.gnu.org/software/make/manual/html_node/index.html
-
-http://www.cmake.org/
+ - https://www.gnu.org/software/make/
+ - https://www.gnu.org/software/make/manual/html_node/index.html
+ - http://www.cmake.org/
 
 
 ### How to decide between static and dynamic libraries
@@ -697,7 +684,7 @@ clean:
 	rm -rf *.o $(exec_name)
 ```
 							
-							
+						
 
 ## PREPROCESSOR
 
@@ -715,10 +702,9 @@ Also the compile time switches: -D<macro_name>
 
 MEMORY
 
-In a program, typically
-
- R0M -has the program code
- RAM - has the program data. 
+In a program, typically:
+ - R0M -has the program code
+ - RAM - has the program data. 
 
 ## ENDIANESS
 	
@@ -754,6 +740,9 @@ address | value stored
 ```
 	
 Endiannes only affects to the byte order of individual items, so it doesn't affect the order of elements in an array. 
+
+
+
 	
 # VIRTUAL MEMORY
 	
@@ -778,7 +767,11 @@ In Virtual memory each program is mapped through virtual addresses to different 
 Also, even if we system runs out of RAM, it can even map memory to the disk, because the system is using virtual memory indirecton.
 
 	
-	
+
+
+- Beginners guide to linkers: https://www.lurklurk.org/linkers/linkers.html#linker1
+- elf reference: http://www.skyfree.org/linux/references/ELF_Format.pdf
+- A Whirlwind Tutorial on Creating Really Teensy ELF Executables for Linux : https://www.muppetlabs.com/~breadbox/software/tiny/teensy.html
 	
 	
 	
