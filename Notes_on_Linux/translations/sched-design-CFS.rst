@@ -133,7 +133,7 @@ The total number of running tasks in the runqueue is accounted through the
 rq->cfs.load value, which is the sum of the weights of the tasks queued on the
 runqueue.
 
-El valor total te tareas ejecutandose en la cola de ejecución es  
+El valor total de tareas ejecutandose en la cola de ejecución es  
 contabilizado mediate el valor rq->cfs.load, el cual es la suma de los
 de esas tareas que estan en la cola de ejecución.
 
@@ -147,7 +147,7 @@ amount of time.
 CFS mantiene un árbol rojo-negro cronológiamente ordenado, donde todas las 
 tareas que pueden ser ejecutadas están ordenadas por su valor de
 p->se.vruntime. CFS selecciona la tarea más hacia la izquierda de este
-árbol y la mantiene. Según el sistem continua, las tareas ejceutadas 
+árbol y la mantiene. Según el sistema continua, las tareas ejecutadas 
 se ponen en este árbol más y más hacia la derecha --- lentamente pero 
 de forma continuada dando una oportunidad a cara tarea de ser la que 
 está "la más hacia la izquierda" y por tanto obtener la CPU una cantidad
@@ -209,7 +209,7 @@ chew.c, ring-test.c, massive_intr.c all work fine and do not impact
 interactivity and produce the expected behavior.
 
 Debido a su diseño, el gestor de tareas CFS no es proclibe a ninguno de los
-ataques que existen a dia de hoy contra los heuristicos del gestor de tareas:
+ataques que existen a día de hoy contra los heuristicos del gestor de tareas:
 fiftyp.c, thud.c, chew.c, ring-test.c, massive_intr.c todos trabajan 
 correctamnte y no tienen impacto en la interaccion y se comportan de la forma
 esperada.
