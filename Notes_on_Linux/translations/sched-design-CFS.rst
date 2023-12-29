@@ -32,6 +32,12 @@ power and which can run each task at precise equal speed, in parallel, each at
 1/nr_running speed.  For example: if there are 2 tasks running, then it runs
 each at 50% physical power --- i.e., actually in parallel.
 
+"una CPU multi-tarea ideal" es (una inexistente :_)) CPU que tiene un 100% 
+de potencia y que puede ejecutar cualquier tarea exactamente a la misma 
+velocidad, en paralelo, y cada una a 1/n velocidad. Por ejemplo, is hay dos
+tareas ejecuntandose, entonces cada una usa un 50% de la potencia --- es decir, 
+como si se ejecutuaran en paralelo.
+
 On real hardware, we can run only a single task at once, so we have to
 introduce the concept of "virtual runtime."  The virtual runtime of a task
 specifies when its next timeslice would start execution on the ideal
@@ -39,11 +45,11 @@ multi-tasking CPU described above.  In practice, the virtual runtime of a task
 is its actual runtime normalized to the total number of running tasks.
 
 En un hardware real, podemos ejecutar una única tarea a la vez, asi que
-se ha usado el concepto the "tiempo de ejecución virtual". El tiempo
+se ha usado el concepto de "tiempo de ejecución virtual". El tiempo
 de ejecución virtual de una tarea, especifica cuando la siguiente porción
 de ejecución podría empezar en la CPU ideal multi-tarea descrita anteriormente.
 En la práctica, el tiempo de ejecución virtual de una tarea es el 
-tiempo de ejecución real normalizado con repsecto al número total de 
+tiempo de ejecución real normalizado con respecto al número total de 
 tareas ejecutandose.
 
 
