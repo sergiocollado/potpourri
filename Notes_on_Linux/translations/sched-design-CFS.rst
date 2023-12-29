@@ -84,7 +84,7 @@ up CPU time between runnable tasks as close to "ideal multitasking hardware" as
 possible.
 
 La lógica de elección del tareas de CFS se basa en el valor de p->se.vruntime
-y por tanto es muy sencialla: siempre intenta ejecutar la tarea con el valor
+y por tanto es muy sencilla: siempre intenta ejecutar la tarea con el valor
 p->se.vruntime más pequeño (i.e., la tarea que se ha ejecutado menos hasta el
 momento). CFS siempre intenta dividir el espacio de tiempo entre tareas 
 en ejecución tan próximo a la "ejecución multitarea ideal del hardware" como
@@ -102,8 +102,8 @@ variantes del algoritmo para identificar tareas "durmiendo".
 3.  THE RBTREE
 ==============
 
-4. EL RBTREE
-============
+4. EL ÁRBOL ROJO-NEGRO
+======================
 
 CFS's design is quite radical: it does not use the old data structures for the
 runqueues, but it uses a time-ordered rbtree to build a "timeline" of future
@@ -111,10 +111,10 @@ task execution, and thus has no "array switch" artifacts (by which both the
 previous vanilla scheduler and RSDL/SD are affected).
 
 El diseño de CFS es bastante radical: no utiliza las antiguas estructuras
-de datos para las colas de ejecución, pero usa un rbtree ordenado
-cronológicamente para construir un linea de ejecución en el futuro, y por
-eso no tiene ningún artificio de "cambio de tareas" (algo que previamente
-era usado por el gestor anterior y RSDL/SD).
+de datos para las colas de ejecución, pero usa una estructura de árbol 
+rojo-negro ordenado cronológicamente para construir un linea de ejecución 
+en el futuro, y por eso no tiene ningún artificio de "cambio de tareas" 
+(algo que previamente era usado por el gestor anterior y RSDL/SD).
 
 CFS also maintains the rq->cfs.min_vruntime value, which is a monotonic
 increasing value tracking the smallest vruntime among all tasks in the
@@ -124,7 +124,7 @@ side of the tree as much as possible.
 
 CFS también mantiene el valor de rq->cfs.min_vruntime, el cual crece 
 monotónicamnte siguiendo el valor más pequeño de vruntime de entre todas
-las teras en la cola de ejecución. La cantidad total de trabajo realizado
+las tareas en la cola de ejecución. La cantidad total de trabajo realizado
 por el sistema es monitorizado usado min_vruntime; este valor es usado
 para situar las nuevas tareas en la parte izquierda del árbol tanto 
 como sea posible.
@@ -144,10 +144,10 @@ more and more to the right --- slowly but surely giving a chance for every task
 to become the "leftmost task" and thus get on the CPU within a deterministic
 amount of time.
 
-CFS mantiene un arbol rbtree cronológiamente ordeado, donde todas las 
-tareas que pueden ser ejecutadas están ordenadas por la clave 
+CFS mantiene un árbol rojo-negro cronológiamente ordenado, donde todas las 
+tareas que pueden ser ejecutadas están ordenadas por su valor de
 p->se.vruntime. CFS selecciona la tarea más hacia la izquierda de este
-árbol y la mantiene. Según el sistem continua, las taras eejcutadas 
+árbol y la mantiene. Según el sistem continua, las tareas ejceutadas 
 se ponen en este árbol más y más hacia la derecha --- lentamente pero 
 de forma continuada dando una oportunidad a cara tarea de ser la que 
 está "la más hacia la izquierda" y por tanto obtener la CPU una cantidad
@@ -162,14 +162,14 @@ small amount of "granularity" distance relative to the leftmost task so that we
 do not over-schedule tasks and trash the cache), then the new leftmost task is
 picked and the current task is preempted.
 
-Resumiendo, CFS funciona así: ejecuta una tarea un tiemo, y cuando la
-tarea se gestiona (o suced un tic del gestor de tareas) se considera
+Resumiendo, CFS funciona así: ejecuta una tarea un tiempo, y cuando la
+tarea se gestiona (o sucede un tic del gestor de tareas) se considera
 que el tiempo de uso de la CPU se ha completado, y se añade a 
 p->se.vruntime. Una vez p->se.vruntime ha aumentado lo suficiente como
 para que otra tarea sea "la tarea más hacia la izquierda" del árbol 
-rbtree ordenado cronológicamente esta manitenen (más una cierta pequeña
-cantidad de disancai relativa a la tarea más hacia la izquierda para
-que no se sobre reserven tareas y perjudique a la cache), entonces la
+rojo-negro ordenado cronológicamente esta mantienen (más una cierta pequeña
+cantidad de distancia relativa a la tarea más hacia la izquierda para
+que no se sobre-reserven tareas y perjudique a la cache), entonces la
 nueva tarea "que está a la izquierda del todo", es la que se elige 
 para que se ejecute, y la tarea en ejecución es interrupida.
 
