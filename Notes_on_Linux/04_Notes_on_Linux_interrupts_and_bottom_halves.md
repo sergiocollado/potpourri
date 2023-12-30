@@ -1001,7 +1001,9 @@ module_init(my_init);
 module_exit(my_exit);
 ```
 
-## request_irq
+## Threaded IRQs: request_irq()
+
+- reference: https://embetronicx.com/tutorials/linux/device-drivers/threaded-irq-in-linux-kernel/
 
 It is defined at: https://elixir.bootlin.com/linux/v6.5.7/source/include/linux/interrupt.h#L165
 
@@ -2763,4 +2765,151 @@ spin_lock_bh()	- Disables softirqs on the CPU and then grabs the lock
 spin_unlock_bh() - Release lock and enable softirqs
 ```
 
+
+## Tasklets
+
+- reference: https://linux-kernel-labs.github.io/refs/heads/master/labs/deferred_work.html#tasklets
+- reference: https://www.kernel.org/doc/html/v4.16/kernel-hacking/hacking.html#software-interrupt-context-softirqs-and-tasklets
+- reference: https://embetronicx.com/tutorials/linux/device-drivers/tasklet-static-method/
+- reference: https://elixir.bootlin.com/linux/v6.5.7/source/include/linux/interrupt.h#L642
+
+Tasklets are bottom half mechanism built on top of softirqs.
+
+Handlers of tasklets are executed by softirqs
+
+#### Implementation
+
+
+Tasklets are implemented on top of softirqs.
+
+Tasklets are represented by two softirqs: HI_SOFTIRQ and TASKLET_SOFTIRQ.
+
+The only difference in these types is that the HI_SOFTIRQ-based tasklets run prior to the TASKLET_SOFTIRQ based
+tasklets.
+
+
+#### Data Structure
+
+
+- reference: https://elixir.bootlin.com/linux/v6.5.7/source/include/linux/interrupt.h#L642
+
+tasklet_struct @ Header File: <linux/interrupt.h>
+
+```
+/* Tasklets --- multithreaded analogue of BHs.
+
+   This API is deprecated. Please consider using threaded IRQs instead:
+   https://lore.kernel.org/lkml/20200716081538.2sivhkj4hcyrusem@linutronix.de
+
+   Main feature differing them of generic softirqs: tasklet
+   is running only on one CPU simultaneously.
+
+   Main feature differing them of BHs: different tasklets
+   may be run simultaneously on different CPUs.
+
+   Properties:
+   * If tasklet_schedule() is called, then tasklet is guaranteed
+     to be executed on some cpu at least once after this.
+   * If the tasklet is already scheduled, but its execution is still not
+     started, it will be executed only once.
+   * If this tasklet is already running on another CPU (or schedule is called
+     from tasklet itself), it is rescheduled for later.
+   * Tasklet is strictly serialized wrt itself, but not
+     wrt another tasklets. If client needs some intertask synchronization,
+     he makes it with spinlocks.
+ */
+
+struct tasklet_struct
+{
+	struct tasklet_struct *next;
+	unsigned long state;
+	atomic_t count;
+	bool use_callback;
+	union {
+		void (*func)(unsigned long data);
+		void (*callback)(struct tasklet_struct *t);
+	};
+	unsigned long data;
+};
+
+```
+
+```
+struct tasklet_struct
+{
+        struct tasklet_struct *next;     /* next tasklet in the list */
+        unsigned long state;             /* state of the tasklet */
+        atomic_t count;		         /* reference counter */
+        void (*func)(unsigned long);     /* tasklet handler function */
+        unsigned long data;              /* argument to the tasklet function */
+};
+```
+
+
+#### state field
+
+It can be 
+ - a) 0
+ - b) TASKLET_STATE_SCHED -  denotes a tasklet that is scheduled to run
+ - c) TASKLET_STATE_RUN - enotes a tasklet that is running
+
+TASKLET_STATE_RUN is used only on multiprocessor machines.
+It is used to protect tasklets against concurrent execution on several processors.
+
+#### count field
+
+Used as a reference count for the tasklet
+ - count = 0 - the tasklet is enabled and can run if marked pending.
+ - count = nonzero - the tasklet is disabled and cannot run.
+
+
+### Tasklet API
+
+#### Declaring Tasklets
+
+
+#### Static Initialization
+
+
+DECLARE_TASKLET
+
+```
+	#define DECLARE_TASKLET(name, func, data) \
+	struct tasklet_struct name = { NULL, 0, ATOMIC_INIT(0), func, data }
+```
+arguments:
+- name: name of the tasklet
+- func: function to execute
+- data: arguments to the function to execute
+
+```
+	struct tasklet_struct name = { NULL, 0, ATOMIC_INIT(0), func, data }
+```
+The arguments are: 
+- list set to NULL, so no list.
+- state set to 0, so
+- ATOMIC_INIT(0), task
+- func: function
+- data: arguments to the function
+
+
+
+DECLARE_TASKLET_DISABLED
+
+```
+	#define DECLARE_TASKLET_DISABLED(name, func, data) \
+	struct tasklet_struct name = { NULL, 0, ATOMIC_INIT(1), func, data }
+```
+
+Both these macros statically create a struct tasklet_struct with the given name.
+When the tasklet is scheduled, the given function func is executed and passed data as argument.
+
+The difference between the two macros is the initial reference count.
+
+#### Dynamic
+
+```
+void tasklet_init(struct tasklet_struct *t,
+                         void (*func)(unsigned long), unsigned long data);
+```
 
