@@ -2888,6 +2888,7 @@ DECLARE_TASKLET
 	struct tasklet_struct name = { NULL, 0, ATOMIC_INIT(0), func, data }
 ```
 
+The first line:
 ```
 	#define DECLARE_TASKLET(name, func, data) \
 ```
@@ -2897,6 +2898,7 @@ arguments:
 - func: function to execute
 - data: arguments to the function to execute
 
+The second line:
 ```
 	struct tasklet_struct name = { NULL, 0, ATOMIC_INIT(0), func, data }
 ```
@@ -2921,10 +2923,610 @@ When the tasklet is scheduled, the given function func is executed and passed da
 
 The difference between the two macros is the initial reference count.
 
-#### Dynamic
+#### Dynamic tasklet definition
 
 ```
 void tasklet_init(struct tasklet_struct *t,
                          void (*func)(unsigned long), unsigned long data);
 ```
+
+
+### Example defining tasklets
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+
+MODULE_LICENSE("GPL");
+char tasklet_data[] = "linux kernel is very easy";
+
+void tasklet_function(unsigned long data)
+{
+	pr_info("%s:data:%s\n", __func__, (char *)data);
+	return;
+}
+
+DECLARE_TASKLET(my_tasklet, tasklet_function, (unsigned long)&tasklet_data);
+DECLARE_TASKLET_DISABLED(my_tasklet_disabled, tasklet_function, (unsigned long)&tasklet_data);
+
+static int test_tasklet_init(void)
+{
+        pr_info("%s: In init\n", __func__);
+	pr_info("State:%ld\n", my_tasklet.state);                       // zero value means enabled.
+	pr_info("Count:%d\n", atomic_read(&my_tasklet.count));
+	pr_info("State:%ld\n", my_tasklet_disabled.state);
+	pr_info("Count:%d\n", atomic_read(&my_tasklet_disabled.count)); // non-zero vlaue means disabled.
+	return 0;
+}
+
+static void test_tasklet_exit(void)
+{
+        pr_info("%s: In exit\n", __func__);
+}
+
+module_init(test_tasklet_init);
+module_exit(test_tasklet_exit);
+```
+
+### Scheduling Tasklets
+
+
+The kernel maintains two per-CPU tasklet linked lists for queuing scheduled tasklets
+
+kernel/softirq.c : https://elixir.bootlin.com/linux/v6.5.7/source/kernel/softirq.c#L711
+
+```
+static DEFINE_PER_CPU(struct tasklet_head, tasklet_vec);
+static DEFINE_PER_CPU(struct tasklet_head, tasklet_hi_vec);
+```
+
+ - tasklet_vec : for regular tasklets, run by TASKLET_SOFTIRQ and 
+ - tasklet_hi_vec : for high-priority tasklets, run by HI_SOFTIRQ
+
+Both of these structures are linked lists of tasklet_struct structures.
+
+Each tasklet_struct structure in the list represents a different tasklet.
+
+- https://elixir.bootlin.com/linux/v6.5.7/source/kernel/softirq.c#L711
+
+```
+struct tasklet_head {
+        struct tasklet_struct *head;
+        struct tasklet_struct **tail;
+};
+```
+
+Tasklets are scheduled via the `tasklet_schedule()` and `tasklet_hi_schedule()`.
+
+- https://elixir.bootlin.com/linux/v6.5.7/source/include/linux/interrupt.h#L709
+
+```
+static inline void tasklet_schedule(struct tasklet_struct *t)
+{
+        if (!test_and_set_bit(TASKLET_STATE_SCHED, &t->state))
+                __tasklet_schedule(t);
+}
+```
+
+The above function checks whether the tasklet is already scheduled, if not it atomically sets the state to
+TASKLET_STATE_SCHED and invokes `__tasklet_schedule` to add the tasklet into the pending queue.
+
+#### Steps performed by tasklet_schedule
+
+1. Check whether the tasklet’s state is TASKLET_STATE_SCHED.
+	If it is, the tasklet is already scheduled to run and the function can immediately `return`.
+
+2. Call `__tasklet_schedule()`.
+
+3. Save the state of the interrupt system, and then disable local interrupts by calling `local_irq_save`
+	This ensures that nothing on this processor will mess with the tasklet code while `tasklet_schedule()` is manipulating the tasklets.
+
+4. Add the tasklet to be scheduled to the head of the tasklet_vec or tasklet_hi_vec linked list, which is unique to each processor in the system.
+	 
+5. Raise the TASKLET_SOFTIRQ or HI_SOFTIRQ softirq, so `do_softirq()` executes this tasklet in the near future.
+
+6. Restore interrupts to their previous state and return.
+
+
+```
+static void __tasklet_schedule_common(struct tasklet_struct *t,
+                                      struct tasklet_head __percpu *headp,
+                                      unsigned int softirq_nr)
+{
+        struct tasklet_head *head;
+        unsigned long flags;
+
+        local_irq_save(flags);       // disable local interrupts
+        head = this_cpu_ptr(headp);
+        t->next = NULL;
+        *head->tail = t;
+        head->tail = &(t->next);
+        raise_softirq_irqoff(softirq_nr);  // raising softirq 
+        local_irq_restore(flags);
+}
+```
+
+
+### tasklet_hi_schedule
+
+In addition to normal tasklets, the kernel uses a second kind of tasklet of a higher priority.
+
+HI_SOFTIRQ is used as a softIRQ instead of TASKLET_SOFTIRQ
+
+`tasklet_hi_schedule()` should be used if the tasklet should  run more urgently than networking, SCSI, timers 
+
+
+#### Steps performed by tasklet softirq handlers
+
+
+Handlers: `tasklet_action()`/`tasklet_hi_action()`
+
+1. Disable local interrupt delivery and get the `tasklet_vec` or `tasklet_hi_vec` list for this processor
+
+2. Clear the list for this processor by setting it equal to NULL.
+
+3. Enable local interrupt delivery.
+   
+```
+        struct tasklet_struct *list;
+
+        local_irq_disable();
+        list = tl_head->head;
+        tl_head->head = NULL;
+        tl_head->tail = &tl_head->head;
+        local_irq_enable();
+```
+
+4. Loop over each pending tasklet in the retrieved list.
+
+5. Check for a zero count value, to ensure the tasklet is not disabled. If the tasklet is disabled, skip it and go to the next pending tasklet.
+
+6. Run the tasklet handler.
+
+7. Repeat the next pending tasklet, until there are no more scheduled tasklets waiting to run.
+
+```
+        while (list) {
+                struct tasklet_struct *t = list;
+
+                list = list->next;
+
+                if (tasklet_trylock(t)) {
+                        if (!atomic_read(&t->count)) {
+                                if (!test_and_clear_bit(TASKLET_STATE_SCHED,
+                                                        &t->state))
+                                        BUG();
+                                t->func(t->data);
+                                tasklet_unlock(t);
+                                continue;
+                        }
+                        tasklet_unlock(t);
+                }
+
+                local_irq_disable();
+                t->next = NULL;
+                *tl_head->tail = t;
+                tl_head->tail = &t->next;
+                __raise_softirq_irqoff(softirq_nr);
+                local_irq_enable();
+        }
+```
+
+
+### Example scheduling a tasklet with static initialization
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+
+MODULE_LICENSE("GPL");
+
+char tasklet_data[] = "linux kernel is very easy";
+void tasklet_function(unsigned long data);
+
+DECLARE_TASKLET(my_tasklet, tasklet_function, (unsigned long)&tasklet_data);
+
+void tasklet_function(unsigned long data)
+{
+	pr_info("%s:data:%s\n", __func__, (char *)data);
+	return;
+}
+
+static int test_tasklet_init(void)
+{
+        pr_info("%s: In init\n", __func__);
+	pr_info("State:%ld\n", my_tasklet.state);
+	pr_info("Count:%d\n", atomic_read(&my_tasklet.count));
+	tasklet_schedule(&my_tasklet);	
+	pr_info("State:%ld\n", my_tasklet.state);
+	pr_info("Count:%d\n", atomic_read(&my_tasklet.count));
+	return 0;
+}
+
+static void test_tasklet_exit(void)
+{
+        pr_info("%s: In exit\n", __func__);
+}
+
+module_init(test_tasklet_init);
+module_exit(test_tasklet_exit);
+```
+
+### Example of scheduling a tasklet with dynamic initialization
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/interrupt.h>
+#include <linux/slab.h>
+
+MODULE_LICENSE("GPL");
+
+char tasklet_data[] = "linux kernel is very easy";
+
+void tasklet_function(unsigned long data)
+{
+	pr_info("%s:data:%s\n", __func__, (char *)data);
+	return;
+}
+
+static struct tasklet_struct *my_tasklet;  // pointer to a tasklet
+
+static int test_tasklet_init(void)
+{
+        pr_info("%s: In init\n", __func__);
+	my_tasklet = kmalloc(sizeof(struct tasklet_struct), GFP_KERNEL); // allocate space for the tasklet
+	pr_info("State:%ld\n", my_tasklet->state);
+	pr_info("Count:%d\n", atomic_read(&my_tasklet->count));     // this is allocated with kmalloc, and this values will be garbage
+	tasklet_init(my_tasklet, tasklet_function, tasklet_data);   // init the taskelt
+	pr_info("State:%ld\n", my_tasklet->state);
+	pr_info("Count:%d\n", atomic_read(&my_tasklet->count));
+	tasklet_schedule(my_tasklet);	                            // schedule will change the state to 1
+	pr_info("State:%ld\n", my_tasklet->state);
+	pr_info("Count:%d\n", atomic_read(&my_tasklet->count));
+	return 0;
+}
+
+static void test_tasklet_exit(void)
+{
+        pr_info("%s: In exit\n", __func__);
+	kfree(my_tasklet);
+}
+
+module_init(test_tasklet_init);
+module_exit(test_tasklet_exit);
+```
+
+
+### How kernel avoids running the same tasklet on multiple processors
+
+With:
+ - tasklet_trylock
+ - tasklet_unlock
+
+```
+static inline int tasklet_trylock(struct tasklet_struct *t)
+{
+        return !test_and_set_bit(TASKLET_STATE_RUN, &(t)->state);
+}
+```
+
+```
+static inline void tasklet_unlock(struct tasklet_struct *t)
+{
+        smp_mb__before_atomic();
+        clear_bit(TASKLET_STATE_RUN, &(t)->state);
+}
+```
+
+On a multiprocessor machine, the kernel checks whether TASKLET_STATE_RUN is set (which means another processor is running this tasklet).
+
+ - If set, do not execute now and skip to the next pending tasklet
+ - Else set the TASKLET_STATE_RUN flag so that another processor cannot execute
+ - After the tasklet completes, clear the TASKLET_STATE_RUN flag
+
+
+### Can I sleep in tasklet handler?
+
+As tasklets are based on softirqs, you cannot sleep.
+
+You cannot use semaphores or other blocking functions in tasklet handler.
+
+
+### What are faster softirq or tasklets?
+
+This depends on:
+
+- https://elixir.bootlin.com/linux/v6.6.8/source/include/linux/interrupt.h#L548
+
+```
+enum
+{
+	HI_SOFTIRQ=0,
+	TIMER_SOFTIRQ,
+	NET_TX_SOFTIRQ,
+	NET_RX_SOFTIRQ,
+	BLOCK_SOFTIRQ,
+	IRQ_POLL_SOFTIRQ,
+	TASKLET_SOFTIRQ,
+	SCHED_SOFTIRQ,
+	HRTIMER_SOFTIRQ,
+	RCU_SOFTIRQ,    /* Preferable RCU should always be the last softirq */
+
+	NR_SOFTIRQS
+};
+```
+
+Whatever is highier on that enum, has the highest priority. So HI_SOFTIRQ has the highest priority, then TASKLET_SOFTIRQ, and then SCHED_SOFTIRQ.
+
+
+### Are interrupts enabled when tasklet runs?
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/interrupt.h>
+#include <linux/slab.h>
+
+MODULE_LICENSE("GPL");
+
+char tasklet_data[] = "linux kernel is very easy";
+
+void is_irq_disabled(void)
+{
+        if (irqs_disabled())
+                pr_info("IRQ Disabled\n");
+        else
+                pr_info("IRQ Enabled\n");
+}
+
+void print_context(void)
+{
+        if (in_interrupt()) {
+                pr_info("Code is running in interrupt context\n");
+        } else {
+                pr_info("Code is running in process context\n");
+        }
+
+        if (in_irq()) {
+                pr_info("Code is running in hard irq context\n");
+        } else {
+                pr_info("Code is not running in hard irq context\n"); // a tasklet should not be running in an hard irq ocntext. ... because a tasklet is based on a softirq. 
+        }
+
+        if (in_softirq()) {
+                pr_info("Code is running in soft irq context\n");  // a tasklet runs in a soft irq context
+        } else {
+                pr_info("Code is not running in soft irq context\n");
+        }
+
+}  
+
+void tasklet_function(unsigned long data)
+{
+	pr_info("%s:data:%s\n", __func__, (char *)data);
+        pr_info("2- local_softirq_pending:%02x\n", local_softirq_pending());
+	is_irq_disabled();
+        print_context();
+	pr_info("current pid : %d , current process : %s\n",current->pid, current->comm); // in a tasklet this value can be any interrupted process.
+        dump_stack();
+	return;
+}
+
+static struct tasklet_struct *my_tasklet;
+
+static int test_tasklet_init(void)
+{
+        pr_info("%s: In init\n", __func__);
+	my_tasklet = kmalloc(sizeof(struct tasklet_struct), GFP_KERNEL);
+	tasklet_init(my_tasklet, tasklet_function, tasklet_data);
+        pr_info("1- local_softirq_pending:%02x\n", local_softirq_pending());
+	// tasklet_hi_schedule(my_tasklet);
+	tasklet_schedule(my_tasklet);
+        pr_info("3- local_softirq_pending:%02x\n", local_softirq_pending());
+	return 0;
+}
+
+static void test_tasklet_exit(void)
+{
+        pr_info("%s: In exit\n", __func__);
+	kfree(my_tasklet);
+}
+
+module_init(test_tasklet_init);
+module_exit(test_tasklet_exit);
+```
+
+Indeed IRQs are enabled.
+
+### What is the context on a tasklet handler? 
+
+A tasklet runs in an interrupt/atomic context. 
+
+### What happens if i call tasklet_schedule twice?
+
+After a tasklet is scheduled, it runs once at some time in the near future. If the same tasklet is scheduled again, before it has had a chance to run, it still runs only once
+
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/interrupt.h>
+#include <linux/slab.h>
+#include <linux/sched.h>
+
+
+MODULE_LICENSE("GPL");
+
+
+char tasklet_data[] = "linux kernel is very easy";
+
+static struct tasklet_struct *my_tasklet;
+
+const unsigned char kbdus[128] =
+{
+    0,  27, '1', '2', '3', '4', '5', '6', '7', '8',	/* 9 */
+  '9', '0', '-', '=', '\b',	/* Backspace */
+  '\t',			/* Tab */
+  'q', 'w', 'e', 'r',	/* 19 */
+  't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\n',	/* Enter key */
+    0,			/* 29   - Control */
+  'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';',	/* 39 */
+ '\'', '`',   0,		/* Left shift */
+ '\\', 'z', 'x', 'c', 'v', 'b', 'n',			/* 49 */
+  'm', ',', '.', '/',   0,				/* Right shift */
+  '*',
+    0,	/* Alt */
+  ' ',	/* Space bar */
+    0,	/* Caps lock */
+    0,	/* 59 - F1 key ... > */
+    0,   0,   0,   0,   0,   0,   0,   0,
+    0,	/* < ... F10 */
+    0,	/* 69 - Num lock*/
+    0,	/* Scroll Lock */
+    0,	/* Home key */
+    0,	/* Up Arrow */
+    0,	/* Page Up */
+  '-',
+    0,	/* Left Arrow */
+    0,
+    0,	/* Right Arrow */
+  '+',
+    0,	/* 79 - End key*/
+    0,	/* Down Arrow */
+    0,	/* Page Down */
+    0,	/* Insert Key */
+    0,	/* Delete Key */
+    0,   0,   0,
+    0,	/* F11 Key */
+    0,	/* F12 Key */
+    0,	/* All other keys are undefined */
+};
+
+static int irq = 1,  dev = 0xaa;
+#define KBD_DATA_REG        0x60    /* I/O port for keyboard data */
+#define KBD_SCANCODE_MASK   0x7f
+#define KBD_STATUS_MASK     0x80
+
+static irqreturn_t keyboard_handler(int irq, void *dev)
+{
+        char scancode;
+        scancode = inb(KBD_DATA_REG);
+	pr_info("smp_processor_id:%d\n", smp_processor_id());
+        pr_info("Character %c %s\n",
+                        kbdus[scancode & KBD_SCANCODE_MASK],
+                        scancode & KBD_STATUS_MASK ? "Released" : "Pressed");
+	tasklet_schedule(my_tasklet);	
+        return IRQ_NONE;
+}
+
+void tasklet_function(unsigned long data)
+{
+	pr_info("smp_processor_id:%d\n", smp_processor_id());
+	pr_info("%s:data:%s\n", __func__, (char *)data);
+	return;
+}
+
+static int test_tasklet_init(void)
+{
+        pr_info("%s: In init\n", __func__);
+	my_tasklet = kmalloc(sizeof(struct tasklet_struct), GFP_KERNEL);
+	tasklet_init(my_tasklet, tasklet_function, tasklet_data);
+	return request_irq(irq, keyboard_handler, IRQF_SHARED,"my_keyboard_handler", &dev);
+}
+
+static void test_tasklet_exit(void)
+{
+        pr_info("%s: In exit\n", __func__);
+	synchronize_irq(irq); /* synchronize interrupt */
+        free_irq(irq, &dev);
+	kfree(my_tasklet);
+	
+}
+
+module_init(test_tasklet_init);
+module_exit(test_tasklet_exit);
+```
+
+### Enabling/Disabling Tasklets
+
+
+Disable tasklet
+```
+	tasklet_disable()
+	tasklet_disable_nosync()
+```
+Enable tasklet
+
+```
+	tasklet_enable()
+```
+
+ - `tasklet_disable()` will wait if the tasklet is currently running and return only after it has finished execution
+ - `tasklet_disable_nosync()` will not wait for the tasklet to complete prior to returning
+```
+static inline void tasklet_disable_nosync(struct tasklet_struct *t)
+{
+        atomic_inc(&t->count);
+        smp_mb__after_atomic();
+}
+```
+
+```
+static inline void tasklet_disable(struct tasklet_struct *t)
+{
+        tasklet_disable_nosync(t);
+        tasklet_unlock_wait(t);
+        smp_mb();
+}
+```
+
+```
+static inline void tasklet_enable(struct tasklet_struct *t)
+{
+        smp_mb__before_atomic();
+        atomic_dec(&t->count);
+}
+```
+
+### tasklet_kill
+
+```
+void tasklet_kill(struct tasklet_struct *t);
+```
+
+The function removes a tasklet from the pending queue.
+
+```
+void tasklet_kill(struct tasklet_struct *t)
+{
+        if (in_interrupt())
+                pr_notice("Attempt to kill tasklet from interrupt\n");
+
+        while (test_and_set_bit(TASKLET_STATE_SCHED, &t->state)) {
+                do {
+                        yield();
+                } while (test_bit(TASKLET_STATE_SCHED, &t->state));
+        }
+        tasklet_unlock_wait(t);
+        clear_bit(TASKLET_STATE_SCHED, &t->state);
+}
+```
+
+
+This function must not be used from interrupt context because it sleeps
+
+If the tasklet specified is already scheduled by the time this call is invoked, then this function waits until its execution completes
+
+### tasklet_hi_schedule
+
+In addition to normal tasklets, the kernel uses a second kind of tasklet of a higher priority.
+
+HI_SOFTIRQ is used as a softIRQ instead of TASKLET_SOFTIRQ
+
+`tasklet_hi_schedule()` should be used if the tasklet should  run more urgently than networking, SCSI, timers 
 
