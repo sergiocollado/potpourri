@@ -2788,6 +2788,54 @@ The only difference in these types is that the HI_SOFTIRQ-based tasklets run pri
 tasklets.
 
 
+### What are faster softirq or tasklets?
+
+This depends on:
+
+- https://elixir.bootlin.com/linux/v6.6.8/source/include/linux/interrupt.h#L548
+
+```
+enum
+{
+	HI_SOFTIRQ=0,
+	TIMER_SOFTIRQ,
+	NET_TX_SOFTIRQ,
+	NET_RX_SOFTIRQ,
+	BLOCK_SOFTIRQ,
+	IRQ_POLL_SOFTIRQ,
+	TASKLET_SOFTIRQ,
+	SCHED_SOFTIRQ,
+	HRTIMER_SOFTIRQ,
+	RCU_SOFTIRQ,    /* Preferable RCU should always be the last softirq */
+
+	NR_SOFTIRQS
+};
+```
+
+Whatever is highier on that enum, has the highest priority. So HI_SOFTIRQ has the highest priority, then TASKLET_SOFTIRQ, and then SCHED_SOFTIRQ.
+
+
+### Softirqs vs tasklets
+
+```
+			Softirqs			Tasklets	
+		
+Allocation:		Allocated at compile time	Can be dynamically registered
+
+Reentrancy:		Yes, same softirqs can run	No, Same tasklet will not be scheduled
+			on different processors		on different processors
+```
+
+
+
+### Can I sleep in tasklet handler?
+
+As tasklets are based on softirqs, you cannot sleep.
+
+You cannot use semaphores or other blocking functions in tasklet handler.
+
+
+
 #### Data Structure
 
 
@@ -2851,7 +2899,7 @@ struct tasklet_struct
 It can be 
  - a) 0
  - b) TASKLET_STATE_SCHED -  denotes a tasklet that is scheduled to run
- - c) TASKLET_STATE_RUN - enotes a tasklet that is running
+ - c) TASKLET_STATE_RUN - denotes a tasklet that is running
 
 TASKLET_STATE_RUN is used only on multiprocessor machines.
 It is used to protect tasklets against concurrent execution on several processors.
@@ -3237,33 +3285,6 @@ As tasklets are based on softirqs, you cannot sleep.
 You cannot use semaphores or other blocking functions in tasklet handler.
 
 
-### What are faster softirq or tasklets?
-
-This depends on:
-
-- https://elixir.bootlin.com/linux/v6.6.8/source/include/linux/interrupt.h#L548
-
-```
-enum
-{
-	HI_SOFTIRQ=0,
-	TIMER_SOFTIRQ,
-	NET_TX_SOFTIRQ,
-	NET_RX_SOFTIRQ,
-	BLOCK_SOFTIRQ,
-	IRQ_POLL_SOFTIRQ,
-	TASKLET_SOFTIRQ,
-	SCHED_SOFTIRQ,
-	HRTIMER_SOFTIRQ,
-	RCU_SOFTIRQ,    /* Preferable RCU should always be the last softirq */
-
-	NR_SOFTIRQS
-};
-```
-
-Whatever is highier on that enum, has the highest priority. So HI_SOFTIRQ has the highest priority, then TASKLET_SOFTIRQ, and then SCHED_SOFTIRQ.
-
-
 ### Are interrupts enabled when tasklet runs?
 
 ```
@@ -3361,7 +3382,6 @@ After a tasklet is scheduled, it runs once at some time in the near future. If t
 
 
 MODULE_LICENSE("GPL");
-
 
 char tasklet_data[] = "linux kernel is very easy";
 
@@ -3522,6 +3542,7 @@ This function must not be used from interrupt context because it sleeps
 
 If the tasklet specified is already scheduled by the time this call is invoked, then this function waits until its execution completes
 
+
 ### tasklet_hi_schedule
 
 In addition to normal tasklets, the kernel uses a second kind of tasklet of a higher priority.
@@ -3529,4 +3550,5 @@ In addition to normal tasklets, the kernel uses a second kind of tasklet of a hi
 HI_SOFTIRQ is used as a softIRQ instead of TASKLET_SOFTIRQ
 
 `tasklet_hi_schedule()` should be used if the tasklet should  run more urgently than networking, SCSI, timers 
+
 
