@@ -2858,6 +2858,16 @@ It is used to protect tasklets against concurrent execution on several processor
 
 #### count field
 
+ - reference: https://elixir.bootlin.com/linux/v6.5.7/source/include/linux/interrupt.h#L686
+
+```
+enum
+{
+	TASKLET_STATE_SCHED,	/* Tasklet is scheduled for execution */
+	TASKLET_STATE_RUN	/* Tasklet is running (SMP only) */
+};
+```
+
 Used as a reference count for the tasklet
  - count = 0 - the tasklet is enabled and can run if marked pending.
  - count = nonzero - the tasklet is disabled and cannot run.
@@ -2877,6 +2887,11 @@ DECLARE_TASKLET
 	#define DECLARE_TASKLET(name, func, data) \
 	struct tasklet_struct name = { NULL, 0, ATOMIC_INIT(0), func, data }
 ```
+
+```
+	#define DECLARE_TASKLET(name, func, data) \
+```
+
 arguments:
 - name: name of the tasklet
 - func: function to execute
@@ -2885,13 +2900,13 @@ arguments:
 ```
 	struct tasklet_struct name = { NULL, 0, ATOMIC_INIT(0), func, data }
 ```
+
 The arguments are: 
 - list set to NULL, so no list.
-- state set to 0, so
-- ATOMIC_INIT(0), task
+- state set to 0, so TASKLET_STATE_SCHED, scheduled to run
+- ATOMIC_INIT(0), counter to zero
 - func: function
 - data: arguments to the function
-
 
 
 DECLARE_TASKLET_DISABLED
