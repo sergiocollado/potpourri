@@ -32,11 +32,11 @@ power and which can run each task at precise equal speed, in parallel, each at
 1/nr_running speed.  For example: if there are 2 tasks running, then it runs
 each at 50% physical power --- i.e., actually in parallel.
 
-"una CPU multi-tarea ideal" es (una inexistente :_)) CPU que tiene un 100% 
+"una CPU multitarea ideal" es (una inexistente :_)) CPU que tiene un 100% 
 de potencia y que puede ejecutar cualquier tarea exactamente a la misma 
-velocidad, en paralelo, y cada una a 1/n velocidad. Por ejemplo, is hay dos
-tareas ejecuntandose, entonces cada una usa un 50% de la potencia --- es decir, 
-como si se ejecutuaran en paralelo.
+velocidad, en paralelo, y cada una a 1/n velocidad. Por ejemplo, si hay dos
+tareas ejecutándose, entonces cada una usa un 50% de la potencia --- es decir, 
+como si se ejecutaran en paralelo.
 
 On real hardware, we can run only a single task at once, so we have to
 introduce the concept of "virtual runtime."  The virtual runtime of a task
@@ -44,13 +44,13 @@ specifies when its next timeslice would start execution on the ideal
 multi-tasking CPU described above.  In practice, the virtual runtime of a task
 is its actual runtime normalized to the total number of running tasks.
 
-En un hardware real, podemos ejecutar una única tarea a la vez, asi que
+En un hardware real, podemos ejecutar una única tarea a la vez, así que
 se ha usado el concepto de "tiempo de ejecución virtual". El tiempo
-de ejecución virtual de una tarea, especifica cuando la siguiente porción
+de ejecución virtual de una tarea, específica cuando la siguiente porción
 de ejecución podría empezar en la CPU ideal multi-tarea descrita anteriormente.
 En la práctica, el tiempo de ejecución virtual de una tarea es el 
 tiempo de ejecución real normalizado con respecto al número total de 
-tareas ejecutandose.
+tareas ejecutándose.
 
 
 2.  FEW IMPLEMENTATION DETAILS
@@ -74,7 +74,7 @@ de CPU esperado" que una tarea debería tener.
 
    Un pequeño detalle: en hardware "ideal", en cualquier momento todas las 
    tareas pueden tener el mismo valor de p->se.vruntime --- i.e., tareas
-   se podrian ejecutar simultaneamente y ninguna tarea podria escaparse del 
+   se podrían ejecutar simultáneamente y ninguna tarea podría escaparse del 
    "balance" de la partición "ideal" del tiempo compartido de la CPU.
 
 CFS's task picking logic is based on this p->se.vruntime value and it is thus
@@ -133,9 +133,9 @@ The total number of running tasks in the runqueue is accounted through the
 rq->cfs.load value, which is the sum of the weights of the tasks queued on the
 runqueue.
 
-El valor total de tareas ejecutandose en la cola de ejecución es  
-contabilizado mediate el valor rq->cfs.load, el cual es la suma de los
-de esas tareas que estan en la cola de ejecución.
+El valor total de tareas ejecutándose en la cola de ejecución es  
+contabilizado mediante el valor rq->cfs.load, el cual es la suma de los
+de esas tareas que están en la cola de ejecución.
 
 CFS maintains a time-ordered rbtree, where all runnable tasks are sorted by the
 p->se.vruntime key. CFS picks the "leftmost" task from this tree and sticks to it.
@@ -147,7 +147,7 @@ amount of time.
 CFS mantiene un árbol rojo-negro cronológiamente ordenado, donde todas las 
 tareas que pueden ser ejecutadas están ordenadas por su valor de
 p->se.vruntime. CFS selecciona la tarea más hacia la izquierda de este
-árbol y la mantiene. Según el sistema continua, las tareas ejecutadas 
+árbol y la mantiene. Según el sistema continúa, las tareas ejecutadas 
 se ponen en este árbol más y más hacia la derecha --- lentamente pero 
 de forma continuada dando una oportunidad a cara tarea de ser la que 
 está "la más hacia la izquierda" y por tanto obtener la CPU una cantidad
@@ -171,7 +171,7 @@ rojo-negro ordenado cronológicamente esta mantienen (más una cierta pequeña
 cantidad de distancia relativa a la tarea más hacia la izquierda para
 que no se sobre-reserven tareas y perjudique a la cache), entonces la
 nueva tarea "que está a la izquierda del todo", es la que se elige 
-para que se ejecute, y la tarea en ejecución es interrupida.
+para que se ejecute, y la tarea en ejecución es interrumpida.
 
 4.  SOME FEATURES OF CFS
 ========================
@@ -189,7 +189,7 @@ only one central tunable (you have to switch on CONFIG_SCHED_DEBUG):
 CFS usa una granularidad de nanosegundos contando y no depende de ningún
 jiffie o detalles como HZ. De este modo el gestor de tareas CFS no tiene
 noción de "ventanas de tiempo" de la forma en que tenía el gestor de
-tareas previo, y tampoco tiene heuristicos. Unicamente hay un parámetro
+tareas previas, y tampoco tiene heurísticos. Únicamente hay un parámetro
 central ajustable (se ha de cambiar en CONFIG_SCHED_DEBUG):
 
    /sys/kernel/debug/sched/base_slice_ns
@@ -200,7 +200,7 @@ for desktop workloads.  SCHED_BATCH is handled by the CFS scheduler module too.
 
 El cual puede ser usado para afinar desde el gestor de tareas del "escritorio" (i.e.,
 bajas latencias)  hacia cargas de "servidor" (i.e., bueno con procesamientos).
-Su valor por defecto es adecuado tareas de escritorio. SCHED_BATCH tambien es 
+Su valor por defecto es adecuado para tareas de escritorio. SCHED_BATCH también es 
 gestionado por el gestor de tareas CFS.
 
 Due to its design, the CFS scheduler is not prone to any of the "attacks" that
@@ -208,10 +208,10 @@ exist today against the heuristics of the stock scheduler: fiftyp.c, thud.c,
 chew.c, ring-test.c, massive_intr.c all work fine and do not impact
 interactivity and produce the expected behavior.
 
-Debido a su diseño, el gestor de tareas CFS no es proclibe a ninguno de los
-ataques que existen a día de hoy contra los heuristicos del gestor de tareas:
+Debido a su diseño, el gestor de tareas CFS no es proclive a ninguno de los
+ataques que existen a día de hoy contra los heurísticos del gestor de tareas:
 fiftyp.c, thud.c, chew.c, ring-test.c, massive_intr.c todos trabajan 
-correctamnte y no tienen impacto en la interaccion y se comportan de la forma
+correctamente y no tienen impacto en la interacción y se comportan de la forma
 esperada.
 
 The CFS scheduler has a much stronger handling of nice levels and SCHED_BATCH
@@ -219,7 +219,7 @@ than the previous vanilla scheduler: both types of workloads are isolated much
 more aggressively.
 
 El gestor de tareas CFS tiene una gestión mucho más firme de los niveles
-"nice" y SCHED_BATCH que los previos gestores de tareas: ambos timpos de
+"nice" y SCHED_BATCH que los previos gestores de tareas: ambos tipos de
 tareas están aisladas de forma más eficiente.
 
 SMP load-balancing has been reworked/sanitized: the runqueue-walking
@@ -227,10 +227,10 @@ assumptions are gone from the load-balancing code now, and iterators of the
 scheduling modules are used.  The balancing code got quite a bit simpler as a
 result.
 
-El balaceo de tareas SMP ha sido rehecho/mejorado: el avance por las
+El balanceo de tareas SMP ha sido rehecho/mejorado: el avance por las
 colas de ejecución de tareas ha desaparecido del código de balanceo de
-carga, y ahora se usan iteradores en la gestión de modulos. El balanceo
-del código a sido simplificado como resultado esto.
+carga, y ahora se usan iteradores en la gestión de módulos. El balanceo
+del código ha sido simplificado como resultado esto.
 
 
 5. Scheduling policies
@@ -241,13 +241,13 @@ del código a sido simplificado como resultado esto.
 
 CFS implements three scheduling policies:
 
-CFS implementa tres políticas de gestion de tareas:
+CFS implementa tres políticas de gestión de tareas:
 
   - SCHED_NORMAL (traditionally called SCHED_OTHER): The scheduling
     policy that is used for regular tasks.
 
   - SCHED_NORMAL (tradicionalmente llamada SCHED_OTHER): Gestión de
-    tareas que se usa para tareas normales.
+    tareas que se usan para tareas normales.
 
   - SCHED_BATCH: Does not preempt nearly as often as regular tasks
     would, thereby allowing tasks to run longer and make better use of
@@ -255,7 +255,7 @@ CFS implementa tres políticas de gestion de tareas:
     batch jobs.
 
   - SCHED_BATCH: No interrumpe tareas tan amenudo como las tareas
-    normales harian, por eso permite a las tareas ejecutarse durante
+    normales harían, por eso permite a las tareas ejecutarse durante
     ventanas de tiempo mayores y hace un uso más efectivo de las
     caches pero al coste de la interactividad. Esto es adecuado
     para trabajos de procesado.
@@ -264,9 +264,9 @@ CFS implementa tres políticas de gestion de tareas:
     idle timer scheduler in order to avoid to get into priority
     inversion problems which would deadlock the machine.
 
-  - SCHED_IDLE: Esta política es más debil incluso que nice 19, pero
+  - SCHED_IDLE: Esta política es más débil incluso que nice 19, pero
     no es un gestor "idle" para evitar caer en el problema de la 
-    inversión de prioridades que causaria un bloqueo de la máquina
+    inversión de prioridades que causaría un bloqueo de la máquina
     (deadlock).
 
 SCHED_FIFO/_RR are implemented in sched/rt.c and are as specified by
@@ -285,7 +285,7 @@ estas políticas excepto SCHED_IDLE.
 6.  SCHEDULING CLASSES
 ======================
 
-6. CLASES DE GESTION
+6. CLASES DE GESTIÓN
 ====================
 
 The new CFS scheduler has been designed in such a way to introduce "Scheduling
@@ -294,8 +294,8 @@ encapsulate scheduling policy details and are handled by the scheduler core
 without the core code assuming too much about them.
 
 El nuevo gestor de tareas CFS ha sido diseñado de tal modo para incluir
-"clases de gestión", una jerarquia ampliable de módulos que pueden tener
-distintas políticas gestión de tareas. Estos módulos encapsulan los 
+"clases de gestión", una jerarquía ampliable de módulos que pueden tener
+distintas políticas de gestión de tareas. Estos módulos encapsulan los 
 detalles de las politicas de gestion y son manejadas por el núcleo del
 gestor de tareas sin que este tenga que presuponer mucho sobre estas clases.
 
@@ -318,7 +318,7 @@ contains hooks to functions that must be called whenever an interesting event
 occurs.
 
 Las clases de gestión de tareas son implementadas por medio de la estructura
-sched_class, la cual tiene llamadas a las funciones que debben de llamarse
+sched_class, la cual tiene llamadas a las funciones que deben de llamarse
 cuando quiera que ocurra un evento interesante.
 
 This is the (partial) list of the hooks:
@@ -330,7 +330,7 @@ Esta es la lista parcial de llamadas:
    It puts the scheduling entity (task) into the red-black tree and
    increments the nr_running variable.
 
-   LLamada cuando una tarea entra en el estado de lista para ejecución.
+   Llamada cuando una tarea entra en el estado de lista para ejecución.
    Pone la entidad a ser gestionada (la tarea) en el árbol rojo-negro
    e incrementa la variable nr_running.
 
@@ -350,8 +350,8 @@ Esta es la lista parcial de llamadas:
    compat_yield sysctl is turned on; in that case, it places the scheduling
    entity at the right-most end of the red-black tree.
 
-   Esta función es basicamente desecolar seguido por encolar, a menos que 
-   sysctl compat_yeld esté activado; en ese caso, situa la entidad a gestionar 
+   Esta función es básicamente desencolar, seguido por encolar, a menos que 
+   sysctl compat_yeld esté activado; en ese caso, sitúa la entidad a gestionar 
    en la parte más hacia la derecha del árbol rojo-negro.
 
  - check_preempt_curr(...)
@@ -360,7 +360,7 @@ Esta es la lista parcial de llamadas:
    preempt the currently running task.
 
    Esta función comprueba si una tarea que ha entrado en el estado de
-   poder ser ejecutada, podría remplazar a la tarea que actualmente
+   poder ser ejecutada, podría reemplazar a la tarea que actualmente
    se esté ejecutando.
 
  - pick_next_task(...)
@@ -382,7 +382,7 @@ Esta es la lista parcial de llamadas:
    This function is mostly called from time tick functions; it might lead to
    process switch.  This drives the running preemption.
 
-   Esta función es llamada la mayoria de las veces desde la función de timepo
+   Esta función es llamada la mayoría de las veces desde la función de tiempo
    tick; esto puede llevar a un cambio de procesos. Esto dirige el reemplazo
    de las tareas. 
 
@@ -402,19 +402,19 @@ desirable to first provide fair CPU time to each user on the system and then to
 each task belonging to a user.
 
 Normalmente, el gestor de tareas opera en tareas individuales e intenta
-proporcionar una cantidad justa de CPU a cada tarrea. Algunas veces, puede
+proporcionar una cantidad justa de CPU a cada tarea. Algunas veces, puede
 ser deseable agrupar las tareas y proporcionarles una cantidad justa 
 de tiempo de CPU a cada una de las tareas de ese grupo. Por ejemplo, 
-podria ser deseable que primero se proporcione una catidad justa de 
+podría ser deseable que primero se proporcione una cantidad justa de 
 tiempo de CPU a cada usuario del sistema y después a cada tarea
 que pertenezca a un usuario. 
 
 CONFIG_CGROUP_SCHED strives to achieve exactly that.  It lets tasks to be
 grouped and divides CPU time fairly among such groups.
 
-CONFIG_CGROUP_SCHED destaca en conseguir exactamente eso. Perminte a las 
+CONFIG_CGROUP_SCHED destaca en conseguir exactamente eso. Permite a las 
 tareas ser agrupadas y divide el tiempo de CPU de forma just entre esos
-gruupos. 
+grupos. 
 
 CONFIG_RT_GROUP_SCHED permits to group real-time (i.e., SCHED_FIFO and
 SCHED_RR) tasks.
@@ -432,7 +432,7 @@ SCHED_BATCH).
    create arbitrary groups of tasks, using the "cgroup" pseudo filesystem.  See
    Documentation/admin-guide/cgroup-v1/cgroups.rst for more information about this filesystem.
 
-   Estas opcioens necesitan CONFIG_CGROUPS para ser definidas, y permintir
+   Estas opciones necesitan CONFIG_CGROUPS para ser definidas, y permitir
    al administrador crear grupos arbitrarios de tareas, usando el pseudo 
    sistema de archivos "cgroup". Vease la documentación para más información
    sobre este sistema de archivos: Documentation/admin-guide/cgroup-v1/cgroups.rst
@@ -442,7 +442,7 @@ group created using the pseudo filesystem.  See example steps below to create
 task groups and modify their CPU share using the "cgroups" pseudo filesystem::
 
 Cuando CONFIG_FAIR_GROUP_SCHED es definido, un archivo "cpu.shares" es creado por
-cada grupo creado usado en el pseudo sistema de archivos. Veanse por ejemplo los 
+cada grupo creado usado en el pseudo sistema de archivos. Véanse por ejemplo los 
 pasos a continuación para crear grupos de tareas y modificar cuanto comparten de
 la CPU usando el pseudo sistema de archivos "cgroup" ::
 
@@ -467,3 +467,4 @@ la CPU usando el pseudo sistema de archivos "cgroup" ::
 
 	# #Lanzar gmplayer (o su programa favorito de reproducción de películas)
 	# echo <movie_player_pid> > multimedia/tasks
+
