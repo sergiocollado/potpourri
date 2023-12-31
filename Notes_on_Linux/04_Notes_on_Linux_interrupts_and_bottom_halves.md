@@ -3552,3 +3552,502 @@ HI_SOFTIRQ is used as a softIRQ instead of TASKLET_SOFTIRQ
 `tasklet_hi_schedule()` should be used if the tasklet should  run more urgently than networking, SCSI, timers 
 
 
+
+## Work Queues
+
+
+Introduced in Linux 2.6
+
+They allow kernel functions to be activated and later executed by special kernel threads called worker threads.
+
+Worker threads run in process context.
+
+It is the only choice when you need to sleep in your bottom half (I/O data, hold mutexes/semaphores and all other functions that internally sleep)
+
+Implementation: kernel/workqueue.c
+
+### Design
+
+work item: struct which hold the pointer to the function to be executed asynchronously
+
+work queue: a queue of work items
+
+Drivers add work item into the work queue
+
+Worker Threads: Special purpose threads which execute the functions from the queue, one after the other
+
+If no work is queued, the worker threads become idle,
+
+```
+ps -ef | grep kworker
+```
+
+Worker Pools:	A thread pool that is used to manage the worker threads
+
+There are two worker-pools, 
+ - one for normal work items and
+ - the other for high priority ones,
+ - some extra worker-pools to serve work items queued on unbound workqueues
+
+`create_worker` is the function where kthreads are created
+
+
+
+### Legacy Workqueues
+
+
+Legacy workqueues have dedicated threads associated with them.
+
+The new workqueues do away with that. There are no threads dedicated to any specific workqueue
+
+Instead, there is a global pool of threads attached to each CPU in the system
+
+When a work item is enqueued, it will be passed to one of the global threads at the right time
+
+
+### How a target worker pool is determined when work item is queued into workqueue?
+
+According to the queue parameters and workqueue attributes
+
+### Data structures
+
+ - workqueue 		--	struct workqueue_struct
+ - work items		-- 	struct work_struct
+
+```
+struct work_struct {
+        atomic_long_t data;
+        struct list_head entry;
+        work_func_t func;       // func is a pointer that takes the address of the deferred routine
+};
+```
+
+ - func is a pointer that takes the address of the deferred routine
+
+```
+typedef void (*work_func_t)(struct work_struct *work);
+```
+
+### Initialization of Work Items
+
+Header File: <linux/workqueue.h>
+
+#### Static: 
+declare and initialize a work item
+```
+DECLARE_WORK(name, void (*function)(void *), void *data);
+```
+
+#### Dynamic: 
+initialize an already declared work item.
+```
+INIT_WORK(struct work_struct *work, void(*function)(struct work_struct *));
+```
+
+### API's to queue Work
+
+This function enqueues the given work item on the local CPU workqueue, but does not guarantee its execution on it
+
+```
+bool queue_work(struct workqueue_struct *wq, struct work_struct *work);
+```
+
+Once queued, the function associated with the work item is executed on any of the **available** CPUs by the relevant
+kworker thread.
+	
+### To queue work on a specific CPU
+
+```
+bool queue_work_on(int cpu, struct workqueue_struct *wq, struct work_struct *work)
+```
+ - cpu: CPU number to execute work on
+ - Return: false if work was already on a queue, true otherwise.
+
+
+
+### Workqueues
+
+Header File: <linux/workqueue.h>
+
+Workqueue API provides two types of function interfaces to
+	a) Create own workqueue
+	b) Use System Workqueue (`extern struct workqueue_struct *system_wq;`)
+		
+
+System workqueue is shared by all kernel subsystems and services
+
+
+Example: 
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+
+MODULE_LICENSE("GPL");
+
+struct work_struct work;
+int cpu = 2;
+module_param(cpu, int, 0);
+static void work_fn(struct work_struct *work)
+{
+	pr_info("work_fn executed at processor id:%d\tdeferred work execution\n", smp_processor_id());
+}
+
+static int test_tasklet_init(void)
+{
+        pr_info("test_tasklet_init executed at processor id:%d: In init\n", smp_processor_id());
+	INIT_WORK(&work, work_fn);
+	if (queue_work_on(cpu, system_wq, &work))
+		pr_info("work queued\n");
+	else
+		pr_err("work queuing failed\n");
+
+	return 0;
+}
+
+static void test_tasklet_exit(void)
+{
+        pr_info("%s: In exit\n", __func__);
+}
+
+module_init(test_tasklet_init);
+module_exit(test_tasklet_exit);
+```
+
+### Inline functions
+
+ - schedule_work - put work task in global workqueue
+ - schedule_work_on - put work task on a specific cpu
+
+```
+static inline bool schedule_work(struct work_struct *work)
+{
+        return queue_work(system_wq, work);
+}
+```
+```
+static inline bool schedule_work_on(int cpu, struct work_struct *work)
+{
+        return queue_work_on(cpu, system_wq, work);
+}
+```
+
+Usually a work is enclosed in a larger structure (for driver private data)
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+#include <linux/sched.h>
+
+MODULE_LICENSE("GPL");
+
+struct work_struct work;
+int cpu = 2;
+module_param(cpu, int, 0);
+
+typedef struct my_work{
+        struct work_struct work;
+        char data[20];
+} my_work;
+
+my_work deferred_work;
+
+void print_context(void)
+{
+        if (in_interrupt()) {
+                pr_info("Code is running in interrupt context\n");
+        } else {
+                pr_info("Code is running in process context\n");
+        }
+}
+
+void is_irq_disabled(void)
+{
+        if (irqs_disabled())
+                pr_info("IRQ Disabled\n");
+        else
+                pr_info("IRQ Enabled\n");
+}
+
+
+static void work_fn(struct work_struct *work)
+{
+	my_work *defer_work = (my_work *)container_of(work, my_work, work);
+	is_irq_disabled();  // the irq should be enable so beware that you need to use proper locking mechanims.
+	print_context();    // as this is a workqueue this should be running in process context.
+	pr_info("processor id:%d\tdeferred work execution\n", smp_processor_id());
+	pr_info("Data:%s\n", defer_work->data);
+	pr_info("current pid : %d , current process : %s\n",current->pid, current->comm);
+}
+
+static int test_tasklet_init(void)
+{
+        pr_info("processor id:%d: In init\n", smp_processor_id());  
+	pr_info("current pid : %d , current process : %s\n",current->pid, current->comm);
+	print_context();
+        is_irq_disabled();
+	INIT_WORK(&deferred_work.work, work_fn);
+	strcpy(deferred_work.data, "Linux is easy");
+	if (schedule_work_on(cpu, &deferred_work.work))
+		pr_info("work queued\n");
+	else
+		pr_err("work queuing failed\n");
+
+	return 0;
+}
+
+static void test_tasklet_exit(void)
+{
+        pr_info("%s: In exit\n", __func__);
+}
+
+module_init(test_tasklet_init);
+module_exit(test_tasklet_exit);
+```
+
+
+### Cancelling work
+
+
+Work items can not be enabled/disabled but they can be canceled by calling cancel_work_sync()
+
+bool cancel_work_sync(struct work_struct *work);
+
+The call only stops the subsequent execution of the work item.
+
+If the work item is already running at the time of the call, it will continue to run
+
+Return:
+ - true	- if work was pending
+ - false - otherwise
+
+### Scheduling more that one work items
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+#include <linux/sched.h>
+
+MODULE_LICENSE("GPL");
+
+struct work_struct work;
+int cpu = 2;
+module_param(cpu, int, 0);
+
+typedef struct my_work{
+        struct work_struct work;
+        char data[20];
+} my_work;
+
+my_work deferred_work1, deferred_work2;
+
+static void work_fn(struct work_struct *work)
+{
+	my_work *defer_work = (my_work *)container_of(work, my_work, work);
+	pr_info("processor id:%d\tdeferred work execution\n", smp_processor_id());
+	pr_info("Data:%s\n", defer_work->data);
+	pr_info("current pid : %d , current process : %s\n",current->pid, current->comm);
+}
+
+static int test_tasklet_init(void)
+{
+        pr_info("processor id:%d: In init\n", smp_processor_id());
+	INIT_WORK(&deferred_work1.work, work_fn);
+	INIT_WORK(&deferred_work2.work, work_fn);
+	strcpy(deferred_work1.data, "Linux is easy");
+	strcpy(deferred_work2.data, "We make it easy");
+	if (schedule_work_on(cpu, &deferred_work1.work))
+		pr_info("work1 queued\n");
+	else
+		pr_err("work1 queuing failed\n");
+
+	if (schedule_work_on(cpu, &deferred_work2.work))
+		pr_info("work2 queued\n");
+	else
+		pr_err("work2 queuing failed\n");
+
+	return 0;
+}
+
+static void test_tasklet_exit(void)
+{
+        pr_info("%s: In exit\n", __func__);
+}
+
+module_init(test_tasklet_init);
+module_exit(test_tasklet_exit);
+```
+
+### Flushing work
+
+```
+bool flush_work(struct work_struct *work)
+```
+	
+Wait for a work to finish executing the last queueing instance
+
+returns true if waited for the work to finish execution, false if it was already idle
+
+
+### Delayed work
+
+
+Workqueue API allows you to queue work tasks whose execution is guaranteed to be delayed at least until a specified timeout.
+
+This is achieved by binding a work task with a timer, which can be initialized with an expiry timeout, until which time the work task is not scheduled into the queue
+
+```
+struct delayed_work {
+        struct work_struct work;
+        struct timer_list timer;
+
+        /* target workqueue and CPU ->timer uses to queue ->work */
+        struct workqueue_struct *wq;
+        int cpu;
+};
+```
+
+timer is an instance of a dynamic timer descriptor, which is initialized with the expiry interval and armed while scheduling a work task
+
+#### Initialization
+
+
+#### Static:
+```
+DECLARE_DELAYED_WORK(name, void(*function)(struct work_struct *));
+```
+#### Dynamic:
+
+```
+INIT_DELAYED_WORK(struct delayed_work *work, void(*function)(struct work_struct *));
+```
+
+#### Scheduling
+
+```
+bool schedule_delayed_work(struct delayed_work *dwork,
+                                         unsigned long delay);
+
+bool schedule_delayed_work_on(int cpu, struct delayed_work *dwork,
+                                            unsigned long delay);
+```
+
+delay needs to be provided in jiffies
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+#include <linux/jiffies.h>
+
+MODULE_LICENSE("GPL");
+
+struct delayed_work work;
+int cpu = 2;
+module_param(cpu, int, 0);
+
+static void work_fn(struct work_struct *work)
+{
+	pr_info("processor id:%d\tdeferred work execution\n", smp_processor_id());
+}
+
+static int test_tasklet_init(void)
+{
+        pr_info("processor id:%d: In init\n", smp_processor_id());
+	INIT_DELAYED_WORK(&work, work_fn);
+	schedule_delayed_work_on(cpu, &work, msecs_to_jiffies(5000));
+	return 0;
+}
+
+static void test_tasklet_exit(void)
+{
+        pr_info("%s: In exit\n", __func__);
+}
+
+module_init(test_tasklet_init);
+module_exit(test_tasklet_exit);
+```
+
+for the delayed work there is a differentedelayed function:
+
+```
+bool flush_delayed_work(struct delayed_work *dwork);
+```
+delayed timer is cancelled and the pending work is queued for immediate execution
+
+for cancelling the delayed work there is also other function:
+
+```
+bool cancel_delayed_work(struct delayed_work *dwork)
+```
+
+
+### Differences between Tasklets, softirqs and Workqueues
+
+```
+		------------------------------------------------------------------------------
+		Softirqs			Tasklets			Workqueues
+		-----------------------------------------------------------------------------
+Execution	Interrupt context		Interrupt Context		Process Context
+Context
+----------------------------------------------------------------------------------------------------------------
+Reentrancy	Yes(can run simultaneously	Cannot run same tasklets	Yes (can run simultaneously
+		on different CPUs)		on different CPUs. Different	on different CPUs)
+						CPUs can run different tasklets
+--------------------------------------------------------------------------------------------------------------
+Sleep		Cannot sleep			Cannot Sleep			Can Sleep
+--------------------------------------------------------------------------------------------------------------
+Preemption	Cannot be preempted/scheduled	Cannot be preempted/scheduled	May be preempted/scheduled
+-----------------------------------------------------------------------------------------------------------
+Ease of use	Not easy to use			Easy to use			Easy to use
+-------------------------------------------------------------------------------------------------------------
+When to use	If deferred work will not       If deferred work will not go    If deferred work needs to sleep
+		go to sleep and have crucial	to sleep
+		scalability or speed
+		requirements
+----------------------------------------------------------------------------------------------------------------
+```
+
+
+## kworker
+
+kworker processes are kernel worker processes
+
+From Documentation/kernel-per-CPU-kthreads.txt,
+
+Naming convention: kworker/%u:%d%s (cpu, id, priority)
+
+Worker threads are also two types:
+
+ - CPU Bound  : It is named as kworker/<corenumber>:<id>
+ - CPU Unbound: It is named as kworker/u<poolnumber>:<id>
+
+```
+$ ps -ef | grep 'kworker'
+```
+kworker/2:0H      -->   running on CPU2 and threadID 0 and is high priority bounded
+
+The u designates a special CPU, the unbound cpu, meaning that the kthread is currently unbound
+kworker/u257:0-   -->   unbound thread runs on any CPU
+
+#### Use taskset to find the CPU Affinity
+
+taskset is used to set or retrieve the CPU affinity of a running process given its PID or to launch a new COMMAND with a given CPU affinity.
+
+```
+$ taskset -p [PID]
+```
+
+#### To find out what any kworker is doing
+
+```
+$ cat /proc/$(pid_of_kworker)/stack
+```
+
