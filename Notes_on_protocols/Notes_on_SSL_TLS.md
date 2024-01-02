@@ -250,13 +250,24 @@ encryption. To prevent this use for example the RFC 6979 how to generate random 
 10. The server can provide now its certificate to prove its identity.
 
 
+### What is a certificate?
 
+The contents of a certificate is defined by the x.509 standard  
 
+- reference: https://en.wikipedia.org/wiki/X.509#Structure_of_a_certificate
+- reference: https://datatracker.ietf.org/doc/html/rfc5280
 
-
-  
-
-
+A certificate has 3 sections:
+- certificate data:
+     - version
+     - serial number
+     - signature algorithm
+     - validity
+     - subject and issuer
+     - public key
+     - extensions.
+- signature algorithm
+- signature 
 
 
 
