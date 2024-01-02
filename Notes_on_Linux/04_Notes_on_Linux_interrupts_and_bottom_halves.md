@@ -4299,3 +4299,4 @@ module_exit(test_tasklet_exit);
 
 Now the tasks are executed in paralel.
 
+### Workqueue flag: WQ_UNBOUND
