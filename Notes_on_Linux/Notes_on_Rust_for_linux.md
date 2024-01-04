@@ -30,6 +30,7 @@ Languaje reference:
   - FFI: https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/ffi.html
   - intro unsafe rust: https://google.github.io/comprehensive-rust/unsafe-rust/unsafe.html
   - Rust Foreing Functions Interface (FFI): https://michael-f-bryan.github.io/rust-ffi-guide/overview.html
+  - Network programming with Rust: https://github.com/PacktPublishing/Network-Programming-with-Rust
 
 <br>
 
