@@ -38,6 +38,7 @@ Languaje reference:
 
 Other resources:
   - linux kernel rust documentation: https://docs.kernel.org/rust/index.html
+  - key rust concepts for the kernel: https://lwn.net/Articles/869317/
   - rust for linux brief introduction: https://rustmagazine.org/issue-1/rust-for-linux-brief-introduction/
   - https://docs.kernel.org/rust/quick-start.html
   - blog. how to module in rust: - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
