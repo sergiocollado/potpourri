@@ -4514,10 +4514,104 @@ It is possible to change the cpu mask on sysfs to define in which cpus the workq
 
 ```
 # cat /sys/devices/virutal/workqueue/cpumask # check the cpud masks.
+```
 
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+#include <asm/current.h>
+#include <linux/sched.h>
+#include <linux/jiffies.h>
+
+MODULE_LICENSE("GPL");
+
+struct workqueue_struct *my_queue = NULL;
+typedef struct my_work{
+        struct delayed_work work;
+        char data[20];
+}my_work;
+
+my_work deferred_work1;
+
+static void work_fn1(struct work_struct *work)
+{
+	struct delayed_work *my_delayed_work = to_delayed_work(work);
+	my_work *defer_work = (my_work *)container_of(my_delayed_work, my_work, work);
+	pr_info("starting deferred work1 execution on processor id:%d\n", smp_processor_id());
+	pr_info("%s:Data:%s\n", __func__, defer_work->data);
+	pr_info("%s:current pid : %d , current process : %s\n", __func__,current->pid, current->comm);
+	pr_info("%s:processor id:%d\n", __func__, smp_processor_id());
+	pr_info("ending deferred work 1 execution on processor:%d\n", smp_processor_id());
+	queue_delayed_work(my_queue, &deferred_work1.work, msecs_to_jiffies(1000));
+}
+
+
+
+static int test_tasklet_init(void)
+{
+        pr_info("%s: In init processorid:%d\n", __func__, smp_processor_id());
+
+	INIT_DELAYED_WORK(&deferred_work1.work, work_fn1);
+
+	strcpy(deferred_work1.data, "Linux is easy");
+
+	my_queue = alloc_workqueue("my_queue", WQ_UNBOUND | WQ_SYSFS, 1);  // here is the name fo my_queue
+
+	queue_delayed_work(my_queue, &deferred_work1.work, msecs_to_jiffies(1000));
+	pr_info("%s: Init complete processor id:%d\n", __func__, smp_processor_id());
+	return 0;
+}
+
+static void test_tasklet_exit(void)
+{
+        pr_info("%s: In exit\n", __func__);
+	cancel_delayed_work(&deferred_work1.work);
+	destroy_workqueue(my_queue);
+}
+
+module_init(test_tasklet_init);
+module_exit(test_tasklet_exit);
+```
+
+
+```
 # echo 2 > /sys/devices/virtual/workqueue/my_queue/cpumask
 ```
 
 Note: cpumasks are maps, so the
+
+
+### Other Flags
+
+
+#### WQ_FREEZABLE:
+
+A freezable wq participates in the freeze phase of the system  suspend operations.
+This flag is used in the context of power management and file systems, and is especially important for creating the system image in the suspend phase
+workqueues which can run tasks as part of the suspend/resume process should not have this flag set.
+You can find more information about this topic in Documentation/power/freezing-of-tasks.txt.
+
+
+#### WQ_MEM_RECLAIM:
+	
+All workqueues which might be used in the memory reclaim paths must have this flag set.
+The workqueue is guaranteed to have at least one woker, a so-called rescuer thread, regardless of memory pressure.
+Let us consider the following scenario:
+ - Workqueue W has 3 items A, B and C.
+     - A does some work and then waits until C has finished some work.
+     - Afterwards, B does some GFP KERNEL allocations and blocks as there is not enough memory available.
+     - As a result, C cannot run since B still occupies the W's worker;
+     - another worker cannot be created because there is not enough memory.
+     - A pre-allocated rescuer thread can solve this problem, by executing C which then wakes up A.
+     - B will continue as soon as there is enough available memory to allocate.
+
+#### WQ_CPU_INTENSIVE:
+
+Tasks on this workqueue can be expected to use a fair amount of CPU time.
+
+In other words, runnable CPU intensive work items will not prevent other work items in the same worker pool from starting execution.
+
 
 
