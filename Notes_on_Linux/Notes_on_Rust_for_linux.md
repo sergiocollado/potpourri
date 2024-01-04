@@ -31,6 +31,7 @@ Languaje reference:
   - intro unsafe rust: https://google.github.io/comprehensive-rust/unsafe-rust/unsafe.html
   - Rust Foreing Functions Interface (FFI): https://michael-f-bryan.github.io/rust-ffi-guide/overview.html
   - Network programming with Rust: https://github.com/PacktPublishing/Network-Programming-with-Rust
+  - Complex cpp rust ffi: https://github.com/emilio/rust-cpp-ffi-examples/tree/master
 
 <br>
 
