@@ -4268,7 +4268,6 @@ static void work_fn2(struct work_struct *work)
 	pr_info("ending deferred work2 execution on processor:%d\n", smp_processor_id());
 }
 
-
 static int test_tasklet_init(void)
 {
         pr_info("%s: In init processorid:%d\n", __func__, smp_processor_id());
@@ -4299,4 +4298,157 @@ module_exit(test_tasklet_exit);
 
 Now the tasks are executed in paralel.
 
-### Workqueue flag: WQ_UNBOUND
+
+
+### Workqueue flag: :WQ_HIGHPRI
+
+This flag is used to mark a workqueue as high priority
+
+Queued to the highpri worker-pool of the target cpu.
+
+Highpri worker-pools are served by worker threads with elevated nice level.
+
+#### Nice value: 
+
+Nice value ranges from -20 (highest priority level) to 19 (lowest priority level)
+
+Default value is 0.
+
+To check the nice value:
+
+```
+$ ps ax -o pid,ni,cmd
+```
+
+The above command prints pid, nice value and process name
+
+Example: 
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+#include <asm/current.h>
+#include <linux/sched.h>
+
+MODULE_LICENSE("GPL");
+
+struct workqueue_struct *my_queue = NULL;
+typedef struct my_work{
+        struct work_struct work;
+        char data[20];
+}my_work;
+
+my_work deferred_work;
+
+static void work_fn(struct work_struct *work)
+{
+	my_work *defer_work = (my_work *)container_of(work, my_work, work);
+	pr_info("deferred work execution\n");
+	pr_info("Data:%s\n", defer_work->data);
+	pr_info("current pid : %d , current process : %s\n",current->pid, current->comm);
+	pr_info("processor id:%d\n", smp_processor_id());
+}
+
+
+static int test_tasklet_init(void)
+{
+        pr_info("%s: In init processorid:%d\n", __func__, smp_processor_id());
+	INIT_WORK(&deferred_work.work, work_fn);
+	strcpy(deferred_work.data, "Linux is easy");
+	my_queue = alloc_workqueue("my_queue", WQ_HIGHPRI, 1);
+	queue_work(my_queue, &deferred_work.work);
+	pr_info("%s: Init complete processor id:%d\n", __func__, smp_processor_id());
+	return 0;
+}
+
+static void test_tasklet_exit(void)
+{
+        pr_info("%s: In exit\n", __func__);
+	destroy_workqueue(my_queue);
+}
+
+module_init(test_tasklet_init);
+module_exit(test_tasklet_exit);
+```
+
+### Perform periodic task using workqueues
+
+To perform some task periodically, requeue the work from the work function itself.
+
+Example for performing a task periodically with workqueues:
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+#include <asm/current.h>
+#include <linux/sched.h>
+#include <linux/jiffies.h>
+
+MODULE_LICENSE("GPL");
+
+struct workqueue_struct *my_queue = NULL;
+typedef struct my_work{
+        struct delayed_work work;
+        char data[20];
+} my_work;
+
+my_work deferred_work1, deferred_work2;
+
+static void work_fn1(struct work_struct *work)
+{
+	struct delayed_work *my_delayed_work = to_delayed_work(work);
+	my_work *defer_work = (my_work *)container_of(my_delayed_work, my_work, work);
+	pr_info("starting deferred work1 execution on processor id:%d\n", smp_processor_id());
+	pr_info("%s:Data:%s\n", __func__, defer_work->data);
+	pr_info("%s:current pid : %d , current process : %s\n", __func__,current->pid, current->comm);
+	pr_info("%s:processor id:%d\n", __func__, smp_processor_id());
+	pr_info("ending deferred work 1 execution on processor:%d\n", smp_processor_id());
+	queue_delayed_work(my_queue, &deferred_work1.work, msecs_to_jiffies(1000));
+}
+
+static void work_fn2(struct work_struct *work)
+{
+	struct delayed_work *my_delayed_work = to_delayed_work(work);
+	my_work *defer_work = (my_work *)container_of(my_delayed_work, my_work, work);
+	pr_info("starting deferred work2 execution on processor id:%d\n", smp_processor_id());
+	pr_info("%s:Data:%s\n", __func__, defer_work->data);
+	pr_info("%s:current pid : %d , current process : %s\n", __func__,current->pid, current->comm);
+	pr_info("%s:processor id:%d\n", __func__, smp_processor_id());
+	pr_info("ending deferred work2 execution on processor:%d\n", smp_processor_id());
+	queue_delayed_work(my_queue, &deferred_work2.work, msecs_to_jiffies(1000));
+}
+
+static int test_tasklet_init(void)
+{
+        pr_info("%s: In init processorid:%d\n", __func__, smp_processor_id());
+
+	INIT_DELAYED_WORK(&deferred_work1.work, work_fn1);
+	INIT_DELAYED_WORK(&deferred_work2.work, work_fn2);
+
+	strcpy(deferred_work1.data, "Linux is easy");
+	strcpy(deferred_work2.data, "Workqueues are easy");
+
+	my_queue = alloc_workqueue("my_queue", WQ_UNBOUND, 1);
+
+	queue_delayed_work(my_queue, &deferred_work1.work, msecs_to_jiffies(1000));
+	queue_delayed_work(my_queue, &deferred_work2.work, msecs_to_jiffies(1000));
+	pr_info("%s: Init complete processor id:%d\n", __func__, smp_processor_id());
+	return 0;
+}
+
+static void test_tasklet_exit(void)
+{
+        pr_info("%s: In exit\n", __func__);
+	cancel_delayed_work(&deferred_work1.work);
+	cancel_delayed_work(&deferred_work2.work);
+	destroy_workqueue(my_queue);
+}
+
+module_init(test_tasklet_init);
+module_exit(test_tasklet_exit);
+```
+
+
