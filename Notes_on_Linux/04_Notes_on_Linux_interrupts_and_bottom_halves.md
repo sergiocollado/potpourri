@@ -4452,3 +4452,72 @@ module_exit(test_tasklet_exit);
 ```
 
 
+### Workqueue flags: WQ_SYSFS
+
+A given workqueue can be made visible in the sysfs filesystem by passing the WQ_SYSFS to that workqueue's `alloc_workqueue()`.
+
+```
+$ ls /sys/devices/virtual/workqueue
+
+# echo 1 > /sys/devices/virtual/workqueue/cpumask
+```
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/interrupt.h>
+#include <linux/delay.h>
+#include <asm/current.h>
+#include <linux/sched.h>
+
+MODULE_LICENSE("GPL");
+
+struct workqueue_struct *my_queue = NULL;
+typedef struct my_work{
+        struct work_struct work;
+        char data[20];
+}my_work;
+
+my_work deferred_work;
+
+static void work_fn(struct work_struct *work)
+{
+	my_work *defer_work = (my_work *)container_of(work, my_work, work);
+	pr_info("deferred work execution\n");
+	pr_info("Data:%s\n", defer_work->data);
+	pr_info("current pid : %d , current process : %s\n",current->pid, current->comm);
+	pr_info("processor id:%d\n", smp_processor_id());
+}
+
+static int test_tasklet_init(void)
+{
+        pr_info("%s: In init processorid:%d\n", __func__, smp_processor_id());
+	INIT_WORK(&deferred_work.work, work_fn);
+	strcpy(deferred_work.data, "Linux is easy");
+	my_queue = alloc_workqueue("my_queue", WQ_UNBOUND | WQ_SYSFS, 1);
+	queue_work(my_queue, &deferred_work.work);
+	pr_info("%s: Init complete processor id:%d\n", __func__, smp_processor_id());
+	return 0;
+}
+
+static void test_tasklet_exit(void)
+{
+        pr_info("%s: In exit\n", __func__);
+	destroy_workqueue(my_queue);
+}
+
+module_init(test_tasklet_init);
+module_exit(test_tasklet_exit);
+```
+
+It is possible to change the cpu mask on sysfs to define in which cpus the workqueues are excuted: 
+
+```
+# cat /sys/devices/virutal/workqueue/cpumask # check the cpud masks.
+
+# echo 2 > /sys/devices/virtual/workqueue/my_queue/cpumask
+```
+
+Note: cpumasks are maps, so the
+
+
