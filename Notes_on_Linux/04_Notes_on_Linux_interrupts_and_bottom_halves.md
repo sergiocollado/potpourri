@@ -4614,4 +4614,12 @@ Tasks on this workqueue can be expected to use a fair amount of CPU time.
 In other words, runnable CPU intensive work items will not prevent other work items in the same worker pool from starting execution.
 
 
+### alloc_ordered_workqueue()
 
+#define alloc_ordered_workqueue(fmt, flags, args...)
+
+Allocate an ordered workqueue
+
+An ordered workqueue executes at most one work item at any given time in the queued order
+
+They are implemented as unbound workqueues with max_active of one
