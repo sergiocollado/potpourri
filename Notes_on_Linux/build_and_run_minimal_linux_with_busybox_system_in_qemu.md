@@ -9,6 +9,8 @@ reference:
 -  https://youtu.be/asnXWOUKhTA 
 -  https://youtu.be/c4j6z2huJxs 
 -  Build a embedded linux using buildroot: https://youtu.be/ysoi0bn66oM
+-  https://vccolombo.github.io/cybersecurity/linux-kernel-qemu-setup/
+-  https://blog.k3170makan.com/2020/11/linux-kernel-exploitation-0x0-debugging.html
 
 
 
