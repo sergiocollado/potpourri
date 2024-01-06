@@ -7,7 +7,8 @@ Languaje reference:
   - https://stevedonovan.github.io/rust-gentle-intro/
   - https://doc.rust-lang.org/book                                              
   - https://doc.rust-lang.org/rust-by-example
-  - https://doc.rust-lang.org/stable/reference/                             
+  - Beginner's guide to Error Handling in Rust: https://www.sheshbabu.com/posts/rust-error-handling/
+  - https://doc.rust-lang.org/stable/reference/                  
   - https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/
   - https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/effective-rust.html
   - https://doc.rust-lang.org/nomicon/                                          
