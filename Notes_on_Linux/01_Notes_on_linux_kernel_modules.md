@@ -97,6 +97,8 @@ In orden to suppor module, the kernel must have been build, with the following o
 
 CONFIG_MODULES=y
 
+To check if the modules can be applied on a system running check the kernel configuration on that system.
+
 ```
 cd /boot
 cat config-`uname -r` | grep CONFIG_MODULES
