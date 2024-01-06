@@ -46,7 +46,7 @@ Its extension is .ko (Kernel Object)
 
 ## Standard location for kernel modules
 
-Modules are located in the /lib/modules/<kernel version> direcory of the rootfs by default
+Modules are located in the /lib/modules/<kernel version> directory of the rootfs by default
 
 to check them: 
 
