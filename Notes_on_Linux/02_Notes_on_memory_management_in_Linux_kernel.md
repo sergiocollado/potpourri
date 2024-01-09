@@ -1,5 +1,6 @@
 # Notes on memory management on Linux kernel
 
+ - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/address-space.html
  - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/memory-management.html
 
 ### What is physical address space?
