@@ -2,12 +2,23 @@
 CFS Bandwidth Control
 =====================
 
+=============================
+CFS Control de ancho de banda
+=============================
+
 .. note::
    This document only discusses CPU bandwidth control for SCHED_NORMAL.
    The SCHED_RT case is covered in Documentation/scheduler/sched-rt-group.rst
 
+.. note::
+   Este documento únicamente trata el control de ancho de banda de CPUs 
+   para SCHED_NORMAL. El caso de SCHED_RT se trata en Documentation/scheduler/sched-rt-group.rst
+
 CFS bandwidth control is a CONFIG_FAIR_GROUP_SCHED extension which allows the
 specification of the maximum CPU bandwidth available to a group or hierarchy.
+
+El control de ancho de banda es una extension CONFIG_FAIR_GROUP_SCHED que 
+permite especificar el máximo uso disponible de CPU para un grupo o una jerarquía.
 
 The bandwidth allowed for a group is specified using a quota and period. Within
 each given "period" (microseconds), a task group is allocated up to "quota"
@@ -17,25 +28,63 @@ assigned any additional requests for quota will result in those threads being
 throttled. Throttled threads will not be able to run again until the next
 period when the quota is replenished.
 
+El ancho de banda permitido para un grupo se especifica usando una cuota y
+un periodo. Dentro de cada periodo (microsegundos), un grupo de tareas son 
+ejecutadas hasta la cuota de microsegundos de tiempo de CPU. Esa cuota
+asignada, en colas por cada cpu, en hilos de ejecución en el que el cgroup 
+es ejecutable. Una vez toda la cuota ha sido asignada cualquier petición 
+adicional de cuota resultará en esos hilos de ejecución siendo acelerados.
+Los hilos de ejecuión acelerados, no serán capaces de ejecutase de nuevo 
+hasta el siguiente periodo cuando la cuota sea repuesta.
+
 A group's unassigned quota is globally tracked, being refreshed back to
 cfs_quota units at each period boundary. As threads consume this bandwidth it
 is transferred to cpu-local "silos" on a demand basis. The amount transferred
 within each of these updates is tunable and described as the "slice".
 
+La cuota sin asignar de un grupo es monitorizada globalmente, siendo 
+restablecidos cfs_quota unidades al final de cada periodo. Según los
+hilos de ejecución van consumiedo este ancho de banda, este se 
+transfierea a los "silos" de las cpu-locales en base a la demanda. La
+cantidad tranferida en cada una de esas actualizaciones es ajustable y 
+es descrito como un "tramo". 
+
 Burst feature
 -------------
+
+Funcionalidad de rafaga
+-----------------------
 This feature borrows time now against our future underrun, at the cost of
 increased interference against the other system users. All nicely bounded.
 
+Esta funcionalidad coge prestado tiempo ahora, que en un futuro tendrá que
+devolver, con el coste de una mayor interferecia hacia los otros usuarios
+del sistema. Todo acotado perfectamente. 
+
 Traditional (UP-EDF) bandwidth control is something like:
 
+El tradicional control de ancho de banda (UP-EDF) es algo como:
+
   (U = \Sum u_i) <= 1
+
+La utilización de una CPU (U) es igual a la suma de todas las
+utilizaciones de las tareas en esa CPU (u_i), y la utilización 
+ha de ser menor o igual que 1 (100% de utilización)
 
 This guaranteeds both that every deadline is met and that the system is
 stable. After all, if U were > 1, then for every second of walltime,
 we'd have to run more than a second of program time, and obviously miss
 our deadline, but the next deadline will be further out still, there is
 never time to catch up, unbounded fail.
+
+Esto garantiza dos cosa: que cada tiempo límite de ejecución es cumplido
+y que el sistema es estable. De todas formas, si U fuese > 1, entonces
+por cada segundo de tiempo de reloj de una tarea, tendríamos que 
+ejecutar más de un segundo de tiempo de programa, y obviamente no 
+cumpliriamos con el tiempo límite de ejecucion de la tarea, pero en 
+el siguiente periodo de ejecución el tiempo límite de la tareá 
+estaría todavia más lejos, y nunca se tendría tiempo de alcanzar 
+la ejecución, cayendo así en un fallo no acotado. 
 
 The burst feature observes that a workload doesn't always executes the full
 quota; this enables one to describe u_i as a statistical distribution.
