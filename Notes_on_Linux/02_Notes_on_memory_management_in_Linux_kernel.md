@@ -1,14 +1,15 @@
 # Notes on memory management on Linux kernel
 
-What is physical address space?
-===================================
+ - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/memory-management.html
+
+### What is physical address space?
+
 
 The entire range of memory addresses accessible by processors is often referred to as physical address space
 
 In 32 Bit systems can have address space of 2^32 = 4 GB
 
 In 64 Bit systems the addres space is 2^64.
-
 
 
 This Physical address space is used by
