@@ -2668,6 +2668,7 @@ A basic principle of the kernel is that in an interrupt or atomic context, the k
 - Build a minimal Linux with only Busybox in 1 hour: https://youtu.be/asnXWOUKhTA?list=PLw27zZE-QQB9z59AI0EnAE998NSSJ4k9p
 - Bootlin: Linux debugging, profiling, tracing and performance analysis training ...  https://bootlin.com/doc/training/debugging/debugging-slides.pdf
 - Mentorship session: kernel tracing with eBPF: https://youtu.be/JqnWp6X6otw
+- eBPF: Unlocking the Kernel [OFFICIAL DOCUMENTARY] : https://youtu.be/Wb_vD3XZYOA
 
 ## And other references for elaborate later ...
 
