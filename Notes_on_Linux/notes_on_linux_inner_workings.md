@@ -2646,6 +2646,12 @@ A basic principle of the kernel is that in an interrupt or atomic context, the k
 - Device trees for dummies! https://www.youtube.com/watch?v=m_NyYEBxfn8
 - https://www.wireguard.com/
 - Linux Networking - eBPF, XDP, DPDK, VPP - What does all that mean? (by Andree Toonk) : https://youtu.be/hO2tlxURXJ0
+- Kernel-bypass techniques for high-speed network packet processing: https://youtu.be/MpjlWt7fvrw
+- How Linux processes your network packet - Elazar Leibovich: https://youtu.be/3Ij0aZRsw9w
+- Introduction to DPDK: https://youtu.be/1DWxo2gF-RQ
+- Linux network device driver internals | Linux kernel | Linux network device driver : https://youtu.be/aq0TLYXGQCA?list=PLOEpetqiDZSrfM_HYPe9l6RC782Ttul2H
+- DPDK deep-dive: https://youtu.be/VJ8CVN3oXMw
+
 
 ## RCU
  
