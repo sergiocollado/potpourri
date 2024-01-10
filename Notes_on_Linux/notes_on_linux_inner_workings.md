@@ -2645,6 +2645,7 @@ A basic principle of the kernel is that in an interrupt or atomic context, the k
 - Linux packet journey,napi, hardware queue,skb : https://youtu.be/6Fl1rsxk4JQ
 - Device trees for dummies! https://www.youtube.com/watch?v=m_NyYEBxfn8
 - https://www.wireguard.com/
+- Linux Networking - eBPF, XDP, DPDK, VPP - What does all that mean? (by Andree Toonk) : https://youtu.be/hO2tlxURXJ0
 
 ## RCU
  
@@ -2676,6 +2677,7 @@ A basic principle of the kernel is that in an interrupt or atomic context, the k
 - Fast by Friday: Why eBPF is Essential - Brendan Gregg: https://youtu.be/s1mobd8t_u0
 - eBPF: Unlocking the Kernel [OFFICIAL DOCUMENTARY] : https://youtu.be/Wb_vD3XZYOA
 - eBPF: Fueling New Flame Graphs & more • Brendan Gregg • YOW! 2022 : https://youtu.be/HKQR7wVapgk
+- Linux Networking - eBPF, XDP, DPDK, VPP - What does all that mean? (by Andree Toonk) : https://youtu.be/hO2tlxURXJ0
 
 ## And other references for elaborate later ...
 
