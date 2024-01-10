@@ -2667,8 +2667,15 @@ A basic principle of the kernel is that in an interrupt or atomic context, the k
 - kprobes: https://ish-ar.io/kprobes-in-a-nutshell/
 - Build a minimal Linux with only Busybox in 1 hour: https://youtu.be/asnXWOUKhTA?list=PLw27zZE-QQB9z59AI0EnAE998NSSJ4k9p
 - Bootlin: Linux debugging, profiling, tracing and performance analysis training ...  https://bootlin.com/doc/training/debugging/debugging-slides.pdf
+
+### BPF & eBPF
+
+- Kernelless Kernel Programming (eBPF) - Computerphile : https://youtu.be/J_EehoXLbIU
+- What is ebpf: https://youtu.be/jM3vL2LLm5o
 - Mentorship session: kernel tracing with eBPF: https://youtu.be/JqnWp6X6otw
+- Fast by Friday: Why eBPF is Essential - Brendan Gregg: https://youtu.be/s1mobd8t_u0
 - eBPF: Unlocking the Kernel [OFFICIAL DOCUMENTARY] : https://youtu.be/Wb_vD3XZYOA
+- eBPF: Fueling New Flame Graphs & more • Brendan Gregg • YOW! 2022 : https://youtu.be/HKQR7wVapgk
 
 ## And other references for elaborate later ...
 
