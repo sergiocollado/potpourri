@@ -1,27 +1,25 @@
 # NOTES ON LINUX KERNEL MODULES
 
   
-References: https://lwn.net/Kernel/LDD3/  & http://www.makelinux.net/ldd3/?u=chp-5-sect-5.shtml <br>
-Linux Kernel module programming guide: https://linux.die.net/lkmpg/  <br>
-kernel modules info: https://www.kernel.org/doc/Documentation/kbuild/modules.txt <br>
-The Linux Kernel Module Programming Guide: https://sysprog21.github.io/lkmpg/ <br>
-Eudyptula challenge: https://github.com/agelastic/eudyptula
-Kernel Play Guide: https://nskernel.gitbook.io/kernel-play-guide/accessing-the-non-exported-in-modules <br>
-EEC3-4029 Operating Systems: http://gauss.ececs.uc.edu/Courses/c4029/videos.html <br>
-linux-kernel-labs: https://linux-kernel-labs.github.io/refs/heads/master/index.html <br>
-How to build modules: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/kbuild/modules.rst <br>
-Linux kernel makefiles: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/kbuild/makefiles.rst <br>
-Kernel newbies : https://kernelnewbies.org/FirstKernelPatch <br>
-Linux device drivers tutorials: https://embetronicx.com/linux-device-driver-tutorials/ <br>
-about kallsyms_lookup_name() +5.7: https://xcellerator.github.io/posts/linux_rootkits_11/ <br>
-linux device driver series: https://embetronicx.com/tutorials/linux/device-drivers/linux-device-driver-part-1-introduction/ <br>
-Let's code a Linux driver: Let's code a Linux Driver: https://www.youtube.com/watch?v=x1Y203vH-Dc&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa <br>
-https://linux.die.net/HOWTO/KernelAnalysis-HOWTO-6.html <br>
-
-Fast Linux Kernel Testing with QEMU: https://ncmiller.dev/2016/05/14/linux-and-qemu.html
-
-The kernel API: https://www.kernel.org/doc/htmldocs/kernel-api/index.html <br>
-reference: linux kernel API cheatsheet: https://www.cs.bham.ac.uk/~exr/lectures/systems/08_09/docs/kernelAPI/ <br>
+ - References: https://lwn.net/Kernel/LDD3/  & http://www.makelinux.net/ldd3/?u=chp-5-sect-5.shtml
+ - Linux Kernel module programming guide: https://linux.die.net/lkmpg/
+ - kernel modules info: https://www.kernel.org/doc/Documentation/kbuild/modules.txt 
+ - The Linux Kernel Module Programming Guide: https://sysprog21.github.io/lkmpg/ 
+ - Eudyptula challenge: https://github.com/agelastic/eudyptula
+ - Kernel Play Guide: https://nskernel.gitbook.io/kernel-play-guide/accessing-the-non-exported-in-modules 
+ - EEC3-4029 Operating Systems: http://gauss.ececs.uc.edu/Courses/c4029/videos.html 
+ - linux-kernel-labs: https://linux-kernel-labs.github.io/refs/heads/master/index.html
+ - How to build modules: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/kbuild/modules.rst 
+ - Linux kernel makefiles: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/kbuild/makefiles.rst 
+ - Kernel newbies : https://kernelnewbies.org/FirstKernelPatch 
+ - Linux device drivers tutorials: https://embetronicx.com/linux-device-driver-tutorials/ 
+ - about kallsyms_lookup_name() +5.7: https://xcellerator.github.io/posts/linux_rootkits_11/ 
+ - linux device driver series: https://embetronicx.com/tutorials/linux/device-drivers/linux-device-driver-part-1-introduction/ 
+ - Let's code a Linux driver: Let's code a Linux Driver: https://www.youtube.com/watch?v=x1Y203vH-Dc&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa 
+ - https://linux.die.net/HOWTO/KernelAnalysis-HOWTO-6.html 
+ - Fast Linux Kernel Testing with QEMU: https://ncmiller.dev/2016/05/14/linux-and-qemu.html
+ - The kernel API: https://www.kernel.org/doc/htmldocs/kernel-api/index.html 
+ - reference: linux kernel API cheatsheet: https://www.cs.bham.ac.uk/~exr/lectures/systems/08_09/docs/kernelAPI/ 
 
 ## What is a device driver.
 
