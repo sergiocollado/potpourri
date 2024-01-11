@@ -36,8 +36,6 @@ Languaje reference:
   - Complex cpp rust ffi: https://github.com/emilio/rust-cpp-ffi-examples/tree/master
   - bindgen user guide: https://rust-lang.github.io/rust-bindgen/introduction.html
 
-<br>
-
 Other resources:
   - linux kernel rust documentation: https://docs.kernel.org/rust/index.html
   - key rust concepts for the kernel: https://lwn.net/Articles/869317/
@@ -84,6 +82,8 @@ The kernel is inherently multi-threaded: kernel resources can be accessed from m
 
 - https://docs.kernel.org/rust/index.html
 - https://lore.kernel.org/rust-for-linux/
+- Key Rust concepts for the kernel: https://lwn.net/Articles/869317/
+- More Rust concepts for the kernel: https://lwn.net/Articles/869428/
 - https://hackmd.io/team/rust-for-linux-?nav=overview
 - https://docs.kernel.org/rust/quick-start.html
 - https://github.com/Rust-for-Linux/rust-out-of-tree-module
