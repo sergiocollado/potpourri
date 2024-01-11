@@ -310,3 +310,65 @@ static void __exit test_hello_exit(void)
 module_init(test_hello_init);
 module_exit(test_hello_exit);
 ```
+
+
+### Pages
+
+ - reference: linux kernel memory management: https://docs.kernel.org/mm/index.html
+ - reference: linux kernel virtual memory pages: https://docs.kernel.org/mm/page_tables.html
+
+Virtual address space (0x00000000 to 0xffffffff) is divided into pages of 4096 (4KiB) bytes.
+
+The page size may differ in other systems. But on ARM and x86 it is fixed.
+
+The size of a page is defined in the kernel through the `PAGE_SIZE` macro.
+
+Pages in the virtual address space are mapped to physical addresses by the Memory Management Unit(MMU), which uses page tables to perform the mapping.
+
+Memory Page/Virtual Page/Page: 
+ - Refers to a fixed length contiguous block of **virtual memory**. 
+ - Kernel data structure to represent a memory page is struct page
+
+Frame/Page Frame:
+ - Refers to a fixed length contiguous block of **physical memory** on top of which the OS maps a memory page
+ - Each page frame is given a page frame number (PFN).
+ - Given a page, you can easily get its PFN and vice versa, using page_to_pfn/pfn_to_page macros
+
+Page Table:
+ - Kernel and architecture data structure used to store the mapping between virtual addresses and physical addresses
+ - Each entry describes key pair page/frame
+
+
+#### Command to find out page size
+
+```
+$ getconf PAGESIZE
+or
+$ getconf PAGE_SIZE
+```
+
+### Page
+
+Kernel represents every virtual page on the system with struct page structure.
+
+Header File: <linux/mmtypes.h>
+
+```
+struct page {
+        unsigned long flags;
+        atomic_t      _count;
+	       void          *virtual;
+	....
+};
+```
+
+ - Flags: Status of the page: Dirty, locked in memory. 
+    -  Values: <linux/page-flags.h>
+ - _count : Usage count of the page. How many references are to this page. When page is free _count is negative one
+ - virtual: Page's virtual Address.
+
+with 4KB Page Size and 4GB of Physical Memory = 1048576 Pages
+
+Each page is taking 64 bytes = 1048576*64 = 64 MB is used to store all the physical pages
+
+
