@@ -43,7 +43,7 @@ is transferred to cpu-local "silos" on a demand basis. The amount transferred
 within each of these updates is tunable and described as the "slice".
 
 La cuota sin asignar de un grupo es monitorizada globalmente, siendo 
-restablecidos cfs_quota unidades al final de cada periodo. Según los
+restablecidas cfs_quota unidades al final de cada periodo. Según los
 hilos de ejecución van consumiedo este ancho de banda, este se 
 transfierea a los "silos" de las cpu-locales en base a la demanda. La
 cantidad tranferida en cada una de esas actualizaciones es ajustable y 
