@@ -2,6 +2,7 @@
 
  - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/address-space.html
  - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/memory-management.html
+ - reference: https://0xax.gitbooks.io/linux-insides/content/MM/
 
 ### What is physical address space?
 
