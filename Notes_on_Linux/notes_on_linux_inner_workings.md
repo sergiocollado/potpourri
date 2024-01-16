@@ -1728,15 +1728,12 @@ reference: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr
 #define TASK_STATE_MAX			0x1000
 ```
 
-  reference: https://oska874.gitbooks.io/process-scheduling-in-linux/content/chapter5.html
-  
-  reference: https://www.kernel.org/doc/html/latest/scheduler/index.html
-
-  reference: Graphing Tools for Scheduler Tracing:  https://inria.hal.science/hal-04001993/preview/RR-9498.pdf
-
-  reference: ftrace - function tracer. https://docs.kernel.org/trace/ftrace.html.
-
-  reference: https://www.trace-cmd.org/
+ -  reference: https://oska874.gitbooks.io/process-scheduling-in-linux/content/chapter5.html
+ - reference: https://www.kernel.org/doc/html/latest/scheduler/index.html
+ - reference: Graphing Tools for Scheduler Tracing:  https://inria.hal.science/hal-04001993/preview/RR-9498.pdf
+ - reference: ftrace - function tracer. https://docs.kernel.org/trace/ftrace.html.
+ - reference: https://www.trace-cmd.org/
+ - https://github.com/sched-ext/scx
   
   
 ### Scheduling classes
@@ -2684,6 +2681,7 @@ A basic principle of the kernel is that in an interrupt or atomic context, the k
 - eBPF: Unlocking the Kernel [OFFICIAL DOCUMENTARY] : https://youtu.be/Wb_vD3XZYOA
 - eBPF: Fueling New Flame Graphs & more • Brendan Gregg • YOW! 2022 : https://youtu.be/HKQR7wVapgk
 - Linux Networking - eBPF, XDP, DPDK, VPP - What does all that mean? (by Andree Toonk) : https://youtu.be/hO2tlxURXJ0
+- https://github.com/sched-ext/scx sched_ext is a Linux kernel feature which enables implementing kernel thread schedulers in BPF and dynamically loading them. This repository contains various scheduler implementations and support utilities.
 
 ## And other references for elaborate later ...
 
