@@ -372,4 +372,198 @@ with 4KB Page Size and 4GB of Physical Memory = 1048576 Pages
 
 Each page is taking 64 bytes = 1048576*64 = 64 MB is used to store all the physical pages
 
+<br> 
+
+Kernel memory is managed in a fairly straightforward way. 
+
+It is not demand-paged, meaning that, for every allocation using kmalloc() or similar function, there is real physical memory.
+
+Kernel memory is never discarded or paged out. So the kernel memory will always be on the RAM.
+
+Linux employs a lazy allocation strategy for user space, only mapping physical pages of memory when the program accesses it.
+
+For example, allocating a buffer of 1 MiB using malloc(3) returns a pointer to a block of memory addresses but no actual physical memory. 
+
+ A flag is set in the page table entries such that any read or write access is trapped by the kernel. This is known as a page fault.
+
+Only at this point does the kernel attempt to find a page of physical memory and add it to the page table mapping for the process.
+
+### Page faults
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/resource.h>
+#define BUFFER_SIZE (4*1024 * 1024)
+
+void print_pgfaults(void)
+{
+  int ret;
+  struct rusage usage;
+  ret = getrusage(RUSAGE_SELF, &usage);
+  if (ret == -1) {
+    perror("getrusage");
+  } else {
+    printf ("Major page faults %ld\n", usage.ru_majflt);
+    printf ("Minor page faults %ld\n", usage.ru_minflt);
+  }
+}
+
+int main (int argc, char *argv[])
+{
+  unsigned char *p;
+  printf("Initial state\n");
+  print_pgfaults();
+  p = malloc(BUFFER_SIZE);
+  printf("After malloc\n");
+  print_pgfaults();
+  memset(p, 'a', BUFFER_SIZE);
+  printf("After memset\n");
+  print_pgfaults();
+  memset(p, 'b', BUFFER_SIZE);
+  printf("After 2nd memset\n");
+  print_pgfaults();
+  return 0;
+}
+```
+
+When try to access the memroy with memset, we can see, that page faults are generated. 
+
+
+A page fault is generated when the kernel traps an access to a page that has not been mapped.
+
+In fact, there are two kinds of page fault: minor and major. 
+
+ With a minor fault, the kernel just has to find a page of physical memory and map it into the process address space
+
+A major page fault occurs when the virtual memory is mapped to a file, for example using mmap(2)
+
+major faults are much more expensive in time and system resources
+
+
+### User space virtual address space
+
+```
+User space virtual address space
+=================================
+
+	 		 address|-------------------| command-line arguments
+   				|-------------------| and environment variables
+				|        stack      |
+				|-------------------|
+				|	            |
+				|		    |
+				|		    |
+				|-------------------|
+				|		heap|
+				|-------------------|
+				|uninitialized data | initialized to
+				|		(bss| zero by exec
+				|-------------------|
+				| initialized data  | read from
+				|-------------------| program file 
+				|		text| by exec
+	low address 		|-------------------|
+			Typical memory arrangement
+
+$ cat /proc/pid/maps
+
+```
+
+### Kernel space
+
+#### Low and High Memory
+
+
+The Linux kernel has its own virtual address space, as every user mode process does.
+
+The kernel code and data structures must fit into that space, but the biggest consumer of kernel address space is virtual mappings for physical memory.
+
+The kernel to access physical memory should first map it into the kernel's virtual address space. 
+
+Maximum amount of physical memory handled by the kernel = amount that could be mapped into the kernel's portion of virtual address space - Space used by kernel code.
+
+As, a result x86 based Linux systems could work with a maximum of a little under 1 GB of physical memory.
+
+The virtual address space of the kernel (1 GB sized in a 3G/1G split) is divided into two parts:
+ - Low memory or LOWMEM, which is the first 896 MB
+ - High memory or HIGHMEM, represented by the top 128 MB
+
+
+```
+                                           Physical mem 
+       Process address space    +------> +------------+ 
+                                |        |  3200 M    | 
+                                |        |            | 
+    4 GB+---------------+ <-----+        |  HIGH MEM  | 
+        |     128 MB    |                |            | 
+        +---------------+ <---------+    |            | 
+        +---------------+ <------+  |    |            |  
+        |     896 MB    |        |  +--> +------------+          
+    3 GB+---------------+ <--+   +-----> +------------+  
+        |               |    |           |   896 MB   | LOW MEM 
+        |     /////     |    +---------> +------------+ 
+        |               |      
+    0 GB +---------------+
+```
+
+#### Low Memory
+
+The first 896 MB of kernel address space constitutes the low memory region.
+
+Early in the boot, the kernel permanently maps this 896MB
+
+Addresses that result from this mapping are called **logical addresses**. 
+
+These are virtual addresses, but can be translated into physical addresses by subtracting a fixed offset, since the mapping is permanent and known in advance.
+
+You can convert a physical address into a logical address using the `__pa(address)` macro, and then revert it with the `__va(address)` macro.
+
+Low memory matches with the lower bound of physical addresses.
+
+In fact, to serve different purposes, kernel memory is divided into a zone.
+
+We can then identify three different memory zones in the kernel space:
+
+ - ZONE_DMA: This contains page frames of memory below 16 MB, reserved for Direct Memory Access (DMA)
+ - ZONE_NORMAL: This contains page frames of memory above 16 MB and below 896 MB, for normal use
+ - ZONE_HIGHMEM: This contains page frames of memory at and above 896 MB
+
+On a 512 MB system, there will be no ZONE_HIGHMEM, 16 MB for ZONE_DMA, and 496 MB for ZONE_NORMAL.
+
+#### High Memory
+
+The top 128 MB of the kernel address space is called the high memory region. 
+
+It is used by the kernel to temporarily map physical memory above 1 GB
+
+When physical memory above 1GB (or more precisely 896MB) needs to be accessed, the kernel uses those 128MB to create a temporary mapping to its virtual address space, thus achieving the goal of being able to access all physical pages.
+
+The physical memory above 896 MB is mapped on demand to the 128 MB of the HIGHMEM region.
+
+Mapping to access high memory is created on the fly by the kernel, and destroyed when done. This makes high memory access slower. 
+
+**Concept of high memory does not exist on 64-bit systems**, due to the huge address range (2^64), where the 3G/1G split does not make sense anymore.
+
+### How to check low and high mem? 
+
+```
+$ cat /proc/meminfo | grep LowTotal # this will report the low memory
+$ cat /proc/meminfo | grep HighTotal # this will report high memory
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
