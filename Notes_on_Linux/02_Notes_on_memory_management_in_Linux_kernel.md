@@ -552,12 +552,155 @@ Mapping to access high memory is created on the fly by the kernel, and destroyed
 $ cat /proc/meminfo | grep LowTotal # this will report the low memory
 $ cat /proc/meminfo | grep HighTotal # this will report high memory
 ```
+### Memory allocation mechanism
+
+```
+	----------------------------------
+	|	Kernel			 |
+	|	Module			 |
+	----------------------------------
+	    |		|	|	|
+	    v	        |	|	v
+	----------	|	|  -----------
+	|         |	|	|  |         |
+	|kmalloc  |	|	|  |vmalloc  |
+	|allocator|	|	|  |allocator|
+	----------	|	|  -----------
+	   |            |	|
+	   v	        v	|
+	-----------------	|	
+	| slab       	|	|
+	| allocator  	|	|
+	----------------	|
+		|		|
+		v		v
+	------------------------------------------
+	|	Page Allocator			 |
+	|Allocate physical memory by chunk of 4k |
+	------------------------------------------
+			|
+			|	
+			v
+	---------------------------------------
+	|	Main Memory		      |
+	|				      |
+	---------------------------------------
+```
+
+There is an allocation mechanism to satisfy any kind of memory request.
+
+Depending on what you need memory for, you can choose the one closest to your goal.
+
+The main allocator is the page allocator, which only works with pages (a page being the smallest memory unit it can deliver)
+
+Then comes the SLAB allocator which is built on top of the page allocator, getting pages from it and returning smaller memory entities (by mean of slabs and caches). This is the allocator on which the kmalloc allocator relies on.
 
 
+### kmalloc family allocation
 
+`kmalloc` is a kernel memory allocation function, such as malloc() in user space
 
+Memory returned by kmalloc is __**contiguous**__ in physical memory and in virtual memory:
 
+```
+			virtual memory    physical memory
+			----------        --------
+		   - - -|	 |------- |	 |
+	kmalloc	  /	|	 |        |	 |
+	---------/	|        |        |	 |
+	|	|	|        |        |	 |
+	|	|   ---	|        |------- | 	 |
+	|	|  /	|        |	  |	 |
+	|	| /	|        |	  |	 |
+	---------/	|        |	  |	 |
+			|        |	  |	 | 
+			|        |        |      |
+			|        |        |      |
+			|        |        |      |
+			|        |        |      |
+			----------        --------
+```
 
+`kmalloc` allocator is the general and higher-level memory allocator in the kernel, and relies on SLAB Allocator
+
+Memory returned from kmalloc has a kernel logical address because it is allocated from the LOW_MEM region, unless HIGH_MEM is specified.
+
+Header File: #include <linux/slab.h>
+
+```
+void *kmalloc(size_t size, int flags); 
+
+	size: specifies the size of the memory to be allocated (in bytes).
+	flags: determines how and where memory should be allocated. 
+		Available flags are the same as the page allocator (GFP_KERNEL, GFP_ATOMIC, GFP_DMA, and so on)
+```
+
+Return Value: On Success, returns the virtual address of the chunk allocated, which is guaranteed to be physically contiguous.  On error, it returns NULL
+
+#### Flags
+
+ - GFP_KERNEL: This is the standard flag. We cannot use this flag in the interrupt handler because its code may sleep. It always returns memory from the LOM_MEM zone (hence a logical address).
+ - GFP_ATOMIC: This guarantees the atomicity of the allocation. The only flag to use when we are in the interrupt context.
+ - GFP_USER: This allocates memory to a user space process. Memory is then distinct and separated from that allocated to the kernel.
+ - GFP_HIGHUSER: This allocates memory from the HIGH_MEMORY zone.
+ - GFP_DMA: This allocates memory from DMA_ZONE.
+
+#### kfree
+
+The kfree function is used to free the memory allocated by kmalloc. The following is the prototype of kfree():
+
+void kfree(const void *ptr) 
+
+Memory corruption can happen:
+ - on a block of memory that already has been freed
+ - on a pointer that is not an address returned from kmalloc()
+
+Always balance allocations and frees to ensure that kfree() is called exactly once on the correct pointer
+
+### Example
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/slab.h>
+#include <linux/moduleparam.h>
+
+MODULE_LICENSE("GPL");
+
+static void *ptr;
+int alloc_size = 1024;
+
+module_param(alloc_size, int, 0);
+
+static int test_hello_init(void)
+{
+	ptr = kmalloc(alloc_size,GFP_ATOMIC);
+	if(!ptr) {
+		/* handle error */
+		pr_err("memory allocation failed\n");
+		return -ENOMEM;
+	} else {
+		phys_addr_t physical_address = virt_to_phys(ptr);
+		pr_info("Memory Allocated:%px\n", ptr);
+		pr_info("Physical Address of i is %pa\n", &physical_address);
+	}
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	kfree(ptr);
+	pr_info("Memory freed\n");
+
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+you can check the physycal memory used by devices, with `$ cat /proc/iomem` and then chekck that the physical memory alocated belong to the RAM.
+
+ - reference: iomem : https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/4/html/reference_guide/s2-proc-iomem
 
 
 
