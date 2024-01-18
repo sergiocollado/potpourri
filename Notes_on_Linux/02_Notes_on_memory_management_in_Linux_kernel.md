@@ -1,5 +1,13 @@
 # Notes on memory management on Linux kernel
 
+ - reference: Understanding the Linux Virtual Memory Manager: https://www.kernel.org/doc/gorman/html/understand/
+ - reference: What every programmer should know about memory:
+     - https://lwn.net/Articles/250967/
+     - https://lwn.net/Articles/252125/
+     - https://lwn.net/Articles/253361/
+     - https://lwn.net/Articles/254445/
+     - https://lwn.net/Articles/255364/
+ - reference: https://www.kernel.org/doc/
  - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/address-space.html
  - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/memory-management.html
  - reference: https://0xax.gitbooks.io/linux-insides/content/MM/
