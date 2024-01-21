@@ -748,7 +748,7 @@ All free pages are split into 11 (MAX_ORDER) lists, each contains a list of 2^or
 
 When an allocation request is made for a particular size, the buddy system looks into the appropriate list for a free block, and returns its address, if available. 
 
- However, if it cannot find a free block, it moves to check in the next high-order list for a larger block, which if available it splits the higher-order block into equal parts called buddies, returns one for the allocator, and queues the second into a lower-order list. 
+However, if it cannot find a free block, it moves to check in the next high-order list for a larger block, which if available it splits the higher-order block into equal parts called buddies, returns one for the allocator, and queues the second into a lower-order list. 
 
 When both buddy blocks become free at some future time, they are coalesced to create a larger block.
 
@@ -762,6 +762,7 @@ Node 0, zone      DMA      1      1      0      1      2      1      1      0   
 Node 0, zone   Normal      1      1      1      1      3      1      1      2      3      4    207 
 Node 0, zone  HighMem     22      8      4      1      1      1      1      1      1      2     34 
 ```
+The 11 colums, belong to the 11 (MAX_ORDER) lists. 
 
 This means, zone DMA, there are 1 of 2^(0*PAGE_SIZE) free chunks of memory, 1 of 2^(1)*PAGE_SIZE, 0 of 2^(2)*PAGE_SIZE and so on upto 3*(2^10)*PAGE_SIZE = Nearly 16 MB
 
