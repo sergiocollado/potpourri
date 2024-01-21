@@ -743,6 +743,12 @@ Within each zone, Linux uses a buddy-system allocator to allocate and free physi
 
 ### Buddy Allocator
 
+- reference: https://www.kernel.org/doc/gorman/html/understand/understand009.html
+- reference: https://cs.stackexchange.com/questions/152260/buddy-system-allocator-and-slab-allocator-in-linux-kernel
+- reference: https://www.geeksforgeeks.org/operating-system-allocating-kernel-memory-buddy-system-slab-system/
+- reference: https://hackernoon.com/understanding-kernel-memory-allocation-using-buddy-and-slab-systems
+- reference: https://www.tutorialspoint.com/allocating-kernel-memory-buddy-system-and-slab-system
+
 Memory is broken up into large blocks of pages where each block is a power of two number of pages (2^order).
 All free pages are split into 11 (MAX_ORDER) lists, each contains a list of 2^order pages.
 
