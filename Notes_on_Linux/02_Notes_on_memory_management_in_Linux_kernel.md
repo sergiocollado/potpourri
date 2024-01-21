@@ -754,6 +754,8 @@ When both buddy blocks become free at some future time, they are coalesced to cr
 
 ### /proc/buddyinfo
 
+- reference: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/4/html/reference_guide/s2-proc-buddyinfo
+
 Using the buddy algorithm, each column represents the number of pages of a certain order (a certain size) that are available at any given time.
 
 ```
