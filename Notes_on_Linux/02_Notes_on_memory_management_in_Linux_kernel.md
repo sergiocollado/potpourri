@@ -1,6 +1,7 @@
 # Notes on memory management on Linux kernel
 
  - reference: Understanding the Linux Virtual Memory Manager: https://www.kernel.org/doc/gorman/html/understand/
+ - reference: https://www.kernel.org/doc/gorman/html/understand/index.html
  - reference: What every programmer should know about memory:
      - https://lwn.net/Articles/250967/
      - https://lwn.net/Articles/252125/
@@ -715,6 +716,8 @@ you can check the physycal memory used by devices, with `$ cat /proc/iomem` and 
 
 ### zones
 
+- reference: https://www.kernel.org/doc/gorman/html/understand/understand005.html#toc13
+
 Linux kernel divides physical RAM into a number of different memory regions: zones
 
 What memory regions(zones) there are depends on whether your machine is 32-bit or 64-bit and also how complicated it is
@@ -744,6 +747,7 @@ Within each zone, Linux uses a buddy-system allocator to allocate and free physi
 ### Buddy Allocator
 
 - reference: https://www.kernel.org/doc/gorman/html/understand/understand009.html
+- reference: https://grimoire.carcano.ch/blog/memory-management-the-buddy-allocator/
 - reference: https://cs.stackexchange.com/questions/152260/buddy-system-allocator-and-slab-allocator-in-linux-kernel
 - reference: https://www.geeksforgeeks.org/operating-system-allocating-kernel-memory-buddy-system-slab-system/
 - reference: https://hackernoon.com/understanding-kernel-memory-allocation-using-buddy-and-slab-systems
