@@ -657,7 +657,9 @@ Return Value: On Success, returns the virtual address of the chunk allocated, wh
 
 The kfree function is used to free the memory allocated by kmalloc. The following is the prototype of kfree():
 
+```
 void kfree(const void *ptr) 
+```
 
 Memory corruption can happen:
  - on a block of memory that already has been freed
@@ -711,6 +713,57 @@ you can check the physycal memory used by devices, with `$ cat /proc/iomem` and 
  - reference: iomem : https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/4/html/reference_guide/s2-proc-iomem
 
 
+### zones
+
+Linux kernel divides physical RAM into a number of different memory regions: zones
+
+What memory regions(zones) there are depends on whether your machine is 32-bit or 64-bit and also how complicated it is
+
+Zones:
+
+ - 1. DMA: 	low 16 MBytes of memory. At this point it exists for historical reasons. 
+		There was hardware that could only do DMA into this area of physical memory.
+
+ - 2. DMA32:	exists only in 64-bit Linux. 
+		it is the low 4 GBytes of memory, more or less.
+		t exists because the transition to large memory 64-bit machines has created a class of hardware that can only do DMA to the low 4 GBytes of memory.
+
+ - 3. Normal:	 is different on 32-bit and 64-bit machines.
+		 - On 64-bit machines, it is all RAM from 4GB or so on upwards
+		 - On 32-bit machines it is all RAM from 16 MB to 896 MB for complex and somewhat historical reasons
+
+		 Note that this implies that machines with a 64-bit kernel can have very small amounts of Normal memory unless they have significantly more than 4GB of RAM. 
+		For example, a 2 GB machine running a 64-bit kernel will have no Normal memory at all while a 4 GB machine will have only a tiny amount of it.
+
+ - 4. HighMem:	exists only on 32-bit Linux; 
+		it is all RAM above 896 MB, including RAM above 4 GB on sufficiently large machines.
+
+Within each zone, Linux uses a buddy-system allocator to allocate and free physical memory.
+
+
+### Buddy Allocator
+
+Memory is broken up into large blocks of pages where each block is a power of two number of pages (2^order).
+All free pages are split into 11 (MAX_ORDER) lists, each contains a list of 2^order pages.
+
+When an allocation request is made for a particular size, the buddy system looks into the appropriate list for a free block, and returns its address, if available. 
+
+ However, if it cannot find a free block, it moves to check in the next high-order list for a larger block, which if available it splits the higher-order block into equal parts called buddies, returns one for the allocator, and queues the second into a lower-order list. 
+
+When both buddy blocks become free at some future time, they are coalesced to create a larger block.
+
+### /proc/buddyinfo
+
+Using the buddy algorithm, each column represents the number of pages of a certain order (a certain size) that are available at any given time.
+
+```
+# cat /proc/buddyinfo 
+Node 0, zone      DMA      1      1      0      1      2      1      1      0      1      1      3 
+Node 0, zone   Normal      1      1      1      1      3      1      1      2      3      4    207 
+Node 0, zone  HighMem     22      8      4      1      1      1      1      1      1      2     34 
+```
+
+This means, zone DMA, there are 1 of 2^(0*PAGE_SIZE) free chunks of memory, 1 of 2^(1)*PAGE_SIZE, 0 of 2^(2)*PAGE_SIZE and so on upto 3*(2^10)*PAGE_SIZE = Nearly 16 MB
 
 
 
