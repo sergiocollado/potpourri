@@ -269,7 +269,32 @@ A certificate has 3 sections:
 - signature algorithm
 - signature 
 
+#### Version
+this is the version of the x509 specification:
+ - 0x0 - x509 Version 1 - no longer in use
+ - 0x1 - x509 version 2 - rarely used (avoid if possible)
+ - 0x2 - x509 version 3 - most typical for today's certificates
 
+The version 3 adds certificates extes9ion, which are optional fields taht add features to SSL/TLS certificates.
+
+#### Serial number
+Is a 20 bytes (106 bits), that uniquely identificates a certifiace issued by a given CA.
+This number is used to look up the validity of a certificate. A request is made to the CA 
+which is used certificate by serial number.
+
+The validity of this serial number is done by two protocols:
+ - CRL - certificate revocation list
+ - OCSP - online certifiacte status protocol 
+
+
+
+
+
+
+
+
+
+   
 
   
 
