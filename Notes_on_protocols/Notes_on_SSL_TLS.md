@@ -331,10 +331,69 @@ browsers verify CN against the URL used.
 CN can include a wildcard (*) on the certificate. For example `CN=\.google.com` . This allows to protect
 the subdomains, like: `maps.google.com`, or `mail.google.com`, but not `us.mail.google.com` Also, it doesn't protect `google.com`
 
+#### Public Key
+It is present as tow values:
+ - Modulus  ( N (P*Q))
+ - Exponent (E)
+
+For eliptic curves certificates, the values are:
+ - Public key
+ - Curve
+
+#### Extensions
+
+Extensions only exists on x509 v3 (version 3). 
+
+Extesions are optional fields that add features and restrictions to certificates.
+
+### Inspecting a certificate
+
+For this `openssl` will be used.
+
+`openssl s_client` is an utility that will instruct openssl to act as an ssl client. 
+So, it will connect to a website and retrieve its certificate.
+
+`openssl s_client --connect redit.com:443`
+
+the answer is in base-64 encoded. 
+
+to check the certificate, we can use 
+
+```
+openssl x50 -in mycert
+```
+
+This will report the base-64 version, for getting the text output, use:
+
+```
+openssl x50 -in mycert -text
+```
+
+To not retrive the base-64 version:
+
+```
+openssl x50 -in mycert -text noout
+```
 
 
+### Certificate extensions
 
+Remember extensions only exist on x509 version 3. 
 
+Extensions are optional fields that add features and restrictions. 
+
+#### Key Usage & Extended Key usages
+
+Set usages/limits for excription keys. 
+For example: 
+ - if you can use the encryption keys to encrypt data. Encripting data with the asymemtric keys is not very efficient, so normally these are used to stablish symmetric keys.
+ - if you can use the encryption keys to sign certificates.
+ - if you can use the encryption keys to verify signatures.
+ - if you can use the encryption keys to verify CRL signatures.
+
+The Key usage extension, tipically is limited by purpouses.
+
+The Extended Key Usage is limiting by protocol and/or role.
 
 
    
