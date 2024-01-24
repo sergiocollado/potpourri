@@ -328,7 +328,7 @@ For example:
 The most relevant one is CN, the common name, because it must exists in the Subject and Issuer. And the 
 browsers verify CN against the URL used.
 
-CN can include a wildcard (*) on the certificate. For example `CN=\*.google.com` . This allows to protect
+CN can include a wildcard (*) on the certificate. For example `CN=\.google.com` . This allows to protect
 the subdomains, like: `maps.google.com`, or `mail.google.com`, but not `us.mail.google.com` Also, it doesn't protect `google.com`
 
 
