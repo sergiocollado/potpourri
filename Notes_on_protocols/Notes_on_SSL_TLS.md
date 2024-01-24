@@ -1,4 +1,3 @@
-
 # Notes on SSL/TLS
 
 - Intro: https://youtu.be/VcV4T8cL3xw
@@ -275,18 +274,62 @@ this is the version of the x509 specification:
  - 0x1 - x509 version 2 - rarely used (avoid if possible)
  - 0x2 - x509 version 3 - most typical for today's certificates
 
-The version 3 adds certificates extes9ion, which are optional fields taht add features to SSL/TLS certificates.
+The x509 version 3 adds certificates extension, which are optional fields taht add features to SSL/TLS certificates.
 
 #### Serial number
 Is a 20 bytes (106 bits), that uniquely identificates a certifiace issued by a given CA.
-This number is used to look up the validity of a certificate. A request is made to the CA 
-which is used certificate by serial number.
+This number is used to look up the validity of a certificate.
+
+This serial number is used for validation, so a request is made to the CA 
+to validate if ther certificate with that serial number is valid.
+
 
 The validity of this serial number is done by two protocols:
  - CRL - certificate revocation list
- - OCSP - online certifiacte status protocol 
+ - OCSP - online certifiacte status protocol
 
 
+#### Signature Algorithm.
+
+This is the algorithm used to generate the signature of the certificate.
+
+It is made by two elements:
+ - Hashing algorithm.
+ - Asymmetric encryption which generated the keys.
+
+#### Validity
+
+Validity specifies the dates in which the certificate is valid.
+
+It is specified with two values:
+- Not Before
+- Not After
+
+#### Subject and Issuer
+
+The Subject field will identify the identity of the server. 
+
+The issuer, identifies the CA that signed the certificate.
+
+Remember that certificate autorities also have ceritifactes, and that the CA sign their own certificates.
+
+When a certificate has the same subject ans issuer, that is known as self-signed certificate.
+
+The content of the Subject ans issuer, is specified in which is known as Distinguised Name (DN) format. This is
+just a hierarquy of atribute-value pairs (LDAP-RFC 4519 attribute definitions). 
+For example: 
+ - CN Common Name
+ - OU Organizational Unit
+ - O Organization
+ - L locality/city
+ - ST State
+ - C country
+
+The most relevant one is CN, the common name, because it must exists in the Subject and Issuer. And the 
+browsers verify CN against the URL used.
+
+CN can include a wildcard (*) on the certificate. For example `CN=\*.google.com` . This allows to protect
+the subdomains, like: `maps.google.com`, or `mail.google.com`, but not `us.mail.google.com` Also, it doesn't protect `google.com`
 
 
 
