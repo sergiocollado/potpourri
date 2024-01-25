@@ -1,6 +1,7 @@
 # Notes on SSL/TLS
 
 - Intro: https://youtu.be/VcV4T8cL3xw
+- https://www.cloudflare.com/learning/ssl/transport-layer-security-tls/
 
 ## Fundamentals
 
