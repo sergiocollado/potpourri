@@ -14,4 +14,3 @@ Challenges for learning:
 - https://datalemur.com/sql-tutorial
 - https://leetcode.com/problemset/database/
 
-- 
