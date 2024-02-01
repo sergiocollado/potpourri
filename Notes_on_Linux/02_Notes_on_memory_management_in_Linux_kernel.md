@@ -722,7 +722,7 @@ you can check the physycal memory used by devices, with `$ cat /proc/iomem` and 
  - reference: iomem : https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/4/html/reference_guide/s2-proc-iomem
 
 
-### zones
+### Zones
 
 - reference: https://www.kernel.org/doc/gorman/html/understand/understand005.html#toc13
 
@@ -785,6 +785,121 @@ Node 0, zone  HighMem     22      8      4      1      1      1      1      1   
 The 11 colums, belong to the 11 (MAX_ORDER) lists. 
 
 This means, zone DMA, there are 1 of 2^(0*PAGE_SIZE) free chunks of memory, 1 of 2^(1)*PAGE_SIZE, 0 of 2^(2)*PAGE_SIZE and so on upto 3*(2^10)*PAGE_SIZE = Nearly 16 MB
+
+
+### virtual kernel memory layout
+
+x86 (32-bits) : You can see in 
+
+```
+dmesg | grep -A 10 'virtual kernel memory layout'
+```
+This is only for 32-bit machine
+
+
+x86_64: Documentation/x86/x86_64/mm.rst
+
+#### Can I use virt_to_phys for user space memory in kernel module? or Can I use virt_to_phys to get the physical address returned by malloc
+
+`virt_to_phys`: The returned physical address is the physical (CPU) mapping for the memory address given. It is only valid to use this function on addresses directly mapped or allocated via `kmalloc`. It means It is used by the kernel to translate kernel virtual address (not user virtual address) to physical address.
+
+Example: 
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/slab.h>
+#include <linux/moduleparam.h>
+
+MODULE_LICENSE("GPL");
+
+static void *ptr;
+int alloc_size = 1024;
+
+static int test_hello_init(void)
+{
+	phys_addr_t physical_address;
+	ptr = kmalloc(alloc_size,GFP_DMA);
+	pr_info("Virtual Address DMA:%px\n", ptr);
+	physical_address = virt_to_phys(ptr);
+	pr_info("Physical Address DMA:%pa\n", &physical_address);
+	kfree(ptr);
+	ptr = kmalloc(alloc_size,GFP_DMA32);
+	pr_info("Virtual Address DMA32:%px\n", ptr);
+	physical_address = virt_to_phys(ptr);
+	pr_info("Physical Address DMA32:%pa\n", &physical_address);
+	kfree(ptr);
+	return -1;
+}
+
+static void test_hello_exit(void) { }
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+### What is the maximum size allocatable using kmalloc?
+
+The upper limit (number of bytes that can be allocated in a single kmalloc request), is a function of:
+ - the processor – really, the page size – and
+ - the number of buddy system freelists (MAX_ORDER).
+
+On both x86 and ARM, with a standard page size of 4 Kb and MAX_ORDER of 11
+
+
+@slab.h:
+```
+#define KMALLOC_SHIFT_MAX       (MAX_ORDER + PAGE_SHIFT - 1)
+
+MAX_ORDER = 11 , PAGE_SHIFT = 12 = 11 + 12 -1 = 22
+
+/* Maximum allocatable size */
+#define KMALLOC_MAX_SIZE        (1UL << KMALLOC_SHIFT_MAX) = 2^22 = 4*1024*1024 = 4MB
+```
+
+Example:
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/moduleparam.h>
+#include <linux/slab.h>
+
+MODULE_LICENSE("GPL");
+
+static void *ptr;
+unsigned int alloc_size = 1024;
+unsigned int loop  = 8192;
+module_param(loop, uint, 0);
+
+static int test_hello_init(void)
+{
+	int i;
+	for(i=1; i < loop; i++) {
+		ptr = kmalloc(alloc_size*i, GFP_KERNEL);
+		if(!ptr) {
+			/* handle error */
+			pr_err("memory allocation failed\n");
+			return -ENOMEM;
+		} else {
+			pr_info("Memory allocated of size:%uKB successfully:%px\n", i, ptr);
+			kfree(ptr);
+			pr_info("Memory freed\n");
+		}
+	}
+	return -1;
+}
+
+static void test_hello_exit(void) { }
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+### What happens if we don't free the memory allocated by kmalloc?
+
+
+
+
 
 
 
