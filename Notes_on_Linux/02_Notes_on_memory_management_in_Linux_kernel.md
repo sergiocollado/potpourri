@@ -799,7 +799,7 @@ This is only for 32-bit machine
 
 x86_64: Documentation/x86/x86_64/mm.rst
 
-#### Can I use virt_to_phys for user space memory in kernel module? or Can I use virt_to_phys to get the physical address returned by malloc
+#### Can I use virt_to_phys for user space memory in kernel module? or Can I use virt_to_phys to get the physical address returned by malloc?
 
 `virt_to_phys`: The returned physical address is the physical (CPU) mapping for the memory address given. It is only valid to use this function on addresses directly mapped or allocated via `kmalloc`. It means It is used by the kernel to translate kernel virtual address (not user virtual address) to physical address.
 
