@@ -13,6 +13,14 @@
  - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/memory-management.html
  - reference: https://0xax.gitbooks.io/linux-insides/content/MM/
 
+Videos: 
+ - https://youtu.be/tpRlczF0pqw
+ - https://youtu.be/w_z5tbFjmAA
+ - https://youtu.be/7aONIVSXiJ8
+ - https://youtu.be/wbi6IZDIv_4
+ - https://youtu.be/fwLoPtTCmnw
+ - https://youtu.be/i17b3xJv3Uo
+
 ### What is physical address space?
 
 
