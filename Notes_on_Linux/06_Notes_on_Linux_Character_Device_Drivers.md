@@ -2,6 +2,7 @@ References:
  - Drivers implementer's API: https://docs.kernel.org/driver-api/index.html
  - Linux kernel documentation - device drivers: https://docs.kernel.org/driver-api/driver-model/driver.html
  - The linux device driver: https://docs.kernel.org/driver-api/driver-model/overview.html
+ - Understanding the structure of a Linux Device Driver: https://youtu.be/pIUTaMKq0Xc
  - Let's code a Linux Driver: https://www.youtube.com/watch?v=x1Y203vH-Dc&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
  - Linux kernel labs - character drivers: https://linux-kernel-labs.github.io/refs/heads/master/labs/device_drivers.html
 
