@@ -12,9 +12,11 @@ In Linux everything is considered to be a file so devices are also considered to
 
 In UNIX, hardware devices are accessed by the user through special device files.
 
-These files are grouped into the /dev directory, and system calls open, read, write, close, lseek, mmap etc. are redirected by the operating system to the device driver associated with the physical device.
+These files are grouped into the `/dev` directory, and system calls `open`, `read`, `write`, `close`, `lseek`, `mmap` etc. are redirected by the operating system to the device driver associated with the physical device.
 
-In the UNIX world there are two categories of device files and thus device drivers: character and block.
+In the UNIX world there are two categories of device files and thus device drivers: 
+ - character
+ - block
 
 This division is done 
  - by the speed, 
