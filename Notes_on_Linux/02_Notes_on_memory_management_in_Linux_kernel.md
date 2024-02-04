@@ -21,6 +21,14 @@ Videos:
  - https://youtu.be/fwLoPtTCmnw
  - https://youtu.be/i17b3xJv3Uo
 
+### How to check RAM? 
+
+Use the commands: 
+```
+$ cat /proc/meminfo
+$ free -h
+```
+
 ### What is physical address space?
 
 
@@ -612,6 +620,8 @@ The main allocator is the page allocator, which only works with pages (a page be
 
 Then comes the SLAB allocator which is built on top of the page allocator, getting pages from it and returning smaller memory entities (by mean of slabs and caches). This is the allocator on which the kmalloc allocator relies on.
 
+WATCH OUT! because the SLAB allocator is in the list to be deprecated: https://www.phoronix.com/news/Linux-Deprecating-Removing-SLAB
+
 
 ### kmalloc family allocation
 
@@ -895,15 +905,507 @@ module_init(test_hello_init);
 module_exit(test_hello_exit);
 ```
 
+By the way, `kmalloc(0)` returns a special `ZERO_SIZE_PTR` value. 
+
+It is a non-NULL value which looks like a legitimate pointer, but which causes a fault on any attempt at dereferencing it.
+Any attempt to call `kfree()` with this special value will do the right thing, of course.
+
+ 
 ### What happens if we don't free the memory allocated by kmalloc?
 
+A memory leak will happen. With `malloc`, when the program finish, the memory is returned, but in case of `kmalloc` that is not the case. The memory of the kernel will not be freed.
 
 
+### ksize
+
+`kmalloc` will internally round up allocations and return more memory than requested.
+
+`ksize()` can be used to determine the actual amount of memory allocated.
+
+The caller may use this additional memory, even though  a smaller amount of memory was initially specified with the kmalloc call.
+
+This function is not often needed; callers to `kmalloc()` usually know what they allocated. It can be useful, though, in situations where a function needs to know the size of an object and does not have that information handy.
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/slab.h>
+
+MODULE_LICENSE("GPL");
+
+static void *ptr;
+
+static int test_hello_init(void)
+{
+        ptr = kmalloc(1, GFP_KERNEL);
+        printk("I got: %zu bytes of memory\n", ksize(ptr));
+        kfree(ptr);
+        ptr = kmalloc(8, GFP_KERNEL);
+        printk("I got: %zu bytes of memory\n", ksize(ptr));
+        kfree(ptr);
+        ptr = kmalloc(8080, GFP_KERNEL);
+        printk("I got: %zu bytes of memory\n", ksize(ptr));
+        kfree(ptr);
+        ptr = kmalloc(8192, GFP_KERNEL);
+        printk("I got: %zu bytes of memory\n", ksize(ptr));
+        kfree(ptr);
+	return -1;  // module installation will fail.
+}
+
+static void test_hello_exit(void)
+{ }
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+You can check with:
+
+```
+$ sudo cat /proc/slabinfo 
+```
+
+### kzalloc 
+
+`kzalloc` works like kmalloc, but also zero the memory.
+
+```
+void *kzalloc(size_t size, gfp_t flags);
+```
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/slab.h>
+#include <linux/moduleparam.h>
+
+MODULE_LICENSE("GPL");
+
+static char *ptr;
+int alloc_size = 1024;
+
+module_param(alloc_size, int, 0);
+
+static int test_hello_init(void)
+{
+	ptr = kmalloc(alloc_size,GFP_ATOMIC);
+	if(!ptr) {
+		/* handle error */
+		pr_err("memory allocation failed\n");
+		return -ENOMEM;
+	} else {
+		pr_info("Memory allocated successfully:%px\n", ptr);
+		pr_info("Content of ptr+2 is %d\n", *(ptr+2));
+		pr_info("Content of ptr+102 is %d\n", *(ptr+102));
+                // the values with kmallow will be garbage!
+	}
+	kfree(ptr);
+	ptr = kzalloc(alloc_size,GFP_ATOMIC);
+	if(!ptr) {
+		/* handle error */
+		pr_err("memory allocation failed\n");
+		return -ENOMEM;
+	} else {
+		pr_info("Memory allocated successfully:%px\n", ptr);
+		pr_info("Content of ptr+2 is %d\n", *(ptr+2));
+		pr_info("Content of ptr+102 is %d\n", *(ptr+102));
+                // the values with kzalloc will be zeroes.
+	}
+	kfree(ptr);
+
+	return -1;
+}
+
+static void test_hello_exit(void)
+{ }
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+### krealloc
+
+Memory allocated by `kmalloc()` can be resized by:
+
+```
+void *krealloc(const void *p, size_t new_size, gfp_t flags);
+```
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/slab.h>
+
+MODULE_LICENSE("GPL");
+
+static void *addr;
+
+static int test_hello_init(void)
+{
+	addr = kmalloc(4096, GFP_KERNEL);
+        printk("I got: %zu bytes of memory\n", ksize(addr));
+        addr = krealloc(addr, 8192, GFP_KERNEL);
+        printk("I got: %zu bytes of memory\n", ksize(addr));
+        kfree(addr);
+	return -1;
+}
+
+static void test_hello_exit(void)
+{ }
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+### kmalloc example of continuos memory
+
+The `kmalloc()` function returns physically and virtually contiguous memory.
+
+Physically contiguous memory has two primary benefits.
+        1.  Many hardware devices cannot address virtual memory.
+        2.  A physically contiguous block of memory can use a single large page mapping. This minimizes the translation lookaside buffer (TLB) overhead of addressing the memory
+
+Allocating physically contiguous memory has one downside: it is often hard to find physically contiguous blocks of memory, especially for large allocations
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/slab.h>
+#include <linux/moduleparam.h>
+
+MODULE_LICENSE("GPL");
+
+static char *ptr;
+int alloc_size = 1024;
+
+module_param(alloc_size, int, 0);
+
+static int test_hello_init(void)
+{
+	ptr = kmalloc(alloc_size,GFP_ATOMIC);
+	if(!ptr) {
+		/* handle error */
+		pr_err("memory allocation failed\n");
+		return -ENOMEM;
+	} else {
+		pr_info("Memory allocated successfully:%px\t%px\n", ptr, ptr+100);
+		pr_info("Physical address:%llx\t %llx\n", virt_to_phys(ptr), virt_to_phys(ptr+100));
+	}
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	kfree(ptr);
+	pr_info("Memory freed\n");
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+### vmalloc
+
+Memory returned by `vmalloc()` is only contiguous in virtual memory and not in physical memory
+
+Memory allcoated with `vmalloc()`is freed with `vfree()` 
+
+```
+
+			virtual memory    physical memory
+			----------        --------
+		   - - -|	 |--------|	 |
+	vmalloc	  /	|	 |        |	 |
+	---------/	|        |--------|	 |
+	|	|	|        |\       |	 |
+	|	|   ---	|        | \	  | 	 |
+	|	|  /	|        |\ ----- |	 |
+	|	| /	|        | \	  |	 |
+	---------/	|        |  ------|	 |
+			|        |	  |	 | 
+			|        |        |      |
+			|        |        |      |
+			|        |        |      |
+			|        |        |      |
+			----------        --------
+
+```
+
+The returned memory always comes from HIGH_MEM zone. 
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/vmalloc.h>
+#include <linux/moduleparam.h>
+
+MODULE_LICENSE("GPL");
+
+static char *ptr;
+int alloc_size = 4096*1234;
+
+static int test_hello_init(void)
+{
+	ptr = vmalloc(alloc_size);
+	if(!ptr) {
+		/* handle error */
+		pr_err("memory allocation failed\n");
+		return -ENOMEM;
+	} else {
+		pr_info("Physical address:%px\t Virtual Address:%llx\n", 
+				ptr+4096, virt_to_phys(ptr+(4096*1234)));
+	}
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	vfree(ptr);
+	pr_info("Memory freed\n");
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+#### What is the maximum size allocatable using vmalloc?
+
+The max allocatable mem size for Kmalloc was 4MB, as we saw previously. But what is the max allocatable mem with vmalloc?
 
 
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/vmalloc.h>
+#include <linux/moduleparam.h>
+
+MODULE_LICENSE("GPL");
+
+static void *ptr;
+unsigned int alloc_size = 1024*1024;//1MB
+unsigned int loop = 8192;
+module_param(loop, uint, 0);
+
+static int test_hello_init(void)
+{
+	int i;
+	for(i = 1; i < loop; i++) {
+		ptr = vmalloc(alloc_size*i);
+		if(!ptr) {
+			/* handle error */
+			pr_err("memory allocation failed\n");
+			return -ENOMEM;
+		} else {
+			pr_info("Memory allocated of size:%uMB successfully:%px\n", i, ptr);
+			vfree(ptr);
+			pr_info("Memory freed\n");
+		}
+	}
+	return -1;
+}
+
+static void test_hello_exit(void)
+{ }
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+The `vmalloc` upper limit is, in theory, the amount of physical RAM on the system.
+
+Kernel reserves an architecture (cpu) specific “range” of virtual memory for the purpose of vmalloc: from `VMALLOC_START` to `VMALLOC_END`.
+
+```
+Header file: <asm/pgtable.h>
+```
 
 
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/vmalloc.h>
+#include <linux/moduleparam.h>
+#include <linux/slab.h>
+#include <asm/pgtable.h>
+#include <linux/mm.h>
+
+MODULE_LICENSE("GPL");
 
 
+static int test_hello_init(void)
+{
+	pr_info("Vmalloc start:%lx\n", VMALLOC_START);
+	pr_info("Vmalloc end:%lx\n", VMALLOC_END);
+	pr_info("Vmalloc size:%d MB\n", (VMALLOC_END - VMALLOC_START)/(1024*1024));
+	return -1; // module init will fail.
+}
+
+static void test_hello_exit(void)
+{ }
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+#### Can i use ksize with vmalloc?
+
+According to the documentation, "The caller must guarantee that objp points to a valid object previously allocated with either kmalloc() or kmem_cache_alloc()." 
 
 
+### Differences between vmalloc and kmalloc
+
+
+1. Physical Memory:
+ - kmalloc: Guarantees the pages are physically contiguous and virtually contiguous
+ - vmalloc: It allocates virtually contiguous but not necessarily physically contiguous
+
+2. Low Mem vs High Mem:
+ - kmalloc: Returns from Low Memory
+ - vmalloc: Returns from High Memory	
+
+3. Usage:
+ - kmalloc: Memory returned Can  be used by hardware devices(DMA, PCI)
+ - vmalloc: Memory returned Cannot be used by hardware devices
+
+4. Interrupt Context:
+ - kmalloc: can be used in interrupt context with 'GFP_ATOMIC'
+ - vmalloc: cannot be used in interrupt context
+
+5. Allocator:
+ - kmalloc: Uses slab allocator which in turn use Page Allocator
+ - vmalloc: Directly uses Page Allocator
+
+6. Overhead:
+ - kmalloc: less overhead
+ - vmalloc: more overhead, as each vmalloc requires page table changes and a translation look aside buffer invalidation.
+
+7. Size:
+ - kmalloc: Cannot give large memory
+ - vmalloc: Useful for allocating large memory and no requirement of physical contiguous
+
+
+### kmalloc(0)
+
+`kmalloc(0)` returns a special ZERO_SIZE_PTR value. 
+
+It is a non-NULL value which looks like a legitimate pointer, but which causes a fault on any attempt at dereferencing it.
+ Any attempt to call `kfree()` with this special value will do the right thing, of course.
+
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/slab.h>
+#include <linux/moduleparam.h>
+
+MODULE_LICENSE("GPL");
+
+static int *ptr;
+
+static int test_hello_init(void)
+{
+	ptr = kmalloc(0,GFP_KERNEL);
+	if (ptr) {
+		pr_info("Memory Allocated:%px\n", ptr);
+		kfree(ptr);
+	} else {
+		pr_info("Memory not allocated\n");
+	}
+	return -1; // module init will fail!
+}
+
+static void test_hello_exit(void)
+{ }
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+### vmalloc(0)
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/vmalloc.h>
+#include <linux/moduleparam.h>
+
+MODULE_LICENSE("GPL");
+
+static int *ptr;
+
+static int test_hello_init(void)
+{
+	ptr = vmalloc(0);
+	if (ptr) {
+		pr_info("Memory Allocated:%px\n", ptr);
+		vfree(ptr);
+	} else {
+		pr_info("Memory not allocated\n");
+	}
+	return -1; // mdoule init will fail!
+}
+
+static void test_hello_exit(void)
+{ }
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+`vmalloc(0)` will fail.
+
+### Kernel Stack
+
+In a Linux System, every process has 2 stacks:
+ - User stack
+ - Kernel stack
+
+ - User Stack in x86: Resides in user address space (0-3GB in 32-bit x86)
+ - Kernel Stack in x86: Resides in kernel address space(3GB-4GB in 32-bit x86)
+
+User space is afforded the luxury of a large, dynamically growing stack, whereas the kernel has no such luxury
+
+The kernel's stack is small and fixed.
+
+Size of the per-process kernel stacks depends on both the architecture and a compile-time option.
+
+When the option is enabled, each process is given only a single page - 4KB on 32-bit architectures and 8KB on 64-bit architectures.
+
+Why only one page?
+  1. Less memory consumption per process
+  2. As uptime increases, it becomes increasingly hard to find two physically contiguous unallocated pages.
+
+Historically, interrupt handlers also used the kernel stack of the process they interrupted.
+
+As it placed tighter constraints on the already smaller kernel stack. kernel developers implemented a new feature: interrupt stacks. Interrupts use their own stacks. It consumes only a single page per processor.
+
+Now, we have a kernel stack size of 16KB from Linux 3.15 in x86_64
+
+
+### CONFIG_FRAME_WARN
+
+This kernel configuration option passes an option to the compiler to cause it to emit a warning when a static stack size for a routine is detected that is larger than the specified threshold.
+
+It requires gcc version 4.4 or later in order to work
+
+The gcc option used is "-Wframe-larger-than=xxx".
+
+By default, CONFIG_FRAME_WARN has the value of 1024, but you can set it to any value from 0 to 8192.
+
+Linux kernel defines stack size 8192 bytes for each process. the sum of the stack frames of all active functions.
+should not overflow 8192 bytes.
+
+This warning does not guarantee that you will overflow the stack space; it just shows that this function makes an overflow more likely (when used together with other big-frame functions, or with many smaller functions).
+
+### checkstack.pl
+
+There's a way to get a list of how much stack space each function in your program uses
+
+`checkstack.pl`
+
+It prints out a list of functions and their stack usage, biggest first	
+
+```
+$ objdump -D hello.ko | perl ~/linux-5.2.8/scripts/checkstack.pl
+```
+
+Note: it can't take into account recursive functions. It only performs static analysis
