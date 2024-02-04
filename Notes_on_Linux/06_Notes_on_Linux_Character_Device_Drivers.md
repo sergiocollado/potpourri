@@ -1,4 +1,4 @@
-references:
+References:
  - Linux kernel documentation - device drivers: https://docs.kernel.org/driver-api/driver-model/driver.html
  - The linux device driver: https://docs.kernel.org/driver-api/driver-model/overview.html
  - Drivers implementer's API: https://docs.kernel.org/driver-api/index.html
