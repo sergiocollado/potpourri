@@ -1,10 +1,16 @@
 References:
+ - Intro to character device drivers: https://sysprog21.github.io/lkmpg/#character-device-drivers
  - Drivers implementer's API: https://docs.kernel.org/driver-api/index.html
  - Linux kernel documentation - device drivers: https://docs.kernel.org/driver-api/driver-model/driver.html
- - The linux device driver: https://docs.kernel.org/driver-api/driver-model/overview.html
+ - The Linux device driver: https://docs.kernel.org/driver-api/driver-model/overview.html
  - Understanding the structure of a Linux Device Driver: https://youtu.be/pIUTaMKq0Xc
  - Let's code a Linux Driver: https://www.youtube.com/watch?v=x1Y203vH-Dc&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
  - Linux kernel labs - character drivers: https://linux-kernel-labs.github.io/refs/heads/master/labs/device_drivers.html
+ - Introduction to Linux device drivers: https://youtu.be/fQkObOxVTVo
+ - Introduction to Linux device drivers part 2: https://youtu.be/n1wHgGmDXwE
+ - Fast bit: Linux device driver programming: https://www.youtube.com/watch?v=YR_vYTh8CmY&list=PLERTijJOmYrAtfl5U_TAbCOisCNb7XEbb
+ - Linux device drivers: https://embetronicx.com/tutorials/linux/device-drivers/linux-device-driver-part-1-introduction/
+ - Linux device drivers tutorial: https://www.youtube.com/watch?v=BRVGchs9UUQ&list=PLArwqFvBIlwHq8WMKgsXSQdqIvymrEz9k&index=2
 
 
 ## Introduction
