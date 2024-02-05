@@ -2422,6 +2422,9 @@ cyclictest -l10000000 -m -n -a0 -t1 -p99 -i400 -h400 -q
 
 ## Notes on Linux kernel security overview 
 
+- reference: Linux Security Module Usage: https://docs.kernel.org/admin-guide/LSM/index.html
+- refernece: SE Linux: https://docs.kernel.org/admin-guide/LSM/SELinux.html
+
 Notes on the talk https://www.youtube.com/watch?v=L7KHvKRfTzc&t=945s  - James Morris
 Other reference: https://www.youtube.com/watch?v=McuP1_mvE_g
 
