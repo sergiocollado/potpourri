@@ -1,6 +1,7 @@
 # Notes on memory management on Linux kernel
 
  - reference: Understanding the Linux Virtual Memory Manager: https://www.kernel.org/doc/gorman/html/understand/
+ - reference: https://docs.kernel.org/admin-guide/mm/index.html
  - reference: https://www.kernel.org/doc/gorman/html/understand/index.html
  - reference: What every programmer should know about memory:
      - https://lwn.net/Articles/250967/
@@ -488,6 +489,25 @@ references:
                      (x86 with CONFIG_X86_64 and
                      CONFIG_X86_DIRECT_GBPAGES enabled.)
 ```
+
+### Virtual memory primer
+
+- reference: https://docs.kernel.org/admin-guide/mm/concepts.html#virtual-memory-primer
+- reference: Understanding the Linux Virtual Memory Manager: https://www.kernel.org/doc/gorman/html/understand/
+
+The physical memory in a computer system is a limited resource and even for systems that support memory hotplug there is a hard limit on the amount of memory that can be installed. The physical memory is not necessarily contiguous; it might be accessible as a set of distinct address ranges. Besides, different CPU architectures, and even different implementations of the same architecture have different views of how these address ranges are defined.
+
+All this makes dealing directly with physical memory quite complex and to avoid this complexity a concept of virtual memory was developed.
+
+The virtual memory abstracts the details of physical memory from the application software, allows to keep only needed information in the physical memory (demand paging) and provides a mechanism for the protection and controlled sharing of data between processes.
+
+With virtual memory, each and every memory access uses a virtual address. When the CPU decodes an instruction that reads (or writes) from (or to) the system memory, it translates the virtual address encoded in that instruction to a physical address that the memory controller can understand.
+
+The physical system memory is divided into page frames, or pages. The size of each page is architecture specific. Some architectures allow selection of the page size from several supported values; this selection is performed at the kernel build time by setting an appropriate kernel configuration option.
+
+Each physical memory page can be mapped as one or more virtual pages. These mappings are described by page tables that allow translation from a virtual address used by programs to the physical memory address. The page tables are organized hierarchically.
+
+The tables at the lowest level of the hierarchy contain physical addresses of actual pages used by the software. The tables at higher levels contain physical addresses of the pages belonging to the lower levels. The pointer to the top level page table resides in a register. When the CPU performs the address translation, it uses this register to access the top level page table. The high bits of the virtual address are used to index an entry in the top level page table. That entry is then used to access the next level in the hierarchy with the next bits of the virtual address as the index to that level page table. The lowest bits in the virtual address define the offset inside the actual page.
 
 
 ### Virtual Address Space for 32-bit processors
@@ -1031,6 +1051,7 @@ you can check the physycal memory used by devices, with `$ cat /proc/iomem` and 
 
 ### Zones
 
+- reference: https://docs.kernel.org/admin-guide/mm/concepts.html#zones
 - reference: https://www.kernel.org/doc/gorman/html/understand/understand005.html#toc13
 
 Linux kernel divides physical RAM into a number of different memory regions: zones
