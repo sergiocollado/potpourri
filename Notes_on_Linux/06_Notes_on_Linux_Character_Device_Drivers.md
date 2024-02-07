@@ -63,7 +63,6 @@ $ls -l /dev/ | grep "^b"
 3. Registering the character device with Linux Kernel (cdev_add)
 
 
-
 ### Major and Minor Number
 
 Connection between the **application** and the **device file** is based on the **name of the device file**.
@@ -257,9 +256,123 @@ Block devices:
 
 ```
 
+### Allocating Major and Minor Number
+
+Two ways:
+
+1. Static
+2. Dynamic
+
+### Difference between static and dynamic method
 
 
+Static method is only really useful if you know in advance which major number you want to start with. With Static method , you tell the kernel what device numbers you want (the start major/minor number and count) and it either gives them to you or not (depending on availability).
 
+With Dynamic method, you tell the kernel how many device numbers you need (the starting minor number and count) and it will find a starting major number for you, if one is available, of course.
+Partially to avoid conflict with other device drivers, it’s considered preferable to use the Dynamic method function, which will dynamically allocate the device numbers for you.
+
+
+### static assignment and unallocation of device identifiers:
+
+```
+int register_chrdev_region (dev_t from,	unsigned count,	const char *name);
+```
+
+Description: register a range of device numbers
+
+Arguments:
+
+ - from : the first in the desired range of device numbers; must include the major number.
+ - count: the number of consecutive device numbers required
+ - name: the name of the device or driver. This will appear in /proc/devices
+
+Return Value:
+
+zero on success, a negative error code on failure.
+
+```
+void unregister_chrdev_region(dev_t from, unsigned int count);
+```
+
+Header File: <linux/fs.h>
+
+Example:
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+
+int major_number = 120;
+int minor_number = 0;
+char *device_name = "mychardev";
+int count = 1;
+dev_t devicenumber;
+
+module_param(major_number, int, 0);
+module_param(minor_number, int, 0);
+module_param(count, int, 0);
+module_param(device_name, charp, 0);
+
+MODULE_LICENSE("GPL");
+static int test_hello_init(void)
+{
+
+	devicenumber = MKDEV(major_number, minor_number);
+	printk("Major Number :%d\n", MAJOR(devicenumber));
+	printk("Minor Number :%d\n", MINOR(devicenumber));
+	printk("Count:%d\n", count);
+	printk("Device Name:%s\n", device_name);
+
+	if (!register_chrdev_region(devicenumber, count, device_name))
+		printk("Device number registered\n");
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+You can call it with: 
+
+```
+$ sudo insmod ./hello.ko major_number=126 && cat /proc/devices | less
+
+$ sudo insmod ./hello.ko major_number=128
+
+$ sudo insmod ./hello.ko major_number=126 device_name=usb
+
+$ sudo insmod ./hello.ko major_number=126 minor_number=0 count=1048576 device_name=usb
+
+$ sudo insmod ./hello.ko major_number=126 minor_number=10 count=1048576 device_name=usb
+```
+
+### What is the maximum major number?
+
+CHRDEV_MAJOR_MAX as an artificial limit (chosen to be 511)
+file: linux/fs.h
+
+### What would happen if a major number already used is reserved?
+
+The registration of the driver will fail.
+
+This is the reason why dinamic allocation of the major namer is prefered. 
+
+### What would happen if it is tryied to register a character driver with the same name?
+
+No problem with this.
+
+### What is the maximum minor number?
+
+the max minor number is 2^20 = 1048576.
 
 
 
