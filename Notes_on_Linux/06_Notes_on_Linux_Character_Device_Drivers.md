@@ -3,6 +3,7 @@ References:
  - Drivers implementer's API: https://docs.kernel.org/driver-api/index.html
  - Linux kernel documentation - device drivers: https://docs.kernel.org/driver-api/driver-model/driver.html
  - The Linux device driver: https://docs.kernel.org/driver-api/driver-model/overview.html
+ - https://sysprog21.github.io/lkmpg/#character-device-drivers
  - Understanding the structure of a Linux Device Driver: https://youtu.be/pIUTaMKq0Xc
  - Let's code a Linux Driver: https://www.youtube.com/watch?v=x1Y203vH-Dc&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
  - Linux kernel labs - character drivers: https://linux-kernel-labs.github.io/refs/heads/master/labs/device_drivers.html
@@ -375,8 +376,81 @@ No problem with this.
 the max minor number is 2^20 = 1048576.
 
 
+### Dynamic Allocation
 
 
+If we dont want fixed major and minor number please use this method.
+
+This method will allocate the major number dynamically to your driver which is available.
+
+```
+int alloc_chrdev_region (dev_t *  dev,
+		 	unsigned  	baseminor,
+ 			unsigned  	count,
+		 	const char *  	name);
+```
+
+#### Description
+
+Allocates a range of char device numbers.
+The major number will be chosen dynamically, and returned (along with the first minor number) in dev
+
+#### Arguments
+
+ - dev: output parameter for first assigned number
+ - baseminor: first of the requested range of minor numbers
+ - count: the number of minor numbers required
+ - name: the name of the associated device or driver
+
+
+#### Return Value
+
+Returns zero or a negative error code.
+
+
+### Example:
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+
+int base_minor = 0;
+char *device_name = "mychardev";
+int count = 1;
+dev_t devicenumber;
+
+module_param(base_minor, int, 0);
+module_param(count, int, 0);
+module_param(device_name, charp, 0);
+
+MODULE_LICENSE("GPL");
+static int test_hello_init(void)
+{
+
+	printk("Minor Number :%d\n", base_minor);
+	printk("Count:%d\n", count);
+	printk("Device Name:%s\n", device_name);
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
 
 
 
