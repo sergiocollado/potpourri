@@ -451,9 +451,124 @@ static void test_hello_exit(void)
 module_init(test_hello_init);
 module_exit(test_hello_exit);
 ```
+And for using it: 
+
+```
+$sudo insmod ./hello.ko
+$ sudo insmod ./hello.ko base_minor=1048576 count=10 device_name=usb
+```
+
+There are some limits:
+
+```
+/* fs/char_dev.c */
+#define CHRDEV_MAJOR_MAX 512
+/* Marks the bottom of the first segment of free char majors */
+#define CHRDEV_MAJOR_DYN_END 234
+/* Marks the top and bottom of the second segment of free char majors */
+#define CHRDEV_MAJOR_DYN_EXT_START 511
+#define CHRDEV_MAJOR_DYN_EXT_END 384
+```
 
 
+@fs/char_dev.c:
+```
+static int find_dynamic_major(void)
+{
+        int i;
+        struct char_device_struct *cd;
 
+        for (i = ARRAY_SIZE(chrdevs)-1; i >= CHRDEV_MAJOR_DYN_END; i--) {
+                if (chrdevs[i] == NULL)
+                        return i;
+        }
+
+        for (i = CHRDEV_MAJOR_DYN_EXT_START;
+             i >= CHRDEV_MAJOR_DYN_EXT_END; i--) {
+                for (cd = chrdevs[major_to_index(i)]; cd; cd = cd->next)
+                        if (cd->major == i)
+                                break;
+
+                if (cd == NULL)
+                        return i;
+        }
+
+        return -EBUSY;
+}
+```
+
+### Creating Device File
+
+Device file can be created in two ways
+ - Manual
+ - Automatic
+
+#### Manual
+
+We can create the device file manually by using `mknod`.
+
+```
+$ mknod -m <permissions> <name> <device type> <major> <minor>
+
+-m <permissions> – optional argument that sets the permission bits of the new device file to permissions
+
+<name> – your device file name that should have full path (/dev/name)
+
+<device type> – Put c or b
+	c – Character Device
+
+	b – Block Device
+
+<major> – major number of your device
+
+<minor> – minor number of your driver
+```
+
+Example: 
+```
+$sudo mknod -m 0644 /dev/mydevice c 244 10
+
+# WATCH OUT! with the manual apporach you have to manually delete the device later: sudo rm /dev/mydevice
+```
+
+### Automatic
+
+Traditionally, device nodes were stored in the `/dev` directory on Linux systems.
+
+There was a node for every possible type of device, regardless of whether it actually existed in the system. 
+
+The result was that this directory took up a lot of space
+
+`udev` introduces a new way of creating device nodes.
+
+It compares the information made available by `sysfs` and creates nodes.
+
+`udev` can be further configured using its configuration files to tune the device file names, their permissions, their types, etc.
+
+So, as far as driver is concerned, the appropriate `/sys` entries need to be populated using the Linux device model APIs declared in `<linux/device.h>` and the rest would be handled by `udev`.
+
+class_create — create a struct class structure
+
+```
+struct class * class_create (struct module *owner,
+			     const char *name);
+
+owner	-	pointer to the module that is to “own” this struct class
+name	-	pointer to a string for the name of this class.
+```
+
+Header File: <linux/device.h>
+
+#### Description
+
+This is used to create a struct class pointer that can then be used in calls to class_device_create.
+
+class_destroy — destroys a struct class structure
+```
+void class_destroy (struct class *cls);
+```
+
+Now, the name will appear in /sys/class/<name>.
 
 
 
