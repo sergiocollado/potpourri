@@ -503,7 +503,7 @@ Device file can be created in two ways
  - Manual
  - Automatic
 
-#### Manual
+#### Manual device file creation
 
 We can create the device file manually by using `mknod`.
 
@@ -531,7 +531,7 @@ $sudo mknod -m 0644 /dev/mydevice c 244 10
 # WATCH OUT! with the manual apporach you have to manually delete the device later: sudo rm /dev/mydevice
 ```
 
-### Automatic
+### Automatic device file creation
 
 Traditionally, device nodes were stored in the `/dev` directory on Linux systems.
 
@@ -547,31 +547,70 @@ It compares the information made available by `sysfs` and creates nodes.
 
 So, as far as driver is concerned, the appropriate `/sys` entries need to be populated using the Linux device model APIs declared in `<linux/device.h>` and the rest would be handled by `udev`.
 
-class_create — create a struct class structure
+reference: udev - dynamic device management: https://linux.die.net/man/7/udev
+
+> udev provides a dynamic device directory containing only the files for actually present devices. It creates or removes device node files in the /dev directory, or it renames network interfaces.
+>
+> If udev receives a device event, it matches its configured rules against the available device attributes provided in sysfs to identify the device. Rules that match may provide additional device information or specify a device node name > and multiple symlink names and instruct udev to run additional programs as part of the device event handling.
+
+
+#### class_create — create a struct class structure
+
+Header File: <linux/device.h>
 
 ```
 struct class * class_create (struct module *owner,
 			     const char *name);
 
-owner	-	pointer to the module that is to “own” this struct class
-name	-	pointer to a string for the name of this class.
+
 ```
+ - owner: pointer to the module that is to “own” this struct class
+ - name: pointer to a string for the name of this class.
 
-Header File: <linux/device.h>
 
-#### Description
+
 
 This is used to create a struct class pointer that can then be used in calls to class_device_create.
 
-class_destroy — destroys a struct class structure
+#### class_destroy — destroys a struct class structure
+
 ```
 void class_destroy (struct class *cls);
 ```
 
 Now, the name will appear in /sys/class/<name>.
 
+Example:
 
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/delay.h>
+#include <linux/device.h>
 
+MODULE_LICENSE("GPL");
+static struct class *class;
 
+static int test_hello_init(void)
+{
+    class = class_create(THIS_MODULE, "myclass");
+    return 0;
+}
 
+static void test_hello_exit(void)
+{
+	class_destroy(class);
+}
 
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+To monitor what is happening use the command:
+
+```
+$ udevadm monitor
+```
+With this command, you can tap into udev in real time and see what it sees when you plug in different devices
+
+reference: https://linux.die.net/man/8/udevmonitor
