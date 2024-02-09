@@ -111,6 +111,8 @@ Block devices:
 
 - reference: https://linux.die.net/sag/dev-fs.html
 
+Char devices are accessed through device files, usually located in `/dev`.
+
 The `/dev` directory contains the special device files for all the devices.
 
 The canonical list of the prefixes used in Linux can be found in the documentation at: https://www.kernel.org/doc/html/latest/admin-guide/devices.html
@@ -165,7 +167,7 @@ loop1            loop51  tty1          tty51  ttyS6
 loop10           loop52  tty10         tty52  ttyS7
 ```
 
-The /dev directory contains the special device files for all the devices. The device files are created during installation, and later with the /dev/MAKEDEV script. The /dev/MAKEDEV.local is a script written by the system administrator that creates local-only device files or links (i.e. those that are not part of the standard MAKEDEV, such as device files for some non-standard device driver).
+The `/dev` directory contains the special device files for all the devices. The device files are created during installation, and later with the /dev/MAKEDEV script. The /dev/MAKEDEV.local is a script written by the system administrator that creates local-only device files or links (i.e. those that are not part of the standard MAKEDEV, such as device files for some non-standard device driver).
 
 This list which follows is by no means exhaustive or as detailed as it could be. Many of these device files will need support compiled into your kernel for the hardware. Read the kernel documentation to find details of any particular device.
 
