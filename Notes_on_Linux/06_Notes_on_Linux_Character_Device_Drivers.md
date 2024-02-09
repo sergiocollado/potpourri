@@ -111,7 +111,9 @@ Block devices:
 
 - reference: https://linux.die.net/sag/dev-fs.html
 
-The /dev directory contains the special device files for all the devices.
+The `/dev` directory contains the special device files for all the devices.
+
+The canonical list of the prefixes used in Linux can be found in the documentation at: https://www.kernel.org/doc/html/latest/admin-guide/devices.html
 
 ```
 $ ls /dev
@@ -167,14 +169,6 @@ The /dev directory contains the special device files for all the devices. The de
 
 This list which follows is by no means exhaustive or as detailed as it could be. Many of these device files will need support compiled into your kernel for the hardware. Read the kernel documentation to find details of any particular device.
 
-If you think there are other devices which should be included here but aren't then let me know. I will try to include them in the next revision.
-
-#### /dev/dsp
-Digital Signal Processor. Basically this forms the interface between software which produces sound and your soundcard. It is a character device on major node 14 and minor 3.
-
-#### /dev/fd0
-The first floppy drive. If you are lucky enough to have several drives then they will be numbered sequentially. It is a character device on major node 2 and minor 0.
-
 #### /dev/fb0
 The first framebuffer device. A framebuffer is an abstraction layer between software and graphics hardware. This means that applications do not need to know about what kind of hardware you have but merely how to communicate with the framebuffer driver's API (Application Programming Interface) which is well defined and standardized. The framebuffer is a character device and is on major node 29 and minor 0.
 
@@ -186,9 +180,6 @@ The first IDE tape drive. Subsequent drives are numbered ht1 etc. They are chara
 
 #### /dev/js0
 The first analogue joystick. Subsequent joysticks are numbered js1, js2 etc. Digital joysticks are called djs0, djs1 and so on. They are character devices on major node 15. The analogue joysticks start at minor node 0 and go up to 127 (more than enough for even the most fanatic gamer). Digital joysticks start at minor node 128.
-
-#### /dev/lp0
-The first parallel printer device. Subsequent printers are numbered lp1, lp2 etc. They are character devices on major mode 6 and minor nodes starting at 0 and numbered sequentially.
 
 #### /dev/loop0
 The first loopback device. Loopback devices are used for mounting filesystems which are not located on other block devices such as disks. For example if you wish to mount an iso9660 CD ROM image without burning it to CD then you need to use a loopback device to do so. This is usually transparent to the user and is handled by the mount command. Refer to the manual pages for mount and losetup. The loopback devices are block devices on major node 7 and with minor nodes starting at 0 and numbered sequentially.
@@ -202,20 +193,8 @@ This is part of the OSS (Open Sound System) driver. Refer to the OSS documentati
 #### /dev/null
 The bit bucket. A black hole where you can send data for it never to be seen again. Anything sent to /dev/null will disappear. This can be useful if, for example, you wish to run a command but not have any feedback appear on the terminal. It is a character device on major node 1 and minor node 3.
 
-#### /dev/psaux
-The PS/2 mouse port. This is a character device on major node 10, minor node 1.
-
 #### /dev/pda
 Parallel port IDE disks. These are named similarly to disks on the internal IDE controllers (/dev/hd*). They are block devices on major node 45. Minor nodes need slightly more explanation here. The first device is /dev/pda and it is on minor node 0. Partitions on this device are found by adding the partition number to the minor number for the device. Each device is limited to 15 partitions each rather than 63 (the limit for internal IDE disks). /dev/pdb minor nodes start at 16, /dev/pdc at 32 and /dev/pdd at 48. So for example the minor node number for /dev/pdc6 would be 38 (32 + 6 = 38). This scheme limits you to 4 parallel disks of 15 partitions each.
-
-#### /dev/pcd0
-Parallel port CD ROM drives. These are numbered from 0 onwards. All are block devices on major node 46. /dev/pcd0 is on minor node 0 with subsequent drives being on minor nodes 1, 2, 3 etc.
-
-#### /dev/pt0
-Parallel port tape devices. Tapes do not have partitions so these are just numbered sequentially. They are character devices on major node 96. The minor node numbers start from 0 for /dev/pt0, 1 for /dev/pt1, and so on.
-
-#### /dev/parport0
-The raw parallel ports. Most devices which are attached to parallel ports have their own drivers. This is a device to access the port directly. It is a character device on major node 99 with minor node 0. Subsequent devices after the first are numbered sequentially incrementing the minor node.
 
 #### /dev/random or /dev/urandom
 These are kernel random number generators. /dev/random is a non-deterministic generator which means that the value of the next number cannot be guessed from the preceding ones. It uses the entropy of the system hardware to generate numbers. When it has no more entropy to use then it must wait until it has collected more before it will allow any more numbers to be read from it. /dev/urandom works similarly. Initially it also uses the entropy of the system hardware, but when there is no more entropy to use it will continue to return numbers using a pseudo random number generating formula. This is considered to be less secure for vital purposes such as cryptographic key pair generation. If security is your overriding concern then use /dev/random, if speed is more important then /dev/urandom works fine. They are character devices on major node 1 with minor nodes 8 for /dev/random and 9 for /dev/urandom.
@@ -339,7 +318,6 @@ $ls -l /dev/ | grep "^b"
 1. Allocate a device number dynamically or statically (dev_t)
 2. Initializing the character device with its file operations (struct cdev, struct file_operations)
 3. Registering the character device with Linux Kernel (cdev_add)
-
 
 ### Major and Minor Number
 
@@ -684,6 +662,10 @@ static int find_dynamic_major(void)
 Device file can be created in two ways
  - Manual
  - Automatic
+
+- reference about device files: https://en.wikipedia.org/wiki/Device_file
+
+
 
 #### Manual device file creation
 
