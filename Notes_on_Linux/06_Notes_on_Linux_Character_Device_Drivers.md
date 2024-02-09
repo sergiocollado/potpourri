@@ -14,6 +14,280 @@ References:
  - Linux device drivers tutorial: https://www.youtube.com/watch?v=BRVGchs9UUQ&list=PLArwqFvBIlwHq8WMKgsXSQdqIvymrEz9k&index=2
 
 
+## Some interesting directories
+
+### /proc/devices
+
+This file displays the various character and block devices currently configured 
+
+The output from `/proc/devices` includes the **major number** and name of the device
+
+Output is broken into two major sections: 
+	- Character devices
+	- Block devices
+
+```
+sergio@laptop:~$ cat /proc/devices
+Character devices:
+  1 mem
+  4 /dev/vc/0
+  4 tty
+  4 ttyS
+  5 /dev/tty
+  5 /dev/console
+  5 /dev/ptmx
+  5 ttyprintk
+  6 lp
+  7 vcs
+ 10 misc
+ 13 input
+ 21 sg
+ 29 fb
+ 81 video4linux
+ 89 i2c
+ 99 ppdev
+108 ppp
+116 alsa
+128 ptm
+136 pts
+180 usb
+189 usb_device
+202 cpu/msr
+204 ttyMAX
+216 rfcomm
+226 drm
+234 kfd
+235 aux
+236 cec
+237 lirc
+238 media
+239 hidraw
+240 nvme-generic
+241 nvme
+242 ttyDBC
+243 bsg
+244 watchdog
+245 remoteproc
+246 ptp
+247 pps
+248 rtc
+249 dma_heap
+250 dax
+251 dimmctl
+252 ndctl
+253 tpm
+254 gpiochip
+261 accel
+
+Block devices:
+  7 loop
+  8 sd
+  9 md
+ 11 sr
+ 65 sd
+ 66 sd
+ 67 sd
+ 68 sd
+ 69 sd
+ 70 sd
+ 71 sd
+128 sd
+129 sd
+130 sd
+131 sd
+132 sd
+133 sd
+134 sd
+135 sd
+253 device-mapper
+254 mdp
+259 blkext
+
+```
+### The /dev directory
+
+- reference: https://linux.die.net/sag/dev-fs.html
+
+The /dev directory contains the special device files for all the devices.
+
+```
+$ ls /dev
+autofs           loop11  loop53        tty11  tty53      ttyS8
+block            loop12  loop54        tty12  tty54      ttyS9
+btrfs-control    loop13  loop55        tty13  tty55      udmabuf
+bus              loop14  loop56        tty14  tty56      uhid
+char             loop15  loop57        tty15  tty57      uinput
+console          loop16  loop58        tty16  tty58      urandom
+core             loop17  loop59        tty17  tty59      usb
+cpu              loop18  loop6         tty18  tty6       userfaultfd
+cpu_dma_latency  loop19  loop7         tty19  tty60      userio
+cuse             loop2   loop8         tty2   tty61      v4l
+disk             loop20  loop9         tty20  tty62      vboxdrv
+dma_heap         loop21  loop-control  tty21  tty63      vboxdrvu
+dri              loop22  mapper        tty22  tty7       vboxnetctl
+drm_dp_aux0      loop23  mcelog        tty23  tty8       vboxusb
+drm_dp_aux1      loop24  media0        tty24  tty9       vcs
+ecryptfs         loop25  mem           tty25  ttyprintk  vcs1
+fb0              loop26  mqueue        tty26  ttyS0      vcs2
+fd               loop27  net           tty27  ttyS1      vcs3
+full             loop28  ng0n1         tty28  ttyS10     vcs4
+fuse             loop29  null          tty29  ttyS11     vcs5
+gpiochip0        loop3   nvme0         tty3   ttyS12     vcs6
+hidraw0          loop30  nvme0n1       tty30  ttyS13     vcsa
+hidraw1          loop31  nvme0n1p1     tty31  ttyS14     vcsa1
+hidraw2          loop32  nvme0n1p2     tty32  ttyS15     vcsa2
+hidraw3          loop33  nvram         tty33  ttyS16     vcsa3
+hpet             loop34  port          tty34  ttyS17     vcsa4
+hugepages        loop35  ppp           tty35  ttyS18     vcsa5
+hwrng            loop36  psaux         tty36  ttyS19     vcsa6
+i2c-0            loop37  ptmx          tty37  ttyS2      vcsu
+i2c-1            loop38  pts           tty38  ttyS20     vcsu1
+i2c-2            loop39  random        tty39  ttyS21     vcsu2
+i2c-3            loop4   rfkill        tty4   ttyS22     vcsu3
+i2c-4            loop40  rtc           tty40  ttyS23     vcsu4
+i2c-5            loop41  rtc0          tty41  ttyS24     vcsu5
+i2c-6            loop42  shm           tty42  ttyS25     vcsu6
+i2c-7            loop43  snapshot      tty43  ttyS26     vfio
+i2c-8            loop44  snd           tty44  ttyS27     vga_arbiter
+initctl          loop45  stderr        tty45  ttyS28     vhci
+input            loop46  stdin         tty46  ttyS29     vhost-net
+kfd              loop47  stdout        tty47  ttyS3      vhost-vsock
+kmsg             loop48  tpm0          tty48  ttyS30     video0
+kvm              loop49  tpmrm0        tty49  ttyS31     video1
+log              loop5   tty           tty5   ttyS4      zero
+loop0            loop50  tty0          tty50  ttyS5      zfs
+loop1            loop51  tty1          tty51  ttyS6
+loop10           loop52  tty10         tty52  ttyS7
+```
+
+The /dev directory contains the special device files for all the devices. The device files are created during installation, and later with the /dev/MAKEDEV script. The /dev/MAKEDEV.local is a script written by the system administrator that creates local-only device files or links (i.e. those that are not part of the standard MAKEDEV, such as device files for some non-standard device driver).
+
+This list which follows is by no means exhaustive or as detailed as it could be. Many of these device files will need support compiled into your kernel for the hardware. Read the kernel documentation to find details of any particular device.
+
+If you think there are other devices which should be included here but aren't then let me know. I will try to include them in the next revision.
+
+#### /dev/dsp
+Digital Signal Processor. Basically this forms the interface between software which produces sound and your soundcard. It is a character device on major node 14 and minor 3.
+
+####/dev/fd0
+The first floppy drive. If you are lucky enough to have several drives then they will be numbered sequentially. It is a character device on major node 2 and minor 0.
+
+####/dev/fb0
+The first framebuffer device. A framebuffer is an abstraction layer between software and graphics hardware. This means that applications do not need to know about what kind of hardware you have but merely how to communicate with the framebuffer driver's API (Application Programming Interface) which is well defined and standardized. The framebuffer is a character device and is on major node 29 and minor 0.
+
+/####dev/hda
+/dev/hda is the master IDE drive on the primary IDE controller. /dev/hdb the slave drive on the primary controller. /dev/hdc , and /dev/hdd are the master and slave devices on the secondary controller respectively. Each disk is divided into partitions. Partitions 1-4 are primary partitions and partitions 5 and above are logical partitions inside extended partitions. Therefore the device file which references each partition is made up of several parts. For example /dev/hdc9 references partition 9 (a logical partition inside an extended partition type) on the master IDE drive on the secondary IDE controller. The major and minor node numbers are somewhat complex. For the first IDE controller all partitions are block devices on major node 3. The master drive hda is at minor 0 and the slave drive hdb is at minor 64. For each partition inside the drive add the partition number to the minor minor node number for the drive. For example /dev/hdb5 is major 3, minor 69 (64 + 5 = 69). Drives on the secondary interface are handled the same way, but with major node 22.
+
+####/dev/ht0
+The first IDE tape drive. Subsequent drives are numbered ht1 etc. They are character devices on major node 37 and start at minor node 0 for ht0 1 for ht1 etc.
+
+####/dev/js0
+The first analogue joystick. Subsequent joysticks are numbered js1, js2 etc. Digital joysticks are called djs0, djs1 and so on. They are character devices on major node 15. The analogue joysticks start at minor node 0 and go up to 127 (more than enough for even the most fanatic gamer). Digital joysticks start at minor node 128.
+
+####/dev/lp0
+The first parallel printer device. Subsequent printers are numbered lp1, lp2 etc. They are character devices on major mode 6 and minor nodes starting at 0 and numbered sequentially.
+
+####/dev/loop0
+The first loopback device. Loopback devices are used for mounting filesystems which are not located on other block devices such as disks. For example if you wish to mount an iso9660 CD ROM image without burning it to CD then you need to use a loopback device to do so. This is usually transparent to the user and is handled by the mount command. Refer to the manual pages for mount and losetup. The loopback devices are block devices on major node 7 and with minor nodes starting at 0 and numbered sequentially.
+
+####/dev/md0
+First metadisk group. Metadisks are related to RAID (Redundant Array of Independent Disks) devices. Please refer to the most current RAID HOWTO at the LDP for more details. This can be found at http://www.tldp.org/HOWTO/Software-RAID-HOWTO.html. Metadisk devices are block devices on major node 9 with minor nodes starting at 0 and numbered sequentially.
+
+####/dev/mixer
+This is part of the OSS (Open Sound System) driver. Refer to the OSS documentation at http://www.opensound.com for more details. It is a character device on major node 14, minor node 0.
+
+####/dev/null
+The bit bucket. A black hole where you can send data for it never to be seen again. Anything sent to /dev/null will disappear. This can be useful if, for example, you wish to run a command but not have any feedback appear on the terminal. It is a character device on major node 1 and minor node 3.
+
+####/dev/psaux
+The PS/2 mouse port. This is a character device on major node 10, minor node 1.
+
+####/dev/pda
+Parallel port IDE disks. These are named similarly to disks on the internal IDE controllers (/dev/hd*). They are block devices on major node 45. Minor nodes need slightly more explanation here. The first device is /dev/pda and it is on minor node 0. Partitions on this device are found by adding the partition number to the minor number for the device. Each device is limited to 15 partitions each rather than 63 (the limit for internal IDE disks). /dev/pdb minor nodes start at 16, /dev/pdc at 32 and /dev/pdd at 48. So for example the minor node number for /dev/pdc6 would be 38 (32 + 6 = 38). This scheme limits you to 4 parallel disks of 15 partitions each.
+
+####/dev/pcd0
+Parallel port CD ROM drives. These are numbered from 0 onwards. All are block devices on major node 46. /dev/pcd0 is on minor node 0 with subsequent drives being on minor nodes 1, 2, 3 etc.
+
+####/dev/pt0
+Parallel port tape devices. Tapes do not have partitions so these are just numbered sequentially. They are character devices on major node 96. The minor node numbers start from 0 for /dev/pt0, 1 for /dev/pt1, and so on.
+
+####/dev/parport0
+The raw parallel ports. Most devices which are attached to parallel ports have their own drivers. This is a device to access the port directly. It is a character device on major node 99 with minor node 0. Subsequent devices after the first are numbered sequentially incrementing the minor node.
+
+####/dev/random or /dev/urandom
+These are kernel random number generators. /dev/random is a non-deterministic generator which means that the value of the next number cannot be guessed from the preceding ones. It uses the entropy of the system hardware to generate numbers. When it has no more entropy to use then it must wait until it has collected more before it will allow any more numbers to be read from it. /dev/urandom works similarly. Initially it also uses the entropy of the system hardware, but when there is no more entropy to use it will continue to return numbers using a pseudo random number generating formula. This is considered to be less secure for vital purposes such as cryptographic key pair generation. If security is your overriding concern then use /dev/random, if speed is more important then /dev/urandom works fine. They are character devices on major node 1 with minor nodes 8 for /dev/random and 9 for /dev/urandom.
+
+####/dev/sda
+The first SCSI drive on the first SCSI bus. The following drives are named similar to IDE drives. /dev/sdb is the second SCSI drive, /dev/sdc is the third SCSI drive, and so forth.
+
+####/dev/ttyS0
+The first serial port. Many times this it the port used to connect an external modem to your system.
+
+####/dev/zero
+This is a simple way of getting many 0s. Every time you read from this device it will return 0. This can be useful sometimes, for example when you want a file of fixed length but don't really care what it contains. It is a character device on major node 1 and minor node 5.
+
+### /sys/class file
+
+ - reference: https://man7.org/linux/man-pages/man5/sysfs.5.html
+ - reference: https://medium.com/@The_CodeConductor/lets-understand-sys-class-in-linux-efc38a2b4900
+
+>`/sys/class` 
+>   This subdirectory contains a single layer of further
+>              subdirectories for each of the device classes that have
+>              been registered on the system (e.g., terminals, network
+>              devices, block devices, graphics devices, sound devices,
+>              and so on).  Inside each of these subdirectories are
+>              symbolic links for each of the devices in this class.
+>              These symbolic links refer to entries in the /sys/devices
+>              directory.
+
+`/sys/class` is a directory in the Linux filesystem that provides a way to interact with the kernel and access information about various classes of devices and subsystems.
+
+It is part of the `sysfs` virtual filesystem, which exposes information about the kernel, devices, and their attributes.
+
+In the context of `/sys/class`, the directory contains subdirectories, each corresponding to a particular class of devices or subsystems. Each class directory contains information and control files that allow users and applications to query and modify attributes of devices belonging to that class.
+
+```
+$ ls /sys/class
+accel          drm             lirc            ppdev         sound
+ata_device     drm_dp_aux_dev  mdio_bus        ppp           spi_master
+ata_link       extcon          mem             pps           spi_slave
+ata_port       firmware        misc            printer       thermal
+backlight      gpio            mmc_host        ptp           tpm
+bdi            graphics        msr             pwm           tpmrm
+block          hidraw          nd              rapidio_port  tty
+bluetooth      hwmon           net             rc            usbmisc
+bsg            i2c-adapter     nvme            regulator     usb_role
+devcoredump    i2c-dev         nvme-generic    remoteproc    vc
+devfreq        ieee80211       nvme-subsystem  rfkill        video4linux
+devfreq-event  input           pci_bus         rtc           virtio-ports
+devlink        intel_scu_ipc   pci_epc         scsi_device   vtconsole
+dma            iommu           phy             scsi_disk     wakeup
+dma_heap       kfd             powercap        scsi_generic  watchdog
+dmi            leds            power_supply    scsi_host     wmi_bus
+$ tree /sys/class
+```
+
+ - `/sys/class/block`: Contains information about block devices, such as hard drives and partitions.
+
+ - `/sys/class/net`: Contains network device information. You can find details about network interfaces (like eth0, wlan0, etc.) in this directory.
+
+ - `/sys/class/gpio`: Provides access to GPIO pins on the system.
+
+ - `/sys/class/power_supply`: Contains information about power supplies, such as batteries or AC adapters.
+
+When you navigate into one of these directories, you will find files that can be read to obtain information about the devices or written to modify their behavior. This interface is particularly useful for interacting with devices and kernel features at the user level.
+
+The `/sys/class` hierarchy provides a standardized way to access this information in a Linux system.
+
+Reading Information:Users can read information from various files within these class directories. For example, reading from files in /sys/class/net/eth0 might provide details about the network interface.
+
+Writing and Configuration: Certain files allow users to modify the behavior or configuration of devices. For instance, changing the value of a file in /sys/class/gpio/gpiochip0 may control the state of a GPIO pin.
+
+The `/sys/class` directory in Linux plays a vital role in providing a standardized interface for users and applications to interact with various device classes.
+
+
+
 ## Introduction
 
 In Linux everything is considered to be a file so devices are also considered to be a file.
@@ -138,7 +412,6 @@ Header File: linux/kdev_t.h
 
 #### Example:
 
-
 ```
 #include <linux/kernel.h>
 #include <linux/module.h>
@@ -166,95 +439,6 @@ static void test_hello_exit(void)
 
 module_init(test_hello_init);
 module_exit(test_hello_exit);
-```
-
-### /proc/devices
-
-This file displays the various character and block devices currently configured 
-
-The output from `/proc/devices` includes the **major number** and name of the device
-
-Output is broken into two major sections: 
-	- Character devices
-	- Block devices
-
-```
-sergio@laptop:~$ cat /proc/devices
-Character devices:
-  1 mem
-  4 /dev/vc/0
-  4 tty
-  4 ttyS
-  5 /dev/tty
-  5 /dev/console
-  5 /dev/ptmx
-  5 ttyprintk
-  6 lp
-  7 vcs
- 10 misc
- 13 input
- 21 sg
- 29 fb
- 81 video4linux
- 89 i2c
- 99 ppdev
-108 ppp
-116 alsa
-128 ptm
-136 pts
-180 usb
-189 usb_device
-202 cpu/msr
-204 ttyMAX
-216 rfcomm
-226 drm
-234 kfd
-235 aux
-236 cec
-237 lirc
-238 media
-239 hidraw
-240 nvme-generic
-241 nvme
-242 ttyDBC
-243 bsg
-244 watchdog
-245 remoteproc
-246 ptp
-247 pps
-248 rtc
-249 dma_heap
-250 dax
-251 dimmctl
-252 ndctl
-253 tpm
-254 gpiochip
-261 accel
-
-Block devices:
-  7 loop
-  8 sd
-  9 md
- 11 sr
- 65 sd
- 66 sd
- 67 sd
- 68 sd
- 69 sd
- 70 sd
- 71 sd
-128 sd
-129 sd
-130 sd
-131 sd
-132 sd
-133 sd
-134 sd
-135 sd
-253 device-mapper
-254 mdp
-259 blkext
-
 ```
 
 ### Allocating Major and Minor Number
@@ -390,22 +574,17 @@ int alloc_chrdev_region (dev_t *  dev,
 		 	const char *  	name);
 ```
 
-#### Description
 
 Allocates a range of char device numbers.
 The major number will be chosen dynamically, and returned (along with the first minor number) in dev
 
-#### Arguments
-
+Arguments:
  - dev: output parameter for first assigned number
  - baseminor: first of the requested range of minor numbers
  - count: the number of minor numbers required
  - name: the name of the associated device or driver
 
-
-#### Return Value
-
-Returns zero or a negative error code.
+Return Value: Returns zero or a negative error code.
 
 
 ### Example:
@@ -535,6 +714,10 @@ $sudo mknod -m 0644 /dev/mydevice c 244 10
 
 Traditionally, device nodes were stored in the `/dev` directory on Linux systems.
 
+The `/dev` directory contains the special device files for all the devices.
+
+- reference about the `/dev` file: https://linux.die.net/sag/dev-fs.html
+
 There was a node for every possible type of device, regardless of whether it actually existed in the system. 
 
 The result was that this directory took up a lot of space
@@ -559,24 +742,30 @@ reference: udev - dynamic device management: https://linux.die.net/man/7/udev
 Header File: <linux/device.h>
 
 ```
-struct class * class_create (struct module *owner,
-			     const char *name);
-
-
+struct class * class_create (struct module *owner, const char *name);
 ```
  - owner: pointer to the module that is to “own” this struct class
  - name: pointer to a string for the name of this class.
 
+ - reference about `class_create()`: https://www.kernel.org/doc/html/latest/driver-api/infrastructure.html?highlight=device_create#c.class_create
 
+This is used to create a struct class pointer that can then be used in calls to device_create().
 
+Returns `struct class` pointer on success, or `ERR_PTR()` on error.
 
-This is used to create a struct class pointer that can then be used in calls to class_device_create.
+Note, the pointer created here is to be destroyed when finished by making a call to `class_destroy()`.
+
 
 #### class_destroy — destroys a struct class structure
 
 ```
 void class_destroy (struct class *cls);
 ```
+
+Note, the pointer to be destroyed must have been created with a call to class_create().
+
+- reference about `class_destroy()`: https://www.kernel.org/doc/html/latest/driver-api/infrastructure.html?highlight=device_create#c.class_destroy
+
 
 Now, the name will appear in /sys/class/<name>.
 
@@ -611,6 +800,74 @@ To monitor what is happening use the command:
 ```
 $ udevadm monitor
 ```
-With this command, you can tap into udev in real time and see what it sees when you plug in different devices
+With this command, you can tap into `udev` in real time and see what it sees when you plug in different devices
 
 reference: https://linux.die.net/man/8/udevmonitor
+
+### Create a device and register it with sysfs
+
+```
+struct device * device_create(struct class *class,
+ 			      struct device *parent,
+			      dev_t  devt,
+			      void *drv_data,
+ 			      const char *fmt,
+		 	      ...);
+```
+ - reference: https://www.kernel.org/doc/html/latest/driver-api/infrastructure.html?highlight=device_create#c.device_create
+
+This function can be used by char device classes. 
+
+A struct device will be created in sysfs, registered to the specified class.
+
+ - class: pointer to the struct class that this device should be registered to
+ - parent: pointer to the parent struct device of this new device, if any
+ - devt: the dev_t for the char device to be added
+ - fmt: string for the device's name
+ - ... : variable arguments
+
+If a pointer to a parent struct device is passed in, the newly created struct device will be a child of that device in sysfs. 
+
+#### device_destroy — removes a device that was created with device_create
+```
+void device_destroy (struct class *class, dev_t devt);
+```
+
+Example:
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/delay.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+
+MODULE_LICENSE("GPL");
+static struct class *class;
+static struct device *device1, *device2;
+dev_t dev1, dev2;
+
+static int test_hello_init(void)
+{
+    dev1 = MKDEV(200, 1);
+    dev2 = MKDEV(200, 2);
+
+    class = class_create(THIS_MODULE, "myclass");
+    device1 = device_create(class, NULL, dev1, NULL, "mydevice%d", 1);
+    device2 = device_create(class, NULL, dev2, NULL, "mydevice%d", 2);
+
+    return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, dev1);
+	device_destroy(class, dev2);
+	class_destroy(class);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+
