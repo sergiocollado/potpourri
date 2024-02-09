@@ -169,61 +169,61 @@ If you think there are other devices which should be included here but aren't th
 #### /dev/dsp
 Digital Signal Processor. Basically this forms the interface between software which produces sound and your soundcard. It is a character device on major node 14 and minor 3.
 
-####/dev/fd0
+#### /dev/fd0
 The first floppy drive. If you are lucky enough to have several drives then they will be numbered sequentially. It is a character device on major node 2 and minor 0.
 
-####/dev/fb0
+#### /dev/fb0
 The first framebuffer device. A framebuffer is an abstraction layer between software and graphics hardware. This means that applications do not need to know about what kind of hardware you have but merely how to communicate with the framebuffer driver's API (Application Programming Interface) which is well defined and standardized. The framebuffer is a character device and is on major node 29 and minor 0.
 
-/####dev/hda
+#### /dev/hda
 /dev/hda is the master IDE drive on the primary IDE controller. /dev/hdb the slave drive on the primary controller. /dev/hdc , and /dev/hdd are the master and slave devices on the secondary controller respectively. Each disk is divided into partitions. Partitions 1-4 are primary partitions and partitions 5 and above are logical partitions inside extended partitions. Therefore the device file which references each partition is made up of several parts. For example /dev/hdc9 references partition 9 (a logical partition inside an extended partition type) on the master IDE drive on the secondary IDE controller. The major and minor node numbers are somewhat complex. For the first IDE controller all partitions are block devices on major node 3. The master drive hda is at minor 0 and the slave drive hdb is at minor 64. For each partition inside the drive add the partition number to the minor minor node number for the drive. For example /dev/hdb5 is major 3, minor 69 (64 + 5 = 69). Drives on the secondary interface are handled the same way, but with major node 22.
 
-####/dev/ht0
+#### /dev/ht0
 The first IDE tape drive. Subsequent drives are numbered ht1 etc. They are character devices on major node 37 and start at minor node 0 for ht0 1 for ht1 etc.
 
-####/dev/js0
+#### /dev/js0
 The first analogue joystick. Subsequent joysticks are numbered js1, js2 etc. Digital joysticks are called djs0, djs1 and so on. They are character devices on major node 15. The analogue joysticks start at minor node 0 and go up to 127 (more than enough for even the most fanatic gamer). Digital joysticks start at minor node 128.
 
-####/dev/lp0
+#### /dev/lp0
 The first parallel printer device. Subsequent printers are numbered lp1, lp2 etc. They are character devices on major mode 6 and minor nodes starting at 0 and numbered sequentially.
 
-####/dev/loop0
+#### /dev/loop0
 The first loopback device. Loopback devices are used for mounting filesystems which are not located on other block devices such as disks. For example if you wish to mount an iso9660 CD ROM image without burning it to CD then you need to use a loopback device to do so. This is usually transparent to the user and is handled by the mount command. Refer to the manual pages for mount and losetup. The loopback devices are block devices on major node 7 and with minor nodes starting at 0 and numbered sequentially.
 
-####/dev/md0
+#### /dev/md0
 First metadisk group. Metadisks are related to RAID (Redundant Array of Independent Disks) devices. Please refer to the most current RAID HOWTO at the LDP for more details. This can be found at http://www.tldp.org/HOWTO/Software-RAID-HOWTO.html. Metadisk devices are block devices on major node 9 with minor nodes starting at 0 and numbered sequentially.
 
-####/dev/mixer
+#### /dev/mixer
 This is part of the OSS (Open Sound System) driver. Refer to the OSS documentation at http://www.opensound.com for more details. It is a character device on major node 14, minor node 0.
 
-####/dev/null
+#### /dev/null
 The bit bucket. A black hole where you can send data for it never to be seen again. Anything sent to /dev/null will disappear. This can be useful if, for example, you wish to run a command but not have any feedback appear on the terminal. It is a character device on major node 1 and minor node 3.
 
-####/dev/psaux
+#### /dev/psaux
 The PS/2 mouse port. This is a character device on major node 10, minor node 1.
 
-####/dev/pda
+#### /dev/pda
 Parallel port IDE disks. These are named similarly to disks on the internal IDE controllers (/dev/hd*). They are block devices on major node 45. Minor nodes need slightly more explanation here. The first device is /dev/pda and it is on minor node 0. Partitions on this device are found by adding the partition number to the minor number for the device. Each device is limited to 15 partitions each rather than 63 (the limit for internal IDE disks). /dev/pdb minor nodes start at 16, /dev/pdc at 32 and /dev/pdd at 48. So for example the minor node number for /dev/pdc6 would be 38 (32 + 6 = 38). This scheme limits you to 4 parallel disks of 15 partitions each.
 
-####/dev/pcd0
+#### /dev/pcd0
 Parallel port CD ROM drives. These are numbered from 0 onwards. All are block devices on major node 46. /dev/pcd0 is on minor node 0 with subsequent drives being on minor nodes 1, 2, 3 etc.
 
-####/dev/pt0
+#### /dev/pt0
 Parallel port tape devices. Tapes do not have partitions so these are just numbered sequentially. They are character devices on major node 96. The minor node numbers start from 0 for /dev/pt0, 1 for /dev/pt1, and so on.
 
-####/dev/parport0
+#### /dev/parport0
 The raw parallel ports. Most devices which are attached to parallel ports have their own drivers. This is a device to access the port directly. It is a character device on major node 99 with minor node 0. Subsequent devices after the first are numbered sequentially incrementing the minor node.
 
-####/dev/random or /dev/urandom
+#### /dev/random or /dev/urandom
 These are kernel random number generators. /dev/random is a non-deterministic generator which means that the value of the next number cannot be guessed from the preceding ones. It uses the entropy of the system hardware to generate numbers. When it has no more entropy to use then it must wait until it has collected more before it will allow any more numbers to be read from it. /dev/urandom works similarly. Initially it also uses the entropy of the system hardware, but when there is no more entropy to use it will continue to return numbers using a pseudo random number generating formula. This is considered to be less secure for vital purposes such as cryptographic key pair generation. If security is your overriding concern then use /dev/random, if speed is more important then /dev/urandom works fine. They are character devices on major node 1 with minor nodes 8 for /dev/random and 9 for /dev/urandom.
 
-####/dev/sda
+#### /dev/sda
 The first SCSI drive on the first SCSI bus. The following drives are named similar to IDE drives. /dev/sdb is the second SCSI drive, /dev/sdc is the third SCSI drive, and so forth.
 
-####/dev/ttyS0
+#### /dev/ttyS0
 The first serial port. Many times this it the port used to connect an external modem to your system.
 
-####/dev/zero
+#### /dev/zero
 This is a simple way of getting many 0s. Every time you read from this device it will return 0. This can be useful sometimes, for example when you want a file of fixed length but don't really care what it contains. It is a character device on major node 1 and minor node 5.
 
 ### /sys/class file
