@@ -660,7 +660,7 @@ static int find_dynamic_major(void)
 
 A device file is an interface for a device driver that appears in a filesystem as if it were an ordinary file. Such files allow software to interact with a device driver. They are found in the `/dev` directory. 
 
-`/dev` is a very interesting directory that highlights one important aspect of the Linux filesystem - everything is a file or a directory.A file sent to /dev/lp0 gets printed. Sending data to and reading from /dev/ttyS0 will allow you to communicate with a device attached there - for instance, your modem.
+`/dev` is a very interesting directory that highlights one important aspect of the Linux filesystem - everything is a file or a directory. A file sent to /dev/lp0 gets printed. Sending data to and reading from /dev/ttyS0 will allow you to communicate with a device attached there - for instance, your modem.
 
 - reference in kernel documentation: https://docs.kernel.org/admin-guide/devices.html
 - reference about device files: https://en.wikipedia.org/wiki/Device_file
