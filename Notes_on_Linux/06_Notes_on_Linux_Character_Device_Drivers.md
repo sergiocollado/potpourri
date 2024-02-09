@@ -1,5 +1,6 @@
 References:
  - Intro to character device drivers: https://sysprog21.github.io/lkmpg/#character-device-drivers
+ - Linux Kernel Programming Part 2 - Char Device Drivers and Kernel Synchronization: https://github.com/PacktPublishing/Linux-Kernel-Programming-Part-2
  - Drivers implementer's API: https://docs.kernel.org/driver-api/index.html
  - Linux kernel documentation - device drivers: https://docs.kernel.org/driver-api/driver-model/driver.html
  - The Linux device driver: https://docs.kernel.org/driver-api/driver-model/overview.html
