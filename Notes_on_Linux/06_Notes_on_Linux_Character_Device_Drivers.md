@@ -449,14 +449,12 @@ int register_chrdev_region (dev_t from,	unsigned count,	const char *name);
 Description: register a range of device numbers
 
 Arguments:
-
  - from : the first in the desired range of device numbers; must include the major number.
  - count: the number of consecutive device numbers required
  - name: the name of the device or driver. This will appear in /proc/devices
 
 Return Value:
-
-zero on success, a negative error code on failure.
+ - zero on success, a negative error code on failure.
 
 ```
 void unregister_chrdev_region(dev_t from, unsigned int count);
@@ -557,7 +555,6 @@ int alloc_chrdev_region (dev_t *  dev,
 		 	const char *  	name);
 ```
 
-
 Allocates a range of char device numbers.
 The major number will be chosen dynamically, and returned (along with the first minor number) in dev
 
@@ -632,7 +629,6 @@ There are some limits:
 #define CHRDEV_MAJOR_DYN_EXT_END 384
 ```
 
-
 @fs/char_dev.c:
 ```
 static int find_dynamic_major(void)
@@ -659,19 +655,27 @@ static int find_dynamic_major(void)
 }
 ```
 
+## Device files
+
+A device file is an interface for a device driver that appears in a filesystem as if it were an ordinary file. Such files allow software to interact with a device driver. They are found in the `/dev` directory. 
+
+`/dev` is a very interesting directory that highlights one important aspect of the Linux filesystem - everything is a file or a directory.A file sent to /dev/lp0 gets printed. Sending data to and reading from /dev/ttyS0 will allow you to communicate with a device attached there - for instance, your modem.
+
+- reference in kernel documentation: https://docs.kernel.org/admin-guide/devices.html
+- reference about device files: https://en.wikipedia.org/wiki/Device_file
+- reference: Linux System Administrators Guide: https://linux.die.net/sag/dev-fs.html
+- reference: LDP: https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/dev.html
+
 ### Creating Device File
 
 Device file can be created in two ways
  - Manual
  - Automatic
 
-- reference about device files: https://en.wikipedia.org/wiki/Device_file
-
-
-
 #### Manual device file creation
 
 We can create the device file manually by using `mknod`.
+
 
 ```
 $ mknod -m <permissions> <name> <device type> <major> <minor>
@@ -694,10 +698,12 @@ Example:
 ```
 $sudo mknod -m 0644 /dev/mydevice c 244 10
 
-# WATCH OUT! with the manual apporach you have to manually delete the device later: sudo rm /dev/mydevice
+# WATCH OUT! with the manual approach you have to manually delete the device later: sudo rm /dev/mydevice
 ```
 
 ### Automatic device file creation
+
+A device file is an interface for a device driver that appears in a filesystem as if it were an ordinary file. Such files allow software to interact with a device driver. They are found in the `/dev` directory.
 
 Traditionally, device nodes were stored in the `/dev` directory on Linux systems.
 
@@ -733,10 +739,10 @@ struct class * class_create (struct module *owner, const char *name);
 ```
  - owner: pointer to the module that is to “own” this struct class
  - name: pointer to a string for the name of this class.
-
+<br>
  - reference about `class_create()`: https://www.kernel.org/doc/html/latest/driver-api/infrastructure.html?highlight=device_create#c.class_create
 
-This is used to create a struct class pointer that can then be used in calls to device_create().
+This is used to create a struct class pointer that can then be used in calls to `device_create()`.
 
 Returns `struct class` pointer on success, or `ERR_PTR()` on error.
 
@@ -789,7 +795,7 @@ $ udevadm monitor
 ```
 With this command, you can tap into `udev` in real time and see what it sees when you plug in different devices
 
-reference: https://linux.die.net/man/8/udevmonitor
+ - reference: https://linux.die.net/man/8/udevmonitor
 
 ### Create a device and register it with sysfs
 
