@@ -94,9 +94,9 @@ modification of the kernel code.
 ## Configuration
 
 In orden to suppor module, the kernel must have been build, with the following option enabled:
-
+```
 CONFIG_MODULES=y
-
+```
 To check if the modules can be applied on a system running check the kernel configuration on that system.
 
 ```
@@ -552,11 +552,12 @@ The purpose of defining `__inittest` function is to check during compile time, t
      module_param_named(name, name, type, perm)
   ```
   
-  name: name of the variable <br>
-  type: type of the variable. Supported types are charp (char pointer) , bool, invbool (inverse bool), long, chort, uint, unlong, ushort <br>
-  perm: permissions fo rthe sysfs entry <br>
-  EgS_IRUGO: Only read by all users <br>
-         0 : No sysfs entry <br>
+   - name: name of the variable
+   - type: type of the variable. Supported types are charp (char pointer) , bool, invbool (inverse bool), long, chort, uint, unlong, ushort 
+   - perm: permissions fo rthe sysfs entry
+      - `S_IRUGO`: Only read by all users
+      - 0 : No sysfs entry
+        
   It is possible to use numberic values line 0644 for permissions entry.
   
   Example: 
@@ -594,9 +595,10 @@ The purpose of defining `__inittest` function is to check during compile time, t
   This module can be tested with:
                                  
  ```
- sudo dmesg -C
+ sudo dmesg -C  // clean system logs buffer
  sudo insmod ./arguments.ko
- dmesg                          
+ dmesg         
+ // or you can use also dmesg -WH & previous to loading the module
  ```
  to give value to the parameter
   
