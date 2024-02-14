@@ -16,6 +16,7 @@ References:
  - Fast bit: Linux device driver programming: https://www.youtube.com/watch?v=YR_vYTh8CmY&list=PLERTijJOmYrAtfl5U_TAbCOisCNb7XEbb
  - Linux device drivers: https://embetronicx.com/tutorials/linux/device-drivers/linux-device-driver-part-1-introduction/
  - Linux device drivers tutorial: https://www.youtube.com/watch?v=BRVGchs9UUQ&list=PLArwqFvBIlwHq8WMKgsXSQdqIvymrEz9k&index=2
+ - Linux VFS: https://www.kernel.org/doc/html/latest/filesystems/#core-vfs-documentation
 
 
 ## Some interesting directories
@@ -910,3 +911,320 @@ module_exit(test_hello_exit);
 ```
 
 
+## File operations
+
+reference inode: https://www.kernel.org/doc/html/latest/filesystems/ext4/inodes.html
+
+### struct file_operations:
+
+Defined in : linux/fs.h
+Purpose: Holds pointers to functions defined by the driver that performs various operations on the device.
+
+```
+struct file_operations {
+    struct module *owner;
+    loff_t (*llseek) (struct file *, loff_t, int);
+    ssize_t (*read) (struct file *, char __user *, size_t, loff_t *);
+    ssize_t (*write) (struct file *, const char __user *, size_t, loff_t *);
+    [...]
+    long (*unlocked_ioctl) (struct file *, unsigned int, unsigned long);
+    [...]
+    int (*open) (struct inode *, struct file *);
+    int (*flush) (struct file *, fl_owner_t id);
+    int (*release) (struct inode *, struct file *);
+    [...]
+```
+ - reference: https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L1916
+   
+Example:
+```
+struct file_operations fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+```
+
+The above `fops` structure has defined four function pointers : For reading, writing, opening and closing the device file
+
+It can be noticed that the signature of the function differs from the system call that the user uses. The operating system sits between the user and the device driver to simplify implementation in the device driver.
+
+open does not receive the parameter path or the various parameters that control the file opening mode.
+Similarly, read, write, release, ioctl, lseek do not receive as a parameter a file descriptor.
+Instead, these routines receive as parameters two structures: `file` and `inode`.
+
+### struct cdev
+
+In kernel, each character device is represented using this structure.
+
+Header File: linux/cdev.h
+
+```
+struct cdev {
+        struct kobject kobj;
+        struct module *owner;               // the module owner
+        const struct file_operations *ops;  // the file operations
+        struct list_head list;
+        dev_t dev;                          // the device number
+        unsigned int count;                 
+} __randomize_layout;
+```
+ - reference: https://elixir.bootlin.com/linux/latest/source/include/linux/cdev.h#L14
+
+
+Functions:
+
+```
+void cdev_init(struct cdev *, const struct file_operations *); //initialize a cdev structure
+
+struct cdev *cdev_alloc(void); //Allocates and returns a cdev structure
+
+int cdev_add(struct cdev *, dev_t, unsigned int minor_count); // add a char device to the system
+
+void cdev_del(struct cdev *dev); // remove a cdev from the system
+```
+
+### cdev_init vs cdev_alloc
+
+```
+struct cdev *cdev_alloc(void)
+{
+        struct cdev *p = kzalloc(sizeof(struct cdev), GFP_KERNEL);
+        if (p) {
+                INIT_LIST_HEAD(&p->list);
+                kobject_init(&p->kobj, &ktype_cdev_dynamic);
+        }
+        return p;
+}
+```
+`cdev_alloc` allocates the memory for a character driver struct and returns the pinter.
+
+```
+void cdev_init(struct cdev *cdev, const struct file_operations *fops)
+{
+        memset(cdev, 0, sizeof *cdev);
+        INIT_LIST_HEAD(&cdev->list);
+        kobject_init(&cdev->kobj, &ktype_cdev_default);
+        cdev->ops = fops;
+}
+```
+`cdev_init` gets the pointer to a charecter driver struct, cleans the memory, and 
+assigns file operations. 
+
+```
+ struct cdev *my_dev = cdev_alloc();
+
+    if (my_dev != NULL)
+    	my_dev->ops = &my_fops;  /* The file_operations structure */
+	my_dev->owner = THIS_MODULE;
+```
+
+```
+cdev_init(struct cdev *cdev, const struct file_operations *fops);
+```
+
+
+The owner field of the structure should be initialized to THIS_MODULE to protect against ill-advised module unloads while the device is active.
+In case someone tries to unload the module while it is working the assignation of THIS_MODULE prevents this. 
+
+
+### Example of a character driver with file operations registration with `cdev_alloc`
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+
+int base_minor = 0;
+char *device_name = "mychardevice";
+int count = 1;
+dev_t devicenumber;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev *mycdev = NULL;
+
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t count, loff_t *offset)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t count, loff_t *offset)
+{
+	pr_info("%s\n", __func__);
+        return count;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, "mychardevice");
+		mycdev = cdev_alloc();
+		if (mycdev) {
+			mycdev->ops = &device_fops;
+			mycdev->owner = THIS_MODULE;
+			cdev_add(mycdev, devicenumber, count);
+		}
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+To run the example:
+
+```
+sudo dmesg -WH & 
+make
+sudo insmod ./mychardevice.ko
+ls -l /dev/mychardevice           // the permissions must be udpated!
+sudo chmod 666 /dev/mychardevice
+echo "hello World!" > /dev/mychardevice   // device open, device write, device release
+cat /dev/mychardevice                     // device open, device read, device release
+sudo rmmod mychardevice
+```
+
+### Example of a character driver with file operations registration with `cdev_init`
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+
+int base_minor = 0;
+char *device_name = "mychardev";
+int count = 1;
+dev_t devicenumber;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;              // memory allocation is here
+
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t count, loff_t *offset)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t count, loff_t *offset)
+{
+	pr_info("%s\n", __func__);
+        return count;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, "mydevice");
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+To run the example:
+
+```
+sudo dmesg -WH & 
+make
+sudo insmod ./mychardevice.ko
+ls -l /dev/mychardevice           // the permissions must be udpated!
+sudo chmod 666 /dev/mychardevice
+echo "hello World!" > /dev/mychardevice   // device open, device write, device release
+cat /dev/mychardevice                     // device open, device read, device release
+sudo rmmod mychardevice
+```
