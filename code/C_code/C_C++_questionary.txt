@@ -1,3 +1,4 @@
+Challenge: So you think you know C? -> https://wordsandbuttons.online/so_you_think_you_know_c.html
 
 
 ## PART 1: Please answer the following questions (recommended time: 20 min ~  1 min per question)
@@ -152,6 +153,7 @@ is changed (the operating system has to provide the interrupt mechanism)
 
 
 ## ENDIANNESS
+
 Do you know what endianness is? What are the two main kinds of
 endianness? Do you know any architectures using one or the other? *
 When do you think endianness has to be taken into account
@@ -164,6 +166,7 @@ In ARM architecture the endianess is configurable
 
 
 ## VOLATILE
+
 Do you know what volatile means in C? What does it do? 
 
 
@@ -174,6 +177,7 @@ the memory positions that report input values from sensors and such.
 
 
 ## STATIC
+
 Do you know what static means in C? What is it used for?
 
 The key word "static" has two meanings in C: 
@@ -186,6 +190,7 @@ In c++ the static keyword has other two uses:
 
 
 ## BITWISE OPERATORS
+
 You have the following declaration: “uint8_t a”. Please write the code to: 
 
 Set the least significant bit in a:
@@ -194,6 +199,7 @@ Set the ith bit:
 Unset the ith bit:
 
 ## PREPROCESSOR MACROS
+
 Do you know what preprocessor macros are and how they work? *
 Can you see any errors in the following macro: #define MUL(a,b) a * b
 How would you fix the macro?
@@ -203,6 +209,7 @@ crash.
 The expasion can be wrong, so it would be more precise to write: (a)*(b)
 
 ## POINTERS AND MEMORY LOCATIONS
+
 Read the declarations and the
 piece of code below: *
 Can you answer to the following
@@ -249,7 +256,7 @@ int main(void) {
 
 ## PART 2: The following code written in C has (at least) 6 issues. Please document errors you can find (recommended time: 10 min)
 	
-	struct sensor_struct 
+```	struct sensor_struct 
 	{ 
 		int status; 
 		uint8 value;
@@ -265,7 +272,7 @@ int main(void) {
 		} 
 	}
 	
-
+```
 
 The function read_sensor is missing a return type in the definition
 In the function the input parameter should be: (sensor_struct sensor)
@@ -278,7 +285,7 @@ sensor->value < 0 – value is a uint8, and it will never have a value less that
 ## PART 3: Write a C program to copy characters from char *ptr1 to char *ptr2. Please comment the code well and state any assumptions you make. Please explain the considerations about the underlying system that need to be taken in account.
 (recommended time: 30 min)
 
-
+```
 #include <stdio.h>
 #include <string.h>
 #define STR_LEN 1000
@@ -315,5 +322,5 @@ int main () {
    return(1);
 }
 
-
+```
 
