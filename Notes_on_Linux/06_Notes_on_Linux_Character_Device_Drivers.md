@@ -1228,3 +1228,483 @@ echo "hello World!" > /dev/mychardevice   // device open, device write, device r
 cat /dev/mychardevice                     // device open, device read, device release
 sudo rmmod mychardevice
 ```
+
+### Pseudo-Devices
+
+Devices in Linux (and other Unix clones) do not necessarily have to correspond to physical devices. These are known as pseudo-devices. For example:
+
+ - `/dev/urandom` : generates a stream of pseudo-random numbers (try running head /dev/urandom in a terminal)
+ - `/dev/null` : produces no output, but accepts and discards any input (if you wanted to test your download speed without writing any data to your disk, you could download a file to `/dev/null` by running, e.g., wget http://some.website/big.file > /dev/null).
+ - `/dev/zero`: Used by developers to create a file with no meaningful data but a particular size
+
+```
+dd if=/dev/zero of=/temp/zero count=1024
+ls /tem/zero
+du -f /temp/zero
+```
+
+```
+        /dev/null
+        Read : Returns End of file (read returns 0)
+        Write: Data written is discarded
+
+        /dev/zero:
+        Read: Returns endless bytes of zeroes (\0 characters)
+        Write: Data written is discarded
+
+```
+
+File: drivers/char/mem.c has the implementation for this devices https://elixir.bootlin.com/linux/v6.7.5/source/drivers/char/mem.c#L746
+
+
+### Example using a char driver from userland
+
+Char driver:
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+
+int base_minor = 0;
+char *device_name = "mychardev";
+int count = 1;
+dev_t devicenumber;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t count, loff_t *offset)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t count, loff_t *offset)
+{
+	pr_info("%s\n", __func__);
+        return count;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, device_name);
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+
+User program:
+
+```
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define DEVICE_FILE "/dev/mychardev"
+
+int main()
+{
+	int fd;
+	int retval;
+	char buffer[10];
+
+	printf("Opening File:%s\n", DEVICE_FILE);
+	fd = open(DEVICE_FILE, O_RDWR);
+
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+
+	getchar();
+
+	retval = write(fd, "hello", 5);
+	printf("Write retval:%d\n", retval);
+	getchar();
+
+	retval = read(fd, buffer, 10);
+	printf("Read retval:%d\n", retval);
+	getchar();
+	
+	printf("Closing File\n");
+	close(fd);
+	getchar();
+
+	return 0;
+}
+```
+
+
+### How many times device driver open and release will be called in case of fork?
+
+In case we have a user app like:
+
+```
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define DEVICE_FILE	"/dev/mychardev"
+
+int main()
+{
+	int fd;
+	int retval;
+	char buffer[10];
+	pid_t pid;
+
+	printf("Opening File:%s\n", DEVICE_FILE);
+	fd = open(DEVICE_FILE, O_RDWR);
+
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+
+	getchar();
+	pid = fork();
+	if (pid == 0) {
+		printf("Child Process Executing and writing hello world:%ld\n",
+				write(fd, "hello world", sizeof("hello world")));
+	}
+	else {
+		printf(" Parent Process executing and writing hello embedded:%ld\n",
+				write(fd, "hello embedded", sizeof("hello embedded")));
+	}
+
+	printf("Closing File\n");
+	close(fd);
+	getchar();
+
+	return 0;
+}
+```
+
+
+The open and release function is only called once.
+
+When you do fork(), it will not create a new file structure and close() will call the release method of the driver only when the counter of the file structure becomes zero
+
+
+
+### struct file
+
+ - reference: https://elixir.bootlin.com/linux/v6.7.5/source/include/linux/fs.h#L992
+
+Header File: <linux/fs.h>
+
+`struct file` is different when compared to FILE of user space program.
+
+A FILE is defined in the C library and never appears in kernel code.
+
+A struct file, on the other hand, is a kernel structure that never appears in user programs.
+
+The file structure represents an open file. (It is not specific to device drivers; every open file in the system has an associated struct file in kernel space.) 
+
+It is created by the kernel on `open` and is passed to any function that operates on the file, until the last `close`.
+
+After all instances of the file are closed, the kernel releases the data structure.
+
+An open file is different from a disk file, represented by `struct inode`.
+
+Important Fields
+
+```
+struct file {
+	//The file mode identifies the file as either readable or writable
+	fmode_t                 f_mode;
+
+	//The current reading or writing position. loff_t is a 64-bit value 
+	loff_t f_pos;
+	
+	//These are the file flags, such as O_RDONLY, O_NONBLOCK, and O_SYNC.
+	unsigned int            f_flags;
+
+	//The operations associated with the file.
+	struct file_operations *f_op;
+	
+	//The open system call sets this pointer to NULL before calling the open method for the driver.
+	//The driver can use the field to point to allocated data, but then must free memory in the release method before the file structure is destroyed by the kernel
+	// private_data is a useful resource for preserving state information across system calls
+	void *private_data;
+
+        // pointer to the inode
+	struct inode		*f_inode;	/* cached value */ 
+};
+```
+
+Example to check the behavior:
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+
+int base_minor = 0;
+char *device_name = "mychardev";
+int count = 1;
+dev_t devicenumber;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+
+	if ((file->f_flags & O_ACCMODE) == O_RDONLY) {
+		pr_info("Opened File in Read only mode\n");
+	}else if ((file->f_flags & O_ACCMODE) == O_WRONLY) {
+		pr_info("Opened File in Write only mode");
+	}
+	else if ((file->f_flags & O_ACCMODE) == O_RDWR) {
+		pr_info("Opened File in Read/Write mode");
+	}
+
+	if (file->f_flags & O_CREAT) {
+		pr_info( "Create if it does not exist");
+	}
+
+	if (file->f_flags & O_EXCL) {
+		pr_info( "Provide exclusive access");
+	}
+
+	if (file->f_flags & O_TRUNC) {
+		pr_info( "Truncate the file to zero size first");
+	}
+
+	if (file->f_flags & O_APPEND) {
+		pr_info( "Append to the file (don't overwrite)");
+	}
+
+	if (file->f_flags & O_NONBLOCK) {
+		pr_info( "Access methods are non-blocking");
+	}
+
+	if (file->f_flags & O_SYNC) {
+		pr_info( "O_SYNC");
+	}
+
+	pr_info("File Offset:%llu\n", file->f_pos);
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+		size_t count, loff_t *offset)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+		size_t count, loff_t *offset)
+{
+	pr_info("%s\n", __func__);
+	return count;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, "mydevice");
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+	class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+program that uses the char driver:
+```
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define DEVICE_FILE	"/dev/mydevice"
+
+int main()
+{
+	int fd;
+	int retval;
+	char buffer[10];
+
+	printf("Opening File:%s\n", DEVICE_FILE);
+	fd = open(DEVICE_FILE, O_RDWR);
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+	close(fd);
+	getchar();
+	fd = open(DEVICE_FILE, O_RDONLY);
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+	close(fd);
+	getchar();
+	fd = open(DEVICE_FILE, O_WRONLY);
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+	close(fd);
+	getchar();
+	fd = open(DEVICE_FILE, O_WRONLY | O_NONBLOCK);
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+	close(fd);
+	getchar();
+	fd = open(DEVICE_FILE, O_WRONLY | O_NONBLOCK | O_APPEND);
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+	close(fd);
+	getchar();
+
+	return 0;
+}
+```
+
+
+### struct inode
+
+ - reference: https://elixir.bootlin.com/linux/v6.7.5/source/include/linux/fs.h#L639
+
+Header File: <linux/fs.h>
+
+The `inode` structure is used by the kernel internally to represent files. 
+
+An inode uniquely identifies a file in a file system.
+
+```
+struct inode {
+	
+	//mode
+	umode_t                 i_mode;
+	
+	kuid_t                  i_uid;
+        kgid_t                  i_gid;
+
+	//inode number
+	unsigned long           i_ino;
+
+	//Contains the actual device number
+	dev_t                   i_rdev;
+
+	// Kernel representation of char device
+	struct cdev *i_cdev
+
+};
+```
+
+Kernel developers have added two macros that can be used to obtain the major and minor numbers from an inode.
+
+```
+unsigned int iminor(struct inode *inode);
+
+unsigned int imajor(struct inode *inode);
+```
+
+
+
+
