@@ -954,6 +954,16 @@ open does not receive the parameter path or the various parameters that control 
 Similarly, read, write, release, ioctl, lseek do not receive as a parameter a file descriptor.
 Instead, these routines receive as parameters two structures: `file` and `inode`.
 
+#### __user attribute
+
+ - reference: https://stackoverflow.com/questions/4521551/what-are-the-implications-of-the-linux-user-macro
+
+`__user` marks user space pointers and tells the developer/system not to trust it. If user gives you "invalid" pointer, then kernel tries to reference it (note that kernel can reference everywhere) and it can corrupt it's own space.
+
+For example in "read"(in you usbdevice_fs.h) should provide you a (__user) buffer to write the result to. So you have to use copy_to_user, but not memcopy, strcpy or anything like this.
+
+Also: The __user macro is defined with some other macros like __force/__kernel etc in the compiler.h header file. They are actually not of any use to traditional compilers, including GCC/ICC etc. But it's useful for kernel static analysis tools like sparse (more information here: Sparse - Linux Kernel Newbies). When you mention the macros like `__user`/`__kernel`/`__force` etc, it keeps special meaning for sparse.
+
 ### struct cdev
 
 In kernel, each character device is represented using this structure.
@@ -1488,7 +1498,49 @@ struct file {
 };
 ```
 
-Example to check the behavior:
+### struct inode
+
+> Originally the term was "index node number", which was shortened to
+> "inode number", shortened again to "inumber", and finally "ino".  
+
+ - reference: https://elixir.bootlin.com/linux/v6.7.5/source/include/linux/fs.h#L639
+
+Header File: <linux/fs.h>
+
+The `inode` structure is used by the kernel internally to represent files. 
+
+An inode uniquely identifies a file in a file system.
+
+```
+struct inode {
+	
+	//mode
+	umode_t                 i_mode;
+	
+	kuid_t                  i_uid;
+        kgid_t                  i_gid;
+
+	//inode number
+	unsigned long           i_ino;
+
+	//Contains the actual device number
+	dev_t                   i_rdev;
+
+	// Kernel representation of char device
+	struct cdev *i_cdev
+
+};
+```
+
+Kernel developers have added two macros that can be used to obtain the major and minor numbers from an inode.
+
+```
+unsigned int iminor(struct inode *inode);
+
+unsigned int imajor(struct inode *inode);
+```
+
+### Example
 
 ```
 #include <linux/kernel.h>
@@ -1513,6 +1565,7 @@ static int device_open(struct inode *inode, struct file *file)
 {
 	pr_info("%s\n", __func__);
 
+	//struct file
 	if ((file->f_flags & O_ACCMODE) == O_RDONLY) {
 		pr_info("Opened File in Read only mode\n");
 	}else if ((file->f_flags & O_ACCMODE) == O_WRONLY) {
@@ -1541,12 +1594,22 @@ static int device_open(struct inode *inode, struct file *file)
 	if (file->f_flags & O_NONBLOCK) {
 		pr_info( "Access methods are non-blocking");
 	}
-
 	if (file->f_flags & O_SYNC) {
 		pr_info( "O_SYNC");
 	}
 
 	pr_info("File Offset:%llu\n", file->f_pos);
+
+	//struct inode
+	pr_info("Mode: %ho\n", inode->i_mode);
+	pr_info("User Id: %d\n", inode->i_uid.val);
+	pr_info("Group Id: %d\n", inode->i_gid.val);
+	pr_info("Inode number:%lu\n", inode->i_ino);
+	pr_info("Major number:%d\t Minor Number:%d\n", imajor(inode), iminor(inode));
+	pr_info("Major number:%d\t Minor Number:%d\n", MAJOR(inode->i_rdev), MINOR(inode->i_rdev));
+
+	//Accessing struct inode from struct file
+	pr_info("Inode number through file structure:%lu\n", file->f_inode->i_ino);
 	return 0;
 }
 
@@ -1589,7 +1652,6 @@ static int test_hello_init(void)
 		cdev_init(&mycdev, &device_fops);
 		mycdev.owner = THIS_MODULE;
 		cdev_add(&mycdev, devicenumber, count);
-
 	}
 	else
 		printk("Device number registration Failed\n");
@@ -1609,14 +1671,13 @@ module_init(test_hello_init);
 module_exit(test_hello_exit);
 ```
 
-program that uses the char driver:
 ```
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-#define DEVICE_FILE	"/dev/mydevice"
+#define DEVICE_FILE "/dev/mydevice"
 
 int main()
 {
@@ -1664,50 +1725,41 @@ int main()
 	return 0;
 }
 ```
-
-
-### struct inode
-
-> Originally the term was "index node number", which was shortened to
-> "inode number", shortened again to "inumber", and finally "ino".  
-
- - reference: https://elixir.bootlin.com/linux/v6.7.5/source/include/linux/fs.h#L639
-
-Header File: <linux/fs.h>
-
-The `inode` structure is used by the kernel internally to represent files. 
-
-An inode uniquely identifies a file in a file system.
-
+For checking the inode number of the char driver, check it with:
 ```
-struct inode {
-	
-	//mode
-	umode_t                 i_mode;
-	
-	kuid_t                  i_uid;
-        kgid_t                  i_gid;
-
-	//inode number
-	unsigned long           i_ino;
-
-	//Contains the actual device number
-	dev_t                   i_rdev;
-
-	// Kernel representation of char device
-	struct cdev *i_cdev
-
-};
-```
-
-Kernel developers have added two macros that can be used to obtain the major and minor numbers from an inode.
-
-```
-unsigned int iminor(struct inode *inode);
-
-unsigned int imajor(struct inode *inode);
+stat /dev/mydevice
 ```
 
 
 
+### Access to the address space pointers from kernel space
 
+Accessing process address space can not be done directly (by de-referencing a user-space pointer). 
+
+Direct access of a user-space pointer can lead to 
+ - incorrect behavior (depending on architecture, a user-space pointer may not be valid or mapped to kernel-space), 
+ - a kernel oops (the user-mode pointer can refer to a non-resident memory area) or 
+ - security issues. 
+
+Proper access to user-space data is done by calling the macros / functions below:
+
+```
+old linux version before 4.x:
+#include <asm/uaccess.h>
+```
+```
+latest linux version:
+#include <linux/uaccess.h>
+
+put_user(type val, type *address);
+get_user(type val, type *address);
+unsigned long copy_to_user(void __user *to, const void *from, unsigned long n);
+unsigned long copy_from_user(void *to, const void __user *from, unsigned long n)
+```
+
+All macros / functions return 0 in case of success and another value in case of error and have the following roles:
+
+ - `put_user` put in the user-space at the address address value of the val; Type can be one on 8, 16, 32, 64 bit (the maximum supported type depends on the hardware platform);
+ - `get_user` analogue to the previous function, only that val will be set to a value identical to the value at the user-space address given by address;
+ - `copy_to_user` copies n bytes from the kernel-space, from the address referenced by from in user-space to the address referenced by to;
+ - `copy_from_user` copies n bytes from user-space from the address referenced by from in kernel-space to the address referenced by to.
