@@ -1668,6 +1668,9 @@ int main()
 
 ### struct inode
 
+> Originally the term was "index node number", which was shortened to
+> "inode number", shortened again to "inumber", and finally "ino".  
+
  - reference: https://elixir.bootlin.com/linux/v6.7.5/source/include/linux/fs.h#L639
 
 Header File: <linux/fs.h>
