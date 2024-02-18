@@ -3,6 +3,7 @@
  - reference: Understanding the Linux Virtual Memory Manager: https://www.kernel.org/doc/gorman/html/understand/
  - reference: https://docs.kernel.org/admin-guide/mm/index.html
  - reference: https://www.kernel.org/doc/gorman/html/understand/index.html
+ - Linux VFS: https://www.kernel.org/doc/html/latest/filesystems/#core-vfs-documentation
  - reference: What every programmer should know about memory:
      - https://lwn.net/Articles/250967/
      - https://lwn.net/Articles/252125/
