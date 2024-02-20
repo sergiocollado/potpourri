@@ -182,6 +182,8 @@ Nice intro:
 - RUST: add module_params macro https://github.com/Rust-for-Linux/linux/commit/62af8b3d3723cf12e932d2b9a8797a18bb9baa70
 - RUST NVME: https://github.com/Rust-for-Linux/linux/compare/rust-next...metaspace:linux:nvme
 - rust: crates in other kernel directories: https://lore.kernel.org/rust-for-linux/ca2cd71c-0aa1-4365-961c-c10737a9e9a6@gmail.com/T/#m44915f4a18ba9f2b033e186690d964ef8da3e965
+- longest symbol: https://lore.kernel.org/rust-for-linux/20231105184010.49194-1-sergio.collado@gmail.com/
+- longest symbol 2: https://lore.kernel.org/rust-for-linux/20231119180145.157455-1-sergio.collado@gmail.com/
 
 
 ### Others 2
