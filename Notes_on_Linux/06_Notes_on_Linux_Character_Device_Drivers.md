@@ -1763,3 +1763,627 @@ All macros / functions return 0 in case of success and another value in case of 
  - `get_user` analogue to the previous function, only that val will be set to a value identical to the value at the user-space address given by address;
  - `copy_to_user` copies n bytes from the kernel-space, from the address referenced by from in user-space to the address referenced by to;
  - `copy_from_user` copies n bytes from user-space from the address referenced by from in kernel-space to the address referenced by to.
+
+
+### copy_from_user
+```
+unsigned long copy_from_user(void *to, const void __user *from, unsigned long n)
+```
+Header File: <linux/uaccess.h>
+
+The copy_from_user function copies a block of data from user space into a kernel buffer. 
+
+It accepts
+ - destination buffer (in kernel space), 
+ - a source buffer (from user space), and 
+ - a length defined in bytes
+
+Returns: zero on success, non-zero to indicate a failure to copy some number of bytes.
+
+Example:
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+
+int base_minor = 0;
+char *device_name = "mychardev";
+int count = 1;
+dev_t devicenumber;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t count, loff_t *offset)
+{
+	pr_info("%s:Count:%lu \t offset:%llu\n", __func__,
+			count, *offset);
+        return 0;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t count, loff_t *offset)
+{
+	char kernel_buffer[100] = {0};
+	int retval;
+
+	pr_info("%s: Kernel Buffer:%p\t User Buffer:%p\n", __func__, kernel_buffer, user_buffer);
+	retval = copy_from_user(kernel_buffer, user_buffer, count);
+	pr_info("%s: Copy from user returned:%d\n", __func__, retval);
+	pr_info("%s:Kernel Buffer:%s\t Count:%lu \t offset:%llu\n", __func__, kernel_buffer,
+			count, *offset);
+        return count;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, "mydevice");
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+The user app:
+```
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define DEVICE_FILE "/dev/mydevice"
+
+int main()
+{
+	int fd;
+	int retval;
+	char buffer[10];
+
+	printf("Opening File:%s\n", DEVICE_FILE);
+	fd = open(DEVICE_FILE, O_RDWR);
+
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+
+	getchar();
+
+	retval = write(fd, "hello", 5);
+	printf("Write retval:%d\n", retval);
+	getchar();
+
+	retval = read(fd, buffer, 10);
+	printf("Read retval:%d\n", retval);
+	getchar();
+	
+	printf("Closing File\n");
+	close(fd);
+	getchar();
+
+	return 0;
+}
+```
+
+
+### copy_to_user
+
+```
+unsigned long copy_to_user(void __user *to, const void *from, unsigned long n);
+```
+Header File: <linux/uaccess.h>
+
+The copy_to_user function copies a block of data from the kernel into user space. 
+
+This function accepts a 
+ - pointer to a user space buffer, 
+ - a pointer to a kernel buffer, and 
+ - a length defined in bytes. 
+
+Returns zero on success or non-zero to indicate the number of bytes that weren’t transferred
+
+Example:
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+
+int base_minor = 0;
+char *device_name = "mychardev";
+int count = 1;
+dev_t devicenumber;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t count, loff_t *offset)
+{
+	char kernel_buffer[10] = "kernel";
+
+	int retval;
+
+	retval = copy_to_user(user_buffer, kernel_buffer, 7);
+
+	pr_info("%s: Copy to user returned:%d\n", __func__, retval);
+
+	pr_info("%s:Kernel buffer:%s \t Count:%lu \t offset:%llu\n", __func__,
+			kernel_buffer, count, *offset);
+        return 0;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t count, loff_t *offset)
+{
+	char kernel_buffer[100] = {0};
+	int retval;
+
+	retval = copy_from_user(kernel_buffer, user_buffer, count);
+	pr_info("%s: Copy from user returned:%d\n", __func__, retval);
+	pr_info("%s:Kernel Buffer:%s\t Count:%lu \t offset:%llu\n", __func__, kernel_buffer,
+			count, *offset);
+        return count;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, "mydevice");
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+The user app:
+```
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define DEVICE_FILE "/dev/mydevice"
+
+int main()
+{
+	int fd;
+	int retval;
+	char buffer[10];
+
+	printf("Opening File:%s\n", DEVICE_FILE);
+	fd = open(DEVICE_FILE, O_RDWR);
+
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+
+	getchar();
+
+	retval = write(fd, "hello", 5);
+	printf("Write retval:%d\n", retval);
+	getchar();
+
+	retval = read(fd, buffer, 10);
+	printf("Read retval:%d\n", retval);
+	printf("Buffer:%s\n", buffer);
+	getchar();
+	
+	printf("Closing File\n");
+	close(fd);
+	getchar();
+
+	return 0;
+}
+```
+### put_user
+
+`put_user` function is used to write a simple variable from the kernel into user space
+
+```
+put_user (x, ptr);
+```
+ - x: Value to copy to user space. 
+ - ptr: Destination address, in user space.
+
+It supports simple types like char and int, but not larger data types like structures or arrays.
+
+Example:
+
+#### What are jiffies?
+
+Informally, According to wikipedia, jiffy is term used for any unspecified short period of time.
+
+Coming back to our Linux kernel world, `jiffies` are a global variable which stores the number of clock ticks since boot. It is present in `<linux/jiffies.h>`
+
+Let's write a character driver which on read returns the value of `jiffies`.
+
+
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+
+int base_minor = 0;
+char *device_name = "jiffies";
+int count = 1;
+dev_t devicenumber;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t count, loff_t *offset)
+{
+	pr_info("%s\n", __func__);
+	if (count < sizeof(jiffies))
+                return -EINVAL;
+        if (!put_user(jiffies, (u64 *)user_buffer))  // WATCH OUT the castion to u64*
+            return sizeof(jiffies);
+        else
+            return -EFAULT;
+
+        return 0;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t count, loff_t *offset)
+{
+	pr_info("%s\n", __func__);
+        return count;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, device_name);
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+The user app:
+
+```
+#include <stdio.h>
+#include <fcntl.h> 
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+	int fd;
+	unsigned long long old_jiffies;
+	unsigned long long new_jiffies;
+	
+	fd = open("/dev/jiffies", O_RDWR);
+	if (fd < 0) {
+		perror("fd failed");
+		exit(2);
+	}
+
+	if (read(fd, &old_jiffies, sizeof(old_jiffies)) != sizeof(old_jiffies)) {
+		printf("Failed in reading first jiffies\n");
+		exit(3);
+	} else {
+		printf("First Read:%lld\n", old_jiffies);
+	}
+
+	sleep(1);  // sleep for 1 second
+
+	if (read(fd, &new_jiffies, sizeof(new_jiffies)) != sizeof(new_jiffies)) {
+		printf("Failed in reading second jiffies\n");
+		exit(4);
+	} else {
+		printf("Second Read:%lld\n", new_jiffies);
+	}
+
+	printf("Difference:%lld\n", (new_jiffies - old_jiffies));
+	close(fd);
+}
+```
+
+1. You could see from the output, the difference we got is X, it means the value of jiffie increments by X every second, this also means the timer is configured to generate X interrupts every second.
+
+2. We use `put_user` to copy the value of jiffies to user space. `put_user` is faster than `copy_to_user`, and can copy up to 8 bytes of data. The size that put_user copies depends on the type of the pointer argument and is determined at compiled time using typeof and sizeof builtins.
+
+### get_user
+
+To read a simple variable from user space, you use the `get_user` function
+
+This function is used for simple types such as char and int, but larger data types like structures must use the copy_from_user function
+
+```
+get_user (x, ptr);
+```
+
+Example:
+
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+
+int base_minor = 0;
+char *device_name = "myint";
+int count = 1;
+dev_t devicenumber;
+
+int value = 0;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t count, loff_t *offset)
+{
+	pr_info("%s\n", __func__);
+	if (count < sizeof(value))
+                return -EINVAL;
+        if (!put_user(value, (int *)user_buffer))
+            return sizeof(value);
+        else
+            return -EFAULT;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t count, loff_t *offset)
+{
+	pr_info("%s\n", __func__);
+	get_user(value, (int *)user_buffer);  // WATCH OUT the casting to int*
+        return count;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, device_name);
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+The user app:
+
+```
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define DEVICE_FILE "/dev/myint"
+
+int main()
+{
+	int fd;
+	int retval;
+	int value = 10;
+
+	printf("Opening File:%s\n", DEVICE_FILE);
+	fd = open(DEVICE_FILE, O_RDWR);
+
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+
+	getchar();
+
+	retval = write(fd, &value, sizeof(value));
+	printf("Write retval:%d\n", retval);
+	getchar();
+
+	value = 2;
+
+	retval = read(fd, &value, sizeof(value));
+	printf("Read retval:%d\t value:%d\n", retval, value);
+	getchar();
+	
+	printf("Closing File\n");
+	close(fd);
+	getchar();
+
+	return 0;
+}
+```
+
+
+
