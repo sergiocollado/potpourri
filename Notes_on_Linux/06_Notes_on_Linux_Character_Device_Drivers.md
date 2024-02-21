@@ -2248,7 +2248,7 @@ get_user (x, ptr);
 
 Example:
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/kdev_t.h>
@@ -2343,7 +2343,7 @@ module_exit(test_hello_exit);
 
 The user app:
 
-```
+```C
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
