@@ -386,7 +386,7 @@ Header File: linux/kdev_t.h
 
  - reference: https://elixir.bootlin.com/linux/v6.7.3/source/include/linux/kdev_t.h#L12
 
-```
+```C
 #define MINORBITS	20
 #define MINORMASK	((1U << MINORBITS) - 1)
 
@@ -397,7 +397,7 @@ Header File: linux/kdev_t.h
 
 #### Example:
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/kdev_t.h>
@@ -444,7 +444,7 @@ Partially to avoid conflict with other device drivers, it’s considered prefera
 
 ### static assignment and unallocation of device identifiers:
 
-```
+```C
 int register_chrdev_region (dev_t from,	unsigned count,	const char *name);
 ```
 
@@ -458,7 +458,7 @@ Arguments:
 Return Value:
  - zero on success, a negative error code on failure.
 
-```
+```C
 void unregister_chrdev_region(dev_t from, unsigned int count);
 ```
 
@@ -466,7 +466,7 @@ Header File: <linux/fs.h>
 
 Example:
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/kdev_t.h>
@@ -511,7 +511,7 @@ module_exit(test_hello_exit);
 ```
 You can call it with: 
 
-```
+```bash
 $ sudo insmod ./hello.ko major_number=126 && cat /proc/devices | less
 
 $ sudo insmod ./hello.ko major_number=128
@@ -550,7 +550,7 @@ If we dont want fixed major and minor number please use this method.
 
 This method will allocate the major number dynamically to your driver which is available.
 
-```
+```C
 int alloc_chrdev_region (dev_t *  dev,
 		 	unsigned  	baseminor,
  			unsigned  	count,
@@ -571,7 +571,7 @@ Return Value: Returns zero or a negative error code.
 
 ### Example:
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/kdev_t.h>
@@ -614,14 +614,14 @@ module_exit(test_hello_exit);
 ```
 And for using it: 
 
-```
+```C
 $sudo insmod ./hello.ko
 $ sudo insmod ./hello.ko base_minor=1048576 count=10 device_name=usb
 ```
 
 There are some limits:
 
-```
+```bash
 /* fs/char_dev.c */
 #define CHRDEV_MAJOR_MAX 512
 /* Marks the bottom of the first segment of free char majors */
@@ -632,7 +632,7 @@ There are some limits:
 ```
 
 @fs/char_dev.c:
-```
+```C
 static int find_dynamic_major(void)
 {
         int i;
@@ -679,7 +679,7 @@ Device file can be created in two ways
 We can create the device file manually by using `mknod`.
 
 
-```
+```bash
 $ mknod -m <permissions> <name> <device type> <major> <minor>
 
 -m <permissions> – optional argument that sets the permission bits of the new device file to permissions
@@ -697,7 +697,7 @@ $ mknod -m <permissions> <name> <device type> <major> <minor>
 ```
 
 Example: 
-```
+```bash
 $sudo mknod -m 0644 /dev/mydevice c 244 10
 
 # WATCH OUT! with the manual approach you have to manually delete the device later: sudo rm /dev/mydevice
@@ -736,7 +736,7 @@ reference: udev - dynamic device management: https://linux.die.net/man/7/udev
 
 Header File: <linux/device.h>
 
-```
+```C
 struct class * class_create (struct module *owner, const char *name);
 ```
  - owner: pointer to the module that is to “own” this struct class
@@ -753,7 +753,7 @@ Note, the pointer created here is to be destroyed when finished by making a call
 
 #### class_destroy — destroys a struct class structure
 
-```
+```C
 void class_destroy (struct class *cls);
 ```
 
@@ -766,7 +766,7 @@ Now, the name will appear in /sys/class/<name>.
 
 Example:
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/delay.h>
@@ -792,7 +792,7 @@ module_exit(test_hello_exit);
 
 To monitor what is happening use the command:
 
-```
+```bash
 $ udevadm monitor
 ```
 With this command, you can tap into `udev` in real time and see what it sees when you plug in different devices
@@ -801,7 +801,7 @@ With this command, you can tap into `udev` in real time and see what it sees whe
 
 ### Create a device and register it with sysfs
 
-```
+```C
 struct device * device_create(struct class *class,
  			      struct device *parent,
 			      dev_t  devt,
@@ -824,13 +824,13 @@ A struct device will be created in sysfs, registered to the specified class.
 If a pointer to a parent struct device is passed in, the newly created struct device will be a child of that device in sysfs. 
 
 #### device_destroy — removes a device that was created with device_create
-```
+```C
 void device_destroy (struct class *class, dev_t devt);
 ```
 
 Example:
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/delay.h>
@@ -867,7 +867,7 @@ module_exit(test_hello_exit);
 
 ### Example of an automatic device node creation
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/kdev_t.h>
@@ -920,7 +920,7 @@ reference inode: https://www.kernel.org/doc/html/latest/filesystems/ext4/inodes.
 Defined in : linux/fs.h
 Purpose: Holds pointers to functions defined by the driver that performs various operations on the device.
 
-```
+```C
 struct file_operations {
     struct module *owner;
     loff_t (*llseek) (struct file *, loff_t, int);
@@ -937,7 +937,7 @@ struct file_operations {
  - reference: https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L1916
    
 Example:
-```
+```C
 struct file_operations fops = {
 	.read = device_read,
 	.write = device_write,
@@ -970,7 +970,7 @@ In kernel, each character device is represented using this structure.
 
 Header File: linux/cdev.h
 
-```
+```C
 struct cdev {
         struct kobject kobj;
         struct module *owner;               // the module owner
@@ -985,7 +985,7 @@ struct cdev {
 
 Functions:
 
-```
+```C
 void cdev_init(struct cdev *, const struct file_operations *); //initialize a cdev structure
 
 struct cdev *cdev_alloc(void); //Allocates and returns a cdev structure
@@ -997,7 +997,7 @@ void cdev_del(struct cdev *dev); // remove a cdev from the system
 
 ### cdev_init vs cdev_alloc
 
-```
+```C
 struct cdev *cdev_alloc(void)
 {
         struct cdev *p = kzalloc(sizeof(struct cdev), GFP_KERNEL);
@@ -1010,7 +1010,7 @@ struct cdev *cdev_alloc(void)
 ```
 `cdev_alloc` allocates the memory for a character driver struct and returns the pinter.
 
-```
+```C
 void cdev_init(struct cdev *cdev, const struct file_operations *fops)
 {
         memset(cdev, 0, sizeof *cdev);
@@ -1022,7 +1022,7 @@ void cdev_init(struct cdev *cdev, const struct file_operations *fops)
 `cdev_init` gets the pointer to a charecter driver struct, cleans the memory, and 
 assigns file operations. 
 
-```
+```C
  struct cdev *my_dev = cdev_alloc();
 
     if (my_dev != NULL)
@@ -1030,7 +1030,7 @@ assigns file operations.
 	my_dev->owner = THIS_MODULE;
 ```
 
-```
+```C
 cdev_init(struct cdev *cdev, const struct file_operations *fops);
 ```
 
@@ -1041,7 +1041,7 @@ In case someone tries to unload the module while it is working the assignation o
 
 ### Example of a character driver with file operations registration with `cdev_alloc`
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/kdev_t.h>
@@ -1130,7 +1130,7 @@ module_exit(test_hello_exit);
 
 To run the example:
 
-```
+```C
 sudo dmesg -WH & 
 make
 sudo insmod ./mychardevice.ko
@@ -1143,7 +1143,7 @@ sudo rmmod mychardevice
 
 ### Example of a character driver with file operations registration with `cdev_init`
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/kdev_t.h>
@@ -1228,7 +1228,7 @@ module_exit(test_hello_exit);
 ```
 To run the example:
 
-```
+```C
 sudo dmesg -WH & 
 make
 sudo insmod ./mychardevice.ko
@@ -1271,7 +1271,7 @@ File: drivers/char/mem.c has the implementation for this devices https://elixir.
 
 Char driver:
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/kdev_t.h>
@@ -1358,7 +1358,7 @@ module_exit(test_hello_exit);
 
 User program:
 
-```
+```C
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -1403,7 +1403,7 @@ int main()
 
 In case we have a user app like:
 
-```
+```C
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -1474,7 +1474,7 @@ An open file is different from a disk file, represented by `struct inode`.
 
 Important Fields
 
-```
+```C
 struct file {
 	//The file mode identifies the file as either readable or writable
 	fmode_t                 f_mode;
@@ -1511,7 +1511,7 @@ The `inode` structure is used by the kernel internally to represent files.
 
 An inode uniquely identifies a file in a file system.
 
-```
+```C
 struct inode {
 	
 	//mode
@@ -1534,7 +1534,7 @@ struct inode {
 
 Kernel developers have added two macros that can be used to obtain the major and minor numbers from an inode.
 
-```
+```C
 unsigned int iminor(struct inode *inode);
 
 unsigned int imajor(struct inode *inode);
@@ -1542,7 +1542,7 @@ unsigned int imajor(struct inode *inode);
 
 ### Example
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/kdev_t.h>
@@ -1671,7 +1671,7 @@ module_init(test_hello_init);
 module_exit(test_hello_exit);
 ```
 
-```
+```C
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -1726,7 +1726,7 @@ int main()
 }
 ```
 For checking the inode number of the char driver, check it with:
-```
+```C
 stat /dev/mydevice
 ```
 
@@ -1743,11 +1743,11 @@ Direct access of a user-space pointer can lead to
 
 Proper access to user-space data is done by calling the macros / functions below:
 
-```
+```C
 old linux version before 4.x:
 #include <asm/uaccess.h>
 ```
-```
+```C
 latest linux version:
 #include <linux/uaccess.h>
 
@@ -1782,7 +1782,7 @@ Returns: zero on success, non-zero to indicate a failure to copy some number of 
 
 Example:
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/kdev_t.h>
@@ -1876,7 +1876,7 @@ module_exit(test_hello_exit);
 ```
 
 The user app:
-```
+```C
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -1919,7 +1919,7 @@ int main()
 
 ### copy_to_user
 
-```
+```C
 unsigned long copy_to_user(void __user *to, const void *from, unsigned long n);
 ```
 Header File: <linux/uaccess.h>
@@ -1935,7 +1935,7 @@ Returns zero on success or non-zero to indicate the number of bytes that weren�
 
 Example:
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/kdev_t.h>
@@ -2036,7 +2036,7 @@ module_exit(test_hello_exit);
 ```
 
 The user app:
-```
+```C
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -2080,7 +2080,7 @@ int main()
 
 `put_user` function is used to write a simple variable from the kernel into user space
 
-```
+```C
 put_user (x, ptr);
 ```
  - x: Value to copy to user space. 
@@ -2098,9 +2098,7 @@ Coming back to our Linux kernel world, `jiffies` are a global variable which sto
 
 Let's write a character driver which on read returns the value of `jiffies`.
 
-
-
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/kdev_t.h>
@@ -2194,7 +2192,7 @@ module_exit(test_hello_exit);
 
 The user app:
 
-```
+```C
 #include <stdio.h>
 #include <fcntl.h> 
 #include <stdlib.h>
@@ -2242,7 +2240,7 @@ To read a simple variable from user space, you use the `get_user` function
 
 This function is used for simple types such as char and int, but larger data types like structures must use the copy_from_user function
 
-```
+```C
 get_user (x, ptr);
 ```
 
