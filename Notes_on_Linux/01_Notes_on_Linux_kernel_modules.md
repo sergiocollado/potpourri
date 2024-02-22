@@ -7,7 +7,7 @@ References:
  - The Linux Kernel Module Programming Guide: https://sysprog21.github.io/lkmpg/ 
  - Eudyptula challenge: https://github.com/agelastic/eudyptula
  - Kernel Play Guide: https://nskernel.gitbook.io/kernel-play-guide/accessing-the-non-exported-in-modules 
- - EEC3-4029 Operating Systems: http://gauss.ececs.uc.edu/Courses/c4029/videos.html 
+ - (404) EEC3-4029 Operating Systems: http://gauss.ececs.uc.edu/Courses/c4029/videos.html 
  - linux-kernel-labs: https://linux-kernel-labs.github.io/refs/heads/master/index.html
  - How to build modules: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/kbuild/modules.rst 
  - Linux kernel makefiles: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/kbuild/makefiles.rst 
