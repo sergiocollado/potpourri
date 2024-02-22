@@ -21,6 +21,7 @@ References:
  - The kernel API: https://www.kernel.org/doc/htmldocs/kernel-api/index.html 
  - reference: linux kernel API cheatsheet: https://www.cs.bham.ac.uk/~exr/lectures/systems/08_09/docs/kernelAPI/
  - https://www.youtube.com/watch?v=yO2orYVUYt0&list=PLsI2APLEA9Eq6z8zUlOJrqmc5KBwLTV4A&index=7
+ - Operating Systems: Three Easy Pieces - https://pages.cs.wisc.edu/~remzi/OSTEP/
 
 ## What is a device driver.
 
