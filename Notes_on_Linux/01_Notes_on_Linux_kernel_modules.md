@@ -23,6 +23,7 @@ References:
  - https://www.youtube.com/watch?v=yO2orYVUYt0&list=PLsI2APLEA9Eq6z8zUlOJrqmc5KBwLTV4A&index=7
  - Operating Systems: Three Easy Pieces - https://pages.cs.wisc.edu/~remzi/OSTEP/
  - Kernel challenges: https://github.com/agelastic/eudyptula
+ - Linux kernel memory model: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0124r6.html
 
 ## What is a device driver.
 
