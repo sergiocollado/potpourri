@@ -3,7 +3,7 @@
 references:
 - https://www.makelinux.net/ldd3/?u=chp-5-sect-5.shtml
 - https://0xax.gitbooks.io/linux-insides/content/SyncPrim/
-- EEC3-4029 Operating Systems: http://gauss.ececs.uc.edu/Courses/c4029/videos.html 
+- [404] EEC3-4029 Operating Systems: http://gauss.ececs.uc.edu/Courses/c4029/videos.html 
 - linux-kernel-labs: https://linux-kernel-labs.github.io/refs/heads/master/index.html 
 - https://lwn.net/Kernel/Index/#Locking_mechanisms <br>
 - https://github.com/shemminger/kernel-examples  -Locking and concurrency in Linux kernel examples 
