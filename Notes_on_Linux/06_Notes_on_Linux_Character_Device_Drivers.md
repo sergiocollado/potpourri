@@ -2383,5 +2383,492 @@ int main()
 }
 ```
 
+### Parsing a structure between kernel space and user space
+
+If for example we have the following structure, how we can pass it to a character driver?
+
+```c
+// mystruct.h
+#ifndef __MYSTRUCT_H
+#define __MYSTRUCT_H
+
+typedef struct abc
+{
+	int i;
+	char c;
+}abc;
+
+#endif
+```
+
+
+
+```c
+include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+#include "mystruct.h"
+
+int base_minor = 0;
+char *device_name = "mystruct";
+int count = 1;
+dev_t devicenumber;
+abc kernel_struct;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t count, loff_t *offset)
+{
+	int retval;
+
+	retval = copy_to_user(user_buffer, &kernel_struct, sizeof(kernel_struct));   // HERE! THE STRUCTURE IS MOVED FROM THE kernel_struct
+                                                                                     // STRUCTURE TO THE user_buffer
+
+	pr_info("%s: Copy to user returned:%d\n", __func__, retval);
+
+	pr_info("%s:int :%d\t char:%c \t Count:%lu \t offset:%llu\n", __func__,
+			kernel_struct.i, kernel_struct.c, count, *offset);
+        return 0;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t count, loff_t *offset)
+{
+	int retval;
+
+	retval = copy_from_user(&kernel_struct, user_buffer, count);               // HERE WE ARE COPYING FROM THE user_buffer
+                                                                                   // INTO the kernel_struct
+	pr_info("%s: Copy from user returned:%d\n", __func__, retval);
+	pr_info("%s:int:%d\t char:%c\t Count:%lu \t offset:%llu\n", __func__, kernel_struct.i,
+			kernel_struct.c, count, *offset);
+        return count;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, device_name);
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+the program in user space:
+
+```c
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include "mystruct.h"
+
+#define DEVICE_FILE "/dev/mystruct"
+
+int main()
+{
+	int fd;
+	int retval;
+	abc user_struct = {5, 'a'};
+
+	printf("Opening File:%s\n", DEVICE_FILE);
+	fd = open(DEVICE_FILE, O_RDWR);
+
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+
+	getchar();
+
+	retval = write(fd, &user_struct, sizeof(user_struct));
+	printf("Write retval:%d\n", retval);
+	getchar();
+
+	user_struct.i = 4;
+	user_struct.c = 'b';
+
+	retval = read(fd, &user_struct, sizeof(user_struct));
+	printf("Read retval:%d\t int:%d\tchar:%c\n", retval, user_struct.i, user_struct.c);
+	getchar();
+	
+	printf("Closing File\n");
+	close(fd);
+	getchar();
+
+	return 0;
+}
+```
+
+
+### It is possible to pass variables on the heap between kernel space and user space
+
+In the previous point it was showcased that it is possible to pass variables in the stack between user space and kernel space. 
+Can variables on the heap also be passed between user space and kernel space? Yes, it can be done without any issue.
+
+```c
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+
+int base_minor = 0;
+char *device_name = "mychardev";
+int count = 1;
+dev_t devicenumber;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t count, loff_t *offset)
+{
+	pr_info("%s:Count:%lu \t offset:%llu\n", __func__,
+			count, *offset);
+        return 0;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t count, loff_t *offset)
+{
+	char kernel_buffer[100] = {0};
+	int retval;
+
+	pr_info("%s: Kernel Buffer:%p\t User Buffer:%p\n", __func__, kernel_buffer, user_buffer);
+	retval = copy_from_user(kernel_buffer, user_buffer, count);                              // HERE THE VARIABLE IS BEING COPIED FROM THE USER
+	pr_info("%s: Copy from user returned:%d\n", __func__, retval);
+	pr_info("%s:Kernel Buffer:%s\t Count:%lu \t offset:%llu\n", __func__, kernel_buffer,
+			count, *offset);
+        return count;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, "mydevice");
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+
+```c
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+#define DEVICE_FILE "/dev/mydevice"
+
+int main()
+{
+	int fd;
+	int retval;
+	char *buffer = malloc(sizeof(char)*10);     // THIS IS THE VARIABLE WE WANT TO MOVE AROUND
+
+	printf("Opening File:%s\n", DEVICE_FILE);
+	fd = open(DEVICE_FILE, O_RDWR);
+
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+
+	getchar();
+
+	strcpy(buffer, "hello");
+
+	retval = write(fd, buffer, strlen(buffer));
+	printf("Write retval:%d\n", retval);
+	getchar();
+
+	printf("Closing File\n");
+	close(fd);
+	getchar();
+
+	return 0;
+}
+```
+
+### It is possible to pass a structure with one member on the stack and other member on the heap?
+
+For example, the structure: 
+
+```c
+#ifndef __MYSTRUCT_H
+#define __MYSTRUCT_H
+
+typedef struct abc
+{
+	int i;
+	char *str;
+}abc;
+
+#endif
+```
+
+```c
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+#include "mystruct.h"
+
+int base_minor = 0;
+char *device_name = "mystruct";
+int count = 1;
+dev_t devicenumber;
+abc kernel_struct;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t count, loff_t *offset)
+{
+	int retval;
+
+	retval = copy_to_user(user_buffer, &kernel_struct, sizeof(kernel_struct));
+
+	pr_info("%s: Copy to user returned:%d\n", __func__, retval);
+
+	pr_info("%s:int :%d\t str:%s \t Count:%lu \t offset:%llu\n", __func__,
+			kernel_struct.i, kernel_struct.str, count, *offset);
+        return 0;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t count, loff_t *offset)
+{
+	int retval;
+
+	retval = copy_from_user(&kernel_struct, user_buffer, count);
+	pr_info("%s: Copy from user returned:%d\n", __func__, retval);
+	pr_info("%s:int:%d\t str:%s\t Count:%lu \t offset:%llu\n", __func__, kernel_struct.i,
+			kernel_struct.str, count, *offset);
+        return count;
+}
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, device_name);
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+```c
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include "mystruct.h"
+
+#define DEVICE_FILE	"/dev/mystruct"
+
+int main()
+{
+	int fd;
+	int retval;
+	abc user_struct;
+
+	user_struct.str = malloc(sizeof(char)*10);
+	strcpy(user_struct.str, "hello");
+	user_struct.i = 10;
+
+	printf("Opening File:%s\n", DEVICE_FILE);
+	fd = open(DEVICE_FILE, O_RDWR);
+
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+
+	getchar();
+
+	retval = write(fd, &user_struct, sizeof(user_struct));
+	printf("Write retval:%d\n", retval);
+	getchar();
+
+	
+	printf("Closing File\n");
+	close(fd);
+	getchar();
+
+	return 0;
+}
+```
+
+This will not work, the module will freeze.
+
+### Printing Device Numbers
+
+Kernel provides a couple of utility macros to print device numbers.
+
+```
+Header File: <linux/kdev_t.h>
+
+int print_dev_t(char *buffer, dev_t dev);
+
+char *format_dev_t(char *buffer, dev_t dev);
+```
+
+Both macros encode the device number into the given buffer; the only difference is `print_dev_t` returns the number of characters printed, while `format_dev_t` returns buffer;
+
+The buffer size should be atleast 20 bytes.
+
+
+
+
+
+
 
 
