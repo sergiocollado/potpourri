@@ -22,7 +22,9 @@ Languaje reference:
   - https://blog.logrocket.com/macros-in-rust-a-tutorial-with-examples/#whatarerustmacros
   - macros_by_example: https://doc.rust-lang.org/reference/macros-by-example.html
   - https://google.github.io/comprehensive-rust/welcome-day-4.html
-  - https://github.com/ferrous-systems/teaching-material/tree/main/assignments
+  - Ferrous training: 
+      - https://github.com/ferrous-systems/teaching-material/tree/main/assignments
+      - https://github.com/ferrous-systems/rust-training
   - effective rust: https://www.lurklurk.org/effective-rust/
   - awesome rust - curated list of resources: https://github.com/lemunozm/awesome-rust
   - https://docs.rust-embedded.org/book/intro/index.html
