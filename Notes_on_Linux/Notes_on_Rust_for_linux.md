@@ -151,7 +151,7 @@ The kernel is inherently multi-threaded: kernel resources can be accessed from m
     - https://y86-dev.github.io/blog/return-value-optimization/placement-by-return.html
     - https://github.com/rust-lang/rfcs/pull/3318
     - https://kangrejos.com/Pinning%20in%20Rust.pdf
-    - The perils of pinning: https://lwn.net/Articles/907876/
+    - rust invariants: https://rustmagazine.org/issue-4/a-brief-discussion-on-invariants-in-rust/
 - https://lwn.net/SubscriberLink/910762/e103310fccf871d3/
 - https://blog.hedwing.dev/linux-kernel/intro_to_linux
 - https://codeberg.org/vincenzopalazzo/linux-kernel-drivers
