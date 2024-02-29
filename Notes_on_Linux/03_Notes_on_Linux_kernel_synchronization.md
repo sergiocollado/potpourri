@@ -1580,6 +1580,8 @@ reference: https://docs.kernel.org/locking/mutex-design.html
  
  
  ### Mutex implementation
+
+ - reference: https://www.kernel.org/doc/html/latest/locking/mutex-design.html
  
  Mutexes are represented by `struct mutex`, defined in `include/linux/mutex.h` and implemented in `kernel/locking/mutex.c`. These locks use an atomic variable (->owner) to keep track of the lock state during its lifetime. Field owner actually contains `struct task_struct *` to the current lock owner and it is therefore `NULL` if not currently owned.
 
