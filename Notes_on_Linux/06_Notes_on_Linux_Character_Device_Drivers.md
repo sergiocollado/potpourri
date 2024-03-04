@@ -3106,14 +3106,748 @@ If the string is too long, returns a value greater than n.
 
 As stated on the function explanation, better use the function `strncpy_from_user()`.
 
-> Use "strncpy_from_user()" instead to get a stable copy
- * of the string.
+> Use "strncpy_from_user()" instead to get a stable copy of the string.
+
+
+### How to pass one variable with members on the stack and on the heap.
+
+
+```C
+#ifndef __MYSTRUCT_H
+#define __MYSTRUCT_H
+
+typedef struct abc
+{
+	int i;
+	char *str;
+}abc;
+
+#endif
+```
+
+```C
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+#include "mystruct.h"
+
+int base_minor = 0;
+char *device_name = "mystruct";
+int count = 1;
+dev_t devicenumber;
+abc kernel_struct;
+char kernel_buffer[100];
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t count, loff_t *offset)
+{
+	int retval;
+
+        // COPY_TO_USER HAS TO BE CALLED TWICE!!!
+
+	retval = copy_to_user(&((abc *)user_buffer)->i, &kernel_struct.i, sizeof(kernel_struct.i));
+	pr_info("%s: Copy to user returned:%d\n", __func__, retval);
+
+	retval = copy_to_user(((abc *)user_buffer)->str, kernel_buffer, strlen(kernel_buffer)+1);
+	pr_info("%s: Copy to user returned:%d\n", __func__, retval);
 
 
 
+	pr_info("%s:int :%d\t str:%s \t Count:%lu \t offset:%llu\n", __func__,
+			kernel_struct.i, kernel_struct.str, count, *offset);
+        return 0;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t count, loff_t *offset)
+{
+	int retval;
+	int string_length = 0;
+
+        // COPY_FROM_USER HAS TO BE CALLED TWICE!!!
+	// FIRST IS COPIED THE STACK
+ 	// SECOND IS COPIED THE HEAP
+
+	retval = copy_from_user(&kernel_struct, user_buffer, count);
+	pr_info("%s: Copy from user returned:%d\n", __func__, retval);
+
+	string_length = strnlen_user(kernel_struct.str, 100);
+	retval = copy_from_user(&kernel_buffer, kernel_struct.str, string_length);
+
+	pr_info("%s: Length:%d\n", __func__, string_length);
+	pr_info("%s:int:%d\t str:%s\t Count:%lu \t offset:%llu\n", __func__, kernel_struct.i,
+			kernel_buffer, count, *offset);
+        return count;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, device_name);
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+```C
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include "mystruct.h"
+
+#define DEVICE_FILE	"/dev/mystruct"
+
+int main()
+{
+	int fd;
+	int retval;
+	abc user_struct;
+
+	user_struct.str = malloc(sizeof(char)*10);
+	strcpy(user_struct.str, "hello");
+	user_struct.i = 10;
+
+	printf("Opening File:%s\n", DEVICE_FILE);
+	fd = open(DEVICE_FILE, O_RDWR);
+
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+
+	getchar();
 
 
+	retval = write(fd, &user_struct, sizeof(user_struct));
+	printf("Write retval:%d\n", retval);
+	getchar();
+
+	memset(&user_struct, 0, sizeof(user_struct));
+
+	user_struct.str = malloc(sizeof(char)*10);
+	retval = read(fd, &user_struct, sizeof(user_struct));
+	printf("Write retval:%d\n", retval);
+	printf("Int:%d\t Str:%s\n", user_struct.i, user_struct.str);
+	getchar();
+	
+	printf("Closing File\n");
+	close(fd);
+	getchar();
+
+	return 0;
+}
+```
+
+### The problem reading character by character
+
+In the character device driver:
+
+```C
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+
+int base_minor = 0;
+char *device_name = "msg";
+int count = 1;
+dev_t devicenumber;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+#define MAX_SIZE        1024
+char kernel_buffer[MAX_SIZE];
+
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t count, loff_t *offset)
+{
+	int retval;
+
+	pr_info("%s\n", __func__);
+	retval = copy_to_user(user_buffer, kernel_buffer, count);
+	pr_info("%s: Copy to user returned:%d\n", __func__, retval);
+
+        return count;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t count, loff_t *offset)
+{
+	int retval;
+
+	pr_info("%s\n", __func__);
+	retval = copy_from_user(kernel_buffer, user_buffer, count);
+	pr_info("%s: Copy from user returned:%d\n", __func__, retval);
+	pr_info("%s: kernel_buffer:%s\n", __func__, kernel_buffer);
+        return count;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, device_name);
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+there would be any issue if it was readed character by character?
+
+For example: 
+
+```c
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define DEVICE_FILE "/dev/msg"
+
+int main()
+{
+	int fd;
+	int retval;
+	char buffer[10];
+	int i;
+
+	printf("Opening File:%s\n", DEVICE_FILE);
+	fd = open(DEVICE_FILE, O_RDWR);
+
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+
+	getchar();
+
+	retval = write(fd, "hello", 5);
+	printf("Write retval:%d\n", retval);
+	getchar();
+
+	for (i = 0; i < 10; i++) {
+		retval = read(fd, buffer, 1);       // READING BYTE BY BYTE!
+		printf("Read retval:%d\n", retval);
+		printf("Read buffer:%c\n", buffer[0]);
+		getchar();
+	}
+	
+	printf("Closing File\n");
+	close(fd);
+	getchar();
+
+	return 0;
+}
+```
+
+Every time, the returned value is the first one :/
 
 
+To fix this, the `*offp` should be updated after each data transfer to represent the current file position after
+successfully completion of the system call. 
+
+The code has to be updated to:
+
+```C
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+
+int base_minor = 0;
+char *device_name = "msg";
+int count = 1;
+dev_t devicenumber;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+#define MAX_SIZE        1024
+char kernel_buffer[MAX_SIZE];
+int buffer_index;
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	file->f_pos = 0;
+	buffer_index = 0;
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t read_count, loff_t *offset)
+{
+	int retval;
+
+	pr_info("%s read offset:%lld\n", __func__, *offset);
+	if (buffer_index + read_count > MAX_SIZE) {
+		pr_err("%s: buffer_index:%d\t read_count:%lu\t Max Size:%d\n",__func__,
+				buffer_index, read_count, MAX_SIZE);
+		return -ENOSPC;
+	}
+
+	retval = copy_to_user(user_buffer, kernel_buffer+*offset, read_count);
+	pr_info("%s: Copy to user returned:%d\n", __func__, retval);
+	//update file offset                                                        // UPDATE FILE OFFSET
+	*offset += read_count;
+
+        return read_count;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t write_count, loff_t *offset)
+{
+	int retval;
+
+	pr_info("%s write offset:%lld\n", __func__, *offset);
+	if (buffer_index + write_count > MAX_SIZE) {
+		pr_err("%s: buffer_index:%d\t write_count:%lu\t Max Size:%d\n",__func__,
+				buffer_index, write_count, MAX_SIZE);
+		return -ENOSPC;
+	}
+
+	retval = copy_from_user(kernel_buffer+buffer_index, user_buffer, write_count);
+	pr_info("%s: Copy from user returned:%d\n", __func__, retval);
+	pr_info("%s: kernel_buffer:%s\n", __func__, kernel_buffer);
+
+	buffer_index += write_count;
+	//update file offset                                                       // UPDATE FILE OFFSET
+	*offset += write_count;
+        return write_count;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, device_name);
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+We can check with the program:
+
+```C
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define DEVICE_FILE "/dev/msg"
+
+int main()
+{
+	int fd;
+	int retval;
+	char buffer[10];
+	int i;
+
+	printf("Opening File:%s\n", DEVICE_FILE);
+	fd = open(DEVICE_FILE, O_RDWR);
+
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+
+	getchar();
+
+	retval = write(fd, "hello", 5);
+	printf("Write retval:%d\n", retval);
+	getchar();
+
+	retval = write(fd, "world", 5);
+	printf("Write retval:%d\n", retval);
+	getchar();
+	
+	printf("Closing File\n");
+	close(fd);
+	getchar();
+
+	return 0;
+}
+```
+
+And the program:
+
+```C
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define DEVICE_FILE	"/dev/msg"
+
+int main()
+{
+	int fd;
+	int retval;
+	char buffer[10];
+	int i;
+
+	printf("Opening File:%s\n", DEVICE_FILE);
+	fd = open(DEVICE_FILE, O_RDWR);
+
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+
+	getchar();
+
+	retval = read(fd, buffer, 5);
+	buffer[retval] = '\0';
+	printf("read retval:%d\n", retval);
+	printf("read buffer:%s\n", buffer);
+	getchar();
+
+	retval = read(fd, buffer, 5);
+	buffer[retval] = '\0';
+	printf("read retval:%d\n", retval);
+	printf("read buffer:%s\n", buffer);
+	getchar();
+	
+	printf("Closing File\n");
+	close(fd);
+	getchar();
+
+	return 0;
+}
+```
+
+There is still a problem: to read/write less of the available
+
+For this: 
+
+```C
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+
+int base_minor = 0;
+char *device_name = "msg";
+int count = 1;
+dev_t devicenumber;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+#define MAX_SIZE        1024
+char kernel_buffer[MAX_SIZE];
+int buffer_index;
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	file->f_pos = 0;
+	buffer_index = 0;
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t read_count, loff_t *offset)
+{
+	// THIS VARIABLES ARE ADDED 
+	int bytes_read;
+	int available_space; // MAXIMUM SIZE - OFFSET
+	int bytes_to_read;
+
+	pr_info("%s read offset:%lld\n", __func__, *offset);
+	 available_space = MAX_SIZE - *(offset);
+
+	if (read_count < available_space)
+		bytes_to_read = read_count;
+	else
+		bytes_to_read = available_space;
+
+	if (bytes_to_read == 0) {
+		pr_err("%s: No available space in the buffer for reading\n",
+				__func__);
+		return -ENOSPC;
+	}
+
+	if (buffer_index > *offset)
+                bytes_to_read = buffer_index - *offset;
+        else
+                return 0;
+
+
+	bytes_read = bytes_to_read - copy_to_user(user_buffer, kernel_buffer+*offset, bytes_to_read);
+	pr_info("%s: Copy to user returned:%d\n", __func__, bytes_to_read);
+
+	//update file offset
+	*offset += bytes_read;
+
+        return bytes_read;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t write_count, loff_t *offset)
+{
+
+	// THIS VARIABLES ARE ADDED 
+	int bytes_written;
+	int available_space; // MAXIMUM SIZE - OFFSET
+	int bytes_to_write;
+
+	pr_info("%s write offset:%lld\n", __func__, *offset);
+	available_space = MAX_SIZE - *(offset);
+
+	if (write_count < available_space)
+		bytes_to_write = write_count;
+	else
+		bytes_to_write = available_space;
+
+	if (bytes_to_write == 0) {
+		pr_err("%s: No available space in the buffer for writing\n",
+				__func__);
+		return -ENOSPC;
+	}
+
+	bytes_written = bytes_to_write - copy_from_user(kernel_buffer+*offset,  user_buffer, bytes_to_write);
+	pr_info("%s: Bytes written:%d\n", __func__, bytes_written);
+	pr_info("%s: kernel_buffer:%s\n", __func__, kernel_buffer);
+
+	//update file offset
+	*offset += bytes_written;
+	buffer_index += bytes_written;
+        return bytes_written;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, device_name);
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+We can check the behaviour with the program:
+
+```C
+#include <stdio.h>
+#include <fcntl.h> 
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+    char buffer[50];	
+	int fd;
+	int length;
+	int i = 0;
+
+	fd = open("/dev/msg", O_RDWR);
+	if (fd < 0) {
+		perror("fd failed");
+		exit(2);
+	}
+	printf("write : %d\n", write(fd, "hello world", sizeof("hello world")));	
+	printf("write : %d\n", write(fd, "bye world", sizeof("bye world")));
+
+	//set the file position to 0
+	lseek(fd, 0, SEEK_SET);
+	perror("lseek");
+	memset(buffer, 0, sizeof(buffer));
+	length = read(fd, buffer, sizeof(buffer));
+	buffer[length] = '\0';
+	printf("Read:%s\t length:%d\n", buffer, length);
+
+	for (i = 0 ; i < length; i++)
+		printf("buffer[%d]:\t%c\n", i, buffer[i]);
+	memset(buffer, 0, sizeof(buffer));
+	length = read(fd, buffer, sizeof(buffer));
+	buffer[length] = '\0';
+	printf("Read:%s\tlength:%d\n", buffer, length);
+	close(fd);
+}
+```
+
+This stills fails because `lseek()` is not implemented yet.
 
 
