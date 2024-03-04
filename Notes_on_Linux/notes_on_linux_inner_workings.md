@@ -2688,6 +2688,26 @@ A basic principle of the kernel is that in an interrupt or atomic context, the k
 - Linux Networking - eBPF, XDP, DPDK, VPP - What does all that mean? (by Andree Toonk) : https://youtu.be/hO2tlxURXJ0
 - https://github.com/sched-ext/scx sched_ext is a Linux kernel feature which enables implementing kernel thread schedulers in BPF and dynamically loading them. This repository contains various scheduler implementations and support utilities.
 
+### DMR 
+
+The Direct Rendering Manager (DRM) is a subsystem of the Linux kernel responsible for interfacing with GPUs of modern video cards. DRM exposes an API that user-space programs can use to send commands and data to the GPU and perform operations such as configuring the mode setting of the display. DRM was first developed as the kernel-space component of the X Server Direct Rendering Infrastructure,[1] but since then it has been used by other graphic stack alternatives such as Wayland and standalone applications and libraries such as SDL2 and Kodi.
+
+User-space programs can use the DRM API to command the GPU to do hardware-accelerated 3D rendering and video decoding, as well as GPGPU computing. 
+
+References:
+ - https://en.wikipedia.org/wiki/Direct_Rendering_Manager
+ - https://en.wikipedia.org/wiki/Linux_framebuffer
+ - https://www.kernel.org/doc/Documentation/fb/framebuffer.txt
+ - https://en.wikipedia.org/wiki/General-purpose_computing_on_graphics_processing_units
+ - https://bootlin.com/pub/conferences/2017/kr/ripard-drm/ripard-drm.pdf
+ - https://github.com/ascent12/drm_doc
+ - https://www.uninformativ.de/blog/postings/2020-05-30/0/POSTING-en.html
+ - https://gist.github.com/uobikiemukot/c2be4d7515e977fd9e85
+ - http://liujunming.top/2019/10/22/libdrm-samples/
+ - https://youtu.be/LbDOCJcDRoo
+ - https://www.youtube.com/watch?v=toSMe3g9emE
+
+
 ## And other references for elaborate later ...
 
 XArray: 
