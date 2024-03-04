@@ -3102,7 +3102,12 @@ Get the size of a NUL-terminated string in user space.
 
 Returns the size of the string INCLUDING the terminating NUL.
 
- If the string is too long, returns a value greater than n.
+If the string is too long, returns a value greater than n.
+
+As stated on the function explanation, better use the function `strncpy_from_user()`.
+
+> Use "strncpy_from_user()" instead to get a stable copy
+ * of the string.
 
 
 
