@@ -2864,7 +2864,39 @@ char *format_dev_t(char *buffer, dev_t dev);
 
 Both macros encode the device number into the given buffer; the only difference is `print_dev_t` returns the number of characters printed, while `format_dev_t` returns buffer;
 
-The buffer size should be atleast 20 bytes.
+The buffer size should be at least 20 bytes, which is the size of the device number.
+
+Example:
+
+```C
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+
+MODULE_LICENSE("GPL");
+static int test_hello_init(void)
+{
+	dev_t devicenumber;
+	char buffer[20];
+
+	devicenumber = MKDEV(120, 30);
+	printk("Device Number :%s\n", format_dev_t(buffer, devicenumber));
+	buffer[0] = '\0';
+	printk("print_dev_t returned:%d\t Device Number:%s\n", print_dev_t(buffer, devicenumber), buffer);
+
+	return -1;  // this will make the init to fail!
+}
+
+static void test_hello_exit(void)
+{ }
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+### String functions in the kernel
+
+
 
 
 
