@@ -1,3 +1,5 @@
+" https://www.vim.org/
+" check more configs here: https://vimawesome.com/
 
 " ref: https://gist.github.com/sushantmane/ab6901696bf93f790ef3
 set nu
