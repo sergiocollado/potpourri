@@ -379,11 +379,14 @@ openssl x50 -in mycert -text noout
 
 ### Certificate extensions
 
+- reference: https://www.ibm.com/docs/en/external-auth-server/2.4.3?topic=securing-x509-extensions
+- reference: https://access.redhat.com/documentation/en-us/red_hat_certificate_system/9/html/administration_guide/standard_x.509_v3_certificate_extensions
+
 Remember extensions only exist on x509 version 3. 
 
 Extensions are optional fields that add features and restrictions. 
 
-#### Key Usage & Extended Key usages
+#### Extensions: Key Usage & Extended Key usages
 
 Set usages/limits for excription keys. 
 For example: 
@@ -396,8 +399,63 @@ The Key usage extension, tipically is limited by purpouses.
 
 The Extended Key Usage is limiting by protocol and/or role.
 
-
+The reacionale of this usages limitation, is to limit the domain of usage of certificate and keys, so if that key/cert is compromised, this only compromises certaing usages. 
    
-
+### Extensions: Basic constrains 
   
+The basic constrains extension will determine wether the subject of the certificate is certificate authority or an end-entity (a server certificate as X.com). 
+
+The rationale behind this constrain is that CA certificates can be issuers to other certificates, whereas end-entity certificates **cannot** be issuers to others certificates. 
+
+### Name constrain extension
+
+The Name constrain extension limits the signing to a specific domain. Tipically this is used by corporate CA. This way a corporate certificate cannot sign any domain out of the corportation control. 
+
+### Key identifier extensions
+
+This extensions include: 
+ - Unique identifiers for Public Key
+
+There are 2 extensions:
+ - Subject key identifier
+ - Authority key identifier - the issuing entity.
+
+These extensions are used for: 
+ - Track keys across certificates
+   - Certificates have a validity date, so that means that certificates expire. When the cert expires, a new cert is requested from CA, that new certificate will have a new unique serial number, but there is nothing mandating that the new certificate have a new pair of asymmetric keys. You can continue to use the same set of asymmetric keys for the renewed certificate. With the subject key identifier extension, is possible to track a particular key across many iterations of the certificate
+   - Other user case, is to identify which specific key signed a given certificate. For example, many CA have multiple key-pairs, and rotate through the keys when issuing certificates. The Authority key identifier, allows to identify those keys used to sign a certificate.
+  
+ In a self sign certificate the Subject key identifier is the same as the authority key identifier. 
+
+### Subject alternative name extension
+
+This extension allows a single certificate to protect several domains. In a certificate inside the subject field, is the common name (CN) - (the common name what the brownser is going to compare with the address bar, to ensure the correctness of the certificate). So until wild card where added to the certificate, there was one certificate per domain. The wild card certs allows multiple subdomains for a single domain. 
+
+The Subject alternative name, or SAN, allows to protect multiple domains. 
+
+### CLR distribution point extension
+
+CLR stands for Certificate Revocation List. It is just a list with all the revoked certificates by the CA. 
+
+This list is maintained by the CA. The CLR extension is providing the URI to that list. 
+
+### Authority Information Access extension
+
+This extension provides the place for CA to provide the information to whoever may be using the certificates that they issued. 
+
+This extension provides two fields: 
+ - Issuer's certificate
+ - OCSP location
+
+Issuer's certificate: a link to get the issuer's certifite. That is useful, because to verify a signature it is needed CA public key, so in case the user doens't have it, this field can be used to retrieve it. 
+
+OCSP location: This field indicate the location for the OCSP responder. OCSP stands for Online Certificates Status Protocol, which is a more efficient way to check revocated certificates than the CRL list. 
+
+#### CT extension
+
+Stands for Certificate Transparency extension. 
+
+     
+
+
 
