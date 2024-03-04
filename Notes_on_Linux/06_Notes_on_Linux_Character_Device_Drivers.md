@@ -2896,6 +2896,213 @@ module_exit(test_hello_exit);
 
 ### String functions in the kernel
 
+There are many functions in the kernel related to strings and those funtions don't depend on the standard library: https://docs.kernel.org/core-api/kernel-api.html#c.strlen
+
+Example:
+
+```C
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+
+int base_minor = 0;
+char *device_name = "mychardev";
+int count = 1;
+dev_t devicenumber;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t count, loff_t *offset)
+{
+	char kernel_buffer[10] = "kernel";
+	int retval;
+
+	retval = copy_to_user(user_buffer, kernel_buffer, 7);
+	pr_info("%s: strlen:%lu\n", __func__, strlen(kernel_buffer));    // HERE THE STRLEN IS USED TO CHECK THE LEN OF THE KERNEL BUFFER
+	pr_info("%s: Copy to user returned:%d\n", __func__, retval);
+	pr_info("%s:Kernel buffer:%s \t Count:%lu \t offset:%llu\n", __func__,
+                        kernel_buffer, count, *offset);
+        return 0;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t count, loff_t *offset)
+{
+	char kernel_buffer[100] = {0};
+	int retval;
+
+	pr_info("%s: Kernel Buffer:%p\t User Buffer:%p\n", __func__, kernel_buffer, user_buffer);
+	pr_info("%s: strlen user buffer:%lu\n", __func__, strlen(user_buffer));             // HERE STRLEN() IS USED TO CHECK THE LEN OF THE USER BUFFER
+	retval = copy_from_user(kernel_buffer, user_buffer, count);
+	pr_info("%s: Copy from user returned:%d\n", __func__, retval);
+	pr_info("%s:Kernel Buffer:%s\t Count:%lu \t offset:%llu\n", __func__, kernel_buffer,
+			count, *offset);
+        return count;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, "mydevice");
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+And the program:
+
+```C
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define DEVICE_FILE	"/dev/mydevice"
+
+int main()
+{
+	int fd;
+	int retval;
+	char buffer[10];
+
+	printf("Opening File:%s\n", DEVICE_FILE);
+	fd = open(DEVICE_FILE, O_RDWR);
+
+	if (fd < 0) {
+		perror("Open Failed");
+		exit(1);
+	}
+
+	getchar();
+
+	retval = read(fd, buffer, 10);
+	printf("Read retval:%d\n", retval);
+	getchar();
+
+	retval = write(fd, "hello", 5);
+	printf("Write retval:%d\n", retval);
+	getchar();
+
+	
+	printf("Closing File\n");
+	close(fd);
+	getchar();
+
+	return 0;
+}
+```
+
+### strnlen_user
+
+Get the size of a string in user space.
+
+```
+long strnlen_user (const char __user *s, long  	n);
+
+s 	The string to measure.
+
+n	The maximum valid length
+```
+
+reference: https://elixir.bootlin.com/linux/v4.4/source/lib/strnlen_user.c#L104
+
+```C
+/**
+ * strnlen_user: - Get the size of a user string INCLUDING final NUL.
+ * @str: The string to measure.
+ * @count: Maximum count (including NUL character)
+ *
+ * Context: User context only. This function may sleep if pagefaults are
+ *          enabled.
+ *
+ * Get the size of a NUL-terminated string in user space.
+ *
+ * Returns the size of the string INCLUDING the terminating NUL.
+ * If the string is too long, returns a number larger than @count. User
+ * has to check the return value against "> count".
+ * On exception (or invalid count), returns 0.
+ *
+ * NOTE! You should basically never use this function. There is
+ * almost never any valid case for using the length of a user space
+ * string, since the string can be changed at any time by other
+ * threads. Use "strncpy_from_user()" instead to get a stable copy
+ * of the string.
+ */
+long strnlen_user(const char __user *str, long count)
+{
+	unsigned long max_addr, src_addr;
+
+	if (unlikely(count <= 0))
+		return 0;
+
+	max_addr = user_addr_max();
+	src_addr = (unsigned long)str;
+	if (likely(src_addr < max_addr)) {
+		unsigned long max = max_addr - src_addr;
+		return do_strnlen_user(str, count, max);
+	}
+	return 0;
+}
+EXPORT_SYMBOL(strnlen_user);
+```
+
+
+Get the size of a NUL-terminated string in user space.
+
+Returns the size of the string INCLUDING the terminating NUL.
+
+ If the string is too long, returns a value greater than n.
 
 
 
