@@ -2063,6 +2063,11 @@ reference: a guided tour to the preempt castle: https://linutronix.de/videos/202
 ## Linux for Real time
 
 - reference: An introduction to real-time Linux : https://youtu.be/-wAo6bWh4jM
+- reference: Building Hard Real-Time Linux Systems with Xenomai - Jan Kiszka, Siemens https://www.youtube.com/watch?v=ErZtYnDXhHk
+- reference: Xenomai & Real-Time Linux: Driving OSS Projects for Siemens: https://youtu.be/G7PZF92aqkw
+- reference: what aobut preemt-rt: https://youtu.be/KOYDloDBEds
+- reference: preempt_rt list: https://youtube.com/playlist?list=PLmDQKQxAsgbak5aWa6WDKPvZeLcRKTUDE&si=tK6VlMa4mqmJ7BoO
+- reference: preempt_rt pi: https://youtu.be/ntu55fiU18w 
 
 For linux is possible to use extensions or patches for real-time
 
@@ -2070,11 +2075,12 @@ Linux uses to run under a fair scheduling system
 - CFS completely fair schedule
 - CFQ completely fair queue for I/O
 
-the fair scheduling in linux is based on a round robin scheme, with some improvements as priority decay and other things, but you can even use a total round robin with SCHED_RR (round-robin)
+The fair scheduling in linux is based on a round robin scheme, with some improvements as priority decay and other things, but you can even use a total round robin with SCHED_RR (round-robin)
 
 But for real-time systems fair schedulers are not appropiate.
 
 So for linux, we have the POSIX RT extensions. 
+
 In multi-core systems, as we want determinism and simplicity, AMP (Asymetric Multi-processing) is preferred to SMP (Symetric Multi-processing), because SMP tends to load bance the cores, and this is not optimal for determinims. 
 
 For linux real-time systems we would preffer AMP policy, because each work/task, can be assigned to each corresponding core. For this we can use thread affinity and by-pass SMP in linux, and emulate then an AMP affinity. AMP makes easier to model the behavior of the system, and then its predicitility. 
@@ -2083,19 +2089,14 @@ For linux real-time, the preferredy scheduling policy is SCHED_FIFO, because it 
 
 In linux a NPLT thread stands as the structure of a service. https://man7.org/linux/man-pages/man7/nptl.7.htm
 
-https://man7.org/linux/man-pages/man7/pthreads.7.html
-
-https://en.wikipedia.org/wiki/Native_POSIX_Thread_Library
-
-https://man7.org/linux/man-pages/man7/sched.7.html
-
-https://www.kernel.org/doc/html/latest/scheduler/index.html
-
-https://man7.org/linux/man-pages/man7/pthreads.7.html
-
-https://man7.org/linux/man-pages/man7/posixoptions.7.html
-
-https://man7.org/linux/man-pages/man7/standards.7.html
+references:
+ - https://man7.org/linux/man-pages/man7/pthreads.7.html
+ - https://en.wikipedia.org/wiki/Native_POSIX_Thread_Library
+ - https://man7.org/linux/man-pages/man7/sched.7.html
+ - https://www.kernel.org/doc/html/latest/scheduler/index.html
+ - https://man7.org/linux/man-pages/man7/pthreads.7.html
+ - https://man7.org/linux/man-pages/man7/posixoptions.7.html
+ - https://man7.org/linux/man-pages/man7/standards.7.html
 
 
 pthreads in user space are mapped into kernel tasks
@@ -2111,7 +2112,7 @@ RTOS on linux kernel dispacher runs:
     - the return of an ISR
 
 
-Reference: Scheduling Algorithms for Multiprogramming in a Hard-Real-Time Environment https://dl.acm.org/doi/10.1145/321738.321743
+ - Reference: Scheduling Algorithms for Multiprogramming in a Hard-Real-Time Environment https://dl.acm.org/doi/10.1145/321738.321743
 
 
 NPTL provides a framework for:
