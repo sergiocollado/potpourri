@@ -1,5 +1,6 @@
 " https://www.vim.org/
 " check more configs here: https://vimawesome.com/
+" learn vim for the last time: https://danielmiessler.com/p/vim/
 
 " ref: https://gist.github.com/sushantmane/ab6901696bf93f790ef3
 set nu
