@@ -17,6 +17,7 @@ References:
  - Linux device drivers: https://embetronicx.com/tutorials/linux/device-drivers/linux-device-driver-part-1-introduction/
  - Linux device drivers tutorial: https://www.youtube.com/watch?v=BRVGchs9UUQ&list=PLArwqFvBIlwHq8WMKgsXSQdqIvymrEz9k&index=2
  - Linux VFS: https://www.kernel.org/doc/html/latest/filesystems/#core-vfs-documentation
+ - Understanding the structure of a Linux device driver: https://youtu.be/pIUTaMKq0Xc
 
 
 ## Some interesting directories
