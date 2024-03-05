@@ -4687,7 +4687,7 @@ static inline loff_t file_pos_read(struct file *file)
 ```
 This position extracts the offset within the file, and calls `vfs_write`, and then the return value of write call is updated with offset
 
-Step 3: In vfs_write,
+Step 3: In `vfs_write`,
 
 	 - It checks whether the file was opened in read-only mode
 	 - Checks whether this file has write method
