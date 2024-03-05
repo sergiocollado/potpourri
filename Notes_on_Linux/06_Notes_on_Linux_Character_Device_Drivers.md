@@ -20,7 +20,7 @@ References:
  - Understanding the structure of a Linux device driver: https://youtu.be/pIUTaMKq0Xc
 
 
-## Some interesting directories
+## Some interesting directories related to character drivers
 
 ### /proc/devices
 
@@ -4700,3 +4700,35 @@ Step 4: Finally in `__vfs_write`, it calls our write function present in the `fo
 So, this is the way, even if we pass only three arguments from user space, kernel reads the offset from the file and pass it to our write function defined in our driver.
 
 
+## ioctl (Input output Control)
+
+IOCTL is referred as Input and Output Control
+
+Device files are supposed to represent physical devices.
+
+Most physical devices are used for output as well as input. We have write and read system calls for input and output.
+
+This is not always enough.
+
+The major use of this is in case of handling some specific operations of a device for which the kernel does not have a system call by default.
+
+Examples:
+1. Ejecting the media from a “cd” drive,
+2. change the Baud Rate of Serial port
+3. Adjust the Volume
+4. Reading or Writing device registers
+
+
+The system call `ioctl()` is provided for device-specific custom commands (such as format, reset and shutdown) that are not provided by standard system calls such as read(), write
+
+```
+int ioctl(int fd, unsigned long request, ...);
+```
+
+Every device can have its own ioctl commands, which can be
+
+ - read ioctl's (to send information from a process to the kernel)
+ - write ioctl's (to return information to a process)
+ - both or neither
+
+See `ioctl_list(2)` for a list of  many  of  the  known `ioctl()` calls.
