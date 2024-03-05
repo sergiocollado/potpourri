@@ -4368,12 +4368,10 @@ Given a structure having many members. The container_of macro will give the addr
 ({ void *__mptr = (void *)(ptr);
 ((type *)(__mptr - offsetof(type, member))); })
 ```
-To understand these two lines of the macro, we need to get familiar with the following concepts.
-
+To understand these two lines of the macro, we need to get familiar with the following concepts:
  - typeof()
  - offsetof()
  - Compound Statements
-
 
 1. `typeof()`: It is a very useful operator helpful to find out the type of the argument at run time. Using typeof we can write a simple macro which can work for multiple types. For example the swap function defined in kernel.h
 
