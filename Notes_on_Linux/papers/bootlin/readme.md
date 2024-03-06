@@ -1,3 +1,3 @@
 These files belong to the trainning of: https://bootlin.com
 
-Thanks!
+All the credit to them. 
