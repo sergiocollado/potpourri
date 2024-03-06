@@ -5189,6 +5189,8 @@ int main(int argc, char *argv[])
 
 ### Defining ioctl() commands
 
+ - Reference: https://docs.kernel.org/userspace-api/ioctl/ioctl-number.html
+
 Programmers much choose a number for the integer command representing each command implemented through `ioctl`.
 
 Normally many programmers choose a set of small numbers starting with 0 or 1 and go up from there.
@@ -5208,22 +5210,21 @@ To help programmers create unique ioctl command codes, `ioctl` codes have been d
 	Choose one number after looking into  Documentation/ioctl-number.txt and use it throughout the driver
 
 2. number:
-	8-bits wide
-	sequential number you assign to your command
+	8-bits wide. Sequential number you assign to your command
 
 3. direction:
-	Direction of data transfer.
-	Possible values:
+	Direction of data transfer. Possible values:
+```
 		_IOC_NONE(NO Data Transfer)
 		_IOC_READ 	--> Reading from the device, driver must write into userspace
 		_IOC_WRITE
 		_IOC_READ|_IOC_WRITE
-
-4. size:
+```
+5. size:
 
 	Size of the user data involved.
 	Width depends on the architecture: usually 13 or 14 bits
-	You can find its value for your specific architecture in the macro _IOC_SIZEBITS
+	You can find its value for your specific architecture in the macro `_IOC_SIZEBITS`
 
 ```
 Header File: <linux/ioctl.h>
@@ -5231,6 +5232,8 @@ Header File: <linux/ioctl.h>
 
 This above header file defines macro that help set up the command numbers as follows:
 
+ - reference: https://docs.kernel.org/userspace-api/ioctl/ioctl-number.html
+   
 ```
 _IO(type, nr) (for a command that has no argument)
 _IOR(type, nr, datatype) (for reading data from the driver)
@@ -5239,3 +5242,6 @@ _IOWR(type, nr, datatype) (for bidirectional data transfer)
 ```
 
 Type and number fields are passed as arguments and size field is derived by applying sizeof to the datatype argument.
+
+
+
