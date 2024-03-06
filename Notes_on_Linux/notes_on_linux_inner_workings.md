@@ -2696,6 +2696,7 @@ The Direct Rendering Manager (DRM) is a subsystem of the Linux kernel responsibl
 User-space programs can use the DRM API to command the GPU to do hardware-accelerated 3D rendering and video decoding, as well as GPGPU computing. 
 
 References:
+ - tutorial: https://landley.net/kdocs/htmldocs/drm.html
  - https://en.wikipedia.org/wiki/Direct_Rendering_Manager
  - https://en.wikipedia.org/wiki/Linux_framebuffer
  - https://www.kernel.org/doc/Documentation/fb/framebuffer.txt
