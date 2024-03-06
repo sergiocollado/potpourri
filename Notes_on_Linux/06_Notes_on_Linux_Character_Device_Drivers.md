@@ -4730,3 +4730,512 @@ Every device can have its own ioctl commands, which can be
  - both or neither
 
 See `ioctl_list(2)` for a list of  many  of  the  known `ioctl()` calls.
+
+ - reference: https://linux.die.net/man/2/ioctl_list
+ - reference: https://linux.die.net/man/2/ioctl
+
+
+```c
+#include <sys/ioctl.h>
+int ioctl(int d, int request, ...);
+```
+
+The ioctl() function manipulates the underlying device parameters of special files. In particular, many operating characteristics of character special files (e.g., terminals) may be controlled with ioctl() requests. The argument d must be an open file descriptor.
+The second argument is a device-dependent request code. The third argument is an untyped pointer to memory. It's traditionally char *argp (from the days before void * was valid C), and will be so named for this discussion.
+
+An ioctl() request has encoded in it whether the argument is an in parameter or out parameter, and the size of the argument argp in bytes. Macros and defines used in specifying an ioctl() request are located in the file <sys/ioctl.h>.
+
+#### ioctl example - BLKGETSIZE
+
+On Linux-based systems the size of a block special device can be obtained using the ioctl request BLKGETSIZE.
+
+It returns the device size as a number of 512-byte blocks
+
+```C
+#include <stdio.h>
+#include <sys/ioctl.h>
+#include <fcntl.h>
+
+int main()
+{
+	// get the block size of the /dev/sda1 (first hard drive)
+	int fd;
+	unsigned long num_blocks;
+
+	fd = open("/dev/sda1", O_RDONLY);
+	perror("fd");
+
+	//0x00001260   BLKGETSIZE            unsigned long *
+	ioctl(fd, 0x00001260,	&num_blocks);
+	perror("ioctl");
+	printf("Number of blocks: %lu, this makes %.3f GB\n",
+	 num_blocks,
+	 (double)num_blocks * 512.0 / (1024 * 1024 * 1024));
+	close(fd);
+	return 0;
+}
+```
+
+BLKGETSIZE ioctl returns unsigned long , it may fail if the size is 2TB or greater. 
+
+For this reason it is better to use BLKGETSIZE64  which produces a 64-bit result which is the size in bytes
+```c
+Header File: <linux/fs.h>
+```
+
+```c
+#include <stdio.h>
+#include <sys/ioctl.h>
+#include <fcntl.h>
+#include <linux/fs.h>
+#include <stdint.h>
+
+int main()
+{
+	int fd;
+	uint64_t size;
+
+	fd = open("/dev/sda1", O_RDONLY);
+	perror("fd");
+
+	ioctl(fd, BLKGETSIZE64,	&size);
+	perror("ioctl");
+	printf("Size %ld GB\n",  (size)/ (1024 * 1024 * 1024));
+	close(fd);
+	return 0;
+}
+```
+
+### ioctl driver method
+
+The ioctl driver method has a prototype that differs somewhat from the user space version:
+
+```c
+long (*unlocked_ioctl) (struct file *filp, unsigned int cmd, unsigned long arg);
+```
+
+The `filp` pointer is the value corresponding to the file descriptor `fd` passed on by the application and is the same parameters to the open method.
+
+The `cmd` argument is passed from the user unchanged, and the optional `arg` argument is passed in the form of an unsigned long
+
+So in the char device driver example, it would be: 
+
+```c
+long device_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+{
+	pr_info("%s: Cmd:%u\t Arg:%lu\n", __func__, cmd, arg);
+
+	return 0;
+}
+```
+
+
+```c
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+
+int base_minor = 0;
+char *device_name = "msg";
+int count = 1;
+dev_t devicenumber;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+#define MAX_SIZE        1024
+char kernel_buffer[MAX_SIZE];
+int buffer_index;
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	file->f_pos = 0;
+	buffer_index = 0;
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t read_count, loff_t *offset)
+{
+	int bytes_read;
+	int available_space;
+	int bytes_to_read;
+
+	pr_info("%s read offset:%lld\n", __func__, *offset);
+	 available_space = MAX_SIZE - *(offset);
+
+	if (read_count < available_space)
+		bytes_to_read = read_count;
+	else
+		bytes_to_read = available_space;
+
+	if (bytes_to_read == 0) {
+		pr_err("%s: No available space in the buffer for reading\n",
+				__func__);
+		return -ENOSPC;
+	}
+
+	if (buffer_index > *offset)
+                bytes_to_read = buffer_index - *offset;
+        else
+                return 0;
+
+
+	bytes_read = bytes_to_read - copy_to_user(user_buffer, kernel_buffer+*offset, bytes_to_read);
+	pr_info("%s: Copy to user returned:%d\n", __func__, bytes_to_read);
+
+	//update file offset
+	*offset += bytes_read;
+
+        return bytes_read;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t write_count, loff_t *offset)
+{
+	int bytes_written;
+	int available_space;
+	int bytes_to_write;
+
+	pr_info("%s write offset:%lld\n", __func__, *offset);
+	available_space = MAX_SIZE - *(offset);
+
+	if (write_count < available_space)
+		bytes_to_write = write_count;
+	else
+		bytes_to_write = available_space;
+
+	if (bytes_to_write == 0) {
+		pr_err("%s: No available space in the buffer for writing\n",
+				__func__);
+		return -ENOSPC;
+	}
+
+	bytes_written = bytes_to_write - copy_from_user(kernel_buffer+*offset,  user_buffer, bytes_to_write);
+	pr_info("%s: Bytes written:%d\n", __func__, bytes_written);
+	pr_info("%s: kernel_buffer:%s\n", __func__, kernel_buffer);
+
+	//update file offset
+	*offset += bytes_written;
+	buffer_index += bytes_written;
+        return bytes_written;
+}
+
+long device_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+{
+	pr_info("%s: Cmd:%u\t Arg:%lu\n", __func__, cmd, arg);
+
+	return 0;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release,
+	.unlocked_ioctl = device_ioctl	
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, device_name);
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+remember to enable the access rights:
+
+```bash
+sudo chmod 666 /dev/msg*
+```
+
+And the program in user-space:
+
+```c
+#include <stdio.h>
+#include <sys/ioctl.h>
+#include <fcntl.h>
+
+int main()
+{
+	int fd;
+
+	fd = open("/dev/msg", O_RDWR);
+	perror("fd");
+
+	ioctl(fd, 0x01, 10);
+	perror("ioctl");
+	getchar();
+
+	ioctl(fd, 0x01);
+	perror("ioctl");
+	getchar();
+	close(fd);
+	return 0;
+}
+```
+
+### Adding serveral ioctl in the driver
+
+Most ioctl implementations consist of a big switch statement that selects the correct behavior according to the cmd argument.
+
+```c
+long device_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+{
+	unsigned char ch;
+	pr_info("%s: Cmd:%u\t Arg:%lu\n", __func__, cmd, arg);
+
+	switch(cmd)
+	{
+		//Get Length of buffer
+		case 0x01:
+			pr_info("Get Buffer Length\n");
+			put_user(MAX_SIZE, (unsigned int *)arg);
+			break;
+		//clear buffer
+		case 0x02:
+			pr_info("Clear buffer\n");
+			memset(kernel_buffer, 0, sizeof(kernel_buffer));
+			break;
+		//fill character
+		case 0x03:
+			get_user(ch, (unsigned char *)arg);
+			pr_info("Fill Character:%c\n", ch);
+			memset(kernel_buffer, ch, sizeof(kernel_buffer));
+			buffer_index = sizeof(kernel_buffer);
+			break;
+		default:
+			pr_info("Unknown Command:%u\n", cmd);
+			return -EINVAL;
+	}
+	return 0;
+}
+```
+
+And the application could be like: 
+
+
+```c
+#include <stdio.h>
+#include <fcntl.h> 
+#include <stdlib.h>
+#include <sys/ioctl.h>
+
+int main(int argc, char *argv[])
+{
+    char buffer[1024];	
+	int fd;
+	unsigned int length;
+	unsigned char ch = 'A';
+	int i = 0;
+
+	fd = open("/dev/msg", O_RDWR);
+	if (fd < 0) {
+		perror("fd failed");
+		exit(2);
+	}
+	//Get Length  - 0x01
+	ioctl(fd, 0x01, &length);
+	printf("Length:%u\n", length);
+	//Set Character - 0x03
+	ioctl(fd, 0x03, &ch);
+	perror("ioctl");
+	lseek(fd, 0, SEEK_SET);
+	perror("lseek");
+	length = read(fd, buffer, 1024);
+	perror("Read");
+	printf("length:%d\n", length);
+	buffer[1023] = '\0';
+	printf("Buffer:%s\n", buffer);
+	close(fd);
+}
+```
+
+### Symbolic names to ioctl commands
+
+Symbolic names are given to numeric values of commands to simplify coding.
+
+These symbols are usually declared in header files. 
+
+User space programs must of course, needs to include the header to access those symbols
+
+
+```c
+#ifndef __IOCTL_CMD_H
+#define __IOCTL_CMD_H
+
+#define MSG_IOCTL_GET_LENGTH	0x01
+
+#define MSG_IOCTL_CLEAR_BUFFER	0x02
+
+#define MSG_IOCTL_FILL_BUFFER	0x03
+
+#endif
+```
+
+And the ioctl function would be:
+
+```c
+
+long device_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+{
+	unsigned char ch;
+	pr_info("%s: Cmd:%u\t Arg:%lu\n", __func__, cmd, arg);
+
+	switch(cmd)
+	{
+		//Get Length of buffer
+		case MSG_IOCTL_GET_LENGTH:
+			pr_info("Get Buffer Length\n");
+			put_user(MAX_SIZE, (unsigned int *)arg);
+			break;
+		//clear buffer
+		case MSG_IOCTL_CLEAR_BUFFER:
+			pr_info("Clear buffer\n");
+			memset(kernel_buffer, 0, sizeof(kernel_buffer));
+			break;
+		//fill character
+		case MSG_IOCTL_FILL_BUFFER:
+			get_user(ch, (unsigned char *)arg);
+			pr_info("Fill Character:%c\n", ch);
+			memset(kernel_buffer, ch, sizeof(kernel_buffer));
+			buffer_index = sizeof(kernel_buffer);
+			break;
+		default:
+			pr_info("Unknown Command:%u\n", cmd);
+			return -EINVAL;
+	}
+	return 0;
+}
+```
+
+And the program in user-space would be: 
+
+```c
+#include <stdio.h>
+#include <fcntl.h> 
+#include <stdlib.h>
+#include <sys/ioctl.h>
+#include "ioctl_cmd.h"
+
+int main(int argc, char *argv[])
+{
+    char buffer[1024];	
+	int fd;
+	unsigned int length;
+	unsigned char ch = 'A';
+	int i = 0;
+
+	fd = open("/dev/msg", O_RDWR);
+	if (fd < 0) {
+		perror("fd failed");
+		exit(2);
+	}
+	//Get Length  - 0x01
+	ioctl(fd, MSG_IOCTL_GET_LENGTH, &length);
+	printf("Length:%u\n", length);
+	//Set Character - 0x03
+	ioctl(fd, MSG_IOCTL_FILL_BUFFER, &ch);
+	perror("ioctl");
+	lseek(fd, 0, SEEK_SET);
+	perror("lseek");
+	length = read(fd, buffer, 1024);
+	perror("Read");
+	printf("length:%d\n", length);
+	buffer[1023] = '\0';
+	printf("Buffer:%s\n", buffer);
+	close(fd);
+}
+```
+
+
+### Defining ioctl() commands
+
+Programmers much choose a number for the integer command representing each command implemented through `ioctl`.
+
+Normally many programmers choose a set of small numbers starting with 0 or 1 and go up from there.
+
+Picking arbitrary number is a bad idea, because:
+ - Two device nodes may have the same major number
+ - An application could open more than one device and mix up the file descriptors,  thereby sending the right command to the wrong device.
+ - Sending wrong ioctl commands can have catastrophic consequences, including damage to hardware.
+
+Example: Program might find itself trying to change the baud rate of non-serial port input stream, such as FIFO or an audio device.
+
+To help programmers create unique ioctl command codes, `ioctl` codes have been divided into four bitfields.
+
+1. type/magic number:
+	
+	8 - bit Wide
+	Choose one number after looking into  Documentation/ioctl-number.txt and use it throughout the driver
+
+2. number:
+	8-bits wide
+	sequential number you assign to your command
+
+3. direction:
+	Direction of data transfer.
+	Possible values:
+		_IOC_NONE(NO Data Transfer)
+		_IOC_READ 	--> Reading from the device, driver must write into userspace
+		_IOC_WRITE
+		_IOC_READ|_IOC_WRITE
+
+4. size:
+
+	Size of the user data involved.
+	Width depends on the architecture: usually 13 or 14 bits
+	You can find its value for your specific architecture in the macro _IOC_SIZEBITS
+
+```
+Header File: <linux/ioctl.h>
+```
+
+This above header file defines macro that help set up the command numbers as follows:
+
+```
+_IO(type, nr) (for a command that has no argument)
+_IOR(type, nr, datatype) (for reading data from the driver)
+_IOW(type, nr, datatype) (for writing data to the driver)
+_IOWR(type, nr, datatype) (for bidirectional data transfer)
+```
+
+Type and number fields are passed as arguments and size field is derived by applying sizeof to the datatype argument.
