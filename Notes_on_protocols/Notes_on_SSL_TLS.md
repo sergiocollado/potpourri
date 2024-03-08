@@ -451,11 +451,43 @@ Issuer's certificate: a link to get the issuer's certifite. That is useful, beca
 
 OCSP location: This field indicate the location for the OCSP responder. OCSP stands for Online Certificates Status Protocol, which is a more efficient way to check revocated certificates than the CRL list. 
 
-#### CT extension
+### CT extension
 
 Stands for Certificate Transparency extension. 
 
      
+### What is a private key file?
+
+Inside a private key file, there are serie of mathematical values used for asymmetric encryption: 
+- Modulus (N : product (P*Q))
+- Public exponent (E : Public key)
+- Private exponent (D : Private key)
+- Prime 1 (P)
+- Prime 2 (Q)
+- Exponent 1
+- Exponent 2
+- Coefficient
+
+For reading an private key file, use an interpreter: 
+
+```bash
+openssl rsa -in <Private_key_file.key> --noout -text
+```
+
+To extract only the modulus:
+```bash
+openssl rsa -in <Private_key_file.key> --noout -modulus
+```
+
+The Modulus, also exists on the certificate, check it with:
+
+```bash
+openssl x509 -in <certicate.cert> --onout -text
+```
+to extract only the modulus:
+```bash
+openssl x509 -in <certicate.cert> --onout -modulus
+```
 
 
 
