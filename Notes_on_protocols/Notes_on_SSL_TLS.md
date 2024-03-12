@@ -489,5 +489,62 @@ to extract only the modulus:
 openssl x509 -in <certicate.cert> --onout -modulus
 ```
 
+### What is a CSR?
+
+A Certifiate Signature Request (CSR) is comprised of 3 elements: 
+ - a certificate request info, with:
+     - version
+     - subject DN
+     - Public key
+     - attributes
+ - signature algorithm
+ - signature
+
+The CSR is created by the server to create the signature. So the siganture is created by created a hash with all the certifcate request info, and signed with the server private key. That is the signature. 
+
+#### Version:
+
+It`s only value today is 0x0, CSR version 1.  
+
+#### Subject DN: 
+
+Subject Distigish Name: It contains the distigish name that identifies attributes correlating with the subject: C=, ST=, L=, OU=, CN=...
+
+The content of the Subject ans issuer, is specified in which is known as Distinguised Name (DN) format. This is
+just a hierarquy of atribute-value pairs (LDAP-RFC 4519 attribute definitions). 
+For example: 
+ - CN Common Name
+ - OU Organizational Unit
+ - O Organization
+ - L locality/city
+ - ST State
+ - C country
+
+The most relevant one is **CN**, the common name, because it must exists in the Subject and Issuer. And the 
+browsers verify CN against the URL used.
+
+CN can include a wildcard (*) on the certificate. For example `CN=\.google.com` . This allows to protect
+the subdomains, like: `maps.google.com`, or `mail.google.com`, but not `us.mail.google.com` Also, it doesn't protect `google.com`
+
+The CA imports this information into the Certificate. The CA includes its own DN as the certificate's issuer. 
+
+#### Public key
+
+The public key is presented as two values: modulus and exponent
+
+#### Attributes
+
+Optional, aditional CSR features are added. 
+
+ - Extension request attribute:
+     - The server adds extesions for the ensuing certificate: Subject key Identifier, S.A.N.(subject alternative name), etc...
+  
+ - Challenge password: when the CSR is provided, the challenge password is provided to the CA. And later on, if any administrative action has to be taken on the certificate, the challenge password has to provided. The goal is to limit who can take administrative actions on a particular certificate, to only whoever first requested that certificate in first place. This challange password system is considered legacy system nowadays. Today if the CA wants to identify you, it has a web portal where you can login with user/password and identify yourself and make the request to revoque the certificate if you want to. 
+
+There may be other attributes, but those were the most common. 
+
+- a0:00 in the CSR Attributes field indicates no attribute requested.
+
+
 
 
