@@ -5243,5 +5243,108 @@ _IOWR(type, nr, datatype) (for bidirectional data transfer)
 
 Type and number fields are passed as arguments and size field is derived by applying sizeof to the datatype argument.
 
+```C
+#include <stdio.h>
+#include <linux/ioctl.h>
+
+#define MAGIC_NUMBER1	'l'
+#define MAGIC_NUMBER2	'i'
+
+int main()
+{
+	printf("IO(MAGIC_NUMBER1, 1):%x\n", _IO(MAGIC_NUMBER1, 1));
+	printf("IO(MAGIC_NUMBER2, 1):%x\n", _IO(MAGIC_NUMBER2, 1));
+
+	getchar();
+	printf("IO(MAGIC_NUMBER1, 2):%x\n", _IO(MAGIC_NUMBER1, 2));
+	printf("IO(MAGIC_NUMBER2, 2):%x\n", _IO(MAGIC_NUMBER2, 2));
+	
+	getchar();
+	printf("IOR(MAGIC_NUMBER1, 2, int):%lx\n", _IOR(MAGIC_NUMBER1, 2, int));
+	printf("IOR(MAGIC_NUMBER2, 2, int):%lx\n", _IOR(MAGIC_NUMBER2, 2, int));
+
+	getchar();
+
+	printf("IOR(MAGIC_NUMBER1, 3, int):%lx\n", _IOR(MAGIC_NUMBER1, 3, int));
+	printf("IOR(MAGIC_NUMBER2, 3, int):%lx\n", _IOR(MAGIC_NUMBER2, 3, int));
+
+	getchar();
+	printf("IOWR(MAGIC_NUMBER2, 3, int):%lx\n", _IOWR(MAGIC_NUMBER2, 4, int));
+	return 0;
+
+}
+```
+
+### Macros to decode information from the ioctl command
+
+```C
+_IOC_TYPE(cmd) /* gets the magic number of the device this command targets */
+
+_IOC_NR( cmd) /* gets the sequential number of the command within your device */
+
+_IOC_SIZE(cmd) /* gets the size of the data structure */
+
+_IOC_DIR( cmd) /* gets the direction of data transfer,
+                                can be one of the following:
+                                _IOC_NONE
+                                _IOC_READ
+                                _IOC_WRITE
+                                _IOC_READ | _IOC_WRITE
+                                */
+```
+
+Example:
+
+```C
+#include <stdio.h>
+#include <linux/ioctl.h>
+
+#define MAGIC_NUMBER1	'l'
+
+#define CMD1 _IO(MAGIC_NUMBER1, 1)
+#define CMD2 _IOW(MAGIC_NUMBER1, 2, int)
+#define CMD3 _IOWR(MAGIC_NUMBER1, 3, char)
+
+void printDirection(unsigned int cmd)
+{
+	switch(_IOC_DIR(cmd))
+	{
+		case _IOC_NONE:
+			printf("_IOC_NONE\n");
+			break;
+		case _IOC_READ:
+			printf("_IOC_READ\n");
+			break;
+		case _IOC_WRITE:
+			printf("_IOC_WRITE\n");
+			break;
+		case _IOC_READ | _IOC_WRITE:
+			printf("_IOC_READ | _IOC_WRITE\n");
+			break;
+	}
+}
+
+int main()
+{
+	printf("Number:%u\n", _IOC_NR(CMD1));
+	printf("Number:%lu\n", _IOC_NR(CMD2));
+	printf("Number:%lu\n", _IOC_NR(CMD3));
+
+	printf("Magic Number:%u\n", _IOC_TYPE(CMD1));
+	printf("Magic Number:%lu\n", _IOC_TYPE(CMD2));
+	printf("Magic Number:%lu\n", _IOC_TYPE(CMD3));
+
+	printf("Size:%u\n", _IOC_SIZE(CMD1));
+	printf("Size:%lu\n", _IOC_SIZE(CMD2));
+	printf("Size:%lu\n", _IOC_SIZE(CMD3));
+	
+	printDirection(CMD1);
+	printDirection(CMD2);
+	printDirection(CMD3);
+
+	return 0;
+
+}
+```
 
 
