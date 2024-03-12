@@ -31,6 +31,7 @@ Languaje reference:
   - rust async: https://rust-lang.github.io/async-book/
   - rustup: https://rust-lang.github.io/rustup/
   - https://reintech.io/blog/understanding-implementing-rust-variance-lifetimes
+  - FFI: https://doc.rust-lang.org/nomicon/ffi.html#foreign-function-interface
   - FFI: https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/ffi.html
   - intro unsafe rust: https://google.github.io/comprehensive-rust/unsafe-rust/unsafe.html
   - Rust Foreing Functions Interface (FFI): https://michael-f-bryan.github.io/rust-ffi-guide/overview.html
