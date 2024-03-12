@@ -5605,3 +5605,53 @@ int main(int argc, char *argv[])
 	close(fd);
 }
 ```
+
+
+### Return Value in case an incorrect ioctl number is given
+
+What should be the return value when invalid command is passed?
+
+Acording to the POSIX Standard, if an inappropriate ioctl command has  been issued , then -ENOTTY should be returned.
+
+```
+ENOTTY -  Inappropriate IOCTL For the device
+```
+
+So the function would be: 
+
+```C
+
+long device_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+{
+	unsigned char ch;
+	pr_info("%s: Cmd:%u\t Arg:%lu\n", __func__, cmd, arg);
+
+	if (_IOC_TYPE(cmd) != MSG_MAGIC_NUMBER) return -ENOTTY;
+	if (_IOC_NR(cmd) > MSG_IOCTL_MAX_CMDS) return -ENOTTY;
+
+	switch(cmd)
+	{
+		//Get Length of buffer
+		case MSG_IOCTL_GET_LENGTH:
+			pr_info("Get Buffer Length\n");
+			put_user(MAX_SIZE, (unsigned int *)arg);
+			break;
+		//clear buffer
+		case MSG_IOCTL_CLEAR_BUFFER:
+			pr_info("Clear buffer\n");
+			memset(kernel_buffer, 0, sizeof(kernel_buffer));
+			break;
+		//fill character
+		case MSG_IOCTL_FILL_BUFFER:
+			get_user(ch, (unsigned char *)arg);
+			pr_info("Fill Character:%c\n", ch);
+			memset(kernel_buffer, ch, sizeof(kernel_buffer));
+			buffer_index = sizeof(kernel_buffer);
+			break;
+		default:
+			pr_info("Unknown Command:%u\n", cmd);
+			return -ENOTTY;
+	}
+	return 0;
+}
+```
