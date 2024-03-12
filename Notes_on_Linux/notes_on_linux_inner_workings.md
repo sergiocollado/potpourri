@@ -348,10 +348,13 @@ It has four main components:
  - example: https://youtu.be/NVWVHiLx1sU 
  - example: https://www.youtube.com/watch?v=APQY0wUbBow
  - example: https://youtu.be/E4yRcmQqvWM
+ - reference: https://wiki.gentoo.org/wiki/Kernel/Optimization
+ - reference: compiling with CLANG: https://www.kernel.org/doc/html/latest/kbuild/llvm.html
+ - example: https://youtu.be/s95hjvFAE5g?t=402
 
 The kernel configuration is in the file named .config at the top of the kernel source tree.
 
-You may need to install:  libelf-dev, libelf-devel or elfutils-libelf-devel
+You may need to install:  `libelf-dev`, `libelf-devel` or `elfutils-libelf-devel`.
 
 Run the following command to generate a kernel configuration file based on the current configuration.
 
@@ -363,9 +366,8 @@ make oldconfig
 
 WATCH OUT!: New releases often introduce new configuration variables and, in some cases, rename the configuration symbols. The latter causes problems, and make oldconfig might not generate a new working kernel. Run make listnewconfig after copying the configuration from /boot to the .config file, to see a list of new configuration symbols. 
 
-reference: https://stackoverflow.com/questions/4178526/what-does-make-oldconfig-do-exactly-in-the-linux-kernel-makefile
-
-reference: https://www.kernel.org/doc/html/latest/kbuild/kconfig.html
+ - reference: https://stackoverflow.com/questions/4178526/what-does-make-oldconfig-do-exactly-in-the-linux-kernel-makefile
+ - reference: https://www.kernel.org/doc/html/latest/kbuild/kconfig.html
 
 **Bonuses** make olddefconfig sets every option to their default value without asking interactively. It gets run automatically on make to ensure that the .config is consistent in case you've modified it manually.
 
