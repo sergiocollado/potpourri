@@ -5343,7 +5343,6 @@ int main()
 	printDirection(CMD3);
 
 	return 0;
-
 }
 ```
 
