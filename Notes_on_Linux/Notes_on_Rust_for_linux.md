@@ -39,6 +39,7 @@ Languaje reference:
   - Complex cpp rust ffi: https://github.com/emilio/rust-cpp-ffi-examples/tree/master
   - bindgen user guide: https://rust-lang.github.io/rust-bindgen/introduction.html
 
+
 Other resources:
   - linux kernel rust documentation: https://docs.kernel.org/rust/index.html
   - key rust concepts for the kernel: https://lwn.net/Articles/869317/
