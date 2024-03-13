@@ -191,7 +191,7 @@ SSL/TLS has to comply with:
 
 ### PKI 
 
-- refernece: https://youtu.be/Jefr7wFLu3M?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
+- reference: https://youtu.be/Jefr7wFLu3M?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
 
  ### RSA
 
@@ -627,5 +627,25 @@ Contains Certificates and/or Chains only - but no keys, only certificates.
 The files use the extensions: .pkcs7, .p7b, .p7c. 
 
 
+## Security thought certificates
+
+### Overview, review PKI
+
+- reference: PKI: https://youtu.be/Jefr7wFLu3M?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
+
+1. The certificate authority (CA) is the corner stone of the TLS/SSL process.
+   - CA has a public key and private key.
+   - CA has a self-signed certificate
+2. A server want a certificate
+3. The server generates a public and private key.
+4. Then the server generates a certificate signing request (CSR).
+   - CSR contains the server's public key
+   - CSR is signed by server's private key
+5. The server gives the signed CSR to the certificate autority (CA).
+6. The CA inspects and validates information in CSR
+7. The CA creates a certificate using information from the CSR, particullary the public key of the server submited on the CSR.
+8. The CA signs the certificate using its CA's private key.
+9. The certificate is given to the server.
+10. The server can provide now its certificate to prove its identity.
 
 
