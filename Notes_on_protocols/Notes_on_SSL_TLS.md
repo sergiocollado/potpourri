@@ -545,6 +545,87 @@ There may be other attributes, but those were the most common.
 
 - a0:00 in the CSR Attributes field indicates no attribute requested.
 
+### File formats
+
+Certificates and keys are kept in files, usually 4 file formats are used:
+
+- DER
+- PEM
+- PFX/PKCS#12
+- PKCS#7
+
+#### DER
+
+ - reference: https://letsencrypt.org/docs/a-warm-welcome-to-asn1-and-der/
+
+DER stands for Distingished Encoding Rules. It is the format of the certificate on the wire, meaning, as it is being transfered from server to client. So it is a binary format. So it cannot be open with a text editor. So it is not tipically used for exchanging files. 
+
+Tipicall extensions are: .der, .cert, .crt, .csr
+
+Note, that the file extension is not sufficient to identify the file format.  
+
+#### PEM
+
+ - reference: https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail
+ - reference: https://datatracker.ietf.org/doc/html/rfc7468
+
+PEM stands for Privacy Enhaced Mail. 
+
+It is a base64 encoded version of the DER format. Every 6 bits are translated into a character, in the following way:
+
+| binary   |  Value  |
+| -------- | ------- |
+| 00-25    | A-Z     |
+| 26-51    | a-z     |
+| 52-61    | 0-0     | 
+| 62       |   +     |
+| 63       |   /     | 
+|(padding) |   =     |
+
+This makes the certificate very easy to copy/paste, and can be open with a text editor.
+
+It has the indicators: 
+
+```
+----- BEGIN CERTIFICATE--------
+```
+
+```
+------ BEGIN PRIVATE KEY -------
+```
+
+```
+---- BEGIN CERTIFICATE REQUEST ----
+```
+
+Those headers is how you can identify a PEM file. 
+
+PEM formated files, usually use the extensions: .pem, .cert, .crt, .key, .csr
+
+#### PFX/PKCS#12
+
+PFX stands for Personal inFormation eXchange
+
+PKCS#12  stands for Public-Key Cryptography Standard # 12
+
+Nowadays both standards are the same one. It is teh PKCS#12 standard, but it usually is refered as a PFX file. 
+
+It contains a certificate and a matching key. And optionally any chain certificates that are necesary.
+
+PFX filesa are binary encoded, so it is not possible to read them in a text editor. 
+
+PFX files use the extensions: .pfx, .p12, .pkcs12.
+
+####  PKCS#7
+
+PKCS#7  stands for Public-Key Cryptography Standard # 7
+
+It is a base64 encoded file. It can be opened in a text editor file, and it is recognizable the label `---- BEGIN PKCS7 ----`.
+
+Contains Certificates and/or Chains only - but no keys, only certificates. 
+
+The files use the extensions: .pkcs7, .p7b, .p7c. 
+
 
 
 
