@@ -636,9 +636,9 @@ The files use the extensions: .pkcs7, .p7b, .p7c.
 1. The certificate authority (CA) is the corner stone of the TLS/SSL process.
    - CA has a public key and private key.
    - CA has a self-signed certificate
-2. A server want a certificate
+2. A server wants to adquire a certificate
 3. The server generates a public and private key.
-4. Then the server generates a certificate signing request (CSR).
+4. Then the server generates a Certificate Signing Request (CSR).
    - CSR contains the server's public key
    - CSR is signed by server's private key
 5. The server gives the signed CSR to the certificate autority (CA).
@@ -647,5 +647,19 @@ The files use the extensions: .pkcs7, .p7b, .p7c.
 8. The CA signs the certificate using its CA's private key.
 9. The certificate is given to the server.
 10. The server can provide now its certificate to prove its identity.
+11. The clients wants to connect to the  server securely.
+    - The client (ie web browsers) already has the CA certificates installed.
+12. The client requests the server's certificate
+    - The client validates that the certificate is legitimate. (usting the public key of the CA)
+    - The client validates that the server truly owns the certificate. (making sure the public key provided in the certificate the server has the private key)
+13. The clients validates Server's certificate in the SSL/TLS handshake.
+14. SSL/TLS Handshake produces session keys:
+    - symmetric encription (for confidentiality)
+    - message authentification code MAC (for integrity and authentification)
+15. Session keys, form a secure tunnel to protect the communication.
+
+
+   
+All this validation happens in what is know as TLS handshake. 
 
 
