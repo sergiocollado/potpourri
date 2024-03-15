@@ -662,4 +662,31 @@ The files use the extensions: .pkcs7, .p7b, .p7c.
    
 All this validation happens in what is know as TLS handshake. 
 
+### Certificate validation
 
+When a client receives a certificate from a server, there are two things that the client, needs to validate:
+ - Is the certificate valid?
+    - A certificate is just text into a file. How can the client known that the contents can be trusted?
+ - Is the server the owner of the certificate?
+    - the certificates are publically available out there, so how can the client confirm that the server is the true owner?
+  
+#### Is the certificate valid? 
+
+It starts with the CA (certificate authority) which is who creates the certificate in the first place. 
+
+The certificate has 3 sections: 
+ - certificate data
+ - signature algorithm
+ - signature
+
+The CA (certificate authority) creates the certificate, and then creates a hash with the certificate data. Runs the certificate through a standard hashing algorithm, and then encrytp that hash. The result of this is the signature, the third part of the certificate. 
+
+Now the client comes into play, remember that the client already has the CA certificate, so the client already has the CA public key. That public key can be used to validate any signature from the CA. 
+
+Next the client connects to the server, and obtains the server certificate. So the client decrypts the signature portion of the certificate provided by the server, using the CA public key (result 1). Then the client calculates the hash of the content of the certificate data (result 2). If both values are thge same (result 1 == result 2), that implies that the certificate has not change since the CA created it. Wich means that if the CA is trusted, the the certificate is trusted. 
+
+This is the process for the RSA encrytpion algorithm, the process is similar for the DSA encryption algorithm. 
+
+For the DSA algorithm, the client is going to run the certificate data through the DSA signature generationa algorithm (that requires the CA private key), the result of that is the signature. The client then runs the signature verification on the signature of the certificate (with the CA public key), the result is 1 (valid) or 0. 
+
+Once the certificate has been validated, then the rest of the fields can be validated: expiration dates, URLs match the Common Name ... Or if the certificate is revoked. ...
