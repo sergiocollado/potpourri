@@ -5656,3 +5656,612 @@ long device_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 	return 0;
 }
 ```
+
+### access_ok
+
+
+We need to take care of the `arg` parameter in the `ioctl` function, as it is a user space.
+
+We can use `copy_from_user`/`copy_to_user` to safely copy data from user to kernel and vice versa.
+
+These functions are less efficient in case of copying small data items. You can use `put_user`/`get_user` for copying 1, 2, 4 or 8 bytes
+
+If you only want to verify the address without transferring data, you can use the macro `access_ok`
+
+There is a macro known as `acess_ok`
+
+The `access_ok()` checks ensure that the userspace application isn't asking the kernel to read from or write to kernel addresses (they're an integrity/security check). Just because a pointer was supplied by userspace doesn't mean that it's definitely a userspace pointer - in many cases "kernel pointer" simply means that it's pointing within a particular region of the virtual address space.
+
+Additionally, calling `access_ok()` with `VERIFY_WRITE` implies `VERIFY_READ`, so if you check the former you do not need to also check the latter.
+
+The `access_ok` macro is just a quick check for the probable validity of the pointer. For example, it would catch mistaken calls with NULL or read-only arguments.
+
+Ideally, the driver should recover even if later the access functions fail. This could however happen only after some expensive hardware operations. Therefore checking early may make the driver more robust against the most common user-space programmer errors.
+
+- reference: https://stackoverflow.com/questions/12357752/what-is-the-point-of-using-the-linux-macro-access-ok
+
+```
+Header File: <asm/uaccess.h>
+
+int access_ok(int type, void *addr, unsigned long size);
+```
+
+ - type: VERIFY_READ/VERIFY_WRITE: depending on action: reading the user space memory or writing it
+ - addr: user space address
+ - size: Depends on the ioctl command.
+
+If you need to both read and write, use `VERIFY_WRITE`, it is a superset of `VERIFY_READ`.
+
+Return value: `1` for success, `0` for failure in this case you should return `-EFAULT`.
+
+Note: The 5.0 kernel dropped the type argument to `access_ok()`
+
+ - reference: https://lkml.org/lkml/2019/1/4/418
+
+
+### Updated driver with the access_ok() macro
+
+```c
+#ifndef __IOCTL_CMD_H
+#define __IOCTL_CMD_H
+
+#define MSG_MAGIC_NUMBER    0x21
+#define MSG_IOCTL_GET_LENGTH    _IOR(MSG_MAGIC_NUMBER, 1, unsigned int)
+#define MSG_IOCTL_CLEAR_BUFFER  _IO(MSG_MAGIC_NUMBER, 2)
+#define MSG_IOCTL_FILL_BUFFER   _IOW(MSG_MAGIC_NUMBER, 3, unsigned char)
+#define MSG_GET_ADDRESS		_IOR(MSG_MAGIC_NUMBER, 4, unsigned long long)
+#define MSG_IOCTL_MAX_CMDS      4
+
+#endif
+```
+
+
+```C
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+#include <asm/uaccess.h>
+#include "ioctl_cmd.h"
+
+int base_minor = 0;
+char *device_name = "msg";
+int count = 1;
+dev_t devicenumber;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+#define MAX_SIZE        1024
+char kernel_buffer[MAX_SIZE];
+int buffer_index;
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	file->f_pos = 0;
+	buffer_index = 0;
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+static ssize_t device_read(struct file *file, char __user *user_buffer,
+                      size_t read_count, loff_t *offset)
+{
+	int bytes_read;
+	int available_space;
+	int bytes_to_read;
+
+	pr_info("%s read offset:%lld\n", __func__, *offset);
+	 available_space = MAX_SIZE - *(offset);
+
+	if (read_count < available_space)
+		bytes_to_read = read_count;
+	else
+		bytes_to_read = available_space;
+	
+	pr_info("bytes_to_read:%d\n", bytes_to_read);
+
+	if (bytes_to_read == 0) {
+		pr_err("%s: No available space in the buffer for reading\n",
+				__func__);
+		return -ENOSPC;
+	}
+
+	if (buffer_index > *offset)
+                bytes_to_read = buffer_index - *offset;
+        else
+                return 0;
+
+
+	bytes_read = bytes_to_read - copy_to_user(user_buffer, kernel_buffer+*offset, bytes_to_read);
+	pr_info("%s: Copy to user returned:%d\n", __func__, bytes_to_read);
+
+	//update file offset
+	*offset += bytes_read;
+
+        return bytes_read;
+}
+
+static ssize_t device_write(struct file *file, const char __user *user_buffer,
+                       size_t write_count, loff_t *offset)
+{
+	int bytes_written;
+	int available_space;
+	int bytes_to_write;
+
+	pr_info("%s write offset:%lld\n", __func__, *offset);
+	available_space = MAX_SIZE - *(offset);
+
+	if (write_count < available_space)
+		bytes_to_write = write_count;
+	else
+		bytes_to_write = available_space;
+
+	if (bytes_to_write == 0) {
+		pr_err("%s: No available space in the buffer for writing\n",
+				__func__);
+		return -ENOSPC;
+	}
+
+	bytes_written = bytes_to_write - copy_from_user(kernel_buffer+*offset,  user_buffer, bytes_to_write);
+	pr_info("%s: Bytes written:%d\n", __func__, bytes_written);
+	pr_info("%s: kernel_buffer:%s\n", __func__, kernel_buffer);
+
+	//update file offset
+	*offset += bytes_written;
+	buffer_index += bytes_written;
+        return bytes_written;
+}
+
+static loff_t device_lseek(struct file *file, loff_t offset, int orig)
+{
+        loff_t new_pos = 0;
+
+        switch(orig) {
+                case 0 : /*seek set*/
+                        new_pos = offset;
+                        break;
+                case 1 : /*seek cur*/
+                        new_pos = file->f_pos + offset;
+                        break;
+                case 2 : /*seek end*/
+                        new_pos = MAX_SIZE - offset;
+                        break;
+        }
+        if(new_pos > MAX_SIZE)
+                new_pos = MAX_SIZE;
+        if(new_pos < 0)
+                new_pos = 0;
+        file->f_pos = new_pos;
+        return new_pos;
+}
+
+long device_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+{
+	unsigned char ch;
+	int retval = 0;
+	long size = _IOC_SIZE(cmd);
+
+	pr_info("%s: Cmd:%u\t Arg:%lu Size:%lu add:%p\n", __func__, cmd, arg, size, &ch);
+
+	if (_IOC_TYPE(cmd) != MSG_MAGIC_NUMBER) return -ENOTTY;
+	if (_IOC_NR(cmd) > MSG_IOCTL_MAX_CMDS) return -ENOTTY;
+
+	//Achtung! access_ok is kernel-oriented, so the concept of read and write is reversed
+	
+	retval = access_ok((void __user *)arg, size);
+
+	pr_info("access_ok returned:%d\n", retval);
+	if (!retval)
+		return -EFAULT;
+
+	switch(cmd)
+	{
+		//Get Length of buffer
+		case MSG_IOCTL_GET_LENGTH:
+			pr_info("Get Buffer Length\n");
+			put_user(MAX_SIZE, (unsigned int *)arg);
+			break;
+		//clear buffer
+		case MSG_IOCTL_CLEAR_BUFFER:
+			pr_info("Clear buffer\n");
+			memset(kernel_buffer, 0, sizeof(kernel_buffer));
+			break;
+		//fill character
+		case MSG_IOCTL_FILL_BUFFER:
+			get_user(ch, (unsigned char *)arg);
+			pr_info("Fill Character:%c\n", ch);
+			memset(kernel_buffer, ch, sizeof(kernel_buffer));
+			buffer_index = sizeof(kernel_buffer);
+			break;
+		//address of kernel buffer
+		case MSG_GET_ADDRESS:
+			put_user(&kernel_buffer, (unsigned long long*)arg);
+			pr_info("MSG_GET_ADDRESS\n");
+			break;
+		default:
+			pr_info("Unknown Command:%u\n", cmd);
+			return -ENOTTY;
+	}
+	return 0;
+}
+
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release,
+	.llseek = device_lseek,
+	.unlocked_ioctl = device_ioctl	
+};
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, device_name);
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+user-land program:
+
+```c
+#include <sys/ioctl.h>
+#include "ioctl_cmd.h"
+
+int main(int argc, char *argv[])
+{
+    char buffer[1024];	
+	int fd;
+	unsigned int length;
+	unsigned char ch = 'A';
+	int i = 0;
+	unsigned long long ptr ;
+
+	fd = open("/dev/msg", O_RDWR);
+	if (fd < 0) {
+		perror("fd failed");
+		exit(2);
+	}
+
+	ioctl(fd, MSG_GET_ADDRESS, &ptr);
+	printf("%llx\n", ptr);
+	perror("ioctl");
+	getchar();
+
+	ioctl(fd, MSG_GET_ADDRESS, ptr);  // this will fail the access_ok: Bad Address - access_ok returns 0. Because a kernel pointer was passed.
+	perror("ioctl");
+	getchar();
+
+	//Get Length  - 0x01
+	ioctl(fd, MSG_IOCTL_GET_LENGTH, &length);
+	printf("Length:%u\n", length);
+	//Set Character - 0x03
+	ioctl(fd, MSG_IOCTL_FILL_BUFFER, &ch);
+	perror("ioctl");
+	lseek(fd, 0, SEEK_SET);
+	perror("lseek");
+	length = read(fd, buffer, 1024);
+	perror("Read");
+	printf("length:%d\n", length);
+	buffer[1023] = '\0';
+	printf("Buffer:%s\n", buffer);
+	ioctl(fd, 4);
+	perror("ioctl");
+	close(fd);
+}
+```
+
+
+You can use `__put_user`/`__get_user` if access_ok has already being called. This will save few cycles.
+
+```c
+#define put_user(x, ptr)                                        \
+({                                                              \
+        void __user *__p = (ptr);                               \
+        might_fault();                                          \
+        access_ok(__p, sizeof(*ptr)) ?          \
+                __put_user((x), ((__typeof__(*(ptr)) __user *)__p)) :   \
+                -EFAULT;                                        \
+})
+
+#define get_user(x, ptr)                                        \
+({                                                              \
+        const void __user *__p = (ptr);                         \
+        might_fault();                                          \
+        access_ok(__p, sizeof(*ptr)) ?          \
+                __get_user((x), (__typeof__(*(ptr)) __user *)__p) :\
+                ((x) = (__typeof__(*(ptr)))0,-EFAULT);          \
+})
+```
+
+### COMPACT_IOCTL
+
+`compat_ioctl()` Its purpose is to allow 32-bit userland programs to make ioctl calls on a 64-bit kernel. The meaning of the last argument to ioctl depends on the driver, so there is no way to do a driver-independent conversion.
+
+ - reference: https://unix.stackexchange.com/questions/4711/what-is-the-difference-between-ioctl-unlocked-ioctl-and-compat-ioctl
+
+
+To generate a 32bit application in a 64 bit machine, use the flag `-m32` when compiling: 
+
+```
+gcc myprogram -o myprogram -m32
+```
+
+use : `file myprogram` to verify the ELF type.
+
+Need to install when compiling for 32 bit in 64 bit machine
+```
+$ sudo apt-get install g++-multilib
+```
+
+```
+long (*compat_ioctl) (struct file *filp, unsigned int cmd, 
+                          unsigned long arg);
+```
+
+Called when a 32-bit process calls ioctl() on a 64-bit system
+
+It should then do whatever is required to convert the argument to native data types and carry out the request.
+
+So the function should be udpated to: 
+
+```c
+struct file_operations device_fops = {
+	.read = device_read,
+	.write = device_write,
+	.open = device_open,
+	.release = device_release,
+	.llseek = device_lseek,
+	.unlocked_ioctl = device_ioctl,      /* for 64 bits */
+	.compat_ioctl = device_ioctl         /* for 32 bits calls*/
+};
+```
+
+### Sending a signal from module to process
+
+The function for doing this is
+```
+int send_sig(int signal, struct task_struct *task, int priv);
+```
+
+ - signal: Signal to send
+ - task: Corresponds to task_struct corresponding to the process
+ - priv: 0 for user applications, 1 for kernel
+
+```c
+#ifndef __IOCTL_CMD_H
+#define __IOCTL_CMD_H
+
+#define SIG_MAGIC_NUMBER (0x21)
+#define SIG_IOCTL_SET_PID    _IOW(SIG_MAGIC_NUMBER, 1, unsigned int)
+#define SIG_IOCTL_SET_SIGNAL  _IOW(SIG_MAGIC_NUMBER, 2, unsigned int)
+#define SIG_IOCTL_SEND_SIGNAL   _IO(SIG_MAGIC_NUMBER, 3)
+#define SIG_IOCTL_MAX_CMDS (3)
+
+#endif
+```
+
+```c
+
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kdev_t.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+#include <asm/uaccess.h>
+#include <linux/sched/signal.h>
+#include "ioctl_cmd.h"
+
+int base_minor = 0;
+char *device_name = "sig";
+int count = 1;
+dev_t devicenumber;
+
+static struct class *class = NULL;
+static struct device *device = NULL;
+static struct cdev mycdev;
+
+static int sig_pid = 0;
+static struct task_struct *sig_tsk = NULL;
+static int sig_tosend = SIGKILL;
+
+#define MAX_SIZE (1024)
+MODULE_LICENSE("GPL");
+
+static int device_open(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+	return 0;
+}
+
+static int device_release(struct inode *inode, struct file *file)
+{
+	pr_info("%s\n", __func__);
+        return 0;
+}
+
+long device_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+{
+	unsigned char ch;
+	int retval = 0;
+	long size = _IOC_SIZE(cmd);
+
+	pr_info("%s: Cmd:%u\t Arg:%lu Size:%lu add:%p\n", __func__, cmd, arg, size, &ch);
+
+	if (_IOC_TYPE(cmd) != SIG_MAGIC_NUMBER) return -ENOTTY;
+	if (_IOC_NR(cmd) > SIG_IOCTL_MAX_CMDS) return -ENOTTY;
+
+	//access_ok is kernel-oriented, so the concept of read and write is reversed
+	
+	retval = access_ok((void __user *)arg, size);
+
+	pr_info("access_ok returned:%d\n", retval);
+	if (!retval)
+		return -EFAULT;
+
+	switch(cmd)
+	{
+		//Get Length of buffer
+		case SIG_IOCTL_SET_PID:
+			pr_info("SIG_IOCTL_SET_PID\n");
+			get_user(sig_pid, (unsigned int *)arg);
+			pr_info("PID:%d\n", sig_pid);
+			sig_tsk = pid_task(find_vpid(sig_pid), PIDTYPE_PID);
+			break;
+		//clear buffer
+		case SIG_IOCTL_SET_SIGNAL:
+			pr_info("SIG_IOCTL_SET_SIGNAL\n");
+			get_user(sig_tosend, (unsigned int *)arg);
+			pr_info("signal:%d\n", sig_tosend);
+			break;
+		//fill character
+		case SIG_IOCTL_SEND_SIGNAL:
+			pr_info("SIG_IOCTL_SEND_SIGNAL\n");
+			if (!sig_tsk) {
+                        pr_info("You haven't set the pid; using current\n");
+                        	sig_tsk = current;
+                        	sig_pid = (int)current->pid;
+                	}
+			retval = send_sig(sig_tosend, sig_tsk, 0);
+			pr_info("retval = %d\n", retval);
+			break;
+		default:
+			pr_info("Unknown Command:%u\n", cmd);
+			return -ENOTTY;
+	}
+	return 0;
+}
+
+
+struct file_operations device_fops = {
+	.open = device_open,
+	.release = device_release,
+	.unlocked_ioctl = device_ioctl,
+};
+
+
+static int test_hello_init(void)
+{
+	class = class_create(THIS_MODULE, "myclass");
+
+	if (!alloc_chrdev_region(&devicenumber, base_minor, count, device_name)) {
+		printk("Device number registered\n");
+		printk("Major number received:%d\n", MAJOR(devicenumber));
+
+		device = device_create(class, NULL, devicenumber, NULL, device_name);
+		cdev_init(&mycdev, &device_fops);
+		mycdev.owner = THIS_MODULE;
+		cdev_add(&mycdev, devicenumber, count);
+
+	}
+	else
+		printk("Device number registration Failed\n");
+
+	return 0;
+}
+
+static void test_hello_exit(void)
+{
+	device_destroy(class, devicenumber);
+        class_destroy(class);
+	cdev_del(&mycdev);
+	unregister_chrdev_region(devicenumber, count);
+}
+
+module_init(test_hello_init);
+module_exit(test_hello_exit);
+```
+
+the user-land program:
+
+```c
+#include <stdio.h>
+#include <fcntl.h> 
+#include <stdlib.h>
+#include <sys/ioctl.h>
+#include <signal.h>
+#include <unistd.h>
+#include "ioctl_cmd.h"
+
+void signal_handler(int sig)
+{
+	printf("Signal Received\n");
+}
+
+int main(int argc, char *argv[])
+{
+	int fd;
+	pid_t pid = getpid();
+	int snd_signal = SIGUSR1;
+
+	printf("PROCESS PID:%d\n", pid);
+
+	signal(SIGUSR1, signal_handler);
+	fd = open("/dev/sig", O_RDWR);
+	if (fd < 0) {
+		perror("fd failed");
+		exit(2);
+	}
+
+	ioctl(fd, SIG_IOCTL_SET_PID, &pid);
+	ioctl(fd, SIG_IOCTL_SET_SIGNAL, &snd_signal);
+	ioctl(fd, SIG_IOCTL_SEND_SIGNAL);
+	perror("ioctl");
+	getchar();
+
+	close(fd);
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
