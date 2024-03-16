@@ -18,6 +18,7 @@ References:
  - Linux device drivers tutorial: https://www.youtube.com/watch?v=BRVGchs9UUQ&list=PLArwqFvBIlwHq8WMKgsXSQdqIvymrEz9k&index=2
  - Linux VFS: https://www.kernel.org/doc/html/latest/filesystems/#core-vfs-documentation
  - Understanding the structure of a Linux device driver: https://youtu.be/pIUTaMKq0Xc
+ - linux block drivers: https://olegkutkov.me/2020/02/10/linux-block-device-driver/
 
 
 ## Some interesting directories related to character drivers
