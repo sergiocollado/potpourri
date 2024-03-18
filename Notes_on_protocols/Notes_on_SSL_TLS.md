@@ -690,3 +690,33 @@ This is the process for the RSA encrytpion algorithm, the process is similar for
 For the DSA algorithm, the client is going to run the certificate data through the DSA signature generationa algorithm (that requires the CA private key), the result of that is the signature. The client then runs the signature verification on the signature of the certificate (with the CA public key), the result is 1 (valid) or 0. 
 
 Once the certificate has been validated, then the rest of the fields can be validated: expiration dates, URLs match the Common Name ... Or if the certificate is revoked. ...
+
+
+#### Is the server the true owner of the certificate?
+
+The certificates are public, so there is no stopping someone presenting somebody's else certificate. How can the server prove it is the truthful owner of the certificate? 
+
+There are two methods: 
+ - client initiated
+ - server initiated
+
+The first method goes like this: the client generates a random value, then encrypts that random value, with the certificat's public key (the certificate presented by the server). That ciphered value is send back to the server, and the only key that can decrypt that value is the server's private key, that only the true owner has.  The server will decrypt the received value, with it's private key, and now the server and client have the previous generated random value. Now the server cannot really send back that value back to the client to prove its identity, because then anyone in the middle (eavesdropping  the communication) would be able to capture that value. But that value is used to generate session keys, these are symetric keys, to protect the following data transfers between the client and the server. 
+
+The second method goes as follows, at some point in the handshake the server, must senda value to the client (at this moment we can pretend this is a random number). The server will sign that number with it's own private key, then the signature and the random value are going to be send to the client, and the client will verify the signature with the server's public key. It the signature is ok, then that proves the server has the private key, and thus proves it its the truthful server. The send value, will be used later to be the session keys, but beware that number was send without cyphering, and only signed. So the signature only proves integrity and authorization, but anyone eavespropping could have capture the value. So that value cannot be used directly to generate session keys, instead, that value has to be conbined with other values only known to the client and to the server, in order to adquire those session keys. The random value, passed at the begining of this second method, is a diffie hellman key.
+
+
+If RSA is used for key exchange, then the fist method is used. 
+
+If DH is used for key exchange, then method two is used. 
+
+
+
+
+
+
+
+
+
+
+
+
