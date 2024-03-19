@@ -193,7 +193,7 @@ SSL/TLS has to comply with:
 
 - reference: https://youtu.be/Jefr7wFLu3M?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
 
- ### RSA
+### RSA
 
  - reference: https://youtu.be/Pq8gNbvfaoM?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY
  - reference: https://manansingh.github.io/Cryptolab-Offline/c14-rsa.html
@@ -267,7 +267,13 @@ A certificate has 3 sections:
      - public key
      - extensions.
 - signature algorithm
-- signature 
+- signature
+
+
+Other references:
+ - Certificates from Scratch - X.509 Certificates explained: https://youtu.be/kAaIYRJoJkc
+ - Server Certificates - Self Signed and LetsEncrypt Certificates for the LAN: https://youtu.be/Z81jegMCrfk
+ - Secure your Cloud Services with TLS X.509 Client Certificates: https://youtu.be/5lYQRuzdZr0
 
 #### Version
 this is the version of the x509 specification:
