@@ -2747,6 +2747,8 @@ iio:
 - how to connect to a rpi thru the USB port: https://linux.ime.usp.br/~marcelosc/2019/01/SSH-em-Raspberrypi-conectada-por-USB
 - LibIIo: https://www.youtube.com/watch?v=p_VntEwUe24
 - sample: https://elixir.bootlin.com/linux/latest/source/drivers/iio/dummy/iio_simple_dummy.c
+- I2C: https://www.kernel.org/doc/html/v4.12/driver-api/i2c.html#
+- SPI: https://www.kernel.org/doc/html/v4.12/driver-api/spi.html
 
 
 Control-flow integrity for the kernel: <br>
