@@ -39,6 +39,9 @@ references:
  - https://www.slideshare.net/SamsungOSG/a-survivors-guide-to-contributing-to-the-linux-kernel
  - Linux kernel development process: https://docs.kernel.org/process/development-process.html
 
+how to contribute:
+ - Become a Linux kernel contributor - Part 1: https://javiercarrascocruz.github.io/kernel-contributor-1
+
 ### Intro
 
 - reference: https://www.kernel.org/doc/html/latest/process/development-process.html
@@ -2733,6 +2736,13 @@ Linux containers the hard way:
 - Kernel Magnifier: A Linux Kernel Execution Flow Research Tool for Upcomming Kernel Hackers (and Veterans): https://github.com/hgn/kernel-magnifier
   
 <br>
+
+iio:
+- https://linux.ime.usp.br/~marcelosc/2019/09/Introduction-to-IIO-driver-development
+- https://bootlin.com/blog/the-backbone-of-a-linux-industrial-i-o-driver/
+- https://www.kernel.org/doc/html/v4.12/driver-api/iio/index.html
+- rpi compilation tutorial: https://linux.ime.usp.br/~marcelosc/2019/09/RaspberryPi-kernel-compilation
+
 
 Control-flow integrity for the kernel: <br>
 Control-flow integrity (CFI) is a technique used to reduce the ability to redirect the execution of a program's code in attacker-specified ways. The Clang compiler has some features that can assist in maintaining control-flow integrity:
