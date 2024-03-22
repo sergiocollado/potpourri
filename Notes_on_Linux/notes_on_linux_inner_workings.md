@@ -2752,6 +2752,10 @@ iio:
 - sample: https://elixir.bootlin.com/linux/latest/source/drivers/iio/dummy/iio_simple_dummy.c
 - I2C: https://www.kernel.org/doc/html/v4.12/driver-api/i2c.html#
 - SPI: https://www.kernel.org/doc/html/v4.12/driver-api/spi.html
+- i2c in linux: https://www.linkedin.com/pulse/understanding-i2c-communication-linux-beginners-guide-soheil-nazari
+- i2c in linux: https://elinux.org/Interfacing_with_I2C_Devices
+- i2c in kernel: https://www.kernel.org/doc/Documentation/i2c/dev-interface
+- SPI in kernel: https://docs.kernel.org/spi/index.html
 
 
 Control-flow integrity for the kernel: <br>
