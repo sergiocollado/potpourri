@@ -2743,6 +2743,9 @@ iio:
 - https://bootlin.com/blog/the-backbone-of-a-linux-industrial-i-o-driver/
 - https://www.kernel.org/doc/html/v4.12/driver-api/iio/index.html
 - rpi compilation tutorial: https://linux.ime.usp.br/~marcelosc/2019/09/RaspberryPi-kernel-compilation
+- video iio example: https://youtu.be/l8mQtpZhgYI
+- https://linux.ime.usp.br/~marcelosc/2019/09/Introduction-to-IIO-driver-development
+- https://linux.ime.usp.br/~marcelosc/2019/09/Simple-IIO-driver
 - example PR: https://github.com/analogdevicesinc/linux/pull/436/commits/3d2c7522c01b19c19c77adfac0ab1546b56426bc
 - how to connect to a rpi thru the USB port: https://linux.ime.usp.br/~marcelosc/2019/01/SSH-em-Raspberrypi-conectada-por-USB
 - LibIIo: https://www.youtube.com/watch?v=p_VntEwUe24
