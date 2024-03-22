@@ -2745,6 +2745,7 @@ iio:
 - example PR: https://github.com/analogdevicesinc/linux/pull/436/commits/3d2c7522c01b19c19c77adfac0ab1546b56426bc
 - how to connect to a rpi thru the USB port: https://linux.ime.usp.br/~marcelosc/2019/01/SSH-em-Raspberrypi-conectada-por-USB
 - LibIIo: https://www.youtube.com/watch?v=p_VntEwUe24
+- sample: https://elixir.bootlin.com/linux/latest/source/drivers/iio/dummy/iio_simple_dummy.c
 
 
 Control-flow integrity for the kernel: <br>
