@@ -731,7 +731,145 @@ At the end of the chain, is the web-server itself. This is sometimes known as th
 
 The fields: "Subject" (who received the signature) and "Issuer" (who created) fields. 
 
-All this certificate chain, pops up a question: Which certificate gets to the client?
+All this certificate chain, pops up a question: Which certificate get send to the client?
+
+#### Which certificates get send to the client?
+
+The client should already have Root CA installed. The server, must send its End Entity Certificate. And the server must also send every intermediate certificate in the chain. So the client can validate each certificate's signature. 
+
+The server can also send the Root CA certificate if it chooses to. But the clien will ignore it in the validation process, the reason is because the client cannot associate trust to the server by something provided by the server. The "trust anchor" must come from something preinstalled like the local certificates. So why would the server send the Root CA certificate if it is going to be ignored by the client? , the reason, is that this allows the client to easily add trust to the Root CA, if the client chooses to. This situation will not happen in standard internet websites, but this may occour in corporate CA enviroments. But never do this, if not phisycally connect to the corporate network or with a VPN, never do this in a public internet. 
+
+
+### Basic constrains
+
+Basic contrains, is an extesion for X509 v3 certificates. This extension was previously briefly described. 
+
+The problem that the Basic constrains are trying to solve:
+ - Valid certificates have valid chains, all the way to the Root.
+ - Creating a signed Certificate simply requires a private key
+ - Legitimate servers have their own Public and Private key
+ - Anyone can create news keys and CSR for any website.
+ - What would prevent a server with a private key, to issue a CSR to any website? **Anybody with a valid signed certificate, can create a signed certificate for any website** Even websites they don't own.
+ - Internet was quite slow to address this problem. Basic constrains was ratificed in 1999.
+
+
+Basic constrains is an x509v3 extension with two arguments: 
+ - Indication if the Subject can issue certificate (CA: TRUE/ FALSE)
+ - Path length: it sets a maximum to the amount of intermediate CA that exists below on the chain certificate.
+     - max # of ICAs lower in the chain
+     - max # of certs with CA: TRUE.
+  
+### Certificate types: DV, OV, EV
+
+To adquire a SSL certificate, you need to:
+ - Generate a CSR and give it to a CA
+ - That CA is going to validate your identinty, and then generate you a certificate.
+
+The certificate types, are going to indicate how through identity is validated: 
+
+There are 3 types of certificates: 
+ - DV - domain validation
+ - OV - organization validation
+ - EV - extended validation
+
+The certificate type can be identified by a given x509v3 extension:
+  - EV certificates have the Certificate Policy: 2.23.140.1.1
+  - most OV certificates have the certificate Policy: 2.23.140.1.2.2
+  - most DV certificates have the certificate Policy: 2.23.140.1.2.1
+      - DV certificates usuallyt don't have organization info in the Subject. 
+
+#### DV - domain validation certificate
+
+DV indicates that you own a particular domain. To validate this, the CA will ask you to: 
+ - send an email, from the domain, from an pre-approved mailbox: for example: info@domain.com, ssl@domain.com, admin@domain.com
+ - publish a particular token, at an specified URL: for example: http://domain.com/token.html
+
+this certificate types, usually are very fast to validate (because the verification can be automated), and the cost is cheaper than other options, even free (https://letsencrypt.org/)
+
+#### OV - orgainzation validaytion certifcate
+
+ - Validates the server that owns the domain
+ - It also validates that a domain is owned by a legitimate corporation
+
+ - The CA will verify that corporation against public records: bussines registration, chamber of commerce, tax records ....
+
+ - Ties a domain name to an actual company
+
+#### EV - extended validation certificates
+
+ - Validation server owns the domain,
+ - Validate domain is owned by a legitimate corporation
+ - Validates more extra data:
+     - like corporation physical address (in-person)
+     - that the corporation has been in bussienes more than 3 years
+     - that the CSR is authorized to request certiciates
+     - verify means of communication between CA and the company.
+ - The web browsers will display an extra indicator when there is an EV certificate. 
+
+### Certificate revocation
+
+Occasionally, a private key may be compromised. So the server should generate new private keys, adquire a new certificate. 
+
+But the problem, is that the previous compromised certificate still exists and is valid, and can be used by an adversary to impersonate a server. That is why certificate revocation is needed.
+
+Revocation is the process to invalidate a given certificate. 
+
+There are 2 ways to invalidate a give certificate:
+ - CRL - Certificate Revocation List
+ - OCSP - Online Certificate Status Protocol
+
+#### CRL certificate revocation list
+
+CRL is a list of all revocated certificates mantained by a CA. The location of the CRL is enmbeddded in each certificate (CRL distribution points). 
+
+If the crl is downloaded in the URI specified, there is a list of all the certificate serials # and the date where those were revoked. Sometimes also the revokation reason is noted there.
+
+the process to check the CRL is: 
+ - the client request the certificate from the server
+ - the client request the CRL from the CA
+ - the client checks CRL for the serial number
+ - if the serial number is not found, the certificate is not revoked.
+
+Criticisms: CRL is slow. There are CRL that are huge. ... CRL are not updated on real-time, but only every 5-15 days. Often CRLS are not even check, if the user value speed over security. 
+
+ - reference: https://www.gradenegger.eu/en/google-chrome-does-not-check-revocation-status-of-certificates/
+ - reference: https://www.computerworld.com/article/2501274/google-chrome-will-no-longer-check-for-revoked-ssl-certificates-online.html
+
+
+#### OCSP Online Certificate Status Protocol 
+
+Every CA will maintain a OCSP responder, this is a server that will respond with a real-time certificate status, using the serial number of the certificate. So a list of certificates has not to be used. 
+
+The location of the OCSP responder is embedded on the certificate, on the "Authority Information Access" extension.
+
+The request is made by HTTP:
+ - the status fo the certificate is not sensitive.
+ - the status is signed by the CA.
+
+the process to check the OCSP is:
+ - the client adquires the server certificate
+ - the client request the status from the OCSP responder.
+ - OCSP responder, replies with status: good/revoked/unkwnon.
+
+#### OCSP stapling
+
+ - The server is going to periodically request its own Status. Refresh status: 5 min to 10 days. And the status is stamped and signed by the CA. 
+ - The client request the certificate and Status.
+ - the server provides both certificate and status.
+    - the status is trusted because of CA's signature.
+  
+ OCSP stapling puts the security back on the server, and not on the client. Notice, the client doesn't need to connect to the CA for the certificate status. 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
