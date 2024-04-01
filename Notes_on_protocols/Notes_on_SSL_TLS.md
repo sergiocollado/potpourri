@@ -861,6 +861,93 @@ the process to check the OCSP is:
  OCSP stapling puts the security back on the server, and not on the client. Notice, the client doesn't need to connect to the CA for the certificate status. 
 
 
+ ## Chiper suits
+
+
+1. The certificate authority (CA) is the corner stone of the TLS/SSL process.
+   - CA has a public key and private key.
+   - CA has a self-signed certificate
+2. A server wants to adquire a certificate
+3. The server generates a public and private key.
+4. Then the server generates a Certificate Signing Request (CSR).
+   - CSR contains the server's public key
+   - CSR is signed by server's private key
+5. The server gives the signed CSR to the certificate autority (CA).
+6. The CA inspects and validates information in CSR
+7. The CA creates a certificate using information from the CSR, particullary the public key of the server submited on the CSR.
+8. The CA signs the certificate using its CA's private key.
+9. The certificate is given to the server.
+10. The server can provide now its certificate to prove its identity.
+11. The clients wants to connect to the  server securely.
+    - The client (ie web browsers) already has the CA certificates installed.
+12. The client requests the server's certificate
+    - The client validates that the certificate is legitimate. (usting the public key of the CA)
+    - The client validates that the server truly owns the certificate. (making sure the public key provided in the certificate the server has the private key)
+13. The clients validates Server's certificate in the SSL/TLS handshake.
+14. SSL/TLS Handshake produces session keys:
+    - symmetric encription (for confidentiality)
+    - message authentification code MAC (for integrity and authentification)
+15. Session keys, form a secure tunnel to protect the communication. (encripted with the symetric keys).
+
+### Chiper suits - key exchange
+
+The most common protocols for key exchange are: 
+ - ECDHE - Elicptic Curve Diffie Hellman Ephemeral
+ - DHE - Diffie-Hellman Ephemeral
+ - ECDH - Eliptic Curbe Diffie-Hellman
+ - DH  - Diffie-Hellman
+ - RSA
+ - PSK
+
+The purpose of the key exchange is to stablis the **seed** value. The seed value is used to generate additional session keys. 
+
+The key exchange, involves Asymetric encryption. 
+ - Slow/requires more CPU processing.
+ - But this only needs to be done once.
+ - all those protocols are only differents ways to stablish that seed value.
+
+
+#### PSK 
+
+ PSK stands for Pre-Shared Key. This means that the seed value is manually specified (by the administrator) before the TLS handshake. 
+
+ This is considered the least secure of the handshake mechanims, but it requries zero CPU costs.
+
+ It is extremely rare in WWW, but used in IoT.
+
+ #### RSA
+
+ RSA is hybrid encription. 
+  - client randomly generates a seed value
+  - client encrypts with server's public key.
+  - server decrypts with server's private key.
+
+There are some concerns by the RSA:
+ - the seed is only protected by the private key, so anyone that has that private key is able to retrieve the seed. 
+ - It also requires a very unpredictable random number generator.
+
+#### ECDHE, DHE, ECDH, DH
+
+All this protocols are a variation of Diffie-Hellman. (Stablish a secret over a unsecure medium)
+ - the shared secret is used to create the seed.
+ - DH requires both parties to generate the seed value, so this is stronger than depending on a weak random number generator.
+
+The naming of the algorithms:
+ - DH... : Diffie-Hellman
+ - EC...: Eliptic Curve
+ - ...E: Ephemeral
+
+The EC (Eliptic Curve) versions of those algorithms, are more secure and efficient than the non-EC versionss.
+
+The E: ephemeral, this makes reference to the Diffie-Hellman standing parameters, in DH, the DH parameters are static/ written into Cert & Key files. Ephermeral, means that those DH parameteres, are temporary, and those parameters are generated and discarded each session. Ephemeral Diffie-Hellman, provides **Foward secrecy**.
+
+
+
+
+
+
+
+
 
 
 
