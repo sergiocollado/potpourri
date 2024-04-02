@@ -863,7 +863,6 @@ the process to check the OCSP is:
 
  ## Chiper suits
 
-
 1. The certificate authority (CA) is the corner stone of the TLS/SSL process.
    - CA has a public key and private key.
    - CA has a self-signed certificate
@@ -941,8 +940,21 @@ The EC (Eliptic Curve) versions of those algorithms, are more secure and efficie
 
 The E: ephemeral, this makes reference to the Diffie-Hellman standing parameters, in DH, the DH parameters are static/ written into Cert & Key files. Ephermeral, means that those DH parameteres, are temporary, and those parameters are generated and discarded each session. Ephemeral Diffie-Hellman, provides **Foward secrecy**.
 
+### Forward secrecy
 
+Forwared Secrecy, is: "once encrypted, always encrypted". 
 
+Without forwared secrecy (PSK, RSA, ECDH, DH):
+ - the private keys files must be protected **forever**.
+ - key compromised in the future can decrypt data sent in the past.
+ - ECDH and DH use static DH starting parameters, saved in the certifcate & private key
+
+The only protocols that provide forward secrecy are ECDHE and DHE. 
+
+With forwared secrecy (DHE, ECDHE):
+ - after the seed is calculated, DH parameter are discarded.
+ - impossible to recreate the seed value.
+ - TLS 1.3+ will require forwared secrecy.
 
 
 
