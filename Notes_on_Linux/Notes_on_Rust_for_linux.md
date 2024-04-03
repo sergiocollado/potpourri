@@ -165,6 +165,7 @@ The kernel is inherently multi-threaded: kernel resources can be accessed from m
 - https://research.nccgroup.com/2023/02/06/rustproofing-linux-part-1-4-leaking-addresses/
 - rust kernel module: hello world https://wusyong.github.io/posts/rust-kernel-module-01/
 - Linux kernel modules in safe Rust: https://github.com/fishinabarrel/linux-kernel-module-rust/
+- Arc in RfL: https://hackmd.io/cuKNW7xxRzGsOUMiThs73w?view
 
 
 Nice intro:
