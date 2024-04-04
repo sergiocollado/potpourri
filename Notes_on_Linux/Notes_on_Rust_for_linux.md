@@ -8,6 +8,7 @@ Languaje reference:
   - https://doc.rust-lang.org/book                                              
   - https://doc.rust-lang.org/rust-by-example
   - Beginner's guide to Error Handling in Rust: https://www.sheshbabu.com/posts/rust-error-handling/
+  - Rust memory safety explained: https://www.infoworld.com/article/3714925/rust-memory-safety-explained.html
   - rustlings exercises: https://github.com/rust-lang/rustlings/tree/rustlings-1
   - https://doc.rust-lang.org/stable/reference/                  
   - https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/
