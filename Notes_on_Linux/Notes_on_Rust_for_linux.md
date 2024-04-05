@@ -46,6 +46,7 @@ Other resources:
   - key rust concepts for the kernel: https://lwn.net/Articles/869317/
   - patches: https://github.com/tgross35/RFL-patch-registry?tab=readme-ov-file
   - min configs: https://rust-for-linux.zulipchat.com/#narrow/stream/291565-Help/topic/Build.20error.20on.20rust.20next.20when.20using.20minimal.20.2Econfig
+  - recipe to  Rust Linux Kernel Workstation Setup: https://gist.github.com/nellshamrell/fa82173c59fc3b7dbb47a58d63aadade
   - more rust concepts for the kernel: https://lwn.net/Articles/869428/
   - rust for linux brief introduction: https://rustmagazine.org/issue-1/rust-for-linux-brief-introduction/
   - https://docs.kernel.org/rust/quick-start.html
