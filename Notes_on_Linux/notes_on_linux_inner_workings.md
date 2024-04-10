@@ -2738,7 +2738,7 @@ Linux containers the hard way:
   
 <br>
 
-iio:
+iio - industrial I/O:
 - https://linux.ime.usp.br/~marcelosc/2019/09/Introduction-to-IIO-driver-development
 - https://www.kernel.org/doc/html/v4.12/driver-api/uio-howto.html
 - https://bootlin.com/blog/the-backbone-of-a-linux-industrial-i-o-driver/
