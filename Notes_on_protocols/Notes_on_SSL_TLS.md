@@ -956,6 +956,13 @@ With forwared secrecy (DHE, ECDHE):
  - impossible to recreate the seed value.
  - TLS 1.3+ will require forwared secrecy.
 
+### Chiper suites - authentification 
+
+Authentification is verify if a server is truly who it says it is. 
+
+#### PSK - Pre-Shared-Key
+
+The client and the server will establish a key not using the network. And then prove each other identities in the network. 
 
 
 
