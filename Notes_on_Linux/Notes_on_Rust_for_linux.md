@@ -39,7 +39,7 @@ Languaje reference:
   - Network programming with Rust: https://github.com/PacktPublishing/Network-Programming-with-Rust
   - Complex cpp rust ffi: https://github.com/emilio/rust-cpp-ffi-examples/tree/master
   - bindgen user guide: https://rust-lang.github.io/rust-bindgen/introduction.html
-
+  - rust rfc book: https://rust-lang.github.io/rfcs
 
 Other resources:
   - linux kernel rust documentation: https://docs.kernel.org/rust/index.html
