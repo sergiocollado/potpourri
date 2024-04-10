@@ -706,8 +706,10 @@ There are two methods:
  - client initiated
  - server initiated
 
+#### Client initiated method:
 The first method goes like this: the client generates a random value, then encrypts that random value, with the certificat's public key (the certificate presented by the server). That ciphered value is send back to the server, and the only key that can decrypt that value is the server's private key, that only the true owner has.  The server will decrypt the received value, with it's private key, and now the server and client have the previous generated random value. Now the server cannot really send back that value back to the client to prove its identity, because then anyone in the middle (eavesdropping  the communication) would be able to capture that value. But that value is used to generate session keys, these are symetric keys, to protect the following data transfers between the client and the server. 
 
+#### Server initiated method:
 The second method goes as follows, at some point in the handshake the server, must senda value to the client (at this moment we can pretend this is a random number). The server will sign that number with it's own private key, then the signature and the random value are going to be send to the client, and the client will verify the signature with the server's public key. It the signature is ok, then that proves the server has the private key, and thus proves it its the truthful server. The send value, will be used later to be the session keys, but beware that number was send without cyphering, and only signed. So the signature only proves integrity and authorization, but anyone eavespropping could have capture the value. So that value cannot be used directly to generate session keys, instead, that value has to be conbined with other values only known to the client and to the server, in order to adquire those session keys. The random value, passed at the begining of this second method, is a diffie hellman key.
 
 
@@ -962,11 +964,32 @@ Authentification is verify if a server is truly who it says it is.
 
 #### PSK - Pre-Shared-Key
 
-The client and the server will establish a key not using the network. And then prove each other identities in the network. 
+The client and the server will establish a key not using the network. And then prove each other they have identitical keys to prove its identities in the network. This scheme is rare, maybe used for IoT. The advantage of this scheme is that it doesn't need any asymetric encription or certificate. 
 
+#### ECDSA, RSA, DSS
 
+These protocols provide public and private keys, and certificates. So the the authentification portion is just to check if the server has the matching private key.
 
+ - ECDSA - Elliptic Curve Digital Signature Algorithm
+ - RSA - River Shamir Adelman
+ - DSS - Digital Siganture Standard (DSA)
 
+Check the entry `Is the server the true owner of the certificate?`
+
+#### RSA vs DSS (DSA)
+ These two protocols are considered equally secure with equal key sizes. But RSA has more supportability. 
+
+ DSA math requires unique random numbers, if a random number is ever repeated, the private key can be extracted. So it has to use RFC 6979 that generates a random number deterministacally based on the message
+
+#### ECDSA vs RSA 
+
+ RSA is supported by more devices. At comparable key sizes each are equally secure. To achieve equal security ECDSA requires much smaller key sizes and scales more efficiently. This translates that it requires less resources for identical security. Also ECDSA certificates are smaller (because the keys are smaller)
+
+ Take into account, you don't have to choose between these two protocols, you can use both. Cipher suit is selected before the certificate is sent. 
+
+ 
+
+ 
 
 
 
