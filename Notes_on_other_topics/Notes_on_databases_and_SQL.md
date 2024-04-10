@@ -18,6 +18,7 @@ References:
  - https://learnsql.com/blog/sql-server-cheat-sheet/
  - https://learn.microsoft.com/en-us/sql/sql-server/
  - https://www.sqlservertutorial.net/
+ - https://planetscale.com/learn/courses/mysql-for-developers/examples/offset-limit-pagination
 
 Challenges for learning:
 - https://www.sqlzoo.net/wiki/SQL_Tutorial
