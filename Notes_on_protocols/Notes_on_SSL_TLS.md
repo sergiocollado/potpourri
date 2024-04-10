@@ -985,11 +985,38 @@ Check the entry `Is the server the true owner of the certificate?`
 
  RSA is supported by more devices. At comparable key sizes each are equally secure. To achieve equal security ECDSA requires much smaller key sizes and scales more efficiently. This translates that it requires less resources for identical security. Also ECDSA certificates are smaller (because the keys are smaller)
 
- Take into account, you don't have to choose between these two protocols, you can use both. Cipher suit is selected before the certificate is sent. 
+ Take into account, you don't have to choose between these two protocols, you can use both. Cipher suit is selected before the ce
+ rtificate is sent. 
 
  
+### Encryption
 
- 
+The common encryption protocols used in the symmetric encryption portion of TLS:
+ - CHACHA20
+ - AES-256-GCM
+ - AES-128-GCM
+ - AES-256-CBC
+ - AES-128-CBC
+ - 3DES-CBC
+ - RC4-128
+ - DES-CBC
+
+Those protect the bulk data transfer between the client and the server. 
+
+There are two types of symmetric encryption protocols:
+ - Stream ciphers: CHACHA20, RC4-128
+ - Block ciphers: AES-128, AES-256, 3DES, DES
+
+There are two block cipher modes:
+ - CBC
+ - GCM
+
+**Stream cipher**: It is a symmetric key encription protocol (same key for client and server). It encrypts an stream. Stream  ciphers happens to be faster to implement in software. Are vulnerable to changing the order bits in the stream. So Stream ciphers, must be used with MAC to check the integrity of the message. 
+
+**Block cyper**: It is a symmetric key encription protocol (same key for client and server). It encrypts the original message breaking it up in blocks, and then each one of those blocks are ran through a block cipher encription, in combination with the symmetric key. PCs usually have hardware AES chips for code/encode it, and work faster that software. 
+
+
+
 
 
 
