@@ -151,6 +151,9 @@ $ git config --global sendemail.smtpserver smtp.gmail.com
 $ git config --global sendemail.smtpserverport 587
 $ git config --global sendemail.smtpencryption tls
 $ git config --global sendemail.smtpuser your_email@gmail.com
+
+# check with:
+$ git config -l
 ```
 
 ```
@@ -209,6 +212,109 @@ David Gow <davidgow@google.com> (maintainer:KERNEL UNIT TESTING FRAMEWORK (KUnit
 linux-kselftest@vger.kernel.org (open list:KERNEL UNIT TESTING FRAMEWORK (KUnit))
 kunit-dev@googlegroups.com (open list:KERNEL 
 ```
+
+#### example sending a patch
+
+The patch:
+```bash
+sergio@laptop:~/repos/orig-linux$ git show
+commit 76bcfe1f941af0196e0618426a6b53156e0345e3 (HEAD -> master)
+Author: Sergio González Collado <sergio.collado@gmail.com>
+Date:   Sun Apr 14 18:40:21 2024 +0200
+
+    Add room for insn-enconding and symbol name
+    
+    The longest length of a symbol (KSYM_NAME_LEN) was increased to 512
+    in the reference [1]. This patch adds room for insn-encoding and a
+    symbol name, as proposed in [2]
+    
+    [1] https://lore.kernel.org/lkml/20220802015052.10452-6-ojeda@kernel.org/
+    [2] https://lore.kernel.org/lkml/16641a56-9139-4396-a5a8-89606bedd1f1@app.fastmail.com/
+    
+    Signed-off-by: Sergio González Collado <sergio.collado@gmail.com>
+
+diff --git a/arch/x86/tools/insn_decoder_test.c b/arch/x86/tools/insn_decoder_test.c
+index 472540aeabc2..add51bfc2260 100644
+--- a/arch/x86/tools/insn_decoder_test.c
++++ b/arch/x86/tools/insn_decoder_test.c
+@@ -10,6 +10,7 @@
+ #include <assert.h>
+ #include <unistd.h>
+ #include <stdarg.h>
++#include <linux/kallsym.h>
+ 
+ #define unlikely(cond) (cond)
+ 
+@@ -106,7 +107,7 @@ static void parse_args(int argc, char **argv)
+        }
+ }
+ 
+-#define BUFSIZE 256
++#define BUFSIZE (256 + KSYM_NAME_LEN)
+ 
+ int main(int argc, char **argv)
+ {
+```
+
+format the patch:
+```bash
+sergio@laptop:~/repos/orig-linux$ git format-patch -1
+0001-Add-room-for-insn-enconding-and-symbol-name.patch
+```
+
+check the patch:
+```bash
+sergio@laptop:~/repos/orig-linux$ ./scripts/checkpatch.pl 0001-Add-room-for-insn-enconding-and-symbol-name.patch 
+WARNING: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#15: 
+[2] https://lore.kernel.org/lkml/16641a56-9139-4396-a5a8-89606bedd1f1@app.fastmail.com/
+
+total: 0 errors, 1 warnings, 15 lines checked
+
+NOTE: For some of the reported defects, checkpatch may be able to
+      mechanically convert to the typical style using --fix or --fix-inplace.
+
+0001-Add-room-for-insn-enconding-and-symbol-name.patch has style problems, please review.
+
+NOTE: If any of the errors are false positives, please report
+      them to the maintainer, see CHECKPATCH in MAINTAINERS.
+sergio@laptop:~/repos/orig-linux$ 
+```
+get mantainers:
+```bash
+sergio@laptop:~/repos/orig-linux$ ./scripts/get_maintainer.pl arch/x86/tools/insn_decoder_test.c
+Thomas Gleixner <tglx@linutronix.de> (maintainer:X86 ARCHITECTURE (32-BIT AND 64-BIT))
+Ingo Molnar <mingo@redhat.com> (maintainer:X86 ARCHITECTURE (32-BIT AND 64-BIT))
+Borislav Petkov <bp@alien8.de> (maintainer:X86 ARCHITECTURE (32-BIT AND 64-BIT))
+Dave Hansen <dave.hansen@linux.intel.com> (maintainer:X86 ARCHITECTURE (32-BIT AND 64-BIT))
+x86@kernel.org (maintainer:X86 ARCHITECTURE (32-BIT AND 64-BIT))
+"H. Peter Anvin" <hpa@zytor.com> (reviewer:X86 ARCHITECTURE (32-BIT AND 64-BIT))
+"Sergio González Collado" <X@gmail.com> (commit_signer:1/1=100%,authored:1/1=100%,added_lines:2/2=100%,removed_lines:1/1=100%)
+linux-kernel@vger.kernel.org (open list:X86 ARCHITECTURE (32-BIT AND 64-BIT))
+sergio@laptop:~/repos/orig-linux$ 
+```
+test send the patch:
+```bash
+sergio@laptop:~/repos/orig-linux$ git send-email  --dry-run --smtp-server /usr/bin/msmtp --to 'X@gmail.com' 0001-Add-room-for-insn-enconding-and-symbol-name.patch
+0001-Add-room-for-insn-enconding-and-symbol-name.patch
+(mbox) Adding cc: =?UTF-8?q?Sergio=20Gonz=C3=A1lez=20Collado?= <X@gmail.com> from line 'From: =?UTF-8?q?Sergio=20Gonz=C3=A1lez=20Collado?= <X@gmail.com>'
+(body) Adding cc: Sergio González Collado <X@gmail.com> from line 'Signed-off-by: Sergio González Collado <X@gmail.com>'
+Dry-OK. Log says:
+Sendmail: /usr/bin/msmtp -i X@gmail.com
+From: =?UTF-8?q?Sergio=20Gonz=C3=A1lez=20Collado?= <X@gmail.com>
+To: X@gmail.com
+Subject: [PATCH] Add room for insn-enconding and symbol name
+Date: Sun, 14 Apr 2024 19:05:41 +0200
+Message-Id: <20240414170541.10250-1-sergio.collado@gmail.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Result: OK
+```
+
+
 
 
 ### Codes of conduct
