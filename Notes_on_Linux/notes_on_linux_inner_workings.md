@@ -2726,10 +2726,17 @@ XArray:
 What happens when Linux runs out of memory? : https://youtu.be/Cm3-6cOwICU
 
 Linux containers the hard way:
-
 - https://hackaday.com/2023/08/07/linux-containers-the-hard-way/
 - https://github.com/lucavallin/barco
 - https://redhatgov.io/workshops/containers_the_hard_way/
+
+<br>
+Device trees:
+ - https://javiercarrascocruz.github.io/device-driver-development-with-rpi-device-tree
+ - https://devicetree-specification.readthedocs.io/en/stable/index.html
+ - https://docs.kernel.org/devicetree/index.html#kernel-devicetree-usage
+ - https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/configuration/device-tree.adoc
+
 
 <br>
 
