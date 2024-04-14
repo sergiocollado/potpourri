@@ -146,6 +146,7 @@ references:
 
 
 ```
+# first configure git:
 $ git config --global sendemail.smtpserver smtp.gmail.com
 $ git config --global sendemail.smtpserverport 587
 $ git config --global sendemail.smtpencryption tls
