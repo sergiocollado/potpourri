@@ -295,6 +295,7 @@ sergio@laptop:~/repos/orig-linux$
 ```
 test send the patch:
 ```bash
+#not sure what  --smtp-server /usr/bin/msmtp is doing there :/
 sergio@laptop:~/repos/orig-linux$ git send-email  --dry-run --smtp-server /usr/bin/msmtp --to 'X@gmail.com' 0001-Add-room-for-insn-enconding-and-symbol-name.patch
 0001-Add-room-for-insn-enconding-and-symbol-name.patch
 (mbox) Adding cc: =?UTF-8?q?Sergio=20Gonz=C3=A1lez=20Collado?= <X@gmail.com> from line 'From: =?UTF-8?q?Sergio=20Gonz=C3=A1lez=20Collado?= <X@gmail.com>'
@@ -312,6 +313,51 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 Result: OK
+```
+
+send the patch: 
+```bash
+sergio@laptop:~/repos/orig-linux$ git send-email --to 'sergio.collado@gmail.com' 0001-Add-room-for-insn-enconding-and-symbol-name.patch
+0001-Add-room-for-insn-enconding-and-symbol-name.patch
+(mbox) Adding cc: =?UTF-8?q?Sergio=20Gonz=C3=A1lez=20Collado?= <sergio.collado@gmail.com> from line 'From: =?UTF-8?q?Sergio=20Gonz=C3=A1lez=20Collado?= <sergio.collado@gmail.com>'
+(body) Adding cc: Sergio González Collado <sergio.collado@gmail.com> from line 'Signed-off-by: Sergio González Collado <sergio.collado@gmail.com>'
+
+From: =?UTF-8?q?Sergio=20Gonz=C3=A1lez=20Collado?= <sergio.collado@gmail.com>
+To: sergio.collado@gmail.com
+Subject: [PATCH] Add room for insn-enconding and symbol name
+Date: Sun, 14 Apr 2024 19:24:04 +0200
+Message-Id: <20240414172404.10690-1-sergio.collado@gmail.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+    The Cc list above has been expanded by additional
+    addresses found in the patch commit message. By default
+    send-email prompts before sending whenever this occurs.
+    This behavior is controlled by the sendemail.confirm
+    configuration setting.
+
+    For additional information, run 'git send-email --help'.
+    To retain the current behavior, but squelch this message,
+    run 'git config --global sendemail.confirm auto'.
+
+Send this email? ([y]es|[n]o|[e]dit|[q]uit|[a]ll): y
+OK. Log says:
+Server: smtp.gmail.com
+MAIL FROM:<sergio.collado@gmail.com>
+RCPT TO:<sergio.collado@gmail.com>
+From: =?UTF-8?q?Sergio=20Gonz=C3=A1lez=20Collado?= <sergio.collado@gmail.com>
+To: sergio.collado@gmail.com
+Subject: [PATCH] Add room for insn-enconding and symbol name
+Date: Sun, 14 Apr 2024 19:24:04 +0200
+Message-Id: <20240414172404.10690-1-sergio.collado@gmail.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Result: 250 
 ```
 
 
