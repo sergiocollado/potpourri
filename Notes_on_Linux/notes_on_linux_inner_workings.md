@@ -153,12 +153,15 @@ $ git config --global sendemail.smtpuser your_email@gmail.com
 ```
 
 ```
+# the commit must be signed
+git commit -s
+
 # generate the patch
 git format-patch -1 --base=auto
 vim 0001-fix-one-dead-link-in-ia64-xen.txt.patch
 
 # to generate a given version of the patch
-git foormat-patch -1 --base=auto -subject-prefix="PATCH v2"
+git format-patch -1 --base=auto -subject-prefix="PATCH v2"
 
 # check the patch
 ./scripts/checkpatch.pl 0001-fix-one-dead-link-in-ia64-xen.txt.patch
@@ -166,8 +169,11 @@ git foormat-patch -1 --base=auto -subject-prefix="PATCH v2"
 # get manteiner list
 ./scripts/get_maintainer.pl Documentation/ia64/ -f
 
+# send patch check with --dry-run
+git send-email  --dry-run --smtp-server /usr/bin/msmtp --to corbet@lwn.net --to yamada.masahiro@socionext.com --to slyfox@gentoo.org --to tony.luck@intel.com --to bjorn.forsman@gmail.com --to mudongliangabcd@gmail.com -cc linux-doc@vger.kernel.org -cc linux-kernel@vger.kernel.org 0001-fix-one-dead-link-in-ia64-xen.txt.patch
+
 # send patch
-git send-email  --smtp-server /usr/bin/msmtp --to corbet@lwn.net --to yamada.masahiro@socionext.com --to slyfox@gentoo.org --to tony.luck@intel.com --to bjorn.forsman@gmail.com --to mudongliangabcd@gmail.com -cc linux-doc@vger.kernel.org -cc linux-kernel@vger.kernel.org 0001-fix-one-dead-link-in-ia64-xen.txt.patch
+git send-email  --dry-run --smtp-server /usr/bin/msmtp --to corbet@lwn.net --to yamada.masahiro@socionext.com --to slyfox@gentoo.org --to tony.luck@intel.com --to bjorn.forsman@gmail.com --to mudongliangabcd@gmail.com -cc linux-doc@vger.kernel.org -cc linux-kernel@vger.kernel.org 0001-fix-one-dead-link-in-ia64-xen.txt.patch
 
 git send-email --to xx@mail.com 0001-your.patch
 ```
