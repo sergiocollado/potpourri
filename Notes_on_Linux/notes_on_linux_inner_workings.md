@@ -2901,7 +2901,15 @@ Device trees:
 
 - https://redhatgov.io/workshops/selinux_policy/
 - Kernel Magnifier: A Linux Kernel Execution Flow Research Tool for Upcomming Kernel Hackers (and Veterans): https://github.com/hgn/kernel-magnifier
-  
+
+<br>
+
+i2c in linux:
+ - https://www.eevblog.com/forum/microcontrollers/i2c-sensor-integration-in-linux/
+ - https://www.kernel.org/doc/Documentation/i2c/
+ - Basics of I2C on Linux - Luca Ceresoli, Bootlin -- The Linux Foundation: https://youtu.be/g9-wgdesvwA
+ - The video discusses the driver for the PCA9570: https://github.com/torvalds/linux/blob/master/drivers/gpio/gpio-pca9570.c
+ - Let's code a Linux Driver - Johannes 4GNU_Linux: https://www.youtube.com/playlist?list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
 <br>
 
 iio - industrial I/O:
