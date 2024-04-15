@@ -89,12 +89,25 @@ la ejecución, cayendo así en un fallo no acotado.
 The burst feature observes that a workload doesn't always executes the full
 quota; this enables one to describe u_i as a statistical distribution.
 
+La funcionalidad de ráfaba vigila que una carga de CPU no se ejecute 
+siempre con su máxima cuota; esto permite que se pueda describirr u_i
+como una distribución estádistica.
+
 For example, have u_i = {x,e}_i, where x is the p(95) and x+e p(100)
 (the traditional WCET). This effectively allows u to be smaller,
 increasing the efficiency (we can pack more tasks in the system), but at
 the cost of missing deadlines when all the odds line up. However, it
 does maintain stability, since every overrun must be paired with an
 underrun as long as our x is above the average.
+
+Por ejemplo, se tiene u_i = {x,e}_i, donde x es el p(95) y x+e p(100)
+(el tradicional WCET (WCET son las siglas en inglés de "peor tiempo
+de ejecución")). Esto efectivamente permite a u ser más pequeño, 
+aumentando la eficiencia (podemos ejecutar más tareas en el sistema),
+pero al coste de perder el momento límite de ejecución de la tarea, 
+cuando coincidan las peores probabilidades. De todas formas, si 
+se mantiene la estabilidad, ya que cada sobre-ejecución se empareja
+con una infra-ejecución en tanto x esté por encima de la media.
 
 That is, suppose we have 2 tasks, both specify a p(95) value, then we
 have a p(95)*p(95) = 90.25% chance both tasks are within their quota and
@@ -104,9 +117,23 @@ fail). Somewhere in between there's a threshold where one exceeds and
 the other doesn't underrun enough to compensate; this depends on the
 specific CDFs.
 
+Es decir, suponganse que se tienen 2 tareas, ambas especificamente 
+con p(95), entonces tenemos p(95)*p(95) = 90.25% de probabilidad de
+que ambas tareas se ejecuten dentro de su cuota asignada y todo 
+salga bien. Al mismo tiempo se tiene que p(5)*p(5) = 0.25% de 
+probabilidad que ambas tareas excedan su cuota de ejecución (fallo
+garantizado de su tiempo final de ejecucion). En algún punto por 
+en medio, hay un umbral donde una tarea excede su tiempo límite de
+ejecución y la otra no, de forma que se compensan; esto depende en 
+los específicos de CDFs.
+
 At the same time, we can say that the worst case deadline miss, will be
 \Sum e_i; that is, there is a bounded tardiness (under the assumption
 that x+e is indeed WCET).
+
+Al mismo tiempo, se puede decir que el peor caso de sobrepasar el 
+tiempo límite de ejecución será \Sum e_i; esto es una tardanza acotada
+(asumiendo que x+e es de hecho el WCET).
 
 The interferenece when using burst is valued by the possibilities for
 missing the deadline and the average WCET. Test results showed that when
