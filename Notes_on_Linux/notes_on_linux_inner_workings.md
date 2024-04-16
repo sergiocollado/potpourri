@@ -2903,6 +2903,9 @@ Device trees:
 - Kernel Magnifier: A Linux Kernel Execution Flow Research Tool for Upcomming Kernel Hackers (and Veterans): https://github.com/hgn/kernel-magnifier
 
 <br>
+Linux Kernel Runtime Guard:
+ - https://lkrg.org/
+<br>
 
 i2c in linux:
  - https://www.eevblog.com/forum/microcontrollers/i2c-sensor-integration-in-linux/
