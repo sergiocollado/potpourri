@@ -147,6 +147,8 @@ The kernel is inherently multi-threaded: kernel resources can be accessed from m
 - https://lkml.org/lkml/2022/9/19/1105
 - the pull request to enter Linux: https://lore.kernel.org/lkml/202210010816.1317F2C@keescook/
 - about pinning:
+    - https://rust-for-linux.zulipchat.com/#narrow/stream/288089-General/topic/Pin.2C.20or.3A.20why.20is.20memory.20moved.20around.3F
+    - https://blog.cloudflare.com/pin-and-unpin-in-rust
     - the perils of pinning: https://lwn.net/Articles/907876/
     - https://fasterthanli.me/articles/pin-and-suffering
     - https://rust-lang.github.io/async-book/04_pinning/01_chapter.html
