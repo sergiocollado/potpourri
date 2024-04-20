@@ -111,6 +111,7 @@ The kernel is inherently multi-threaded: kernel resources can be accessed from m
 - https://discourse.ubuntu.com/t/ubuntu-kernel-is-getting-rusty-in-lunar/34977
 - R4L in space: https://lwn.net/Articles/954974/ - https://evlproject.org/overview/
 - mapping developments: https://github.com/tgross35/RFL-patch-registry
+- repo commits: https://github.com/Rust-for-Linux/linux/commits/rust-next/rust?after=2c1092853f163762ef0aabc551a630ef233e1be3+244
 
 ## Videos: 
 
