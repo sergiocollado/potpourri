@@ -475,29 +475,25 @@ when applicable, accept or reject Registration Requests or Service Requests from
 ```
 
 
-
-
-
-
 ## Going further
 
 The 5G system is described in over a thousand 3GPP Technical Reports (TRs) and Technical Specifications (TSs).
 
 To help you find more information, e.g. on the dynamic behaviour of 5GS (procedures, etc) or on some specific aspect of 5G, some key TRs and TSs are listed here:
 
-[TS 22.261](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3107), "Service requirements for the 5G system".
-[TS 23.501](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144), "System architecture for the 5G System (5GS)"
-[TS 23.502](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3145) "Procedures for the 5G System (5GS)
-[TS 32.240](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=1896) “Charging management; Charging architecture and principles".
-[TS 24.501](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3370) "Non-Access-Stratum (NAS) protocol for 5G System (5GS); Stage 3"
-[TS 38.300](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3191) "NR; NR and NG-RAN Overall description; Stage-2"
-Referenced Specifications:
+ - [TS 22.261](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3107), "Service requirements for the 5G system".
+ - [TS 23.501](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144), "System architecture for the 5G System (5GS)" - 
+ - [TS 23.502](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3145) "Procedures for the 5G System (5GS)
+ - [TS 32.240](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=1896) “Charging management; Charging architecture and principles".
+ - [TS 24.501](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3370) "Non-Access-Stratum (NAS) protocol for 5G System (5GS); Stage 3"
+ - [TS 38.300](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3191) "NR; NR and NG-RAN Overall description; Stage-2"
+ - Referenced Specifications:
 [TS 22.278](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=641), "Service requirements for the Evolved Packet System (EPS)".
-[TS 22.011](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=566), "Service accessibility".
-[TS 22.101](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=605), "Service aspects; Service principles".
-[TS 22.185](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=605), "Service requirements for V2X services".
-[TS 22.071](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=584), "Location Services (LCS); Service description".
-[TS 22.115](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=608), "Service aspects; Charging and billing".
-[TS 22.153](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=617), "Multimedia priority service".
-[TS 22.173](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=620), "IP Multimedia Core Network Subsystem (IMS) Multimedia Telephony Service and supplementary services".
-[TS 22.186](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3180), "Service requirements for enhanced V2X scenarios".
+ - [TS 22.011](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=566), "Service accessibility".
+ - [TS 22.101](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=605), "Service aspects; Service principles".
+ - [TS 22.185](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=605), "Service requirements for V2X services".
+ - [TS 22.071](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=584), "Location Services (LCS); Service description".
+ - [TS 22.115](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=608), "Service aspects; Charging and billing".
+ - [TS 22.153](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=617), "Multimedia priority service".
+ - [TS 22.173](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=620), "IP Multimedia Core Network Subsystem (IMS) Multimedia Telephony Service and supplementary services".
+ - [TS 22.186](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3180), "Service requirements for enhanced V2X scenarios".
