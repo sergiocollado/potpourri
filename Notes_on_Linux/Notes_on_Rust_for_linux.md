@@ -530,3 +530,207 @@ It is possible to enable KUNITS and rust tests for KUNITs.
 
 ```
 
+
+reference: https://gist.github.com/nellshamrell/fa82173c59fc3b7dbb47a58d63aadade
+
+# Rust Linux Kernel Workstation Setup
+
+I am currently running these commands on a Standard_F16s_v2 VM in Azure (using an Ubuntu 22.04 image).
+
+## Update Ubuntu 
+
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+```
+
+## Install required dependencies
+
+```bash
+sudo apt install  -y bc binutils bison dwarves flex gcc git gnupg2 gzip libelf-dev libncurses5-dev libssl-dev lld make openssl pahole perl-base rsync tar xz-utils
+```
+
+## Install LLVM, etc.
+
+```bash
+bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+wget https://apt.llvm.org/llvm.sh
+chmod +x llvm.sh
+sudo ./llvm.sh 18
+sudo ln -s /bin/clang-18 /bin/clang
+sudo apt install -y llvm
+```
+
+## Clone the repo
+
+```bash
+git clone https://github.com/Rust-for-Linux/linux.git --depth 1000
+cd linux
+```
+
+## Install/Configure Rust things
+
+```bash
+curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+source "$HOME/.cargo/env"
+
+rustup override set $(scripts/min-tool-version.sh rustc)
+
+rustup component add rust-src
+cargo install --locked --version $(scripts/min-tool-version.sh bindgen) bindgen-cli
+```
+
+## Check whether Rust things are ready to go
+
+```bash
+make LLVM=1 rustavailable
+```
+
+## Configure the kernel
+
+```bash
+make LLVM=1 menuconfig
+```
+
+* Search for `MODVERSIONS`, then disable "Module versioning support"
+* Search for `RUST`, then enable "Rust support"
+
+**Likely Ubuntu Only**
+* Search for `CONFIG_SYSTEM_TRUSTED_KEYS`, update to "/etc/ssl/certs/ca-certificates.crt"
+* Search for `CONFIG_SYSTEM_REVOCATION_KEYS`, update to "/etc/ssl/certs/ca-certificates.crt"
+
+**Required for my workstation currently**
+* Search for `FRAME_WARN`, update to "2048"
+
+**Enable Rust Samples**
+* From the home menu of menuconfig, navigate to `Kernel hacking`, then enable `Sample kernel code`
+* Navigate to `Sample kernel code`, then enable `Rust samples`
+* Navigate to `Rust samples`, then enable the whatever Rust samples you like.
+
+## Compile the kernel
+```bash
+make LLVM=1 -j17
+```
+
+## Running Tests
+
+### Rust tests
+
+```bash
+make LLVM=1 rusttest
+```
+
+### KUnit tests
+
+```bash
+sudo apt-get install qemu-system-x86
+./tools/testing/kunit/kunit.py run --make_options LLVM=1 --arch x86_64 --kconfig_add CONFIG_RUST=y
+```
+
+## Creating a patch
+
+```bash
+git format-patch -1
+```
+
+## Checking the patch
+
+```bash
+sudo apt install python3-pip
+pip install codespell
+perl scripts/checkpatch.pl --codespell --strict <patch-file>.patch
+```
+
+## Submitting the patch
+
+It's a good idea to send the patch to yourself first to check it.
+
+```
+git send-email --annotate --to=<your-email-address> <patch-file>.patch
+```
+
+### Getting the correct maintainers to cc on the patch
+
+Get the list of maintainers of the areas of the kernel your patch touches with:
+
+```bash 
+perl scripts/get_maintainer.pl 0001-rust-remove-unneeded-kernel-prelude-imports-from-doc.patch
+```
+
+This will return something similar to:
+
+```bash
+~/linux$ scripts/get_maintainer.pl 0001-rust-remove-unneeded-kernel-prelude-imports-from-doc.patch
+Miguel Ojeda <ojeda@kernel.org> (supporter:RUST,commit_signer:20/23=87%,authored:2/23=9%,commit_signer:8/16=50%,authored:2/16=12%)
+Alex Gaynor <alex.gaynor@gmail.com> (supporter:RUST)
+Wedson Almeida Filho <wedsonaf@gmail.com> (supporter:RUST)
+Boqun Feng <boqun.feng@gmail.com> (reviewer:RUST)
+Gary Guo <gary@garyguo.net> (reviewer:RUST,commit_signer:14/23=61%,commit_signer:7/16=44%)
+"Björn Roy Baron" <bjorn3_gh@protonmail.com> (reviewer:RUST)
+Benno Lossin <benno.lossin@proton.me> (reviewer:RUST,commit_signer:17/23=74%,authored:15/23=65%,added_lines:1739/4473=39%,removed_lines:408/441=93%,commit_signer:8/16=50%,authored:1/16=6%,removed_lines:15/63=24%)
+Andreas Hindborg <a.hindborg@samsung.com> (reviewer:RUST)
+Alice Ryhl <aliceryhl@google.com> (reviewer:RUST,commit_signer:17/23=74%,commit_signer:12/16=75%,authored:6/16=38%,added_lines:616/1423=43%,removed_lines:10/63=16%)
+FUJITA Tomonori <fujita.tomonori@gmail.com> (maintainer:ETHERNET PHY LIBRARY [RUST])
+Trevor Gross <tmgross@umich.edu> (reviewer:ETHERNET PHY LIBRARY [RUST])
+Martin Rodriguez Reboredo <yakoyoku@gmail.com> (commit_signer:12/23=52%,commit_signer:13/16=81%)
+Kent Overstreet <kent.overstreet@gmail.com> (added_lines:1344/4473=30%)
+Matthew Brost <matthew.brost@intel.com> (added_lines:1344/4473=30%,authored:1/16=6%,added_lines:679/1423=48%)
+Valentin Obst <kernel@valentinobst.de> (authored:4/16=25%,removed_lines:33/63=52%)
+rust-for-linux@vger.kernel.org (open list:RUST)
+linux-kernel@vger.kernel.org (open list)
+netdev@vger.kernel.org (open list:ETHERNET PHY LIBRARY [RUST])
+```
+
+### Sending the patch
+
+If you like, you can do a dry run with the `--dry-run` option.
+
+```
+git send-email \
+--dry-run \
+--to=ojeda@kernel.org \
+--to=alex.gaynor@gmail.com \
+--to=wedsonaf@gmail.com \
+--cc=boqun.feng@gmail.com \
+--cc=gary@garyguo.net \
+--cc=bjorn3_gh@protonmail.com \
+--cc=benno.lossin@proton.me \
+--cc=a.hindborg@samsung.com \
+--cc=aliceryhl@google.com \
+--cc=fujita.tomonori@gmail.com \
+--cc=tmgross@umich.edu \
+--cc=yakoyoku@gmail.com \
+--cc=kent.overstreet@gmail.com \
+--cc=matthew.brost@intel.com \
+--cc=kernel@valentinobst.de \
+--cc=netdev@vger.kernel.org \
+--cc=rust-for-linux@vger.kernel.org \
+--cc=linux-kernel@vger.kernel.org \
+<patch-file>.patch
+```
+Then, if it looks good, send it to the appropriate reviewers.
+
+```
+git send-email \
+--dry-run \
+--to=ojeda@kernel.org \
+--to=alex.gaynor@gmail.com \
+--to=wedsonaf@gmail.com \
+--cc=boqun.feng@gmail.com \
+--cc=gary@garyguo.net \
+--cc=bjorn3_gh@protonmail.com \
+--cc=benno.lossin@proton.me \
+--cc=a.hindborg@samsung.com \
+--cc=aliceryhl@google.com \
+--cc=fujita.tomonori@gmail.com \
+--cc=tmgross@umich.edu \
+--cc=yakoyoku@gmail.com \
+--cc=kent.overstreet@gmail.com \
+--cc=matthew.brost@intel.com \
+--cc=kernel@valentinobst.de \
+--cc=netdev@vger.kernel.org \
+--cc=rust-for-linux@vger.kernel.org \
+--cc=linux-kernel@vger.kernel.org \
+<patch-file>.patch
+```
+
