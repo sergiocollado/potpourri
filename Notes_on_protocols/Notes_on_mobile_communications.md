@@ -244,6 +244,40 @@ There are two ways of virtualizing the architecture:
  TODO: make the drawing
  
  
+## System architecture for the %g system (5GS)
+
+ - reference: https://www.3gpp.org/technologies/5g-system-overview
+
+```
+       ┌─────────┐     ┌───────┐  ┌───────┐  ┌────────┐  ┌───────┐ ┌────────┐     
+       │  NSSF   │     │  NEF  │  │  NRF  │  │  PCF   │  │  UDM  │ │   AF   │     
+       └────┬────┘     └───┬───┘  └───┬───┘  └───┬────┘  └───┬───┘ └───┬────┘     
+            │              │          │          │           │         │          
+            │              │          │          │           │         │          
+            │              │          │          │           │         │          
+    ───────┬┴──────────────┴────┬─────┴─────┬────┴───────────┴─────────┴───────── 
+           │                    │           │                                     
+           │                    │           │                                     
+           │                    │           │                                     
+       ┌───┴────┐         ┌─────┴───┐    ┌──┴───┐                                 
+       │  AUSF  │         │   AMF   │    │ SMF  │                                 
+       └────────┘        /└────┬────┘    └──────┘\                                
+                        /      │                  \                               
+                       /       │                   \                              
+                    N1/        │N2                  \                             
+                     /         │                     \                            
+                    /          │                      \                           
+           ┌──────┐/       ┌───┴───┐                   ┌─────┐            ┌──────┐
+           │  UE  ├────────┤ (R)AN ├───────────────────┤ UPF ├────────────┤  DN  │
+           └──────┘        └───────┘                   └─────┘            └──────┘
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                   SYSTEM  ARCHITECTURE FOR THE 5G SYSTEM (5GS)                   
+```
 
 ## Network functions
 
