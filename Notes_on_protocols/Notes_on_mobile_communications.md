@@ -244,7 +244,7 @@ There are two ways of virtualizing the architecture:
  TODO: make the drawing
  
  
-## System architecture for the %g system (5GS)
+## System architecture for the 5G system (5GS)
 
  - reference: https://www.3gpp.org/technologies/5g-system-overview
 
