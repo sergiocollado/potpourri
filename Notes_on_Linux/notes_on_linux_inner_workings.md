@@ -2895,6 +2895,7 @@ Device trees:
  - https://devicetree-specification.readthedocs.io/en/stable/index.html
  - https://docs.kernel.org/devicetree/index.html#kernel-devicetree-usage
  - https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/configuration/device-tree.adoc
+ - device tree 101: https://youtu.be/a9CZ1Uk3OYQ
 
 
 <br>
