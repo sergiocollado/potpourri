@@ -540,7 +540,10 @@ The purpose of defining `__inittest` function is to check during compile time, t
   
   It is possible to create a module without a `module_init` or `module_exit` functions, if the module had init_module(void) and cleanup_module(void) functions. But we would lost the chance to have dedicated names for those functions. 
 
- ### Passing parameters to kernel modules
+ ### Passing  command line arguments/parameters to kernel modules
+
+  - reference: https://tldp.org/LDP/lkmpg/2.6/html/x323.html
+  - reference: https://sysprog21.github.io/lkmpg/#passing-command-line-arguments-to-a-module
   
  It is possible to pass parameters to a module. Passing parameters may be interesting to change the behavior of the module, for example to enable/disable debug logs, or tu suppor different workgin modes. 
   
