@@ -2892,6 +2892,7 @@ Linux containers the hard way:
 <br>
 Device trees:
  - https://javiercarrascocruz.github.io/device-driver-development-with-rpi-device-tree
+ - https://docs.kernel.org/devicetree/index.html
  - https://devicetree-specification.readthedocs.io/en/stable/index.html
  - https://docs.kernel.org/devicetree/index.html#kernel-devicetree-usage
  - https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/configuration/device-tree.adoc
