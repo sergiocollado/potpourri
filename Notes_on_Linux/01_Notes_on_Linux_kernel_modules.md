@@ -4,7 +4,8 @@ References:
  - https://lwn.net/Kernel/LDD3/  & http://www.makelinux.net/ldd3/?u=chp-5-sect-5.shtml
  - Linux Kernel module programming guide: https://linux.die.net/lkmpg/
  - kernel modules info: https://www.kernel.org/doc/Documentation/kbuild/modules.txt 
- - The Linux Kernel Module Programming Guide: https://sysprog21.github.io/lkmpg/ 
+ - The Linux Kernel Module Programming Guide: https://sysprog21.github.io/lkmpg/
+ - The Linux Kernel Module Programming Guide 2001: https://tldp.org/LDP/lkmpg/2.6/html/index.html
  - Eudyptula challenge: https://github.com/agelastic/eudyptula
  - Kernel Play Guide: https://nskernel.gitbook.io/kernel-play-guide/accessing-the-non-exported-in-modules 
  - (404) EEC3-4029 Operating Systems: http://gauss.ececs.uc.edu/Courses/c4029/videos.html 
