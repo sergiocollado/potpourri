@@ -157,6 +157,7 @@ Once a module gets accepted to be included, it becomes an in-tree module.
   
   In case an incorrect license is defined, it will compile, but when the module is loaded, it will report that the kernel is tainted. 
   
+  Nowadays the licensing is indicated with SPDX identifers: https://lwn.net/Articles/739183/
   
 ### Tainted kernel
   
