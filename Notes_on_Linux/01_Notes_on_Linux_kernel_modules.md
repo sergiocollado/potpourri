@@ -544,6 +544,7 @@ The purpose of defining `__inittest` function is to check during compile time, t
 
   - reference: https://tldp.org/LDP/lkmpg/2.6/html/x323.html
   - reference: https://sysprog21.github.io/lkmpg/#passing-command-line-arguments-to-a-module
+  - reference: https://litux.nl/mirror/kerneldevelopment/0672327201/ch16lev1sec6.html
   
  It is possible to pass parameters to a module. Passing parameters may be interesting to change the behavior of the module, for example to enable/disable debug logs, or tu suppor different workgin modes. 
   
@@ -562,8 +563,9 @@ The purpose of defining `__inittest` function is to check during compile time, t
   
    - name: name of the variable
    - type: type of the variable. Supported types are charp (char pointer) , bool, invbool (inverse bool), long, chort, uint, unlong, ushort 
-   - perm: permissions fo rthe sysfs entry
+   - perm: permissions for the sysfs entry
       - `S_IRUGO`: Only read by all users
+      - `S_IWUSR`: Only write by all users
       - 0 : No sysfs entry
         
   It is possible to use numberic values line 0644 for permissions entry.
