@@ -17,7 +17,7 @@ The purpose of kselftest is to provide kernel developers and end-users a quick m
 The tests are writteng in C language and in shell scripts, and they run in userspace. Kselfetest are very well suited to test
 new features from the developers. 
 
-The source code for the kselftest is at: `tool/testing/kselftests` 
+The source code for the kselftest is at: `tool/testing/selftests` 
 
 You can see passing selftests here: https://staging.kernelci.org/test/ <br>
 
