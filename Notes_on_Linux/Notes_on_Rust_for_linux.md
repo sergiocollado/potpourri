@@ -609,7 +609,7 @@ make LLVM=1 menuconfig
 
 ## Compile the kernel
 ```bash
-make LLVM=1 -j17
+$ make LLVM=1 -j($nproc)
 ```
 
 ## Running Tests
@@ -617,20 +617,20 @@ make LLVM=1 -j17
 ### Rust tests
 
 ```bash
-make LLVM=1 rusttest
+$ make LLVM=1 rusttest
 ```
 
 ### KUnit tests
 
 ```bash
-sudo apt-get install qemu-system-x86
-./tools/testing/kunit/kunit.py run --make_options LLVM=1 --arch x86_64 --kconfig_add CONFIG_RUST=y
+$ sudo apt-get install qemu-system-x86
+$ ./tools/testing/kunit/kunit.py run --make_options LLVM=1 --arch x86_64 --kconfig_add CONFIG_RUST=y
 ```
 
 ## Creating a patch
 
 ```bash
-git format-patch -1
+$ git format-patch -1
 ```
 
 ## Checking the patch
