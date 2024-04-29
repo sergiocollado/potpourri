@@ -250,20 +250,20 @@ There are two ways of virtualizing the architecture:
 
 ```
        ┌─────────┐     ┌───────┐  ┌───────┐  ┌────────┐  ┌───────┐ ┌────────┐     
-       │  NSSF   │     │  NEF  │  │  NRF  │  │  PCF   │  │  UDM  │ │   AF   │     
-       └────┬────┘     └───┬───┘  └───┬───┘  └───┬────┘  └───┬───┘ └───┬────┘     
-            │              │          │          │           │         │          
-            │              │          │          │           │         │          
-            │              │          │          │           │         │          
-    ───────┬┴──────────────┴────┬─────┴─────┬────┴───────────┴─────────┴───────── 
-           │                    │           │                                     
-           │                    │           │                                     
-           │                    │           │                                     
-       ┌───┴────┐         ┌─────┴───┐    ┌──┴───┐                                 
-       │  AUSF  │         │   AMF   │    │ SMF  │                                 
-       └────────┘        /└────┬────┘    └──────┘\                                
-                        /      │                  \                               
-                       /       │                   \                              
+       │  NSSF   │     │  NEF  │  │  NRF  │  │  PCF   │  │  UDM  │ │   AF   │                NSSF: Network Slice Selection Function
+       └────┬────┘     └───┬───┘  └───┬───┘  └───┬────┘  └───┬───┘ └───┬────┘                NEF:  Network Exposure Function 
+            │              │          │          │           │         │                     NRF:  Network Repository Function
+            │              │          │          │           │         │                     PCF:  Policy Control Function 
+            │              │          │          │           │         │                     UDM:  Unified Data Management
+    ───────┬┴──────────────┴────┬─────┴─────┬────┴───────────┴─────────┴─────────            AF:   Application Function
+           │                    │           │                                                AUSF: Authentication Server Function
+           │                    │           │                                                AMF:  Access and Movility Management Function
+           │                    │           │                                                SMF:  Session Management Function
+       ┌───┴────┐         ┌─────┴───┐    ┌──┴───┐                                            RAN:  Radio Access Network
+       │  AUSF  │         │   AMF   │    │ SMF  │                                            UPF:  User Plane Function
+       └────────┘        /└────┬────┘    └──────┘\                     Control Plane         DN:   Data Network
+                        /      │                  \              --------------------                 
+                       /       │                   \                   User Plane
                     N1/        │N2                  \                             
                      /         │                     \                            
                     /          │                      \                           
@@ -271,10 +271,7 @@ There are two ways of virtualizing the architecture:
            │  UE  ├────────┤ (R)AN ├───────────────────┤ UPF ├────────────┤  DN  │
            └──────┘        └───────┘                   └─────┘            └──────┘
                                                                                   
-                                                                                  
-                                                                                  
-                                                                                  
-                                                                                  
+                                                              
                                                                                   
                    SYSTEM  ARCHITECTURE FOR THE 5G SYSTEM (5GS)                   
 ```
