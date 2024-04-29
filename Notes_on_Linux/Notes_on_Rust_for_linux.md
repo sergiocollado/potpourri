@@ -609,7 +609,7 @@ make LLVM=1 menuconfig
 
 ## Compile the kernel
 ```bash
-$ make LLVM=1 -j($nproc)
+$ make LLVM=1 -j$(nproc)
 ```
 
 ## Running Tests
