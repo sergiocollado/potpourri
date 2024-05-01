@@ -1,0 +1,145 @@
+From a677283ace0efe6d1d66158ac437c4ce48e844b4 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Sergio=20Gonz=C3=A1lez=20Collado?=
+ <sergio.collado@gmail.com>
+Date: Sat, 27 Apr 2024 16:49:36 +0200
+Subject: [PATCH] LKMP - A module with command line arguments - Sergio Gonzalez
+ Collado
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Example of a module to which you can pass arguments:
+
+     - To compile the module, execute: "make".
+     - check the files have been generated with 'ls'
+     - To read the log of the system use: "sudo dmesg -WH &"
+     - To load the module, use: "sudo insmod module_with_command_line_arguments.ko + <parameters>"
+     - To check the module is loaded, use: "lsmod | grep module_with_command_line_arguments"
+     - To remove the module, use: "sudo rmmod module_with_command_line_arguments"
+
+An example of the output would be:
+
+```bash
+sergio@laptop:~/repos/LKMP_command_line_arguments_module$ make
+make -C /lib/modules/6.2.0-39-generic/build M=/home/sergio/repos/LKMP_command_line_arguments_module modules
+make[1]: Entering directory '/usr/src/linux-headers-6.2.0-39-generic'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~23.04) 12.3.0
+  You are using:           gcc-12 (Ubuntu 12.3.0-1ubuntu1~23.04) 12.3.0
+  CC [M]  /home/sergio/repos/LKMP_command_line_arguments_module/module_with_command_line_arguments.o
+  MODPOST /home/sergio/repos/LKMP_command_line_arguments_module/Module.symvers
+  CC [M]  /home/sergio/repos/LKMP_command_line_arguments_module/module_with_command_line_arguments.mod.o
+  LD [M]  /home/sergio/repos/LKMP_command_line_arguments_module/module_with_command_line_arguments.ko
+  BTF [M] /home/sergio/repos/LKMP_command_line_arguments_module/module_with_command_line_arguments.ko
+Skipping BTF generation for /home/sergio/repos/LKMP_command_line_arguments_module/module_with_command_line_arguments.ko due to unavailability of vmlinux
+make[1]: Leaving directory '/usr/src/linux-headers-6.2.0-39-generic'
+sergio@laptop:~/repos/LKMP_command_line_arguments_module$ sudo dmesg -WH &
+[1] 7260
+sergio@laptop:~/repos/LKMP_command_line_arguments_module$ sudo insmod module_with_command_line_arguments.ko mystring='"Hello World!"'
+sergio@laptop:~/repos/LKMP_command_line_arguments_module$ [abr27 16:45]
+              Module arguments test:
+              =====================
+[  +0,000003] myshort is a short integer: 1
+[  +0,000002] myint is an integer: 42
+[  +0,000001] mylong is a long integer: 999999
+[  +0,000002] mystring is a string: Hello World!
+[  +0,000001] myboolean is true
+[  +0,000001] myintarray[0] = 42
+[  +0,000001] myintarray[1] = 42
+[  +0,000002] got 0 arguments for myintarray.
+
+sergio@laptop:~/repos/LKMP_command_line_arguments_module$ lsmod | grep module
+module_with_command_line_arguments    16384  0
+sergio@laptop:~/repos/LKMP_command_line_arguments_module$ sudo rmmod module_with_command_line_arguments
+[ +24,417926] removing module arguments test
+```
+
+Signed-off-by: Sergio González Collado <sergio.collado@gmail.com>
+---
+ Makefile                             |  9 +++++
+ module_with_command_line_arguments.c | 57 ++++++++++++++++++++++++++++
+ 2 files changed, 66 insertions(+)
+ create mode 100644 Makefile
+ create mode 100644 module_with_command_line_arguments.c
+
+diff --git a/Makefile b/Makefile
+new file mode 100644
+index 0000000..02cb86f
+--- /dev/null
++++ b/Makefile
+@@ -0,0 +1,9 @@
++obj-m += module_with_command_line_arguments.o
++
++PWD := $(CURDIR)
++
++all:
++	 make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
++
++clean:
++	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+diff --git a/module_with_command_line_arguments.c b/module_with_command_line_arguments.c
+new file mode 100644
+index 0000000..2b86967
+--- /dev/null
++++ b/module_with_command_line_arguments.c
+@@ -0,0 +1,57 @@
++// SPDX-License-Identifier: GPL-2.0+
++
++#include <linux/init.h>
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/moduleparam.h>
++#include <linux/printk.h>
++
++static short int myshort = 1;
++static int myint = 42;
++static long int mylong = 999999;
++static char *mystring = "Hey there!";
++static int myintarray[2] = { 42, 42 };
++static int arr_argc = 0;
++static bool mybool = true;
++
++module_param(myshort, short, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
++MODULE_PARM_DESC(myshort, "A short integer");
++module_param(myint, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
++MODULE_PARM_DESC(myint, "An integer");
++module_param(mylong, long, S_IRUSR);
++MODULE_PARM_DESC(mylong, "A long integer");
++module_param(mystring, charp, 0000);
++MODULE_PARM_DESC(mystring, "A character string");
++module_param(mybool, bool, S_IRUSR | S_IWUSR);
++MODULE_PARM_DESC(mybool, "A boolean value");
++
++module_param_array(myintarray, int, &arr_argc, 0000);
++MODULE_PARM_DESC(myintarray, "An array of integers");
++
++static int __init test_arguments_init(void)
++{
++	pr_info("\nModule arguments test:\n=====================\n");
++	pr_info("myshort is a short integer: %hd\n", myshort);
++	pr_info("myint is an integer: %d\n", myint);
++	pr_info("mylong is a long integer: %ld\n", mylong);
++	pr_info("mystring is a string: %s\n", mystring);
++	pr_info("myboolean is %s\n", mybool ? "true":"false");
++
++	for (int i = 0; i < ARRAY_SIZE(myintarray); i++)
++		pr_info("myintarray[%d] = %d\n", i, myintarray[i]);
++
++	pr_info("got %d arguments for myintarray.\n", arr_argc);
++	return 0;
++}
++
++static void __exit test_arguments_exit(void)
++{
++	pr_info("removing module arguments test\n");
++}
++
++module_init(test_arguments_init);
++module_exit(test_arguments_exit);
++
++MODULE_LICENSE("GPL");
++MODULE_AUTHOR("Sergio Gonzalez Collado");
++MODULE_DESCRIPTION("Kernel module with command line arguments");
+-- 
+2.39.2
+
