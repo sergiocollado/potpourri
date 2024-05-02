@@ -252,6 +252,7 @@ The steps to build:
 - reference: Mentorship Session: Setting Up an Environment for Writing Linux Kernel Modules in Rust: https://www.youtube.com/watch?v=tPs1uRqOnlk
 - reference: https://tomcat0x42.me/linux/rust/2023/04/01/linux-kernel-rust-dev-environment.html#configure-and-build-the-kernelbr
 - reference: https://rustypenguin.medium.com/setting-environment-for-writing-linux-kernel-modules-in-rust-78ea20242f75
+- reference: https://wusyong.github.io/posts/rust-kernel-module-00/
 
 ```
 /src/linux$ make allnoconfig qemu-busybox-min.config
