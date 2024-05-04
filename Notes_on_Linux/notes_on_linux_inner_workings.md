@@ -2954,4 +2954,10 @@ LTO Link-time optimization for the kernel:
 Linux kernel tinification: 
  - https://tiny.wiki.kernel.org/
  - https://lwn.net/Articles/608945/
-   
+
+Linux kernel Panic, Oops, core dumps and debugging:
+ - https://wiki.ubuntu.com/Kernel/KernelDebuggingTricks
+ - https://elinux.org/Debugging_The_Linux_Kernel_Using_Gdb
+ - https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/kernel_administration_guide/kernel_crash_dump_guide
+ - https://ubuntu.com/server/docs/kernel-crash-dump
+
