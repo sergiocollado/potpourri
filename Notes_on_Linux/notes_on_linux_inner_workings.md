@@ -446,6 +446,22 @@ For everyday tinkering with the kernel, take into account the scripts: scripts/g
 
 Also check the linux-kselftest repo
 
+### Generate documentation
+
+- reference: https://subscription.packtpub.com/book/cloud-and-networking/9781789953435/2/ch02lvl1sec21/generating-the-kernel-documentation-from-source
+
+In the source root, execute: 
+
+```
+$ make pdfdocs
+```
+or
+
+```
+$ make htmldocs
+```
+Find the generated files at: `Documentation/output/latex`.
+
 
 ### Writing a kernel patch
 
