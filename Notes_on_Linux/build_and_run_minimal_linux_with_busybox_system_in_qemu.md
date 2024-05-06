@@ -89,6 +89,7 @@ cd initrd
 	echo 'clear' >> init
 	echo '/bin/sh' >> init
 	echo 'poweroff -f' >> init # turn the hw off when the terminal is exited.
+        echo '-e "\nBoot took $(cut -d' ' -f1 /proc/uptime) seconds\n"
 	
 	chmod -R 777 . # maybe we are overdoing here
 	
