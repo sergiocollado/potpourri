@@ -88,9 +88,9 @@ cd initrd
 	echo 'sysctl -w kernel.printk="2 4 1 7"' >> init
 	echo 'clear' >> init
 	echo '/bin/sh' >> init
-	echo 'poweroff -f' >> init # turn the hw off when the terminal is exited.
-        echo '-e "\nBoot took $(cut -d' ' -f1 /proc/uptime) seconds\n"
-	
+	echo 'poweroff -f' >> init # turn the hw off when the terminal is exited.        
+	echo 'echo -e "\nBoot took $(cut -d' ' -f1 /proc/uptime) seconds\n"' >> init
+
 	chmod -R 777 . # maybe we are overdoing here
 	
 	find . | cpio -o -H newc > ../initrd.img
