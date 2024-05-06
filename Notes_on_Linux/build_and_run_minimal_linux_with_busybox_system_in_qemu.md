@@ -39,7 +39,7 @@ cd src
 	cd linux-$KERNEL_VERSION
 	
 		make defconfig
-		make -j$(nproc) || exit
+		time make -j$(nproc) || exit
 	cd ..
 	
 	# Busybox: download, unpack
