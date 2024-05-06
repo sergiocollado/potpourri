@@ -101,9 +101,14 @@ cd ..
 # in need of killing qemu: killall qemu*
 
 # you can use also: -nographic -append 'console=tyyS0', so:
-qemu-system-x86_64 -kernel bzImage -initrd initrd.img -nographic -append 'console=ttyS0'
+#qemu-system-x86_64 -kernel bzImage -initrd initrd.img -nographic -append 'console=ttyS0'
 # so you handle a serial interface
-# press CTRL + D, to close the serial interface to the qemu machine. 
+
+#for better performance, add the `-enable-kvm` option if your host has KVM enabled:
+qemu-system-x86_64 -kernel bzImage -initrd initrd.img -nographic -append 'console=ttyS0' -enable-kvm
+
+# press CTRL + D, to close the serial interface to the qemu machine.
+# or CTRL + A and then X.
 
 ```
 
