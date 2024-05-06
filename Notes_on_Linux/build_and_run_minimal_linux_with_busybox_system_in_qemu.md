@@ -97,11 +97,13 @@ cd initrd
 cd ..
 
 # launch the system
-qemu-system-x86_64 -kernel bzImage -initrd initrd.img
-
-# you can use also: -nographic -append 'console=tyyS0' 
-# so you handle a serial interface
+#qemu-system-x86_64 -kernel bzImage -initrd initrd.img
 # in need of killing qemu: killall qemu*
+
+# you can use also: -nographic -append 'console=tyyS0', so:
+qemu-system-x86_64 -kernel bzImage -initrd initrd.img -nographic -append 'console=ttyS0'
+# so you handle a serial interface
+
 ```
 
 
