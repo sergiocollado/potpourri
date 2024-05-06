@@ -41,6 +41,7 @@ cd src
 	
 		make defconfig
 		time make -j$(nproc) || exit
+                # maybe we should test: make defconfig & make kvm_guest.config - Enable Kconfig items for running this kernel as a KVM guest
 	cd ..
 	
 	# Busybox: download, unpack
