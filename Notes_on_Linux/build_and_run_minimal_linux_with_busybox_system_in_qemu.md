@@ -97,7 +97,7 @@ cd initrd
 cd ..
 
 # launch the system
-quemu-system-x86_64 -kernel bzImage -initrd initrd.img
+qemu-system-x86_64 -kernel bzImage -initrd initrd.img
 
 # you can use also: -nographic -append 'console=tyyS0' 
 # so you handle a serial interface
