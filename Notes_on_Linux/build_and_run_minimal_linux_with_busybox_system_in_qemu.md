@@ -50,7 +50,7 @@ cd src
 		make defconfig
 		# we need a static build of busybox. So the libraries are build into the executable binary
 		sed 's/^.*CONFIG_STATIC[^_].*$/CONFIG_STATIC=y/g' -i .config	
-		make -j$(nproc)|| exit
+		time make -j$(nproc)|| exit
 	
 		# you need to install musl at least in manjaro based systems
 		# sudo packman -s musl kernel-headers-musl
