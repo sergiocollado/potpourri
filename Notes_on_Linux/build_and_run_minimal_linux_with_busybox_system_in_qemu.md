@@ -34,7 +34,7 @@ cd src
 	# Kernel: donwload, unpack, default configuration and compile
 	
         KERNEL_MAJOR=$(echo $KERNEL_VERSION | sed 's/\([0-9]*\)[^0-9].*/\1/')
-	wget https://mirrors.edge.kernel.org/pub/linux/kernel/v$KERNEL_MAJOR/linux-$KERNEL_VERSION.tar.gz
+	wget https://mirrors.edge.kernel.org/pub/linux/kernel/v$KERNEL_MAJOR.x/linux-$KERNEL_VERSION.tar.gz
 	tar -xf linux-$KERNEL_VERSION.tar.xz
 	cd linux-$KERNEL_VERSION
 	
