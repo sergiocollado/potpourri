@@ -103,6 +103,7 @@ cd ..
 # you can use also: -nographic -append 'console=tyyS0', so:
 qemu-system-x86_64 -kernel bzImage -initrd initrd.img -nographic -append 'console=ttyS0'
 # so you handle a serial interface
+# press CTRL + D, to close the serial interface to the qemu machine. 
 
 ```
 
