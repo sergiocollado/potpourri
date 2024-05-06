@@ -20,7 +20,7 @@ reference:
 
 reference: https://youtu.be/asnXWOUKhTA?list=PLw27zZE-QQB9z59AI0EnAE998NSSJ4k9p
 
-```
+```bash
 #!/bin/bash
 
 # reference: https://youtu.be/asnXWOUKhTA?list=PLw27zZE-QQB9z59AI0EnAE998NSSJ4k9p
@@ -91,7 +91,8 @@ cd initrd
         echo 'echo -e "\nBoot took $(cut -d' ' -f1 /proc/uptime) seconds\n"' >> init
 	echo '/bin/sh' >> init
 	echo 'poweroff -f' >> init # turn the hw off when the terminal is exited.        
-	#echo 'echo -e "\nBoot took $(cut -d' ' -f1 /proc/uptime) seconds\n"' >> init
+	#echo 'echo -e "\nBoot took $(cut -d' ' -f1 /proc/uptime) seconds\n"' >> init # -- not sure this line is working
+        # ... check below for other interesting 'init' file.
 
 	chmod -R 777 . # maybe we are overdoing here
 	
@@ -115,6 +116,34 @@ qemu-system-x86_64 -kernel bzImage -initrd initrd.img -nographic -append 'consol
 
 ```
 
+Other interesting init file to use, is:
+
+```bash
+#!/bin/sh
+/bin/mount -t devtmpfs devtmpfs /dev
+/bin/mount -t proc none /proc
+/bin/mount -t sysfs none /sys
+exec 0</dev/console
+exec 1>/dev/console
+exec 2>/dev/console
+cat <<!
+
+
+Boot took $(cut -d' ' -f1 /proc/uptime) seconds
+
+        _       _     __ _                  
+  /\/\ (_)_ __ (_)   / /(_)_ __  _   ___  __
+ /    \| | '_ \| |  / / | | '_ \| | | \ \/ /
+/ /\/\ \ | | | | | / /__| | | | | |_| |>  < 
+\/    \/_|_| |_|_| \____/_|_| |_|\__,_/_/\_\ 
+
+
+Welcome to mini_linux
+
+
+!
+exec /bin/sh
+```
 
 
 # other build
