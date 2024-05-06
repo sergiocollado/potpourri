@@ -35,7 +35,7 @@ cd src
 	
         KERNEL_MAJOR=$(echo $KERNEL_VERSION | sed 's/\([0-9]*\)[^0-9].*/\1/')
 	wget https://mirrors.edge.kernel.org/pub/linux/kernel/v$KERNEL_MAJOR.x/linux-$KERNEL_VERSION.tar.gz
-	tar -xf linux-$KERNEL_VERSION.tar.xz
+	tar -xf linux-$KERNEL_VERSION.tar.gz
 	cd linux-$KERNEL_VERSION
 	
 		make defconfig
