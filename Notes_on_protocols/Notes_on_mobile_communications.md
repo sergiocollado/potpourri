@@ -506,6 +506,14 @@ when applicable, accept or reject Registration Requests or Service Requests from
 ```
 
 
+## 5G private Networks - (NPN: Non-Public-Networks)
+
+ - reference: Non-Public Networks (NPN): https://www.3gpp.org/technologies/npn
+ - reference: What is Private 5G? Private 5G vs. Wi-Fi: https://youtu.be/UCLtahIJfYY
+ - reference: Private 5G Networks - Mpirical: https://youtu.be/gdi4eJfTP2w
+ - reference: Advanced: Private Networks & 5G Non-Public Networks: https://youtu.be/rF3yyjfx1YA
+
+
 ## Going further
 
 The 5G system is described in over a thousand 3GPP Technical Reports (TRs) and Technical Specifications (TSs).
