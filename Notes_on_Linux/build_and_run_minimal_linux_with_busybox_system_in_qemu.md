@@ -29,6 +29,8 @@ reference:
 ```bash
 #!/bin/bash
 
+set -xe
+
 # reference: https://youtu.be/asnXWOUKhTA?list=PLw27zZE-QQB9z59AI0EnAE998NSSJ4k9p
 # we will need a kernel and a root partition, and in that root partition we will install busybox
 
