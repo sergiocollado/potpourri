@@ -49,7 +49,7 @@ cd src
 	#tar -xf linux-$KERNEL_VERSION.tar.gz
         #cd linux-$KERNEL_VERSION
         # 2- to download the repo in that tag
-        git clone --depth 1 --branch v$KERNEL_VERSION git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+        git clone --branch v$KERNEL_VERSION git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git # consider if use --depth 1
 	cd linux
 	
 		make defconfig
