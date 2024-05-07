@@ -50,7 +50,7 @@ cd src
         #cd linux-$KERNEL_VERSION
         # 2- to download the repo in that tag
         git clone --branch v$KERNEL_VERSION git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git # consider if use --depth 1
-	cd linux
+	cd linux-stable
 	
 		make defconfig
 		time make -j$(nproc) || exit
