@@ -76,7 +76,10 @@ cd src
 cd ..
 
 # now pull the compiled kernel from the source directory 
-cp src/linux-$KERNEL_VERSION/arch/x86_64/boot/bzImage ./
+# 1
+#cp src/linux-$KERNEL_VERSION/arch/x86_64/boot/bzImage ./
+#2
+src/linux-stable/arch/x86_64/boot/bzImage ./
 
 # we need a root drive: initrd
 mkdir initrd
