@@ -18,7 +18,11 @@ reference:
 
 # Building a minimal linux system with busybox
 
-reference: https://youtu.be/asnXWOUKhTA?list=PLw27zZE-QQB9z59AI0EnAE998NSSJ4k9p
+ - reference: https://youtu.be/asnXWOUKhTA?list=PLw27zZE-QQB9z59AI0EnAE998NSSJ4k9p
+ - reference: what is busybox? https://linuxhandbook.com/what-is-busybox/
+
+> BusyBox is an open source project that provides a stripped down implementation of around 400 common UNIX/Linux commands. Stripped down? Yes. BusyBox implementation removes the uncommon, rarely used command options. Everything fits under 1 MB and this minimal image is the reason why it has gained popularity among embedded system and IoT domain as well as in the cloud computing world.
+> BusyBox is superb alternative to GNU Coreutils specially in cases where the small size of the operating system matters big.
 
 ```bash
 #!/bin/bash
