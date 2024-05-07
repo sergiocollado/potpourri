@@ -44,12 +44,13 @@ cd src
 	
         KERNEL_MAJOR=$(echo $KERNEL_VERSION | sed 's/\([0-9]*\)[^0-9].*/\1/')
 
-        # to download the code
+        # 1- to download the code
         #wget https://mirrors.edge.kernel.org/pub/linux/kernel/v$KERNEL_MAJOR.x/linux-$KERNEL_VERSION.tar.gz
 	#tar -xf linux-$KERNEL_VERSION.tar.gz
-        # to download the repo in that tag
+        #cd linux-$KERNEL_VERSION
+        # 2- to download the repo in that tag
         git clone --depth 1 --branch v$KERNEL_VERSION git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
-	cd linux-$KERNEL_VERSION
+	cd linux
 	
 		make defconfig
 		time make -j$(nproc) || exit
