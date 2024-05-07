@@ -24,6 +24,8 @@ reference:
 > BusyBox is an open source project that provides a stripped down implementation of around 400 common UNIX/Linux commands. Stripped down? Yes. BusyBox implementation removes the uncommon, rarely used command options. Everything fits under 1 MB and this minimal image is the reason why it has gained popularity among embedded system and IoT domain as well as in the cloud computing world.
 > BusyBox is superb alternative to GNU Coreutils specially in cases where the small size of the operating system matters big.
 
+ - reference: https://busybox.net/about.html
+
 ```bash
 #!/bin/bash
 
