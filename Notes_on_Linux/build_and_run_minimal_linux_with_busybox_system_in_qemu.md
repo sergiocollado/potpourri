@@ -12,7 +12,7 @@ reference:
 -  Build a embedded linux using buildroot: https://youtu.be/ysoi0bn66oM
 -  https://vccolombo.github.io/cybersecurity/linux-kernel-qemu-setup/
 -  https://blog.k3170makan.com/2020/11/linux-kernel-exploitation-0x0-debugging.html
-
+-  How To Build QEMU Images With Buildroot - Hardware Hacking Tutorial : https://youtu.be/O9RHMKJqVTg
 
 
 
