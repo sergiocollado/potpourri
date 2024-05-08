@@ -384,14 +384,12 @@ A key difference with these legacy routers is that the SCP can be responsible to
 via communication with the Network Repository Function (NRF), and can initiate Domain Name Server (DNS A-record) IP address lookups
 to a DNS to locate every live instance for every available Network Function.
 
-reference: https://moniem-tech.com/questions/what-is-service-communication-proxy-scp-in-5g/
-reference: https://www.etsi.org/deliver/etsi_ts/129500_129599/129510/17.06.00_60/ts_129510v170600p.pdf
-
+ - reference: https://moniem-tech.com/questions/what-is-service-communication-proxy-scp-in-5g/
+ - reference: https://www.etsi.org/deliver/etsi_ts/129500_129599/129510/17.06.00_60/ts_129510v170600p.pdf
 
 ## Access and Mobility function: AMF
 
 references: 
-
 - https://emblasoft.com/blog/exploring-the-3gpp-amf-access-mobility-management-function#:~:text=In%205G%2C%20AMF%20terminates%20the,i.e.%2C%20access%20subscribed%20services).
 - https://www.techtrained.com/network-function-access-mobility-management-function-amf-in-5g-core-network-5g-system-5gs/
 - https://mobilepacketcore.com/5g-network-architecture/
@@ -430,7 +428,6 @@ AMF Interfaces with MME in 4G for context transfer when interworking with EPC is
 - reference: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144
 
 The Registration Management is used to register or deregister a UE/user with the network, and establish the user context in the network. The Connection Management is used to establish and release the signalling connection between the UE and the AMF.
-
 
 A UE/user needs to register with the network to receive services that requires registration. Once registered and if applicable the UE updates its registration with the network (see TS 23.502):
 periodically, in order to remain reachable (Periodic Registration Update); or
