@@ -250,17 +250,17 @@ There are two ways of virtualizing the architecture:
 
 ```
        ┌─────────┐     ┌───────┐  ┌───────┐  ┌────────┐  ┌───────┐ ┌────────┐     
-       │  NSSF   │     │  NEF  │  │  NRF  │  │  PCF   │  │  UDM  │ │   AF   │                NSSF: Network Slice Selection Function
-       └────┬────┘     └───┬───┘  └───┬───┘  └───┬────┘  └───┬───┘ └───┬────┘                NEF:  Network Exposure Function 
-            │              │          │          │           │         │                     NRF:  Network Repository Function
-            │              │          │          │           │         │                     PCF:  Policy Control Function 
-            │              │          │          │           │         │                     UDM:  Unified Data Management
-    ───────┬┴──────────────┴────┬─────┴─────┬────┴───────────┴─────────┴─────────            AF:   Application Function
-           │                    │           │                                                AUSF: Authentication Server Function
+       │  NSSF   │     │  NEF  │  │  NRF  │  │  PCF   │  │  UDM  │ │   AF   │                NSSF: Network Slice Selection Function - slicing in 5G
+       └────┬────┘     └───┬───┘  └───┬───┘  └───┬────┘  └───┬───┘ └───┬────┘                NEF:  Network Exposure Function - (5G security related)
+            │              │          │          │           │         │                     NRF:  Network Repository Function -  "controls" the other NFs by providing support for NF register, deregister and update service to NF and their services.
+            │              │          │          │           │         │                     PCF:  Policy Control Function - controls that the user data traffic does not exceed the negotiated bearer(s) capacities
+            │              │          │          │           │         │                     UDM:  Unified Data Management - functionally similar to 3G and 4G's HSS (and 2G's HLR)
+    ───────┬┴──────────────┴────┬─────┴─────┬────┴───────────┴─────────┴─────────            AF:   Application Function - controlling the application(s)
+           │                    │           │                                                AUSF: Authentication Server Function - (5G security related)
            │                    │           │                                                AMF:  Access and Movility Management Function
-           │                    │           │                                                SMF:  Session Management Function
+           │                    │           │                                                SMF:  Session Management Function - handles the calls and sessions, and contacts the UPF accordingly
        ┌───┴────┐         ┌─────┴───┐    ┌──┴───┐                                            RAN:  Radio Access Network
-       │  AUSF  │         │   AMF   │    │ SMF  │                                            UPF:  User Plane Function
+       │  AUSF  │         │   AMF   │    │ SMF  │                                            UPF:  User Plane Function -  handling the user data
        └────────┘        /└────┬────┘    └──────┘\                     Control Plane         DN:   Data Network
                         /      │                  \              --------------------                 
                        /       │                   \                   User Plane
