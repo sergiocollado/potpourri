@@ -88,13 +88,13 @@ There are new use case not presetn in previous mobile generations:
 - mMTC: Massive Machine Type Communications: used to connect massive number of device, for example for IoT. Provides connection for 1000000 devices per km^2, compared to 100000 in 4G. 
 - URLLC: Ultra-Reliable and Low Latency Communications: Latency coud be 1 ms, instead of 10 ms in 4G. This could be usefull for self-driving cars, drone controls ... 
 
-## 5g timeline
+## 5G timeline
 
 5g related 3gpp releases:
 - Rel-19
 - Rel-18
 - Rel-17
-- Rel-17
+- Rel-16
 - Rel-15
 
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
