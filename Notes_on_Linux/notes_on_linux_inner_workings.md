@@ -2979,3 +2979,8 @@ Linux kernel Panic, Oops, core dumps and debugging:
  - https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/kernel_administration_guide/kernel_crash_dump_guide
  - https://ubuntu.com/server/docs/kernel-crash-dump
 
+
+Schedstat:
+ - reference: https://www.phoronix.com/news/AMD-Linux-perf-schedstat-Tool
+ - https://docs.kernel.org/scheduler/sched-stats.html
+
