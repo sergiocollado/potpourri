@@ -162,6 +162,12 @@ Welcome to mini_linux
 exec /bin/sh
 ```
 
+Other links to build other qemu machines are at:
+ - x86-64: https://github.com/google/syzkaller/blob/master/docs/linux/setup_ubuntu-host_qemu-vm_x86-64-kernel.md
+ - arm64: https://github.com/google/syzkaller/blob/master/docs/linux/setup_linux-host_qemu-vm_arm64-kernel.md
+ - riscv64: https://github.com/google/syzkaller/blob/master/docs/linux/setup_linux-host_qemu-vm_riscv64-kernel.md
+
+
 
 # other build
 ## Common
