@@ -1,4 +1,4 @@
-# Notes on testing linux
+# Notes on testing the Linux kernel
 
 Reference: https://docs.kernel.org/dev-tools/testing-overview.html
 
@@ -361,3 +361,14 @@ references:
 
 references:
  - https://www.kernel.org/doc/html/v4.9/dev-tools/kmemleak.html
+
+
+
+## skykaller
+
+References:
+- https://github.com/google/syzkaller
+- bug hunting: https://docs.kernel.org/admin-guide/bug-hunting.html
+- https://javiercarrascocruz.github.io/syzbot
+
+  
