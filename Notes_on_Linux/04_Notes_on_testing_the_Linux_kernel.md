@@ -362,7 +362,10 @@ references:
 references:
  - https://www.kernel.org/doc/html/v4.9/dev-tools/kmemleak.html
 
+## Kernel Memory sanitizer KSAN
 
+references: 
+ - https://docs.kernel.org/dev-tools/kmsan.html
 
 ## skykaller
 
