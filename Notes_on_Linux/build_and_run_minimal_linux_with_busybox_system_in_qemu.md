@@ -174,7 +174,7 @@ Other links to build other qemu machines are at:
 
 
 
-# other build
+# other builds
 ## Common
 
 ````
