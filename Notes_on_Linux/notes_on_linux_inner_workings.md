@@ -2987,6 +2987,7 @@ Schedstat:
 
 USB: 
  - https://www.beyondlogic.org/usbnutshell/usb1.shtml
+ - https://www.kernel.org/doc/html/v4.12/driver-api/usb/writing_usb_driver.html
  - https://www.kernel.org/doc/html/v4.15/driver-api/usb/index.html
  - https://github.com/gregkh/usbutils
 
