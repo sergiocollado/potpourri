@@ -1,18 +1,22 @@
 reference:
-- https://blog.vmsplice.net/2011/02/near-instant-kernel-development-cycle.html
--  https://dev.to/alexeyden/quick-qemu-setup-for-linux-kernel-module-debugging-2nde
--  https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e 
--  https://gist.github.com/ncmiller/d61348b27cb17debd2a6c20966409e86  
--  https://mudongliang.github.io/2017/09/12/how-to-build-a-custom-linux-kernel-for-qemu.html 
--  http://blog.vmsplice.net/2011/02/near-instant-kernel-development-cycle.html 
--  https://mgalgs.io/2015/05/16/how-to-build-a-custom-linux-kernel-for-qemu-2015-edition.html 
--  https://youtu.be/LyWlpuntdU4
--  https://youtu.be/asnXWOUKhTA 
--  https://youtu.be/c4j6z2huJxs 
--  Build a embedded linux using buildroot: https://youtu.be/ysoi0bn66oM
--  https://vccolombo.github.io/cybersecurity/linux-kernel-qemu-setup/
--  https://blog.k3170makan.com/2020/11/linux-kernel-exploitation-0x0-debugging.html
--  How To Build QEMU Images With Buildroot - Hardware Hacking Tutorial : https://youtu.be/O9RHMKJqVTg
+ - https://blog.vmsplice.net/2011/02/near-instant-kernel-development-cycle.html
+ -  https://dev.to/alexeyden/quick-qemu-setup-for-linux-kernel-module-debugging-2nde
+ -  https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e 
+ -  https://gist.github.com/ncmiller/d61348b27cb17debd2a6c20966409e86  
+ -  https://mudongliang.github.io/2017/09/12/how-to-build-a-custom-linux-kernel-for-qemu.html 
+ -  http://blog.vmsplice.net/2011/02/near-instant-kernel-development-cycle.html 
+ -  https://mgalgs.io/2015/05/16/how-to-build-a-custom-linux-kernel-for-qemu-2015-edition.html 
+ -  https://youtu.be/LyWlpuntdU4
+ -  https://youtu.be/asnXWOUKhTA 
+ -  https://youtu.be/c4j6z2huJxs 
+ -  Build a embedded linux using buildroot: https://youtu.be/ysoi0bn66oM
+ -  https://vccolombo.github.io/cybersecurity/linux-kernel-qemu-setup/
+ -  https://blog.k3170makan.com/2020/11/linux-kernel-exploitation-0x0-debugging.html
+ -  How To Build QEMU Images With Buildroot - Hardware Hacking Tutorial : https://youtu.be/O9RHMKJqVTg
+ - x86-64: https://github.com/google/syzkaller/blob/master/docs/linux/setup_ubuntu-host_qemu-vm_x86-64-kernel.md
+ - arm64: https://github.com/google/syzkaller/blob/master/docs/linux/setup_linux-host_qemu-vm_arm64-kernel.md
+ - riscv64: https://github.com/google/syzkaller/blob/master/docs/linux/setup_linux-host_qemu-vm_riscv64-kernel.md
+ - a simple workflow to debug the linux kernel: https://marliere.net/posts/1/
 
 
 
@@ -166,6 +170,7 @@ Other links to build other qemu machines are at:
  - x86-64: https://github.com/google/syzkaller/blob/master/docs/linux/setup_ubuntu-host_qemu-vm_x86-64-kernel.md
  - arm64: https://github.com/google/syzkaller/blob/master/docs/linux/setup_linux-host_qemu-vm_arm64-kernel.md
  - riscv64: https://github.com/google/syzkaller/blob/master/docs/linux/setup_linux-host_qemu-vm_riscv64-kernel.md
+ - a simple workflow to debug the linux kernel: https://marliere.net/posts/1/
 
 
 
