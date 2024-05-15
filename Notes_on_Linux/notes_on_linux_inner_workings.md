@@ -2974,6 +2974,7 @@ Linux kernel tinification:
 Linux kernel Panic, Oops, core dumps and debugging:
  - https://www.dedoimedo.com/computers/lkcd.html
  - https://www.dedoimedo.com/computers/crash-analyze.html
+ - crahsdumps: https://wiki.ubuntu.com/Kernel/CrashdumpRecipe
  - https://wiki.ubuntu.com/Kernel/KernelDebuggingTricks
  - https://elinux.org/Debugging_The_Linux_Kernel_Using_Gdb
  - https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/kernel_administration_guide/kernel_crash_dump_guide
