@@ -256,7 +256,7 @@ There are two ways of virtualizing the architecture:
             │              │          │          │           │         │                     PCF:  Policy Control Function - controls that the user data traffic does not exceed the negotiated bearer(s) capacities
             │              │          │          │           │         │                     UDM:  Unified Data Management - functionally similar to 3G and 4G's HSS (and 2G's HLR)
     ───────┬┴──────────────┴────┬─────┴─────┬────┴───────────┴─────────┴─────────            AF:   Application Function - controlling the application(s)
-           │                    │           │                                                AUSF: Authentication Server Function - (5G security related)
+           │                    │           │                                                AUSF: Authentication Server Function - (5G security related) - This is what authenticates UEs.
            │                    │           │                                                AMF:  Access and Movility Management Function
            │                    │           │                                                SMF:  Session Management Function - handles the calls and sessions, and contacts the UPF accordingly
        ┌───┴────┐         ┌─────┴───┐    ┌──┴───┐                                            RAN:  Radio Access Network
