@@ -277,40 +277,42 @@ There are two ways of virtualizing the architecture:
                                                               
                                                                                   
     SYSTEM  ARCHITECTURE FOR THE 5G SYSTEM (5GS) IN SERVICE BASED REPRESENTATION
-
-
-NRF:  Network Repository Function -  stores the profiles of the other NFs by providing support for NF register, deregister and update service to NF and their services.
-      The profile includes information like the type of network function, the address in the network, the capacity, services that are provided.
-      When a service consumer wants to finde a service provider, it communicates with the NRF, to find the address in which find the service provider,
-      for example, when the AMF, wants to find the SMF it checks with the NRF to find what is the address of the SMF, how many instances of SMF are running now,
-      what is the capacity ...
-      With the NRF the service consumer can discover and select suitable service providers without having to be configured before hand.
-
-AMF:  Authentication and Mobility Function - To register and authentificate UEs, to support mobility between different radio cells.
-      Also relays, all session management related signal messages, between the devices and the SMF network function.
-      The AMF interact with the gNodeB with the N2 interface, and with UE with N1 interface, all the rest interaction with network functions
-      are done via service based interfaces.
-
-SMF:  Session Management Functionality - SMF manages the user session, it is responsible for accepting the connection from the UE towards the data network.
-      It is the control function that manages the user sessions, that includes, the stablishment, modification and release of session. And allocation of
-      IP addresses for PDU UPF sessions. SMF also selects and controls the different network functions in the network over the N4 interface.
-      It also interacts with the PCF to retrieve the policies to configure the UPF accordingly. It is also responsible for collecting charging data
-      and controls the charging functionality in the UPF.
-
-AUSF: Authentication Server Function - The AUSF is in the subscribers home network. It is responsible for handling the authentication in the home network
-      based on the information received from the UE, on one side, and information retrieved from the UDM on the other side.
-
-PCF:  Policy control function - The PCF provides policy control function in different areas. 
-      - First, it provides session managements related policies to SMF like quality of service policies.
-      - It works with AMF for access and mobility related policies like radio frequency, selection priority or service area restrictions, etc.
-      - It also works with the UE via AMF for policy related to how the UE should work with non-3gpp networks, like wi-fi or for network slice selection, etc.
-
-UDR and UDM: The User Data Repository (UDR) and User Data Management (UDM). The UDR, is the database that stores the subscription data, and the
-      data that defines different types of network. The UDM is a front-end for the subscription data, stored in the UDR. The UDM uses the subscription data
-      stored in the UDR to carry functions like generating authentification credentials, and to do registration management when the UE tries to
-      register with the network.
-
 ```
+
+### NRF Network Repository Function 
+Stores the profiles of the other NFs by providing support for NF register, deregister and update service to NF and their services.
+The profile includes information like the type of network function, the address in the network, the capacity, services that are provided.
+When a service consumer wants to finde a service provider, it communicates with the NRF, to find the address in which find the service provider,
+for example, when the AMF, wants to find the SMF it checks with the NRF to find what is the address of the SMF, how many instances of SMF are running now,
+what is the capacity ...
+With the NRF the service consumer can discover and select suitable service providers without having to be configured before hand.
+
+### AMF Authentication and Mobility Function
+To register and authentificate UEs, to support mobility between different radio cells.
+Also relays, all session management related signal messages, between the devices and the SMF network function.
+The AMF interact with the gNodeB with the N2 interface, and with UE with N1 interface, all the rest interaction with network functions
+are done via service based interfaces.
+
+### SMF Session Management Functionality
+SMF manages the user session, it is responsible for accepting the connection from the UE towards the data network.
+It is the control function that manages the user sessions, that includes, the stablishment, modification and release of session. And allocation of
+IP addresses for PDU UPF sessions. SMF also selects and controls the different network functions in the network over the N4 interface.
+It also interacts with the PCF to retrieve the policies to configure the UPF accordingly. It is also responsible for collecting charging data
+ and controls the charging functionality in the UPF.
+
+### AUSF Authentication Server Function
+The AUSF is in the subscribers home network. It is responsible for handling the authentication in the home network
+based on the information received from the UE, on one side, and information retrieved from the UDM on the other side.
+
+### PCF: Policy control function
+The PCF provides policy control function in different areas. 
+ - First, it provides session managements related policies to SMF like quality of service policies.
+ - It works with AMF for access and mobility related policies like radio frequency, selection priority or service area restrictions, etc.
+ - It also works with the UE via AMF for policy related to how the UE should work with non-3gpp networks, like wi-fi or for network slice selection, etc.
+
+### UDR and UDM - The User Data Repository (UDR) and User Data Management (UDM)
+The UDR, is the database that stores the subscription data, and the data that defines different types of network. The UDM is a front-end for the subscription data, stored in the UDR. The UDM uses the subscription data stored in the UDR to carry functions like generating authentification credentials, and to do registration management when the UE tries to
+register with the network.
 
 ## Network functions
 
