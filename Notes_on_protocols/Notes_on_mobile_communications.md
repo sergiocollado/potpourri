@@ -276,7 +276,7 @@ There are two ways of virtualizing the architecture:
                                                                                   
                                                               
                                                                                   
-                   SYSTEM  ARCHITECTURE FOR THE 5G SYSTEM (5GS)                   
+    SYSTEM  ARCHITECTURE FOR THE 5G SYSTEM (5GS) IN SERVICE BASED REPRESENTATION                   
 ```
 
 ## Network functions
