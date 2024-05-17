@@ -255,7 +255,7 @@ There are two ways of virtualizing the architecture:
        ┌─────────┐     ┌───────┐  ┌───────┐  ┌────────┐  ┌───────┐ ┌────────┐     
        │  NSSF   │     │  NEF  │  │  NRF  │  │  PCF   │  │  UDM  │ │   AF   │                NSSF: Network Slice Selection Function - slicing in 5G
        └────┬────┘     └───┬───┘  └───┬───┘  └───┬────┘  └───┬───┘ └───┬────┘                NEF:  Network Exposure Function - (5G security related)
-            │              │          │          │           │         │                     NRF:  Network Repository Function -  "controls" the other NFs by providing support for NF register, deregister and update service to NF and their services.
+            │              │          │          │           │         │                     NRF:  Network Repository Function -  stores the profiles of the other NFs by providing support for NF register, deregister and update service to NF and their services.
             │              │          │          │           │         │                     PCF:  Policy Control Function - controls that the user data traffic does not exceed the negotiated bearer(s) capacities
             │              │          │          │           │         │                     UDM:  Unified Data Management - functionally similar to 3G and 4G's HSS (and 2G's HLR)
     ───────┬┴──────────────┴────┬─────┴─────┬────┴───────────┴─────────┴─────────            AF:   Application Function - controlling the application(s)
@@ -276,7 +276,14 @@ There are two ways of virtualizing the architecture:
                                                                                   
                                                               
                                                                                   
-    SYSTEM  ARCHITECTURE FOR THE 5G SYSTEM (5GS) IN SERVICE BASED REPRESENTATION                   
+    SYSTEM  ARCHITECTURE FOR THE 5G SYSTEM (5GS) IN SERVICE BASED REPRESENTATION
+
+
+NRF:  Network Repository Function -  stores the profiles of the other NFs by providing support for NF register, deregister and update service to NF and their services.         The profile includes information like the type of network function, the address in the network, the capacity, services that are provided.
+      When a service consumer wants to finde a service provider, it communicates with the NRF, to find the address in which find the service provider,
+      for example, when the AMF, wants to find the SMF it checks with the NRF to find what is the address of the SMF, how many instances of SMF are running now,
+      what is the capacity ...
+      With the NRF the service consumer can discover and select suitable service providers without having to be configured before hand.
 ```
 
 ## Network functions
