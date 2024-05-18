@@ -549,6 +549,25 @@ when applicable, accept or reject Registration Requests or Service Requests from
  - reference: Private 5G Networks - Mpirical: https://youtu.be/gdi4eJfTP2w
  - reference: Advanced: Private Networks & 5G Non-Public Networks: https://youtu.be/rF3yyjfx1YA
 
+### NPN Non-public-networks deployment models
+
+Private Networks (NPN)
+ - Standalone Non-public Networks (SNPN)
+ - Public Networks integrated Non-public Networks (PNI-NPN)
+     - Share RAN
+     - Share RAN & control-plane
+     - Hosted by public network
+  
+#### Standalone Non-public Networks (SNPN)
+This is an isolated and independent system, it has no dependences on public network. 
+
+It operates, like a regular 5G network. NPN services require subscription. 
+
+The SNPN needs and ID, the SNPN ID, and is a combination of: 
+ - the Public Land Mobile Networkd (PLMN) ID (based on MCC (mobile country code) asigned by ITU), 
+ - Network ID, which can be self assigned or by national regulator.
+
+
 
 ## Going further
 
