@@ -138,7 +138,9 @@ From the RAN (Radio Access Network) point of view, there are:
  
  
  ## 5G Deployment architectures:
- 
+
+ ![5G Deployment architectures]([Dragster.jpg](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g_deployment_models.PNG))
+
  At the 3gpp RT 21.915, two deployment options are defined for 5G:
  
  - NSA (Non-Stand Alone) architecture, where the 5G radio access network (AN) and its New Radio (NR) 
@@ -585,7 +587,8 @@ The procedure is used to exchange aplication level data which is needed for the 
 
 This process uses non-UE associeted signaling. 
 
- 
+ ![ 5G NG Aplication Protocol (NGAP) Setup Procedure](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5G-NG-setup_process_TS_138_413_v16.7.0_NG_Aplication_Protocol.PNG)
+
 
 
 
