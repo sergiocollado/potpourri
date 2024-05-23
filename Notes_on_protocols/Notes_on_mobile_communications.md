@@ -569,6 +569,26 @@ The SNPN needs and ID, the SNPN ID, and is a combination of:
 
 
 
+## 5G NG Aplication Protocol (NGAP) Setup Procedure
+
+ - reference: 38.413 v16.7.0: Section 8.7.1: https://www.etsi.org/deliver/etsi_ts/138400_138499/138413/16.07.00_60/ts_138413v160700p.pdf
+
+NG Setup Procedure is the first NGAP procedure triggered to exchange application-level data for the NG-RAN node and AMF to interoperate on the NG-C interface.
+
+The NG Setup procedure, is a low level procedure bewteen the AMF and gNodeB. 
+
+It has two messenges: 
+ - NG setup request
+ - NG setup response
+
+The procedure is used to exchange aplication level data which is needed for the gNodeB and AMF to interoperate. 
+
+This process uses non-UE associeted signaling. 
+
+ 
+
+
+
 ## Going further
 
 The 5G system is described in over a thousand 3GPP Technical Reports (TRs) and Technical Specifications (TSs).
