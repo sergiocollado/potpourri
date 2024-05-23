@@ -139,7 +139,7 @@ From the RAN (Radio Access Network) point of view, there are:
  
  ## 5G Deployment architectures:
 
- ![5G Deployment architectures]([Dragster.jpg](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g_deployment_models.PNG))
+ ![5G Deployment architectures](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g_deployment_models.PNG)
 
  At the 3gpp RT 21.915, two deployment options are defined for 5G:
  
