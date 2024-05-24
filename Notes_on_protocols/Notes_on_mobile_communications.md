@@ -591,6 +591,31 @@ The SNPN needs and ID, the SNPN ID, and is a combination of:
  - Network ID, which can be self assigned or by national regulator.
 
 
+## NGAP  NG Aplication Protocol
+
+ - reference: https://techlteworld.com/ngap-ng-application-protocol-in-5g-nr/
+
+NGAP (NG Application protocol) orchestrating communication between the core and radio access.
+
+ NG Application Protocol, isn’t your average chatter. It’s the protocol designed specifically for 5G and beyond, enabling efficient and secure messaging between the heart of the network (core) and the frontline troops (radio access).
+
+![NGAP stack](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g-NGAP.PNG)
+
+ The NGAP architecture is built on the N2 interface, which connects the gNB (RAN) and the AMF (core network). This interface facilitates the exchange of control plane signaling messages. The NGAP architecture consists of the following layers:
+
+ - **Application layer**: This layer contains the NGAP protocol entities, which are responsible for generating and processing NGAP messages.
+ - **Transport layer**: This layer is responsible for the reliable delivery of NGAP messages between the gNB and the AMF. It typically uses the SCTP (Stream Control Transmission Protocol) protocol.
+ - **Security layer**: This layer is responsible for providing security services for NGAP messages, such as authentication, integrity protection, and confidentiality. It typically uses the TLS (Transport Layer Security) protocol.
+
+Think of 5G as a high-speed train whisking data packets around. NGAP ensures smooth boarding, seamless handovers between stations (cells), and efficient resource allocation, all while keeping everything secure. Without it, 5G’s promises of ultra-fast speeds, ultra-low latency, and diverse services would be mere dreams.
+
+![NGAP N2](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g_NGAP_n2.PNG)
+
+
+
+### How NGAP works?
+
+NGAP operates on a dedicated line, the N2 interface, connecting the radio access (gNB) and the core network (AMF). Imagine this as a dedicated communication channel for important updates and instructions. Through a series of procedures and messages, NGAP manages everything from user authentication to mobility and service activation.
 
 ## 5G NG Aplication Protocol (NGAP) Setup Procedure
 
