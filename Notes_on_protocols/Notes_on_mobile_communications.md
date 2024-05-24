@@ -636,9 +636,28 @@ There are 4 types of registration:
 ![general registration request](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5G-general_registrartion-request.PNG)
 
 
-## Initial UE message and registration request
+## Initial UE message and registration request message
 
   - reference: NG Aplication Protocol (NGAP) 38.413. V16.7.0. Section 8.6.1: https://www.etsi.org/deliver/etsi_ts/138400_138499/138413/16.07.00_60/ts_138413v160700p.pdf
+
+Initial UE Message and Registration Request Message are the first two messages exchanged between UE and AMF to establish a new connection.
+
+The Initial UE Message is the first communication from user equipment (UE) to the network, while the Registration Request Message is a specific UE message used to request registration with the network.
+
+Before we proceed to proceed to the contents of the initial message, we must know that the initial message is basically a transport layer type message.
+
+There are three types of mass transport layer messages:
+ - First is the uplink transport.
+ - second is the initial message
+ - third is the downlink mass transport.
+
+The purpose of the transport layer messages are that they are used to carry the NAS messages along with
+
+them over the protocol direction of the initial messages.
+
+Uplink meaning starting from the Ram node or the G node B towards the AMF.
+
+![NAS transport messages](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g-NAS-transport-messages.PNG)
 
 ![initial UE messsage](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g-initial-UE-message.PNG)
 
