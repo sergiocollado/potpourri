@@ -642,6 +642,13 @@ There are 4 types of registration:
 
 ![initial UE messsage](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g-initial-UE-message.PNG)
 
+The Non Access Stratum (NAS) is a functional layer running between the User Equipment (UE) and the Core Network (CN). The layer supports traffic and signalling messages between the CN and UE. 
+(reference: https://www.dialogic.com/glossary/nas#:~:text=The%20Non%20Access%20Stratum%20(NAS,between%20the%20CN%20and%20UE.)
+
+NAS and MM are two protocols that operate at the upper layer of the 5G system architecture, above the access stratum (AS) that deals with the radio interface. NAS is responsible for establishing, maintaining, and releasing sessions between the user equipment (UE) and the core network (CN) (reference: https://www.linkedin.com/advice/1/how-do-you-design-test-nas-mm-protocols-5g-networks-skills-3gpp)
+
+references:
+
 Initial UE Message and Registration Request Message are the first two messages exchanged between UE and AMF to establish a new connection.
 
 The Initial UE Message is the first communication from user equipment (UE) to the network, while the Registration Request Message is a specific UE message used to request registration with the network.
