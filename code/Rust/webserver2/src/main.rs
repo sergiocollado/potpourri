@@ -2,18 +2,13 @@
 
 fn main() {
 
-    let string = String::from("127.0.0.0:8080");
-    let string_slice = &string[10..];
-    let string_borrow: &str =  &string;
-    let string_literal = "12345";
+    let get = Method::GET;
+    let delete = Method::DELETE;
+    let post = Method::POST;
+    let put = Method::PUT;
 
-    dbg!(&string);
-    dbg!(string_slice);
-    dbg!(string_borrow);
-    dbg!(string_literal);
-
-    //let server = Server::new("127.0.0.0:8080");
-    //server.run();
+    let mut server = Server::new("127.0.0.0:8080".to_string());
+    server.run();
 }
 
 // Server is a struct, a struct is a custom data type.
@@ -23,7 +18,7 @@ struct Server {
 
 // to add functionality to a struct, an "implementation" block is needed
 impl Server{
-    // there are "methods" or "associeted functions".
+    // there are "methods" or "associated functions".
     // methods are like functions, but defines in the context of the struct.
     // methods always take a first parameter that is "self".
     //
@@ -41,6 +36,34 @@ impl Server{
     }
 
     fn run(&mut self) {
-
+        println!("Listening on {}", self.addr);
     }
 }
+
+
+/* An example of HTTP request:
+ * GET /user?id=10 HTTP/1.1\r\n
+ * HEADERS \r\n
+ * BODY
+ *
+ * we will only focus on the first line
+ */
+
+struct Request {
+    path: String,
+    query_string: String,
+    method: Method,
+}
+
+enum Method {
+    GET,
+    DELETE,
+    POST,
+    PUT,
+    HEAD,
+    CONNECT,
+    OPTIONS,
+    TRACE,
+    PATCH,
+}
+
