@@ -594,6 +594,10 @@ The SNPN needs and ID, the SNPN ID, and is a combination of:
 ## NGAP  NG Aplication Protocol
 
  - reference: https://techlteworld.com/ngap-ng-application-protocol-in-5g-nr/
+  
+ - reference: specs: https://www.etsi.org/deliver/etsi_ts/138400_138499/138413/16.07.00_60/ts_138413v160700p.pdf
+
+![NGAP specs](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g_NGAP_spec.PNG)
 
 NGAP (NG Application protocol) orchestrating communication between the core and radio access.
 
