@@ -591,7 +591,7 @@ The SNPN needs and ID, the SNPN ID, and is a combination of:
  - Network ID, which can be self assigned or by national regulator.
 
 
-## NGAP  NG Aplication Protocol
+## NGAP - Next Generation Aplication Protocol
 
  - reference: https://techlteworld.com/ngap-ng-application-protocol-in-5g-nr/
   
@@ -613,15 +613,14 @@ NGAP, the Next Generation Application Protocol, serves as the essential language
 The NGAP architecture also includes the following entities:
 
  - **gNB** This is the base station in the 5G network. It is responsible for providing radio access to UEs (User Equipment).
- - **AMF** (Access and Mobility Management Function): This is a core network entity that is responsible for managing the mobility of UEs and providing access to network services.
- - **UPF** (User Plane Function): This is a core network entity that is responsible for forwarding user plane data between the gNB and the core network.NGAP ensures smooth boarding, seamless handovers between stations (cells), and efficient resource allocation, all while keeping everything secure. Without it, 5G’s promises of ultra-fast speeds, ultra-low latency, and diverse services would be mere dreams.
+ - **AMF** (Access and Mobility Management Function): This is a core network entity that is responsible for managing the mobility of UEs and providing access to network services. (https://techlteworld.com/amf-access-management-function-in-5g-nr/)
+ - **UPF** (User Plane Function): This is a core network entity that is responsible for forwarding user plane data between the gNB and the core network.NGAP ensures smooth boarding, seamless handovers between stations (cells), and efficient resource allocation, all while keeping everything secure (https://techlteworld.com/upf-user-plane-function-in-5g-nr/).
 
 ### How NGAP works?
 
 NGAP operates on a dedicated line, the N2 interface, connecting the radio access (gNB) and the core network (AMF). Imagine this as a dedicated communication channel for important updates and instructions. Through a series of procedures and messages, NGAP manages everything from user authentication to mobility and service activation.
 
 ![NGAP N2](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g_NGAP_n2.PNG)
-
 
 ### NGAP Features and Functionalities
 
