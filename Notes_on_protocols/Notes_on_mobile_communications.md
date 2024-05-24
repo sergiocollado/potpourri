@@ -610,5 +610,42 @@ This process uses non-UE associeted signaling.
 
  ![ 5G NG Aplication Protocol (NGAP) Setup Procedure](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5G-NG-setup_process_TS_138_413_v16.7.0_NG_Aplication_Protocol.PNG)
 
+## Initial registration procedure
+
+ - reference: 23.502 v16.7.1 Section 4.2.2.2: https://www.etsi.org/deliver/etsi_ts/123500_123599/123502/16.07.00_60/ts_123502v160700p.pdf
+
+![Initial registration procedure](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g_registration_procedures_TS_123_502_V16.7.1-registration-procedures.PNG)
+
+There are 4 types of registration:
+ - Initial registration: Initiatied by the UE, 5GS Registration Type = 1.
+ - Movility registration Update: when the UE moves to a new registration area, 5GS Registration Type = 2.
+ - Periodic registration update: when the UE wants to inform the network that it is still there. 5GS Registration type = 3.
+ - Emergency registration: when the UE is in a limited service state. 5GS Registration type = 4.
+
+### high level sequence fro Initial registration
+
+ - The UE initiates a random access procedure to initate communication with the gNodeB.
+ - The UE creates the RRC connection with the gNodeB and sends registration request with the 5GC.
+ - 5GC selects the appropiate authentification procedure based on subscriber and starts the authentification procedure.
+ - NAS level authentification and initiate ciphering for the NAS message with the 5G core.
+ - The 5GC retrieves the subscription data and performs the policy association procedure.
+ - The 5GC updates the SM context and informs UE to start up the PDU sessions establishment procedure via the Inital Context Setup Request.
+
+![initial registration request](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g_initial_registration_request.PNG)
+
+![general registration request](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5G-general_registrartion-request.PNG)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
