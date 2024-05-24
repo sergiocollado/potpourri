@@ -599,9 +599,8 @@ The SNPN needs and ID, the SNPN ID, and is a combination of:
 
 ![NGAP specs](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g_NGAP_spec.PNG)
 
-NGAP (NG Application protocol) orchestrating communication between the core and radio access.
 
- NG Application Protocol, isn’t your average chatter. It’s the protocol designed specifically for 5G and beyond, enabling efficient and secure messaging between the heart of the network (core) and the frontline troops (radio access).
+NGAP, the Next Generation Application Protocol, serves as the essential language for communication between the core network and radio access network (RAN) in 5G. It’s the protocol designed specifically for 5G and beyond, enabling efficient and secure messaging between the heart of the network (core) and the frontline troops (radio access).
 
 ![NGAP stack](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g-NGAP.PNG)
 
@@ -611,15 +610,48 @@ NGAP (NG Application protocol) orchestrating communication between the core and 
  - **Transport layer**: This layer is responsible for the reliable delivery of NGAP messages between the gNB and the AMF. It typically uses the SCTP (Stream Control Transmission Protocol) protocol.
  - **Security layer**: This layer is responsible for providing security services for NGAP messages, such as authentication, integrity protection, and confidentiality. It typically uses the TLS (Transport Layer Security) protocol.
 
-Think of 5G as a high-speed train whisking data packets around. NGAP ensures smooth boarding, seamless handovers between stations (cells), and efficient resource allocation, all while keeping everything secure. Without it, 5G’s promises of ultra-fast speeds, ultra-low latency, and diverse services would be mere dreams.
+The NGAP architecture also includes the following entities:
 
-![NGAP N2](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g_NGAP_n2.PNG)
-
-
+ - **gNB** This is the base station in the 5G network. It is responsible for providing radio access to UEs (User Equipment).
+ - **AMF** (Access and Mobility Management Function): This is a core network entity that is responsible for managing the mobility of UEs and providing access to network services.
+ - **UPF** (User Plane Function): This is a core network entity that is responsible for forwarding user plane data between the gNB and the core network.NGAP ensures smooth boarding, seamless handovers between stations (cells), and efficient resource allocation, all while keeping everything secure. Without it, 5G’s promises of ultra-fast speeds, ultra-low latency, and diverse services would be mere dreams.
 
 ### How NGAP works?
 
 NGAP operates on a dedicated line, the N2 interface, connecting the radio access (gNB) and the core network (AMF). Imagine this as a dedicated communication channel for important updates and instructions. Through a series of procedures and messages, NGAP manages everything from user authentication to mobility and service activation.
+
+![NGAP N2](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g_NGAP_n2.PNG)
+
+
+### NGAP Features and Functionalities
+
+Let’s explore its key features and functionalities:
+
+#### NAS Signaling:
+Imagine it as the network’s passport control. NGAP facilitates NAS (Non-Access Stratum) signaling, responsible for user authentication, mobility management, and bearer services management. This ensures secure access and seamless service experience across different radio access technologies.
+
+#### Control Plane Separation:
+Think of it as dedicated lanes for traffic. NGAP maintains a clear separation between the control plane (signaling) and the user plane (data). This allows for efficient resource management and scalability, handling information flow without data traffic interference.
+
+#### Security Mechanisms:
+Like robust encryption in online banking. NGAP incorporates robust security measures like mutual authentication and integrity protection. This safeguards against cyber threats and ensures secure communication, protecting network integrity and user data.
+
+#### Flexibility and Extensibility:
+Think of it as a future-proof design. NGAP is designed to be flexible and adapt to emerging needs. Its modular architecture allows for easy integration of future enhancements and new services, paving the way for B5G evolution and unforeseen advancements.
+
+#### User Equipment (UE) Management:
+This is like managing passengers on a high-speed train. NGAP establishes and manages UE contexts, handling user authentication, registration, and mobility procedures. It ensures smooth onboarding, seamless handovers, and continuous connectivity as users move across the network.
+
+#### Radio Resource Management:
+Think of it as allocating seats efficiently. NGAP assists in allocating and managing radio resources for UEs, optimizing network performance and ensuring fair and optimal resource utilization for each connected device.
+
+#### Service Management:
+Imagine ordering different meals on a flight. NGAP enables the establishment and management of diverse services for UEs, facilitating data, voice, video, IoT connectivity, and even cutting-edge applications like AR/VR seamlessly.
+
+#### Mobility Management:
+Think of it as ensuring smooth transitions between stations. NGAP facilitates seamless handover between different RATs (radio access technologies) and gNBs (base stations), guaranteeing uninterrupted connectivity for users on the move, ensuring no dropped calls or service disruptions.
+
+
 
 ## 5G NG Aplication Protocol (NGAP) Setup Procedure
 
