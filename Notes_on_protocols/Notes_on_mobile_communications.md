@@ -647,7 +647,6 @@ The Non Access Stratum (NAS) is a functional layer running between the User Equi
 
 NAS and MM are two protocols that operate at the upper layer of the 5G system architecture, above the access stratum (AS) that deals with the radio interface. NAS is responsible for establishing, maintaining, and releasing sessions between the user equipment (UE) and the core network (CN) (reference: https://www.linkedin.com/advice/1/how-do-you-design-test-nas-mm-protocols-5g-networks-skills-3gpp)
 
-references:
 
 Initial UE Message and Registration Request Message are the first two messages exchanged between UE and AMF to establish a new connection.
 
