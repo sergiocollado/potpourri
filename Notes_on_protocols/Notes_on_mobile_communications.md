@@ -56,6 +56,7 @@ A single subscriber may use multiple services accessible by the mobile service p
 
 references:
 - https://www.3gpp.org/technologies/5g-system-overview
+- https://youtu.be/4NbDhxPw4i4
 - https://www.itu.int/en/mediacentre/backgrounders/Pages/5G-fifth-generation-of-mobile-technologies.aspx
 - https://www.etsi.org/technologies/5G
 - System architecture for the 5G System:  https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144
