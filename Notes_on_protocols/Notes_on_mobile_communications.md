@@ -605,6 +605,8 @@ The SNPN needs and ID, the SNPN ID, and is a combination of:
  - https://youtu.be/BAf-LG103ZQ
  - https://youtu.be/NxFOqR_41Bs
 
+ - https://www.youtube.com/watch?v=Nx8G3ln0NX0
+ - https://github.com/Amin-Sedighfar/Open5GS-OAI
 
 
 
