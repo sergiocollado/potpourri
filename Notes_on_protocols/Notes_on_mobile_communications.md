@@ -56,6 +56,7 @@ A single subscriber may use multiple services accessible by the mobile service p
 
 references:
 - https://www.3gpp.org/technologies/5g-system-overview
+- https://5g.systemsapproach.org/index.html
 - https://youtu.be/4NbDhxPw4i4
 - https://www.itu.int/en/mediacentre/backgrounders/Pages/5G-fifth-generation-of-mobile-technologies.aspx
 - https://www.etsi.org/technologies/5G
@@ -593,6 +594,18 @@ It operates, like a regular 5G network. NPN services require subscription.
 The SNPN needs and ID, the SNPN ID, and is a combination of: 
  - the Public Land Mobile Networkd (PLMN) ID (based on MCC (mobile country code) asigned by ITU), 
  - Network ID, which can be self assigned or by national regulator.
+
+#### How to build private 5G network
+
+ - https://www.theregister.com/2023/04/25/building_private_5g/
+ - https://open5gs.org/
+ - https://free5gc.org/
+
+ - https://youtu.be/itkJdKgkyFk
+ - https://youtu.be/BAf-LG103ZQ
+ - https://youtu.be/NxFOqR_41Bs
+
+
 
 
 ## NGAP - Next Generation Aplication Protocol
