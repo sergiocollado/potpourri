@@ -268,7 +268,8 @@ To help you find more information, e.g. on the dynamic behaviour of 5GS (procedu
  - [TS 22.153](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=617), "Multimedia priority service".
  - [TS 22.173](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=620), "IP Multimedia Core Network Subsystem (IMS) Multimedia Telephony Service and supplementary services".
  - [TS 22.186](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3180), "Service requirements for enhanced V2X scenarios".
-
+ - [AMF](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3445) "AMF specs" - https://www.etsi.org/deliver/etsi_ts/129500_129599/129518/16.04.00_60/ts_129518v160400p.pdf
+ - [SMF](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3448) SMF specifications.
  
 ## System architecture for the 5G system (5GS)
 
