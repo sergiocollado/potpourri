@@ -142,6 +142,8 @@ From the RAN (Radio Access Network) point of view, there are:
 
  ![5G Deployment architectures](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g_deployment_models.PNG)
 
+ - reference: 5G Deployment and Architecture: https://youtu.be/ZLSKDxoqw6o
+
  At the 3gpp RT 21.915, two deployment options are defined for 5G:
  
  - NSA (Non-Stand Alone) architecture, where the 5G radio access network (AN) and its New Radio (NR) 
