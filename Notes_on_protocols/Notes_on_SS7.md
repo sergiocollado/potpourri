@@ -27,3 +27,6 @@ Other references:
  - https://www.synway.net/Download/Brochure/SS7_Datasheet.pdf
  - https://www.etsi.org/deliver/etsi_i_ets/300300_300399/30037401/01_60/ets_30037401e01p.pdf
  - https://www.etsi.org/deliver/etsi_en/301100_301199/30114005/01.01.01_20/en_30114005v010101c.pdf
+ - https://www.dialogic.com/~/media/manuals/docs/globalcall_for_ss7_v1.pdf
+
+
