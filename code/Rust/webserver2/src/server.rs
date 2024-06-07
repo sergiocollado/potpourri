@@ -1,7 +1,7 @@
-use std::net::TcpListener;
-use std::convert::TryFrom;
 use crate::http::Request;
+use std::convert::TryFrom;
 use std::io::Read;
+use std::net::TcpListener;
 
 // Server is a struct, a struct is a custom data type.
 pub struct Server {
@@ -9,7 +9,7 @@ pub struct Server {
 }
 
 // to add functionality to a struct, an "implementation" block is needed
-impl Server{
+impl Server {
     // there are "methods" or "associated functions".
     // methods are like functions, but defines in the context of the struct.
     // methods always take a first parameter that is "self".
@@ -19,11 +19,12 @@ impl Server{
 
     // new() is an associeted fuction
     //fn new(addr: String) -> Server {
-    pub fn new(addr: String) -> Self { // Self is an alias of the name of the struct
+    pub fn new(addr: String) -> Self {
+        // Self is an alias of the name of the struct
         Server {
             //addr: addr  // if the name of the field is the same as the variable
             //               we can skip the assignation.
-            addr
+            addr,
         }
     }
 
@@ -39,38 +40,22 @@ impl Server{
                     let mut buffer = [0; 1024]; // TODO: handle this properly, what happens when
                                                 // the size is bigger than 1024?
                     match stream.read(&mut buffer) {
-                        Ok(_) => {
-                            println!("Received a request: {}", String::from_utf8_lossy(&buffer));
-                            match Request::try_from(&buffer[..]) {
-                                Ok(request) => {},
-                                Err(e) => println!("Failed to parse a request: {}", e);
+                        Ok(_) => match Request::try_from(&buffer[..]) {
+                            Ok(request) => {
+                                println!(
+                                    "Received a request: {}",
+                                    String::from_utf8_lossy(&buffer)
+                                );
+                            }
+                            Err(e) => {
+                                println!("Failed to parse a request: {}", e);
                             }
                         },
                         Err(e) => println!("Failed to read from connection: {}", e),
                     }
-                },
+                }
                 Err(e) => println!("Failed to stablish a connection: {}", e),
             }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
