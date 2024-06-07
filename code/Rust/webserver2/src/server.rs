@@ -1,5 +1,7 @@
 use std::net::TcpListener;
-
+use std::convert::TryFrom;
+use crate::http::Request;
+use std::io::Read;
 
 // Server is a struct, a struct is a custom data type.
 pub struct Server {
@@ -32,8 +34,20 @@ impl Server{
 
         loop {
             match listener.accept() {
-                Ok((stream, addr)) => {
+                Ok((mut stream, addr)) => {
                     println!("New connection accepted: :{:?}, {:?}", stream, addr);
+                    let mut buffer = [0; 1024]; // TODO: handle this properly, what happens when
+                                                // the size is bigger than 1024?
+                    match stream.read(&mut buffer) {
+                        Ok(_) => {
+                            println!("Received a request: {}", String::from_utf8_lossy(&buffer));
+                            match Request::try_from(&buffer[..]) {
+                                Ok(request) => {},
+                                Err(e) => println!("Failed to parse a request: {}", e);
+                            }
+                        },
+                        Err(e) => println!("Failed to read from connection: {}", e),
+                    }
                 },
                 Err(e) => println!("Failed to stablish a connection: {}", e),
             }
