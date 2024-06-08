@@ -102,6 +102,10 @@ the code submitted in patches must be signed off:
  
 and the patch prefixes are:  [PATCH], [PATCH RFC] or [RFC PATCH] or [PATCH v4] 
 
+### Portal of Linux Kernel patches
+
+ - refernece: https://patchwork.kernel.org/
+
 ### To apply a patch:
 
 reference: https://www.kernel.org/doc/html/v4.10/process/applying-patches.html <br>
