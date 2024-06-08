@@ -2999,3 +2999,18 @@ USB:
  - https://github.com/gregkh/usbutils
  - https://github.com/libusb/libusb?tab=readme-ov-file
 
+
+Using Syzkaller:
+  - Using syskaller part1: fuzzing the linux kernel: https://www.collabora.com/news-and-blog/blog/2020/03/26/syzkaller-fuzzing-the-kernel/
+  - detecting programming bugs in the linux kernel: https://www.collabora.com/news-and-blog/blog/2020/04/17/using-syzkaller-to-detect-programming-bugs-in-linux/
+  - fuzzing your changes: https://www.collabora.com/news-and-blog/blog/2020/05/12/using-syzkaller-fuzzing-your-changes/
+  - driving fuzzing: https://www.collabora.com/news-and-blog/blog/2020/06/26/using-syzkaller-part-4-driver-fuzzing/
+  - finding linux kernel bugz with syskaller: https://youtu.be/50XmhnJO5p8
+  - Set up syz enviroment to reproduce bugs
+     - reference: https://github.com/google/syzkaller/blob/master/docs/syzbot.md#bisection
+     - reference: https://groups.google.com/g/syzkaller-bugs/c/HW4z7PpD9B0/m/XQTdRRHrAwAJ
+   
+Event trazing resources: 
+  - https://www.kernel.org/doc/html/latest/trace/events.html
+  - https://www.collabora.com/news-and-blog/blog/2019/05/14/an-ebpf-overview-part-5-tracing-user-processes/
+
