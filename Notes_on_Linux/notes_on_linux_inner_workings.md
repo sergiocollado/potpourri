@@ -460,6 +460,13 @@ or
 ```
 $ make htmldocs
 ```
+
+to analyze the documentation maybe use: 
+```
+$ make htmldocs > doc.log 2>&1
+$ make pdfdocs > doc.log 2>&1
+```
+
 Find the generated files at: `Documentation/output/latex`.
 
 
