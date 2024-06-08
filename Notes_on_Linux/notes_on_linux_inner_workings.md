@@ -8,6 +8,7 @@ list of Linux subsystems: https://www.kernel.org/doc/html/latest/subsystem-apis.
 
  - By the way, the best way to search the kernel code online is: https://elixir.bootlin.com/linux/latest/source/include/linux
  - Core Knowledge That Modern Linux Kernel Developer Should Have: https://www.linuxjournal.com/content/core-knowledge-modern-linux-kernel-developer-should-have
+ - Linux programming interface: https://archive.org/details/The_Linux_Programming_Interface/page/n4/mode/1up
  - Index of Documentation for People Interested in Writing and/or Understanding the Linux Kernel: https://www.kernel.org/doc/html/latest/process/kernel-docs.html
  - Kernel coding style: https://www.kernel.org/doc/html/latest/process/coding-style.html
  - HOWTO do Linux kernel development: https://docs.kernel.org/process/howto.html 
