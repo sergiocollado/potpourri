@@ -43,7 +43,7 @@ references:
 how to contribute:
  - Become a Linux kernel contributor - Part 1: https://javiercarrascocruz.github.io/kernel-contributor-1
 
-### Intro
+### Intro to the development process
 
 - reference: https://www.kernel.org/doc/html/latest/process/development-process.html
 
@@ -370,24 +370,23 @@ Result: 250
 
 ### Codes of conduct
 
-https://www.kernel.org/doc/html/latest/process/code-of-conduct.htm
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/LICENSES/preferred/GPL-2.0
-
-https://www.kernel.org/doc/html/latest/process/kernel-enforcement-statement.html
-
+References:
+ - https://www.kernel.org/doc/html/latest/process/code-of-conduct.htm
+ - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/LICENSES/preferred/GPL-2.0
+ - https://www.kernel.org/doc/html/latest/process/kernel-enforcement-statement.html
 
 
 How to configure the kernel: https://www.kernel.org/doc/Documentation/kbuild/kconfig.txt
 
-kernel documentation: https://www.kernel.org/doc/Documentation/
+ - kernel documentation: https://www.kernel.org/doc/Documentation/
+ - How to write documentation in the code: https://docs.kernel.org/doc-guide/kernel-doc.html
 
 
 ### Configuration of the development system
 
-https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview
-
-https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview
+References:
+ - https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview
+ - https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview
 
 It is recomended 3GB for the boot partition.
 
@@ -427,13 +426,13 @@ certs        cscope.out          include    Kconfig  MAINTAINERS  README      so
 COPYING    Documentation  init     kernel       Makefile          samples  tools
 ```
 
-or to clone the stables
+or to clone the stable branche:
 
 ```
 git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux_stable
 ```
 
-You can use cregit-linux tool, to explore the code: https://cregit.linuxsources.org/ <br>
+You can use `cregit-linux` tool, to explore the code: https://cregit.linuxsources.org/ <br>
 
 for example: https://cregit.linuxsources.org/code/5.11/  <br>
 
@@ -515,18 +514,18 @@ To submint a patch: https://www.kernel.org/doc/html/v6.0/process/submitting-patc
 
 #### The kernel build system
 
-reference: https://www.linuxjournal.com/content/kbuild-linux-kernel-build-system 
-
-reference: https://www.kernel.org/doc/html/latest/kbuild/index.html
+Reference: 
+ - https://www.linuxjournal.com/content/kbuild-linux-kernel-build-system 
+ - https://www.kernel.org/doc/html/latest/kbuild/index.html
 
 The kernel has its own build system: the Kernel build sistem: Kbuild.
 
 It has four main components:
 
- - config symbols: conditions to conditionally compile code, include or exclude components.
- - kconfig files: files that define the possible config sysmbols. 'make menuconfig' reads the config sysmbols for the kconfig files.
- - .config file: files that stored the value of the confi sysmbols. 'make menuconfig' is used to give those values, or the file edited directly.
- - makefiles: normal makefiles
+ - **config symbols**: conditions to conditionally compile code, include or exclude components.
+ - **kconfig files**: files that define the possible config sysmbols. 'make menuconfig' reads the config sysmbols for the kconfig files.
+ - **.config file**: files that stored the value of the confi sysmbols. 'make menuconfig' is used to give those values, or the file edited directly.
+ - **makefiles**: normal makefiles
 
 
 #### Compiling the kernel 
