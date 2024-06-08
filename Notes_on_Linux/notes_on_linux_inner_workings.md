@@ -2904,21 +2904,21 @@ References:
  
 ## And other references for elaborate later ...
 
-XArray: 
+### XArray: 
  - https://docs.kernel.org/core-api/xarray.html
  - The design and implementation of the XArray : https://www.youtube.com/watch?v=v0C9_Fp-co4
  - XArray: One Data Structure To Rule Them All : https://www.youtube.com/watch?v=-Bw-HWcrnss
  - Matthew Wilcox: How Linux handles IO errors -- PGCon 2018 : https://www.youtube.com/watch?v=74c19hwY2oE
 
-What happens when Linux runs out of memory? : https://youtu.be/Cm3-6cOwICU
+### What happens when Linux runs out of memory? : https://youtu.be/Cm3-6cOwICU
 
-Linux containers the hard way:
+### Linux containers the hard way:
 - https://hackaday.com/2023/08/07/linux-containers-the-hard-way/
 - https://github.com/lucavallin/barco
 - https://redhatgov.io/workshops/containers_the_hard_way/
 
-<br>
-Device trees:
+
+### Device trees:
  - https://javiercarrascocruz.github.io/device-driver-development-with-rpi-device-tree
  - https://docs.kernel.org/devicetree/index.html
  - https://devicetree-specification.readthedocs.io/en/stable/index.html
@@ -2933,57 +2933,55 @@ Device trees:
 - https://redhatgov.io/workshops/selinux_policy/
 - Kernel Magnifier: A Linux Kernel Execution Flow Research Tool for Upcomming Kernel Hackers (and Veterans): https://github.com/hgn/kernel-magnifier
 
-<br>
-Linux Kernel Runtime Guard:
- - https://lkrg.org/
-<br>
 
-i2c in linux:
+### Linux Kernel Runtime Guard:
+ - https://lkrg.org/
+
+### i2c in linux:
  - https://www.eevblog.com/forum/microcontrollers/i2c-sensor-integration-in-linux/
  - https://www.kernel.org/doc/Documentation/i2c/
  - Basics of I2C on Linux - Luca Ceresoli, Bootlin -- The Linux Foundation: https://youtu.be/g9-wgdesvwA
  - The video discusses the driver for the PCA9570: https://github.com/torvalds/linux/blob/master/drivers/gpio/gpio-pca9570.c
  - Let's code a Linux Driver - Johannes 4GNU_Linux: https://www.youtube.com/playlist?list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
-<br>
-
-iio - industrial I/O:
-- https://linux.ime.usp.br/~marcelosc/2019/09/Introduction-to-IIO-driver-development
-- https://www.kernel.org/doc/html/v4.12/driver-api/uio-howto.html
-- https://bootlin.com/blog/the-backbone-of-a-linux-industrial-i-o-driver/
-- https://www.kernel.org/doc/html/v4.12/driver-api/iio/index.html
-- rpi compilation tutorial: https://linux.ime.usp.br/~marcelosc/2019/09/RaspberryPi-kernel-compilation
-- video iio example: https://youtu.be/l8mQtpZhgYI
-- https://linux.ime.usp.br/~marcelosc/2019/09/Introduction-to-IIO-driver-development
-- https://linux.ime.usp.br/~marcelosc/2019/09/Simple-IIO-driver
-- LibIIO - A Library for Interfacing with Linux IIO Devices - Dan Nechita: https://youtu.be/p_VntEwUe24
-- example PR: https://github.com/analogdevicesinc/linux/pull/436/commits/3d2c7522c01b19c19c77adfac0ab1546b56426bc
-- how to connect to a rpi thru the USB port: https://linux.ime.usp.br/~marcelosc/2019/01/SSH-em-Raspberrypi-conectada-por-USB
-- LibIIo: https://www.youtube.com/watch?v=p_VntEwUe24
-- sample: https://elixir.bootlin.com/linux/latest/source/drivers/iio/dummy/iio_simple_dummy.c
-- I2C: https://www.kernel.org/doc/html/v4.12/driver-api/i2c.html#
-- SPI: https://www.kernel.org/doc/html/v4.12/driver-api/spi.html
-- i2c in linux: https://www.linkedin.com/pulse/understanding-i2c-communication-linux-beginners-guide-soheil-nazari
-- i2c in linux: https://elinux.org/Interfacing_with_I2C_Devices
-- i2c in kernel: https://www.kernel.org/doc/Documentation/i2c/dev-interface
-- SPI in kernel: https://docs.kernel.org/spi/index.html
 
 
-Control-flow integrity for the kernel: <br>
+### iio - industrial I/O:
+ - https://www.kernel.org/doc/html/latest/driver-api/iio/index.html
+ - https://linux.ime.usp.br/~marcelosc/2019/09/Introduction-to-IIO-driver-development
+ - https://www.kernel.org/doc/html/v4.12/driver-api/uio-howto.html
+ - https://bootlin.com/blog/the-backbone-of-a-linux-industrial-i-o-driver/
+ - https://www.kernel.org/doc/html/v4.12/driver-api/iio/index.html
+ - rpi compilation tutorial: https://linux.ime.usp.br/~marcelosc/2019/09/RaspberryPi-kernel-compilation
+ - video iio example: https://youtu.be/l8mQtpZhgYI
+ - https://linux.ime.usp.br/~marcelosc/2019/09/Introduction-to-IIO-driver-development
+ - https://linux.ime.usp.br/~marcelosc/2019/09/Simple-IIO-driver
+ - LibIIO - A Library for Interfacing with Linux IIO Devices - Dan Nechita: https://youtu.be/p_VntEwUe24
+ - example PR: https://github.com/analogdevicesinc/linux/pull/436/commits/3d2c7522c01b19c19c77adfac0ab1546b56426bc
+ - how to connect to a rpi thru the USB port: https://linux.ime.usp.br/~marcelosc/2019/01/SSH-em-Raspberrypi-conectada-por-USB
+ - LibIIo: https://www.youtube.com/watch?v=p_VntEwUe24
+ - sample: https://elixir.bootlin.com/linux/latest/source/drivers/iio/dummy/iio_simple_dummy.c
+ - I2C: https://www.kernel.org/doc/html/v4.12/driver-api/i2c.html#
+ - SPI: https://www.kernel.org/doc/html/v4.12/driver-api/spi.html
+ - i2c in linux: https://www.linkedin.com/pulse/understanding-i2c-communication-linux-beginners-guide-soheil-nazari
+ - i2c in linux: https://elinux.org/Interfacing_with_I2C_Devices
+ - i2c in kernel: https://www.kernel.org/doc/Documentation/i2c/dev-interface
+ - SPI in kernel: https://docs.kernel.org/spi/index.html
+
+
+### Control-flow integrity for the kernel
 Control-flow integrity (CFI) is a technique used to reduce the ability to redirect the execution of a program's code in attacker-specified ways. The Clang compiler has some features that can assist in maintaining control-flow integrity:
-
-- https://lwn.net/Articles/810077/
-- https://source.android.com/docs/security/test/kcfi
-
+ - https://lwn.net/Articles/810077/
+ - https://source.android.com/docs/security/test/kcfi
 
 
-LTO Link-time optimization for the kernel:
+### LTO Link-time optimization for the kernel:
  - https://lwn.net/Articles/512548/
 
-Linux kernel tinification: 
+### Linux kernel tinification: 
  - https://tiny.wiki.kernel.org/
  - https://lwn.net/Articles/608945/
 
-Linux kernel Panic, Oops, core dumps and debugging:
+### Linux kernel Panic, Oops, core dumps and debugging:
  - https://www.dedoimedo.com/computers/lkcd.html
  - https://www.dedoimedo.com/computers/crash-analyze.html
  - crahsdumps: https://wiki.ubuntu.com/Kernel/CrashdumpRecipe
@@ -2993,11 +2991,11 @@ Linux kernel Panic, Oops, core dumps and debugging:
  - https://ubuntu.com/server/docs/kernel-crash-dump
 
 
-Schedstat:
+### Schedstat
  - reference: https://www.phoronix.com/news/AMD-Linux-perf-schedstat-Tool
  - https://docs.kernel.org/scheduler/sched-stats.html
 
-USB: 
+### USB
  - https://www.beyondlogic.org/usbnutshell/usb1.shtml
  - https://www.kernel.org/doc/html/v4.12/driver-api/usb/writing_usb_driver.html
  - https://www.kernel.org/doc/html/v4.15/driver-api/usb/index.html
@@ -3005,7 +3003,7 @@ USB:
  - https://github.com/libusb/libusb?tab=readme-ov-file
 
 
-Using Syzkaller:
+### Using Syzkaller
   - Using syskaller part1: fuzzing the linux kernel: https://www.collabora.com/news-and-blog/blog/2020/03/26/syzkaller-fuzzing-the-kernel/
   - detecting programming bugs in the linux kernel: https://www.collabora.com/news-and-blog/blog/2020/04/17/using-syzkaller-to-detect-programming-bugs-in-linux/
   - fuzzing your changes: https://www.collabora.com/news-and-blog/blog/2020/05/12/using-syzkaller-fuzzing-your-changes/
@@ -3015,7 +3013,7 @@ Using Syzkaller:
      - reference: https://github.com/google/syzkaller/blob/master/docs/syzbot.md#bisection
      - reference: https://groups.google.com/g/syzkaller-bugs/c/HW4z7PpD9B0/m/XQTdRRHrAwAJ
    
-Event trazing resources: 
+### Event trazing resources: 
   - https://www.kernel.org/doc/html/latest/trace/events.html
   - https://www.collabora.com/news-and-blog/blog/2019/05/14/an-ebpf-overview-part-5-tracing-user-processes/
 
