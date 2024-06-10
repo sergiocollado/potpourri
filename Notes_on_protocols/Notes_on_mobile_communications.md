@@ -712,6 +712,10 @@ There are 4 types of registration:
 
 ![initial registration request](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g_initial_registration_request.PNG)
 
+![Notes_on_protocols/Images_mobile_communication/Initial_registration_without_AMF_handover.PNG](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/Initial_registration_without_AMF_handover.PNG)
+
+![Notes_on_protocols/Images_mobile_communication/Initial_registration_without_AMF_handover_2.PNG](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/Initial_registration_without_AMF_handover_2.PNG)
+
 ![general registration request](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5G-general_registrartion-request.PNG)
 
 
