@@ -456,11 +456,12 @@ to a DNS to locate every live instance for every available Network Function.
 ## Access and Mobility function: AMF
 
 references: 
-- https://emblasoft.com/blog/exploring-the-3gpp-amf-access-mobility-management-function#:~:text=In%205G%2C%20AMF%20terminates%20the,i.e.%2C%20access%20subscribed%20services).
-- https://www.techtrained.com/network-function-access-mobility-management-function-amf-in-5g-core-network-5g-system-5gs/
-- https://mobilepacketcore.com/5g-network-architecture/
-- https://www.youtube.com/watch?v=eFn1REiUisk
-- https://www.youtube.com/watch?v=Q6YxHz_07zk&t=4s
+ - https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3445
+ - https://emblasoft.com/blog/exploring-the-3gpp-amf-access-mobility-management-function#:~:text=In%205G%2C%20AMF%20terminates%20the,i.e.%2C%20access%20subscribed%20services).
+ - https://www.techtrained.com/network-function-access-mobility-management-function-amf-in-5g-core-network-5g-system-5gs/
+ - https://mobilepacketcore.com/5g-network-architecture/
+ - https://www.youtube.com/watch?v=eFn1REiUisk
+ - https://www.youtube.com/watch?v=Q6YxHz_07zk&t=4s
 
 AMF interacts with NG-RAN over the N2 interface.
 
