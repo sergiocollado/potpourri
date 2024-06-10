@@ -3021,3 +3021,9 @@ Control-flow integrity (CFI) is a technique used to reduce the ability to redire
  - https://lore.kernel.org/lkml/20191007083830.64667428.5@infradead.org/
 
 The release of the Linux 5.10 kernel brings a new feature to protect against speculative execution attacks. That feature is called static calls and is a replacement for global function pointers in the Linux kernel
+
+### tun-tap interfaces
+ - https://www.gabriel.urdhr.fr/2021/05/08/tuntap/
+ - https://backreference.org/2010/03/26/tuntap-interface-tutorial/index.html
+ - https://john-millikin.com/creating-tun-tap-interfaces-in-linux
+
