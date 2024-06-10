@@ -3016,3 +3016,8 @@ Control-flow integrity (CFI) is a technique used to reduce the ability to redire
   - https://www.kernel.org/doc/html/latest/trace/events.html
   - https://www.collabora.com/news-and-blog/blog/2019/05/14/an-ebpf-overview-part-5-tracing-user-processes/
 
+### Static_calls
+ - https://thenewstack.io/linux-kernel-5-10-introduces-static-calls-to-prevent-speculative-execution-attacks/
+ - https://lore.kernel.org/lkml/20191007083830.64667428.5@infradead.org/
+
+The release of the Linux 5.10 kernel brings a new feature to protect against speculative execution attacks. That feature is called static calls and is a replacement for global function pointers in the Linux kernel
