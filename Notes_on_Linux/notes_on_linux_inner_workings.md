@@ -42,6 +42,7 @@ references:
 
 how to contribute:
  - Become a Linux kernel contributor - Part 1: https://javiercarrascocruz.github.io/kernel-contributor-1
+ - LKMP: https://medium.com/@andrew.kanner/linux-kernel-bug-fixing-2023-experience-ce37aee844ee
 
 ### Intro to the development process
 
