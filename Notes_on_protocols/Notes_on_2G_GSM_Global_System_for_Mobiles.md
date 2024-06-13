@@ -12,3 +12,4 @@ This 2G is a digital system, this means that the voice is digitalized and encryp
 
 ![voice calls in GSM](https://raw.githubusercontent.com/sergiocollado/potpourri/master/Notes_on_protocols/Images_mobile_communication/Voice_GSM.webp)
 
+ - reference: https://yatebts.com/documentation/concepts/gsm-functionalities/
