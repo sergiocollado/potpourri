@@ -8,5 +8,5 @@ This 2G is a digital system, this means that the voice is digitalized and encryp
 
 ## 2G Architecture
 
-
+![GSM architecture](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/Gsm_network_architecture.png)
 
