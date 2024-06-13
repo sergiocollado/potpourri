@@ -16,6 +16,8 @@
 
 # Mobile communications evolution
 
+![evolution mobile communications](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/evolution_mobile_communications.PNG)
+
 ### 1G
 It started with AMPS (Advanced Mobile Phone System)  this was the first generation of mobile cellular phone systems. This used an Analog technology based in FDMA (Frequency Division Multiple Access), it was developed by Bell Labs (1983): 
 
