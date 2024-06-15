@@ -2,6 +2,8 @@ use super::method::Method;
 use std::convert::TryFrom;
 use std::error::Error;
 use std::fmt::{Debug, Display, Formatter, Result as FmtResult};
+use std::str::from_utf8;
+use std::str::Utf8Error;
 
 pub struct Request {
     path: String,
@@ -10,12 +12,25 @@ pub struct Request {
     method: Method,
 }
 
-impl TryFrom<&[u8]> for Request {
+impl TryFrom<&[u8]> for Request { // 'From' trait that can fail
     type Error = ParseError;
 
     // GET /search?name=abc&sort=1 HTTP/1.1
-    fn try_from(value: &[u8]) -> Result<Self, Self::Error> {
-        unimplemented!()
+    fn try_from(buf: &[u8]) -> Result<Self, Self::Error> {
+
+        // match std::from_utf8(buf) {
+        //     Ok(request) => {},
+        //     Err(_) => return Err(ParseError::InvalidEncoding),
+        // }
+
+        //std::from_utf8(bug).or(Err(ParseError::InvalidEncoding)) {
+        //    Ok(request) => {},
+        //    Err(e) => return Err(ParseError::InvalidEncoding)),
+        //}
+
+        //let request = str::from_utf8(buf).or(Err(ParseError::InvalidEncoding))?;
+
+        let request = str::from_utf8(bug)? // for using this we need to define the ParseError.from(utf8) trait
     }
 }
 
@@ -34,6 +49,12 @@ impl ParseError {
             Self::InvalidProtocol => "Invalid Protocol",
             Self::InvalidMethod => "Invalid Method",
         }
+    }
+}
+
+impl From<Utf8Error> for ParseError {
+    fn from(_: Utf8Error) -> Self {
+        Self::InvalidEncoding
     }
 }
 
