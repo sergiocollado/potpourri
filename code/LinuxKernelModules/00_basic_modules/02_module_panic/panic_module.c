@@ -3,6 +3,8 @@
 /*
  * panic_module.c -- A Kernel module that panics the kernel
  * NOTE: Running the following code, WILL CRASH YOUR SYSTEM. An easy poweroff poweron should fix it though
+ *
+ * reference: https://www.opensourceforu.com/2011/01/understanding-a-kernel-oops/
  */
 
 #include<linux/init.h>
@@ -16,7 +18,7 @@ static int __init panic_module_init(void)
 
 	/* giving a chance to log the previous message */
 	msleep(1000);
-
+		
 	panic("panic_module: Kernel panicked due to panic().\n");
 
 	return 0;
