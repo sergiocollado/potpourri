@@ -19,3 +19,12 @@ This 2G is a digital system, this means that the voice is digitalized and encryp
 - **Base Station Subsisteym (BSS)**, the RAN (Radio Acess Network) in GSM is called BSS (Base Station Subsystem). A BSS, consists on a BSC, and a BSC can control more that one BTS. The interface between the BTS and BSC, is called "Abis" interface. And the interface between the BSC and the core network is called the "A" interface.
 - **NSS**: The core network (CN) in the case of GSM, is called the Network Subsystem (NSS), and NSS, consists in MSC and its asociated databases: EIR, VLR, HLR, AUC.
 - **GMSC**: One mobile network is connected to another network through the Gateway MSC (GMSC), for example with the fixed telephony network: PSTN (Public Switching Network), or with other mobile network which is run by other operator. 
+
+### Base Station Subsystem (BSS)
+
+The Base Station Subsystem (BSS) consitst of:
+ - One or more Base Station Controllers (BSC)
+ - One or more Base Transceiver Stations (BTS)
+
+A RAN (Radio Access Network) may contain one or more BSSs
+
