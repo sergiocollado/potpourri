@@ -13,3 +13,9 @@ This 2G is a digital system, this means that the voice is digitalized and encryp
 ![voice calls in GSM](https://raw.githubusercontent.com/sergiocollado/potpourri/master/Notes_on_protocols/Images_mobile_communication/Voice_GSM.webp)
 
  - reference: https://yatebts.com/documentation/concepts/gsm-functionalities/
+
+
+- **Mobile station (MS)**: the first component, MS, the mobile station consists in the Mobile Equiptment (ME) and the SIM card. The SIM has the identity of the subscriber, and that identity is called IMSI (Interantional Mobile Subscriber Identity)
+- **Base Station Subsisteym (BSS)**, the RAN (Radio Acess Network) in GSM is called BSS (Base Station Subsystem). A BSS, consists on a BSC, and a BSC can control more that one BTS. The interface between the BTS and BSC, is called "Abis" interface. And the interface between the BSC and the core network is called the "A" interface.
+- **NSS**: The core network (CN) in the case of GSM, is called the Network Subsystem (NSS), and NSS, consists in MSC and its asociated databases: EIR, VLR, HLR, AUC.
+- **GMSC**: One mobile network is connected to another network through the Gateway MSC (GMSC), for example with the fixed telephony network: PSTN (Public Switching Network), or with other mobile network which is run by other operator. 
