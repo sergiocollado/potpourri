@@ -40,9 +40,12 @@ references:
  - https://www.slideshare.net/SamsungOSG/a-survivors-guide-to-contributing-to-the-linux-kernel
  - Linux kernel development process: https://docs.kernel.org/process/development-process.html
 
-how to contribute:
+How to contribute:
  - Become a Linux kernel contributor - Part 1: https://javiercarrascocruz.github.io/kernel-contributor-1
  - LKMP: https://medium.com/@andrew.kanner/linux-kernel-bug-fixing-2023-experience-ce37aee844ee
+ - https://marliere.net/posts/1/
+ - Build a minimal Linux system and run it in QEMU: https://ibug.io/blog/2019/04/os-lab-1/
+ - Ramfs, rootfs and initramfs: https://www.kernel.org/doc/html/latest/filesystems/ramfs-rootfs-initramfs.html
 
 ### Intro to the development process
 
