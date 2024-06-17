@@ -5,6 +5,7 @@ Reference: https://docs.kernel.org/dev-tools/testing-overview.html
 ## Kselftests
 
 reference: https://docs.kernel.org/dev-tools/kselftest.html <br>
+reference: https://sergioprado.blog/how-is-the-linux-kernel-tested/ <br>
 reference: https://kselftest.wiki.kernel.org/ <br>
 reference: https://github.com/torvalds/linux/blob/master/Documentation/dev-tools/kselftest.rst <br>
 reference: https://lca-kernel.ozlabs.org/2022-Gow-Kernel-Testing-with-KUnit-Bridging-the-Gap.pdf <br>
