@@ -32,3 +32,11 @@ The transmissiion between the BSC and the BTS is called as the front-haul link, 
 
 ### Base Tranceiver Station
 
+When the mobile station connects with the mobile network, it connects through the Base Tranceiver station (BTS). The BTS contains the radio receiver/transmitter that is used to connect to the mobile station over the wireless channel. Also the digital voice that is being send to the mobile station is encripted in the BTS. While the encrypted voice that is received in the mobile station is being received by the BTS. It is decrypted, the digital voice is send to the mobile statiion, after modulating it as a wireless signal and the type of modulation that is used is GMSK (at ype of frequency shift keying). 
+
+Whenever there is an incomming call for the mobile station the BTS informs, or in other words the BTS pages the mobile station about the incomming call. 
+
+Also whenever a mobile station is in a call with the BTS or in other words, it is connected to the BTS, then it is not only measuring the received power of that BTS, but is also measuring the received power from the neighbouring BTSs. And this information about the other measurements is sent as a measurement reports to the BTS and the BTS, then passes this information to the Base Station Controller (BSC). 
+
+
+
