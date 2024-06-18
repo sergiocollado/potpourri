@@ -26,5 +26,9 @@ The Base Station Subsystem (BSS) consitst of:
  - One or more Base Station Controllers (BSC)
  - One or more Base Transceiver Stations (BTS)
 
-A RAN (Radio Access Network) may contain one or more BSSs
+A RAN (Radio Access Network) may contain one or more BSSs.
+
+The transmissiion between the BSC and the BTS is called as the front-haul link, and this link can be an electrical cable, and microwave link, or optical fibre link. 
+
+### Base Tranceiver Station
 
