@@ -51,3 +51,14 @@ Also based upon the measurement report, the BSC decides at what power this mobil
 
 The network subsystem consists of the MSC and its associated databases. And the main purpose of the NSS is to perform the switching and routing of the call, for example, this mobile station is calling someone in the PSTN network, then the NSS would route the call of this mobile station to the PSTN (Public Switching Telephone Network) network.Similarly, this mobile station may roam from one BTS to another BTS. So the NSS keeps track of the current location of the mobile station in the mobile network, so that if there is an incoming call for this mobile station, this mobile station may be paged or it may be informed about that incoming call.
 
+### Mobile Switching Center (MSC)
+
+It is a digital switch that performs: 
+ - Call setup
+ - Call routing between MS & others MSCs/external network.
+ - Inter BSS, inter handovers.
+
+ - Channel asignation on A interface.
+ - Gateway MSC handles interface with other PLMNs/GMSC
+
+
