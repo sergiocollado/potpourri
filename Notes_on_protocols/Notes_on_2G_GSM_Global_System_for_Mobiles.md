@@ -39,4 +39,12 @@ Whenever there is an incomming call for the mobile station the BTS informs, or i
 Also whenever a mobile station is in a call with the BTS or in other words, it is connected to the BTS, then it is not only measuring the received power of that BTS, but is also measuring the received power from the neighbouring BTSs. And this information about the other measurements is sent as a measurement reports to the BTS and the BTS, then passes this information to the Base Station Controller (BSC). 
 
 
+### Base Station Controller
+
+A base station controller controls one or more BTSs, the traffic for different mobile stations,that a BSC is receiving from different BTSs, it aggregates that traffic and sends it to the MSC, and the traffic that the BSC is receiving from the MSC for different BTS, it switches the traffic to the corresponding BTSs, also the BSC is responsible for the management of the radio resources in the BSS and what is meant by the management of the radio resources. For example, if this mobile station wants to make a call, then it would meed channels in the Abis interface as well as in the air interface.
+
+Also the BTS is receiving the measurement reports from the mobile station. If a mobile station is in call with a BTS, it is measuring the power of this BTS as well as the power from the neighboring BTSs. And it is sending this information as a measurement report to the BSC. If the mobile station is moving from this BTS to other BTS, which is called "the target BTS", and if the mobile station enters the coverage area of the target BTS, then the power that this mobile station is receiving from the target BTS it would increase from the power that it is receiving from its own BTS. So this information would be then sent as a measurement report to the BSC and the BSC would then decide that now it is time that this mobile station makes a handover to the target BTS. So the BSC would issue the handover command that would be sent to this BTS and then it would be passed on to this mobile station and the mobile station would then hand over to the target BTS.
+
+Also based upon the measurement report, the BSC decides at what power this mobile station is going to transmit towards the base station and at what power, the BTS is going to transmit towards the mobile station, so that this does not cause interference to the mobile stations that are there in the neighboring cells and which are using the same channels.
+
 
