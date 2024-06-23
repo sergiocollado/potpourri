@@ -58,7 +58,8 @@ It is a digital switch that performs:
  - Call routing between MS & others MSCs/external network.
  - Inter BSS, inter handovers.
 
+
  - Channel asignation on A interface.
- - Gateway MSC handles interface with other PLMNs/GMSC
+ - Gateway MSC (GMSC) handles interface with other PLMNs/GMSC
 
 
