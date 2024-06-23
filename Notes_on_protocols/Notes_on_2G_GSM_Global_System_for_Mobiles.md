@@ -30,7 +30,7 @@ A RAN (Radio Access Network) may contain one or more BSSs.
 
 The transmissiion between the BSC and the BTS is called as the front-haul link, and this link can be an electrical cable, and microwave link, or optical fibre link. 
 
-### Base Tranceiver Station
+### Base Tranceiver Station (BST)
 
 When the mobile station connects with the mobile network, it connects through the Base Tranceiver station (BTS). The BTS contains the radio receiver/transmitter that is used to connect to the mobile station over the wireless channel. Also the digital voice that is being send to the mobile station is encripted in the BTS. While the encrypted voice that is received in the mobile station is being received by the BTS. It is decrypted, the digital voice is send to the mobile statiion, after modulating it as a wireless signal and the type of modulation that is used is GMSK (at ype of frequency shift keying). 
 
@@ -39,7 +39,7 @@ Whenever there is an incomming call for the mobile station the BTS informs, or i
 Also whenever a mobile station is in a call with the BTS or in other words, it is connected to the BTS, then it is not only measuring the received power of that BTS, but is also measuring the received power from the neighbouring BTSs. And this information about the other measurements is sent as a measurement reports to the BTS and the BTS, then passes this information to the Base Station Controller (BSC). 
 
 
-### Base Station Controller
+### Base Station Controller (BSC)
 
 A base station controller controls one or more BTSs, the traffic for different mobile stations,that a BSC is receiving from different BTSs, it aggregates that traffic and sends it to the MSC, and the traffic that the BSC is receiving from the MSC for different BTS, it switches the traffic to the corresponding BTSs, also the BSC is responsible for the management of the radio resources in the BSS and what is meant by the management of the radio resources. For example, if this mobile station wants to make a call, then it would meed channels in the Abis interface as well as in the air interface.
 
@@ -47,4 +47,7 @@ Also the BTS is receiving the measurement reports from the mobile station. If a 
 
 Also based upon the measurement report, the BSC decides at what power this mobile station is going to transmit towards the base station and at what power, the BTS is going to transmit towards the mobile station, so that this does not cause interference to the mobile stations that are there in the neighboring cells and which are using the same channels.
 
+### Network Subsystem (NSS)
+
+The network subsystem consists of the MSC and its associated databases. And the main purpose of the NSS is to perform the switching and routing of the call, for example, this mobile station is calling someone in the PSTN network, then the NSS would route the call of this mobile station to the PSTN (Public Switching Telephone Network) network.Similarly, this mobile station may roam from one BTS to another BTS. So the NSS keeps track of the current location of the mobile station in the mobile network, so that if there is an incoming call for this mobile station, this mobile station may be paged or it may be informed about that incoming call.
 
