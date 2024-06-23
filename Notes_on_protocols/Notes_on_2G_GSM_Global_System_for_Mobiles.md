@@ -58,8 +58,54 @@ It is a digital switch that performs:
  - Call routing between MS & others MSCs/external network.
  - Inter BSS, inter handovers.
 
+Channel asignation on A interface.
 
- - Channel asignation on A interface.
- - Gateway MSC (GMSC) handles interface with other PLMNs/GMSC
+Gateway MSC (GMSC) handles interface with other PLMNs/GMSC
+
+### Home Location Registry (HLR)
+
+Central database for subscriber/mobile users information:
+ - Subscriber ID
+ - Authentification key
+ - Subscriber status (registered/unregistered)
+ - Services a mobile subscriber can use)
+ - Current location of subscriber (which VLR area)
+
+### Authentification Center (AUC) 
+
+The Authentification center is normally build as a part of the HLR. 
+
+It uses the authentification key to generate parameters for:
+ - user authentication/verification
+ - generating ciphering key
+
+Required when user initiates connection.
+
+### Visitor Location Registry (VLR)
+
+A PLMN (Public Land Mobile Network) service area, the area covered by a Mobile Network, can be seen as the sum of different MSC areas. 
+
+A VLR may serve one or more MSCs, but normally is 1 VLR with 1 MSC. 
+
+VLR holds temporary data to avoid overburdening HLR. 
+
+### Equipment Identiy Registry (EIC)
+
+The identiy of a user (a mobile subscriber) is stored in the SIM (Subscriber Identification Module) card, the Mobile Equipment has its own identity: IMEI (International Mobile Equipment Identity).
+
+The Equipment Identiy Registry (EIC), has 3 lists:
+ - Black list, list of ME (Mobile Equpment) forbidden to use the newtork, for example stolen ME.
+ - Grey list, mobiles to have to be under observation or tracing.
+ - White list, all the authorized mobile equipment.
+
+When the MS (mobile station) initiates connection with the BTS/BSC, it is check using EIC if the MS is allow to use the network or if it is under observation.
+
+
+### Operation and Mantenaince Center (OMC) 
+
+ - Monitoring and performance supervision. Fault report and alarm handling.
+ - Configuration management.
+ - Stores data for minimum of one year.
+
 
 
