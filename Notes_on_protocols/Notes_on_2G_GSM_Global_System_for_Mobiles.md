@@ -162,8 +162,10 @@ channel, this Slow Associated Control Channel is also released by the base stati
 
 ### GSM Call Flow For Outgoing calls
 
-
-
+references:
+ - https://yatebts.com/documentation/concepts/gsm-functionalities/
+ - https://moniem-tech.com/2023/03/12/what-is-the-roaming-how-it-works-in-2g-network/
+ 
 
 
 
