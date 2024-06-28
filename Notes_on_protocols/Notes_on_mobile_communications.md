@@ -57,18 +57,18 @@ A single subscriber may use multiple services accessible by the mobile service p
 # Notes on 5G
 
 references:
-- https://www.3gpp.org/technologies/5g-system-overview
-- https://5g.systemsapproach.org/index.html
-- https://youtu.be/4NbDhxPw4i4
-- https://www.itu.int/en/mediacentre/backgrounders/Pages/5G-fifth-generation-of-mobile-technologies.aspx
-- https://www.etsi.org/technologies/5G
-- System architecture for the 5G System:  https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144
-- https://www.techtarget.com/searchnetworking/feature/An-overview-of-3GPP-5G-releases-and-what-each-one-means#:~:text=3GPP%20meets%20four%20times%20a,user%20needs%20evolve%20over%20time.
-- https://en.wikipedia.org/wiki/5G
-- https://mobilepacketcore.com/5g-introduction/
-- https://www.sharetechnote.com/html/5G/Handbook_5G_Index.html
-
-- simple 5g architecture video: https://www.youtube.com/watch?v=Q6YxHz_07zk
+ - https://www.3gpp.org/technologies/5g-system-overview
+ - https://5g.systemsapproach.org/index.html
+ - https://yatebts.com/documentation/concepts/5g-core-network/
+ - https://youtu.be/4NbDhxPw4i4
+ - https://www.itu.int/en/mediacentre/backgrounders/Pages/5G-fifth-generation-of-mobile-technologies.aspx
+ - https://www.etsi.org/technologies/5G
+ - System architecture for the 5G System:  https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144
+ - https://www.techtarget.com/searchnetworking/feature/An-overview-of-3GPP-5G-releases-and-what-each-one-means#:~:text=3GPP%20meets%20four%20times%20a,user%20needs%20evolve%20over%20time.
+ - https://en.wikipedia.org/wiki/5G
+ - https://mobilepacketcore.com/5g-introduction/
+ - https://www.sharetechnote.com/html/5G/Handbook_5G_Index.html
+ - simple 5g architecture video: https://www.youtube.com/watch?v=Q6YxHz_07zk
 
 
 5G is the 5th generation of mobile networks. It offers highier data rates, and
