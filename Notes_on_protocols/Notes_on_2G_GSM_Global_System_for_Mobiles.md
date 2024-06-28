@@ -108,4 +108,70 @@ When the MS (mobile station) initiates connection with the BTS/BSC, it is check 
  - Stores data for minimum of one year.
 
 
+### GSM channel types
+
+There are two types of channels:
+ - physical channesl
+ - logical channels (depends upon what type of information)
+
+### GSM Logical channels
+
+- Traffic channels (TCHs)
+   - Used for carry voice or data
+- Control channels
+   - Used for signaling between MS (mobile station) and BTS (Base Transceiver Station)
+      - MS registration
+      - Handover
+      - Call generation
+      - Call maintenance
+    
+ ### Broadcast Control Channels
+
+ When you switch on a mobile station (MS) it captures the most powerful Broadcast Control Channel (BCCH) that it can find. Once it captures that channel, the MS sychronize itself in frequency and time with the Base station. 
+
+ In order to do that the MS captures the frequency correction channel (FCCH) and in this way it synchronizes it frequency with the BS in a correct way. After that it decodes the synchronization channel to synchronize itself with the BS in time, by knowing the frame number of the frame that is currently transmitted. Now the MS has done this, it is able to decode the BCCH, it give the MS the identity of the network and the identity of the BS, and the BS also gets the information required to connect to the newtworkd through this BS. 
+
+
+ ### Common control channels
+
+ Common control channels are used whenever a MS wants to initizate a call with the network, connect with the BS, whenever the network wants to inform a MS of an incomming call. 
+
+ - Paging channel (PCH)
+ - Random access channel (RACH)
+ - Access grant channel (AGCH)
+ - Standalone dedicated control channel (SDCCH)
+
+### Slow associated Control channel 
+
+Now, whenever a mobile station is in call with the base station, it is assigned a TCH channel, this channel is a bidirectional 
+channel that is used to carry data or voice. Now, whenever a TCH channel is assigned to a mobile station in association with this TCH channel.
+A Slow Associated Control Channel (SACCH) is also assigned to this mobile station. And this slow associated control channel is bidirectional channel.
+And we know that the mobile station, when it is in call with the base station, it is measuring the downlink power from its own base station 
+as well as the downlink power from the neighbouring base stations. And it is also measuring the bit error on the TCH channel that has been assigned to this mobile station
+in the downlink direction.
+
+And this measurement report is sent in the uplink on the slow associated control channel and the BTS then sends this measurement report to the BSC.
+And BSC decides, for example, if this mobile station is moving from this base station to this base station, then based upon the measurement 
+reports, the BSC decides that when this mobile station would make hand over to the target base station, and then BSC takes the decision about 
+the hand over, the BSC issues, the hand handover command that is sent to the BTS and the BTS sends that hand over command to the mobile station
+on the slow associated control channel in the downlink direction and the BSC also decides that at what power this mobile station is going to transmit in the uplink,
+so that this mobile station does not cause excessive interference to the mobiles that are in the neighbouring base stations and which are
+using the same frequency channels. So these power control commands are issued by the BSC, which are sent to the BTS and BTS then sends those other
+control commands on the downlink slow associated control channel to the mobile station. And when the call finishes with the release of the TCH 
+channel, this Slow Associated Control Channel is also released by the base station.
+
+### GSM Call Flow For Outgoing calls
+
+
+
+
+
+
+
+
+
+
+
+ 
+
 
