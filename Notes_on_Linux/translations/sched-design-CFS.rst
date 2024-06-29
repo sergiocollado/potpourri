@@ -98,8 +98,9 @@ with a few add-on embellishments like nice levels, multiprocessing and various
 algorithm variants to recognize sleepers.
 
 El resto del diseño de CFS simplemente se escapa de este simple concepto, 
-con unos cuantos añadidos como los niveles "nice", multi-tarea y varias
-variantes del algoritmo para identificar tareas "durmiendo". 
+con unos cuantos añadidos como los niveles "nice" ("nice" significa "amable" 
+en inglés), multi-tarea y varias variantes del algoritmo para identificar 
+tareas "durmiendo". 
 
 
 3.  THE RBTREE
