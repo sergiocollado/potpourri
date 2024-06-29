@@ -262,7 +262,7 @@ CFS implementa tres políticas de gestión de tareas:
     normales harían, por eso permite a las tareas ejecutarse durante
     ventanas de tiempo mayores y hace un uso más efectivo de las
     caches pero al coste de la interactividad. Esto es adecuado
-    para trabajos de procesado.
+    para trabajos de procesado de datos.
 
   - SCHED_IDLE: This is even weaker than nice 19, but its not a true
     idle timer scheduler in order to avoid to get into priority
