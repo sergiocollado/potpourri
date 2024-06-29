@@ -35,7 +35,7 @@ power and which can run each task at precise equal speed, in parallel, each at
 1/nr_running speed.  For example: if there are 2 tasks running, then it runs
 each at 50% physical power --- i.e., actually in parallel.
 
-"una CPU multitarea ideal" es (una inexistente :-)) CPU que tiene un 100% 
+"una CPU multitarea ideal" es una CPU (inexistente :-)) que tiene un 100% 
 de potencia y que puede ejecutar cualquier tarea exactamente a la misma 
 velocidad, en paralelo, y cada una a 1/n velocidad. Por ejemplo, si hay dos
 tareas ejecutándose, entonces cada una usa un 50% de la potencia --- es decir, 
