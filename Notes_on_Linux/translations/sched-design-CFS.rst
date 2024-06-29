@@ -153,7 +153,7 @@ tareas que pueden ser ejecutadas están ordenadas por su valor de
 p->se.vruntime. CFS selecciona la tarea más hacia la izquierda de este
 árbol y la mantiene. Según el sistema continúa, las tareas ejecutadas 
 se ponen en este árbol más y más hacia la derecha --- lentamente pero 
-de forma continuada dando una oportunidad a cara tarea de ser la que 
+de forma continuada dando una oportunidad a cada tarea de ser la que 
 está "la más hacia la izquierda" y por tanto obtener la CPU una cantidad
 determinista de tiempo.
 
