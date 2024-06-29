@@ -10,6 +10,9 @@ Gestor de tareas CFS
 1.  OVERVIEW
 ============
 
+1. VISIÓN GENERAL
+=================
+
 CFS stands for "Completely Fair Scheduler," and is the new "desktop" process
 scheduler implemented by Ingo Molnar and merged in Linux 2.6.23.  It is the
 replacement for the previous vanilla scheduler's SCHED_OTHER interactivity
