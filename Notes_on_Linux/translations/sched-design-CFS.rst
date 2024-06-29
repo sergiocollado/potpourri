@@ -326,6 +326,7 @@ sched_class, la cual tiene llamadas a las funciones que deben de llamarse
 cuando quiera que ocurra un evento interesante.
 
 This is the (partial) list of the hooks:
+
 Esta es la lista parcial de llamadas:
 
  - enqueue_task(...)
