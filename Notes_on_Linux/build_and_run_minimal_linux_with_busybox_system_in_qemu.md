@@ -18,6 +18,11 @@ reference:
  - riscv64: https://github.com/google/syzkaller/blob/master/docs/linux/setup_linux-host_qemu-vm_riscv64-kernel.md
  - a simple workflow to debug the linux kernel: https://marliere.net/posts/1/
 
+### Instruction to install qemu different architectures
+
+ - x86_64: https://github.com/google/syzkaller/blob/master/docs/linux/setup_ubuntu-host_qemu-vm_x86-64-kernel.md
+ - arm64: https://github.com/google/syzkaller/blob/master/docs/linux/setup_linux-host_qemu-vm_arm64-kernel.md
+ - risc64v: https://github.com/google/syzkaller/blob/master/docs/linux/setup_linux-host_qemu-vm_riscv64-kernel.md
 
 
 # Building a minimal linux system with busybox
