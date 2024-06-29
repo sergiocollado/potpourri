@@ -190,7 +190,7 @@ only one central tunable (you have to switch on CONFIG_SCHED_DEBUG):
 
    /sys/kernel/debug/sched/base_slice_ns
 
-CFS usa una granularidad de nanosegundos contando y no depende de ningún
+CFS consando usa una granularidad de nanosegundos y no depende de ningún
 jiffie o detalles como HZ. De este modo el gestor de tareas CFS no tiene
 noción de "ventanas de tiempo" de la forma en que tenía el gestor de
 tareas previas, y tampoco tiene heurísticos. Únicamente hay un parámetro
