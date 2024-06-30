@@ -115,10 +115,11 @@ task execution, and thus has no "array switch" artifacts (by which both the
 previous vanilla scheduler and RSDL/SD are affected).
 
 El diseño de CFS es bastante radical: no utiliza las antiguas estructuras
-de datos para las colas de ejecución, pero usa una estructura de árbol 
-rojo-negro ordenado cronológicamente para construir un linea de ejecución 
-en el futuro, y por eso no tiene ningún artificio de "cambio de tareas" 
-(algo que previamente era usado por el gestor anterior y RSDL/SD).
+de datos para las colas de ejecución (en inglés "runqueues"), pero usa una 
+estructura de árbol rojo-negro (en inglés "rbtree") ordenado cronológicamente
+para construir un linea de ejecución en el futuro, y por eso no tiene ningún
+artificio de "cambio de tareas" (algo que previamente era usado por el gestor
+anterior y RSDL/SD).
 
 CFS also maintains the rq->cfs.min_vruntime value, which is a monotonic
 increasing value tracking the smallest vruntime among all tasks in the
