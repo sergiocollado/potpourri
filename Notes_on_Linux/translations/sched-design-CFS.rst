@@ -117,7 +117,7 @@ previous vanilla scheduler and RSDL/SD are affected).
 El diseño de CFS es bastante radical: no utiliza las antiguas estructuras
 de datos para las colas de ejecución (en inglés "runqueues"), pero usa una 
 estructura de árbol rojo-negro (en inglés "red-black tree") ordenado cronológicamente
-para construir un linea de ejecución en el futuro, y por eso no tiene ningún
+para construir un línea de ejecución en el futuro, y por eso no tiene ningún
 artificio de "cambio de tareas" (algo que previamente era usado por el gestor
 anterior y RSDL/SD).
 
@@ -128,7 +128,7 @@ min_vruntime; that value is used to place newly activated entities on the left
 side of the tree as much as possible.
 
 CFS también mantiene el valor de rq->cfs.min_vruntime, el cual crece 
-monotónicamnte siguiendo el valor más pequeño de vruntime de entre todas
+monotónicamente siguiendo el valor más pequeño de vruntime de entre todas
 las tareas en la cola de ejecución. La cantidad total de trabajo realizado
 por el sistema es monitorizado usado min_vruntime; este valor es usado
 para situar las nuevas tareas en la parte izquierda del árbol tanto 
