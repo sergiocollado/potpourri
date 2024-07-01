@@ -407,7 +407,7 @@ provide fair CPU time to each such task group.  For example, it may be
 desirable to first provide fair CPU time to each user on the system and then to
 each task belonging to a user.
 
-Normalmente, el gestor de tareas opera en tareas individuales e intenta
+Normalmente, el gestor de tareas gestiona tareas individuales e intenta
 proporcionar una cantidad justa de CPU a cada tarea. Algunas veces, puede
 ser deseable agrupar las tareas y proporcionarles una cantidad justa 
 de tiempo de CPU a cada una de las tareas de ese grupo. Por ejemplo, 
