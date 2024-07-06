@@ -5,18 +5,19 @@ use std::fmt::{Debug, Display, Formatter, Result as FmtResult};
 use std::str::from_utf8;
 use std::str::Utf8Error;
 
-pub struct Request {
-    path: &str,
-    query_string: Option<&str>,
+// lifetimes: https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html
+pub struct Request<'buf> {
+    path: &'buf str,
+    query_string: Option<&'buf str>,
     //method: super::method::Method, // in case we don't use "use"
     method: Method,
 }
 
-impl TryFrom<&[u8]> for Request { // 'From' trait that can fail
+impl<'buf> TryFrom<&'buf [u8]> for Request<'buf> { // 'From' trait that can fail
     type Error = ParseError;
 
     // GET /search?name=abc&sort=1 HTTP/1.1\r\n ...HEADERS  <- example of a request
-    fn try_from(buf: &[u8]) -> Result<Self, Self::Error> {
+    fn try_from(buf: &'buf [u8]) -> Result<Request<'buf>, Self::Error> {
 
         // match std::from_utf8(buf) {
         //     Ok(request) => {},
@@ -39,9 +40,9 @@ impl TryFrom<&[u8]> for Request { // 'From' trait that can fail
         }
 
         let (method, request) = get_next_word(request).ok_or(ParseError::InvalidRequest)?; // convert an Option into a Result.
-        // request has be shadowed!
+        // request has been shadowed!
         let (mut path, request) = get_next_word(request).ok_or(ParseError::InvalidRequest)?;
-        // request has be shadowed!
+        // request has been shadowed!
         let (protocol, _) = get_next_word(request).ok_or(ParseError::InvalidRequest)?;
 
         if protocol != "HTTP/1.1" {
@@ -92,6 +93,7 @@ fn get_next_word(request: &str) -> Option<(&str, &str)> {
                 // we know that it is only 1 byte size
         }
     }
+    None
 }
 
 pub enum ParseError {
@@ -119,7 +121,7 @@ impl From<Utf8Error> for ParseError {
 }
 
 impl From<MethodError> for ParseError {
-    fn from(_: Utf8Error) -> Self {
+    fn from(_: MethodError) -> Self {
         Self::InvalidMethod
     }
 }
