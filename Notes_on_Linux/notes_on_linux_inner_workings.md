@@ -3035,3 +3035,6 @@ The release of the Linux 5.10 kernel brings a new feature to protect against spe
 ### more references
   - https://hackmd.io/@0xff07/linux
 
+### Creating a chroot enviroment
+ - https://dev.to/robogeek95/creating-a-chrooted-environment-1gkd
+
