@@ -193,7 +193,7 @@ Esta es la lista parcial de llamadas:
  - yield_task(...)
 
    Esta función es básicamente desencolar, seguido por encolar, a menos que 
-   sysctl compat_yeld esté activado; en ese caso, sitúa la entidad a gestionar 
+   sysctl compat_yield esté activado; en ese caso, sitúa la entidad a gestionar 
    en la parte más hacia la derecha del árbol rojo-negro.
 
  - check_preempt_curr(...)
