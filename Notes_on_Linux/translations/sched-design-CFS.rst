@@ -20,7 +20,7 @@ velocidad, en paralelo, y cada una a 1/n velocidad. Por ejemplo, si hay dos
 tareas ejecutándose, entonces cada una usa un 50% de la potencia --- es decir, 
 como si se ejecutaran en paralelo.
 
-En un hardware real, podemos ejecutar una única tarea a la vez, así que
+En un hardware real, se puede ejecutar una única tarea a la vez, así que
 se ha usado el concepto de "tiempo de ejecución virtual". El tiempo
 de ejecución virtual de una tarea, específica cuando la siguiente porción
 de ejecución podría empezar en la CPU ideal multi-tarea descrita anteriormente.
