@@ -3031,3 +3031,7 @@ The release of the Linux 5.10 kernel brings a new feature to protect against spe
  - https://backreference.org/2010/03/26/tuntap-interface-tutorial/index.html
  - https://john-millikin.com/creating-tun-tap-interfaces-in-linux
 
+
+### more references
+  - https://hackmd.io/@0xff07/linux
+
