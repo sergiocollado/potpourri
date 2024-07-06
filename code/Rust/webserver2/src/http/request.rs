@@ -6,8 +6,8 @@ use std::str::from_utf8;
 use std::str::Utf8Error;
 
 pub struct Request {
-    path: String,
-    query_string: Option<String>,
+    path: &str,
+    query_string: Option<&str>,
     //method: super::method::Method, // in case we don't use "use"
     method: Method,
 }
@@ -70,10 +70,16 @@ impl TryFrom<&[u8]> for Request { // 'From' trait that can fail
         //    path = &path[..i];
         //}
 
-        if let Some(i) = path.find('?') {
-            query_string = Some(&path[i+1..]); // i+1: '?' is just 1 byte
+        if let Some(i) = path.find('?') {   // coding with 'if let'
+            query_string = Some(path[i+1..]); // i+1: '?' is just 1 byte
             path = &path[..i];
         }
+
+        Ok(Self {
+            path: path,
+            query_string,
+            method,
+        })
     }
 }
 

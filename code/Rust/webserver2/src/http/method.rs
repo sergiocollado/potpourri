@@ -18,7 +18,7 @@ impl FromStr for Method {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s {
-            GET.... => Ok(Self::GET ),
+            GET     => Ok(Self::GET ),
             DELETE  => Ok(Self::DELETE),
             POST    => Ok(Self::POST),
             HEAD    => Ok(Self::HEAD),
