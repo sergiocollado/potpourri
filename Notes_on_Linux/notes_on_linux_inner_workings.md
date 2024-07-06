@@ -800,7 +800,22 @@ Now, it is possibble to restart the system. Once the new kernel comes up, compar
  - How are Linux device drivers being tested? : https://marcelosc.gitlab.io/how-is-linux-tested/
  - https://events.linuxfoundation.org/mentorship-session-kernel-validation-with-kselftest/
  - and more...
- - 
+
+### kernel compressed images
+
+Usually the source code of the kernel is at: '/usr/src/'
+
+The kernel images are in the '/boot' directory. This directory tipically will have all the files needed in order to boot the system. The file 'vmlinux' is the actual kernel. Regarding the kernel there are 2 main images that are being use, those are: zImage, and bzImage. both are compressed version of teh linux kernel image. 'zImage' was primarely used in older versions of linux systems, and was design to fit in the limited amount of memory that was available, this 'low-memory' as it was call, was the first 640 kB, so the kernel image was reduced to 512 kB in order to fit, and it was in its compress form, so the kernel was compiled and then compress into zImage. 
+In more modern systems, the 'bzImage' is used, it stands for 'Big zImage', so bzImage, can use high memory, around the 1MB mark. Now we have the bzImage, and then it is moved into the /boot directory, it is going to be rename as 'vzlinuz-<kernel-version>.<architecture>'
+
+ - reference: https://unix.stackexchange.com/questions/197225/is-vmlinuz-and-bzimage-really-the-same
+
+ - **vmlinux**: Plain linux ELF file just the way it was created by the linker, including symbols and everything.
+ - **vmlinuz**: gzipped vmlinux file which got stripped of all its symbols
+ - **zImage**: bootsect.o + setup.o + misc.o + piggy.o (piggy.o contains the piggy-backed vmlinuz). zImage is bootable because it can decompress and run the kernel it contains.
+ - **bzImage**: same as zImage except that it is built slightly differently which enables it to carry bigger kernels.
+
+
 ### Submitting patches
 
 https://www.kernel.org/doc/html/latest/process/submitting-patches.html
