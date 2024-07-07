@@ -703,7 +703,7 @@ hello_world              704  -
 
 # DEBUGING A LINUX KERNEL WITH QEMU AND GDB
 
-- references:
+References:
  - https://javiercarrascocruz.github.io/syzbot
  - https://marliere.net/posts/1/
  - https://github.com/google/syzkaller/blob/master/docs/linux/setup_ubuntu-host_qemu-vm_x86-64-kernel.md#install-qemu
@@ -724,10 +724,6 @@ $ qemu-system-x86_64 \
         -s \               # snapshot, to changing the disk
         -pidfile vm.pid \
 	2>&1 | tee vm.log
-```
-
-```bash
-
 ```
 
 ```bash
