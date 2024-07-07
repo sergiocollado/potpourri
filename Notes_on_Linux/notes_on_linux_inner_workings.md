@@ -632,6 +632,8 @@ Configuration targets:
 
 ```
 
+Note: the tinyoconfig, think is related to: http://www.tinycorelinux.net/
+
 
 Once this step is complete, it is time to compile the kernel. Using the '-j' option helps the compiles go faster. The '-j' option specifies the number of jobs (make commands) to run simultaneously:
 
