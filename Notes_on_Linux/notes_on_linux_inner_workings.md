@@ -826,6 +826,18 @@ references:
 
 For obtaining the bzImage, for the kernel compilation use the command: 'make bzImage', and that image will be placed at 'arch/<your_arch>/boot/' 
 
+### Initramfs - Initial randome access memory file system
+
+'Initramfs' is part of the Linux startup process and occours just before the root file system is mounted. 
+Everytime a new linux image is generated, a new version of initramfs needs to be generated. That is why there are initramfs files in the '/boot' directory.
+
+References:
+ - https://www.linuxfromscratch.org/blfs/view/svn/postlfs/initramfs.html
+ - https://wiki.gentoo.org/wiki/Initramfs/Guide
+ - https://landley.net/writing/rootfs-intro.html
+ - https://www.kernel.org/doc/Documentation/filesystems/ramfs-rootfs-initramfs.txt
+
+
 ### Submitting patches
 
 https://www.kernel.org/doc/html/latest/process/submitting-patches.html
