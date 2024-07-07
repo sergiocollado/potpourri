@@ -824,6 +824,7 @@ references:
  - **zImage**: bootsect.o + setup.o + misc.o + piggy.o (piggy.o contains the piggy-backed vmlinuz). zImage is bootable because it can decompress and run the kernel it contains.
  - **bzImage**: same as zImage except that it is built slightly differently which enables it to carry bigger kernels.
 
+For obtaining the bzImage, for the kernel compilation use the command: 'make bzImage'.
 
 ### Submitting patches
 
