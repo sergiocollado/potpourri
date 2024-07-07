@@ -708,6 +708,7 @@ References:
  - https://marliere.net/posts/1/
  - https://github.com/google/syzkaller/blob/master/docs/linux/setup_ubuntu-host_qemu-vm_x86-64-kernel.md#install-qemu
  - https://github.com/google/syzkaller/blob/master/docs/syzbot_assets.md
+ - https://nickdesaulniers.github.io/blog/2018/10/24/booting-a-custom-linux-kernel-in-qemu-and-debugging-it-with-gdb/
 
 ```bash
 $ qemu-system-x86_64 \
