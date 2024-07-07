@@ -841,6 +841,14 @@ References:
  - https://landley.net/writing/rootfs-intro.html
  - https://www.kernel.org/doc/Documentation/filesystems/ramfs-rootfs-initramfs.txt
 
+### DKMS - Dynamic Kernel Module Support
+
+Dynamic Kernel Module Support (DKMS) is a program/framework that enables generating Linux kernel modules whose sources generally reside outside the kernel source tree. The concept is to have DKMS modules automatically rebuilt when a new kernel is installed.
+
+References: 
+ - https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support
+ - https://linux.die.net/man/8/dkms
+
 
 ### Submitting patches
 
