@@ -831,6 +831,8 @@ For obtaining the bzImage, for the kernel compilation use the command: 'make bzI
 'Initramfs' is part of the Linux startup process and occours just before the root file system is mounted. 
 Everytime a new linux image is generated, a new version of initramfs needs to be generated. That is why there are initramfs files in the '/boot' directory.
 
+To generate an Initramfs, use the command: https://linux.die.net/man/8/mkinitrd
+
 References:
  - https://www.linuxfromscratch.org/blfs/view/svn/postlfs/initramfs.html
  - https://wiki.gentoo.org/wiki/Initramfs/Guide
