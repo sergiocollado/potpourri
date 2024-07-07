@@ -699,3 +699,38 @@ Module                  Size  Used by    Tainted: G
 hello_world              704  -
 / # QEMU: Terminated
 ````
+
+
+# DEBUGING A LINUX KERNEL WITH QEMU AND GDB
+
+- references:
+ - https://javiercarrascocruz.github.io/syzbot
+ - https://marliere.net/posts/1/
+ - https://github.com/google/syzkaller/blob/master/docs/linux/setup_ubuntu-host_qemu-vm_x86-64-kernel.md#install-qemu
+ - https://github.com/google/syzkaller/blob/master/docs/syzbot_assets.md
+
+```bash
+$ qemu-system-x86_64 \
+        -m 2G \
+        -smp 2 \
+        -kernel linux/arch/x86/boot/bzImage \
+	-append "console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0" \
+        -drive file=image/bullseye.img,format=raw \
+        -net user,host=10.0.2.10,hostfwd=tcp::10021-:22 \
+        -net nic,model=e1000 \
+        -enable-kvm \
+        -append nokaslr \  # for not getting errors when accessing memory addresses
+        -nographic \
+        -s \               # snapshot, to changing the disk
+        -pidfile vm.pid \
+	2>&1 | tee vm.log
+```
+
+```bash
+
+```
+
+```bash
+$ gdb -tui -ex "target remote :1234" "$HOME/linux/vmlinux" 
+```
+
