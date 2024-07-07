@@ -849,6 +849,13 @@ References:
  - https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support
  - https://linux.die.net/man/8/dkms
 
+An essential feature of DKMS is that it automatically recompiles all DKMS modules if a new kernel version is installed. This allows drivers and devices outside of the mainline kernel to continue working after a Linux kernel upgrade.
+
+Another benefit of DKMS is that it allows the installation of a new driver on an existing system, running an arbitrary kernel version, without any need for manual compilation or precompiled packages provided by the vendor.
+
+DKMS was written by the Linux Engineering Team at Dell in 2003. It is included in many distributions, such as Ubuntu, Debian, Fedora, SUSE, Mageia and Arch. DKMS is free software released under the terms of the GNU General Public License (GPL) v2 or later.
+
+DKMS supports both the rpm and deb package formats out of the box.
 
 ### Submitting patches
 
