@@ -33,7 +33,7 @@ un periodo. Dentro de cada periodo (microsegundos), un grupo de tareas son
 ejecutadas hasta la cuota de microsegundos de tiempo de CPU. Esa cuota
 asignada, en colas por cada cpu, en hilos de ejecución en el que el cgroup 
 es ejecutable. Una vez toda la cuota ha sido asignada cualquier petición 
-adicional de cuota resultará en esos hilos de ejecución siendo acelerados.
+adicional de cuota resultará en esos hilos de ejecución siendo extrangulado.
 Los hilos de ejecución acelerados, no serán capaces de ejecutase de nuevo 
 hasta el siguiente periodo cuando la cuota sea repuesta.
 
@@ -45,7 +45,7 @@ within each of these updates is tunable and described as the "slice".
 La cuota sin asignar de un grupo es monitorizada globalmente, siendo 
 restablecidas cfs_quota unidades al final de cada periodo. Según los
 hilos de ejecución van consumiedo este ancho de banda, este se 
-transfierea a los "silos" de las cpu-locales en base a la demanda. La
+transfiere a los "silos" de las cpu-locales en base a la demanda. La
 cantidad tranferida en cada una de esas actualizaciones es ajustable y 
 es descrito como un "tramo". 
 
@@ -54,6 +54,7 @@ Burst feature
 
 Funcionalidad de rafaga
 -----------------------
+
 This feature borrows time now against our future underrun, at the cost of
 increased interference against the other system users. All nicely bounded.
 
@@ -89,8 +90,8 @@ la ejecución, cayendo así en un fallo no acotado.
 The burst feature observes that a workload doesn't always executes the full
 quota; this enables one to describe u_i as a statistical distribution.
 
-La funcionalidad de ráfaba vigila que una carga de CPU no se ejecute 
-siempre con su máxima cuota; esto permite que se pueda describirr u_i
+La funcionalidad de ráfaga vigila que una carga de CPU no se ejecute 
+siempre con su máxima cuota; esto permite que se pueda describir u_i
 como una distribución estádistica.
 
 For example, have u_i = {x,e}_i, where x is the p(95) and x+e p(100)
@@ -101,13 +102,14 @@ does maintain stability, since every overrun must be paired with an
 underrun as long as our x is above the average.
 
 Por ejemplo, se tiene u_i = {x,e}_i, donde x es el p(95) y x+e p(100)
-(el tradicional WCET (WCET son las siglas en inglés de "peor tiempo
-de ejecución")). Esto efectivamente permite a u ser más pequeño, 
-aumentando la eficiencia (podemos ejecutar más tareas en el sistema),
-pero al coste de perder el momento límite de ejecución de la tarea, 
-cuando coincidan las peores probabilidades. De todas formas, si 
-se mantiene la estabilidad, ya que cada sobre-ejecución se empareja
-con una infra-ejecución en tanto x esté por encima de la media.
+(el tradicional WCET (WCET:Worst Case Execcution Time: son las siglas
+en inglés para "peor tiempo de ejecución")). Esto efectivamente permite
+a u ser más pequeño, aumentando la eficiencia (podemos ejecutar más 
+tareas en el sistema), pero al coste de perder el momento límite de 
+ejecución de la tarea, cuando coincidan las peores probabilidades. 
+De todas formas, si se mantiene la estabilidad, ya que cada 
+sobre-ejecución se empareja con una infra-ejecución en tanto x esté 
+por encima de la media.
 
 That is, suppose we have 2 tasks, both specify a p(95) value, then we
 have a p(95)*p(95) = 90.25% chance both tasks are within their quota and
@@ -141,9 +143,22 @@ there many cgroups or CPU is under utilized, the interference is
 limited. More details are shown in:
 https://lore.kernel.org/lkml/5371BD36-55AE-4F71-B9D7-B86DC32E3D2B@linux.alibaba.com/
 
+La interferencia cuando se usa una ráfaga se evalua por la posibilidades
+de fallar en el cumplimiento del tiempo límite y el promedio de WCET.
+Los resultados the tests han mostrado que cuando hay muchos cgroups o 
+uan CPU esta infra-utilizada, la interferencia es más limitada. Más detalles
+se aportan en: https://lore.kernel.org/lkml/5371BD36-55AE-4F71-B9D7-B86DC32E3D2B@linux.alibaba.com/
+
 Management
 ----------
+
+Gestión:
+--------
+
 Quota, period and burst are managed within the cpu subsystem via cgroupfs.
+
+Cuota, periodo y ráfaga se se gestionan dentro del subsitema de cpu por medio 
+de cgroupfs.
 
 .. note::
    The cgroupfs files described in this section are only applicable
@@ -155,7 +170,13 @@ Quota, period and burst are managed within the cpu subsystem via cgroupfs.
 - cpu.stat: exports throttling statistics [explained further below]
 - cpu.cfs_burst_us: the maximum accumulated run-time (in microseconds)
 
+.. note::
+   Los archivos cgroupfs descritos en esta seccion solo se aplican a el
+   cgroup v1. Para cgroup v2, referirse a :ref:`Documentation/admin-guide/cgroup-v2.rst <cgroup-v2-cpu>`.
+
 The default values are::
+
+Los valores por defecto son::
 
 	cpu.cfs_period_us=100ms
 	cpu.cfs_quota_us=-1
@@ -166,14 +187,29 @@ bandwidth restriction in place, such a group is described as an unconstrained
 bandwidth group. This represents the traditional work-conserving behavior for
 CFS.
 
+Un valor de -1 para cpu.cfs_quota_us indica que el grupo no tiene ninguna
+restricción de ancho de banda aplicado, ese grupo se describe como un grupo
+con ancho de banda sin restringir. Esto representa el comportamiento
+tradicional para CFS.
+
 Writing any (valid) positive value(s) no smaller than cpu.cfs_burst_us will
 enact the specified bandwidth limit. The minimum quota allowed for the quota or
 period is 1ms. There is also an upper bound on the period length of 1s.
 Additional restrictions exist when bandwidth limits are used in a hierarchical
 fashion, these are explained in more detail below.
 
+Asignar cualquier valor (válido) y positivo no menor que cpu.cfs_burst_us 
+definirá el límite del ancho de banda. La cuota mínima permitida para para 
+la cuota o periodo es 1ms. Hay también un límite superior en la duración del
+periodo de 1s. Existen restricciones adicionales cuando los límites de 
+ancho de banda se usan de manera jerárquica, estós se explican en mayor 
+detalle más adelante. 
+
 Writing any negative value to cpu.cfs_quota_us will remove the bandwidth limit
 and return the group to an unconstrained state once more.
+
+Asignar cualquier valor negatiov a cpu.cfs_quota_us elimiará el límite de
+ancho de banda y devolverá de nuevo al grupo a un estádo sin restricciones.
 
 A value of 0 for cpu.cfs_burst_us indicates that the group can not accumulate
 any unused bandwidth. It makes the traditional bandwidth control behavior for
@@ -181,8 +217,18 @@ CFS unchanged. Writing any (valid) positive value(s) no larger than
 cpu.cfs_quota_us into cpu.cfs_burst_us will enact the cap on unused bandwidth
 accumulation.
 
+Un valor de 0 para cpu.cfs_burst_us indica que el grupo no puede acumular
+ningún ancho de banda sin usar. Esto hace que el control del comportamiento
+tradicional del ancho de banda para CFS no cambie. Definir cualquier valor
+(valido) positivo no mayor que cpu.cfs_quota_us en cpu.cgs_burst_us definirá
+el limite on el ancho de banda acumulado no usado. 
+
 Any updates to a group's bandwidth specification will result in it becoming
 unthrottled if it is in a constrained state.
+
+Cualquier actualizacion a las especificaciones del ancho de banda usado
+por un grupo resultará en que se deje de limitar si está en un estado 
+restringido. 
 
 System wide settings
 --------------------
