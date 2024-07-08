@@ -34,7 +34,7 @@ ejecutadas hasta la cuota de microsegundos de tiempo de CPU. Esa cuota
 asignada, en colas por cada cpu, en hilos de ejecución en el que el cgroup 
 es ejecutable. Una vez toda la cuota ha sido asignada cualquier petición 
 adicional de cuota resultará en esos hilos de ejecución siendo acelerados.
-Los hilos de ejecuión acelerados, no serán capaces de ejecutase de nuevo 
+Los hilos de ejecución acelerados, no serán capaces de ejecutase de nuevo 
 hasta el siguiente periodo cuando la cuota sea repuesta.
 
 A group's unassigned quota is globally tracked, being refreshed back to
