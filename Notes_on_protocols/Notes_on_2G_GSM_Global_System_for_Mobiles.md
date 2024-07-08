@@ -167,7 +167,54 @@ references:
  - https://moniem-tech.com/2023/03/12/what-is-the-roaming-how-it-works-in-2g-network/
  
 
+1. MS (Mobile Station) sends dialed number to BSS
+2. BS sends the dialed number to MSC.
+3. MSC checks with the VLR if MS is allowed to make the call
+      - has credit and is a legit mobile user).
+      - checks with EIR if it is blacklisted.
+5. MSC allocates resources if it can make the call.
+6. MSC routs the call into GMSC
+7. the GSMC routes the call to the fixed telephoney netowork (PSTN)
+8. When the call is answered, the flows goes back.
 
+
+
+### GSM Identifier IMEI: International Mobile Equipment Identity
+
+ - Reference: https://en.wikipedia.org/wiki/International_Mobile_Equipment_Identity
+
+ - Is the identifier of the Mobile Station
+ - Purpouse of the IMEI is to prevent the theft of mobile stations
+ - IMEI is checed in the EIC
+ - Burned into the Mobile phone.
+
+### GSM identifiers: IMSI, TMSI, MSISDN
+
+#### International mobile subscriber identiy (IMSI)
+
+ Is the identity of a user, that has bought a SIM and is a subscriber. IMSI is stored in a SIM card. IMSI is unique in all countries. Roaming is only possible because of IMSI. 
+
+ IMSI = MCC + MNC + MSIN (mobile subscriber identification number)
+
+ MSIN is given by the mobile operator that sold the SIM.
+
+####  Temporary Mobile Subscriber Identity (TMSI)
+
+To make hacking of IMSI difficult, IMSI used only as an identifier when the TMSI is not available, e.g, for initial system connection.
+
+- The VLR is responsible for the current location of subscriber and assigns a TMSI.
+- Local significance in the area handled by the VLR
+- TMSI changes on call basis
+- MS stores the TMSI in the SIM card & VLR but not in the HLR.
+- TMSI can be assigned in an Operator specific way.
+
+- Reference: https://en.wikipedia.org/wiki/International_mobile_subscriber_identity
+  
+#### Mobile Subscriber ISDN (MSISDN)
+
+ - Reference: https://en.wikipedia.org/wiki/MSISDN
+
+MSISDN a number uniquely identifying a subscription in a Global System for Mobile communications or a Universal Mobile Telecommunications System mobile network. It is the mapping of the telephone number to the subscriber identity module in a mobile or cellular phone
 
 
 
