@@ -10,7 +10,6 @@ This 2G is a digital system, this means that the voice is digitalized and encryp
 
 ![GSM architecture](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/Gsm_network_architecture.png)
 
-![voice calls in GSM](https://raw.githubusercontent.com/sergiocollado/potpourri/master/Notes_on_protocols/Images_mobile_communication/Voice_GSM.webp)
 
  - reference: https://yatebts.com/documentation/concepts/gsm-functionalities/
 
@@ -165,7 +164,8 @@ channel, this Slow Associated Control Channel is also released by the base stati
 references:
  - https://yatebts.com/documentation/concepts/gsm-functionalities/
  - https://moniem-tech.com/2023/03/12/what-is-the-roaming-how-it-works-in-2g-network/
- 
+
+ ![voice calls in GSM](https://raw.githubusercontent.com/sergiocollado/potpourri/master/Notes_on_protocols/Images_mobile_communication/Voice_GSM.webp)
 
 1. MS (Mobile Station) sends dialed number to BSS
 2. BS sends the dialed number to MSC.
