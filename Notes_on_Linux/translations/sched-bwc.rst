@@ -47,7 +47,7 @@ restablecidas cfs_quota unidades al final de cada periodo. Según los
 hilos de ejecución van consumiedo este ancho de banda, este se 
 transfiere a los "silos" de las cpu-locales en base a la demanda. La
 cantidad tranferida en cada una de esas actualizaciones es ajustable y 
-es descrito como un "tramo". 
+es descrito como un "slice". 
 
 Burst feature
 -------------
@@ -174,7 +174,6 @@ de cgroupfs.
 - cpu.stat: exports throttling statistics [explained further below]
 - cpu.cfs_burst_us: the maximum accumulated run-time (in microseconds)
 
-
 The default values are::
 
 Los valores por defecto son::
@@ -233,17 +232,31 @@ restringido.
 
 System wide settings
 --------------------
+
+Ajustes globales del sistema
+----------------------------
+
 For efficiency run-time is transferred between the global pool and CPU local
 "silos" in a batch fashion. This greatly reduces global accounting pressure
 on large systems. The amount transferred each time such an update is required
 is described as the "slice".
 
+Por eficiencia el tiempo de ejecución es tranferido desde una reserva global 
+y el "silo" de una CPU local en lotes. Esto reduce en gran medida la presión 
+por la contabilidad en grandes sistemas. La cantidad transferida cada vez
+que se requiere una actualización se describe como "slice".
+
 This is tunable via procfs::
+
+Esto es ajustable via procfs::
 
 	/proc/sys/kernel/sched_cfs_bandwidth_slice_us (default=5ms)
 
 Larger slice values will reduce transfer overheads, while smaller values allow
 for more fine-grained consumption.
+
+Valores de "slice" más grandes reducirán el costo de transferencia, mientras
+que valores más pequeños permitirán un control más fino del consumo. 
 
 Statistics
 ----------
