@@ -165,14 +165,15 @@ de cgroupfs.
    to cgroup v1. For cgroup v2, see
    :ref:`Documentation/admin-guide/cgroup-v2.rst <cgroup-v2-cpu>`.
 
+.. note::
+   Los archivos cgroupfs descritos en esta seccion solo se aplican a el
+   cgroup v1. Para cgroup v2, referirse a :ref:`Documentation/admin-guide/cgroup-v2.rst <cgroup-v2-cpu>`.
+
 - cpu.cfs_quota_us: run-time replenished within a period (in microseconds)
 - cpu.cfs_period_us: the length of a period (in microseconds)
 - cpu.stat: exports throttling statistics [explained further below]
 - cpu.cfs_burst_us: the maximum accumulated run-time (in microseconds)
 
-.. note::
-   Los archivos cgroupfs descritos en esta seccion solo se aplican a el
-   cgroup v1. Para cgroup v2, referirse a :ref:`Documentation/admin-guide/cgroup-v2.rst <cgroup-v2-cpu>`.
 
 The default values are::
 
