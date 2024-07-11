@@ -260,7 +260,13 @@ que valores más pequeños permitirán un control más fino del consumo.
 
 Statistics
 ----------
+
+Estadísticas
+------------
+
 A group's bandwidth statistics are exported via 5 fields in cpu.stat.
+
+Las estadisticas del ancho de banda de un grupo se exponen en 5 campos en cpu.stat.
 
 cpu.stat:
 
@@ -272,18 +278,45 @@ cpu.stat:
 - burst_time: Cumulative wall-time (in nanoseconds) that any CPUs has used
   above quota in respective periods.
 
+- nr_periods: Número de intervalos aplicados que han pasado. 
+- nr_throttled: Número de veces que el grupo ha sido restringido/limitado.
+- throttled_time: La duración de tiempo total (en nanosegundos) en las
+  que las entidades del grupo han sido limitadas.
+- nr_bursts: Número de periodos en que ha currido una ráfaga.
+- burst_time: Tiempo acumulado (en nanosegundos) en la que una CPU ha
+  usado más de su cuota en los respectivos periodos. 
+
+
 This interface is read-only.
+
+Este interface es de solo lectura.
 
 Hierarchical considerations
 ---------------------------
+
+Consideraciones jerárquicas
+---------------------------
+
 The interface enforces that an individual entity's bandwidth is always
 attainable, that is: max(c_i) <= C. However, over-subscription in the
 aggregate case is explicitly allowed to enable work-conserving semantics
 within a hierarchy:
 
+
+El interface refuerza que el ancho de banda de una entidad individual
+sea siempre conseguible, esto es: max(c_i) <= C. De todas maneras, 
+la sobre-subscripción en el caso agregado está explicitamente permitida
+para permitir semanticas de conservación de trabajo dentro de una
+jerarquia.
+
+
   e.g. \Sum (c_i) may exceed C
 
+  e.g. \Sum (c_i) puede superar C
+
 [ Where C is the parent's bandwidth, and c_i its children ]
+
+[ Donde C es el ancho de banda de el padre, y c_i es el hijo ]
 
 
 There are two ways in which a group may become throttled:
@@ -291,8 +324,18 @@ There are two ways in which a group may become throttled:
 	a. it fully consumes its own quota within a period
 	b. a parent's quota is fully consumed within its period
 
+Hay dos formas en las que un grupo puede ser limitado:
+
+        a. este consume totalmete su propia cuota en un periodo.
+        b. la quota de padre es consumida totalmente en su periodo.
+
 In case b) above, even though the child may have runtime remaining it will not
 be allowed to until the parent's runtime is refreshed.
+
+En el caso b) anterior, incluso si el hijo puediera tener tiempo de 
+ejecución restatne, este no le será permitido hasta que el tiempo de 
+ejecución del padre sea actualizado. 
+
 
 CFS Bandwidth Quota Caveats
 ---------------------------
