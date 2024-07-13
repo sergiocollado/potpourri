@@ -13,7 +13,6 @@ pub enum Method {
     PATCH,
 }
 
-
 impl FromStr for Method {
     type Err = MethodError;
 
