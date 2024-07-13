@@ -4,11 +4,12 @@ use std::error::Error;
 use std::fmt::{Debug, Display, Formatter, Result as FmtResult};
 use std::str::from_utf8;
 use std::str::Utf8Error;
+use super::{QueryString}; 
 
 // lifetimes: https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html
 pub struct Request<'buf> {
     path: &'buf str,
-    query_string: Option<&'buf str>,
+    query_string: Option<QueryString<'buf>,
     //method: super::method::Method, // in case we don't use "use"
     method: Method,
 }
@@ -72,7 +73,7 @@ impl<'buf> TryFrom<&'buf [u8]> for Request<'buf> { // 'From' trait that can fail
         //}
 
         if let Some(i) = path.find('?') {   // coding with 'if let'
-            query_string = Some(path[i+1..]); // i+1: '?' is just 1 byte
+            query_string = Some(QueryString::from(&path[i+1..])); // i+1: '?' is just 1 byte
             path = &path[..i];
         }
 
