@@ -7,6 +7,7 @@ use std::str::Utf8Error;
 use super::{QueryString}; 
 
 // lifetimes: https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html
+#[derive(Debug)]
 pub struct Request<'buf> {
     path: &'buf str,
     query_string: Option<QueryString<'buf>,

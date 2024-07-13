@@ -43,8 +43,7 @@ impl Server {
                         Ok(_) => match Request::try_from(&buffer[..]) {
                             Ok(request) => {
                                 println!(
-                                    "Received a request: {}",
-                                    String::from_utf8_lossy(&buffer)
+                                    dbg!(request);
                                 );
                             }
                             Err(e) => {
