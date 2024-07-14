@@ -49,6 +49,8 @@ transfiere a los "silos" de las cpu-locales en base a la demanda. La
 cantidad tranferida en cada una de esas actualizaciones es ajustable y 
 es descrito como un "slice". 
 
+// TODO: traducir "silos" como "reservas"??
+
 Burst feature
 -------------
 
