@@ -248,6 +248,9 @@ y el "silo" de una CPU local en lotes. Esto reduce en gran medida la presión
 por la contabilidad en grandes sistemas. La cantidad transferida cada vez
 que se requiere una actualización se describe como "slice".
 
+// TODO Por eficiencia el tiempo de ejecución es tranferido desde una reserva global 
+a la reserva local de una CPU en lotes. ???
+
 This is tunable via procfs::
 
 Esto es ajustable via procfs::
