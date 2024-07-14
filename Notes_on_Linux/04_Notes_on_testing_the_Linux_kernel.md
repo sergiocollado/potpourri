@@ -376,4 +376,12 @@ References:
 - bug hunting: https://docs.kernel.org/admin-guide/bug-hunting.html
 - https://javiercarrascocruz.github.io/syzbot
 
-  
+## Smatch
+
+- https://javiercarrascocruz.github.io/smatch
+- https://www.kernel.org/doc/Documentation/dev-tools/testing-overview.rst
+- https://mudongliang.github.io/2022/03/16/run-smatch-over-mainline-kernel.html
+- https://events.linuxfoundation.org/wp-content/uploads/2022/10/Dan-Carpenter-Smatch-Mentorship-Series-Presentation-Template.pdf
+- https://www.youtube.com/watch?v=zZGvKcPYhe0
+
+
