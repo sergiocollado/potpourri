@@ -3102,6 +3102,7 @@ The release of the Linux 5.10 kernel brings a new feature to protect against spe
  - https://lwn.net/Articles/810414/
  - https://developers.redhat.com/articles/2023/04/12/why-you-should-use-iouring-network-io
  - https://unixism.net/loti/
+ - https://blog.cloudflare.com/missing-manuals-io_uring-worker-pool/
  - https://github.com/espoal/awesome-iouring
  - https://youtu.be/-5T4Cjw46ys
  - https://github.com/axboe/liburing
