@@ -2,9 +2,9 @@
 CFS Bandwidth Control
 =====================
 
-=============================
-CFS Control de ancho de banda
-=============================
+=================================
+CFS con control de ancho de banda
+=================================
 
 .. note::
    This document only discusses CPU bandwidth control for SCHED_NORMAL.
