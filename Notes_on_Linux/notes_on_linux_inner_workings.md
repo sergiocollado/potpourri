@@ -3105,6 +3105,7 @@ The release of the Linux 5.10 kernel brings a new feature to protect against spe
  - https://blog.cloudflare.com/missing-manuals-io_uring-worker-pool/
  - https://github.com/espoal/awesome-iouring
  - https://youtu.be/-5T4Cjw46ys
+ - https://youtu.be/AaaH6skUEI8
  - https://github.com/axboe/liburing
  - https://kernel.dk/io_uring.pdf
  - https://elixir.bootlin.com/linux/v6.10-rc7/source/include/linux/io_uring_types.h#L594
