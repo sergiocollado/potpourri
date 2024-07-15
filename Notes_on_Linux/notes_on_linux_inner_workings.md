@@ -3096,7 +3096,7 @@ The release of the Linux 5.10 kernel brings a new feature to protect against spe
 ### Creating a chroot enviroment
  - https://dev.to/robogeek95/creating-a-chrooted-environment-1gkd
 
-### lib io_uring
+### io_uring
 
  - https://lwn.net/Articles/776703/
  - https://lwn.net/Articles/810414/
