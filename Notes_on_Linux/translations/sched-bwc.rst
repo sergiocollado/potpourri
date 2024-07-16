@@ -80,7 +80,7 @@ we'd have to run more than a second of program time, and obviously miss
 our deadline, but the next deadline will be further out still, there is
 never time to catch up, unbounded fail.
 
-Esto garantiza dos cosa: que cada tiempo límite de ejecución es cumplido
+Esto garantiza dos cosas: que cada tiempo límite de ejecución es cumplido
 y que el sistema es estable. De todas formas, si U fuese > 1, entonces
 por cada segundo de tiempo de reloj de una tarea, tendríamos que 
 ejecutar más de un segundo de tiempo de programa, y obviamente no 
