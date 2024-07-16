@@ -57,10 +57,15 @@ Burst feature
 Funcionalidad de rafaga
 -----------------------
 
+TODO:??? - Característica de sobreuso
+
+Característica de ráfaga
+--------------------------
+
 This feature borrows time now against our future underrun, at the cost of
 increased interference against the other system users. All nicely bounded.
 
-Esta funcionalidad coge prestado tiempo ahora, que en un futuro tendrá que
+Esta característica coge prestado tiempo ahora, que en un futuro tendrá que
 devolver, con el coste de una mayor interferecia hacia los otros usuarios
 del sistema. Todo acotado perfectamente. 
 
@@ -83,16 +88,16 @@ never time to catch up, unbounded fail.
 Esto garantiza dos cosas: que cada tiempo límite de ejecución es cumplido
 y que el sistema es estable. De todas formas, si U fuese > 1, entonces
 por cada segundo de tiempo de reloj de una tarea, tendríamos que 
-ejecutar más de un segundo de tiempo de programa, y obviamente no 
-cumpliriamos con el tiempo límite de ejecucion de la tarea, pero en 
-el siguiente periodo de ejecución el tiempo límite de la tareá 
-estaría todavia más lejos, y nunca se tendría tiempo de alcanzar 
+ejecutar más de un segundo de tiempo de ejecución de programa, y 
+obviamente no cumpliriamos con el tiempo límite de ejecucion de la 
+tarea, pero en el siguiente periodo de ejecución el tiempo límite de
+la tarea estaría todavia más lejos, y nunca se tendría tiempo de alcanzar 
 la ejecución, cayendo así en un fallo no acotado. 
 
 The burst feature observes that a workload doesn't always executes the full
 quota; this enables one to describe u_i as a statistical distribution.
 
-La funcionalidad de ráfaga vigila que una carga de CPU no se ejecute 
+La característica de ráfaga vigila que una carga de CPU no se ejecute 
 siempre con su máxima cuota; esto permite que se pueda describir u_i
 como una distribución estádistica.
 
@@ -128,8 +133,8 @@ salga bien. Al mismo tiempo se tiene que p(5)*p(5) = 0.25% de
 probabilidad que ambas tareas excedan su cuota de ejecución (fallo
 garantizado de su tiempo final de ejecucion). En algún punto por 
 en medio, hay un umbral donde una tarea excede su tiempo límite de
-ejecución y la otra no, de forma que se compensan; esto depende en 
-los específicos de CDFs.
+ejecución y la otra no, de forma que se compensan; esto depende de la
+función de probabilidad acumulada específica de la tarea.
 
 At the same time, we can say that the worst case deadline miss, will be
 \Sum e_i; that is, there is a bounded tardiness (under the assumption
@@ -148,7 +153,7 @@ https://lore.kernel.org/lkml/5371BD36-55AE-4F71-B9D7-B86DC32E3D2B@linux.alibaba.
 La interferencia cuando se usa una ráfaga se evalua por la posibilidades
 de fallar en el cumplimiento del tiempo límite y el promedio de WCET.
 Los resultados the tests han mostrado que cuando hay muchos cgroups o 
-uan CPU esta infra-utilizada, la interferencia es más limitada. Más detalles
+una CPU esta infra-utilizada, la interferencia es más limitada. Más detalles
 se aportan en: https://lore.kernel.org/lkml/5371BD36-55AE-4F71-B9D7-B86DC32E3D2B@linux.alibaba.com/
 
 Management
@@ -159,7 +164,7 @@ Gestión:
 
 Quota, period and burst are managed within the cpu subsystem via cgroupfs.
 
-Cuota, periodo y ráfaga se se gestionan dentro del subsitema de cpu por medio 
+Cuota, periodo y ráfaga se se gestionan dentro del subsistema de cpu por medio 
 de cgroupfs.
 
 .. note::
@@ -243,8 +248,8 @@ For efficiency run-time is transferred between the global pool and CPU local
 on large systems. The amount transferred each time such an update is required
 is described as the "slice".
 
-Por eficiencia el tiempo de ejecución es tranferido desde una reserva global 
-y el "silo" de una CPU local en lotes. Esto reduce en gran medida la presión 
+Por eficiencia el tiempo de ejecución es tranferido en lotes desde una reserva global 
+y el "silo" de una CPU local. Esto reduce en gran medida la presión 
 por la contabilidad en grandes sistemas. La cantidad transferida cada vez
 que se requiere una actualización se describe como "slice".
 
