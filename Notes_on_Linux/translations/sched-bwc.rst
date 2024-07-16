@@ -344,20 +344,40 @@ ejecución del padre sea actualizado.
 
 CFS Bandwidth Quota Caveats
 ---------------------------
+
+Advertencias sobre el CFS con control de cuota de ancho de banda
+----------------------------------------------------------------
+
 Once a slice is assigned to a cpu it does not expire.  However all but 1ms of
 the slice may be returned to the global pool if all threads on that cpu become
 unrunnable. This is configured at compile time by the min_cfs_rq_runtime
 variable. This is a performance tweak that helps prevent added contention on
 the global lock.
 
+Una vez una "slice" se asigna a una cpu esta no expira. A pear de eso todas
+excepto las "slices" excepto las de 1ms puede ser devueltas a la reserva global
+si todos los hilos en esa cpu pasan a ser no ejecutables. Esto se configura
+en el tiempo de compilacion por la variable min_cfs_rq_runtime. Esto es un
+ajuste en la eficacia que ayuda a prevenir añadir bloqueos en el candado global.
+
 The fact that cpu-local slices do not expire results in some interesting corner
 cases that should be understood.
+
+El hecho de que las "slices" de una cpu local no expiren tiene como resultado
+algunos casos extremos que debieran ser comprendidos.
 
 For cgroup cpu constrained applications that are cpu limited this is a
 relatively moot point because they will naturally consume the entirety of their
 quota as well as the entirety of each cpu-local slice in each period. As a
 result it is expected that nr_periods roughly equal nr_throttled, and that
 cpuacct.usage will increase roughly equal to cfs_quota_us in each period.
+
+Para una aplicación que es un cgroup y que está limitada en su uso de cpu
+es un punto discutible ya que de forma natural consumirá toda su parte
+de cuota asi como también la totalidad de su cuota en cpu locales en cada
+periodo. Como resultado se espera que nr_periods sea aproximádamente igual
+a nr_throttled, y que cpuacct.usage se incremente aproximádamente igual
+a cfs_quota_us en cada periodo. 
 
 For highly-threaded, non-cpu bound applications this non-expiration nuance
 allows applications to briefly burst past their quota limits by the amount of
@@ -375,6 +395,28 @@ quota amounts of cpu. Another way to say this, is that by allowing the unused
 portion of a slice to remain valid across periods we have decreased the
 possibility of wastefully expiring quota on cpu-local silos that don't need a
 full slice's amount of cpu time.
+
+Para aplicaciones que tienen un gran número de hilos de ejecución y que no 
+estan ligados a una cpu, este matiz de la no-expiración permite que las
+aplicaciones brevemente sobrepasen su cuota límite en la cantidad que 
+no ha sido usada en cada cpu en la que el grupo de tareas se está ejecutando
+(tipicamante como mucho 1ms por cada cpu o lo que se ha definido como
+min_cfs_rq_runtime). Este pequeño sobreuso únicamente tiene lugar si 
+la cuota que ha ido asignada a una cpu y no ha sido completamente usada
+o devuelt in periodos anterioures. Esta cantidad de sobreuso no será 
+transferida entre nucleos. Como resultado, este mecanismo todavía cumplira
+estrictamente los límites de la tarea de grupo en el promedio del uso, 
+epro sobre una ventana de tiempo mayor que un único periodo. Esto 
+también limita la abilidad de un sobre uso a no más de 1ms por cada cpu.
+ESto provee de una experiencia de uso más predecible para aplicaciones 
+con muchos hiilos y con límites ue cuota pequeños en máquinas con muchos 
+núcleos. Esto también elimina la propensión a limitar estas
+estas aplicaciones mientras que simultaneamente usan menores cuotas
+de uso por cpu. Otra fomra de decir esto es que permitiendo que
+la parte no usada de una "slice" permanezca valida entre periodos
+disminuye la posiblididad de malgastare cuota que va a expirar en 
+las reservas de la cpu locales que no necesitan una "slice" completa
+de tiempo de ejecución de cpu. 
 
 The interaction between cpu-bound and non-cpu-bound-interactive applications
 should also be considered, especially when single core usage hits 100%. If you
