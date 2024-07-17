@@ -408,16 +408,16 @@ no ha sido usada en cada cpu en la que el grupo de tareas se está ejecutando
 (tipicamante como mucho 1ms por cada cpu o lo que se ha definido como
 min_cfs_rq_runtime). Este pequeño sobreuso únicamente tiene lugar si 
 la cuota que ha ido asignada a una cpu y no ha sido completamente usada
-o devuelt in periodos anterioures. Esta cantidad de sobreuso no será 
-transferida entre nucleos. Como resultado, este mecanismo todavía cumplira
+o devuelta en periodos anteriores. Esta cantidad de sobreuso no será 
+transferida entre núcleos. Como resultado, este mecanismo todavía cumplira
 estrictamente los límites de la tarea de grupo en el promedio del uso, 
 epro sobre una ventana de tiempo mayor que un único periodo. Esto 
-también limita la abilidad de un sobre uso a no más de 1ms por cada cpu.
+también limita la habilidad de un sobreuso a no más de 1ms por cada cpu.
 ESto provee de una experiencia de uso más predecible para aplicaciones 
-con muchos hiilos y con límites ue cuota pequeños en máquinas con muchos 
+con muchos hilos y con límites de cuota pequeños en máquinas con muchos 
 núcleos. Esto también elimina la propensión a limitar estas
 estas aplicaciones mientras que simultaneamente usan menores cuotas
-de uso por cpu. Otra fomra de decir esto es que permitiendo que
+de uso por cpu. Otra forma de decir esto es que permitiendo que
 la parte no usada de una "slice" permanezca valida entre periodos
 disminuye la posiblididad de malgastare cuota que va a expirar en 
 las reservas de la cpu locales que no necesitan una "slice" completa
@@ -436,15 +436,15 @@ periods when the interactive application idles.
 
 La interacción entre las aplicaciones ligadas a una cpu y las que no están
 ligadas a ninguna cpu ha de ser también considerada, especialmente cuando
-un único nucleo tiene un uso del 100%. Si se da a cada una de esas
-applicaciones la midad de la capacidad de una núcleco-cpu y ambas 
+un único núcleo tiene un uso del 100%. Si se da a cada una de esas
+applicaciones la mitad de la capacidad de una núcleco-cpu y ambas 
 están gestionadas en la misma CPU es teorícamente posible que la aplicación
 no ligada a ninguna CPU use su 1ms adicional de cuota en algunos periódos,
 y por tatnot evite que la aplicación ligada a una CPU pueda usar su 
-cuota completa por esa misma cantidad. En esos caso el algortmo CFS (vea
+cuota completa por esa misma cantidad. En esos caso el algoritmo CFS (vea
 sched-design-CFS.rst) el que decida que aplicación es la elegida para
 ejecutarse, ya que ambas serán candidatas a ser ejecutadas y tienen 
-cuota restante. Esta discrepancia en el teimpo de ejecución se compensará
+cuota restante. Esta discrepancia en el tiempo de ejecución se compensará
 en los periodos siguientes cuando la aplicación interactiva esté
 inactiva. 
 
