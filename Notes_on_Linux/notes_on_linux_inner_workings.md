@@ -3111,4 +3111,6 @@ The release of the Linux 5.10 kernel brings a new feature to protect against spe
  - https://elixir.bootlin.com/linux/v6.10-rc7/source/include/linux/io_uring_types.h#L594
  - https://www.scylladb.com/2020/05/05/how-io_uring-and-ebpf-will-revolutionize-programming-in-linux/
 
-   
+### RTLA
+
+https://bristot.me/linux-scheduling-latency-debug-and-analysis/
