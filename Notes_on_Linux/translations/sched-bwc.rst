@@ -402,7 +402,7 @@ possibility of wastefully expiring quota on cpu-local silos that don't need a
 full slice's amount of cpu time.
 
 Para aplicaciones que tienen un gran número de hilos de ejecución y que no 
-estan ligados a una cpu, este matiz de la no-expiración permite que las
+estan ligadas a una cpu, este matiz de la no-expiración permite que las
 aplicaciones brevemente sobrepasen su cuota límite en la cantidad que 
 no ha sido usada en cada cpu en la que el grupo de tareas se está ejecutando
 (tipicamante como mucho 1ms por cada cpu o lo que se ha definido como
