@@ -1720,13 +1720,16 @@ Use:  `$grep module_name /lib/modules/$(uname -r)/modules.builtin`
   
 help `man 5 modules`
   
-  In the system there is a file `etc/modules` which contains the names of the kernel modules that are to be loaded at boot time, one per line. Arguments can be given in the same line as the module name. Lines beginning with a '#' are ignored. 
+  In the system there is a file `etc/modules-load.d` which contains the names of the kernel modules that are to be loaded at boot time, one per line. Arguments can be given in the same line as the module name. Lines beginning with a '#' are ignored. You have to create a `.conf` file. 
 
  So create a symbolic link: 
   
 ```
 sudo ln -s /<path_to_module>/<custom_module>.ko /lib/modules/`uname -r`/kernel/drivers/misc 
 ```
+ - reference: https://manpages.ubuntu.com/manpages/focal/en/man8/systemd-modules-load.service.8.html
+
+This part doesn't tell the system to add options to the module(s). and is actually rarely needed. To define custom module options, there is `/etc/modprobe.d/` (and other system-reserved places).
   
 ### Blacklisting kernel modules
   
