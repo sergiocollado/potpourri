@@ -446,7 +446,7 @@ sched-design-CFS.rst) el que decida que aplicación es la elegida para
 ejecutarse, ya que ambas serán candidatas a ser ejecutadas y tienen 
 cuota restante. Esta discrepancia en el tiempo de ejecución se compensará
 en los periodos siguientes cuando la aplicación interactiva esté
-inactiva. 
+inactiva. TODO: el sistema esté inactivo??
 
 Examples
 --------
