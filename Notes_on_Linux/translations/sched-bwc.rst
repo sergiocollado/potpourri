@@ -434,35 +434,65 @@ decide which application is chosen to run, as they will both be runnable and
 have remaining quota. This runtime discrepancy will be made up in the following
 periods when the interactive application idles.
 
+La interacción entre las aplicaciones ligadas a una cpu y las que no están
+ligadas a ninguna cpu ha de ser también considerada, especialmente cuando
+un único nucleo tiene un uso del 100%. Si se da a cada una de esas
+applicaciones la midad de la capacidad de una núcleco-cpu y ambas 
+están gestionadas en la misma CPU es teorícamente posible que la aplicación
+no ligada a ninguna CPU use su 1ms adicional de cuota en algunos periódos,
+y por tatnot evite que la aplicación ligada a una CPU pueda usar su 
+cuota completa por esa misma cantidad. En esos caso el algortmo CFS (vea
+sched-design-CFS.rst) el que decida que aplicación es la elegida para
+ejecutarse, ya que ambas serán candidatas a ser ejecutadas y tienen 
+cuota restante. Esta discrepancia en el teimpo de ejecución se compensará
+en los periodos siguientes cuando la aplicación interactiva esté
+inactiva. 
+
 Examples
 --------
+
+Ejemplos
+---------
 1. Limit a group to 1 CPU worth of runtime::
 
 	If period is 250ms and quota is also 250ms, the group will get
 	1 CPU worth of runtime every 250ms.
 
-	# echo 250000 > cpu.cfs_quota_us /* quota = 250ms */
-	# echo 250000 > cpu.cfs_period_us /* period = 250ms */
+1. Límite a un grupo a 1 CPU de tiempo de ejecución::
+
+	# echo 250000 > cpu.cfs_quota_us /* cuota = 250ms */
+	# echo 250000 > cpu.cfs_period_us /* periodo = 250ms */
 
 2. Limit a group to 2 CPUs worth of runtime on a multi-CPU machine
 
    With 500ms period and 1000ms quota, the group can get 2 CPUs worth of
    runtime every 500ms::
 
-	# echo 1000000 > cpu.cfs_quota_us /* quota = 1000ms */
-	# echo 500000 > cpu.cfs_period_us /* period = 500ms */
+2. Límite a un grupo de 2 CPUs de tiempo de ejecución en una máquina varias CPUs.
+
+	# echo 1000000 > cpu.cfs_quota_us /* cuota = 1000ms */
+	# echo 500000 > cpu.cfs_period_us /* periodo = 500ms */
 
 	The larger period here allows for increased burst capacity.
 
+        El periodo más largo aquí permite una capacidad de ráfaga mayor.
+
 3. Limit a group to 20% of 1 CPU.
+
+3. Límite a un grupo a un 20% de 1 CPU.
 
    With 50ms period, 10ms quota will be equivalent to 20% of 1 CPU::
 
-	# echo 10000 > cpu.cfs_quota_us /* quota = 10ms */
-	# echo 50000 > cpu.cfs_period_us /* period = 50ms */
+   Con un periodo de 50ms, 10ms de cuota son equivalentes las 20% de 1 CPU::
+
+	# echo 10000 > cpu.cfs_quota_us /* cuota = 10ms */
+	# echo 50000 > cpu.cfs_period_us /* periodo = 50ms */
 
    By using a small period here we are ensuring a consistent latency
    response at the expense of burst capacity.
+
+   Usando un periodo pequeño aquí nos aseguramos una respuesta de 
+   la latencia consistente a expesas de capacidad de ráfaga.
 
 4. Limit a group to 40% of 1 CPU, and allow accumulate up to 20% of 1 CPU
    additionally, in case accumulation has been done.
@@ -470,8 +500,17 @@ Examples
    With 50ms period, 20ms quota will be equivalent to 40% of 1 CPU.
    And 10ms burst will be equivalent to 20% of 1 CPU::
 
-	# echo 20000 > cpu.cfs_quota_us /* quota = 20ms */
-	# echo 50000 > cpu.cfs_period_us /* period = 50ms */
-	# echo 10000 > cpu.cfs_burst_us /* burst = 10ms */
+4. Límite a un grupo del 40% de 1 CPU, y permite acumular adicionalmente
+   hasta un 20% de 1 CPU.
+
+   Con un periodo de 50ms, 20ms de cuota son equivalentes al 40%  de 
+   1 CPU. Y 10ms de ráfaga, son equivalentes a un 20% de 1 CPU::
+
+	# echo 20000 > cpu.cfs_quota_us /* cuota = 20ms */
+	# echo 50000 > cpu.cfs_period_us /* periodo = 50ms */
+	# echo 10000 > cpu.cfs_burst_us /* ráfaga = 10ms */
 
    Larger buffer setting (no larger than quota) allows greater burst capacity.
+
+   Un ajuste mayor en la capacidad de almacenamiento (no mayor que la cuota)
+   permite una mayor capacidad de ráfaga.
