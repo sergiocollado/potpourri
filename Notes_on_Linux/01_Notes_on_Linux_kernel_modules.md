@@ -56,7 +56,19 @@ to check them:
 
 ```
 cd /lib/modules/`uname -r`/
-finx . -name '*.ko' | wc -l # to count the number of kernel modules
+find . -name '*.ko' | wc -l # to count the number of kernel modules
+```
+
+### Loading kernel modules
+
+Check the file at `/etc/modules-load.d/modules.conf`
+
+```
+  1 # /etc/modules: kernel modules to load at boot time.                             
+  2 #                                                                                
+  3 # This file contains the names of kernel modules that should be loaded           
+  4 # at boot time, one per line. Lines beginning with "#" are ignored.              
+  5 # Parameters can be specified after the module name.        
 ```
 
 ## Device drivers vs kernel modules
