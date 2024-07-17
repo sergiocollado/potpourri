@@ -70,6 +70,7 @@ Check the file at `/etc/modules-load.d/modules.conf`
   4 # at boot time, one per line. Lines beginning with "#" are ignored.              
   5 # Parameters can be specified after the module name.        
 ```
+ - reference: https://www.cyberciti.biz/faq/linux-how-to-load-a-kernel-module-automatically-at-boot-time/
 
 ## Device drivers vs kernel modules
 
