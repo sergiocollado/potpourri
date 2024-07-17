@@ -33,9 +33,9 @@ un periodo. Dentro de cada periodo (microsegundos), un grupo de tareas son
 ejecutadas hasta la cuota de microsegundos de tiempo de CPU. Esa cuota
 asignada, en colas por cada cpu, en hilos de ejecución en el que el cgroup 
 es ejecutable. Una vez toda la cuota ha sido asignada cualquier petición 
-adicional de cuota resultará en esos hilos de ejecución siendo extrangulado.
-Los hilos de ejecución acelerados, no serán capaces de ejecutase de nuevo 
-hasta el siguiente periodo cuando la cuota sea repuesta.
+adicional de cuota resultará en esos hilos de ejecución siendo extrangulado
+/limitado. Los hilos de ejecución limitaods, no serán capaces de ejecutase
+de nuevo hasta el siguiente periodo cuando la cuota sea restablecida.
 
 A group's unassigned quota is globally tracked, being refreshed back to
 cfs_quota units at each period boundary. As threads consume this bandwidth it
