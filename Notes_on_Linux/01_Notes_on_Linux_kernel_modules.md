@@ -495,7 +495,7 @@ The module may be loaded, but it will do nothing at the beginig. This is defined
 ### insmod vs modprove
   
 - `insmod` loads the module given 0insmod /path/to/module.ko' 
-- `modprobe` loads the module only in /lib/moduels/$(uname -r) 'modprobe /home/test/hello.ko' will not work
+- `modprobe` loads the module only in /lib/modules/$(uname -r) 'modprobe /home/test/hello.ko' will not work
   
 - `insmod` dependencies if present are not loaded
 - `modprobe` calculates dependencies, and loads the dependencies and then the main module.
