@@ -3116,4 +3116,5 @@ The release of the Linux 5.10 kernel brings a new feature to protect against spe
  - https://bristot.me/linux-scheduling-latency-debug-and-analysis/
  - https://lwn.net/Articles/979912/
  - https://elisa.tech/
+ - https://docs.kernel.org/admin-guide/workload-tracing.html
    
