@@ -252,6 +252,6 @@ To achieve higher data rates in GPRS, the coding schemes CS1, CS2, CS3 and CS4 a
 
 To integrate GPRS into GSM, two nodes are added SGSN (Serving GPRS support node) and GGSN (Gateway GRPS support node)
 
-![GSM architecture](https://commons.wikimedia.org/wiki/File:Gsm_structures.svg#/media/File:Gsm_structures.svg)
+<a title="Tsaitgaist, GPLv3 &lt;http://www.gnu.org/licenses/gpl-3.0.html&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Gsm_structures.svg"><img width="512" alt="Gsm structures" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Gsm_structures.svg/512px-Gsm_structures.svg.png?20120814110647"></a>
 
 
