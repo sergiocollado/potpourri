@@ -21,6 +21,8 @@ This 2G is a digital system, this means that the voice is digitalized and encryp
 
 ### Base Station Subsystem (BSS)
 
+ - Reference: https://en.wikipedia.org/wiki/Base_station_subsystem
+
 The Base Station Subsystem (BSS) consitst of:
  - One or more Base Station Controllers (BSC)
  - One or more Base Transceiver Stations (BTS)
@@ -216,11 +218,38 @@ To make hacking of IMSI difficult, IMSI used only as an identifier when the TMSI
 
 MSISDN a number uniquely identifying a subscription in a Global System for Mobile communications or a Universal Mobile Telecommunications System mobile network. It is the mapping of the telephone number to the subscriber identity module in a mobile or cellular phone
 
+### LAI (Location Area Identity)
 
+ - Reference: https://en.wikipedia.org/wiki/Location_area_identity
+ - Refernece: https://en.wikipedia.org/wiki/Mobility_management
 
+Service areas are subdivided into location areas, 
 
+LAI = MCC (Mobile Country Code) + MNC (Mobile Network Code) + LAC (Locatino Area Code)
 
+In mobile networks, location area identity (LAI) is a unique identifier assigned to each location area of a Public Land Mobile Network
 
- 
+This internationally unique identifier is used for location updating of mobile subscribers. It is composed of a three decimal digit mobile country code (MCC), a two to three digit mobile network code (MNC) that identifies a Subscriber Module Public Land Mobile Network (SM PLMN) in that country, and a location area code (LAC) which is a 16 bit number with two special values, thereby allowing 65534 location areas within one GSM PLMN.
 
+### Base Station Identification Code (BSIC)
 
+ - Reference: https://en.wikipedia.org/wiki/Base_station_identity_code
+
+The base station identity code (BSIC) is a code used in GSM to uniquely identify a base station. The code is needed because it is possible that mobile stations receive the broadcast channel of more than one base station on the same frequency. This is due to frequency re-use in a cellular network. The BSIC is defined in GSM specification 03.03 section 4.3.2.
+
+Each base station has its own BSIC. This code is at all times transmitted on the broadcast channel, so the mobile stations can distinguish between base stations. The BSIC is composed of a 3-bit network color code (NCC) and a 3-bit base station color code (BCC). The NCC is assigned to each network provider so the mobile station can sort out which base stations it is allowed to camp on. The NCC of different providers must be different; they must also be different in national border areas. The broadcast control channel (BCCH) of each base station is assigned a frequency by the network operator, and they must be assigned such that no neighbor stations have equal BCCH and thus equal BSIC.
+
+As long as base stations use different frequencies for their broadcasting channel, there is no problem in using the same base station identity code. Unique identification of a base station is especially important in border areas, where at both sides of the border there is a different operator who might use the same broadcasting channel on the same frequency.
+
+## Working principle of 2.5 GPRS (General Packet Radio Service)
+
+ - Reference: https://en.wikipedia.org/wiki/General_Packet_Radio_Service
+ - Reference: https://en.wikipedia.org/wiki/GPRS_core_network#Serving_GPRS_support_node_(SGSN)
+
+GPRS its porpouse is to increase data rate in GSM network. It is basically a packet switch service on GSM which was excusively circuit switched network. 
+
+To achieve higher data rates in GPRS, the coding schemes CS1, CS2, CS3 and CS4 are used. 
+
+To integrate GPRS into GSM, two nodes are added SGSN (Serving GPRS support node) and GGSN (Gateway GRPS support node)
+
+![GSM architecture](https://en.wikipedia.org/wiki/Base_station_subsystem#/media/File:Gsm_structures.svg)
