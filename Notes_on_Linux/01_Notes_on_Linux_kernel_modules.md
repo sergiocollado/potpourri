@@ -505,7 +505,7 @@ will report an EBUSY module. This is defined in `kernel/module.c` at `SYSCALL_DE
   
 The module may be loaded, but it will do nothing at the beginig. This is defined at kernel/module.c at `SYSCALL_DEFINE3(init_module, ...`
 
-### insmod vs modprove
+### insmod vs modprobe
   
 - `insmod` loads the module given 0insmod /path/to/module.ko' 
 - `modprobe` loads the module only in /lib/modules/$(uname -r) 'modprobe /home/test/hello.ko' will not work
@@ -516,7 +516,62 @@ The module may be loaded, but it will do nothing at the beginig. This is defined
 `modprobe` depends on the tool `depmod`to calculate the dependencies. `depmod` calculates the dependencies of all the modules present in /lib/modules/$(uname -r) folder, and places the dependencies information in /lib/modules/$(uname -r)/modules.dep file. See `man depmod`.
   
  It is possible to reload the modules.dep file with `depmod -a`
-  
+
+
+### Example using modprobe 
+
+#### Get a Count of the Current Installed Modules and Save It to /root/current_count.txt
+
+Display all the loaded modules:
+```
+lsmod
+```
+Save the count of all the loaded modules to /root/current_count.txt:
+```
+lsmod | wc -l > /root/current_count.txt
+```
+
+#### Remove the target_core_mod Module and All Its Dependencies
+
+To remove the target_core_module, the iscsi_target_mod dependency must be removed (the -v option can be used to display additional information):
+```
+modprobe -r iscsi_target_mod
+```
+Validate the modules have been removed:
+```
+lsmod | grep target
+```
+
+#### Install the nfsd Module
+
+Install the nfsd module using the modprobe command (the -v option can be used to display additional information):
+
+```
+modprobe -v nfsd
+```
+Validate that the module was loaded:
+```
+lsmod | grep nfsd
+```
+
+#### Display the Dependencies for the nfsd Module and Save the Names to /root/dependencies.txt
+
+Display information for the nfsd module:
+```
+modinfo nsfd
+```
+Save the names of the dependencies to /root/dependencies.txt:
+```
+modinfo nfsd | grep depends > /root/dependencies.txt
+```
+#### Get a Final Count of the Modules and Save It to /root/updated_count.txt
+
+Add the output from lsmod | wc -l to the /root/updated_count.txt file:
+```
+lsmod | wc -l > /root/updated_count.txt
+```
+
+
 ### Understanding module_init & module_exit functions
   
  On `insmod` the function passed in the `module_init` is called, and on `rmmod` the argument passed in `module_exit` is called
