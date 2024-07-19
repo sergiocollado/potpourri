@@ -17,7 +17,7 @@ CFS con control de ancho de banda
 CFS bandwidth control is a CONFIG_FAIR_GROUP_SCHED extension which allows the
 specification of the maximum CPU bandwidth available to a group or hierarchy.
 
-El control de ancho de banda es una extension CONFIG_FAIR_GROUP_SCHED que 
+El control de ancho de banda es una extensión CONFIG_FAIR_GROUP_SCHED que 
 permite especificar el máximo uso disponible de CPU para un grupo o una jerarquía.
 
 The bandwidth allowed for a group is specified using a quota and period. Within
@@ -29,13 +29,15 @@ throttled. Throttled threads will not be able to run again until the next
 period when the quota is replenished.
 
 El ancho de banda permitido para un grupo se especifica usando una cuota y
-un periodo. Dentro de cada periodo (microsegundos), un grupo de tareas son 
-ejecutadas hasta la cuota de microsegundos de tiempo de CPU. Esa cuota
-asignada, en colas por cada cpu, en hilos de ejecución en el que el cgroup 
-es ejecutable. Una vez toda la cuota ha sido asignada cualquier petición 
-adicional de cuota resultará en esos hilos de ejecución siendo extrangulado
-/limitado. Los hilos de ejecución limitaods, no serán capaces de ejecutase
-de nuevo hasta el siguiente periodo cuando la cuota sea restablecida.
+un periodo. Dentro de cada periodo (microsegundos), a un grupo de tareas se 
+le asigna hasta su cuota de tiempo de CPU en microsegundos. Esa cuota es
+asignada en colas de ejecución por cada cpu en porciones de tiempo de
+ejecución en la CPU, según los hilos de ejecución del grupo de tareas 
+van siendo candidatos a ejecutarse. Una vez toda la cuota ha sido asignada
+cualquier petición adicional de cuota resultará en esos hilos de ejecución
+siendo limitados/extrangulados. Los hilos de ejecución limitados, no serán
+capaces de ejecutarse de nuevo hasta el siguiente periodo cuando la cuota
+sea restablecida.
 
 A group's unassigned quota is globally tracked, being refreshed back to
 cfs_quota units at each period boundary. As threads consume this bandwidth it
@@ -53,11 +55,6 @@ es descrito como un "slice".
 
 Burst feature
 -------------
-
-Funcionalidad de rafaga
------------------------
-
-TODO:??? - Característica de sobreuso
 
 Característica de ráfaga
 --------------------------
@@ -89,15 +86,15 @@ Esto garantiza dos cosas: que cada tiempo límite de ejecución es cumplido
 y que el sistema es estable. De todas formas, si U fuese > 1, entonces
 por cada segundo de tiempo de reloj de una tarea, tendríamos que 
 ejecutar más de un segundo de tiempo de ejecución de programa, y 
-obviamente no cumpliriamos con el tiempo límite de ejecucion de la 
+obviamente no cumpliriamos con el tiempo límite de ejecución de la 
 tarea, pero en el siguiente periodo de ejecución el tiempo límite de
-la tarea estaría todavia más lejos, y nunca se tendría tiempo de alcanzar 
-la ejecución, cayendo así en un fallo no acotado. 
+la tarea estaría todavía más lejos, y nunca se tendría tiempo de alcanzar 
+la ejecución, cayendo así en un fallo no acotado.
 
 The burst feature observes that a workload doesn't always executes the full
 quota; this enables one to describe u_i as a statistical distribution.
 
-La característica de ráfaga vigila que una carga de CPU no se ejecute 
+La característica de ráfaga implica que una carga de CPU no se ejecute 
 siempre con su máxima cuota; esto permite que se pueda describir u_i
 como una distribución estádistica.
 
@@ -112,10 +109,10 @@ Por ejemplo, se tiene u_i = {x,e}_i, donde x es el p(95) y x+e p(100)
 (el tradicional WCET (WCET:Worst Case Execcution Time: son las siglas
 en inglés para "peor tiempo de ejecución")). Esto efectivamente permite
 a u ser más pequeño, aumentando la eficiencia (podemos ejecutar más 
-tareas en el sistema), pero al coste de perder el momento límite de 
-ejecución de la tarea, cuando coincidan las peores probabilidades. 
-De todas formas, si se mantiene la estabilidad, ya que cada 
-sobre-ejecución se empareja con una infra-ejecución en tanto x esté 
+tareas en el sistema), pero al coste de perder el instante límite de
+finalización deseado de la tarea, cuando coincidan las peores 
+probabilidades. De todas formas, si se mantiene la estabilidad, ya que
+cada sobre-ejecución se empareja con una infra-ejecución en tanto x esté 
 por encima de la media.
 
 That is, suppose we have 2 tasks, both specify a p(95) value, then we
@@ -131,7 +128,7 @@ con p(95), entonces tenemos p(95)*p(95) = 90.25% de probabilidad de
 que ambas tareas se ejecuten dentro de su cuota asignada y todo 
 salga bien. Al mismo tiempo se tiene que p(5)*p(5) = 0.25% de 
 probabilidad que ambas tareas excedan su cuota de ejecución (fallo
-garantizado de su tiempo final de ejecucion). En algún punto por 
+garantizado de su tiempo final de ejecución). En algún punto por 
 en medio, hay un umbral donde una tarea excede su tiempo límite de
 ejecución y la otra no, de forma que se compensan; esto depende de la
 función de probabilidad acumulada específica de la tarea.
@@ -141,7 +138,7 @@ At the same time, we can say that the worst case deadline miss, will be
 that x+e is indeed WCET).
 
 Al mismo tiempo, se puede decir que el peor caso de sobrepasar el 
-tiempo límite de ejecución será \Sum e_i; esto es una tardanza acotada
+tiempo límite de ejecución será \Sum e_i; esto es una retraso acotado
 (asumiendo que x+e es de hecho el WCET).
 
 The interferenece when using burst is valued by the possibilities for
@@ -439,7 +436,7 @@ ligadas a ninguna cpu ha de ser también considerada, especialmente cuando
 un único núcleo tiene un uso del 100%. Si se da a cada una de esas
 applicaciones la mitad de la capacidad de una núcleco-cpu y ambas 
 están gestionadas en la misma CPU es teorícamente posible que la aplicación
-no ligada a ninguna CPU use su 1ms adicional de cuota en algunos periódos,
+no ligada a ninguna CPU use su 1ms adicional de cuota en algunos periodos,
 y por tatnot evite que la aplicación ligada a una CPU pueda usar su 
 cuota completa por esa misma cantidad. En esos caso el algoritmo CFS (vea
 sched-design-CFS.rst) el que decida que aplicación es la elegida para
