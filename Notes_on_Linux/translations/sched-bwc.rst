@@ -94,8 +94,8 @@ la ejecución, cayendo así en un fallo no acotado.
 The burst feature observes that a workload doesn't always executes the full
 quota; this enables one to describe u_i as a statistical distribution.
 
-La característica de ráfaga implica que una carga de CPU no se ejecute 
-siempre con su máxima cuota; esto permite que se pueda describir u_i
+La característica de ráfaga implica el trabajo de una tarea no siempre
+consuma totalmente la cuota; esto permite que se pueda describir u_i
 como una distribución estádistica.
 
 For example, have u_i = {x,e}_i, where x is the p(95) and x+e p(100)
@@ -171,12 +171,17 @@ de cgroupfs.
 
 .. note::
    Los archivos cgroupfs descritos en esta seccion solo se aplican a el
-   cgroup v1. Para cgroup v2, referirse a :ref:`Documentation/admin-guide/cgroup-v2.rst <cgroup-v2-cpu>`.
+   cgroup v1. Para cgroup v2, ver :ref:`Documentation/admin-guide/cgroup-v2.rst <cgroup-v2-cpu>`.
 
 - cpu.cfs_quota_us: run-time replenished within a period (in microseconds)
 - cpu.cfs_period_us: the length of a period (in microseconds)
 - cpu.stat: exports throttling statistics [explained further below]
 - cpu.cfs_burst_us: the maximum accumulated run-time (in microseconds)
+
+- cpu.cfs_quota_us: tiempo de ejecución que se refresca cada periodo (en microsegundos)
+- cpu.cfs_period_us: la duración del periodo (en microsegundos)
+- cpu.stat: exporta las estadisticas de limitación [explicado a continuación]
+- cpu.cfs_burst_us: el máximo tiempo de ejecución acumulado (en microsegundos)
 
 The default values are::
 
@@ -212,7 +217,7 @@ detalle más adelante.
 Writing any negative value to cpu.cfs_quota_us will remove the bandwidth limit
 and return the group to an unconstrained state once more.
 
-Asignar cualquier valor negatiov a cpu.cfs_quota_us elimiará el límite de
+Asignar cualquier valor negativo a cpu.cfs_quota_us eliminará el límite de
 ancho de banda y devolverá de nuevo al grupo a un estádo sin restricciones.
 
 A value of 0 for cpu.cfs_burst_us indicates that the group can not accumulate
@@ -230,7 +235,7 @@ el limite on el ancho de banda acumulado no usado.
 Any updates to a group's bandwidth specification will result in it becoming
 unthrottled if it is in a constrained state.
 
-Cualquier actualizacion a las especificaciones del ancho de banda usado
+Cualquier actualización a las especificaciones del ancho de banda usado
 por un grupo resultará en que se deje de limitar si está en un estado 
 restringido. 
 
@@ -245,8 +250,8 @@ For efficiency run-time is transferred between the global pool and CPU local
 on large systems. The amount transferred each time such an update is required
 is described as the "slice".
 
-Por eficiencia el tiempo de ejecución es tranferido en lotes desde una reserva global 
-y el "silo" de una CPU local. Esto reduce en gran medida la presión 
+Por eficiencia el tiempo de ejecución es tranferido en lotes desde una reserva
+global y el "silo" de una CPU local. Esto reduce en gran medida la presión 
 por la contabilidad en grandes sistemas. La cantidad transferida cada vez
 que se requiere una actualización se describe como "slice".
 
@@ -257,7 +262,7 @@ This is tunable via procfs::
 
 Esto es ajustable via procfs::
 
-	/proc/sys/kernel/sched_cfs_bandwidth_slice_us (default=5ms)
+	/proc/sys/kernel/sched_cfs_bandwidth_slice_us (valor por defecto=5ms)
 
 Larger slice values will reduce transfer overheads, while smaller values allow
 for more fine-grained consumption.
@@ -311,9 +316,9 @@ within a hierarchy:
 
 
 El interface refuerza que el ancho de banda de una entidad individual
-sea siempre conseguible, esto es: max(c_i) <= C. De todas maneras, 
-la sobre-subscripción en el caso agregado está explicitamente permitida
-para permitir semanticas de conservación de trabajo dentro de una
+sea siempre factible, esto es: max(c_i) <= C. De todas maneras, 
+la sobre-subscripción en el caso agregado está explícitamente permitida
+para hacer posible semánticas de conservación de trabajo dentro de una
 jerarquia.
 
 
@@ -323,7 +328,7 @@ jerarquia.
 
 [ Where C is the parent's bandwidth, and c_i its children ]
 
-[ Donde C es el ancho de banda de el padre, y c_i es el hijo ]
+[ Donde C es el ancho de banda de el padre, y c_i el de su hijo ]
 
 
 There are two ways in which a group may become throttled:
@@ -334,13 +339,13 @@ There are two ways in which a group may become throttled:
 Hay dos formas en las que un grupo puede ser limitado:
 
         a. este consume totalmete su propia cuota en un periodo.
-        b. la quota de padre es consumida totalmente en su periodo.
+        b. la cuota del padre es consumida totalmente en su periodo.
 
 In case b) above, even though the child may have runtime remaining it will not
 be allowed to until the parent's runtime is refreshed.
 
-En el caso b) anterior, incluso si el hijo puediera tener tiempo de 
-ejecución restatne, este no le será permitido hasta que el tiempo de 
+En el caso b) anterior, incluso si el hijo pudiera tener tiempo de 
+ejecución restante, este no le será permitido hasta que el tiempo de 
 ejecución del padre sea actualizado. 
 
 
@@ -356,8 +361,8 @@ unrunnable. This is configured at compile time by the min_cfs_rq_runtime
 variable. This is a performance tweak that helps prevent added contention on
 the global lock.
 
-Una vez una "slice" se asigna a una cpu esta no expira. A pear de eso todas
-excepto las "slices" excepto las de 1ms puede ser devueltas a la reserva global
+Una vez una "slice" se asigna a una cpu esta no expira. A pesar de eso todas,
+excepto las "slices" menos las de 1ms, puede ser devueltas a la reserva global
 si todos los hilos en esa cpu pasan a ser no ejecutables. Esto se configura
 en el tiempo de compilacion por la variable min_cfs_rq_runtime. Esto es un
 ajuste en la eficacia que ayuda a prevenir añadir bloqueos en el candado global.
@@ -366,7 +371,7 @@ The fact that cpu-local slices do not expire results in some interesting corner
 cases that should be understood.
 
 El hecho de que las "slices" de una cpu local no expiren tiene como resultado
-algunos casos extremos que debieran ser comprendidos.
+algunos casos extremos interesantes que debieran ser comprendidos.
 
 For cgroup cpu constrained applications that are cpu limited this is a
 relatively moot point because they will naturally consume the entirety of their
@@ -402,7 +407,7 @@ Para aplicaciones que tienen un gran número de hilos de ejecución y que no
 estan ligadas a una cpu, este matiz de la no-expiración permite que las
 aplicaciones brevemente sobrepasen su cuota límite en la cantidad que 
 no ha sido usada en cada cpu en la que el grupo de tareas se está ejecutando
-(tipicamante como mucho 1ms por cada cpu o lo que se ha definido como
+(típicamante como mucho 1ms por cada cpu o lo que se ha definido como
 min_cfs_rq_runtime). Este pequeño sobreuso únicamente tiene lugar si 
 la cuota que ha ido asignada a una cpu y no ha sido completamente usada
 o devuelta en periodos anteriores. Esta cantidad de sobreuso no será 
@@ -410,10 +415,10 @@ transferida entre núcleos. Como resultado, este mecanismo todavía cumplira
 estrictamente los límites de la tarea de grupo en el promedio del uso, 
 epro sobre una ventana de tiempo mayor que un único periodo. Esto 
 también limita la habilidad de un sobreuso a no más de 1ms por cada cpu.
-ESto provee de una experiencia de uso más predecible para aplicaciones 
+Esto provee de una experiencia de uso más predecible para aplicaciones 
 con muchos hilos y con límites de cuota pequeños en máquinas con muchos 
 núcleos. Esto también elimina la propensión a limitar estas
-estas aplicaciones mientras que simultaneamente usan menores cuotas
+aplicaciones mientras que simultaneamente usan menores cuotas
 de uso por cpu. Otra forma de decir esto es que permitiendo que
 la parte no usada de una "slice" permanezca valida entre periodos
 disminuye la posiblididad de malgastare cuota que va a expirar en 
@@ -442,8 +447,7 @@ cuota completa por esa misma cantidad. En esos caso el algoritmo CFS (vea
 sched-design-CFS.rst) el que decida que aplicación es la elegida para
 ejecutarse, ya que ambas serán candidatas a ser ejecutadas y tienen 
 cuota restante. Esta discrepancia en el tiempo de ejecución se compensará
-en los periodos siguientes cuando la aplicación interactiva esté
-inactiva. TODO: el sistema esté inactivo??
+en los periodos siguientes cuando el sistema esté inactivo.
 
 Examples
 --------
