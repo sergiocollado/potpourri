@@ -734,6 +734,13 @@ $ qemu-system-x86_64 \
 $ gdb -tui -ex "target remote :1234" "$HOME/linux/vmlinux" 
 ```
 
+or 
+
+```bash
+gdb ./vmlinux # load symbols in gdb
+(gdb) target remote localhost:1234
+```
+
 Reference qemu-gdb: https://www.qemu.org/docs/master/system/gdb.html
 
 
