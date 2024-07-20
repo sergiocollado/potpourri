@@ -30,7 +30,7 @@ es descrito como un "slice".
 Característica de ráfaga
 --------------------------
 
-Esta característica coge prestado tiempo ahora, que en un futuro tendrá que
+Esta característica toma prestado tiempo ahora, que en un futuro tendrá que
 devolver, con el coste de una mayor interferencia hacia los otros usuarios
 del sistema. Todo acotado perfectamente. 
 
