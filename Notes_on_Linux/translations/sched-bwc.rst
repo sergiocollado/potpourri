@@ -225,7 +225,7 @@ de tiempo de ejecución de cpu.
 La interacción entre las aplicaciones ligadas a una CPU y las que no están
 ligadas a ninguna cpu ha de ser también considerada, especialmente cuando
 un único núcleo tiene un uso del 100%. Si se da a cada una de esas
-aplicaciones la mitad de la capacidad de una CPU /TODO check this/  y ambas 
+aplicaciones la mitad de la capacidad de una CPU-núcleo y ambas 
 están gestionadas en la misma CPU es teóricamente posible que la aplicación
 no ligada a ninguna CPU use su 1ms adicional de cuota en algunos periodos,
 y por tanto evite que la aplicación ligada a una CPU pueda usar su 
