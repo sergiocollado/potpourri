@@ -710,20 +710,21 @@ References:
  - https://github.com/google/syzkaller/blob/master/docs/linux/setup_ubuntu-host_qemu-vm_x86-64-kernel.md#install-qemu
  - https://github.com/google/syzkaller/blob/master/docs/syzbot_assets.md
  - https://nickdesaulniers.github.io/blog/2018/10/24/booting-a-custom-linux-kernel-in-qemu-and-debugging-it-with-gdb/
+ - Mentorship Session: Linux Kernel Debugging Tricks of the Trade: https://youtu.be/FdNIiQxwJuk
 
 ```bash
 $ qemu-system-x86_64 \
         -m 2G \
-        -smp 2 \
+        -smp 2,sockets=2,cores=1 \
         -kernel linux/arch/x86/boot/bzImage \
 	-append "console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0" \
         -drive file=image/bullseye.img,format=raw \
         -net user,host=10.0.2.10,hostfwd=tcp::10021-:22 \
         -net nic,model=e1000 \
         -enable-kvm \
-        -append nokaslr \  # for not getting errors when accessing memory addresses
+        -append nokaslr \
         -nographic \
-        -s \               # snapshot, to changing the disk
+        -snapshot \
         -pidfile vm.pid \
 	2>&1 | tee vm.log
 ```
@@ -731,4 +732,8 @@ $ qemu-system-x86_64 \
 ```bash
 $ gdb -tui -ex "target remote :1234" "$HOME/linux/vmlinux" 
 ```
+
+Reference qemu-gdb: https://www.qemu.org/docs/master/system/gdb.html
+
+
 
