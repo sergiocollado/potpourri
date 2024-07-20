@@ -713,6 +713,7 @@ References:
  - Mentorship Session: Linux Kernel Debugging Tricks of the Trade: https://youtu.be/FdNIiQxwJuk
 
 ```bash
+# -s: opens a gdb server at TCP port 1234
 $ qemu-system-x86_64 \
         -m 2G \
         -smp 2 \
@@ -724,7 +725,7 @@ $ qemu-system-x86_64 \
         -enable-kvm \
         -append nokaslr \
         -nographic \
-        -snapshot \
+        -s \
         -pidfile vm.pid \
 	2>&1 | tee vm.log
 ```
