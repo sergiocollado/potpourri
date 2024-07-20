@@ -715,7 +715,7 @@ References:
 ```bash
 $ qemu-system-x86_64 \
         -m 2G \
-        -smp 2,sockets=2,cores=1 \
+        -smp 2 \
         -kernel linux/arch/x86/boot/bzImage \
 	-append "console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0" \
         -drive file=image/bullseye.img,format=raw \
