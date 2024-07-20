@@ -28,16 +28,16 @@ assigned any additional requests for quota will result in those threads being
 throttled. Throttled threads will not be able to run again until the next
 period when the quota is replenished.
 
-El ancho de banda permitido para un grupo se especifica usando una cuota y
-un periodo. Dentro de cada periodo (microsegundos), a un grupo de tareas se 
-le asigna hasta su cuota de tiempo de CPU en microsegundos. Esa cuota es
-asignada en colas de ejecución por cada cpu en porciones de tiempo de
-ejecución en la CPU, según los hilos de ejecución del grupo de tareas 
-van siendo candidatos a ejecutarse. Una vez toda la cuota ha sido asignada
-cualquier petición adicional de cuota resultará en esos hilos de ejecución
-siendo limitados/extrangulados. Los hilos de ejecución limitados, no serán
-capaces de ejecutarse de nuevo hasta el siguiente periodo cuando la cuota
-sea restablecida.
+El ancho de banda permitido para un grupo de tareas se especifica usando una
+cuota y un periodo. Dentro de un "periodo" (microsegundos), a un grupo
+de tareas se le asigna hasta su "cuota" de tiempo de uso de CPU en 
+microsegundos. Esa cuota es asignada para cada CPU en colas de ejecución
+en porciones de tiempo de ejecución en la CPU, según los hilos de ejecución
+del grupo de tareas van siendo candidatos a ejecutarse. Una vez toda la cuota
+ha sido asignada cualquier petición adicional de cuota resultará en esos hilos
+de ejecución siendo limitados/extrangulados. Los hilos de ejecución limitados,
+no serán capaces de ejecutarse de nuevo hasta el siguiente periodo cuando
+la cuota sea restablecida.
 
 A group's unassigned quota is globally tracked, being refreshed back to
 cfs_quota units at each period boundary. As threads consume this bandwidth it
@@ -51,7 +51,6 @@ transfiere a los "silos" de las cpu-locales en base a la demanda. La
 cantidad tranferida en cada una de esas actualizaciones es ajustable y 
 es descrito como un "slice". 
 
-// TODO: traducir "silos" como "reservas"??
 
 Burst feature
 -------------
@@ -71,10 +70,6 @@ Traditional (UP-EDF) bandwidth control is something like:
 El tradicional control de ancho de banda (UP-EDF) es algo como:
 
   (U = \Sum u_i) <= 1
-
-La utilización de una CPU (U) es igual a la suma de todas las
-utilizaciones de las tareas en esa CPU (u_i), y la utilización 
-ha de ser menor o igual que 1 (100% de utilización)
 
 This guaranteeds both that every deadline is met and that the system is
 stable. After all, if U were > 1, then for every second of walltime,
@@ -459,7 +454,7 @@ Ejemplos
 	If period is 250ms and quota is also 250ms, the group will get
 	1 CPU worth of runtime every 250ms.
 
-1. Límite a un grupo a 1 CPU de tiempo de ejecución::
+1. Un grupo limitado a 1 CPU de tiempo de ejecución::
 
 	# echo 250000 > cpu.cfs_quota_us /* cuota = 250ms */
 	# echo 250000 > cpu.cfs_period_us /* periodo = 250ms */
@@ -469,7 +464,7 @@ Ejemplos
    With 500ms period and 1000ms quota, the group can get 2 CPUs worth of
    runtime every 500ms::
 
-2. Límite a un grupo de 2 CPUs de tiempo de ejecución en una máquina varias CPUs.
+2. Un grupo limitado al tiempo de ejecución de 2 CPUs en una máquina varias CPUs.
 
 	# echo 1000000 > cpu.cfs_quota_us /* cuota = 1000ms */
 	# echo 500000 > cpu.cfs_period_us /* periodo = 500ms */
@@ -480,7 +475,7 @@ Ejemplos
 
 3. Limit a group to 20% of 1 CPU.
 
-3. Límite a un grupo a un 20% de 1 CPU.
+3. Un grupo limitado a un 20% de 1 CPU.
 
    With 50ms period, 10ms quota will be equivalent to 20% of 1 CPU::
 
@@ -501,7 +496,7 @@ Ejemplos
    With 50ms period, 20ms quota will be equivalent to 40% of 1 CPU.
    And 10ms burst will be equivalent to 20% of 1 CPU::
 
-4. Límite a un grupo del 40% de 1 CPU, y permite acumular adicionalmente
+4. Un grupo limitado al 40% de 1 CPU, y permite acumular adicionalmente
    hasta un 20% de 1 CPU.
 
    Con un periodo de 50ms, 20ms de cuota son equivalentes al 40%  de 
