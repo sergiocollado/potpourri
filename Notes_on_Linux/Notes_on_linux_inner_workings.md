@@ -3117,4 +3117,7 @@ The release of the Linux 5.10 kernel brings a new feature to protect against spe
  - https://lwn.net/Articles/979912/
  - https://elisa.tech/
  - https://docs.kernel.org/admin-guide/workload-tracing.html
+
+### Linux kernel debugging
+ - https://www.youtube.com/watch?v=FdNIiQxwJuk
    
