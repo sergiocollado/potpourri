@@ -1,7 +1,18 @@
-use crate::http::{Request, Response, StatusCode};
+use crate::http::{request, ParseError, Request, Response, StatusCode};
 use std::convert::TryFrom;
 use std::io::{Read, Write};
 use std::net::TcpListener;
+use std::string::ParseError;
+
+
+pub trait Handler {
+    fn handle_request(&mut self, request: &Request) -> Response;
+
+    fn handle_bad_request(&mut self, e: &ParseError) -> Response {
+        println!("Failed to parse request {}", e);
+        Response::new(StatusCode::BadRequest, None)
+    }
+}
 
 // Server is a struct, a struct is a custom data type.
 pub struct Server {
@@ -28,7 +39,7 @@ impl Server {
         }
     }
 
-    pub fn run(&mut self) {
+    pub fn run(&mut self, mut handler: impl Handler) {
         println!("Listening on {}", self.addr);
 
         let listener = TcpListener::bind(&self.addr).unwrap();
@@ -42,17 +53,10 @@ impl Server {
                     let response = match stream.read(&mut buffer) {
                         Ok(_) => match Request::try_from(&buffer[..]) {
                             Ok(request) => {
-                                println!(
-                                    dbg!(request);
-                                    Response::new(
-                                        StatusCode::Ok,
-                                        Some("<h1> It works!! </h1>".to_string())
-                                        )
-                                );
+                                handler.handle_request(&request)
                             }
                             Err(e) => {
-                                println!("Failed to parse a request: {}", e);
-                                Response::new(StatusCode::BadRequest, None)
+                                handler.handle_bad_request(&e)
                             }
                         },
                         Err(_) => todo!(),
