@@ -245,43 +245,43 @@ en los periodos siguientes cuando el sistema esté inactivo.
 Ejemplos
 ---------
 
-1. Un grupo limitado a 1 CPU de tiempo de ejecución::
+1. Un grupo limitado a 1 CPU de tiempo de ejecución.
 
-	Si el periodo son 250ms y la cuota son 250ms el grupo de tareas tendrá el tiempo
-	de ejecución de 1 CPU cada 250ms.
+    Si el periodo son 250ms y la cuota son 250ms el grupo de tareas tendrá el tiempo
+    de ejecución de 1 CPU cada 250ms::
 
 	# echo 250000 > cpu.cfs_quota_us /* cuota = 250ms */
 	# echo 250000 > cpu.cfs_period_us /* periodo = 250ms */
 
-2. Un grupo limitado al tiempo de ejecución de 2 CPUs en una máquina varias CPUs
+2. Un grupo limitado al tiempo de ejecución de 2 CPUs en una máquina varias CPUs.
 
-	Con un periodo de 500ms y una cuota de 1000ms el grupo de tareas tiene el tiempo
-	de ejecución de 2 CPUs cada 500ms::
+    Con un periodo de 500ms y una cuota de 1000ms el grupo de tareas tiene el tiempo
+    de ejecución de 2 CPUs cada 500ms::
 
 	# echo 1000000 > cpu.cfs_quota_us /* cuota = 1000ms */
 	# echo 500000 > cpu.cfs_period_us /* periodo = 500ms */
 
-	El periodo más largo aquí permite una capacidad de ráfaga mayor.
+    El periodo más largo aquí permite una capacidad de ráfaga mayor.
 
 3. Un grupo limitado a un 20% de 1 CPU.
 
-	Con un periodo de 50ms, 10ms de cuota son equivalentes al 20% de 1 CPUs::
+    Con un periodo de 50ms, 10ms de cuota son equivalentes al 20% de 1 CPUs::
 
 	# echo 10000 > cpu.cfs_quota_us /* cuota = 10ms */
 	# echo 50000 > cpu.cfs_period_us /* periodo = 50ms */
 
-	Usando un periodo pequeño aquí nos aseguramos una respuesta de
-	la latencia consistente a expensas de capacidad de ráfaga.
+    Usando un periodo pequeño aquí nos aseguramos una respuesta de
+    la latencia consistente a expensas de capacidad de ráfaga.
 
 4. Un grupo limitado al 40% de 1 CPU, y permite acumular adicionalmente
    hasta un 20% de 1 CPU.
 
-	Con un periodo de 50ms, 20ms de cuota son equivalentes al 40% de
-	1 CPU. Y 10ms de ráfaga, son equivalentes a un 20% de 1 CPU::
+    Con un periodo de 50ms, 20ms de cuota son equivalentes al 40% de
+    1 CPU. Y 10ms de ráfaga, son equivalentes a un 20% de 1 CPU::
 
 	# echo 20000 > cpu.cfs_quota_us /* cuota = 20ms */
 	# echo 50000 > cpu.cfs_period_us /* periodo = 50ms */
 	# echo 10000 > cpu.cfs_burst_us /* ráfaga = 10ms */
 
-	Un ajuste mayor en la capacidad de almacenamiento (no mayor que la cuota)
-	permite una mayor capacidad de ráfaga.
+    Un ajuste mayor en la capacidad de almacenamiento (no mayor que la cuota)
+    permite una mayor capacidad de ráfaga.
