@@ -1,7 +1,6 @@
-/// this is a project just for learning, so the code is not optimal
-
-use http::Request;
 use http::Method;
+/// this is a project just for learning, so the code is not optimal
+use http::Request;
 use server::Server;
 
 mod http;

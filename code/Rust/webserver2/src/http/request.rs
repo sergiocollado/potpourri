@@ -1,26 +1,26 @@
 use super::method::{Method, MethodError};
+use super::QueryString;
 use std::convert::TryFrom;
 use std::error::Error;
 use std::fmt::{Debug, Display, Formatter, Result as FmtResult};
 use std::str::from_utf8;
 use std::str::Utf8Error;
-use super::{QueryString}; 
 
 // lifetimes: https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html
 #[derive(Debug)]
 pub struct Request<'buf> {
     path: &'buf str,
-    query_string: Option<QueryString<'buf>,
+    query_string: Option<QueryString<'buf>>,
     //method: super::method::Method, // in case we don't use "use"
     method: Method,
 }
 
-impl<'buf> TryFrom<&'buf [u8]> for Request<'buf> { // 'From' trait that can fail
+impl<'buf> TryFrom<&'buf [u8]> for Request<'buf> {
+    // 'From' trait that can fail
     type Error = ParseError;
 
     // GET /search?name=abc&sort=1 HTTP/1.1\r\n ...HEADERS  <- example of a request
     fn try_from(buf: &'buf [u8]) -> Result<Request<'buf>, Self::Error> {
-
         // match std::from_utf8(buf) {
         //     Ok(request) => {},
         //     Err(_) => return Err(ParseError::InvalidEncoding),
@@ -34,15 +34,17 @@ impl<'buf> TryFrom<&'buf [u8]> for Request<'buf> { // 'From' trait that can fail
         //let request = str::from_utf8(buf).or(Err(ParseError::InvalidEncoding))?;
 
         let request = std::str::from_utf8(buf)?; // for using this we need to define the ParseError.from(utf8) trait
-        //unimplemented!()
-        //
+                                                 //unimplemented!()
+                                                 //
         match get_next_word(request) {
-            Some((method, request)) => {},
-            None => {return Err(ParseError::InvalidRequest); },
+            Some((method, request)) => {}
+            None => {
+                return Err(ParseError::InvalidRequest);
+            }
         }
 
         let (method, request) = get_next_word(request).ok_or(ParseError::InvalidRequest)?; // convert an Option into a Result.
-        // request has been shadowed!
+                                                                                           // request has been shadowed!
         let (mut path, request) = get_next_word(request).ok_or(ParseError::InvalidRequest)?;
         // request has been shadowed!
         let (protocol, _) = get_next_word(request).ok_or(ParseError::InvalidRequest)?;
@@ -51,7 +53,7 @@ impl<'buf> TryFrom<&'buf [u8]> for Request<'buf> { // 'From' trait that can fail
             return Err(ParseError::InvalidProtocol);
         }
 
-        let method: Method  = method.parse()?;
+        let method: Method = method.parse()?;
         // parse() converst types from string, into something else.
         // when implemented 'FromStr()from Method' trait in method.rs,
         // the parse() fucntion is generated.
@@ -73,8 +75,9 @@ impl<'buf> TryFrom<&'buf [u8]> for Request<'buf> { // 'From' trait that can fail
         //    path = &path[..i];
         //}
 
-        if let Some(i) = path.find('?') {   // coding with 'if let'
-            query_string = Some(QueryString::from(&path[i+1..])); // i+1: '?' is just 1 byte
+        if let Some(i) = path.find('?') {
+            // coding with 'if let'
+            query_string = Some(QueryString::from(&path[i + 1..])); // i+1: '?' is just 1 byte
             path = &path[..i];
         }
 
@@ -90,9 +93,9 @@ fn get_next_word(request: &str) -> Option<(&str, &str)> {
     let mut iter = request.chars(); // chars() is an iterator
     for (i, c) in request.chars().enumerate() {
         if c == ' ' || c == '\r' {
-            return Some((&request[..i], &request[i + 1 ..]))
-                // i+1: we are only skiping the space ' ' character, that
-                // we know that it is only 1 byte size
+            return Some((&request[..i], &request[i + 1..]));
+            // i+1: we are only skiping the space ' ' character, that
+            // we know that it is only 1 byte size
         }
     }
     None
