@@ -115,7 +115,7 @@ con ancho de banda sin restringir. Esto representa el comportamiento
 tradicional para CFS.
 
 Asignar cualquier valor (válido) y positivo no menor que cpu.cfs_burst_us
-definirá el límite del ancho de banda. La cuota mínima permitida para para
+definirá el límite del ancho de banda. La cuota mínima permitida para
 la cuota o periodo es 1ms. Hay también un límite superior en la duración del
 periodo de 1s. Existen restricciones adicionales cuando los límites de
 ancho de banda se usan de manera jerárquica, estos se explican en mayor
