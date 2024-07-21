@@ -256,7 +256,7 @@ Ejemplos
 2. Un grupo limitado al tiempo de ejecución de 2 CPUs en una máquina varias CPUs::
 
 	Con un periodo de 500ms y una cuota de 1000ms el grupo de tareas tiene el tiempo
-	de ejecución de 2 CPUs cada 500ms.
+	de ejecución de 2 CPUs cada 500ms::
 
 	# echo 1000000 > cpu.cfs_quota_us /* cuota = 1000ms */
 	# echo 500000 > cpu.cfs_period_us /* periodo = 500ms */
