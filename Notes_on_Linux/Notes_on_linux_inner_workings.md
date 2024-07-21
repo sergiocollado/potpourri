@@ -184,8 +184,8 @@ vim 0001-fix-one-dead-link-in-ia64-xen.txt.patch
 
 # to generate a given version of the patch
 git format-patch -1 --base=auto -subject-prefix="PATCH v2"
-# or even better
-git format-patch -1 --base=auto -v2
+# or even better as pointed here: https://nickdesaulniers.github.io/blog/2017/05/16/submitting-your-first-patch-to-the-linux-kernel-and-responding-to-feedback/
+git format-patch -v2 -1 --base=auto 
 
 # check the patch
 ./scripts/checkpatch.pl 0001-fix-one-dead-link-in-ia64-xen.txt.patch
