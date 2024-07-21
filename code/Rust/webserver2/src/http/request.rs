@@ -1,5 +1,5 @@
 use super::method::{Method, MethodError};
-use super::QueryString;
+use super::{query_string, QueryString};
 use std::convert::TryFrom;
 use std::error::Error;
 use std::fmt::{Debug, Display, Formatter, Result as FmtResult};
@@ -14,6 +14,25 @@ pub struct Request<'buf> {
     //method: super::method::Method, // in case we don't use "use"
     method: Method,
 }
+
+impl<'buf> Request<'buf> {
+
+    pub fn path(&self) -> &str {
+        &self.path
+    }
+
+    pub fn method(&self) -> &str {
+        &self.method
+    }
+
+    pub fn query_string(&self) -> Option<&QueryString> {
+        &self.query_string.as_ref()
+        // .as_ref() converts from &Option<T> to Option<&T>
+        // in this way is much more flexible.
+    }
+}
+
+
 
 impl<'buf> TryFrom<&'buf [u8]> for Request<'buf> {
     // 'From' trait that can fail
