@@ -707,10 +707,41 @@ hello_world              704  -
 References:
  - https://javiercarrascocruz.github.io/syzbot
  - https://marliere.net/posts/1/
- - https://github.com/google/syzkaller/blob/master/docs/linux/setup_ubuntu-host_qemu-vm_x86-64-kernel.md#install-qemu
+ - https://github.com/google/syzkaller/blob/master/docs/linux/setup_ubuntu-host_qemu-vm_x86-64-kernel.md
  - https://github.com/google/syzkaller/blob/master/docs/syzbot_assets.md
  - https://nickdesaulniers.github.io/blog/2018/10/24/booting-a-custom-linux-kernel-in-qemu-and-debugging-it-with-gdb/
  - Mentorship Session: Linux Kernel Debugging Tricks of the Trade: https://youtu.be/FdNIiQxwJuk
+ - https://github.com/google/syzkaller/blob/master/docs/linux/kernel_configs.md
+
+It is recommended set some configuration options so it is easier to debug with gdb, as
+stated here: https://github.com/google/syzkaller/blob/master/docs/linux/kernel_configs.md 
+
+```
+# Coverage collection.
+CONFIG_KCOV=y
+
+# Debug info for symbolization.
+CONFIG_DEBUG_INFO_DWARF4=y
+
+# Memory bug detector
+CONFIG_KASAN=y
+CONFIG_KASAN_INLINE=y
+
+# Required for Debian Stretch and later
+CONFIG_CONFIGFS_FS=y
+CONFIG_SECURITYFS=y
+
+# for better info in the stack and better debbuging
+CONFIG_FRAME_POINTERS=y
+```
+
+Edit .config file manually and enable them (or do that through make menuconfig if you prefer).
+
+Since enabling these options results in more sub options being available, we need to regenerate config:
+
+```bash
+make olddefconfig
+```
 
 ```bash
 # -s: opens a gdb server at TCP port 1234
@@ -723,9 +754,9 @@ $ qemu-system-x86_64 \
         -net user,host=10.0.2.10,hostfwd=tcp::10021-:22 \
         -net nic,model=e1000 \
         -enable-kvm \
-        -append nokaslr \
+        -append nokaslr `disable adderss randomzations kaslr` \
         -nographic \
-        -s \
+        -s `#this will open a gdb server in port 1234` \
         -pidfile vm.pid \
 	2>&1 | tee vm.log
 ```
