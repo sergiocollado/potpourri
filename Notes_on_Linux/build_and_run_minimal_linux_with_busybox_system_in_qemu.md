@@ -718,6 +718,9 @@ It is recommended set some configuration options so it is easier to debug with g
 stated here: https://github.com/google/syzkaller/blob/master/docs/linux/kernel_configs.md 
 
 ```
+#Build the kernel with CONFIG_GDB_SCRIPTS enabled, but leave CONFIG_DEBUG_INFO_REDUCED off.
+#If your architecture supports CONFIG_FRAME_POINTER, keep it enabled.
+
 # Coverage collection.
 CONFIG_KCOV=y
 
