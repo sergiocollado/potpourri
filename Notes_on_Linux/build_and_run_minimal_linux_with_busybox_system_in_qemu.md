@@ -707,6 +707,7 @@ hello_world              704  -
 References:
  - https://javiercarrascocruz.github.io/syzbot
  - https://marliere.net/posts/1/
+ - https://www.kernel.org/doc/html/latest/dev-tools/gdb-kernel-debugging.html
  - https://github.com/google/syzkaller/blob/master/docs/linux/setup_ubuntu-host_qemu-vm_x86-64-kernel.md
  - https://github.com/google/syzkaller/blob/master/docs/syzbot_assets.md
  - https://nickdesaulniers.github.io/blog/2018/10/24/booting-a-custom-linux-kernel-in-qemu-and-debugging-it-with-gdb/
