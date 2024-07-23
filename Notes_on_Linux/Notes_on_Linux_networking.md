@@ -1,4 +1,4 @@
-# Notes on Linux networking
+ # Notes on Linux networking
 
 
 
@@ -166,6 +166,11 @@ DNS Domain: ec2.internal
 
 
 ### Network topology
+
+#### Basic network topology 
+
+A **switch** is a device desined for local area networking, the swithc is connected to a **router (gateway)**  and the router is connected to the internet (external network). Routers have a routing table, so they are able to communicate with other routers. Routers forward packages between networks. 
+
 
 ### Network flow
 
