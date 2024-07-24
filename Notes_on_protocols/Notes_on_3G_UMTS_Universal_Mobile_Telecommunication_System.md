@@ -28,4 +28,6 @@ The core network initially was the same as 2G, but later it evolved, the first v
 
 ## Architecture 3G
 
- - Refernece: https://youtu.be/JtP8t-nH9Bw
+ - Reference: https://youtu.be/JtP8t-nH9Bw
+
+
