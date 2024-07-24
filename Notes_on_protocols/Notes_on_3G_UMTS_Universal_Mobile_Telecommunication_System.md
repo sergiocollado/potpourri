@@ -11,6 +11,7 @@ The International Telecommunication Union (ITU) provides technical requirements.
 
 References:
  - https://youtu.be/bq4GuLHShPY
+ - https://youtu.be/dnPQySnSWN0
  - https://youtu.be/qNddSi0wugw
  - https://youtu.be/BDHMOVvgPTU
 
@@ -28,7 +29,9 @@ The core network initially was the same as 2G, but later it evolved, the first v
 
 ## Architecture 3G
 
- - Reference: https://youtu.be/JtP8t-nH9Bw
+References:
+ - https://youtu.be/JtP8t-nH9Bw
+ - https://youtu.be/dnPQySnSWN0
 
 ![3g_architecture](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/3G_UMTS_architecture.PNG)
 
