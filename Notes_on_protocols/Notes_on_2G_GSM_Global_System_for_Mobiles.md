@@ -12,6 +12,9 @@ References:
  - https://youtu.be/FokQW_CZf7w
  - https://yatebts.com/documentation/concepts/gsm-functionalities/
  - https://youtu.be/HIQ8Z2xlCS8?list=PLU5x-SQTjZT758IGceyOG6pDzMCMAz88o
+
+GSM radio reference: 
+ - https://youtu.be/NkKJBXR0G4k?si=na6v7Tur96trt71L
    
 
 ![GSM architecture](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/Gsm_network_architecture.png)
