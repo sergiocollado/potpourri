@@ -67,14 +67,24 @@ which further facilitates the job of latency-sensitive applications.
 
 Ahora mismo se esta discutiendo como gestionar esos "retrasos", especialmente
 en tareas que estén en un estado durmiente; pero en el momento en el que 
-se escribe este textEEVDF usa un mecanismo de "decaimiento" basado en el 
+se escribe este texto EEVDF usa un mecanismo de "decaimiento" basado en el 
 tiempo virtual de ejecución (VRT, del inglés: virtual run time). Esto previene
-a las tareas de abusar del sistema simplemente durmiento breveemente para
-reajustar su rettraso negativo: cuando una tarea duerme, esta permanece en
-la cola de ejecución pero maracada para "...
+a las tareas de abusar del sistema simplemente durmiento brevemente para
+reajustar su retraso negativo: cuando una tarea duerme, esta permanece en
+la cola de ejecución pero marcada para "desencolado diferido", permitiendo
+a su retraso decaer a lo largo de VRT. Por tanto, las tareas que duerman
+por más tiempo eventualmente eliminarán su retraso. Finalmente, las tares
+pueden adelantarse a otras si su VD es más próximo el tiempo, y las
+tareas podrán pedir porciones de tiempo específicas con la nueva llamada
+del sistema sched_setattr(), todo esto facilitara el trabajo en las aplicaciones
+que sean sensibles a las latencias. 
+
 
 REFERENCES
 ==========
+
+REFERENCIAS
+===========
  
 [1] https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=805acf7726282721504c8f00575d91ebfd750564
 
