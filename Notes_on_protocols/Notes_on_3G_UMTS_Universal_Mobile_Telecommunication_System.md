@@ -32,3 +32,7 @@ The core network initially was the same as 2G, but later it evolved, the first v
 
 ![3g_architecture](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/3G_UMTS_architecture.PNG)
 
+The user equipment, is formed by: 
+ - USIM represents the IMSI number
+ - the Mobile Equipment is the IMEI number
+
