@@ -36,3 +36,5 @@ The user equipment, is formed by:
  - USIM represents the IMSI number
  - the Mobile Equipment is the IMEI number
 
+The UE connects to the radio interface though the Uu interface. 
+
