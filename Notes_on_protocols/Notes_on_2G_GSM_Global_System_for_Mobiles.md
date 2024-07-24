@@ -260,3 +260,6 @@ To integrate GPRS into GSM, two nodes are added SGSN (Serving GPRS support node)
 <a title="Tsaitgaist, GPLv3 &lt;http://www.gnu.org/licenses/gpl-3.0.html&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Gsm_structures.svg"><img width="512" alt="Gsm structures" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Gsm_structures.svg/512px-Gsm_structures.svg.png?20120814110647"></a>
 
 
+## Enhaced Data Rates for Global Evolution (EDGE)
+
+EDGE is also known as 2.75G. The goal is to enhace the data rate. Upgrading from GPRS to EDGE only needs small changes in the core network. EDGE uses 9 different modulation and coding schemes (MSC) to enhace data rates. 
