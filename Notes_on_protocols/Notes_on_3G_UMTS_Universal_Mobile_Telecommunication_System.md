@@ -30,4 +30,5 @@ The core network initially was the same as 2G, but later it evolved, the first v
 
  - Reference: https://youtu.be/JtP8t-nH9Bw
 
+![3g_architecture](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/3G_UMTS_architecture.PNG)
 
