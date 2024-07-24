@@ -9,7 +9,9 @@ The International Telecommunication Union (ITU) provides technical requirements.
 
 ## Architectural evolution from 2G to 3G. 
 
- - reference: https://youtu.be/bq4GuLHShPY
+References:
+ - https://youtu.be/bq4GuLHShPY
+ - https://youtu.be/BDHMOVvgPTU
 
 From a network architecture point of view, the network can be divided in 3 elements: first the mobile phones, second, the access network , third, the core network. 
 the interesting point is that 3G uses the same core that 2G. 
