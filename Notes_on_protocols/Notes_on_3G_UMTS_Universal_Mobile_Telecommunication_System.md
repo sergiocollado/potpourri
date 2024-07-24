@@ -19,3 +19,5 @@ The 2G access network is the BTS (base station) and BSC (Base station control).
 The 3G access network is the RNS (Node B) and RNC (Radio Network Controller). The RNC has many more capabilities than the BSC. The RNS and RNC is knonw as Radio Network Subsystem, based on WCDMA radio technology. The combination of all the radio subsystems is known as UTRAN (Universal Mobile Terrestial Radio Acess Network). 
 
 The core network initially was the same as 2G, but later it evolved, the first version was known as Release 99 (R99), later it evolved further into Release 4, and Release 5. 
+
+![2g_to_3g_architecture](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/UMTS_architecture_2g_to_3g.PNG)
