@@ -11,6 +11,7 @@ The International Telecommunication Union (ITU) provides technical requirements.
 
 References:
  - https://youtu.be/bq4GuLHShPY
+ - https://youtu.be/qNddSi0wugw
  - https://youtu.be/BDHMOVvgPTU
 
 From a network architecture point of view, the network can be divided in 3 elements: first the mobile phones, second, the access network , third, the core network. 
