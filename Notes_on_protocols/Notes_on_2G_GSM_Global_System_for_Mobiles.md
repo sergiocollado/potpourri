@@ -9,12 +9,11 @@ This 2G is a digital system, this means that the voice is digitalized and encryp
 ## 2G Architecture
 
 References:
+ - https://youtu.be/FokQW_CZf7w
  - https://yatebts.com/documentation/concepts/gsm-functionalities/
  - https://youtu.be/HIQ8Z2xlCS8?list=PLU5x-SQTjZT758IGceyOG6pDzMCMAz88o
 
 ![GSM architecture](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/Gsm_network_architecture.png)
-
-
 
 
 - **Mobile station (MS)**: the first component, MS, the mobile station consists in the Mobile Equiptment (ME) and the SIM card. The SIM has the identity of the subscriber, and that identity is called IMSI (Interantional Mobile Subscriber Identity)
