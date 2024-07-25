@@ -3122,4 +3122,13 @@ The release of the Linux 5.10 kernel brings a new feature to protect against spe
 
 ### Linux kernel debugging
  - https://www.youtube.com/watch?v=FdNIiQxwJuk
+
+### Linux kernel backporting
+
+ References:
+  - questions about backporting: https://groups.google.com/g/syzkaller/c/aSvzuUHiDIQ
+  - https://www.kernel.org/doc/html/next/process/backporting.html#submitting-backports-to-stable
+  - https://www.kernel.org/doc/html/next/process/backporting.html
+  - https://www.kernel.org/doc/html/latest/process/stable-kernel-rules.html
+  - backporting linux kernel patches: https://www.youtube.com/watch?v=sBR7R1V2FeA
    
