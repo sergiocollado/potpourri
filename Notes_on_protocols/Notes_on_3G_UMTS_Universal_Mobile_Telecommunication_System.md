@@ -41,3 +41,18 @@ The user equipment, is formed by:
 
 The UE connects to the radio interface though the Uu interface. 
 
+### UTRAN (UMTS terrestial access network)
+
+Node B, connects with the UE over the wireless channel, with the Uu protocol. The Node B will receive the Measurements report from the UE, and pass it into the RNC (Radio Network Controller). 
+
+The RNC: 
+ - swicthes traffic and signalling from/to BSC and CN (core network)
+ - manages/controls the radio resources of node B in its domain.
+ - traffic agregation to/from core network.
+ - admission control and code alocation.
+ - packet scheduling.
+
+### 3G Core Network
+
+
+
