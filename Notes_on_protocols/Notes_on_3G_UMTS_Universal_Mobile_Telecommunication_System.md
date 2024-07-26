@@ -54,5 +54,10 @@ The RNC:
 
 ### 3G Core Network
 
+The first versions of the core network: 
+ - R'99
+ - Release 4
+ - Release 5
+
 
 
