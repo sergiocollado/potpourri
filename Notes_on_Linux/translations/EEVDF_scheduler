@@ -15,9 +15,9 @@ regarding CFS can be found in
 Documentation/scheduler/sched-design-CFS.rst.
 
 El gestor de tareas EEVDF,del inglés: "Earliest Eligible Virtual Deadline
-First", fue nombrado por primera vez en una publicación científica en
-1995 [1]. El kernel de Linux comenzó a transicionar a EEVPF en la 
-version 6.6 (y como una nueva opción en 2024), alejandose del gestor
+First", fue presentado por primera vez en una publicación científica en
+1995 [1]. El kernel de Linux comenzó a transicionar hacia EEVPF en la 
+versión 6.6 (y como una nueva opción en 2024), alejandose del gestor
 de tareas CFS, en favor de una versión de EEVDF propuesta por Peter
 Zijlstra en 2023 [2-4]. Más información relativa a CFS puede encontrarse
 en Documentation/scheduler/sched-design-CFS.rst.
@@ -38,7 +38,7 @@ De forma parecida a CFS, EEVDF intenta distribuir el tiempo de ejecución
 de la CPU de forma equitativa entre todas las tareas que tenga la misma
 prioridad y puedan ser ejecutables. Para eso, asigna un tiempo de 
 ejecución virtual a cada tarea, creando un "retraso" que puede ser usado
-para determina si una tarea ha recivido su cantidad justa de tiempo 
+para determinar si una tarea ha recibido su cantidad justa de tiempo 
 de ejecución en la CPU. De esta manera, una tarea con un "retraso" 
 positivo, es porque se le debe tiempo de ejecución, mientras que una 
 con "retraso" negativo implica que la tarea ha excedido su tiempo.
