@@ -1,18 +1,6 @@
-===============
-EEVDF Scheduler
-===============
-
 ======================
 Gestor de tareas EEVDF 
 ======================
-
-The "Earliest Eligible Virtual Deadline First" (EEVDF) was first introduced
-in a scientific publication in 1995 [1]. The Linux kernel began
-transitioning to EEVDF in version 6.6 (as a new option in 2024), moving
-away from the earlier Completely Fair Scheduler (CFS) in favor of a version
-of EEVDF proposed by Peter Zijlstra in 2023 [2-4]. More information
-regarding CFS can be found in
-Documentation/scheduler/sched-design-CFS.rst.
 
 El gestor de tareas EEVDF,del inglés: "Earliest Eligible Virtual Deadline
 First", fue presentado por primera vez en una publicación científica en
@@ -21,18 +9,6 @@ versión 6.6 (y como una nueva opción en 2024), alejandose del gestor
 de tareas CFS, en favor de una versión de EEVDF propuesta por Peter
 Zijlstra en 2023 [2-4]. Más información relativa a CFS puede encontrarse
 en Documentation/scheduler/sched-design-CFS.rst.
-
- 
-Similarly to CFS, EEVDF aims to distribute CPU time equally among all
-runnable tasks with the same priority. To do so, it assigns a virtual run
-time to each task, creating a "lag" value that can be used to determine
-whether a task has received its fair share of CPU time. In this way, a task
-with a positive lag is owed CPU time, while a negative lag means the task
-has exceeded its portion. EEVDF picks tasks with lag greater or equal to
-zero and calculates a virtual deadline (VD) for each, selecting the task
-with the earliest VD to execute next. It's important to note that this
-allows latency-sensitive tasks with shorter time slices to be prioritized,
-which helps with their responsiveness.
 
 De forma parecida a CFS, EEVDF intenta distribuir el tiempo de ejecución
 de la CPU de forma equitativa entre todas las tareas que tenga la misma
@@ -55,16 +31,6 @@ menor tiempo de respuesta.
 EEVDF Scheduler
 ===============
 
-There are ongoing discussions on how to manage lag, especially for sleeping
-tasks; but at the time of writing EEVDF uses a "decaying" mechanism based
-on virtual run time (VRT). This prevents tasks from exploiting the system
-by sleeping briefly to reset their negative lag: when a task sleeps, it
-remains on the run queue but marked for "deferred dequeue," allowing its
-lag to decay over VRT. Hence, long-sleeping tasks eventually have their lag
-reset. Finally, tasks can preempt others if their VD is earlier, and tasks
-can request specific time slices using the new sched_setattr() system call,
-which further facilitates the job of latency-sensitive applications.
-
 Ahora mismo se esta discutiendo como gestionar esos "retrasos", especialmente
 en tareas que estén en un estado durmiente; pero en el momento en el que 
 se escribe este texto EEVDF usa un mecanismo de "decaimiento" basado en el 
@@ -78,10 +44,6 @@ pueden adelantarse a otras si su VD es más próximo el tiempo, y las
 tareas podrán pedir porciones de tiempo específicas con la nueva llamada
 del sistema sched_setattr(), todo esto facilitara el trabajo en las aplicaciones
 que sean sensibles a las latencias. 
-
-
-REFERENCES
-==========
 
 REFERENCIAS
 ===========
