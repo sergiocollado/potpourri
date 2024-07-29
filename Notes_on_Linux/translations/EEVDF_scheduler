@@ -5,7 +5,7 @@ Gestor de tareas EEVDF
 El gestor de tareas EEVDF,del inglés: "Earliest Eligible Virtual Deadline
 First", fue presentado por primera vez en una publicación científica en
 1995 [1]. El kernel de Linux comenzó a transicionar hacia EEVPF en la 
-versión 6.6 (y como una nueva opción en 2024), alejandose del gestor
+versión 6.6 (y como una nueva opción en 2024), alejándose del gestor
 de tareas CFS, en favor de una versión de EEVDF propuesta por Peter
 Zijlstra en 2023 [2-4]. Más información relativa a CFS puede encontrarse
 en Documentation/scheduler/sched-design-CFS.rst.
@@ -31,15 +31,15 @@ menor tiempo de respuesta.
 EEVDF Scheduler
 ===============
 
-Ahora mismo se esta discutiendo como gestionar esos "retrasos", especialmente
+Ahora mismo se está discutiendo cómo gestionar esos "retrasos", especialmente
 en tareas que estén en un estado durmiente; pero en el momento en el que 
 se escribe este texto EEVDF usa un mecanismo de "decaimiento" basado en el 
 tiempo virtual de ejecución (VRT, del inglés: virtual run time). Esto previene
-a las tareas de abusar del sistema simplemente durmiento brevemente para
+a las tareas de abusar del sistema simplemente durmiendo brevemente para
 reajustar su retraso negativo: cuando una tarea duerme, esta permanece en
 la cola de ejecución pero marcada para "desencolado diferido", permitiendo
 a su retraso decaer a lo largo de VRT. Por tanto, las tareas que duerman
-por más tiempo eventualmente eliminarán su retraso. Finalmente, las tares
+por más tiempo eventualmente eliminarán su retraso. Finalmente, las tareas
 pueden adelantarse a otras si su VD es más próximo el tiempo, y las
 tareas podrán pedir porciones de tiempo específicas con la nueva llamada
 del sistema sched_setattr(), todo esto facilitara el trabajo en las aplicaciones
@@ -55,3 +55,4 @@ REFERENCIAS
 [3] https://lwn.net/Articles/969062/
 
 [4] https://lwn.net/Articles/925371/
+
