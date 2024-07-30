@@ -376,6 +376,10 @@ References:
 - bug hunting: https://docs.kernel.org/admin-guide/bug-hunting.html
 - https://javiercarrascocruz.github.io/syzbot
 
+## Sparce
+
+- https://lwn.net/Articles/689907/
+
 ## Smatch
 
 - https://javiercarrascocruz.github.io/smatch
