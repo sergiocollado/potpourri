@@ -59,5 +59,28 @@ The first versions of the core network:
  - Release 4
  - Release 5
 
+### Release 99
+
+#### SGSN (Serving GPRS Support Node)
+
+#### GGSN (Gateway GPRS Support Node)
+
+#### IN (Intelligent Network)
+ - Handles the charging and balance of pre-paid cards. For post-paid charging, normally there is a charging gateway attached to the GGSN. And the charging-gatway connected to the charging center
+
+
+### Release 4
+
+The MSC was splitted into: 
+ - MSC server: Handles signalling
+ - Media Gateway: Handles traffic
+
+### Release 5
+
+With 3G itt is introduced the PS PACKET SWITH CORE. In release 5 it is introduced the IMS (Ip Multimedia Subsystem), with IMS it is possible to handle the voice calls as the PS calls, so voice calls can be done with the IMS in order to handle the voice calls over the IP network as packages. 
+
+
+
+
 
 
