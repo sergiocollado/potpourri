@@ -223,6 +223,7 @@ The OSI model remains a popular networking model to describe how networking oper
 
 References:
  - https://en.wikipedia.org/wiki/IP_address
+ - https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
  - https://en.wikibooks.org/wiki/A-level_Computing/AQA/Computer_Components,_The_Stored_Program_Concept_and_the_Internet/Structure_of_the_Internet/IP_addresses
 
 
