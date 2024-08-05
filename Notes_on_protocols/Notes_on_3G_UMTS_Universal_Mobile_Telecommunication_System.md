@@ -99,7 +99,7 @@ With 3G itt is introduced the PS PACKET SWITH CORE. In release 5 it is introduce
 |PPP|	Point-to-Point Protocol	|IETF RFC 1661|
 |RRC	|Radio Resource Protocol	|3GPP TS 25.331|
 |PDCP	|Packet Data Convergence Protocol|	3GPP TS 25.323|
-|RLC|	Radio Link Control	3GPP TS 25.322|
-|MAC|	Medium Access Control	3GPP TS 25.321|
+|RLC|	Radio Link Control	|3GPP TS 25.322|
+|MAC|	Medium Access Control	|3GPP TS 25.321|
 
 
