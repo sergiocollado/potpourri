@@ -84,6 +84,7 @@ With 3G itt is introduced the PS PACKET SWITH CORE. In release 5 it is introduce
 
 ## Protocols
 
+ - reference: https://www.3glteinfo.com/utran-interfaces-and-protocols/
 
 | Protocol|	Description|	Standard|
 | :------: |  :------: | :------: |
