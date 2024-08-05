@@ -14,6 +14,7 @@ References:
  - https://youtu.be/dnPQySnSWN0
  - https://youtu.be/qNddSi0wugw
  - https://youtu.be/BDHMOVvgPTU
+ - https://www.3glteinfo.com/utran-interfaces-and-protocols/
 
 From a network architecture point of view, the network can be divided in 3 elements: first the mobile phones, second, the access network , third, the core network. 
 the interesting point is that 3G uses the same core that 2G. 
@@ -81,6 +82,24 @@ With 3G itt is introduced the PS PACKET SWITH CORE. In release 5 it is introduce
 
 
 
+## Protocols
 
+
+| Protocol|	Description|	Standard|
+| :------: |  :------: | :------: |
+|MM|	Mobility Management|	3GPP TS 24.008|
+|CC	|Call Control|	3GPP TS 24.008|
+|SMS|	Short Message Service	3GPP TS 23.040,| 3GPP TS 24.011|
+|SS|	Supplementary Service	|3GPP TS 24.080|
+|GMM	|GPRS Mobility Management|	3GPP TS 24.008|
+|SM	|Session Management	|3GPP TS 24.008|
+|GSMS	|GPRS Short Message Service	|3GPP TS 23.040, 24.011|
+|AMR|	Adaptive Multi Rate|	3GPP TS 26.071|
+|IP|	Internet Protocol	|IETF RFC 791|
+|PPP|	Point-to-Point Protocol	|IETF RFC 1661|
+|RRC	|Radio Resource Protocol	|3GPP TS 25.331|
+|PDCP	|Packet Data Convergence Protocol|	3GPP TS 25.323|
+|RLC|	Radio Link Control	3GPP TS 25.322|
+|MAC|	Medium Access Control	3GPP TS 25.321|
 
 
