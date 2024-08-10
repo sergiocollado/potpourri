@@ -2,6 +2,11 @@
 Deadline Task Scheduling
 ========================
 
+=========================
+Gestor de tareas Deadline
+=========================
+
+
 .. CONTENTS
 
     0. WARNING
@@ -29,25 +34,49 @@ Deadline Task Scheduling
 0. WARNING
 ==========
 
+0. ADVERTENCIA
+==============
+
  Fiddling with these settings can result in an unpredictable or even unstable
  system behavior. As for -rt (group) scheduling, it is assumed that root users
  know what they're doing.
 
+ Jugeterar con esto ajustes puede resultar en un comportamiento del sistema
+ inpredecible o inestable. Como con la gestión de -rt (grupos), se asume que
+ los usuarios raíz saben lo que están haciendo. 
+
 
 1. Overview
 ===========
+
+1. Generalidades.
+=================
 
  The SCHED_DEADLINE policy contained inside the sched_dl scheduling class is
  basically an implementation of the Earliest Deadline First (EDF) scheduling
  algorithm, augmented with a mechanism (called Constant Bandwidth Server, CBS)
  that makes it possible to isolate the behavior of tasks between each other.
 
+ La política SCHED_DEADLINE contenida dentro de la clase de gestión de tareas
+ sched_dl es básicamente una implementación del algoritmo de gestión de tareas
+ del próximo tiempo límite (en inglés EDF, Earliest Deadline First), mejorad
+ con un mecanismo (llamado servidor de ancho de banda constante, en inglés CBS)
+ que hace posible aislar en comportamiento de las tareas entre ellas. 
+
 
 2. Scheduling algorithm
 =======================
 
+2. Algoritmo del gestor de tareas
+=================================
+
+
 2.1 Main algorithm
 ------------------
+
+
+2.1 Algoritmo principal
+-----------------------
 
  SCHED_DEADLINE [18] uses three parameters, named "runtime", "period", and
  "deadline", to schedule tasks. A SCHED_DEADLINE task should receive
