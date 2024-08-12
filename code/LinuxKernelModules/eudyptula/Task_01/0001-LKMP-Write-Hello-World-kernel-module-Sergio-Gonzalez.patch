@@ -1,0 +1,103 @@
+From bbce3c0b59c76ed70a2d074171890b6d665976b3 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Sergio=20Gonz=C3=A1lez=20Collado?=
+ <sergio.collado@gmail.com>
+Date: Tue, 23 Apr 2024 21:46:26 +0200
+Subject: [PATCH] LKMP - Write Hello World kernel module - Sergio Gonzalez
+ Collado
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+This is an example of a basic 'Hello World!' module:
+
+ - To compile the module, execute: "make".
+ - check the files have been generated with 'ls'
+ - To read the log of the system use: "sudo dmesg -WH"
+ - To load the module, use: "sudo insmod hello_world_module.ko"
+ - To check the module is loaded, use: "lsmod | grep hello"
+ - To remove the module, use: "sudo rmmod hello_world_module"
+
+And example of the output would be:
+
+```bash
+sergio@laptop:~/repos/LKMP_hello_world_module$ sudo dmesg -WH &
+[1] 5838
+sergio@laptop:~/repos/LKMP_hello_world_module$ make
+make -C /lib/modules/6.2.0-39-generic/build M=/home/sergio/repos/LKMP_hello_world_module modules
+make[1]: Entering directory '/usr/src/linux-headers-6.2.0-39-generic'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~23.04) 12.3.0
+  You are using:           gcc-12 (Ubuntu 12.3.0-1ubuntu1~23.04) 12.3.0
+  CC [M]  /home/sergio/repos/LKMP_hello_world_module/hello_world_module.o
+  MODPOST /home/sergio/repos/LKMP_hello_world_module/Module.symvers
+  CC [M]  /home/sergio/repos/LKMP_hello_world_module/hello_world_module.mod.o
+  LD [M]  /home/sergio/repos/LKMP_hello_world_module/hello_world_module.ko
+  BTF [M] /home/sergio/repos/LKMP_hello_world_module/hello_world_module.ko
+Skipping BTF generation for /home/sergio/repos/LKMP_hello_world_module/hello_world_module.ko due to unavailability of vmlinux
+make[1]: Leaving directory '/usr/src/linux-headers-6.2.0-39-generic'
+sergio@laptop:~/repos/LKMP_hello_world_module$ ls
+hello_world_module.c  hello_world_module.ko  hello_world_module.mod  hello_world_module.mod.c  hello_world_module.mod.o  hello_world_module.o  Makefile  modules.order  Module.symvers
+sergio@laptop:~/repos/LKMP_hello_world_module$ sudo insmod hello_world_module.ko
+[abr23 21:51] Hello World!
+sergio@laptop:~/repos/LKMP_hello_world_module$ lsmod | grep hello
+hello_world_module     16384  0
+sergio@laptop:~/repos/LKMP_hello_world_module$ sudo rmmod hello_world_module
+[ +12,839182] Bye World!
+sergio@laptop:~/repos/LKMP_hello_world_module$
+```
+
+Signed-off-by: Sergio González Collado <sergio.collado@gmail.com>
+---
+ Makefile             |  9 +++++++++
+ hello_world_module.c | 23 +++++++++++++++++++++++
+ 2 files changed, 32 insertions(+)
+ create mode 100644 Makefile
+ create mode 100644 hello_world_module.c
+
+diff --git a/Makefile b/Makefile
+new file mode 100644
+index 0000000..ad79773
+--- /dev/null
++++ b/Makefile
+@@ -0,0 +1,9 @@
++obj-m += hello_world_module.o
++
++PWD := $(CURDIR)
++
++all:
++	 make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
++
++clean:
++	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+diff --git a/hello_world_module.c b/hello_world_module.c
+new file mode 100644
+index 0000000..179e0b6
+--- /dev/null
++++ b/hello_world_module.c
+@@ -0,0 +1,23 @@
++// SPDX-License-Identifier: GPL-2.0+
++
++#include <linux/kernel.h>
++#include <linux/module.h>
++
++static int __init hello_init(void)
++{
++	pr_info("Hello World!\n");
++	return 0;
++}
++
++static void __exit hello_exit(void)
++{
++	pr_info("Bye World!\n");
++}
++
++module_init(hello_init);
++module_exit(hello_exit);
++
++
++MODULE_LICENSE("GPL");
++MODULE_AUTHOR("Sergio Gonzalez Collado");
++MODULE_DESCRIPTION("Simple Hello World! module");
+-- 
+2.39.2
+
