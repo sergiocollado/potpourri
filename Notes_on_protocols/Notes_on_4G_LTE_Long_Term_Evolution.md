@@ -8,6 +8,9 @@ References:
  - 3.1 - LTE 4G ARCHITECTURE BASICS - INTRODUCTION: https://youtu.be/1j4UwsdD9Qs
  - 3.3 - LTE 4G Evolved Packet Core (EPC) - Real Life Analogy - Air Travel: https://youtu.be/GFoGiatdkRY
  - Learn 4G LTE Network Architecture: https://youtu.be/-nDjkV-NulM
+ - LTE Attach Procedure - Introduction: https://youtu.be/m9nmSgYnGfE
+
+
 
 
 
