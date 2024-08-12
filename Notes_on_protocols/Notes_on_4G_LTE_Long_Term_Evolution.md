@@ -11,6 +11,8 @@ References:
  - LTE Attach Procedure - Introduction: https://youtu.be/m9nmSgYnGfE
 
 
+![4g architecture](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/4G_LTE_arch.PNG)
+
 
 
 
