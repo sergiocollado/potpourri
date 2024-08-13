@@ -1,6 +1,7 @@
 # Notes on 4G LTE long term evolution
 
 References: 
+ - https://yatebts.com/documentation/concepts/lte-concepts/
  - Introduction to 4G LTE: Technology, Architecture and Protocols Course: https://youtu.be/MT7KT4TjNx8
  - 4G LTE Network Architecture Simplified: https://youtu.be/dBwSoJH6Njk
  - An Explanation of the Driving Factors for LTE & LTE Network Architecture With Mpirical: https://youtu.be/aGRTBA1tYRo
@@ -13,7 +14,7 @@ References:
 
 ![4g architecture](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/4G_LTE_arch.PNG)
 
-
+![4G LTE arch and protocols](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/LTE_arch_and_protocols.PNG)
 
 
 
