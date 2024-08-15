@@ -72,6 +72,10 @@ More references:
 - linux_stable: stable releases branches
 - linux-next: code from many subsystems gets pulled into the tree and periodically is released for integration testing.
 
+Check the kernel releaes here: https://www.kernel.org/category/releases.html
+
+The stable releases are here: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/refs/heads
+
 ### Download the kernel
 
 To download the kernel with git:
