@@ -40,6 +40,16 @@ Languaje reference:
   - Complex cpp rust ffi: https://github.com/emilio/rust-cpp-ffi-examples/tree/master
   - bindgen user guide: https://rust-lang.github.io/rust-bindgen/introduction.html
   - rust rfc book: https://rust-lang.github.io/rfcs
+  - Rust and C filesystem APIs : https://lwn.net/Articles/958072/
+  - Defining the Rust 2024 edition : https://lwn.net/Articles/958792/
+  - A memory model for Rust code in the kernel : https://lwn.net/Articles/967049/
+  - Rust for embedded Linux kernels : https://lwn.net/Articles/970216/
+  - Existential types in Rust : https://lwn.net/Articles/970186/
+  - [Giving Rust a chance for in-kernel codecs](https://lwn.net/Articles/970565/)
+  - [Removing GFP_NOFS : ](https://lwn.net/Articles/978738/)
+  - Standards for use of unsafe Rust in the kernel : https://lwn.net/Articles/982868/
+  - https://lwn.net/Articles/986167/
+  - https://lwn.net/Articles/985210/
 
 Other resources:
   - linux kernel rust documentation: https://docs.kernel.org/rust/index.html
