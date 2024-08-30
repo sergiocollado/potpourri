@@ -4,6 +4,11 @@ struct Deck {
 }
 
 impl Deck {
+
+    // new() is an associated functions, that is to say
+    // a function asociated with the struct definition
+    // in constrast with methods, which are functions
+    // which operate in an instance on an struct.
     fn new() -> Self {
         let suits = ["Hearts", "Spades", "Diamonds"];
         let values = ["Ace", "Two", "Three"];
@@ -17,8 +22,7 @@ impl Deck {
             }
         }
 
-        let deck = Deck{ cards };
-        deck
+        Deck{ cards }
     }
 
 }
