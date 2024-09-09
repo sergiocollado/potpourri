@@ -75,7 +75,6 @@ Gestor de tareas Deadline
 2.1 Main algorithm
 ------------------
 
-
 2.1 Algoritmo principal
 -----------------------
 
@@ -92,6 +91,22 @@ Gestor de tareas Deadline
  "admission control" strategy (see Section "4. Bandwidth management") is used
  (clearly, if the system is overloaded this guarantee cannot be respected).
 
+ SCHED_DEADLINE [18] usa tres parámetros para gestionar las tareas, 
+ denominados "runtime", "period" y "deadline". Una tarea de SCHED_DEADLINE
+ deberia recibir "runtime" microsegundos de tiempo de ejecución cada
+ "period" microsegundos, y esos "runtime" microsegundos estan disponibles 
+ en los "deadline" microsegunods desde el comienzo del periodo. Para
+ implementar este comportamiento cada vez que una tarea se despierta,
+ el gestor de tareas calcula un "tiempo límite" que cumple esa garantía
+ (usando el algoritmo CBS[2,3]). Las tareas son gestionadas usando EDF[1]
+ sobre esos tiempos límites (la tarea con el siguente tiempo límite es
+ seleccionada para su ejecución). Notese que la tarea realmente recibe
+ "runtime" unidades de tiempo dentro de "deadline" si se ha seguido una
+ estrategia correcta de "control de admisión (lea la sección
+ "4. Bandwidth management") (claramente, si el sistem está sobrecargado
+ esta garantia no se puede respetar).
+
+
  Summing up, the CBS[2,3] algorithm assigns scheduling deadlines to tasks so
  that each task runs for at most its runtime every period, avoiding any
  interference between different tasks (bandwidth isolation), while the EDF[1]
@@ -100,8 +115,21 @@ Gestor de tareas Deadline
  with the "traditional" real-time task model (see Section 3) can effectively
  use the new policy.
 
+ Resuminedo el algoritmo CBS[2,3] asigna tiempos límites de ejecución a las
+ tareas para que cada tarea pueda ejecutarse en su mayor parte cada periodo,
+ evitando cualquier interferencia entre las distintas tareas (aislamiento de
+ ancho de banda), mientras que el algoritmo EDF[1] selecciona la tarea con 
+ el tiempo límite de ejecución más próximo como la siguiente tarea a ser 
+ ejecutada. Gracias a esta característica, las teras que no cumplen 
+ estrictamente con el modelo "tradiconal" de tarea en tiempo real (ver
+ sección 3) pueden usar efectivamente la nueva política. 
+
+
  In more details, the CBS algorithm assigns scheduling deadlines to
  tasks in the following way:
+
+ En más detalle, el algoritmo CBS asigna los tiempos límites para 
+ las tareas de la siguiente forma: 
 
   - Each SCHED_DEADLINE task is characterized by the "runtime",
     "deadline", and "period" parameters;
