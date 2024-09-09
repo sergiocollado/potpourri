@@ -60,9 +60,9 @@ Gestor de tareas Deadline
  La política SCHED_DEADLINE contenida dentro de la clase de gestión de tareas
  sched_dl es básicamente una implementación del algoritmo de gestión de tareas
  del "siguiente tiempo límite" (en inglés EDF, Earliest Deadline First),
- mejorado con un mecanismo (llamado servidor de ancho de banda constante, en 
- inglés CBS) que hace posible aislar en comportamiento de las tareas entre 
- ellas. 
+ mejorado con un mecanismo (llamado "servidor de ancho de banda constante", en 
+ inglés "Constant Bandwidth Server", CBS) que hace posible aislar el 
+ comportamiento de las tareas entre ellas. 
 
 
 2. Scheduling algorithm
