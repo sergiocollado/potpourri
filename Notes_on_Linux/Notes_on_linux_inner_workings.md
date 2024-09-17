@@ -3135,4 +3135,12 @@ The release of the Linux 5.10 kernel brings a new feature to protect against spe
   - https://www.kernel.org/doc/html/next/process/backporting.html
   - https://www.kernel.org/doc/html/latest/process/stable-kernel-rules.html
   - backporting linux kernel patches: https://www.youtube.com/watch?v=sBR7R1V2FeA
-   
+
+
+### virtme-ng
+
+ - https://github.com/arighi/virtme-ng
+
+virtme-ng is a tool that allows to easily and quickly recompile and test a Linux kernel, starting from the source code.
+
+It allows to recompile the kernel in few minutes (rather than hours), then the kernel is automatically started in a virtualized environment that is an exact copy-on-write copy of your live system, which means that any changes made to the virtualized environment do not affect the host system.
