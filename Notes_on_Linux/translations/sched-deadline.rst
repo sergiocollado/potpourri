@@ -115,7 +115,7 @@ Gestor de tareas Deadline
  with the "traditional" real-time task model (see Section 3) can effectively
  use the new policy.
 
- Resuminedo el algoritmo CBS[2,3] asigna tiempos límites de ejecución a las
+ Resumiendo el algoritmo CBS[2,3] asigna tiempos límites de ejecución a las
  tareas para que cada tarea pueda ejecutarse en su mayor parte cada periodo,
  evitando cualquier interferencia entre las distintas tareas (aislamiento de
  ancho de banda), mientras que el algoritmo EDF[1] selecciona la tarea con 
@@ -134,25 +134,51 @@ Gestor de tareas Deadline
   - Each SCHED_DEADLINE task is characterized by the "runtime",
     "deadline", and "period" parameters;
 
+  - Cada tarea SCHED_DEADLINE está caracterizada por los parámetros
+    "runtime", "deadline", y "period".
+
   - The state of the task is described by a "scheduling deadline", and
     a "remaining runtime". These two parameters are initially set to 0;
 
+  - El estado de una tarea está descrito por un "tiempo de finalización",
+    y un "tiempo de ejecución restante". Estos dos parámetros
+    inicialmente estan definidos a 0.
+
   - When a SCHED_DEADLINE task wakes up (becomes ready for execution),
     the scheduler checks if::
+
+  - Cuando una tarea SCHED_DEADLINE se despierta (se convierte en
+    disponible para ser ejecutada), el gestor de tareas verifica si::
 
                  remaining runtime                  runtime
         ----------------------------------    >    ---------
         scheduling deadline - current time           period
 
+
+           tiempo restante de ejecución             runtime
+        ----------------------------------    >    ---------
+        tiempo de finalización - tiempo actual      period
+
+
     then, if the scheduling deadline is smaller than the current time, or
     this condition is verified, the scheduling deadline and the
     remaining runtime are re-initialized as
 
+    entonces, si el timepo de finalización es menor que el tiempo actual,
+    o esta condición se verifica, el tiempo de finalización y el tiempo
+    restante de ejecución son re-inicializados como
+
          scheduling deadline = current time + deadline
          remaining runtime = runtime
 
+         tiempo de finalización = tiempo actual + tiempo límite
+         tiempo restante = runtime
+
     otherwise, the scheduling deadline and the remaining runtime are
     left unchanged;
+
+    de otro modo, el tiempo de finalización y el tiempo restante 
+    se dejan sin cambiar. 
 
   - When a SCHED_DEADLINE task executes for an amount of time t, its
     remaining runtime is decreased as::
