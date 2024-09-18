@@ -132,6 +132,10 @@ condtex of a source-tree.
 
 Once a module gets accepted to be included, it becomes an in-tree module.
 
+## Building external modules
+
+reference linux kernel documentation: https://docs.kernel.org/kbuild/modules.html
+
 ## Basic commands
 
 - `lsmod`: List modules, lsmod ges its information by reading the file /proc/module (previously) or /sys/module
