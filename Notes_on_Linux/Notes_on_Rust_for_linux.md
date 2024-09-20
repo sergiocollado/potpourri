@@ -10,6 +10,8 @@ Languaje reference:
   - Beginner's guide to Error Handling in Rust: https://www.sheshbabu.com/posts/rust-error-handling/
   - Rust memory safety explained: https://www.infoworld.com/article/3714925/rust-memory-safety-explained.html
   - rustlings exercises: https://github.com/rust-lang/rustlings/tree/rustlings-1
+  - the embedded rust book: https://docs.rust-embedded.org/book/intro/index.html
+  - real-time for the masses: https://japaric.github.io/rtfm5/book/en/preface.html
   - https://doc.rust-lang.org/stable/reference/                  
   - https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/
   - https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/effective-rust.html
