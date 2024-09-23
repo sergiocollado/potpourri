@@ -183,10 +183,18 @@ Gestor de tareas Deadline
   - When a SCHED_DEADLINE task executes for an amount of time t, its
     remaining runtime is decreased as::
 
+  - Cuando una tarea  SCHED_DEADLINE se ejecuta por una cantidad
+    de tiempo t, su tiempo de ejecución restate se decrementa como::
+
          remaining runtime = remaining runtime - t
+
+         tiempo de ejecución restante = tiempo de ejecución restante - t
 
     (technically, the runtime is decreased at every tick, or when the
     task is descheduled / preempted);
+
+    (técnicamente, el tiempo de ejecución se decrementa en cada tick,
+    o cuando la tarea se vuelve a gestionar o es interrupida. 
 
   - When the remaining runtime becomes less or equal than 0, the task is
     said to be "throttled" (also known as "depleted" in real-time literature)
@@ -194,26 +202,53 @@ Gestor de tareas Deadline
     time" for this task (see next item) is set to be equal to the current
     value of the scheduling deadline;
 
+  - Cuando el tiempo restante de ejecución llega a ser menor o igual que
+    0 la tarea es "frenada" (también se concoe como "agotada" en la 
+    literatura sobre tiempo-real). El "tiempo de reabastecimento" para 
+    esta tarea (ver el siguiente punto) se ajusta para que sea igual al
+    valor actual del tiempo de finalización de la tarea.
+
   - When the current time is equal to the replenishment time of a
     throttled task, the scheduling deadline and the remaining runtime are
     updated as::
 
+  - cuando el tiempo actual es equivalente al tiempo de reabastecimento
+    de una tarea frenada, el tiempo de finalizacion de la tarea y su 
+    tiempo restante se actualizan como::
+
          scheduling deadline = scheduling deadline + period
          remaining runtime = remaining runtime + runtime
+
+         tiempo de finalización = tiempo de finalización + periodo
+         tiempo de ejecución restante = tiempo de ejecución restante + tiempo de ejecución 
 
  The SCHED_FLAG_DL_OVERRUN flag in sched_attr's sched_flags field allows a task
  to get informed about runtime overruns through the delivery of SIGXCPU
  signals.
 
+ La bandera SCHED_FLAG_DL_OVERRUN en sched_attr en el campo sched_flags permite 
+ a una tarea ser informada sobre el tiempo que se ha sobre-ejecutado recibiendo 
+ una señal SIGXCPU. 
+
 
 2.2 Bandwidth reclaiming
 ------------------------
+
+2.2 Reclamación de ancho de banda
+---------------------------------
 
  Bandwidth reclaiming for deadline tasks is based on the GRUB (Greedy
  Reclamation of Unused Bandwidth) algorithm [15, 16, 17] and it is enabled
  when flag SCHED_FLAG_RECLAIM is set.
 
+ Reclamar ancho de banda para tareas con un tiempo de finalización se
+ basa en el algoritmo GRUB (Greedy Reclamation of Unused Bandwidth) [15, 16, 17] 
+ y se habilita dando valor a la bandera SCHED_FLAG_RECLAIM.
+
  The following diagram illustrates the state names for tasks handled by GRUB::
+
+ El siguiente diagrama ilustra los nombres de los estados para las tareas
+ que gestiona GRUB:: 
 
                              ------------
                  (d)        |   Active   |
@@ -233,16 +268,44 @@ Gestor de tareas Deadline
                  (c)        | Contending |
                              ------------
 
+
+                             ------------
+                 (d)        |   Activa   |
+              ------------->|            |
+              |             | Disputando |
+              |              ------------
+              |                A      |
+          ----------           |      |
+         |          |          |      |
+         | Inactiva |          |(b)   | (a)
+         |          |          |      |
+          ----------           |      |
+              A                |      V
+              |              ------------
+              |             |   Active   |
+              --------------|     No    |
+                 (c)        | Disputando |
+                             ------------
+
+
  A task can be in one of the following states:
 
+ Una tarea puede estar en uno de los siguientes estados:
+
   - ActiveContending: if it is ready for execution (or executing);
+  - Activa disputando: si está lista para ejecutarse (o ejecutandose);
 
   - ActiveNonContending: if it just blocked and has not yet surpassed the 0-lag
     time;
+  - Activa no disputando: si solo esta bloqueada y no ha sobrepasado el 
+    tiemp de 0-lag
 
   - Inactive: if it is blocked and has surpassed the 0-lag time.
+  - Inactiva: si está bloqueada o ha sobrepasado el tiempo 0-lag.
 
  State transitions:
+
+ Transiciones de estados:
 
   (a) When a task blocks, it does not become immediately inactive since its
       bandwidth cannot be immediately reclaimed without breaking the
