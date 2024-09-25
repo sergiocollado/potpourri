@@ -19,5 +19,7 @@ references:
  - https://www.brendangregg.com/usemethod.html
  - https://www.brendangregg.com/USEmethod/use-linux.html
 
-   
+In the previous link there is a list of simple tools to measure the utilization, saturiation and errors of the different systems. 
+
+
 
