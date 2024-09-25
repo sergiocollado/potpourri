@@ -27,6 +27,7 @@ list of Linux subsystems: https://www.kernel.org/doc/html/latest/subsystem-apis.
  - Multimedia and Television Support on Linux: https://www.linuxtv.org/ & https://www.kernel.org/doc/html/v4.9/media/uapi/v4l/v4l2.html 
  - Let's code a Linux Driver: https://www.youtube.com/watch?v=x1Y203vH-Dc&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
  - Linux standards (ELF, DWARF, FHS ...) : https://refspecs.linuxfoundation.org/index.shtml
+ - kernel mail lists: https://subspace.kernel.org/vger.kernel.org.html#
 
 
 ## Linux kernel development process
@@ -112,11 +113,11 @@ and the patch prefixes are:  [PATCH], [PATCH RFC] or [RFC PATCH] or [PATCH v4]
 
 ### Portal of Linux Kernel patches
 
- - refernece: https://patchwork.kernel.org/
+ - reference: https://patchwork.kernel.org/
 
 ### To apply a patch:
 
-reference: https://www.kernel.org/doc/html/v4.10/process/applying-patches.html <br>
+ - reference: https://www.kernel.org/doc/html/v4.10/process/applying-patches.html <br>
 
 To apply a patch from an email (gmail): <br>
 reference: https://stackoverflow.com/questions/23594843/applying-email-patch-with-git <br>
@@ -124,7 +125,6 @@ reference: https://stackoverflow.com/questions/23594843/applying-email-patch-wit
 You can apply patches from email-formatted patch using any raw data viewer.
 
 For example, GMail, in the current interface, has support for it. You can apply a patch as a commit from a mail message following these steps:
-
    - Open the GMail web page in the message with patch data
    - Click at the ellipsis icon located at top-right of this message
    - Click at "Show Original". A new tab will open with the content of the message.
@@ -135,7 +135,7 @@ For example, GMail, in the current interface, has support for it. You can apply 
    - Paste the code
    - Type Ctrl-D to finish the insertion
 
-more references: <br>
+more references:
 - https://kernelnewbies.org/FAQ/HowToApplyAPatch
 
 
