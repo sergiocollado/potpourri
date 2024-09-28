@@ -21,5 +21,41 @@ references:
 
 In the previous link there is a list of simple tools to measure the utilization, saturiation and errors of the different systems. 
 
+There are different types of performance tools: 
+ 
+classiffication by tools by amount of information: 
+ - counting tools: count events, like: `top` or `ifconfig`
+ - latency tools: how long? `iolatency`, `fileslower`, `dbslower`.
+ - stack aggreagators: where this comes from in my code? like: `perf`, `stackcount`
+ - tracers: report events as those happens: logs, `perf`, `trace`
+
+classification by data processing: 
+ - Real time:
+     - output as events arrive
+     - no long-term aggregation
+     - lower overhead
+ - Later analysis
+     - aggregated or raw data written to a file
+     - post-processing required
+     - can go back and investigate
+  
+ Tracing vs sampling:   
+    - Sampling: sometimes some events happen to often to count them, so the strategy is to get an snapshot or a call stack every N occurrences of an interesting event. For most events implemented in the PMU (Processor Monitoring Unit) using overflow counters and interrupts. 
+    - Tracing: is for lower frequency events, and it works by getting a message or a call stack at every occurrence of an interesting event.
+
+When you use tracing you get every occurrence of an event, when you use sampling you only get every N event, but with more sampling you get a better probability acurracy to the full picture. 
+
+Some tracing and sampling tools:
+ - perf
+ - ftrace
+ - SystemTap
+ - SysDig
+ - LTTng
+ - ply/BPF
+ - bcc/BPF
+ - C/BPF
+ - custom.ko
+   
+   
 
 
