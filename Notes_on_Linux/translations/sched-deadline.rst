@@ -213,7 +213,7 @@ Gestor de tareas Deadline
     updated as::
 
   - cuando el tiempo actual es equivalente al tiempo de reabastecimento
-    de una tarea frenada, el tiempo de finalizacion de la tarea y su 
+    de una tarea extrangulada, el tiempo de finalización de la tarea y su 
     tiempo restante se actualizan como::
 
          scheduling deadline = scheduling deadline + period
@@ -324,6 +324,22 @@ Gestor de tareas Deadline
       where runtime is the remaining runtime, while dl_runtime and dl_period
       are the reservation parameters.
 
+  (a) Cuando una tarea se bloquea, esta no se vuelve inactiva inmediatamente
+      ya que su ancho de banda no puede ser reclamado inmediatamente sin 
+      romper las garantias de tiempo real. Por tanto entra en un estado de
+      transición llamado 'ActiveNonContending'. El gestor de tareas carga
+      el "temporizador de inactivdad" para disparalo en el momento de 0-lag,
+      cuando el ancho de banda de la tarea pueda ser reclamado sin romper las
+      garantias de tiempo real.
+
+      El momento the 0-lag para una tarea que entra en el estado ActiveNonContending
+      se calcula asi::
+
+                                          (tiempo de ejecución * dl_period)
+             tiempo de finalización  =  - ----------------------------------
+                                                    dl_runtime
+
+
   (b) If the task wakes up before the inactive timer fires, the task re-enters
       the ActiveContending state and the "inactive timer" is canceled.
       In addition, if the task wakes up on a different runqueue, then
@@ -335,23 +351,57 @@ Gestor de tareas Deadline
       (so, the flag is set when the task blocks and is cleared when the
       "inactive timer" fires or when the task  wakes up).
 
+  (b) Si la tarea se despierta antes de que se dispare el temporizador de
+      inactividad, la tarea vuelve al estado ActiveNonConenteing y el temporizador
+      de inactividad es cancelado. Además, si la tarea se despierta en una
+      cola de ejecución distinta, la utilización de la tarea debe ser eliminada
+      de la utilización de cola de ejecución anterior y añadida a la utilización
+      activa de la nueva cola de ejecución. Para evitar carreras entre 
+      una tarea despertando y una cola de ejecución mientras el temporizador de
+      inactividad está ejecutandose en una CPU distinta, la bandera
+      "dl_non_contending" se usa para indicar que una tarea no está en una cola 
+      de ejecución pero está activa (asi, que la bandera es definida cuando la
+      tarea está bloqueada y se borra cuando el temporizador de actividad 
+      se dispara o cuando la tarea despierta).
+
   (c) When the "inactive timer" fires, the task enters the Inactive state and
       its utilization is removed from the runqueue's active utilization.
 
+  (c) cuando el temporizador de inactividad se dispara, la tarea entra en
+      un estado de inactividad y su utilización se elimina de la utilización
+      activa de la cola de ejecución.
+
   (d) When an inactive task wakes up, it enters the ActiveContending state and
       its utilization is added to the active utilization of the runqueue where
-      it has been enqueued.
+      it has been enqueued
+
+  (d) Cuando una tarea inactiva se despierta, esta entra en un estado ActiveContending
+      y su utilización se añade a la utilización activa de la cola de ejecución 
+      donde se ha encolado.
 
  For each runqueue, the algorithm GRUB keeps track of two different bandwidths:
+
+ Para cada cola de ejecuión, el algoritmo GRUB monitoriza dos anchos de banda
+ distintos:
 
   - Active bandwidth (running_bw): this is the sum of the bandwidths of all
     tasks in active state (i.e., ActiveContending or ActiveNonContending);
 
+  - Ancho de bnada activo (running_bw): esta es la suma de los anchos de banda
+    de todas las tareas en estado activo (i.e., ActiveContending o ActiveNonContending);
+
   - Total bandwidth (this_bw): this is the sum of all tasks "belonging" to the
     runqueue, including the tasks in Inactive state.
 
+  - Ancho de banda total (this_bw): esta es la suma de todas la tareas que 
+    perteneces a la cola de ejecución, incluidas las tareas en estado inactivo.
+
   - Maximum usable bandwidth (max_bw): This is the maximum bandwidth usable by
     deadline tasks and is currently set to the RT capacity.
+
+  - Máximo ancho de banda usable (max_bw): Este es el máximo ancho de banda usable
+    por las tareas con tiempo de finalización y actualmente es defindio a la 
+    capacidad RT (tiempo real).
 
 
  The algorithm reclaims the bandwidth of the tasks in Inactive state.
