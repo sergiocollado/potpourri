@@ -59,6 +59,27 @@ When you use tracing you get every occurrence of an event, when you use sampling
  - custom.ko
 
 ### Kernel tracepoints
+
+- reference: https://docs.kernel.org/trace/tracepoints.html
+
+Kernel tracepoints are one of the most importat resources for assessing the kernel performance. 
+These are embedded on the kernel at compile time.
+
+What it means is that there are some functions in the kernel code that tipically don't do 
+anything but can be instrumented in such a way that if they are enabled the trace points, 
+they report real-time information from the system. 
+
+One notable area where there are no trace points is in the TCP IP subsystem, other tools
+have to be used to retrieve information from that subsystem. 
+
+scenarios for using tracepoints: 
+ - summary of block device utilization and latency
+ - blocked process wait times and timeline
+ - kernel memory allocation patterns
+ - hardware interrupt handling and distribution
+ - application workload characterization through syscalls
+
+
    
 
 
