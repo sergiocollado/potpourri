@@ -95,6 +95,11 @@ USDT probes - Userspace Static Defined Tracing probes - act as markers for event
  - https://lwn.net/Articles/753601/
  - https://blogs.oracle.com/linux/post/usdt-tracing-across-different-runtimes
 
+USDT brings kernel tracepoints to user programs. <br>
+Tracepoint information and arguments embedded in the binary and available to tracing tools. <br>
+Probes (are literally) nops until enabled. 
+
+
    
 
 
