@@ -79,6 +79,13 @@ scenarios for using tracepoints:
  - hardware interrupt handling and distribution
  - application workload characterization through syscalls
 
+#### Kprobes
+
+ - https://docs.kernel.org/trace/kprobes.html
+ - https://documentation.suse.com/sles/15-SP5/html/SLES-all/cha-tuning-kprobes.html
+ - https://github.com/konstantin89/linux-kernel-kprobes-demo
+ - https://github.com/konstantin89/linux-kernel-hook
+
 
    
 
