@@ -79,12 +79,22 @@ scenarios for using tracepoints:
  - hardware interrupt handling and distribution
  - application workload characterization through syscalls
 
-#### Kprobes
+### Kprobes
 
  - https://docs.kernel.org/trace/kprobes.html
  - https://documentation.suse.com/sles/15-SP5/html/SLES-all/cha-tuning-kprobes.html
  - https://github.com/konstantin89/linux-kernel-kprobes-demo
  - https://github.com/konstantin89/linux-kernel-hook
+
+### USDT  - Userspace Static Defined Tracing probes
+
+USDT probes - Userspace Static Defined Tracing probes - act as markers for events of interest in user-space programs and libraries. As with kernel tracepoints, defining important events has huge value when trying to understand system behaviour. It is as if the developer who added these probes has marked the important sites on a map, and now we can use that map to help guide us to an understanding of what the system is doing by extracting the tracing information from those places.
+
+ - https://www.brendangregg.com/blog/2015-07-03/hacking-linux-usdt-ftrace.html
+ - https://lwn.net/Articles/753601/
+ - https://blogs.oracle.com/linux/post/usdt-tracing-across-different-runtimes
+
+   
 
 
    
