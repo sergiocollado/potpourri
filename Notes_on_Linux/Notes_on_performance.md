@@ -39,11 +39,11 @@ classification by data processing:
      - post-processing required
      - can go back and investigate
   
- ### Tracing vs sampling:   
- 
-    - Sampling: sometimes some events happen to often to count them, so the strategy is to get an snapshot or a call stack every N occurrences of an interesting event. For most events implemented in the PMU (Processor Monitoring Unit) using overflow counters and interrupts. 
-    - Tracing: is for lower frequency events, and it works by getting a message or a call stack at every occurrence of an interesting event.
+ ### Tracing vs sampling 
 
+ - Sampling: sometimes some events happen to often to count them, so the strategy is to get an snapshot or a call stack every N occurrences of an interesting event. For most events implemented in the PMU (Processor Monitoring Unit) using overflow counters and interrupts.
+ - Tracing: is for lower frequency events, and it works by getting a message or a call stack at every occurrence of an interesting event.
+    
 When you use tracing you get every occurrence of an event, when you use sampling you only get every N event, but with more sampling you get a better probability acurracy to the full picture. 
 
 ### Some tracing and sampling tools:
