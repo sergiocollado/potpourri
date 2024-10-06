@@ -420,9 +420,29 @@ Gestor de tareas Deadline
   - Uextra is the (per runqueue) extra reclaimable utilization
     (subjected to RT throttling limits).
 
+ El algoritmo reclama el ancho de banda de las tareas en estado inactivo.
+ ESto lo hace decrementando el timepo de ejecición de la tarea en ejecución Ti 
+ a una velocidad igual a: 
+
+           dq = -(max{ Ui, (Umax - Uinact - Uextra) } / Umax) dt
+
+ donde: 
+
+  - Ui ies el ancho de banda de la tarea Ti;
+  - Umax es la máxima utilización reclamanbe (sujeta a los límites RT
+    de restricción);
+  - Uinact es la utilización inactiva (por cola de ejecución), calculada como
+    (this_bq - running_bw)
+  - Uextra es el utilización extra reclamabel (por cola de ejecución) 
+    (sujeta a los límites RT de restricción)
+    
 
  Let's now see a trivial example of two deadline tasks with runtime equal
  to 4 and period equal to 8 (i.e., bandwidth equal to 0.5)::
+
+ Veamos ahora un ejemplo trivial de dos tareas con un tiempo de finalización 
+ con un tiempo de ejecución de 4 y un period igual a 8 (i.e., ancho de banda
+ igual a 0.5)::
 
          A            Task T1
          |
