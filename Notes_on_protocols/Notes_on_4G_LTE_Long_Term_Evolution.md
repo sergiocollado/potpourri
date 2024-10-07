@@ -14,8 +14,6 @@ References:
 
 ![4g architecture](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/4G_LTE_arch.PNG)
 
-![4G LTE arch and protocols](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/LTE_arch_and_protocols.PNG)
-
 
   - The UE (User Equipment) consists of the ME (Movile Equipment) + USIM 
   - The access network:  EUTRAN - Evolved Universal Terrestial Radio Access Network)
@@ -25,6 +23,13 @@ References:
 The Access Network consists on a base stations, the bases station in 4G is known as eNodeB (eNBs) 
 
 The core network consists in nodes as: MME, HSS, PCRF,  and routers (or gateways) as: S-GW (serving gateway), P-GW (packet(data) gateway). 
+
+4G can interwork with 3G
+
+
+
+![4G LTE arch and protocols](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/LTE_arch_and_protocols.PNG)
+
 
 
 
