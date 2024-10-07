@@ -17,6 +17,10 @@ References:
 ![4G LTE arch and protocols](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/LTE_arch_and_protocols.PNG)
 
 
-
+  - The UE (User Equipment) consists of the ME (Movile Equipment) + USIM 
+  - The access network:  EUTRAN - Evolved Universal Terrestial Radio Access Network)
+  - CN (Core Network): EPC (Evolved Packed Core)
+  - UEs don't communicate directly with the CN, but CN is responsible for overall control of UE and call stablishment. 
+ 
 
 
