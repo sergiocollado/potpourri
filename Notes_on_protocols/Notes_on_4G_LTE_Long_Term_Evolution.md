@@ -51,4 +51,17 @@ only packet-switch core. So the voice is also carried with IP packets.
  - Co-ordination for handover with other eNB
 
 
+### EPS bearer
 
+EPS bearer is like an IP tunnel that extends from the UE, to the eNodeB , to the SGW up to the PDN gateway. 
+
+ - refernece: https://telecompedia.net/eps-bearer/#:~:text=EPS%20bearer%20or%20with%20long,known%20as%20default%20EPS%20bearer.
+
+ - 4G is an all IP system
+ - 4G provides data/IP connectivity to UE as EPS Beares
+ - EPS bearer QoS characterized by:
+     - datarate: guaranteed or non-guaranteed
+     - latency
+     - priority
+
+   
