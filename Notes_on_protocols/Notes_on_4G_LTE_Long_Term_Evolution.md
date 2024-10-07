@@ -41,5 +41,14 @@ to the eNodeB (enhaced NodeB), and other functions are moved to the core network
 only packet-switch core. So the voice is also carried with IP packets. 
 
 
+### Evolved Node B (eNB)
+
+ - Radio transmission/reception
+ - Radio resource management (RRM)
+    -  admission control
+    -  resource block allocation in UL & DL
+ - Encryption of user data & signalling
+ - Co-ordination for handover with other eNB
+
 
 
