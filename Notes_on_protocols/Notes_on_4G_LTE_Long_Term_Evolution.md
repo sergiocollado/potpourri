@@ -37,6 +37,9 @@ The core network consists in nodes as: MME, HSS, PCRF,  and routers (or gateways
 In the 3G architecture the RNC (radio network controller) is connected to one or more NodeBs, but in 4G there is not RNC, some  functions of the RNC, are moved
 to the eNodeB (enhaced NodeB), and other functions are moved to the core network. So the architecture is flatter, and that implies less latency. 
 
+4G is an all IP architecture, in contrast with 3G. In 3G there was a circuit-switch core and a packet-switch core, but in the case of 4G there is no circuit-switch core, 
+only packet-switch core. So the voice is also carried with IP packets. 
+
 
 
 
