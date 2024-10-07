@@ -22,5 +22,9 @@ References:
   - CN (Core Network): EPC (Evolved Packed Core)
   - UEs don't communicate directly with the CN, but CN is responsible for overall control of UE and call stablishment. 
  
+The Access Network consists on a base stations, the bases station in 4G is known as eNodeB (eNBs) 
+
+The core network consists in nodes as: MME, HSS, PCRF,  and routers (or gateways) as: S-GW (serving gateway), P-GW (packet(data) gateway). 
+
 
 
