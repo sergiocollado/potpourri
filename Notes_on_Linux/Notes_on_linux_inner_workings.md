@@ -94,6 +94,10 @@ cd linux-stable
 
 ### Patches
 
+A common place to see the paches is: https://patchwork.kernel.org/ , many manteiners check the
+patches there. 
+
+
 Linux development is handled with git as a code repository. 
 
  - https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git
