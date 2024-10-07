@@ -32,4 +32,8 @@ The core network consists in nodes as: MME, HSS, PCRF,  and routers (or gateways
 
 
 
+### Overall 4G architecture
+
+
+
 
