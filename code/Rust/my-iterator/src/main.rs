@@ -1,3 +1,6 @@
+// the pattern for using iterators is:
+//    iterator + adaptor + consumer
+
 fn print_elements(elements: &[String]) {
     // for element in elements {
     //     println!("{}", element);
