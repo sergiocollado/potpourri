@@ -1,5 +1,9 @@
 // the pattern for using iterators is:
 //    iterator + adaptor + consumer
+//
+//    iterators: into_iter, iter, iter_mut
+//    adaptors: map, filter, for_each, find
+//    consumers: collect, sum
 
 fn print_elements(elements: &[String]) {
     // for element in elements {
