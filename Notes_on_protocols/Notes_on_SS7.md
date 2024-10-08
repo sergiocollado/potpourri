@@ -2,6 +2,7 @@
 
  - reference: https://web.archive.org/web/20150722061655/http://www.informit.com/library/library.aspx?b=Signaling_System_No_7
  - reference: https://www.itu.int/ITU-T/recommendations/rec.aspx?rec=15042
+ - reference: https://youtu.be/wVyu7NB7W6Y?si=5FH_9yJM19gp0DIK
 
 Signalling system No. 7 (SS7) is a stack of signalling protocols, which was initially developed by ITU (CCITT) in the 1980s. Since then, SS7 standards have become a
 generic stack which is widely applied in public switched telephone networks (PSTNs) all over the world. With the growth of mobile telecommunications and the appearance
