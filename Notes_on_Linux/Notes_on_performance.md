@@ -13,7 +13,7 @@ References:
  - https://leezhenghui.github.io/linux/2019/03/05/exploring-usdt-on-linux.html
 
 
-## USE: Utilization, Saturation and errors
+## USE: Utilization, Saturation and Errors
 
 references:
  - https://www.brendangregg.com/usemethod.html
