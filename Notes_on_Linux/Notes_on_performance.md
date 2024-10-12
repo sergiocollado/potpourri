@@ -166,8 +166,16 @@ flags:
 -g: capture all stacks
 -p: specific process
 --: run workload and capture
--F: frequency samples (Hz)
--c: #of events in each sample
+-F: frequency samples (Hz) - controlling the frequency you can control the overhead induced by perf.
+-c: #of events in each sample - like -F but you requeste 1 sample, every N clock cycles.
+```
+
+Perf can be used to record the invocation of any kernel tracepoint, kprobe or uprobe
+```
+perf record -ag -F 97
+perf record -ag -e sched:sched-switch
+perf record -p 188 -e block:block_rq_insert
+perf record -g -e net:net_dev_start_xmit
 ```
 
 
