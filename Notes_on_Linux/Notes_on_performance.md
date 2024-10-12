@@ -145,6 +145,34 @@ perf top -e block:block_rq_insert
 perf top -e page-faults
 ```
 
+### recording cpu stacks with perf
+
+To find a CPU bottle neck, record stacks at timed intervals:
+
+```
+# system wide
+perf record -ag -F 97
+
+# specific process
+perf record -p 188 -g -F 97
+
+# specific workload
+perf record -g -F -- ./myapp
+```
+
+flags:
+```
+-a: all CPUs
+-g: capture all stacks
+-p: specific process
+--: run workload and capture
+-F: frequency samples (Hz)
+-c: #of events in each sample
+```
+
+
+
+
 
 
 
