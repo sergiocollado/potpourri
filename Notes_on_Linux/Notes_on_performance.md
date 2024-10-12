@@ -188,7 +188,9 @@ perf record -g -e net:net_dev_start_xmit
 
 `perf annotate --stdio` will report in down-top fashion the places in the code that uses the most cpu time. 
 
-### flame graphs
+## flame graphs
+
+- reference: https://www.brendangregg.com/flamegraphs.html
 
 A perf report `perf report --stdio | wc -l` can be huge, and difficult to read. 
 
