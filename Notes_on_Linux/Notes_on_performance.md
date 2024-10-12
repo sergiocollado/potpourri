@@ -180,6 +180,13 @@ perf record -p 188 -e block:block_rq_insert
 perf record -g -e net:net_dev_start_xmit
 ```
 
+### top-down and down-top analisys
+
+`perf report` opens an user interface, which is text based, but is better to navigate that the text traces. 
+
+`perf report --stdio` will print a top-down analysis of the program.
+
+`perf annotate --stdio` will report in down-top fashion the places in the code that uses the most cpu time. 
 
 
 
