@@ -112,6 +112,8 @@ references:
 
 ### one liners
 
+- recerence: https://www.brendangregg.com/perf.html
+
 Record cpu samples with stacks to find CPU hot path
 ```
 perf record -ag -F 97
