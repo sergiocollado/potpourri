@@ -99,8 +99,55 @@ USDT brings kernel tracepoints to user programs. <br>
 Tracepoint information and arguments embedded in the binary and available to tracing tools. <br>
 Probes (are literally) nops until enabled. 
 
+## Perf
 
+`perf` is a tool that can instrument CPU performance counters, tracepoints, kprobes, and uprobes (dynamic tracing). It is capable of lightweight profiling. It is also included in the Linux kernel, under tools/perf, and is frequently updated and enhanced.
+
+ Perf is a tool for linux performance investigation. 
+
+references: 
+ - https://perf.wiki.kernel.org/index.php/Main_Page
+ - perf tutorial: https://perf.wiki.kernel.org/index.php/Tutorial
+ - perf examples: https://www.brendangregg.com/perf.html
+
+### one liners
+
+Record cpu samples with stacks to find CPU hot path
+```
+perf record -ag -F 97
+```
+
+Probe user-space memory allocation failures with stacks 
+```
+perf probe -x /lib64/lib.so.6 --add 'malloc%return res=$retval'
+perf record -e probe:malloc --filter 'res==0' -g -p 188
+```
    
+collect disk I/O access statistics and pin-point heavy disk consumers
+```
+perf record -e block:block_rq_insert -a
+```
+
+trace syscalls to find missing or excessive file operations 
+```
+perf trace -e open
+```
+
+get number of events over a time interval 
+```
+perf stat -a -e sched:sched_switch -- sleep 5
+```
+
+monitor system performance (like top) on 1000s of metrics
+```
+perf top
+perf top -e block:block_rq_insert
+perf top -e page-faults
+```
+
+
+
+
 
 
    
