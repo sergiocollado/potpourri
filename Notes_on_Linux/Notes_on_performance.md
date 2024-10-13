@@ -305,9 +305,26 @@ trace-cmd report -F 'sched_switch: prev_pid = 188'
 ```
 
 
-```
+#### perf-tools
 
-```
+ - reference: https://github.com/brendangregg/perf-tools
+
+A miscellaneous collection of in-development and unsupported performance analysis tools for Linux ftrace and perf_events (aka the "perf" command). Both ftrace and perf are core Linux tracing tools, included in the kernel source. Your system probably has ftrace already, and perf is often just a package add (see Prerequisites).
+
+These tools are designed to be easy to install (fewest dependencies), provide advanced performance observability, and be simple to use: do one thing and do it well. This collection was created by Brendan Gregg (author of the DTraceToolkit).
+
+Many of these tools employ workarounds so that functionality is possible on existing Linux kernels. Because of this, many tools have caveats (see man pages), and their implementation should be considered a placeholder until future kernel features, or new tracing subsystems, are added.
+
+examples: 
+ - opensnoop: trace_open() syscalls with filenames
+ - funcslower: trace functions slower than threshold
+ - iolatency: summarize I/O latency as a histogram
+ - syscount: count system calls
+
+there are also general purpouse tracers:
+ - tpoint: enable and trace tracepoints
+ - kprobe: place and trace kprobe
+ - uprobe: place and trace uprobe
 
 
 
