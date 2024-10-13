@@ -147,7 +147,7 @@ perf top -e block:block_rq_insert
 perf top -e page-faults
 ```
 
-### recording cpu stacks with perf
+### Recording cpu stacks with perf
 
 To find a CPU bottle neck, record stacks at timed intervals:
 
@@ -204,6 +204,33 @@ Turns  millions of stack traces into an interactive graph:
  - Find threads that block for a long time and the stack where they do it. 
 
 The flame graph generator: https://github.com/brendangregg/FlameGraph
+
+To generate the flame graph, you get the perf output and pipe it to one of the flame-graph scripts
+```
+$ perf script | ~vagrant/src/FlameGraph/stackcollapse-perf.pl
+```
+
+then pipe that output into the flamegraph generator:
+
+```
+$ perf script | ~vagrant/src/FlameGraph/stackcollapse-perf.pl | vagrant/src/FlameGraph/flamegraph.pl 
+```
+
+and that produces the SVG file. 
+
+### FPO and broken stacks
+
+The FPO (frame pointer omission optimization) can be painfull when you are using any stack collection tool,
+and lead to broken stacks
+
+ - reference: https://www.brendangregg.com/blog/2024-03-17/the-return-of-the-frame-pointers.html
+
+The compiler is using something known as FPO (Frame Pointer Omission), it is an optimization that doesn't 
+link stack frames using the ERB/RBP register. 
+ - typical wins are 1-5%
+ - can make it hard for profiles and other tools to walk the stack without extra tools (e.g. libunwind or LBR)
+
+
 
 
 
