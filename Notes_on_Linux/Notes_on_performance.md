@@ -203,6 +203,7 @@ Turns  millions of stack traces into an interactive graph:
  - Show stacks that perform heavy disk accesses.
  - Find threads that block for a long time and the stack where they do it. 
 
+The flame graph generator: https://github.com/brendangregg/FlameGraph
 
 
 
