@@ -230,6 +230,7 @@ link stack frames using the ERB/RBP register.
  - typical wins are 1-5%
  - can make it hard for profiles and other tools to walk the stack without extra tools (e.g. libunwind or LBR)
 
+For disabling FPO in C/C++: `-fpo-omit-frame-pointer`
 
 
 
