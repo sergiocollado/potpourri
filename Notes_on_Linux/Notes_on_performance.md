@@ -195,6 +195,15 @@ perf record -g -e net:net_dev_start_xmit
 A perf report `perf report --stdio | wc -l` can be huge, and difficult to read. 
 
 
+A flame graph is a visualization method (adjancency graph), very useful for stack traces, invented
+by Brendan Gregg.
+
+Turns  millions of stack traces into an interactive graph:
+ - indentify CPU hotspots on the system/application.
+ - Show stacks that perform heavy disk accesses.
+ - Find threads that block for a long time and the stack where they do it. 
+
+
 
 
 
