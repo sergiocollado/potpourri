@@ -235,6 +235,79 @@ libunwind, and requieres the debugininfo for all stack frames.
 
 ### Linux system events
 
+#### introduction to Ftrace and Debugfs
+
+Ftrace, originally was the "function tracer" a tool to looking at kernel function execution. But today Ftrace
+has been expanded and now is a series of tool for tracing the system and agregating the information. 
+
+ - reference: https://www.kernel.org/doc/html/latest/trace/ftrace.html
+
+Ftrace is an internal tracer designed to help out developers and designers of systems to find what is going on inside the kernel. It can be used for debugging or analyzing latencies and performance issues that take place outside of user-space.
+
+Although ftrace is typically considered the function tracer, it is really a framework of several assorted tracing utilities. There’s latency tracing to examine what occurs between interrupts disabled and enabled, as well as for preemption and from a time a task is woken to the task is actually scheduled in.
+
+One of the most common uses of ftrace is the event tracing. Throughout the kernel is hundreds of static event points that can be enabled via the tracefs file system to see what is going on in certain parts of the kernel.
+
+Ftrace has an interface through Debugfs, that can be mounted in `/sys/kernel/debug` by default, and then 
+in `/sys/kernel/debug/tracing` you can use control files to start or stop strace, configure what event to trace,
+setup kprobes and uprobes also. And read the output through the `trace` file or `trace_pipe` file. 
+
+Ftrace major features:
+ - tracing kernel functions (including call graph)
+ - tracing kernel tracepoints, kprobes, uprobes
+ - interrupt and wake up latency tracing
+ - in-kernel histograms (hist-triggers)
+
+ - reference: https://www.youtube.com/results?search_query=ftrace
+
+There are some frontends like: 
+ - https://github.com/rostedt/trace-cmd
+ - https://github.com/brendangregg/perf-tools
+
+#### recording and printing events oneliners
+
+
+record all context switches:
+```
+trace-cmd record -e sched::sched::switch
+```
+record all write syscalls where the write was >1K:
+```
+trace-cmd record -e syscalls::sys_enter_open -f 'count > 1024' 
+```
+print the trace pipe contents:
+```
+trace-cmd report
+```
+print a trace summary:
+```
+trace-cmd hist
+```
+function tracing with stacks:
+```
+trace-cmd record -l tcp_sendmsg -p function --func-stack
+```
+
+filtering: find which events are in the trace: 
+```
+trace-cmd report --events
+```
+
+filtering: print only context switches from idle:
+```
+trace-cmd report -F 'sched_switch: prev_state == 1'
+```
+
+filtering: print only onctext switches from a specific process
+```
+trace-cmd report -F 'sched_switch: prev_pid = 188'
+```
+
+
+```
+
+```
+
 
 
 
