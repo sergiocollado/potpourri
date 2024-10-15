@@ -102,6 +102,10 @@ will inform the MME about this incomming data, and the MME will inform the UE ab
 Other function is the "lawful interception", lawful monitoring of UE. As all the data passes through the SGW is a good place
 to monitor data. 
 
+### Packet data gateway (P-GW)
+
+Allocates IP addresses to UE during bearer establishment.
+
 
 
 
