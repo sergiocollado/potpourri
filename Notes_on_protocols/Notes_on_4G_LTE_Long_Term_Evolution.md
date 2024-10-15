@@ -87,5 +87,23 @@ As part of the stablishment of the EPS bearer the MME uses the P-GW and the S-GW
 
 It handles the user data connectivity b/w UE and the EPC. 
 
+The S-GW is simply a router, it routes the data received from the UE to the PDN-gateway (P-GW) (PDN: packet data network)
+
+Other important function of the S-GW, is inserting QOS (Quality of Service) markers (DiffServ Code Points) into the IP header. 
+Because differente EPS bearers have different QOS requierents. 
+
+"Anchor mobility" is other important function for the S-GW. In case the UE changes the eNodeB where it is transmitting, the 
+eNodeB will change and a handover with the previous eNodeB, but it will be still linked to the original S-GW. So the point
+of contact with the core network remains the same. The same will happen in a handover from a 2G/3G network. 
+
+Other function is the "IDLE mode downlink package buffering", the SGW will buffer incomming data for the UE. The SGW
+will inform the MME about this incomming data, and the MME will inform the UE about this incomming data. 
+
+Other function is the "lawful interception", lawful monitoring of UE. As all the data passes through the SGW is a good place
+to monitor data. 
+
+
+
+
 
 
