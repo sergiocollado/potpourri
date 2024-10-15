@@ -64,4 +64,28 @@ EPS bearer is like an IP tunnel that extends from the UE, to the eNodeB , to the
      - latency
      - priority
 
-   
+
+### Mobility Management Entity (MME)
+
+Is similar to the VLR (visitor location register) in 2G/3G. in 4G the temporary data of an user UE is stored on the MME. So 
+the signaling load on the HSS is reduced. 
+
+MME manages the UE registration, it verify that the UE is valid, it authenticates the UE with its security keys, that
+are retrieved from the HSS. Using that security keys the MME validates the UE. Once the UE is validated, it is assigned
+a temporary identifier that is used between the UE and the MME. 
+
+The MME stores the temporary data, also known as the context of the UE. Part of that that is downloaded from the HSS. 
+When the UE moves to other area, its data will be transferred to other MME, and deleted from the previous MME. 
+
+MME is also responsible of the stablishment and management of the EPS bearer. When a UE registers itself in a 4G network
+is assigned a default EPS bearer. If that UE wants to make a video call an additional EPS bearer will be assigned to it. 
+
+As part of the stablishment of the EPS bearer the MME uses the P-GW and the S-GW through which that EPS bearer is passing. 
+
+
+### Serving gateway (S-GW)
+
+It handles the user data connectivity b/w UE and the EPC. 
+
+
+
