@@ -444,7 +444,7 @@ Gestor de tareas Deadline
  con un tiempo de ejecución de 4 y un period igual a 8 (i.e., ancho de banda
  igual a 0.5)::
 
-         A            Task T1
+         A            Tarea T1
          |
          |                               |
          |                               |
@@ -454,7 +454,7 @@ Gestor de tareas Deadline
          0   1   2   3   4   5   6   7   8
 
 
-         A            Task T2
+         A            Tarea T2
          |
          |                               |
          |                               |
@@ -480,6 +480,12 @@ Gestor de tareas Deadline
     Suppose Task T1 is the first task to start execution.
     Since there are no inactive tasks, its runtime is decreased as dq = -1 dt.
 
+  - Instante t = 0
+
+    Ambas tareas estan listas para ejecutarse y por lo tanto en estado ActiveContending.
+    Supongamos que la tarea T1 es la primera tarea en comenzár a ejecutarse.
+    y que no hay tareas inactivas, su tiempo de ejecución disminuye según dq = -1 dt.
+
   - Time t = 2:
 
     Suppose that task T1 blocks
@@ -487,6 +493,14 @@ Gestor de tareas Deadline
     runtime is equal to 2, its 0-lag time is equal to t = 4.
     Task T2 start execution, with runtime still decreased as dq = -1 dt since
     there are no inactive tasks.
+
+  - Instante t = 2
+
+    Supongamos que la tarea T1 se bloquea.
+    Entonces la tarea 1 entra en estado ActiveNonContending. Ya que su tiempo
+    de ejecución restante es igual a 2, su tiempo 0-lag es igual a t = 4.
+    La tarea T2 empieza a ejecutarse, con un tiempo de ejecución todavia 
+    decrementado como dq = -1 dt ya que no hay tareas inactivas. 
 
   - Time t = 4:
 
@@ -497,28 +511,53 @@ Gestor de tareas Deadline
     dq = - 0.5 dt because Uinact = 0.5.
     Task T2 therefore reclaims the bandwidth unused by Task T1.
 
+  - Instante t = 4:
+
+    Este el es instante 0-lag para la tarea T1. ya que no se despertó hasta
+    este momento, entra en estado Inactivo. Su ancho de banda es eliminado 
+    de running_bw.
+
   - Time t = 8:
 
     Task T1 wakes up. It enters the ActiveContending state again, and the
     running_bw is incremented.
 
+  - Instaante t = 8:
+
+    La tarea T1 se despierta. Y entra en un estado ActiveContendig de nuevo,
+    y se incrementa running_bw.
+
 
 2.3 Energy-aware scheduling
 ---------------------------
+
+2.3 Gestión de tareas según el consumo de energía 
 
  When cpufreq's schedutil governor is selected, SCHED_DEADLINE implements the
  GRUB-PA [19] algorithm, reducing the CPU operating frequency to the minimum
  value that still allows to meet the deadlines. This behavior is currently
  implemented only for ARM architectures.
 
+ Cuado el útil del gestor de tareas cpfreq se elige, SCHED_DEADLINE implementa
+ el algoritmo GRUP-PA [19], reduciendo la frecuencia de operación de las CPUs
+ a su mínimo valor que permita alcanzár los tiempo finales de ejecución. Este
+ comportamiento es el que está actualmente implementado para las arquitecturas
+ ARM.
+
  A particular care must be taken in case the time needed for changing frequency
  is of the same order of magnitude of the reservation period. In such cases,
  setting a fixed CPU frequency results in a lower amount of deadline misses.
+
+ Se debe tener un cuidado particular en caso de que el tiempo necesario para
+ cambiar de frecuencia sea del mismo orden de magnitud que el periodo de 
+ reserva. En esos caso, definir una frecuencia de CPU fija tiene como resulato
+ una menor cantidad de tiempos de finalización fallidos. 
 
 
 3. Scheduling Real-Time Tasks
 =============================
 
+3. Gestión de tareas en tiempo real
 
 
  ..  BIG FAT WARNING ******************************************************
