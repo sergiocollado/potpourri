@@ -49,6 +49,8 @@ It can be refered by other names:
 
 Its extension is .ko (Kernel Object)
 
+A kernel modules are not always device drivers, but device drivers are always kernel modules. 
+
 ## Standard location for kernel modules
 
 Modules are located in the /lib/modules/<kernel version> directory of the rootfs by default
@@ -124,7 +126,7 @@ cat config-`uname -r` | grep CONFIG_MODULES
 
 ## Types of modules
 
-- In-source tree: modules present in the linux kernel source code
+- In-source tree, build-in modules, or static modules: modules present in the linux kernel source code, built in the kernel image.
 - Out-of-tree: modules not present in the linux kernel 
 
 All modules start out as "out-of-tree" developments, that can be compiled using the 
@@ -199,52 +201,55 @@ the script `kernel-chktaint`:  https://git.kernel.org/pub/scm/linux/kernel/git/t
   
 ### HelloWorldModule.c
   
-```
+```C
 #include <linux/module.h>       /* Needed by all modules */
 #include <linux/kernel.h>       /* Needed for KERN_INFO */
 #include <linux/init.h>         /* Needed for the macros __init __exit */
   
-  MODULE_LICENSE("GPL")
-  
-  static int __init test_hello_init(void)
-  {
+MODULE_LICENSE("GPL")
+
+static int __init test_hello_init(void)
+{
       printk(KERN_INFO "%s: In init\n", __func__);
       return 0;
-  }
+}
   
-  static void __exit test_hello_exit(void)
-  {
+static void __exit test_hello_exit(void)
+{
        printk(KERN_INFO "%s: In exit\n", __func__);
-  }
+}
   
-  module_init(test_hello_init);
-  module_exit(test_hello_exit);
+module_init(test_hello_init);
+module_exit(test_hello_exit);
 ```
+This module has an entry point, which is defined by the macro `module_init` and an
+exit point defined by the macro `module_exit`.
+
   
 ### Compiling it
   
 To compile the module, the kernel make file is needed
   
-```
+```bash
 ls /lib/modules/'uname -r'/build/Makefile
 ```
   
 use the make, with the -C option, that indicates to use the makefile indicated in the folder by -C
   
-``` 
+```bash
 make -C /lib/modules/`uname -r/build/
 ``` 
 just this, will not be enought. this makefile uses a makefile, so a small makefile needs to be added
   
  
-```
+```bash
 cat Makefile
 obj-m := hello.o
 ```
  
 obj-m : stands for module. 
   
-```
+```bash
 make -C /lib/modules/'uname -r'/build/ M={PWD} modules
 ```
  
@@ -252,7 +257,7 @@ The file .ko, should be generated
  
 At to this point, this is an out-of-tree module. To load it to the kernel, the 'insmod' command is used.
   
-```
+```bash
 sudo insmod ./helloWorld.ko
 lsmod # to check if the module indeed has been loaded
 sudo rmmod helloWorld # to remove the module
@@ -264,18 +269,18 @@ In the code there is a 'printk', this is not printed in the console, for that th
 ### Compile and clean module commands
 
  To build a module, use:
- ```
+ ```bash
   make -C /lib/modules/`uname -r`/build M=${PWD} modules
  ```
   
  To clean the module: 
- ```
+ ```bash
   make -C /lib/modules/`uname -r`/build M=${PWD} clean
  ```
   
 The `-C` option state to to change the directory provided, instead of using the current directory use the one provided by the -C option.
   
-The `M=` argument causes the Makefile tomove back into your module source directory before trying to build modules. 
+The `M=` argument causes the Makefile to move back into your module source directory before trying to build modules. 
   
 The kernel Makefile will read the local makefile to findout what to build, this is indicated by writing: obj-m +=HelloWorldModule.o
 
@@ -295,17 +300,17 @@ CROSS_COMPILE: set this to the prefix of your toolchain (including the trailing 
 So if the toolchain is invoked as say x86_64-pc-linux-gnu-gcc, just remove the trailing gcc and that is what should be used: `x86_64-pc-linux-gnu-`.
   
 example:
-```
+```bash
 $ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..../output/build/linux-X.Y:Z m=${PWD} modules  
 ```
 
  ### Overview of compiling kernel modules
   
-  Kernel use the kbuild system to build the kernel modules. The kbuild system reads the assignment of `obj-m := modulename.o` from the local makefile. The the kbuild system knows that it has to build the "modulename.o" and will look for "modulename.c" for the source. 
+  Kernel use the **kbuild** system to build the kernel modules. The kbuild system reads the assignment of `obj-m := modulename.o` from the local makefile. The the kbuild system knows that it has to build the "modulename.o" and will look for "modulename.c" for the source. 
   
    In case the files are not pressent in the directory passsed to `M=`, the compiling will stop with an error. If the files are present the source file is compiled to a modulename.", and "modulename.mod.c" is created which is compiled to "modulename.mod.o"
   
-  The `modulename.mod.c` is a file that basically contains the information about th emodule (Version information etc)  
+  The `modulename.mod.c` is a file that basically contains the information about the module (Version information etc)  
   
   The `modulename.o` and the `modulename.mod.o` are linked together by `modpost` in the next stage to create the `modulename.ko`
   
@@ -322,7 +327,7 @@ $ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..
   
 `printk' function is called with one argumet:
   
- ```
+ ```C
  printk(KERN_log_prority "hello world!");
  ```
  The log_priority is one of eight values, predefined in linx/kernel.h,
@@ -335,19 +340,19 @@ $ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..
   
 So to build a module, the command is use:
   
-```
+```bash
 make -C /lib/modules/`uname -r`/build/build M=${PWD} modules
 ```
   
 and to clean the module, the command:
   
-```
+```bash
 make -C /lib/modules/ùname -r/build M=${PWD} clean
 ```
 
 This is a bit bothersome, so a new makefile can be used:
   
-```
+```bash
 obj-m := hello.o
   
 all:
@@ -357,14 +362,14 @@ clean:
    make -C /lib/modules/`uname -r`/build M=${PWD} clean
 ```
 
-### What happens when we do insmod in a module
+### What happens when we do `insmod` in a module
   
   The kernel module is a piece of kernel code (.ko in elf format) which can be added to the running kernel, and when loaded can be removed from the kernel.
   
 1- It calls init_Module() to inform the querken that a module is attemp to be loaded an transfers the control to the kernel 
   
 2- In the kernel, `sys_init_module()`is run. It does the following operations
-  - Verify that the user has the permissions to load the moduel
+  - Verify that the user has the permissions to load the module
   - The load_module function is called
   - The load_module function assigns temporary memory and copies the elf module from the user space to kernel memory using 'copy_from_user'.
   - Checks the sanity of the ELF file.
@@ -385,7 +390,7 @@ The loading of the module would fail, and the module will not be loaded. It can 
 
 modify the makefile like:
   
-```
+```bash
 obj-m := linux.o
 linux-objs := hello.o
   
