@@ -1159,17 +1159,19 @@ net.ipv4.ip_fordward = 1
 
 # System calls
 
-ref: https://man7.org/linux/man-pages/man2/intro.2.html <br>
-ref: https://man7.org/linux/man-pages/man2/syscalls.2.html <br>
-ref: https://man7.org/linux/man-pages/man2/syscall.2.html <br>
-ref: https://lwn.net/Articles/604287/ <br>
-ref: https://lwn.net/Articles/604515/ <br>
+references:
+ - https://man7.org/linux/man-pages/man2/intro.2.html
+ - https://man7.org/linux/man-pages/man2/syscalls.2.html
+ - https://man7.org/linux/man-pages/man2/syscall.2.html
+ - https://lwn.net/Articles/604287/
+ - https://lwn.net/Articles/604515/
+ - https://medium.com/@ssreehari/implementing-a-system-call-in-linux-kernel-4-7-1-6f98250a8c38
 
 The kernel provides user-space a series of interfaces to interact whit the system, its hardware and underlying systems. 
 Those interfaces for example requests dynamic memory allocations, read or write files ... This interface provides and
 abstraction layer  to the user-space, so it can request read or write files, but doesn't need to handle 
 the possible diffent file systems. Also this interface guards the systems, so the kernel can handle permissions, or 
-make sure that a user-space process doens't overlay with other user-space process. 
+make sure that a user-space process doesn't overlay with other user-space process. 
 
 
 ## visualizing syscalls with strace
