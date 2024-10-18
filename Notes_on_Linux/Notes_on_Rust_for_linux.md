@@ -52,7 +52,8 @@ Languaje reference:
   - Standards for use of unsafe Rust in the kernel : https://lwn.net/Articles/982868/
   - https://lwn.net/Articles/986167/
   - https://lwn.net/Articles/985210/
-  - writing an OS in Rust: https://os.phil-opp.com/
+  - writing an OS in Rust: https://os.phil-opp.com
+  - REDOX: rust OS: https://www.redox-os.org/
 
 Other resources:
   - linux kernel rust documentation: https://docs.kernel.org/rust/index.html
