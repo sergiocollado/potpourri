@@ -335,8 +335,8 @@ Connection between the **application** and the **device file** is based on the *
 However the connection between the **device file** and the **device driver** is based on the **number of the device file**, not the name.
 
 A device ID/number consists of two parts
- -	Major Number : identifies the device type (IDE disk, SCSI disk, serial port, etc.)
-	- Minor Number : identifies the device (first disk, second serial port, etc.)
+ - **Major Number** : identifies the device type (IDE disk, SCSI disk, serial port, etc.)
+ - **Minor Number** : identifies the device (first disk, second serial port, etc.)
 
 Most times, the major identifies the driver, while the minor identifies each physical device served by the driver.
 
@@ -353,7 +353,7 @@ crw-rw---- 1 root dialout 4, 78 Apr 12 23:18 /dev/ttyS14
 
 The special character files are identified by the `c` character in the first column of the command output, and the block type by the character `b`
 
-In columns 5 and 6 of the result you can see the major, respectively the minor for each device.
+In columns 5th and 6th of the result you can see the major, respectively the minor for each device.
 
 Certain major identifiers are statically assigned to devices (in the Documentation/admin-guide/devices.txt file from the kernel sources).
 
