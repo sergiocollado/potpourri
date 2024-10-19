@@ -1061,17 +1061,17 @@ struct file_operations {
 } __randomize_layout;
 ```
 
-- ** struct moduel *owner**:
-- ** loff_t (*llseek) (struct file *, loff_t, int); **: 
-- ** ssize_t (*read) (struct file *, char __user *, size_t, loff_t *); **: 
-- ** ssize_t (*write) (struct file *, const char __user *, size_t, loff_t *); **:
-- ** int (*flush) (struct file *, fl_owner_t id); **: 
-- ** __poll_t (*poll) (struct file *, struct poll_table_struct *); **: 
-- ** int (*mmap) (struct file *, struct vm_area_struct *); **: 
-- ** int (*open) (struct inode *, struct file *); **:
-- ** int (*release) (struct inode *, struct file *); **:
-- ** int (*fsync) (struct file *, loff_t, loff_t, int datasync); **:
-- ** long (*unlocked_ioctl) (struct file *, unsigned int, unsigned long); **: 
+- **struct module *owner**:
+- **loff_t (*llseek) (struct file *, loff_t, int); **: 
+- **ssize_t (*read) (struct file *, char __user *, size_t, loff_t *); **: 
+- **ssize_t (*write) (struct file *, const char __user *, size_t, loff_t *); **:
+- **int (*flush) (struct file *, fl_owner_t id); **: 
+- **__poll_t (*poll) (struct file *, struct poll_table_struct *); **: 
+- **int (*mmap) (struct file *, struct vm_area_struct *); **: 
+- **int (*open) (struct inode *, struct file *); **:
+- **int (*release) (struct inode *, struct file *); **:
+- **int (*fsync) (struct file *, loff_t, loff_t, int datasync); **:
+- **long (*unlocked_ioctl) (struct file *, unsigned int, unsigned long); **: 
   
 
 ### cdev_init vs cdev_alloc
