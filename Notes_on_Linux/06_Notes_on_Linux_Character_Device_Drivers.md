@@ -302,9 +302,9 @@ The second category includes devices where data volume is large, data is **organ
 
 For the two types of device drivers, the Linux kernel offers different APIs.
 
-If for **character devices** system calls go directly to device drivers, in case of **block devices**, the drivers do not work directly with system calls. 
+If for __**character devices**__ system calls go directly to device drivers, in case of **block devices**, the drivers do not work directly with system calls. 
 
-In the case of **block devices**, communication between the user-space and the block device driver is mediated by the __**file management**__ subsystem and the block device subsystem. 
+In the case of __**block devices**__, communication between the user-space and the block device driver is mediated by the __**file management**__ subsystem and the block device subsystem. 
 
 
 ### Character Device Driver
@@ -312,13 +312,13 @@ In the case of **block devices**, communication between the user-space and the b
 A character device typically transfers data to and from a user application — they behave like pipes or serial ports, instantly reading or writing the byte data in a character-by-character stream.
 
 #### Command to list all the character device driver
-```
+```bash
 $ls -l /dev/ | grep "^c"
 ```
 
 #### Command to list all the block device driver
 
-```
+```bash
 $ls -l /dev/ | grep "^b"
 ```
 
