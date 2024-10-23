@@ -562,6 +562,8 @@ Gestor de tareas Deadline
 
  ..  BIG FAT WARNING ******************************************************
 
+ ..  GRAN GIGANTE AVISO ******************************************************
+
  .. warning::
 
    This section contains a (not-thorough) summary on classical deadline
@@ -573,12 +575,34 @@ Gestor de tareas Deadline
 
  .. ************************************************************************
 
+ .. warning::
+
+   Esta seccion contiene un (no exhaustivo) resumen en la teoría clásica
+   de gestión de tareas, y como se aplica a SCHED_DEADLINE.
+   El lector puede "a salvo" saltar hasta la Sección 4 si únicamente está
+   interesado en ver cómo se puede usar las polítitgas de gestión. De todas
+   maneras se recomienda volver aqui y continuar leyendo (una vez la
+   urgencia por testear ha sido satisfecha :P) para asegurarse que se
+   comprende completamente los detalles técnicos. 
+
+ .. ************************************************************************
+
+
  There are no limitations on what kind of task can exploit this new
  scheduling discipline, even if it must be said that it is particularly
  suited for periodic or sporadic real-time tasks that need guarantees on their
  timing behavior, e.g., multimedia, streaming, control applications, etc.
 
+ No hay límites en qué tipo de tarea pueda explotar esta nueva disciplina
+ de gestión, aunque ha de ser dicho que es particularmente adaptada para
+ tareas en tiempo real periódicas o esporádicas que necesiten garantias
+ en su comportamiento en el tiempo, e.g., multimedia, streaming, control
+ de aplicaciones, etc. 
+
 3.1 Definitions
+------------------------
+
+3.1 Definiciones
 ------------------------
 
  A typical real-time task is composed of a repetition of computation phases
