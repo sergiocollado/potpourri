@@ -12,6 +12,7 @@ Languaje reference:
   - rustlings exercises: https://github.com/rust-lang/rustlings/tree/rustlings-1
   - the embedded rust book: https://docs.rust-embedded.org/book/intro/index.html
   - real-time for the masses: https://japaric.github.io/rtfm5/book/en/preface.html
+  - bindgen: https://github.com/rust-lang/rust-bindgen
   - https://doc.rust-lang.org/stable/reference/                  
   - https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/
   - https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/effective-rust.html
