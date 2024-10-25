@@ -403,7 +403,7 @@ The functional descriptions of these Network Functions and entities are specifie
 |  NSSF   |       |        |        |       |        |       |   X   |  Network Slice Selection Function     |
 
 
-AMF is responsible for movility management. 
+AMF is responsible for movility management. https://www.sharetechnote.com/html/5G/5G_Core_AMF.html
 
 HSS is done it both: UDM and AUSF. UDM sends the authentication to AUSF, in order to make the subscriber
 authetication during registration. 
@@ -458,6 +458,7 @@ to a DNS to locate every live instance for every available Network Function.
 ## Access and Mobility function: AMF
 
 references: 
+ - https://www.sharetechnote.com/html/5G/5G_Core_AMF.html
  - https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3445
  - https://emblasoft.com/blog/exploring-the-3gpp-amf-access-mobility-management-function#:~:text=In%205G%2C%20AMF%20terminates%20the,i.e.%2C%20access%20subscribed%20services).
  - https://www.techtrained.com/network-function-access-mobility-management-function-amf-in-5g-core-network-5g-system-5gs/
@@ -493,8 +494,10 @@ AMF Interfaces with MME in 4G for context transfer when interworking with EPC is
 
 ### AMF registration management states
 
-- reference: https://www.tech-invite.com/3m23/toc/tinv-3gpp-23-501_t.html
-- reference: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144
+References:
+- https://www.sharetechnote.com/html/5G/5G_Core_AMF.html
+- https://www.tech-invite.com/3m23/toc/tinv-3gpp-23-501_t.html
+- https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144
 
 The Registration Management is used to register or deregister a UE/user with the network, and establish the user context in the network. The Connection Management is used to establish and release the signalling connection between the UE and the AMF.
 
@@ -574,11 +577,12 @@ when applicable, accept or reject Registration Requests or Service Requests from
 
 ## 5G private Networks - (NPN: Non-Public-Networks)
 
- - reference: Non-Public Networks (NPN): https://www.3gpp.org/technologies/npn
- - reference: https://www.techtarget.com/searchnetworking/tip/Private-5G-in-a-box-simplifies-deployment-mobility
- - reference: What is Private 5G? Private 5G vs. Wi-Fi: https://youtu.be/UCLtahIJfYY
- - reference: Private 5G Networks - Mpirical: https://youtu.be/gdi4eJfTP2w
- - reference: Advanced: Private Networks & 5G Non-Public Networks: https://youtu.be/rF3yyjfx1YA
+References
+ - Non-Public Networks (NPN): https://www.3gpp.org/technologies/npn
+ - https://www.techtarget.com/searchnetworking/tip/Private-5G-in-a-box-simplifies-deployment-mobility
+ - What is Private 5G? Private 5G vs. Wi-Fi: https://youtu.be/UCLtahIJfYY
+ - Private 5G Networks - Mpirical: https://youtu.be/gdi4eJfTP2w
+ - Advanced: Private Networks & 5G Non-Public Networks: https://youtu.be/rF3yyjfx1YA
 
 ### NPN Non-public-networks deployment models
 
