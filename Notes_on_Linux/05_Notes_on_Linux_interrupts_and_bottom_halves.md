@@ -178,7 +178,7 @@ sergio@laptop:~/repos/divide-by-zero$ ./userapp
 Segmentation fault (core dumped)
 ```
 
-In this case we are attemping to write to a memory that it is now allow, we don't have access writes, so a general protection fault is triggered.
+In this case we are attemping to write to a memory that it is not allow, we don't have access writes, so a general protection fault is triggered.
 
 
 We can see it should be a fault, but in linux is denominated as a trap. 
