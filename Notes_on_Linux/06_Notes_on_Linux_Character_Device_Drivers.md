@@ -44,9 +44,9 @@ This division is done
  - volume and 
  - way of organizing the data to be transferred from the device to the system and vice versa.
 
-In the first category, there are slow devices, which manage a small amount of data, and access to data does not require frequent seek queries. Examples are devices such as keyboard, mouse, serial ports, sound card, joystick. In general, operations with these devices (read, write) are performed sequentially byte by byte.
+In the first category, there are slow devices, which manage a small amount of data, and access to data does not require frequent seek queries. Examples are devices such as keyboard, mouse, sensors, serial ports, sound card, joystick. In general, operations with these devices (read, write) are performed sequentially byte by byte. Those devices are known as **character devices**
 
-The second category includes devices where data volume is large, data is **organized on blocks**, and search is common. Examples of devices that fall into this category are hard drives, cdroms, ram disks, magnetic tape drives.For these devices, reading and writing is done at the data block level.
+The second category includes devices where data volume is large, data is **organized on blocks**, and has to be handled in **blocks**, and search is common, those decives re more complex than the character devices. Examples of devices that fall into this category are hard drives, cdroms, ram disks, magnetic tape drives, USB cameras...  For these devices, reading and writing is done at the data block level. Those devices are known as **block devices**
 
 For the two types of device drivers, the Linux kernel offers different APIs.
 
