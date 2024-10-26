@@ -24,9 +24,12 @@ References:
  - character device drivers tutorial list: https://www.youtube.com/watch?v=Zn8mEZXr6nE&list=PL2GL6HVUQAuksbptmKC7X4zruZlIl59is
 
 
-## Introduction
+## Introduction: what is a device driver?
 
 In Linux everything is considered to be a file so devices are also considered to be a file.
+
+A device driver is a piece of code that configurs and manages devices. The device driver code knows how to 
+configure the device, how to process requests which come from the device, and how to send data to the device. 
 
 In UNIX, hardware devices are accessed by the user through special device files.
 
