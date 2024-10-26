@@ -558,7 +558,7 @@ Gestor de tareas Deadline
 =============================
 
 3. Gestión de tareas en tiempo real
-
+===================================
 
  ..  BIG FAT WARNING ******************************************************
 
@@ -618,11 +618,35 @@ Gestor de tareas Deadline
  d_j = r_j + D, where D is the task's relative deadline.
  Summing up, a real-time task can be described as
 
+
+ Una tarea en tiempo real típica esta compuesta por una repetición de
+ fases de computación (instacias de la tarea o trabajos) los cuales se
+ activan a intervalos de tiempo periódicos o de forma esporádica. 
+ Cada trabajo J_j (dond J_j es el j-ésimo trabajo de la tarea) está
+ caracterizado por un tiempo de llegada r_j (el momento en el que el 
+ trabajo empieza), una cantidad de tiempo de computación c_j necesario
+ para finalziar el trabajo, y un instante de tiempo de finalización 
+ absoluto d_j, el cual es el instante de tiempo en el cual el trabajo
+ debería de estar realizado. El máximo tiempo de ejecución max{c_j}
+ se llama "El peor caso de tiempo de ejecución"para la tarea (sus 
+ siglás en inglés son WCET, "Worst Case Execution Time"). 
+ Una tarea en tiempo real puede ser periódica con un period P si
+ r_{j+1} = r_j + P, o en el caso de una ejecución esporadica con un
+ tiemp mínimo de inter-llegada P es r_{j+1} >= r_j + P. Por último,
+ d_j = r_j + D, donde D es el instante final de la tarea relativa. 
+ Resuminedo, una tarea puede ser descrita como
+
 	Task = (WCET, D, P)
+
+        Tarea = (WCET, D, P)
 
  The utilization of a real-time task is defined as the ratio between its
  WCET and its period (or minimum inter-arrival time), and represents
  the fraction of CPU time needed to execute the task.
+
+ La utilización de una tarea en tiempo real esta definida como cociente
+ entre su WCET y su periodo (o mínimo tiempo inter-llegada), y representa
+ la fracción de tiempo de la CPU que necesita para ejecutar la tarea. 
 
  If the total utilization U=sum(WCET_i/P_i) is larger than M (with M equal
  to the number of CPUs), then the scheduler is unable to respect all the
@@ -642,14 +666,37 @@ Gestor de tareas Deadline
  More precisely, it can be proven that using a global EDF scheduler the
  maximum tardiness of each task is smaller or equal than
 
+ Si la utilización total U=suma(WCET_i/P_i) es mayor que M (siendo M
+ igual al número de CPUs), entonces el gestor de tareas no puede alcanzar
+ el tiempo de finalización de las tareas. 
+ Note que el teimpo de utilización toatl esta definido como la suma de
+ las utilizaciones WCET_i/P_i entre todas las tareas en tiempo real del 
+ sistema. Cuando se conideran multiples tareas en tiempo real, los parámetros
+ de la i-ésima tarea se indican con el sufijo "_i". 
+ Es más, si la utilización total es mayour que M, entonces se tienen el 
+ riesgo de extrangular las tareas que no son de tiempo real con las tareas
+ que son de tiempo real.
+ Es un hecho, que en este caso es posible indicar un límite superior
+ para la tardanza (definida como el máximo entre 0 y intervalo de tiempo
+ entre la finalización de un trabajo y su tiempo de finalización absoluto).
+ Más precisamente, se puede probar que usando un gestor de tareas EDF la
+ tardanza máxima de cara tarea es más pequeña o igual que
+ 
+
 	((M − 1) · WCET_max − WCET_min)/(M − (M − 2) · U_max) + WCET_max
 
  where WCET_max = max{WCET_i} is the maximum WCET, WCET_min=min{WCET_i}
  is the minimum WCET, and U_max = max{WCET_i/P_i} is the maximum
  utilization[12].
 
+ Donde WCET_max = max{WCET_i} es el máximo WCET, WCET_min=min{WCET_i}
+ es el mínimo WCET, y U_max = max{WCET_i/P_i} es la máxima utilización[12].
+
 3.2 Schedulability Analysis for Uniprocessor Systems
 ----------------------------------------------------
+
+3.2. Análisis de gestión de tareas para sistemas monoprocesador
+---------------------------------------------------------------
 
  If M=1 (uniprocessor system), or in case of partitioned scheduling (each
  real-time task is statically assigned to one and only one CPU), it is
