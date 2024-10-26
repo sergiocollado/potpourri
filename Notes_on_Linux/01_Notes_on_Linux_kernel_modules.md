@@ -1750,7 +1750,7 @@ To do this, compare the macro `LINUX_VERSION_CODE` TO THE MACRO `KERNEL_VERSION`
  ```
 The `__init` macro informs the compiler to place this functino in a specila section(.init.text) and this memory is discarted after the function call. 
  
-The functinos specified usgin module_init are initialization functions, that run only once. So th ekernel can free RAM by removing memory used by this particular function. So functions marked using `__init` are discarded after the function call.
+The functions specified usgin module_init are initialization functions, that run only once. So th ekernel can free RAM by removing memory used by this particular function. So functions marked using `__init` are discarded after the function call.
   
   #### __exit
   
