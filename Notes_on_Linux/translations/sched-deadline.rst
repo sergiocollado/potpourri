@@ -695,8 +695,8 @@ Gestor de tareas Deadline
 3.2 Schedulability Analysis for Uniprocessor Systems
 ----------------------------------------------------
 
-3.2. Análisis de gestión de tareas para sistemas monoprocesador
----------------------------------------------------------------
+3.2. Análisis de gestión de tareas para sistemas de un único procesador
+-----------------------------------------------------------------------
 
  If M=1 (uniprocessor system), or in case of partitioned scheduling (each
  real-time task is statically assigned to one and only one CPU), it is
@@ -709,6 +709,20 @@ Gestor de tareas Deadline
  of all the tasks running on a CPU if the sum of the densities of the tasks
  running on such a CPU is smaller or equal than 1:
 
+ Si M=1 (un sistema de un único procesador), o en el caso de una gestíon 
+ partida (cada tarea en tiempo real está estadisticamente asignada a una
+ y solo úna CPU), es posible verificar formalmente si todas los instantes
+ de la finalización de las tareas son respetadas.
+ Si D_i = P_i para todas las tareas, entonces EDF es capaz de respetar 
+ todas los instantes de finalización de todas las tareas ejecutadas en 
+ una CPU si y solo si la utilización toal de las tareas ejecutandose en 
+ dicha CPU es menor o igual a 1.
+ Si D_i != P_i para alguna tarea, entonces es posible definr la densidad 
+ de una tarea como WCET_i/min{D_i,P_i}, y EDF es capaz de respetar todas
+ los instantes de finalización de todas las tareas ejecutandose en una
+ CPU si la suma de densidades de las tareas ejecutandose en dicha CPU es 
+ menor o igual a 1:
+
 	sum(WCET_i / min{D_i, P_i}) <= 1
 
  It is important to notice that this condition is only sufficient, and not
@@ -719,6 +733,16 @@ Gestor de tareas Deadline
  (Task_1 is scheduled as soon as it is released, and finishes just in time
  to respect its deadline; Task_2 is scheduled immediately after Task_1, hence
  its response time cannot be larger than 50ms + 10ms = 60ms) even if
+
+ Es importante notar que esta condición es solo suficiente, y no necesaria:
+ hay grupos de tareas que son gestionables, pero no respetan la condición.
+ Por ejemplo, considere el grupo de tareas {Tarea_1, Tarea_2} compuesto por
+ Tarea_1=(50ms,50ms,100ms) y Tarea_2=(10ms,100ms,100ms).
+ EDF claramente puede gestionar las dos tareas sin perden ningún tiempo 
+ de finalización (Tarea_1 es planificada tan pronto como se ordena, y finaliza
+ justo a tiempo para respetar su tiempo de finalización; Tarea_2 es planificada
+ justo después de la Tarea_1, y por tanto su tiempo de respuesta no puede
+ ser mayour que 50ms + 10ms = 60ms) incluso si
 
 	50 / min{50,100} + 10 / min{100, 100} = 50 / 50 + 10 / 100 = 1.1
 
