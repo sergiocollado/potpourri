@@ -40,7 +40,8 @@ A device driver has three sides
 
 Tradicionaly the way to add code to the kernel was to recompile the kernel and reboot the system.
 
-Kernel modules, are a pieces of code that can be load/inserted and unloaded/removed form the kernel whenever needed.
+Kernel modules, are a pieces of code that can be load/inserted and unloaded/removed form the kernel whenever needed, so 
+the kernel modules can be inserted and removed during runtime. 
 
 It can be refered by other names:
 
@@ -126,13 +127,22 @@ cat config-`uname -r` | grep CONFIG_MODULES
 
 ## Types of modules
 
-- In-source tree, build-in modules, or static modules: modules present in the linux kernel source code, built in the kernel image.
-- Out-of-tree: modules not present in the linux kernel 
+- In-source tree, build-in modules, or static modules: modules present in the linux kernel source code, built in the kernel image. As those modules are build in the kernel, those modules cannot be removed and the memory of those modules is occupied permanently during run time.
+- Out-of-tree or dynamic modules: modules not present in the linux kernel, those are compiled and linked separately to produce a .ko file. can be dinamically load and unload. 
 
-All modules start out as "out-of-tree" developments, that can be compiled using the 
-condtex of a source-tree. 
+All modules start out as "out-of-tree" developments, that can be compiled using the contex of a source-tree. 
 
-Once a module gets accepted to be included, it becomes an in-tree module.
+Once a module gets accepted to be included (in the linux workflow mailing list), it becomes an in-tree module.
+
+## User space vs Kernel space
+
+When a OS like Linux is used, the code that runs in the CPU can be segregated as user space code and kernel space code. The kernel 
+space code runs on the CPU the operation mode of the CPU is in privileged mode, so that code can reach many restricted resources of
+the system as control settings, memory, processor instructions ... the user space code will run on non-privilged mode, or restricted 
+mode, so it cannot reach those memory locations that it is not allowd to reach. 
+
+If user space program, want any services of the operating system, then it has to use system calls to run those functions that run
+in priviled mode. 
 
 ## Building external modules
 
