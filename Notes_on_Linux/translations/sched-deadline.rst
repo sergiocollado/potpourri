@@ -764,6 +764,27 @@ Gestor de tareas Deadline
  time-consuming to be performed on-line. Hence, as explained in Section
  4 Linux uses an admission test based on the tasks' utilizations.
 
+ Por supuest es posible verificar la planificación exacta de tareas con
+ D_i != P_i (mirando una condición que es tanto suficiente como necesaria),
+ pero esto no se puede hacer mendiante la comparación de la utilización 
+ total o la densidad con una constante. En vez de eso, se usa la proximación
+ de la "demanda del procesador" calculando la cantidad toal de tiempo de
+ CPU h(t) que es necesario por todas las tareas para respetar todas los
+ tiempos de finalización en un intervalo de tamaño t, y comparando dicho 
+ tiempo con el intervalo de tamaño t. Si h(t) es más pequeño que t (esto es,
+ la cantidad de tiempo necesaria por las tareas en un intervalo de tiempo 
+ de tamaño t es más pequeño que el tamaño del intervalo) para todas los 
+ valores posibles de t, entonces EDF es capaz de planificar las tareas 
+ respetando todos sus tiempos de finalización. ya que hacer esta verificación
+ para todas los valores posibles de t es imposible, ha sido provado[4,5,6] 
+ que es suficietne ejecutar el test para valores de t entre 0 y un máximo
+ valor L. Las referencias citadas contienen todos los detalles matemáticos 
+ y explican como calcular h(t) y L. 
+ En cualquier caso, este tipo de analysys es demasiado complejo com también
+ demasiado costoso en teimpo para ser ejecutado en linea. Luego, como se
+ ha explicado en la Sección 4 Linux usa un test de admisión basado en la
+ utilización de las tareas. 
+
 3.3 Schedulability Analysis for Multiprocessor Systems
 ------------------------------------------------------
 
