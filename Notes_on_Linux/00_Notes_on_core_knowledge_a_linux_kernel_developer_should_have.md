@@ -56,5 +56,6 @@ Kernel developers should have some userspace knowledge and use common tools such
 
 ## Soft skills
 - **Passion** - Kernel development is hard and thorough work. It is impossible to succeed in it without being inspired.
+- **Curiosity** - to drive the passion for deepeng the knowledge.
 - **Patience** - This type of work requires patience in all senses. First, it is a hard work that implies careful code design and debugging, sometimes hours of debugging efforts to detect and fix a small bug. Second, the ever-changing nature of the kernel requires keeping yourself updated on the latest changes and being ready to update your code accordingly, especially code that was accepted to the mainline kernel. Third, working with the community is a hard and sometimes controversial process. Getting your idea across is not so easy.
 - **Persistency** - Kernel developers should be persistent in constant learning and in communication with the community in case they want to get their code accepted to the mainline kernel.
