@@ -1034,7 +1034,7 @@ objdump --section-heades --section=.modinfo --full-contents ./<module_name>.ko
 
 ### How to dump a kernel stack
   
-Calling `dup_stack()` will casue a stack trace to be printed at that point.
+Calling `dup_stack()` will cause a stack trace to be printed at that point.
 
 So a sample module:
   
