@@ -416,6 +416,8 @@ A device file is an interface for a device driver that appears in a filesystem a
 
 `/dev` is a very interesting directory that highlights one important aspect of the Linux filesystem - everything is a file or a directory. A file sent to /dev/lp0 gets printed. Sending data to and reading from /dev/ttyS0 will allow you to communicate with a device attached there - for instance, your modem.
 
+Device files `/dev` are managed as part of the VFS (virtual file subsystem) subsystem of the Linux kernel. 
+
 - reference in kernel documentation: https://docs.kernel.org/admin-guide/devices.html
 - reference about device files: https://en.wikipedia.org/wiki/Device_file
 - reference: Linux System Administrators Guide: https://linux.die.net/sag/dev-fs.html
