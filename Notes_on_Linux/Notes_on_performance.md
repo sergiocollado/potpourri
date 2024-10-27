@@ -12,6 +12,7 @@ References:
  - https://blogs.oracle.com/linux/post/usdt-tracing-across-different-runtimes
  - https://leezhenghui.github.io/linux/2019/03/05/exploring-usdt-on-linux.html
  - https://github.com/iovisor/bcc
+ - 20 Terminal Tools To Monitor Linux Resource Usage : https://youtu.be/UvADr3FVhZg
 
 
 ## USE: Utilization, Saturation and Errors
