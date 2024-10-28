@@ -2994,7 +2994,7 @@ References:
 ### Device trees:
  - https://docs.kernel.org/devicetree/index.html
  - https://devicetree-specification.readthedocs.io/en/stable/index.html
- - https://javiercarrascocruz.github.io/device-driver-development-with-rpi-device-tree
+ - https://mjoldfield.com/atelier/2017/03/rpi-devicetree.html
  - https://www.youtube.com/watch?v=_Z65pqLSMi8&t=41s
  - https://www.youtube.com/watch?v=YxDEdpHTEP8
  - https://hackaday.com/2022/04/04/a-power-button-for-raspberry-pi-courtesy-of-device-tree-overlays/
@@ -3002,7 +3002,6 @@ References:
  - https://www.jeffgeerling.com/blog/2023/how-customize-dtb-device-tree-binary-on-raspberry-pi
  - https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/configuration/device-tree.adoc
  - https://docs.kernel.org/devicetree/index.html#kernel-devicetree-usage
- - https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/configuration/device-tree.adoc
  - device tree 101: https://youtu.be/a9CZ1Uk3OYQ
  - Device Tree overlays and U-Boot extension board management, Köry Maincent : https://youtu.be/mxWiK2v-KZc
    
