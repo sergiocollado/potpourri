@@ -799,8 +799,8 @@ Gestor de tareas Deadline
 
  En sistemas con múltiples procesadores con una gestión global de tareas
  EDF (en sistemas no partidos), un test suficiente para ver si es posible
- planificar laS tareas no puede estar basadO en las utilizaciones o 
- desnsidades: se puede demostrar que incluso si D_i = P_i los grupos 
+ planificar las tareas no puede estar basado en las utilizaciones o 
+ densidades: se puede demostrar que incluso si D_i = P_i los grupos 
  de tareas con utilizaciones ligeramente mayores a 1 pueden fallar en 
  alcanzar su tiempos de finalización objetivos de forma independiente al
  número de CPUs. 
@@ -821,16 +821,16 @@ Gestor de tareas Deadline
  slightly simplified here (for example, Dhall more correctly computed
  lim_{e->0}U).
 
- Consideremos un grupo {Tarea_1, ... Tarea_{M+1}} de tareas en un sistema
- con M CPUs, con la primera tarea Tarea_1=(P,P,P) teninedo un periodo,
- fecha de finalización realtiva y WCET igual a P. El resto de las demás
+ Consideremos un grupo de tareas {Tarea_1, ... Tarea_{M+1}} en un sistema
+ con M CPUs, con la primera tarea Tarea_1=(P,P,P) teniendo un periodo,
+ fecha de finalización relativa y WCET igual a P. El resto de las demás
  M tareas Tarea_i=(e,P-1,P-1) tienen de forma arbitraria un WCET ligeramente
- epor (indicado como "e") y un periodo más pequeño que el de la primera
- tarea. Por tanto, si todas las tareas se activan al mismo tiempo t,
+ peor (indicado como "e") y un periodo más pequeño que el de la primera
+ tarea. Por tanto, si todas las tareas se activan en el mismo instante t,
  el gestor EDF planifica esas M tareas primero (porque sus tiempos de
  finalización absolutos son igual a t + P -1, luego son memores que el 
- tiempo de finalización absoluto de la tarea_1, que es t + P). Como
- resultado, la Tarea_1 solo puede ser planificada en el momento t +e, 
+ tiempo de finalización absoluto de la Tarea_1, que es t + P). Como
+ resultado, la Tarea_1 solo puede ser planificada en el momento t + e, 
  y finalizará en el momento t + e + P, posterior a su tiempo de finalización
  absoluto. La utilización total del grupo de tareas es 
  U = M · e / (P - 1) + P / P = M · e / (P - 1) + 1, y para pequeños valores
@@ -845,6 +845,13 @@ Gestor de tareas Deadline
  have D_i = P_i, a sufficient schedulability condition can be expressed in
  a simple way:
 
+ Test de planificación más complicados para el gestor global EDF han sido
+ desarrollados en la literatura de tiempo-real[8,9], pero no están 
+ basado en una simple comparación entre al utilización total (o densidad) 
+ y una constante fija. Si todas las tareas tienen D_i = P_i, una condición 
+ suficiente para la planificación puede ser expresada de manera sencilla
+ como: 
+
 	sum(WCET_i / P_i) <= M - (M - 1) · U_max
 
  where U_max = max{WCET_i / P_i}[10]. Notice that for U_max = 1,
@@ -852,6 +859,13 @@ Gestor de tareas Deadline
  just confirms the Dhall's effect. A more complete survey of the literature
  about schedulability tests for multi-processor real-time scheduling can be
  found in [11].
+
+ Donde U_max = max{WCET_i / P_i}[10]. Note que para U_max = 1, 
+ M - (M - 1) · U_max es M - M + 1 = 1  y esta es la condición de planificación
+ que confirma el efecto Dhall. Una revisión más completa de la literatura
+ sobre tests para la gestión de tareas en tiempo-real en sistemas 
+ multi-processador puede hallarse en [11].
+ 
 
  As seen, enforcing that the total utilization is smaller than M does not
  guarantee that global EDF schedules the tasks without missing any deadline
@@ -863,6 +877,19 @@ Gestor de tareas Deadline
  but the theoretical result that is important for SCHED_DEADLINE is that if
  the total utilization is smaller or equal than M then the response times of
  the tasks are limited.
+
+ Como se ha visto, fomentar que la utilización total sea menor que M no
+ garantiza que una gestión global EDF planifique las tareas sin puedan 
+ fallar en alcanzar sus tiempos límites (en otras palabras, la gestión 
+ EDF global no es un algoritmo de planificación de tareas óptimo). De 
+ toas maneras una utilización menor que M es suficiente para garantizar que
+ tolas las tareas que no son de tiempo real no sean extranguladas y que la
+ tardanza de las tareas en tiempo real tenga un límite superior[12]
+ (como se comentó previamente). Diferentes límites en la tardanza 
+ máxima que tienen las tareas en tiempo-real han sido desarrollados en 
+ varios artículos[13,14], pero el resultado teórico importante para 
+ SCHED_DEADLINE es que la utilización total es más pequeña o igual que M 
+ cuando el tiempo de respuesta de las tareas está acotado. 
 
 3.4 Relationship with SCHED_DEADLINE Parameters
 -----------------------------------------------
