@@ -695,8 +695,8 @@ Gestor de tareas Deadline
 3.2 Schedulability Analysis for Uniprocessor Systems
 ----------------------------------------------------
 
-3.2. Análisis de gestión de tareas para sistemas de un único procesador
------------------------------------------------------------------------
+3.2 Análisis de gestión de tareas para sistemas de un único procesador
+----------------------------------------------------------------------
 
  If M=1 (uniprocessor system), or in case of partitioned scheduling (each
  real-time task is statically assigned to one and only one CPU), it is
@@ -734,7 +734,7 @@ Gestor de tareas Deadline
  to respect its deadline; Task_2 is scheduled immediately after Task_1, hence
  its response time cannot be larger than 50ms + 10ms = 60ms) even if
 
- Es importante notar que esta condición es solo suficiente, y no necesaria:
+ Es importante darse cuenta que esta condición es solo suficiente, y no necesaria:
  hay grupos de tareas que son gestionables, pero no respetan la condición.
  Por ejemplo, considere el grupo de tareas {Tarea_1, Tarea_2} compuesto por
  Tarea_1=(50ms,50ms,100ms) y Tarea_2=(10ms,100ms,100ms).
@@ -764,7 +764,7 @@ Gestor de tareas Deadline
  time-consuming to be performed on-line. Hence, as explained in Section
  4 Linux uses an admission test based on the tasks' utilizations.
 
- Por supuest es posible verificar la planificación exacta de tareas con
+ Por supuesto es posible verificar la planificación exacta de tareas con
  D_i != P_i (mirando una condición que es tanto suficiente como necesaria),
  pero esto no se puede hacer mendiante la comparación de la utilización 
  total o la densidad con una constante. En vez de eso, se usa la proximación
@@ -788,11 +788,22 @@ Gestor de tareas Deadline
 3.3 Schedulability Analysis for Multiprocessor Systems
 ------------------------------------------------------
 
+3.3 Análisis de gestión de tareas para sistemas con múltiples procesadores
+--------------------------------------------------------------------------
+
  On multiprocessor systems with global EDF scheduling (non partitioned
  systems), a sufficient test for schedulability can not be based on the
  utilizations or densities: it can be shown that even if D_i = P_i task
  sets with utilizations slightly larger than 1 can miss deadlines regardless
  of the number of CPUs.
+
+ En sistemas con múltiples procesadores con una gestión global de tareas
+ EDF (en sistemas no partidos), un test suficiente para ver si es posible
+ planificar laS tareas no puede estar basadO en las utilizaciones o 
+ desnsidades: se puede demostrar que incluso si D_i = P_i los grupos 
+ de tareas con utilizaciones ligeramente mayores a 1 pueden fallar en 
+ alcanzar su tiempos de finalización objetivos de forma independiente al
+ número de CPUs. 
 
  Consider a set {Task_1,...Task_{M+1}} of M+1 tasks on a system with M
  CPUs, with the first task Task_1=(P,P,P) having period, relative deadline
@@ -809,6 +820,24 @@ Gestor de tareas Deadline
  effect"[7]. Note: the example in the original paper by Dhall has been
  slightly simplified here (for example, Dhall more correctly computed
  lim_{e->0}U).
+
+ Consideremos un grupo {Tarea_1, ... Tarea_{M+1}} de tareas en un sistema
+ con M CPUs, con la primera tarea Tarea_1=(P,P,P) teninedo un periodo,
+ fecha de finalización realtiva y WCET igual a P. El resto de las demás
+ M tareas Tarea_i=(e,P-1,P-1) tienen de forma arbitraria un WCET ligeramente
+ epor (indicado como "e") y un periodo más pequeño que el de la primera
+ tarea. Por tanto, si todas las tareas se activan al mismo tiempo t,
+ el gestor EDF planifica esas M tareas primero (porque sus tiempos de
+ finalización absolutos son igual a t + P -1, luego son memores que el 
+ tiempo de finalización absoluto de la tarea_1, que es t + P). Como
+ resultado, la Tarea_1 solo puede ser planificada en el momento t +e, 
+ y finalizará en el momento t + e + P, posterior a su tiempo de finalización
+ absoluto. La utilización total del grupo de tareas es 
+ U = M · e / (P - 1) + P / P = M · e / (P - 1) + 1, y para pequeños valores
+ de e esta puede ser muy cercana a 1. Esto se conoce comoe el "Dhall's
+ effect"[7]. Apunte: el ejemplo en el artículo original de Dhall ha sido
+ ligeramente simplificado aqui (por ejemplo, Dhall calculó más precisamente
+ lim_{e->0}U). 
 
  More complex schedulability tests for global EDF have been developed in
  real-time literature[8,9], but they are not based on a simple comparison
