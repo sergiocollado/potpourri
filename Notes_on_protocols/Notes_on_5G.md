@@ -1,3 +1,5 @@
+How to build a opensource based 5G network: https://ubuntu.com/blog/introduction-to-open-source-private-lte-and-5g-networks
+
 ## Some nomenclature:
 
 - Time Division Multiple Access (TDMA)
