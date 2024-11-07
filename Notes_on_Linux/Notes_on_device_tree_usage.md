@@ -1,4 +1,22 @@
-# Notes on device tree usage
+# Notes on device tree
+
+## What is a device tree?
+
+The "Open Firmware Device Tree" or simply the Device Tree (DT) is a data exchange format used for exchanging hardware description data with the software or operating system.
+
+More specifically it is a description of the hardware that is readable by the operating system so that the operating system doesn't need to hard-code the details of the machine. 
+
+In Linux is a recommended way to describe non-discoverable devices (platform devices) to the Linux Kernel, which previously had to be hardcoded on the source files.
+
+
+
+
+
+
+
+
+
+
 
 Reference: 
  - https://elinux.org/Device_Tree_Usage
