@@ -2,11 +2,22 @@
 
 ## What is a device tree?
 
+references:
+ - https://blog.stabel.family/raspberry-pi-4-device-tree/
+ - https://javiercarrascocruz.github.io/device-driver-development-with-rpi-device-tree
+ - https://docs.kernel.org/devicetree/index.html#kernel-devicetree-usage
+ - https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/configuration/device-tree.adoc
+ - https://blog.stabel.family/raspberry-pi-4-device-tree/
+ - https://www.jeffgeerling.com/blog/2023/how-customize-dtb-device-tree-binary-on-raspberry-pi
+ - https://bootlin.com/blog/enabling-new-hardware-on-raspberry-pi-with-device-tree-overlays/
+
+
 The "Open Firmware Device Tree" or simply the Device Tree (DT) is a data exchange format used for exchanging hardware description data with the software or operating system.
 
 More specifically it is a description of the hardware that is readable by the operating system so that the operating system doesn't need to hard-code the details of the machine. 
 
 In Linux is a recommended way to describe non-discoverable devices (platform devices) to the Linux Kernel, which previously had to be hardcoded on the source files.
+
 
 
 
