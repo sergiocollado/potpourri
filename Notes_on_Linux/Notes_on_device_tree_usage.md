@@ -5,8 +5,8 @@
 references:
  - https://blog.stabel.family/raspberry-pi-4-device-tree/
  - https://javiercarrascocruz.github.io/device-driver-development-with-rpi-device-tree
- - https://docs.kernel.org/devicetree/index.html#kernel-devicetree-usage
  - https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/configuration/device-tree.adoc
+ - https://docs.kernel.org/devicetree/index.html#kernel-devicetree-usage
  - https://blog.stabel.family/raspberry-pi-4-device-tree/
  - https://www.jeffgeerling.com/blog/2023/how-customize-dtb-device-tree-binary-on-raspberry-pi
  - https://bootlin.com/blog/enabling-new-hardware-on-raspberry-pi-with-device-tree-overlays/
