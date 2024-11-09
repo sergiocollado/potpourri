@@ -3,6 +3,7 @@
 ## What is a device tree?
 
 references:
+ - https://www.devicetree.org/
  - https://blog.stabel.family/raspberry-pi-4-device-tree/
  - https://javiercarrascocruz.github.io/device-driver-development-with-rpi-device-tree
  - https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/configuration/device-tree.adoc
@@ -17,6 +18,18 @@ The "Open Firmware Device Tree" or simply the Device Tree (DT) is a data exchang
 More specifically it is a description of the hardware that is readable by the operating system so that the operating system doesn't need to hard-code the details of the machine. 
 
 In Linux is a recommended way to describe non-discoverable devices (platform devices) to the Linux Kernel, which previously had to be hardcoded on the source files.
+
+The device tree supports a hierarchical way of writing hardware description at the SoC level, common board level, and board-specific
+level. Most of the time, writing a new device tree not difficult, and you can reuse most of the common hardware information from 
+the device tree file of the reference board. 
+
+The hardware hierarchy is described in varios levels, because the board have several device blocks
+- SoC
+- SoC has an on-chip processor and on-chip peripherals.
+- The board also has various peripherals onboard, like sensors, LEDs, buttons, joysticks, external memories ...
+
+
+
 
 
 
