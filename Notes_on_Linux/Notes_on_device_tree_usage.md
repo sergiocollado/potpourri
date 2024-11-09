@@ -12,8 +12,7 @@ references:
  - https://www.jeffgeerling.com/blog/2023/how-customize-dtb-device-tree-binary-on-raspberry-pi
  - https://bootlin.com/blog/enabling-new-hardware-on-raspberry-pi-with-device-tree-overlays/
 
-
-The "Open Firmware Device Tree" or simply the Device Tree (DT) is a data exchange format used for exchanging hardware description data with the software or operating system.
+The "Open Firmware Device Tree" or simply the Device Tree (DT) is a data exchange format used for exchanging hardware description data with the software or operating system. The specification is defined at https://www.devicetree.org.
 
 More specifically it is a description of the hardware that is readable by the operating system so that the operating system doesn't need to hard-code the details of the machine. 
 
@@ -30,6 +29,13 @@ The hardware hierarchy is described in varios levels, because the board have sev
 
 In the linux source, the device trees are located at: `<linux source>/arch/<architecture>/boot/dts`.
 
+## Device tree structure 
+
+
+## Device tree syntax
+
+Reference: 
+ - https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/configuration/device-tree.adoc
 
 
 
@@ -42,7 +48,7 @@ In the linux source, the device trees are located at: `<linux source>/arch/<arch
 
 
 
-
+## Device tree usage
 
 Reference: 
  - https://elinux.org/Device_Tree_Usage
