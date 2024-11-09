@@ -28,6 +28,8 @@ The hardware hierarchy is described in varios levels, because the board have sev
 - SoC has an on-chip processor and on-chip peripherals.
 - The board also has various peripherals onboard, like sensors, LEDs, buttons, joysticks, external memories ...
 
+In the linux source, the device trees are located at: `<linux source>/arch/<architecture>/boot/dts`.
+
 
 
 
