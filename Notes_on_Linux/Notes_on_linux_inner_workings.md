@@ -115,6 +115,12 @@ the code submitted in patches must be signed off:
  
 and the patch prefixes are:  [PATCH], [PATCH RFC] or [RFC PATCH] or [PATCH v4] 
 
+To create a patch of version 5, you use for example:
+
+```
+git format-patch -1 -v5
+```
+
 ### Portal of Linux Kernel patches
 
  - reference: https://patchwork.kernel.org/
