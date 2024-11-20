@@ -327,6 +327,7 @@ Writing your first test: https://docs.kernel.org/dev-tools/kunit/start.html#writ
 
 references:
 - https://github.com/linux-test-project/ltp
+- https://linux-test-project.readthedocs.io/en/latest/
 - https://ltp.sourceforge.net/documentation/how-to/ltp.php
 - https://www.redhat.com/sysadmin/linux-test-project-ltp
 - https://linuxlink.timesys.com/docs/wiki/engineering/HOWTO_Use_LTP
