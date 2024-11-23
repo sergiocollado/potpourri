@@ -3032,6 +3032,7 @@ References:
 
 ### iio - industrial I/O:
  - https://www.kernel.org/doc/html/latest/driver-api/iio/index.html
+ - https://linux.ime.usp.br/~marcelosc/2019/09/Simple-IIO-driver
  - https://linux.ime.usp.br/~marcelosc/2019/09/Introduction-to-IIO-driver-development
  - 10 Years of the Industrial I/O Kernel Subsystem - Jonathan Cameron: https://youtu.be/644oH1FXdtE?si=1A9JVMcIvjoRdIi1
  - https://www.kernel.org/doc/html/v4.12/driver-api/uio-howto.html
