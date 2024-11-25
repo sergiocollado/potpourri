@@ -3164,3 +3164,11 @@ The release of the Linux 5.10 kernel brings a new feature to protect against spe
 virtme-ng is a tool that allows to easily and quickly recompile and test a Linux kernel, starting from the source code.
 
 It allows to recompile the kernel in few minutes (rather than hours), then the kernel is automatically started in a virtualized environment that is an exact copy-on-write copy of your live system, which means that any changes made to the virtualized environment do not affect the host system.
+
+### compiling the linux kernel with clang/llvm
+
+References: 
+ - https://zawzaww.github.io/posts/compile-linux-clang-llvm/
+ - https://www.kernel.org/doc/html/latest/kbuild/llvm.html
+ - Mentorship Session: Using Clang and LLVM to Build the Linux Kernel: https://youtu.be/y458QwEfSsU
+
