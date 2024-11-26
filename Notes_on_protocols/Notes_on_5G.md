@@ -1,6 +1,9 @@
  - How to build a opensource based 5G network: https://ubuntu.com/blog/introduction-to-open-source-private-lte-and-5g-networks
  - https://www.free5gtraining.com/
  - https://github.com/emanuelfreitas/3gpp-documentation
+ - https://github.com/open5gs/open5gs
+ - https://github.com/Citrayaf/How-to-build-OpenCore-and-OpenRAN-for-5G
+ - https://open5gs.org/open5gs/docs/guide/02-building-open5gs-from-sources/
 
 ## Some nomenclature:
 
