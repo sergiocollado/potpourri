@@ -4,6 +4,7 @@
  - https://github.com/open5gs/open5gs
  - https://github.com/Citrayaf/How-to-build-OpenCore-and-OpenRAN-for-5G
  - https://open5gs.org/open5gs/docs/guide/02-building-open5gs-from-sources/
+ - Vodafone unveils prototype 5G network built on a Raspberry Pi computer: https://youtu.be/PAu_45Yn4cA?si=bQRXmO076lVRLYMo
 
 ## Some nomenclature:
 
