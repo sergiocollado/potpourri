@@ -1,3 +1,4 @@
+ - 5g systems approach: https://5g.systemsapproach.org/
  - How to build a opensource based 5G network: https://ubuntu.com/blog/introduction-to-open-source-private-lte-and-5g-networks
  - https://www.free5gtraining.com/
  - https://github.com/emanuelfreitas/3gpp-documentation
