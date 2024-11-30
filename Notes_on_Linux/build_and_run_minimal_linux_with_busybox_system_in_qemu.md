@@ -739,6 +739,15 @@ CONFIG_SECURITYFS=y
 
 # for better info in the stack and better debbuging
 CONFIG_FRAME_POINTERS=y
+
+# for presenting kernel symbols table in /proc/kallsyms
+CONFIG_KALLSYMS=Y
+
+# for timing information
+CONFIG_PRINTK_TIME
+
+# for debug filesystems
+DEBUG_FS=y
 ```
 
 Edit .config file manually and enable them (or do that through make menuconfig if you prefer).
