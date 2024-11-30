@@ -726,6 +726,9 @@ stated here: https://github.com/google/syzkaller/blob/master/docs/linux/kernel_c
 # Coverage collection.
 CONFIG_KCOV=y
 
+# Debug enable
+CONFIG_DEBUG_INFO=y
+
 # Debug info for symbolization.
 CONFIG_DEBUG_INFO_DWARF4=y
 
