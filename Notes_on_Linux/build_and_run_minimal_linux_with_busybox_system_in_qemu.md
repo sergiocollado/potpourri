@@ -3,6 +3,7 @@ reference:
  - https://dev.to/alexeyden/quick-qemu-setup-for-linux-kernel-module-debugging-2nde
  - https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e 
  - https://gist.github.com/ncmiller/d61348b27cb17debd2a6c20966409e86
+ - https://medium.com/@ThyCrow/compiling-the-linux-kernel-and-creating-a-bootable-iso-from-it-6afb8d23ba22
  - https://docs.kernel.org/dev-tools/gdb-kernel-debugging.html
  - https://mudongliang.github.io/2017/09/12/how-to-build-a-custom-linux-kernel-for-qemu.html 
  - http://blog.vmsplice.net/2011/02/near-instant-kernel-development-cycle.html 
