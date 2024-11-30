@@ -24,6 +24,7 @@ reference:
  - x86_64: https://github.com/google/syzkaller/blob/master/docs/linux/setup_ubuntu-host_qemu-vm_x86-64-kernel.md
  - arm64: https://github.com/google/syzkaller/blob/master/docs/linux/setup_linux-host_qemu-vm_arm64-kernel.md
  - risc64v: https://github.com/google/syzkaller/blob/master/docs/linux/setup_linux-host_qemu-vm_riscv64-kernel.md
+ - https://medium.com/@alessandrozanni.dev/setup-linux-kernel-debugging-with-qemu-and-gdb-e5446c16cd85
 
 
 # Building a minimal linux system with busybox
