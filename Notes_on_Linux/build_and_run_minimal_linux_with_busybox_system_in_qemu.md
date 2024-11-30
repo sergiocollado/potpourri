@@ -747,7 +747,7 @@ CONFIG_KALLSYMS=Y
 CONFIG_PRINTK_TIME
 
 # for debug filesystems
-DEBUG_FS=y
+CONFIG_DEBUG_FS=y
 ```
 
 Edit .config file manually and enable them (or do that through make menuconfig if you prefer).
