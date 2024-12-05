@@ -2,6 +2,8 @@
 
 Here was Linux started: https://groups.google.com/g/comp.os.minix/c/dlNtH7RRrGA/m/SwRavCzVE7gJ
 
+![linus_post](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/starting_Linux.png)
+
 [linux kernel map](https://makelinux.github.io/kernel/map/)
 
 ![linux kernel map](https://github.com/sergiocollado/potpourri/blob/master/image/Linux_kernel_map.png "Linux kernel map")
