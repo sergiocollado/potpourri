@@ -14,6 +14,7 @@ list of Linux subsystems: https://www.kernel.org/doc/html/latest/subsystem-apis.
  - Core Knowledge That Modern Linux Kernel Developer Should Have: https://www.linuxjournal.com/content/core-knowledge-modern-linux-kernel-developer-should-have
  - Linux programming interface: https://archive.org/details/The_Linux_Programming_Interface/page/n4/mode/1up
  - Index of Documentation for People Interested in Writing and/or Understanding the Linux Kernel: https://www.kernel.org/doc/html/latest/process/kernel-docs.html
+ - the linux kernel: https://tldp.org/LDP/tlk/tlk-toc.html
  - Kernel coding style: https://www.kernel.org/doc/html/latest/process/coding-style.html
  - HOWTO do Linux kernel development: https://docs.kernel.org/process/howto.html 
  - Linux kernel documentation: https://www.kernel.org/doc/Documentation/
