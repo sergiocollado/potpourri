@@ -48,6 +48,22 @@ https://en.wikipedia.org/wiki/Comparison_of_mobile_phone_standards
 
 https://www.3gpp.org/
 
+## Basic components of a mobile telephony network:
+
+#### 1 - Mobile station/User equipment
+ This is the mobile phone and it SIM (Subscriber Identification Module) cardio, the SIM has an IMSI (International Mobile Subscriber Identity) 
+
+#### 2 - Radio Access Netowork (RAN) / Acess network
+ The base station connects to the ME
+
+#### 3 - Core network
+ The core network is responsible for the overall control of the mobile station, establishment and routing of the call. The call can be routed
+ in the same mobile network or be routed to an external network .
+
+#### 4 - Backhaul network
+ Connects the Radio Acess Network (RAN) with the Core Network (CN). It can be a microwave link or an electrical or optical fiber cable (most common). 
+ 
+
 ## A brief description of a mobile network:
 
 reference: https://patents.google.com/patent/US9479917B1/en
