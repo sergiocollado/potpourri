@@ -1,5 +1,7 @@
 # Notes on Linux inner workings
 
+Here was Linux started: https://groups.google.com/g/comp.os.minix/c/dlNtH7RRrGA/m/SwRavCzVE7gJ
+
 [linux kernel map](https://makelinux.github.io/kernel/map/)
 
 ![linux kernel map](https://github.com/sergiocollado/potpourri/blob/master/image/Linux_kernel_map.png "Linux kernel map")
