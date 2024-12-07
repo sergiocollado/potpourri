@@ -246,37 +246,41 @@ This practice allows existing device drivers to be bound to a newer device, whil
 Warning: Don't use ''wildcard'' compatible values, like "fsl,mpc83xx-uart" or similar.  Silicon vendors will invariably make a change that breaks your wildcard assumptions the moment it is too late to change it.  Instead, choose a specific silicon implementations and make all subsequent silicon ''compatible'' with it.
 
 ## How Addressing Works
+
 Devices that are addressable use the following properties to encode address information into the device tree:
 * `reg`
 * `#address-cells`
 * `#size-cells`
 
-Each addressable device gets a `reg` which is a list of tuples in the form `reg = <address1 length1 [address2 length2] [address3 length3] ... >`.  Each tuple represents an address range used by the device.  Each address value is a list of one or more 32 bit integers called <i>cells</i>.  Similarly, the length value can either be a list of cells, or empty.
+Each addressable device gets a `reg` which is a list of tuples in the form `reg = <address1 length1 [address2 length2] [address3 length3] ... >`.  Each tuple represents an address range used by the device. Each address value is a list of one or more 32 bit integers called **cells**. Similarly, the length value can either be a list of cells, or empty.
 
-Since both the address and length fields are variable of variable size, the `#address-cells` and `#size-cells` properties in the parent node are used to state how many cells are in each field.  Or in other words, interpreting a reg property correctly requires the parent node's #address-cells and #size-cells values.  To see how this all works, lets add the addressing properties to the sample device tree, starting with the CPUs.
+Since both the address and length fields are variable of variable size, the `#address-cells` and `#size-cells` properties in the parent node are used to state how many cells are in each field.  Or in other words, interpreting a reg property correctly requires the parent node's #address-cells and #size-cells values. To see how this all works, lets add the addressing properties to the sample device tree, starting with the CPUs.
 
-=== CPU addressing ===
-The CPU nodes represent the simplest case when talking about addressing.  Each CPU is assigned a single unique ID, and there is no size associated with CPU ids.
+### CPU addressing
 
+The CPU nodes represent the simplest case when talking about addressing. Each CPU is assigned a single unique ID, and there is no size associated with CPU ids.
 
+```
      cpus {
-         <b>#address-cells = <1>;
-         #size-cells = <0>;</b>
+         #address-cells = <1>;
+         #size-cells = <0>;
          cpu@0 {
              compatible = "arm,cortex-a9";
-             <b>reg = <0>;</b>
+             reg = <0>;
          };
          cpu@1 {
              compatible = "arm,cortex-a9";
-             <b>reg = <1>;</b>
+             reg = <1>;
          };
      };
+```
 
-In the `cpus` node, `#address-cells` is set to 1, and `#size-cells` is set to 0.  This means that child `reg` values are a single uint32 that represent the address with no size field.  In this case, the two cpus are assigned addresses 0 and 1.  `#size-cells` is 0 for cpu nodes because each cpu is only assigned a single address.
+In the `cpus` node, `#address-cells` is set to 1, and `#size-cells` is set to 0. This means that child `reg` values are a single uint32 that represent the address with no size field. In this case, the two cpus are assigned addresses 0 and 1. `#size-cells` is 0 for cpu nodes because each cpu is only assigned a single address.
 
-You'll also notice that the `reg` value matches the value in the node name.  By convention, if a node has a `reg` property, then the node name must include the unit-address, which is the first address value in the `reg` property.
+You'll also notice that the `reg` value matches the value in the node name. By convention, if a node has a `reg` property, then the node name must include the unit-address, which is the first address value in the `reg` property.
 
-=== Memory Mapped Devices ===
+### Memory Mapped Devices
+
 Instead of single address values like found in the cpu nodes, a memory mapped device is assigned a range of addresses that it will respond to.  `#size-cells` is used to state how large the length field is in each child `reg` tuple.  In the following example, each address value is 1 cell (32 bits), and each length value is also 1 cell, which is typical on 32 bit systems.  64 bit machines may use a value of 2 for #address-cells and #size-cells to get 64 bit addressing in the device tree.
 
  /dts-v1/;
