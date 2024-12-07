@@ -39,54 +39,19 @@ Reference:
 
 
 
+## Device tree
 
-
-
-
-
-
-
-
-
-## Device tree usage
-
-Reference: 
- - https://elinux.org/Device_Tree_Usage
-
-
-
-[[Category:Device_tree]]
-
-[[Device_Tree | Top Device Tree page]]
-
-<!--
-
-This page:
-
-   http://elinux.org/Device_Tree_Usage
-
-should be linked to from where it used to live:
-
-   http://devicetree.org/Device_Tree_Usage
-
-Please do not change the elinux.org location unless you also update
-the link from devicetree.org
-
--->
-
-(This page was previously located at htttp://devicetree.org/Device_Tree_Usage)
+ - Reference: https://elinux.org/Device_Tree_Usage
 
 This page walks through how to write a device tree for a new machine.  It is intended to provide an overview of device tree concepts and how they are used to describe a machine.
 
 For a full technical description of device tree data format, refer to the
-[https://elinux.org/images/c/cf/Power_ePAPR_APPROVED_v1.1.pdf ePAPR v1.1] specification.  The ePAPR specification covers a lot more detail than the basic topics covered on this page, please refer to it for more advanced usage that isn't covered by this page.
-[[Device_tree_future#Devicetree_Specification | The ePAPR is currently being updated]] with a new
-name of Devicetree Specification Documentation.
+https://elinux.org/images/c/cf/Power_ePAPR_APPROVED_v1.1.pdf ePAPR v1.1 specification. The ePAPR specification covers a lot more detail than the basic topics covered on this page, please refer to it for more advanced usage that isn't covered by this page.
 
-== Basic Data Format ==
-The device tree is a simple tree structure of nodes and properties.  Properties are key-value pairs, and node may contain both properties and child nodes.  For example, the following is a simple tree in the [[Definitions | .dts]] format:
+### Basic Data Format
+The device tree is a simple tree structure of nodes and properties.  Properties are key-value pairs, and node may contain both properties and child nodes. For example, the following is a simple tree in the  `.dts` format:
 
-<pre>
+```
 /dts-v1/;
 
 / {
@@ -110,45 +75,45 @@ The device tree is a simple tree structure of nodes and properties.  Properties 
         };
     };
 };
-</pre>
+```
 
 This tree is obviously pretty useless because it doesn't describe anything, but it does show the structure of nodes and properties.  There is:
-* a single root node: "<code>/</code>"
-* a couple of child nodes: "<code>node1</code>" and "<code>node2</code>"
-* a couple of children for node1: "<code>child-node1</code>" and "<code>child-node2</code>"
+* a single root node: `/`
+* a couple of child nodes: `node1` and `node2`
+* a couple of children for node1: `child-node1` and `child-node2`
 * a bunch of properties scattered through the tree.
 
 Properties are simple key-value pairs where the value can either be empty or contain an arbitrary byte stream.  While data types are not encoded into the data structure, there are a few fundamental data representations that can be expressed in a device tree source file.
-* Text strings (null terminated) are represented with double quotes:
-**<code>string-property = "a string";</code>
-* 'Cells' are 32 bit unsigned integers delimited by angle brackets:
-**<code>cell-property = <0xbeef 123 0xabcd1234>;</code>
-* Binary data is delimited with square brackets:
-**<code>binary-property = [0x01 0x23 0x45 0x67];</code>
-* Data of differing representations can be concatenated together using a comma:
-**<code>mixed-property = "a string", [0x01 0x23 0x45 0x67], <0x12345678>;</code>
-* Commas are also used to create lists of strings:
-**<code>string-list = "red fish", "blue fish";</code>
+ - Text strings (null terminated) are represented with double quotes:
+     - `string-property = "a string";`
+ - 'Cells' are 32 bit unsigned integers delimited by angle brackets:
+     - `cell-property = <0xbeef 123 0xabcd1234>;`
+ - Binary data is delimited with square brackets:
+     - `binary-property = [0x01 0x23 0x45 0x67];`
+ - Data of differing representations can be concatenated together using a comma:
+     - `mixed-property = "a string", [0x01 0x23 0x45 0x67], <0x12345678>;`
+ - Commas are also used to create lists of strings:
+     - `string-list = "red fish", "blue fish";`
 
-== Basic Concepts ==
+### Basic Concepts
 To understand how the device tree is used, we will start with a simple machine and build up a device tree to describe it step by step.
 
-=== Sample Machine ===
-Consider the following imaginary machine (loosely based on ARM Versatile), manufactured by "Acme" and named "Coyote's Revenge":
-* One 32bit ARM CPU
-* processor local bus attached to memory mapped serial port, spi bus controller, i2c controller, interrupt controller, and external bus bridge
-* 256MB of SDRAM based at 0
-* 2 Serial ports based at 0x101F1000 and 0x101F2000
-* GPIO controller based at 0x101F3000
-* SPI controller based at 0x10170000 with following devices
-** MMC slot with SS pin attached to GPIO #1
-* External bus bridge with following devices
-** SMC SMC91111 Ethernet device attached to external bus based at 0x10100000
-** i2c controller based at 0x10160000 with following devices
-*** Maxim DS1338 real time clock.  Responds to slave address 1101000 (0x58)
-** 64MB of NOR flash based at 0x30000000
+### Sample Machine 
 
-=== Initial structure ===
+Consider the following imaginary machine (loosely based on ARM Versatile), manufactured by "Acme" and named "Coyote's Revenge":
+ - One 32bit ARM CPU
+ - processor local bus attached to memory mapped serial port, spi bus controller, i2c controller, interrupt controller, and external bus bridge 256MB of SDRAM based at 0
+ - 2 Serial ports based at 0x101F1000 and 0x101F2000
+ - GPIO controller based at 0x101F3000
+ - SPI controller based at 0x10170000 with following devices
+   - MMC slot with SS pin attached to GPIO #1
+ - External bus bridge with following devices
+    - SMC SMC91111 Ethernet device attached to external bus based at 0x10100000
+ - i2c controller based at 0x10160000 with following devices
+    - Maxim DS1338 real time clock.  Responds to slave address 1101000 (0x58)
+ - 64MB of NOR flash based at 0x30000000
+
+### Initial structure
 The first step is to lay down a skeleton structure for the machine.  This is the bare minimum structure required for a valid device tree.  At this stage you want to uniquely identify the machine.
 
  /dts-v1/;
