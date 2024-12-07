@@ -882,8 +882,8 @@ Gestor de tareas Deadline
  garantiza que una gestión global EDF planifique las tareas sin puedan 
  fallar en alcanzar sus tiempos límites (en otras palabras, la gestión 
  EDF global no es un algoritmo de planificación de tareas óptimo). De 
- toas maneras una utilización menor que M es suficiente para garantizar que
- tolas las tareas que no son de tiempo real no sean extranguladas y que la
+ todas maneras una utilización menor que M es suficiente para garantizar que
+ todas las tareas que no son de tiempo real no sean extranguladas y que la
  tardanza de las tareas en tiempo real tenga un límite superior[12]
  (como se comentó previamente). Diferentes límites en la tardanza 
  máxima que tienen las tareas en tiempo-real han sido desarrollados en 
@@ -906,9 +906,27 @@ Gestor de tareas Deadline
  guaranteeing that all the jobs' deadlines of a task are respected.
  In order to do this, a task must be scheduled by setting:
 
+ Finalmente, es importante comprender la relación entre los
+ parámetros de SCHED_DEADLINE descritos en la Sección 2 (tiempo de ejecución,
+ tiempo límite y periodo) y los parámetros de las tareas en tiempo real
+ (WCET, D, P) descritos en esta sección. Notese que las restricciónes
+ temporatles de las tareas están representadas por sus tiempos de
+ finalización absolutios d_j = r_j + D descritos anteriormente, 
+ mientras que SCHED_DEALINE planifica las tareas de acuerdo con los
+ tiempos de finalización (ver Sección 2).
+ Si un test de admisión se usa para garantizar que los tiempos de
+ finalización planificados son respetados, entonces SCHED_DEADLINE puede
+ ser usado para planificar las tareas en tiempo real garantiando que 
+ todos los tiempos de finalización de las tareas son respetados. 
+ Para hacer esto, una tareas debe ser planificado ajustando:
+
   - runtime >= WCET
   - deadline = D
   - period <= P
+
+  - tiempo de ejecución >= WCET
+  - tiempo de finalización = D
+  - periodo <= P
 
  IOW, if runtime >= WCET and if period is <= P, then the scheduling deadlines
  and the absolute deadlines (d_j) coincide, so a proper admission control
@@ -917,7 +935,18 @@ Gestor de tareas Deadline
  Notice that if runtime > deadline the admission control will surely reject
  this task, as it is not possible to respect its temporal constraints.
 
+ IOw, si tiempo de ejecución >= WAE y si el perido es <= P, entonces 
+ los tiempos de finalización planificados y los tiempos de finalización 
+ absolutos (d_j) coincidiran, así que un correcto control de admisión 
+ permite respetar los tiempos de finalización absolutos de los trabajos
+ para esa tarea (esto es lo que se conoce como "propiedad de planificación
+ dura" y es una extensión del Lama 1 de [2]). Notese que si el tiempo de
+ ejecución > tiempo de finalización el control de admisión seguramente
+ rechazará esa tarea, ya que no sería posible repetar sus restriciones 
+ temporales.
+
  References:
+ Referencias:
 
   1 - C. L. Liu and J. W. Layland. Scheduling algorithms for multiprogram-
       ming in a hard-real-time environment. Journal of the Association for
@@ -979,12 +1008,23 @@ Gestor de tareas Deadline
 4. Bandwidth management
 =======================
 
+4. Gestión del ancho de banda
+=============================
+
  As previously mentioned, in order for -deadline scheduling to be
  effective and useful (that is, to be able to provide "runtime" time units
  within "deadline"), it is important to have some method to keep the allocation
  of the available fractions of CPU time to the various tasks under control.
  This is usually called "admission control" and if it is not performed, then
  no guarantee can be given on the actual scheduling of the -deadline tasks.
+
+ Como se ha mencionado, para que la planificación por tiempo de finalización
+ sea efectivo y util (esto es, que sea capaz de proveer un tiempo de ejecución
+ dado antes de un tiempo de finalización), es importante tener un método para
+ gestionar los fracciones de tiempo de ejecución de la CPU con respecto a 
+ las varias tareas bajo control. Esto normalmente se llama "control de 
+ admisión" y si no se lleva a cabo, entonces no se puede dar ninguna 
+ garantía en el tiempo de finalización de las tareas planificadas. 
 
  As already stated in Section 3, a necessary condition to be respected to
  correctly schedule a set of real-time tasks is that the total utilization
@@ -1003,6 +1043,25 @@ Gestor de tareas Deadline
  figure out how we want to manage SCHED_DEADLINE bandwidth at the task group
  level.
 
+ Como ya se enunció en la Sección 3, una condición necesaria que ha de ser
+ repetada para planificar correctamente un conjunto de tareas de tiempo
+ real es que la utilizaicón total ha de ser menor que M. Cuando se habla 
+ de tareas con tiempo de finalización eso requiere que la suma de el ratio
+ entre el tiempo de ejecución y el periodo para todas las tareas sea 
+ menor que M. Notese que el ratio tiempo de ejecución/periodo es equivalente
+ a la utilización de una tarea en tiempo real "tradicional", y también es
+ habitualmente llamado "ancho de banda". 
+ La interfaz usada para el controlar el ancho de banda que puede ser
+ reservado en una CPU para tareas con tiempo de finalización es similar al
+ que se usa ya para grupos de tareas en tiempo real (a.k.a RT-throttling -
+ lease Documentation/scheduler/sched-rt-group.rst), y esta basado en
+ ficheros de lectura/escritura situados en profs (para ajustos de todo
+ el sistema). Notar que los ajustes por-grup (controlados por medio de
+ cgroupsfs) todavía no estan definidos para las taréas con tiempo de 
+ finalización, porque se necisata aclarar que es necesiario para
+ definir como se quiere gestionar el ancho de banda de SCHED_DEADLINE
+ en el entorno de grupos de tareas.
+
  A main difference between deadline bandwidth management and RT-throttling
  is that -deadline tasks have bandwidth on their own (while -rt ones don't!),
  and thus we don't need a higher level throttling mechanism to enforce the
@@ -1014,10 +1073,32 @@ Gestor de tareas Deadline
  interface we can put a cap on total utilization of -deadline tasks (i.e.,
  \Sum (runtime_i / period_i) < global_dl_utilization_cap).
 
+ La principal diferencia entre el gestión de ancho de banda con tareas 
+ con tiempo de finalización y el RT-throttling es que las tareas con 
+ ancho de finalización tieen un ancho de banda propio (mientas que las
+ de tiempo real no), y por tanto no se necesita un mecanismo de restricción
+ superior para favorecer en ancho de banda deseado. En otras palabras, esto
+ significa que los parametros de la interzaz únicamente son usado en el 
+ control de admisión (i.e., cuando el usuario llama sched_setattr()).
+ La planificación se ejecuta entonces considerando los parámetros de las
+ tareas actuales, así que el ancho de banda es reservado para las tareas
+ de SCHED_DEADLINE respetando sus necesidades en terminos de granularidad.
+ Por tanto usando este simple interfaz se puede limitar la utilización 
+ total de las tareas con tiempo de finalización
+ (i.e., \Sum (runtime_i / period_i) < global_dl_utilization_cap).
+
+
 4.1 System wide settings
 ------------------------
 
+4.1 Ajustes generales del sistema
+---------------------------------
+
  The system wide settings are configured under the /proc virtual file system.
+
+ Los ajustes generales del sistema se configuran en el sistema de archivos
+ virtual /proc.
+  
 
  For now the -rt knobs are used for -deadline admission control and the
  -deadline runtime is accounted against the -rt runtime. We realize that this
@@ -1026,8 +1107,21 @@ Gestor de tareas Deadline
  run -rt tasks from a -deadline server; in which case the -rt bandwidth is a
  direct subset of dl_bw.
 
+ Por ahora los ajustes de -rt se usan para la admisión de control de las 
+ tareas de tiempo de finalización (-deadline) y se ajusta contra el tiempo
+ de las tareas en tiempo real. Nos damos cuenta que esto no es enteramente
+ deseable; de todos modos, por ahora es mejor tener una pequeña interfaz, 
+ y que sea posible cambiarlo facilmente después. La situación ideal (ver 5)
+ es ejecutar las tareas en tiempo real desde un servidor de tareas con tiempo
+ de finalización; en ese caso el ancho de banda de las tareas en tiempo real
+ es un subgrupo del ancho de banda de las tareas con tiempo de finalización. 
+
  This means that, for a root_domain comprising M CPUs, -deadline tasks
  can be created while the sum of their bandwidths stays below:
+
+ Esto significa que para un dominio raiz que comprenda M CPUs, las
+ tareas con tiempo de finalización pueden ser creadas mientras que la
+ suma de sus anchos de banda está por debajo de:
 
    M * (sched_rt_runtime_us / sched_rt_period_us)
 
@@ -1035,17 +1129,34 @@ Gestor de tareas Deadline
  be thus free of oversubscribing the system up to any arbitrary level.
  This is done by writing -1 in /proc/sys/kernel/sched_rt_runtime_us.
 
+ Esto es tambien posible para desactivar la lógica de gestion del ancho
+ de banda, y por tanto liberar de sobre planificación el sistema a 
+ un nivel arbitrario. Esto se hace escribiendo -1 en
+ /proc/sys/kernel/sched_rt_runtime_us.
+
 
 4.2 Task interface
 ------------------
+
+4.2 Interfaz de las tareas
+--------------------------
 
  Specifying a periodic/sporadic task that executes for a given amount of
  runtime at each instance, and that is scheduled according to the urgency of
  its own timing constraints needs, in general, a way of declaring:
 
+ Especificar una tarea periódica/esporádica que se ejecuta por una 
+ determinada cantidad de tiempo de ejecución cada vez, y que esta sea
+ planificada de acuerdo a la urgencia de sus restricciones de tiempo, 
+ en general es una forma de declarar:
+
   - a (maximum/typical) instance execution time,
   - a minimum interval between consecutive instances,
   - a time constraint by which each instance must be completed.
+
+  - un (máximo/típico) tiempo de ejecución de instancias.
+  - un intervalo mínimo entre instancias consecutivas.
+  - una restricción de tiempo en la que cada instancia ha de ser completada.
 
  Therefore:
 
@@ -1054,14 +1165,29 @@ Gestor de tareas Deadline
   * the new scheduling related syscalls that manipulate it, i.e.,
     sched_setattr() and sched_getattr() are implemented.
 
+ Por tanto:
+  * Se provee una nueva estructura sched_attr, con todos los campos 
+    necesarios;
+  * Las nuevas llamadas al sistema para la planificación de la tarea,
+    sched_setattr() y sched_getattr() han sido implementadas.
+
  For debugging purposes, the leftover runtime and absolute deadline of a
  SCHED_DEADLINE task can be retrieved through /proc/<pid>/sched (entries
  dl.runtime and dl.deadline, both values in ns). A programmatic way to
  retrieve these values from production code is under discussion.
 
+ Para depurar, el restos del tiempo de ejecución y los tiempos de 
+ finalización absolutos de una tarea de SCHED_DEADLINE pueden obtenerse
+ en /proc/<pid>/sched (los datos de dl.runtime y dl.deadline, ambos
+ valores en ns). Un modo programático de obtener esos valores desde
+ código en producción se está discutiendo.
+
 
 4.3 Default behavior
 ---------------------
+
+4.3 Comportamiento por predeterminado
+-------------------------------------
 
  The default value for SCHED_DEADLINE bandwidth is to have rt_runtime equal to
  950000. With rt_period equal to 1000000, by default, it means that -deadline
@@ -1074,6 +1200,12 @@ Gestor de tareas Deadline
  Section 5), then this simple setting of the bandwidth management is able to
  deterministically guarantee that -deadline tasks will receive their runtime
  in a period.
+
+ El comportamiento predeterminado para el ancho de banda de SCHED_DEADLINE es
+ tener rt_runtime igual a 950000. Con rt_period igual a 1000000, por defecto,
+ esto significa que las tareas con tiempo de finalización pueden usar casi 
+ el 95%, multiplicado por el número de CPUs que compongan el dominio raiz,
+ para cada dominio raiz. TODO: COMPLETE...!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 
  Finally, notice that in order not to jeopardize the admission control a
  -deadline task cannot fork.
