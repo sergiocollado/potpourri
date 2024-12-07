@@ -323,6 +323,73 @@ To start looking into writing tests, you can look into: `tools/testing/kunit/kun
 
 Writing your first test: https://docs.kernel.org/dev-tools/kunit/start.html#writing-your-first-test
 
+### How to execute Kunit at boot in a VM in Qemu
+
+For building the VM I use the syzkaller method: 
+- https://github.com/google/syzkaller/blob/master/docs/linux/setup.md
+- https://github.com/google/syzkaller/blob/master/docs/linux/setup_ubuntu-host_qemu-vm_x86-64-kernel.md
+
+In my repo folder, I have a linux folder (with the source code) and an image folder (with the bullseye image)
+
+```
+#To kill the running QEMU instance press Ctrl+A 
+#syzkaller login: root
+#remote access with: ssh -i $IMAGE/bullseye.id_rsa -p 10021 -o "StrictHostKeyChecking no" root@localhost	
+
+- reference: kunit at boot: https://kunit.dev/third_party/kernel/docs/running_tips.html
+- reference: make modules_install: https://subscription.packtpub.com/book/iot-and-hardware/9781803240060/2/ch02lvl1sec05/building-and-installing-modules
+- reference: https://www.kernel.org/doc/Documentation/kbuild/modules.txt 
+
+#in the linux (src code) directory
+vim .config
+# set CONFIG_KUNIT=y
+# set CONFIG_LONGEST_SYM_KUNIT_TEST=y
+make olddefconfig # for updating the options dependencies
+time make -j($nproc)
+make modules
+
+cd ../image 
+#execute the ./create-image.sh script commenting the two last lines
+# go and comment those last two lines
+./create-image.sh
+cd ../linux #install the modules in the ./image/bullseye 
+sudo INSTALL_MOD_PATH=./../image/bullseye make modules_install
+cd ../image/
+# next step is the magic, the local rootfs is copied to the mnt filesystem.
+sudo cp -a bullseye/. /mnt/bullseye/. 
+sudo umount /mnt/bullseye
+
+cd ..
+
+qemu-system-x86_64 \
+        -m 2G \
+        -smp 2 \
+        -kernel ./linux/arch/x86/boot/bzImage \
+        -append "console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0" \
+        -drive file=./image/bullseye.img,format=raw \
+        -net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 \
+        -net nic,model=e1000 \
+        -enable-kvm \
+        -nographic \
+        -pidfile vm.pid \
+        2>&1 | tee vm.log
+
+# you can check the boot log at vm.log file; gedit vm.log &
+[   29.744949]     KTAP version 1
+[   29.745344]     # Subtest: longest-symbol
+[   29.745886]     # module: longest_symbol_kunit
+[   29.745899]     1..4
+[   29.746953]     ok 1 test_longest_symbol
+[   29.748634]     # test_longest_symbol_kallsyms: test_longest_symbol kallsyms: kprobe registered
+[   29.750264]     ok 2 test_longest_symbol_kallsyms
+[   29.750415]     ok 3 test_longest_symbol_plus1
+[   29.752684]     # test_longest_symbol_plus1_kallsyms: test_longest_symbol_plus1 kallsyms: kprobe registered
+[   29.754564]     ok 4 test_longest_symbol_plus1_kallsyms
+[   29.754581] # longest-symbol: pass:4 fail:0 skip:0 total:4
+[   29.755395] # Totals: pass:4 fail:0 skip:0 total:4
+[   29.756095] ok 39 longest-symbol
+```
+
 ## LTP Linux Test Project
 
 references:
