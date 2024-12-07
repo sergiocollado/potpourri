@@ -37,8 +37,6 @@ In the linux source, the device trees are located at: `<linux source>/arch/<arch
 Reference: 
  - https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/configuration/device-tree.adoc
 
-
-
 ## Device tree
 
  - Reference: https://elinux.org/Device_Tree_Usage
@@ -94,6 +92,9 @@ Properties are simple key-value pairs where the value can either be empty or con
      - `mixed-property = "a string", [0x01 0x23 0x45 0x67], <0x12345678>;`
  - Commas are also used to create lists of strings:
      - `string-list = "red fish", "blue fish";`
+
+#### An aside about `/include/`
+The `/include/` directive, in the example above: `/dts-v1`, results in simple textual inclusion, much like C's `#include` directive, but a feature of the Device Tree compiler leads to different usage patterns. Given that nodes are named, potentially with absolute paths, it is possible for the same node to appear twice in a DTS file (and its inclusions). When this happens, the nodes and properties are combined, interleaving and overwriting properties as required (later values override earlier ones).
 
 ### Basic Concepts
 To understand how the device tree is used, we will start with a simple machine and build up a device tree to describe it step by step.
