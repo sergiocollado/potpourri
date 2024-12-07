@@ -114,46 +114,51 @@ Consider the following imaginary machine (loosely based on ARM Versatile), manuf
  - 64MB of NOR flash based at 0x30000000
 
 ### Initial structure
-The first step is to lay down a skeleton structure for the machine.  This is the bare minimum structure required for a valid device tree.  At this stage you want to uniquely identify the machine.
+The first step is to lay down a skeleton structure for the machine. This is the bare minimum structure required for a valid device tree.  At this stage you want to uniquely identify the machine.
 
+```
  /dts-v1/;
  
  / {
-     <b>compatible = "acme,coyotes-revenge";</b>
+      compatible = "acme,coyotes-revenge";
  };
+```
 
-<code>compatible</code> specifies the name of the system.  It contains a string in the form "&lt;manufacturer&gt;,&lt;model&gt;.  It is important to specify the exact device, and to include the manufacturer name to avoid namespace collisions.  Since the operating system will use the <code>compatible</code> value to make decisions about how to run on the machine, it is very important to put correct data into this property.
+`compatible` specifies the name of the system. It contains a string in the form `"<manufacturer>;,<model>"`.  It is important to specify the exact device, and to include the manufacturer name to avoid namespace collisions. Since the operating system will use the `compatible` value to make decisions about how to run on the machine, it is very important to put correct data into this property.
 
-Theoretically, compatible is all the data an OS needs to uniquely identify a machine.  If all the machine details are hard coded, then the OS could look specifically for "acme,coyotes-revenge" in the top level <code>compatible</code> property.
+Theoretically, compatible is all the data an OS needs to uniquely identify a machine.  If all the machine details are hard coded, then the OS could look specifically for "acme,coyotes-revenge" in the top level `compatible` property.
 
-=== CPUs ===
-Next step is to describe for each of the CPUs.  A container node named "cpus" is added with a child node for each CPU.  In this case the system is a dual-core Cortex A9 system from ARM.
+### CPUs
+Next step is to describe for each of the CPUs. A container node named "cpus" is added with a child node for each CPU.  In this case the system is a dual-core Cortex A9 system from ARM.
 
+```
  /dts-v1/;
  
  / {
      compatible = "acme,coyotes-revenge";
  
-     <b>cpus {
+     cpus {
          cpu@0 {
              compatible = "arm,cortex-a9";
          };
          cpu@1 {
              compatible = "arm,cortex-a9";
          };
-     };</b>
+     };
  };
+```
 
-The compatible property in each cpu node is a string that specifies the exact cpu model in the form <code>&lt;manufacturer&gt;,&lt;model&gt;</code>, just like the compatible property at the top level.
+The compatible property in each cpu node is a string that specifies the exact cpu model in the form `<manufacturer>;,<model>;`, just like the compatible property at the top level.
 
 More properties will be added to the cpu nodes later, but we first need to talk about more of the basic concepts.
 
-=== Node Names ===
-It is worth taking a moment to talk about naming conventions.  Every node must have a name in the form <code>&lt;name&gt;[@&lt;unit-address&gt;</code>].
+### Node Names
 
-<code>&lt;name&gt;</code> is a simple ascii string and can be up to 31 characters in length.  In general, nodes are named according to what kind of device it represents.  ie. A node for a 3com Ethernet adapter would be use the name <code>ethernet</code>, not <code>3com509</code>.
+It is worth taking a moment to talk about naming conventions. Every node must have a name in the form `name[@<unit-address]`.
 
-The unit-address is included if the node describes a device with an address.  In general, the unit address is the primary address used to access the device, and is listed in the node's <code>reg</code> property.  We'll cover the reg property later in this document.
+`<name>` is a simple ascii string and can be up to 31 characters in length. In general, nodes are named according to what kind of device it represents.  ie. A node for a 3com Ethernet adapter would be use the name `ethernet`, not `3com509`.
+
+The unit-address is included if the node describes a device with an address.  In general, the unit address is the primary address used to access the device, and is listed in the node's `reg` property.  We'll cover the reg property later in this document.
 
 Sibling nodes must be uniquely named, but it is normal for more than one node to use the same generic name so long as the address is different (ie, serial@101f1000 & serial@101f2000).
 
@@ -219,18 +224,18 @@ In this tree, a node has been added for each device in the system, and the hiera
 This tree isn't valid at this point.  It is missing information about connections between devices.  That data will be added later.
 
 Some things to notice in this tree:
-* Every device node has a <code>compatible</code> property.
+* Every device node has a `compatible` property.
 * The flash node has 2 strings in the compatible property.  Read on to the next section to learn why.
 * As mentioned earlier, node names reflect the type of device, not the particular model.  See section 2.2.2 of the ePAPR spec for a list of defined generic node names that should be used wherever possible.
 
-=== Understanding the <code>compatible</code> Property ===
-Every node in the tree that represents a device is required to have the <code>compatible</code> property.  <code>compatible</code> is the key an operating system uses to decide which device driver to bind to a device.
+=== Understanding the `compatible` Property ===
+Every node in the tree that represents a device is required to have the `compatible` property.  `compatible` is the key an operating system uses to decide which device driver to bind to a device.
 
-<code>compatible</code> is a list of strings.  The first string in the list specifies the exact device that the node represents in the form <code>"&lt;manufacturer&gt;,&lt;model&gt;"</code>.  The following strings represent other devices that the device is ''compatible'' with.
+`compatible` is a list of strings.  The first string in the list specifies the exact device that the node represents in the form `"<manufacturer>,<model>"`.  The following strings represent other devices that the device is ''compatible'' with.
 
-For example, the Freescale MPC8349 System on Chip (SoC) has a serial device which implements the National Semiconductor ns16550 register interface.  The compatible property for the MPC8349 serial device should therefore be: <code>compatible = "fsl,mpc8349-uart", "ns16550"</code>.  In this case, <code>fsl,mpc8349-uart</code> specifies the exact device, and <code>ns16550</code> states that it is register-level compatible with a National Semiconductor 16550 UART.
+For example, the Freescale MPC8349 System on Chip (SoC) has a serial device which implements the National Semiconductor ns16550 register interface.  The compatible property for the MPC8349 serial device should therefore be: `compatible = "fsl,mpc8349-uart", "ns16550"`.  In this case, `fsl,mpc8349-uart` specifies the exact device, and `ns16550` states that it is register-level compatible with a National Semiconductor 16550 UART.
 
-Note: <code>ns16550</code> doesn't have a manufacturer prefix purely for historical reasons.  All new compatible values should use the manufacturer prefix.
+Note: `ns16550` doesn't have a manufacturer prefix purely for historical reasons.  All new compatible values should use the manufacturer prefix.
 
 This practice allows existing device drivers to be bound to a newer device, while still uniquely identifying the exact hardware.
 
@@ -238,13 +243,13 @@ Warning: Don't use ''wildcard'' compatible values, like "fsl,mpc83xx-uart" or si
 
 == How Addressing Works ==
 Devices that are addressable use the following properties to encode address information into the device tree:
-* <code>reg</code>
-* <code>#address-cells</code>
-* <code>#size-cells</code>
+* `reg`
+* `#address-cells`
+* `#size-cells`
 
-Each addressable device gets a <code>reg</code> which is a list of tuples in the form <code>reg = &lt;address1 length1 [address2 length2] [address3 length3] ... &gt;</code>.  Each tuple represents an address range used by the device.  Each address value is a list of one or more 32 bit integers called <i>cells</i>.  Similarly, the length value can either be a list of cells, or empty.
+Each addressable device gets a `reg` which is a list of tuples in the form `reg = <address1 length1 [address2 length2] [address3 length3] ... >`.  Each tuple represents an address range used by the device.  Each address value is a list of one or more 32 bit integers called <i>cells</i>.  Similarly, the length value can either be a list of cells, or empty.
 
-Since both the address and length fields are variable of variable size, the <code>#address-cells</code> and <code>#size-cells</code> properties in the parent node are used to state how many cells are in each field.  Or in other words, interpreting a reg property correctly requires the parent node's #address-cells and #size-cells values.  To see how this all works, lets add the addressing properties to the sample device tree, starting with the CPUs.
+Since both the address and length fields are variable of variable size, the `#address-cells` and `#size-cells` properties in the parent node are used to state how many cells are in each field.  Or in other words, interpreting a reg property correctly requires the parent node's #address-cells and #size-cells values.  To see how this all works, lets add the addressing properties to the sample device tree, starting with the CPUs.
 
 === CPU addressing ===
 The CPU nodes represent the simplest case when talking about addressing.  Each CPU is assigned a single unique ID, and there is no size associated with CPU ids.
@@ -263,12 +268,12 @@ The CPU nodes represent the simplest case when talking about addressing.  Each C
          };
      };
 
-In the <code>cpus</code> node, <code>#address-cells</code> is set to 1, and <code>#size-cells</code> is set to 0.  This means that child <code>reg</code> values are a single uint32 that represent the address with no size field.  In this case, the two cpus are assigned addresses 0 and 1.  <code>#size-cells</code> is 0 for cpu nodes because each cpu is only assigned a single address.
+In the `cpus` node, `#address-cells` is set to 1, and `#size-cells` is set to 0.  This means that child `reg` values are a single uint32 that represent the address with no size field.  In this case, the two cpus are assigned addresses 0 and 1.  `#size-cells` is 0 for cpu nodes because each cpu is only assigned a single address.
 
-You'll also notice that the <code>reg</code> value matches the value in the node name.  By convention, if a node has a <code>reg</code> property, then the node name must include the unit-address, which is the first address value in the <code>reg</code> property.
+You'll also notice that the `reg` value matches the value in the node name.  By convention, if a node has a `reg` property, then the node name must include the unit-address, which is the first address value in the `reg` property.
 
 === Memory Mapped Devices ===
-Instead of single address values like found in the cpu nodes, a memory mapped device is assigned a range of addresses that it will respond to.  <code>#size-cells</code> is used to state how large the length field is in each child <code>reg</code> tuple.  In the following example, each address value is 1 cell (32 bits), and each length value is also 1 cell, which is typical on 32 bit systems.  64 bit machines may use a value of 2 for #address-cells and #size-cells to get 64 bit addressing in the device tree.
+Instead of single address values like found in the cpu nodes, a memory mapped device is assigned a range of addresses that it will respond to.  `#size-cells` is used to state how large the length field is in each child `reg` tuple.  In the following example, each address value is 1 cell (32 bits), and each length value is also 1 cell, which is typical on 32 bit systems.  64 bit machines may use a value of 2 for #address-cells and #size-cells to get 64 bit addressing in the device tree.
 
  /dts-v1/;
  
@@ -335,7 +340,7 @@ Some devices live on a bus with a different addressing scheme.  For example, a d
          };
      };
 
-The <code>external-bus</code> uses 2 cells for the address value; one for the chip select number, and one for the offset from the base of the chip select.  The length field remains as a single cell since only the offset portion of the address needs to have a range.  So, in this example, each <code>reg</code> entry contains 3 cells; the chipselect number, the offset, and the length.
+The `external-bus` uses 2 cells for the address value; one for the chip select number, and one for the offset from the base of the chip select.  The length field remains as a single cell since only the offset portion of the address needs to have a range.  So, in this example, each `reg` entry contains 3 cells; the chipselect number, the offset, and the length.
 
 Since the address domains are contained to a node and its children, parent nodes are free to define whatever addressing scheme makes sense for the bus.  Nodes outside of the immediate parent and child nodes do not normally have to care about the local addressing domain, and addresses have to be mapped to get from one domain to another.
 
@@ -360,7 +365,7 @@ We've talked about how to assign addresses to devices, but at this point those a
 
 The root node always describes the CPU's view of the address space.  Child nodes of the root are already using the CPU's address domain, and so do not need any explicit mapping.  For example, the serial@101f0000 device is directly assigned the address 0x101f0000.
 
-Nodes that are not direct children of the root do not use the CPU's address domain.  In order to get a memory mapped address the device tree must specify how to translate addresses from one domain to another.  The <code>ranges</code> property is used for this purpose.
+Nodes that are not direct children of the root do not use the CPU's address domain.  In order to get a memory mapped address the device tree must specify how to translate addresses from one domain to another.  The `ranges` property is used for this purpose.
 
 Here is the sample device tree with the ranges property added.
 
@@ -401,23 +406,23 @@ Here is the sample device tree with the ranges property added.
      };
  };
 
-<code>ranges</code> is a list of address translations.  Each entry in the ranges table is a tuple containing the child address, the parent address, and the size of the region in the child address space.  The size of each field is determined by taking the child's <code>#address-cells</code> value, the parent's <code>#address-cells</code> value, and the child's <code>#size-cells</code> value.  For the external bus in our example, the child address is 2 cells, the parent address is 1 cell, and the size is also 1 cell.  Three ranges are being translated:
+`ranges` is a list of address translations.  Each entry in the ranges table is a tuple containing the child address, the parent address, and the size of the region in the child address space.  The size of each field is determined by taking the child's `#address-cells` value, the parent's `#address-cells` value, and the child's `#size-cells` value.  For the external bus in our example, the child address is 2 cells, the parent address is 1 cell, and the size is also 1 cell.  Three ranges are being translated:
 * Offset 0 from chip select 0 is mapped to address range 0x10100000..0x1010ffff
 * Offset 0 from chip select 1 is mapped to address range 0x10160000..0x1016ffff
 * Offset 0 from chip select 2 is mapped to address range 0x30000000..0x30ffffff
 
-Alternately, if the parent and child address spaces are identical, then a node can instead add an empty <code>ranges</code> property.  The presence of an empty ranges property means addresses in the child address space are mapped 1:1 onto the parent address space.
+Alternately, if the parent and child address spaces are identical, then a node can instead add an empty `ranges` property.  The presence of an empty ranges property means addresses in the child address space are mapped 1:1 onto the parent address space.
 
 You might ask why address translation is used at all when it could all be written with 1:1 mapping.  Some busses (like PCI) have entirely different address spaces whose details need to be exposed to the operating system.  Others have DMA engines which need to know the real address on the bus.  Sometimes devices need to be grouped together because they all share the same software programmable physical address mapping.  Whether or not 1:1 mappings should be used depends a lot on the information needed by the Operating system, and on the hardware design.
 
-You should also notice that there is no <code>ranges</code> property in the i2c@1,0 node.  The reason for this is that unlike the external bus, devices on the i2c bus are not memory mapped on the CPU's address domain.  Instead, the CPU indirectly accesses the rtc@58 device via the i2c@1,0 device.  The lack of a <code>ranges</code> property means that a device cannot be directly accessed by any device other than it's parent.
+You should also notice that there is no `ranges` property in the i2c@1,0 node.  The reason for this is that unlike the external bus, devices on the i2c bus are not memory mapped on the CPU's address domain.  Instead, the CPU indirectly accesses the rtc@58 device via the i2c@1,0 device.  The lack of a `ranges` property means that a device cannot be directly accessed by any device other than it's parent.
 
 == How Interrupts Work ==
 Unlike address range translation which follows the natural structure of the tree, Interrupt signals can originate from and terminate on any device in a machine.  Unlike device addressing which is naturally expressed in the device tree, interrupt signals are expressed as links between nodes independent of the tree.  Four properties are used to describe interrupt connections:
-* <code>interrupt-controller</code> - An empty property declaring a node as a device that receives interrupt signals
-* <code>#interrupt-cells</code> - This is a property of the interrupt controller node.  It states how many cells are in an <i>interrupt specifier</i> for this interrupt controller (Similar to <code>#address-cells</code> and <code>#size-cells</code>).
-* <code>interrupt-parent</code> - A property of a device node containing a <i>phandle</i> to the interrupt controller that it is attached to.  Nodes that do not have an interrupt-parent property can also inherit the property from their parent node.
-* <code>interrupts</code> - A property of a device node containing a list of <i>interrupt specifiers</i>, one for each interrupt output signal on the device.
+* `interrupt-controller` - An empty property declaring a node as a device that receives interrupt signals
+* `#interrupt-cells` - This is a property of the interrupt controller node.  It states how many cells are in an <i>interrupt specifier</i> for this interrupt controller (Similar to `#address-cells` and `#size-cells`).
+* `interrupt-parent` - A property of a device node containing a <i>phandle</i> to the interrupt controller that it is attached to.  Nodes that do not have an interrupt-parent property can also inherit the property from their parent node.
+* `interrupts` - A property of a device node containing a list of <i>interrupt specifiers</i>, one for each interrupt output signal on the device.
 
 An <i>interrupt specifier</i> is one or more cells of data (as specified by #interrupt-cells) that specifies which interrupt input the device is attached to.  Most devices only have a single interrupt output as shown in the example below, but it is possible to have multiple interrupt outputs on a device.  The meaning of an interrupt specifier depends entirely on the binding for the interrupt controller device.  Each interrupt controller can decide how many cells it need to uniquely define an interrupt input.
 
@@ -520,15 +525,15 @@ Beyond the common properties, arbitrary properties and child nodes can be added 
 
 First, new device-specific property names should use a manufacture prefix so that they don't conflict with existing standard property names.
 
-Second, the meaning of the properties and child nodes must be documented in a binding so that a device driver author knows how to interpret the data.  A binding documents what a particular compatible value means, what properties it should have, what child nodes it might have, and what device it represents.  Each unique <code>compatible</code> value should have its own binding (or claim compatibility with another compatible value).  Bindings for new devices are documented in this wiki.  See the [[Main Page]] for a description of the documentation format and review process.
+Second, the meaning of the properties and child nodes must be documented in a binding so that a device driver author knows how to interpret the data.  A binding documents what a particular compatible value means, what properties it should have, what child nodes it might have, and what device it represents.  Each unique `compatible` value should have its own binding (or claim compatibility with another compatible value).  Bindings for new devices are documented in this wiki.  See the [[Main Page]] for a description of the documentation format and review process.
 
 Third, post new bindings for review on the devicetree-discuss@lists.ozlabs.org mailing list.  Reviewing new bindings catches a lot of common mistakes that will cause problems in the future.
 
 == Special Nodes ==
 
-=== <code>aliases</code> Node ===
+=== `aliases` Node ===
 
-A specific node is normally referenced by the full path, like <code>/external-bus/ethernet@0,0</code>, but that gets cumbersome when what a user really wants to know is, "which device is eth0?"  The <code>aliases</code> node can be used to assign a short <i>alias</i> to a full device path.  For example:
+A specific node is normally referenced by the full path, like `/external-bus/ethernet@0,0`, but that gets cumbersome when what a user really wants to know is, "which device is eth0?"  The `aliases` node can be used to assign a short <i>alias</i> to a full device path.  For example:
 
      aliases {
          ethernet0 = &eth0;
@@ -537,10 +542,10 @@ A specific node is normally referenced by the full path, like <code>/external-bu
 
 The operating system is welcome to use the aliases when assigning an identifier to a device.
 
-You'll notice a new syntax used here.  The <code><i>property</i> = &<i>label</i>;</code> syntax assigns the full node path referenced by the label as a string property.  This is different from the <code><i>phandle</i> = < &<i>label</i> >;</code> form used earlier which inserts a phandle value into a cell.
+You'll notice a new syntax used here.  The `<i>property</i> = &<i>label</i>;` syntax assigns the full node path referenced by the label as a string property.  This is different from the `<i>phandle</i> = < &<i>label</i> >;` form used earlier which inserts a phandle value into a cell.
 
-=== <code>chosen</code> Node ===
-The <code>chosen</code> node doesn't represent a real device, but serves as a place for passing data between firmware and the operating system, like boot arguments.  Data in the chosen node does not represent the hardware.  Typically the chosen node is left empty in .dts source files and populated at boot time.
+=== `chosen` Node ===
+The `chosen` node doesn't represent a real device, but serves as a place for passing data between firmware and the operating system, like boot arguments.  Data in the chosen node does not represent the hardware.  Typically the chosen node is left empty in .dts source files and populated at boot time.
 
 In our example system, firmware might add the following to the chosen node:
 
@@ -574,7 +579,7 @@ link is dead, 25 June 2016
 or the [https://www.openfirmware.info/data/docs/bus.pci.pdf PCI Bus Binding to Open Firmware]. A complete working example for a Freescale MPC5200 can be found [[MPC5200:PCI|here]].
 
 ==== PCI Bus numbering ====
-Each PCI bus segment is uniquely numbered, and the bus numbering is exposed in the pci node by using the <code>bus-range</code> property, which contains two cells.  The first cell gives the bus number assigned to this node, and the second cell gives the maximum bus number of any of the subordinate PCI busses.
+Each PCI bus segment is uniquely numbered, and the bus numbering is exposed in the pci node by using the `bus-range` property, which contains two cells.  The first cell gives the bus number assigned to this node, and the second cell gives the maximum bus number of any of the subordinate PCI busses.
 
 The sample machine has a single pci bus, so both cells are 0.
 
@@ -587,7 +592,7 @@ The sample machine has a single pci bus, so both cells are 0.
 
 ==== PCI Address Translation ====
 
-Similar to the local bus described earlier, the PCI address space is completely separate from the CPU address space, so address translation is needed to get from a PCI address to a CPU address. As always, this is done using the [[#Ranges (Address Translation)|<code>range</code>]], <code>#address-cells</code>, and <code>#size-cells</code> properties.
+Similar to the local bus described earlier, the PCI address space is completely separate from the CPU address space, so address translation is needed to get from a PCI address to a CPU address. As always, this is done using the [[#Ranges (Address Translation)|`range`]], `#address-cells`, and `#size-cells` properties.
 
          pci@0x10180000 {
              compatible = "arm,versatile-pci-hostbridge", "pci";
@@ -603,25 +608,25 @@ Similar to the local bus described earlier, the PCI address space is completely 
          };
 
 As you can see, <span style="color:red">child addresses</span> (PCI addresses) use 3 cells, and PCI ranges are encoded into 2 cells. The first question might be, why do we need three 32 bit cells to specify a PCI address. The three cells are labeled phys.hi, phys.mid and phys.low <ref>[http://playground.sun.com/1275/bindings/pci/pci2_1.pdf PCI Bus Bindings to Open Firmware.]</ref>.
-* <code>phys.hi cell:  npt000ss bbbbbbbb dddddfff rrrrrrrr</code>
-* <code>phys.mid cell: hhhhhhhh hhhhhhhh hhhhhhhh hhhhhhhh</code>
-* <code>phys.low cell: llllllll llllllll llllllll llllllll</code>
+* `phys.hi cell:  npt000ss bbbbbbbb dddddfff rrrrrrrr`
+* `phys.mid cell: hhhhhhhh hhhhhhhh hhhhhhhh hhhhhhhh`
+* `phys.low cell: llllllll llllllll llllllll llllllll`
 
 PCI addresses are 64 bits wide, and are encoded into phys.mid and phys.low.  However, the really interesting things are in phys.high which is a bit field:
-* <code>n</code>: relocatable region flag (doesn't play a role here)
-* <code>p</code>: prefetchable (cacheable) region flag
-* <code>t</code>: aliased address flag (doesn't play a role here)
-* <code>ss</code>: space code
+* `n`: relocatable region flag (doesn't play a role here)
+* `p`: prefetchable (cacheable) region flag
+* `t`: aliased address flag (doesn't play a role here)
+* `ss`: space code
 ** 00: configuration space
 ** 01: I/O space
 ** 10: 32 bit memory space
 ** 11: 64 bit memory space
-* <code>bbbbbbbb</code>: The PCI bus number. PCI may be structured hierarchically. So we may have PCI/PCI bridges which will define sub busses.
-* <code>ddddd</code>: The device number, typically associated with IDSEL signal connections.
-* <code>fff</code>: The function number. Used for multifunction PCI devices.
-* <code>rrrrrrrr</code>: Register number; used for configuration cycles.
+* `bbbbbbbb`: The PCI bus number. PCI may be structured hierarchically. So we may have PCI/PCI bridges which will define sub busses.
+* `ddddd`: The device number, typically associated with IDSEL signal connections.
+* `fff`: The function number. Used for multifunction PCI devices.
+* `rrrrrrrr`: Register number; used for configuration cycles.
 
-For the purpose of PCI address translation, the important fields are <code>p</code> and <code>ss</code>.  The value of p and ss in phys.hi determines which PCI address space is being accessed.  So looking onto our ranges property, we have three regions:
+For the purpose of PCI address translation, the important fields are `p` and `ss`.  The value of p and ss in phys.hi determines which PCI address space is being accessed.  So looking onto our ranges property, we have three regions:
 * a 32 bit prefetchable memory region beginning on PCI address 0x80000000 of 512 MByte size which will be mapped onto address 0x80000000 on the host CPU.
 * a 32 bit non-prefetchable memory region beginning on PCI address 0xa0000000 of 256 MByte size which will be mapped onto address 0xa0000000 on the host CPU.
 * an I/O region beginning on PCI address 0x00000000 of 16 MByte size which will be mapped onto address 0xb0000000 on the host CPU.
@@ -656,7 +661,7 @@ This <b>dma-ranges</b> entry indicates that from the PCI host controller's point
 
 === Advanced Interrupt Mapping ===
 
-Now we come to the most interesting part, PCI interrupt mapping. A PCI device can trigger interrupts using the wires #INTA, #INTB, #INTC and #INTD. The # hash sign in front of the interrupt names means it is active low, this is a common convention, and PCI interrupt lines are always active low. A single-function device is obligated to use #INTA for interrupts.  A multi-function device must use #INTA if it uses a single interrupt pin, #INTA and #INTB if it uses two interrupt pins, etc.  Due to these rules, #INTA is normally used by more functions than #INTB, #INTC, and #INTD.  To distribute the load across the four IRQ lines backing #INTA through #INTD, each PCI slot or device is typically wired to different inputs on the interrupt controller in rotating manner so as to avoid having all #INTA clients connected to the same incoming interrupt line.  This procedure is referred to as <i>swizzling</i> the interrupts.  So, the device tree needs a way of mapping each PCI interrupt signal to the inputs of the interrupt controller.  The <code>#interrupt-cells</code>, <code>interrupt-map</code> and <code>interrupt-map-mask</code> properties are used to describe the interrupt mapping.
+Now we come to the most interesting part, PCI interrupt mapping. A PCI device can trigger interrupts using the wires #INTA, #INTB, #INTC and #INTD. The # hash sign in front of the interrupt names means it is active low, this is a common convention, and PCI interrupt lines are always active low. A single-function device is obligated to use #INTA for interrupts.  A multi-function device must use #INTA if it uses a single interrupt pin, #INTA and #INTB if it uses two interrupt pins, etc.  Due to these rules, #INTA is normally used by more functions than #INTB, #INTC, and #INTD.  To distribute the load across the four IRQ lines backing #INTA through #INTD, each PCI slot or device is typically wired to different inputs on the interrupt controller in rotating manner so as to avoid having all #INTA clients connected to the same incoming interrupt line.  This procedure is referred to as <i>swizzling</i> the interrupts.  So, the device tree needs a way of mapping each PCI interrupt signal to the inputs of the interrupt controller.  The `#interrupt-cells`, `interrupt-map` and `interrupt-map-mask` properties are used to describe the interrupt mapping.
 
 Actually, the interrupt mapping described here isn't limited to PCI busses, any node can specify complex interrupt maps, but the PCI case is by far the most common.
 
@@ -716,7 +721,7 @@ and
 * #INTC of slot 2 is IRQ12, level low sensitive on the primary interrupt controller
 * #INTD of slot 2 is IRQ9, level low sensitive on the primary interrupt controller
 
-The <code>interrupts = <8 0>;</code> property describes the interrupts the host/PCI-bridge controller itself may trigger. Don't mix up these interrupts with interrupts ''PCI devices'' might trigger (using INTA, INTB, ...).
+The `interrupts = <8 0>;` property describes the interrupts the host/PCI-bridge controller itself may trigger. Don't mix up these interrupts with interrupts ''PCI devices'' might trigger (using INTA, INTB, ...).
 
 One final thing to note.  Just like with the interrupt-parent property, the presence of an interrupt-map property on a node will change the default interrupt controller for all child and grandchild nodes.  In this PCI example, that means that the PCI host bridge becomes the default interrupt controller.  If a device attached via the PCI bus has a direct connection to another interrupt controller, then it also needs to specify its own interrupt-parent property.
 
