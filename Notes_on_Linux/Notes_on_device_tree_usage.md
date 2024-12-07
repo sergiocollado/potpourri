@@ -126,7 +126,7 @@ The first step is to lay down a skeleton structure for the machine. This is the 
 
 `compatible` specifies the name of the system. It contains a string in the form `"<manufacturer>;,<model>"`.  It is important to specify the exact device, and to include the manufacturer name to avoid namespace collisions. Since the operating system will use the `compatible` value to make decisions about how to run on the machine, it is very important to put correct data into this property.
 
-Theoretically, compatible is all the data an OS needs to uniquely identify a machine.  If all the machine details are hard coded, then the OS could look specifically for "acme,coyotes-revenge" in the top level `compatible` property.
+Theoretically, compatible is all the data an OS needs to uniquely identify a machine. If all the machine details are hard coded, then the OS could look specifically for "acme,coyotes-revenge" in the top level `compatible` property.
 
 ### CPUs
 Next step is to describe for each of the CPUs. A container node named "cpus" is added with a child node for each CPU.  In this case the system is a dual-core Cortex A9 system from ARM.
@@ -158,15 +158,17 @@ It is worth taking a moment to talk about naming conventions. Every node must ha
 
 `<name>` is a simple ascii string and can be up to 31 characters in length. In general, nodes are named according to what kind of device it represents.  ie. A node for a 3com Ethernet adapter would be use the name `ethernet`, not `3com509`.
 
-The unit-address is included if the node describes a device with an address.  In general, the unit address is the primary address used to access the device, and is listed in the node's `reg` property.  We'll cover the reg property later in this document.
+The `unit-address` is included if the node describes a device with an address. In general, the unit address is the primary address used to access the device, and is listed in the node's `reg` property.  We'll cover the `reg` property later in this document.
 
 Sibling nodes must be uniquely named, but it is normal for more than one node to use the same generic name so long as the address is different (ie, serial@101f1000 & serial@101f2000).
 
 See section 2.2.1 of the ePAPR spec for full details about node naming.
 
-=== Devices ===
+### Devices
+
 Every device in the system is represented by a device tree node.  The next step is to populate the tree with a node for each of the devices.  For now, the new nodes will be left empty until we can talk about how address ranges and irqs are handled.
 
+```
  /dts-v1/;
  
  / {
@@ -181,7 +183,7 @@ Every device in the system is represented by a device tree node.  The next step 
          };
      };
  
-     <b>serial@101F0000 {
+     serial@101F0000 {
          compatible = "arm,pl011";
      };
  
@@ -216,24 +218,26 @@ Every device in the system is represented by a device tree node.  The next step 
          flash@2,0 {
              compatible = "samsung,k8f1315ebm", "cfi-flash";
          };
-     };</b>
+     };
  };
+```
 
-In this tree, a node has been added for each device in the system, and the hierarchy reflects the how devices are connected to the system.  ie. devices on the extern bus are children of the external bus node, and i2c devices are children of the i2c bus controller node.  In general, the hierarchy represents the view of the system from the perspective of the CPU.
+In this tree, a node has been added for each device in the system, and the hierarchy reflects the how devices are connected to the system.  ie. devices on the extern bus are children of the external bus node, and i2c devices are children of the i2c bus controller node. In general, the hierarchy represents the view of the system from the perspective of the CPU.
 
-This tree isn't valid at this point.  It is missing information about connections between devices.  That data will be added later.
+This tree isn't valid at this point. It is missing information about connections between devices. That data will be added later.
 
 Some things to notice in this tree:
-* Every device node has a `compatible` property.
-* The flash node has 2 strings in the compatible property.  Read on to the next section to learn why.
-* As mentioned earlier, node names reflect the type of device, not the particular model.  See section 2.2.2 of the ePAPR spec for a list of defined generic node names that should be used wherever possible.
+ - Every device node has a `compatible` property.
+ - The flash node has 2 strings in the compatible property. Read on to the next section to learn why.
+ -As mentioned earlier, node names reflect the type of device, not the particular model. See section 2.2.2 of the ePAPR spec for a list of defined generic node names that should be used wherever possible.
 
-=== Understanding the `compatible` Property ===
-Every node in the tree that represents a device is required to have the `compatible` property.  `compatible` is the key an operating system uses to decide which device driver to bind to a device.
+#### Understanding the `compatible` Property
 
-`compatible` is a list of strings.  The first string in the list specifies the exact device that the node represents in the form `"<manufacturer>,<model>"`.  The following strings represent other devices that the device is ''compatible'' with.
+Every node in the tree that represents a device is required to have the `compatible` property. `compatible` is the key an operating system uses to decide which device driver to bind to a device.
 
-For example, the Freescale MPC8349 System on Chip (SoC) has a serial device which implements the National Semiconductor ns16550 register interface.  The compatible property for the MPC8349 serial device should therefore be: `compatible = "fsl,mpc8349-uart", "ns16550"`.  In this case, `fsl,mpc8349-uart` specifies the exact device, and `ns16550` states that it is register-level compatible with a National Semiconductor 16550 UART.
+`compatible` is a list of strings. The first string in the list specifies the exact device that the node represents in the form `"<manufacturer>,<model>"`.  The following strings represent other devices that the device is ''compatible'' with.
+
+For example, the Freescale MPC8349 System on Chip (SoC) has a serial device which implements the National Semiconductor ns16550 register interface. The compatible property for the MPC8349 serial device should therefore be: `compatible = "fsl,mpc8349-uart", "ns16550"`.  In this case, `fsl,mpc8349-uart` specifies the exact device, and `ns16550` states that it is register-level compatible with a National Semiconductor 16550 UART.
 
 Note: `ns16550` doesn't have a manufacturer prefix purely for historical reasons.  All new compatible values should use the manufacturer prefix.
 
@@ -241,7 +245,7 @@ This practice allows existing device drivers to be bound to a newer device, whil
 
 Warning: Don't use ''wildcard'' compatible values, like "fsl,mpc83xx-uart" or similar.  Silicon vendors will invariably make a change that breaks your wildcard assumptions the moment it is too late to change it.  Instead, choose a specific silicon implementations and make all subsequent silicon ''compatible'' with it.
 
-== How Addressing Works ==
+## How Addressing Works
 Devices that are addressable use the following properties to encode address information into the device tree:
 * `reg`
 * `#address-cells`
