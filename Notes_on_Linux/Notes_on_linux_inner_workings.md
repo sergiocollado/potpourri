@@ -1,12 +1,13 @@
 # Notes on Linux inner workings
 
-Here was Linux started: https://groups.google.com/g/comp.os.minix/c/dlNtH7RRrGA/m/SwRavCzVE7gJ
-
-![linus_post](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/starting_Linux.png)
 
 [linux kernel map](https://makelinux.github.io/kernel/map/)
 
 ![linux kernel map](https://github.com/sergiocollado/potpourri/blob/master/image/Linux_kernel_map.png "Linux kernel map")
+
+Here was Linux started: https://groups.google.com/g/comp.os.minix/c/dlNtH7RRrGA/m/SwRavCzVE7gJ
+
+![linus_post](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/starting_Linux.png)
 
 list of Linux subsystems: https://www.kernel.org/doc/html/latest/subsystem-apis.html
 
@@ -3177,3 +3178,11 @@ References:
  - https://www.kernel.org/doc/html/latest/kbuild/llvm.html
  - Mentorship Session: Using Clang and LLVM to Build the Linux Kernel: https://youtu.be/y458QwEfSsU
 
+### Btrfs
+
+References:
+ - https://surajsinghbisht054.medium.com/understand-btrfs-file-system-copy-on-write-sub-volumes-snapshots-quota-group-part-1-c6305f87df9b
+ - https://surajsinghbisht054.medium.com/understand-btrfs-file-system-copy-on-write-sub-volumes-snapshots-quota-group-part-2-2b60209c5296
+ - https://unix.stackexchange.com/questions/209165/conceptualizing-btrfs-understanding-snapshots-and-space-used
+ - https://wiki.archlinux.org/title/Btrfs
+ - https://btrfs.readthedocs.io/en/latest/
