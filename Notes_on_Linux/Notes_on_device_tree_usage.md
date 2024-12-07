@@ -281,50 +281,53 @@ You'll also notice that the `reg` value matches the value in the node name. By c
 
 ### Memory Mapped Devices
 
-Instead of single address values like found in the cpu nodes, a memory mapped device is assigned a range of addresses that it will respond to.  `#size-cells` is used to state how large the length field is in each child `reg` tuple.  In the following example, each address value is 1 cell (32 bits), and each length value is also 1 cell, which is typical on 32 bit systems.  64 bit machines may use a value of 2 for #address-cells and #size-cells to get 64 bit addressing in the device tree.
+Instead of single address values like found in the cpu nodes, a memory mapped device is assigned a range of addresses that it will respond to. `#size-cells` is used to state how large the length field is in each child `reg` tuple.  In the following example, each address value is 1 cell (32 bits), and each length value is also 1 cell, which is typical on 32 bit systems. 64 bit machines may use a value of 2 for #address-cells and #size-cells to get 64 bit addressing in the device tree.
 
+```
  /dts-v1/;
  
  / {
-     <b>#address-cells = <1>;
-     #size-cells = <1>;</b>
+     #address-cells = <1>;
+     #size-cells = <1>;
  
      ...
  
      serial@101f0000 {
          compatible = "arm,pl011";
-         <b>reg = <0x101f0000 0x1000 >;</b>
+         reg = <0x101f0000 0x1000 >;
      };
  
      serial@101f2000 {
          compatible = "arm,pl011";
-         <b>reg = <0x101f2000 0x1000 >;</b>
+         reg = <0x101f2000 0x1000 >;
      };
  
      gpio@101f3000 {
          compatible = "arm,pl061";
-         <b>reg = <0x101f3000 0x1000
-                0x101f4000 0x0010>;</b>
+         reg = <0x101f3000 0x1000
+                0x101f4000 0x0010>;
      };
  
      interrupt-controller@10140000 {
          compatible = "arm,pl190";
-         <b>reg = <0x10140000 0x1000 >;</b>
+         reg = <0x10140000 0x1000 >;
      };
  
      spi@10115000 {
          compatible = "arm,pl022";
-         <b>reg = <0x10115000 0x1000 >;</b>
+         reg = <0x10115000 0x1000 >;
      };
  
      ...
  
  };
+```
 
 Each device is assigned a base address, and the size of the region it is assigned.  The GPIO device address in this example is assigned two address ranges; 0x101f3000...0x101f3fff and 0x101f4000..0x101f400f.
 
-Some devices live on a bus with a different addressing scheme.  For example, a device can be attached to an external bus with discrete chip select lines.  Since each parent node defines the addressing domain for its children, the address mapping can be chosen to best describe the system.  The code below show address assignment for devices attached to the external bus with the chip select number encoded into the address.
+Some devices live on a bus with a different addressing scheme. For example, a device can be attached to an external bus with discrete chip select lines. Since each parent node defines the addressing domain for its children, the address mapping can be chosen to best describe the system. The code below show address assignment for devices attached to the external bus with the chip select number encoded into the address.
 
+```
      external-bus {
          <b>#address-cells = <2>;
          #size-cells = <1>;</b>
@@ -344,19 +347,21 @@ Some devices live on a bus with a different addressing scheme.  For example, a d
  
          flash@2,0 {
              compatible = "samsung,k8f1315ebm", "cfi-flash";
-             <b>reg = <2 0 0x4000000>;</b>
+             reg = <2 0 0x4000000>;
          };
      };
+```
 
-The `external-bus` uses 2 cells for the address value; one for the chip select number, and one for the offset from the base of the chip select.  The length field remains as a single cell since only the offset portion of the address needs to have a range.  So, in this example, each `reg` entry contains 3 cells; the chipselect number, the offset, and the length.
+The `external-bus` uses 2 cells for the address value; one for the chip select number, and one for the offset from the base of the chip select. The length field remains as a single cell since only the offset portion of the address needs to have a range.  So, in this example, each `reg` entry contains 3 cells; the chipselect number, the offset, and the length.
 
-Since the address domains are contained to a node and its children, parent nodes are free to define whatever addressing scheme makes sense for the bus.  Nodes outside of the immediate parent and child nodes do not normally have to care about the local addressing domain, and addresses have to be mapped to get from one domain to another.
+Since the address domains are contained to a node and its children, parent nodes are free to define whatever addressing scheme makes sense for the bus. Nodes outside of the immediate parent and child nodes do not normally have to care about the local addressing domain, and addresses have to be mapped to get from one domain to another.
 
-=== Non Memory Mapped Devices ===
+### Non Memory Mapped Devices
 Other devices are not memory mapped on the processor bus.  They can have address ranges, but they are not directly accessible by the CPU.  Instead the parent device's driver would perform indirect access on behalf of the CPU.
 
 To take the example of i2c devices, each device is assigned an address, but there is no length or range associated with it.  This looks much the same as CPU address assignments.
 
+```
          i2c@1,0 {
              compatible = "acme,a1234-i2c-bus";
              <b>#address-cells = <1>;
@@ -367,8 +372,10 @@ To take the example of i2c devices, each device is assigned an address, but ther
                  <b>reg = <58>;</b>
              };
          };
+```
 
-=== Ranges (Address Translation) ===
+### Ranges (Address Translation)
+
 We've talked about how to assign addresses to devices, but at this point those addresses are only local to the device node.  It doesn't yet describe how to map from those address to an address that the CPU can use.
 
 The root node always describes the CPU's view of the address space.  Child nodes of the root are already using the CPU's address domain, and so do not need any explicit mapping.  For example, the serial@101f0000 device is directly assigned the address 0x101f0000.
@@ -377,6 +384,7 @@ Nodes that are not direct children of the root do not use the CPU's address doma
 
 Here is the sample device tree with the ranges property added.
 
+```
  /dts-v1/;
  
  / {
@@ -413,6 +421,7 @@ Here is the sample device tree with the ranges property added.
          };
      };
  };
+```
 
 `ranges` is a list of address translations.  Each entry in the ranges table is a tuple containing the child address, the parent address, and the size of the region in the child address space.  The size of each field is determined by taking the child's `#address-cells` value, the parent's `#address-cells` value, and the child's `#size-cells` value.  For the external bus in our example, the child address is 2 cells, the parent address is 1 cell, and the size is also 1 cell.  Three ranges are being translated:
 * Offset 0 from chip select 0 is mapped to address range 0x10100000..0x1010ffff
@@ -436,6 +445,7 @@ An <i>interrupt specifier</i> is one or more cells of data (as specified by #int
 
 The following code adds interrupt connections to our Coyote's Revenge example machine:
 
+```
  /dts-v1/;
  
  / {
@@ -521,6 +531,7 @@ The following code adds interrupt connections to our Coyote's Revenge example ma
          };
      };
  };
+```
 
 Some things to notice:
 * The machine has a single interrupt controller, interrupt-controller@10140000.
@@ -543,10 +554,12 @@ Third, post new bindings for review on the devicetree-discuss@lists.ozlabs.org m
 
 A specific node is normally referenced by the full path, like `/external-bus/ethernet@0,0`, but that gets cumbersome when what a user really wants to know is, "which device is eth0?"  The `aliases` node can be used to assign a short <i>alias</i> to a full device path.  For example:
 
+```
      aliases {
          ethernet0 = &eth0;
          serial0 = &serial0;
      };
+```
 
 The operating system is welcome to use the aliases when assigning an identifier to a device.
 
@@ -557,9 +570,11 @@ The `chosen` node doesn't represent a real device, but serves as a place for pas
 
 In our example system, firmware might add the following to the chosen node:
 
+```
      chosen {
          bootargs = "root=/dev/nfs rw nfsroot=192.168.1.1 console=ttyS0,115200";
      };
+```
 
 == Advanced Topics ==
 === Advanced Sample Machine ===
@@ -569,11 +584,13 @@ The advanced sample machine adds a PCI host bridge with control registers memory
 
 Given what we already know about the device tree, we can start with the addition of the following node to describe the PCI host bridge.
 
+```
          <b>pci@10180000 {
              compatible = "arm,versatile-pci-hostbridge", "pci";
              reg = <0x10180000 0x1000>;
              interrupts = <8 0>;
          };</b>
+```
 
 === PCI Host Bridge ===
 This section describes the Host/PCI bridge node.
@@ -591,17 +608,20 @@ Each PCI bus segment is uniquely numbered, and the bus numbering is exposed in t
 
 The sample machine has a single pci bus, so both cells are 0.
 
+```
          pci@0x10180000 {
              compatible = "arm,versatile-pci-hostbridge", "pci";
              reg = <0x10180000 0x1000>;
              interrupts = <8 0>;
              <b>bus-range = <0 0>;</b>
          };
+```
 
 ==== PCI Address Translation ====
 
 Similar to the local bus described earlier, the PCI address space is completely separate from the CPU address space, so address translation is needed to get from a PCI address to a CPU address. As always, this is done using the [[#Ranges (Address Translation)|`range`]], `#address-cells`, and `#size-cells` properties.
 
+```
          pci@0x10180000 {
              compatible = "arm,versatile-pci-hostbridge", "pci";
              reg = <0x10180000 0x1000>;
@@ -614,6 +634,7 @@ Similar to the local bus described earlier, the PCI address space is completely 
                        <span style="color:red">0x02000000 0 0xa0000000</span> <span style="color:blue">0xa0000000</span> <span style="color:olive">0 0x10000000</span>
                        <span style="color:red">0x01000000 0 0x00000000</span> <span style="color:blue">0xb0000000</span> <span style="color:olive">0 0x01000000</span>>;</b>
          };
+```
 
 As you can see, <span style="color:red">child addresses</span> (PCI addresses) use 3 cells, and PCI ranges are encoded into 2 cells. The first question might be, why do we need three 32 bit cells to specify a PCI address. The three cells are labeled phys.hi, phys.mid and phys.low <ref>[http://playground.sun.com/1275/bindings/pci/pci2_1.pdf PCI Bus Bindings to Open Firmware.]</ref>.
 * `phys.hi cell:  npt000ss bbbbbbbb dddddfff rrrrrrrr`
@@ -651,6 +672,7 @@ In some cases, a ROM (BIOS) or similar will set up these registers on boot, but 
 
 Expanding on the example above:
 
+```
          pci@0x10180000 {
              compatible = "arm,versatile-pci-hostbridge", "pci";
              reg = <0x10180000 0x1000>;
@@ -664,6 +686,7 @@ Expanding on the example above:
                        0x01000000 0 0x00000000 0xb0000000 0 0x01000000
              <b>dma-ranges = <<span style="color:red">0x02000000 0 0x00000000</span> <span style="color:blue">0x80000000</span> <span style="color:olive">0 0x20000000</span>>;</b>
          };
+```
 
 This <b>dma-ranges</b> entry indicates that from the PCI host controller's point of view, the <span style="color:olive">512 MB</span> at PCI address <span style="color:red">0x00000000</span> will appear in the main core memory at address <span style="color:blue">0x80000000</span>. As you can see we just set the <i>ss</i> address type to 0x02 indicating this is some 32bit memory.
 
@@ -673,6 +696,7 @@ Now we come to the most interesting part, PCI interrupt mapping. A PCI device ca
 
 Actually, the interrupt mapping described here isn't limited to PCI busses, any node can specify complex interrupt maps, but the PCI case is by far the most common.
 
+```
          pci@0x10180000 {
              compatible = "arm,versatile-pci-hostbridge", "pci";
              reg = <0x10180000 0x1000>;
@@ -697,7 +721,7 @@ Actually, the interrupt mapping described here isn't limited to PCI busses, any 
                               <span style="color:fuchsia">0xc800 0 0 3</span> <span style="color:green">&intc</span> <span style="color:maroon">12 3</span>
                               <span style="color:fuchsia">0xc800 0 0 4</span> <span style="color:green">&intc</span> <span style="color:maroon"> 9 3</span>>;</b>
          };
-
+```
 
 
 First you'll notice that PCI interrupt numbers use only one cell, unlike the system interrupt controller which uses 2 cells; one for the irq number, and one for flags.  PCI only needs one cell for interrupts because PCI interrupts are specified to always be level-low sensitive.
