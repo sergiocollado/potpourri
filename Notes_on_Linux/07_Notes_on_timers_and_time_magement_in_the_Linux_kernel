@@ -1,1 +1,10 @@
 # Notes on timers and time management on the Linux Kernel
+
+
+## Hz
+
+The Linux's kernel works on timer interrupts. The frequency of the timer interrupt is defined on system boot on the preprocessor `define HZ`
+
+So if HZ = 100, the frequency would be 100Hz, so the interrupt happens every 1/100 seconds, that is 100ms. 
+
+The value of `HZ` changes for every architecture. 
