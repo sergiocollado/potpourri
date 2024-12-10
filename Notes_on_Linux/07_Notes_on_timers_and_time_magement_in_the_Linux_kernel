@@ -7,4 +7,6 @@ The Linux's kernel works on timer interrupts. The frequency of the timer interru
 
 So if HZ = 100, the frequency would be 100Hz, so the interrupt happens every 1/100 seconds, that is 100ms. 
 
-The value of `HZ` changes for every architecture. 
+The value of `HZ` changes for every architecture. It is defined in <asm/param.h> https://elixir.bootlin.com/linux/v6.12.4/A/ident/HZ
+
+
