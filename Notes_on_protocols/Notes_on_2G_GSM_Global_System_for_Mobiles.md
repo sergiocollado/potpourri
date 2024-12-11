@@ -10,6 +10,7 @@ This 2G is a digital system, this means that the voice is digitalized and encryp
 
 References:
  - https://youtu.be/FokQW_CZf7w
+ - https://mobilepacketcore.com/gprs-network-architecture/
  - https://yatebts.com/documentation/concepts/gsm-functionalities/
  - https://youtu.be/HIQ8Z2xlCS8?list=PLU5x-SQTjZT758IGceyOG6pDzMCMAz88o
 
