@@ -284,6 +284,7 @@ The 5G system is described in over a thousand 3GPP Technical Reports (TRs) and T
 
 To help you find more information, e.g. on the dynamic behaviour of 5GS (procedures, etc) or on some specific aspect of 5G, some key TRs and TSs are listed here:
 
+ - 5G charging: https://www.etsi.org/deliver/etsi_ts/132200_132299/132290/16.07.00_60/ts_132290v160700p.pdf
  - [TS 22.261](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3107), "Service requirements for the 5G system".
  - [TS 23.501](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144), "System architecture for the 5G System (5GS)" - 
  - [TS 23.502](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3145) "Procedures for the 5G System (5GS)
