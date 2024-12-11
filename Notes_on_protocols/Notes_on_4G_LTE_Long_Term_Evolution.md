@@ -106,6 +106,9 @@ to monitor data.
 
 Allocates IP addresses to UE during bearer establishment.
 
+## 4G charging
+
+ - reference: https://www.etsi.org/deliver/etsi_ts/132200_132299/132240/14.03.00_60/ts_132240v140300p.pdf
 
 
 
