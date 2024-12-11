@@ -104,3 +104,6 @@ With 3G itt is introduced the PS PACKET SWITH CORE. In release 5 it is introduce
 |MAC|	Medium Access Control	|3GPP TS 25.321|
 
 
+## 3G charging
+
+ - reference: https://www.etsi.org/deliver/etsi_ts/132200_132299/132240/14.03.00_60/ts_132240v140300p.pdf
