@@ -1,9 +1,9 @@
 // the pattern for using iterators is:
 //    iterator + adaptor + consumer
 //
-//    iterators: into_iter, iter, iter_mut
-//    adaptors: map, filter, for_each, find
-//    consumers: collect, sum
+//    - iterators: into_iter, iter, iter_mut
+//    - adaptors: map, filter, for_each, find
+//    - consumers: collect, sum
 //
 //    iterators, let v = vec![];
 //     - .into_iter() consumers v, returns consumed items: for _ in v
@@ -12,7 +12,7 @@
 //
 //     drain() - returns an iterator that takes ownership of all or some
 //     items in the collection, leaving the collection itself intact, so
-//     you can continue to use the collection. 
+//     you can continue to use the collection.
 
 fn print_elements(elements: &[String]) {
     // for element in elements {
