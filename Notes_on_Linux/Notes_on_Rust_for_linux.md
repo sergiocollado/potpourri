@@ -7,6 +7,8 @@ Languaje reference:
   - https://stevedonovan.github.io/rust-gentle-intro/
   - https://doc.rust-lang.org/book                                              
   - https://doc.rust-lang.org/rust-by-example
+  - rust-lang refence: https://doc.rust-lang.org/reference/
+  - standard library: https://doc.rust-lang.org/std/index.html
   - Beginner's guide to Error Handling in Rust: https://www.sheshbabu.com/posts/rust-error-handling/
   - rustdoc: https://doc.rust-lang.org/rustdoc/what-is-rustdoc.html
   - Rust memory safety explained: https://www.infoworld.com/article/3714925/rust-memory-safety-explained.html
@@ -15,6 +17,7 @@ Languaje reference:
   - real-time for the masses: https://japaric.github.io/rtfm5/book/en/preface.html
   - bindgen: https://github.com/rust-lang/rust-bindgen
   - bindgen book: https://rust-lang.github.io/rust-bindgen/
+  - cbindgen: https://github.com/mozilla/cbindgen
   - https://doc.rust-lang.org/stable/reference/                  
   - https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/
   - https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/effective-rust.html
