@@ -6,13 +6,16 @@
 //    - consumers: collect, sum, for_each
 //
 //    iterators, let v = vec![];
-//     - .into_iter() consumers v, returns consumed items: for _ in v
+//     - .into_iter() consumers v, returns consumed items: for _ in v  // 'consumes' means it takes
+//     ownership, and 'consumes' the elements, so the collection is empty and cannot be used
+//     afterwards!!
 //     - .iter() returns inmutable references:             for _ in &v
 //     - .iter_mut() returns mutable references:           for _ in &mut v
 //
 //     drain() - returns an iterator that takes ownership of all or some
 //     items in the collection, leaving the collection itself intact, so
-//     you can continue to use the collection.
+//     you can continue to use the collection. For example 'v.drain(..)'
+//     emtpy all the elements of the vector.
 //
 //     Documentation about iterators: https://doc.rust-lang.org/std/iter/index.html
 
@@ -34,7 +37,9 @@ fn to_uppercase(elements: &[String]) -> Vec<String> {
     elements
         .iter()
         .map(|el| el.to_uppercase())
-        .collect::<Vec<String>>()
+        .collect::<Vec<String>>()  // behold the turbofish ::<T>
+
+    // the turbofish is used to inidicate the type of the resulting collection
 }
 
 fn move_elements(vec_a: Vec<String>, vec_b: &mut Vec<String>) {
