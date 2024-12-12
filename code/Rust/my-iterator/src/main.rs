@@ -3,7 +3,7 @@
 //
 //    - iterators: into_iter, iter, iter_mut
 //    - adaptors: map, filter, for_each, find
-//    - consumers: collect, sum
+//    - consumers: collect, sum, for_each
 //
 //    iterators, let v = vec![];
 //     - .into_iter() consumers v, returns consumed items: for _ in v
@@ -13,6 +13,8 @@
 //     drain() - returns an iterator that takes ownership of all or some
 //     items in the collection, leaving the collection itself intact, so
 //     you can continue to use the collection.
+//
+//     Documentation about iterators: https://doc.rust-lang.org/std/iter/index.html
 
 fn print_elements(elements: &[String]) {
     // for element in elements {
@@ -36,6 +38,9 @@ fn to_uppercase(elements: &[String]) -> Vec<String> {
 }
 
 fn move_elements(vec_a: Vec<String>, vec_b: &mut Vec<String>) {
+    // into_iter() takes ownership of the collection and
+    // consumes the elements of the colection
+    // so the colection elements cannot be used afterwards.
     vec_a.into_iter().for_each(|el| vec_b.push(el));
 }
 
