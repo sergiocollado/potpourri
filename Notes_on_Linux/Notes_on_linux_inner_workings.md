@@ -2936,6 +2936,7 @@ A basic principle of the kernel is that in an interrupt or atomic context, the k
 ## RCU
  
  - https://paulmck.livejournal.com/69622.html
+ - https://docs.kernel.org/RCU/whatisRCU.html
  - The RCU api, 2019 edition: https://lwn.net/Articles/777036/
 
 
