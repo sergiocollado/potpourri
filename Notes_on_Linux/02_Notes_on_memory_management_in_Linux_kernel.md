@@ -1,5 +1,6 @@
 # Notes on memory management on Linux kernel
 
+ - refernece: overview: https://zedas.fr/posts/linux-explained-7-memory-management/
  - reference: Understanding the Linux Virtual Memory Manager: https://www.kernel.org/doc/gorman/html/understand/
  - reference: https://docs.kernel.org/admin-guide/mm/index.html
  - reference: https://www.kernel.org/doc/gorman/html/understand/index.html
