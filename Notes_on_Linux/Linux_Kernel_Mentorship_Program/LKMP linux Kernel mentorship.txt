@@ -1,0 +1,18 @@
+LKMP linux Kernel mentorship program 
+
+Tasks:
+
+ - 1  Resume 				DONE
+ - 2  Command line args 		DONE 
+ - 3  Complete LFD103 			DONE
+ - 4  Kselftest task               	DONE - could be improved, and TODO: extra point.
+ - 5  Select Full or Part 		DONE
+ - 6  Extra kernel version 	        DONE
+ - 7  Generate panic 			DONE
+ - 8  Documentation task           	DONE - TODO: tranlation patch
+ - 9  Cover Letter 			DONE
+ - 10 Write kernel module 		DONE
+ - 11 Decode stacktrace 
+ - 12 Build & boot kernel               DONE
+ - 13 Application Process 		DONE
+ - 14 PCI and USB Devices 

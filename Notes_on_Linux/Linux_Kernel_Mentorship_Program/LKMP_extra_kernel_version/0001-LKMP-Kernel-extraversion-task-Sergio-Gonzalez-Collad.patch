@@ -1,0 +1,32 @@
+From e2cee8e47c18177fcc85412c7bd27e4a9c0e2024 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Sergio=20Gonz=C3=A1lez=20Collado?=
+ <sergio.collado@gmail.com>
+Date: Tue, 7 May 2024 23:18:42 +0200
+Subject: [PATCH] LKMP - Kernel extraversion task - Sergio Gonzalez Collado
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Add an extraversion to the kernel Makefile
+
+Signed-off-by: Sergio González Collado <sergio.collado@gmail.com>
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index c7ee53f4b..4ccdad805 100644
+--- a/Makefile
++++ b/Makefile
+@@ -2,7 +2,7 @@
+ VERSION = 6
+ PATCHLEVEL = 8
+ SUBLEVEL = 0
+-EXTRAVERSION =
++EXTRAVERSION = LKMP - Kernel extra version task
+ NAME = Hurr durr I'ma ninja sloth
+ 
+ # *DOCUMENTATION*
+-- 
+2.39.2
+
