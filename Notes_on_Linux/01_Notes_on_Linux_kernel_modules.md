@@ -8,6 +8,7 @@ References:
  - Linux kernel in a nutshell: http://www.kroah.com/lkn/
  - The Linux Kernel Module Programming Guide 2001: https://tldp.org/LDP/lkmpg/2.6/html/index.html
  - Eudyptula challenge: https://github.com/agelastic/eudyptula
+ - hack the kernel: https://ops-class.org/
  - Kernel Play Guide: https://nskernel.gitbook.io/kernel-play-guide/accessing-the-non-exported-in-modules 
  - (404) EEC3-4029 Operating Systems: http://gauss.ececs.uc.edu/Courses/c4029/videos.html 
  - linux-kernel-labs: https://linux-kernel-labs.github.io/refs/heads/master/index.html
