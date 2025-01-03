@@ -6,7 +6,9 @@ related reference: [Stanford CS149 I Parallel Computing I 2023](https://www.yout
 
 There are 4 elements needed: 
 
-- reference: https://cplusplus.com/reference/multithreading/
+References:
+- https://cplusplus.com/reference/multithreading/
+- https://www.cs.cmu.edu/afs/cs/academic/class/15210-f17/www/pasl.html
 
 ```c++
 std::thread /join/detach
