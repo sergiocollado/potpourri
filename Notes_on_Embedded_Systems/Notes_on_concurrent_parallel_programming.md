@@ -17,3 +17,8 @@ std::atomic /atomic_thread_fence/memory_order_acquire/memory_order_release
 std::future /std::promise/std::async(wait/get)
 ```
 
+## Retrieve system GPU info
+
+In linux: `lspci | grep -i --color 'vga|/3d|/2d'`
+
+
