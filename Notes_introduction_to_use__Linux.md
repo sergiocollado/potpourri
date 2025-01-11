@@ -277,6 +277,7 @@ special directory names:
 - **output append >>**: it appends: echo "hello again!" >> mytextfile.txt
 - **echo**: prints text. Usually is used with the redirecton and append operators: **>** and **>>**. the **-e** option is used so special character can be used, as: \t for tabulation or \n for a new line. It is very useful also to print the value of enviromental variables, like: echo $USERNAME.
 - **file**: reports information about files. https://linux.die.net/man/1/file
+- `stat`: reports statistics about a file and its inode number (a number that identifies that file)
 - **wc**: counts the number of lines, words and characters in a file.
 - **more**: prints a screen from a text file.
 - **less**: prints a screen from a text file. Less has more options that the **more** command, following the saying: *less is more*
@@ -312,9 +313,42 @@ special directory names:
 - **vim** - almost universal text editor
 
 
+### Softlinks and hardlinks
+
+- reference: https://www.redhat.com/en/blog/linking-linux-explained#:~:text=A%20hard%20link%20always%20points,information%20on%20a%20storage%20device.
+
+Sometimes you don't need to dublicate a file, but you can create a link to that file, saving then disk space, and the same data
+can be accessed from diferent locations and with different names. It also protect the deletion of files, a file will only be
+deleted from the filesystem, when all the hardlinks linked to it reaches 0. 
+
+Some remarks: hardlinks only work on files, and only in the same filesystem. 
+
+To create a hard link: `ln <path_to_the_target_file> <path_to_link_the_file>`
+
+The utility `stat` reports statistics about a file, it also reports the inode number and the number of hard links to that file. 
+
+A **softlink** also known as **symbolic links**, it is a file that points to a path. As softlinks are just paths, there is no issue
+creating softlinks to directories or other filesystems.
+
+```bash
+$> tldr ln
+Creates links to files and directories.
+More information: https://www.gnu.org/software/coreutils/ln.
+
+ - Create a symbolic link to a file or directory:
+   ln -s /path/to/file_or_directory path/to/symlink
+
+ - Overwrite an existing symbolic link to point to a different file:
+   ln -sf /path/to/new_file path/to/symlink
+
+ - Create a hard link to a file:
+   ln /path/to/file path/to/hardlink
+```
+
+
 ### Types of files in linux
 
-It is possible to check the types of files with the command **ls -l**. Also with the command **file**
+It is possible to check the types of files with the command `ls -l`. Also with the command `file`
 
 ```
 -rw-------   1 me       me            576 Apr 15  2020 weather.txt
@@ -350,7 +384,7 @@ caracter device files and block device files are two different data structures t
 
 TODO: add info about stiky  bits
 
-the **file** utility can be used to get more information about the data type of a file. 
+the `file` utility can be used to get more information about the data type of a file. 
 
 NOTE! in linux extensions dont define the utility or type of a file.
 
@@ -393,7 +427,7 @@ A finer or more advanced control of access to files can be managed with the paqu
 - Sometimes it is needed to get all the permissions, for example when we want to install a program. For doing this we use the **sudo** command, it stands for "Switch User DO". To be possible to used the **sudo** command, the user must belong to the group: 'sudoers'.
 
 
-### normal users
+### Normal users
 
   Using the commands **who** or **users** reports the current users logged into the system. the current users can be printed with the command **whoami**. 
   
