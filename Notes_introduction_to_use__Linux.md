@@ -317,7 +317,7 @@ special directory names:
 
 - reference: https://www.redhat.com/en/blog/linking-linux-explained#:~:text=A%20hard%20link%20always%20points,information%20on%20a%20storage%20device.
 
-Sometimes you don't need to dublicate a file, but you can create a link to that file, saving then disk space, and the same data
+Sometimes you don't need to duplicate a file, but you can create a link to that file, saving then disk space, and the same data
 can be accessed from diferent locations and with different names. It also protect the deletion of files, a file will only be
 deleted from the filesystem, when all the hardlinks linked to it reaches 0. 
 
