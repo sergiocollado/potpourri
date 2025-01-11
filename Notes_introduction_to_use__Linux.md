@@ -200,7 +200,7 @@ The local settings of the system can be identified with the command **locale**
 >> locale
 ```
 
-## Linux File System
+## Linux File System aka File system tree
 
 The linux file system usually has the following file hierarchy structure:
 
