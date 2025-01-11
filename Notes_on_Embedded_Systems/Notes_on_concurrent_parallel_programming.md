@@ -21,4 +21,7 @@ std::future /std::promise/std::async(wait/get)
 
 In linux: `lspci | grep -i --color 'vga|/3d|/2d'`
 
+## Nvidia programming resources
+
+ - https://developer.nvidia.com/
 
