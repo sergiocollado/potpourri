@@ -48,9 +48,9 @@ https://elinux.org/images/c/cf/Power_ePAPR_APPROVED_v1.1.pdf ePAPR v1.1 specific
 
 ## Device tree sources and compilers
 
-A device tree (**DT**), is exxpressedn in two wayas, first the text form, the **device tree sources DTS** (with an **.dts** extension), and the second one is in the form of a binary blob, known as **device tree blob DTB** or **flattened device tree FDT** that use a **.dtb** or **.dtbo** extension. The extension **.dtbo** is the particular case where the blob is used for compiled **device tree overlays DTBO**, .dtbo stands for device tree blobl overlay. Also exist the **.dtsi** text files (the 'i' stands for "include"). Those host SoC levle definitions are are intended to be included in .dts files, hosting the board-level definitions. 
+A device tree (**DT**), is expressedn in two ways, first the text form, the **device tree sources DTS** (with an **.dts** extension), and the second way is in the form of a binary blob, known as **device tree blob DTB** or **flattened device tree FDT** that use a **.dtb** or **.dtbo** extension. The extension **.dtbo** is the particular case where the blob is used for compiled **device tree overlays DTBO**, .dtbo stands for device tree blobl overlay. Also exist the **.dtsi** text files (the 'i' stands for "include"). Those host SoC levle definitions are are intended to be included in .dts files, hosting the board-level definitions. 
 
-the source files usually are divided into tree levels, whit the most commong being the SoC level, which is usually provided by the SoC vendor, then the carrier boardd or cusstomer board level. 
+The source files usually are divided into tree levels, whit the most commong being the SoC level, which is usually provided by the SoC vendor, then the carrier boardd or cusstomer board level. 
 
 In that way all the electronic boards using the same SoC don't redefine al the peripehrals of the SoC from the scratch: this descrition is factored into a common file, that comvention that file use the **.dtsi** extension, while the final device tree uses the **.dts** extension. 
 
