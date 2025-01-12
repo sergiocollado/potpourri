@@ -46,6 +46,16 @@ This page walks through how to write a device tree for a new machine.  It is int
 For a full technical description of device tree data format, refer to the
 https://elinux.org/images/c/cf/Power_ePAPR_APPROVED_v1.1.pdf ePAPR v1.1 specification. The ePAPR specification covers a lot more detail than the basic topics covered on this page, please refer to it for more advanced usage that isn't covered by this page.
 
+## Device tree sources and compilers
+
+A device tree (**DT**), is exxpressedn in two wayas, first the text form, the **device tree sources DTS** (with an **.dts** extension), and the second one is in the form of a binary blob, known as **device tree blob DTB** or **flattened device tree FDT** that use a **.dtb** or **.dtbo** extension. The extension **.dtbo** is the particular case where the blob is used for compiled **device tree overlays DTBO**, .dtbo stands for device tree blobl overlay. Also exist the **.dtsi** text files (the 'i' stands for "include"). Those host SoC levle definitions are are intended to be included in .dts files, hosting the board-level definitions. 
+
+the source files usually are divided into tree levels, whit the most commong being the SoC level, which is usually provided by the SoC vendor, then the carrier boardd or cusstomer board level. 
+
+In that way all the electronic boards using the same SoC don't redefine al the peripehrals of the SoC from the scratch: this descrition is factored into a common file, that comvention that file use the **.dtsi** extension, while the final device tree uses the **.dts** extension. 
+
+To compile a DTS file into a DTB file is used the **DTC device tree compiler**. The DTC can be cound in `/scripts/dtc`, or as a standalon project. 
+
 ### Basic Data Format
 The device tree is a simple tree structure of nodes and properties.  Properties are key-value pairs, and node may contain both properties and child nodes. For example, the following is a simple tree in the  `.dts` format:
 
