@@ -310,10 +310,11 @@ special directory names:
 - **rsync** -- a fast, versatile, remote (and local) file-copying tool https://linux.die.net/man/1/rsync
 - **dd** convert and copy a file. (used to do backups) http://man7.org/linux/man-pages/man1/dd.1.html
 - **watch** - execute a program periodically, showing output fullscreen  https://linux.die.net/man/1/watch
-- **vim** - almost universal text editor
+- **vi** - almost universal text editor
+- **vim** - improved vi
 
 
-### Softlinks and hardlinks
+### Hardlinks and softlinks
 
 - reference: https://www.redhat.com/en/blog/linking-linux-explained#:~:text=A%20hard%20link%20always%20points,information%20on%20a%20storage%20device.
 
@@ -404,7 +405,6 @@ Permissions can be expressed in numeric for with octal notation, so values are g
  - read **r**     (1)
  - write **w**    (2)
  - execute **x**  (4)
- 
 
 To view the permissions, usually the **ls -l** command is used.
 
@@ -425,6 +425,38 @@ commands associated with permissions are:
  - `chgrp`: change group permissions
  - `groups`: enumerate the groups in the system.
  - `chown`: change the user permissions
+ - `chmod`: modifiy the permissions (u: user, g: group, o other/ + add/ - remove/ = define perms; r: read; w: write; x: execute)
+
+```
+$ tldr chmod
+
+Change the access permissions of a file or directory.
+More information: https://www.gnu.org/software/coreutils/chmod.
+
+ - Give the [u]ser who owns a file the right to e[x]ecute it:
+   chmod u+x path/to/file
+
+ - Give the [u]ser rights to [r]ead and [w]rite to a file/directory:
+   chmod u+rw path/to/file_or_directory
+
+ - Remove e[x]ecutable rights from the [g]roup:
+   chmod g-x path/to/file
+
+ - Give [a]ll users rights to [r]ead and e[x]ecute:
+   chmod a+rx path/to/file
+
+ - Give [o]thers (not in the file owner's group) the same rights as the [g]roup:
+   chmod o=g path/to/file
+
+ - Remove all rights from [o]thers:
+   chmod o= path/to/file
+
+ - Change permissions recursively giving [g]roup and [o]thers the ability to [w]rite:
+   chmod -R g+w,o+w path/to/directory
+
+ - Recursively give [a]ll users [r]ead permissions to files and e[X]ecute permissions to sub-directories within a directory:
+   chmod -R a+rX path/to/directory
+```
 
 ### Root user aka Superuser
 
