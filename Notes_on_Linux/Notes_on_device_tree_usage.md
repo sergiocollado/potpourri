@@ -5,6 +5,7 @@
 references:
  - https://www.devicetree.org/
  - https://octavosystems.com/linux-device-trees-embedded-systems/
+ - https://octavosystems.com/app_notes/osd335x-design-tutorial/osd335x-lesson-2-minimal-linux-boot/linux-device-tree/
  - https://blog.stabel.family/raspberry-pi-4-device-tree/
  - https://javiercarrascocruz.github.io/device-driver-development-with-rpi-device-tree
  - https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/configuration/device-tree.adoc
