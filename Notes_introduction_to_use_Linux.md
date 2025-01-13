@@ -386,9 +386,9 @@ TODO: add info about stiky  bits
 
 the `file` utility can be used to get more information about the data type of a file. 
 
-NOTE! in linux extensions dont define the utility or type of a file.
+**REMARK!** in linux extensions don't define the utility or type of a file.
 
-### Permissions
+### Files permissions
 
 Files have owners (the user who created the file), and also access permissions.
 
@@ -405,7 +405,7 @@ Permissions can be expressed in numeric for with octal notation, so values are g
  - write **w**    (2)
  - execute **x**  (4)
  
- 
+
 To view the permissions, usually the **ls -l** command is used.
 
 ```bash
@@ -419,6 +419,12 @@ file1  rwxr-x^-x
 - the last 3 characters are the permissions for all users.
 
 A finer or more advanced control of access to files can be managed with the paquet **ACL (Access Control Lists)**
+
+commands associated with permissions are: 
+ - `ls -l`: enumerate all files in a directory and all it's permissions.
+ - `chgrp`: change group permissions
+ - `groups`: enumerate the groups in the system.
+ - `chown`: change the user permissions
 
 ### Root user aka Superuser
 
