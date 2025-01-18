@@ -497,9 +497,8 @@ More information: https://www.gnu.org/software/coreutils/chmod.
   ```
   > useradd -d /opt/sam -s /bin/bash -G admin -u 2328 sam
   ```
-  
-  
-### other commands related with users
+    
+### Other commands related with users
 
 - **whoami** - displays your user
 - **who** - displays the list of current users
@@ -704,7 +703,7 @@ one option is to chech the files:
 >sudo cat /etc/group
 ```
 
-### default permissions: umask
+### Default permissions: umask
 
  - reference : http://man7.org/linux/man-pages/man1/umask.1p.html
 
@@ -734,7 +733,6 @@ SGID (Set Group ID): is a special permission set in a executable or directories 
 
 Sticky bit: is a special permission that can be set in directories and it restricts the deletion of that directory. Only the file owner, directory owner or super-user (root) can delete the file. This is useful in shared directories where multiple users can create fiiles but should not be able to delete or modify files created by other people.
 
-
 To set those permissions use `chmod` but with 4 digits: 
 
 ```
@@ -750,6 +748,39 @@ sergio@laptop:~$ chmod 4764 myfile
 sergio@laptop:~$ ls -l myfile
 -rwsrw-r-- 1 sergio sergio 0 ene 18 09:55 myfile
 # the 's' in that position means SUID and excute bit are enabled.
+```
+
+for SGID: 
+
+```
+sergio@laptop:~$ touch myfile
+sergio@laptop:~$ ls -l myfile
+-rw-rw-r-- 1 sergio sergio 0 ene 18 10:06 myfile
+sergio@laptop:~$ chmod 2664 myfile 
+sergio@laptop:~$ ls -l myfile
+-rw-rwSr-- 1 sergio sergio 0 ene 18 10:06 myfile
+sergio@laptop:~$ chmod 2674 myfile
+sergio@laptop:~$ ls -l myfile
+-rw-rwsr-- 1 sergio sergio 0 ene 18 10:06 myfile
+```
+
+to find files whit SGUID or SGID: 
+
+```
+> find . -perm /4000  # to find SUID
+> find . -perm /2000  # to find SGID
+```
+
+to set both SUID and SGID: 
+
+```
+sergio@laptop:~$ touch myfile
+sergio@laptop:~$ ls -l myfile
+-rw-rw-r-- 1 sergio sergio 0 ene 18 10:10 myfile
+sergio@laptop:~$ chmod 6664 myfile 
+sergio@laptop:~$ ls -l myfile
+-rwSrwSr-- 1 sergio sergio 0 ene 18 10:10 myfile
+
 ```
 
 
