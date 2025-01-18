@@ -314,39 +314,6 @@ special directory names:
 - **vim** - improved vi
 
 
-### Hardlinks and softlinks
-
-- reference: https://www.redhat.com/en/blog/linking-linux-explained#:~:text=A%20hard%20link%20always%20points,information%20on%20a%20storage%20device.
-
-Sometimes you don't need to duplicate a file, but you can create a link to that file, saving then disk space, and the same data
-can be accessed from diferent locations and with different names. It also protect the deletion of files, a file will only be
-deleted from the filesystem, when all the hardlinks linked to it reaches 0. 
-
-Some remarks: hardlinks only work on files, and only in the same filesystem. 
-
-To create a hard link: `ln <path_to_the_target_file> <path_to_link_the_file>`
-
-The utility `stat` reports statistics about a file, it also reports the inode number and the number of hard links to that file. 
-
-A **softlink** also known as **symbolic links**, it is a file that points to a path. As softlinks are just paths, there is no issue
-creating softlinks to directories or other filesystems.
-
-```bash
-$> tldr ln
-Creates links to files and directories.
-More information: https://www.gnu.org/software/coreutils/ln.
-
- - Create a symbolic link to a file or directory:
-   ln -s /path/to/file_or_directory path/to/symlink
-
- - Overwrite an existing symbolic link to point to a different file:
-   ln -sf /path/to/new_file path/to/symlink
-
- - Create a hard link to a file:
-   ln /path/to/file path/to/hardlink
-```
-
-
 ### Types of files in linux
 
 It is possible to check the types of files with the command `ls -l`. Also with the command `file`
@@ -388,6 +355,38 @@ TODO: add info about stiky  bits
 the `file` utility can be used to get more information about the data type of a file. 
 
 **REMARK!** in linux extensions don't define the utility or type of a file.
+
+### Hardlinks and softlinks
+
+- reference: https://www.redhat.com/en/blog/linking-linux-explained#:~:text=A%20hard%20link%20always%20points,information%20on%20a%20storage%20device.
+
+Sometimes you don't need to duplicate a file, but you can create a link to that file, saving then disk space, and the same data
+can be accessed from diferent locations and with different names. It also protect the deletion of files, a file will only be
+deleted from the filesystem, when all the hardlinks linked to it reaches 0. 
+
+Some remarks: hardlinks only work on files, and only in the same filesystem. 
+
+To create a hard link: `ln <path_to_the_target_file> <path_to_link_the_file>`
+
+The utility `stat` reports statistics about a file, it also reports the inode number and the number of hard links to that file. 
+
+A **softlink** also known as **symbolic links**, it is a file that points to a path. As softlinks are just paths, there is no issue
+creating softlinks to directories or other filesystems.
+
+```bash
+$> tldr ln
+Creates links to files and directories.
+More information: https://www.gnu.org/software/coreutils/ln.
+
+ - Create a symbolic link to a file or directory:
+   ln -s /path/to/file_or_directory path/to/symlink
+
+ - Overwrite an existing symbolic link to point to a different file:
+   ln -sf /path/to/new_file path/to/symlink
+
+ - Create a hard link to a file:
+   ln /path/to/file path/to/hardlink
+```
 
 ### Files permissions
 
@@ -780,12 +779,18 @@ sergio@laptop:~$ ls -l myfile
 sergio@laptop:~$ chmod 6664 myfile 
 sergio@laptop:~$ ls -l myfile
 -rwSrwSr-- 1 sergio sergio 0 ene 18 10:10 myfile
-
 ```
 
+for the sticky bit: 
 
-
-
+```
+sergio@laptop:~$ mkdir myfolder
+sergio@laptop:~$ ls -ld myfolder/
+drwxrwxr-x 2 sergio sergio 4096 ene 18 10:14 myfolder/
+sergio@laptop:~$ chmod 1666 myfolder # or chmod +t myfolder
+sergio@laptop:~$ ls -ld myfolder/
+drw-rw-rwT 2 sergio sergio 4096 ene 18 10:14 myfolder/ # `T`stands for the sitcky bit.
+```
 
 
 ## Commands for monitoring the performance, memory
