@@ -706,7 +706,7 @@ one option is to chech the files:
 
 ### default permissions: umask
 
-ref: http://man7.org/linux/man-pages/man1/umask.1p.html
+ - reference : http://man7.org/linux/man-pages/man1/umask.1p.html
 
 New files are created with a default set of permissions. Specifically, a new file's permissions may be restricted in a specific way by applying a permissions "mask" called the **umask**. The umask command is used to set this mask, or to show you its current value.
 
@@ -721,6 +721,41 @@ to change the default permissions to read/write permissions for everybody.
 ```bash
 >umask 0666
 ```
+
+### SUID, SGID and stiky bit
+
+references: 
+ - https://www.scaler.com/topics/special-permissions-in-linux/
+ - https://www.howtogeek.com/656646/how-to-use-suid-sgid-and-sticky-bits-on-linux/
+
+SUID (Set User ID): is a special permission set in a file that allows users to run an executable with the permission of the executable's owner.When the SUID bit is set on a file, an "s" represents the owner's execute permission. If the SUID bit is set on a file that doesn't have executable capabilities, an uppercase "S" denotes this.
+
+SGID (Set Group ID): is a special permission set in a executable or directories that allows groups to access as the owner to that executable and directories
+
+Sticky bit: is a special permission that can be set in directories and it restricts the deletion of that directory. Only the file owner, directory owner or super-user (root) can delete the file. This is useful in shared directories where multiple users can create fiiles but should not be able to delete or modify files created by other people.
+
+
+To set those permissions use `chmod` but with 4 digits: 
+
+```
+sergio@laptop:~$ touch myfile
+sergio@laptop:~$ ls -l myfile
+-rw-rw-r-- 1 sergio sergio 0 ene 18 09:55 myfile
+sergio@laptop:~$ chmod 4664 myfile   # the first digit if for SUID
+sergio@laptop:~$ ls -l myfile
+-rwSrw-r-- 1 sergio sergio 0 ene 18 09:55 myfile # for the user, there is a 'S', so SUID bit is enabled for this file.
+# if anyone were to execute that file, it would be executed as the user 'sergio', instead of his user.
+# the capital 'S' means that the SUID is enabled, but no excute permission
+sergio@laptop:~$ chmod 4764 myfile
+sergio@laptop:~$ ls -l myfile
+-rwsrw-r-- 1 sergio sergio 0 ene 18 09:55 myfile
+# the 's' in that position means SUID and excute bit are enabled.
+```
+
+
+
+
+
 
 ## Commands for monitoring the performance, memory
 
