@@ -13,6 +13,7 @@ Languaje reference:
   - rustdoc: https://doc.rust-lang.org/rustdoc/what-is-rustdoc.html
   - Rust memory safety explained: https://www.infoworld.com/article/3714925/rust-memory-safety-explained.html
   - rustlings exercises: https://github.com/rust-lang/rustlings/tree/rustlings-1
+  - https://rust-exercises.com/100-exercises/
   - the embedded rust book: https://docs.rust-embedded.org/book/intro/index.html
   - real-time for the masses: https://japaric.github.io/rtfm5/book/en/preface.html
   - bindgen: https://github.com/rust-lang/rust-bindgen
