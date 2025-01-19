@@ -231,11 +231,30 @@ References:
 
 
 
-### Network flow
+## Network flow
 
+### Routing
 
+ Router: a layer 3 device (working at IP level), a router forwards packets between networks. To forward those packages it uses **routing tables**, a routing table is a static table maping of the **best path** to a network destination. The routing table list destinations and gateways for the networks the host belongs to. 
 
+To check for the routing table in Linux use: 
+ - `ip route list`
+ - `netstat -n`
+ - `sudo route -n`
 
+**static routes** are manually configured routes. they are used for traffic.
+
+#### Routing::BGP
+
+- refernece: https://www.cloudflare.com/learning/security/glossary/what-is-bgp/
+
+**BGP** stands for Border Gateway Protocol, is the routing protocol used to route traffic across internet - how the internet works. 
+
+BGP is a layer 4 protocol (transport layer, like TCP). There is no discorvery, peers are configured manually to exchange routing information from a TCP connection. 
+
+An **ASN** Autonomous System Number, is required to implement BGP peering. This is a special number assigned by **IANA** ([Internet Assigned Numbers Authority](https://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority)) for use primarily with BGP that identifies each network on the internet. Two routers that have established connection and exchange routing information are BGP peers, exchanging routing information between them via BGP sessions over TCP. 
+
+   
 ## Machine level configuration
 
 ### Network interface
