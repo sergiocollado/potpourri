@@ -11,4 +11,6 @@
  systems and a vast collection of reusable components. The Yocto Project is widely used in various
  industries including automotive, aerospace and consumer electronics to build reliable and secure 
  linux distros
+
+ - reference: The Yocto Project on Raspberry Pi 5: Building an Embedded GNU Linux Distribution: https://www.youtube.com/watch?v=fY7u6PiV8qA
  
