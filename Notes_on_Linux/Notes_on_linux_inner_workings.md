@@ -52,7 +52,8 @@ How to contribute:
  - LKMP: https://medium.com/@andrew.kanner/linux-kernel-bug-fixing-2023-experience-ce37aee844ee
  - https://marliere.net/posts/1/
  - Build a minimal Linux system and run it in QEMU: https://ibug.io/blog/2019/04/os-lab-1/
- - Ramfs, rootfs and initramfs: https://www.kernel.org/doc/html/latest/filesystems/ramfs-rootfs-initramfs.html
+ - Ramfs, rootfs and initramfs: https://www.kernel.org/doc/html/latest/filesystems/ramfs-rootfs-initramfs.htmlç
+ - tiny config: https://youtu.be/u2Juz5sQyYQ?si=J4p8VtCpb-CeA5Vv
 
 ### Intro to the development process
 
@@ -401,8 +402,6 @@ Result: 250
 ```
 
 
-
-
 ### Codes of conduct
 
 References:
@@ -575,6 +574,7 @@ It has four main components:
  - reference: https://wiki.gentoo.org/wiki/Kernel/Optimization
  - reference: compiling with CLANG: https://www.kernel.org/doc/html/latest/kbuild/llvm.html
  - example: https://youtu.be/s95hjvFAE5g?t=402
+ - tiny config: https://youtu.be/u2Juz5sQyYQ?si=J4p8VtCpb-CeA5Vv
 
 The kernel configuration is in the file named .config at the top of the kernel source tree.
 
