@@ -20,6 +20,7 @@ reference:
  - riscv64: https://github.com/google/syzkaller/blob/master/docs/linux/setup_linux-host_qemu-vm_riscv64-kernel.md
  - https://ibug.io/blog/2019/04/os-lab-1/
  - a simple workflow to debug the linux kernel: https://marliere.net/posts/1/
+ - tiny config: https://youtu.be/u2Juz5sQyYQ?si=J4p8VtCpb-CeA5Vv
 
 ### Instruction to install qemu different architectures
 
