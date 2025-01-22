@@ -1,5 +1,9 @@
 # Notes on timers and time management on the Linux Kernel
 
+References: 
+ - https://docs.kernel.org/timers/index.html
+ - LDD3: https://lwn.net/Kernel/LDD3/  https://lwn.net/Kernel/LDD3/
+
 
 ## Hz
 
