@@ -3187,3 +3187,10 @@ References:
  - https://unix.stackexchange.com/questions/209165/conceptualizing-btrfs-understanding-snapshots-and-space-used
  - https://wiki.archlinux.org/title/Btrfs
  - https://btrfs.readthedocs.io/en/latest/
+
+
+### Display Linux CPU topology with lstopo
+ - https://www.thomas-krenn.com/en/wiki/Display_Linux_CPU_topology_with_lstopo
+ - `apt install hwloc`
+
+
