@@ -1650,7 +1650,7 @@ static void myexit(void)
 }
 ```
 
-```
+```C
 #include <linux/delay.h>  // usleep_range()
 #include <linux/kernel.h>
 #include <linux/kthread.h>
@@ -1731,7 +1731,7 @@ To do this, compare the macro `LINUX_VERSION_CODE` TO THE MACRO `KERNEL_VERSION`
 
 - KERNEL_VERSION: this macro is used to bild an integer code form the indiviudal nubmers that build up a version number. It is defined in the file: `<linux/version.h>`
   
-  ```
+  ```C
   #define LINUX_VERSION_CODE 327698 
   #define KERNEL_VERSION(a,b,c) (((a) << 16) + ((b) << 8) + (c)) 
   ```
@@ -1745,7 +1745,7 @@ To do this, compare the macro `LINUX_VERSION_CODE` TO THE MACRO `KERNEL_VERSION`
   
  `__init` is a macro defined at `<linux/init.h>`.
   
- ```
+ ```C
   #define __init __section(.init.text)
   #define __section(S)   __attribute__((__section__(#S)))
   #define __init __attribute__ ((__sectin__ (".init.text")))
@@ -1801,7 +1801,7 @@ help `man 5 modules`
 
  So create a symbolic link: 
   
-```
+```bash
 sudo ln -s /<path_to_module>/<custom_module>.ko /lib/modules/`uname -r`/kernel/drivers/misc 
 ```
  - reference: https://manpages.ubuntu.com/manpages/focal/en/man8/systemd-modules-load.service.8.html
