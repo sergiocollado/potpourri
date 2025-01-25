@@ -374,6 +374,8 @@ qemu-system-x86_64 \
         -pidfile vm.pid \
         2>&1 | tee vm.log
 
+## root password is: root
+
 # you can check the boot log at vm.log file; gedit vm.log &
 [   29.744949]     KTAP version 1
 [   29.745344]     # Subtest: longest-symbol
