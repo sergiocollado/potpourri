@@ -355,7 +355,7 @@ $ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..
 - https://github.com/torvalds/linux/blob/master/include/uapi/asm-generic/errno-base.h
 - https://github.com/torvalds/linux/blob/master/include/uapi/asm-generic/errno.h
 
- ´´´C
+```C
 #define	EPERM		 1	// Operation not permitted 
 #define	ENOENT		 2	// No such file or directory 
 #define	ESRCH		 3	// No such process 
@@ -375,7 +375,7 @@ $ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..
 #define	EEXIST		17	// File exists
 #define	EXDEV		18	// Cross-device link 
 #define	ENODEV		19	// No such device 
- ´´´
+```
 
 Usually the standard way to return an error is to do int in the `return -ERRORCODE`, in the case of an I/O error, it would be returning `-EIO`.
 
