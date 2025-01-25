@@ -420,7 +420,7 @@ We can have a module in several files. For example:
   
 HelloWorldModule.c:
   
-```
+```C
   #include <linux/kernel>
   #include <linux/module>
   
@@ -453,7 +453,7 @@ void func(void)
 
 The module must be udpated, to add the file:
   
-```
+```bash
 obj-m := linux.o
 linux-objs := hello.o func.o
   
@@ -468,7 +468,7 @@ clean:
 
 You can use a single makefile to generate more than one modules.
 
-  ```
+  ```bash
 obj-m := hello1.o
 obj-m += hello2.o
 # or also obj-m := hello1.o hello2.o
@@ -660,7 +660,7 @@ The purpose of defining `__inittest` function is to check during compile time, t
   It is possible to use numberic values line 0644 for permissions entry.
   
   Example: 
-  ```
+  ```C
   #include <linux/kernel.h>
   #include <linux/module.h>
   
@@ -747,7 +747,7 @@ The purpose of defining `__inittest` function is to check during compile time, t
   
   and example: 
   
-  ```
+  ```C
   #include <linux/kernel.h>
   #include <linux/module.h>
   #include <linux/moduleparam.h>
@@ -807,7 +807,7 @@ The difference between System.map and /proc/kallsyms
   
 Example of exporting a function:
   
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/jiffies.h>
@@ -856,7 +856,7 @@ To check if it was exported, use: `cat /proc/kallsyms | grep <exported_symbol>`
    1. A moudle which exports  function that performs an addition
    2. A second module which uses the exported function 
   
- ```
+ ```C
 #include <linux/module.h>       /* Needed by all modules */
 #include <linux/kernel.h>       /* Needed for KERN_INFO */
 #include <linux/init.h>         /* Needed for the macros __init __exit */  
@@ -1012,7 +1012,7 @@ To find the version of a given .ko file, what kernel was it build for? using the
 Metadata can be added to a module, with the macros:
   
   - MODULE_DESCRITION: short description of the module.
-  - MODULE_AUTHOR: declares the author.
+  - MODULE_AUTHOR: declares the author. If there are several authors, this macro can be used several times.
   - MODULE_VERSION: sets de version of the module.
   
 It is possible to add custom iformation like: `MODULE_INFORMATION(<your_tag_name>, <your_tag_value>)`
@@ -1033,13 +1033,15 @@ To see the contents of the .modinfo section
 objdump --section-heades --section=.modinfo --full-contents ./<module_name>.ko
 ```
 
+TODO: check if you can use `nm` with the .ko objetc.
+
 ### How to dump a kernel stack
   
 Calling `dup_stack()` will cause a stack trace to be printed at that point.
 
 So a sample module:
   
-```
+```C
 #include <linux/module.h>
 #include <linux/kernel.h>
   
@@ -1082,7 +1084,7 @@ By default, the kerenl will not reboot on kernel panic. There are two ways to in
   
 An example of a force panic: 
   
-```
+```C
 #include <linux/module.h>
 #include <linux/kernel.h>
 MODULE_LICENSE("GPL");
