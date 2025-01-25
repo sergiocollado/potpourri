@@ -346,6 +346,48 @@ $ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..
  - EMERG, ALERT, CRIT, ERR, WARNING, NOTICE, INFO, DEBUG, DEFAULT
   
  `printk()`writes in the kernel buffer.
+
+
+### Error handling in the Kernel
+
+ there are a number of predefined errors in the kernel tha cover most of the cases. Most general ones are defined in `inlcude/uapi/asm-generic/errono-base.h` and also in `include/uapi/asm-generic/errono.h`. For example: 
+
+- https://github.com/torvalds/linux/blob/master/include/uapi/asm-generic/errno-base.h
+- https://github.com/torvalds/linux/blob/master/include/uapi/asm-generic/errno.h
+
+ ´´´C
+#define	EPERM		 1	/* Operation not permitted */
+#define	ENOENT		 2	/* No such file or directory */
+#define	ESRCH		 3	/* No such process */
+#define	EINTR		 4	/* Interrupted system call */
+#define	EIO		 5	/* I/O error */
+#define	ENXIO		 6	/* No such device or address */
+#define	E2BIG		 7	/* Argument list too long */
+#define	ENOEXEC		 8	/* Exec format error */
+#define	EBADF		 9	/* Bad file number */
+#define	ECHILD		10	/* No child processes */
+#define	EAGAIN		11	/* Try again */
+#define	ENOMEM		12	/* Out of memory */
+#define	EACCES		13	/* Permission denied */
+#define	EFAULT		14	/* Bad address */
+#define	ENOTBLK		15	/* Block device required */
+#define	EBUSY		16	/* Device or resource busy */
+#define	EEXIST		17	/* File exists */
+#define	EXDEV		18	/* Cross-device link */
+#define	ENODEV		19	/* No such device */
+ ´´´
+
+Usually the standard way to return an error is to do int in the `return -ERRORCODE`, in the case of an I/O error, it would be returning `-EIO`.
+
+```
+dev = init(&ptr);
+if (!dev)
+        return -EIO
+```
+In some cases the error, for exapmle in the case of system calls, can propaget to the user-space, in this case, the value will be automatically asigned to the user space `errono` global variable, in whic case is it posible to use the `strerror(errno)` to translate the error into a readable string.
+
+In other cases, an error must undo everythinig upu to the point where the error happened. In this case the usual way is to use the `goto` statement. 
+
   
 ### Simplified makefile
   
