@@ -58,6 +58,20 @@ In that way all the electronic boards using the same SoC don't redefine al the p
 
 To compile a DTS file into a DTB file is used the **DTC device tree compiler**. The DTC can be cound in `/scripts/dtc`, or as a standalon project. 
 
+An example of a DT compilation: 
+
+```
+dtc -I dts -O dtb -o myboard.dtb myboard.dts
+```
+In this example, `myboard.dts` is the input device tree source file, and `myboard.dtb` is the output device tree blob.
+
+## Using device trees 
+
+When the system boots up with a Linux kernel, the bootloader loads the device tree blob into memory and passes its address to the kernel as a command-line argument. The kernel then parses the device tree and uses the information to configure itself and initialize the necessary drivers for the hardware components described in the device tree.
+
+This dynamic configuration allows the same Linux kernel image to work on different hardware platforms without the need for recompilation. It provides a level of hardware abstraction and portability, making it easier to support multiple board variants or even entirely different systems with the same kernel.
+
+
 ### Basic Data Format
 The device tree is a simple tree structure of nodes and properties.  Properties are key-value pairs, and node may contain both properties and child nodes. For example, the following is a simple tree in the  `.dts` format:
 
