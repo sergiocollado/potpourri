@@ -886,7 +886,7 @@ module_init(module1_init);
 module_exit(module1_exit);
 ```
 
-```
+```C
 #include <linux/module.h>       /* Needed by all modules */
 #include <linux/kernel.h>       /* Needed for KERN_INFO */
 #include <linux/init.h>         /* Needed for the macros __init __exit */  
@@ -932,7 +932,7 @@ Then load the second module: `sudo insmod ./module2.ko`
   
 For using `modprobe`:
   
-  ```
+  ```bash
   sudo ln -s /<full_path>/module1.ko /lib/modules/$(uname -r)/kernel/drivers/misc  # create soft links
   sudo ln -S /<full_path>/module2.ko /lib/modules/$(uname -r)/kernel/drivers/misc
   
@@ -962,7 +962,7 @@ When loading a module, the strings in the vermagic value are checked if they mat
      MODULE_RANDSTRUCT_PLUGIN
   ```
   
- ```
+ ```C
 #include <linux/module.h>       /* Needed by all modules */
 #include <linux/kernel.h>       /* Needed for KERN_INFO */
 #include <linux/vermagic.h>     /* Needed for vermagic */
@@ -985,7 +985,7 @@ module_exit(vermagic_exit);
   
  To change the value of vermagic, use: `MOUDLE_INFO()`.
   
- ```
+ ```C
 #include <linux/module.h>       /* Needed by all modules */
 #include <linux/kernel.h>       /* Needed for KERN_INFO */
 #include <linux/vermagic.h>
@@ -1121,10 +1121,10 @@ An oops message contains the following information:
  - stack trace
  - call trace
   
-An example to force an oops
+An example to force an Oops
   
   
-```
+```C
 #include <linux/module.h>
 #include <linux/kernel.h>
 MODULE_LICENSE("GPL");
@@ -1154,7 +1154,7 @@ BUG_ON() is a macro. It is used as:
   - if (condition) BUG()
   
 BUG_ON() It does:
-  - prints content of the registers.
+  - prints content of the registvers.
   - prints stack trace.
   - current process dies.
   
@@ -1180,7 +1180,7 @@ clean:
 ```
   
   
-```
+```C
 #include <linux/module.h>
 #include <linux/kernel.h>
 MODULE_LICENSE("GPL");
@@ -1228,7 +1228,7 @@ module_exit(test_hello_exit);
   
   You can retrieve those statuses using the command 'ps -el'
   
-  ```
+  ```C
   #include <linux/kernel.h>
   #include <linux/module.h>
   #include <linux/sched/signal.h>
@@ -1284,7 +1284,7 @@ module_exit(test_hello_exit);
   
   The kernel provides an easy way to do this, by means of the macro `current`, which alwiays returns a pointer to the current executing process task_struct.  This macro has to be implemented for each architecture. Some architectures store this in a register while other store them in the botom of the kerel stack of processes. 
   
- ```
+ ```C
  #include <linux/module.h>
  #include <linux/init.h>
  #include <linux.sched.h>
@@ -1307,7 +1307,7 @@ module_exit(current_exit);
   
  Other example: 
   
- ```
+ ```C
  #include <linux/init.h>
  #include <linux/module.h>
  #include <linux/moduleparam.h>
@@ -1351,7 +1351,7 @@ Every process has an VAS (virtual address space). This VAS, can be read in `/pro
   
   All information related to the process address space is included in an object called the memory descriptor of type `mm_struct`, accessible via `current->mm`
 
- ```
+ ```C
  struct mm_struct {
      /* Pointer to the head of the list of memory region objects */
      struct vm_area_struct* mmap;
@@ -1368,7 +1368,7 @@ Every process has an VAS (virtual address space). This VAS, can be read in `/pro
   
   Linux implements a memory region by meanos of an objecto fo type `vm_area_struct`
   
-  ```
+  ```C
   struct vm_area_struct {
       struct mm_struct* vm_mm;  // pointer to the memory descriptor that owns the region
       unsigned long vm_start;   // First linear address inside the region
@@ -1377,16 +1377,16 @@ Every process has an VAS (virtual address space). This VAS, can be read in `/pro
   ```
   
   
-   Each memory region descriptor identifies a linear addess intterval; vm_end-vm_start indicates the lenght of the memory region. 
+Each memory region descriptor identifies a linear addess intterval; vm_end-vm_start indicates the lenght of the memory region. 
   
-   All the regions owned by a process are linked in a simple list.
+All the regions owned by a process are linked in a simple list.
   
-   Regions appear in the list in ascending order by memory addresses.
+Regions appear in the list in ascending order by memory addresses.
   
   
  Example for retrieving a process memory map:
  
-  ```
+  ```C
  #include <linux/init.h>
  #include <linux/module.h>
  #include <linux/moduleparam.h>
@@ -1466,7 +1466,6 @@ static void exit_find_task(void)
 {
     print("good bye: find_task!\n");
 }
-  
   ``` 
   
 ### Kernel Threads
@@ -1475,7 +1474,7 @@ A kernel Thread is a Linux Task running only in kernel mode. It is not created b
   
 To use kernel threads use the API at <linux/kthread.h> 
   
-  ```
+  ```C
   struct task_struct* kthread_create(int (*threadfn)(void* data), void* data, const char name[], ...)
   ```
   parameters:
@@ -1488,13 +1487,13 @@ To use kernel threads use the API at <linux/kthread.h>
   
   There is also function that creats the kernel thread an runs it callin `wake_up_process()`:
   
-  ```
+  ```C
   struct task_struct* kthread_run(int (*threadfn)(void* data), void* data, const char name[], ...)
   ```
   
   To stop a kthread: 
   
-  ```
+  ```C
   int kthread_stop(strcut task_struct* k);
   ```
   
@@ -1502,7 +1501,7 @@ To use kernel threads use the API at <linux/kthread.h>
   
   `kthread_stop()` is a blocking call, it waits until the function executed by the thread exits. `kthread_stop()` flag stes a variabl ein the task_struct variable which the function running in while(1) shoud check in each of tis loops. 
   
-  ```
+  ```C
   int threadfunc(void* data)
   {
       while(!kthread_should_stop()
@@ -1523,7 +1522,7 @@ To use kernel threads use the API at <linux/kthread.h>
   
  #### kthread module examples:
   
-  ```
+ ```C
  #include <linux/init.h>
  #include <linux/module.h>
  #include <linux/kdev_t>
@@ -1573,7 +1572,7 @@ To use kernel threads use the API at <linux/kthread.h>
   module_exit(my_driver_exit);
   ``` 
   
- ```
+ ```C
   MODULE_LICENSE("GPL");
   static int print_running_thread(void* data)
   {
@@ -1601,7 +1600,7 @@ To use kernel threads use the API at <linux/kthread.h>
  
 Example of 2 kthreads running in parallel: 
   
-```
+```C
 #include <linux/delay.h>  // usleep_range()
 #include <linux/kernel.h>
 #include <linux/kthread.h>
@@ -1704,13 +1703,13 @@ In different linux kernel version, there are functions that change its signarutu
   
 Before 5.0 linux kernel version: 
  
-  ```
+  ```C
   int access_ok(int type, void* addr, unsigned long size);
   ```
   
 After 5.0 linux kernel version:
   
-  ```
+  ```C
   int access_ok(void* addr, unsigned long size);
   ```
   
