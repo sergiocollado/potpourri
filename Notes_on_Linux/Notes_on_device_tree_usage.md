@@ -16,7 +16,7 @@ references:
 
 The "Open Firmware Device Tree" or simply the Device Tree (DT) is a data exchange format used for exchanging hardware description data with the software or operating system. The specification is defined at https://www.devicetree.org.
 
-More specifically it is a description of the hardware that is readable by the operating system so that the operating system doesn't need to hard-code the details of the machine. 
+More specifically it is a description of the hardware that is readable by the operating system so that the operating system doesn't need to hard-code the details of the machine, this presents advantages over the traditional method of hardcoding hardware information on the kernel. With the device tree the kernel can configure itself dynamically. 
 
 In Linux is a recommended way to describe non-discoverable devices (platform devices) to the Linux Kernel, which previously had to be hardcoded on the source files.
 
@@ -50,11 +50,11 @@ https://elinux.org/images/c/cf/Power_ePAPR_APPROVED_v1.1.pdf ePAPR v1.1 specific
 
 ## Device tree sources and compilers
 
-A device tree (**DT**), is expressedn in two ways, first the text form, the **device tree sources DTS** (with an **.dts** extension), and the second way is in the form of a binary blob, known as **device tree blob DTB** or **flattened device tree FDT** that use a **.dtb** or **.dtbo** extension. The extension **.dtbo** is the particular case where the blob is used for compiled **device tree overlays DTBO**, .dtbo stands for device tree blobl overlay. Also exist the **.dtsi** text files (the 'i' stands for "include"). Those host SoC levle definitions are are intended to be included in .dts files, hosting the board-level definitions. 
+A device tree (**DT**), is expressed in two ways, first the text form, the **device tree sources DTS** (with an **.dts** extension), or also **.dtsi**, and the second way is in the form of a binary blob, known as **device tree blob DTB** or **flattened device tree FDT** that use a **.dtb** or **.dtbo** extension. The extension **.dtbo** is the particular case where the blob is used for compiled **device tree overlays DTBO**, .dtbo stands for device tree blobl overlay. Also exist the **.dtsi** text files (the 'i' stands for "include"). Those host SoC levle definitions are are intended to be included in .dts files, hosting the board-level definitions. 
 
-The source files usually are divided into tree levels, whit the most commong being the SoC level, which is usually provided by the SoC vendor, then the carrier boardd or cusstomer board level. 
+The source files usually are divided into tree levels, whit the most commong being the SoC level, which is usually provided by the SoC vendor, then the carrier board or cusstomer board level. 
 
-In that way all the electronic boards using the same SoC don't redefine al the peripehrals of the SoC from the scratch: this descrition is factored into a common file, that comvention that file use the **.dtsi** extension, while the final device tree uses the **.dts** extension. 
+In that way all the electronic boards using the same SoC don't redefine al the peripehrals of the SoC from the scratch: this descrition is factored into a common file, that convention that file use the **.dtsi** extension, while the final device tree uses the **.dts** extension. 
 
 To compile a DTS file into a DTB file is used the **DTC device tree compiler**. The DTC can be cound in `/scripts/dtc`, or as a standalon project. 
 
