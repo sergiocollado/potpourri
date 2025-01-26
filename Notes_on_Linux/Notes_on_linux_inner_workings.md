@@ -136,6 +136,16 @@ git format-patch -1 -v5
 
  - reference: https://www.kernel.org/doc/html/v4.10/process/applying-patches.html <br>
 
+```
+patch -p1 < ../patch-x.y.z
+```
+to remove it: 
+
+```
+patch -R -p1 < ../patch-x.y.z
+```
+
+
 To apply a patch from an email (gmail): <br>
 reference: https://stackoverflow.com/questions/23594843/applying-email-patch-with-git <br>
 
