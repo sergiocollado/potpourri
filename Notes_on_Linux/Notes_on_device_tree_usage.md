@@ -65,6 +65,29 @@ dtc -I dts -O dtb -o myboard.dtb myboard.dts
 ```
 In this example, `myboard.dts` is the input device tree source file, and `myboard.dtb` is the output device tree blob.
 
+**DTC** stands for device tree compile, it can be found in two places: 
+ - project repo: https://git.kernel.org/pub/scm/utils/dtc/dtc.git
+ - in the kerenel at `scritps/dtc/`
+
+From the kernel soucres, you can compile a specific device tre, or a device trees for a given SoC. In the second case, the correct build optoin 
+has to be set to enable those device tree files: 
+ - So for a single device tree compilatoin the `make` target shoud be the device tree name of the `.dts` file, but changing the `.dts` with `.dtb`.
+ - to complie a device tree of a Soc, yo have to enable the SoC option in `.config`, for examle `CONFIG_SOC_IMX6Q=y` and then run `make dtbs`.
+
+It is also possible, that for a given **compiled** device tree (.dtb), revers the operation and extract the source (.dtb) file:
+
+```
+dtc -I dtb -O dts -o myboard.dtb > myboard.dts
+```
+Also for dbugging porpoues, it may be useful to use the flag `CONFIG_PROC_DEVICETREE` that optoon will make the current device tree of the system available at `/proc/device-tree`. 
+
+If DTC is installed on the system, it can be used to convert the filesystem tree into a more human readable for with the command: 
+
+```
+dtc -I fs -O dts /sys/firmware/devicetree/base > MySBC.dts
+```
+
+
 ## Using device trees 
 
 When the system boots up with a Linux kernel, the bootloader loads the device tree blob into memory and passes its address to the kernel as a command-line argument. The kernel then parses the device tree and uses the information to configure itself and initialize the necessary drivers for the hardware components described in the device tree.
