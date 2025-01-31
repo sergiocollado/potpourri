@@ -275,3 +275,8 @@ EDGE is also known as 2.75G. The goal is to enhace the data rate. Upgrading from
  - Reference? : https://www.etsi.org/deliver/etsi_ts/133200_133299/133220/17.02.00_60/ts_133220v170200p.pdf
 
 ![2g authentication procedure](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/2G_authentication_procedure.png)
+
+
+### What are CDRs?
+
+CDR stands for **Call Detail Record** and stores the properties of a session on the operator network in the CDR table of the database. Properties include calling party, called party, start time, duration, traffic type, rating parameters, price, etc.  
