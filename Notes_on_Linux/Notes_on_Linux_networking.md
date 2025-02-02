@@ -233,7 +233,30 @@ IPv4 is for example: 192.168.101.100, that is 4 8-bit numbers (from 0 to 255) na
 
 IPv6 is for example: 1013:18bc:0000:0000:0000:00ff:99ad:313d - it is longer a 128-bit address. So it is made by 16 octects. The zeros can be removed, and the address will be expressed as:  1013:18bc::ff:99ad:313d. 
 
+##### Classfull networking
 
+ There are 5 traditional classes of networks: 
+
+ | --- | --- |--- |--- |--- |
+ | class | first bits pattern | coment | range | comment |
+ | Class A | 0--- | zero on the first bit of the first octect | 0.0.0.0 to 127.255.255.255 |  |
+ | Class B | 10-- | one on the first bit and 0 on the second bit | 128.0.0.0 to 191.255.255.255 |  |
+ | Class C | 110- |  | 192.0.0.0 to 223.255.255.255 |  |
+ | Class D | 1110 |  | 224.0.0.0 to 239.255.255.255 |  Reserved for multicasting network | 
+ | Class E | 1111 |  | 240.0.0.0 to 255.255.255.255 |  Reserved for experimental use |
+
+  - Class A uses the fist octect to define the network and the rest of octects to define the hosts: `255.0.0.0 -> the mask is:  1111 1111 | 0000 0000 - 0000 0000 - 0000 0000`, 2097152 hostS IPs
+  - Class B uses the fist two octects to define the netowork and the rest of octects to define the  hosts: `255.255.0.0 -> the mask is: 1111 1111 - 1111 1111 | 0000 0000 - 0000 0000`, 65534 hosts IPS
+  - Class c uses the fist three octects to define the netowork and the rest of octects to define the  hosts: `255.255.255.0 -> the mask is: 1111 1111 - 1111 1111 - 1111 1111 | 0000 0000`,  254 hosts IPS
+
+
+  Within classfull networks are some range reserved for private use:
+   - Class A: 10.0.0.0 to 10.255.255.255
+   - Class B: 172.16.0.0 to 173.31.255.255
+   - Class C: 192.168.0.0 to 192.168.255.255
+
+There is other range of reserved IP addresses for IPv4 addresses: 
+ - 127.0.0.0 to 127.255.255.255 this is the loopback range 
 
 ## Network flow
 
