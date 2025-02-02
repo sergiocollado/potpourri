@@ -237,8 +237,8 @@ IPv6 is for example: 1013:18bc:0000:0000:0000:00ff:99ad:313d - it is longer a 12
 
  There are 5 traditional classes of networks: 
 
- | --- | --- |--- |--- |--- |
  | class | first bits pattern | coment | range | comment |
+ |  -----------  |  -----------  |  -----------  |  -----------  |  -----------  |
  | Class A | 0--- | zero on the first bit of the first octect | 0.0.0.0 to 127.255.255.255 |  |
  | Class B | 10-- | one on the first bit and 0 on the second bit | 128.0.0.0 to 191.255.255.255 |  |
  | Class C | 110- |  | 192.0.0.0 to 223.255.255.255 |  |
