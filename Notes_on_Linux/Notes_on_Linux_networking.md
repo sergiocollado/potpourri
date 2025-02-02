@@ -245,9 +245,12 @@ IPv6 is for example: 1013:18bc:0000:0000:0000:00ff:99ad:313d - it is longer a 12
  | Class D | 1110 |  | 224.0.0.0 to 239.255.255.255 |  Reserved for multicasting network | 
  | Class E | 1111 |  | 240.0.0.0 to 255.255.255.255 |  Reserved for experimental use |
 
-  - Class A uses the fist octect to define the network and the rest of octects to define the hosts: `255.0.0.0 -> the mask is:  1111 1111 | 0000 0000 - 0000 0000 - 0000 0000`, 2097152 hostS IPs
-  - Class B uses the fist two octects to define the netowork and the rest of octects to define the  hosts: `255.255.0.0 -> the mask is: 1111 1111 - 1111 1111 | 0000 0000 - 0000 0000`, 65534 hosts IPS
-  - Class c uses the fist three octects to define the netowork and the rest of octects to define the  hosts: `255.255.255.0 -> the mask is: 1111 1111 - 1111 1111 - 1111 1111 | 0000 0000`,  254 hosts IPS
+  - Class A uses the fist octect to define the network and the rest of octects to define the hosts
+     - `255.0.0.0 -> the mask is:  1111 1111 | 0000 0000 - 0000 0000 - 0000 0000`, 2097152 hostS IPs
+  - Class B uses the fist two octects to define the netowork and the rest of octects to define the  hosts:
+     - `255.255.0.0 -> the mask is: 1111 1111 - 1111 1111 | 0000 0000 - 0000 0000`, 65534 hosts IPS
+  - Class c uses the fist three octects to define the netowork and the rest of octects to define the  hosts:
+     - `255.255.255.0 -> the mask is: 1111 1111 - 1111 1111 - 1111 1111 | 0000 0000`,  254 hosts IPS
 
 
   Within classfull networks are some range reserved for private use:
@@ -256,9 +259,35 @@ IPv6 is for example: 1013:18bc:0000:0000:0000:00ff:99ad:313d - it is longer a 12
    - Class C: 192.168.0.0 to 192.168.255.255
 
 There is other range of reserved IP addresses for IPv4 addresses: 
- - 127.0.0.0 to 127.255.255.255 this is the loopback range 
+ - 127.0.0.0 to 127.255.255.255 this is the loopback range
 
-## Network flow
+##### CIDR
+
+Classfull networks are substitued by CIDR - **Classless Inter-domain Routing**
+
+The mask number indicates the number of first bits, that will be masked to obtain the network part of the IP address.
+
+In the case of IPv6, the address is divide into: 
+
+```
+    |      -----------      128 bits   -----------------|
+
+    /-- global ---/ /Internal/
+    1013:18bc:0000:   0000:      0000:0000:00ff:99ad:313d
+    \------    etwork ------/   \-------  Node   --------/
+                                   - derived from MAC addess 
+```
+
+there are 3 types of ipv6 addresses:
+ - global unicast: Internet scope- starts with `2001:`
+ - unique local: Internal network scope - not routed on the internet
+ - link local: Network link scope - not routed on the internet. starts with `FE80:`
+
+### Network Address Translation - NAT
+
+NAT stands for **Network Address Translation** is a method for remapping on IP address space into another by modifying network address translation address inforamtion in the IP header of packets while they are in transit across a traffic routing device. 
+
+####  Network flow
 
 ### Routing
 
