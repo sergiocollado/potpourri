@@ -13,6 +13,7 @@ References:
  - https://mobilepacketcore.com/gprs-network-architecture/
  - https://yatebts.com/documentation/concepts/gsm-functionalities/
  - https://youtu.be/HIQ8Z2xlCS8?list=PLU5x-SQTjZT758IGceyOG6pDzMCMAz88o
+ - https://buddhimau.medium.com/how-number-portability-works-in-mobile-telecommunication-networks-77ab4f164fda
 
 GSM radio reference: 
  - https://youtu.be/NkKJBXR0G4k?si=na6v7Tur96trt71L
