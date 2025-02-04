@@ -14,6 +14,7 @@ References:
  - https://yatebts.com/documentation/concepts/gsm-functionalities/
  - https://youtu.be/HIQ8Z2xlCS8?list=PLU5x-SQTjZT758IGceyOG6pDzMCMAz88o
  - https://buddhimau.medium.com/how-number-portability-works-in-mobile-telecommunication-networks-77ab4f164fda
+ - https://realtimecommunication.wordpress.com/2014/11/17/sms-in-2g3g/
 
 GSM radio reference: 
  - https://youtu.be/NkKJBXR0G4k?si=na6v7Tur96trt71L
