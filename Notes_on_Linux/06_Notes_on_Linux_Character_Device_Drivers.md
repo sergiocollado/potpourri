@@ -54,6 +54,7 @@ If for __**character devices**__ system calls go directly to device drivers, in 
 
 In the case of __**block devices**__, communication between the user-space and the block device driver is mediated by the __**file management**__ subsystem and the block device subsystem. 
 
+You can know the character and block device drivers in a system with the command `cat /proc/devices`. 
 
 ### Character Device Driver
 
