@@ -434,6 +434,7 @@ Device file can be created in two ways
 
 We can create the device file manually by using `mknod`.
 
+example: https://www.youtube.com/watch?v=hbSSi4bHF8E&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa&index=5
 
 ```bash
 $ mknod -m <permissions> <name> <device type> <major> <minor>
