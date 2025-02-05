@@ -20,7 +20,6 @@ References:
  - Linux VFS: https://www.kernel.org/doc/html/latest/filesystems/#core-vfs-documentation
  - Understanding the structure of a Linux device driver: https://youtu.be/pIUTaMKq0Xc
  - linux block drivers: https://olegkutkov.me/2020/02/10/linux-block-device-driver/
- - Linux device drivers introduction: https://youtu.be/fQkObOxVTVo
  - character device drivers tutorial list: https://www.youtube.com/watch?v=Zn8mEZXr6nE&list=PL2GL6HVUQAuksbptmKC7X4zruZlIl59is
 
 
