@@ -3,6 +3,7 @@ References:
  - Linux Kernel Programming Part 2 - Char Device Drivers and Kernel Synchronization:
     - https://github.com/PacktPublishing/Linux-Kernel-Programming/blob/master/Linux-Kernel-Programming-(Part-2)/Linux%20Kernel%20Programming%20Part%202%20-%20Char%20Device%20Drivers%20and%20Kernel%20Synchronization_eBook.pdf
     - https://github.com/PacktPublishing/Linux-Kernel-Programming-Part-2
+ - https://linux-kernel-labs.github.io/refs/heads/master/labs/device_drivers.html
  - https://tldp.org/LDP/lkmpg/2.6/html/c567.html
  - Drivers implementer's API: https://docs.kernel.org/driver-api/index.html
  - Linux kernel documentation - device drivers: https://docs.kernel.org/driver-api/driver-model/driver.html
