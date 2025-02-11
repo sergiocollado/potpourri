@@ -1,0 +1,1 @@
+cmd_/home/sergio/repos/potpourri/code/LinuxKernelModules/Johannes_4GNU_Linux/05_hello_cdev2/Module.symvers :=  scripts/mod/modpost -m -a     -o /home/sergio/repos/potpourri/code/LinuxKernelModules/Johannes_4GNU_Linux/05_hello_cdev2/Module.symvers -T /home/sergio/repos/potpourri/code/LinuxKernelModules/Johannes_4GNU_Linux/05_hello_cdev2/modules.order -i Module.symvers -e 
