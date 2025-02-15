@@ -4,7 +4,7 @@
 int my_init(void)
 {
 	printk("hello - Hello kernel!\n");
-	return 0;
+	return 0; // returns 0 means the funtion worked as expected (no error)
 }
 
 void my_exit(void)
