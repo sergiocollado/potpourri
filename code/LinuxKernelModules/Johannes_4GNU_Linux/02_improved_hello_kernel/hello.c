@@ -1,6 +1,8 @@
 #include<linux/module.h>
 #include<linux/init.h>
 
+#define pr_fmt(fmt) "%s:%s: " fmt, KBUILD_MODNAME, __func__
+
 int __init my_init(void)
 {
 	printk("hello - Hello kernel!\n");
