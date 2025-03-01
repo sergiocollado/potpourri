@@ -346,6 +346,19 @@ ARP is a communication protocol used for discovering the MAC address associated 
 To check for ARP tables use: 
  - the `arp` command
  - the `ip neigh` command
+
+### Domain Name Service (DNS)
+
+DNS is layer 7 protocol used for discovering the IP address associated with a given domain name. DNS maps a domain name to an IP address on the network. 
+
+An FQDN (Fully Qualified Domain Name) is the complete domain name for a specific host on the network. When a computer wants to initiate a connection to an
+FQDN, for example 'wwww.example.com', it needs to know where the host is on the network. The computer will send a query to the DNS server, asking it to resolve
+the FQDN, to an IP address, and then looks at the routing table to determine where to send the request. 
+
+The resolution of the name begins with the TLD (Top Level Domain) servers, and progress to the name server of the domain. 
+
+To check for DNS, use the `dig` command, part of the `bind-utils` package. For example: `dig -4 www.linuxacademy.com  +trace`. 
+
    
 ## Machine level configuration
 
