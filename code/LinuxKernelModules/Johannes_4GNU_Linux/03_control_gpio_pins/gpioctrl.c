@@ -11,7 +11,7 @@
 //
 // no device tree used here, is too much at the moment.
 // this module has a downside, it only allows to control the led,
-// while the module is being loaded. :/ 
+// while the module is being loaded. :/
 
 static struct gpio_desc *led, *button;
 
