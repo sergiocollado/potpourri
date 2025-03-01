@@ -399,9 +399,9 @@ sequenceDiagram
     CLIENT-)SERVER: ACK seq:101 ack:201
 ```
 
-	![SYN](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/SYN.png)
- ![SYN-ACK](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/SYN_ACK.png)
- ![ACK](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/ACK_DATA.png)
+![SYN](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/SYN.png)
+![SYN-ACK](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/SYN_ACK.png)
+![ACK](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/ACK_DATA.png)
    
 ## Machine level configuration
 
