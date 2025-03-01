@@ -359,6 +359,46 @@ The resolution of the name begins with the TLD (Top Level Domain) servers, and p
 
 To check for DNS, use the `dig` command, part of the `bind-utils` package. For example: `dig -4 www.linuxacademy.com  +trace`. 
 
+### TCP handshake
+
+TCP stands for Transmission Control Protocol, it is a layer 4 protocol, it is a highly reliable connection protocol through Positive Acknowledgement and Retransmission (PAR). 
+Data is resend if an Acknowledgment is not received. The layer 4 data is referred as segments, and each segment contains a checksum for verification upon receipt. Segments
+go inside of packages, and packages go inside of frames. If verification succeeds then the acknoledgment is sent. If verification fails, the received discards that segment, 
+and waits for retransmission. 
+
+```mermaid 
+---
+title: "TCP Packet"
+---
+packet-beta
+0-15: "Source Port"
+16-31: "Destination Port"
+32-63: "Sequence Number"
+64-95: "Acknowledgment Number"
+96-99: "Data Offset"
+100-105: "Reserved"
+106: "URG"
+107: "ACK"
+108: "PSH"
+109: "RST"
+110: "SYN"
+111: "FIN"
+112-127: "Window"
+128-143: "Checksum"
+144-159: "Urgent Pointer"
+160-191: "(Options and Padding)"
+192-255: "Data (variable length)"
+
+```
+```mermaid
+sequenceDiagram
+    CLIENT->>SERVER: SYN
+    SERVER-->>CLIENT: SYN-ACK
+    CLIENT-)SERVER: ACK
+
+```
+
+
    
 ## Machine level configuration
 
