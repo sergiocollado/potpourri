@@ -366,6 +366,8 @@ Data is resend if an Acknowledgment is not received. The layer 4 data is referre
 go inside of packages, and packages go inside of frames. If verification succeeds then the acknoledgment is sent. If verification fails, the received discards that segment, 
 and waits for retransmission. 
 
+- reference: https://medium.com/@kusal95/tcp-3-way-handshake-process-1fd9a056a2f4
+
 ```mermaid 
 ---
 title: "TCP Packet"
@@ -392,10 +394,9 @@ packet-beta
 ```
 ```mermaid
 sequenceDiagram
-    CLIENT->>SERVER: SYN
-    SERVER-->>CLIENT: SYN-ACK
-    CLIENT-)SERVER: ACK
-
+    CLIENT->>SERVER: SYN seq:100
+    SERVER-->>CLIENT: SYN-ACK seq:200 ack:101
+    CLIENT-)SERVER: ACK seq:101 ack:201
 ```
 
 
