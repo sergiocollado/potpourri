@@ -302,14 +302,50 @@ To check for the routing table in Linux use:
 
 #### Routing::BGP
 
-- refernece: https://www.cloudflare.com/learning/security/glossary/what-is-bgp/
+- referenece: https://www.cloudflare.com/learning/security/glossary/what-is-bgp/
 
-**BGP** stands for Border Gateway Protocol, is the routing protocol used to route traffic across internet - how the internet works. 
+**BGP** stands for Border Gateway Protocol, is the routing protocol used to route traffic across internet - this protocol is the one thing that allows the internet to work. 
 
-BGP is a layer 4 protocol (transport layer, like TCP). There is no discorvery, peers are configured manually to exchange routing information from a TCP connection. 
+BGP is a layer 4 protocol (transport layer, like TCP). There is no discovery, peers are configured manually to exchange routing information from a TCP connection. 
 
-An **ASN** Autonomous System Number, is required to implement BGP peering. This is a special number assigned by **IANA** ([Internet Assigned Numbers Authority](https://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority)) for use primarily with BGP that identifies each network on the internet. Two routers that have established connection and exchange routing information are BGP peers, exchanging routing information between them via BGP sessions over TCP. 
+An **ASN** Autonomous System Number, is needed to implement BGP peering. This is a special number assigned by **IANA** ([Internet Assigned Numbers Authority](https://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority)) for use primarily with BGP that identifies each network on the internet. Two routers that have established connection and exchange routing information are BGP peers, exchanging routing information between them via BGP sessions over TCP. 
 
+
+### Address Resolution Protocol (ARP)
+
+ARP is a communication protocol used for discovering the MAC address associated with a given network layer address (IP address). So ARP maps an IP address into a MAC address on a network. ARP maps layer 3 addresses to MAC layer 2 addresses. It is used for local are network connections. Connections outside the local area network, go through the gateway (ARP request for gateway IP). 
+
+```
+
+             ----------
+                Data       - the data payload needing to be sent 
+             ----------
+                 |
+                 |
+             ----------
+               LAYER 3    - The layer 3 is created with the source IP and destination IP
+             ----------
+                 |
+                 |
+             ----------
+               LAYER 2    - The layer 2 header is created with the source MAC and destination (gateway) MAC
+             ----------
+                 |
+                 |
+             ----------
+            ARP REQUEST   - If the destination MAC address isn't working a broadcast request is sent to the network
+             ----------     If the destination IP is outside the local network, it will request the MAC of the default gateway.
+                 |
+                 |
+             ----------
+                SEND      - The datagram is send to the network for delivery
+             ---------- 
+
+```
+
+To check for ARP tables use: 
+ - the `arp` command
+ - the `ip neigh` command
    
 ## Machine level configuration
 
