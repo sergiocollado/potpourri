@@ -1,6 +1,18 @@
 # Notes on concurrent/parallel programming
 
-related reference: [Stanford CS149 I Parallel Computing I 2023](https://www.youtube.com/watch?v=V1tINV2-9p4&list=PLoROMvodv4rMp7MTFr4hQsDEcX7Bx6Odp)
+related reference: 
+ - [Stanford CS149 I Parallel Computing I 2023](https://www.youtube.com/watch?v=V1tINV2-9p4&list=PLoROMvodv4rMp7MTFr4hQsDEcX7Bx6Odp)
+ - https://learn.nvidia.com/en-us/training/resources
+ - https://learn.nvidia.com/en-us/training/self-paced-courses#cid=dli01_nv-int-bnr_en-us
+ - https://nvdam.widen.net/s/brxsxxtskb/dli-learning-journey-2009000-r5-web/?nvid=nv-int-bnr-827289#cid=dli01_nv-int-bnr_en-us
+ - https://learn.nvidia.com/en-us/training/self-paced-courses#cid=dli01_nv-int-bnr_en-us
+ - https://developer.nvidia.com/cuda-zone
+ - https://agray3.github.io/files/learnCUDApractical.pdf
+ - https://www.olcf.ornl.gov/cuda-training-series/
+ - https://cuda-tutorial.readthedocs.io/en/latest/
+ - https://leimao.github.io/tags/CUDA/
+
+
 
 ### Paralell programming in C++
 
