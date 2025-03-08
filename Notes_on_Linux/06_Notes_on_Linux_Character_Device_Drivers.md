@@ -4,6 +4,7 @@ References:
     - https://github.com/PacktPublishing/Linux-Kernel-Programming/blob/master/Linux-Kernel-Programming-(Part-2)/Linux%20Kernel%20Programming%20Part%202%20-%20Char%20Device%20Drivers%20and%20Kernel%20Synchronization_eBook.pdf
     - https://github.com/PacktPublishing/Linux-Kernel-Programming-Part-2
  - https://linux-kernel-labs.github.io/refs/heads/master/labs/device_drivers.html
+ - Writing Portable Device Drivers: https://www.linuxjournal.com/article/5783
  - https://tldp.org/LDP/lkmpg/2.6/html/c567.html
  - Drivers implementer's API: https://docs.kernel.org/driver-api/index.html
  - Linux kernel documentation - device drivers: https://docs.kernel.org/driver-api/driver-model/driver.html
@@ -23,6 +24,7 @@ References:
  - linux block drivers: https://olegkutkov.me/2020/02/10/linux-block-device-driver/
  - character device drivers tutorial list: https://www.youtube.com/watch?v=Zn8mEZXr6nE&list=PL2GL6HVUQAuksbptmKC7X4zruZlIl59is
  - Let's code a linux driver:  https://www.youtube.com/playlist?list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
+
 
 
 ## Introduction: what is a device driver?
