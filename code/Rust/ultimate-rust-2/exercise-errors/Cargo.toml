@@ -1,0 +1,10 @@
+[package]
+name = "aquarium"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# I thought you might want this for your library...
+thiserror = "1.0"
+# ...and this for your binary
+anyhow = "1.0"
