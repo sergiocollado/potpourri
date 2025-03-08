@@ -15,6 +15,7 @@
  - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/address-space.html
  - reference: https://linux-kernel-labs.github.io/refs/heads/master/lectures/memory-management.html
  - reference: https://0xax.gitbooks.io/linux-insides/content/MM/
+ - Writing Portable Device Drivers: https://www.linuxjournal.com/article/5783
 
 Videos: 
  - https://youtu.be/tpRlczF0pqw
