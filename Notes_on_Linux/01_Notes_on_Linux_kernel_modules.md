@@ -391,6 +391,33 @@ In some cases the error, for exapmle in the case of system calls, can propaget t
 
 In other cases, an error must undo everythinig upu to the point where the error happened. In this case the usual way is to use the `goto` statement. 
 
+### Kernel types
+
+ - reference:  Writing Portable Device Drivers: https://www.linuxjournal.com/article/5783
+
+Different processors define different variable sizes for int and long data types. They also differ in specifying whether a variable size is signed or unsigned. Because of this, if you know your variable size has to be a specific number of bits, and it has to be signed or unsigned, then you need to use the built-in data types. The following typedefs can be used anywhere in kernel code and are defined in the linux/types.h header file:
+
+```
+u8    unsigned byte (8 bits)
+u16   unsigned word (16 bits)
+u32   unsigned 32-bit value
+u64   unsigned 64-bit value
+s8    signed byte (8 bits)
+s16   signed word (16 bits)
+s32   signed 32-bit value
+s64   signed 64-bit value
+```
+
+One thing that has caused a lot of problems, as 64-bit machines are getting more popular, is the fact that the size of a pointer is not the same as the size of an unsigned integer. The size of a pointer is equal to the size of an unsigned long. This can be seen in the prototype for `get_zeroed_page()`:
+
+```
+extern unsigned long FASTCALL
+    (get_zeroed_page(unsigned int gfp_mask))
+```
+
+There are some native kernel data types that you should use instead of trying to use an unsigned long. Some of these are: `pid_t`, `key_t`, `gid_t`, `size_t`, `ssize_t`, `ptrdiff_t`, `time_t`, `clock_t` and `caddr_t`. If you need to use any of these types in your code, please use the given data types; it will prevent a lot of problems.
+Memory Issues
+
   
 ### Simplified makefile
   
