@@ -30,6 +30,15 @@ References:
  - Kernel challenges: https://github.com/agelastic/eudyptula
  - Linux kernel memory model: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0124r6.html
 
+
+### How to setup an enviroment for kernel development
+
+- https://stackoverflow.com/questions/33676829/vim-configuration-for-linux-kernel-development
+- https://cscope.sourceforge.net/large_projects.html
+- https://marliere.net/posts/6/
+- https://cscope.sourceforge.net/large_projects.html
+- https://hackmd.io/@0xff07/BkYPoUb8Jg
+
 ## What is a device driver.
 
 A device driver is a code, that contrals a given tye of device in the compuer.
