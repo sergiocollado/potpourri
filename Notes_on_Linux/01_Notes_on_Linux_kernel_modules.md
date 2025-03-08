@@ -31,13 +31,19 @@ References:
  - Linux kernel memory model: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0124r6.html
 
 
-### How to setup an enviroment for kernel development
+### How to setup an enviroment for kernel development & tools of the trade
 
 - https://stackoverflow.com/questions/33676829/vim-configuration-for-linux-kernel-development
 - https://cscope.sourceforge.net/large_projects.html
 - https://marliere.net/posts/6/
 - https://cscope.sourceforge.net/large_projects.html
 - https://hackmd.io/@0xff07/BkYPoUb8Jg
+- Mutt: https://dev.to/letsbsocial1/setting-up-and-using-the-mutt-email-client-in-linux-2ngh
+- https://github.com/LukeSmithxyz/mutt-wizard
+- mutt highlingint patches: https://github.com/jessfraz/dockerfiles/blob/master/mutt/.mutt/mutt-patch-highlighting.muttrc
+- https://b4.docs.kernel.org/en/latest/
+- https://wilw.dev/blog/2024/10/22/aerc/
+- https://aerc-mail.org/
 
 ## What is a device driver.
 
