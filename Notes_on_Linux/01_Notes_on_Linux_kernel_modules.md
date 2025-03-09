@@ -68,7 +68,7 @@ It can be refered by other names:
 
 Its extension is .ko (Kernel Object)
 
-A kernel modules are not always device drivers, but device drivers are always kernel modules. 
+Remark: **A kernel modules are not always device drivers, but device drivers are always kernel modules.**
 
 ## Standard location for kernel modules
 
