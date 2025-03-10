@@ -410,6 +410,7 @@ In other cases, an error must undo everythinig upu to the point where the error 
 
 references:
  -   Writing Portable Device Drivers: https://www.linuxjournal.com/article/5783
+ -   https://ufal.mff.cuni.cz/~jernej/2018/docs/predavanja10.pdf
  -   https://static.lwn.net/images/pdf/LDD3/ch11.pdf
  -   https://kernelnewbies.org/InternalKernelDataTypes
 
@@ -426,7 +427,7 @@ s32   signed 32-bit value
 s64   signed 64-bit value
 ```
 
-One thing that has caused a lot of problems, as 64-bit machines are getting more popular, is the fact that the size of a pointer is not the same as the size of an `unsigned integer. The size of a pointer is equal to the size of an `unsigned long`. This can be seen in the prototype for `get_zeroed_page()`:
+One thing that has caused a lot of problems, as 64-bit machines are getting more popular, is the fact that the size of a pointer is not the same as the size of an `unsigned integer`. The size of a pointer is equal to the size of an `unsigned long`. This can be seen in the prototype for `get_zeroed_page()`:
 
 ```
 extern unsigned long FASTCALL
@@ -435,6 +436,8 @@ extern unsigned long FASTCALL
 
 There are some native kernel data types that you should use instead of trying to use an unsigned long. Some of these are: `pid_t`, `key_t`, `gid_t`, `size_t`, `ssize_t`, `ptrdiff_t`, `time_t`, `clock_t` and `caddr_t`. If you need to use any of these types in your code, please use the given data types; it will prevent a lot of problems.
 Memory Issues
+
+Please remember: ** The size of a pointer is equal to the size of an `unsigned long`.**
 
   
 ### Simplified makefile
