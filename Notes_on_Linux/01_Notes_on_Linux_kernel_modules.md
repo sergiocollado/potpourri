@@ -408,7 +408,10 @@ In other cases, an error must undo everythinig upu to the point where the error 
 
 ### Kernel types
 
- - reference:  Writing Portable Device Drivers: https://www.linuxjournal.com/article/5783
+references:
+ -   Writing Portable Device Drivers: https://www.linuxjournal.com/article/5783
+ -   https://static.lwn.net/images/pdf/LDD3/ch11.pdf
+ -   https://kernelnewbies.org/InternalKernelDataTypes
 
 Different processors define different variable sizes for int and long data types. They also differ in specifying whether a variable size is signed or unsigned. Because of this, if you know your variable size has to be a specific number of bits, and it has to be signed or unsigned, then you need to use the built-in data types. The following typedefs can be used anywhere in kernel code and are defined in the linux/types.h header file:
 
@@ -423,7 +426,7 @@ s32   signed 32-bit value
 s64   signed 64-bit value
 ```
 
-One thing that has caused a lot of problems, as 64-bit machines are getting more popular, is the fact that the size of a pointer is not the same as the size of an unsigned integer. The size of a pointer is equal to the size of an unsigned long. This can be seen in the prototype for `get_zeroed_page()`:
+One thing that has caused a lot of problems, as 64-bit machines are getting more popular, is the fact that the size of a pointer is not the same as the size of an `unsigned integer. The size of a pointer is equal to the size of an `unsigned long`. This can be seen in the prototype for `get_zeroed_page()`:
 
 ```
 extern unsigned long FASTCALL
