@@ -24,6 +24,7 @@ References:
  - linux block drivers: https://olegkutkov.me/2020/02/10/linux-block-device-driver/
  - character device drivers tutorial list: https://www.youtube.com/watch?v=Zn8mEZXr6nE&list=PL2GL6HVUQAuksbptmKC7X4zruZlIl59is
  - Let's code a linux driver:  https://www.youtube.com/playlist?list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
+ - https://www.apriorit.com/dev-blog/195-simple-driver-for-linux-os
 
 
 
