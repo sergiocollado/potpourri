@@ -224,6 +224,10 @@ Nice intro:
 - longest symbol: https://lore.kernel.org/rust-for-linux/20231105184010.49194-1-sergio.collado@gmail.com/
 - longest symbol 2: https://lore.kernel.org/rust-for-linux/20231119180145.157455-1-sergio.collado@gmail.com/
 
+## Patches examples:
+
+ - [PATCH V3 0/2] rust: Add basic clock abstractions : https://lore.kernel.org/rust-for-linux/Z88rhn5nVbd4-JSE@thinkpad/T/#t
+
 
 ### Others 2
 
