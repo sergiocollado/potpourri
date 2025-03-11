@@ -3095,6 +3095,7 @@ Control-flow integrity (CFI) is a technique used to reduce the ability to redire
  - https://ubuntu.com/server/docs/kernel-crash-dump
  - Debugging Analysis of Kernel panics and Kernel oopses using System Map:: https://sanjeev1sharma.wordpress.com/tag/debug-kernel-panics/
  - Understanding a Kernel Oops!: https://www.opensourceforu.com/2011/01/understanding-a-kernel-oops/
+ - Linux kernel gets "blue screens" with QR code: https://www.heise.de/en/news/Linux-kernel-gets-blue-screens-with-QR-code-9851774.html
 
 
 ### Schedstat
