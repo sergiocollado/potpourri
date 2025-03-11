@@ -228,6 +228,7 @@ Nice intro:
 
  - [PATCH V3 0/2] rust: Add basic clock abstractions : https://lore.kernel.org/rust-for-linux/Z88rhn5nVbd4-JSE@thinkpad/T/#t
  - [PATCH v3] rust: add bindings and API for bitmap.h and bitops.h. : https://lore.kernel.org/rust-for-linux/Z88rhn5nVbd4-JSE@thinkpad/T/#t
+ - [PATCH v11 00/13] hrtimer Rust API : https://lore.kernel.org/rust-for-linux/20250307-hrtimer-v3-v6-12-rc2-v11-0-7934aefd6993@kernel.org/T/#t
 
 
 ### Others 2
