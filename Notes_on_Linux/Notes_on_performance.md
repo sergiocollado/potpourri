@@ -14,6 +14,11 @@ References:
  - https://github.com/iovisor/bcc
  - 20 Terminal Tools To Monitor Linux Resource Usage : https://youtu.be/UvADr3FVhZg
 
+## High performance coding
+
+References:
+ - https://www.youtube.com/watch?v=sX2nF1fW7kI
+ - https://www.youtube.com/watch?v=rX0ItVEVjHc
 
 ## USE: Utilization, Saturation and Errors
 
