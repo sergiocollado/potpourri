@@ -3196,6 +3196,7 @@ References:
 
 References:
  - https://wiki.tnonline.net/w/Category:Btrfs
+ - https://btrfs.readthedocs.io/en/latest/Introduction.html
  - https://surajsinghbisht054.medium.com/understand-btrfs-file-system-copy-on-write-sub-volumes-snapshots-quota-group-part-1-c6305f87df9b
  - https://surajsinghbisht054.medium.com/understand-btrfs-file-system-copy-on-write-sub-volumes-snapshots-quota-group-part-2-2b60209c5296
  - https://unix.stackexchange.com/questions/209165/conceptualizing-btrfs-understanding-snapshots-and-space-used
