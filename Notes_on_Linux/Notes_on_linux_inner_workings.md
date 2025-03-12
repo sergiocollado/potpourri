@@ -3180,6 +3180,7 @@ The release of the Linux 5.10 kernel brings a new feature to protect against spe
 
 ### Linux kernel debugging
  - https://www.youtube.com/watch?v=FdNIiQxwJuk
+ - https://marliere.net/posts/2/
 
 ### Linux kernel backporting
 
