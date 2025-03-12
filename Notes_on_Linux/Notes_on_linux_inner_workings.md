@@ -176,7 +176,7 @@ References:
 
 ### To send a patch with gmail
 
-references: 
+References: 
 - https://flusp.ime.usp.br/git/sending-patches-by-email-with-git/
 - https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-send-email.html
 - https://stackoverflow.com/questions/68238912/how-to-configure-and-use-git-send-email-to-work-with-gmail-to-email-patches-to
@@ -193,8 +193,12 @@ references:
 - https://medium.com/@akram009.ma/using-git-send-email-with-gmail-7a2c036ee3cb
 - https://blog.bisect.de/2012/01/how-to-send-patches-via-git-send-email.html
 
+### Other resources for email workflow and patches
+
+References:
 - Kernel mailing list replies for Linux with lore, git and gmail: https://paldan.altervista.org/kernel-mailing-list-replies-for-linux-with-lore-git-and-gmail/?doing_wp_cron=1741727391.2954950332641601562500
 - Setting Up Neomutt with Gmail : https://medium.com/@anupnewsmail/setting-up-neomutt-with-gmail-76f24da3601a
+- Using lei, b4, and mutt to do kernel development: https://josefbacik.github.io/kernel/2021/10/18/lei-and-b4.html
 
 ```
 # first configure git:
