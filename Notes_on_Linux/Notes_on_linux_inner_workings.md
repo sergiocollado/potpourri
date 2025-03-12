@@ -3077,9 +3077,17 @@ Control-flow integrity (CFI) is a technique used to reduce the ability to redire
  - https://lwn.net/Articles/810077/
  - https://source.android.com/docs/security/test/kcfi
 
+### Debugging the linux kernel
+
+ - Setup Linux Kernel Debugging with QEMU and GDB: https://medium.com/@alessandrozanni.dev/setup-linux-kernel-debugging-with-qemu-and-gdb-e5446c16cd85
+
 
 ### LTO Link-time optimization for the kernel:
  - https://lwn.net/Articles/512548/
+
+### Rust for linux
+
+ - https://medium.com/@alessandrozanni.dev/rust-in-kernel-development-1aea34e5c4b0
 
 ### Linux kernel tinification: 
  - https://tiny.wiki.kernel.org/
