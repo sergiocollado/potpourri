@@ -4,6 +4,7 @@
 
 references:
  - https://docs.kernel.org/devicetree/usage-model.html
+ - https://elinux.org/Device_Tree_Usage
  - https://elinux.org/Device_Tree_Reference
  - https://www.devicetree.org/
  - https://octavosystems.com/linux-device-trees-embedded-systems/
