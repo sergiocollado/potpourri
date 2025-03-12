@@ -194,7 +194,7 @@ references:
 - https://blog.bisect.de/2012/01/how-to-send-patches-via-git-send-email.html
 
 - Kernel mailing list replies for Linux with lore, git and gmail: https://paldan.altervista.org/kernel-mailing-list-replies-for-linux-with-lore-git-and-gmail/?doing_wp_cron=1741727391.2954950332641601562500
-
+- Setting Up Neomutt with Gmail : https://medium.com/@anupnewsmail/setting-up-neomutt-with-gmail-76f24da3601a
 
 ```
 # first configure git:
