@@ -4,6 +4,7 @@
 
 references:
  - https://docs.kernel.org/devicetree/usage-model.html
+ - https://elinux.org/Device_Tree_Reference
  - https://www.devicetree.org/
  - https://octavosystems.com/linux-device-trees-embedded-systems/
  - https://octavosystems.com/app_notes/osd335x-design-tutorial/osd335x-lesson-2-minimal-linux-boot/linux-device-tree/
