@@ -201,14 +201,15 @@ you can build the kernel wit all those options enabled.
 
 ## KUnit
 
-reference: https://docs.kernel.org/dev-tools/kunit/ <br>
-reference: https://kunit.dev/ <br>
-reference: https://kunit.dev/third_party/kernel/docs/start.html#writing-your-first-test <br>
-reference: https://www.youtube.com/watch?v=507n-t0sfcU LPC2019 - KUnit - Unit Testing for the Linux Kernel <br>
-reference: For general information about KUnit and `kunit.py`, please refer to `Documentation/dev-tools/kunit/start.rst`. <br>
-reference: https://mairacanal.github.io/kernel-symbol-table-compilation-more/ <br>
-reference: https://mairacanal.github.io/from-selftests-to-KUnit/
-reference: https://docs.kernel.org/dev-tools/kunit/start.html#writing-your-first-test
+- https://docs.kernel.org/dev-tools/kunit/ <br>
+- https://kunit.dev/ <br>
+- https://kunit.dev/third_party/kernel/docs/start.html#writing-your-first-test <br>
+- https://www.youtube.com/watch?v=507n-t0sfcU LPC2019 - KUnit - Unit Testing for the Linux Kernel <br>
+- For general information about KUnit and `kunit.py`, please refer to `Documentation/dev-tools/kunit/start.rst`. <br>
+- https://mairacanal.github.io/kernel-symbol-table-compilation-more/ <br>
+- https://mairacanal.github.io/from-selftests-to-KUnit/
+- https://docs.kernel.org/dev-tools/kunit/start.html#writing-your-first-test
+- https://medium.com/@raymond860909/testing-kernel-modules-with-kunit-framework-5e7119c00184
 
 KUnit is a lightweight unit testing framework for the Linux kernel. These tests are able to be run locally on a developer’s workstation without a VM or special hardware.
 
