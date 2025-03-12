@@ -193,6 +193,8 @@ references:
 - https://medium.com/@akram009.ma/using-git-send-email-with-gmail-7a2c036ee3cb
 - https://blog.bisect.de/2012/01/how-to-send-patches-via-git-send-email.html
 
+- Kernel mailing list replies for Linux with lore, git and gmail: https://paldan.altervista.org/kernel-mailing-list-replies-for-linux-with-lore-git-and-gmail/?doing_wp_cron=1741727391.2954950332641601562500
+
 
 ```
 # first configure git:
