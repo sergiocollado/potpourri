@@ -236,6 +236,10 @@ Nice intro:
  Generic Allocator support:
  - https://lore.kernel.org/rust-for-linux/20240805152004.5039-1-dakr@kernel.org/T/#t
 
+
+ Device implementation
+ - https://github.com/torvalds/linux/commit/a674fefd17324fc467f043568e738b80ca22f2b4
+
   hrtimer:
  - [PATCH v12 00/13] hrtimer Rust API: https://lore.kernel.org/rust-for-linux/87v7sfjp5y.fsf@kernel.org/T/#t
  - [PATCH v11 00/13] hrtimer Rust API: https://lore.kernel.org/rust-for-linux/20250307-hrtimer-v3-v6-12-rc2-v11-0-7934aefd6993@kernel.org/T/#t
