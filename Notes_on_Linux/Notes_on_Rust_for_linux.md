@@ -230,6 +230,13 @@ Nice intro:
  - [PATCH v3] rust: add bindings and API for bitmap.h and bitops.h. : https://lore.kernel.org/rust-for-linux/Z88rhn5nVbd4-JSE@thinkpad/T/#t
  - [PATCH 0/4] Auxiliary bus Rust abstractions : https://lore.kernel.org/rust-for-linux/Z9HqC_EeiyScCaEL@cassiopeiae/T/#t
  - [GIT PULL] Rust `hrtimer` support for v6.15: https://lore.kernel.org/rust-for-linux/87pliljcvy.fsf@kernel.org/T/#u
+
+ - RFC Rust safety standard: https://lore.kernel.org/rust-for-linux/20240717221133.459589-1-benno.lossin@proton.me/T/#t
+
+ Generic Allocator support:
+ - https://lore.kernel.org/rust-for-linux/20240805152004.5039-1-dakr@kernel.org/T/#t
+
+  hrtimer:
  - [PATCH v12 00/13] hrtimer Rust API: https://lore.kernel.org/rust-for-linux/87v7sfjp5y.fsf@kernel.org/T/#t
  - [PATCH v11 00/13] hrtimer Rust API: https://lore.kernel.org/rust-for-linux/20250307-hrtimer-v3-v6-12-rc2-v11-0-7934aefd6993@kernel.org/T/#t
  - [PATCH v10 00/13] hrtimer Rust API: https://lore.kernel.org/rust-for-linux/20250307-hrtimer-v3-v6-12-rc2-v10-0-0cf7e9491da4@kernel.org/T/#t
@@ -242,9 +249,26 @@ Nice intro:
  - v3: https://lore.kernel.org/all/20241017-hrtimer-v3-v6-12-rc2-v3-0-59a75cbb44da@kernel.org/
  - v2: https://lore.kernel.org/all/20240917222739.1298275-1-a.hindborg@kernel.org/
  - v1: https://lore.kernel.org/all/20240425094634.262674-1-nmi@metaspace.dk/
+   
  - [PATCH 00/22] make pin-init into a standalone crate: https://lore.kernel.org/rust-for-linux/D88EY34HLQP7.Y6Q7DWM1I40Q@proton.me/T/#t
 
 
+ - [PATCH v7 00/16] Device / Driver PCI / Platform Rust abstractions: https://lore.kernel.org/rust-for-linux/20241219170425.12036-1-dakr@kernel.org/T/#t
+ - [PATCH v6 00/16] Device / Driver PCI / Platform Rust abstractions: https://lore.kernel.org/rust-for-linux/Z2BSdhdmBlrJvxb8@pollux.localdomain/T/#t
+ - v5: https://lore.kernel.org/rust-for-linux/20241210224947.23804-1-dakr@kernel.org/T/#t
+ - v4: https://lore.kernel.org/rust-for-linux/20241205141533.111830-1-dakr@kernel.org/T/#t
+ - v3: https://lore.kernel.org/rust-for-linux/20241022213221.2383-1-dakr@kernel.org/T/#t
+ - v3_2: https://lore.kernel.org/rust-for-linux/7ce81fa7-c316-48fc-8013-e1aad9e24fd8@de.bosch.com/T/#t
+ - v2: https://lore.kernel.org/rust-for-linux/20240618234025.15036-1-dakr@redhat.com/T/#t
+
+ Rust abastractions for device: 
+  - [PATCH v4 0/2] Rust abstractions for Device & Firmware: [PATCH v4 0/2] Rust abstractions for Device & Firmware
+  - v3: https://lore.kernel.org/rust-for-linux/20240617203010.101452-1-dakr@redhat.com/T/#t
+  - v2: https://lore.kernel.org/rust-for-linux/20240610180318.72152-1-dakr@redhat.com/T/#t
+  - [RFC PATCH 00/11] [RFC] Device / Driver and PCI Rust abstractions: https://lore.kernel.org/rust-for-linux/20240520172554.182094-1-dakr@redhat.com/T/#t
+
+Rust block device driver API and null block driver: 
+ - v6 Rust block device driver API and null block driver: https://lore.kernel.org/rust-for-linux/171837272952.233538.14745417711842930177.b4-ty@kernel.dk/T/#t
 
 ### Others 2
 
