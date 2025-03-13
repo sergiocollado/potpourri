@@ -228,8 +228,22 @@ Nice intro:
 
  - [PATCH V3 0/2] rust: Add basic clock abstractions : https://lore.kernel.org/rust-for-linux/Z88rhn5nVbd4-JSE@thinkpad/T/#t
  - [PATCH v3] rust: add bindings and API for bitmap.h and bitops.h. : https://lore.kernel.org/rust-for-linux/Z88rhn5nVbd4-JSE@thinkpad/T/#t
- - [PATCH v11 00/13] hrtimer Rust API : https://lore.kernel.org/rust-for-linux/20250307-hrtimer-v3-v6-12-rc2-v11-0-7934aefd6993@kernel.org/T/#t
  - [PATCH 0/4] Auxiliary bus Rust abstractions : https://lore.kernel.org/rust-for-linux/Z9HqC_EeiyScCaEL@cassiopeiae/T/#t
+ - [GIT PULL] Rust `hrtimer` support for v6.15: https://lore.kernel.org/rust-for-linux/87pliljcvy.fsf@kernel.org/T/#u
+ - [PATCH v12 00/13] hrtimer Rust API: https://lore.kernel.org/rust-for-linux/87v7sfjp5y.fsf@kernel.org/T/#t
+ - [PATCH v11 00/13] hrtimer Rust API: https://lore.kernel.org/rust-for-linux/20250307-hrtimer-v3-v6-12-rc2-v11-0-7934aefd6993@kernel.org/T/#t
+ - [PATCH v10 00/13] hrtimer Rust API: https://lore.kernel.org/rust-for-linux/20250307-hrtimer-v3-v6-12-rc2-v10-0-0cf7e9491da4@kernel.org/T/#t
+ - [PATCH v9 00/13] hrtimer Rust API: https://lore.kernel.org/rust-for-linux/20250224-hrtimer-v3-v6-12-rc2-v9-0-5bd3bf0ce6cc@kernel.org/T/#t
+ - [PATCH v8 00/14] hrtimer Rust API: https://lore.kernel.org/rust-for-linux/Z8iLIyofy6KGOsq5@localhost.localdomain/T/#t
+ - v7: https://lore.kernel.org/all/20250203-hrtimer-v3-v6-12-rc2-v7-0-189144725399@kernel.org/
+ - v6: https://lore.kernel.org/all/20250110-hrtimer-v3-v6-12-rc2-v6-0-f71d50f16482@kernel.org/
+ - v5: https://lore.kernel.org/all/20241217-hrtimer-v3-v6-12-rc2-v5-0-b34c20ac2cb7@kernel.org/
+ - v4: https://lore.kernel.org/all/20241206-hrtimer-v3-v6-12-rc2-v4-0-6cb8c3673682@kernel.org/
+ - v3: https://lore.kernel.org/all/20241017-hrtimer-v3-v6-12-rc2-v3-0-59a75cbb44da@kernel.org/
+ - v2: https://lore.kernel.org/all/20240917222739.1298275-1-a.hindborg@kernel.org/
+ - v1: https://lore.kernel.org/all/20240425094634.262674-1-nmi@metaspace.dk/
+ - [PATCH 00/22] make pin-init into a standalone crate: https://lore.kernel.org/rust-for-linux/D88EY34HLQP7.Y6Q7DWM1I40Q@proton.me/T/#t
+
 
 
 ### Others 2
