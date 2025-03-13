@@ -1,6 +1,7 @@
 #include<linux/module.h>
 #include<linux/init.h>
 // reference: https://docs.kernel.org/core-api/printk-basics.html
+// reference: https://www.kernel.org/doc/Documentation/printk-formats.txt
 //
 // to check the log levels:
 //
