@@ -78,9 +78,11 @@ $ls -l /dev/ | grep "^b"
 
 #### Steps in creating a character driver
 
-1. Allocate a device number dynamically or statically (dev_t)
-2. Initializing the character device with its file operations (struct cdev, struct file_operations)
-3. Registering the character device with Linux Kernel (cdev_add)
+1. Allocate a device number dynamically or statically (dev_t) This can be done with `register_chrdev_region` or `alloc_chrdev_region`.
+2. Implement (struct cdev, struct file_operations) file operations (open, read, write, ioctl ...)
+3. Registering the character device with the kernel, with `cdev_init` and `cdev_add`
+
+Reference: https://youtu.be/pIUTaMKq0Xc?t=624
 
 ### Major and Minor Number
 
