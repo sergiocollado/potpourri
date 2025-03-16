@@ -29,6 +29,7 @@ References:
  - Operating Systems: Three Easy Pieces - https://pages.cs.wisc.edu/~remzi/OSTEP/
  - Kernel challenges: https://github.com/agelastic/eudyptula
  - Linux kernel memory model: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0124r6.html
+ - https://sergioprado.blog/talks/
 
 
 ### How to setup an enviroment for kernel development & tools of the trade
