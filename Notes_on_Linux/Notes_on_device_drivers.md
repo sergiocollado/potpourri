@@ -15,3 +15,4 @@ There are 3 main components buses (`bus_type`), device_drives (`device_drive`), 
 
 Those components can be reached in `/sys`:
 
+![sys_bus_device_and_drivers](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/sys_bus_device_drivers.png)
