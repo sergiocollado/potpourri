@@ -1205,14 +1205,27 @@ Gestor de tareas Deadline
  tener rt_runtime igual a 950000. Con rt_period igual a 1000000, por defecto,
  esto significa que las tareas con tiempo de finalización pueden usar casi 
  el 95%, multiplicado por el número de CPUs que compongan el dominio raiz,
- para cada dominio raiz. TODO: COMPLETE...!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+ para cada dominio raiz. 
+ Esto signifca que las tareas que no sean -dealine reciviran al menos un 5%
+ de tiempo de la CU, y que las tareas -deadline recibiran su tiempo de 
+ ejecución con un retraso del peor-caso-posible garantizado con respeco al 
+ parametro de "deadline". Si "deadline" = "period" y el mecanismo cpuset se 
+ usa para implementar una gestion de tarias particionado (ver seccion 5), entonces
+ este simple ajuste del ancho de banda es capaz de garantizar deterministicamente
+ que  las tareas -dealine recibiran su tiempo de ejecución en un periodo.
 
  Finally, notice that in order not to jeopardize the admission control a
  -deadline task cannot fork.
 
+ Por último, notar para no amenazar el control de admisión una tarea 
+ -deadline no puede hacer `fork`.
+
 
 4.4 Behavior of sched_yield()
 -----------------------------
+
+4.4 comportamiento de sched_yield()
+-----------------------------------
 
  When a SCHED_DEADLINE task calls sched_yield(), it gives up its
  remaining runtime and is immediately throttled, until the next
@@ -1220,12 +1233,27 @@ Gestor de tareas Deadline
  dl_yielded is set and used to handle correctly throttling and runtime
  replenishment after a call to sched_yield()).
 
+ Cuando una tarea SCHED_DEADLINE llama sched_yield(), abandona su 
+ tiempo de ejecución restante y es frenada inmediatamente, hasta el 
+ próximo periodo, cuando su tiempo de ejecución será renovado (una  
+ marca especial dl_yielding se activa y se usa para gestionar 
+ correctamente el frenado y la renovación del tiempo de ejecución 
+ despúes de la llamada a sched_yield()).
+
  This behavior of sched_yield() allows the task to wake-up exactly at
  the beginning of the next period. Also, this may be useful in the
  future with bandwidth reclaiming mechanisms, where sched_yield() will
  make the leftoever runtime available for reclamation by other
  SCHED_DEADLINE tasks.
 
+ Este comportamiento de sched_yield permite a la tare despertase 
+ exácttamente al comiendo del siguiente periodo. También, esto puede ser
+ útil en el futuro con mecanísmos para reclamar ancho de banda, donde
+ sched_yeld() permita disponer del tiempo de ejecución disponible para
+ ser reclamado por otras tareas SCHED_DEADLINE. 
+
+
+TODO: COMPLETE...!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 
 5. Tasks CPU affinity
 =====================
