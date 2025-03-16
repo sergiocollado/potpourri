@@ -9,4 +9,9 @@ References:
 
 
 There are 3 main components buses (`bus_type`), device_drives (`device_drive`), and devices (`device`). 
- - 
+ - `bus_type`: https://elixir.bootlin.com/linux/v6.0/source/include/linux/device/bus.h#L84
+ - `device_driver`: https://elixir.bootlin.com/linux/v6.0/source/include/linux/device/driver.h#L51
+ - `device`: https://elixir.bootlin.com/linux/v6.0/source/include/linux/device.h#L458
+
+Those components can be reached in `/sys`:
+
