@@ -16,3 +16,8 @@ There are 3 main components buses (`bus_type`), device_drives (`device_drive`), 
 Those components can be reached in `/sys`:
 
 ![sys_bus_device_and_drivers](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/sys_bus_device_drivers.png)
+
+In /sys, we can find: 
+ - bus: ypes of bus to which physical devices are connected (pci, ide, usb ...)
+ - class: drivers classes that are available in the system (net, sound, usb ...)
+ - devices: the hierarchical structure of devices connected to the system
