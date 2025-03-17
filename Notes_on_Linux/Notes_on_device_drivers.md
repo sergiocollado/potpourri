@@ -7,6 +7,7 @@ References:
  - Understanding the Structure of a Linux Kernel Device Driver - Sergio Prado, Toradex : https://www.youtube.com/watch?v=pIUTaMKq0Xc
  - Kernel Recipes 2016 - The Linux Driver Model - Greg KH : https://youtu.be/AdPxeGHIZ74
  - https://linux-kernel-labs.github.io/refs/heads/master/labs/device_model.html
+ - examples of linux device drivers: https://github.com/rrmhearts/linux-driver-examples
 
 
 There are 3 main components buses (`bus_type`), device_drives (`device_drive`), and devices (`device`). 
