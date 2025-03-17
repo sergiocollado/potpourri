@@ -9,7 +9,7 @@ References:
 
 
 There are 3 main components buses (`bus_type`), device_drives (`device_drive`), and devices (`device`). 
- - `bus_type`: https://elixir.bootlin.com/linux/v6.0/source/include/linux/device/bus.h#L84
+ - `bus_type`: https://elixir.bootlin.com/linux/v6.0/source/include/linux/device/bus.h#L84 - The bus type structure contains a list of all devices that are on that bus type in the system. When device_register is called for a device, it is inserted into the end of this list. The bus object also contains a list of all drivers of that bus type. When driver_register is called for a driver, it is inserted at the end of this list. These are the two events which trigger driver binding.
  - `device_driver`: https://elixir.bootlin.com/linux/v6.0/source/include/linux/device/driver.h#L51
  - `device`: https://elixir.bootlin.com/linux/v6.0/source/include/linux/device.h#L458
 
