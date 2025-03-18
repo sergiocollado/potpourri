@@ -46,6 +46,7 @@ references:
  - Write and Submit your first Linux kernel Patch: https://youtu.be/LLBrBBImJt4
  - https://www.slideshare.net/SamsungOSG/a-survivors-guide-to-contributing-to-the-linux-kernel
  - Linux kernel development process: https://docs.kernel.org/process/development-process.html
+ - The story of my first Linux Kernel Contribution: https://youtu.be/uLiAc_CnqZE
 
 How to contribute:
  - Become a Linux kernel contributor - Part 1: https://javiercarrascocruz.github.io/kernel-contributor-1
