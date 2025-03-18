@@ -718,6 +718,7 @@ References:
  - https://nickdesaulniers.github.io/blog/2018/10/24/booting-a-custom-linux-kernel-in-qemu-and-debugging-it-with-gdb/
  - Mentorship Session: Linux Kernel Debugging Tricks of the Trade: https://youtu.be/FdNIiQxwJuk
  - https://github.com/google/syzkaller/blob/master/docs/linux/kernel_configs.md
+ - https://medium.com/@daeseok.youn/prepare-the-environment-for-developing-linux-kernel-with-qemu-c55e37ba8ade
 
 It is recommended set some configuration options so it is easier to debug with gdb, as
 stated here: https://github.com/google/syzkaller/blob/master/docs/linux/kernel_configs.md 
