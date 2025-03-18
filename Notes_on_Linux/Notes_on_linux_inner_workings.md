@@ -439,6 +439,28 @@ Content-Transfer-Encoding: 8bit
 Result: 250 
 ```
 
+### Backporting
+
+ References:
+  - questions about backporting: https://groups.google.com/g/syzkaller/c/aSvzuUHiDIQ
+  - https://www.kernel.org/doc/html/next/process/backporting.html#submitting-backports-to-stable
+  - https://www.kernel.org/doc/html/next/process/backporting.html
+  - https://www.kernel.org/doc/html/latest/process/stable-kernel-rules.html
+  - backporting linux kernel patches: https://www.youtube.com/watch?v=sBR7R1V2FeA
+
+ cherry-pick with -x option - this will inform of the original commit.
+ 
+ After the first line add the message: `[ Upstream commit <xxxx_your_commit_patch> ]
+ 
+ using e.g. `git format-patch --subject-prefix='PATCH 6.1.y' `, 
+ 
+ ```
+ >> git commit --amend -s  // to sign the patchf
+ >> git format-patch -1 --subject-prefix='PATCH 6.1.y'
+ >> ./script/checkpatch.p <patch-name>
+ >> # send to: stable@vger.kernel.org 
+ ```
+ 
 
 ### Codes of conduct
 
