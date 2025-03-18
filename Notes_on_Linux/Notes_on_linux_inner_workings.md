@@ -175,6 +175,7 @@ References:
  - https://kernelnewbies.org/PatchPhilosophy
  - https://docs.kernel.org/process/submitting-patches.html
 
+
 ### To send a patch with gmail
 
 References: 
@@ -269,6 +270,26 @@ Brendan Higgins <brendan.higgins@linux.dev> (maintainer:KERNEL UNIT TESTING FRAM
 David Gow <davidgow@google.com> (maintainer:KERNEL UNIT TESTING FRAMEWORK (KUnit))
 linux-kselftest@vger.kernel.org (open list:KERNEL UNIT TESTING FRAMEWORK (KUnit))
 kunit-dev@googlegroups.com (open list:KERNEL 
+```
+
+```bash
+git send-email \
+--dry-run \
+--to 'David Gow <davidgow@google.com>' \
+--to 'Rae Moar <rmoar@google.com>' \
+--to 'linux-kselftest@vger.kernel.org' \
+--to 'kunit-dev@googlegroups.com' \
+--to 'Miguel Ojeda <ojeda@kernel.org>' \
+--to 'Alex Gaynor <alex.gaynor@gmail.com>' \
+--cc 'Boqun Feng <boqun.feng@gmail.com>' \
+--cc 'Gary Guo <gary@garyguo.net>' \
+--cc 'Björn Roy Baron <bjorn3_gh@protonmail.com>' \
+--cc 'Benno Lossin <benno.lossin@proton.me>' \
+--cc 'Andreas Hindborg <a.hindborg@samsung.com>' \
+--cc 'Alice Ryhl <aliceryhl@google.com>' \
+--cc 'David Rheinsberg <david@readahead.eu>' \
+--cc 'rust-for-linux@vger.kernel.org' \
+--cc 'x86@kernel.org' v8-0001-Kunit-to-check-the-longest-symbol-length.patch
 ```
 
 #### example sending a patch
