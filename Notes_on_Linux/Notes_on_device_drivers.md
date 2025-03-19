@@ -8,6 +8,8 @@ References:
  - Kernel Recipes 2016 - The Linux Driver Model - Greg KH : https://youtu.be/AdPxeGHIZ74
  - https://linux-kernel-labs.github.io/refs/heads/master/labs/device_model.html
  - examples of linux device drivers: https://github.com/rrmhearts/linux-driver-examples
+ - Overview of PCI(e) Subsystem: https://www.youtube.com/watch?v=3ic61kJNEQ0
+ - PCI Endpoint Drivers in Linux Kernel and How to Write One: https://www.youtube.com/watch?v=L0HktbuTX5o
 
 
 There are 3 main components buses (`bus_type`), device_drives (`device_drive`), and devices (`device`). 
