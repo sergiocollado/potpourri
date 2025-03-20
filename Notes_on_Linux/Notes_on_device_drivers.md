@@ -75,7 +75,7 @@ The `struct device_driver`: https://elixir.bootlin.com/linux/v6.12.6/source/incl
 - `struct plataform_driver`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/platform_device.h#L236 @ include/linux/platform_device.h
 - `struct pci_driver`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/pci.h#L947 @ include/linux/pci.h
 
-### The device driver id_table field (what devices are supported?)
+### Driver device table: the device driver id_table field (what devices are supported?)
 
 
 
