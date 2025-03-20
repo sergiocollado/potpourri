@@ -63,7 +63,7 @@ The structure is usualy embeeded in a higher lever representation of the device:
  - `struct usb_device`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/usb.h#L653 @ include/linux/usb.h
  - `struct platform_device`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/platform_device.h#L23 @ include/linux/platform_device.h
 
-A device is registered with the fucntion `device_register`: https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/core.c#L3726 @ drivers/base/core.c
+A device is registered with the function `device_register`: https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/core.c#L3726 @ drivers/base/core.c
 
 #### Device driver
 
@@ -75,8 +75,8 @@ The `struct device_driver`: https://elixir.bootlin.com/linux/v6.12.6/source/incl
 - `struct plataform_driver`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/platform_device.h#L236 @ include/linux/platform_device.h
 - `struct pci_driver`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/pci.h#L947 @ include/linux/pci.h
 
-### Driver device table: the device driver id_table field (what devices are supported?)
+#### Driver device table: the device driver id_table field (what devices are supported?)
 
-
+... 
 
 
