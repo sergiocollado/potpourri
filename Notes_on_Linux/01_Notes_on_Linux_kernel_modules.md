@@ -154,6 +154,8 @@ All modules start out as "out-of-tree" developments, that can be compiled using 
 
 Once a module gets accepted to be included (in the linux workflow mailing list), it becomes an in-tree module.
 
+A kernel in which is running and out-of-tree module, it is said to be a __tainted kernel__. 
+
 ## User space vs Kernel space
 
 When a OS like Linux is used, the code that runs in the CPU can be segregated as user space code and kernel space code. The kernel 
