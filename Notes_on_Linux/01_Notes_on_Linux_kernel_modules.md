@@ -7,6 +7,7 @@ References:
  - The Linux Kernel Module Programming Guide: https://sysprog21.github.io/lkmpg/
  - https://github.com/Johannes4Linux/Linux_Driver_Tutorial
  - Linux kernel in a nutshell: http://www.kroah.com/lkn/
+ - How Linux is built with Greg Kroah-Hartman : https://www.youtube.com/watch?v=7WbREHtc5sU
  - The Linux Kernel Module Programming Guide 2001: https://tldp.org/LDP/lkmpg/2.6/html/index.html
  - Writing Portable Device Drivers: https://www.linuxjournal.com/article/5783
  - Eudyptula challenge: https://github.com/agelastic/eudyptula
