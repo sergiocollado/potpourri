@@ -50,9 +50,9 @@ To register a driver:
       - register bus
 
 
-### APIs
+## APIs
 
-#### Device
+### Device
 
 Reference: https://docs.kernel.org/next/driver-api/driver-model/device.html
 
@@ -68,7 +68,7 @@ A device is registered with the function `device_register`: https://elixir.bootl
 
 Registering a device implies to add the device to the device's list of the corresponding bus driver.
 
-#### Device driver
+### Device driver
 
 References:
  - https://docs.kernel.org/next/driver-api/driver-model/driver.html
@@ -102,7 +102,7 @@ and unregistering in the exit function.
  - `module_usb_driver(__usb_driver)`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/usb.h#L1332 @ include/linux/usb.h
  - `module_pci_driver(__pci_driver)`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/pci.h#L1591 @ include/linux/pci.h
 
-#### Driver device table: the device driver id_table field (what devices are supported?)
+### Driver device table: the device driver id_table field (what devices are supported?)
 
 Reference: https://docs.kernel.org/next/driver-api/basics.html#driver-device-table
 
@@ -121,6 +121,6 @@ in case of the ACPI  with `driver.acpi_mat_table` fields. The `id_table`, in the
  - `struct of_device_id`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/mod_devicetable.h#L282
  - `struct acpi_device_id`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/mod_devicetable.h#L217
 
-
+### Device-driver binding/matching 
 
 
