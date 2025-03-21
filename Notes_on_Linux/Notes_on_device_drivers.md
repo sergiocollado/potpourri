@@ -11,7 +11,6 @@ References:
  - Overview of PCI(e) Subsystem: https://www.youtube.com/watch?v=3ic61kJNEQ0
  - PCI Endpoint Drivers in Linux Kernel and How to Write One: https://www.youtube.com/watch?v=L0HktbuTX5o
 
-
 There are 3 main components buses (`bus_type`), device_drives (`device_drive`), and devices (`device`). 
  - `bus_type`: https://elixir.bootlin.com/linux/v6.0/source/include/linux/device/bus.h#L84 - The bus type structure contains a list of all devices that are on that bus type in the system. When device_register is called for a device, it is inserted into the end of this list. The bus object also contains a list of all drivers of that bus type. When driver_register is called for a driver, it is inserted at the end of this list. These are the two events which trigger driver binding.
  - `device_driver`: https://elixir.bootlin.com/linux/v6.0/source/include/linux/device/driver.h#L51 -  the software that can be associated with a device and performs operations with it
@@ -55,6 +54,8 @@ To register a driver:
 
 #### Device
 
+Reference: https://docs.kernel.org/next/driver-api/driver-model/device.html
+
 The `struct device`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/device.h#L619 
 
 The structure is usualy embeeded in a higher lever representation of the device: 
@@ -65,7 +66,13 @@ The structure is usualy embeeded in a higher lever representation of the device:
 
 A device is registered with the function `device_register`: https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/core.c#L3726 @ drivers/base/core.c
 
+Registering a device implies to add the device to the device's list of the corresponding bus driver.
+
 #### Device driver
+
+References:
+ - https://docs.kernel.org/next/driver-api/driver-model/driver.html
+ - https://docs.kernel.org/next/driver-api/driver-model/binding.html
 
 The `struct device_driver`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/device.h#L88 @ include/linux/device/driver.h
 
@@ -75,8 +82,45 @@ The `struct device_driver`: https://elixir.bootlin.com/linux/v6.12.6/source/incl
 - `struct plataform_driver`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/platform_device.h#L236 @ include/linux/platform_device.h
 - `struct pci_driver`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/pci.h#L947 @ include/linux/pci.h
 
+A driver registration consists on adding the driver into the list of drivers that is mantained by the driver's bus. 
+
+The base function to register a driver in its bus is: `driver_register()` https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/driver.c#L222 @ drivers/base/driver.c.
+
+But altmost every bus has its specialized resgistration function:
+ - `i2c_register_driver()` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/i2c/i2c-core-base.c#L1993 @ drivers/i2c/i2c-core-base.c
+ - `spi_register_driver()` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/spi/spi.c#L481 @ include/linux/spi/spi.c
+ - `usb_register_driver()` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/usb/core/driver.c#L1063 @ drivers/usb/core/driver.c
+ - `pci_register_driver()` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/pci/pci-driver.c#L1424 @ drivers/pci/pci-driver.c
+
+Of course those funtions have an equivalent funtion for un-registering.
+
+Usually the driver's registration funtions are used in the init/exit of the module. In those cases, it is posible to use a helper macro that handles the registering in init
+and unregistering in the exit function. 
+
+ - `module_i2c_driver(__i2c_driver)`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/i2c.h#L956 @ include/linux/i2c.h
+ - `module_api_driver(__spi_driver)`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/spi/spi.h#L376 @ include/linux/spi/spi.h
+ - `module_usb_driver(__usb_driver)`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/usb.h#L1332 @ include/linux/usb.h
+ - `module_pci_driver(__pci_driver)`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/pci.h#L1591 @ include/linux/pci.h
+
 #### Driver device table: the device driver id_table field (what devices are supported?)
 
-... 
+Reference: https://docs.kernel.org/next/driver-api/basics.html#driver-device-table
+
+Every driver has a field named `id_table`, the type of that field depends of the type of bus. For example: 
+ - `struct i2c_device_id`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/mod_devicetable.h#L478 @ include/linux/mod_devicetable.h
+ - `struct spi_device_id`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/mod_devicetable.h#L515
+ - `struct platform_device_id`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/mod_devicetable.h#L607
+ - `struct pci_device_id`: https://elixir.bootlin.com/linux/v6.12.6/A/ident/pci_device_id
+ - `struct usb_device_id`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/mod_devicetable.h#L81
+
+The field `id_table`has an array of device IDs that identifies those that are supported by the driver. 
+
+There are two exceptions, the device tree and ACPI, which can expose the devices. In those cases, the
+device can be declared from the won system. In case of the device tree with the `driver.of_match_table`, 
+in case of the ACPI  with `driver.acpi_mat_table` fields. The `id_table`, in these cases are:
+ - `struct of_device_id`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/mod_devicetable.h#L282
+ - `struct acpi_device_id`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/mod_devicetable.h#L217
+
+
 
 
