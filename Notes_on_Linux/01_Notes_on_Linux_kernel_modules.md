@@ -46,6 +46,8 @@ References:
 - https://b4.docs.kernel.org/en/latest/
 - https://wilw.dev/blog/2024/10/22/aerc/
 - https://aerc-mail.org/
+- vscode: https://youtu.be/ePsIEIxZs1c
+- vscode: https://youtu.be/nmYaSqe0fGg
 
 ## What is a device driver.
 
