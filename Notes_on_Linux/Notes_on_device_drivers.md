@@ -10,6 +10,7 @@ References:
  - examples of linux device drivers: https://github.com/rrmhearts/linux-driver-examples
  - Overview of PCI(e) Subsystem: https://www.youtube.com/watch?v=3ic61kJNEQ0
  - PCI Endpoint Drivers in Linux Kernel and How to Write One: https://www.youtube.com/watch?v=L0HktbuTX5o
+ - How to Avoid Writing Device Drivers for Embedded Linux - Chris Simmonds, 2net: https://youtu.be/QIO2pJqMxjE
  - Linux Driver Workshop 2025: https://youtu.be/krBP637d_8k
 
 
