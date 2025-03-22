@@ -113,7 +113,7 @@ Every driver has a field named `id_table`, the type of that field depends of the
  - `struct pci_device_id`: https://elixir.bootlin.com/linux/v6.12.6/A/ident/pci_device_id
  - `struct usb_device_id`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/mod_devicetable.h#L81
 
-The field `id_table`has an array of device IDs that identifies those that are supported by the driver. 
+The field `id_table`has an array of device IDs that identifies those devices that are supported by the driver. 
 
 There are two exceptions, the device tree and ACPI, which can expose the devices. In those cases, the
 device can be declared from the won system. In case of the device tree with the `driver.of_match_table`, 
