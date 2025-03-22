@@ -36,6 +36,8 @@ Administrator guide: https://linux.die.net/sag/index.html
 
 Debian administrator handbook: https://debian-handbook.info/browse/stable/
 
+Learning linux thought challenges: https://overthewire.org/wargames/bandit/
+
 <hr>
 
 For starters, open a terminal, well through a short cut, or in many distros with: **Alt + Ctrl + t**
