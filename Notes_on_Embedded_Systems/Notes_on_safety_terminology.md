@@ -3,6 +3,7 @@
 ### Unselected readings
 
 <hr>
+Take away: NO SPOF (no Single Point of Failure)
 <hr>
 
  # BASIC CONCEPTS and DEFINITIONS:
