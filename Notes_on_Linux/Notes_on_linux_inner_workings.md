@@ -3270,4 +3270,11 @@ References:
  - https://www.thomas-krenn.com/en/wiki/Display_Linux_CPU_topology_with_lstopo
  - `apt install hwloc`
 
+### Linux initialization
+
+ - https://thenewstack.io/demystifying-linux-kernel-initialization/
+
+### using gdb to debugg the kernel
+
+ - https://www.starlab.io/blog/using-gdb-to-debug-the-linux-kernel
 
