@@ -7,3 +7,7 @@ References:
  - C Preprocessor tricks, tips, and idioms: https://github.com/pfultz2/Cloak/wiki/C-Preprocessor-tricks,-tips,-and-idioms
  - C preprocessor magic: http://jhnet.co.uk/articles/cpp_magic
  - macro metaprogramming: https://mailund.dk/posts/macro-metaprogramming/
+ - https://www.cs.yale.edu/homes/aspnes/pinewiki/C(2f)Macros.html
+ - https://stackoverflow.com/questions/45375238/c-preprocessor-macro-expansion
+ - https://stackoverflow.com/questions/31610231/nested-macro-expansion
+
