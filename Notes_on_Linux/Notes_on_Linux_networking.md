@@ -405,6 +405,40 @@ SYN-ACK
 ![SYN-ACK](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/SYN_ACK.png)
 ACK
 ![ACK](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/ACK_DATA.png)
+
+
+### Packet flow
+
+1 - The first step is the connection sequence, so if a host name is used, a DNS needs to be addressed, so a DNS query is send to determine the IP of the destination. 
+
+2 - Needs to connect to the ARP table: an ARP request will be send if internal network devices need MAC addresses as part of this connection, unless tha tinformation is already in the ARP table.
+
+3 - The TCP 3-way handshake will take place: SYN - SYN ACK - ACK
+
+4 - The connection is done
+
+
+### Virtual Private Network (VPN)
+
+A VPN connection is an extension of private network, using the IP connectivity of the internet to connect remote clients to remote sites in an encrypted private connection.
+ Reasons: 
+  - secure private network traffic over an insecure public network
+  - allow connections to an internal corporate resource from a remote location
+  - to connect two separate private networks together (like office networks in different locations)
+  - The routing table list destinantios and gateways for the networks a host belongs to.
+
+For VPN, tunneling is used, tunneling allows the encapsulation of one type of protocol packing within the datagram of a different protocol for instance, sending TCP/IP traffic over the internet. 
+
+For PPTP and layer two Tunneling Protocol (L2TP), a tunnel is similar to a session. Each end of the tunnel must agree to the tunnel connection, and will negociate configuration variables such as
+address assignment, encryption and compression parameters. The mechanism used to create, mantain and end the tunnel is the tunnel management protocol. 
+
+Only after the tunnel is established can data be send. When the tunnel client sends network data to the tunnel server, the tunnel client appends a tunnel data transfer protocol header to the payload. 
+The client then sends the encapsulated (and usually encrypted) data to the tunnel server. The tunnel server accepts the data, removes the tunnel data, and forwards the payload to the destination network
+within the VPN. 
+
+
+
+
    
 ## Machine level configuration
 
