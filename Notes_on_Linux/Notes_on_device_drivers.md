@@ -70,7 +70,7 @@ The structure is usualy embeeded in a higher lever representation of the device:
  - `struct usb_device`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/usb.h#L653 @ include/linux/usb.h
  - `struct platform_device`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/platform_device.h#L23 @ include/linux/platform_device.h
 
-A device is registered with the function `device_register`: https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/core.c#L3726 @ drivers/base/core.c
+A device is registered with the function `device_register()` (reference: https://www.kernel.org/doc/html/latest/driver-api/driver-model/binding.html#device-register) -  https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/core.c#L3726 @ drivers/base/core.c
 
 Registering a device implies to add the device to the device's list of the corresponding bus driver.
 
