@@ -74,6 +74,12 @@ A device is registered with the function `device_register`: https://elixir.bootl
 
 Registering a device implies to add the device to the device's list of the corresponding bus driver.
 
+### Device declaration
+
+The device delcaraion is not really part of the LDM. Nowadays there are tow methos
+ - From the Device Tree (Open Firmware): https://www.kernel.org/doc/html/latest/devicetree/index.html
+ - Fromm the **Advanced Confgiration and Power Interface ACPI** : https://www.kernel.org/doc/html/latest/driver-api/acpi/index.html
+
 ### Device driver
 
 References:
@@ -91,6 +97,7 @@ The `struct device_driver`: https://elixir.bootlin.com/linux/v6.12.6/source/incl
 A driver registration consists on adding the driver into the list of drivers that is mantained by the driver's bus. 
 
 The base function to register a driver in its bus is: `driver_register()` https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/driver.c#L222 @ drivers/base/driver.c.
+Reference: https://www.kernel.org/doc/html/latest/driver-api/driver-model/driver.html#registration
 
 But altmost every bus has its specialized resgistration function:
  - `i2c_register_driver()` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/i2c/i2c-core-base.c#L1993 @ drivers/i2c/i2c-core-base.c
@@ -122,13 +129,41 @@ Every driver has a field named `id_table`, the type of that field depends of the
 The field `id_table`has an array of device IDs that identifies those devices that are supported by the driver. 
 
 There are two exceptions, the device tree and ACPI, which can expose the devices. In those cases, the
-device can be declared from the won system. In case of the device tree with the `driver.of_match_table`, 
+device can be declared from the won system. In case of the device tree with the `driver.of_match_table` (the `OF` I think is from "Open Firmware", which is the DeviceTree standard) , 
 in case of the ACPI  with `driver.acpi_mat_table` fields. The `id_table`, in these cases are:
- - `struct of_device_id`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/mod_devicetable.h#L282
+ - `struct of_device_id`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/mod_devicetable.h#L282 (the 
  - `struct acpi_device_id`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/mod_devicetable.h#L217
 
-### Device-driver binding/matching 
+### Device-driver binding/matching & hot-plugging
 
-reference: Linux drivers and devices registration, matching, aliases and modules autoloading: https://blog.dowhile0.org/2022/06/10/linux-drivers-and-devices-registration-matching-aliases-and-modules-autoloading/
+reference: 
+ - Linux drivers and devices registration, matching, aliases and modules autoloading: https://blog.dowhile0.org/2022/06/10/linux-drivers-and-devices-registration-matching-aliases-and-modules-autoloading/
+ - https://unix.stackexchange.com/questions/550037/how-does-udev-uevent-work
+ - https://blog.dowhile0.org/2022/06/21/how-to-troubleshoot-deferred-probe-issues-in-linux/
+ - https://blog.dowhile0.org/2024/06/02/some-useful-linux-kernel-cmdline-debug-parameters-to-troubleshoot-driver-issues/
+
+A devcie driver has a list of devices that it support s in the `id_table` (its type depends on the type of bus). When a device appears on the bus, the bus driver
+will check in the list ech ID table for the entry that matches that new device. Every drivers that contains the device ID in its table will have its `probe()` funtion
+run, with the device as parameter(https://www.kernel.org/doc/html/latest/driver-api/driver-model/driver.html#callbacks) 
+
+The issue with the previous aproach is that it is only valid to the device drivers that are already loaded (with `insmod` or `modprobe` or built-in). 
+A solution to that situation is the module aut-loading. is to expose the device drivers, along their device tables to the user space, and for that 
+the macro `MODULE_DEVICE_TABLE()` is used. That macro provides support por hot-plugging. At compilation time, the ubild proces recollects 
+this information out of the drivers and buils a human-readable table called `modules.alias`which is located in the
+ `/lib/modules/kernel_version/` directory. 
+
+ ```
+MODULE_DEVICE_TABLE(<bus_name>, <array_of_ids>)
+```
+reference: https://elixir.bootlin.com/linux/v6.13.7/source/include/linux/module.h#L249
+
+The second part of the solution is the kernel reporting to userspace about some events (named **uvents**) 
+through _netlink sockets__.
+
+Reference:
+ - https://unix.stackexchange.com/questions/550037/how-does-udev-uevent-work
+ - https://unix.stackexchange.com/questions/550037/how-does-udev-uevent-work
+
+
 
 
