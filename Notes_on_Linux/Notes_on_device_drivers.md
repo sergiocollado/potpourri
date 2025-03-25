@@ -129,4 +129,6 @@ in case of the ACPI  with `driver.acpi_mat_table` fields. The `id_table`, in the
 
 ### Device-driver binding/matching 
 
+reference: Linux drivers and devices registration, matching, aliases and modules autoloading: https://blog.dowhile0.org/2022/06/10/linux-drivers-and-devices-registration-matching-aliases-and-modules-autoloading/
+
 
