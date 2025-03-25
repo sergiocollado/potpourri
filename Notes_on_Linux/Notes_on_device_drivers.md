@@ -76,9 +76,9 @@ Registering a device implies to add the device to the device's list of the corre
 
 ### Device declaration
 
-The device delcaraion is not really part of the LDM. Nowadays there are tow methos
- - From the Device Tree (Open Firmware): https://www.kernel.org/doc/html/latest/devicetree/index.html
- - Fromm the **Advanced Confgiration and Power Interface ACPI** : https://www.kernel.org/doc/html/latest/driver-api/acpi/index.html
+The device declaration is not really part of the LDM. Nowadays there are tow methos
+ - From the **Device Tree (Open Firmware)**: https://www.kernel.org/doc/html/latest/devicetree/index.html
+ - From the **Advanced Confgiration and Power Interface ACPI** : https://www.kernel.org/doc/html/latest/driver-api/acpi/index.html
 
 ### Device driver
 
@@ -137,6 +137,7 @@ in case of the ACPI  with `driver.acpi_mat_table` fields. The `id_table`, in the
 ### Device-driver binding/matching & hot-plugging
 
 reference: 
+ - https://docs.kernel.org/next/driver-api/driver-model/binding.html
  - Linux drivers and devices registration, matching, aliases and modules autoloading: https://blog.dowhile0.org/2022/06/10/linux-drivers-and-devices-registration-matching-aliases-and-modules-autoloading/
  - https://unix.stackexchange.com/questions/550037/how-does-udev-uevent-work
  - https://blog.dowhile0.org/2022/06/21/how-to-troubleshoot-deferred-probe-issues-in-linux/
@@ -152,7 +153,7 @@ the macro `MODULE_DEVICE_TABLE()` is used. That macro provides support por hot-p
 this information out of the drivers and buils a human-readable table called `modules.alias`which is located in the
  `/lib/modules/kernel_version/` directory. 
 
- ```
+```
 MODULE_DEVICE_TABLE(<bus_name>, <array_of_ids>)
 ```
 reference: https://elixir.bootlin.com/linux/v6.13.7/source/include/linux/module.h#L249
@@ -160,9 +161,9 @@ reference: https://elixir.bootlin.com/linux/v6.13.7/source/include/linux/module.
 The second part of the solution is the kernel reporting to userspace about some events (named **uvents**) 
 through _netlink sockets__.
 
-Reference:
+References:
  - https://unix.stackexchange.com/questions/550037/how-does-udev-uevent-work
- - https://unix.stackexchange.com/questions/550037/how-does-udev-uevent-work
+ - https://en.wikipedia.org/wiki/Udev#Operation
 
 
 
