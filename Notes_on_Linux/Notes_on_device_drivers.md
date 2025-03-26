@@ -173,6 +173,28 @@ through _netlink sockets__.
 References:
  - https://unix.stackexchange.com/questions/550037/how-does-udev-uevent-work
  - https://en.wikipedia.org/wiki/Udev#Operation
+ - https://www.freedesktop.org/software/systemd/man/latest/udev.html
+ - https://wiki.debian.org/udev
+ - An introduction to Udev: The Linux subsystem for managing device events : https://opensource.com/article/18/11/udev
+
+`udev` stand for "userspace /dev" it is a device manager for the Linux kernel. It is part of systemd (an init system used to bootstrap user space and manage user processes).
+
+Originally `udev` was independent from `systemd`, it was merged with systemd in 2012, this lead to some complication for distribution running without systemd like explained here for the gentoo distribution.
+
+This application (`udev`) is meant to replace devfsd and hotplug, udev primarily manages device nodes in the `/dev` directory. At the same time, `udev` also handles all user space events raised when hardware devices are added into the system or removed from it, including firmware loading as required by certain devices (via kernel modules). Concretely udev is run as systemd service (systemd-udevd.service) to achieve its tasks, it listens to kernel uevents. For every event, systemd-udevd executes matching instructions specified in udev rules (/etc/udev/rules.d/), details about rules writing are available on this article.
+
+At the Linux kernel level the required device information is exported by the sysfs file system. For every device the kernel has detected and initialized, a directory with the device name is created. It contains attribute files with device-specific properties. Every time a device is added or removed, the kernel sends a uevent to notify udev of the change.
+
+The behavior of the udev daemon (service) can be configured using udev.conf(5) (`/etc/udev/udev.conf`), its command line options, environment variables, and on the kernel command line, or changed dynamically with udevadm control.
+
+The udev, as a whole, is divided into three parts:
+ - Library libudev that allows access to device information.
+ - User space daemon (sytemd) udevd that manages the virtual `/dev`.
+ - Administrative command-line utility udevadm for diagnostics.
+
+Udev itself is divided on those three parts but it completely rely on the kernel device management and it's uevents calls, the system gets calls from the kernel via netlink socket. Earlier versions used hotplug, adding a link to themselves in /etc/hotplug.d/default with this purpose.
+
+Note that other application/daemon may listen to `uevents` calls over `libudev`, `gudev` or directly from the kernel with `GUdevClient`.
 
 
 
