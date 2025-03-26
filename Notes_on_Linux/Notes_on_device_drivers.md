@@ -266,6 +266,12 @@ static int platform_match(struct device *dev, const struct device_driver *drv)
 `probe()` this callback is used when a new device or driver is added to the bus and once a match has occurred.
 
 
+## Platform devices
+
+References:
+ - Platform Devices and Drivers: https://www.kernel.org/doc/html/latest/driver-api/driver-model/platform.html
+ - The platform device API : https://lwn.net/Articles/448499/
+ - Platform devices and device trees : https://lwn.net/Articles/448502/
 
 
 
