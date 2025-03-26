@@ -106,7 +106,7 @@ The `struct device_driver`: https://elixir.bootlin.com/linux/v6.12.6/source/incl
 A driver registration consists on adding the driver into the list of drivers that is mantained by the driver's bus. 
 
 The base function to register a driver in its bus is: `driver_register()` https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/driver.c#L222 @ drivers/base/driver.c.
-Reference: https://www.kernel.org/doc/html/latest/driver-api/driver-model/driver.html#registration
+Reference: https://www.kernel.org/doc/html/latest/driver-api/driver-model/driver.html#registration. 
 
 But altmost every bus has its specialized resgistration function:
  - `i2c_register_driver()` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/i2c/i2c-core-base.c#L1993 @ drivers/i2c/i2c-core-base.c
@@ -152,7 +152,7 @@ reference:
  - https://blog.dowhile0.org/2022/06/21/how-to-troubleshoot-deferred-probe-issues-in-linux/
  - https://blog.dowhile0.org/2024/06/02/some-useful-linux-kernel-cmdline-debug-parameters-to-troubleshoot-driver-issues/
 
-A devcie driver has a list of devices that it support s in the `id_table` (its type depends on the type of bus). When a device appears on the bus, the bus driver
+A device driver has a list of devices that it support s in the `id_table` (its type depends on the type of bus). When a device appears on the bus, the bus driver
 will check in the list ech ID table for the entry that matches that new device. Every drivers that contains the device ID in its table will have its `probe()` funtion
 run, with the device as parameter(https://www.kernel.org/doc/html/latest/driver-api/driver-model/driver.html#callbacks) 
 
@@ -195,6 +195,36 @@ The udev, as a whole, is divided into three parts:
 Udev itself is divided on those three parts but it completely rely on the kernel device management and it's uevents calls, the system gets calls from the kernel via netlink socket. Earlier versions used hotplug, adding a link to themselves in /etc/hotplug.d/default with this purpose.
 
 Note that other application/daemon may listen to `uevents` calls over `libudev`, `gudev` or directly from the kernel with `GUdevClient`.
+
+### Bus structure
+
+The bus trcuture `struct bus_type` (https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/device/bus.h#L24). The **bus controller** is the root elemento fo any hierarchy. The bus type is
+the link between the `devices` and the `drivers`. https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/device/bus.h#L24
+
+> The bus type structure contains a list of all devices that are on that bus type in the system. When device_register is called for a device, it is 
+> inserted into the end of this list. The bus object also contains a list of all drivers of that bus type. When driver_register is called for a driver,
+> it is inserted at the end of this list. These are the two events which trigger driver binding.
+
+#### match()
+
+Reference: https://www.kernel.org/doc/html/latest/driver-api/driver-model/bus.html#match-attaching-drivers-to-devices
+
+> The purpose of the match callback is to give the bus an opportunity to determine if a particular driver supports a
+> particular device by comparing the device IDs the driver supports with the device ID of a particular device, without
+>  sacrificing bus-specific functionality or type-safety.
+> 
+> When a driver is registered with the bus, the bus’s list of devices is iterated over, and the match callback is called
+>  for each device that does not have a driver associated with it.
+
+#### probe()
+
+`probe()` this callback is used when a new device or driver is added to the bus and once a match has occurred.
+
+
+
+
+
+
 
 
 
