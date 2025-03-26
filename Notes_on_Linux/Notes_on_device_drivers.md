@@ -215,6 +215,9 @@ Reference: https://www.kernel.org/doc/html/latest/driver-api/driver-model/bus.ht
 > 
 > When a driver is registered with the bus, the bus’s list of devices is iterated over, and the match callback is called
 >  for each device that does not have a driver associated with it.
+ 
+Every bus driver has to provide a `match()` function, which will be run by the kernel when a new device or device-driver
+is registered in the bus.
 
 #### probe()
 
