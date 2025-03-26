@@ -72,6 +72,15 @@ The structure is usualy embeeded in a higher lever representation of the device:
 
 A device is registered with the function `device_register()` (reference: https://www.kernel.org/doc/html/latest/driver-api/driver-model/binding.html#device-register) -  https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/core.c#L3726 @ drivers/base/core.c
 
+> When a new device is added, the bus’s list of drivers is iterated over to find one that supports it. In order to determine that,
+> the device ID of the device must match one of the device IDs that the driver supports. The format and semantics for comparing IDs
+> is bus-specific. Instead of trying to derive a complex state machine and matching algorithm, it is up to the bus driver to provide
+> a callback to compare a device against the IDs of a driver. The bus returns 1 if a match was found; 0 otherwise.
+>
+>  `int match(struct device * dev, struct device_driver * drv);`
+>
+> If a match is found, the device’s driver field is set to the driver and the driver’s probe callback is called. This gives the driver a chance to verify that it really does support the hardware, and that it’s in a working state.
+
 Registering a device implies to add the device to the device's list of the corresponding bus driver.
 
 ### Device declaration
