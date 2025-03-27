@@ -1,7 +1,7 @@
 # NOTES ON LINUX KERNEL MODULES
 
 References: 
- - https://lwn.net/Kernel/LDD3/ 
+ - https://lwn.net/Kernel/LDD3/ (outdated)
  - Linux Kernel module programming guide: https://linux.die.net/lkmpg/
  - kernel modules info: https://www.kernel.org/doc/Documentation/kbuild/modules.txt 
  - The Linux Kernel Module Programming Guide: https://sysprog21.github.io/lkmpg/
