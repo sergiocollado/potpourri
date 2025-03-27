@@ -15,6 +15,7 @@ References:
  - Kernel Play Guide: https://nskernel.gitbook.io/kernel-play-guide/accessing-the-non-exported-in-modules 
  - (404) EEC3-4029 Operating Systems: http://gauss.ececs.uc.edu/Courses/c4029/videos.html 
  - linux-kernel-labs: https://linux-kernel-labs.github.io/refs/heads/master/index.html
+ - Linux explained: https://zedas.fr/tags/linux-explained/
  - How to build modules: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/kbuild/modules.rst 
  - Linux kernel makefiles: https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/kbuild/makefiles.rst 
  - Kernel newbies : https://kernelnewbies.org/FirstKernelPatch 
