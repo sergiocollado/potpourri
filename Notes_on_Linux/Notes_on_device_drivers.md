@@ -365,7 +365,7 @@ The other thing the driver must provide is a way for the bus code to bind actual
 If an ID table is present, the platform bus code will scan through it every time it has to find a driver for a new platform device. If the device's name matches the name in an ID table entry, the device will be given to the driver for management; a pointer to the matching ID table entry will be made available to the driver as well. As it happens, though, most platform drivers do not provide an ID table at all; they simply provide a name for the driver itself in the driver field. 
 
 
-### Registration
+### Platform device egistration
 
 To register the platform devices, use: 
  - To statically register one`platform_device_register(struct platrfomr_device *pdev)` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/platform.c#L767
@@ -373,7 +373,7 @@ To register the platform devices, use:
  - To dynbamically register one, use: `platform_device_alloc()` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/platform.c#L569, in the case that it succeed , then register it with `platform_device_add()` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/platform.c#L650, it case this functions returns an error (negative value), then the device has to be released with `platform_device_put()`.
  - To unregister the device use `platform_device_unregister` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/platform.c#L783
 
-### Resources
+### Platform device esources
 
 The `resource` field in `struct platform_device` defines the resouces that will need the platform device. It his defined at https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/ioport.h#L21
 
@@ -444,9 +444,9 @@ The resource's assignation can be done in tow ways, frist int the same compilati
 where the platform device has been declared an registere, second, from the device tree.
 
 
-### Platform data
+### Platform device data
 
-### Resouce provisioning
+### PLatform device resouce provisioning
 
 The device tree is interpretes as an instance of truct resources by the platform core, to that `platform_get_resource()`,
 ` platform_get_resource_by_bame()`, or `platform_get_irq()`, return the appropiated resource. 
