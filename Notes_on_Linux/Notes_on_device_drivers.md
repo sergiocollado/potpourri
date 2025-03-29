@@ -274,6 +274,87 @@ References:
  - Platform devices and device trees : https://lwn.net/Articles/448502/
 
 
+### Platform device
+
+platform device: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/platform_device.h#L23
+
+```C
+#define PLATFORM_DEVID_NONE	(-1)
+#define PLATFORM_DEVID_AUTO	(-2)
+
+struct platform_device {
+	const char	*name;
+	int		id;
+	bool		id_auto;
+	struct device	dev;
+	u64		platform_dma_mask;
+	struct device_dma_parameters dma_parms;
+	u32		num_resources;
+	struct resource	*resource;
+
+	const struct platform_device_id	*id_entry;
+	/*
+	 * Driver name to force a match.  Do not set directly, because core
+	 * frees it.  Use driver_set_override() to set or clear it.
+	 */
+	const char *driver_override;
+
+	/* MFD cell pointer */
+	struct mfd_cell *mfd_cell;
+
+	/* arch specific additions */
+	struct pdev_archdata	archdata;
+};
+```
+
+the member `id` works as follows:
+ - If id == -1 (PLATFORM_DEVID_NONE), then the underlying `dev`will have the dame name as pthe platform device. The platform device will do `dev_set_name(&pdev->dev, "%s", pdev->name);`
+ - If id == -2 (PLATFORM_DEVID_AUTO), then `dev` will be asssigned a valid ID, `dev_set_name(&pdev->dev, "%s.%d.auto", pdev->name, <auto_id>);`.
+ - in other cases, id will be assigned: `dev_set_name(&pdev->dev, "%s.%d", pdev->name, pdev->id);`
+
+`resource` is an array of resources assigned to the platform device, and `num_resources` is the number of elements in that array.
+
+
+### Platform drivers
+
+Platform drivers: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/platform_device.h#L236
+
+```C
+struct platform_driver {
+	int (*probe)(struct platform_device *);
+
+	/*
+	 * .remove_new() is a relic from a prototype conversion of .remove().
+	 * New drivers are supposed to implement .remove(). Once all drivers are
+	 * converted to not use .remove_new any more, it will be dropped.
+	 */
+	union {
+		void (*remove)(struct platform_device *);
+		void (*remove_new)(struct platform_device *);
+	};
+
+	void (*shutdown)(struct platform_device *);
+	int (*suspend)(struct platform_device *, pm_message_t state);
+	int (*resume)(struct platform_device *);
+	struct device_driver driver;
+	const struct platform_device_id *id_table;
+	bool prevent_deferred_probe;
+	/*
+	 * For most device drivers, no need to care about this flag as long as
+	 * all DMAs are handled through the kernel DMA API. For some special
+	 * ones, for example VFIO drivers, they know how to manage the DMA
+	 * themselves and set this flag so that the IOMMU layer will allow them
+	 * to setup and manage their own I/O address space.
+	 */
+	bool driver_managed_dma;
+};
+```
+
+
+
+
+
+
 
 
 
