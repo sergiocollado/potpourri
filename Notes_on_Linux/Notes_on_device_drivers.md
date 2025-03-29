@@ -272,6 +272,8 @@ References:
  - Platform Devices and Drivers: https://www.kernel.org/doc/html/latest/driver-api/driver-model/platform.html
  - The platform device API : https://lwn.net/Articles/448499/
  - Platform devices and device trees : https://lwn.net/Articles/448502/
+ - Device tree usage: https://elinux.org/Device_Tree_Usage
+   
 
 
 ### Platform device
