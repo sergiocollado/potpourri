@@ -364,6 +364,13 @@ The other thing the driver must provide is a way for the bus code to bind actual
 If an ID table is present, the platform bus code will scan through it every time it has to find a driver for a new platform device. If the device's name matches the name in an ID table entry, the device will be given to the driver for management; a pointer to the matching ID table entry will be made available to the driver as well. As it happens, though, most platform drivers do not provide an ID table at all; they simply provide a name for the driver itself in the driver field. 
 
 
+### registration
+
+To register the platform devices, use: 
+ - To statically register one`platform_device_register(struct platrfomr_device *pdev)` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/platform.c#L767
+ - for arrays of platform devices, use `platform_add_devices()` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/platform.c#L497
+ - To dynbamically register one, use: `platform_device_alloc()` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/platform.c#L569, in the case that it succeed , then register it with `platform_device_add()` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/platform.c#L650, it case this functions returns an error (negative value), then the device has to be released with `platform_device_put()`.
+ - To unregister the device use `platform_device_unregister` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/platform.c#L783
 
 
 
