@@ -350,6 +350,21 @@ struct platform_driver {
 };
 ```
 
+`probe()` is the funtion that is called when the device reclaims its driver after a `match()` happens between the driver and the device. 
+
+The other thing the driver must provide is a way for the bus code to bind actual devices to the driver; there are two mechanisms which can be used for that purpose. The first is the id_table argument; the relevant structure is:
+
+```C
+    struct platform_device_id {
+	char name[PLATFORM_NAME_SIZE];
+	kernel_ulong_t driver_data;
+    };
+```
+
+If an ID table is present, the platform bus code will scan through it every time it has to find a driver for a new platform device. If the device's name matches the name in an ID table entry, the device will be given to the driver for management; a pointer to the matching ID table entry will be made available to the driver as well. As it happens, though, most platform drivers do not provide an ID table at all; they simply provide a name for the driver itself in the driver field. 
+
+
+
 
 
 
