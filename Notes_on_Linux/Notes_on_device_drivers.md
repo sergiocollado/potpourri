@@ -275,7 +275,6 @@ References:
  - Device tree usage: https://elinux.org/Device_Tree_Usage
    
 
-
 ### Platform device
 
 platform device: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/platform_device.h#L23
@@ -366,13 +365,102 @@ The other thing the driver must provide is a way for the bus code to bind actual
 If an ID table is present, the platform bus code will scan through it every time it has to find a driver for a new platform device. If the device's name matches the name in an ID table entry, the device will be given to the driver for management; a pointer to the matching ID table entry will be made available to the driver as well. As it happens, though, most platform drivers do not provide an ID table at all; they simply provide a name for the driver itself in the driver field. 
 
 
-### registration
+### Registration
 
 To register the platform devices, use: 
  - To statically register one`platform_device_register(struct platrfomr_device *pdev)` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/platform.c#L767
  - for arrays of platform devices, use `platform_add_devices()` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/platform.c#L497
  - To dynbamically register one, use: `platform_device_alloc()` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/platform.c#L569, in the case that it succeed , then register it with `platform_device_add()` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/platform.c#L650, it case this functions returns an error (negative value), then the device has to be released with `platform_device_put()`.
  - To unregister the device use `platform_device_unregister` : https://elixir.bootlin.com/linux/v6.12.6/source/drivers/base/platform.c#L783
+
+### Resources
+
+The `resource` field in `struct platform_device` defines the resouces that will need the platform device. It his defined at https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/ioport.h#L21
+
+```C
+/*
+ * Resources are tree-like, allowing
+ * nesting etc..
+ */
+struct resource {
+	resource_size_t start;
+	resource_size_t end;
+	const char *name;
+	unsigned long flags;
+	unsigned long desc;
+	struct resource *parent, *sibling, *child;
+};
+```
+
+In the structure the `start`/`end`  pints ot he beginning/end of the resource of the I/O or memory regions needed.  for IRQ lines or buses, or DMA channes, as they don't have ranges, the usual is to define the 
+same value in the `start`/`end`. 
+
+`flags` is a mask that defines the type of resource accoring to the definitions at: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/ioport.h#L31
+
+```
+/*
+ * IO resources have these defined flags.
+ *
+ * PCI devices expose these flags to userspace in the "resource" sysfs file,
+ * so don't move them.
+ */
+#define IORESOURCE_BITS		0x000000ff	/* Bus-specific bits */
+
+#define IORESOURCE_TYPE_BITS	0x00001f00	/* Resource type */
+#define IORESOURCE_IO		0x00000100	/* PCI/ISA I/O ports */
+#define IORESOURCE_MEM		0x00000200
+#define IORESOURCE_REG		0x00000300	/* Register offsets */
+#define IORESOURCE_IRQ		0x00000400
+#define IORESOURCE_DMA		0x00000800
+#define IORESOURCE_BUS		0x00001000
+...
+/* I/O resource extended types */
+#define IORESOURCE_SYSTEM_RAM		(IORESOURCE_MEM|IORESOURCE_SYSRAM)
+
+/* PnP IRQ specific bits (IORESOURCE_BITS) */
+#define IORESOURCE_IRQ_HIGHEDGE		(1<<0)
+#define IORESOURCE_IRQ_LOWEDGE		(1<<1)
+#define IORESOURCE_IRQ_HIGHLEVEL	(1<<2)
+#define IORESOURCE_IRQ_LOWLEVEL		(1<<3)
+#define IORESOURCE_IRQ_SHAREABLE	(1<<4)
+#define IORESOURCE_IRQ_OPTIONAL		(1<<5)
+#define IORESOURCE_IRQ_WAKECAPABLE	(1<<6)
+
+/* PnP DMA specific bits (IORESOURCE_BITS) */
+#define IORESOURCE_DMA_TYPE_MASK	(3<<0)
+#define IORESOURCE_DMA_8BIT		(0<<0)
+...
+
+/* PCI ROM control bits (IORESOURCE_BITS) */
+#define IORESOURCE_ROM_ENABLE		(1<<0)	/* ROM is enabled, same as PCI_ROM_ADDRESS_ENABLE */
+#define IORESOURCE_ROM_SHADOW		(1<<1)	/* Use RAM image, not ROM BAR */
+
+/* PCI control bits.  Shares IORESOURCE_BITS with above PCI ROM.  */
+#define IORESOURCE_PCI_FIXED		(1<<4)	/* Do not move resource */
+#define IORESOURCE_PCI_EA_BEI		(1<<5)	/* BAR Equivalent Indicator */
+```
+
+The resource's assignation can be done in tow ways, frist int the same compilation unit
+where the platform device has been declared an registere, second, from the device tree.
+
+
+### Platform data
+
+### Resouce provisioning
+
+The device tree is interpretes as an instance of truct resources by the platform core, to that `platform_get_resource()`,
+` platform_get_resource_by_bame()`, or `platform_get_irq()`, return the appropiated resource. 
+
+Nevertheless, the device tree doens't know of the structure of the platform data, so it cannot present the information
+in that form. to pass suche data, drvier use the `.data` field in the `of_device_id` entry that it is used
+by the platform device and the driver to match.
+
+When a device is instantiaded from the device tree, the `platform_data` pointer is `NULL`, indicating that the data
+is expected to be retrieved from the device tree. In this case the driver will find a `device_node`pointer in 
+the platform `dev.of_node`field. The device teee access rotinges (e.g: `of_get_property()`) can be used to retrieve
+the required data from the device tree.
+
+
 
 
 
