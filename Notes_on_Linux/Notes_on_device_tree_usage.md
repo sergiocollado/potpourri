@@ -7,6 +7,7 @@ references:
  - https://elinux.org/Device_Tree_Usage
  - https://elinux.org/Device_Tree_Reference
  - https://www.devicetree.org/
+ - Platform devices and device trees: https://lwn.net/Articles/448502/
  - https://octavosystems.com/linux-device-trees-embedded-systems/
  - https://octavosystems.com/app_notes/osd335x-design-tutorial/osd335x-lesson-2-minimal-linux-boot/linux-device-tree/
  - https://blog.stabel.family/raspberry-pi-4-device-tree/
@@ -16,6 +17,12 @@ references:
  - https://blog.stabel.family/raspberry-pi-4-device-tree/
  - https://www.jeffgeerling.com/blog/2023/how-customize-dtb-device-tree-binary-on-raspberry-pi
  - https://bootlin.com/blog/enabling-new-hardware-on-raspberry-pi-with-device-tree-overlays/
+
+> Many moons ago "board files," were used, each of which described a single type of computer. Kernels are typically built around a single board file and could not boot on any other type of system. Board files sort of worked when there were relatively small numbers of embedded system types to deal with. Now Linux-based embedded systems are everywhere, architectures which have typically depended on board files (ARM, in > particular) were finding their way into more types of systems, and the whole scheme looked poised to collapse under its own weight.
+>
+> The hoped-for solution to this problem went by the term "device trees"; in essence, a device tree is a textual description of a specific system's hardware configuration. The device tree is passed to the kernel at boot time; the kernel then reads through it to learn about what kind of system it is actually running on. Device trees will abstract the differences between systems into boot-time data and allow generic kernels to run on a much wider variety of hardware.
+
+reference: https://lwn.net/Articles/448502/
 
 The "Open Firmware Device Tree" or simply the Device Tree (DT) is a data exchange format used for exchanging hardware description data with the software or operating system. The specification is defined at https://www.devicetree.org.
 
@@ -39,8 +46,7 @@ In the linux source, the device trees are located at: `<linux source>/arch/<arch
 
 ## Device tree syntax
 
-Reference: 
- - https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/configuration/device-tree.adoc
+ - Reference: https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/configuration/device-tree.adoc
 
 ## Device tree
 
