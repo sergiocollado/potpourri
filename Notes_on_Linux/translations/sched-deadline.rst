@@ -1246,27 +1246,41 @@ Gestor de tareas Deadline
  make the leftoever runtime available for reclamation by other
  SCHED_DEADLINE tasks.
 
- Este comportamiento de sched_yield permite a la tare despertase 
- exácttamente al comiendo del siguiente periodo. También, esto puede ser
+ Este comportamiento de sched_yield permite a la tarea despertase 
+ exáctamente al comiendo del siguiente periodo. También, esto puede ser
  útil en el futuro con mecanísmos para reclamar ancho de banda, donde
  sched_yeld() permita disponer del tiempo de ejecución disponible para
  ser reclamado por otras tareas SCHED_DEADLINE. 
 
 
-TODO: COMPLETE...!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 
 5. Tasks CPU affinity
 =====================
+
+5. Afinidad de las tareas con los CPU
+=====================================
 
  -deadline tasks cannot have an affinity mask smaller that the entire
  root_domain they are created on. However, affinities can be specified
  through the cpuset facility (Documentation/admin-guide/cgroup-v1/cpusets.rst).
 
+ - Las taread deadline no pueden tener una máscara de afinidad menor
+ que el root_domain completo en el que son creadas. De todos modos, 
+ las finidades puede ser definidas mediante los grupos de cpu (cpuset)
+ (Documentation/admin-guide/cgroup-v1/cpusets.rst).
+
 5.1 SCHED_DEADLINE and cpusets HOWTO
 ------------------------------------
 
+5.1 CÓMOS de SCHED_DEADLINE y cpusets
+--------------------------------------
+
  An example of a simple configuration (pin a -deadline task to CPU0)
  follows (rt-app is used to create a -deadline task)::
+
+ Un ejemplo de una configuración sencilla (asociación de una tarea
+ deadline a CPU0) a continuación (la applicación rt-app se usa para
+ crear una tarea -deadline)::
 
    mkdir /dev/cpuset
    mount -t cgroup -o cpuset cpuset /dev/cpuset
@@ -1282,10 +1296,18 @@ TODO: COMPLETE...!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
    rt-app -t 100000:10000:d:0 -D5 # it is now actually superfluous to specify
 				  # task affinity
 
+   rt-app -t 100000:10000:d:0 -D5 # ahora es superficial especificat la 
+				  # afinidad de la tarea
+
 6. Future plans
 ===============
 
+6. Planes futuros
+=================
+
  Still missing:
+
+ Todavía por hacer:
 
   - programmatic way to retrieve current runtime and absolute deadline
   - refinements to deadline inheritance, especially regarding the possibility
@@ -1297,10 +1319,31 @@ TODO: COMPLETE...!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
     address), which is the best way to allow unprivileged use of the mechanisms
     and how to prevent non-root users "cheat" the system?
 
+  - una forma programática para obtener el tiempo de ejecución y el instante 
+    límite absoulto
+  - mejoras en la herencia de los tiempos límites, especialmente el lo 
+    relacionado con mantener el aislamiento del ancho de banda entre tareas
+    que no interaccionan. Esto se ha estudiado tanto desde el punto de 
+    vista teórico como práctico, y se deberiamos ser capaces de presentar 
+    código funcional pronto;
+  - gestión del ancho de banda basado en groupos y quizás en gestión de tareas.
+  - control de accesos para usuarios que no son root (y otras inquietudes
+    relativas a la seguridad de las direcciones), ¿cuál es el mejor uso 
+    de permitir acceso sin privilegios de los mecanismos y como evitar que
+    usuarios que no son root "engañen" al sistema? 
+
  As already discussed, we are planning also to merge this work with the EDF
  throttling patches [https://lore.kernel.org/r/cover.1266931410.git.fabio@helm.retis] but we still are in
  the preliminary phases of the merge and we really seek feedback that would
  help us decide on the direction it should take.
+
+ Como ya se comentó, estamos planeando unir este trabajo con los parches
+ de restricciones [https://lore.kernel.org/r/cover.1266931410.git.fabio@helm.retis]  pro 
+ cotinuamos en las fases preliminares de la unión y estamos buscando impresiones 
+ que nos puedan ayudar a decidir qué dirección tomar. 
+
+
+TODO: COMPLETE...!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 Appendix A. Test suite
 ======================
