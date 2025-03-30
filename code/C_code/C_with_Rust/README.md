@@ -1,3 +1,4 @@
+Reference: https://docs.rust-embedded.org/book/interoperability/rust-with-c.html
 Reference: https://medium.com/@AlexanderObregon/integrating-rust-into-existing-c-c-projects-e0810dbddded
 
 # Introduction
