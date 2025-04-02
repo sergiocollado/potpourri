@@ -466,7 +466,7 @@ is expected to be retrieved from the device tree. In this case the driver will f
 the platform `dev.of_node`field. The device tree access routines (e.g: `of_get_property()`) can be used to retrieve
 the required data from the device tree.
 
-## Probing a platform device
+### Probing a platform device
 
 The entry point for the driver is the `probe(strcut platform_device *pdev)`. If the platform device is correct, this 
 function must return 0, otherwise must return a negative value with the correspinding error code. 
@@ -479,7 +479,7 @@ the prove method must request any resorce required, and if mapping needs to be d
 Whe the device has to be release, everything that was done in the `probe()` method must be undone, using the `remove()` method, 
 and return 0 if everyting has been properly undone, or an error code otherwise. 
 
-## Provisioning supporting devices in the driver
+### Provisioning supporting devices in the driver
 
 The driver must inform the kernel of its supported devices by means of the `id_table` field (https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/platform_device.h#L253) . If the module complies with 
 autoloading (plug and play (PnP)), then use the macro `MODULE_DEVICE_TABLE`. 
@@ -511,7 +511,7 @@ static const struct of_device_id mxs_mmc_dt_ids[] = {
 MODULE_DEVICE_TABLE(of, mxs_mmc_dt_ids);
 ```
 
-## Device driver initialization and registration
+### Device driver initialization and registration
 
 In the module init function call: 
  - `platform_driver_register()` - puts the drivers  into a list of drivers mantained by the kernel, and the `probe()` function will be called on demand. 
