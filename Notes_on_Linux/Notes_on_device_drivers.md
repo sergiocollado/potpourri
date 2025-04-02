@@ -309,8 +309,8 @@ struct platform_device {
 ```
 
 the member `id` works as follows:
- - If id == -1 (PLATFORM_DEVID_NONE), then the underlying `dev`will have the dame name as pthe platform device. The platform device will do `dev_set_name(&pdev->dev, "%s", pdev->name);`
- - If id == -2 (PLATFORM_DEVID_AUTO), then `dev` will be asssigned a valid ID, `dev_set_name(&pdev->dev, "%s.%d.auto", pdev->name, <auto_id>);`.
+ - If `id == -1 (PLATFORM_DEVID_NONE)`, then the underlying `dev` will have the dame name as the platform device. The platform device will do `dev_set_name(&pdev->dev, "%s", pdev->name);`
+ - If `id == -2 (PLATFORM_DEVID_AUTO)`, then `dev` will be asssigned a valid ID, `dev_set_name(&pdev->dev, "%s.%d.auto", pdev->name, <auto_id>);`.
  - in other cases, id will be assigned: `dev_set_name(&pdev->dev, "%s.%d", pdev->name, pdev->id);`
 
 `resource` is an array of resources assigned to the platform device, and `num_resources` is the number of elements in that array.
@@ -448,25 +448,76 @@ where the platform device has been declared an registere, second, from the devic
 
 The `struct resource`, may be lacking in case of complex drivers, so as an extension to that `platform_device.device.platform_data` is used in case extra information is needed.
 
+For using it dynamically use the function `platform_device_add_data()`. Also to retrieve that field use the function `dev_get_data()`. 
 
-### PLatform device resouce provisioning
+Remark: there is no way to check the type of data, the driver must assume it is given the correct type. 
 
-The device tree is interpretes as an instance of truct resources by the platform core, to that `platform_get_resource()`,
-` platform_get_resource_by_bame()`, or `platform_get_irq()`, return the appropiated resource. 
+### Platform device resouce provisioning
 
-Nevertheless, the device tree doens't know of the structure of the platform data, so it cannot present the information
-in that form. to pass suche data, drvier use the `.data` field in the `of_device_id` entry that it is used
+The device tree is interpreted as an instance of `struct resources` by the platform core, so the function `platform_get_resource()`,
+`platform_get_resource_by_name()`, or `platform_get_irq()`, return the appropiated resource. 
+
+Nevertheless, the device tree doesn't know of the structure of the platform data, so it cannot present the information
+in that form. To pass suche data, driver use the `.data` field in the `of_device_id` entry that it is used
 by the platform device and the driver to match.
 
-When a device is instantiaded from the device tree, the `platform_data` pointer is `NULL`, indicating that the data
-is expected to be retrieved from the device tree. In this case the driver will find a `device_node`pointer in 
-the platform `dev.of_node`field. The device teee access rotinges (e.g: `of_get_property()`) can be used to retrieve
+When a device is instantiated from the device tree, the `platform_data` pointer is `NULL`, indicating that the data
+is expected to be retrieved from the device tree. In this case the driver will find a `device_node` pointer in 
+the platform `dev.of_node`field. The device tree access routines (e.g: `of_get_property()`) can be used to retrieve
 the required data from the device tree.
 
+## Probing a platform device
 
+The entry point for the driver is the `probe(strcut platform_device *pdev)`. If the platform device is correct, this 
+function must return 0, otherwise must return a negative value with the correspinding error code. 
 
+The device then can report its resources with the functions: `platform_get_resource()`,
+`platform_get_resource_by_name()`, or `platform_get_irq()`. 
 
+the prove method must request any resorce required, and if mapping needs to be done the `probe()`  method is the place to do it.
 
+Whe the device has to be release, everything that was done in the `probe()` method must be undone, using the `remove()` method, 
+and return 0 if everyting has been properly undone, or an error code otherwise. 
+
+## Provisioning supporting devices in the driver
+
+The driver must inform the kernel of its supported devices by means of the `id_table` field (https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/platform_device.h#L253) . If the module complies with 
+autoloading (plug and play (PnP)), then use the macro `MODULE_DEVICE_TABLE`. 
+
+```C
+struct platform_device_id {
+	char name[PLATFORM_NAME_SIZE];
+	kernel_ulong_t driver_data;
+};
+```
+platform_device_id: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/mod_devicetable.h#L607
+
+ - `name` is just a descriptive name for the device
+ - `driver_data` it can be set a pointer to a per-device-dirver structure:
+
+To allow matching platform devices declared in the device tree using their compatible string, 
+the platform driver must set `platform_driver.driver.of_match_table` wit a list of elements of 
+`struct of_device_id`, then, to allow module autolaoding from the device tree matcing as well, this device tree match table, 
+ must be given to `MODULE_DEVICE_TABLE` MACRO. 
+
+For example: https://elixir.bootlin.com/linux/v6.12.6/source/drivers/mmc/host/mxs-mmc.c
+ 
+```C
+static const struct of_device_id mxs_mmc_dt_ids[] = {
+	{ .compatible = "fsl,imx23-mmc", .data = (void *) IMX23_SSP, },
+	{ .compatible = "fsl,imx28-mmc", .data = (void *) IMX28_SSP, },
+	{ /* sentinel */ }
+};
+MODULE_DEVICE_TABLE(of, mxs_mmc_dt_ids);
+```
+
+## Device driver initialization and registration
+
+In the module init function call: 
+ - `platform_driver_register()` - puts the drivers  into a list of drivers mantained by the kernel, and the `probe()` function will be called on demand. 
+ - `platform_driver_probe()` - this method don't register the driver on the system. the kernel unst immediately the matching loop, to see fi there is any devices that matches agains tit, and the driver will call the `probe()` methods in the devices that matched. If at that moment no devices matches, the drives will be ignored after that. In this case, the `probe()` function muste be placed in an `__init` section, which is freeded later when the kernel boot is completed... this methods is used when it is a certainty that the devices is present in the system.
+
+Upon module exit, use: `platform_driver_unregister()`.
 
 
 
