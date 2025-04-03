@@ -810,3 +810,11 @@ git send-email \
 <patch-file>.patch
 ```
 
+
+
+## Building a Linux Kernel Driver using Rust
+
+reference: https://rust-for-linux.ferrous-systems-rust-exercises.pages.dev/latest/book/building-linux-kernel-driver
+
+
+
