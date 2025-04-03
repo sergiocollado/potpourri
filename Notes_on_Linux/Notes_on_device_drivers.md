@@ -8,11 +8,18 @@ References:
  - Kernel Recipes 2016 - The Linux Driver Model - Greg KH : https://youtu.be/AdPxeGHIZ74
  - https://linux-kernel-labs.github.io/refs/heads/master/labs/device_model.html
  - examples of linux device drivers: https://github.com/rrmhearts/linux-driver-examples
+ - The Linux Device Model: https://www.linkedin.com/pulse/embedded-linux-device-driver-development-part-2-model-kumar-phd?trk=public_post_feed-article-content
  - Overview of PCI(e) Subsystem: https://www.youtube.com/watch?v=3ic61kJNEQ0
  - PCI Endpoint Drivers in Linux Kernel and How to Write One: https://www.youtube.com/watch?v=L0HktbuTX5o
  - How to Avoid Writing Device Drivers for Embedded Linux - Chris Simmonds, 2net: https://youtu.be/QIO2pJqMxjE
  - Linux Driver Workshop 2025: https://youtu.be/krBP637d_8k
  - Linux drivers and devices registration, matching, aliases and modules autoloading : https://blog.dowhile0.org/2022/06/10/linux-drivers-and-devices-registration-matching-aliases-and-modules-autoloading/
+ - Industrial I/O: https://www.kernel.org/doc/html/v4.15/driver-api/iio/index.html
+ - The backbone of a Linux Industrial I/O driver: https://bootlin.com/blog/the-backbone-of-a-linux-industrial-i-o-driver/
+ - IIO overview: https://wiki.st.com/stm32mpu/wiki/IIO_overview#:~:text=The%20Industrial%20I%2FO%20Linux,sensors%20through%20sysfs%20and%20devfs.
+ - Industrial I/O and triggers: https://www.marcusfolkesson.se/blog/industrial-io-triggers/
+ - IIO a new kernel subsystem: https://bootlin.com/pub/conferences/2012/fosdem/iio-a-new-subsystem/iio-a-new-subsystem.pdf
+ - Interfacing Sensors via the Industrial I/O (IIO) Subsystem: https://www.linkedin.com/pulse/embedded-linux-weekend-hacking-part-5-interfacing-via-kumar-phd-s0obc
 
 
 ## Overview
