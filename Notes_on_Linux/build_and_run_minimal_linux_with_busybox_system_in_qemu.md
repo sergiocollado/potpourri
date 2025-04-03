@@ -21,6 +21,7 @@ reference:
  - https://ibug.io/blog/2019/04/os-lab-1/
  - a simple workflow to debug the linux kernel: https://marliere.net/posts/1/
  - tiny config: https://youtu.be/u2Juz5sQyYQ?si=J4p8VtCpb-CeA5Vv
+ - BUILDROOT: BUILDING A CUSTOMIZED LINUX SYSTEM : https://www.linkedin.com/pulse/buildroot-building-customized-linux-system-fitinstitutodetecnologia
 
 ### Instruction to install qemu different architectures
 
