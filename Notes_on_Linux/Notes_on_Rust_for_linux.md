@@ -36,6 +36,7 @@ Languaje reference:
   - Ferrous training: 
       - https://github.com/ferrous-systems/teaching-material/tree/main/assignments
       - https://github.com/ferrous-systems/rust-training
+      - https://rust-for-linux.ferrous-systems-rust-exercises.pages.dev/latest/book/building-linux-kernel-driver
   - effective rust: https://www.lurklurk.org/effective-rust/
   - awesome rust - curated list of resources: https://github.com/lemunozm/awesome-rust
   - https://docs.rust-embedded.org/book/intro/index.html
