@@ -3286,3 +3286,7 @@ References:
  - Installing and Using the Linux-Kernel Memory Model (LKMM) - Paul McKenney : https://www.youtube.com/watch?v=YPpojI84WZk
  - More Science Fiction than Fairy Tale: A Discussion of the Linux Kernel Memory Mo... Jonas Oberhauser : https://www.youtube.com/watch?v=iFDKhIxKhoQ
  - P99 CONF 2023 | How to Avoid Learning the Linux-Kernel Memory Model by Paul McKenney : https://www.youtube.com/watch?v=T7VwKaU129w
+
+### Linux file systems
+ - Writing Linux File System for Fun : https://www.youtube.com/watch?v=sLR17lUjTpc
+ - Creating and Mounting a Filesystem on Linux: Step-by-Step Guide : https://www.youtube.com/watch?v=06INoQnj-s4
