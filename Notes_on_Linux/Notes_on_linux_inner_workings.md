@@ -3278,3 +3278,11 @@ References:
 
  - https://www.starlab.io/blog/using-gdb-to-debug-the-linux-kernel
 
+
+### Linux Kernel Memory Model (LKMM)
+
+ - Linux-Kernel Memory Model: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/p0124r7.html
+ - https://github.com/aparri/memory-model/blob/master/Documentation/explanation.txt
+ - Installing and Using the Linux-Kernel Memory Model (LKMM) - Paul McKenney : https://www.youtube.com/watch?v=YPpojI84WZk
+ - More Science Fiction than Fairy Tale: A Discussion of the Linux Kernel Memory Mo... Jonas Oberhauser : https://www.youtube.com/watch?v=iFDKhIxKhoQ
+ - P99 CONF 2023 | How to Avoid Learning the Linux-Kernel Memory Model by Paul McKenney : https://www.youtube.com/watch?v=T7VwKaU129w
