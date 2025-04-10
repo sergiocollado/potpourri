@@ -447,6 +447,7 @@ electronic signatures standard: ETSI TS 102 042
 ### Economy data
 - https://datosmacro.expansion.com/
 - https://oec.world/es/profile/country/esp
+- https://elordenmundial.com/
 - https://www.longtermtrends.net/market-cap-to-gdp-the-buffett-indicator/
 - https://finviz.com/map.ashx
 - https://tradingeconomics.com/
