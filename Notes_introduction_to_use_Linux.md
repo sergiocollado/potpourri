@@ -2911,12 +2911,14 @@ cd output/images # the images are here: sdcard.image
 
 # GIT
 
-ref: https://git-scm.com/docs/gittutorial <br>
-ref: https://www.git-scm.com/doc <br>
-ref: https://linux.die.net/man/7/gittutorial <br>
-ref: https://linux.die.net/man/7/gittutorial-2 <br>
-https://linux.die.net/man/7/gitworkflows <br>
-https://linux.die.net/man/7/gitglossary <br>
+ - https://git-scm.com/docs/gittutorial
+ - https://www.git-scm.com/doc
+ - https://linux.die.net/man/7/gittutorial 
+ - https://linux.die.net/man/7/gittutorial-2
+ - https://linux.die.net/man/7/gitworkflows
+ - https://linux.die.net/man/7/gitglossary
+ - the untold story of git: https://youtu.be/Uq41qdjJ8Xs?si=owopc3blVu6zHWhI
+ - Two decades of Git: A conversation with creator Linus Torvalds: https://youtu.be/sCr_gb8rdEI?si=Ma-zS5lbRYPqGsIF
 
 easy way to learn: https://learngitbranching.js.org/
 
