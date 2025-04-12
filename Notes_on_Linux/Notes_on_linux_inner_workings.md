@@ -3290,3 +3290,22 @@ References:
 ### Linux file systems
  - Writing Linux File System for Fun : https://www.youtube.com/watch?v=sLR17lUjTpc
  - Creating and Mounting a Filesystem on Linux: Step-by-Step Guide : https://www.youtube.com/watch?v=06INoQnj-s4
+
+
+ ### Control Flow Integrity
+ - https://outflux.net/slides/2020/lca/cfi.pdf
+ - https://lpc.events/event/16/contributions/1315/attachments/1067/2169/cfi.pdf
+ - https://source.android.com/docs/security/test/kcfi
+
+  
+
+
+
+
+
+
+
+
+
+
+ 
