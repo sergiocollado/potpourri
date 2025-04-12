@@ -436,6 +436,24 @@ Only after the tunnel is established can data be send. When the tunnel client se
 The client then sends the encapsulated (and usually encrypted) data to the tunnel server. The tunnel server accepts the data, removes the tunnel data, and forwards the payload to the destination network
 within the VPN. 
 
+## Network Interfaces
+
+### Static IP vs DHCP 
+
+**Static Ip** are dedicated, unchanged IP addresses assigned to the device. When setting up a static IP, the subnet, gateway and DNS host must be provided (host and/or domain). Typically is used for relevant network devices and hosts that may require constant connectivity. How to setup a static ip: https://www.clearlinux.org/clear-linux-documentation/guides/network/assign-static-ip.html
+
+**Dinamic IP** a dynamic address assigned from a pool of IP addresses within the DHCP scope. DHCP will normally provide the subnet, gateway and DNS information when the IP is assigned. Typically used for hosts that require transient connections, or the IP addresses of large numbers of hosts. 
+
+**Dynamic Host Configuration Protocol (DHCP)** is a client/server protocol that automatically provides an Internet Protocol (IP) host with its IP address and other related configuration information such as the subnet mask and default gateway. Reference: https://www.networkworld.com/article/966242/dhcp-defined-and-how-it-works.html, the sequence of actions is DORA: Discover, Offer, Request, Acknowledge. 
+
+### Multipe IPs
+
+ It is possible to have several IP associated to a single host, there may be serveral reasons for that, from service segreation to fault tolerance strategies. 
+
+
+
+
+
 
 
 
