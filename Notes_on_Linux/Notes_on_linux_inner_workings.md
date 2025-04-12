@@ -637,6 +637,7 @@ It has four main components:
  - reference: compiling with CLANG: https://www.kernel.org/doc/html/latest/kbuild/llvm.html
  - example: https://youtu.be/s95hjvFAE5g?t=402
  - tiny config: https://youtu.be/u2Juz5sQyYQ?si=J4p8VtCpb-CeA5Vv
+ - compiling with Clang/LLVM: https://docs.kernel.org/kbuild/llvm.html
 
 The kernel configuration is in the file named .config at the top of the kernel source tree.
 
