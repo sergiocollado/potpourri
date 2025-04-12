@@ -20,6 +20,7 @@ References:
  - Industrial I/O and triggers: https://www.marcusfolkesson.se/blog/industrial-io-triggers/
  - IIO a new kernel subsystem: https://bootlin.com/pub/conferences/2012/fosdem/iio-a-new-subsystem/iio-a-new-subsystem.pdf
  - Interfacing Sensors via the Industrial I/O (IIO) Subsystem: https://www.linkedin.com/pulse/embedded-linux-weekend-hacking-part-5-interfacing-via-kumar-phd-s0obc
+ - Simplify and Reuse Your Driver's Code with Regmaps - Ioan Adrian Ratiu, Collabora Ltd: https://youtu.be/ZSl7S58z8e0
 
 
 ## Overview
