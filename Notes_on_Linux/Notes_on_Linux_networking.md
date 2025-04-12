@@ -450,6 +450,14 @@ within the VPN.
 
  It is possible to have several IP associated to a single host, there may be serveral reasons for that, from service segreation to fault tolerance strategies. 
 
+ You can have: 
+  - mulitple IPs on the same network a single interface
+  - multipe interface cards with the same IP.
+  - multiple IPs on multiple interface cards.
+
+reference: 
+ - Add multiple IP addresses using NMCLI: https://infotechys.com/add-multiple-ip-addresses-using-nmcli/
+ - Add Secondary IP Address That Is Seen By A Server: https://askubuntu.com/questions/1095229/add-secondary-ip-address-that-is-seen-by-a-server
 
 
 
