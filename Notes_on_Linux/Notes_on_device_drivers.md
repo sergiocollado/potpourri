@@ -528,6 +528,27 @@ In the module init function call:
 Upon module exit, use: `platform_driver_unregister()`.
 
 
+## Industrial I/O devices
+
+References:
+ - sample: https://elixir.bootlin.com/linux/latest/source/drivers/iio/dummy/iio_simple_dummy.c
+ - https://abhashpl.hashnode.dev/my-linux-kernel-bug-fixing-mentorship-experience (iio drives)
+ - https://www.kernel.org/doc/html/latest/driver-api/iio/index.html
+ - https://linux.ime.usp.br/~marcelosc/2019/09/Simple-IIO-driver
+ - https://linux.ime.usp.br/~marcelosc/2019/09/Introduction-to-IIO-driver-development
+ - 10 Years of the Industrial I/O Kernel Subsystem - Jonathan Cameron: https://youtu.be/644oH1FXdtE?si=1A9JVMcIvjoRdIi1
+ - https://www.kernel.org/doc/html/v4.12/driver-api/uio-howto.html
+ - https://bootlin.com/blog/the-backbone-of-a-linux-industrial-i-o-driver/
+ - https://www.kernel.org/doc/html/v4.12/driver-api/iio/index.html
+ - rpi compilation tutorial: https://linux.ime.usp.br/~marcelosc/2019/09/RaspberryPi-kernel-compilation
+ - video iio example: https://youtu.be/l8mQtpZhgYI
+ - https://linux.ime.usp.br/~marcelosc/2019/09/Introduction-to-IIO-driver-development
+ - https://linux.ime.usp.br/~marcelosc/2019/09/Simple-IIO-driver
+ - LibIIO - A Library for Interfacing with Linux IIO Devices - Dan Nechita: https://youtu.be/p_VntEwUe24
+ - example PR: https://github.com/analogdevicesinc/linux/pull/436/commits/3d2c7522c01b19c19c77adfac0ab1546b56426bc
+ - how to connect to a rpi thru the USB port: https://linux.ime.usp.br/~marcelosc/2019/01/SSH-em-Raspberrypi-conectada-por-USB
+ - LibIIo: https://www.youtube.com/watch?v=p_VntEwUe24
+
 
 
 
