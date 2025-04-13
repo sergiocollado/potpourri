@@ -585,7 +585,7 @@ results](https://github.com/analogdevicesinc/linux/pull/529/commits/9f3cc26a3fb5
 scale](https://github.com/analogdevicesinc/linux/pull/529/commits/f7b5cbeba36ad42143994a7c7862adad70c45006)
 
 drivers/iio/adc/ad7292.c
-```
+```C
 // SPDX-License-Identifier: GPL-2.0
 /*
  * Analog Devices AD7292 SPI ADC driver
