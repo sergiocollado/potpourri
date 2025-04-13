@@ -550,6 +550,21 @@ References:
  - how to connect to a rpi thru the USB port: https://linux.ime.usp.br/~marcelosc/2019/01/SSH-em-Raspberrypi-conectada-por-USB
  - LibIIo: https://www.youtube.com/watch?v=p_VntEwUe24
 
+
+The IIO framework interaces sensors (ADCs or DACs) with the kernel.
+
+Usually these sensors are connected via SPI or I2C. A common use case of the sensors devices is to have combined functionality (e.g. light plus proximity sensor).
+
+The IIO model is based on device an channel architecture: 
+ - the device represents the chip itself, at the top hierachical level.
+ - the channels represents the acquisitons modes of the device, a device can have one or more channels ... for example an accelerometer or gyroscope.
+
+The IIO element will be exposed to the user space as a character device (when triggered buffer is supported ) and in the sysfs directory 
+whit the channels defined in it: 
+ - `/dev/ioo:deviceX` exports events and buffered data
+ - `/sys/bus/iio/iio:deviceX/`, a direcotry with represents the device and its channels
+
+
 Example IIO:
 - [AD7292 datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/AD7292.PDF)
 - [iio: adc: ad7292: add driver support for
@@ -671,16 +686,12 @@ MODULE_DESCRIPTION("Analog Devices AD7292 ADC driver");
 MODULE_LICENSE("GPL");
 ```
 
-The IIO framework interaces sensors (ADCs or DACs) with the kernel. 
 
-The IIO model is based on device an channel architecture: 
- - the device represents the chip itself, at the top hierachical level.
- - the channels represents the acquisitons modes of the device, a device can have one or more channels ... for example an accelerometer.
+### Core elements: 
 
-The IIO element will be exposed to the user space as a character device (when triggered buffer is supported ) and in the sysfs directory 
-whit the channels defined in it: 
- - `/dev/ioo:deviceX` exports events and buffered data
- - `/sys/bus/iio/iio:deviceX/`, a direcotry with represents the device and its channels
+Reference: https://www.kernel.org/doc/html/latest/driver-api/iio/core.html
+
+
 
 
 
