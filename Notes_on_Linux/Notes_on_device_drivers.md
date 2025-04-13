@@ -551,6 +551,7 @@ References:
  - LibIIo: https://www.youtube.com/watch?v=p_VntEwUe24
 
 Example IIO:
+- [AD7292 datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/AD7292.PDF)
 - [iio: adc: ad7292: add driver support for
 AD7292](https://github.com/analogdevicesinc/linux/pull/436/commits/3d2c7522c01b19c19c77adfac0ab1546b56426bc)
 - [dt-bindings: iio: adc: add DT docs for
