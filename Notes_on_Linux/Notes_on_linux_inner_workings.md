@@ -3101,6 +3101,7 @@ References:
 
 
 ### iio - industrial I/O:
+ - https://abhashpl.hashnode.dev/my-linux-kernel-bug-fixing-mentorship-experience (iio drives)
  - https://www.kernel.org/doc/html/latest/driver-api/iio/index.html
  - https://linux.ime.usp.br/~marcelosc/2019/09/Simple-IIO-driver
  - https://linux.ime.usp.br/~marcelosc/2019/09/Introduction-to-IIO-driver-development
