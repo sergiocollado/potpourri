@@ -3298,7 +3298,48 @@ References:
  - https://lpc.events/event/16/contributions/1315/attachments/1067/2169/cfi.pdf
  - https://source.android.com/docs/security/test/kcfi
 
-  
+  ### Linux filesystems
+   - Linux Storage Stack Explained - Werner Fischer, Thomas-Krenn.AG: https://youtu.be/hCKruOlLPIQ
+
+
+### Risc-V
+ -  Embedded Linux from Scratch in 45 minutes, on RISC-V: https://youtu.be/cIkTh3Xp3dA
+
+```
+#!/bin/bash
+
+set -euo pipefail
+
+HOST_ARCH=$(uname -m)
+ROOT=${1:?missing root filesystem}
+ARCH=${2:-$HOST_ARCH}
+
+BASE_DEPS=git
+INCLUDE=--include=$BASE_DEPS
+
+if [[ $ARCH == "$HOST_ARCH" ]]; then
+    sudo debootstrap "$INCLUDE" sid "$ROOT"
+else
+    sudo debootstrap --arch "$ARCH" --foreign "$INCLUDE" sid "$ROOT"
+    sudo chroot "$ROOT" bash -c "/debootstrap/debootstrap --second-stage"
+fi
+
+KSELFTESTS="build-essential flex bison libasound2-dev libcap-ng-dev libcap-dev libnuma-dev libmnl-dev pkg-config rsync libpopt-dev libssl-dev libelf-dev clang liburing-dev libfuse3-dev libfuse-dev"
+LTP="python3 python3-asyncssh python3-msgpack"
+sudo chroot "$ROOT" bash -c "apt install -y $KSELFTESTS $LTP"
+
+# sudo vng --verbose --user root --arch riscv64 --root $roots/riscv/sid --run $linux/riscv64/ --force-9p --rw -n user
+
+# https://cloud-images.ubuntu.com/
+# https://download.opensuse.org/ports/
+# https://cloud.debian.org/images/cloud/
+```
+
+> IMHO buildroot is awesome but may be overkill; if you have debootstrap (the debian tool, it's packaged in opensuse and probably in red hat too) you can use something like this... then use vng to run a kernel with it!
+>
+> that of course imply in having the correct qemu-system package, etc
+
+
 
 
 
