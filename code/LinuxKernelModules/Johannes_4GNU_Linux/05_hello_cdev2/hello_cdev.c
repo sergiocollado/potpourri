@@ -57,10 +57,11 @@ MODULE_DESCRIPTION("A sample driver for registering a character device");
  *  Once you insmod the module, and the chrdev is registered, you can use
  *  the reported number in dmesg for creating a chrdev with 'mknod'.
  *  'mknod' stands for 'make node'
- *  >sudo mknod /dev/hello0 c <major> 0
+ *  >sudo mknod /dev/hello0 c <major> <minor>
  *  then its is possible to try to read from it, with the command:
+ *  >sudo mknod /dev/hello0 c <major> 0
  *  >cat /dev/hello0
  *  this should report an error, because the read operation have not been
  *  defined.
- *  after that remove /dev/hello0 manually.
+ *  after that remove /dev/hello0 manually. (with 'rm' ... it is just a file)
  */
