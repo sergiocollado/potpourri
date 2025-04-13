@@ -531,6 +531,7 @@ Upon module exit, use: `platform_driver_unregister()`.
 ## Industrial I/O devices
 
 References:
+ - https://www.kernel.org/doc/html/v4.14/driver-api/iio/index.html
  - sample: https://elixir.bootlin.com/linux/latest/source/drivers/iio/dummy/iio_simple_dummy.c
  - https://abhashpl.hashnode.dev/my-linux-kernel-bug-fixing-mentorship-experience (iio drives)
  - https://www.kernel.org/doc/html/latest/driver-api/iio/index.html
@@ -549,6 +550,35 @@ References:
  - how to connect to a rpi thru the USB port: https://linux.ime.usp.br/~marcelosc/2019/01/SSH-em-Raspberrypi-conectada-por-USB
  - LibIIo: https://www.youtube.com/watch?v=p_VntEwUe24
 
+Example IIO:
+- [iio: adc: ad7292: add driver support for
+AD7292](https://github.com/analogdevicesinc/linux/pull/436/commits/3d2c7522c01b19c19c77adfac0ab1546b56426bc)
+- [dt-bindings: iio: adc: add DT docs for
+AD7292](https://github.com/analogdevicesinc/linux/pull/436/commits/9bcafa90d1b01c36619b20f788fb769e1d43a727)
+- [iio: adc: ad7292: add dtoverlay for
+AD7292](https://github.com/analogdevicesinc/linux/pull/436/commits/774e39b7ac4bbcfb4104778e5e08e73b863923be)
+- [iio: adc: ad7292: add IIO ADC
+channels](https://github.com/analogdevicesinc/linux/pull/456/commits/be0aa43f1bcbf934402002693e496cd61bb15541)
+- [iio: adc: ad7292: add voltage regulator
+support](https://github.com/analogdevicesinc/linux/pull/456/commits/09434bb92f8828802ef7ec4e055e22d20518537b)
+- [iio: adc: ad7292: add SPI reg read
+functions](https://github.com/analogdevicesinc/linux/pull/456/commits/49db8a5d1421636f7e893a0836c4e6f4391c84b1)
+- [iio: adc: ad7292: read single conversion
+results](https://github.com/analogdevicesinc/linux/pull/529/commits/9f3cc26a3fb5d8331396debfd6f55803e92e887f)
+- [iio: adc: ad7292: add support to read ADC
+scale](https://github.com/analogdevicesinc/linux/pull/529/commits/f7b5cbeba36ad42143994a7c7862adad70c45006)
+
+
+The IIO framework interaces sensors (ADCs or DACs) with the kernel. 
+
+The IIO model is based on device an channel architecture: 
+ - the device represents the chip itself, at the top hierachical level.
+ - the channels represents the acquisitons modes of the device, a device can have one or more channels ... for example an accelerometer.
+
+The IIO element will be exposed to the user space as a character device (when triggered buffer is supported ) and in the sysfs directory 
+whit the channels defined in it: 
+ - `/dev/ioo:deviceX` exports events and buffered data
+ - `/sys/bus/iio/iio:deviceX/`, a direcotry with represents the device and its channels
 
 
 
