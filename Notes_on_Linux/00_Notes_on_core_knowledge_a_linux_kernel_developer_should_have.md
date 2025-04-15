@@ -1,4 +1,4 @@
-original: https://www.linuxjournal.com/content/core-knowledge-modern-linux-kernel-developer-should-have
+Original: https://www.linuxjournal.com/content/core-knowledge-modern-linux-kernel-developer-should-have
 
 ## Languages
 The Linux Kernel is written in C programming language, so C is the most important language for the Linux Kernel developer. Initially, the kernel was written in GNU C (now it is also possible to build it using LLVM) which extends standard C with some additional keywords and attributes. I would recommend learning some modern C version like C11 and additionally learning GNU extensions to be able to read kernel code effectively. Small, architecture-specific parts of the kernel and some highly optimized parts of several drivers are written in assembly language. This is the second language of choice. There are 3 main architectures nowadays: x86, ARM, and RISC-V. What assembly language to choose depends on your hardware platform.
