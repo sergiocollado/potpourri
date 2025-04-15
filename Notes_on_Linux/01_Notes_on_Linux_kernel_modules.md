@@ -52,7 +52,7 @@ References:
 
 ## What is a device driver.
 
-A device driver is a code, that contrals a given tye of device in the compuer.
+A device driver is a code, that controls a given tye of device in the compuer.
 
 A device driver has three sides
 - one side talks to the kernel
