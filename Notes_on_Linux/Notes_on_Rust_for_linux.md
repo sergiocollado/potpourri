@@ -228,6 +228,9 @@ Nice intro:
 
 ## Patches examples:
 
+ - SPI branc: https://github.com/Rust-for-Linux/linux/pull/264/commits
+
+  
  - [PATCH V3 0/2] rust: Add basic clock abstractions : https://lore.kernel.org/rust-for-linux/Z88rhn5nVbd4-JSE@thinkpad/T/#t
  - [PATCH v3] rust: add bindings and API for bitmap.h and bitops.h. : https://lore.kernel.org/rust-for-linux/Z88rhn5nVbd4-JSE@thinkpad/T/#t
  - [PATCH 0/4] Auxiliary bus Rust abstractions : https://lore.kernel.org/rust-for-linux/Z9HqC_EeiyScCaEL@cassiopeiae/T/#t
