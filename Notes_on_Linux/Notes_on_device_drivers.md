@@ -22,6 +22,7 @@ References:
  - Interfacing Sensors via the Industrial I/O (IIO) Subsystem: https://www.linkedin.com/pulse/embedded-linux-weekend-hacking-part-5-interfacing-via-kumar-phd-s0obc
  - Simplify and Reuse Your Driver's Code with Regmaps - Ioan Adrian Ratiu, Collabora Ltd: https://youtu.be/ZSl7S58z8e0
  - How to Create a sysfs File Correctly: http://kroah.com/log/blog/2013/06/26/how-to-create-a-sysfs-file-correctly/
+ - udev: https://en.wikipedia.org/wiki/Udev#Operation
 
 
 ## Overview
