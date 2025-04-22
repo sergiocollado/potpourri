@@ -534,6 +534,8 @@ Upon module exit, use: `platform_driver_unregister()`.
 
 Reference: 
  - https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c
+ - https://www.youtube.com/watch?v=g9-wgdesvwA: https://youtu.be/g9-wgdesvwA
+ - kernel-programming-device-model-i2c.pdf : https://bootlin.com/pub/conferences/2018/elc/opdenacker-kernel-programming-device-model-i2c/kernel-programming-device-model-i2c.pdf
 
 
 ## Industrial I/O devices
