@@ -571,6 +571,7 @@ Bigbanging involves GPIO lines where the others write to an I2C controller chip.
 **I2C algorithms** are used to communicate with devices when the driver requests to write or read data from the device. 
 They are represented by the structure `i2c_algorithm` which allows you to define function pointers that can write I2C messages (`master_xfer`) or SMBus messages (`smbus_xfer`). 
 
+the `i2c_algorithm` abstracts the I2C bus transaction interface, where trnasaction means a tranfer, such a read or write operations. 
 
 ### I2C Adapter
 There are multiple buses on the board and each bus is represented to Linux by a `struct i2c_adapter` (include/linux/i2c.h) 
@@ -580,11 +581,15 @@ This bus may be used with I2C messages or SMBus (System Management Bus) messsage
 
 If there is a system with 3 I2C buses, two controllowed by a *controller chip* and one *big-banged*, there would be 3 instances of `i2c_adapter` and 2 instances of an `i2c_algorithm`.
 
+An `i2c_adapter`is used to identify a physical I2C bus.
+
 ### I2C Client
 Each *device* connected to the bus is represented by the `struct i2c_client` (include/linux/i2c.h). This **maybe** defined beforehand in board-related code (arch/arm/mach.../board-omap...c). 
 The device has an *address* that is used by driver to determine where the device is on the bus. This address is hardcoded by the device? It's something like 0x14. The device also has a *name* and an *interrupt number* used to trigger and interrupt. 
 
 You must tell the *client* about the *adapter* which represents its bus line. When you want to read or write to device, it must know which bus line to use for communication. The *client* represents the device to linux. Since the device is hardware, this is usually defined under [Board Information](###I2C-Board-Information)
+
+`i2c_client` is used to abstact a slave device sitting in the I2C bus. 
 
 ###  I2C Board Information
 Again, this may be where the `i2c_client` is defined in `struct i2c_board_info` (include/linux/i2c.h). 
@@ -616,6 +621,8 @@ static struct i2c_driver adc_driver = {
 	.probe = adc_probe,
 };
 ```
+
+the `i2c_driver` is the driver of a slave device. 
 
 Below is an image of the I2C subsystem for reference. This image is most helpful for reference and understanding the system as a whole.
 ![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/linux_i2c_subsystem.jpg)
