@@ -530,14 +530,21 @@ In the module init function call:
 
 Upon module exit, use: `platform_driver_unregister()`.
 
-## I2C on Linux
+## I2C Device drivers
 
-Reference: 
+References: 
  - https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c
  - https://www.youtube.com/watch?v=g9-wgdesvwA: https://youtu.be/g9-wgdesvwA
  - kernel-programming-device-model-i2c.pdf : https://bootlin.com/pub/conferences/2018/elc/opdenacker-kernel-programming-device-model-i2c/kernel-programming-device-model-i2c.pdf
 
+### Fundamentals of IDC
 
+ References:
+  - https://www.ti.com/lit/an/sbaa565/sbaa565.pdf?ts=1745316874300
+  - https://www.circuitbasics.com/basics-of-the-i2c-communication-protocol/
+  - https://learn.sparkfun.com/tutorials/i2c/all
+
+###  I2C on Linux
 The i2c subsystem allows Linux to be master and all connected devices to be slaves. They interact on the i2c bus.
 
 When we talk about I2C, we use the following terms:
@@ -582,7 +589,7 @@ You must tell the *client* about the *adapter* which represents its bus line. Wh
 ###  I2C Board Information
 Again, this may be where the `i2c_client` is defined in `struct i2c_board_info` (include/linux/i2c.h). 
 The board information structure contains information related to the board as well as devices on the board? The *type* field indicates the type of (i2c) device and is copied to the `i2c_client` object. The *addr* field is similar to above in the client (copied to address field in *i2c_client*. There is also parallels *irq* .. The board information structS are written as an array of devices like the following:
-```
+```C
 static struct i2c_board_info z23_devices[] = {
 	{
 		.type = eeprom_abc,
@@ -600,7 +607,7 @@ This board info is received into the kernel during bootup. The *i2c_client* is c
 ### I2C Driver
 For each device, there exists a driver that corresponds to it. The driver is represented by `struct i2c_driver` (include/linux/i2c.h). 
 The driver has a *name* which is used to link the client device with one driver. The driver also has a *probe* function which is called when the device and driver are both found on the system by a *Linux device driver subsystem*. For example,
-```
+```C
 static struct i2c_driver adc_driver = {
 	.driver = {
 		.name = adc_efg,
@@ -617,7 +624,7 @@ Below is an image of the I2C subsystem for reference. This image is most helpful
 
 If the bus number on which the device is connected is known use,
 
-```
+```C
 int i2c_register_board_info(int busnum, struct i2c_board_info &ast;info, unsigned len);
 ```
 
@@ -625,7 +632,7 @@ where *busnum* is the number of the bus which the device is connected (identify 
 
 Else if the bus number is not known but the *i2c_adapter* is known, use,
 
-```
+```C
 struct i2c_client &ast;
 i2c_new_device(struct i2c_adapter &ast;adap, struct i2c_board_info const *info);
 ```
@@ -633,7 +640,7 @@ i2c_new_device(struct i2c_adapter &ast;adap, struct i2c_board_info const *info);
 where info is an object, indexed of the previous array (adap, &z23_devices[1]).
 
 Also, the `struct i2c_driver` has to be registered with the I2C subsytem in the `module_init`
-```
+```C
 i2c_add_driver(struct i2c_driver *drv);
 ```
 This line will match the name of the driver through the i2c subsytem to all the i2c_client names; on a match, the probe routine of the driver will be called and the *client* will verified as a device (in probe). 
@@ -641,17 +648,17 @@ This line will match the name of the driver through the i2c subsytem to all the 
 ### Communicating on the I2C Bus
 
 #### Reading bytes from bus
-```
+```C
 i2c_smbus_read_byte_data(struct i2c_client *client, u8 command);
 ```
 Client is received in probe function...
 And reading words is similar:
-```
+```C
 i2c_smbus_read_word_data(struct i2c_client *client, u8 command);
 ```
 
 #### Writing bytes
-```
+```C
 i2c_smbus_write_byte_data(struct i2c_client *client, u8 command, u8 data);
 
 i2c_smbus_write_word_data(struct i2c_client *client, u8 command, u16 data);
@@ -661,7 +668,7 @@ i2c_smbus_write_word_data(struct i2c_client *client, u8 command, u16 data);
 There are several means of declaring/instantiating a I2C device
 
 1. Declare device by bus number in `i2c_board_info` found in arch/ board code
-```
+```C
 static struct i2c_board_info h4_i2c_board_info[] __initdata = {
    {
            I2C_BOARD_INFO("isp1301_omap", 0x2d),
@@ -688,7 +695,7 @@ static void __init omap_h4_init(void)
 
 2. Declare device via device tree (dts) and will be imported into kernel
 
-```
+```C
 i2c1: i2c@400a0000 {
 	clock-frequency = <100000>;
 	...
@@ -696,7 +703,7 @@ i2c1: i2c@400a0000 {
 3. Declare device explicitly in module
 Usually when you don't know the i2c bus number ahead of time or for internal communication. 
 You include the `i2c_board_info` within the module and then call `i2c_new_device()` to register device with system.
-```
+```C
 static struct i2c_board_info sfe4001_hwmon_info = {
         I2C_BOARD_INFO("max6647", 0x4e),
 };
@@ -719,7 +726,7 @@ This method will only probe buses that are likely to have supported devices and 
 5. Lastly, you can instantiate a device from user space through sysfs
 This is only if you cannot modify the kernel. You need to know the name of the I2C device and the address.
 **Example**
-```
+```C
 $ echo eeprom 0x50 > /sys/bus/i2c/devices/i2c-3/new_device
 ```
 This method can be used to correct mistaken addresses and such in dts or kernel. 
@@ -732,7 +739,7 @@ You can read and write to I2C devices from the userspace.
 First, one must use `i2c-detect -l` to find out adapter number information. 
 After you have this and the address of the device, see the following code from [dev-interface](https://www.kernel.org/doc/Documentation/i2c/dev-interface).
 
-```
+```C
 #include <linux/i2c-dev.h>
 
 ...
