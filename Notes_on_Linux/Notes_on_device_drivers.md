@@ -23,6 +23,7 @@ References:
  - Simplify and Reuse Your Driver's Code with Regmaps - Ioan Adrian Ratiu, Collabora Ltd: https://youtu.be/ZSl7S58z8e0
  - How to Create a sysfs File Correctly: http://kroah.com/log/blog/2013/06/26/how-to-create-a-sysfs-file-correctly/
  - udev: https://en.wikipedia.org/wiki/Udev#Operation
+ - kernel-programming-device-model-i2c.pdf : https://bootlin.com/pub/conferences/2018/elc/opdenacker-kernel-programming-device-model-i2c/kernel-programming-device-model-i2c.pdf
 
 
 ## Overview
@@ -528,6 +529,11 @@ In the module init function call:
  - `platform_driver_probe()` - this method don't register the driver on the system. the kernel unst immediately the matching loop, to see fi there is any devices that matches agains tit, and the driver will call the `probe()` methods in the devices that matched. If at that moment no devices matches, the drives will be ignored after that. In this case, the `probe()` function muste be placed in an `__init` section, which is freeded later when the kernel boot is completed... this methods is used when it is a certainty that the devices is present in the system.
 
 Upon module exit, use: `platform_driver_unregister()`.
+
+## I2C
+
+Reference: 
+ - https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c
 
 
 ## Industrial I/O devices
