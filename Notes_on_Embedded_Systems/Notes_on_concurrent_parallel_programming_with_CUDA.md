@@ -2,6 +2,8 @@
 
 related reference: 
  - [Stanford CS149 I Parallel Computing I 2023](https://www.youtube.com/watch?v=V1tINV2-9p4&list=PLoROMvodv4rMp7MTFr4hQsDEcX7Bx6Odp)
+ - What is Cuda? - Computerphile: https://youtu.be/K9anz4aB0S0
+ - Zen, CUDA, and Tensor Cores - Part 1: https://youtu.be/uBtuMsAY7J8
  - https://learn.nvidia.com/en-us/training/resources
  - https://learn.nvidia.com/en-us/training/self-paced-courses#cid=dli01_nv-int-bnr_en-us
  - https://nvdam.widen.net/s/brxsxxtskb/dli-learning-journey-2009000-r5-web/?nvid=nv-int-bnr-827289#cid=dli01_nv-int-bnr_en-us
