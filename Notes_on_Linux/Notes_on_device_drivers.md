@@ -24,6 +24,8 @@ References:
  - How to Create a sysfs File Correctly: http://kroah.com/log/blog/2013/06/26/how-to-create-a-sysfs-file-correctly/
  - udev: https://en.wikipedia.org/wiki/Udev#Operation
  - kernel-programming-device-model-i2c.pdf : https://bootlin.com/pub/conferences/2018/elc/opdenacker-kernel-programming-device-model-i2c/kernel-programming-device-model-i2c.pdf
+ - Basics of I2C on Linux - Luca Ceresoli, Bootlin : https://youtu.be/g9-wgdesvwA
+ - Tutorial: Introduction to I2C and SPI: Both In-kernel and In-userspace - Michael Welling : https://youtu.be/c10wAKWpjts
 
 
 ## Overview
@@ -534,8 +536,9 @@ Upon module exit, use: `platform_driver_unregister()`.
 
 References: 
  - https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c
- - https://www.youtube.com/watch?v=g9-wgdesvwA: https://youtu.be/g9-wgdesvwA
  - kernel-programming-device-model-i2c.pdf : https://bootlin.com/pub/conferences/2018/elc/opdenacker-kernel-programming-device-model-i2c/kernel-programming-device-model-i2c.pdf
+ - Basics of I2C on Linux - Luca Ceresoli, Bootlin : https://youtu.be/g9-wgdesvwA
+ - Tutorial: Introduction to I2C and SPI: Both In-kernel and In-userspace - Michael Welling : https://youtu.be/c10wAKWpjts
 
 ### Fundamentals of IDC
 
