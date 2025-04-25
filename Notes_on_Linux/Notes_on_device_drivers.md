@@ -281,6 +281,10 @@ static int platform_match(struct device *dev, const struct device_driver *drv)
 
 ## Platform devices
 
+In the very early days, Linux users often had to tell the kernel where specific devices were to be found before their systems would work. In the absence of this information, the driver could not know which I/O ports and interrupt line(s) the device was configured to use. Happily, we now live in the days of busses like PCI which have discoverability built into them; any device sitting on a PCI bus can tell the system what sort of device it is and where its resources are. So the kernel can, at boot time, enumerate the devices available and everything Just Works.
+
+Alas, life is not so simple; there are plenty of devices which are still not discoverable by the CPU. In the embedded and system-on-chip world, non-discoverable devices are, if anything, increasing in number. So the kernel still needs to provide ways to be told about the hardware that is actually present. "Platform devices" have long been used in this role in the kernel
+
 References:
  - Platform Devices and Drivers: https://www.kernel.org/doc/html/latest/driver-api/driver-model/platform.html
  - The platform device API : https://lwn.net/Articles/448499/
@@ -288,6 +292,7 @@ References:
  - Device tree usage: https://elinux.org/Device_Tree_Usage
 
 ### What is a platform device?
+
 Platform devices are inherently *not discoverable* They cannot inform software of their presence. i2c devices fall into this category. The software must know at compile time of their existence (via `board_info` or device tree (dts)..) 
 They are bound to drivers by *name matching* which you can learn in the i2c/ directory. Should be registered asap so that they can used.
 
