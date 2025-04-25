@@ -13,6 +13,8 @@ References:
  - https://leezhenghui.github.io/linux/2019/03/05/exploring-usdt-on-linux.html
  - https://github.com/iovisor/bcc
  - 20 Terminal Tools To Monitor Linux Resource Usage : https://youtu.be/UvADr3FVhZg
+ - What Every Programmer Should Know about How CPUs Work • Matt Godbolt • GOTO 2024: https://youtu.be/-HNpim5x-IE
+
 
 ## High performance coding
 
