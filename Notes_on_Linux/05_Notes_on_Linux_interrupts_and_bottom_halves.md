@@ -5,6 +5,8 @@
 
 references:
 - MUST READ LDD3: https://static.lwn.net/images/pdf/LDD3/ch10.pdf
+- IRQs: the Hard, the Soft, the Threaded and the Preemptible: https://youtu.be/-pehAzaP1eg
+- Kernel Recipes 2016 - Understanding a Real-Time System (more than just a kernel) - Steven Rostedt: https://youtu.be/w3yT8zJe0Uw
 - https://www.kernel.org/doc/html/latest/core-api/genericirq.html
 - https://0xax.gitbooks.io/linux-insides/content/Interrupts/linux-interrupts-1.html
 - https://cdrdv2.intel.com/v1/dl/getContent/671190
@@ -20,10 +22,8 @@ references:
 - https://elixir.bootlin.com/linux/v6.5.7/source/arch/x86/kernel/irq.c
 - https://linux.die.net/HOWTO/KernelAnalysis-HOWTO.html#toc1
 - https://docs.kernel.org/core-api/irq/index.html
-- IRQs: the Hard, the Soft, the Threaded and the Preemptible : https://youtu.be/-pehAzaP1eg
 - https://www.oreilly.com/library/view/understanding-the-linux/0596005652/ch04s06.html
 - https://linux.ime.usp.br/~marcelosc/2019/09/Introduction-to-IIO-driver-development
-- IRQs: the Hard, the Soft, the Threaded and the Preemptible: https://youtu.be/-pehAzaP1eg
 
 
 ### What is an interrupt?
