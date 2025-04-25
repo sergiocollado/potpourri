@@ -539,6 +539,9 @@ References:
  - kernel-programming-device-model-i2c.pdf : https://bootlin.com/pub/conferences/2018/elc/opdenacker-kernel-programming-device-model-i2c/kernel-programming-device-model-i2c.pdf
  - Basics of I2C on Linux - Luca Ceresoli, Bootlin : https://youtu.be/g9-wgdesvwA
  - Tutorial: Introduction to I2C and SPI: Both In-kernel and In-userspace - Michael Welling : https://youtu.be/c10wAKWpjts
+ - https://www.eevblog.com/forum/microcontrollers/i2c-sensor-integration-in-linux/
+ - https://github.com/torvalds/linux/blob/master/drivers/hwmon/lm75.c
+ - https://github.com/torvalds/linux/blob/master/drivers/gpio/gpio-pca9570.c
 
 ### Fundamentals of IDC
 
