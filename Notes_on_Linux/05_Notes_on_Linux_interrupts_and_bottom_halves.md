@@ -22,6 +22,8 @@ references:
 - https://docs.kernel.org/core-api/irq/index.html
 - IRQs: the Hard, the Soft, the Threaded and the Preemptible : https://youtu.be/-pehAzaP1eg
 - https://www.oreilly.com/library/view/understanding-the-linux/0596005652/ch04s06.html
+- https://linux.ime.usp.br/~marcelosc/2019/09/Introduction-to-IIO-driver-development
+- IRQs: the Hard, the Soft, the Threaded and the Preemptible: https://youtu.be/-pehAzaP1eg
 
 
 ### What is an interrupt?
