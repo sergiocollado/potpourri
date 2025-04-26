@@ -595,6 +595,7 @@ References:
  - https://www.linkedin.com/pulse/understanding-i2c-communication-linux-beginners-guide-soheil-nazari/
  - Let's code a Linux Driver - 22: Device Tree driver for an I2C Device: https://youtu.be/GQ1XwFWA2Nw
  - Let's code a Linux Driver - 36: I2C Device Driver without Device Tree: https://youtu.be/pESMpoQnfDU?list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
+ - Guide to interfacing a Gyro and Accelerometer with a Raspberry Pi: https://ozzmaker.com/berryimu/
 
 ### Fundamentals of I2C
 
