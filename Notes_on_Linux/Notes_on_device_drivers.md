@@ -586,6 +586,7 @@ References:
  - https://www.eevblog.com/forum/microcontrollers/i2c-sensor-integration-in-linux/
  - https://github.com/torvalds/linux/blob/master/drivers/hwmon/lm75.c
  - https://github.com/torvalds/linux/blob/master/drivers/gpio/gpio-pca9570.c
+ - https://archive.kernel.org/oldwiki/i2c.wiki.kernel.org/ (deprecated, but interesting for historical reasons)
 
 ### Fundamentals of IDC
 
@@ -593,6 +594,8 @@ References:
   - https://www.ti.com/lit/an/sbaa565/sbaa565.pdf?ts=1745316874300
   - https://www.circuitbasics.com/basics-of-the-i2c-communication-protocol/
   - https://learn.sparkfun.com/tutorials/i2c/all
+  - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/i2c/i2c-protocol.rst
+  - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/i2c/smbus-protocol.rst (SMbus = System Management bus a subsed of I2C definded by Intel).
 
 ###  I2C on Linux
 The i2c subsystem allows Linux to be master and all connected devices to be slaves. They interact on the i2c bus.
