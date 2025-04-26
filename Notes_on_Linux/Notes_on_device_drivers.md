@@ -703,7 +703,7 @@ Below is an image of the I2C subsystem for reference. This image is most helpful
 
 2- Fill algorithm struct: 
  - `.master_xfer()` - function to transform transfer
- - `functionality` - function to retrieve bus functionality
+ - `.functionality` - function to retrieve bus functionality
    
 3- Fill adaptor struct:
  - `i2c_set_adapdata()
