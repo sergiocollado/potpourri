@@ -700,13 +700,16 @@ Below is an image of the I2C subsystem for reference. This image is most helpful
 ### Define an i2c_driver
 
 1- Define an allocate a private data struct ( that contains `struct i2c_adapter`)
+
 2- Fill algorithm struct: 
  - `.master_xfer()` - function to transform transfer
  - `functionality` - function to retrieve bus functionality
+   
 3- Fill adaptor struct:
  - `i2c_set_adapdata()
  - `.algo` pointer to algorithm struct.
  - `.algo_data` pointer the private data struct.
+   
 4- Add adapter
    - `i2c_add_adapter()` 
 
