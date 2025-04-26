@@ -201,6 +201,11 @@ you can build the kernel wit all those options enabled.
 
 ## KUnit
 
+A kunit test that I created: https://lore.kernel.org/rust-for-linux/CABVgOSm=5Q0fM6neBhxSbOUHBgNzmwf2V22vsYC10YRBT=kN1g@mail.gmail.com/T/#t
+
+from: https://sergiocollado.github.io/LKMP.html
+
+References:
 - https://docs.kernel.org/dev-tools/kunit/ <br>
 - https://kunit.dev/ <br>
 - https://kunit.dev/third_party/kernel/docs/start.html#writing-your-first-test <br>
