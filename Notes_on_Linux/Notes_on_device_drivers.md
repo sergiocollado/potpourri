@@ -580,6 +580,7 @@ Upon module exit, use: `platform_driver_unregister()`.
 
 References: 
  - https://www.kernel.org/doc/html/v4.14/driver-api/i2c.html
+ - https://hackerbikepacker.com/i2c-on-linux
  - https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c
  - kernel-programming-device-model-i2c.pdf : https://bootlin.com/pub/conferences/2018/elc/opdenacker-kernel-programming-device-model-i2c/kernel-programming-device-model-i2c.pdf
  - Basics of I2C on Linux - Luca Ceresoli, Bootlin : https://youtu.be/g9-wgdesvwA
@@ -589,12 +590,18 @@ References:
  - https://github.com/torvalds/linux/blob/master/drivers/gpio/gpio-pca9570.c
  - https://archive.kernel.org/oldwiki/i2c.wiki.kernel.org/ (deprecated, but interesting for historical reasons)
  - https://archive.kernel.org/oldwiki/i2c.wiki.kernel.org/index.php/File:I2c-layers.png.html (i2c linux subsystem diagram - is it deprecated?)
+ - https://www.kernel.org/doc/Documentation/i2c/dev-interface
+ - https://github.com/Sensirion/i2c-tools/blob/master/README
+ - https://www.linkedin.com/pulse/understanding-i2c-communication-linux-beginners-guide-soheil-nazari/
+ - Let's code a Linux Driver - 22: Device Tree driver for an I2C Device: https://youtu.be/GQ1XwFWA2Nw
+ - Let's code a Linux Driver - 36: I2C Device Driver without Device Tree: https://youtu.be/pESMpoQnfDU?list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
 
 ### Fundamentals of I2C
 
  References:
   - https://www.ti.com/lit/an/sbaa565/sbaa565.pdf?ts=1745316874300
   - https://www.circuitbasics.com/basics-of-the-i2c-communication-protocol/
+  - understanding i2c: https://youtu.be/CAvawEcxoPU
   - https://learn.sparkfun.com/tutorials/i2c/all
   - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/i2c/i2c-protocol.rst
   - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/i2c/smbus-protocol.rst (SMbus = System Management bus a subsed of I2C definded by Intel).
@@ -615,7 +622,8 @@ An Algorithm driver cointains general code that can be used for a whole class of
                 *Client*
 
 ```
-
+A Driver contains the general code to access some type of device. Each detected device gets its own data in the Client structure. Usually, Driver and -Client are more closely integrated
+than Algorithm and Adapter. 
   
 ### How does a I2C device differ from a platform device?
 
@@ -683,16 +691,33 @@ For each device, there exists a driver that corresponds to it. The driver is rep
 The driver has a *name* which is used to link the client device with one driver. The driver also has a *probe* function which is called when the device and driver are both found on the system by a *Linux device driver subsystem*. For example: 
 
 ```C
-static struct i2c_driver adc_driver = {
+static struct i2c_driver foo_driver = {
 	.driver = {
-		.name = adc_efg,
+		.name = "foobar",
 		.owner = THIS_MODULE,
+		.of_match_table = of_match_ptr(foo_dt_ids) // for the device tree 
 	},
-	.probe = adc_probe,
+	.id_table = foo_idtable,
+	.probe    = foo_probe,
+	.remove   = foo_remove,
 };
+
+static struct i2c_device_id foo_idtable[] = {
+	{ "foo", 0},
+	{}
+}
+
+MODULE_DEVICE_TABLE(i2c, foo_idtable);
+
+static const struct of_device_id foo_dt_ids[] = {
+	{.compatible = "foo,bar", .data = (void*) 0xDEADBEEF},
+	{}
+};
+
+MODULE_DEVICE_TABLE(of, foo_dt_ids);
 ```
 
-the `i2c_driver` is the driver of a slave device. 
+The `i2c_driver` is the driver of a slave device. 
 
 Below is an image of the I2C subsystem for reference. This image is most helpful for reference and understanding the system as a whole.
 ![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/linux_i2c_subsystem.jpg)
@@ -711,8 +736,105 @@ Below is an image of the I2C subsystem for reference. This image is most helpful
  - `.algo_data` pointer the private data struct.
    
 4- Add adapter
-   - `i2c_add_adapter()` 
+   - `i2c_add_adapter()`
 
+### I2c Device driver general data
+
+Each client structure has a special data field that can point to any structure at all. Use this to keep device 
+specific data. This can be used for example to keep an internal state. 
+
+```
+// store the value
+void i2c_set_clientdata(struct i2c_client *client, void *data);
+```
+
+```
+// retrieve value
+void i2c_get_clientdata(const struct i2c_client *client);
+```
+
+### I2c driver initialization
+
+```
+static int __int foo_init(void)
+{
+	return i2c_add_driver(&foo_driver);
+}
+module_init(foo_init);
+
+static void __exit foo_cleanup(void)
+{
+	i2c_del_driver(&foo_driver);
+}
+module_exit(foo_cleanup);
+```
+
+The `module_i2c_driver()`  macro can be used to reduce the above code
+
+```
+module_i2c_driver(foo_driver);
+```
+
+### I2C Device Driver plain I2C API
+
+
+These routines read and write some bytes from/to a client. The client contains the i2c address, so you do not 
+have to include it. The second parameter contains the bytes to read/write, the third the number of bytes to 
+read/write (must be less than the length of the buffer, also should be less that 64k since msg.len is u16). 
+Returns the actual number of bytes read/written. 
+
+
+ - https://elixir.bootlin.com/linux/v6.14.4/source/include/linux/i2c.h#L98
+
+```
+/**
+ * i2c_master_send - issue a single I2C message in master transmit mode
+ * @client: Handle to slave device
+ * @buf: Data that will be written to the slave
+ * @count: How many bytes to write, must be less than 64k since msg.len is u16
+ *
+ * Returns negative errno, or else the number of bytes written.
+ */
+static inline int i2c_master_send(const struct i2c_client *client,
+				  const char *buf, int count)
+```
+
+ - https://elixir.bootlin.com/linux/v6.14.4/source/include/linux/i2c.h#L68
+
+```
+/**
+ * i2c_master_recv - issue a single I2C message in master receive mode
+ * @client: Handle to slave device
+ * @buf: Where to store data read from slave
+ * @count: How many bytes to read, must be less than 64k since msg.len is u16
+ *
+ * Returns negative errno, or else the number of bytes read.
+ */
+static inline int i2c_master_recv(const struct i2c_client *client,
+				  char *buf, int count)
+```
+
+
+This sends a series of messages. Each message can be read or write, and they can 
+be mixed in any way. No stop condition is issued between transactions. The i2c_msg structure contains for each message the client address, 
+the number of bytes of the message and the message data itself. 
+
+https://elixir.bootlin.com/linux/v6.14.4/source/drivers/i2c/i2c-core-base.c#L2279
+```
+/**
+ * i2c_transfer - execute a single or combined I2C message
+ * @adap: Handle to I2C bus
+ * @msgs: One or more messages to execute before STOP is issued to
+ *	terminate the operation; each message begins with a START.
+ * @num: Number of messages to be executed.
+ *
+ * Returns negative errno, else the number of messages executed.
+ *
+ * Note that there is no requirement that each message be sent to
+ * the same slave address, although that is the most common model.
+ */
+int i2c_transfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
+```
 
 ### I2C Device Registration
 
@@ -737,7 +859,7 @@ Also, the `struct i2c_driver` has to be registered with the I2C subsytem in the 
 ```C
 i2c_add_driver(struct i2c_driver *drv);
 ```
-This line will match the name of the driver through the i2c subsytem to all the i2c_client names; on a match, the probe routine of the driver will be called and the *client* will verified as a device (in probe). 
+This line will match the name of the driver through the i2c subsytem to all the i2c_client names; on a match, the probe routine of the driver will be called and the *client* will verified as a device (in probe). 	
 
 ### Communicating on the I2C Bus
 
@@ -759,6 +881,7 @@ i2c_smbus_write_word_data(struct i2c_client *client, u8 command, u16 data);
 ```
 
 ### Instantiating I2C devices
+
 There are several means of declaring/instantiating a I2C device
 
 1. Declare device by bus number in `i2c_board_info` found in arch/ board code
@@ -794,8 +917,7 @@ i2c1: i2c@400a0000 {
 	clock-frequency = <100000>;
 	...
 ```
-3. Declare device explicitly in module
-Usually when you don't know the i2c bus number ahead of time or for internal communication. 
+3. Declare device explicitly in module. Usually when you don't know the i2c bus number ahead of time or for internal communication. 
 You include the `i2c_board_info` within the module and then call `i2c_new_device()` to register device with system.
 ```C
 static struct i2c_board_info sfe4001_hwmon_info = {
@@ -820,14 +942,18 @@ This method will only probe buses that are likely to have supported devices and 
 5. Lastly, you can instantiate a device from user space through sysfs
 This is only if you cannot modify the kernel. You need to know the name of the I2C device and the address.
 **Example**
+
 ```C
 $ echo eeprom 0x50 > /sys/bus/i2c/devices/i2c-3/new_device
 ```
+
 This method can be used to correct mistaken addresses and such in dts or kernel. 
 Unexpected address. Unsupported devices. Development issues.
 
 
 ### Userspace development
+
+reference: [https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c](https://www.kernel.org/doc/Documentation/i2c/dev-interface)
 
 You can read and write to I2C devices from the userspace. 
 First, one must use `i2c-detect -l` to find out adapter number information. 
