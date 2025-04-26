@@ -604,23 +604,36 @@ The i2c subsystem allows Linux to be master and all connected devices to be slav
 
 When we talk about I2C, we use the following terms:
 
+```
   **Bus**    -> *Algorithm*, 
                 *Adapter*
-
+```
+An Algorithm driver cointains general code that can be used for a whole class of I2C adapters. Each specific adapter driver either depends on one algorithm or includes its own implementation.
+  
+```
   **Device** -> *Driver*, 
                 *Client*
+
+```
+
+  
 ### How does a I2C device differ from a platform device?
+
 An i2c device is an example of a platform device, however the complexities of i2c protocol are abstracted in a piece of hardware called the *i2c controller* which provides a way to connect and communicate to i2c devices. 
+
 The driver used for configuring and using the i2c controller is a *platform driver*. The controller is an example of a platform device..
 
 If an i2c device does not fit into the i2c controller model... may have to create it as a platform driver and customize for device.?
 
 ### I2C Algorithm
 
-An Algorithm driver contains general code that can be used for a whole class of I2C adapters. 
-It's function is to read and write the I2C messages to the hardware. 
+An Algorithm driver contains general code that can be used for a whole class of I2C adapters. It's function is to read and write the I2C messages to the hardware. 
 Each specific adapter driver either depends on one algorithm driver, or includes its own implementation. 
-There are three algorithms defined for the bus: pca, pcf and bitbanging. 
+There are three algorithms defined for the bus: 
+ - pca
+ - pcf
+ - bitbanging.
+   
 Bigbanging involves GPIO lines where the others write to an I2C controller chip. (Is the *I2c controller* required?)
 
 **I2C algorithms** are used to communicate with devices when the driver requests to write or read data from the device. 
@@ -665,8 +678,10 @@ static struct i2c_board_info z23_devices[] = {
 This board info is received into the kernel during bootup. The *i2c_client* is created when the *i2c_adapter* is registered. It is possible to manually add *i2c_clients* that the board does not know about.?
 
 ### I2C Driver
-For each device, there exists a driver that corresponds to it. The driver is represented by `struct i2c_driver` (include/linux/i2c.h). 
-The driver has a *name* which is used to link the client device with one driver. The driver also has a *probe* function which is called when the device and driver are both found on the system by a *Linux device driver subsystem*. For example,
+
+For each device, there exists a driver that corresponds to it. The driver is represented by `struct i2c_driver` (https://elixir.bootlin.com/linux/v6.14.4/source/include/linux/i2c.h#L235). 
+The driver has a *name* which is used to link the client device with one driver. The driver also has a *probe* function which is called when the device and driver are both found on the system by a *Linux device driver subsystem*. For example: 
+
 ```C
 static struct i2c_driver adc_driver = {
 	.driver = {
@@ -681,6 +696,20 @@ the `i2c_driver` is the driver of a slave device.
 
 Below is an image of the I2C subsystem for reference. This image is most helpful for reference and understanding the system as a whole.
 ![](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/linux_i2c_subsystem.jpg)
+
+### Define an i2c_driver
+
+1- Define an allocate a private data struct ( that contains `struct i2c_adapter`)
+2- Fill algorithm struct: 
+ - `.master_xfer()` - function to transform transfer
+ - `functionality` - function to retrieve bus functionality
+3- Fill adaptor struct:
+ - `i2c_set_adapdata()
+ - `.algo` pointer to algorithm struct.
+ - `.algo_data` pointer the private data struct.
+4- Add adapter
+   - `i2c_add_adapter()` 
+
 
 ### I2C Device Registration
 
