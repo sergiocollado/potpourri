@@ -34,7 +34,7 @@ The "Open Firmware Device Tree" or simply the Device Tree (DT) is a data exchang
 
 More specifically it is a description of the hardware that is readable by the operating system so that the operating system doesn't need to hard-code the details of the machine, this presents advantages over the traditional method of hardcoding hardware information on the kernel. With the device tree the kernel can configure itself dynamically. 
 
-In Linux is a recommended way to describe non-discoverable devices (platform devices) to the Linux Kernel, which previously had to be hardcoded on the source files.
+In Linux is a recommended way to describe **non-discoverable devices** (platform devices) to the Linux Kernel, which previously had to be hardcoded on the source files.
 
 The device tree supports a hierarchical way of writing hardware description at the SoC level, common board level, and board-specific
 level. Most of the time, writing a new device tree not difficult, and you can reuse most of the common hardware information from 
