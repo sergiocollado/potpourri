@@ -9,6 +9,9 @@ references:
  - https://elinux.org/Device_Tree_Reference
  - https://www.devicetree.org/
  - Platform devices and device trees: https://lwn.net/Articles/448502/
+ - Device Tree for Dummies! - Thomas Petazzoni, Free Electrons: https://youtu.be/m_NyYEBxfn8
+ - device tree for dummies, pdf: https://bootlin.com/pub/conferences/2014/elc/petazzoni-device-tree-dummies/petazzoni-device-tree-dummies.pdf
+ - Thomas Petazzoni - device tree for dummies | ELC 2014: https://youtu.be/uzBwHFjJ0vU
  - Tutorial: Device Tree (DTS), Linux Board Bring-up and Kernel Version Changing: https://youtu.be/N6IW7JJQASc
  - Device Tree: hardware description for everybody !: https://youtu.be/Nz6aBffv-Ek
  - https://octavosystems.com/linux-device-trees-embedded-systems/
