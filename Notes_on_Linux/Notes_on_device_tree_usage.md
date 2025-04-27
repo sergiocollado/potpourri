@@ -9,6 +9,8 @@ references:
  - https://elinux.org/Device_Tree_Reference
  - https://www.devicetree.org/
  - Platform devices and device trees: https://lwn.net/Articles/448502/
+ - Tutorial: Device Tree (DTS), Linux Board Bring-up and Kernel Version Changing: https://youtu.be/N6IW7JJQASc
+ - Device Tree: hardware description for everybody !: https://youtu.be/Nz6aBffv-Ek
  - https://octavosystems.com/linux-device-trees-embedded-systems/
  - https://octavosystems.com/app_notes/osd335x-design-tutorial/osd335x-lesson-2-minimal-linux-boot/linux-device-tree/
  - https://blog.stabel.family/raspberry-pi-4-device-tree/
