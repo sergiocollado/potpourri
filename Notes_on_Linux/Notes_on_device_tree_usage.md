@@ -99,6 +99,26 @@ If DTC is installed on the system, it can be used to convert the filesystem tree
 dtc -I fs -O dts /sys/firmware/devicetree/base > MySBC.dts
 ```
 
+### DTC cheat-sheet
+
+reference: https://stackoverflow.com/questions/21670967/how-to-compile-dts-linux-device-tree-source-files-to-dtb
+
+dtc can be installed by this command on linux:
+```
+sudo apt-get install device-tree-compiler
+```
+you can compile dts or dtsi files by this command:
+```
+dtc -I dts -O dtb -o devicetree_file_name.dtb devicetree_file_name.dts
+```
+you can convert dts to dtb by this command:
+```
+dtc -I dts -O dtb -f devicetree_file_name.dts -o devicetree_file_name.dtb
+```
+you can convert dtb to dts by this command:
+```
+dtc -I dtb -O dts -f devicetree_file_name.dtb -o devicetree_file_name.dts
+```
 
 ## Using device trees 
 
