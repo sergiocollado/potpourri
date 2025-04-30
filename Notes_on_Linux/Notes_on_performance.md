@@ -22,6 +22,25 @@ References:
  - https://www.youtube.com/watch?v=sX2nF1fW7kI
  - https://www.youtube.com/watch?v=rX0ItVEVjHc
 
+
+## Monitoring
+
+Monitoring tools: 
+ - ps command
+ - top command
+ - free command
+ - lsblk
+ - Findmnt
+ - df
+
+### ps command
+
+The ps command in Linux is a powerful tool that allows you to view information about the processes running on your Linux system. It stands for “process status” and it's a command that you can use from the command line to get information about the currently running processes
+
+Reference: https://man7.org/linux/man-pages/man1/ps.1.html
+
+
+
 ## USE: Utilization, Saturation and Errors
 
 references:
