@@ -39,6 +39,25 @@ The ps command in Linux is a powerful tool that allows you to view information a
 
 Reference: https://man7.org/linux/man-pages/man1/ps.1.html
 
+### top command
+
+The top (table of processes) command shows a dynamic, real-time view of running processes and kernel-managed tasks in Linux. The command also provides a system information summary that shows resource utilization, including CPU and memory usag
+
+Reference: https://man7.org/linux/man-pages/man1/top.1.html
+
+### free command - monitoring memory
+
+References:
+ - https://man7.org/linux/man-pages/man1/free.1.html
+ - https://www.turing.com/kb/how-to-use-the-linux-free-command
+
+### Monitoring file systems
+
+ Some commands: 
+  - `lsblk -fp`
+  - `df -h`
+  - `du -sh`
+  - `findmnd`
 
 
 ## USE: Utilization, Saturation and Errors
