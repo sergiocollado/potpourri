@@ -56,6 +56,8 @@ It is compiled to a binary representation (more efficient) `.dtb` the **device t
 
 The `.dtb` describes the hardware agnostially without dependance of the operating system.
 
+When the Linux kernel is build, there are configuration options that define what device tree is to be compiled. 
+
 When the system boots up with a Linux kernel, the bootloader loads the device tree blob into memory and passes its address to the kernel as a command-line argument. The kernel then parses the device tree and uses the information to configure itself and initialize the necessary drivers for the hardware components described in the device tree.
 
 This dynamic configuration allows the same Linux kernel image to work on different hardware platforms without the need for recompilation. It provides a level of hardware abstraction and portability, making it easier to support multiple board variants or even entirely different systems with the same kernel.
