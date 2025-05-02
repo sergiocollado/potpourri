@@ -14,6 +14,7 @@ references:
  - Thomas Petazzoni - device tree for dummies | ELC 2014: https://youtu.be/uzBwHFjJ0vU
  - Tutorial: Device Tree (DTS), Linux Board Bring-up and Kernel Version Changing: https://youtu.be/N6IW7JJQASc
  - Device Tree: hardware description for everybody !: https://youtu.be/Nz6aBffv-Ek
+ - Doulos KnowHow Tips - Devicetree Compilation: https://youtu.be/jvw2QLoewtg
  - https://octavosystems.com/linux-device-trees-embedded-systems/
  - https://octavosystems.com/app_notes/osd335x-design-tutorial/osd335x-lesson-2-minimal-linux-boot/linux-device-tree/
  - https://blog.stabel.family/raspberry-pi-4-device-tree/
