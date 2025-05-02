@@ -51,7 +51,7 @@ In the linux source, the device trees are located at: `<linux source>/arch/<arch
 
 ## Using device trees 
 
-A description of the system's hardware is written in a device tree source file `.dts`.
+A description of the system's hardware (the **non discoverable hardware**) is written in a device tree source file `.dts`.
 
 It is compiled to a binary representation (more efficient) `.dtb` the **device tree blob**, by the device tree compiler `dtc`.
 
