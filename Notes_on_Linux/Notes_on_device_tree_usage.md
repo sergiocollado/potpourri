@@ -48,6 +48,19 @@ The hardware hierarchy is described in varios levels, because the board have sev
 
 In the linux source, the device trees are located at: `<linux source>/arch/<architecture>/boot/dts`.
 
+## Using device trees 
+
+A description of the systmes hardware is written in a device tree source file `.dts`.
+
+It is compiled to a binary representation (more efficient) `.dtb` the **device tree blob**, by the device tree compiler `dtc`.
+
+The `.dtb` describes the hardware agnostially without dependance of the operating system.
+
+When the system boots up with a Linux kernel, the bootloader loads the device tree blob into memory and passes its address to the kernel as a command-line argument. The kernel then parses the device tree and uses the information to configure itself and initialize the necessary drivers for the hardware components described in the device tree.
+
+This dynamic configuration allows the same Linux kernel image to work on different hardware platforms without the need for recompilation. It provides a level of hardware abstraction and portability, making it easier to support multiple board variants or even entirely different systems with the same kernel.
+
+
 ## Device tree structure 
 
 
@@ -123,13 +136,6 @@ you can convert dtb to dts by this command:
 ```
 dtc -I dtb -O dts -f devicetree_file_name.dtb -o devicetree_file_name.dts
 ```
-
-## Using device trees 
-
-When the system boots up with a Linux kernel, the bootloader loads the device tree blob into memory and passes its address to the kernel as a command-line argument. The kernel then parses the device tree and uses the information to configure itself and initialize the necessary drivers for the hardware components described in the device tree.
-
-This dynamic configuration allows the same Linux kernel image to work on different hardware platforms without the need for recompilation. It provides a level of hardware abstraction and portability, making it easier to support multiple board variants or even entirely different systems with the same kernel.
-
 
 ### Basic Data Format
 The device tree is a simple tree structure of nodes and properties.  Properties are key-value pairs, and node may contain both properties and child nodes. For example, the following is a simple tree in the  `.dts` format:
