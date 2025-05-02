@@ -118,6 +118,18 @@ If DTC is installed on the system, it can be used to convert the filesystem tree
 dtc -I fs -O dts /sys/firmware/devicetree/base > MySBC.dts
 ```
 
+The `dtc` only does syntax validation, but for doing semantica validation use: 
+
+```
+make dt_bindings_check
+```
+
+or 
+
+```
+make dtbs_check
+```
+
 ### DTC cheat-sheet
 
 reference: https://stackoverflow.com/questions/21670967/how-to-compile-dts-linux-device-tree-source-files-to-dtb
