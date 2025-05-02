@@ -3,6 +3,8 @@
 ## What is a device tree?
 
 references:
+ - Tutorial: Device Tree (DTS), Linux Board Bring-up and Kernel Version Changing: https://youtu.be/N6IW7JJQASc
+ - Javier Carrasco Cruz: device tree bindings: https://hackerbikepacker.com/dt-bindings
  - https://docs.kernel.org/devicetree/index.html
  - https://docs.kernel.org/devicetree/usage-model.html
  - https://elinux.org/Device_Tree_Usage
@@ -12,7 +14,6 @@ references:
  - Device Tree for Dummies! - Thomas Petazzoni, Free Electrons: https://youtu.be/m_NyYEBxfn8
  - device tree for dummies, pdf: https://bootlin.com/pub/conferences/2014/elc/petazzoni-device-tree-dummies/petazzoni-device-tree-dummies.pdf
  - Thomas Petazzoni - device tree for dummies | ELC 2014: https://youtu.be/uzBwHFjJ0vU
- - Tutorial: Device Tree (DTS), Linux Board Bring-up and Kernel Version Changing: https://youtu.be/N6IW7JJQASc
  - Device Tree: hardware description for everybody !: https://youtu.be/Nz6aBffv-Ek
  - Doulos KnowHow Tips - Devicetree Compilation: https://youtu.be/jvw2QLoewtg
  - https://octavosystems.com/linux-device-trees-embedded-systems/
