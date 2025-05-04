@@ -587,5 +587,46 @@ references:
 
 ### IDS
 
+An Intrusion Detection System (IDS) is a network security tool that monitors network traffic and system activities for signs of malicious or unauthorized behavior. It helps identify potential threats and security breaches by analyzing traffic patterns and comparing them against known attack signatures or established baselines. 
+
+Also exists IPS (Intrussion Prevention System) Network security component for preventing vulnerabilities exploits against a system or infraestrucuture. 
+
+### How it works:
+
+Monitoring: IDSs continuously watch network traffic and system activities for suspicious patterns.
+
+Analysis:They analyze the data to detect known attack signatures or deviations from normal behavior.
+
+Alerting:
+When a suspicious activity is detected, the IDS generates an alert to notify security personnel.
+
+Reporting:IDSs often provide detailed reports on detected threats, allowing for further investigation and response. 
+
+Types of IDSs:Network Intrusion Detection System (NIDS): Monitors network traffic at various points within a network.
+Host Intrusion Detection System (HIDS): Monitors activities on individual hosts, such as servers or workstations. 
+
+### Benefits of using an IDS:
+
+Early threat detection:IDSs help identify potential threats early on, before they can cause significant damage. 
+
+Improved security posture:By identifying and responding to threats, IDSs contribute to a stronger overall security posture. 
+
+Compliance: Many industries require network monitoring for data protection, and IDSs help organizations meet these requirements. 
+
+Deterrence: The presence of an IDS can deter potential attackers. 
+
+## Snort
+
+Snort is an open-source, free and lightweight network intrusion detection system (NIDS) software for Linux and Windows to detect emerging threats.
+
+reference: https://www.snort.org/
+
+Snort has three primary uses: It can be used as a straight packet sniffer like tcpdump, a packet logger (useful for network traffic debugging, etc), or as a full blown network intrusion prevention system.
+
+Snort has 3 components: 
+ - Snort: rule engine, that runs as a service/daemon. it frequent rule updates
+ - Barnyard: Binary snort output parser
+ - Snorby: GUI, webinterface for implementation
+
 
 
