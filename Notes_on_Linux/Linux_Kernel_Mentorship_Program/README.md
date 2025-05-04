@@ -1,5 +1,7 @@
 # Linux kernel mentorship program
 
+my experience: https://sergiocollado.github.io/LKMP.html
+
 References:
  - https://wiki.linuxfoundation.org/lkmp
  - https://javiercarrascocruz.github.io/kernel-contributor-1
