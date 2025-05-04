@@ -564,6 +564,27 @@ nmcli con up slave1
 
 ### VPN
 
+## Setting up Wireguard
+
+WireGuard is an open-source VPN protocol. This means its code is publicly available for anyone to view, modify, and distribute, promoting transparency and community involvement. The project is licensed under the GNU General Public License version 2 (GPLv2) for the kernel components and other free/open-source licenses for other implementations. 
+
+WireGuard® is an extremely simple yet fast and modern VPN that utilizes state-of-the-art cryptography. It aims to be faster, simpler, leaner, and more useful than IPsec, while avoiding the massive headache. It intends to be considerably more performant than OpenVPN. WireGuard is designed as a general purpose VPN for running on embedded interfaces and super computers alike, fit for many different circumstances. Initially released for the Linux kernel, it is now cross-platform (Windows, macOS, BSD, iOS, Android) and widely deployable. It is currently under heavy development, but already it might be regarded as the most secure, easiest to use, and simplest VPN solution in the industry.
+
+references:
+   - https://www.wireguard.com/quickstart/
+   - How to set up Wireguard VPN under Linux - Tutorial : https://www.youtube.com/watch?v=-4zcUmY05YA
+   - How to setup wireguard on linux: https://youtu.be/bVKNSf1p1d0
+
+## Setting up OpenVPN
+
+ the OpenVPN Community Edition (Community Edition, CE) is an open-source project. It uses the GPL license and is supported by the OpenVPN community. While OpenVPN Access Server is a commercial product with additional features, the base OpenVPN protocol and Community Edition are open source
+ 
+ references: 
+  - https://openvpn.net/as-docs/get---install-for-linux.html
+  - https://openvpn.net/faq/what-is-openvpn/#:~:text=The%20OpenVPN%20Community%20Edition%20(CE,Private%20Network%20(VPN)%20project.
+
+
+
 ### IDS
 
 
