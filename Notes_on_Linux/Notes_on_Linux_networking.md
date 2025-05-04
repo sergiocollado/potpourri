@@ -460,11 +460,76 @@ reference:
  - Add Secondary IP Address That Is Seen By A Server: https://askubuntu.com/questions/1095229/add-secondary-ip-address-that-is-seen-by-a-server
 
 
+## NIC bonding and teaming
+
+the main goal of having multiple NICs attending a system is for fault tolerance. Teaming has some advantages. In a virtual enviromente probably you can only use bonding. 
+
+Network bonding and network teaming are different methods for combining network connections to provide a single combined interface. Bonding is handled exclusively in the kernel. Teaming includes a small set of kernel modules that provide an interface for teamd instances, but everything else is handled in user space.
+
+references:
+ - https://ngelinux.com/difference-between-bonding-and-teaming-in-linux/
+ - https://documentation.suse.com/smart/network/html/network-team-managing-devices/index.html#:~:text=Network%20bonding%20and%20network%20teaming,is%20handled%20in%20user%20space
+ - https://meheraskri.medium.com/implementing-high-availability-with-nic-teaming-in-linux-92ce96412591
+ - https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/networking_guide/sec-comparison_of_network_teaming_to_bonding
+ - https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/networking_guide/overview-of-bonding-modes-and-the-required-settings-on-the-switch
 
 
+commands for bonding:
 
+```
+nmcli d # check devices
+nmcli c # check connections
+nmcli con add type bond <connection-name> bond0 ifname bond0 name active-backup ip4 192.168.52.170/24 # the connections is created
+# now the connections has to be added as slaves: #bond0 will be the master 
+nmcli con add type bond-slave ifname <connection-name> master bond0
+nmcli d # check devices
+# bringn the interfaces up
+nmcli con up bond-slave-<connection-name>
+# check connections
+nmcli c
+nmcli d show bond0
+# add gateway
+ncmli con mod bond0 ipv4.gateway 192.186.52.2
+# the previous will not take action, it is needed to bring it donw and up again
+nmcli con down bond0
+nmcli con up bond0
+```
 
+Linux teaming: 
+ - https://www.rootusers.com/how-to-configure-network-teaming-in-linux/
 
+commands for teaming: 
+```
+yum install -y teamd bash-completion # install teamd
+source /etc/profile # for the bash completion
+nmcli c
+# create team connection
+nmcli con add type team con-name Team0 ifname team0 team.config '{"runner":{"name: "activebackup"}, "link_watch": {"name": "ethtool"}}'
+# there are configuration examples at: /usr/share/doc/team-x.x/example_configs/
+nmcli con add type team-slave con-name slave1 ifname eth1 master team0
+# provide a ip addres
+nmcli con mod Team0 ipv4.address 10.0.1.16/24 ipv4.gateway 10.0.1.1 ipv4.method manual
+# check the configuration was done properly
+nmcli con show Team0 | grep ipv4
+# bring the interface up, first the slave and then the team
+nmcli con up slave1
+nmcli con up Team0
+# check also
+teamdctl team0 state
+# to delete it
+nmcli con delete Team0
+nmcli con delete slave1
+
+# example with round robin
+nmcli c
+systemctl restart network
+nmcli
+nmcli con add type team con-name Team0 ifname team0
+nmcli con mod Team0 ipv4 10.0.1.16/24 ipv4.gateway 10.0.1.1 ipv4.method manual
+nmcli con add type team-slave con-name slave1 ifname eth1 master team0
+nmcli con up Team0
+nmcli con up slave1 
+```
    
 ## Machine level configuration
 
