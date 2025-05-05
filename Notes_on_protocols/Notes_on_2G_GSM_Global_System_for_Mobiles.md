@@ -15,6 +15,7 @@ References:
  - https://youtu.be/HIQ8Z2xlCS8?list=PLU5x-SQTjZT758IGceyOG6pDzMCMAz88o
  - https://buddhimau.medium.com/how-number-portability-works-in-mobile-telecommunication-networks-77ab4f164fda
  - https://realtimecommunication.wordpress.com/2014/11/17/sms-in-2g3g/
+ - https://wirelesslogic.com/iot-glossary
 
 GSM radio reference: 
  - https://youtu.be/NkKJBXR0G4k?si=na6v7Tur96trt71L
@@ -253,6 +254,12 @@ Each base station has its own BSIC. This code is at all times transmitted on the
 As long as base stations use different frequencies for their broadcasting channel, there is no problem in using the same base station identity code. Unique identification of a base station is especially important in border areas, where at both sides of the border there is a different operator who might use the same broadcasting channel on the same frequency.
 
 ## Working principle of 2.5 GPRS (General Packet Radio Service)
+
+GPRS stands for General Packet Radio Service. It's a cellular network technology, essentially an upgrade to older GSM networks, that enables data transfer over radio waves in a way that's more efficient than earlier circuit-switched methods. It's known as 2.5G and allows for "always-on" internet access, improved data transfer speeds, and various other advanced features.
+
+Unlike earlier circuit-switched systems where a dedicated channel was reserved for the entire duration of a connection, GPRS breaks data into smaller packets and transmits them over available channels. This packet-switching approach is more efficient, allowing for faster data transfer rates than older technologies like GSM. 
+
+The big technical difference between GSM and GPRS concerns the technique used for data transfer. GSM uses the Circuit-Switched (CS) method. With this, a dedicated circuit is engaged for the entire duration of a connection between two users. By contrast, GPRS is a packet-switching protocol. Under this technique, packets of data are transferred at different time intervals to make more efficient use of data transfer capacity across the network.
 
  - Reference: https://en.wikipedia.org/wiki/General_Packet_Radio_Service
  - Reference: https://en.wikipedia.org/wiki/GPRS_core_network#Serving_GPRS_support_node_(SGSN)
