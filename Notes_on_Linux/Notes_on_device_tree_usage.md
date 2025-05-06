@@ -7,6 +7,7 @@ references:
  - Javier Carrasco Cruz: device tree bindings: https://hackerbikepacker.com/dt-bindings
  - https://docs.kernel.org/devicetree/index.html
  - https://docs.kernel.org/devicetree/usage-model.html
+ - https://www.raspberrypi.com/documentation/computers/configuration.html#device-trees-overlays-and-parameters
  - https://elinux.org/Device_Tree_Usage
  - https://elinux.org/Device_Tree_Reference
  - https://www.devicetree.org/
