@@ -3303,6 +3303,10 @@ References:
    - Linux Storage Stack Explained - Werner Fischer, Thomas-Krenn.AG: https://youtu.be/hCKruOlLPIQ
 
 
+### Booting process
+
+ - https://bootlin.com/blog/demystifying-kernel-boot-sequence/#:~:text=Userspace%E2%80%9D%20%2D%20Bootlin's%20blog-,Demystifying%20the%20Kernel%20Boot%20Sequence%3A%20From%20'Starting%20Kernel%E2%80%A6',boot%20process%20does%20this%20happen%3F
+
 ### Risc-V
  -  Embedded Linux from Scratch in 45 minutes, on RISC-V: https://youtu.be/cIkTh3Xp3dA
 
