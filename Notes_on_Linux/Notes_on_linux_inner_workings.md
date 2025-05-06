@@ -3306,6 +3306,13 @@ References:
 ### Booting process
 
  - https://bootlin.com/blog/demystifying-kernel-boot-sequence/#:~:text=Userspace%E2%80%9D%20%2D%20Bootlin's%20blog-,Demystifying%20the%20Kernel%20Boot%20Sequence%3A%20From%20'Starting%20Kernel%E2%80%A6',boot%20process%20does%20this%20happen%3F
+ - https://people.kernel.org/linusw/how-the-arm32-kernel-starts
+ - https://opensource.com/article/17/2/linux-boot-and-startup
+ - https://kleinembedded.com/understanding-the-embedded-linux-boot-process/
+ - https://github.com/nu11secur1ty/All-Stages-of-Linux-Booting-Process-Architecture/blob/master/README.md
+ - https://medium.com/@ahmedmansouri/my-notes-for-understanding-the-linux-boot-process-a-comprehensive-guide-1bb484375179
+ - https://medium.com/@gangulysutapa96/6-stages-of-linux-boot-process-5ee84265d8a0
+
 
 ### Risc-V
  -  Embedded Linux from Scratch in 45 minutes, on RISC-V: https://youtu.be/cIkTh3Xp3dA
