@@ -27,6 +27,7 @@ References:
  - Basics of I2C on Linux - Luca Ceresoli, Bootlin : https://youtu.be/g9-wgdesvwA
  - Tutorial: Introduction to I2C and SPI: Both In-kernel and In-userspace - Michael Welling : https://youtu.be/c10wAKWpjts
  - https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-device-tree-na-raspberry-pi-zero-w/
+ - https://embarcados.com.br/device-driver-i2c-para-linux-embarcado/
 
 
 ## Overview
@@ -598,6 +599,7 @@ References:
  - Let's code a Linux Driver - 36: I2C Device Driver without Device Tree: https://youtu.be/pESMpoQnfDU?list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
  - Guide to interfacing a Gyro and Accelerometer with a Raspberry Pi: https://ozzmaker.com/berryimu/
  - https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-device-tree-na-raspberry-pi-zero-w/
+ - https://embarcados.com.br/device-driver-i2c-para-linux-embarcado/
 
 ### Fundamentals of I2C
 
