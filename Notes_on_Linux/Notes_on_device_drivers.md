@@ -79,7 +79,7 @@ Reference: https://docs.kernel.org/next/driver-api/driver-model/device.html
 
 The `struct device`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/device.h#L619 
 
-The structure is usualy embeeded in a higher lever representation of the device: 
+The structure is usualy embedded in a higher lever representation of the device: 
  - `i2c_client`:  https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/i2c.h#L329 @ include/linux/i2c.h
  - `struct spi_device`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/spi/spi.h#L184 @ include/linux/spi/spi.h
  - `struct usb_device`: https://elixir.bootlin.com/linux/v6.12.6/source/include/linux/usb.h#L653 @ include/linux/usb.h
