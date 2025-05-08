@@ -600,6 +600,7 @@ References:
  - Guide to interfacing a Gyro and Accelerometer with a Raspberry Pi: https://ozzmaker.com/berryimu/
  - https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-device-tree-na-raspberry-pi-zero-w/
  - https://embarcados.com.br/device-driver-i2c-para-linux-embarcado/
+ - Embedded Linux (PART-10)-I2C Device Driver on BeaglBone Black| I2C Client Driver: https://youtu.be/lYoFy9p8UAw
 
 ### Fundamentals of I2C
 
