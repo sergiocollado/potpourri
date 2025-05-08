@@ -2,7 +2,7 @@
 //    iterator + adaptor + consumer
 //
 //    - iterators: into_iter, iter, iter_mut
-//    - adaptors: map, filter, for_each, find
+//    - adaptors: map, filter, for_each, find, any
 //    - consumers: collect, sum, for_each
 //
 //    iterators, let v = vec![];
