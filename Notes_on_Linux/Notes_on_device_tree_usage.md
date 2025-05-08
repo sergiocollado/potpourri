@@ -27,6 +27,7 @@ references:
  - https://www.jeffgeerling.com/blog/2023/how-customize-dtb-device-tree-binary-on-raspberry-pi
  - https://bootlin.com/blog/enabling-new-hardware-on-raspberry-pi-with-device-tree-overlays/
  - Example : Let's code a Linux Driver - 20: Parsing from the device tree in a Linux Kernel Module : https://www.youtube.com/watch?v=YxDEdpHTEP8&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa&index=21&pp=iAQB
+ - https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-device-tree-na-raspberry-pi-zero-w/
 
 > Many moons ago "board files," were used, each of which described a single type of computer. Kernels are typically built around a single board file and could not boot on any other type of system. Board files sort of worked when there were relatively small numbers of embedded system types to deal with. Now Linux-based embedded systems are everywhere, architectures which have typically depended on board files (ARM, in > particular) were finding their way into more types of systems, and the whole scheme looked poised to collapse under its own weight.
 >
@@ -65,6 +66,7 @@ When the system boots up with a Linux kernel, the bootloader loads the device tr
 
 This dynamic configuration allows the same Linux kernel image to work on different hardware platforms without the need for recompilation. It provides a level of hardware abstraction and portability, making it easier to support multiple board variants or even entirely different systems with the same kernel.
 
+Example: https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-device-tree-na-raspberry-pi-zero-w/
 
 ## Device tree structure 
 
