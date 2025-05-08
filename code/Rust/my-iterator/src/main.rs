@@ -88,9 +88,11 @@ fn main() {
     let found_color = find_color_or(&colors, "asdfasdf", "Orange");
     println!("{}", found_color);
 
+    // ----------------------------------------------------other examples:
+
     let a = vec![0,1,2,3,4,5,6,7,8,9];
 
-    let mut check: bool = a.iter().any(|&x: i32| x > 0);
+    let mut check: bool = a.iter().any(|&x: i32| x > 0);  // as the iter() iterator is used, we get the values as references &x
     println!("the value of the `any` function is {}", check);
 
     let mut check: bool = a.iter().all(|&x: i32| x > 0);
@@ -115,6 +117,21 @@ fn main() {
     println!("the result of applying the reverse function is {:?}", iter);
     println!("result of next(): {:?} - the values will be processed in the reverse order", iter.next()); 
 
-    
+    let filtered_values = a.iter().filter(|&x: &i32| *x > 5).collect::<Vec<&u32>>(); // use turbofish ::<> to declare the type of .collect()
+    println!("filtered values {:?}", filtered_values);
+
+    let b = a.clone();
+    // to get the values insted of the references use the iterator: into_iter()
+    let filtered_values = a.into_iter().filter(|&x: &i32| *x > 5).collect::<Vec<u32>>(); 
+    // a has been consumed by the into_iter()
+    //println!("{:?}", a); // this will faild, as a has been consumed
+    println!("filtered values {:?}", filtered_values);
+
+    let mut mapped_values = b.iter().map(|x: &u32| 2 * *x).collect::<Vec<u32>>();
+    println!("mapped values {:?}", mapped_values);
+
+    let mut mapped_values = b.iter().map(|x: &u32| 2 * *x).filter(|x: &u32| *x > 10).collect::<Vec<u32>>();
+    println!("mapped values {:?}", mapped_values);
+
     
 }
