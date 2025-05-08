@@ -115,7 +115,7 @@ It is also possible, that for a given **compiled** device tree (.dtb), revers th
 ```
 dtc -I dtb -O dts -o myboard.dtb > myboard.dts
 ```
-Also for dbugging porpoues, it may be useful to use the flag `CONFIG_PROC_DEVICETREE` that optoon will make the current device tree of the system available at `/proc/device-tree`. 
+Also for dbugging purpouses, it may be useful to use the flag `CONFIG_PROC_DEVICETREE` that optoon will make the current device tree of the system available at `/proc/device-tree`. 
 
 If DTC is installed on the system, it can be used to convert the filesystem tree into a more human readable for with the command: 
 
