@@ -604,6 +604,7 @@ References:
 ### Fundamentals of I2C
 
  References:
+  - Understanding I2C: https://youtu.be/CAvawEcxoPU
   - https://www.ti.com/lit/an/sbaa565/sbaa565.pdf?ts=1745316874300
   - https://www.circuitbasics.com/basics-of-the-i2c-communication-protocol/
   - understanding i2c: https://youtu.be/CAvawEcxoPU
