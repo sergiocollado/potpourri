@@ -2,7 +2,7 @@
 //    iterator + adaptor + consumer
 //
 //    - iterators: into_iter, iter, iter_mut
-//    - adaptors: map, filter, for_each, find, any, all
+//    - adaptors: map, filter, for_each, find, any, all, position, rposition, max, min, rev
 //    - consumers: collect, sum, for_each
 //
 //    iterators, let v = vec![];
@@ -93,7 +93,28 @@ fn main() {
     let mut check: bool = a.iter().any(|&x: i32| x > 0);
     println!("the value of the `any` function is {}", check);
 
-    let muc check: bool = a.iter().all(|&x: i32| x > 0);
+    let mut check: bool = a.iter().all(|&x: i32| x > 0);
     println!("the value of the `all` funtion is {}", check);
 
+    let check: Option<&i32> = a.iter().find(|&&x: i32| x > 0);
+    println!("the value of the function `find` is {}", check.unwrap());
+
+    let check: Option<usize> = a.iter().position(|&x| x > 4);
+    println!("the value of the function `position` is {}", check.unwrap());
+   
+    let check: Option<usize> = a.iter().rposition(|&x| x > 4);
+    println!("the value of the function `rposition` is {}", check.unwrap()); 
+
+    let check = a.iter().max();
+    println!("the value of the function `max` is {}", check.unwrap());
+
+    let check = a.iter().min();
+    println!("the value of the function `min` is {}", check.unwrap());
+
+    let mut iter: a.iter().rev();
+    println!("the result of applying the reverse function is {:?}", iter);
+    println!("result of next(): {:?} - the values will be processed in the reverse order", iter.next()); 
+
+    
+    
 }
