@@ -2,7 +2,7 @@
 //    iterator + adaptor + consumer
 //
 //    - iterators: into_iter, iter, iter_mut
-//    - adaptors: map, filter, for_each, find, any
+//    - adaptors: map, filter, for_each, find, any, all
 //    - consumers: collect, sum, for_each
 //
 //    iterators, let v = vec![];
@@ -87,4 +87,13 @@ fn main() {
 
     let found_color = find_color_or(&colors, "asdfasdf", "Orange");
     println!("{}", found_color);
+
+    let a = vec![0,1,2,3,4,5,6,7,8,9];
+
+    let mut check: bool = a.iter().any(|&x: i32| x > 0);
+    println!("the value of the `any` function is {}", check);
+
+    let muc check: bool = a.iter().all(|&x: i32| x > 0);
+    println!("the value of the `all` funtion is {}", check);
+
 }
