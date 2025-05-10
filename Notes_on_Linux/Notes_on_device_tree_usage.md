@@ -76,6 +76,8 @@ references:
  - https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-device-tree-na-raspberry-pi-zero-w/#Os-Melhores-Treinamentos-sobre-Sistemas-embarcados-e-IoT
  - https://hubtronics.in/learn/mastering-device-tree-overlays-rpi
 
+The MPU6050 depends on I2C so enable it in the rpi by the GUI or editing the configuration files.
+
 Check the version of linux kernel used by the system with the command `uname -r`.
 
 Got to the device drivers folder located in `/lib/modules/<kernel_version>/kernel/drivers` (the kernel version is the one retrieved in the previous step).
@@ -86,6 +88,26 @@ If you cannot find the driver there are two options:
  - the driver has not been implemented yet
  - the driver exists but has not been compiled for the kernel being used
 
+Check if the overlay file exists, it should be in `/boot/overlays`, you can search for it with the command `find . -name "*mpu*"`. 
+
+If the overaly doesn't exist you can create it: create a new `.dts` file with the description of the hardware you want to apply to the base device tree. 
+
+If the overlay file exist you can dinamically create the dts. If you don't have it already installed, install the dtc compiler with  `sudo apt-get install device-tree-compilier` 
+
+Use the `dtc` compiler to compile the overlay source file into a device tree overlay (`.dtbo`) file: 
+
+```
+dtc -@ -I dts -O dtb -o my_overaly.dtbo my_overalay.dts
+```
+
+load the overalay:
+
+```
+sudo cp my_overaly.dtbo /boot/overalays
+sudo sh -c "echo my_overlay.dtbo >> /boot/config.txt" # or just open the config.txt file and add the overlay
+```
+
+reboot the rpi `sudo reboot`. 
 
 
 
