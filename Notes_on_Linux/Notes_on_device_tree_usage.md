@@ -30,6 +30,7 @@ references:
  - https://bootlin.com/blog/enabling-new-hardware-on-raspberry-pi-with-device-tree-overlays/
  - Example : Let's code a Linux Driver - 20: Parsing from the device tree in a Linux Kernel Module : https://www.youtube.com/watch?v=YxDEdpHTEP8&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa&index=21&pp=iAQB
  - https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-device-tree-na-raspberry-pi-zero-w/
+ - overlays: https://www.raspberrypi.com/documentation/computers/configuration.html#part2
 
 > Many moons ago "board files," were used, each of which described a single type of computer. Kernels are typically built around a single board file and could not boot on any other type of system. Board files sort of worked when there were relatively small numbers of embedded system types to deal with. Now Linux-based embedded systems are everywhere, architectures which have typically depended on board files (ARM, in > particular) were finding their way into more types of systems, and the whole scheme looked poised to collapse under its own weight.
 >
@@ -77,6 +78,7 @@ references:
  - https://hubtronics.in/learn/mastering-device-tree-overlays-rpi
  - https://tutorials-raspberrypi.com/measuring-rotation-and-acceleration-raspberry-pi/
  - mpu6050 overlay: https://github.com/raspberrypi/linux/blob/rpi-5.10.y/arch/arm/boot/dts/overlays/mpu6050-overlay.dts # check the rpi version that you need
+ - https://www.raspberrypi.com/documentation/computers/configuration.html#part2
 
 The MPU6050 depends on I2C so enable it in the rpi by the GUI or editing the configuration files.
 
