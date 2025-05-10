@@ -79,6 +79,7 @@ references:
  - https://tutorials-raspberrypi.com/measuring-rotation-and-acceleration-raspberry-pi/
  - mpu6050 overlay: https://github.com/raspberrypi/linux/blob/rpi-5.10.y/arch/arm/boot/dts/overlays/mpu6050-overlay.dts # check the rpi version that you need
  - https://www.raspberrypi.com/documentation/computers/configuration.html#part2
+ - https://www.linuxquestions.org/questions/linux-kernel-70/invensense-mpu6050-and-device-trees-4175728278/#google_vignette
 
 The MPU6050 depends on I2C so enable it in the rpi by the GUI or editing the configuration files.
 
