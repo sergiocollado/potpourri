@@ -118,7 +118,11 @@ reboot the rpi `sudo reboot`.
 
 Verify the overlay: After rebooting, you can verify that the overlay was applied by checking the device tree: `dtc -I fs /sys/firmware/devicetree/base`
 
+Check if the mpu6050 is detected and running correctly using `i2cdetect -y 1` to scan for I2C devices
+
 Access IIO data: You can now access the IIO data from your device using the IIO driver, which is typically done through the /sys/bus/iio/devices directory or through a Python library like libiio
+
+Watch out: The mpu6050 device tree overlay is not a standard inclusion in the Raspberry Pi 3 (Pi 3) kernel, unlike later models. This means you'll need to manually configure and load the overlay if you wish to use an MPU6050 sensor with your Pi 3. The Pi 3 lacks a dedicated MPU6050 overlay for ease of use, but it can still be used with additional setup. 
 
 
 ## Device tree structure 
