@@ -161,7 +161,8 @@ The kernel is inherently multi-threaded: kernel resources can be accessed from m
  - The Linux Kernel Gets Rusty - Jonathan Corbet, RUST and the Linux Kernal Development: https://youtu.be/gVC1gp2PS8U
  - Dec 12, 2023: High Stability Rust in Kernel by Kernel CI - Arisu Tachibana, Cybertrust Japan Co. : https://youtu.be/w4nhuQ00VV0
  - Kernel recipes 2024 - interfacing C apis with Rust: https://www.youtube.com/watch?v=1LEvgkhU-t4&t=611s
- -  Keynote: Rust in the Linux Kernel: A New Era for Cloud Native Performance... G. Kroah-Hartman (ISL) : https://youtu.be/d5umzdT90HU
+ - Keynote: Rust in the Linux Kernel: A New Era for Cloud Native Performance... G. Kroah-Hartman (ISL) : https://youtu.be/d5umzdT90HU
+ - Linux Plumber Conference 2024  : https://youtu.be/tamydDnWoLs?t=2047
 
 
 ## Others
