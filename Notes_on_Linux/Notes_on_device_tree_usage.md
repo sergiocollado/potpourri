@@ -5,6 +5,7 @@
 references:
 
  - Platform devices and device trees: https://lwn.net/Articles/448502/
+ - Javier Carrasco Cruz: https://hackerbikepacker.com/device-driver-development-with-rpi-device-tree
  - Javier Carrasco Cruz: device tree bindings: https://hackerbikepacker.com/dt-bindings
  - https://docs.kernel.org/devicetree/index.html
  - https://docs.kernel.org/devicetree/usage-model.html
@@ -114,7 +115,9 @@ sudo sh -c "echo my_overlay.dtbo >> /boot/config.txt" # or just open the config.
 
 reboot the rpi `sudo reboot`. 
 
+Verify the overlay: After rebooting, you can verify that the overlay was applied by checking the device tree: `dtc -I fs /sys/firmware/devicetree/base`
 
+Access IIO data: You can now access the IIO data from your device using the IIO driver, which is typically done through the /sys/bus/iio/devices directory or through a Python library like libiio
 
 
 ## Device tree structure 
