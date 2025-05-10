@@ -92,7 +92,7 @@ Check if the overlay file exists, it should be in `/boot/overlays`, you can sear
 
 If the overaly doesn't exist you can create it: create a new `.dts` file with the description of the hardware you want to apply to the base device tree. 
 
-If the overlay file exist you can dinamically create the dts. If you don't have it already installed, install the dtc compiler with  `sudo apt-get install device-tree-compilier` 
+If the overlay file exist you can dinamically create the dts. If you don't have it already installed, install the dtc compiler with  `sudo apt-get install device-tree-compiler` 
 
 Use the `dtc` compiler to compile the overlay source file into a device tree overlay (`.dtbo`) file: 
 
