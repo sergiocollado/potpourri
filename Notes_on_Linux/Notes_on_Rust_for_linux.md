@@ -162,7 +162,7 @@ The kernel is inherently multi-threaded: kernel resources can be accessed from m
  - Dec 12, 2023: High Stability Rust in Kernel by Kernel CI - Arisu Tachibana, Cybertrust Japan Co. : https://youtu.be/w4nhuQ00VV0
  - Kernel recipes 2024 - interfacing C apis with Rust: https://www.youtube.com/watch?v=1LEvgkhU-t4&t=611s
  - Keynote: Rust in the Linux Kernel: A New Era for Cloud Native Performance... G. Kroah-Hartman (ISL) : https://youtu.be/d5umzdT90HU
- - Linux Plumber Conference 2024  : https://youtu.be/tamydDnWoLs?t=2047
+ - Linux Plumber Conference 2024: Rust for Linux - OJEDA, Miguel : https://youtu.be/tamydDnWoLs?t=2047
  - Journey of a C kernel engineer starting a Rust driver project - KRUMMRICH, Danilo: https://youtu.be/3Igmx28B3BQ
 
 
