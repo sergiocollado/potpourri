@@ -76,6 +76,7 @@ references:
  - https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-device-tree-na-raspberry-pi-zero-w/#Os-Melhores-Treinamentos-sobre-Sistemas-embarcados-e-IoT
  - https://hubtronics.in/learn/mastering-device-tree-overlays-rpi
  - https://tutorials-raspberrypi.com/measuring-rotation-and-acceleration-raspberry-pi/
+ - mpu6050 overlay: https://github.com/raspberrypi/linux/blob/rpi-5.10.y/arch/arm/boot/dts/overlays/mpu6050-overlay.dts # check the rpi version that you need
 
 The MPU6050 depends on I2C so enable it in the rpi by the GUI or editing the configuration files.
 
