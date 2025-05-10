@@ -70,6 +70,26 @@ This dynamic configuration allows the same Linux kernel image to work on differe
 
 Example: https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-device-tree-na-raspberry-pi-zero-w/
 
+## Example of usage RPi with MPU6050
+
+references: 
+ - https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-device-tree-na-raspberry-pi-zero-w/#Os-Melhores-Treinamentos-sobre-Sistemas-embarcados-e-IoT
+ - https://hubtronics.in/learn/mastering-device-tree-overlays-rpi
+
+Check the version of linux kernel used by the system with the command `uname -r`.
+
+Got to the device drivers folder located in `/lib/modules/<kernel_version>/kernel/drivers` (the kernel version is the one retrieved in the previous step).
+
+Search for the the mpu6050 driver, for example using `find . -name '*mpu*' `. 
+
+If you cannot find the driver there are two options: 
+ - the driver has not been implemented yet
+ - the driver exists but has not been compiled for the kernel being used
+
+
+
+
+
 ## Device tree structure 
 
 
