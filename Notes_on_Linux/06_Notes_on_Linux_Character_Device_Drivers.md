@@ -26,6 +26,7 @@ References:
  - Let's code a linux driver:  https://www.youtube.com/playlist?list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
  - https://www.apriorit.com/dev-blog/195-simple-driver-for-linux-os
  - Linux Device Drivers Development Course for Beginners: https://youtu.be/iSiyDHobXHA
+ - How device file in Linux works: https://akawashiro.com/articles/how-device-file-in-linux-works#connect-device-driver-and-device-file
 
 
 
