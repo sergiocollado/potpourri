@@ -76,6 +76,7 @@ Example: https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-dev
 ## Example of usage RPi with MPU6050
 
 references:
+ - https://pinout.xyz/
  - https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-device-tree-na-raspberry-pi-zero-w/#Os-Melhores-Treinamentos-sobre-Sistemas-embarcados-e-IoT
  - https://hubtronics.in/learn/mastering-device-tree-overlays-rpi
  - https://tutorials-raspberrypi.com/measuring-rotation-and-acceleration-raspberry-pi/
