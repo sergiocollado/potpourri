@@ -32,6 +32,7 @@ References:
  - Kernel challenges: https://github.com/agelastic/eudyptula
  - Linux kernel memory model: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0124r6.html
  - https://sergioprado.blog/talks/
+ - Driving Me Nuts - Things You Never Should Do in the Kernel: https://www.linuxjournal.com/article/8110?page=0,1
 
 
 ### How to setup an enviroment for kernel development & tools of the trade
