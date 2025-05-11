@@ -108,10 +108,14 @@ Use the `dtc` compiler to compile the overlay source file into a device tree ove
 dtc -@ -I dts -O dtb -o my_overaly.dtbo my_overalay.dts
 ```
 
-load the overalay:
+load the overlay, move the overlay to the overlay's folder
 
 ```
 sudo cp my_overaly.dtbo /boot/overalays
+```
+
+add the overlay into the configuration. (the actual line can be slightly different with regard the os version, check here: https://github.com/raspberrypi/linux/tree/rpi-6.12.y/arch/arm/boot/dts/overlays
+```
 sudo sh -c "echo my_overlay.dtbo >> /boot/config.txt" # or just open the config.txt file and add the overlay
 ```
 
