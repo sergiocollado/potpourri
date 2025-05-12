@@ -84,6 +84,7 @@ references:
  - https://www.raspberrypi.com/documentation/computers/configuration.html#part2
  - https://www.linuxquestions.org/questions/linux-kernel-70/invensense-mpu6050-and-device-trees-4175728278/#google_vignette
  - https://www.electronicwings.com/raspberry-pi/mpu6050-accelerometergyroscope-interfacing-with-raspberry-pi
+ - Understanding I2C Communication in Linux: A Beginner's Guide with Sample Code for Raspberry Pi : https://www.linkedin.com/pulse/understanding-i2c-communication-linux-beginners-guide-soheil-nazari/
 
 The MPU6050 depends on I2C so enable it in the rpi by the GUI or editing the configuration files.
 
