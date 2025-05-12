@@ -76,7 +76,8 @@ Example: https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-dev
 ## Example of usage RPi with MPU6050
 
 references:
- - https://pinout.xyz/
+ - datasheet: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
+ - rpi pinouot cheatsheet: https://pinout.xyz/
  - https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-device-tree-na-raspberry-pi-zero-w/#Os-Melhores-Treinamentos-sobre-Sistemas-embarcados-e-IoT
  - https://hubtronics.in/learn/mastering-device-tree-overlays-rpi
  - https://tutorials-raspberrypi.com/measuring-rotation-and-acceleration-raspberry-pi/
@@ -85,6 +86,8 @@ references:
  - https://www.linuxquestions.org/questions/linux-kernel-70/invensense-mpu6050-and-device-trees-4175728278/#google_vignette
  - https://www.electronicwings.com/raspberry-pi/mpu6050-accelerometergyroscope-interfacing-with-raspberry-pi
  - Understanding I2C Communication in Linux: A Beginner's Guide with Sample Code for Raspberry Pi : https://www.linkedin.com/pulse/understanding-i2c-communication-linux-beginners-guide-soheil-nazari/
+ - MPU-6050 Linux Device Driver: https://github.com/fdcavalcanti/driver-mpu6050/tree/main
+ - Help with reading mpu6050 configured with device tree and overlays: https://forums.raspberrypi.com/viewtopic.php?p=2314647&hilit=mpu6050#p2314647
 
 The MPU6050 depends on I2C so enable it in the rpi by the GUI or editing the configuration files.
 
