@@ -76,6 +76,7 @@ Example: https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-dev
 ## Example of usage RPi with MPU6050
 
 references:
+ - Help with reading mpu6050 configured with device tree and overlays: https://forums.raspberrypi.com/viewtopic.php?p=2314647&hilit=mpu6050#p2314647
  - datasheet: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
  - binding: https://www.kernel.org/doc/Documentation/devicetree/bindings/iio/imu/invensense%2Cmpu6050.yaml
  - linux kernel device: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/iio/imu/inv_mpu6050?h=v6.15-rc6
@@ -89,7 +90,24 @@ references:
  - https://www.electronicwings.com/raspberry-pi/mpu6050-accelerometergyroscope-interfacing-with-raspberry-pi
  - Understanding I2C Communication in Linux: A Beginner's Guide with Sample Code for Raspberry Pi : https://www.linkedin.com/pulse/understanding-i2c-communication-linux-beginners-guide-soheil-nazari/
  - homemade MPU-6050 Linux Device Driver: https://github.com/fdcavalcanti/driver-mpu6050/tree/main
- - Help with reading mpu6050 configured with device tree and overlays: https://forums.raspberrypi.com/viewtopic.php?p=2314647&hilit=mpu6050#p2314647
+ - Use the MPU6050 accelerometer on Raspberry-Pi: https://openest.io/non-classe-en/mpu6050-accelerometer-on-raspberry-pi/
+
+The system used is:
+```
+- $ uname -r: 6.12.25+rpt-rpi-v8
+- $ cat /sys/firmware/devicetree/base/model: Raspberry Pi 4 Model B Rev 1.4
+```
+
+The connection of the device shoud be (reference: https://pinout.xyz/pinout/ground):
+
+```
+rpi            | mpu6050
+pin2 5V        | Vcc
+pin3 i2c1 sda  | SDA
+pin5 i2c1 scl  | SCL
+pin39 ground   | GND
+pin34 ground   | AD0 (so the address is 0x68)
+```
 
 The MPU6050 depends on I2C so enable it in the rpi by the GUI or editing the configuration files.
 
@@ -125,6 +143,7 @@ add the overlay into the configuration. (the actual line can be slightly differe
 ```
 sudo sh -c "echo my_overlay.dtbo >> /boot/config.txt" # or just open the config.txt file and add the overlay
 ```
+or the raspbery 4 used, only is needed to add the line: "dtoverlay=i2c-sensor,mpu6050".
 
 reboot the rpi `sudo reboot`. 
 
@@ -132,13 +151,86 @@ Verify the overlay: After rebooting, you can verify that the overlay was applied
 
 Check if the mpu6050 is detected and running correctly using `i2cdetect -y 1` to scan for I2C devices
 
-Access IIO data: You can now access the IIO data from your device using the IIO driver, which is typically done through the /sys/bus/iio/devices directory or through a Python library like libiio
+```
+$ sudo i2cdetect -y 1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:                         -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- UU -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --
+// note that the addes is colum 8, row 60, that is address: 0x68                  
+```
+
+Access IIO data: You can now access the IIO data from your device using the IIO driver, which is typically done through the /sys/bus/iio/devices directory or through a library like libiio
 
 Watch out: The mpu6050 device tree overlay is not a standard inclusion in the Raspberry Pi 3 (Pi 3) kernel, unlike later models. This means you'll need to manually configure and load the overlay if you wish to use an MPU6050 sensor with your Pi 3. The Pi 3 lacks a dedicated MPU6050 overlay for ease of use, but it can still be used with additional setup. 
 
+To read data from an MPU6050 device file within the Linux kernel, you'll generally interact with the device using the iio (Industrial Input/Output) framework and the files found in /sys/bus/iio/devices/. Specifically, you'll need to configure the scan elements and triggers associated with the MPU6050 to enable data capture. 
+
+```
+$ ls /sys/bus/iio/devices/iio:device0
+buffer                   in_accel_scale            in_accel_z_calibbias        in_anglvel_x_raw        in_temp_offset  sampling_frequency            waiting_for_supplier
+buffer0                  in_accel_scale_available  in_accel_z_raw              in_anglvel_y_calibbias  in_temp_raw     sampling_frequency_available
+current_timestamp_clock  in_accel_x_calibbias      in_anglvel_mount_matrix     in_anglvel_y_raw        in_temp_scale   scan_elements
+dev                      in_accel_x_raw            in_anglvel_scale            in_anglvel_z_calibbias  name            subsystem
+in_accel_matrix          in_accel_y_calibbias      in_anglvel_scale_available  in_anglvel_z_raw        of_node         trigger
+in_accel_mount_matrix    in_accel_y_raw            in_anglvel_x_calibbias      in_gyro_matrix          power           uevent
+```
+
+To read the values of the mpu6050 a step-by-step guide:
+
+references: 
+ - https://stackoverflow.com/questions/36791837/reading-iio-device-data-from-user-space#:~:text=I%20believe%20your%20issue%20relates,%5Bx%5D/trigger/current_trigger.&text=hope%20thats%20help.
+ - https://patchwork.kernel.org/project/linux-iio/patch/20210322132408.1003443-1-linus.walleij@linaro.org/#24069765
+
+
+1. Identify the MPU6050's iio device directory:<br>
+Look for the MPU6050's entry under /sys/bus/iio/devices/. It will be something like iio:device[x], where x is a number.
+
+3. Configure scan elements:<br>
+Within the device directory, you'll find the scan_elements directory.<br>
+Inside, you'll find files like _en, _index, and _type for each sensor (accelerometer, gyroscope, etc.).<br>
+To enable a sensor, write 1 to its corresponding _en file.<br>
+The _type file indicates the type of data (e.g., "accel", "gyro").<br> 
+The _index file specifies the channel for the data.
+
+5. Set up triggers (if needed):<br>
+Some MPU6050 drivers may require you to enable a trigger to start data acquisition.<br>
+If so, there will be a trigger directory within the device directory.<br>
+You might need to write the trigger name to the current_trigger file within the trigger directory.
+
+The correct command is: `cat /sys/bus/iio/devices/trigger[x]/name > /sys/bus/iio/devices/iio:device[x]/trigger/current_trigger`.
+
+7. Configure the buffer:<br>
+You'll also find a buffer directory.<br>
+Here, you can set the buffer length using the length file.<br>
+Enable the buffer by writing 1 to the enable file.
+
+9. Read data: <br>
+Once configured, you can read the data from the device file.<br>
+The specific file and format will depend on the MPU6050 driver and how it's configured.<br>
+You can use the read system call to read the data.
+
+Example: <br>
+Let's say the MPU6050 is recognized as iio:device0. <br>
+Navigate to /sys/bus/iio/devices/iio:device0/.<br>
+Enable the gyroscope: echo 1 > scan_elements/gyro_en.<br>
+Enable a trigger (if required): echo "mpu6050-dev1" > trigger/current_trigger.<br>
+Set the buffer length: echo 100 > buffer/length.<br>
+Enable the buffer: echo 1 > buffer/enable.<br>
+Read data: cat /sys/bus/iio/devices/iio:device0/in_accelx_raw (or similar, depending on the specific sensor).<br>
+
+Important notes:
+You'll need appropriate permissions (usually root) to access and modify these files. 
+Refer to the specific MPU6050 driver documentation for details on the exact configuration and data formats. <br>
+You may need to load the relevant kernel module (e.g., inv_mpu6050.ko). <br>
+By following these steps, you can interact with the MPU6050 device file and read its sensor data within the Linux kernel environment. 
 
 ## Device tree structure 
-
 
 ## Device tree syntax
 
