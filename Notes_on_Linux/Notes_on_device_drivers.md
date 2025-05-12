@@ -1044,6 +1044,7 @@ References:
  - how to connect to a rpi thru the USB port: https://linux.ime.usp.br/~marcelosc/2019/01/SSH-em-Raspberrypi-conectada-por-USB
  - LibIIo: https://www.youtube.com/watch?v=p_VntEwUe24
  - https://wiki.analog.com/software/linux/docs/iio/iio
+ - Embedded Linux Weekend Hacking, Part 5: Interfacing Sensors via the Industrial I/O (IIO) Subsystem: https://www.linkedin.com/pulse/embedded-linux-weekend-hacking-part-5-interfacing-via-kumar-phd-s0obc/
 
 
 The IIO framework interaces sensors (ADCs or DACs) with the kernel.
