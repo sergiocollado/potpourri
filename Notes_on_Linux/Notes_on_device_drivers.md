@@ -1025,6 +1025,7 @@ After you have this and the address of the device, see the following code from [
 ## Industrial I/O devices
 
 References:
+ - 10 Years of the Industrial I/O Kernel Subsystem - Jonathan Cameron: https://youtu.be/644oH1FXdtE
  - https://www.kernel.org/doc/html/v4.14/driver-api/iio/index.html
  - sample: https://elixir.bootlin.com/linux/latest/source/drivers/iio/dummy/iio_simple_dummy.c
  - https://abhashpl.hashnode.dev/my-linux-kernel-bug-fixing-mentorship-experience (iio drives)
