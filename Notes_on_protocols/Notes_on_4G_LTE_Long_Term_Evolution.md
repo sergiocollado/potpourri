@@ -16,7 +16,7 @@ References:
 
 
   - The UE (User Equipment) consists of the ME (Movile Equipment) + USIM 
-  - The access network:  EUTRAN - Evolved Universal Terrestial Radio Access Network)
+  - The access network: in 4G,  EUTRAN - Evolved Universal Terrestial Radio Access Network)
   - CN (Core Network): in 4G, the core network is known as EPC (Evolved Packed Core)
   - UEs don't communicate directly with the CN, but CN is responsible for overall control of UE and call stablishment. 
  
