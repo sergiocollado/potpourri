@@ -1045,6 +1045,8 @@ References:
  - LibIIo: https://www.youtube.com/watch?v=p_VntEwUe24
  - https://wiki.analog.com/software/linux/docs/iio/iio
  - Embedded Linux Weekend Hacking, Part 5: Interfacing Sensors via the Industrial I/O (IIO) Subsystem: https://www.linkedin.com/pulse/embedded-linux-weekend-hacking-part-5-interfacing-via-kumar-phd-s0obc/
+ - Introduction to Userspace IIO: https://cm.e-ale.org/2019/SCaLE17x/iio/iioinput-user-SLIDES.pdf
+ - Industrial I/O and You: Nonsense Hacks!: https://elinux.org/images/b/ba/ELC_2017_-_Industrial_IO_and_You-_Nonsense_Hacks!.pdf
 
 
 The IIO framework interaces sensors (ADCs or DACs) with the kernel.
