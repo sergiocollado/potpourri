@@ -77,6 +77,7 @@ Example: https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-dev
 
 references:
  - Help with reading mpu6050 configured with device tree and overlays: https://forums.raspberrypi.com/viewtopic.php?p=2314647&hilit=mpu6050#p2314647
+ - https://bootlin.com/blog/the-backbone-of-a-linux-industrial-i-o-driver/
  - datasheet: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
  - binding: https://www.kernel.org/doc/Documentation/devicetree/bindings/iio/imu/invensense%2Cmpu6050.yaml
  - linux kernel device: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/iio/imu/inv_mpu6050?h=v6.15-rc6
