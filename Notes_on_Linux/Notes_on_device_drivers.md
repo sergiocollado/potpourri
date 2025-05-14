@@ -582,8 +582,8 @@ Upon module exit, use: `platform_driver_unregister()`.
 ## I2C Device drivers
 
 References: 
- - https://www.kernel.org/doc/html/v4.14/driver-api/i2c.html
  - https://hackerbikepacker.com/i2c-on-linux
+ - https://www.kernel.org/doc/html/v4.14/driver-api/i2c.html
  - https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c
  - kernel-programming-device-model-i2c.pdf : https://bootlin.com/pub/conferences/2018/elc/opdenacker-kernel-programming-device-model-i2c/kernel-programming-device-model-i2c.pdf
  - Basics of I2C on Linux - Luca Ceresoli, Bootlin : https://youtu.be/g9-wgdesvwA
@@ -606,6 +606,7 @@ References:
 ### Fundamentals of I2C
 
  References:
+  - https://hackerbikepacker.com/i2c-on-linux
   - Understanding I2C: https://youtu.be/CAvawEcxoPU
   - https://www.ti.com/lit/an/sbaa565/sbaa565.pdf?ts=1745316874300
   - https://www.circuitbasics.com/basics-of-the-i2c-communication-protocol/
