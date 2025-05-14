@@ -6,6 +6,7 @@ References:
  - https://www.kernel.org/doc/html/v5.5/driver-api/driver-model/bus.html
  - Understanding the Structure of a Linux Kernel Device Driver - Sergio Prado, Toradex : https://www.youtube.com/watch?v=pIUTaMKq0Xc
  - Kernel Recipes 2016 - The Linux Driver Model - Greg KH : https://youtu.be/AdPxeGHIZ74
+ - https://hackerbikepacker.com/linux-drivers-layout-and-device-model
  - https://linux-kernel-labs.github.io/refs/heads/master/labs/device_model.html
  - examples of linux device drivers: https://github.com/rrmhearts/linux-driver-examples
  - The Linux Device Model: https://www.linkedin.com/pulse/embedded-linux-device-driver-development-part-2-model-kumar-phd?trk=public_post_feed-article-content
