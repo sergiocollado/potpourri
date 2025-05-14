@@ -1026,6 +1026,7 @@ After you have this and the address of the device, see the following code from [
 
 References:
  - 10 Years of the Industrial I/O Kernel Subsystem - Jonathan Cameron: https://youtu.be/644oH1FXdtE
+ - iio presentation: https://events.static.linuxfound.org/sites/events/files/slides/lceu15_baluta.pdf
  - https://www.kernel.org/doc/html/v4.14/driver-api/iio/index.html
  - sample: https://elixir.bootlin.com/linux/latest/source/drivers/iio/dummy/iio_simple_dummy.c
  - https://abhashpl.hashnode.dev/my-linux-kernel-bug-fixing-mentorship-experience (iio drives)
@@ -1061,7 +1062,7 @@ The IIO model is based on device an channel architecture:
 The IIO element will be exposed to the user space as a character device (when triggered buffer is supported ) and in the sysfs directory 
 whit the channels defined in it: 
  - `/dev/ioo:deviceX` exports events and buffered data
- - `/sys/bus/iio/iio:deviceX/`, a direcotry with represents the device and its channels
+ - `/sys/bus/iio/iio:deviceX/`, a directory with represents the device and its channels
 
 
 Example IIO:
