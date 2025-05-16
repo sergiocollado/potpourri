@@ -76,6 +76,7 @@ Example: https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-dev
 ## Example of usage RPi with MPU6050
 
 references:
+ - how mpu6050 works: https://lastminuteengineers.com/mpu6050-accel-gyro-arduino-tutorial/
  - Help with reading mpu6050 configured with device tree and overlays: https://forums.raspberrypi.com/viewtopic.php?p=2314647&hilit=mpu6050#p2314647
  - https://bootlin.com/blog/the-backbone-of-a-linux-industrial-i-o-driver/
  - datasheet: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
