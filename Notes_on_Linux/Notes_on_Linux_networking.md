@@ -574,7 +574,7 @@ Other options as `D-bus`, `firewall-config` or `firewall-cmd` are interfaces to 
 
 ### Iptables
 
-referneces:
+references:
  - https://linux.die.net/man/8/iptables
  - https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands
  - https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture
@@ -584,6 +584,33 @@ referneces:
 Iptables is used to set up, maintain, and inspect the tables of IP packet filter rules in the Linux kernel. Several different tables may be defined. Each table contains a number of built-in chains and may also contain user-defined chains.
 
 Each chain is a list of rules which can match a set of packets. Each rule specifies what to do with a packet that matches. This is called a 'target', which may be a jump to a user-defined chain in the same table.
+
+### firewalld
+
+references:
+ - https://www.computernetworkingnotes.com/linux-tutorials/firewalld-basic-concepts-explained-with-examples.html
+ - https://ioflood.com/blog/what-is-firewalld-linux/
+
+Firewalld is a firewall management tool for Linux operating systems that provides an easy-to-use interface for managing firewall rules. It is also the default firewall solution on many Linux distributions. 
+
+Zones are a fundamental concept in firewalld. They allow you to define different levels of trust for different network interfaces and connections. For example, you might have a ‘public’ zone for untrusted networks and a ‘home’ zone for your home network.
+
+Firewalld allows you to manage network traffic based on the service or application that is generating the traffic. For example, you can add a rule to allow HTTP traffic through the firewall.
+
+```
+firewall-cmd -list-all
+firewall-cmd --get-active-zones
+firewall-cmd --get-default-zone
+firewall-cmd --add-port=100/tcp
+firewall-cmd --list-services
+firewall-cmd --list-ports
+firewall-cmd --add-service=squid
+ll usr/lib/firewalld/services #to check all the services
+firewall-cmd --reload # the changes are not persistant
+# To the changes to be persistent, use the 'permanent' flag.
+firewall-cmd --persisntent --new-service=<my_new_service>
+cat /etc/firewalld/services/<my_new_service> # this file was created
+```
 
 
 
