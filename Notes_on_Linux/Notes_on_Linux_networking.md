@@ -612,6 +612,24 @@ firewall-cmd --persisntent --new-service=<my_new_service>
 cat /etc/firewalld/services/<my_new_service> # this file was created
 ```
 
+### Troubleshooting
+
+references: 
+ - https://www.redhat.com/en/blog/beginners-guide-network-troubleshooting-linux
+ - https://linuxblog.io/guide-to-network-troubleshooting-in-linux/
+ - https://tuxcare.com/blog/linux-firewalls/#:~:text=Test%20Network%20Connectivity%3A%20Use%20tools,what%20might%20be%20causing%20disruptions.
+
+Firewall configuration issues can disrupt your connections and leave services inaccessible. Here’s how to troubleshoot them:
+
+Check Firewall Status: Use commands like `firewalld-cmd --state`, `iptables -L`, or `ufw status` to check the current status of your firewall.
+
+Review Active Rules: Carefully examine current rules to ensure they match with your intended traffic policies. Misconfigured rules are a common source of problems.
+
+Test Network Connectivity: Use tools like `ping`, `traceroute` or `telnet` to test connectivity to both internal and external resources. This helps pinpoint blocked traffic.
+
+Tools like `tcpdump` for packet analysis, `netstat` for monitoring network connections, and `iperf` for measuring bandwidth, all set against the backdrop of real-world scenarios.
+
+Examine Firewall Logs: Check firewall logs for error messages or dropped packets to understand what might be causing disruptions.
 
 
 
