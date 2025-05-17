@@ -553,7 +553,41 @@ ip route add unreachable <x.x.x.x/yy>
 ```
 
 these changes will not persists a system restart.
- 
+
+## Firewalls
+
+A firewall blocks all connections unless specific rules are defined to allow the traffic. Examples of tables are: iptables or firewalld. 
+
+What makes a firewall work is `netfilter`, it is framework provieded by the linux kernel, it is the code inside the linux kernel that allows things like: 
+  - packet filtering
+  - network address translations
+  - port translation
+
+Netfilter, is a set of hooks inside the linux kernel to allow kernel modules to register callback funtions with the network 
+stack.  A registered callback function is then called for every packed that traverses the respective hook within the 
+network stack. reference: https://netfilter.org/
+
+The `system-config-firewall` is a gui or tui that interfaces with the `iptable.service` with is a handler for the `iptable command`, and `iptable` 
+interfaces with the hooks provided by `netfilter`. 
+
+Other options as `D-bus`, `firewall-config` or `firewall-cmd` are interfaces to the `firewall.service`, and the `firewall.service` also relies on `netfilter`. 
+
+### Iptables
+
+referneces:
+ - https://linux.die.net/man/8/iptables
+ - https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands
+ - https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture
+ - https://stuffphilwrites.com/2014/09/iptables-processing-flowchart/
+ - https://rakhesh.com/linux-bsd/iptables-packet-flow-and-various-others-bits-and-bobs/
+
+Iptables is used to set up, maintain, and inspect the tables of IP packet filter rules in the Linux kernel. Several different tables may be defined. Each table contains a number of built-in chains and may also contain user-defined chains.
+
+Each chain is a list of rules which can match a set of packets. Each rule specifies what to do with a packet that matches. This is called a 'target', which may be a jump to a user-defined chain in the same table.
+
+
+
+
 ## Machine level configuration
 
 ### Network interface
