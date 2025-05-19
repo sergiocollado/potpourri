@@ -1,4 +1,5 @@
 // reference: https://youtu.be/yPbcUeOjOSY
+// reference: https://github.com/Johannes4Linux/Linux_Driver_Tutorial/blob/a76b33422b0cf658631fed2c73caf0b90f534952/11_kmalloc/README.md
 #include<linux/module.h>
 #include<linux/init.h>
 #include<linux/fs.h>
