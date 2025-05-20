@@ -125,6 +125,8 @@ Allocates IP addresses to UE during bearer establishment.
 
 ### Interfaces
 
+![4g arch protocosl](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/4g_arch_interfaces.PNG)
+
 - Sgi interface between PWG and the external IP network (internet)
 - S5 intereface between the SGW and the PGW (same network), transporting user data + a few signaling messages
 - S11 interface between the SGW and the MME, tranporting signalling messages
