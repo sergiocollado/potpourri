@@ -10,6 +10,9 @@ References:
  - 3.3 - LTE 4G Evolved Packet Core (EPC) - Real Life Analogy - Air Travel: https://youtu.be/GFoGiatdkRY
  - Learn 4G LTE Network Architecture: https://youtu.be/-nDjkV-NulM
  - LTE Attach Procedure - Introduction: https://youtu.be/m9nmSgYnGfE
+ - LTE yt channel: https://www.youtube.com/channel/UCf5srFJ-JofnE8r-bn1o1VA
+ - https://hackmd.io/@jonathanrichard/S1geBs-g_
+ - https://www.tutorialspoint.com/lte/lte_basic_parameters.htm
 
 
 ![4g architecture](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/4G_LTE_arch.PNG)
@@ -109,6 +112,12 @@ Allocates IP addresses to UE during bearer establishment.
 ### HSS Home Subscriver Service
  Like the HLR in 2G/3G
 
+### EIR - Equipement Identity Register 
+ Terminal database of terminals stolen- interface S13 with MME
+
+### PCRF - Policy and Charging Rules Fucntion
+ Interface Gx with PGW 
+
 ## 4G charging
 
  - reference: https://www.etsi.org/deliver/etsi_ts/132200_132299/132240/14.03.00_60/ts_132240v140300p.pdf
@@ -121,7 +130,12 @@ Allocates IP addresses to UE during bearer establishment.
 - S11 interface between the SGW and the MME, tranporting signalling messages
 - S6a interface between the MME and the HSS, transporting signalling messages
 - S1-MME interface between the eNodeB and the MME, transporting signalling messages
-- S1-U interface between the eNodeB and the SGW, transporting user data, no signalling exchanges.  
+- S1-U interface between the eNodeB and the SGW, transporting user data, no signalling exchanges.
+- X2 interface between 2 eNodeBs, transporting user data and signaling messages
+- Uu transmission in the radio channel between the UE and the eNodeB, transporting using data and signalling messages
+- S8 interface, between the SGW and the PGW of diffeRent networks (roaming)
+- Gx between the PGW and PCRF
+- S13 interface between the EIR and the MME
 
 
 
