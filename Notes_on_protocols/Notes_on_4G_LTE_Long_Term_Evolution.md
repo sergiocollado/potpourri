@@ -114,6 +114,15 @@ Allocates IP addresses to UE during bearer establishment.
  - reference: https://www.etsi.org/deliver/etsi_ts/132200_132299/132240/14.03.00_60/ts_132240v140300p.pdf
 
 
+### Interfaces
+
+- Sgi interface between PWG and the external IP network (internet)
+- S5 intereface between the SGW and the PGW (same network), transporting user data + a few signaling messages
+- S11 interface between the SGW and the MME, tranporting signalling messages
+- S6a interface between the MME and the HSS, transporting signalling messages
+- S1-MME interface between the eNodeB and the MME, transporting signalling messages
+- S1-U interface between the eNodeB and the SGW, transporting user data, no signalling exchanges.  
+
 
 
 
