@@ -112,10 +112,10 @@ Allocates IP addresses to UE during bearer establishment.
 ### HSS Home Subscriver Service
  Like the HLR in 2G/3G
 
-### EIR - Equipement Identity Register 
+### Equipement Identity Register - EIR
  Terminal database of terminals stolen- interface S13 with MME
 
-### PCRF - Policy and Charging Rules Fucntion
+### Policy and Charging Rules Function - PCRF
  Interface Gx with PGW 
 
 ## 4G charging
