@@ -3352,7 +3352,16 @@ sudo chroot "$ROOT" bash -c "apt install -y $KSELFTESTS $LTP"
 > that of course imply in having the correct qemu-system package, etc
 
 
+### dynamic debugging
 
+- https://documentation.suse.com/sles/15-SP6/html/SLES-all/cha-tuning-dynamic-debug.html
+- https://www.kernel.org/doc/html/v4.19/admin-guide/dynamic-debug-howto.html
+- https://wiki.st.com/stm32mpu/wiki/How_to_use_the_kernel_dynamic_debug
+- https://www.ti.com/video/5399373110001
+- https://www.ti.com/video/series/debugging-embedded-linux-systems-training-series.html
+- Linux Kernel Debugging: Going Beyond Printk Messages - Sergio Prado, Embedded Labworks: https://youtu.be/NDXYpR_m1CU
+- Debugging the Linux Kernel : https://www.youtube.com/watch?v=7QiR3TOYajY
+- Introduction to the Linux Kernel Development: Adding support for debugfs in a Linux Kernel Module: https://youtu.be/TV3zGlz5t1E
 
 
 
