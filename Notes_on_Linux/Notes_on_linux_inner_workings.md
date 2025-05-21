@@ -3355,6 +3355,7 @@ sudo chroot "$ROOT" bash -c "apt install -y $KSELFTESTS $LTP"
 ### dynamic debugging
 
 - https://documentation.suse.com/sles/15-SP6/html/SLES-all/cha-tuning-dynamic-debug.html
+- https://android.googlesource.com/kernel/common/+/bcmdhd-3.10/Documentation/dynamic-debug-howto.txt
 - https://www.kernel.org/doc/html/v4.19/admin-guide/dynamic-debug-howto.html
 - https://wiki.st.com/stm32mpu/wiki/How_to_use_the_kernel_dynamic_debug
 - https://www.ti.com/video/5399373110001
