@@ -3364,7 +3364,16 @@ sudo chroot "$ROOT" bash -c "apt install -y $KSELFTESTS $LTP"
 - Debugging the Linux Kernel : https://www.youtube.com/watch?v=7QiR3TOYajY
 - Introduction to the Linux Kernel Development: Adding support for debugfs in a Linux Kernel Module: https://youtu.be/TV3zGlz5t1E
 
+### static keys
 
+ - https://www.kernel.org/doc/Documentation/static-keys.txt
+ - https://www.kernel.org/doc/html/latest/staging/static-keys.html
+ - https://users.rust-lang.org/t/announcing-static-keys-reimplementaion-of-linux-kernels-static-keys-mechanism-for-rust-userland/115060
+ - https://github.com/Rust-for-Linux/linux/commit/6e59bcc9c8adec9a5bbedfa95a89946c56c510d9
+ - https://github.com/Rust-for-Linux/linux/blame/rust-next/rust/kernel/jump_label.rs
+ - https://github.com/Rust-for-Linux/linux/issues/453
+ - https://rust.docs.kernel.org/kernel/macro.static_branch_unlikely.html
+   
 
 
 
