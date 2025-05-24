@@ -93,6 +93,7 @@ references:
  - Understanding I2C Communication in Linux: A Beginner's Guide with Sample Code for Raspberry Pi : https://www.linkedin.com/pulse/understanding-i2c-communication-linux-beginners-guide-soheil-nazari/
  - homemade MPU-6050 Linux Device Driver: https://github.com/fdcavalcanti/driver-mpu6050/tree/main
  - Use the MPU6050 accelerometer on Raspberry-Pi with i2c commands: https://openest.io/non-classe-en/mpu6050-accelerometer-on-raspberry-pi/
+ - https://wiki.stmicroelectronics.cn/stm32mpu/index.php?title=How_to_use_the_IIO_user_space_interface&oldid=77686
 
 The system used is:
 ```
