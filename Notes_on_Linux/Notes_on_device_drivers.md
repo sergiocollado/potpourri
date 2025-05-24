@@ -1028,6 +1028,7 @@ After you have this and the address of the device, see the following code from [
 
 References:
  - 10 Years of the Industrial I/O Kernel Subsystem - Jonathan Cameron: https://youtu.be/644oH1FXdtE
+ - https://bootlin.com/blog/the-backbone-of-a-linux-industrial-i-o-driver/
  - iio presentation: https://events.static.linuxfound.org/sites/events/files/slides/lceu15_baluta.pdf
  - https://www.kernel.org/doc/html/v4.14/driver-api/iio/index.html
  - sample: https://elixir.bootlin.com/linux/latest/source/drivers/iio/dummy/iio_simple_dummy.c
@@ -1035,9 +1036,7 @@ References:
  - https://www.kernel.org/doc/html/latest/driver-api/iio/index.html
  - https://linux.ime.usp.br/~marcelosc/2019/09/Simple-IIO-driver
  - https://linux.ime.usp.br/~marcelosc/2019/09/Introduction-to-IIO-driver-development
- - 10 Years of the Industrial I/O Kernel Subsystem - Jonathan Cameron: https://youtu.be/644oH1FXdtE?si=1A9JVMcIvjoRdIi1
  - https://www.kernel.org/doc/html/v4.12/driver-api/uio-howto.html
- - https://bootlin.com/blog/the-backbone-of-a-linux-industrial-i-o-driver/
  - https://www.kernel.org/doc/html/v4.12/driver-api/iio/index.html
  - rpi compilation tutorial: https://linux.ime.usp.br/~marcelosc/2019/09/RaspberryPi-kernel-compilation
  - video iio example: https://youtu.be/l8mQtpZhgYI
