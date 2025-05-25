@@ -63,6 +63,7 @@ Languaje reference:
   - https://lwn.net/Articles/985210/
   - writing an OS in Rust: https://os.phil-opp.com
   - REDOX: rust OS: https://www.redox-os.org/
+  - https://github.com/rust-embedded
 
 Other resources:
   - linux kernel rust documentation: https://docs.kernel.org/rust/index.html
