@@ -27,6 +27,7 @@ References:
  - https://www.apriorit.com/dev-blog/195-simple-driver-for-linux-os
  - Linux Device Drivers Development Course for Beginners: https://youtu.be/iSiyDHobXHA
  - How device file in Linux works: https://akawashiro.com/articles/how-device-file-in-linux-works#connect-device-driver-and-device-file
+ - Understanding linux device nodes: https://ruvi-d.medium.com/understanding-linux-device-nodes-deaca8cb8069
 
 
 
