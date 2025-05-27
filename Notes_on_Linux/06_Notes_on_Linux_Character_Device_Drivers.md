@@ -420,7 +420,14 @@ static int find_dynamic_major(void)
 }
 ```
 
-## Device files
+## Device files aka device nodes
+
+references:
+- https://docs.kernel.org/admin-guide/devices.html
+- https://en.wikipedia.org/wiki/Device_file
+- Linux System Administrators Guide: https://linux.die.net/sag/dev-fs.html
+- LDP: https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/dev.html
+- Understanding linux device nodes: https://ruvi-d.medium.com/understanding-linux-device-nodes-deaca8cb8069
 
 A device file is an interface for a device driver that appears in a filesystem as if it were an ordinary file. Such files allow software to interact with a device driver. They are found in the `/dev` directory. 
 
@@ -428,10 +435,7 @@ A device file is an interface for a device driver that appears in a filesystem a
 
 Device files `/dev` are managed as part of the VFS (virtual file subsystem) subsystem of the Linux kernel. 
 
-- reference in kernel documentation: https://docs.kernel.org/admin-guide/devices.html
-- reference about device files: https://en.wikipedia.org/wiki/Device_file
-- reference: Linux System Administrators Guide: https://linux.die.net/sag/dev-fs.html
-- reference: LDP: https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/dev.html
+
 
 ### Creating Device File
 
