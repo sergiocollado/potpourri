@@ -116,7 +116,16 @@ Allocates IP addresses to UE during bearer establishment.
  Terminal database of terminals stolen- interface S13 with MME
 
 ### Policy and Charging Rules Function - PCRF
- Interface Gx with PGW 
+
+the Policy and Charging Rules Function (PCRF) is a critical component of the Evolved Packet Core (EPC) that handles policy enforcement and charging. It dynamically allocates network resources and enforces policies based on user needs, ensuring optimal network performance and user experience. The PCRF manages Quality of Service (QoS) parameters, access control, and charging rules, supporting various network services and subscriber plans. 
+
+### Policy and Charging Enforcement Function - PCEF
+
+The PCEF is a DPI (Deep Packet Inspection) device responsible for the enforcement of rules which have been configured statically or supplied to the PCEF dynamically from the PCRF (Policy and Charging Rules Function). The PCEF sits on the user plane, ensure that subscriber traffic flows are treated in accordance with network policy e.g. implementing QoS, throttling traffic, blocking traffic, etc. Crucially, the PCEF will ensure that services are billed accordingly.
+
+Tipically integrated in the PGW.
+
+ref: https://youtu.be/Wcoj4aw_X78
 
 ## 4G charging
 
