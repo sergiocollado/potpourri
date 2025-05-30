@@ -2,26 +2,26 @@ use std::str;
 
 fn first_word(s: &String) -> &str {
     let bytes = s.as_bytes();
-    
+
     println!("Original s: {:?}", s);
     println!("bytes: {:?}", bytes);
-     
+
     let mut i1 : usize = 0;
-    
+
     println!("space: {}", b' ');
     for (i, &item) in bytes.iter().enumerate() {
         println!("item: {}", item);
         if !(item == b' ' || item == b'\t')
         {
             i1 = i;
-            break;       
+            break;
         }
     }
-    
-    println!("found character at {}", i1);   
+
+    println!("found character at {}", i1);
     let bytes2 = &s[i1..].as_bytes();
     println!("bytes2: {:?}", bytes2);
-    
+
     for (i, &item) in bytes2.iter().enumerate() {
         if item == b' ' {
             println!("space found");
@@ -46,7 +46,7 @@ fn main() {
     let s = String::from("    hello world");
 
     let word = first_word(&s);
-    
+
     let (palabra1, palabra2) = primera_palabra(&s);
 
     //s.clear(); // error!

@@ -103,9 +103,9 @@ fn main() {
 
     let check: Option<usize> = a.iter().position(|&x| x > 4);
     println!("the value of the function `position` is {}", check.unwrap());
-   
+
     let check: Option<usize> = a.iter().rposition(|&x| x > 4);
-    println!("the value of the function `rposition` is {}", check.unwrap()); 
+    println!("the value of the function `rposition` is {}", check.unwrap());
 
     let check = a.iter().max();
     println!("the value of the function `max` is {}", check.unwrap());
@@ -115,14 +115,14 @@ fn main() {
 
     let mut iter: a.iter().rev();
     println!("the result of applying the reverse function is {:?}", iter);
-    println!("result of next(): {:?} - the values will be processed in the reverse order", iter.next()); 
+    println!("result of next(): {:?} - the values will be processed in the reverse order", iter.next());
 
     let filtered_values = a.iter().filter(|&x: &i32| *x > 5).collect::<Vec<&u32>>(); // use turbofish ::<> to declare the type of .collect()
     println!("filtered values {:?}", filtered_values);
 
     let b = a.clone();
     // to get the values insted of the references use the iterator: into_iter()
-    let filtered_values = a.into_iter().filter(|&x: &i32| *x > 5).collect::<Vec<u32>>(); 
+    let filtered_values = a.into_iter().filter(|&x: &i32| *x > 5).collect::<Vec<u32>>();
     // a has been consumed by the into_iter()
     //println!("{:?}", a); // this will faild, as a has been consumed
     println!("filtered values {:?}", filtered_values);

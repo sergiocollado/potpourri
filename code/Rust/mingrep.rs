@@ -44,7 +44,7 @@ impl Config {
 
         let query = args[1].clone();
         let filename = args[2].clone();
-        
+
         Ok(Config { query, filename })
     }
 
