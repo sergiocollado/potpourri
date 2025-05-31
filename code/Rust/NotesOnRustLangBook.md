@@ -7,6 +7,7 @@ Reference: https://doc.rust-lang.org/book/title-page.html
 
 ### Generic Types
 
+// TODO
 
 ### Traits
 
@@ -142,8 +143,64 @@ Because the standard library has this blanket implementation, we can call the to
 ```
 let s = 3.to_string();
 ```
+### Lifetimes
+
+Reference: https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html
+
+Lifetimes ensure that references are valid as long as we need them to be.
+
+Most of the time, lifetimes are implicit and inferred, just like most of the time, types are inferred. We only have to annotate types when multiple types are possible. In a similar way, we have to annotate lifetimes when the lifetimes of references could be related in a few different ways. Rust requires us to annotate the relationships using generic lifetime parameters to ensure the actual references used at runtime will definitely be valid.
+
+Annotating lifetimes is not even a concept most other programming languages have, so this is going to feel unfamiliar. Although we won’t cover lifetimes in their entirety in this chapter, we’ll discuss common ways you might encounter lifetime syntax so you can get comfortable with the concept.
+
+The main aim of lifetimes is to prevent dangling references, which cause a program to reference data other than the data it’s intended to reference. Consider the next program:
+
+```
+fn main() {
+    let r;
+
+    {
+        let x = 5;
+        r = &x;
+    }
+
+    println!("r: {r}");
+}
+```
+
+The outer scope declares a variable named r with no initial value, and the inner scope declares a variable named x with the initial value of 5. Inside the inner scope, we attempt to set the value of r as a reference to x. Then the inner scope ends, and we attempt to print the value in r. This code won’t compile because the value that r is referring to has gone out of scope before we try to use it.
 
 
+#### The Borrow checker
+
+The Rust compiler has a borrow checker that compares scopes to determine whether all borrows are valid.
+The previous program annotated:
+
+```
+fn main() {
+    let r;                // ---------+-- 'a
+                          //          |
+    {                     //          |
+        let x = 5;        // -+-- 'b  |
+        r = &x;           //  |       |
+    }                     // -+       |
+                          //          |
+    println!("r: {r}");   //          |
+}                         // ---------+
+```
+
+The same code fixed:
+
+```
+fn main() {
+    let x = 5;            // ----------+-- 'b
+                          //           |
+    let r = &x;           // --+-- 'a  |
+                          //   |       |
+    println!("r: {r}");   //   |       |
+                          // --+       |
+}                         // ----------+
+```
 
 
 
