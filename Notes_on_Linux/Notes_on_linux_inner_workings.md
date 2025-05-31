@@ -3376,7 +3376,12 @@ sudo chroot "$ROOT" bash -c "apt install -y $KSELFTESTS $LTP"
  - https://rust.docs.kernel.org/next/src/kernel/tracepoint.rs.html
  - https://elixir.bootlin.com/linux/v6.14.7/source/include/linux/dynamic_debug.h#L16
 
-
+### how git works
+ - https://fabiensanglard.net/git_code_review/architecture.php
+ - https://fabiensanglard.net/git_code_review/diff.php
+ - https://medium.com/geekculture/hows-git-work-the-algorithm-behind-be274f9983da
+ - https://youtu.be/suLZU68iCjQ?si=QBqoLRg0CrvWESas
+ - https://www.youtube.com/live/DjOk0jnqsLk?si=1i2wR_XTE9MTlG2_
 
 
 
