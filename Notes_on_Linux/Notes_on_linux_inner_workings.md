@@ -443,6 +443,12 @@ Result: 250
 
 ### Backporting
 
+To download the stable version: 
+```
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+cd linux-stable
+```
+
  References:
   - questions about backporting: https://groups.google.com/g/syzkaller/c/aSvzuUHiDIQ
   - https://www.kernel.org/doc/html/next/process/backporting.html#submitting-backports-to-stable
