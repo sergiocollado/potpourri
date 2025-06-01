@@ -114,6 +114,12 @@ what are Critical:
 
 #### Requirements of OSS stedwareds
 
+OOs steward: a legal person NOT a manufacturer who "systematically" (provides) support on a systaned basis for the development of specific OSS PDE intended for commercial activities that ensures the viability of those products.
+
+- Emplace and document a cybersecurity policy to foster development of a secure PDE, handle vulnerabilities, foster voluntary reporting of vulnerabilities.
+- Cooperate with the market surveillance authorities to mitigate the risk.
+- Report on actively exploited vulnerabilities and severe incidents. 
+
  - https://github.com/ossf/wg-globalcyberpolicy/blob/main/documents/CRA/checklists/OSS_Stewards_Obligations_Checklist.md
 
 
