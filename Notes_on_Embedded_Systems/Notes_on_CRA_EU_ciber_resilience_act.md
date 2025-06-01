@@ -8,6 +8,7 @@ references:
  - https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act
  - https://www.european-cyber-resilience-act.com/
  - https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+ - https://github.com/ossf/wg-globalcyberpolicy/tree/main/documents/CRA
 
 Ciber Resilience Act (CRA) is European Union (EU) regulation 2024/2847:
  - entered in force in 10 December 2024
@@ -59,6 +60,61 @@ references:
  - market surveillance authority: and authority designated to do market surveillance
  - designated computer security incident response team (CSIRT): computer emergency response team
 
+### Roles
+
+ - PDE "product with digital elements"
+
+ - Open-source software (OSS) steward: A person that provides suport of PDE in software that qualifies as OSS.
+ - OSS develop
+ - Manufacturer: A legal person that manufactures PDE
+ - Importer: A legal person stablish in EU that places in the market a PDE stablish outside of EU
+ - Distributor: Someone other that a manufactureer or an importer that makes a PED abailable in the EU.
+
+### Products categories
+
+- Divides "products with digital elements" (PDEs), including software, into:
+    - Important class I & class II (annex III) - e.g. browsers, password managers, operating systems.
+    - Critical (annex IV) - e.g. smart cards
+    - Default
+- "High risk AI systems" specially covered in article 12
+- Important/critical/high risk AI have aditional requirements
+- Electronic Health Record (EHR) systems to be included via amendement
+- Only the most top-level element is relevant to category
+
+What are important class I: 
+ - Identity managment and privilege access management
+ - standalone and embedded browsers
+ - password managers
+ - software that searches for removes or quarantines malicious software
+ - VPNs
+ - network management systems
+ - security information and event management (SIEM)
+ - boot managements
+ - public key infrastructure and digital certificate issuance software
+ - physical and virtual network interfaces
+ - operating systems
+ - routers, modems for internet and switches
+ - microprocessors with security related functionalities
+ - microcontrollerts wiyth security related functionalities
+ - ASICs and FPGAs with security related functionalities
+ - Smart home general purpose virtual assistants
+ - smart home products with security functionalities
+ - internet connected toys with social or location tracking
+ - person wearable products for health monitoring or intended for children
+
+What are important class II:
+ - hypervisors and container runtime systems
+ - firewalls, intrusion detection and prevention systems
+ - tamper-resistant microprocessors/microcontrollers
+
+what are Critical: 
+ - Hardware devices with security boxes
+ - smart meter gateways / adevanced security devices, incl for secure cryptoprocessing
+ - smartcards or similar
+
+#### Requirements of OSS stedwareds
+
+ - https://github.com/ossf/wg-globalcyberpolicy/blob/main/documents/CRA/checklists/OSS_Stewards_Obligations_Checklist.md
 
 
 
