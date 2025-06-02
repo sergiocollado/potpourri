@@ -122,7 +122,21 @@ OOs steward: a legal person NOT a manufacturer who "systematically" (provides) s
 
  - https://github.com/ossf/wg-globalcyberpolicy/blob/main/documents/CRA/checklists/OSS_Stewards_Obligations_Checklist.md
 
+### Manufacturers
 
+The manufacturer of a PDE the product must essential cybersecurity requirements. This obligations must be verified by a conformity assesment procedure, and formalized in a document. 
+
+- Design, develop & produce essential cybersecurity requirements
+- Assess cybersecurity risks, apply througthout lifecycle
+- Document/update cybersecurity risk assesments
+- Exercise due diligence when integrating 3rd party components including OSS
+- If component vulnerability found, report to component mantainer
+- various vulnerability reporting & handling
+- create technical documentation
+- designate vulnerability single point-of-contact
+- info for users
+- assess conformity
+- must report vulnerabilities & incidents
 
 
 
