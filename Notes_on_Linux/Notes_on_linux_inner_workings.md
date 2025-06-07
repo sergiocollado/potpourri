@@ -3383,6 +3383,7 @@ sudo chroot "$ROOT" bash -c "apt install -y $KSELFTESTS $LTP"
  - https://elixir.bootlin.com/linux/v6.14.7/source/include/linux/dynamic_debug.h#L16
 
 ### how git works
+ - https://youtu.be/RxHJdapz2p0 - how git works under the hood
  - https://fabiensanglard.net/git_code_review/architecture.php
  - https://fabiensanglard.net/git_code_review/diff.php
  - https://medium.com/geekculture/hows-git-work-the-algorithm-behind-be274f9983da
