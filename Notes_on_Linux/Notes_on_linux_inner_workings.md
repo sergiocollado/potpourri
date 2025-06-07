@@ -3391,7 +3391,11 @@ sudo chroot "$ROOT" bash -c "apt install -y $KSELFTESTS $LTP"
  - https://www.youtube.com/live/DjOk0jnqsLk?si=1i2wR_XTE9MTlG2_
 
 
+### About bugs in linux
 
+However some subsystems have their own practices. For example DRM and graphic related issue are almost exclusively reported on freedesktop gitlab. If you report bug on Bugzilla, they will ask you to report it there instead. For example for the amdgpu issues:
+
+https://bugzilla.kernel.org/show_bug.cgi?id=200531#c14
 
 
  
