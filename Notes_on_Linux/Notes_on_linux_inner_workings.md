@@ -474,7 +474,7 @@ reference: https://kernelnewbies.org/PatchSeries
 
 ```
 # example for a patch backporting serie
-sergio@laptop:~/repos/linux-stable$ git format-patch --cover-letter --subject-prefix='PATCH 6.12.y' -2  -o ./patches 
+sergio@laptop:~/repos/linux-stable$ git format-patch --cover-letter --subject-prefix='PATCH 6.12.y' -2  -o ./patches --base=auto
 ./patches/0000-cover-letter.patch
 ./patches/0001-Kunit-to-check-the-longest-symbol-length.patch
 ./patches/0002-x86-tools-Drop-duplicate-unlikely-definition-in-insn.patch
