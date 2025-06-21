@@ -181,7 +181,16 @@ On the basis of the cybersecurity risk assesments PDEs shall:
 
 
 
-### Vulnerabilities
+### Vulnerabilities handling requirements for manufacturers
+
+- Identify and document vulnerabilities and components in DPEs
+- Address and remediate vulnerabilities without delay (in relation to the risk)
+- Apply effective and regular tests and reviews of the security of the PDEs
+- Share and publicly disclose information when security update available
+- Enforce a policy on coordinated vulnerability disclosure
+- Facilitate (information sharing) about potential vulnerabilities in their PDEs and its 3rd party components
+- Provide mechanims to securely distribute updates for PDEs
+- Disseminate without delay available security updates, free of charge. Update must be available for 10 years and while PDE is supported.
 
 
 ### Reporting vulnerabilities and incidents
