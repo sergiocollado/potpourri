@@ -180,8 +180,34 @@ On the basis of the cybersecurity risk assesments PDEs shall:
 - SBOM location if manufacturer makes it available
 
 
-  
-   
+
+### Vulnerabilities
+
+
+### Reporting vulnerabilities and incidents
+
+Reference: European vulnerability database: CIRCL vulnerability-lookup: https://vulnerability.circl.lu/
+
+Reference: Article 14
+
+- Manufacturers must notify designated CSIRT and ENISA of any **actively exploited vulenerability** in PDE that it becomes aware of: 
+  - early warning less than 24 hours, general info less than 72 hours
+  - final report less than 14 days after correction/mitigation available)
+- Must also notify for a **severe incident**:
+  - early warning less than 24 hours, incident notification less than 72 hours, final report less than 1 month
+  - What is a **severe incident?**: incident is an event compromising data or service. Its severe if it:
+     - can negatively affect (availability, authenticity, integrity, confidentiality of sensitive or important data or functions
+     - can lead to introduction/execution of malicious code in PDE or user network
+- Manufacturer must inform impacted users (or all users) after becoming aware of an actively exploited vulnerability or a severe
+incident "in a timely manner"
+- Who and how report is described in Article [14(7)]
+
+
+Anyone can report a vulnerability/cyber thread/incident to a designated CSIRT or ENISA
+- CSIRT informs manufacturer without delay, ensures anonymity of notifieer
+- ENISA to create a single reporting platform
+
+
 
 
 
