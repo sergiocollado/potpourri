@@ -131,12 +131,62 @@ The manufacturer of a PDE the product must essential cybersecurity requirements.
 - Document/update cybersecurity risk assesments
 - Exercise due diligence when integrating 3rd party components including OSS
 - If component vulnerability found, report to component mantainer
-- various vulnerability reporting & handling
-- create technical documentation
-- designate vulnerability single point-of-contact
-- info for users
-- assess conformity
-- must report vulnerabilities & incidents
+- Various vulnerability reporting & handling (usually +5 years)
+- Create technical documentation
+- Designate vulnerability single point-of-contact
+- Info for users
+- Assess conformity
+- Must report vulnerabilities & incidents
+
+
+### Risk management and cybersecurity requirements
+
+PDEs has to be desing and developed and produced with a continous eye on risks. 
+
+Annexs I and II.
+
+1- Risk identification
+2- Risk analysis (likelyhood and impact)
+3- Determine applicatibility of security controls
+4- Determine how the security controls ae implemented
+5- Design/Develop/Produce in a risk proportionate manner
+6- Apply vulnerability handling requirements
+
+PDEs shall be designed, developed and produced (to ensure) appropiate levels of cybersecurity based on risks
+
+On the basis of the cybersecurity risk assesments PDEs shall:
+ - Have no known exploitable vulnerabilities
+ - Have a secure 'by default' configurations, unless ... taylor made PDE. (you cannot have a PDE with a default user: Admin and psw: Admin, except maybe in a 'testing' mode).
+ - Ensure ... vulnerabilities security updates
+ - Ensure that the PDE implements security as defined by: confidentiality, integrity and availability
+    - confidentiality: only authorized users can read information
+    - integrity: only authorized users can write information
+    - availability: authroized users can continue to use the system, even when an adversary is trying to prevent it.
+ - limit attack surfaces
+ - reduce the impact of an incident
+ - recording and monitoring
+ - [enable] users to securely remove/transfer all the data and settings.
+
+### Information and instructions to the user
+
+- Manufacture name, postal/email addresses, website.
+- Point of contact for reporting vulnerabilities and coordinated vulnerabilities disclosure policy
+- PDE name/id
+- Intended PDE purpose
+- Circumstance/s which may lead to significant cybersecurity risks
+- Internet address for EU declaration of conformity
+- Technical security support offered and end-date
+- Detailed instructions (may provide an internet address for them)
+- SBOM location if manufacturer makes it available
+
+
+  
+   
+
+
+
+
+
 
 
 
