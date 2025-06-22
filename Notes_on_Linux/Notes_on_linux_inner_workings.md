@@ -484,6 +484,7 @@ sergio@laptop:~/repos/linux-stable$ git format-patch --cover-letter --subject-pr
 ./scripts/checkpacth patches/*.patch
 
 git send-email \
+--dry-run \
 --to 'stable@vger.kernel.org' \
 --to 'Greg KH <gregkh@linuxfoundation.org>' \
 --to 'Sasha Levin <sashal@kernel.org>' \
