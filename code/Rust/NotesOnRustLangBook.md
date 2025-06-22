@@ -202,6 +202,82 @@ fn main() {
 }                         // ----------+
 ```
 
+## Chapter 20
+
+### Macros
+
+ref: https://doc.rust-lang.org/book/ch20-05-macros.html
+
+Most commont macro is the declarative macro, that is the **macro_rules!**
+definition. This macro is like a match expression. The passing vaule is the
+code passed to the macro; the patterns are compared with the structure of the
+source code; and the code associated with each pattern, when matched, replaces
+the code passed to the macro. This is all handled during compilation. To define
+the macro you ues the **macro_rules!** definition.
+
+For example this simplified vec! macro:
+
+```
+#[macro_export]
+macro_rules! vec {
+    ( $( $x:expr ),* ) => {
+        {
+            let mut temp_vec = Vec::new();
+            $(
+                temp_vec.push($x);
+            )*
+            temp_vec
+        }
+    };
+}
+```
+
+The #[macro_export] annotation indicates that this macro should be made
+available whenever the crate in which the macro is defined is brought into scope.
+Without this annotation, the macro can’t be brought into scope.
+
+The structure in the vec! body is similar to the structure of a match expression.
+Here we have one arm with the pattern ( $( $x:expr ),* ), followed by => and
+the block of code associated with this pattern. If the pattern matches, the
+associated block of code will be emitted. Given that this is the only pattern
+in this macro, there is only one valid way to match; any other pattern will
+result in an error. More complex macros will have more than one arm.
+
+First we use a set of parentheses to encompass the whole pattern. We use a
+dollar sign ($) to declare a variable in the macro system that will contain the
+Rust code matching the pattern. The dollar sign makes it clear this is a macro
+variable as opposed to a regular Rust variable. Next comes a set of parentheses
+that captures values that match the pattern within the parentheses for use in
+the replacement code. Within $() is $x:expr, which matches any Rust expression
+and gives the expression the name $x.
+
+The comma following $() indicates that a literal comma separator character must
+appear between each instance of the code that matches the code within $().
+The * specifies that the pattern matches zero or more of whatever precedes the *.
+
+When we call this macro with vec![1, 2, 3];, the $x pattern matches three times
+with the three expressions 1, 2, and 3.
+
+Now let’s look at the pattern in the body of the code associated with this arm:
+temp_vec.push() within $()* is generated for each part that matches $() in the
+pattern zero or more times depending on how many times the pattern matches.
+The $x is replaced with each expression matched. When we call this macro with
+vec![1, 2, 3];, the code generated that replaces this macro call will be the
+following:
+
+``
+{
+    let mut temp_vec = Vec::new();
+    temp_vec.push(1);
+    temp_vec.push(2);
+    temp_vec.push(3);
+    temp_vec
+}
+```
+
+We’ve defined a macro that can take any number of arguments of any type and can
+generate code to create a vector containing the specified elements.
+
 
 
 
