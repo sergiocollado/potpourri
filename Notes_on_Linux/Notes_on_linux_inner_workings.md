@@ -464,6 +464,8 @@ cd linux-stable
  using e.g. `git format-patch --subject-prefix='PATCH 6.1.y' `, 
  
  ```
+>> # ALWAYS SIGN-OFF THE COMMITS!!!
+ >> git cherry-pick <XXXX>
  >> git commit --amend -s  // to sign the patchf
  >> git format-patch -1 --subject-prefix='PATCH 6.1.y'
  >> ./script/checkpatch.p <patch-name>
@@ -476,6 +478,7 @@ reference: https://kernelnewbies.org/PatchSeries
 ```
 # example for a patch backporting serie
 
+# ALWAYS SIGN-OFF THE COMMITS!
 sergio@laptop:~/repos/linux-stable$ mkdir patches
 sergio@laptop:~/repos/linux-stable$ git format-patch --cover-letter --subject-prefix='PATCH 6.12.y' -2  -o ./patches --base=auto
 ./patches/0000-cover-letter.patch
