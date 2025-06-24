@@ -33,6 +33,8 @@ Languaje reference:
   - rust macros rustlings lookalike: https://github.com/tfpk/macrokata
   - https://blog.logrocket.com/macros-in-rust-a-tutorial-with-examples/#whatarerustmacros
   - macros_by_example: https://doc.rust-lang.org/reference/macros-by-example.html
+  - proc-macro-workshop: https://github.com/dtolnay/proc-macro-workshop
+  - Procedural Macros in Rust (part 1): https://youtu.be/geovSK3wMB8
   - https://google.github.io/comprehensive-rust/welcome-day-4.html
   - Ferrous training: 
       - https://github.com/ferrous-systems/teaching-material/tree/main/assignments
