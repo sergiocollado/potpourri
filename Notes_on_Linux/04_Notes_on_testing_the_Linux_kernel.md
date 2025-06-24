@@ -6,14 +6,16 @@ References:
 
 ## Kselftests
 
-reference: https://docs.kernel.org/dev-tools/kselftest.html <br>
-reference: https://kselftest.wiki.kernel.org/ <br>
-reference: https://kunit.dev/third_party/kernel/docs/ <br>
-reference: https://github.com/torvalds/linux/blob/master/Documentation/dev-tools/kselftest.rst <br>
-reference: https://lca-kernel.ozlabs.org/2022-Gow-Kernel-Testing-with-KUnit-Bridging-the-Gap.pdf <br>
-reference: https://linuxfoundation.org/wp-content/uploads/Mentorship-Session_-Kernel-Validation-With-Kselftest.pdf <br> 
-reference: https://www.youtube.com/watch?v=LQUGxewY1GI "How to write your first kernel selftest" - Michael Ellerman (LCA 2021 Online) <br>
-reference: https://www.youtube.com/watch?v=mpO_iDEMqWQ "Mentorship Session: Kernel Validation With Kselftest" <br>
+references: 
+ - https://docs.kernel.org/dev-tools/kselftest.html
+ - https://kselftest.wiki.kernel.org/
+ - https://kunit.dev/third_party/kernel/docs/
+ - https://github.com/torvalds/linux/blob/master/Documentation/dev-tools/kselftest.rst
+ - https://lca-kernel.ozlabs.org/2022-Gow-Kernel-Testing-with-KUnit-Bridging-the-Gap.pdf
+ - https://linuxfoundation.org/wp-content/uploads/Mentorship-Session_-Kernel-Validation-With-Kselftest.pdf 
+ - https://www.youtube.com/watch?v=LQUGxewY1GI "How to write your first kernel selftest" - Michael Ellerman (LCA 2021 Online)
+ - Mentorship Session: Kernel Validation With Kselftest: https://www.youtube.com/watch?v=mpO_iDEMqWQ 
+ - Using QEMU to selftests: https://medium.com/@rodrigo.gobbi/using-qemu-to-run-kernel-selftests-x86-dbafb59b8cd4
 
 The purpose of kselftest is to provide kernel developers and end-users a quick method of running tests against the Linux kernel. 
 
