@@ -61,6 +61,7 @@ How to contribute:
 references:
 - https://www.kernel.org/doc/html/latest/process/development-process.html
 - How Linux is built with Greg Kroah-Hartman : https://www.youtube.com/watch?v=7WbREHtc5sU
+- https://kernelnewbies.org/FirstKernelPatch
 
 Linux kernel releases come every 2+ months (10 or 11 weeks). Releases are time based and not feature based. 
 
