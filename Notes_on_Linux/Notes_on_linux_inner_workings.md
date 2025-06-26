@@ -47,6 +47,7 @@ references:
  - https://www.slideshare.net/SamsungOSG/a-survivors-guide-to-contributing-to-the-linux-kernel
  - Linux kernel development process: https://docs.kernel.org/process/development-process.html
  - The story of my first Linux Kernel Contribution: https://youtu.be/uLiAc_CnqZE
+ - linux kernel mentees: https://wiki.linuxfoundation.org/lkmp/lkmp_mentee_blogs
 
 How to contribute:
  - Become a Linux kernel contributor - Part 1: https://javiercarrascocruz.github.io/kernel-contributor-1
