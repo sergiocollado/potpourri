@@ -218,6 +218,40 @@ Anyone can report a vulnerability/cyber thread/incident to a designated CSIRT or
 
 
 
+## Adapting an organization to meet CRA requirementes
+
+  - Development process
+  - Risk management (product, dev process)
+  - Conformity assesement
+  - Vulnerability management & incident reporting
+  - Software update availability
+  - Documentation & availability
+  - Coordinate CRA clarifications in your industry
+  - Supplier management / upstream contribution obligation
+
+
+## Aditional resources
+
+ - Regulation (EU) 2024/2847 Cyber Resilience Act (CRA): https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+ - Blue Guide, (EU) 2022/C 247/01: https://eur-lex.europa.eu/legal-content/%20EN/TXT/?uri=CELEX%3A52022XC0629%2804%29
+ - Legislative Acts related to CRA: https://webgate.ec.europa.eu/regdel/#/legislativeActs/1274?lang=en
+ - Standardization for the CRA: https://cyberstand.eu/events/standardisation-cyber-resilience-act
+ - PSIRT Obligations Checklist: https://github.com/ossf/wg-globalcyberpolicy/blob/main/documents/CRA/checklists/PSIRT_Obligations_Checklist.md
+ -  TR-03183: https://www.bsi.bund.de/dok/TR-03183-en
+ -  TR-03185: https://www.bsi.bund.de/dok/TR-03185-en
+ -  The Regulators Are Coming: One Year On: https://archive.fosdem.org/2024/schedule/event/fosdem-2024-3683-the-regulators-are-coming-one-year-on/
+ -  ORC WG FAQ: https://github.com/orcwg/cra-hub/blob/main/faq.md
+ -  OpenSSF CRA info: https://openssf.org/public-policy/eu-cyber-resilience-act/
+
+
+## Reporting vulnerabilites and incidents
+
+ - OpenSSF Global Cyber Policy WG: https://github.com/ossf/wg-globalcyberpolicy/discussions
+ - CRA (Regulation (EU) 2024/2847): https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+
+
+
+
 
 
 
