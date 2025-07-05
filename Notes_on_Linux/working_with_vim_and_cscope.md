@@ -11,7 +11,7 @@ Reference: https://gist.github.com/RockDeng110/d19d97534a34c971183327a11a466b91
 Cscope is a deveoper's tool for browsing source code. In April 2000, the code for cscope was open sourced under the BSD license. 
 
 **Features**
-* llows searching code for:
+* Allows searching code for:
 all references to a symbol
 global definitions
 functions called by a function
