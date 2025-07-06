@@ -114,7 +114,7 @@ what are Critical:
 
 #### Requirements of OSS stedwareds
 
-OOs steward: a legal person NOT a manufacturer who "systematically" (provides) support on a systaned basis for the development of specific OSS PDE intended for commercial activities that ensures the viability of those products.
+OOs steward: a legal person NOT a manufacturer who "systematically" (provides) support on a sUstaIned basis for the development of specific OSS PDE intended for commercial activities that ensures the viability of those products.
 
 - Emplace and document a cybersecurity policy to foster development of a secure PDE, handle vulnerabilities, foster voluntary reporting of vulnerabilities.
 - Cooperate with the market surveillance authorities to mitigate the risk.
@@ -251,6 +251,85 @@ Anyone can report a vulnerability/cyber thread/incident to a designated CSIRT or
 
 
 
+## Questions
+
+### 1 Which of the following does the CRA apply to? correct
+
+- Pure website with no mobile application                                           x 
+- Non-commercial software                                                           n
+- Software where support contracts are offered for profit                           x
+- Internet-connected toy for sale                                                   x
+- free Mobile application to access the application maker’s for-profit service      x
+
+### 2 Which of the following is true about standards and the CRA? correct 
+
+- Some CRA-related standards are mandatory, that is, they must be followed to meet the CRA. 
+- All CRA-related standards will provide a presumption of conformity.
+- Some CRA-related standards are in development that will, if complied with, provide a presumption of conformity. X correct
+- Compliance with standards never provides a presumption of conformity.
+
+
+### 3 Which of the following is NOT a requirement on OSS stewards?  correct
+
+- Emplace & document a cybersecurity policy to foster development of a secure PDE, handle vulnerabilities, foster voluntary reporting of vulnerabilities
+- Cooperate with the market surveillance authorities to mitigate risks
+- Report on actively exploited vulnerabilities & severe incidents
+- Attach a CE mark to any OSS update X correct
+
+### 4 Which have the strictest compliance assessment requirements? correct
+
+ - Default
+ - Important class I
+ - Important class II
+ - Critical X correct
+
+### 5 All of the CRA requirements begin fully applying to manufacturers beginning in what year? correct
+
+ - 2024
+ - 2025 
+ - 2026
+ - 2027 X Correct
+
+### 6 Select all answers that apply. What information must be provided to PDE users according to the CRA: correct
+
+ - Manufacturer name, postal/email address, and website                                             n
+ - Point of contact for reporting vulnerabilities & coordinated vulnerability disclosure policy     x
+ - Intended PDE purpose                                                                             n
+ - Internet address for the EU declaration of conformity                                            x
+ - Detailed technical documentation                                                                 n
+
+### 7 Once a manufacturer becomes aware of an actively exploited vulnerability, the manufacturer must provide early warning notification to a designated CSIRT & ENISA within: correct
+
+ - 24 hours X correct
+ - 72 hours
+ - 14 days
+ - 1 month
+
+### 8 Select all answers that apply. PDEs must be designed, developed, and produced [to ensure] an appropriate level of cybersecurity based on the risks. Which of the following are specific requirements, where relevant? correct
+
+ - have a secure by default configuration, unless it’s a tailor-made PDE                                                   X
+ - ensure all components have no vulnerabilities regardless of whether or not the components are exploitable in the PDE    n
+ - limit attack surfaces                                                                                                   X
+ - take steps to reduce the impact of an incident                                                                          x
+
+
+
+### 9 Select all answers that apply. Which of the following can be done by an OSS contributor or OSS project and still be non-commercial:
+
+ - Contribute some code, without pay, to some other OSS project                                                                X x x x x x x x
+ - Perform regular releases of an OSS project                                                                                  X x x x x x x x
+ - Receive donations without intent to make a profit                                                                           n x x x x x x x
+ - Charge for support services beyond their actual costs                                                                       n n n n x x x x
+ - Require personal data for reasons other than for improving the security, compatibility or interoperability of the software  n n n x n x x n
+ - Provide a software platform through which you monetize other services                                                       n n x n n n x n
+
+### 10 Select all answers that apply. Which of the following are required by the CRA related to vulnerabilities: Correct
+
+ - An SBOM in a machine-readable format covering at least the top-level dependencies      x
+ - Address and remediate vulnerabilities without delay, in relation to their risks        x
+ - Provide mechanisms to securely distribute updates for PDEs                             x
+ - Disseminate without delay available security updates, free of charge                   x
+ - Ensure that there are no vulnerabilities in a PDE                                      n
 
 
 
