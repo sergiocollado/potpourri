@@ -170,6 +170,8 @@ The kernel is inherently multi-threaded: kernel resources can be accessed from m
  - Linux Plumber Conference 2024: Rust for Linux - OJEDA, Miguel : https://youtu.be/tamydDnWoLs?t=2047
  - Journey of a C kernel engineer starting a Rust driver project - KRUMMRICH, Danilo: https://youtu.be/3Igmx28B3BQ
  - MRMCD2024 Rust in the Linux Kernel - A Status Check: https://youtu.be/aAZ7YKYY6_w
+ - How to write Rust in the kernel: part 1 : https://lwn.net/Articles/1024202/
+ - A Newbie's First Contribution to (Rust for) Linux : https://blog.buenzli.dev/rust-for-linux-first-contrib/
 
 
 ## Others
