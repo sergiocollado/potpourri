@@ -3431,5 +3431,6 @@ https://bugzilla.kernel.org/show_bug.cgi?id=200531#c14
 - https://www.chiark.greenend.org.uk/doc/linux-doc-3.2/html/media_api/index.html
 - https://www.chiark.greenend.org.uk/doc/linux-doc-3.2/html/media_api/streaming-par.html
 - https://www.chiark.greenend.org.uk/doc/linux-doc-3.2/html/media_api/pixfmt.html
+- https://www.marcusfolkesson.se/blog/v4l2-and-media-controller/
 - https://www.marcusfolkesson.se/blog/capture-a-picture-with-v4l2/
  
