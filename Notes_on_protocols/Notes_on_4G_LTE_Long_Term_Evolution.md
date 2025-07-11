@@ -149,5 +149,4 @@ ref: https://youtu.be/Wcoj4aw_X78
 - S13 interface between the EIR and the MME
 
 
-
-
+![4g radio interface diagram](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/4G_radio_interface_diagram.PNG)
