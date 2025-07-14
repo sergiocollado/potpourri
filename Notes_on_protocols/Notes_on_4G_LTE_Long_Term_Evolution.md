@@ -156,4 +156,7 @@ ref: https://youtu.be/Wcoj4aw_X78
 
 Encapsulation is putting the "user" IP packet in other IP package.
 
+![4g_encapsulation](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/4G_encapsulation.PNG)
+
+![4g_encapsulation_2](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/4G_encapsulation_2.PNG)
 
