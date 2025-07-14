@@ -156,6 +156,8 @@ ref: https://youtu.be/Wcoj4aw_X78
 
 Encapsulation is putting the "user" IP packet in other IP package.
 
+IP packets that should be transmitted to a mobile terminal are systematically routed to the P-Gateway. They are then put in other IP packets within the 4G core network: this operation is called encapsulation. These packets are transmitted hop-by-hop to the terminal as if they were in a “tunnel” from the P-Gateway to the S-Gateway and from the S-Gateway to the eNodeB where the mobile is. 
+
 ![4g_encapsulation](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/4G_encapsulation.PNG)
 
 ![4g_encapsulation_2](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/4G_encapsulation_2.PNG)
