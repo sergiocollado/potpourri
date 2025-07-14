@@ -150,3 +150,10 @@ ref: https://youtu.be/Wcoj4aw_X78
 
 
 ![4g radio interface diagram](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/4G_radio_interface_diagram.PNG)
+
+
+## encaptulation and tunneling
+
+Encapsulation is putting the "user" IP packet in other IP package.
+
+
