@@ -162,3 +162,12 @@ IP packets that should be transmitted to a mobile terminal are systematically ro
 
 ![4g_encapsulation_2](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/4G_encapsulation_2.PNG)
 
+So, IP packets include a source address (here the address of the P Gateway), a destination address (here the address of the Serving Gateway) and finally the UDP header with the port numbers.
+We could easily say, “Let’s put our user IP packet directly inside the IP datagram.” But we know that there are several variations of the IP protocol: IPv 4, IPv 6, and so on;
+we want to keep the possibility of evolution and permit the transport of other protocols.
+
+To do this, we will develop an additional protocol that’s called **GTP: GPRS Tunneling Protocol**. The idea is to add a format that allows consistent processing for all
+user protocols, whether they be IPv4 IPv6 or any other. Therefore, we have different levels of headers, and on this diagram we see the level of the additional header at the GTP layer.
+
+
+
