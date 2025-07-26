@@ -174,3 +174,9 @@ user protocols, whether they be IPv4 IPv6 or any other. Therefore, we have diffe
 ### GTP: GPRS Tunneling Protocol
 
 The idea is to add a format that allows consistent processing for all possible underliying protocols where they are IPv4, IPv6, or any other. 
+
+![4g_gtp_01](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/GTP_01.png)
+![4g_gtp_01](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/GTP_02.png)
+![4g_gtp_01](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/GTP_03.png)
+
+
