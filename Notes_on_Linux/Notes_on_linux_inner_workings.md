@@ -3434,4 +3434,10 @@ https://bugzilla.kernel.org/show_bug.cgi?id=200531#c14
 - https://www.chiark.greenend.org.uk/doc/linux-doc-3.2/html/media_api/pixfmt.html
 - https://www.marcusfolkesson.se/blog/v4l2-and-media-controller/
 - https://www.marcusfolkesson.se/blog/capture-a-picture-with-v4l2/
+
+### TermFS
+
+ - https://www.phoronix.com/news/TernFS-File-System-Open-Source
+ - https://www.xtxmarkets.com/tech/2025-ternfs/
+ - https://github.com/XTXMarkets/ternfs
  
