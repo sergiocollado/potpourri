@@ -9,6 +9,7 @@ references:
  - https://www.european-cyber-resilience-act.com/
  - https://eur-lex.europa.eu/eli/reg/2024/2847/oj
  - https://github.com/ossf/wg-globalcyberpolicy/tree/main/documents/CRA
+ - https://www.cyberresilienceact.eu/the-cra-explained/
 
 Ciber Resilience Act (CRA) is European Union (EU) regulation 2024/2847:
  - entered in force in 10 December 2024
