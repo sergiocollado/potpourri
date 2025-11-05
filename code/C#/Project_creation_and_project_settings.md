@@ -40,3 +40,34 @@ Steps to Create a New .NET Project
 ## Conclusion
 
 By following these steps, you've successfully created and run a new .NET project in Visual Studio Code. This foundational knowledge will help you as you continue to develop more complex applications.
+
+# Project settings
+
+## Introduction
+
+Follow these steps to configure the initial settings for a new .NET project to ensure its smooth and efficient operation.
+Steps to Configure Initial Project Settings
+
+    Locate the .csproj file
+
+        Open the project folder and find the .csproj file. This file configures how the project handles running, testing, and building.
+
+    Understand the .csproj file
+
+        The .csproj file uses XML format. Tags define settings like project type (<Project Sdk="Microsoft.NET.Sdk">) and target framework (e.g., <TargetFramework>net8.0</TargetFramework>).
+
+    Manage project dependencies
+
+        Use the NuGet Package Manager to add and manage dependencies. Open the command palette and select "Add NuGet Package," then search for the desired package (e.g., "Pastel") and choose the latest version.
+
+    Verify the .csproj file after adding packages
+
+        Check the .csproj file to confirm the new packages are listed under <PackageReference>.
+
+    Utilize new packages in code
+
+        For example, to use the "Pastel" package, add using Pastel; in your code. Then, implement it to customize text colors (e.g., color.Green).
+
+## Conclusion
+
+These steps will help you effectively set up your .NET project, ensuring that all settings and dependencies are properly configured from the start.
