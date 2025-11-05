@@ -1,3 +1,27 @@
+# Installing .NET SDK
+
+## Introduction
+
+This guide will show you how to install the .NET SDK on your computer.
+Step-by-Step Instructions
+
+    Open the .NET website: Go to dotnet.microsoft.com
+
+     using your web browser.
+
+    Choose the right SDK version: On the homepage, click "Download" under the latest .NET SDK version for your operating system (Windows, macOS, or Linux).
+
+    Download the installer: Click the appropriate link to download the installer file for your OS.
+
+    Run the installer: Open the downloaded file. Follow the on-screen instructions to complete the installation.
+
+    verify the installation: Open your command prompt (Windows) or terminal (macOS/Linux) and type dotnet --version. If the version number appears, the installation was successful.
+
+## Conclusion
+
+By following these steps, you can set up the .NET SDK and start developing .NET applications.
+
+
 # Project Creation
 
 ## Introduction
