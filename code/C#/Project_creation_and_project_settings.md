@@ -71,3 +71,49 @@ Steps to Configure Initial Project Settings
 ## Conclusion
 
 These steps will help you effectively set up your .NET project, ensuring that all settings and dependencies are properly configured from the start.
+
+
+# Building and Running the Project
+
+## Introduction
+
+Follow these steps to create a new .NET project using Visual Studio Code and the .NET CLI.
+How to Create and Run a New .NET Project
+
+    Install the .NET SDK
+
+        Go to the .NET website
+
+        .
+
+        Download and install the .NET SDK.
+
+    Open Visual Studio Code
+
+        Launch Visual Studio Code.
+
+        Open the Terminal by clicking on View > Terminal.
+
+    Create a New .NET Project
+
+        In the Terminal, navigate to the folder where you want to create your project.
+
+        Type dotnet new console -n ProjectName and press Enter (replace ProjectName with your desired project name).
+
+    Open the Project in Visual Studio Code
+
+        Type cd ProjectName to navigate to your new project folder.
+
+        Type code . to open the project in Visual Studio Code.
+
+    Build the Project
+
+        In the Terminal, type dotnet build and press Enter.
+
+    Run the Project
+
+        In the Terminal, type dotnet run and press Enter.
+
+## Conclusion
+
+These steps will help you set up and run a new .NET project using Visual Studio Code efficiently.
