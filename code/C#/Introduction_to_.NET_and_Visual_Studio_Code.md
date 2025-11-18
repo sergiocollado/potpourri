@@ -1,3 +1,5 @@
+Ref: Getting Started with C# & .NET in VS Code (Official Beginner Guide): https://youtu.be/ZVGutgqBMUM?si=wvR1bkOGJkgdjp33
+
 ## Introduction
 
 This summary provides an overview of key concepts in modern software development, focusing on the .NET environment and its integration with Visual Studio Code. It explains how front-end and back-end development roles utilize programming skills to create seamless applications, outlines the significance of the .NET ecosystem, and details how Visual Studio Code enhances development efficiency.
