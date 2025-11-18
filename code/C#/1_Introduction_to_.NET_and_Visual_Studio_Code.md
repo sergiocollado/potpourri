@@ -1,5 +1,6 @@
-Ref: Getting Started with C# & .NET in VS Code (Official Beginner Guide): https://youtu.be/ZVGutgqBMUM?si=wvR1bkOGJkgdjp33
-Ref: c# certification: freecodecamp.org/learn/foundational-c-sharp-with-microsoft/#write-your-first-code-using-c-sharp
+ - MS learn C#: https://learn.microsoft.com/en-us/dotnet/csharp/
+ - Getting Started with C# & .NET in VS Code (Official Beginner Guide): https://youtu.be/ZVGutgqBMUM?si=wvR1bkOGJkgdjp33
+ - C# certification: freecodecamp.org/learn/foundational-c-sharp-with-microsoft/#write-your-first-code-using-c-sharp
 
 ## Introduction
 
