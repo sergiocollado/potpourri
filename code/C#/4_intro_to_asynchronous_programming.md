@@ -111,9 +111,9 @@ Optimizing API Calls
 
 One of the core benefits of asynchronous programming is the ability to manage multiple API calls concurrently. When developing applications that require data from several APIs, asynchronous methods enable requests to be processed simultaneously, reducing overall wait times.
 
-    Instead of fetching data sequentially, asynchronous calls fetch data concurrently.
+Instead of fetching data sequentially, asynchronous calls fetch data concurrently.
 
-    Applications can display partial results as data arrives, enhancing the user experience by showing information progressively rather than waiting for all responses to be completed.
+Applications can display partial results as data arrives, enhancing the user experience by showing information progressively rather than waiting for all responses to be completed.
 
 ## Handling Large Datasets Efficiently
 
@@ -121,7 +121,7 @@ Asynchronous programming is also useful for processing large datasets. Instead o
 
 For example, large files like CSVs can be processed incrementally, which prevents blocking the main program thread. This approach allows the application to stay responsive while background operations continue.
 
-    Asynchronous libraries are used to manage large datasets more efficiently.
+Asynchronous libraries are used to manage large datasets more efficiently.
 
 ## Improving User Interface Responsiveness
 
@@ -132,7 +132,7 @@ Practical Implementation in C#
 
 In C#, developers frequently use the async and await keywords to build asynchronous operations, such as Task.Delay() can simulate delays in fetching data from an API, and await pauses of the method until the task is complete, preventing the UI from locking up.
 
-    An asynchronous method can be set up to fetch data from an API using async Task<List<Product>> FetchProductsAsync(). By simulating delays and using await, the app remains functional.
+An asynchronous method can be set up to fetch data from an API using async Task<List<Product>> FetchProductsAsync(). By simulating delays and using await, the app remains functional.
 
 Additionally, running multiple asynchronous tasks concurrently, such as fetching product data and reviews, enhances efficiency by leveraging the system’s capacity to handle tasks in parallel.
 
