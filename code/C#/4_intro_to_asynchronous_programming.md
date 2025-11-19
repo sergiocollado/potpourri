@@ -48,6 +48,7 @@ Asynchronous programming in C# helps improve performance by allowing application
 ### 1. Define an Asynchronous Method
 
 a. Use the async keyword to mark a method as asynchronous.
+
 b. How to do it: Add async before the method’s return type.
 ```
 public async Task GetDataAsync()
@@ -58,6 +59,7 @@ public async Task GetDataAsync()
 ### 2. Use the Await Keyword
 
 a. The await keyword pauses execution until a background task finishes.
+
 b. How to do it: Place await before methods returning a Task.
 ```
 var data = await GetDataFromApi();
@@ -65,6 +67,7 @@ var data = await GetDataFromApi();
 ### 3. Set the Correct Return Type:
 
 a. For methods returning values, use Task<T>; for void methods, use Task.
+
 b. How to do it:
 ```
 public async Task<string> GetDataAsync()
@@ -76,6 +79,7 @@ public async Task<string> GetDataAsync()
 ### 4. Handle Errors:
 
 a. Manage exceptions in async methods using try-catch blocks.
+
 b. How to do it:
 
 ```
