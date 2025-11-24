@@ -1,5 +1,8 @@
 // See https://aka.ms/new-console-template for more information
 // https://learn.microsoft.com/en-us/dotnet/core/tutorials/with-visual-studio-code
+// dotnet new console -n bookManagementSystem
+// cd bookManagementSystem
+// dotnet run
 // https://learn.microsoft.com/en-us/dotnet/core/tutorials/debugging-with-visual-studio-code
 
 
