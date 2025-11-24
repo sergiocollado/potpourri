@@ -45,7 +45,7 @@ The .NET ecosystem benefits from a strong, collaborative community. NuGet and Gi
 .NET has transformed into a comprehensive, cross-platform framework enabling modern, scalable, high-performance applications. With its unified framework, extensive toolset, and vibrant community, .NET equips developers to meet diverse development challenges, making it a valuable platform for future-focused application development.
 
 
-## Overview of .NET Framework
+## Overview of .NET Framework (the previous paradigm before .NET Platform)
 
 ### Introduction 
 
