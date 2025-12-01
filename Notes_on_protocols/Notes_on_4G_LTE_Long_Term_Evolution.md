@@ -45,6 +45,10 @@ only packet-switch core. So the voice is also carried with IP packets.
 
 
 ### Evolved Node B (eNB)
+  
+ - The 'e' is for evolved, in regard of the evolution from 3G
+ - The 'N' is for 'Node', because the base station is inserted on the network
+ - The 'B' is for 'Base station'
 
  - Radio transmission/reception
  - Radio resource management (RRM)
