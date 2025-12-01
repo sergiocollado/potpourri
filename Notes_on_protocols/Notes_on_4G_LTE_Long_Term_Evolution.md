@@ -43,6 +43,13 @@ to the eNodeB (enhaced NodeB), and other functions are moved to the core network
 4G is an all IP architecture, in contrast with 3G. In 3G there was a circuit-switch core and a packet-switch core, but in the case of 4G there is no circuit-switch core, 
 only packet-switch core. So the voice is also carried with IP packets. 
 
+### Overall 4G architecture diagram
+
+![4g_overall_architecture_diagram](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/4G_overall_architecture.PNG)
+
+The 4G architecture has tow parts:
+
+
 
 ### Evolved Node B (eNB)
 
