@@ -55,7 +55,7 @@ Functionality:
  - Radio transmission/reception
  - Radio resource management (RRM)
     -  admission control
-    -  resource block allocation in UL & DL
+    -  resource block allocation in UL (uplink) & DL (downlink)
  - Encryption of user data & signalling
  - Co-ordination for handover with other eNB
 
