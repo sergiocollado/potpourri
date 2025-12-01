@@ -1,5 +1,6 @@
 # Notes on modern CUDA C++
 
+ - https://enccs.github.io/gpu-programming/
  - https://learn.nvidia.com/my-learning
  - https://developer.nvidia.com/blog/even-easier-introduction-cuda/
 
