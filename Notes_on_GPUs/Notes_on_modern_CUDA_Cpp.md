@@ -87,8 +87,7 @@ g++ Sources/cpu-cooling.cpp -o /tmp/a.out
 The g++ compiler consumed C++ code and produced an executable file, a.out, which contains a set of machine instructions. However, there’s a problem: different CPUs support different sets of instructions. For example, if you compile the program above for an x86 CPU, the temp[i] + k * diff expression will be compiled into the vfmadd132ss instruction on the x86 architecture. If you try running the resulting executable on an ARM CPU, it won’t work because the ARM architecture does not support this instruction. To run this code on an ARM CPU, you would need to compile it specifically for the ARM architecture. In that case, the expression would be compiled into the vmla.f32 instruction.
 
 
-// image GPU / cpu expression of compilation.svg
-
+![compilation]([https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/execution-policy.svg](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/compilation.svg)))
 
 
 From this perspective, GPUs are no different. GPUs have their own set of instructions, therefore, we have to compile our code for GPUs somehow.
@@ -108,9 +107,7 @@ This confusion is an indicator that we are missing an important piece of CUDA pr
 
 GPUs are accelerators rather than standalone processors. A lot of computational work, like interactions with network and file system, is done on the CPU. So a CUDA program always starts on the CPU. You, the programmer, are responsible for explicitly specifying which code has to run on the GPU. In other words, you are responsible for specifying which code runs where. The established terminology for where code is executed is execution space.
 
-// heterogeneous svg
-
-// execution policy svg
+![heterogeneous](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/heterogeneous.png)
 
 ![execution_policy](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/execution-policy.svg))
 
@@ -143,7 +140,7 @@ int main() {
 
 compile and execute the program (note the .cu extension):
 
-```
+```bash
 # nvcc Sources/gpu-cooling.cu -o /tmp/a.out # compile the code
 # /tmp/a.out # run the executable
 ```
@@ -177,7 +174,7 @@ int main() {
 
 compile and run it:
 
-```
+```bash
 # nvcc --extended-lambda Sources/thrust-cooling.cu -o /tmp/a.out # compile the code
 # /tmp/a.out # run the executable
 ```
@@ -226,7 +223,7 @@ int main() {
 
 compile and run it:
 
-```
+```bash
 # nvcc -o /tmp/a.out --extended-lambda Sources/no-magic-execution-space-changes.cu # build executable
 # /tmp/a.out # run executable
 ```
@@ -265,7 +262,6 @@ int main() {
   dli::where_am_I("CPU");
 }
 ```
-
 
 
 Congratulations! You are now familiar with the concept of execution spaces in CUDA. 
@@ -358,7 +354,7 @@ int main()
 }
 ```
 
-```
+```bash
 # nvcc -o /tmp/a.out --extended-lambda Sources/port-sort-to-gpu.cu # build executable
 # /tmp/a.out # run executable
 ```
