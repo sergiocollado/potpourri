@@ -87,7 +87,7 @@ g++ Sources/cpu-cooling.cpp -o /tmp/a.out
 The g++ compiler consumed C++ code and produced an executable file, a.out, which contains a set of machine instructions. However, there’s a problem: different CPUs support different sets of instructions. For example, if you compile the program above for an x86 CPU, the temp[i] + k * diff expression will be compiled into the vfmadd132ss instruction on the x86 architecture. If you try running the resulting executable on an ARM CPU, it won’t work because the ARM architecture does not support this instruction. To run this code on an ARM CPU, you would need to compile it specifically for the ARM architecture. In that case, the expression would be compiled into the vmla.f32 instruction.
 
 
-![compilation]([https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/execution-policy.svg](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/compilation.svg)))
+![compilation](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/execution-policy.svg](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/compilation.svg)
 
 
 From this perspective, GPUs are no different. GPUs have their own set of instructions, therefore, we have to compile our code for GPUs somehow.
@@ -109,7 +109,6 @@ GPUs are accelerators rather than standalone processors. A lot of computational 
 
 ![heterogeneous](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/heterogeneous.png)
 
-![execution_policy](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/execution-policy.svg))
 
 At a high level, execution spaces are partitioned into **host** (CPU) and **device** (GPU). These terms are used to generalize the programming model. Something other than a CPU could host a GPU, and something other than a GPU could accelerate a CPU.
 
@@ -190,7 +189,7 @@ Finally, we replace `std::transform` with `thrust::transform`. Unlike `std::tran
 
 ## Execution policy
 
-// image
+![execution_policy](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/execution-policy.svg)
 
 
 
