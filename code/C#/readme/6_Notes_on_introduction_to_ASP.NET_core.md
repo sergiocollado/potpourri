@@ -1,0 +1,263 @@
+# Notes on ASP.NET Core
+
+## Introduction
+ASP.NET Core is a modern, open-source framework designed for developing web applications and APIs with high performance, scalability, and cross-platform compatibility. This framework is particularly beneficial for building reliable, efficient APIs that adapt well to both small and large applications.
+
+### Core Features of ASP.NET Core
+
+ - Cross-platform compatibility: ASP.NET Core supports development on Windows, Linux, and macOS, allowing applications to be developed and deployed across diverse environments.
+ - High performance: Built for efficiency, ASP.NET Core handles high volumes of requests with low overhead, making it suitable for demanding applications.
+ - Modular Architecture: Its modular design enables developers to select only the necessary components, optimizing application performance and resource management.
+ - Dependency injection: ASP.NET Core includes built-in dependency injection, promoting modular and maintainable code, which is easier to test and expand.
+ - Routing and middleware: The framework’s routing capabilities efficiently map HTTP requests to endpoints, while middleware handles request processing steps like logging, authentication, and data validation.
+ - Security and deployment options: ASP.NET Core offers secure handling of user data through integrated authentication and authorization features, with flexible deployment options on the cloud, local servers, or containers.
+
+## Benefits of ASP.NET Core
+ 
+ - Performance and scalability: Lightweight and scalable, ASP.NET Core adapts to an application’s growing traffic needs, supporting efficient resource management.
+ - Unified programming model: Developers can streamline their workflows by using the same tools for web applications and APIs, reducing code complexity and increasing efficiency.
+ - Cost-effectiveness: ASP.NET Core is open-source and compatible with cost-effective hosting options like Linux, helping to lower operating expenses.
+ - Flexibility and maintainability: ASP.NET Core’s modularity enables gradual growth by adding new features over time, keeping the code manageable as the application evolves.
+
+## Conclusion
+ASP.NET Core is a versatile and high-performance framework for modern web applications and API development. Its features support cross-platform development, modularity, and high scalability, empowering developers to create flexible and reliable applications that grow seamlessly with business demands.
+
+# Setting up a Web API Project
+
+This guide will help you set up a basic Web API using ASP.NET Core. We’ll take it step-by-step, starting from installing the right tools to writing and testing your first API endpoint. This is meant for beginners who are just getting started with web development and only have Visual Studio Code (VS Code) installed.
+
+What You’ll Need Before You Begin
+
+To follow this guide, you must install the following tools on your computer. If you haven’t installed them yet, follow the instructions below:
+
+## 1. .NET SDK
+What it is: A set of tools and libraries to build .NET apps.
+
+Download here: 
+https://dotnet.microsoft.com/download
+
+Installation tip: Choose the latest LTS version of the .NET SDK (e.g., .NET 9 if available). Download the SDK not just the runtime.
+
+To verify installation:
+
+```
+dotnet --version
+```
+
+## 2. Visual Studio Code (VS Code)
+
+You should already have this installed. If not, get it from 
+https://code.visualstudio.com/
+
+## 3. C# Extension for VS Code
+In VS Code:
+
+Go to the Extensions tab (left sidebar or press Ctrl+Shift+X)
+
+Search for “C#”
+
+Install the extension published by Microsoft
+
+Step-by-Step: Create Your First Web API
+
+### Step 1: Create a New Project
+Open your terminal in VS Code or your operating system and type:
+
+```
+dotnet new webapi -o MyFirstApi
+
+cd MyFirstApi
+```
+
+This command:
+
+Creates a new folder called MyFirstApi
+
+Sets up a new Web API project using the minimal API style, which doesn’t include controllers by default
+
+You’ll see files like Program.cs, and possibly WeatherForecast.cs and WeatherForecastController.cs depending on your .NET version.
+
+**Important**: The template does not include a Controllers folder by default. You’ll need to create it.
+
+### Step 2: Open the Project in VS Code
+```
+code .
+```
+This opens the current folder in VS Code.
+
+If prompted, allow required assets to be added. These help with debugging and building the app.
+
+### Step 3: Modify Program.cs to Support Controllers
+By default, the minimal API template doesn’t support controllers. To enable controller support:
+
+Open the Program.cs file.
+
+Replace its contents with the following:
+```
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+
+// Remove HTTPS redirection so you can test with http
+
+// app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
+```
+
+Note: We commented out `app.UseHttpsRedirection();` so you can test your API with `http://` instead of `https://`, which can sometimes be problematic in early development stages.
+
+### Step 4: Create the Controllers Folder
+
+Right-click the root of the project
+
+Click `New Folder` 
+
+Name it Controllers
+
+This is where you define controllers. Controllers manage the logic of your app and respond to HTTP requests.
+
+### Step 5: Create Your Own Controller
+
+Let’s add a controller that returns a list of products.
+
+Right-click the Controllers folder
+
+Click `New File`
+
+Name it ProductsController.cs
+
+Paste this code into the file:
+
+```
+using Microsoft.AspNetCore.Mvc;
+
+using System.Collections.Generic;
+
+namespace MyFirstApi.Controllers
+
+{
+
+    [ApiController]
+
+    [Route("api/[controller]")]
+
+    public class ProductsController : ControllerBase
+
+    {
+
+        [HttpGet]
+
+        public ActionResult<List<string>> Get()
+
+        {
+
+            return new List<string> { "Apple", "Banana", "Orange" };
+
+        }
+
+    }
+
+}
+```
+
+What this does:
+Defines a route: `api/products`
+
+Handles GET requests to that route
+
+Returns a list of strings as product names
+
+### Step 6: Run Your API
+In the terminal, type:
+```
+dotnet run
+```
+You should see output like:
+
+Now listening on: `http://localhost:5000`
+
+Note: Your port number may be different. For example, instead of "5000" you may see a different number. Use the number that displays in your terminal instead of 5000. 
+
+Open a browser and go to:
+```
+http://localhost:5000/api/products
+```
+You should see:
+
+["Apple", "Banana", "Orange"]
+
+### Step 7: Understand Routing Basics
+
+[HttpGet] maps a method to an HTTP GET request
+
+[Route("api/[controller]")] means the route is based on the controller name (ProductsController → products)
+
+You can define custom routes too:
+
+[HttpGet("featured")]
+
+public string GetFeaturedProduct() => "Mango";
+
+Now available at:
+```
+http://localhost:5000/api/products/featured
+```
+### Step 8: Add More HTTP Methods
+In your ProductsController, you can add methods for POST, PUT, and DELETE:
+```
+[HttpPost]
+
+public ActionResult<string> Post([FromBody] string newProduct)
+
+{
+
+    return $"Added: {newProduct}";
+
+}
+
+[HttpPut("{id}")]
+
+public ActionResult<string> Put(int id, [FromBody] string updatedProduct)
+
+{
+
+    return $"Updated product {id} to: {updatedProduct}";
+
+}
+
+[HttpDelete("{id}")]
+
+public ActionResult<string> Delete(int id)
+
+{
+
+    return $"Deleted product with ID: {id}";
+
+}
+```
+Use Postman to test these methods. You can install Postman from their website and use the free version here: 
+https://www.postman.com/ 
+
+### Step 9: Practice and Build
+
+Now that you have a basic Web API:
+
+Try returning real data models (not just strings)
+
+Add validation and error handling
+
+Store and retrieve data using collections, files, or databases (future lessons will help)
+
+## Conclusion
+You’ve now built and tested a simple Web API using ASP.NET Core in VS Code. As you move forward, this setup becomes the foundation for more advanced features like authentication, databases, and real-world deployment.
