@@ -1747,6 +1747,8 @@ Open this section only after you’ve made a serious attempt at solving the prob
   ```
 </details>
 
+# Serial vs Parallel
+
 ## Segmented Sum
 
 This time, let's say we are interested in the segment close to the heat source. 
@@ -2050,7 +2052,7 @@ Open this section only after you’ve made a serious attempt at solving the prob
       [=] __host__ __device__(int i) { return i / width; });
   ```
 
-```
+```c++
 #include "dli.h"
 
 thrust::universal_vector<float> row_temperatures(
@@ -2077,6 +2079,479 @@ thrust::universal_vector<float> row_temperatures(
 ```
 
 </details>
+
+## Exercise: Segmented Mean
+
+The total raw temperature was a bit hard to read. 
+What we are actually interested in is the mean temperature rather than total temperature.
+So far, we've used different input iterators to extend algorithms.
+But fancy iterators are not limited to that.
+
+Here's an example of the usage of a transform output iterator:
+
+```c++
+struct functor {
+  __host__ __device__ 
+  float operator()(float value_about_to_be_stored_in_output_sequence) const 
+  { 
+    // will store value / 2 in the output sequence instead of the original value
+    return value_about_to_be_stored_in_output_sequence / 2; 
+  }
+};
+
+auto transform_output_it = 
+  thrust::make_transform_output_iterator(
+    // iterator to the beginning of the output sequence
+    vector.begin(), 
+    // functor to apply to value before it's written to the `vector`
+    functor{});
+```
+
+In this exercise, you'll have to modify `row_temperature` so it computes the segmented mean. 
+Use `transform_output_iterator` to turn the total temperature into the mean and remove the `thrust::transform` call.
+
+<details>
+    <summary>Original code in case you need to refer back to it</summary>
+    
+```c++
+%%writefile Sources/segmented-mean.cu
+#include "dli.h"
+
+struct mean_functor {
+    int width;
+    __host__ __device__ float operator()(float x) const {
+        return x / width;
+    }
+};
+
+thrust::universal_vector<float> row_temperatures(
+    int height, int width,
+    thrust::universal_vector<int>& row_ids,
+    thrust::universal_vector<float>& temp)
+{
+    thrust::universal_vector<float> means(height);
+
+    // use `transform_output_iterator` instead of `means.begin()`
+    auto means_output = means.begin(); 
+
+    auto row_ids_begin = thrust::make_transform_iterator(
+        thrust::make_counting_iterator(0), 
+        [=]__host__ __device__(int i) {
+            return i / width;
+        });
+    auto row_ids_end = row_ids_begin + temp.size();
+
+    thrust::reduce_by_key(thrust::device, 
+                          row_ids_begin, 
+                          row_ids_end, 
+                          temp.begin(), 
+                          thrust::make_discard_iterator(), 
+                          means_output);
+
+    auto transform_op = mean_functor{width};
+
+    // remove this `transform` call
+    thrust::transform(thrust::device, 
+                      means.begin(), 
+                      means.end(), 
+                      means.begin(), 
+                      transform_op);
+
+    return means;
+}   
+```
+
+</details>
+
+```c++
+%%writefile Sources/segmented-mean.cu
+#include "dli.h"
+
+struct mean_functor {
+    int width;
+    __host__ __device__ float operator()(float x) const {
+        return x / width;
+    }
+};
+
+thrust::universal_vector<float> row_temperatures(
+    int height, int width,
+    thrust::universal_vector<int>& row_ids,
+    thrust::universal_vector<float>& temp)
+{
+    thrust::universal_vector<float> means(height);
+
+    // use `transform_output_iterator` instead of `means.begin()`
+    auto means_output = means.begin(); 
+
+    auto row_ids_begin = thrust::make_transform_iterator(
+        thrust::make_counting_iterator(0), 
+        [=]__host__ __device__(int i) {
+            return i / width;
+        });
+    auto row_ids_end = row_ids_begin + temp.size();
+
+    thrust::reduce_by_key(thrust::device, 
+                          row_ids_begin, 
+                          row_ids_end, 
+                          temp.begin(), 
+                          thrust::make_discard_iterator(), 
+                          means_output);
+
+    auto transform_op = mean_functor{width};
+
+    // remove this `transform` call
+    thrust::transform(thrust::device, 
+                      means.begin(), 
+                      means.end(), 
+                      means.begin(), 
+                      transform_op);
+
+    return means;
+}
+```
+compile and run with:
+```
+!nvcc --extended-lambda -o /tmp/a.out Sources/segmented-mean.cu # build executable
+!/tmp/a.out # run executable
+```
+The output of your program should end with:
+
+```
+row 0: { 90, 90, ..., 90 } = 90
+row 1: { 15, 15, ..., 15 } = 15
+row 2: { 15, 15, ..., 15 } = 15
+```
+
+If you’re unsure how to proceed, consider expanding this section for guidance. Use the hint only after giving the problem a genuine attempt.
+
+<details>
+  <summary>Hints</summary>
+  
+  - The `transform_output_iterator` has the same API as the `transform` iterator
+</details>
+
+Open this section only after you’ve made a serious attempt at solving the problem. Once you’ve completed your solution, compare it with the reference provided here to evaluate your approach and identify any potential improvements.
+
+<details>
+  <summary>Solution</summary>
+
+  Key points:
+
+  - We need to divide the sum by the number of elements in each segment to get the mean
+  - We can use a `transform_output_iterator` to divide the sum by the number of elements in each segment
+
+  Solution:
+  ```c++
+  auto means_output =
+      thrust::make_transform_output_iterator(
+        means.begin(), 
+        mean_functor{width});
+  ```
+</details>
+
+
+
+# Memory Spaces
+
+---
+At the beginning of this section, we covered execution spaces but left one change without explanation.
+We replaced `std::vector` with `thrust::universal_vector`.
+By the end of this lab, you'll understand why this change was necessary.
+
+But before we start, let's try to figure out why GPUs are so good at massive parallelism.
+Many benefits of GPUs result focusing on high throughput.
+To support massive compute that GPUs are able of sustaining, 
+we have to provide memory speed that matches these capabilities.
+This essentially means that memory also has to be throughput-oriented.
+That's why GPUs often come with built-in high-bandwidth memory rather than relying on system memory.
+Let's return to our code to see how it's affected by this fact.
+
+
+```c++
+%%writefile Sources/heat-2D.cu
+#include "dli.h"
+
+int main()
+{
+  int height = 4096;
+  int width  = 4096;
+
+  thrust::universal_vector<float> prev = dli::init(height, width);
+  thrust::universal_vector<float> next(height * width);
+
+  for (int write_step = 0; write_step < 3; write_step++) {
+    std::printf("   write step %d\n", write_step);
+    dli::store(write_step, height, width, prev);
+    
+    for (int compute_step = 0; compute_step < 3; compute_step++) {
+      auto begin = std::chrono::high_resolution_clock::now();
+      dli::simulate(height, width, prev, next);
+      auto end = std::chrono::high_resolution_clock::now();
+      auto seconds = std::chrono::duration<double>(end - begin).count();
+      std::printf("computed step %d in %g s\n", compute_step, seconds);
+      prev.swap(next);
+    }
+  }
+}
+```
+
+In the code above, we allocate data in `thrust::universal_vector`.
+Then, `dli::store` accesses content of this vector on CPU to store results on disk.
+After that, the data is repeatedly accessed by the GPU in the `dli::simulate` function.
+This is a bit suspicious. 
+We just said that CPU and GPU have distinct memory spaces, 
+but we are not seeing anything that'd reflect this in the code.
+Maybe performance can reveal something?
+
+
+compile and run with:
+
+```
+!nvcc --extended-lambda -o /tmp/a.out Sources/heat-2D.cu # build executable
+!/tmp/a.out # run executable
+```
+
+There's a strange pattern in the execution times. 
+Every time we write data, the next compute step takes 100 times longer to compute.
+This happens because the data is being implicitly copied between CPU and GPU memory spaces.
+
+//Implicit Memory Transfers image - managed.png
+
+Let's say our data resides in the GPU memory.
+When `dli::store` accesses it, the data has to be copied to the CPU memory.
+Next, when we call `dli::simulate`, the data is being accessed by the GPU, so the data has to be copied back.
+So `thrust::universal_vector` works as a vector that lives in both CPU and GPU memory spaces and automatically migrates between them.
+The problem is that we know that `dli::store` is not modifying the data, so the copy back to the GPU is unnecessary.
+Fortunately, we can avoid this extra copy by using explicit memory spaces.
+
+## Host and Device Memory Spaces
+
+Presense of distinct host and device memory spaces is a fundamental concept in GPU programming.
+For you, as a software engineer, this means that in addition to thinking about where code runs, 
+you also have to keep in mind where the bytes that this code accesses live.
+On a high level, we have a **host memory space** and a **device memory space**.
+Thrust provides container types that manage memory in the associated memory spaces.
+Let's take a look at a program that allocates vectors in corresponding memory spaces:
+
+```c++
+thrust::host_vector<int> h_vec{ 11, 12 };
+thrust::device_vector<int> d_vec{ 21, 22 };
+thrust::copy_n(h_vec.begin(), 1, d_vec.begin());
+```
+
+Let's take a look at this code step by step.
+We started by allocating a vector with two element in host memory.
+We initialized these two elements with `11` and `12`:
+
+```c++
+thrust::host_vector<int> h_vec{ 11, 12 };
+```
+
+Functionally, there's little difference between `std::vector` and `thrust::host_vector`.
+As you learn, we suggest using `thrust::host_vector` just to make memory space more pronounced.
+Besides host vector, we also allocated device one:
+
+```c++
+thrust::device_vector<int> d_vec{ 21, 22 };
+```
+
+We then copied one element from host memory space to device memory space using Thrust copy algorithm.
+In general, copy is one of the few algorithms that you can provide mixed memory spaces.
+
+```c++
+thrust::copy_n(h_vec.begin(), 1, d_vec.begin());
+```
+
+// memory.png 
+<img src="Images/memory.png" alt="Memory Spaces" width=800>
+
+---
+For now, it's safe to assume that:
+
+- Device memory space is accessible from device execution space
+- Host memory space is accessible from host execution space
+- Thrust data movement algorithms can copy data between memory spaces
+
+Let's try to internalize these points by practical examples.
+
+
+## Exercise: Explicit Memory Spaces
+
+Usage of `thrust::copy` for your reference:
+
+```c++
+thrust::copy(src_vector.begin(), src_vector.end(), dst_vector.begin());
+```
+
+Rewrite the code below to use `thrust::device_vector` and `thrust::host_vector`:
+
+<details>
+<summary>Original code in case you need to refer to it.</summary>
+
+```c++
+%%writefile Sources/heat-2D-explicit-memory-spaces.cu
+#include "dli.h"
+
+int main()
+{
+  int height = 4096;
+  int width  = 4096;
+
+  thrust::universal_vector<float> prev = dli::init(height, width);
+  thrust::universal_vector<float> next(height * width);
+
+  for (int write_step = 0; write_step < 3; write_step++) {
+    std::printf("   write step %d\n", write_step);
+    dli::store(write_step, height, width, prev);
+    
+    for (int compute_step = 0; compute_step < 3; compute_step++) {
+      auto begin = std::chrono::high_resolution_clock::now();
+      dli::simulate(height, width, prev, next);
+      auto end = std::chrono::high_resolution_clock::now();
+      auto seconds = std::chrono::duration<double>(end - begin).count();
+      std::printf("computed step %d in %g s\n", compute_step, seconds);
+      prev.swap(next);
+    }
+  }
+}
+```
+    
+</details>
+
+```c++
+%%writefile Sources/heat-2D-explicit-memory-spaces.cu
+#include "dli.h"
+
+int main()
+{
+  int height = 4096;
+  int width  = 4096;
+
+  thrust::universal_vector<float> prev = dli::init(height, width);
+  thrust::universal_vector<float> next(height * width);
+
+  for (int write_step = 0; write_step < 3; write_step++) {
+    std::printf("   write step %d\n", write_step);
+    dli::store(write_step, height, width, prev);
+    
+    for (int compute_step = 0; compute_step < 3; compute_step++) {
+      auto begin = std::chrono::high_resolution_clock::now();
+      dli::simulate(height, width, prev, next);
+      auto end = std::chrono::high_resolution_clock::now();
+      auto seconds = std::chrono::duration<double>(end - begin).count();
+      std::printf("computed step %d in %g s\n", compute_step, seconds);
+      prev.swap(next);
+    }
+  }
+}
+```
+compile and run with:
+```
+!nvcc --extended-lambda -o /tmp/a.out Sources/heat-2D-explicit-memory-spaces.cu # build executable
+!/tmp/a.out # run executable
+```
+If you’re unsure how to proceed, consider expanding this section for guidance. Use the hint only after giving the problem a genuine attempt.
+
+<details>
+  <summary>Hints</summary>
+  
+  - `dli::simulate` should accept `thrust::device_vector` as input and output
+  - `dli::store` should accept `thrust::host_vector` as input
+  - You can use `thrust::copy` to copy data between `thrust::device_vector` and `thrust::host_vector`
+</details>
+
+Open this section only after you’ve made a serious attempt at solving the problem. Once you’ve completed your solution, compare it with the reference provided here to evaluate your approach and identify any potential improvements.
+
+<details>
+  <summary>Solution</summary>
+
+  Key points:
+
+  - 
+
+  Solution:
+  ```c++
+  thrust::device_vector<float> d_prev = dli::init(height, width);
+  thrust::device_vector<float> d_next(height * width);
+  thrust::host_vector<float> h_prev(height * width);
+
+  for (int write_step = 0; write_step < 3; write_step++) {
+    std::printf("   write step %d\n", write_step);
+    thrust::copy(d_prev.begin(), d_prev.end(), h_prev.begin());
+    dli::store(write_step, height, width, h_prev);
+
+    for (int compute_step = 0; compute_step < 3; compute_step++) {
+      auto begin = std::chrono::high_resolution_clock::now();
+      dli::simulate(height, width, d_prev, d_next);
+      auto end = std::chrono::high_resolution_clock::now();
+      auto seconds = std::chrono::duration<double>(end - begin).count();
+      std::printf("computed step %d in %g s\n", compute_step, seconds);
+      d_prev.swap(d_next);
+    }
+  }
+  ```
+</details>
+
+# CUDA Made Easy: Summary
+
+Congratulations on completing the first part of the course!  You have accomplished all of the following lab objectives:
+
+- Understand the differences between parallel and serial algorithms
+- Control where your C++ code runs and run it on CPU or GPU
+- Control whether your data resides in CPU or GPU memory and how to move between them 
+- Refactor standard algorithms to execute on GPU
+- Leverage powerful parallel algorithms that simplify adding GPU acceleration to your code
+- Use fancy iterators to fuse operations and extend algorithms to fit your unique use cases
+
+
+---
+
+## Key Takeaways
+
+Let's review a few key points from this part of the course.
+
+// image: takeaway_1_1
+
+### Leverage accelerated libraries whenever you can.
+Existing libraries are already tuned to make the most of GPU hardware. 
+For example, use Thrust for general-purpose parallel algorithms and container management.
+Use cuSPARSE when you need GPU-accelerated sparse linear algebra functions.
+Use MatX for array-based numerical computing, etc.
+
+// image: takeaway_1_2
+
+### When writing your CUDA code, remember the difference between execution specifiers and policies:
+Use __host__ __device__ execution space specifiers to specify where given function could be executed.
+Use thrust::host and thrust::device execution policies to specify where given thrust algorithm will be executed.
+
+// image: takeaway_1_3
+
+### Avoid serialization as much as possible.
+
+
+// image: takeaway_1_4
+
+
+### Where possible, use explicit memory spaces to avoid unexpected slowdowns. 
+Rather than relying on implicit managed memory transfers, define separate host and device vectors and manage data movement yourself. 
+This way, you’re always in control of when and how data travels between the CPU and GPU.
+
+// image: takeaway_1_5
+
+### And lastly, fancy iterators give you a powerful way to extend existing parallel algorithms to your unique use cases. 
+By encapsulating custom logic, you can reuse Thrust’s highly optimized building blocks without having to rewrite entire algorithms from scratch.
+
+// image: takeaway_1_5
+
+
+
+
+
+
+
+
+
 
 
 
