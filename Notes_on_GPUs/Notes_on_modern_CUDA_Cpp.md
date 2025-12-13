@@ -391,6 +391,7 @@ Solution:
     return vec[vec.size() / 2];
   }
   ```
+ </details>
 
 
 ## Extending Standard algorithms
