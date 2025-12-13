@@ -1609,18 +1609,474 @@ int main() {
 ```
 
 
+## Exercise: `mdspan`
+
+Usage of `cuda::std::mdspan` API for your reference:
+```cpp
+int height = 2;
+int width = 3;
+cuda::std::array<int, 6> sd {0, 1, 2, 3, 4, 5};
+cuda::std::mdspan md(sd.data(), height, width);
+
+std::printf("md(0, 0) = %d\n", md(0, 0)); // 0
+std::printf("md(1, 2) = %d\n", md(1, 2)); // 5
+
+std::printf("size   = %zu\n", md.size());    // 6
+std::printf("height = %zu\n", md.extent(0)); // 2
+std::printf("width  = %zu\n", md.extent(1)); // 3
+```
+
+Complete the exercise below by adding the use of `cuda::std::mdspan` instead of dereferencing the raw pointer via pointer offset arithmetic.
+
+
+<details>
+<summary>Original heat-2D.cu code in case you need to refer back to it.</summary>
+
+```c++
+%%writefile Sources/heat-2D.cu
+#include "dli.h"
+
+__host__ __device__
+cuda::std::pair<int, int> row_col(int id, int width) {
+    return cuda::std::make_pair(id / width, id % width);
+}
+
+void simulate(int height, int width,
+              const thrust::universal_vector<float> &in,
+                    thrust::universal_vector<float> &out)
+{
+  const float *in_ptr = thrust::raw_pointer_cast(in.data());
+
+  thrust::tabulate(
+    thrust::device, out.begin(), out.end(), 
+    [in_ptr, height, width] __host__ __device__(int id) {
+      auto [row, column] = row_col(id, width);
+
+      if (row > 0 && column > 0 && row < height - 1 && column < width - 1) {
+        float d2tdx2 = in_ptr[(row) * width + column - 1] - 2 * in_ptr[row * width + column] + in_ptr[(row) * width + column + 1];
+        float d2tdy2 = in_ptr[(row - 1) * width + column] - 2 * in_ptr[row * width + column] + in_ptr[(row + 1) * width + column];
+
+        return in_ptr[row * width + column] + 0.2f * (d2tdx2 + d2tdy2);
+      } else {
+        return in_ptr[row * width + column];
+      }
+    });
+}
+```
+
+</details>
 
 
 
+```c++
+%%writefile Sources/heat-2D.cu
+#include "dli.h"
+
+__host__ __device__
+cuda::std::pair<int, int> row_col(int id, int width) {
+    return cuda::std::make_pair(id / width, id % width);
+}
+
+void simulate(int height, int width,
+              const thrust::universal_vector<float> &in,
+                    thrust::universal_vector<float> &out)
+{
+  const float *in_ptr = thrust::raw_pointer_cast(in.data());
+
+  thrust::tabulate(
+    thrust::device, out.begin(), out.end(), 
+    [in_ptr, height, width] __host__ __device__(int id) {
+      auto [row, column] = row_col(id, width);
+
+      if (row > 0 && column > 0 && row < height - 1 && column < width - 1) {
+        float d2tdx2 = in_ptr[(row) * width + column - 1] - 2 * in_ptr[row * width + column] + in_ptr[(row) * width + column + 1];
+        float d2tdy2 = in_ptr[(row - 1) * width + column] - 2 * in_ptr[row * width + column] + in_ptr[(row + 1) * width + column];
+
+        return in_ptr[row * width + column] + 0.2f * (d2tdx2 + d2tdy2);
+      } else {
+        return in_ptr[row * width + column];
+      }
+    });
+}
+```
+
+```
+import Sources.dli
+Sources.dli.run("Sources/heat-2D.cu")
+```
+
+If you’re unsure how to proceed, consider expanding this section for guidance. Use the hint only after giving the problem a genuine attempt.
+
+<details>
+  <summary>Hints</summary>
+  
+  - `cuda::std::mdspan` constructor takes a pointer followed by the height and width of the 2D array
+  - Two-dimensional `cuda::std::mdpsan` provides `operator()(int row, int column)` to access elements
+</details>
 
 
+Open this section only after you’ve made a serious attempt at solving the problem. Once you’ve completed your solution, compare it with the reference provided here to evaluate your approach and identify any potential improvements.
+
+<details>
+  <summary>Solution</summary>
+
+  Key points:
+
+  - You can use `md.extent(0)` and `md.extent(1)` to get the height and width of the 2D array
+
+  Solution:
+  ```cpp
+  cuda::std::mdspan temp_in(thrust::raw_pointer_cast(in.data()), height, width);
+
+  thrust::tabulate(thrust::device, out.begin(), out.end(), [temp_in] __host__ __device__(int id) {
+    int column = id % temp_in.extent(1);
+    int row    = id / temp_in.extent(1);
+
+    if (row > 0 && column > 0 && row < temp_in.extent(0) - 1 && column < temp_in.extent(1) - 1)
+    {
+      float d2tdx2 = temp_in(row, column - 1) - 2 * temp_in(row, column) + temp_in(row, column + 1);
+      float d2tdy2 = temp_in(row - 1, column) - 2 * temp_in(row, column) + temp_in(row + 1, column);
+
+      return temp_in(row, column) + 0.2f * (d2tdx2 + d2tdy2);
+    }
+    else
+    {
+      return temp_in(row, column);
+    }
+  });
+  ```
+</details>
+
+## Segmented Sum
+
+This time, let's say we are interested in the segment close to the heat source. 
+Let's try changing the grid size to "zoom" in into that part.
+Instead of looking at the visualization, we'll be looking at the total temperature in each row.
+This row-based computation can be framed as a segmented problem. A *segmented sum* is defined as taking a single input array and, given a segment size, calculating the sum of each segment.
+
+// image segmented sum
 
 
+We could build a segmented sum on top of `thrust::tabulate`. 
+The `tabulate` algorithm receives a sequence and a function.
+It then applies this function to index of each element in the sequence, and stores the result into the provided sequence.
+For example, after the following invocation:
+
+```c++
+thrust::universal_vector<int> vec(4);
+thrust::tabulate(
+   thrust::device, vec.begin(), vec.end(), 
+   []__host__ __device__(int index) -> int { 
+      return index * 2; 
+   });
+```
+
+`vec` would store `{0, 2, 4, 6}`. 
+We can use this algorithm to implement our segmented sum as follows:
+
+```c++
+thrust::universal_vector<float> sums(num_segments);
+thrust::tabulate(
+   thrust::device, sums.begin(), sums.end(), 
+   []__host__ __device__(int segment_id) -> float {
+      return compute_sum_for(segment_id);
+   });
+```
+
+As we implement the algorithm, let's consider its performance from a new perspective.
+Reduction is a memory-bound algorithm.
+This means that instead of analyzing its performance in terms of elapsed time,
+we could take a look at how many bytes does our implementation process in a second.
+This metric is called _achieved throughput_. 
+By contrasting it with the peak theoretical bandwidth of our GPU,
+we'll understand if our implementation is efficient or not.
+
+```c++
+%%writefile Sources/naive-segmented-sum.cu
+#include <cstdio>
+#include <chrono>
+
+#include <thrust/tabulate.h>
+#include <thrust/execution_policy.h>
+#include <thrust/universal_vector.h>
+
+thrust::universal_vector<float> row_temperataures(
+    int height, int width,
+    const thrust::universal_vector<float>& temp) 
+{
+    // allocate vector to store sums
+    thrust::universal_vector<float> sums(height);
+
+    // take raw pointer to `temp`
+    const float *d_temp_ptr = thrust::raw_pointer_cast(temp.data());
+
+    // compute row sum
+    thrust::tabulate(thrust::device, sums.begin(), sums.end(), [=]__host__ __device__(int row_id) {
+        float sum = 0;
+        for (int i = 0; i < width; i++) {
+            sum += d_temp_ptr[row_id * width + i];
+        }
+        return sum; 
+    });
+
+    return sums;
+}
+
+thrust::universal_vector<float> init(int height, int width) {
+  const float low = 15.0;
+  const float high = 90.0;
+  thrust::universal_vector<float> temp(height * width, low);
+  thrust::fill(thrust::device, temp.begin(), temp.begin() + width, high);
+  return temp;
+}
+
+int main() 
+{
+    int height = 16;
+    int width = 16777216;
+    thrust::universal_vector<float> temp = init(height, width);
+
+    auto begin = std::chrono::high_resolution_clock::now();
+    thrust::universal_vector<float> sums = row_temperataures(height, width, temp);
+    auto end = std::chrono::high_resolution_clock::now();
+    const double seconds = std::chrono::duration<double>(end - begin).count();
+    const double gigabytes = static_cast<double>(temp.size() * sizeof(float)) / 1024 / 1024 / 1024;
+    const double throughput = gigabytes / seconds;
+
+    std::printf("computed in %g s\n", seconds);
+    std::printf("achieved throughput: %g GB/s\n", throughput);
+}
+```
+compile and run with:
+```
+!nvcc --extended-lambda -o /tmp/a.out Sources/naive-segmented-sum.cu # build executable
+!/tmp/a.out # run executable
+```
 
 
+Let's take a look at the achieved throughput and contrast it with maximal bandwidth.
+Out implementation achieves less than a percent of what GPU can provide.
+The reason our implementation underperforms is due to the way we used `thrust::tabulate`:
+
+```c++
+thrust::tabulate(thrust::device, sums.begin(), sums.end(), [=]__host__ __device__(int segment_id) {
+    float sum = 0;
+    for (int i = 0; i < segment_size; i++) {
+        sum += d_values_ptr[segment_id * segment_size + i];
+    }
+    return sum; 
+});
+```
+
+## Reduce by Key
+
+GPUs are massively parallel processors.
+That said, code that ends up being executed by GPU doesn't get magically parallelized.
+The `for` loop in the operator we provided to `thrust::tabulate` is executed sequentially. 
+Tabulate could process each of the 16 elements in parallel, while the operator processes over 16 million elements.
+To fix performance, let's try increasing parallelism.
+
+To do that, we can try the `thrust::reduce_by_key` algorithm, which is a generalization of the `thrust::reduce` algorithm. 
+Instead of reducing the sequence into a single value,
+it allows you to reduce segments of values. 
+To distinguish these segments, you have to provide keys. 
+Consecutive keys that are equal form a *segment*.
+As the output, `reduce_by_key` returns one value per segment. 
+
+For example:
+
+```c++
+int in_keys[] = {1, 1, 1, 3, 3};
+int in_vals[] = {1, 2, 3, 4, 5};
+int out_keys[2];
+int out_vals[2];
+
+thrust::reduce_by_key(in_keys, in_keys + 5, in_vals, out_keys, out_vals);
+// out_keys = {1, 3}
+// out_vals = {6, 9}
+```
+
+Lets try to frame our segmented sum in terms of reduce by key:
+
+```c++
+%%writefile Sources/reduce-by-key.cu
+#include "dli.h"
+
+thrust::universal_vector<float> row_temperatures(
+    int height, int width,
+    thrust::universal_vector<int>& row_ids,
+    thrust::universal_vector<float>& temp)
+{
+    thrust::universal_vector<float> sums(height);
+    thrust::reduce_by_key(
+        thrust::device, 
+        row_ids.begin(), row_ids.end(),   // input keys 
+        temp.begin(),                     // input values
+        thrust::make_discard_iterator(),  // output keys
+        sums.begin());                    // output values
+
+    return sums;
+}
+```
+compile and run with:
+```
+!nvcc --extended-lambda -o /tmp/a.out Sources/reduce-by-key.cu # build executable
+!/tmp/a.out # run executable
+```
+We are not interested in output keys, so we made a `discard` iterator. 
+This technique often helps you save memory bandwidth when you don't need certain parts of the algorithm's output.
+Speaking of bandwidth, we've got much better results now. 
+That's because we eliminated the serialization that was dominating execution time. 
+However, there's still an issue: Now we are reading keys.
+
+## Exercise: Segmented Sum Optimization
+
+Below is an example of the `transform` iterator API:
+
+```c++
+int constant = 2;
+auto transform_it = thrust::make_transform_iterator(
+    // iterator to the beginning of the input sequence
+    vector.begin(), 
+    // capture constant in the lambda by value with `[name]`
+    [constant]__host__ __device__(float value_from_input_sequence) { 
+      // transformation of each element
+      return value_from_input_sequence * constant; 
+    });
+```
+
+Here's an example of the Counting iterator API:
+
+```c++
+// start counting from 0
+auto count_it = thrust::make_counting_iterator(0);
+```
+
+Rewrite the segmented sum code below without materializing keys in memory.
 
 
+<details>
+    <summary>Copy of the original code in case you need to refer back to it.</summary>
 
+```c++
+%%writefile Sources/segmented-sum-optimization.cu
+#include "dli.h"
+
+thrust::universal_vector<float> row_temperatures(
+    int height, int width,
+    thrust::universal_vector<int>& row_ids,
+    thrust::universal_vector<float>& temp)
+{
+    thrust::universal_vector<float> sums(height);
+
+    // Modify line below to use counting and transform iterators to 
+    // generates row indices `id / width` instead
+    auto row_ids_begin = row_ids.begin(); 
+    auto row_ids_end = row_ids_begin + temp.size();
+
+    thrust::reduce_by_key(thrust::device, 
+                          row_ids_begin, row_ids_end, 
+                          temp.begin(), 
+                          thrust::make_discard_iterator(), 
+                          sums.begin());
+
+    return sums;
+}
+```  
+
+</details>
+
+```c++
+%%writefile Sources/segmented-sum-optimization.cu
+#include "dli.h"
+
+thrust::universal_vector<float> row_temperatures(
+    int height, int width,
+    thrust::universal_vector<int>& row_ids,
+    thrust::universal_vector<float>& temp)
+{
+    thrust::universal_vector<float> sums(height);
+
+    // Modify the line below to use counting and transform iterators to 
+    // generates row indices `id / width` instead
+    auto row_ids_begin = row_ids.begin(); 
+    auto row_ids_end = row_ids_begin + temp.size();
+
+    thrust::reduce_by_key(thrust::device, 
+                          row_ids_begin, row_ids_end, 
+                          temp.begin(), 
+                          thrust::make_discard_iterator(), 
+                          sums.begin());
+
+    return sums;
+}
+```
+compile and run with:
+```
+!nvcc --extended-lambda -o /tmp/a.out --run Sources/segmented-sum-optimization.cu 
+```
+
+The output of your program should end with:
+
+```
+row 0: { 90, 90, ..., 90 } = 1.50995e+09
+row 1: { 15, 15, ..., 15 } = 2.51658e+08
+row 2: { 15, 15, ..., 15 } = 2.51658e+08
+```
+
+If you’re unsure how to proceed, consider expanding this section for guidance. Use the hint only after giving the problem a genuine attempt.
+
+<details>
+  <summary>Hints</summary>
+  
+  - Combine `transform` and `counting` iterators to generate row indices
+</details>
+
+
+Open this section only after you’ve made a serious attempt at solving the problem. Once you’ve completed your solution, compare it with the reference provided here to evaluate your approach and identify any potential improvements.
+
+<details>
+  <summary>Solution</summary>
+
+  Key points:
+
+  - `thrust::make_counting_iterator(0)` creates an integer sequence of cell indices
+  - `thrust::make_transform_iterator` converts cell indices to row indices by dividing by `width`
+
+  Solution:
+  ```c++
+  auto row_ids_begin = thrust::make_transform_iterator(
+      thrust::make_counting_iterator(0),
+      [=] __host__ __device__(int i) { return i / width; });
+  ```
+
+```
+#include "dli.h"
+
+thrust::universal_vector<float> row_temperatures(
+    int height, int width,
+    thrust::universal_vector<int>& row_ids,
+    thrust::universal_vector<float>& temp)
+{
+    thrust::universal_vector<float> sums(height);
+
+    // Modify the line below to use counting and transform iterators to 
+    // generates row indices `id / width` instead
+    auto row_ids_begin = row_ids.begin(); a
+    auto row_ids_end = row_ids_begin + temp.size();
+
+    thrust::reduce_by_key(thrust::device, 
+                          row_ids_begin, row_ids_end, 
+                          temp.begin(), 
+                          thrust::make_discard_iterator(), 
+                          sums.begin());
+
+    return sums;
+}
+
+```
+
+</details>
 
 
 
