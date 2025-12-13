@@ -962,16 +962,253 @@ int main()
 The resulting speedup exceeds our expectations because we included memory allocation in our measurements.
 
 
+## Exercise: Computing Variance
+
+So far, you've learned how to compute mean variance and maximal difference.
+In this exercise, you'll apply techniques of extending standard algorithms that we just covered.
+This time, you'll be implementing an efficient variance algorithm.
+Variance is computed on a sequence of data.
+It measures how far the values in the sequence are spread from the mean:
+
+$$
+\frac{\sum\left(x_{i} - \overline{x} \right)^{2}}{N}
+$$
+
+As the equation above suggests, for each value in the sequence we have to compute the squared difference between this value and mean.
+We then add all those squared differences together and divide the resulting sum by `N`. 
+
+The next exercise consists of using a transform iterator to compute the squared differences.
+
+Transform iterator API for your reference:
+
+```c++
+int constant = 2;
+auto transform_it = thrust::make_transform_iterator(
+    // iterator to the beginning of the input sequence
+    vector.begin(), 
+    // capture constant in the lambda by value with `[name]`
+    [constant]__host__ __device__(float value_from_input_sequence) { 
+      // transformation of each element
+      return value_from_input_sequence * constant; 
+    });
+```
+
+Use `thrust::reduce` to compute the sum of squared differences. 
+
+```c++
+%%writefile Sources/variance.cu
+#include "dli.h"
+
+float variance(const thrust::universal_vector<float> &x, float mean) {
+  // update the following line so that dereferencing `squared_differences`
+  // returns `(xi - mean) * (xi - mean)`
+  auto squared_differences = ...;
+
+  return thrust::reduce(thrust::device, squared_differences,
+                        squared_differences + x.size()) /
+         x.size();
+}
+
+float mean(thrust::universal_vector<float> vec) {
+  return thrust::reduce(thrust::device, vec.begin(), vec.end()) / vec.size();
+}
+
+int main() {
+  float ambient_temp = 20;
+  thrust::universal_vector<float> prev{42, 24, 50};
+  thrust::universal_vector<float> next{0, 0, 0};
+
+  std::printf("step  variance\n");
+  for (int step = 0; step < 3; step++) {
+    thrust::transform(thrust::device, prev.begin(), prev.end(), next.begin(),
+                      [=] __host__ __device__(float temp) {
+                        return temp + 0.5 * (ambient_temp - temp);
+                      });
+    std::printf("%d     %.2f\n", step, variance(next, mean(next)));
+    next.swap(prev);
+  }
+}
+```
+compile and run with:
+```
+!nvcc --extended-lambda -o /tmp/a.out Sources/variance.cu # build executable
+!/tmp/a.out # run executable
+```
+
+The output of your program should be:
+
+| Step | Variance |
+|------|----------|
+| 0    | 29.56    |
+| 1    | 7.39     |
+| 2    | 1.85     |
+
+If you’re unsure how to proceed, consider expanding this section for guidance. Use the hint only after giving the problem a genuine attempt.
+
+<details>
+  <summary>Hints</summary>
+  
+  - You can capture mean in a lambda function with `[mean]__host__ __device__ (...` 
+  - You can transform the input sequence into squared differences with `thrust::transform_iterator`
+  - You can create a transform iterator with `thrust::make_transform_iterator`
+</details>
+
+Open this section only after you’ve made a serious attempt at solving the problem. Once you’ve completed your solution, compare it with the reference provided here to evaluate your approach and identify any potential improvements.
+
+<details>
+  <summary>Solution</summary>
+
+  Key points:
+  - use `thrust::make_transform_iterator`
+  - capture mean by value in lambda
+
+  Solution:
+  ```c++
+  auto squared_differences = thrust::make_transform_iterator(
+    x.begin(), [mean] __host__ __device__(float value) {
+      return (value - mean) * (value - mean);
+    });
+  ```
+
+  You can find full solution:
+  
+```c++
+#include "dli.h"
+
+float variance(const thrust::universal_vector<float> &x, float mean) {
+  auto squared_differences = thrust::make_transform_iterator(
+      x.begin(), [mean] __host__ __device__(float value) {
+        return (value - mean) * (value - mean);
+      });
+
+  return thrust::reduce(thrust::device, squared_differences,
+                        squared_differences + x.size()) /
+         x.size();
+}
+
+float mean(thrust::universal_vector<float> vec) {
+  return thrust::reduce(thrust::device, vec.begin(), vec.end()) / vec.size();
+}
+
+int main() {
+  float ambient_temp = 20;
+  thrust::universal_vector<float> prev{42, 24, 50};
+  thrust::universal_vector<float> next{0, 0, 0};
+
+  std::printf("step  variance\n");
+  for (int step = 0; step < 3; step++) {
+    thrust::transform(thrust::device, prev.begin(), prev.end(), next.begin(),
+                      [=] __host__ __device__(float temp) {
+                        return temp + 0.5 * (ambient_temp - temp);
+                      });
+    std::printf("%d     %.2f\n", step, variance(next, mean(next)));
+    next.swap(prev);
+  }
+}
+```
+
+```c++
+#pragma once
+
+#include <cstdio>
+
+#include <nv/target>
+
+#include <cstdint> // CHAR_BIT
+
+#include <thrust/fill.h>
+#include <thrust/tabulate.h>
+#include <thrust/universal_vector.h>
+
+#include <cstdio>
+#include <thrust/execution_policy.h>
+#include <thrust/for_each.h>
+#include <thrust/iterator/constant_iterator.h>
+#include <thrust/iterator/counting_iterator.h>
+#include <thrust/iterator/transform_iterator.h>
+#include <thrust/iterator/zip_iterator.h>
+#include <thrust/sequence.h>
+#include <thrust/universal_vector.h>
+
+#include <cuda/std/mdspan>
+
+namespace dli {
+
+static __host__ __device__ bool is_executed_on_gpu() {
+  NV_IF_TARGET(NV_IS_HOST, (return false;));
+  return true;
+}
+
+static __host__ __device__ const char *execution_space() {
+  return is_executed_on_gpu() ? "GPU" : "CPU";
+}
+
+static double max_bandwidth() {
+  cudaDeviceProp prop;
+  cudaGetDeviceProperties(&prop, 0);
+
+  const std::size_t mem_freq =
+      static_cast<std::size_t>(prop.memoryClockRate) * 1000; // kHz -> Hz
+  const int bus_width = prop.memoryBusWidth;
+  const std::size_t bytes_per_second = 2 * mem_freq * bus_width / CHAR_BIT;
+  return static_cast<double>(bytes_per_second) / 1024 / 1024 /
+         1024; // B/s -> GB/s
+}
+
+__host__ __device__ void I_expect(const char *expected) {
+  std::printf("expect %s; runs on %s;\n", expected, execution_space());
+}
+
+} // namespace dli
+
+namespace heat {
+inline thrust::universal_vector<float> generate_random_data(int height,
+                                                            int width) {
+  const float low = 15.0;
+  const float high = 90.0;
+  thrust::universal_vector<float> data(height * width, low);
+  thrust::fill(thrust::device, data.begin(), data.begin() + width, high);
+  thrust::fill(thrust::device, data.end() - width, data.end(), high);
+  return data;
+}
+
+template <class ContainerT>
+void simulate(int height, int width, const ContainerT &in, ContainerT &out) {
+  cuda::std::mdspan temp_in(thrust::raw_pointer_cast(in.data()), height, width);
+
+  thrust::tabulate(
+      thrust::device, out.begin(), out.end(), [=] __host__ __device__(int id) {
+        const int column = id % width;
+        const int row = id / width;
+
+        // loop over all points in domain (except boundary)
+        if (row > 0 && column > 0 && row < height - 1 && column < width - 1) {
+          // evaluate derivatives
+          float d2tdx2 = temp_in(row, column - 1) - 2 * temp_in(row, column) +
+                         temp_in(row, column + 1);
+          float d2tdy2 = temp_in(row - 1, column) - 2 * temp_in(row, column) +
+                         temp_in(row + 1, column);
+
+          // update temperatures
+          return temp_in(row, column) + 0.2f * (d2tdx2 + d2tdy2);
+        } else {
+          return temp_in(row, column);
+        }
+      });
+}
+} // namespace heat
+
+```
+  
+</details>
 
 
 
 
+```c++
 
-
-
-
-
-
+```
+compile and run with:
 ```
 
 ```
