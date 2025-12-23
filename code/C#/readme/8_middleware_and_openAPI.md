@@ -114,7 +114,7 @@ Save your changes after each configuration so you can verify that everything is 
 
 In the root directory, locate the `Program.cs file`. This file will be used to configure all middleware components.
 
-```
+```C#
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
