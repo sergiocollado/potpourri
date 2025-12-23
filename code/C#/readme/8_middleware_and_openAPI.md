@@ -54,3 +54,29 @@ Records key events and errors, offering insights into application behavior for m
 By implementing exception handling, authentication, authorization, and logging middleware, ASP.NET Core applications become more secure, reliable, and maintainable, providing a solid foundation for building responsive web applications.
 
 
+# Custom Middleware
+
+## Introduction
+This guide covers creating and implementing custom middleware in ASP.NET Core, focusing on examples like request logging, response timing, and API key validation.
+
+## Key Points
+
+### Middleware Fundamentals
+Middleware is central in processing requests and responses through ASP.NET Core’s pipeline.
+
+The `app.Use()` function enables custom middleware by defining a request delegate, which processes requests sequentially.
+
+### Examples of Custom Middleware
+
+ - Logging Middleware: Logs request paths and response status codes using Console.WriteLine before and after each request.
+ - Timing Middleware: Measures request duration by recording the start time before the next delegate and calculating the duration after it completes.
+
+## Conditional Middleware with UseWhen()
+Middleware can run conditionally based on certain criteria, such as non-GET requests, using `UseWhen()`.
+
+Access control using API keys is demonstrated, allowing requests with a valid API key while returning a 401 Unauthorized response for invalid keys.
+
+## Conclusion
+These middleware implementations provide a foundational approach to logging, timing, and access control and show how to extend ASP.NET Core’s capabilities.
+
+
