@@ -4,6 +4,8 @@
 Follow these steps to configure your .NET development environment effectively.
 How to Configure Your .NET Development Environment
 
+https://dotnet.microsoft.com/en-us/download/dotnet
+
   ### Install the .NET SDK
 
         Go to the official Microsoft .NET website.
