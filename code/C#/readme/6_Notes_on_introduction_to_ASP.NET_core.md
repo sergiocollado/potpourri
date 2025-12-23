@@ -249,7 +249,7 @@ public ActionResult<string> Delete(int id)
 Use Postman to test these methods. You can install Postman from their website and use the free version here: 
 https://www.postman.com/ 
 
-### Step 9: Practice and Build
+### Step 9: What to do next: Practice and Build
 
 Now that you have a basic Web API:
 
