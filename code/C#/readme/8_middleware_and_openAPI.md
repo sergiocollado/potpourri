@@ -79,4 +79,215 @@ Access control using API keys is demonstrated, allowing requests with a valid AP
 ## Conclusion
 These middleware implementations provide a foundational approach to logging, timing, and access control and show how to extend ASP.NET Core’s capabilities.
 
+# Lab: Implementing Middleware Components 
+
+## Step 1: prepare the application
+
+You’ll create a small ASP.NET Core application using the command line. This application will integrate several built-in middleware components, and you’ll add custom middleware for logging requests and response details.
+
+Steps:
+
+Open a terminal and navigate to your desired directory.
+
+Create a new ASP.NET Core empty project with the following command: `dotnet new web -o MyAspNetCoreApp`
+
+Navigate to the project folder: `cd MyAspNetCoreApp`
+
+Open the project in your code editor (e.g., Visual Studio Code): `code .`
+
+## Step 2: configure built-in middle ware components
+
+In this step, you will configure essential built-in middleware components: Exception Handling, Authentication, Authorization, and Logging. You don’t have to fully implement authentication and authorization. Just include the middleware components.
+
+## Step 2: Configure built-in middle ware components
+
+In `Program.cs`, configure the exception handling middleware for production and development environments.
+
+Add the authentication middleware that can be used to verify user identities.
+
+Add authorization middleware that can be used to control user permissions.
+
+Configure HTTP logging to capture request and response details. Add the HTTP logging service in builder.Services and apply the middleware.
+
+Save your changes after each configuration so you can verify that everything is set up correctly.
+
+
+In the root directory, locate the `Program.cs file`. This file will be used to configure all middleware components.
+
+```
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+```
+
+Add:
+
+For the exception handling: 
+
+```
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+}
+else
+{
+    app.UseDeveloperExceptionPage();
+}
+```
+
+For the Authentication Middleware:
+```
+app.UseAuthentication();
+```
+
+For the HTTP Logging Configuration:
+Service configuration in builder.Services:
+
+```
+builder.Services.AddHttpLogging(logging =>
+{
+    logging.LoggingFields = Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.All;
+    logging.RequestBodyLogLimit = 4096;
+    logging.ResponseBodyLogLimit = 4096;
+});
+Adding HTTP logging middleware:
+
+app.UseHttpLogging();
+```
+
+
+
+## Step 3: develop custom middle-ware: 
+
+You will now create custom middleware that logs the request path and response status, as well as middleware that records the request duration.
+
+Steps:
+
+In `Program.cs`, add custom middleware to log the request path and response status.
+
+Add another custom middleware to track the request duration.
+
+Save the changes once you’ve completed all the configurations.
+
+
+For the custom middleware:
+
+Middleware for Request Path and Response Status Logging:
+
+```
+app.Use(async (context, next) =>
+{
+    Console.WriteLine($"Request Path: {context.Request.Path}");
+    await next.Invoke();
+    Console.WriteLine($"Response Status Code: {context.Response.StatusCode}");
+});
+```
+
+For the  Middleware for Request Duration Logging:
+
+```
+app.Use(async (context, next) =>
+{
+    var startTime = DateTime.UtcNow;
+    Console.WriteLine($"Start Time: {startTime}");
+    await next.Invoke();
+    var duration = DateTime.UtcNow - startTime;
+    Console.WriteLine($"Response Time: {duration.TotalMilliseconds} ms");
+});
+```
+
+
+So the entire `Program.cs` file after all code has been added.
+
+```
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Hosting;
+using System;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Configure services
+builder.Services.AddHttpLogging(logging =>
+{
+    logging.LoggingFields = Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.All;
+    logging.RequestBodyLogLimit = 4096;
+    logging.ResponseBodyLogLimit = 4096;
+});
+
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+
+var app = builder.Build();
+
+// Configure middleware
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+}
+else
+{
+    app.UseDeveloperExceptionPage();
+}
+
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseHttpLogging();
+
+// Custom middleware for logging request path and response status
+app.Use(async (context, next) =>
+{
+    Console.WriteLine($"Request Path: {context.Request.Path}");
+    await next.Invoke();
+    Console.WriteLine($"Response Status Code: {context.Response.StatusCode}");
+});
+
+// Custom middleware for tracking request duration
+app.Use(async (context, next) =>
+{
+    var startTime = DateTime.UtcNow;
+    Console.WriteLine($"Start Time: {startTime}");
+    await next.Invoke();
+    var duration = DateTime.UtcNow - startTime;
+    Console.WriteLine($"Response Time: {duration.TotalMilliseconds} ms");
+});
+
+app.MapGet("/", () => "Hello, ASP.NET Core Middleware!");
+
+app.Run();
+```
+
+## Step 4: test the middleware pipeline
+
+
+inLabInstructionsPart~bxmH6aCVEe-2ew70qR_lfQ
+​
+With all middleware components in place, test the application to observe how requests and responses are processed.
+
+Steps:
+
+Run the application: `dotnet run`
+
+Open a browser and make requests to the application, such as accessing `http://localhost:5000` (the port is defined at `launchsettings.json`.
+
+Observe the logs in the terminal to confirm the output of the custom middleware, request timing, and built-in middleware.
+
+Verify that error handling correctly redirects to an error page in production and shows detailed errors in development.
+
+An example of the output: 
+
+```
+Request Path: /
+Start Time: 10/29/2024 4:21:58 PM
+Response Time: 8.319 ms
+Response Status Code: 200
+Request Path: /favicon.ico
+Start Time: 10/29/2024 4:21:59 PM
+Response Time: 0.084 ms
+Response Status Code: 404
+```
+
+
 
