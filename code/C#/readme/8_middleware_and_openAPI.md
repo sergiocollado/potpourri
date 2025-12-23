@@ -31,3 +31,26 @@ In ASP.NET Core, middleware plays an essential role in managing HTTP requests by
 This modular setup supports efficient request handling and enhances application security and maintainability. With the middleware pipeline, 
 developers can create robust, responsive applications that efficiently manage client-server interactions.
 
+# Built-in Middleware Components
+
+## Introduction
+ASP.NET Core offers several built-in middleware components that streamline the management of web requests and responses, enhancing application security and performance.
+
+## Key Components
+
+### Exception Handling Middleware
+Manages application errors by redirecting users to a custom error page, protecting sensitive details while logging errors for developer review. For production, use app.UseExceptionHandler("/Home/Error"), and for development, use app.UseDeveloperExceptionPage() for detailed debugging information.
+
+### Authentication Middleware
+Verifies user identity to control access to restricted sections. Add authentication to the request pipeline with app.UseAuthentication() in the Startup.cs file to ensure that only logged-in users access protected areas.
+
+### Authorization Middleware
+Regulates user permissions, granting access only to authorized users. Implemented through app.UseAuthorization(), this middleware complements authentication by enforcing user access rights based on defined policies.
+
+### Logging Middleware
+Records key events and errors, offering insights into application behavior for monitoring and troubleshooting. Enable this with app.UseHttpLogging() and configure levels in appsettings.json to control log details.
+
+## Conclusion
+By implementing exception handling, authentication, authorization, and logging middleware, ASP.NET Core applications become more secure, reliable, and maintainable, providing a solid foundation for building responsive web applications.
+
+
