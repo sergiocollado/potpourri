@@ -12,7 +12,7 @@ Cross-Platform Development: Build Once, Deploy Anywhere
 
 ### Web applications:
 
-ASP.NET allows the development of dynamic and scalable web applications through frameworks like MVC, Razor Pages, and Blazor. https://learn.microsoft.com/en-us/aspnet/core/?view=aspnetcore-10.0
+ASP.NET allows the development of dynamic and scalable web applications through frameworks like MVC, Razor Pages, and Blazor. https://learn.microsoft.com/en-us/aspnet/core/
 
 Example: Stack Overflow uses .NET Core to power its high-performance web applications, benefiting from increased scalability and reduced complexity.
 
