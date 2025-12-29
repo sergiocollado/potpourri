@@ -99,4 +99,36 @@ Modify the client generation settings as needed, such as by changing a single se
 Utilizing Swagger for API client generation in .NET automates communication between backends and clients, ensuring efficient and type-safe interactions. This approach reduces manual coding, supports easy updates, and enhances maintainability, adapting to API changes with minimal effort.
 
 
+# Integrating Swagger and generating API clients
+
+## Step 1: create a new console application
+
+In this step, you’ll create a new ASP.NET Core console application, setting up the folders and initial structure you’ll need for this lab.
+
+Open Visual Studio Code and select a new terminal.
+
+Run the command to create a new console application: `dotnet new console -o SwaggerApiClientLab`
+
+Navigate into the project folder: `cd SwaggerApiClientLab`
+
+Add the necessary packages for working with Swagger and NSwag by running:
+
+```bash
+    dotnet add package Swashbuckle.AspNetCore
+    dotnet add package NSwag.Core
+    dotnet add package NSwag.CodeGeneration.CSharp
+    dotnet add package NSwag.ApiDescription.Client
+```
+
+Inside your project folder, create a folder named Controllers to hold your API controller.
+
+Confirm that your project structure looks like this:
+    
+```
+    SwaggerApiClientLab
+    ├── Controllers
+    ├── Program.cs
+    └── SwaggerApiClientLab.csproj
+```
+
 
