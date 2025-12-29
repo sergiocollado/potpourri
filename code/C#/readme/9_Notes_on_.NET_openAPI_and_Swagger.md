@@ -131,4 +131,15 @@ Confirm that your project structure looks like this:
     └── SwaggerApiClientLab.csproj
 ```
 
+## Step 2: configure Swagger in the application
+
+Next, you’ll add Swagger configuration to the application. This step involves setting up Swagger middleware so the API documentation is available and ready for client generation.
+
+Open the `Program.cs` file and locate the appropriate section to add Swagger configuration.
+
+Configure Swagger so it serves the API documentation in JSON format. Use the Swagger UI path `/swagger/v1/swagger.json`.
+
+Start the server. Use `app.Run();`
+
+Run the application using dotnet run, and navigate to the Swagger UI endpoint in your browser to verify the Swagger setup.
 
