@@ -152,14 +152,57 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-var app = builder.Build();
-app.UseSwagger();
-app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"));
-Task.Run(() => app.RunAsync());
+         var builder = WebApplication.CreateBuilder(args);
+         builder.Services.AddControllers();
+         builder.Services.AddEndpointsApiExplorer();
+         builder.Services.AddSwaggerGen();
+         var app = builder.Build();
+         app.UseSwagger();
+         app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"));
+         Task.Run(() => await app.RunAsync());
     }
 }
 ```
+
+## Step 3: Setting up the API Specification
+
+Now, you’ll define an API endpoint to provide the functionality for client code generation. This specification will document the API routes, parameters, and response types.
+
+Inside the Controllers folder, create a new file named `UserController.cs`.
+
+Create a basic User class with that has Id and Name properties.
+
+Set up a simple GetUser endpoint that will accept a user ID and return sample JSON User detail.
+
+Run the application again and view the Swagger documentation in your browser to confirm the API endpoint appears correctly in the documentation.
+
+```
+// Controllers/UserController.cs
+using Microsoft.AspNetCore.Mvc;
+
+// User model
+public class User
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+[ApiController]
+[Route("api/[controller]")]
+public class UserController : ControllerBase
+{
+    [HttpGet("{id}")]
+    [Produces("application/json")]
+    public ActionResult<User> GetUser(int id)
+    {
+        var user = new User 
+        { 
+            Id = id,
+            Name = $"User {id}"
+        };
+        
+        return Ok(user);
+    }
+}
+```
+
