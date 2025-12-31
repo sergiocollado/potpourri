@@ -141,5 +141,25 @@ Configure Swagger so it serves the API documentation in JSON format. Use the Swa
 
 Start the server. Use `app.Run();`
 
-Run the application using dotnet run, and navigate to the Swagger UI endpoint in your browser to verify the Swagger setup.
+Run the application using `dotnet run`, and navigate to the Swagger UI endpoint in your browser to verify the Swagger setup.
 
+```C#
+// Program.cs
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+var app = builder.Build();
+app.UseSwagger();
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"));
+Task.Run(() => app.RunAsync());
+    }
+}
+```
