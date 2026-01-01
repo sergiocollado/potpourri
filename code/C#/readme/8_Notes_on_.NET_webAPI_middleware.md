@@ -437,7 +437,7 @@ static bool IsValidInput(string input)
 
 This middleware ensures that only safe input passes through, blocking malicious patterns like <script>.
 
-4. Unauthorized Access
+### 4. Unauthorized Access
 
 This middleware checks if the path is `/unauthorized`. If so, it returns a 401 status with "Unauthorized Access" and blocks further processing.
 
@@ -528,8 +528,71 @@ app.Run(async (context) =>
 ```
 This ensures that requests that pass through all middleware receive a final response message.
 
-## Full code by file
+### 8 Testing middleware performance and security
 
+After writing the middleware components, follow these testing steps. You can use a tool like Postman or curl for testing, or adjust URLs directly in your browser.
+
+| condition | url example |
+| ----------- | ----------- |
+| Simulated HTTPS Enforcement | http://localhost:5294/ |
+| Default Route (authenticated) | http://localhost:5294/?secure=true&authenticated=true |
+| Unauthorized Access | http://localhost:5294/unauthorized?secure=true |
+| Invalid Input | http://localhost:5294/?secure=true&input=<script> |
+| Access Denied (Unauthenticated)  | http://localhost:5294/?secure=true |
+| Security Event Log | Any blocked request (400+ status) |
+
+
+### Default Route (Asynchronous Processing Test):
+
+URL: http://localhost:5294/?secure=true 
+
+Expected Output: "Processed Asynchronously" followed by "Final Response from Application."
+
+Explanation: Confirms that asynchronous middleware is functioning as expected.
+
+### Simulated HTTPS Enforcement Test: 
+
+URL: http://localhost:5294/?secure=true&authenticated=true
+
+Expected Output: "Simulated HTTPS Required" with a 400 status code.
+
+Explanation: Ensures the middleware blocks requests that don’t include ?secure=true, simulating HTTPS enforcement.
+
+### Unauthorized Access Test:
+
+URL: http://localhost:5294/unauthorized?secure=true
+
+Expected Output: "Unauthorized Access" with a 401 status code
+
+Explanation: Tests that unauthorized requests are blocked early in the pipeline.
+
+### Invalid Input Test:
+
+URL: http://localhost:5294/?secure=true&input=<script>
+
+Expected Output: "Invalid Input" with a 400 status code.
+
+Explanation: This tests input validation by blocking unsafe input, such as JavaScript or HTML.
+
+### Access Denied Test:
+
+URL: Any URL without authentication setup, such as http://localhost:5294/?secure=true
+
+Expected Output: "Access Denied" with a 403 status code.
+
+Explanation: This middleware simulates access control, blocking unauthenticated requests by default.
+
+### Security Event Log Test:
+
+Trigger: Any request that results in a 400 or higher status code.
+
+Expected Output: Check the console in Visual Studio Code for log messages like:
+Security Event: /unauthorized - Status Code: 401
+
+Explanation: This middleware logs security-related events, providing feedback on blocked or failed requests.
+
+
+## Full code by file
 
 ```C#
 using System;
