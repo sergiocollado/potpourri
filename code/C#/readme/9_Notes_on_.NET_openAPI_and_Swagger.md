@@ -6,6 +6,11 @@ Integrating Swagger with ASP.NET Core provides a streamlined way to automaticall
 making it easier for developers to understand, test, and interact with APIs. This integration uses the Swashbuckle library to enable
 interactive documentation directly within an ASP.NET Core application.
 
+### Why is integrating OpenAPI (Swagger) beneficial in an ASP.NET Core application?
+
+It improves the API documentation and testing, making APIs easier to use and mantain.
+
+
 ## Key Steps for Integration
 
 ### Install Packages:
