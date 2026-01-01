@@ -289,5 +289,21 @@ Response Time: 0.084 ms
 Response Status Code: 404
 ```
 
+# Designing Middleware for Performance
 
+## Introduction
+
+This guide outlines essential steps for designing middleware in ASP.NET Core applications. These steps will help ensure middleware operates efficiently, minimizes latency, and improves application responsiveness.
+
+## Guidelines
+ - Set Up Lightweight Middleware: Design each middleware to handle only quick tasks like logging or routing. Offload complex operations to background services to avoid delays and keep middleware responsive.
+ - Implement Short-Circuiting: Configure middleware to terminate requests early when conditions aren’t met, such as ending the pipeline on failed authentication. This prevents unnecessary processing.
+ - Centralize Error Handling: Set up one error-handling middleware to manage exceptions, reduce repetitive code, and speed up request handling.
+ - Enable Asynchronous Operations: Use asynchronous patterns within middleware to handle requests without blocking, keeping other requests moving efficiently under heavy load.
+ - Leverage Built-In Middleware: Use ASP.NET Core’s built-in middleware for tasks like compression and logging. These components are optimized for performance, saving development time and ensuring efficiency.
+ - Order Middleware Strategically: Critical checks, such as authentication, should be placed early in the pipeline to prevent invalid requests from reaching more intensive components.
+ - Combine Middleware Where Possible: Combining similar tasks reduces the number of middleware components. This minimizes the time spent processing and simplifies the request pipeline.
+
+## Conclusion 
+Applying these steps lets you design middleware that handles requests quickly and efficiently, enhancing overall application performance. Consistently following these practices will help create an optimized ASP.NET Core application that can manage high loads with responsiveness and reliability.
 
