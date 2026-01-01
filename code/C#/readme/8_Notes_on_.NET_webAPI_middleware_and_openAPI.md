@@ -127,7 +127,7 @@ Add:
 
 For the exception handling: 
 
-```
+```C#
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -139,14 +139,14 @@ else
 ```
 
 For the Authentication Middleware:
-```
+```C#
 app.UseAuthentication();
 ```
 
 For the HTTP Logging Configuration:
 Service configuration in builder.Services:
 
-```
+```C#
 builder.Services.AddHttpLogging(logging =>
 {
     logging.LoggingFields = Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.All;
@@ -177,7 +177,7 @@ For the custom middleware:
 
 Middleware for Request Path and Response Status Logging:
 
-```
+```C#
 app.Use(async (context, next) =>
 {
     Console.WriteLine($"Request Path: {context.Request.Path}");
@@ -188,7 +188,7 @@ app.Use(async (context, next) =>
 
 For the  Middleware for Request Duration Logging:
 
-```
+```C#
 app.Use(async (context, next) =>
 {
     var startTime = DateTime.UtcNow;
@@ -202,7 +202,7 @@ app.Use(async (context, next) =>
 
 So the entire `Program.cs` file after all code has been added.
 
-```
+```C#
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -306,4 +306,24 @@ This guide outlines essential steps for designing middleware in ASP.NET Core app
 
 ## Conclusion 
 Applying these steps lets you design middleware that handles requests quickly and efficiently, enhancing overall application performance. Consistently following these practices will help create an optimized ASP.NET Core application that can manage high loads with responsiveness and reliability.
+
+
+# Securing Middleware
+
+## Introduction
+This guide outlines essential steps to secure middleware in ASP.NET Core applications. Following these practices can better protect your application and its users from common security threats.
+
+## How to Secure Middleware in ASP.NET Core
+
+ - Validate and Sanitize Inputs: Apply input validation to ensure data is correctly formatted and sanitized to strip harmful content, preventing injections and malicious scripts.
+ - Enforce HTTPS for Secure Communication: Add app.UseHttpsRedirection() in your middleware setup to enforce HTTPS, ensuring data exchanged between users and your server is encrypted.
+ - Secure Cookies and Session Data: Set cookies with HttpOnly and Secure attributes (Cookie.HttpOnly = true and Cookie.SecurePolicy = CookieSecurePolicy.Always) to prevent access by browser scripts, reducing cross-site scripting (XSS) vulnerabilities.
+ - Perform Authentication and Authorization Early: Place app.UseAuthentication() and app.UseAuthorization() at the beginning of the middleware pipeline to block unauthorized access to restricted sections immediately.
+ - Log Security Events Carefully: Log security events like login attempts and access denials without sensitive details. Logging tools capture basic information such as timestamps, IP addresses, and general event descriptions.
+ - Handle Errors Securely: Configure error handling to display a generic message to users while logging detailed information for developers. Use ExceptionHandlerMiddleware to manage error responses without revealing technical information.
+
+## Conclusion
+These practices strengthen middleware security in ASP.NET Core, protecting your app from common threats. Review and update these configurations regularly to maintain security against new vulnerabilities.
+manage high loads with responsiveness and reliability.
+
 
