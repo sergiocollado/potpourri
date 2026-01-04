@@ -270,6 +270,8 @@ You’ve now built and tested a simple Web API using ASP.NET Core in VS Code. As
 ## A Detailed Comparison
 Both approaches can build the same functionality—CRUD endpoints, authentication, logging, Swagger—but they differ significantly in structure, philosophy, and how the resulting program looks. This document explains both styles in depth and highlights their differences.
 
+reference: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/apis?view=aspnetcore-10.0
+
 ## Option A — Minimal APIs
 
 ### Project Structure
