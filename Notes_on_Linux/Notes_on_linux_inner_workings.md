@@ -3440,4 +3440,16 @@ https://bugzilla.kernel.org/show_bug.cgi?id=200531#c14
  - https://www.phoronix.com/news/TernFS-File-System-Open-Source
  - https://www.xtxmarkets.com/tech/2025-ternfs/
  - https://github.com/XTXMarkets/ternfs
+
+
+### WINE - Wine Is Not an Emulator
+
+ - Run Windows Apps on Linux (Wine Explained for Beginners): https://www.youtube.com/watch?v=gKKW3qZ-NZw
+ - https://gitlab.winehq.org/wine/wine/-/wikis/Wine-User's-Guide
+ - https://gitlab.winehq.org/wine/wine
+ - https://distro.ibiblio.org/blacklab/Documentation/Wine%20User%20Guide.pdf
+ - https://www.geeksforgeeks.org/linux-unix/how-to-use-wine-on-linux/
+ - https://www.wikihow.com/Use-Wine-on-Linux
+ - https://forum.winehq.org/viewtopic.php?t=3106  -- comand line parameters wine
+ - https://www.zdnet.com/article/how-to-run-windows-apps-on-linux-with-wine/
  
