@@ -1,5 +1,7 @@
 # Notes on ASP.NET Core
 
+Courses: https://learn.microsoft.com/en-us/training/browse/?products=aspnet
+
 ## Introduction
 ASP.NET Core is a modern, open-source framework designed for developing web applications and APIs with high performance, scalability, and cross-platform compatibility. This framework is particularly beneficial for building reliable, efficient APIs that adapt well to both small and large applications.
 
