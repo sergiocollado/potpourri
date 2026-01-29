@@ -1,4 +1,5 @@
  - MS learn C#: https://learn.microsoft.com/en-us/dotnet/csharp/
+ - Intro to C#: https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/tutorials/
  - Getting Started with C# & .NET in VS Code (Official Beginner Guide): https://youtu.be/ZVGutgqBMUM?si=wvR1bkOGJkgdjp33
  - C# certification: freecodecamp.org/learn/foundational-c-sharp-with-microsoft/#write-your-first-code-using-c-sharp
 
