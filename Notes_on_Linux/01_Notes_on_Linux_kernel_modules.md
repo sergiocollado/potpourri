@@ -51,6 +51,16 @@ References:
 - vscode: https://youtu.be/ePsIEIxZs1c
 - vscode: https://youtu.be/nmYaSqe0fGg
 
+
+### Core function of the Linux Kernel
+
+- **Process management**: create, schedule and terminate processess (running programs). It decides which CPUs run which programs, when and for how long, using the **scheduler**.
+- **Memory management**: Keeps track of all memory (RAM) It allocates memorey to process and efficently handles swapping data to disk when RAM is full (virtual memory)
+- **Device maangment**: Act as and intermediary between hardware devices (disks, keyboards, USB devices ...) and processes. This is done by **device drivers**.
+- **System call interface**: Provides a well defined and secure API (System calls) for applications to request services from the kernel. This is how user programs interact with the hardware.
+- **Filesystem management**: Handles and organizes how data is stored and retrieved on disks (eg. ext4, Btrfs, XFS). It handles reading, writing and managing fiiles and directories.
+- **Networking**: Handles networking communicantion, sending and receiving data pacakges in different protocols. 
+
 ## What is a device driver.
 
 A device driver is a code, that controls a given tye of device in the compuer.
