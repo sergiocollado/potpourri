@@ -116,8 +116,40 @@ $ sudo cyclictest --smp --priority=80 --interval=1000 --distance=0 # launch the 
 
 ```
 
+### Boot parameters for RT
+
+Even with the PREEMPT_RT kernel, your system's boot-time configuration can make or break real-time performance. 
+
+Boot parameters can control: interrupt routing, CPU isolation, power management and timing behaviour at the kernel level. 
+
+The essentinal boot parameters for RT performance: 
+
+ - **threadirqs**: converts hardware interrupts int threads, enabling priority control
+ - **isolcpus=**: Excludes certain CPUs from the scheduler. Those excluded CPUs can be used for RT-tasks (example: `isolcpus=2-3`)
+ - **nohz_full=**: disables the scheduler ticks on specific CPUs for full isolation (example: `nohz_full=2-3`)
+ - **rcu_nocbs=**: offloads RCU callbacks from RT CPUs (example: `rcu_nocbs=2-3`)
+ - **Irqaffinity=**: assigns interrutps to specific cores (avoid RT cores), example: `irqaffinity=0-1`
+ - **intel_pstate=disable**: disables intel's dynamic frequency scaling
+ - **processor.max_cstate=1**: restricts CPUs sleeps states to reduce latency
+ - **idle=poll**: keeps CPUs active (no deep idle states)
 
 
+check the boot paremeters, with: `cat /proc/cmdline`. 
+
+you can edit the boot line, with: `sudo nano /etc/default/grub`
+
+check for the grub command line default: GRUB_CMD_LINE_LINUX_DEFAULT. check the number of cpus with `$ nproc`
+
+```
+GRUB_CMD_LINE_LINUX_DEFAULT = "quiet isolcpus=2-3 nohz_full=2-3 rcu_nocbs=2-3 threadirqs idle=poll irqaffinity=0-1 intel_pstate=disabled" 
+```
+
+Update grub: `sudo update grub` and reboot `sudo reboot`, you can validate some of the boot parameters and check that those parameters have persisted.
+
+```
+$ cat /sys/devices/system/cpu/isolated
+$ cat /sys/devices/system/cpu/nohz_full
+```
 
 
 
