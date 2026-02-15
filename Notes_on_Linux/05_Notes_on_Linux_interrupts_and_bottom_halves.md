@@ -24,6 +24,9 @@ references:
 - https://docs.kernel.org/core-api/irq/index.html
 - https://www.oreilly.com/library/view/understanding-the-linux/0596005652/ch04s06.html
 - https://linux.ime.usp.br/~marcelosc/2019/09/Introduction-to-IIO-driver-development
+- https://www.linkedin.com/pulse/introduction-linux-irq-subsystem-practical-raspberry-pi-david-zhu-1mzqc
+- https://github.com/0xff07/linux-irq-modules
+- https://youtu.be/hVp2e-uTYMs
 
 
 ### What is an interrupt?
@@ -112,6 +115,22 @@ A general protection fault may occur for various reasons, the most common:
  - trying to access an unimlemented register (like mov cr6, eax)
  - the saved instruction pointer points to the instruction which causes the exception
 
+### Linux interrupt subsytem overview
+
+refernece: https://www.linkedin.com/pulse/introduction-linux-irq-subsystem-practical-raspberry-pi-david-zhu-1mzqc
+
+The IRQ subsystem has three layers: 
+ - hardware specific layer: this includes the physical interrupt controller: PIC (programmable interrupt controller) or GIC (generic interrupt controller) ...
+ - generic interrupt handler: abstractions of the system, like the struct `irq_desc` that represents interrupts, this layer handles interrupts (edge or level detections), threading or affinity
+ - device drivers: device drivers request interrupts via functiosn like `request_irq()` and define handler fucntions that handle the interrutps. For GPIOs the gpiolib framework simplifies the developent 
+
+
+### raspberry pi irq modules examples
+
+raspberry pi irq modules examples: https://github.com/0xff07/linux-irq-modules
+
+Take into account that defining interrupt pins may impliy defiining a device tree overlay that defines those interruptions.
+
 
 ### HW datasheets examples about interrupts: 
 
@@ -182,7 +201,6 @@ Segmentation fault (core dumped)
 ```
 
 In this case we are attemping to write to a memory that it is not allow, we don't have access writes, so a general protection fault is triggered.
-
 
 We can see it should be a fault, but in linux is denominated as a trap. 
 
