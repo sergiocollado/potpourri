@@ -44,4 +44,82 @@ The PREEMPT_RT patch fundamentally changes the kernel's behaviour to drastically
 - Kernel preemption: In the standard linux kernel, the tasks can only be preemted at specific points, whith the PREEMT_RT most of the kernel can be preempted and any time. So a high priority task can preempt a low priority task in the kernel reducing the scheduling latency.
 - Interrupt latency: In the standard linux kernel, the interrupts are handled by the ISRs (Interrupt Service Routines) but in the PREEMPT_RT all interrupts handles run as kernel threads with a priority, so interrupts can be preempted with highier priority threads. This allows priorization and eliminates one major source of impredictibility.
 - Priority inheritance: for standard linux kernel it is limited or not always enabled, but with the PREEMPT_RT patch it is enabled for kernel mutexes. This solves the priority inversion problem, if a low priority task holds a lock needed by a high priority task, the low priority task "inherits" the high priority until it releases the lock.
-- Sleeping spinlocks: in the standard linux kernel, the spin locks are busy-wait and cannot sleep, with the PREEMPT_RT patch the spin-locks are converted to sleepable mutexes. This preventes a task holding a lock from blocking the entire CPU, allowing other tasks to run. 
+- Sleeping spinlocks: in the standard linux kernel, the spin locks are busy-wait and cannot sleep, with the PREEMPT_RT patch the spin-locks are converted to sleepable mutexes. This preventes a task holding a lock from blocking the entire CPU, allowing other tasks to run.
+
+
+
+
+## Setting up a real-time Linux system
+
+Selecting the correct Linux Kernel version is critical when building or deploying a PREEMPT_RT based realt-time system. It affects to **stability**, **latency**, **hardware support** and **long-term maintenance**. 
+
+For Linux kernels there are: 
+ - Mainline kernel - the latest development version
+ - Long Term Support (LTS) kernel - they are more stable that the lastest dev version, but may have less features.
+
+To use PREEMPT_RT, the version must be greater than < 4.x, in this case PREEMPT_RT is a patch and must be externally patched and build.
+
+In versions 5.4 - 5.10, is a mature patch set, it is used commonly in embedded RT systems
+
+5.15 LTS is widely used, stable RT support
+
+6.1 LTS it has an enhaced RT merging into  mainline, recommended for new real-time projects
+
+6.6+ versions, PREEMPT_RT merged upstream, real time now part of mainline kernel - no external patching needed. 
+
+### Patching, applying and compiling PREEMPT_RT
+
+```batch
+$ uname -r # confirm the current kernel version
+
+#install the build dependency
+$ sudo apt update
+$ sudo apt install build-essential libncurses-dev bison flex libssl-dev libelf-dev dwarves -y
+
+#download the kernel source - version 6.1.156 for example
+$ mkdir home/rtlinux
+$ cd home/rtlinux
+$ wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.1.156.tar.xz
+
+# extract it
+$ tar -xvf linux-6.1.156.tar.xz
+
+# download the RT patch - a version that is compatible with the kernel i just downloaded
+# got to: https://cdn.kernel.org/pub/linux/kernel/projects/rt/6.1/older/
+
+$ wget https://cdn.kernel.org/pub/linux/kernel/projects/rt/6.1/older/patch-6.1.156-rt56.patch.xz
+$ xzcat patch-6.1.156-rt56-patch.xz | patch -p 1
+
+$ make menuconfig
+
+# look for the preemption model - select fully preemptible kernel
+# in the timer subsystem - activate the high resolution timers support
+# in the processor type and features check for the timer frequency, and use 1000 Hz.
+
+$ make -j$(nproc) # compile the kernel
+
+$ sudo make modules_install # instal modules
+$ sudo make install # install the kernel
+$ sudo update-grub # update the bootloader
+
+$ sudo reboot # reboot the system
+
+# check the version
+$ uname -r
+# the rt(version) should appear now in the name.
+
+$ cat /sys/kernel/realtime # check if the realtime is enabled.
+
+# check the latency installing the tool rt-tests
+$ sudo apt install rt-tests
+$ sudo cyclictest --smp --priority=80 --interval=1000 --distance=0 # launch the test
+
+```
+
+
+
+
+
+
+
+
