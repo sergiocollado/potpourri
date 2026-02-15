@@ -28,10 +28,11 @@ references:
 
 ### What is an interrupt?
 
-- reference: https://docs.kernel.org/core-api/irq/concepts.html
-- reference: https://www.kernel.org/doc/html/latest/core-api/genericirq.html
-- reference: https://0xax.gitbooks.io/linux-insides/content/Interrupts/linux-interrupts-1.html
-- reference: https://embetronicx.com/tutorials/linux/device-drivers/interrupts-in-linux-kernel/
+References:
+- https://docs.kernel.org/core-api/irq/concepts.html
+- https://www.kernel.org/doc/html/latest/core-api/genericirq.html
+- https://0xax.gitbooks.io/linux-insides/content/Interrupts/linux-interrupts-1.html
+- https://embetronicx.com/tutorials/linux/device-drivers/interrupts-in-linux-kernel/
 
 An interrupt is an input signal to the processor, sent by the hardware peripherals when they need processor attention. 
 
@@ -364,7 +365,7 @@ Two separate dedicated ports in the x86 IO-port space for each connected PIC
 - Master PIC - 0x20, 0x21
 - Slave  PIC - 0xA0, 0xA1
 
-```
+```bash
 # sudo cat /proc/ioports | grep -i pic # you really need to use sudo!
 ```
 
@@ -734,7 +735,7 @@ If the device uses interrupts, then driver must register one interrupt handler.
 
 Header File: <linux/interrupt.h>
 
-```
+```C
 int request_irq(unsigned int irq,
         irq_handler_t handler,
         unsigned long flags,
@@ -765,7 +766,7 @@ dev       --> Used for shared Interrupt Lines
 Success  -->    Returns Zero
 Failure  -->    Non-Zero Value
 
-```               
+```C              
 void free_irq(unsigned int irq_no, void *dev);
 ```
 
@@ -791,7 +792,7 @@ When the CPU acknowledges the "interrupt occurred" signal, the PIC chip sends th
 
 For each key pressed on the keyboard, it generates two interrupts (pressed and release).
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/interrupt.h>
@@ -830,7 +831,7 @@ A keyboard generates two scan codes for each key typed on the system, one scan c
 
 Release scan code is 128 (80h) plus the press scan code
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/interrupt.h>
@@ -923,7 +924,7 @@ module_exit(test_interrupt_exit);
 
 ### Example: ethernet interrupt
 
-```
+```C
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
@@ -964,7 +965,7 @@ module_exit(my_exit);
 
 ### Example: mouse interrupt
 
-```
+```C
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
@@ -1009,7 +1010,7 @@ module_exit(my_exit);
 
 It is defined at: https://elixir.bootlin.com/linux/v6.5.7/source/include/linux/interrupt.h#L165
 
-```
+```C
 /**
  * request_irq - Add a handler for an interrupt line
  * @irq:	The interrupt line to allocate
@@ -1110,7 +1111,7 @@ On success it returns 0.
 
 ### Example of a module that checks all the interrupts that are not being shared
 
-```
+```C
 #include <linux/interrupt.h>
 #include <linux/kernel.h>
 #include <linux/module.h>
@@ -1208,7 +1209,7 @@ All devices that offer interrupt support have a status register that can be read
 
 Example:  For 8250 serial port, this status register is IIR - Interrupt Information Register
 
-```
+```C
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
@@ -1278,7 +1279,7 @@ Disabling interrupts also **disables kernel preemption**.
 **Note**: Disabling kernel preemption does not provide protection from concurrent access from another processor.
 In this case use **locks** to prevent another processor from accessing shared data simultaneously.
 
-```
+```C
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/delay.h>
@@ -1313,7 +1314,7 @@ The corresponding call to `local_irq_enable()` unconditionally enables interrupt
 
 `local_irq_restore(flags)`; restores the previous interrupt state and enables interrupt on that processor. 
 
-```
+```C
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/delay.h>
@@ -1345,7 +1346,7 @@ Disabling a specific interrupt line is also known as "masking out an interrupt l
 
 Example: you might want to disable delivery of a device’s interrupts before manipulating its state.
 
-```
+```C
 void disable_irq(unsigned int irq); // Disables a given interrupt line in interrupt controller.
 			            // this disables delivery of the given interrupt to all processors in system
 
@@ -1397,7 +1398,7 @@ The macro `irqs_disabled()`, returns nonzero if the interrupt system on the loca
 
 Header File: <linux/irqflags.h>
 
-```
+```C
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/delay.h>
@@ -1485,7 +1486,7 @@ To find out whether you are running in interrupt context or process context:
 
 You can use that macro to know if you can or not allocate memory, for example: 
 
-```
+```C
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
@@ -1543,7 +1544,7 @@ module_exit(my_exit);
 
 Use the function `dump_stack();`:
 
-```
+```C
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
@@ -1585,7 +1586,7 @@ module_exit(my_exit);
 
 It will point to the interrupted process.
 
-```
+```C
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
@@ -1724,7 +1725,8 @@ kernel/irq/manage.c --- setup_irq_thread
 priority of the thread is set to `MAX_USER_RT_PRIO/2` which is higher than regular processes
 
 Example: 
-```
+
+```C
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
@@ -1787,7 +1789,7 @@ After being executed, the kthread will not be rescheduled again until the IRQ is
 
 So the example should be:
 
-```
+```C
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
@@ -1867,7 +1869,7 @@ The default primary handler does nothing more than to return IRQ WAKE THREAD to 
 `kernel/irq/manage.c 	-->	irq_default_primary_handler`
 
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/gpio.h>
@@ -1960,7 +1962,7 @@ module_exit(test_hello_exit);
 
 Use the function `dump_stack()`
 
-```
+```C
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
@@ -2015,7 +2017,7 @@ module_exit(my_exit);
 
 Use the macro current.
 
-```
+```C
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
@@ -2069,7 +2071,7 @@ module_exit(my_exit);
 
 #### How to check that the interrupts are enable or disabled:
 
-```
+```C
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
@@ -2177,7 +2179,7 @@ Header File: <linux/softirq.h>
 
 Softirqs are represented by the softirq_action structure, which is a function pointer. 
 
-```
+```C
 struct softirq_action
 {
         void    (*action)(struct softirq_action *);
@@ -2445,7 +2447,7 @@ you can check the new soft irq with `cat /proc/interrupts`. or `cat /proc/softir
 
 the code 
 
-```
+```C
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/gpio.h>
@@ -2638,7 +2640,7 @@ incoming interrupts may schedule softirqs what leads to another iteration over t
 
 Such processor-time monopolization by softirqs is acceptable under high workloads (e.g., high IO or network traffic), but it is generally undesirable for a longer period of time since (user) processes cannot be executed.
 
-### how to solfe the processor-time monopilziation by softirqs
+### How to solfe the processor-time monopoliziation by softirqs
 
 After the tenth iteration(MAX_SOFTIRQ_RESTART) over the softirq bitmap, the kernel schedules the so-called ksoftirqd kernel thread, which takes control over the execution of softirqs.
 
@@ -2820,12 +2822,12 @@ Whatever is highier on that enum, has the highest priority. So HI_SOFTIRQ has th
 ### Softirqs vs tasklets
 
 ```
-			Softirqs			Tasklets	
+		      	Softirqs			            Tasklets	
 		
-Allocation:		Allocated at compile time	Can be dynamically registered
+Allocation:		Allocated at compile time	    Can be dynamically registered
 
-Reentrancy:		Yes, same softirqs can run	No, Same tasklet will not be scheduled
-			on different processors		on different processors
+Reentrancy:		Yes, same softirqs can run  	No, Same tasklet will not be scheduled
+			    on different processors		     on different processors
 ```
 
 
