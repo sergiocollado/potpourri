@@ -136,6 +136,7 @@ Linux supports various interrupt controllers:
 - Generic Interrupt Controller (GIC): ARM-based systems
 - Platform-specific controllers: Custom controllers for specific hardware
 
+```
 ┌───────────────────────────────────────────────────────────┐
 │                                                           │
 │                 Interrupt Controllers                     │
@@ -159,7 +160,7 @@ Linux supports various interrupt controllers:
 │  └─────────────────────┘    └───────────────────────┘     │
 │                                                           │
 └───────────────────────────────────────────────────────────┘
-
+```
 
 ### Registering Interrupt Handlers in the device drivers
 
@@ -376,6 +377,21 @@ A general protection fault may occur for various reasons, the most common:
 ![interrupt_vector_classification](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/amd64_interrutp_vector_classification.png)
 
 ![interrupt_vector_classification_cont](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/amd64_interrupt_vector_classification_cont.png)
+
+
+### For the raspberry pi, what are the Linux interrupt numbers for peripherals?
+
+Depends on th rpi model/version, for the chip rp1: https://github.com/raspberrypi/linux/blob/rpi-6.6.y/include/dt-bindings/mfd/rp1.h#L104-L167
+
+reference: https://forums.raspberrypi.com/viewtopic.php?t=368401
+
+thats the interrupt numbers within the RP1 chip
+
+you then need to properly configure the RP1 irq controller, and the irq's you unmask will be forwarded over pcie, and show up as a single irq
+
+then you need to configure the pcie and gic to allow that into the arm core
+
+if running linux, then most of that is done for you, and you just need to use the right constant in device-tree
 
 
 #### Example 1
@@ -711,6 +727,13 @@ upon the redirection table entries (RTE) programmed in the IOAPIC.
 
 Note: to maintain backward compatibility, APIC emulates 8259 PIC. 
 
+##### GIC Generic interrupt controller
+
+Generic Interrupt Controller (GIC) is an ARM architecture component (typically GIC-400 on older, newer versions on Pi 5) that manages hardware interrupts from peripherals, prioritizing them and distributing them to CPU cores. It acts as a central hub, handling interrupts from GPIO, timers, and USB to ensure efficient, multi-core, real-time responsiveness.
+
+reference: https://developer.arm.com/documentation/198123/0302/What-is-a-Generic-Interrupt-Controller-
+
+
 ###### Detection
 
 The CPUID.01h:EDX[bit 9] flag specifies whether a CPU has a build-in local APIC. 
@@ -761,19 +784,7 @@ LAPIC asserts CPU interrupts.
 After current instrucction completes CPU senses interrupt line and obtains the IRQ number from LAPIC, jumps to the interrupt handler. 
 
 
-### For the raspberry pi, what are the Linux interrupt numbers for peripherals?
 
-Depends on th rpi model/version, for the chip rp1: https://github.com/raspberrypi/linux/blob/rpi-6.6.y/include/dt-bindings/mfd/rp1.h#L104-L167
-
-reference: https://forums.raspberrypi.com/viewtopic.php?t=368401
-
-thats the interrupt numbers within the RP1 chip
-
-you then need to properly configure the RP1 irq controller, and the irq's you unmask will be forwarded over pcie, and show up as a single irq
-
-then you need to configure the pcie and gic to allow that into the arm core
-
-if running linux, then most of that is done for you, and you just need to use the right constant in device-tree
 
 
 ### How does the hardware find the interrupt handler? 
