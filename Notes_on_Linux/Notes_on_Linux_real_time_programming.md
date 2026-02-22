@@ -58,6 +58,28 @@ Core function of the Linux Kernel_
  - **Networking**: Handles networking communicantion, sending and receiving data pacakges in different protocols.
 
 
+### Processes, scheduling and priorities
+
+#### What is a process?
+A **process** is a running instance of a program. it is more than just the program code (which is static). It is a dynamic entity that includes:
+ - the executable code itself
+ - data: the variables and data structures the program is working on
+ - Resources: allocated by the OS (memory, opened files, network connections (sockets), et
+ - Execution context: the state of the process at any point in time (e.g. values in the CPU registers, the program counter ...)
+
+The kernel represents each process with a data structure called **Process Control Block (PCB)** or in the Linux, **task_struct**. This structure holds all the informtion the kernel needs to manage and track the process. 
+
+#### the Scheduler
+
+The scheduler is the core part resposible for deciding which process runs on the CPU and for how long. Its main goals are: 
+ - Fairness: give every process a fair share of the CPU time.
+ - Efficiency: Keep the CPU as busy as possible
+ - Responsiveness: Ensure the system is responsive to user interaction.
+
+Since there are typically more processes than CPUs, the schueduler rapidly switches the CPU between processes. This creates the illusion of simultaneous execution and is called **preemptive multitasking**.
+
+
+
 
 
 ## Setting up a real-time Linux system
