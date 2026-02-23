@@ -7,6 +7,7 @@
  - https://open5gs.org/open5gs/docs/guide/02-building-open5gs-from-sources/
  - Vodafone unveils prototype 5G network built on a Raspberry Pi computer: https://youtu.be/PAu_45Yn4cA?si=bQRXmO076lVRLYMo
  - A private 5G campus network enabled and powered by OpenStack and StarlingX: https://youtu.be/xnnw_9UIoS0
+ - 5g data session: end to end - deep dive: https://medium.com/@anand.hv123/5g-data-session-an-end-to-end-call-flow-deep-dive-ac896df596e6
 
 ## Some nomenclature:
 
