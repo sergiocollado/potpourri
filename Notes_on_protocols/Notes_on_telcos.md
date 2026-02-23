@@ -44,3 +44,4 @@ Interesting repos:
  - https://github.com/open-5g/open-5g.github.io
  - https://github.com/Borjis131/docker-open5gs
  - https://github.com/open5gs
+ - OpenAPI Specification Files for 3GPP 5G Core Network: https://jdegre.github.io/parser.html
