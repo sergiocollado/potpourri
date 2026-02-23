@@ -20,3 +20,18 @@
  - https://gigs.com/blog/mobile-virtual-network-aggregator-mvna
  - https://gigs.com/blog/white-label-mvno-startup-guide
  - https://gigs.com/blog/how-to-start-your-mvno-the-smart-way-2
+
+Interesting repos:
+
+ - https://github.com/calee0219/awesome-5g - A curated list of awesome 5G frameworks, libraries, software and resources.
+ - https://github.com/ravens/awesome-telco - This list provides resources spanning the entire mobile network stack—from SIM cards to core network functions
+ - https://github.com/freeDiameter/freeDiameter
+ - https://github.com/5GOpenUPF/openupf
+ - https://github.com/jdegre/5GC_APIs
+ - https://github.com/sigscale/ocs - SigScale Online Charging System (OCS)
+ - https://github.com/sergiocollado/cgrates - Real-time Online/Offline Charging System (OCS) for Telecom & ISP environments
+ - https://github.com/Oros42/IMSI-catcher
+ - https://github.com/open5gs/open5gs
+ - https://github.com/open-5g/open-5g.github.io
+ - https://github.com/Borjis131/docker-open5gs
+ - https://github.com/open5gs
