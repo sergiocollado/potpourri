@@ -131,6 +131,14 @@ There are new use case not presetn in previous mobile generations:
 - Rel-16
 - Rel-15
 
+## 5g basic principles of the architecture  
+
+ The 5G core netework is build on the IP network, so the data units are: (IP packets, ethernet frames and other) and are transported in IP packages
+
+ The basic dataflow management is reused from 4G:
+  - Tunneling: encapsulation of data uint in IP package
+  - Use of GTP-U protocol (GPRS Tunneling Protocol in the User Plane) 
+
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
 
 5g is aware that the adoption of 5G networks will not happen in a day. The firs step is comply with  eMMB: Enhaced Mobile Broad-Band, 
@@ -151,7 +159,7 @@ From the RAN (Radio Access Network) point of view, there are:
  
  
  | Connectivity Options | Core Network | Master RAT | Secondary RAT | 3GPP term | 3GPP release |
- | : -- : |  : -- : |  : -- : |  : -- : |  : -- : |  : -- : | 
+ |  :-: |  :-: |  :-: | :-: | :-: | :-: | 
  | Option 1 | EPC | LTE | - | LTE | Rel. 8|
  | Option 3 | EPC | LTE | NR | EN-DC | Rel. 15, Dec 2017|
  | Option 2 | 5G  | NR | - | NR | Rel. 15, June 2018|
