@@ -22,6 +22,7 @@
  - https://gigs.com/blog/how-to-start-your-mvno-the-smart-way-2
  - what is a rating group: https://www.linkedin.com/pulse/what-rating-group-ggsn-gamma-analytics-0rdnc
  - diameter protocol course introduction: https://www.youtube.com/playlist?list=PLO7rrzYzv_zgVnNQPP_F95AN0nrLtSeGx
+ - 5g data session end to end deep dive: https://medium.com/@anand.hv123/5g-data-session-an-end-to-end-call-flow-deep-dive-ac896df596e6
 
 Interesting repos:
 
