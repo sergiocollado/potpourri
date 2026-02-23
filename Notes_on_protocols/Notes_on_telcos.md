@@ -27,9 +27,15 @@ Interesting repos:
  - https://github.com/ravens/awesome-telco - This list provides resources spanning the entire mobile network stack—from SIM cards to core network functions
  - https://github.com/freeDiameter/freeDiameter
  - https://github.com/5GOpenUPF/openupf
+ - https://github.com/shotsan/5G-Repo - Extensive Information on 5G Networks.
+ - https://github.com/open5Gcube/open5Gcube - open5Gcube is a Modular Framework for Mobile Network Laboratories. It builds and manages open-source mobile network stacks
+ - https://github.com/aligungr/UERANSIM - open source state-of-the-art 5G UE and RAN (gNodeB) simulator.
+ - https://github.com/free5gc/free5gc - The free5GC is an open-source project for 5th generation (5G) mobile core networks. Written in Golang.
+ - https://hub.docker.com/r/gradiant/open5gshttps://hub.docker.com/r/gradiant/open5gs - 
+ - https://open5gs.org/
  - https://github.com/jdegre/5GC_APIs
  - https://github.com/sigscale/ocs - SigScale Online Charging System (OCS)
- - https://github.com/sergiocollado/cgrates - Real-time Online/Offline Charging System (OCS) for Telecom & ISP environments
+ - https://github.com/cgrates/cgrates - Real-time Online/Offline Charging System (OCS) for Telecom & ISP environments
  - https://github.com/Oros42/IMSI-catcher
  - https://github.com/open5gs/open5gs
  - https://github.com/open-5g/open-5g.github.io
