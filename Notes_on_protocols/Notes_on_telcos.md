@@ -20,6 +20,7 @@
  - https://gigs.com/blog/mobile-virtual-network-aggregator-mvna
  - https://gigs.com/blog/white-label-mvno-startup-guide
  - https://gigs.com/blog/how-to-start-your-mvno-the-smart-way-2
+ - what is a rating group: https://www.linkedin.com/pulse/what-rating-group-ggsn-gamma-analytics-0rdnc
 
 Interesting repos:
 
