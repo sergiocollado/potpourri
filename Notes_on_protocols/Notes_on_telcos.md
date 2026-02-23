@@ -21,6 +21,7 @@
  - https://gigs.com/blog/white-label-mvno-startup-guide
  - https://gigs.com/blog/how-to-start-your-mvno-the-smart-way-2
  - what is a rating group: https://www.linkedin.com/pulse/what-rating-group-ggsn-gamma-analytics-0rdnc
+ - diameter protocol course introduction: https://www.youtube.com/playlist?list=PLO7rrzYzv_zgVnNQPP_F95AN0nrLtSeGx
 
 Interesting repos:
 
