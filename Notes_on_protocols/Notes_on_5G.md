@@ -137,7 +137,9 @@ There are new use case not presetn in previous mobile generations:
 
  The basic dataflow management is reused from 4G:
   - Tunneling: encapsulation of data uint in IP package
-  - Use of GTP-U protocol (GPRS Tunneling Protocol in the User Plane) 
+  - Use of GTP-U protocol (GPRS Tunneling Protocol in the User Plane)
+
+![5g_arch](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g.PNG)
 
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
 
