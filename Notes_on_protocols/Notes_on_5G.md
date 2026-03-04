@@ -136,11 +136,23 @@ There are new use case not presetn in previous mobile generations:
  The 5G core netework is build on the IP network, so the data units are: (IP packets, ethernet frames and other) and are transported in IP packages
 
  The basic dataflow management is reused from 4G:
-  - Tunneling: encapsulation of data uint in IP package
+  - Tunneling: encapsulation of data unit in IP package
   - Use of GTP-U protocol (GPRS Tunneling Protocol in the User Plane)
 
 ![5g_arch](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g.PNG)
+
+The base stations (gNB) foward the UE packages to the UPF (User Plane Function), there can be more than one UPF, the UPF can be considered the 5G equivalent to the 4G SGW (Serving Gateway) and PGW (packet gateway).
+
+Some functions of the UPF (user plane function):
+- The UPF must connect to the data network, even if the UE moves, that is known as 'Movility anchoring' 
+- The UPF is also involve in packet fordwarding for data PDUs when tunneling is enforced, that is: it adds or removes tunnel-related headers
+- It can also analyze or detect packages according to some defined flow templates
+- Also applys policies of quality of services, prioritizing some packages over others.
+
+The 4G MME, is replaced in 5G by AMF (Access and Mobility Management Function) and SMF (Session Management Function): 
 ![5g_arch](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_2.PNG)
+
+
 ![5g_arch](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5_sbi_service_based_interface.PNG)
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
 
