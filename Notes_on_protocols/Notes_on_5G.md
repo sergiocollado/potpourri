@@ -140,7 +140,8 @@ There are new use case not presetn in previous mobile generations:
   - Use of GTP-U protocol (GPRS Tunneling Protocol in the User Plane)
 
 ![5g_arch](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g.PNG)
-
+![5g_arch](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_2.PNG)
+![5g_arch](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5_sbi_service_based_interface.PNG)
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
 
 5g is aware that the adoption of 5G networks will not happen in a day. The firs step is comply with  eMMB: Enhaced Mobile Broad-Band, 
