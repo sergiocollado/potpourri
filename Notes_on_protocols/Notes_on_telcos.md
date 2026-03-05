@@ -47,6 +47,7 @@ Interesting repos:
  - OpenAPI Specification Files for 3GPP 5G Core Network: https://jdegre.github.io/parser.html
 
 
+## Some notes and references
 
  The terms Gy and Ro typically refer to reference points and interfaces within the Diameter protocol framework used for real-time online charging in telecommunications networks (LTE and IMS). [1, 2] 
 Gy and Ro Interfaces
@@ -141,4 +142,29 @@ A simple way to remember it:
 
 Would you like to see a breakdown of the specific AVPs (Attribute-Value Pairs) that differ between a data session on Gy and a voice call on Ro?
 
+In 3GPP telecommunications, call types are categorized by the direction of the call and the network roles involved. These types are primarily described in the [3GPP TS 32.250](https://www.etsi.org/deliver/etsi_ts/132200_132299/132250/18.00.00_60/ts_132250v180000p.pdf) (Circuit Switched domain charging) and [3GPP TS 23.018](https://www.arib.or.jp/english/html/overview/doc/STD-T63V12_30/5_Appendix/Rel12/23/23018-c20.pdf) (Basic call handling) specifications. [1, 2] 
+Main Call Types
+
+* MO (Mobile Originated): A call or message initiated by a mobile device. The user dials a number or sends a message, and the network handles the outbound traffic.
+* MT (Mobile Terminated): A call or message received by a mobile device. The network delivers the traffic to the user's handset from an external source.
+* MF / CF (Mobile Forwarded / Call Forwarding): A call that reaches a subscriber's number but is redirected by the network to another destination (e.g., voicemail or a different phone number).
+* Roaming Call: An MO or MT call handled while the user is outside their home network (HPLMN) and connected to a visited network (VPLMN). [3, 4, 5, 6, 7] 
+
+Where They are Described
+The definitions and charging principles for these types are spread across several 3GPP technical specifications: [8] 
+
+* 3GPP TS 32.250: Defines these types specifically for Circuit Switched (CS) domain charging (e.g., standard 2G/3G voice calls).
+* 3GPP TS 32.260: Describes equivalent types for IMS (IP Multimedia Subsystem) charging, which includes VoLTE and video calls.
+* 3GPP TS 32.274: Covers the SMS specific versions (SMS-MO and SMS-MT).
+* 3GPP TS 23.018: Provides the technical realization and message flows for how MO and MT calls are actually processed in the core network. [1, 3, 9] 
+
+[1] [https://www.3gpp.org](https://www.3gpp.org/ftp/tsg_sa/wg5_tm/TSGS5_76/_specs_for_checking/32270-a00.doc)
+[2] [https://www.arib.or.jp](https://www.arib.or.jp/english/html/overview/doc/STD-T63V12_30/5_Appendix/Rel12/23/23018-c20.pdf)
+[3] [https://www.arib.or.jp](https://www.arib.or.jp/english/html/overview/doc/STD-T63V12_30/5_Appendix/Rel12/23/23018-c20.pdf)
+[4] [https://www.bandwidth.com](https://www.bandwidth.com/glossary/mt-sms-mobile-terminated-messages/)
+[5] [https://www.3gpp.org](https://www.3gpp.org/ftp/tsg_sa/wg5_tm/tsgs5_76/_specs_for_checking/32298-970.doc)
+[6] [https://www.3gpp.org](https://www.3gpp.org/ftp/tsg_sa/wg5_tm/tsgs5_68/_specs_for_checking/32251-880.doc)
+[7] [https://www.horisen.com](https://www.horisen.com/mo-vs-mt-messaging-what-is-the-difference/)
+[8] [https://www.3gpp.org](https://www.3gpp.org/ftp/tsg_sa/wg5_tm/tsgs5_68/_specs_for_checking/32273-920.doc)
+[9] [https://www.etsi.org](https://www.etsi.org/deliver/etsi_ts/132200_132299/132278/13.00.01_60/ts_132278v130001p.pdf)
 
