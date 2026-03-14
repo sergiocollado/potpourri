@@ -429,6 +429,7 @@ electronic signatures standard: ETSI TS 102 042
 
 - 1994 lecture: https://youtu.be/72Pq5zKEi_g
 - https://www.jesushuertadesoto.com/articles/
+- MIT macroeconomy course: https://youtu.be/heBErnN3ZPk?si=Wjc4tv41qUMXvCDl
 - https://www.longtermtrends.net/
 - https://www.berkshirehathaway.com/letters/letters.html
 - https://valueinvestorinsight.com/
