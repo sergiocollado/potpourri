@@ -146,14 +146,45 @@ The base stations (gNB) foward the UE packages to the UPF (User Plane Function),
 Some functions of the UPF (user plane function):
 - The UPF must connect to the data network, even if the UE moves, that is known as 'Movility anchoring' 
 - The UPF is also involve in packet fordwarding for data PDUs when tunneling is enforced, that is: it adds or removes tunnel-related headers
+
+It has other more particular functions like: 
 - It can also analyze or detect packages according to some defined flow templates
-- Also applys policies of quality of services, prioritizing some packages over others.
+- Also applys policies of QoS (quality of services), prioritizing some packages over others.
 
 The 4G MME, is replaced in 5G by AMF (Access and Mobility Management Function) and SMF (Session Management Function): 
 ![5g_arch](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_2.PNG)
 
+The AMF enables NAS dialogs between the UE and the AMF, (passing thought the gNB, but the messages are not process there)
+
+The AMF can exchange sigalling wwith the UE, and manages: 
+   - registration
+   - mobility
+   - connection
+   - reachability
+ - Ciphering and integrity protectionof NAS signalling message.
+ - access authentification and access authoritzation.
+ - provide transport for other services as location services.
+ - UE mobility event notification.
+
+
+The SMF (Session Management Function) controls the UPF, and handles the PDU session controls. 
+ - It can exchange messages with the UE when the PDU session is required (the messages go through the AMF and gNB)
+ - manages the PDU sessions, by seting it up, modification and its release.
+ - manages addresses, allocates IP addresses for the UEs.
+
 
 ![5g_arch](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5_sbi_service_based_interface.PNG)
+
+Other change between 4G and 5G is that the HSS is replaced by the AUSF and the UDM in 5G.
+
+![5g_arch_3](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_3.PNG)
+
+AUSF (Authetication Server Function) is the authentication server function.
+
+UDM (Unified Data management function) manages users and subscriptions identifications. like the front-end of all the data related to a UE subscription. and user's informaciton (SUPI handling) 
+It also stores the information of the AMF that manages each UE, as well as the SMF when there are multiple PDUs sessions for a UE. It will also record the SMS gateway manageing a given UE. 
+
+
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
 
 5g is aware that the adoption of 5G networks will not happen in a day. The firs step is comply with  eMMB: Enhaced Mobile Broad-Band, 
