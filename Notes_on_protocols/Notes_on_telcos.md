@@ -168,3 +168,47 @@ The definitions and charging principles for these types are spread across severa
 [8] [https://www.3gpp.org](https://www.3gpp.org/ftp/tsg_sa/wg5_tm/tsgs5_68/_specs_for_checking/32273-920.doc)
 [9] [https://www.etsi.org](https://www.etsi.org/deliver/etsi_ts/132200_132299/132278/13.00.01_60/ts_132278v130001p.pdf)
 
+---
+
+The GPRS Tunneling Protocol (GTP) is an IP-based protocol suite used in GSM, UMTS, 4G LTE, and 5G networks to create, manage, and terminate user sessions, allowing mobile devices to maintain a consistent Internet IP address while moving across different base stations. It works by encapsulating user data packets (user plane) and control messages (control plane) inside tunnels—typically via UDP—between the radio access network and the core network. 
+
+### Key Components of GTP
+GTP-C (Control Plane): Used for signaling between support nodes (SGSN/GGSN in 3G, SGW/PGW in 4G) to create, modify, or delete tunnels and manage session contexts.
+GTP-U (User Plane): Responsible for encapsulating and tunneling user data (IP packets) between the radio network and the core network, often using Tunnel Endpoint Identifiers (TEID) for identification.
+GTP' (GTP Prime): Used to transfer charging data from GSN nodes to the Charging Gateway Function (CGF). 
+Valid8.com
+
+### How GTP Works
+Tunnel Establishment: When a device attaches to the network, GTP-C signaling establishes a tunnel (or "PDP context") between the access point (SGSN/SGW) and the gateway (GGSN/PGW).
+Encapsulation: User IP data packets are wrapped inside a GTP header, which is then placed inside a UDP/IP header (often called "IP-in-IP" tunneling).
+Tunnel Routing: The packets are routed through the operator's private backbone network, with the tunnel endpoint identifier ensuring the data reaches the correct user session.
+Decapsulation: The terminating node (e.g., GGSN) removes the GTP header and sends the original user packet to the internet. 
+Juniper Networks
+
+### Key Benefits
+Mobility Management: Enables seamless handover and mobility, allowing the user's IP to remain the same while their location changes.
+Separation of Traffic: Segregates user data plane traffic from control traffic.
+Simplified Roaming: Facilitates routing data between visited networks and the home network. 
+Palo Alto Networks | TechDocs
+
+GTPv2 is standard in 4G LTE, while 5G continues to use GTP-U for user data transport, emphasizing its crucial role in modern telecommunications infrastructure
+
+---
+
+A 5G session, specifically a PDU (Protocol Data Unit) Session, is the end-to-end data connection between a 5G user device (smartphone, IoT sensor) and a data network, such as the internet or an enterprise network, according to 3GLTEInfo. It acts as a dedicated, secure, and QoS-configured tunnel for transmitting data in 5G standalone networks. 
+Medium
+
+### Key components of a 5G session include:
+Session Establishment: The user device (UE) sends a request to the Access and Mobility Management Function (AMF) to start a session.
+SMF Management: The Session Management Function (SMF) assigns an IP address (or Ethernet context) to the UE and manages session life cycles, as detailed on Techplayon.
+User Plane Function (UPF): The session connects the user to a specific UPF to handle user-plane traffic.
+Network Slicing: 5G sessions can use different slices (e.g., one for internet, another for factory automation). 
+
+
+### Key Aspects:
+Persistent Connectivity: It acts as the 5G equivalent of a 4G LTE bearer, ensuring data connectivity with specific quality of service (QoS) constraints.
+Types: 5G sessions can support IPv4, IPv6, Ethernet, or unstructured (non-IP) data, enabling tailored IoT connections.
+Lifecycle: The SMF establishes, modifies, and releases these sessions, supporting efficient resource usage, according to this YouTube video. 
+https://youtu.be/WR_fpFVuilg?si=SJ0hfuNj_RznHlRH
+
+---
