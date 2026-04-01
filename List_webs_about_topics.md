@@ -1473,3 +1473,6 @@ computer science
  - https://github.com/Sorosliu1029/CSAPP-Labs
  - https://dev.to/kumarkalyan/top-5-github-repositories-to-achieve-system-design-mastery-27n4
 
+spanish tech com:
+ - arquimea: https://www.elespanol.com/observatorio-defensa/20260401/espanola-arquimea-construira-satelites-constelacion-comunicaciones-seguras/1003744186158_0.html
+
