@@ -188,6 +188,12 @@ AUSF (Authetication Server Function) is the authentication server function.
 UDM (Unified Data management function) manages users and subscriptions identifications. like the front-end of all the data related to a UE subscription. and user's informaciton (SUPI handling) 
 It also stores the information of the AMF that manages each UE, as well as the SMF when there are multiple PDUs sessions for a UE. It will also record the SMS gateway manageing a given UE. 
 
+## Is 5G really so simple?
+
+No, it is not, for example a SMS service: 
+
+
+The SMS is send from the UE to the AMF, and from there to the SMSF (Short Message Service Function), that SMSF is like a gateway between the SMS server and the 5G network, the SMSF can also check the user profile and communicate the UDM if the subscriber has that SMS service "in the control plane".
 
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
 
