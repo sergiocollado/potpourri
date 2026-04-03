@@ -197,7 +197,7 @@ The SMS is send from the UE to the AMF, and from there to the SMSF (Short Messag
 ![arch_5g_SMSF](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_SMSF.png)
 
 
-## How does a  SMF control a UPF? 
+## Session stablishment with CUPS: How does a SMF control a UPF? 
 
 The SMS controls the UPF with a specific protocol PFCP (Packet Forwarding Control Protocol). SMF or UPF can start dynamically in the network, so each one needs to know the characteristics of each other, so this is the assciatioon procedure between SMF and UPF. The goal of the protocol is the stablishment or modifications of PDU sessions. ​To do this, a set of messages will be defined to ​set or modify the rules for a PDU session. Also there may be counters in ​the UPF on how many packets meet a certain criterion. ​When there is an event in ​the user plane related to ​a counter threshold being exceeded, ​for example, the UPF can send a report to the SMF. 
 
@@ -224,7 +224,7 @@ The SMF sends a message association setup request.
 
 ​In turn, in order to have a unique identification, ​the UPF chooses an SEID value, ​chooses TEID (since we have ​assumed that it is the UPF that chooses the TEID) ​and applies the rules that have been provided. ​It responds to the session establishment request, ​specifying the SEID chosen by ​the SMF so that ​the response corresponds uniquely to the request, ​it indicates the SEID that the UPF has chosen. ​We have similar procedures for ​modifying or deleting a session. ​To conclude, PFCP ​stands for Packet Forwarding Control Protocol. ​It is a protocol between the SMF and UPF. ​It works above UDP but incorporates ​a mechanism from making the link ​reliable by retransmitting lost messages. ​An SMF can be associated with ​different UPFs by means of the association procedure, ​and can establish, modify, ​or release PDU sessions, ​specifying the set of rules ​to be applied to each session. 
 
-## How a PDU session is setup in 5G? 
+## Initialization of a terminal in 5G: How a PDU session is setup in 5G? 
 
 ​Let's consider the initial state. ​Let's start with the terminal, the UE (User Equipment), which is in the network. ​Let's suppose that it's already known by the network. ​We also have the gNB which makes up the radio access network, or RAN (Radio Access Networkd). ​We have the UPF, user plane function, and ​finally the AMF, Access and Mobility Function, ​and the SMF, Session Management Function. 
 
