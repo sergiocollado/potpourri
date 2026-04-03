@@ -133,7 +133,11 @@ There are new use case not presetn in previous mobile generations:
 
 ## 5g basic principles of the architecture  
 
- The 5G core netework is build on the IP network, so the data units are: (IP packets, ethernet frames and other) and are transported in IP packages
+ A diagram of the simplified 5g architecure is: 
+
+ ![5g_simplified_architecure](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_simplified_architecture.png)
+
+ The 5G core network is build on the IP network, so the data units are: (IP packets, ethernet frames and other) and are transported in IP packages
 
  The basic dataflow management is reused from 4G:
   - Tunneling: encapsulation of data unit in IP package
