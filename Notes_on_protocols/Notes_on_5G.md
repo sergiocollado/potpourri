@@ -255,8 +255,7 @@ How does a terminal attach itself to the 5G network? Or, in other words, what ha
 
 ​To begin with, the UE is in RM-Deregistered state. It is unknown to the AMF. RM stands for **Registration Management**. ​The UE sends a registration request message containing its identity. Of course, this message is sent over the radio link, and arrives at the gNB or the radio access network. ​The gNB selects the AMF. Indeed, it can be connected to multiple AMFs. 
 
-![registration messages](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_network_registration_final_state.png)
-
+![network registration messages](Notes_on_protocols/Images_mobile_communication/5g_arch_network_registration_messages.png)
 
 ​And it sends the request, in accordance with the Non-Access Stratum principle, NAS. It sends this request to the AMF. ​The AKA procedure provides security. AKA stands for Authentication and Key Agreement. This procedure involves the UE, the AMF, the AUSF and the UDM. ​Once the UE has been authenticated, the AMF needs to check with the UDM that the subscriber can register. This is the Registration message; ​the UDM responds with Yes or No. For the sake of this demonstration, we will suppose it says Yes. 
 
@@ -265,7 +264,6 @@ How does a terminal attach itself to the 5G network? Or, in other words, what ha
 ​Once the AMF has retrieved the profile and, of course, the UE can be taken on, it will choose a temporary identity. ​This is known as a **Globally Unique Temporary Identity**, or GUTI. This is the same as in 4G, but we add the prefix 5G in order to differentiate between 4G GUTI and 5G-GUTI. ​This GUTI is sent to the terminal in a Registration Accept message. The terminal will store the GUTI and, once it is sure it will be taken on by the network, it will complete the registration procedure by sending a Registration Complete message. ​So, what’s the situation at the end of this procedure? ​The UE switches to RM-Registered state and has a 5G-GUTI. 
 
 ![network registration final state](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_network_registration_final_state.png)
-
 
 ![network registration PDU session set up](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_network_registration_PDU_session_set_up.png)
 
