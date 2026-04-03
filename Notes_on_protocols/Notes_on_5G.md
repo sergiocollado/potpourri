@@ -196,6 +196,28 @@ The SMS is send from the UE to the AMF, and from there to the SMSF (Short Messag
 
 ![arch_5g_SMSF](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_SMSF.png)
 
+
+## How does a  SMF control a UPF? 
+
+The SMS controls the UPF with a specific protocol PFCP (Packet Forwarding Control Protocol). SMF or UPF can start dynamically in the network, so each one needs to know the characteristics of each other, so this is the assciatioon procedure between SMF and UPF. The goal of the protocol is the stablishment or modifications of PDU sessions. ​To do this, a set of messages will be defined to ​set or modify the rules for a PDU session. Also there may be counters in ​the UPF on how many packets meet a certain criterion. ​When there is an event in ​the user plane related to ​a counter threshold being exceeded, ​for example, the UPF can send a report to the SMF. 
+
+reference: 3GPP TS 29.244 : Interface between the Control Plane and the User Plane nodes
+
+PFCP runs on top of UDP. ​UDP does not ensure reliability. To allow reliable control, ​PFCP includes an acknowledgment and ​retransmission of messages by ​PFCP when messages are lost. ​
+
+Let's look at the association procedure. ​It is usually triggered by ​the SMF that wants to take control of the UPF. ​The SMF sends a message association setup request. 
+
+![arch_5g_SMF_UPF_association_setup_request]()
+
+The SMF sends a message association setup request. 
+​It sets a unique identity and sends ​the list of the characteristics of ​the processing it is doing in the control plane. ​In response, the UPF indicates its unique identity and ​also the list of characteristics of how ​it processes data in the user plane. ​An example of characteristics ​is the allocation of the TEID, ​which can be done either by the SMF or by the UPF. ​Do not forget that an SMF can control multiple UPF. ​There are therefore multiple possible associations. ​There are, of course, ​similar procedures for updating ​associations or ending associations, ​if, for example, a UPF stops. ​The association procedure isn't done very often. 
+
+​The main purpose is to ​establish PDU sessions, that means tunnels. ​It's important to remember that there can be ​hundreds or thousands or ​millions of tunnels managed by a UPF. ​Each tunnel, and therefore, ​each PDU session must be uniquely identified. ​In the user plane, ​we have the TEID, ​which uniquely identifies a tunnel locally. ​But we do not use this identity to guarantee ​complete decorrelation between the user plane ​and the control plane. ​Each PDU session is therefore identified by ​an identifier called the Session Endpoint Identifier. ​This identifier is, in fact, ​local to each piece of equipment. 
+​We find an identifier on ​the UPF side and an identifier on the SMF side. ​The SEID is coded on 64 bits, ​which makes it possible to manage ​a considerable number of PDU sessions. ​Let's look at the establishment of a PDU session, ​in the case where it is the UPF that chooses the TEID. ​The SMF selects one of the UPF ​with which it is associated and chooses the rules. ​The rules are packet detection, PDR, ​or forwarding action, FAR, ​or quality of service, and so on. ​The SMF chooses an SEID value, ​not yet allocated locally, ​in its reference system. ​It sends a message session establishment request ​with the SEID it has ​chosen and the description of the rules. 
+
+​In turn, in order to have a unique identification, ​the UPF chooses an SEID value, ​chooses TEID (since we have ​assumed that it is the UPF that chooses the TEID) ​and applies the rules that have been provided. ​It responds to the session establishment request, ​specifying the SEID chosen by ​the SMF so that ​the response corresponds uniquely to the request, ​it indicates the SEID that the UPF has chosen. ​We have similar procedures for ​modifying or deleting a session. ​To conclude, PFCP ​stands for Packet Forwarding Control Protocol. ​It is a protocol between the SMF and UPF. ​It works above UDP but incorporates ​a mechanism from making the link ​reliable by retransmitting lost messages. ​An SMF can be associated with ​different UPFs by means of the association procedure, ​and can establish, modify, ​or release PDU sessions, ​specifying the set of rules ​to be applied to each session. 
+ 
+
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
 
 5g is aware that the adoption of 5G networks will not happen in a day. The firs step is comply with  eMMB: Enhaced Mobile Broad-Band, 
