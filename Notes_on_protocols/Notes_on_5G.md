@@ -170,7 +170,6 @@ The AMF can exchange sigalling wwith the UE, and manages:
  - provide transport for other services as location services.
  - UE mobility event notification.
 
-
 The SMF (Session Management Function) controls the UPF, and handles the PDU session controls. 
  - It can exchange messages with the UE when the PDU session is required (the messages go through the AMF and gNB)
  - manages the PDU sessions, by seting it up, modification and its release.
@@ -194,6 +193,8 @@ No, it is not, for example a SMS service:
 
 
 The SMS is send from the UE to the AMF, and from there to the SMSF (Short Message Service Function), that SMSF is like a gateway between the SMS server and the 5G network, the SMSF can also check the user profile and communicate the UDM if the subscriber has that SMS service "in the control plane".
+
+![arch_5g_SMSF](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_SMSF.png)
 
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
 
