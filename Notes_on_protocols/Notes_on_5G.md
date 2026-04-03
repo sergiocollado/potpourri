@@ -255,7 +255,7 @@ How does a terminal attach itself to the 5G network? Or, in other words, what ha
 
 ​To begin with, the UE is in RM-Deregistered state. It is unknown to the AMF. RM stands for **Registration Management**. ​The UE sends a registration request message containing its identity. Of course, this message is sent over the radio link, and arrives at the gNB or the radio access network. ​The gNB selects the AMF. Indeed, it can be connected to multiple AMFs. 
 
-![network registration messages](Notes_on_protocols/Images_mobile_communication/5g_arch_network_registration_messages.png)
+![network registration messages](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5g_arch_network_registration_messages.png)
 
 ​And it sends the request, in accordance with the Non-Access Stratum principle, NAS. It sends this request to the AMF. ​The AKA procedure provides security. AKA stands for Authentication and Key Agreement. This procedure involves the UE, the AMF, the AUSF and the UDM. ​Once the UE has been authenticated, the AMF needs to check with the UDM that the subscriber can register. This is the Registration message; ​the UDM responds with Yes or No. For the sake of this demonstration, we will suppose it says Yes. 
 
