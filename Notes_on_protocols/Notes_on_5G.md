@@ -296,6 +296,7 @@ There is another function located in ​the UDM that has to do with identity con
 
 ​They also carried out encryption and decryption. ​In conclusion, the network functions ​that ensure security are ​the UDM because it integrates the function of ARPF, ​(long-term key storage) ​and SIDF to reveal ​the permanent identity from the concealed one. ​On the other end, ​we can't forget the authentication server, ​which is always in the home network. ​There's also the AMF in its role as SEAF because it acts ​as a security anchor and ​manages the security of the NAS messages. ​Last but not least, ​we mustn't forget the gNB for ​everything that is related to radio transmission. 
 
+![security functiosn 5g](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_SIDF.png)
 
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
 
