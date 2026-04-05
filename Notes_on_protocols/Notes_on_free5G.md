@@ -697,3 +697,7 @@ To perform the test:
 💡Tip: UERANSIM doesn’t require real 5G hardware; it emulates both the UE and gNB. This makes it ideal for testing and learning how the core network behaves before deploying on real equipment.
 
 With a successful simulation, your 5G core setup is fully verified. You’ve now completed the process of building, configuring, and testing a working free5GC environment.
+
+## Exploring the souce code
+
+
