@@ -24,9 +24,8 @@ Image of free5GC logo
 Its primary goal is to provide a functional and standards-compliant 5GC that can be used by researchers, students, and developers for academic research, prototyping, and testing of 5G technologies and applications.
 
 To understand what free5GC actually does, it helps to know what the 5G Core is responsible for. At the highest level, the core has two big jobs:
-
-    1- Control Plane → makes the decisions and sets the rules.
-    2 - Data Plane → carries the user’s traffic through the network.
+ 1- Control Plane → makes the decisions and sets the rules.
+ 2 - Data Plane → carries the user’s traffic through the network.
 
 free5GC implements both planes according to 3GPP standards, providing a reliable foundation for experimentation and innovation.
 
@@ -84,9 +83,9 @@ When you open an app that needs internet access, the Control Plane establishes a
 The Control Plane is the rule-maker. Based on your subscription plan, current network conditions, and the type of application you're using, it defines the rules for your data session.
 
 This includes:
-    - Setting your maximum download and upload speeds
-    - Prioritizing latency-sensitive traffic (for example, voice calls over file downloads)
-    - Communicating Quality of Service (QoS) rules to the Data Plane for enforcement
+ - Setting your maximum download and upload speeds
+ - Prioritizing latency-sensitive traffic (for example, voice calls over file downloads)
+ - Communicating Quality of Service (QoS) rules to the Data Plane for enforcement
 
 Together, these responsibilities make the Control Plane the central coordinator of the 5G Core, ensuring that all other network functions operate in sync.    
 
@@ -107,9 +106,9 @@ The Data Plane takes data packets from your device, encapsulates them, and forwa
 #### QoS and Policy enforcement
 
 While the Control Plane decides the rules, the Data Plane enforces them. It inspects data packets and applies the assigned QoS policies for:
-    - Traffic shaping: buffering packets to control the data rate
-    - Prioritization: letting real-time video packets go ahead of email
-    - Blocking: filtering traffic that violates policy.
+ - Traffic shaping: buffering packets to control the data rate
+ - Prioritization: letting real-time video packets go ahead of email
+ - Blocking: filtering traffic that violates policy.
 
 #### Usage reporting
 
@@ -133,85 +132,85 @@ Together, the Control Plane NFs form the decision-making system of the 5G Core. 
 Main role: Manages UE registration, mobility, and access-related tasks.
 
 Key Responsibilities:
-    - Registers the UE to the network and manages its mobility status.
-    - Performs NAS message encryption and integrity protection.
-    - Acts as a proxy to forward session-related messages from the UE to the SMF.
-    - Handles authentication and authorization in coordination with AUSF.
-    - Interacts with NSSF to select appropriate slices for UE.
+ - Registers the UE to the network and manages its mobility status.
+ - Performs NAS message encryption and integrity protection.
+ - Acts as a proxy to forward session-related messages from the UE to the SMF.
+ - Handles authentication and authorization in coordination with AUSF.
+ - Interacts with NSSF to select appropriate slices for UE.
 
 ### Authentication Server Function (AUSF)
 
 Main role: Acts as the network's security guard, responsible for verifying the identity of users before they are allowed to connect.
 
 Key Responsibilities
-    - Handles the primary authentication process for any device connecting to the 5G core.
-    - Supports multiple authentication methods, making it compatible with both standard cellular (3GPP) and other network types like Wi-Fi (non-3GPP).
-    - Generates the necessary security keys during 5G-AKA and EAP-AKA' procedures to ensure the connection is secure.
+ - Handles the primary authentication process for any device connecting to the 5G core.
+ - Supports multiple authentication methods, making it compatible with both standard cellular (3GPP) and other network types like Wi-Fi (non-3GPP).
+ - Generates the necessary security keys during 5G-AKA and EAP-AKA' procedures to ensure the connection is secure.
 
 ### Network Repository Function (NRF)
 
 Main role: Serves as the central directory or "phone book" for all other Network Functions.
 
 Key Responsibilities:
-    - Maintains a dynamic, up-to-date list of all available NF instances and the services they offer.
-    - Enables service discovery, allowing NFs to find and communicate with each other.
-    - Monitors the health status and availability of registered NFs.
+ - Maintains a dynamic, up-to-date list of all available NF instances and the services they offer.
+ - Enables service discovery, allowing NFs to find and communicate with each other.
+ - Monitors the health status and availability of registered NFs.
 
 ### Network Slice Selection Function (NSSF)
 
 Main role: Functions as a traffic director for network slicing, ensuring the user is connected to the correct virtual network slice for their needs.
 
 Key Responsibilities:
-    - Selects the appropriate Network Slice Instance to serve a user based on their subscription and requested service.
-    - Validates the user's requested slice information (NSSAI - Network Slice Selection Assistance Information) against their subscription profile.
-    - Determines which AMF set is best suited to manage the user's session within the selected slice.
+ - Selects the appropriate Network Slice Instance to serve a user based on their subscription and requested service.
+ - Validates the user's requested slice information (NSSAI - Network Slice Selection Assistance Information) against their subscription profile.
+ - Determines which AMF set is best suited to manage the user's session within the selected slice.
 
 ### Policy Control Functio (PCF)    
 
 Main role: Acts as the rule-maker for the network, defining and providing policies that govern how data sessions are handled.
 
 Key Responsibilities:
-    - Retrieves subscriber policy information from the UDR to understand a user's service level and restrictions.
-    - Provides the SMF with Session Management (SM) policies that dictate rules for data sessions, like QoS.
-    - Provides the AMF with Access and Mobility (AM) policies that influence how a user connects to and moves within the network.
-    - Creates UE Route Selection Policy (URSP) rules to guide a device's traffic across different network slices or connections.
+ - Retrieves subscriber policy information from the UDR to understand a user's service level and restrictions.
+ - Provides the SMF with Session Management (SM) policies that dictate rules for data sessions, like QoS.
+ - Provides the AMF with Access and Mobility (AM) policies that influence how a user connects to and moves within the network.
+ - Creates UE Route Selection Policy (URSP) rules to guide a device's traffic across different network slices or connections.
 
 ### Charging Function (CHF)
 
 Main role: Manages all aspects of data charging and billing.
 
 Key Responsibilities:
-    - Supports both online and offline charging models.
-    - Calculates data usage and applies the correct charging mechanisms based on the user's plan and network policies.
-    - Generates Charging Data Record (CDR) files.
+ - Supports both online and offline charging models.
+ - Calculates data usage and applies the correct charging mechanisms based on the user's plan and network policies.
+ - Generates Charging Data Record (CDR) files.
 
 ### Session Management Function (SMF)
 
 Main role: Manages the entire lifecycle of a user's data connection, from initiation to termination.
 
 Key Responsibilities:
-    - Handles session lifecycle operations such as establishment, modification, and release.
-    - Manages UE IP address allocation, which may come from a UPF or an external data network.
-    - Instructs UPF and NG-RAN to perform redundant transmission over N3/N9 interfaces.
-    - Determines the PDU session data path based on the SM Policy provided by PCF.
+ - Handles session lifecycle operations such as establishment, modification, and release.
+ - Manages UE IP address allocation, which may come from a UPF or an external data network.
+ - Instructs UPF and NG-RAN to perform redundant transmission over N3/N9 interfaces.
+ - Determines the PDU session data path based on the SM Policy provided by PCF.
 
 ### Unified Data Management (UDM)
 
 Main role: Acts as a centralized manager for user identity, subscription, and authentication data.
 
 Key Responsibilities:
-    - Manages SUPI(Subscription Permanent Identifier) and GPSI(Generic Public Subscription Identifier).
-    - Manages authentication credentials for 3GPP AKA.
-    - Manages user subscription information.
+ - Manages SUPI(Subscription Permanent Identifier) and GPSI(Generic Public Subscription Identifier).
+ - Manages authentication credentials for 3GPP AKA.
+ - Manages user subscription information.
 
 ### Unified Data Respository (UDR)
 
 Main role: Functions as the network's centralized database, securely storing information used by other NFs.
 
 Key Responsibilities:
-    - Stores and retrieves subscriber data for UDM.
-    - Stores and retrieves policy data for PCF.
-    - Stores structured data for exposure, application data, and AF request information for NEF.
+ - Stores and retrieves subscriber data for UDM.
+ - Stores and retrieves policy data for PCF.
+ - Stores structured data for exposure, application data, and AF request information for NEF.
 
 ### Network Exposure Function (NEF)
 
@@ -233,34 +232,34 @@ The Data Plane NFs act as the execution layer of the 5G Core. They handle the ac
 Main role: Acts as the network's data highway, responsible for forwarding all user traffic to and from the internet.
 
 Key Responsibilities:
-    - Serves as the external PDU session connection point to data networks.
-    - Handles packet routing and forwarding.
-    - Enforces user-plane policy rules such as traffic steering.
-    - Generates traffic usage reports.
+ - Serves as the external PDU session connection point to data networks.
+ - Handles packet routing and forwarding.
+ - Enforces user-plane policy rules such as traffic steering.
+ - Generates traffic usage reports.
 
 ### Non-3GPP InterNetworking Function (N3IWF)
 
 Main role: Enables devices to connect securely to the 5G core over untrusted non-3GPP networks, like public Wi-Fi.
 
 Key Responsibilities:
-    - Establishes a secure IPsec tunnel with the device to protect all communication over the untrusted network.
-    - Processes NAS and NGAP messages
-    - Encapsulates and decapsulates packets for IPsec and N3 tunneling
+ - Establishes a secure IPsec tunnel with the device to protect all communication over the untrusted network.
+ - Processes NAS and NGAP messages
+ - Encapsulates and decapsulates packets for IPsec and N3 tunneling
 
 ### Trusted Non-3GPP Gateway Function (TNGF)
 
 Main role: Enables devices to connect to the 5G core over trusted non-3GPP networks, such as a secure corporate Wi-Fi network.
 
 Key Responsibilities:
-    - Handles NGAP messages for supporting PDU sessions and QoS
-    - Relays NAS messages transparently between UE and AMF
-    - Relays PDU data units transparently between the UE and UPF(s)
+ - Handles NGAP messages for supporting PDU sessions and QoS
+ - Relays NAS messages transparently between UE and AMF
+ - Relays PDU data units transparently between the UE and UPF(s)
 
 ## Communication Interfaces overview
 
 Modern 5G networks consist of modular Network Functions (NFs), and these need to communicate efficiently. This is achieved through two primary models:
-    - Service-Based Architecture (SBA): Used for Control Plane NFs, where functions interact through APIs.
-    - Reference Point Interfaces: Used where strict protocol stacks are required, especially in the Data Plane and at the network edge
+ - Service-Based Architecture (SBA): Used for Control Plane NFs, where functions interact through APIs.
+ - Reference Point Interfaces: Used where strict protocol stacks are required, especially in the Data Plane and at the network edge
 
 Together, these models ensure signaling, control, and data forwarding happen reliably across the 5G Core.
 
@@ -269,6 +268,8 @@ Together, these models ensure signaling, control, and data forwarding happen rel
 Every NF requires an interface to communicate with others. The following diagram shows the architecture of the 5G system. Most NFs use the Service-Based Interface (SBI), while a small set of reference point interfaces (N1, N2, N3, N4, N6, and N9) handle specific signaling and data traffic.
 
 The 5G Core’s architecture is designed around flexibility and modularity. Each Network Function communicates through well-defined interfaces that ensure signaling, control, and user data flow seamlessly between the Control and Data Planes. This structure allows the network to evolve as new services and technologies are introduced.
+
+![communication interfaces](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/free5g_arch_communication_interfaces.jpg)
 
 ## Key reference point interfaces
 
