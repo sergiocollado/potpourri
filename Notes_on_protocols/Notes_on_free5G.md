@@ -330,7 +330,7 @@ The Service-Based Architecture (SBA) framework allows all NFs, except for the UP
 
 According to the 3GPP specifications, the NF that offers a service is referred to as the Service Producer, while the NF that uses the service is called the Service Consumer. Communication between producers and consumers typically takes one of three forms: query, subscription, and notification.
 
-![]()
+![SBA](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/free5g_SBA.png)
 
 The Network Repository Function (NRF) plays a crucial role in enabling NF registration and discovery. It allows NFs to register their availability and capabilities with the network, while also supporting the discovery of other NFs to enable efficient communication.
 
