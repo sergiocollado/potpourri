@@ -277,6 +277,22 @@ How does a terminal attach itself to the 5G network? Or, in other words, what ha
 
 ​In 5G, the IP address is allocated by the SMF. ​There is the same general overall philosophy as in 4G, as tunnels are also established, but we can see that there are more messages exchanged in the procedures due to the separation between the SMF and the AMF. ​Finally, the UPF is controlled by the SMF according to the CUPS principle. 
 
+
+## Security in 5G
+
+### Security network functions
+
+"Authentication credential Repository and ​Processing Function"OR ARPF: it stores the subscribers' permanent keys, ​which never leave the ARPF, ​and it creates authentication vectors, ​including a result used to verify authentication, ​master keys for integrity and encryption. ​In concrete terms, ​as we have said, ​the ARPF is located in the UDM. ​
+
+There is another function located in ​the UDM that has to do with identity concealment. ​The permanent identity in 5G is called ​the **"SUbscription Permanent Identifier"** or **SUPI**. This identity is not transmitted over the radio channel. ​Instead, a new identity is defined. ​It is called **"SUbscription Concealed Identifier"** or **SUCI**. ​The SUCI is an encrypted version of ​the SUPI and is ​protected against modification by an attacker. ​Then a function called the SIDF, ​or "Subscription Identifier De-concealing ​Function" takes the SUCI that has ​been created by the UE and gets its SUPI. ​The SIDF is located in the UDM, ​but it could also be ​a function completely external to the UDM. ​The AUSF is the authentication server. 
+
+​It calculates authentication vectors ​for each network that requests them. ​It transmits one vector each time and no more. ​The AUSF verifies the authentication of the subscriber, ​and this is important, ​is always located in the subscriber's home network. ​In the visited network, ​the element that allows ​the authentication to be pre-checked, ​and that takes on the role of an authenticator, ​is called the SEAF, "SEcurity Anchor Function". ​It pre-verifies the authentication, as we said, ​and it also calculates the child key ​from the parent key sent by the AUSF. ​For integrity and for encryption, again, ​it doesn't reserve any authentication vectors. ​The SEAF is located in the AMF. 
+
+​From a practical point of view, ​the SEAF is within the AMF, ​but the AMF also plays a role as an AMF for security. ​It's the AMF that encrypts and ​controls the integrity of ​the Non Access Stratum messages ​(the NAS messages), which are ​exchanged between the UE and the AMF, ​and that physically pass through the gNB. ​The gNB also manages encryption for ​all data and messages transmitted on the radio channel. ​The role of the gNB and the AMF is ​to calculate the encryption and integrity keys, ​which are always deduced from the parent keys. ​Also, for each transmitted block, ​the gNB and the AMF manage integrity. ​When transmitting, they calculate ​the message integrity or message authentication code. ​They verify it when receiving a message. 
+
+​They also carried out encryption and decryption. ​In conclusion, the network functions ​that ensure security are ​the UDM because it integrates the function of ARPF, ​(long-term key storage) ​and SIDF to reveal ​the permanent identity from the concealed one. ​On the other end, ​we can't forget the authentication server, ​which is always in the home network. ​There's also the AMF in its role as SEAF because it acts ​as a security anchor and ​manages the security of the NAS messages. ​Last but not least, ​we mustn't forget the gNB for ​everything that is related to radio transmission. 
+
+
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
 
 5g is aware that the adoption of 5G networks will not happen in a day. The firs step is comply with  eMMB: Enhaced Mobile Broad-Band, 
