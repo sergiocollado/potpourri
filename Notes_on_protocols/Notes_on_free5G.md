@@ -324,5 +324,14 @@ The N9 interface is a data plane link that connects two User Plane Functions (UP
 
 A common use case is connecting an Intermediate UPF (I-UPF), located closer to the user for low-latency access, to a centralized PSA-UPF. Just like the N3 interface, N9 uses the GTP-U protocol to tunnel user data between the two UPFs.
 
+## Service-Based architecture SBA
 
+The Service-Based Architecture (SBA) framework allows all NFs, except for the UPF, to communicate with each other through the Service-Based Interface (SBI). These interactions typically use HTTP/2-based APIs and JSON data formats, enabling flexible and scalable communication between functions.
 
+According to the 3GPP specifications, the NF that offers a service is referred to as the Service Producer, while the NF that uses the service is called the Service Consumer. Communication between producers and consumers typically takes one of three forms: query, subscription, and notification.
+
+![]()
+
+The Network Repository Function (NRF) plays a crucial role in enabling NF registration and discovery. It allows NFs to register their availability and capabilities with the network, while also supporting the discovery of other NFs to enable efficient communication.
+
+Communication interfaces are what bind the 5G Core. Reference point interfaces carry signaling and user traffic, while the SBA ensures modular Control Plane functions can interact smoothly. Together, they make the 5G Core operate as a coordinated and scalable system.
