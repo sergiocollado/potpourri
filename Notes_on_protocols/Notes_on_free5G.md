@@ -279,3 +279,50 @@ Each interface plays a specific role in managing signaling, user traffic, or con
 
 Together, these interfaces ensure that both signaling and user traffic move reliably across the 5G Core, forming the backbone of communication between the Control Plane, Data Plane, and external networks.
 
+
+### N2 
+
+The N2 interface is the signaling bridge that connects the Radio Access Network (RAN) to the core network's AMF. Its exclusive purpose is to carry command-and-control messages that manage a user's entire connection lifecycle.
+
+As the diagram shows, this communication is structured by the N2 protocol stack. The application layer uses NGAP (Next Generation Application Protocol). NGAP runs on top of SCTP (Stream Control Transmission Protocol), a transport protocol chosen for its high reliability in handling telecom signaling. This layered approach ensures that the radio layer and the core network are always in sync, making the N2 the fundamental control channel for user access and mobility operations.
+
+![n2 interface](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/free5g_n2_interface.png)
+
+### N1
+
+The N1 interface is the logical channel between the User Equipment (UE) and the AMF. Think of it as the UE's private, secure line for sending signaling messages to the 5G core network.
+
+As the diagram illustrates, N1 is not a direct physical connection. Instead, messages are "tunneled" through the RAN. The UE sends its control messages, encapsulated within the NAS (Non-Access Stratum) protocol, to the RAN. The RAN then forwards these messages transparently over N2 to the AMF.
+
+![n1 interface](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/free5g_n1_interface.jpg)
+
+### N4 
+
+The N4 interface links the SMF and the UPF. This interface is central to CUPS, allowing the SMF to make decisions, while the UPF focuses on executing those decisions.
+
+As the diagram shows, all communication over the N4 interface is managed by the PFCP (Packet Forwarding Control Protocol). The SMF uses PFCP to install, modify, and remove rules on the UPF for each data session.
+
+![n4 interface](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/free5g_n4_interface.png)
+
+### N3
+
+The N3 interface is the primary data tunnel for all user traffic, carrying it from the RAN to the UPF. Unlike the N2 interface, which handles signaling, the N3 is purely a Data Plane Interface. Its sole responsibility is to transport the actual data packets, such as video streams, web pages, and application data, from the cell tower into the 5G Core.
+
+As the diagram illustrates, this is achieved by creating a secure tunnel using the GTP-U (GPRS Tunneling Protocol for the User Plane). The GTP-U protocol encapsulates the user's original data packets and adds a special header. This header contains a Tunnel Endpoint Identifier (TEID), which acts like a unique label for each data session. The TEID allows the UPF to instantly recognize which user's traffic it is handling, so it can apply the correct forwarding rules and policies for thousands of different sessions at once.
+
+![n3 interface](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/free5g_n3_interface.jpg)
+
+### N6 
+
+The N6 interface is the Data Plane gateway between the 5G Core and an external Data Network (DN), such as the public internet. It is the final exit point for all user traffic.
+
+N6 connects to a specific type of UPF known as the PDU Session Anchor (PSA). The GTP-U tunnel that carries user data across the 5G Core (over the N3 and N9 interfaces) terminates at this anchor UPF. The UPF then decapsulates the traffic and sends the user's raw IP packets out over the N6 interface. Often, a NAT (Network Address Translation) gateway is used here to translate the private IP addresses into public ones.
+
+### N9
+
+The N9 interface is a data plane link that connects two User Plane Functions (UPFs) within the 5G core.
+
+A common use case is connecting an Intermediate UPF (I-UPF), located closer to the user for low-latency access, to a centralized PSA-UPF. Just like the N3 interface, N9 uses the GTP-U protocol to tunnel user data between the two UPFs.
+
+
+
