@@ -5,6 +5,7 @@ References:
  - https://training.linuxfoundation.org/training/introduction-to-free5gc-lfs114/
  - https://free5gc.org/
  - https://github.com/free5gc/free5gc
+ - https://github.com/aligungr/UERANSIM
 
 ## Overview
 
@@ -335,3 +336,364 @@ According to the 3GPP specifications, the NF that offers a service is referred t
 The Network Repository Function (NRF) plays a crucial role in enabling NF registration and discovery. It allows NFs to register their availability and capabilities with the network, while also supporting the discovery of other NFs to enable efficient communication.
 
 Communication interfaces are what bind the 5G Core. Reference point interfaces carry signaling and user traffic, while the SBA ensures modular Control Plane functions can interact smoothly. Together, they make the 5G Core operate as a coordinated and scalable system.
+
+
+## Building and running free5G
+
+To build and run free5GC safely and consistently, it’s best to use a virtual machine (VM). A VM provides an isolated environment that prevents conflicts with your host system and ensures consistent behavior across setups.
+
+In this course, we’ll use VirtualBox to host an Ubuntu 20.04 LTS server. This environment forms the foundation for installing, configuring, and testing free5GC.
+
+Let’s go through the steps to install Ubuntu and create your VM.
+
+### 1 - Install VirtualBox and Ubuntu ISO
+
+Install VirtualBox(opens in a new tab) on your machine. 
+
+Download the Ubuntu Server 20.04 LTS(opens in a new tab) ISO file. You can choose either the live-server or the desktop version.
+
+💡 Tip: The server version uses fewer resources and is ideal for lab environments.
+
+### 2 Create a New Virtual Machine
+
+Open VirtualBox and create your first VM using the downloaded ISO image file. 
+
+Allocate at least 1-2 CPUs and a minimum of 2048MB of memory.
+
+Add a “Host-only” network interface to allow communication between your host and VM.
+
+### 3 Complete the Ubuntu Installation
+
+Boot the VM with the ISO image and finish the Ubuntu installation
+
+### 4 Update and Upgrade the VM
+
+Run the following commands in the terminal to update and upgrade the Ubuntu VM, ensuring it has the latest security updates:
+
+```
+sudo apt update
+sudo apt upgrade
+sudo apt install net-tools vim -y
+```
+
+After running these commands, your Ubuntu VM will be fully updated and equipped with basic tools for networking and text editing.
+
+💡 Tip: Once your base Ubuntu VM is ready, you can clone it to create additional testing environments without repeating the installation process. This is especially helpful when experimenting with multiple configurations of free5GC.
+
+Now that your Ubuntu VM is ready, the next step is to clone and configure it for free5GC.
+
+This ensures each instance has the proper hostname, IP address, and network configuration before installing the core network.
+
+## Cloning and configuring free5G
+
+To avoid repeating the setup steps for future VMs, it’s helpful to clone your base Ubuntu VM. This cloned VM will serve as the environment where free5GC will be installed and run.
+
+This approach saves time and ensures every instance starts from a clean, consistent configuration.
+
+### Step 1: Clone the VM
+
+Open VirtualBox, right-click the VM you just created, and select the clone option to clone a new VM. You can refer to the following image for guidance.
+Screenshot of the VirtualBox “Clone Virtual Machine” window showing a new VM named free5GC. The linked clone option and MAC address policy to generate new addresses for all network adapters are selected.
+
+Cloning the base Ubuntu VM as free5GC in VirtualBox.
+
+### Step 2: Change the Hostname
+
+Open the cloned VM. The hostname will be the same as the original VM, so use the following command to update it to free5GC.
+
+```
+sudo vim /etc/hostname
+```
+
+### Step 3: Update the Hosts File
+
+Edit the `/etc/hosts` file:
+```
+sudo vim /etc/hosts
+```
+
+Update the entries so they look like this:
+
+```
+127.0.0.1 localhost
+127.0.1.1 free5GC
+...
+```
+
+After making these changes, reboot the VM to apply them.
+
+### Step 4: Configure the Network Interface
+
+By default, the Host-only network interface obtains its IP address through DHCP. However, the cloned free5GC VM will not automatically receive a new IP address, so you need to configure it manually. Use the following commands:
+```
+sudo vim /etc/netplan/00-installer-config.yaml
+```
+Modify the `/etc/netplan/00-installer-config.yaml` file with the following content:
+
+```
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    enp0s3:
+      dhcp4: true
+    enp0s8:
+      dhcp4: no
+      addresses: [192.168.56.101/24]
+  version: 2
+```
+After modifying the file, apply the settings with these commands:
+
+```
+sudo netplan try
+sudo netplan apply
+```
+At this point, your free5GC VM should be ready with the correct hostname and a static IP address. You’re now ready to begin installing and configuring free5GC.
+
+Static IPs ensure your virtual network remains stable even if your host restarts or other VMs are added. This prevents connectivity issues later when testing with UERANSIM.
+
+💡 Tip: Static IPs ensure your virtual network remains stable even if your host restarts or other VMs are added. This prevents connectivity issues later when testing with UERANSIM.
+
+Your cloned VM is now configured with a unique hostname and a stable network identity. Next, you’ll install the required packages and dependencies that make free5GC operational.
+
+## Installing the required packages
+
+Before you can build and run free5GC, you need to install several system packages and dependencies. This ensures your system has the proper tools, Go runtime, database support, and development libraries.
+
+We’ll walk through these steps one by one.
+
+### Step 1: Verify Kernel Version
+
+free5GC requires Linux kernel version  5.0.0-23-generic or 5.4.x. You can check your kernel version with the following command:
+```
+uname -r
+```
+If your version matches, you’re good to go. Otherwise, you may need to install a compatible version.
+
+### Step 2: Install Prerequisite Tools
+
+We need to install wget and git. These tools are essential for downloading source code and files from the internet and GitHub repositories.
+```
+sudo apt -y install wget git
+```
+### Step 3: Install the Go Programming Language
+
+free5GC is written in Go. You need to install the specific version it was built and tested with, which is Go 1.21.8. 
+
+The following commands will download the Go archive, extract it to the correct location, and set up the necessary environment variables in your .bashrc file so your system can find and use Go.
+```
+wget https://dl.google.com/go/go1.21.8.linux-amd64.tar.gz
+sudo tar -C /usr/local -zxvf go1.21.8.linux-amd64.tar.gz
+mkdir -p ~/go/{bin,pkg,src}
+echo 'export GOPATH=$HOME/go' >> ~/.bashrc
+echo 'export GOROOT=/usr/local/go' >> ~/.bashrc
+echo 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin' >> ~/.bashrc
+echo 'export GO111MODULE=auto' >> ~/.bashrc
+source ~/.bashrc
+```
+
+### Step 4: Install MongoDB Database
+
+free5GC uses MongoDB to store subscriber information.
+
+Note that modern versions of MongoDB require a CPU feature called AVX.
+
+⚠️ Warning: Note that modern versions of MongoDB require a CPU feature called AVX.
+
+First, run this command to check if your CPU supports AVX.
+```
+lscpu | grep avx
+```
+If the command shows any output, you can proceed.
+
+These commands will add the official MongoDB software repository to your system, update your package list, and install the database.
+
+```
+sudo apt install -y gnupg curl
+curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
+
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+
+sudo apt update
+sudo apt install -y mongodb-org
+```
+
+After installation, use the final command to start the database service and verify it's running correctly.
+
+```
+sudo systemctl start mongod
+sudo systemctl status mongod
+```
+You should see active (running) in the status output, which confirms a successful installation.
+
+### Step 5: Install Build Dependencies
+
+Finally, before you can compile free5GC itself, you need to install several C/C++ libraries and development tools. These packages are required for building the low-level user-plane components that handle network traffic.
+
+```
+sudo apt -y update
+sudo apt -y install git gcc g++ cmake autoconf libtool pkg-config libmnl-dev libyaml-dev
+```
+
+After completing these installations, your VM now has the tools and dependencies needed to build and run free5GC.
+
+If you plan to experiment with newer MongoDB versions or Go releases later, document your environment versions first. This makes it easier to troubleshoot or replicate your setup later.
+
+💡Tip: If you plan to experiment with newer MongoDB versions or Go releases later, document your environment versions first. This makes it easier to troubleshoot or replicate your setup later.
+
+With all required packages installed, your system is ready to download, build, and launch the free5GC core components.
+
+### Build and launch the core components
+
+Before you can run free5GC, you need to download the source code and compile the necessary binaries.
+
+We’ll walk through the full build process, covering how to clone the repository, compiling both control and data plane components, and also setting up the web-based console to manage user data.
+
+These steps assume you’ve already completed the system and package setup on your VM.
+
+### Step 1: Clone the free5GC Repository
+
+Clone the latest version of the free5GC repository from GitHub using the following commands:
+```
+cd ~
+git clone --recursive -b v4.1.0 -j `nproc` https://github.com/free5gc/free5gc.git
+cd free5gc
+```
+### Step 2: Build Control Plane Network Functions (NFs)
+
+After cloning the repository, compile the NF services in free5GC. There are two ways to build the executable files.
+
+To build each NF individually (e.g., AMF), use:
+```
+make amf
+```
+Or simply build all NFs at once using:
+```
+make
+```
+### Step 3: Build the User Plane Function (UPF)
+
+The previous commands built all control plane NFs, but you also need to build the data plane NFs.
+
+First, install gtp5g, a 5G GTP-U kernel module maintained by the free5GC team:
+```
+git clone -b v0.9.14 https://github.com/free5gc/gtp5g.git
+cd gtp5g
+make
+sudo make install
+```
+Then, build the UPF using the following command (you may skip this step if you built all NFs earlier):
+```
+cd ~/free5gc
+make upf
+```
+Now, you can use the following command to run free5GC :
+```
+./run.sh
+```
+### Step 4: Build and Launch the Webconsole
+
+To manage subscriber data, such as adding or modifying users, you will need to build and run the free5GC Webconsole, which provides a graphical user interface for these tasks.
+
+First, install Node.js using the following commands:
+```
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 
+sudo apt update
+sudo apt install -y nodejs
+corepack enable
+```
+Then, build the Webconsole using:
+```
+cd ~/free5gc
+make webconsole
+```
+Start the Webconsole with the following command:
+```
+cd ~/free5gc/webconsole
+./bin/webconsole
+```
+Open your web browser from your host machine, and connect to Webconsole at http://192.168.56.101:5000(opens in a new tab). 
+
+(Default username: admin, password: free5gc)
+
+💡Tip: The Webconsole provides an easy way to view and manage subscriber (UE) information without manually editing configuration files.
+
+With all components successfully built, your free5GC setup is now ready for use.
+
+Next, you’ll configure IP forwarding and NAT so packets can move between your simulated network and external systems.
+
+## System configuration
+
+Although free5GC is now installed, additional settings are required to ensure packets can reach the data network through the core network.
+
+By default, the Linux system disables IP forwarding, meaning it does not forward packets between different subnets. However, in free5GC, packet forwarding is necessary.
+
+For example, the UE communicates with free5GC through a host-only network interface, but packets need to reach the data network via a NAT network interface.
+
+### Enable IP Forwarding
+
+Enabling IP forwarding is essential to allow packets to move between different network interfaces.
+
+You can enable it with the following command:
+```
+sudo sysctl -w net.ipv4.ip_forward=1
+```
+### Add a NAT Rule
+
+Another important step is setting up a Network Address Translation (NAT) rule. By default, Linux does not perform NAT, meaning external networks won't recognize the source IP of the packets, preventing them from reaching their destination or receiving responses. To resolve this, you need to add a NAT rule to iptables using the following command:
+```
+sudo iptables -t nat -A POSTROUTING -o <dn_interface> -j MASQUERADE
+```
+Replace <dn_interface> with the name of your NAT network interface( e.g. enp0s3)
+
+Example:
+```
+sudo iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
+```
+### Disable the Firewall (Optional)
+
+To avoid potential connectivity issues, you may also want to disable the firewall. You can do this using the following commands:
+```
+sudo systemctl stop ufw
+sudo systemctl disable ufw
+```
+Only disable the firewall in secure, non-production environments. For production or shared systems, configure proper firewall rules instead.
+
+⚠️ Warning: Only disable the firewall in secure, non-production environments. For production or shared systems, configure proper firewall rules instead.
+
+With IP forwarding enabled, NAT configured, and the firewall disabled, your free5GC environment is now prepared for proper packet forwarding and communication with external networks.
+
+Next, you’ll test the setup using UERANSIM, which simulates a 5G device to confirm successful communication with the free5GC core.
+
+
+## Test connectivity
+
+After completing the system configuration, you should be able to create a UE and connect to the data network using free5GC.
+
+To validate this, you can use UERANSIM (https://github.com/aligungr/UERANSIM) (opens in a new tab), an open source 5G UE and RAN simulator. It allows you to test connectivity without physical hardware by emulating how a UE communicates with the core.
+
+This provides a quick way to confirm that your free5GC setup is functioning as expected.
+
+Steps to Test Connectivity
+
+To perform the test:
+
+   ### 1
+
+    Install UERANSIM
+    Follow the installation steps provided in the UERANSIM Wiki(opens in a new tab).
+    
+  ###   2
+
+    Update free5GC Configuration
+    Adjust the necessary parameters in the free5GC configuration files.
+    (Refer to Sections 5 and 6 of the official tutorial(opens in a new tab) for detailed guidance.)
+    
+  ###   3
+
+    Run the Simulation
+    Start UERANSIM to simulate a UE connection and verify that registration is successful.
+
+💡Tip: UERANSIM doesn’t require real 5G hardware; it emulates both the UE and gNB. This makes it ideal for testing and learning how the core network behaves before deploying on real equipment.
+
+With a successful simulation, your 5G core setup is fully verified. You’ve now completed the process of building, configuring, and testing a working free5GC environment.
