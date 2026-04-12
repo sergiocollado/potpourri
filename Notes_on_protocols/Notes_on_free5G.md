@@ -1545,6 +1545,8 @@ gock.New("http://127.0.0.4:8000/nudr-dr/v2").
 
 While **gock** handles external HTTP services, gomock is used to handle internal dependencies within the Go application. Many components are built using interfaces to keep the code loosely coupled.
 
+So, in free5GC testing, **gock** is used to mock external HTTP calls (e.g., between UDM and UDR), while **gomock** is used to mock internal Go interfaces to isolate components during unit tests.
+
 This step uses gomock to create a mock implementation of the UDM’s application interface. We can define expectations on this mock, telling it exactly how to behave when its methods are called during the test.
 
 ```go
