@@ -1381,6 +1381,227 @@ wg.Add(n)    // add n tasks to wait for
 wg.Done()    // mark a task as complete
 wg.Wait()    // block until all tasks complete
 ```
+
 ⚠️ Warning: Number of `wg.Done()` calls must match the total from `wg.Add()`:
  - Too few `Done()` calls cause deadlocks
  - Too many `Done()` calls cause panics
+
+These concurrency primitives may look simple, but they solve the hard problems of parallel programming: starting concurrent tasks, passing data safely, coordinating timing, and waiting for work to finish. With these patterns, you have the essential building blocks to design control plane logic that can scale to real-world 5G workloads.
+
+
+### Coding Conventions in 5G Core Development
+
+While Go's concurrency tools are essential for the foundation of free5GC, building a massive system like a 5G core network requires more than just technical skill. This complex, collaborative undertaking demands strong reliability, which can only be achieved through a strict set of coding conventions.
+
+Following these standards ensures your code is organized, consistent, and robust enough for critical infrastructure. This section introduces the core conventions for project organization, naming, and error handling used in free5GC development.
+
+#### Project organization (Packages and modules)
+
+5G core codebases typically follow a domain-driven structure to keep the project clean and manageable.
+
+```
+free5gc/
+├── amf/           # Access and Mobility Management Function
+├── smf/           # Session Management Function
+├── upf/           # User Plane Function
+├── nrf/           # Network Repository Function
+├── pcf/           # Policy Control Function
+├── udm/           # Unified Data Management
+├── common/        # Shared utilities
+├── lib/           # Common libraries
+└── test/          # Test utilities
+```
+
+To keep the code clean and maintainable, each Network Function (NF) should be separated into three distinct layers, with each layer focused on its own task.
+
+#### API controllers / Handlers
+
+This is the NF’s entrance. Its only job is to receive and forward external requests without making decisions.
+
+#### Bussines logic
+
+This is the NF’s "brain". All core functions and decisions are handled here, such as session setup and mobility management.
+
+#### Data access layer
+
+This is the NF’s database manager. It communicates with the database to handle all data storage and retrieval.
+
+### Naming conventions for the NF components
+
+To maintain consistency across the codebase, free5GC follows a set of naming conventions for packages, functions, and telecom-specific terms. These rules ensure clarity and prevent errors when multiple developers work on the same system.
+
+#### Packages
+
+Use lowercase, single-word names. Example: message, context, handler.
+
+
+#### Functions and methods
+
+Use camelCase for internal functions and PascalCase for exported ones.
+
+#### Telecomm specific terms
+
+Follow 3GPP conventions and maintain abbreviation consistency.
+ - Do: Name a variable or struct field supi if it represents the Subscription Permanent Identifier (SUPI) in 3GPP.
+ - Don’t: Use generic names like subscriberId or userId, which can cause confusion or errors.
+
+### Error handling and logging standards
+
+In a complex system like free5GC, an error in one function can have cascading effects.
+A robust error-handling strategy ensures traceable logs that help developers and operators quickly diagnose problems. The goal is to produce logs that are rich in context, not filled with noise.
+
+#### Wrap and propagate 
+
+The most important principle is to wrap errors with context as they are passed up the call stack.
+
+When a low-level function (e.g., function C in an A → B → C call chain) fails, it should not log the error. Instead, it should add specific context about what it was trying to do using fmt.Errorf and return the newly wrapped error.
+
+Middle-level functions do the same, adding their own context before passing the error up.
+This creates a detailed chain of information explaining precisely where and why the failure occurred.
+
+#### Log at the Appropriate Boundary
+
+Logging should only happen at the highest, most appropriate level of the call stack, typically at a logical boundary such as an API handler.
+
+This top-level function (e.g., function A) has the most complete picture of the task.
+
+#### Severity and Final Rules
+
+To make logs more effective, each entry should be assigned a defined severity level (e.g., INFO, WARNING, ERROR, FATAL) to help operators filter messages and prioritize issues.
+
+💡 These error-handling principles work best when applied consistently across every level of the call stack. Each layer adds its own context but defers logging to the top-level function.
+
+Let’s look at how these practices appear in code. In this call chain (A → B → C), the inner functions wrap errors with context but do not log them.
+
+```
+func C() error { 
+    // Lowest level function should wrap errors with context 
+    if err := someOperation(); err != nil { 
+        return fmt.Errorf("failed to perform operation in C: %w", err) 
+    }
+    return nil 
+}
+
+func B() error {
+    // Middle-level function continues to add context
+    if err := C(); err != nil {
+        return fmt.Errorf("error in function B while calling C: %w", err)
+    }
+    return nil
+}
+
+func A() error {
+    // Top-level function makes logging decisions
+    if err := B(); err != nil {
+        // Only log at the appropriate boundary
+        logger.WithFields(log.Fields{
+            "supi":      "imsi-123456789012345",
+            "procedure": "registration",
+        }).Error(err.Error())
+
+        // Decide whether to return or handle the error
+        return err // or handle it appropriately
+    }
+    return nil
+}
+```
+
+Errors should be wrapped with context as they move up the call stack and logged only at the top boundary. This approach provides rich, actionable logs without duplication or noise.
+
+Coding conventions are more than stylistic preferences; they are safeguards that keep a complex system like free5GC dependable and maintainable. By applying these standards consistently, developers ensure that the codebase remains clear, collaborative, and resilient enough to support critical 5G infrastructure.
+
+### Unit testing in free5G
+
+While practices like code reviews ensure that code is clean and logical, they cannot guarantee functional correctness on their own. To achieve the strong reliability required for a 5G network, we must complement manual inspection with an automated approach to verification.
+
+This brings us to the next critical discipline in the development process, unit testing.
+
+#### Testing Approach in free5GC (UDM Example)
+
+To test a Network Function (NF) like the UDM, free5GC developers use a standard workflow that combines HTTP API mocking with dependency mocking. This approach ensures that each component behaves as expected, without needing to run the entire 5G Core.
+
+#### Step 1: Mock External HTTP Dependencies
+
+To test a component in isolation, we must first simulate any external NFs it communicates with over HTTP.
+In this example, the UDM needs to query the UDR.
+
+This step uses the **gock** library to intercept the outgoing HTTP request that the UDM would normally send to the UDR. Instead of allowing a real network call, we provide a predetermined, successful response, completely eliminating the need for a live UDR during the test.
+
+```go
+// Intercept HTTP client
+defer gock.Off()
+openapi.InterceptH2CClient()
+
+// Mock UDR's response to authentication data request
+gock.New("http://127.0.0.4:8000/nudr-dr/v2").
+    Get("/subscription-data/imsi-208930000000001/authentication-data/authentication-subscription").
+    Reply(200).
+    JSON(mockAuthSubscription)
+```
+
+💡 By mocking external HTTP services, you can fully control responses and simulate specific network scenarios without relying on real 5G core components.
+
+#### Step 2: Mock Internal Go Dependencies
+
+While **gock** handles external HTTP services, gomock is used to handle internal dependencies within the Go application. Many components are built using interfaces to keep the code loosely coupled.
+
+This step uses gomock to create a mock implementation of the UDM’s application interface. We can define expectations on this mock, telling it exactly how to behave when its methods are called during the test.
+
+```go
+// Create mock controller
+ctrl := gomock.NewController(t)
+defer ctrl.Finish()
+mockApp := mockapp.NewMockApp(ctrl)
+
+// Set expectations on mock
+testConsumer, err := consumer.NewConsumer(mockApp)
+testProcessor, err := NewProcessor(mockApp)
+mockApp.EXPECT().Consumer().Return(testConsumer).AnyTimes()
+```
+
+#### Step 3: Initialize the Component Under Test
+
+With all our mocks prepared, we can now initialize the specific component we want to test, in this case, the Processor. The key is that we initialize it using the mock dependencies created in the previous step instead of real ones. This ensures that whenever the Processor attempts to interact with other parts of the application, it calls our controlled mocks.
+
+```go
+// Initialize components with mocks
+testProcessor, err := NewProcessor(mockApp)
+```
+
+#### Step 4: Execute the Target Function
+
+Now that the component is fully isolated, it’s time to run the test. Since the procedure we’re testing is triggered by an HTTP request, we use Go’s built-in httptest package to create a simulated HTTP environment and request context.
+
+We then call the target `function (GenerateAuthDataProcedure)` directly with this controlled context and specific inputs.
+
+```go
+// Execute with a test HTTP context
+httpRecorder := httptest.NewRecorder()
+c, _ := gin.CreateTestContext(httpRecorder)
+testProcessor.GenerateAuthDataProcedure(c, authInfoRequest, "imsi-208930000000001")
+```
+
+#### Step 5: Verify the Results
+
+The final and most crucial step is to verify that the function produced the correct output. This involves making assertions about the result of the execution.
+
+We check the HTTP response recorded by our httptest recorder to confirm that:
+ - The status code is 200
+ - The contents of the JSON body match the expected content
+
+If any check fails, the test immediately flags a bug.
+
+```go
+// Check status code and response contents
+httpResp := httpRecorder.Result()
+require.Equal(t, 200, httpResp.StatusCode)
+require.Equal(t, "5G_AKA", response.AuthType.
+```
+This approach allows us to test complex Network Function behavior in isolation. By simulating both external and internal dependencies, we can validate functionality, catch regressions early, and build confidence in code reliability without running an entire 5G Core deployment.
+
+For more information about this example, you can refer to the corresponding test file(opens in a new tab) in the free5GC repository (https://github.com/free5gc/udm/blob/main/internal/sbi/processor/generate_auth_data_test.go). 
+
+## Performance in the data plane
+
+
+
