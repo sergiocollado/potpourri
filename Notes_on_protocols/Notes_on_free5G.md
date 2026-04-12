@@ -2090,7 +2090,7 @@ Use the following commands:
 
 #### More Commands
 
-These are some of the most commonly used commands when debugging with Delve. For more advanced features and commands, refer to the [Delve Documentation]([opens in a new tab](https://github.com/go-delve/delve/blob/master/Documentation/cli/README.md).
+These are some of the most commonly used commands when debugging with Delve. For more advanced features and commands, refer to the [Delve Documentation](https://github.com/go-delve/delve/blob/master/Documentation/cli/README.md).
 
 ### Bringing It All Together
 
