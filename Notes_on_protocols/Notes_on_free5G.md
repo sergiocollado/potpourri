@@ -888,7 +888,7 @@ This call forwards the request context and the parsed accessTokenReq model to th
 
 The processor layer relies on functions and models generated from OpenAPI specifications, ensuring adherence to 3GPP standards. We will revisit this in future topics.
 
-⚠️ Warning:When troubleshooting, trace the request path in the following order: router, handler, and then processor. This helps pinpoint exactly where behavior diverges from expectations.
+⚠️ Warning: When troubleshooting, trace the request path in the following order: router, handler, and then processor. This helps pinpoint exactly where behavior diverges from expectations.
 
 This step-by-step trace illustrates how free5GC routes and processes requests in a consistent and modular way, preparing you to understand the full API execution flow in the next section.
 
@@ -1234,3 +1234,153 @@ By starting with standard 3GPP specifications and generating code automatically,
 
 By understanding how free5GC leverages OpenAPI specifications, developers can more effectively contribute to the project, extend its functionality, and maintain compliance with evolving 5G standards.
 
+## Concurrency in the Control Plane 
+
+The 5G control plane is the network's brain. It's not about moving user data at high speeds; it's about managing everything else: handling signaling, setting up user sessions, tracking mobility, and enforcing policies.
+
+To do this for thousands or even millions of users at once, a network function needs to handle many tasks simultaneously. This is a classic concurrency challenge.
+
+💡 In 5G, the control plane doesn’t move data; it moves decisions. Concurrency allows those decisions to happen in parallel without slowing the system down.
+
+This is precisely why Go is the language of choice for building modern network functions. Its approach to concurrent programming is essential for creating the scalable control plane components needed for a 5G core. 
+
+In this section, you'll learn the fundamental Go patterns and primitives that allow you to build efficient and reliable network functions. Learning these skills is the first step toward becoming a 5G developer.
+
+### Concurrency programming in Go
+
+The most fundamental concept to understand is the **goroutine**, which is Go's lightweight approach to handling concurrent operations.
+
+#### Goroutines
+
+**Goroutines** are lightweight threads of execution that are managed by the Go runtime. They allow concurrent operations in Go to run independently, making them a key building block for scalable systems.
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func main() {
+    go func() {
+        fmt.Println("Hello, World!")
+    }()
+
+    time.Sleep(1 * time.Second)
+}
+```
+
+In this example, the **go** keyword launches a **goroutine** to print a message. Meanwhile, the main function waits briefly with time.Sleep to ensure the goroutine completes. This demonstrates that multiple operations can be active at the same time within a single program.
+
+💡 If you are interested in exploring similar concepts further, you can refer to free5GLab/lab1/.
+
+In free5GC, goroutines are used extensively throughout the control plane to handle signaling, requests, and responses concurrently, allowing the network to support thousands of users simultaneously.
+
+### Concurrency mechanisms in Go
+
+Now that you understand how to start concurrent operations using goroutines, the next skill is managing them. How do you safely pass data between goroutines or signals when a task is complete? Go provides several concurrency tools to handle these challenges.
+
+#### Channels
+
+Channels are Go's main concurrency tool, designed to let you pass data between goroutines safely without needing to use explicit locks or other complex synchronization.
+
+Here is a basic operation:
+
+```go
+ch := make(chan int)       // create unbuffered channel
+ch <- 5                    // send value to channel
+value := <-ch              // receive value from channel
+close(ch)                  // close channel
+```
+
+Here’s a short example for a channel in action:
+
+```go
+func main() {
+    c := make(chan bool)
+    go func() {
+        fmt.Println("free5GC so Good")
+        c <- true
+    }()
+    <-c
+}
+```
+
+In this example, the main function uses `<-c.` Due to the “blocking” characteristic of unbuffered channels, the `main` function must wait for the channel to read out a value before it terminates.
+
+This blocking behavior is just one of several channel patterns in Go. To understand how to apply them effectively, let’s look at the different types of channels.
+
+Other concepts: 
+
+#### Unbuffered channels:
+ - No capacity (default)
+ - Blocking on both send and receive
+ - Provides synchronization guarantees
+ - Sender blocks until receiver reads the value
+
+#### Buffered channels:
+ - Has capacity for storing values
+ - Non-blocking until buffer fills up
+ - Example: `ch := make(chan int, 3)` creates a channel with buffer size 3
+
+#### Unidirectional channels:  
+ - Separate channel operations to send-only or receive-only
+ - Example: `s, r := (chan<- int)(c), (<-chan int)(c)`
+ - Provides type safety for channel operations
+
+### Select
+
+Go also provides the **select** statement, which lets you wait on multiple channel operations simultaneously. This allows your program to react dynamically depending on which channel becomes ready first.
+
+Here’s a basic example of a select statement in Go:
+
+```go
+select {
+case v := <-ch1:
+    // handle data from ch1
+case ch2 <- x:
+    // sent x to ch2
+case <-time.After(1 * time.Second):
+    // timeout after 1 second
+default:
+    // runs if no channel is ready
+}
+```
+
+In practice, the select statement helps your program decide what to do based on which channel is ready first.
+
+Here are some of the key features of select:
+ - Works exclusively with channels
+ - Chooses randomly from ready cases
+ - Default case executes when no cases are ready
+ - Without default, it blocks until a case is ready
+
+We can also add a timeout pattern in select:
+
+```go
+select {
+case result := <-ch:
+    // process result
+case <-time.After(2 * time.Second):
+    // handle timeout
+}
+```
+
+### WaitGroup 
+
+WaitGroup synchronizes multiple goroutines, ensuring the main goroutine waits for all workers to complete. This makes it especially useful for tasks that must finish before the program can safely exit, such as handling multiple requests or processing jobs in parallel.
+
+Here’s a basic example of how to use a WaitGroup:
+
+```go
+var wg sync.WaitGroup
+
+wg.Add(n)    // add n tasks to wait for
+// launch goroutines
+wg.Done()    // mark a task as complete
+wg.Wait()    // block until all tasks complete
+```
+⚠️ Warning: Number of `wg.Done()` calls must match the total from `wg.Add()`:
+ - Too few `Done()` calls cause deadlocks
+ - Too many `Done()` calls cause panics
