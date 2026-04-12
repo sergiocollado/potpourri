@@ -1825,6 +1825,280 @@ By combining these layers with disciplined coding practices and thorough testing
 Together, they form the foundation of a modern, open source 5G Core.
 
 
+## Debugging free5GC
+
+Debugging is a critical skill for understanding and troubleshooting any complex system, and free5GC is no exception. Bugs that go undetected can cause crashes, security issues, wrong results, or degraded performance. Debugging helps you identify and fix these errors, ensuring the software works as intended and remains reliable, maintainable, and trustworthy. 
+
+In this chapter, you’ll explore tools and techniques that target different layers of the free5GC stack, from inspecting packet rules in the kernel to reading kernel logs, tracing functions, and debugging Go applications directly. Together, these methods provide a complete toolkit for diagnosing issues across both the control and data planes.
+
+### Debugging with go-gtp5gnl
+
+#### What Is gtp5g?
+
+gtp5g is a Linux kernel module specifically designed to handle 5G GTP-U (GPRS Tunneling Protocol – User Plane) traffic. You can think of it as a specialized driver inside the Linux kernel that manages the actual forwarding, encapsulation, and decapsulation of user data packets according to 5G standards.
+
+In free5GC, the User Plane Function (UPF) relies heavily on gtp5g to perform data plane operations efficiently at the kernel level.
+
+Before we look at how go-gtp5gnl interacts with the kernel, it’s important to understand the three types of rules that gtp5g uses to process packets.
+
+#### PDRs(Packet Detection Rules)
+
+PDRs determine how gtp5g detects incoming packets based on the five-tuples and related criteria. If a packet matches the PDR, then the gtp5g knows it belongs to a specific session flow. Other packet rules related to that PDR can then be applied to the packet.
+
+#### Forwarding Action Rules (FARs)
+
+Each FAR is tied to a specific PDR. Once a packet matches a PDR, the gtp5g applies the associated FAR to determine which “action” (forward, buffer, or drop?) to take for this packet.
+
+#### QoS Enforcement Rules (QERs)
+
+QERs determine the QoS (Quality of Service) for packets in a session. Each QER will be associated with a specific PDR (same as FAR). The gtp5g follows the QER to ensure the QoS is enforced for that specific session’s flow.
+
+Together, these rules shape how gtp5g classifies, forwards, and manages the quality of user traffic. Understanding them makes it easier to interpret what you see when debugging data plane issues.
+
+#### What Is go-gtp5gnl?
+
+go-gtp5gnl (https://github.com/free5gc/go-gtp5gnl) s a Go-based library that acts as a bridge between user-space applications (many of which are written in Go, like parts of the free5GC UPF) and the gtp5g Linux kernel module. The "nl" in its name stands for [netlink](https://docs.kernel.org/userspace-api/netlink/intro.html), which is a Linux kernel interface used for communication between kernel modules and user-space processes.
+
+In essence, go-gtp5gnl allows a user-space program to:
+ - **Configure gtp5g**: Send instructions to the gtp5g kernel module to create, modify, or delete the rules (PDRs, FARs, QERs) that gtp5g uses to process packets.
+ - **Query gtp5g**: Retrieve status information and current rule configurations from the gtp5g kernel module.
+
+The go-gtp5gnl repository typically includes a powerful command-line utility, often called gtp5g-tunnel, that leverages the go-gtp5gnl library to allow administrators and developers to interact directly with the gtp5g kernel module from the terminal.
+
+#### Using go-gtp5gnl for Debugging
+
+The gtp5g module exposes packet rules via netlink(opens in a new tab), but developers still need a CLI-based tool to inspect whether session rules have been applied correctly. This is where gtp5g-tunnel becomes especially useful.
+
+The gtp5g-tunnel command-line utility is a practical tool for debugging issues in the UPF's data plane. When you suspect issues in how user traffic is being handled, such as packets being dropped, routed incorrectly, or not receiving expected QoS, gtp5g-tunnel allows you to view the actual GTP-U rule state in the kernel.
+
+For example, you can list current PDRs with:
+
+```
+sudo gtp5g-tunnel list pdr
+```
+
+This gives you visibility into how the kernel is processing user traffic and helps confirm whether control plane instructions have translated into correct data plane rules.
+
+💡 Checking kernel rules with gtp5g-tunnel can quickly rule out data plane misconfiguration.
+
+Together, gtp5g and go-gtp5gnl form the foundation of free5GC’s data plane debugging. gtp5g handles packet processing inside the kernel, while go-gtp5gnl and its gtp5g-tunnel utility provide the user-space tools needed to inspect and troubleshoot that packet-handling logic directly from user space.
+
+### Debugging with dmesg
+
+#### What Is dmesg?
+
+`dmesg` (short for “display message”) is a command-line utility found on most Unix-like operating systems, including Linux. It displays the kernel ring buffer, a special data structure that stores messages logged by the Linux kernel as well as messages from device drivers.
+
+💡 `dmesg` gives you visibility into kernel-level events that user-space logs often miss.
+
+#### How is dmesg Useful for Debugging free5GC?
+
+In free5GC, dmesg is an invaluable tool for debugging issues that originate from or affect the kernel level. It is especially helpful when working with:
+
+#### gtp5g Kernel Module
+ - Loading/Unloading Issues: If the gtp5g module fails to load or encounters errors during initialization, dmesg will typically contain error messages detailing the problem.
+ - Operational Errors: If gtp5g encounters internal errors while processing packets or managing rules (PDRs, FARs, QERs), it may log messages to the kernel ring buffer. These can provide clues that user-space tools might not see.
+ - Resource Conflicts: Issues such as memory allocation failures or conflicts with other kernel components related to gtp5g operations may occur here.
+
+#### Network Interfaces
+ - Interface Status: Messages related to network interfaces (e.g., upfgtp, or physical interfaces used for N3/N6) coming up or down, link detection issues, or driver errors for the NICs (Network Interface Cards).
+ - Packet Drops / Driver-Level Errors: Some low-level packet errors detected by network drivers might be logged here.
+
+
+#### How to Use dmesg and What to Look For?
+
+Knowing that dmesg logs kernel and driver activity is only half the story. The real skill is learning how to read it effectively. Let’s explore some practical ways to use dmesg when debugging free5GC.
+
+#### Basic Usage
+To display all messages in the kernel ring buffer:
+
+```
+dmesg
+```
+
+#### Following New Messages (Live Debugging)
+To see messages as they are logged by the kernel in real-time (similar to tail -f for a file):
+
+```
+dmesg -w
+```
+
+#### Filtering Output
+Search for gtp5g-related messages:
+```
+dmesg | grep gtp5g
+```
+Search for common error types:
+
+```
+dmesg | grep -i "error"
+dmesg | grep -i "warning"
+```
+
+#### Timestamps
+By default, dmesg messages might have timestamps relative to boot time. To get more human-readable timestamps, you can use:
+
+```
+dmesg -wT
+```
+
+To see how `dmesg` fits into real troubleshooting, let’s walk through a common situation.
+
+#### Example: Debugging a UPF Startup Issue
+Imagine your UPF has just started, but UEs are unable to establish PDU sessions, and no traffic is flowing.
+
+Here’s a simple workflow you can follow when debugging UPF startup issues.
+
+#### 1 Start Monitoring Kernel Logs
+
+Before starting the UPF (or when the issue occurs), open a terminal and run:
+```
+dmesg -wT
+```
+This lets you monitor kernel messages in real time.
+
+#### 2 Reproduce the Problem
+
+Start the UPF or trigger the problematic behavior (such as a UE attempting to connect).
+
+#### 3 Watch for Key Events
+Observe the dmesg output in real-time and look for signs of trouble, including:
+ - gtp5g loading or initialization failures.
+ - Errors when the UPF attempts to create the GTP interface.
+ - Any errors reported by the gtp5g module when PDRs/FARs are being programmed (though the go-gtp5gnl section covers user-space tools for this, kernel errors might appear here).
+ - Network interface errors for N3 or N6 interfaces.
+ - Memory allocation errors or other critical kernel messages.
+
+By following these steps, you can quickly confirm whether the problem lies in the kernel, the gtp5g module, or the network interfaces. dmesg acts as an early warning system, giving you low-level visibility that user-space tools may miss.
+
+
+### Debugging with eBPF
+
+#### What Is eBPF?
+eBPF (extended Berkeley Packet Filter) is a powerful Linux kernel technology that allows programs to run safely and efficiently inside the kernel without modifying its source code or loading kernel modules.
+
+Originally designed for packet filtering, eBPF has evolved into a general-purpose framework for observability, networking, and security.
+
+#### Example: Observing Which Network Device Handle the Socket Buffer
+
+The blog post "Debug gtp5g kernel module using stack trace and eBPF"(opens in a new tab) gives an example of troubleshooting the kernel module with eBPF techniques.
+
+Linux uses FTrace for kernel tracing, which allows you to attach programs to specific kernel functions. You can list all available functions with:
+
+```
+sudo cat /sys/kernel/tracing/available_filter_functions
+```
+If you select the function gtp5g_encap_recv to be traced, you can write an eBPF program using the fentry/ prefix. It will look like:
+
+```
+#include "vmlinux.h"
+#include <bpf_tracing.h>
+#include <bpf_helpers.h>
+
+SEC("fentry/gtp5g_encap_recv")
+int BPF_PROG(gtp5g_recv, struct sock *sk, struct sk_buff *skb)
+{
+    if (!skb->dev) {
+        bpf_printk("device doesn't exist");
+    }
+    bpf_printk("device name: %s", skb->dev->name);
+    return 0;
+}
+
+char _license[] SEC("license") = "GPL";
+```
+
+The eBPF program with the fentry/ prefix indicates that this program will always be executed before the gtp5g module goes through the gtp5g_encap_recv function.
+
+Here are some additional tips for eBPF program development:
+ - The parameters of BPF_PROG must match the parameters of the function being traced (for example, gtp5g_encap_recv).
+ - The example prints the network device name whenever the kernel thread enters the filtered function.
+ - You can view output from the eBPF program using:
+
+```
+sudo cat /sys/kernel/debug/tracing/trace_pipe
+```
+
+#### Attach the eBPF program
+There are several common ways to attach an eBPF program to kernel hooks:
+ - Write a C program with [libbpf](https://github.com/libbpf/libbpf).
+ - Write a C program that calls the eBPF skeleton APIs. To generate the skeleton file, use: `bpftool gen skeleton main.bpf.o > main.skeleton.h`
+ - Write a Python program with [bcc](https://github.com/iovisor/bcc).
+
+### Debugging with Delve
+
+#### What is Delve?
+
+[Delve]([opens in a new tab](https://github.com/go-delve/delve)) is a debugger designed specifically for the Go programming language. Although Go has native support for GDB, Delve is generally the better choice for debugging programs built with the standard Go toolchain because it integrates more deeply with Go’s runtime and features.
+
+In this section, you’ll walk through how to use Delve to debug the NRF step by step.
+
+#### Installation and Start
+
+To install Delve, use the following command: `go install github.com/go-delve/delve/cmd/dlv@latest` 
+
+You can start debugging a specific Go program with: `dlv debug main.go`
+
+#### Breakpoints
+
+Sometimes, the developer can’t find the root cause of the system failure based on the log and pcap files. In these cases, observing all variables and steps during system runtime can be more effective.
+
+Breakpoints allow you to pause execution at specific points in the code. You can set breakpoints before running the program. 
+
+For example, to set a breakpoint on the function named action in the main package: `break main.action` 
+
+Alternatively, you can set a breakpoint by line number:`break nrf/cmd/main.go:43`
+
+You can also set conditional breakpoints, which stop only when a specified condition is met: `break nrf/cmd/main.go:46 if err != nil`
+
+To view all breakpoints: `breakpoints`
+
+To delete a specific breakpoint: `clear`
+
+To delete all breakpoints: `clearall`
+
+Breakpoints give you precise control over program execution, making it easier to isolate where unexpected behavior begins and understand the state of the system at that moment.
+
+#### Continue, Next, Step
+
+Breakpoints instruct the system when to interrupt the process. When the CPU reaches a line of code with a breakpoint, the process halts until the user allows it to continue running.
+
+These commands control how execution resumes after a breakpoint.
+
+#### c or continue
+
+This resumes execution until the next breakpoint. If no further breakpoints are set, the program will run until it terminates.
+
+#### n or next 
+
+This executes the current line and pauses at the next one. If the current line contains a function call, Delve will execute the entire function but will not step into it.
+
+#### s or step
+
+Behaves similarly to next, but with one key difference: if the current line includes a function call, Delve steps into the function and pauses at its first line.
+
+💡 `next` stays on the current level of the call stack, while `step` moves into function calls.
+
+#### Inspecting Variables
+
+When debugging, it is often necessary to check whether the variable values are as expected.
+
+Use the following commands:
+ - `args`: Lists all arguments passed to the current function.
+ - `p` or `print`: Prints the value of a specific variable.
+ - `locals`: Prints all local variables in the current stack frame.
+
+#### More Commands
+
+These are some of the most commonly used commands when debugging with Delve. For more advanced features and commands, refer to the [Delve Documentation]([opens in a new tab](https://github.com/go-delve/delve/blob/master/Documentation/cli/README.md).
+
+### Bringing It All Together
+
+Debugging in free5GC requires looking at issues from multiple angles. Tools like go-gtp5gnl help verify whether packet rules are correctly programmed in the kernel, while dmesg surfaces kernel-level errors and resource issues. eBPF adds powerful tracing capabilities for observing packet flow inside the kernel, and Delve allows you to pause execution and inspect Go code step by step.
+
+Used together, these tools provide developers with a complete picture of both control-plane and data-plane behavior, making it possible to diagnose problems efficiently and build a more reliable 5G core.
+
+💡 Each tool uncovers a different layer of the system. Using them together provides complete visibility.
 
 
 
