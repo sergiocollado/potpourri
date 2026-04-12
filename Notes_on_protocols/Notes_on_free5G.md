@@ -1603,5 +1603,226 @@ For more information about this example, you can refer to the corresponding test
 
 ## Performance in the data plane
 
+Having covered the engineering disciplines for building and verifying reliable control plane components, we now shift our focus to a different but equally critical challenge: the data plane.
+
+While the control plane is concerned with the logic of signaling and session management, the data plane has one primary mission: forwarding user traffic with maximum speed and minimum latency.
+
+To achieve this level of performance, development moves from standard user-space applications into the environment of the Linux kernel, where high-speed packet handling takes place.
+
+💡 The control plane manages decisions. The data plane handles delivery. Together, they form the complete 5G core.
+
+#### Linux Kernel Networking for 5G
+
+Unlike the control plane, which runs primarily in user space and focuses on signaling, the data plane must process every user packet at extremely high speed. To meet this requirement, free5GC integrates tightly with the Linux kernel.
+The Linux kernel provides two essential integration points for free5GC’s data plane:
+ - **Netfilter**: Used for packet filtering and traffic control at the kernel level.
+ - **GTP tunneling interfaces**: Provide encapsulation and decapsulation for user plane traffic, enabling the separation of signaling and data paths.
+
+For optimal performance, modern enhancements extend these capabilities:
+ - **eBPF with XDP**: Offers ultra-low latency packet processing directly in the kernel.
+ - **BPF maps**: Provide fast in-kernel storage of session data, especially useful when implementing UPF components.
+
+By combining these mechanisms, free5GC achieves both flexibility and performance, ensuring the data plane can handle demanding 5G workloads like high-definition video and low-latency applications.
+
+
+#### Netlink Family Development
+
+Netlink plays a critical role in free5GC by providing communication between control plane components running in user space and data plane functionality implemented in kernel modules.
+
+When a PDU session is established:
+ - The SMF component determines the traffic policies.
+ - The UPF translates those policies into specific packet processing rules.
+ - These rules are transmitted via Netlink messages to kernel modules.
+
+#### Netlink Communication Types in free5GC
+free5GC utilizes two primary netlink communication approaches: Rtnetlink and Generic Netlink.
+
+#### Rtnetlink
+
+Used for network device configuration operations, specifically:
+ - Creating new GTP tunnel network devices (gtp0, gtp1, etc.)
+ - Configuring device properties such as MTU, addresses, and flags
+ - Setting up IP addresses on interfaces
+ - Establishing routing rules for user plane traffic
+
+#### Generic Netlink
+
+Used for custom message passing between user space and kernel, specifically:
+ - Transmitting PDR (Packet Detection Rules) information from go-upf to gtp5g
+ - Delivering FAR (Forwarding Action Rules) configurations to kernel modules
+ - Communicating QER (QoS Enforcement Rules) parameters
+ - Sending URR (Usage Reporting Rules) for data accounting
+
+#### Division of resposnabilities
+
+These two Netlink types serve distinct but complementary roles: 
+ - **Rtnetlink** acts as the foundational setup tool. It's responsible for creating and configuring the network infrastructure itself, such as building GTP tunnel interfaces and establishing the necessary IP routes.
+ - **Generic Netlink** programs the specific, dynamic traffic-handling policies onto that infrastructure. It delivers session-level rules like Packet Detection Rules (PDRs) and Forward Action Rules (FARs) that instruct the kernel on how to identify, process, and forward a user's packets.
+
+Together, they provide a complete mechanism for the user-space UPF to control the data plane operating in the kernel, combining infrastructure setup with dynamic rule management.
+
+💡 Netlink connects the control and data planes, allowing the UPF to configure and update kernel-level packet processing dynamically, without interrupting live traffic.
+
+### Kernel Module and Usage in UPF
+
+The **gtp5g** module serves as the primary library for GTP-U operations in free5GC’s data plane.
+It provides an abstraction layer over Netlink communications, allowing developers to work with 3GPP-defined concepts rather than raw Netlink messages.
+
+Through **gtp5g**, the User Plane Function (UPF) can manage:
+ - PDRs (Packet Detection Rules) for identifying specific traffic flows
+ - FARs (Forwarding Action Rules) for determining packet handling
+ - QERs (QoS Enforcement Rules) for implementing traffic management
+
+The gtp5g kernel module receives these Netlink commands and implements the GTP protocol handling.
+Its responsibilities include:
+ - Tunnel managemen•
+ - Packet encapsulation and decapsulation
+ - Forwarding packets based on configured rules
+
+In the user space, **go-upf** builds upon gtp5g to implement the complete UPF. It manages session contexts and translates N4 interface instructions from the SMF into appropriate Netlink commands for the kernel modules.
+
+For network interface configuration, free5GC uses Rtnetlink to dynamically:
+ - Set up and manage GTP tunnel interfaces
+ - Assign IP addresses
+ - Configure routing rules
+
+This ensures proper traffic handling between the core network and access networks.
+
+💡 The combination of go-upf and gtp5g creates a powerful bridge between user-space logic and kernel-level packet handling, enabling high-speed data forwarding in 5G networks.
+
+With these components in place, we can now look at how they work together in practice. 
+
+### Netlink Usage Flow in free5GC: A Practical Example
+
+This walkthrough shows how a PDU session request moves from the control plane to the data plane, step by step, until the kernel is ready to forward live traffic.
+
+#### Example: PDU Session Establishment Flow
+
+#### 1. Control Plane Initialization
+
+The process begins when a UE sends a request for a PDU session. The AMF forwards this request to the appropriate SMF, which processes the request, determines the necessary traffic policies (like QoS and routing), and sends these instructions to the UPF in an N4 Session Establishment Request message.
+
+Key Steps:
+ - A UE requests a PDU session through AMF
+ - AMF forwards the request to the SMF
+ - SMF defines policies and sends an N4 Session Establishment Request to UPF
+
+#### 2. go-upf Processing (User Space)
+
+The user-space UPF receives the N4 request and translates the SMF’s high-level policies into low-level rules that the Linux kernel can enforce. This involves creating PDRs and FARs using the gtp5g library.
+
+```go
+// UPF receives session establishment request from SMF
+func (u *UPF) HandleN4SessionEstablishment(req *n4.SessionEstablishmentRequest) {
+    // Create session context
+    sess := NewSession(req.SEID)
+    
+    // Create PDR for uplink traffic
+    pdr := gtp5g.NewPDR()
+    pdr.SetID(1)
+    pdr.SetPrecedence(255)
+    pdr.SetOuterHeaderRemoval(0) // Remove GTP-U header
+    
+    // Create FAR to forward traffic
+    far := gtp5g.NewFAR()
+    far.SetID(1)
+    far.SetForwardingParameters(...)
+    
+    // Associate PDR with FAR
+    pdr.SetFAR(far)
+    
+    // Use netlink to configure kernel module
+    u.gtp5gTunnel.CreatePDR(pdr)
+    u.gtp5gTunnel.CreateFAR(far)
+}
+```
+
+#### 3. Netlink Communication Layer
+
+Inside the gtp5g library, the PDR and FAR objects are converted into raw binary Netlink messages. The messages are then transmitted to the kernel through a Netlink socket.
+
+```go
+// Inside go-gtp5g library
+func (c *Client) CreatePDR(pdr *PDR) error {
+    // Prepare netlink message
+    msg := netlink.NewGenlMessage()
+    msg.Header.Command = gtp5g.CMD_ADD_PDR
+
+    // Add PDR attributes to message
+    msg.AddAttribute(gtp5g.ATTR_PDR_ID, pdr.ID)
+    msg.AddAttribute(gtp5g.ATTR_PDR_PRECEDENCE, pdr.Precedence)
+    // Add more attributes...
+
+    // Send message to kernel via netlink socket
+    _, err := c.conn.Execute(msg)
+    return err
+}
+```
+
+#### 4. Kernel Module Processing
+
+Within the kernel, the gtp5g module receives the Netlink message, extracts attributes like PDR ID and precedence, allocates kernel memory, and stores the rules in a hash table for fast lookups during live packet processing.
+
+```go
+// Inside gtp5g kernel module
+static int gtp5g_genl_add_pdr(struct sk_buff *skb, struct genl_info *info)
+{
+    struct gtp5g_pdr *pdr;
+    u16 id, precedence;
+
+    // Extract information from netlink message
+    id = nla_get_u16(info->attrs[GTP5G_ATTR_PDR_ID]);
+    precedence = nla_get_u16(info->attrs[GTP5G_ATTR_PRECEDENCE]);
+
+    // Allocate and configure PDR in kernel
+    pdr = kzalloc(sizeof(*pdr), GFP_KERNEL);
+    pdr->id = id;
+    pdr->precedence = precedence;
+
+    // Store PDR in hash table for packet processing
+    hlist_add_head_rcu(&pdr->hlist_id,
+                       &gtp->pdr_id_hash[pdr_id_hash(pdr->id)]);
+
+    return 0;
+}
+```
+
+#### 5. Data Plane Operation
+
+With the rules now programmed into the kernel, the data plane is active and ready to process live traffic at high speed.
+
+When a GTP packet arrives at the interface:
+ - The kernel module examines the packet
+ - It matches against configured PDRs
+ - Applies the associated FAR actions (decapsulate, forward, etc.)
+ - Processes the packet according to any QERs (rate limiting, etc.)
+
+All this happens at the kernel level without returning to user space.
+
+#### 6. Runtime Updates
+
+This Netlink communication channel isn’t just for session setup; it’s also used for dynamic changes during the session’s lifetime.
+
+If the UE moves or QoS requirements change:
+ - SMF sends an update to UPF
+ - UPF uses Netlink to modify existing rules in the kernel
+ - Packet processing adapts immediately without disruption.
+
+💡 Netlink enables free5GC to program and update kernel-level packet rules dynamically, keeping the data plane both high-speed and adaptable to network changes.
+
+This coordination between the user space and the kernel is what allows the 5G data plane to operate efficiently. Together, they form a foundation for reliable, real-time traffic handling in the 5G Core.
+
+
+### Bringing It All Together
+
+In free5GC, the control plane and data plane are engineered as complementary systems. The control plane, built with Go’s concurrency features, handles signaling, session management, and policy enforcement at scale. The data plane, powered by kernel modules and Netlink communication, translates those high-level policies into fast, reliable packet forwarding.
+
+By combining these layers with disciplined coding practices and thorough testing, developers can implement 5G core functions that are both efficient and dependable. This integration ensures that user traffic flows seamlessly while the network maintains the flexibility and reliability expected of carrier-grade infrastructure.
+
+💡 The control plane makes the decisions. The data plane delivers the results.
+Together, they form the foundation of a modern, open source 5G Core.
+
+
+
 
 
