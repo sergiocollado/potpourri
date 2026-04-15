@@ -34,6 +34,7 @@ Interesting repos:
  - https://github.com/open5Gcube/open5Gcube - open5Gcube is a Modular Framework for Mobile Network Laboratories. It builds and manages open-source mobile network stacks
  - https://github.com/aligungr/UERANSIM - open source state-of-the-art 5G UE and RAN (gNodeB) simulator.
  - https://github.com/free5gc/free5gc - The free5GC is an open-source project for 5th generation (5G) mobile core networks. Written in Golang.
+ - https://github.com/omec-project - Aether is an open source 5G platform designed for the edge. It includes a cloud native Mobile Core (SD-Core) and an O-RAN compliant RIC (SD-RAN), both running on a Kubernetes-based edge cloud.
  - https://hub.docker.com/r/gradiant/open5gshttps://hub.docker.com/r/gradiant/open5gs - 
  - https://open5gs.org/
  - https://github.com/jdegre/5GC_APIs
