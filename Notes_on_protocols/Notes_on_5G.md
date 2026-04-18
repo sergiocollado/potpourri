@@ -354,17 +354,31 @@ This gives us a SUCI that is typically 400 bits long, ​which can be compared t
 
 What are the differences between 4G and 5G ​when it comes to authentication? ​That's what we will look at in this video. ​The general principle of authentication does not ​change in 5G compared to previous generations. ​Authentication is based on a long term symmetric key. ​In other words, it's stored both in the SIM card and in the ​ARPF ​This key is of course ​specific to each subscriber. ​The home network generates 128 bit random number. ​This number is used by the sim card ​to calculate a signed result ​RES based on the long term key. 
 
+![UE_authentication](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/UE_authentication_1.png)
+
 ​The same calculation is done by the home network. ​An expected result called XRES is calculated and ​if there is a difference between the two, ​it means that the subscriber does not have the long term key that he or ​she tried to take a random key and therefore the UE ​is rejected. ​If RES equals XRES, then the subscriber is accepted. ​This is the authentication of the UE. Network ​authentication is also carried out with a similar ​principle. Specifically, the UE authenticates ​the network by computing an authentication token. ​As far as network authentication is concerned, ​there is no change in 5G compared to 4G. 
 ​
+![UE_authentication](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/UE_authentication_2.png)
+
 On the other hand, for UE ​authentication, there is an evolution: ​there is no a primary trust in the visited network and ​it's the home network that always verifies that ​the expected result and the result written by the ​UE are the same. ​Also the signed result is linked to ​the identity of the visited network ​from the country code MCC ​and the network code MNC. ​We create a string ending with .3gppnetwork.org ​and this constitutes the serving network identity. ​The visited network does indicates its identity to the home network ​and the function that calculates the expected ​result uses this serving network identity as input. ​More precisely, the network sends the RAND to the terminal and ​the terminal sends RAND to the SIM card. ​The SIM card calculates the result. Because it ​does not necessarily know the visited network, ​the first result it does is independent of the visited network, ​and from this first result we calculate ​a 2nd result called RES*, ​Which depends on the visited network. 
+
+
+![UE_authentication](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/UE_authentication_3.png)
+
 
 ​We have two functions f1 and ​f2 which are applied successively and ​the same thing on the network side. ​If the results are the same, ​we accept the UE. ​If they are different, we reject it. ​Two procedures are available for authentication. ​These procedures are called AKA for ​"Authentication and Key Agreement" because ​with the same round in addition to XRES*, ​we also generate ciphering keys. ​The first procedure is called 5G-AKA. ​It's a procedure that is specific to the 5G network and ​it is optimized. With standard IETTF protocols ​We can also use a procedure called EAP AKA'. EAP stands for ​"Extensible Authentication Protocol", which is an IETF protocol. 
 
 ​The common thread is that in every case ​authentication is made by the home network. ​The objective of 5G-AKA is to eliminate ​illegal access in the visited network. ​It's also a way to prevent Denial Of Service known as DOS, ​at least to minimize the DOS risk. ​So, what is the solution? ​The solution is to calculate a hash from XRES*. ​This hash is called HXRES* and ​is provided to the visited network. ​The authentication is ultimately done by the home network. 
 
+
+![UE_authentication](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/UE_authentication_4.png)
+
 ​Let's see how it works. ​The visited network indicates its identity: SN ID ​for Serving Network IDentity. ​The expected result XRES* is ​calculated using a random number RAND and ​from XRES* and the same random number ​the HRES* (the hash) is calculated. ​As before, the whole network ​sends the RAND to the SIM card and ​sends the HXRES* to the visited network. ​When the UE sends ​RES* back, the visited ​network is able to calculate ​HRES* using the same hash function ​from RAND and RES*. ​If there is a difference, access is immediately ​denied to the UE ​that requested it. ​If they are the same, we can continue: ​the visited network sends back ​the RES* (the value it has received) and ​the home network makes sure that the expected result ​XRES* star is the same as the RES* sent ​by the UE. Note that this expected result ​XRES* is never transmitted ​to the visited network but ​instead remains in the home network. 
 
 ​In conclusion, in 5G, ​we have mutual authentication like in 4G ​based on the long term symmetric key with ​a challenge-response type exchange. ​In previous generations, we trusted other networks ​delegating authentication to the visited network and ​sometimes we reserved authentication vectors. ​For 5G, the constraint is security. ​There is still mutual authentication, but ​it's done by the home network and more precisely ​by the AUSF, ​and it's forbidden to make reserves of authentication vectors. ​There are two protocols: ​5G-AKA, which has a hashing mechanism to allow ​the visited network to reject illegal access, ​and EAP-AKA', which reuses the IETF Protocols. 
+
+
+![UE_authentication](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/UE_authentication_5.png)
 
 
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
