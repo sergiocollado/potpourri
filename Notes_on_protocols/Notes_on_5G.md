@@ -306,11 +306,12 @@ In conclusion, the network functions ​that ensure security are ​the UDM beca
 
 
 Acronims: 
-- SUPI: SUbscription Permanent ​Identifier
 - MCC: Mobile Country Code
 - MNC: Mobile Network Code
 - MSIN: Mobile ​Subscriber Identification Number
 - IMSI: International Mobile ​Subscriber Identifier. IMSI = MCC + MNIC + MSIN
+- SUPI: SUbscription Permanent ​Identifier
+- SUCI: Subscription Concealed Identifier
 
 The **SUPI** or "SUbscription Permanent ​Identifier" is the globally unique permanent ​identifier of UE in a 5G network. ​Quite often, the SUPI is an IMSI or "International Mobile ​Subscriber Identifier" which was defined in previous generations. ​Keeping the IMSI simply allows interworking for ​example with 4G networks but also 3G and 2G networks. ​The IMSI is formed by a network ​identity which is itself made ​up of a "Mobile Country Code" (MCC) and ​a "Mobile Network Code" (or MNC). 
 
