@@ -304,9 +304,17 @@ In conclusion, the network functions ​that ensure security are ​the UDM beca
 
 ## How to identify an UE without transmitting its permanent indentity in clear text over radio?
 
-The **SUPI** or "SUbscription Permanent ​Identifier" is the globally unique permanent ​identifier of UE in a 5G network. ​Quite often, the SUPI is an IMSI or "International Mobile ​Subscriber Identifier" which was defined in previous generations. ​Keeping the IMSI simply allows interworking for ​example with 4G networks but also 3G and 2G networks. ​The IMSI is formed by a network ​identity which is itself made ​up of a "Mobile Country Code" (MCC) and ​a Mobile Network Code (or MNC). 
 
-​Each operator assigns to each subscriber ​a serial number known as the Mobile ​Subscriber Identification Number or ​MSIN, which is unique in its network. ​When a user travels abroad, I mean, ​in the case of international roaming, at the network request ​the UE indicates its permanent identifier, the IMSI. ​Why is this? ​Because it is generally not possible to route the attachment ​request correctly using the temporary identity also known as the GUTI. ​What is done with IMSI? ​In the visited network, ​there is an analysis of the Mobile Country Code and ​the Mobile Network Code in order to route to the right home network. ​But in the home network, ​there may be several HSS databases. 
+Acronims: 
+- SUPI: SUbscription Permanent ​Identifier
+- MCC: Mobile Country Code
+- MNC: Mobile Network Code
+- MSIN: Mobile ​Subscriber Identification Number
+- IMSI: International Mobile ​Subscriber Identifier. IMSI = MCC + MNIC + MSIN
+
+The **SUPI** or "SUbscription Permanent ​Identifier" is the globally unique permanent ​identifier of UE in a 5G network. ​Quite often, the SUPI is an IMSI or "International Mobile ​Subscriber Identifier" which was defined in previous generations. ​Keeping the IMSI simply allows interworking for ​example with 4G networks but also 3G and 2G networks. ​The IMSI is formed by a network ​identity which is itself made ​up of a "Mobile Country Code" (MCC) and ​a "Mobile Network Code" (or MNC). 
+
+​Each operator assigns to each subscriber ​a serial number known as the "Mobile ​Subscriber Identification Number" or ​MSIN, which is unique in its network. ​When a user travels abroad, I mean, ​in the case of international roaming, at the network request ​the UE indicates its permanent identifier, the IMSI. ​Why is this? ​Because it is generally not possible to route the attachment ​request correctly using the temporary identity also known as the GUTI. ​What is done with IMSI? ​In the visited network, ​there is an analysis of the Mobile Country Code and ​the Mobile Network Code in order to route to the right home network. ​But in the home network, ​there may be several HSS databases. 
 
 IMSI = MNC + MCC + MSIN
 
