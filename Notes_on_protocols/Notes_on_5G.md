@@ -310,6 +310,10 @@ The **SUPI** or "SUbscription Permanent ​Identifier" is the globally unique pe
 
 IMSI = MNC + MCC + MSIN
 
+
+![IMSI](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_IMSI.PNG)
+
+
 ​HSS means "Home Subscriber Server" in the case of 4G. ​And we can have several UDM instances in the case of 5G. ​Each HSS or UDM instance, ​manages a range of MSIN numbers. ​Therefore, in the home network, the first digits of MSIN or ​in other words the most significant bits ​must be analyzed to route to the right HSS, ​namely the one that manages the subscriber. ​Our objective is to disguise the SUPI by creating a SUCI or ​Subscription Concealed Identifier, ​but we must be able to continue routing ​in the case of international roaming. ​For this to be possible, the MNC and ​MCC remain in clear text and ​only the MSIN will be encrypted. ​Since 2G, security procedures have been based on asymmetric key. 
 
 ​This means that the same subscriber ​specific key K is stored in the SIM card and ​in the security database. ​In 5G, it's the ARPF. ​Each subscriber has their own key. ​When there is an attachment request, ​the AMF, for example, makes a request for ​a security vector for the IMSI. ​From the knowledge of the MSIN contained ​in the IMSI, we can determine the key K and ​generate the encryption key that is ​therefore specific to the requesting UE. ​If we encrypt the IMSI from ​the key K we would have a version ​of the encrypted MSIN. ​To decrypt, we need access to the key ​K which requires the MSIN in clear text. 
