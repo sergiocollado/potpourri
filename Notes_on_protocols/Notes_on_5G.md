@@ -379,6 +379,7 @@ On the other hand, for UE ​authentication, there is an evolution: ​there is 
 
 ![UE_authentication](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/UE_authentication_5.png)
 
+5G-AKA (Authentication and Key Agreement) is the primary, mandatory authentication protocol for 5G networks, specified in 3GPP TS 33.501. It enables mutual authentication between the User Equipment (UE) and the home network (HN), providing security for 5G services, subscriber identity privacy via encrypted SUPI (Subscription Permanent Identifier), and key agreement for session encryption.
 
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
 
