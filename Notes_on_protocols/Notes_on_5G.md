@@ -352,7 +352,7 @@ This gives us a SUCI that is typically 400 bits long, ​which can be compared t
 
 ## UE Authentication
 
-What are the differences between 4G and 5G ​when it comes to authentication? ​That's what we will look at in this video. ​The general principle of authentication does not ​change in 5G compared to previous generations. ​Authentication is based on a long term symmetric key. ​In other words, it's stored both in the SIM card and in the ​ARPF ​This key is of course ​specific to each subscriber. ​The home network generates 128 bit random number. ​This number is used by the sim card ​to calculate a signed result ​RES based on the long term key. 
+What are the differences between 4G and 5G ​when it comes to authentication? The general principle of authentication does not ​change in 5G compared to previous generations. ​Authentication is based on a long term symmetric key. ​In other words, it's stored both in the SIM card and in the ​ARPF ​This key is of course ​specific to each subscriber. ​The home network generates 128 bit random number. ​This number is used by the sim card ​to calculate a signed result ​RES based on the long term key. 
 
 ![UE_authentication](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/UE_authentication_1.png)
 
