@@ -470,15 +470,15 @@ Let's look at some examples of operations. ​The simplest operation is reading.
 
 ​So, it places the name of the API ​in the URI, which in this case is nudm-sdm, ​and specifies that he wants ​the profile linked to sessions. ​The UDM consults the subscriber profile and ​responds with a 200 OK message in ​which it will place the subscriber ​profile related to the PDU sessions. ​Here, we have an example of an **idempotent operation**: ​if several successive GETs are done with ​the same URI, the response should be the **same**.
 
-​Let's look at an example of a create operation. ​Creation is done with a PUT or POST method. ​Let's consider the case of a UE that registers in the network. ​The fact that this UE is reachable and ​that it is in a certain tracking area is taken care ​by the UDM with the "context management" service. 
+​Let's look at an example of a create operation. ​Creation is done with a `PUT` or `POST` method. ​Let's consider the case of a UE that registers in the network. ​The fact that this UE is reachable and ​that it is in a certain tracking area is taken care ​by the UDM with the "context management" service. 
 
 
 ![API_3](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_API_3.png)
 
 
-​It is therefore a resource in the UDM. ​The URI of the resource created and sent ​In the response is precisely in the HTTP location header ​The URI still has the same format ​(we won't go back to it) ​and the AMF in order to request the creation ​of the resource does PUT, indicates the URI. 
+​It is therefore a resource in the UDM. ​The URI of the resource created and sent ​In the response is precisely in the HTTP location header ​The URI still has the same format ​(we won't go back to it) ​and the AMF in order to request the creation ​of the resource does `PUT`, indicates the URI. 
  
- ​The UDM creates the resource and ​the whole URI is returned in the response. ​Let's look at some possible errors. ​If the SUPI is not known or it doesn't ​correspond to a subscriber, at this point the ​UDM will return "404 Not Found" response. ​If there are access restrictions, for example, ​if the terminal is not allowed to access this AMF or ​to be in the tracking area, it will get a "403 Forbidden" response. 
+ ​The UDM creates the resource and ​the whole URI is returned in the response. ​Let's look at some possible errors. ​If the SUPI is not known or it doesn't ​correspond to a subscriber, at this point the ​UDM will return `404 Not Found` response. ​If there are access restrictions, for example, ​if the terminal is not allowed to access this AMF or ​to be in the tracking area, it will get a "403 Forbidden" response. 
   
 ​Another example of creation is: setting up a PDU session. 
 
@@ -497,7 +497,7 @@ When the UE ends the PDU session, ​the resource must be deleted. ​This is do
 ​The SDM deletes the resource and ​with the resource being correctly deleted ​we have a positive 200 type response. 
 
 
-​Now, let's see some examples of updates. ​Updates are done with a PUT or a POST method. ​We consider, for example, ​the mobility of UE: a UE changes AMF. ​Here, we have what is considered a major modification of the resource. ​A PUT is sent with the URI of the resource. ​The resource is updated and ​a `204 no content` is returned. 
+​Now, let's see some examples of updates. ​Updates are done with a `PUT` or a `POST` method. ​We consider, for example, ​the mobility of UE: a UE changes AMF. ​Here, we have what is considered a major modification of the resource. ​A `PUT` is sent with the URI of the resource. ​The resource is updated and ​a `204 no content` is returned. 
 
 
 ![API 6](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5G_API_6.png)
@@ -512,15 +512,17 @@ When the UE ends the PDU session, ​the resource must be deleted. ​This is do
 
 ![API 8](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5G_API_8.png)
 
-Well, in fact, no because the resource did not exist beforehand. ​So, a **POST^ is specified. ​A specific URI is indicated to ​the UDM with the supi or suci. ​A fresh authentication vector is generated, which ​is returned in the 200 OK response with positive response. ​This is not a CRUD operation and it's **not idempotent**. ​Why is it not idempotent? ​Because if the AUSF sends a second request for ​a vector, obviously, ​a different vector is going to be returned. 
+Well, in fact, no because the resource did not exist beforehand. ​So, a **POST** is specified. ​A specific URI is indicated to ​the UDM with the supi or suci. ​A fresh authentication vector is generated, which ​is returned in the 200 OK response with positive response. ​This is not a CRUD operation and it's **not idempotent**. ​Why is it not idempotent? ​Because if the AUSF sends a second request for ​a vector, obviously, ​a different vector is going to be returned. 
 
 ​Clearly, there is **no idempotent** in this example. ​More generally **POST commands are not idempotent**. 
 
 
+​The set of methods, ​the set of URIs that are provided by an NF ​is specified with the open API 3.0 ​methodology, which uses the YAML language. ​YAML is a text-oriented language. ​Without going into details, looking at this example, ​we can see the following elements, ​the title of the service which is nudm-sdm (as we saw earlier); ​a description, nudm subscriber data management service; ​the URI that is specified with ​the name of the API; the version; ​and as always the API roots field that ​is available for the operator. ​The rest of the URI is indicated. ​Then, we list the methods: in this case, GET method. 
+
+​
 ![API 9](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5G_API_9.png)
 
-​The set of methods, ​the set of URIs that are provided by an NF ​is specified with the open API 3.0 ​methodology, which uses the YAML language. ​YAML is a text-oriented language. ​Without going into details, looking at this example, ​we can see the following elements, ​the title of the service which is nudm-sdm (as we saw earlier); ​a description, nudm subscriber data management service; ​the URI that is specified with ​the name of the API; the version; ​and as always the API roots field that ​is available for the operator. ​The rest of the URI is indicated. ​Then, we list the methods: in this case, GET method. 
-​
+
 The name of the operation is indicated: ​Get SMF cell data, as well as the different ​parameters that can be sent and ​that sometimes are required. ​All possible response are then listed, ​a positive 200 response or 400, ​404, or several cases 505, 503. ​For all NFs and all services, such specifications ​are available on the 3GPP server. ​To conclude, we have seen that resources ​are mainly manipulated via CRUD operations, ​Create with an HTTP, PUT or POST method. ​Read with an HTTP GET method, Update with an HTTP PUT or ​PATCH method, and Delete with HTTP DELETE. ​In all cases, the resource being ​acted on is indicated by the URI, ​which thus plays a fundamental role
 
 
