@@ -525,8 +525,76 @@ Well, in fact, no because the resource did not exist beforehand. ​So, a **POST
 
 The name of the operation is indicated: ​Get SMF cell data, as well as the different ​parameters that can be sent and ​that sometimes are required. ​All possible response are then listed, ​a positive 200 response or 400, ​404, or several cases 505, 503. ​For all NFs and all services, such specifications ​are available on the 3GPP server. ​To conclude, we have seen that resources ​are mainly manipulated via CRUD operations, ​Create with an HTTP, PUT or POST method. ​Read with an HTTP GET method, Update with an HTTP PUT or ​PATCH method, and Delete with HTTP DELETE. ​In all cases, the resource being ​acted on is indicated by the URI, ​which thus plays a fundamental role
 
+## Virtualiation: How is it possible to have both a dynamic and elastic 5G core network ?
+
+​How is it possible to have both a dynamic and ​elastic 5G core network? ​To begin with, let's clarify the vocabulary. ​When we talk about network function or NF, ​we mean something that is defined to receive and ​send packets in order to provide a certain service. ​If we set aside the UPF, which is not what we are talking ​about here, all NFs are in the control plane. ​In other words, the packets are control ​messages, namely PUTs and GETs, as we have seen. ​When we talk about an NF instance, ​we mean something that actually receives and sends packets, ​I mean that is deployed in the network, that is active. 
 
 
+​Strictly speaking, control messages are not exchanged ​between NFs but rather between NF instances. ​We can consider two properties, ​the first property is "elasticity", which can be ​seen at the ability of new instances identical ​to existing ones to start and of course to stop. ​And the second property is dynamicity, which can be seen ​at the possibility of starting new instances with different services and ​different characteristics from the existing instances. ​This is the case, for example, when we want to ​deploy a new network slice to offer specific services, ​an instance can be reached in one of two ways. ​First, it can be reached by indicating ​a symbolic name, which is called ​the **Fully Qualified Domain Name (FQDN)**. ​For example, the operator Syldavia Telecom ​will have a symbolic name for an SMF, ​let's say smf.sytel.com. ​Or if the operator has an SMF that is in Klow (a city) ​the choice might be to make smf.klow.syltel.com. 
+
+
+![nf 1](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_NF_1.png)
+
+
+​Or an SMF linked to a particular slice ​smf2.slicev2x.syltel.com. ​The second way that an instance can be reached ​is by directly indicating the IP address. ​If you indicate a symbolic name, then you have to go through a DNS server, ​which will convert the symbolic name into an IP address. ​If you enter the IP address directly, ​there is of course no DNS, but you lose flexibility. ​To uniquely identify each instance in the network, ​we use a mechanism specified by the IETF and ​an identity called the **"Universally Unique IDentifier" or UUID**. ​If you are interested in this, ​you might want to check out RFC 4122 ​where version 4 of the UUID is used for 5G. ​The UUID is chosen by each instance and ​its uniqueness across space and time is guaranteed. 
+
+
+This is facilitated by the fact that ​the UUID is encoded on 128 bits, which gives ​us 10 to the power 38 different UUID values. ​Each instance can correspond to a single hardware. ​Note, for example, it might be a specific piece of hardware running somewhere or ​it may be a virtual machine on generic hardware. ​It might also be a distributed instance spread across multiple machines. ​I'd like to emphasize the difference between the UUID and the FQDN. ​The UUID is only a unique identifier of the instance ​regardless of the network configuration ​while the FQDN is a symbolic name that allows you ​to reach the instance, with a DNS of course. 
+
+
+![nf 2](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_NF_2.png)
+
+​
+​To know the number and the instances that are active at a given time, ​since this can change over time, we need a repository service. ​This service is provided by the **NRF** or **​"Network-Function Repository Function"**. ​The NRF maintains a list of the NF instances that are available and ​the services provided by each instance. ​An instance can also register with the NRF when ​it starts or de-register when it stops. ​Let's note that there is the possibility of doing things ​the old-fashioned way; by this, I mean that the list of instances ​is stored and configured in the NRF by the operator. ​Of course, in this case, we lose the elastic ​nature of the network, thanks to the NRF. ​The other instances are notified ​of instances that start and stop. 
+
+
+​And finally, the NRF plays the role of an authorization server. ​We will see this in the specific session on this topic. ​Let's look at the registration procedure of an NF instance:
+
+![nf 3](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_NF_3.png)
+
+​There is an API name associated with ​this procedure, **nnrf-nfm** for ​"network function management". ​In the NF instance, we configure ​the FQDN of NRF that is available. ​The general principle of the procedure is shown here. ​But let's look at it more closely in practice. 
+
+
+![nf 4](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_NF_4.png)
+
+Let's assume that a new SMF instance starts and ​registers with the NRF. **We'll ignore all the security ​related procedures to focus on the registration itself**. ​The SMF is configured with the symbolic name of the NRF instance. ​It makes a DNS query to get the IP address of that NRF. ​It establishes a TCP connection with ​the NRF and then chooses UUID. ​In the context of 3GPP standards, ​the UUID is called nfinstanceID for ​"network-function instance IDentifier". ​For each active instance in the network, ​there is a corresponding resource in the NRF. 
+
+
+In other words, to indicate the instance that is starting, ​we create this resource and therefore sends a PUT. ​We use the API that we have already seen and ​the SMF instance implements the UUID that it has chosen. ​Within the parameters of the method, ​we again indicate this instance identity, ​the fact that it's an SMF and ​either the symbolic name of the SMF or ​the IP address along with other parameters. ​All this make the NF profile. ​As I mentioned, the NRF creates resource ​corresponding to the instance that has just started and ​therefore returns a 201 created with ​the corresponding URI as an echo. ​The uniqueness of the UUID ensures that the URI is also unique. ​In the reply, there is a time value. 
+
+Indeed, if an instance of an SMS were to fail suddenly, ​we would still have the resource on the NRF side and ​not truly active instance in the network. ​So, we need to avoid this problem. ​We do this by defining a maximum duration ​called `heartBeatTimer`. At the end of this ​duration, the SMF must report to the NRF. ​This requires using a `PATCH` method and ​it re-specifies the URI of the resource ​corresponding to the instance in the PATCH. 
+
+
+![nf 5](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_NF_5.png)
+
+
+Of course, there is de-registration scenario. ​If the SMF instance stops, ​we sent a `DELETE` method with the URI ​without the root API corresponding ​to the resource that bound to the instance, ​and then the SMF instance can actually stop. 
+
+
+![nf 6](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_NF_6.png)
+
+
+Now, let's have a look at the discovery procedure ​that allows an NF instance to discover the other ​NF instances and the services they offer. ​We have different service, therefore a different ​API name: here, nnrf-disc for discovery. ​The operation principle is shown here. ​We've already said that there can be a positive or ​a negative answer but we will explain it ​using a more concrete example. ​We do not consider security in the same way as before. ​Let's assume that the NRF points directly to the IP address. 
+
+![nf 7](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5G_NF_7.png)
+
+
+​The AMF, for example, is looking for ​an SMF instance to establish PDU sessions. The AMF instance sends GET with a URI ​corresponding to the discovery service and ​indicates that it looks for an SMF. ​For example, as one criterion, it specifies the list ​of tracking areas that should be covered by the SMF instance ​that it is looking for and there are other criteria. ​In the 3GPP recommendations, ​there are more than 90 specified criteria! ​The NRF looks for an SMF instance that meets the criteria and ​will return a 200 OK message ​indicating the unique identity UUID or ​NF instance identity corresponding to the NF instance plus, ​in our example, the IP address. ​Then it just needs to establish a TCP ​connection and the AMF can send PUT, ​POST, or GET to use SMS services. ​When a symbolic name is used, the procedure is very similar in principle. ​The response to the GET contains the symbolic name, ​which means that the AMF instance has to ​do DNS query to convert the symbolic name ​to an IP address, the rest is the same.
+
+![nf 8](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/atch_5g_NF_8.png)
+
+The AMF instance sends `GET` with a URI ​corresponding to the discovery service and ​indicates that it looks for an SMF. ​For example, as one criterion, it specifies the list ​of tracking areas that should be covered by the SMF instance ​that it is looking for and there are other criteria. ​In the 3GPP recommendations, ​there are more than 90 specified criteria! ​The NRF looks for an SMF instance that meets the criteria and ​will return a 200 OK message ​indicating the unique identity UUID or ​NF instance identity corresponding to the NF instance plus, ​in our example, the IP address. ​Then it just needs to establish a TCP ​connection and the AMF can send `PUT`, `​POST`, or `GET` to use SMS services. ​When a symbolic name is used, the procedure is very similar in principle. ​The response to the GET contains the symbolic name, ​which means that the AMF instance has to ​do DNS query to convert the symbolic name ​to an IP address, the rest is the same. 
+​
+![nf 9](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_NF_9.png)
+
+​
+​To summarize what we've seen here, ​it's possible in the 5G network to start and stop NF instances. ​The NRF plays a central role, ​it is a repository of active instances. ​There is a procedure for discovering NF instances ​that can be used by each authorized NF. ​In the request, the type of NF and the criteria are indicated, ​there can be a fair number of criteria. ​In the response, the NRF instance ​indicates the NF instance in the form ​of either an IP address or an FQDN. ​Finally, there is a procedure for ​registering each new NF instance with the NRF.
+
+
+![nf 10](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_NF_10.png)
+
+
+​
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
 
 5g is aware that the adoption of 5G networks will not happen in a day. The firs step is comply with  eMMB: Enhaced Mobile Broad-Band, 
