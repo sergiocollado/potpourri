@@ -455,33 +455,43 @@ What is the protocol stack for an SBI interface? ​How are the interactions bet
 
 How is it possible to act on a resource? There are two main types of operations possible. ​The most common one is called CRUD, ​Create, Read, Update, Delete. ​These are Standard Restful operations that ​allow you to manipulate resource, to read it, ​to change its state, or to delete it. ​There are also, certain so-called custom ​operations that can be associated with resource ​(we have the standard format as we saw (for the URI) or ​not associated with a resource but rather with a service and ​thus we have a slightly different format. ​All operations are implemented with standard HTTP methods. 
 ​
+
 ![API_1](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_API_1.png)
+
 
 In HTTP, we talk about methods rather than commands. ​The method involved are: PUT, POST, ​DELETE, and sometimes PATCH. ​For each request, there is a response with ​a code in the form of a three-digit number. ​When we have 200, 201, or the subsequent numbers, ​it means that the operation has been carried out successfully. ​When it's 300, 307, 308, and ​subsequent numbers, the server indicates redirection, ​usually to another server, 307 and ​308 correspond to either permanent or ​temporary redirections. ​When there is a client errors, (for example, ​the URI does not correspond to any existing resource) ​we have a response of type 404, 401, ​or the subsequent ones, this is client error. ​When for example, the server is overloaded or ​there is a problem and it cannot process the operation, ​then a response of type 500 is sent. 
 ​
 Let's look at some examples of operations. ​The simplest operation is reading. ​In everything we look at, we assume that the TCP connection and ​possibly the TLS connection are already established. ​A reading is done with an `HTTP GET method`. ​We have the name of the method, which ​is in the message in text mode and ​then the URI of the resource we want ​to read without the API root part. ​Here, we find a format that we have already studied. ​The UDM wants to read the subscriber profile. 
 
+
 ![API_2](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_API_2.png)
+
 
 ​So, it places the name of the API ​in the URI, which in this case is nudm-sdm, ​and specifies that he wants ​the profile linked to sessions. ​The UDM consults the subscriber profile and ​responds with a 200 OK message in ​which it will place the subscriber ​profile related to the PDU sessions. ​Here, we have an example of an **idempotent operation**: ​if several successive GETs are done with ​the same URI, the response should be the **same**.
 
 ​Let's look at an example of a create operation. ​Creation is done with a PUT or POST method. ​Let's consider the case of a UE that registers in the network. ​The fact that this UE is reachable and ​that it is in a certain tracking area is taken care ​by the UDM with the "context management" service. 
 
+
 ![API_3](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_API_3.png)
 
- ​It is therefore a resource in the UDM. ​The URI of the resource created and sent ​In the response is precisely in the HTTP location header ​The URI still has the same format ​(we won't go back to it) ​and the AMF in order to request the creation ​of the resource does PUT, indicates the URI. 
+
+​It is therefore a resource in the UDM. ​The URI of the resource created and sent ​In the response is precisely in the HTTP location header ​The URI still has the same format ​(we won't go back to it) ​and the AMF in order to request the creation ​of the resource does PUT, indicates the URI. 
  
  ​The UDM creates the resource and ​the whole URI is returned in the response. ​Let's look at some possible errors. ​If the SUPI is not known or it doesn't ​correspond to a subscriber, at this point the ​UDM will return "404 Not Found" response. ​If there are access restrictions, for example, ​if the terminal is not allowed to access this AMF or ​to be in the tracking area, it will get a "403 Forbidden" response. 
   
 ​Another example of creation is: setting up a PDU session. 
 
+
 ![API_4](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_API_4.png)
+
 
 ​The existence and characteristics of the session ​correspond to a resource in the UDM, always for ​the same context management service. ​The SMF at the time of creation ​sends a PUT, indicating the URI. ​Here, we can notice that there is an additional ​field that gives a session identifier ​because the same UE can do several sessions. ​The resource is created and ​again the whole URI is given in the response. ​
 
 When the UE ends the PDU session, ​the resource must be deleted. ​This is done with a `DELETE` method. ​Consistently, the URI is indicated in the request. 
 
+
 ![API_5](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_API_5.png)
+
 
 ​The SDM deletes the resource and ​with the resource being correctly deleted ​we have a positive 200 type response. 
 
