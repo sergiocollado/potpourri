@@ -525,6 +525,37 @@ Well, in fact, no because the resource did not exist beforehand. ​So, a **POST
 
 The name of the operation is indicated: ​Get SMF cell data, as well as the different ​parameters that can be sent and ​that sometimes are required. ​All possible response are then listed, ​a positive 200 response or 400, ​404, or several cases 505, 503. ​For all NFs and all services, such specifications ​are available on the 3GPP server. ​To conclude, we have seen that resources ​are mainly manipulated via CRUD operations, ​Create with an HTTP, PUT or POST method. ​Read with an HTTP GET method, Update with an HTTP PUT or ​PATCH method, and Delete with HTTP DELETE. ​In all cases, the resource being ​acted on is indicated by the URI, ​which thus plays a fundamental role
 
+The 3GPP organization publishes official OpenAPI specification files that define the service-based interfaces (SBIs) for 5G core network functions. Think of these files, written in standard YAML or JSON format, as a strict API contract or a detailed blueprint for communication. They serve as the authoritative definition of how network functions must interact, ensuring that a compliant NF from one vendor can seamlessly communicate with one from another.
+
+This blueprint is a machine-readable file that precisely defines every aspect of an NF's interface, leaving no room for ambiguity.
+
+reference:
+https://www.3gpp.org/technologies/openapis-for-the-service-based-architecture
+https://forge.3gpp.org/rep/all/5G_APIs
+
+#### API endpoints
+The exact URL paths that each network function must expose for its services.
+
+#### HTTP method
+The correct method (GET, POST, etc.) to be used for each specific operation.
+
+#### Parameters
+A full definition of all required and optional parameters for any given API call.
+
+#### Message structure
+The exact structure of request and response messages, ensuring all NFs "speak" the same language.
+
+#### Data models
+The specific data types and validation rules for every field to ensure data integrity.
+
+#### Error responses
+A complete list of possible success and error status codes, so a client application knows how to handle any outcome. The exact structure of request and response messages, ensuring all NFs "speak" the same language.
+
+The free5GC developers can access these specifications from:
+ - 3gpp web site: https://www.3gpp.org/ftp/Specs/archive/29_series/
+
+OpenAPI specifications create a shared language between all 5G Core Network Functions. By defining every endpoint, method, and message structure, they make true interoperability and vendor neutrality possible.
+
 ## Virtualiation: How is it possible to have both a dynamic and elastic 5G core network ?
 
 ​How is it possible to have both a dynamic and ​elastic 5G core network? ​To begin with, let's clarify the vocabulary. ​When we talk about network function or NF, ​we mean something that is defined to receive and ​send packets in order to provide a certain service. ​If we set aside the UPF, which is not what we are talking ​about here, all NFs are in the control plane. ​In other words, the packets are control ​messages, namely PUTs and GETs, as we have seen. ​When we talk about an NF instance, ​we mean something that actually receives and sends packets, ​I mean that is deployed in the network, that is active. 
