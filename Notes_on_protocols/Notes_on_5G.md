@@ -446,6 +446,7 @@ What is the protocol stack for an SBI interface? ​How are the interactions bet
 ​We can see for example the resources of ​the UDM as a tree and the root being the APIroot. ​We see the name of the API, then the version, ​which means for example that the profile ​of each subscriber will be indicated ​by a URI where we are going to ​find the IMSI of the subscriber, ​since in most cases, ​the SUPI is equal to the IMSI. ​The URI of a different subscriber ​with a different IMSI will have the same structure, ​but of course may have a different subscriber profile. ​Those are just a few examples. ​What is important is to see that here we ​define the resource and identify it ​without being concerned about where ​the corresponding data are physically stored. ​To conclude, in the REST approach, ​the central notion is the resource. ​With a slight exaggeration, ​we can say: everything is a resource. 
 
 ​Each resource is identified by each URI, ​"Uniform Resource Identifier", ​which starts with the variable ​operator-dependent APIroot part, ​as well as a fully specified service-dependent part. ​Actions on resources are possible with HTTP/2, ​which can be used on top of TLS for ​security and is always above TCP/IP. 
+
 ​
 ![REST_5](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_REST_5.png)
 
