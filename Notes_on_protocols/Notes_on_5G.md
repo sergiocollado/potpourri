@@ -628,9 +628,13 @@ The AMF instance sends `GET` with a URI ​corresponding to the discovery servic
 
 ​The network is aware of ​a large number of events that occur. ​For example, with respect to user actions, ​when we have a mobility event due ​to a UE changing tracking areas, ​there is a location update that is managed by the AMF. ​This event is therefore known to the AMF. ​When a terminal gets ​turned on or off by a user, ​there is a registration and deregistration of the UE. ​These are managed by the AMF, ​which is therefore aware of them.
 
+![notification](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_notification_01.PNG)
+
 ​In the same way, ​the SMF manages the setup and release of PDU sessions. ​There are other possible events: for example, ​the modification of the subscriber profile ​in the UDM or the ​modification of the QoS level ​for a PDU session managed by the PCF. ​We have a large number of events ​that are managed by the different NFs. ​Event notification can open the field ​to a wide range of value added services. ​There's a lot of potential. ​There is a definition of ​notification services and in order to have them, ​the NF that wants to be notified must subscribe. ​We have a subscription procedure ​and unsubscription procedure. 
 
 ​Let's have a look at the general principle, ​which we have already mentioned a little. ​We have a consumer NF, ​which wants to be notified ​of events occurring in a producer NF. ​To do this, the consumer NF sends ​a POST method which is ​positively acknowledged with a 200 response. ​When the event occurs in the producer NF, ​the producer NF is the one that will notify and ​thus send a post with a response hopefully positive. ​During this phase, the producer NF acts as ​an HTTP client and ​the consumer NF acts as an HTTP server. ​We have a role reversal. ​The producer NF becomes ​the consumer NF and vice versa on the other side. 
+
+![notification_example](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_notification_02_example.PNG)
 
 ​When the event occurs, ​as we have said, a POST is sent. ​This POST corresponds to a URI. ​This URI is linked to ​a resource on the side of the consumer NF. ​At the time of the subscription, ​a callback URI has to be created on the consumer NF side. ​This callback URI is sent in the initial POST, ​stored by the producer NF, ​and as soon as the event occurs, ​this callback URI that is associated with ​the POST is the one that is sent by the producer NF. ​The consumer NF has to be able ​to stop the subscription if it wishes to. ​To do this, we will use a DELETE method. 
 
@@ -643,6 +647,7 @@ We will therefore add ​a time limit in the form of an expiration date. ​Ther
 In summary, notification services ​start with a subscription phase. ​The consumer NF places ​the callback URI in the subscription requests. 
 ​The produce rule NF creates ​a new resource with the subscription ID ​and places the newly formed URI ​in the subscription response. ​When the event requiring notification occurs, ​the rules change: the producer NF becomes a consumer, ​and the consumer NF becomes a producer. ​There are two cases for the end of the subscription, ​either it can be deleted by ​a DELETE or there is a timeout.
 
+![notification_summary](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_notification_03_summary.PNG)
 ​
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
 
