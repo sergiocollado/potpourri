@@ -637,14 +637,19 @@ The AMF instance sends `GET` with a URI ​corresponding to the discovery servic
 ![notification_subscription](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/arch_5g_notification_04_subscription.PNG)
 
 
-
 ​When the event occurs, ​as we have said, a POST is sent. ​This POST corresponds to a URI. ​This URI is linked to ​a resource on the side of the consumer NF. ​At the time of the subscription, ​a callback URI has to be created on the consumer NF side. ​This callback URI is sent in the initial POST, ​stored by the producer NF, ​and as soon as the event occurs, ​this callback URI that is associated with ​the POST is the one that is sent by the producer NF. ​The consumer NF has to be able ​to stop the subscription if it wishes to. ​To do this, we will use a DELETE method. 
 
 ​But by the same reasoning we need a URI. ​In this DELETE method, ​there may be several NF's ​that have subscribed to ​notifications from this producer NF. ​Each subscription must be identified in a unique way. ​To do this, the producer ​NF chooses a subscription identity and ​uses it to create ​a URI that gets sent in the subscription response. ​This URI is stored by the consumer NF, ​and if the consumer NF wants to stop the subscription, ​it will use this URI that has ​been created in the request. ​The resource that corresponds ​to the subscription gets deleted. ​Like any subscription, ​this subscription is created for a limited time. 
 ​
+We will therefore add ​a time limit in the form of an expiration date. ​There is a date which is requested by ​the consumer and the date chosen by the producer, ​which must be sooner or equal to the proposed date. ​When this date arrives, ​this corresponds to maximum subscription period ​and the resource is deleted. 
+
+![notification delete](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/arch_5g_notification_05_subscription_DELETE.PNG)
+
+
+​Let's look at a slightly more specific example ​of a notification scenario. ​The SMF here is looking to be ​notified of the user profile changes in the UDM. ​This is a service that is provided by the UDM ​in the nudm-sdm API, ​sdm for subscriber data management. ​This subscription is set up for a given subscriber, ​a given UE, identified by its SUPI, ​and then the keyword sdm-subscriptions ​corresponds to this particular service. 
+
 ![notification_example](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_notification_02_example.PNG)
 
-We will therefore add ​a time limit in the form of an expiration date. ​There is a date which is requested by ​the consumer and the date chosen by the producer, ​which must be sooner or equal to the proposed date. ​When this date arrives, ​this corresponds to maximum subscription period ​and the resource is deleted. ​Let's look at a slightly more specific example ​of a notification scenario. ​The SMF here is looking to be ​notified of the user profile changes in the UDM. ​This is a service that is provided by the UDM ​in the nudm-sdm API, ​sdm for subscriber data management. ​This subscription is set up for a given subscriber, ​a given UE, identified by its SUPI, ​and then the keyword sdm-subscriptions ​corresponds to this particular service. 
 
 ​We have the callback URI that we have already mentioned, ​as well as the other fields. ​The callback URI is stored, ​the UDM chooses a subscription identity, ​and this identity is used to ​create the URI corresponding to the subscription. ​We reuse the previous request fields ​and create a child resource, ​adding the subscription identity. ​If the SMF wants to stop the subscription, ​it uses this URI as we can see in the example. ​When the event occurs, as before, ​the callback URI is used. ​
 
