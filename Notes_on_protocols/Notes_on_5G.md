@@ -657,6 +657,30 @@ In summary, notification services ​start with a subscription phase. ​The con
 ​The produce rule NF creates ​a new resource with the subscription ID ​and places the newly formed URI ​in the subscription response. ​When the event requiring notification occurs, ​the rules change: the producer NF becomes a consumer, ​and the consumer NF becomes a producer. ​There are two cases for the end of the subscription, ​either it can be deleted by ​a DELETE or there is a timeout.
 
 ![notification_summary](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_notification_03_summary.PNG)
+
+## How are the procedures on SBI interfaces presented ?
+
+We have almost finished presenting ​the concepts related to SBI interfaces. ​We will answer one more question. ​How are the procedures on the SBI interfaces presented? ​This video is particularly ​aimed at people who have to read ​or work on 3GPP specifications ​or consult technical books on the subject. ​To illustrate my point, ​I will start with the example of ​the registration procedure of a UE when, ​for example, users turn on ​their terminals and want to access the network. ​We'll look at the dialogues between the AMF and the UDM, ​assuming that all security-related operations, ​such as authentication, for example, ​have already been done. ​The AMF first creates ​a resource that will match the context of the UE. 
+
+![sbi_01](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_sbi_01.PNG)
+​
+The context includes the type of network access ​(here the UE is on a 3GPP access) and ​probably the tracking area ​where the UE in question is located. ​This is done with a PUT method using the API ​nudm-uecm, with cm for context management, ​and specifying a set of ​fields according to the format we have seen. ​The UDM creates the resource that corresponds to ​this URI and once it is created, ​responds positively with a 201 created message. ​The AMF then sends a GET to read ​the subscriber profile, to see ​the access and mobility rights the subscriber has. ​Hopefully, a 200 OK response is sent containing ​the entire subscriber profile ​as it relates to access and mobility. ​The AMF can then subscribe to ​notifications of profile changes, for example. ​This is a service that we have ​already mentioned and it's done by ​a POST with the URI that is indicated on the drawing. 
+​
+
+All this results from ​the analysis of the technical specification 29.503. ​If we consider what was presented in this course in ​week 3 and the video terminal ​initialization in a 5G network, ​this is what was shown. ​Sending Nudm_UECM_Registration, we get a response. ​Then sending Nudm_SDM_Get, ​and finally Nudm_SDM_Subscribe. ​This is not a figment of my imagination. ​This figure is an excerpt from a figure found ​in the technical specification 23.502. ​What does that mean? 
+
+![sbi_02](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_sbi_02.PNG)
+
+​Are these two different procedures? Of course not. ​It's just a different presentation of the same thing. ​The PUTs, the indication of the URIs, ​this is a relatively detailed representation. ​Note that the message is much ​longer than what is presented here ​because there is, of course, ​a lot of additional information ​not shown here for the sake of simplicity. ​Each HTTP method and ​its response is referred to as an "operation". ​For each operation, there is a name that ​is more synthetic than the URIs and method names. 
+
+
+​Here, Nudm_SDM_Get corresponds ​to the reading of the subscription data and so on. ​For the notification subscription, ​there is also a correspondence. ​One small problem is ​that within the 3GPP specifications and even ​within different parts of the same specification, ​there is not necessarily an exact match. ​For the first operation we can find ​the name Nudm_UECM_Registration ​or Nudm UEContextManagement Registration. ​We can see that here we have ​the acronym of context management. ​But 
+
+![sbi_03](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_sbi_03.PNG)
+
+we can also have "3GPP registration" ​or "AMF registration for 3GPP access". ​What matters from a development point of ​view is the specification in ​open API 3.0 with ​the YAML language that we have already shown. 
+​But in the different presentations of the procedures, ​these are usage names that may vary slightly. ​Don't worry. The official names for this operation, ​the one found in ​the precise open API 3.0 ​specifications is "3GPP registration", ​but all names can be used for purposes of explanation. ​That's it. You are now armed to ​explore the jungle of 3GPP specifications. ​Enjoy your exploration. 
+
 ​
 ## 5G Architectures: Stand Alone (SA) and Non Stand Alone (NSA)
 
