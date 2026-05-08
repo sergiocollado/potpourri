@@ -664,10 +664,11 @@ We have almost finished presenting ​the concepts related to SBI interfaces. �
 
 ![sbi_01](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_sbi_01.PNG)
 ​
+
 The context includes the type of network access ​(here the UE is on a 3GPP access) and ​probably the tracking area ​where the UE in question is located. ​This is done with a PUT method using the API ​nudm-uecm, with cm for context management, ​and specifying a set of ​fields according to the format we have seen. ​The UDM creates the resource that corresponds to ​this URI and once it is created, ​responds positively with a 201 created message. ​The AMF then sends a GET to read ​the subscriber profile, to see ​the access and mobility rights the subscriber has. ​Hopefully, a 200 OK response is sent containing ​the entire subscriber profile ​as it relates to access and mobility. ​The AMF can then subscribe to ​notifications of profile changes, for example. ​This is a service that we have ​already mentioned and it's done by ​a POST with the URI that is indicated on the drawing. 
 ​
 
-All this results from ​the analysis of the technical specification 29.503. ​If we consider what was presented in this course in ​week 3 and the video terminal ​initialization in a 5G network, ​this is what was shown. ​Sending Nudm_UECM_Registration, we get a response. ​Then sending Nudm_SDM_Get, ​and finally Nudm_SDM_Subscribe. ​This is not a figment of my imagination. ​This figure is an excerpt from a figure found ​in the technical specification 23.502. ​What does that mean? 
+All this results from ​the analysis of the technical specification 29.503. ​If we consider what was presented in the part of the terminal ​initialization in a 5G network. ​Sending Nudm_UECM_Registration, we get a response. ​Then sending Nudm_SDM_Get, ​and finally Nudm_SDM_Subscribe. ​This is not a figment of my imagination. ​This figure is an excerpt from a figure found ​in the technical specification 23.502. ​What does that mean? 
 
 ![sbi_02](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_sbi_02.PNG)
 
