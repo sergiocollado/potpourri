@@ -634,7 +634,7 @@ The AMF instance sends `GET` with a URI ​corresponding to the discovery servic
 
 ​Let's have a look at the general principle, ​which we have already mentioned a little. ​We have a consumer NF, ​which wants to be notified ​of events occurring in a producer NF. ​To do this, the consumer NF sends ​a POST method which is ​positively acknowledged with a 200 response. ​When the event occurs in the producer NF, ​the producer NF is the one that will notify and ​thus send a post with a response hopefully positive. ​During this phase, the producer NF acts as ​an HTTP client and ​the consumer NF acts as an HTTP server. ​We have a role reversal. ​The producer NF becomes ​the consumer NF and vice versa on the other side. 
 
-![notification_subscription](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/arch_5g_notification_04_subscription.PNG)
+![notification_subscription](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_notification_04_subscription.PNG)
 
 
 ​When the event occurs, ​as we have said, a POST is sent. ​This POST corresponds to a URI. ​This URI is linked to ​a resource on the side of the consumer NF. ​At the time of the subscription, ​a callback URI has to be created on the consumer NF side. ​This callback URI is sent in the initial POST, ​stored by the producer NF, ​and as soon as the event occurs, ​this callback URI that is associated with ​the POST is the one that is sent by the producer NF. ​The consumer NF has to be able ​to stop the subscription if it wishes to. ​To do this, we will use a DELETE method. 
@@ -643,7 +643,7 @@ The AMF instance sends `GET` with a URI ​corresponding to the discovery servic
 ​
 We will therefore add ​a time limit in the form of an expiration date. ​There is a date which is requested by ​the consumer and the date chosen by the producer, ​which must be sooner or equal to the proposed date. ​When this date arrives, ​this corresponds to maximum subscription period ​and the resource is deleted. 
 
-![notification delete](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/arch_5g_notification_05_subscription_DELETE.PNG)
+![notification delete](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_notification_05_subscription_DELETE.PNG)
 
 
 ​Let's look at a slightly more specific example ​of a notification scenario. ​The SMF here is looking to be ​notified of the user profile changes in the UDM. ​This is a service that is provided by the UDM ​in the nudm-sdm API, ​sdm for subscriber data management. ​This subscription is set up for a given subscriber, ​a given UE, identified by its SUPI, ​and then the keyword sdm-subscriptions ​corresponds to this particular service. 
