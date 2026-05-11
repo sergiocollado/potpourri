@@ -11,6 +11,7 @@ References:
  - https://github.com/free5gc/free5GLabs
  - https://github.com/free5gc/free5gc/wiki
  - https://github.com/free5gc/gtp5g
+ - Forums: https://forum.free5gc.org/
  - How to install free5G: https://hackmd.io/@RaffieWinata/B1E4eOSuT
  - How to install free5G: https://www.researchgate.net/publication/400576650_Implementation_and_Configuration_of_Open-Source_5G_Core_Network_Using_free5GC_and_UERANSIM_A_Practical_Deployment_Guide_with_Troubleshooting 
 
