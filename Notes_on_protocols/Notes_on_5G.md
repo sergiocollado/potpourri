@@ -335,6 +335,8 @@ The **SUPI** or "SUbscription Permanent ​Identifier" is the globally unique pe
 
 IMSI = MNC + MCC + MSIN
 
+MNC + MCC = PLMN identity
+
 
 ![IMSI](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/arch_5g_IMSI.PNG)
 
