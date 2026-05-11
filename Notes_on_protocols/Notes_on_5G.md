@@ -1,4 +1,5 @@
  - 5g systems approach: https://5g.systemsapproach.org/
+ - 5g network fundamentals: https://www.coursera.org/learn/5g-network-fundamentals
  - How to build a opensource based 5G network: https://ubuntu.com/blog/introduction-to-open-source-private-lte-and-5g-networks
  - https://www.free5gtraining.com/
  - https://training.linuxfoundation.org/training/introduction-to-free5gc-lfs114/
