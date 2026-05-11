@@ -1,5 +1,7 @@
 # Notes on SSL/TLS
 
+- Standard: https://datatracker.ietf.org/doc/html/rfc5280
+- reference: https://learn.microsoft.com/en-us/azure/iot-hub/reference-x509-certificates
 - Intro: https://youtu.be/VcV4T8cL3xw
 - https://www.cloudflare.com/learning/ssl/transport-layer-security-tls/
 
@@ -24,6 +26,10 @@ TLS stands for Transport Layer Security, in 1999 the IETF got the maintenance of
 Both terms are diferent versions of the same protocol. Actually there are different versions of SSL and TLS. 
 
 TLS RFC: https://datatracker.ietf.org/doc/html/rfc8446
+
+### What is HTTPS
+
+HTTPS is HTTP that runs on top of TLS
 
 ### How SSL/TLS protects the communications?
 
