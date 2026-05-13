@@ -1,3 +1,4 @@
+ - https://antenasgsm.com/
  - https://www.xataka.com/servicios/mi-vecino-tiene-datos-yo-no-que-caida-telecomunicaciones-fue-desigual-durante-apagon-espana
  - https://www.xataka.com/basics/omv-que-que-se-diferencia-operadores-tradicionales
  - https://madridsecreto.co/cobertura-falla-apagon-madrid/
@@ -26,6 +27,7 @@
 
 Interesting repos:
 
+ - https://antenasgsm.com/
  - https://github.com/calee0219/awesome-5g - A curated list of awesome 5G frameworks, libraries, software and resources.
  - https://github.com/ravens/awesome-telco - This list provides resources spanning the entire mobile network stack—from SIM cards to core network functions
  - https://github.com/freeDiameter/freeDiameter
