@@ -33,6 +33,8 @@ list of Linux subsystems: https://www.kernel.org/doc/html/latest/subsystem-apis.
  - Let's code a Linux Driver: https://www.youtube.com/watch?v=x1Y203vH-Dc&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
  - Linux standards (ELF, DWARF, FHS ...) : https://refspecs.linuxfoundation.org/index.shtml
  - kernel mail lists: https://subspace.kernel.org/vger.kernel.org.html#
+ - The Kernel in mind: https://lnkd.in/gNHPEJqB
+ - The kernel in mind PDF: https://www.linkedin.com/posts/moon-hee-lee_the-kernel-in-the-mind-v112025-activity-7334420081403146240--Yp2?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEbOSxkBhBkl6d7fEZ3aLPNADzGvGGHx9LQ&lipi=urn%3Ali%3Apage%3Ad_flagship3_pulse_read%3BUGvQwSeiRFmOqCN5eT9kPQ%3D%3D
 
 
 ## Linux kernel development process
