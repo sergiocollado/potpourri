@@ -34,7 +34,7 @@ list of Linux subsystems: https://www.kernel.org/doc/html/latest/subsystem-apis.
  - Linux standards (ELF, DWARF, FHS ...) : https://refspecs.linuxfoundation.org/index.shtml
  - kernel mail lists: https://subspace.kernel.org/vger.kernel.org.html#
  - The Kernel in mind: https://lnkd.in/gNHPEJqB
- - [The kernel in mind PDF](https://www.linkedin.com/posts/moon-hee-lee_the-kernel-in-the-mind-v112025-activity-7334420081403146240--Yp2?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEbOSxkBhBkl6d7fEZ3aLPNADzGvGGHx9LQ&lipi=urn%3Ali%3Apage%3Ad_flagship3_pulse_read%3BUGvQwSeiRFmOqCN5eT9kPQ%3D%3D)
+ - [The kernel in mind PDF](https://media.licdn.com/dms/document/media/v2/D561FAQGjyeehzYEt8g/feedshare-document-url-metadata-scrapper-pdf/B56ZckXGwwGsA0-/0/1748661730676?e=1779894000&v=beta&t=cgYwKZQyGIbQRI6R55fsnnC6PH9kYMZSzyPBHXWjy-A)
  - Introduction to linux kernel develop proces hasrh: https://www.linkedin.com/pulse/introduction-linux-kernel-development-process-harsh-mistry/
 
 
