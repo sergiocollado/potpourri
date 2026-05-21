@@ -101,13 +101,20 @@ To download the kernel with git:
 ```bash
 git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 ```
+or
 
-to download the stable branch:
+```bash
+git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git linux-mainline
+```
+
+To download the stable branch:
 
 ```bash
 git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 cd linux-stable
 ```
+
+
 
 ### Patches
 
@@ -204,8 +211,9 @@ The packaget build-essential is needed in the system.
 
 
 ```bash
-sudo apt-get install -y build-essential gcc make vim bc git cscope rsync libncurses-dev libssl-dev bison flex libelf-dev
-sudo apt-get install git-email
+sudo apt-get install -y build-essential gcc make vim bc git cscope \
+rsync libncurses-dev libssl-dev bison flex libelf-dev \
+dwarves bc clang llvm lld libclang-dev python3 git-email
 ```
 
 It is needed to check the minimal requirements to compile the kernel
@@ -214,7 +222,7 @@ It is needed to check the minimal requirements to compile the kernel
 https://www.kernel.org/doc/html/latest/process/changes.html
 ```
 
-git-email is for sending patches through the **sendmail** configuration option once the **smtp** server is configured.
+'git-email' is for sending patches through the **sendmail** configuration option once the **smtp** server is configured.
 
 example configuration for gmail: https://gist.github.com/jasonkarns/4354421, https://coderwall.com/p/qcsiew/setting-up-and-using-git-send-email-with-gmail
 
@@ -328,12 +336,23 @@ make oldconfig
 
 'make oldconfig' reads the existing .config file that was used for an old kernel and prompts the user for options in the current kernel source that are not found in the file. This is useful when taking an existing configuration and moving it to a new kernel.
 
+**Bonuses** make olddefconfig sets every option to their default value without asking interactively. It gets run automatically on make to ensure that the .config is consistent in case you've modified it manually.
+
+If you want to set up an out-of-tree build directory to keep the source clean, use: 
+
+```bash
+make O=../build-mainline defconfig
+
+make O=../build-mainline -j$(nproc)
+```
+
+This creates a basic default .config and performs a full build using all available CPU cores. The purpose isn’t to run this kernel, but to populate the build directory with enough .cmd files so the next step — generating the compilation database — works properly.
+
 WATCH OUT!: New releases often introduce new configuration variables and, in some cases, rename the configuration symbols. The latter causes problems, and make oldconfig might not generate a new working kernel. Run make listnewconfig after copying the configuration from /boot to the .config file, to see a list of new configuration symbols. 
 
  - reference: https://stackoverflow.com/questions/4178526/what-does-make-oldconfig-do-exactly-in-the-linux-kernel-makefile
  - reference: https://www.kernel.org/doc/html/latest/kbuild/kconfig.html
 
-**Bonuses** make olddefconfig sets every option to their default value without asking interactively. It gets run automatically on make to ensure that the .config is consistent in case you've modified it manually.
 
 Other way to tune the kernel your system is by using **make localmodconfig**. This option creates a configuration file based on the list of modules currently loaded on your system.
 
@@ -343,7 +362,6 @@ make LSMOD=/tmp/my-lsmod localmodconfig
 ```
 
 A simpler choice is use **make defconfig**, every kernel has a default configuration, so with the 'defconfig' option that default configuration is used.
-
 
 otherwise use: 
 
@@ -396,7 +414,7 @@ Configuration targets:
 
 ```
 
-Note: the tinyoconfig, think is related to: http://www.tinycorelinux.net/
+Note: the 'tinyoconfig', think is related to: http://www.tinycorelinux.net/
 
 
 Once this step is complete, it is time to compile the kernel. Using the '-j' option helps the compiles go faster. The '-j' option specifies the number of jobs (make commands) to run simultaneously:
