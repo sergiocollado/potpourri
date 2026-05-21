@@ -298,6 +298,7 @@ Reference:
  - https://www.linuxjournal.com/content/kbuild-linux-kernel-build-system 
  - https://www.kernel.org/doc/html/latest/kbuild/index.html
  - https://www.linkedin.com/pulse/reading-kernel-starts-kconfig-moon-hee-lee-f6qbc/
+ - https://www.linkedin.com/pulse/configuration-comes-first-moon-hee-lee-ru6tc/
 
 The kernel has its own build system: the Kernel build sistem: Kbuild.
 
