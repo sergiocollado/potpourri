@@ -628,3 +628,8 @@ Panic messages can be decoded using the decode_stacktrace.sh tool. Please refer 
 https://www.kernel.org/doc/html/latest/trace/events.html
 
 
+## Kconfig
+
+References:
+ - https://www.linkedin.com/pulse/reading-kernel-starts-kconfig-moon-hee-lee-f6qbc/?trackingId=SUpyCbU2SlWzwgCkkWqepA%3D%3D
+
