@@ -46,10 +46,12 @@ references:
  - Tim Beale: Linux Kernel Development for Newbies: https://youtu.be/OkhOoBqLb3Y
  - Kernel challenges: https://github.com/agelastic/eudyptula
  - Write and Submit your first Linux kernel Patch: https://youtu.be/LLBrBBImJt4
+ - how to write a patch:  https://www.linkedin.com/pulse/fixing-one-line-learning-whole-process-moon-hee-lee-uu0cc/
  - https://www.slideshare.net/SamsungOSG/a-survivors-guide-to-contributing-to-the-linux-kernel
  - Linux kernel development process: https://docs.kernel.org/process/development-process.html
  - The story of my first Linux Kernel Contribution: https://youtu.be/uLiAc_CnqZE
  - linux kernel mentees: https://wiki.linuxfoundation.org/lkmp/lkmp_mentee_blogs
+ - https://www.linkedin.com/pulse/introduction-linux-kernel-development-process-harsh-mistry/
 
 How to contribute:
  - Become a Linux kernel contributor - Part 1: https://javiercarrascocruz.github.io/kernel-contributor-1
@@ -65,6 +67,7 @@ references:
 - https://www.kernel.org/doc/html/latest/process/development-process.html
 - How Linux is built with Greg Kroah-Hartman : https://www.youtube.com/watch?v=7WbREHtc5sU
 - https://kernelnewbies.org/FirstKernelPatch
+- https://www.linkedin.com/pulse/introduction-linux-kernel-development-process-harsh-mistry/
 
 Linux kernel releases come every 2+ months (10 or 11 weeks). Releases are time based and not feature based. 
 
@@ -141,7 +144,8 @@ git format-patch -1 -v5
 
 ### To apply a patch:
 
- - reference: https://www.kernel.org/doc/html/v4.10/process/applying-patches.html <br>
+references:
+ - https://www.kernel.org/doc/html/v4.10/process/applying-patches.html <br>
 
 ```bash
 patch -p1 < ../patch-x.y.z
@@ -280,11 +284,12 @@ $ make pdfdocs > doc.log 2>&1
 Find the generated files at: `Documentation/output/latex`.
 
 
-#### The kernel build system
+#### Kconfig: the kernel build system
 
 Reference: 
  - https://www.linuxjournal.com/content/kbuild-linux-kernel-build-system 
  - https://www.kernel.org/doc/html/latest/kbuild/index.html
+ - https://www.linkedin.com/pulse/reading-kernel-starts-kconfig-moon-hee-lee-f6qbc/
 
 The kernel has its own build system: the Kernel build sistem: Kbuild.
 
@@ -626,10 +631,3 @@ Decode and Analyze the Panic Message
 Panic messages can be decoded using the decode_stacktrace.sh tool. Please refer to decode_stacktrace https://lwn.net/Articles/592724/ : make stack dump output useful again for details on how to use the tool.
 
 https://www.kernel.org/doc/html/latest/trace/events.html
-
-
-## Kconfig
-
-References:
- - https://www.linkedin.com/pulse/reading-kernel-starts-kconfig-moon-hee-lee-f6qbc/?trackingId=SUpyCbU2SlWzwgCkkWqepA%3D%3D
-
