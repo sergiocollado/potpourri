@@ -6,3 +6,4 @@
 - https://rust-exercises.ferrous-systems.com/latest/book/introduction
 - https://doc.rust-lang.org/reference/
 - https://doc.rust-lang.org/nomicon/
+- https://www.sheshbabu.com/posts/rust-module-system/
