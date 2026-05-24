@@ -355,6 +355,8 @@ Let’s go through the steps to install Ubuntu and create your VM.
 
 ### 1 - Install VirtualBox and Ubuntu ISO
 
+reference: https://free5gc.org/guide/1-vm-en/#1-install-virtualbox
+
 Install VirtualBox(opens in a new tab) on your machine. 
 
 Download the Ubuntu Server 20.04 LTS(opens in a new tab) ISO file. You can choose either the live-server or the desktop version.
@@ -362,6 +364,8 @@ Download the Ubuntu Server 20.04 LTS(opens in a new tab) ISO file. You can choos
 💡 Tip: The server version uses fewer resources and is ideal for lab environments.
 
 ### 2 Create a New Virtual Machine
+
+reference: https://free5gc.org/guide/1-vm-en/#2-download-ubuntu-server
 
 Open VirtualBox and create your first VM using the downloaded ISO image file. 
 
@@ -371,9 +375,13 @@ Add a “Host-only” network interface to allow communication between your host
 
 ### 3 Complete the Ubuntu Installation
 
+reference: https://free5gc.org/guide/1-vm-en/#3-create-a-ubuntu-server-vm
+
 Boot the VM with the ISO image and finish the Ubuntu installation
 
 ### 4 Update and Upgrade the VM
+
+reference: https://free5gc.org/guide/1-vm-en/#5-update-and-upgrade-your-ubuntu
 
 Run the following commands in the terminal to update and upgrade the Ubuntu VM, ensuring it has the latest security updates:
 
