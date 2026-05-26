@@ -35,6 +35,7 @@ references:
  - overlays: https://www.raspberrypi.com/documentation/computers/configuration.html#part2
  - https://www.electronicsfaq.com/2020/07/enabling-industrial-io-driver-on.html
  - https://bootlin.com/blog/enabling-new-hardware-on-raspberry-pi-with-device-tree-overlays/
+ - i2c drivers: https://dev.to/tonyhe8688/developing-i2c-drivers-on-embedded-linux-a-hands-on-guide-5be5
 
 > Many moons ago "board files," were used, each of which described a single type of computer. Kernels are typically built around a single board file and could not boot on any other type of system. Board files sort of worked when there were relatively small numbers of embedded system types to deal with. Now Linux-based embedded systems are everywhere, architectures which have typically depended on board files (ARM, in > particular) were finding their way into more types of systems, and the whole scheme looked poised to collapse under its own weight.
 >
