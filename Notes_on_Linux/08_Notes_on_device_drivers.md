@@ -615,6 +615,60 @@ References:
   - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/i2c/i2c-protocol.rst
   - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/i2c/smbus-protocol.rst (SMbus = System Management bus a subsed of I2C definded by Intel).
 
+
+### Concepts 
+
+reference: https://medium.com/@tonyhe8688/mastering-i2c-driver-development-on-embedded-linux-89824179617e
+
+ - **I2C Controller (Master)**: Usually integrated in the SoC. Managed by a controller driver.
+ - **I2C Client (Slave)**: The device you’re trying to access. Requires a device driver.
+ - **Device Tree Source (DTS)**: Describes the hardware layout to the Linux kernel.
+
+For example: 
+
+If you’re working with an ARM-based SBC and want to connect a temperature sensor over I2C.
+
+```
+SoC: RK3566 / i.MX8
+Peripheral: TMP102 temperature sensor
+OS: Linux 5.x with Buildroot or Yocto
+```
+
+So you have to let the OS that we have and I2c interface, and that is done with the Device Tree (DT):
+
+In your device tree file (e.g., rk356x-sbc.dts), add an I2C node and bind your sensor:
+
+```
+&i2c1 {
+    status = "okay";
+    tmp102@48 {
+        compatible = "ti,tmp102";
+        reg = <0x48>;
+    };
+};
+```
+Here:
+
+`i2c1` is the controller.
+`@48` is the I2C address.
+`"ti,tmp102"` matches the driver name in the kernel source.
+
+You have to enable the support for the i2c sensor: 
+
+The TMP102 driver is already available in the Linux kernel under: `drivers/hwmon/tmp102.c`
+
+Enable it via `menuconfig` or `defconfig`:
+
+```
+Device Drivers  --->
+  <*> Hardware Monitoring support  --->
+    <*> Texas Instruments TMP102 sensor
+```
+Build your kernel or module using:
+```
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage modules dtbs
+```
+
 ###  I2C on Linux
 The i2c subsystem allows Linux to be master and all connected devices to be slaves. They interact on the i2c bus.
 
