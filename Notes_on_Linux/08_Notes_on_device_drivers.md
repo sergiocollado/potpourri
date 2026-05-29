@@ -29,6 +29,7 @@ References:
  - Tutorial: Introduction to I2C and SPI: Both In-kernel and In-userspace - Michael Welling : https://youtu.be/c10wAKWpjts
  - https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-device-tree-na-raspberry-pi-zero-w/
  - https://embarcados.com.br/device-driver-i2c-para-linux-embarcado/
+ - examples of drivers: https://github.com/rrmhearts/linux-driver-examples
 
 
 ## Overview
