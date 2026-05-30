@@ -558,6 +558,24 @@ If you plan to experiment with newer MongoDB versions or Go releases later, docu
 
 With all required packages installed, your system is ready to download, build, and launch the free5GC core components.
 
+#### Linux Host Network Settings
+
+```
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo iptables -t nat -A POSTROUTING -o <dn_interface> -j MASQUERADE
+sudo iptables -A FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --set-mss 1400
+sudo systemctl stop ufw
+sudo systemctl disable ufw # prevents the firewall to wake up after a OS reboot
+````
+Or use `reload_host_config.sh` from free5GC
+
+```
+sudo ./<PATH-TO-free5GC>/reload_host_config.sh <dn_interface>
+# Example
+sudo ./free5gc/reload_host_config.sh enp0s3
+````
+reference about the reload script: https://free5gc.org/guide/Appendix/#appendix-h-using-the-reload_host_configsh-script
+
 ### Build and launch the core components
 
 reference: https://free5gc.org/guide/3-install-free5gc/
