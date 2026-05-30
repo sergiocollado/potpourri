@@ -560,6 +560,8 @@ With all required packages installed, your system is ready to download, build, a
 
 ### Build and launch the core components
 
+reference: https://free5gc.org/guide/3-install-free5gc/
+
 Before you can run free5GC, you need to download the source code and compile the necessary binaries.
 
 We’ll walk through the full build process, covering how to clone the repository, compiling both control and data plane components, and also setting up the web-based console to manage user data.
