@@ -437,7 +437,9 @@ Update the entries so they look like this:
 
 After making these changes, reboot the VM to apply them.
 
-### Step 4: Configure the Network Interface
+### Step 4: Configure the Network Interface: setting an static IP address
+
+reference: https://free5gc.org/guide/2-config-vm-en/#4-setting-static-ip-address
 
 By default, the Host-only network interface obtains its IP address through DHCP. However, the cloned free5GC VM will not automatically receive a new IP address, so you need to configure it manually. Use the following commands:
 ```
@@ -452,10 +454,24 @@ network:
     enp0s3:
       dhcp4: true
     enp0s8:
+      dhcp4: true
+  version: 2
+```
+
+meaning the VM has two network interfaces. Using ifconfig we know that enp0s8 is the name of the Host-only network interface. We can edit the file.
+
+```
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    enp0s3:
+      dhcp4: true
+    enp0s8:
       dhcp4: no
       addresses: [192.168.56.101/24]
   version: 2
 ```
+
 After modifying the file, apply the settings with these commands:
 
 ```
