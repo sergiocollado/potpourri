@@ -12,6 +12,7 @@
  - A private 5G campus network enabled and powered by OpenStack and StarlingX: https://youtu.https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Notes_on_5G.mdbe/xnnw_9UIoS0
  - 5g data session: end to end - deep dive: https://medium.com/@anand.hv123/5g-data-session-an-end-to-end-call-flow-deep-dive-ac896df596e6
  - 5G Session Management Signalling Decoded: In-Depth Analysis: https://youtu.be/WR_fpFVuilg?si=Dys6v-oZGcNfwQre
+ - https://www.linkedin.com/pulse/de-la-teor%C3%ADa-pr%C3%A1ctica-implementando-un-core-5g-con-danilo-granados-5ylde
 
 ## Some nomenclature:
 
