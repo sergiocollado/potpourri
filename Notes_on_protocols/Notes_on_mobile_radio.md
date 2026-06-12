@@ -1,6 +1,8 @@
 # Notes on mobile radio
 
-Reference: https://www.coursera.org/learn/5g-training-qualcomm/
+References:
+ - https://www.coursera.org/learn/5g-training-qualcomm/
+ - https://www.coursera.org/learn/5g-network-fundamentals
 
 ## Introduction to wireless radio communication
  
