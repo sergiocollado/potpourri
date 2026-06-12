@@ -86,6 +86,12 @@ These waves, because they carry ​information from one point to another, ​are
 
 ​Noise and interference, however, ​would be the equivalent of the impediments that happened to the letter itself. ​For example, in transit, your letter might get crumpled a little, ​it might catch a little bit of dirt, it might catch a little bit of rain, ​it might catch a little bit of snow. ​And all those factors might change the appearance of the letter ​when your friend actually receives that letter. ​And just like those factors changed the appearance of the letter, ​noise and interference also have the potential to change the appearance of ​the wireless signal when it actually reaches the receiver. ​And that has a couple of profound implications that will ​learn about shortly. ​But before then, we'll learn about some of the technical details of noise and ​interference. 
 
+## Noise and interfecence
+
+![noise_1](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/noise_1.PNG)
+![noise_2](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/noise_1.PNG)
+![noise_3](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/noise_1.PNG)
+
 
 
 
