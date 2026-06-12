@@ -1,5 +1,7 @@
 # Notes on mobile radio
 
+Reference: https://www.coursera.org/learn/5g-training-qualcomm/
+
 ## Introduction to wireless radio communication
  
 wireless communication ​allows transfer of information ​between a transmitter and ​a receiver without a physical medium. 
