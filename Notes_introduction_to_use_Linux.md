@@ -39,6 +39,28 @@ Debian administrator handbook: https://debian-handbook.info/browse/stable/
 Learning linux thought challenges: https://overthewire.org/wargames/bandit/
 
 <hr>
+## What is Linux
+
+Linux originated from UNIX, the leading operating system in the 1970's, 80's and 90's. 
+
+It started in the movement of the Free Software Foundation (FSF). 
+
+Part of the FSF is GNU (GNU is not UNIX), GNU lauched many free applications/tools.
+
+Linux kernel combines with other GNU tools to have a complete operating sytem
+
+To make the installation possible, the distributions were provided. 
+
+Distributions like 'Yggdrasil' and 'Slackware' were amongs the first Linux distributions.
+
+## Linux distributions overview 
+
+There are two main distributions: 
+ - RedHat: (https://developers.redhat.com/) Fedora, CentOs (https://centos.org/). RedHat has some free distributions, like: Rocky Linux (https://rockylinux.org/) or Alma Linux. Oracle Linux is also another Red Hat linux distribution
+ - Debian: Is one of the early distributions, and is the foundation to others distributions like: Ubuntu, and other distros from Ubuntu, like: Kali Linux or Mint Linux.
+
+
+<hr>
 
 For starters, open a terminal, well through a short cut, or in many distros with: **Alt + Ctrl + t**
 
