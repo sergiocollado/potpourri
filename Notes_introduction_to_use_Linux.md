@@ -39,6 +39,7 @@ Debian administrator handbook: https://debian-handbook.info/browse/stable/
 Learning linux thought challenges: https://overthewire.org/wargames/bandit/
 
 <hr>
+
 ## What is Linux
 
 Linux originated from UNIX, the leading operating system in the 1970's, 80's and 90's. 
