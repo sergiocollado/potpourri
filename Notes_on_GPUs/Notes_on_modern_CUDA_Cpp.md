@@ -4477,7 +4477,7 @@ With the fix from the previous exercise, our histogram kernel finally produces c
 Why? Because using a single shared histogram forces millions of atomic operations on the same memory location. 
 This causes significant contention and implicit serialization.
 
-<img src="Images/contention.png" alt="Contention" width=500>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_04/contention.png" alt="Contention" width=500>
 
 In the worst case, all threads map their data to a single bin. 
 With around 16 thousand blocks and 256 threads each, that’s roughly 4 million atomic operations contending for the same location.  So while we have launched a few million threads, the atomic operation serializes the write to the `histogram` span, and in effect our parallel code now runs partly in serial.  
@@ -4487,7 +4487,7 @@ With around 16 thousand blocks and 256 threads each, that’s roughly 4 million 
 To reduce this overhead, we can introduce a "private" histogram for each thread block. 
 Each block would accumulate its own local copy of histogram, then merge it into the global histogram after all local updates are complete.
 
-<img src="Images/private.png" alt="Private" width=800>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_04/private.png" alt="Private" width=800>
 
 Now, in the worst case, up to 256 atomic operations occur within a block’s private histogram, plus about 16k merges (one per block). 
 That’s 256 + 16k total atomic operations, a big improvement over 4 million.
@@ -4561,18 +4561,18 @@ if (threadIdx.x < 10) {
 
 We assumed all threads in the same thread block would finish updating the block histogram before any threads started reading from it, but CUDA threads can progress independently, even within the same thread block.  To state it more clearly, there is no guarantee that threads in the same thread block are synchonized with each other.  Some threads maybe be finished executing the entire kernel before other threads even start.  This is a very important concept to internalize as you write parallel algorithms and CUDA kernels.
 
-<img src="Images/data-race-read-1.png" alt="Expected" width=800>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_04/data-race-read-1.png" alt="Expected" width=800>
 
 
 As a result, some threads may read the histogram before it’s fully updated.
 Here, we assumed that all threads in the block finished upating block histogram before other threads start reading it.
 
-<img src="Images/data-race-read-2.png" alt="Possible" width=800>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_04/data-race-read-2.png" alt="Possible" width=800>
 
 To fix this issue, we must force all threads to complete their updates before allowing any thread to read the block histogram. 
 CUDA provides `__syncthreads()` function for this exact purpose.  The `__syncthreads()` function is a barrier which all threads in the thread block *must* reach before any thread is permitted to proceed to the next part of the code.
 
-<img src="Images/sync.png" alt="Synchronization" width=800>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_04/sync.png" alt="Synchronization" width=800>
 
 ### Add Synchronization
 
