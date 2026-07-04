@@ -3870,6 +3870,138 @@ You should observe a significant speedup of this code compared to versions earli
 With this approach, our kernel more effectively utilizes the GPU. 
 While it may still not be as fast as the CUB implementation,which uses additional optimizations beyond our current scope, understanding how to write and launch CUDA kernels directly is crucial for creating high-performance custom algorithms.
 
+### Exercise: Symmetry
+
+For your reference, the following is an example of launching a simple kernel.  Execute the next two cells to view the results.
+
+```c++
+%%writefile Sources/kernel-launch.cu
+#include <cstdio>
+
+__global__ void kernel(int value) {
+  std::printf("value on device = %d\n", value);
+}
+
+int main() {
+  int blocks_in_grid = 1;
+  int threads_in_block = 1;
+  cudaStream_t stream = 0;
+  kernel<<<blocks_in_grid, threads_in_block, 0, stream>>>(42);
+  cudaStreamSynchronize(stream);
+}
+```
+compile and run with:
+```bash
+!nvcc -o /tmp/a.out Sources/kernel-launch.cu && /tmp/a.out
+```
+
+Change the code below the image to launch a kernel with a single thread that checks if the input array is symmetric.  If the code does NOT obtain the correct answer, an error message will be printed.
+
+<img src="Images/symmetry.png" alt="Symmetry Check" width=600>
+
+<details>
+<summary>Original code if you need to refer back.</summary>
+
+```c++
+%%writefile Sources/symmetry-check.cu
+#include "dli.cuh"
+
+// 1. convert the function below from a CPU function into a CUDA kernel
+void symmetry_check_kernel(dli::temperature_grid_f temp, int row)
+{
+  int column = 0;
+
+  if (abs(temp(row, column) - temp(temp.extent(0) - 1 - row, column)) > 0.1)
+  {
+    printf("Error: asymmetry in %d / %d\n", column, temp.extent(1));
+  }
+}
+
+void symmetry_check(dli::temperature_grid_f temp, cudaStream_t stream)
+{
+  int target_row = 0;
+  // 2. use triple chevron to launch the kernel
+  symmetry_check_kernel(temp, target_row);
+}
+```
+    
+</details>
+
+
+```c++
+%%writefile Sources/symmetry-check.cu
+#include "dli.cuh"
+
+// 1. convert the function below from a CPU function into a CUDA kernel
+void symmetry_check_kernel(dli::temperature_grid_f temp, int row)
+{
+  int column = 0;
+
+  if (abs(temp(row, column) - temp(temp.extent(0) - 1 - row, column)) > 0.1)
+  {
+    printf("Error: asymmetry in %d / %d\n", column, temp.extent(1));
+  }
+}
+
+void symmetry_check(dli::temperature_grid_f temp, cudaStream_t stream)
+{
+  int target_row = 0;
+  // 2. use triple chevron to launch the kernel
+  symmetry_check_kernel(temp, target_row);
+}
+```
+compile and run with:
+```bash
+!nvcc --extended-lambda -o /tmp/a.out Sources/symmetry-check.cu # build executable
+!/tmp/a.out # run executable
+```
+
+If you’re unsure how to proceed, consider expanding this section for guidance. Use the hint only after giving the problem a genuine attempt.
+
+<details>
+  <summary>Hints</summary>
+  
+  - Kernels are functions that are executed on the GPU but launched from the CPU
+  - Kernels are annotated with `__global__` and launched with triple chevrons `<<<1, 1, 0, stream>>>`
+</details>
+
+Open this section only after you’ve made a serious attempt at solving the problem. Once you’ve completed your solution, compare it with the reference provided here to evaluate your approach and identify any potential improvements.
+
+<details>
+  <summary>Solution</summary>
+
+  Key points:
+
+  - Annotate the kernel with `__global__`
+  - Launch the kernel with triple chevrons `<<<1, 1, 0, stream>>>`
+
+  Solution:
+  ```c++
+  __global__ void symmetry_check_kernel(dli::temperature_grid_f temp, int row)
+  {
+    int column = 0;
+
+    if (abs(temp(row, column) - temp(temp.extent(0) - 1 - row, column)) > 0.1)
+    {
+      printf("Error: asymmetry in %d / %d\n", column, temp.extent(1));
+    }
+  }
+
+  void symmetry_check(dli::temperature_grid_f temp, cudaStream_t stream)
+  {
+    int target_row = 0;
+    symmetry_check_kernel<<<1, 1, 0, stream>>>(temp, target_row);
+  }
+  ```
+
+</details>
+
+
+
+
+
+
+
 ### Exercise: Row Symmetry
 
 Threads are grouped into blocks, 
