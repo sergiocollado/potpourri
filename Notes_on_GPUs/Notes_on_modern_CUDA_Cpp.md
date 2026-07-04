@@ -3182,7 +3182,7 @@ Very importantly, the work issued to a specific CUDA stream is executed synchron
 
 For example, one would not want the compute in step 2 to begin before all the data from step 1 is copied to the device.  So again, work in the _same_ stream is executed synchronously with respect to that stream.  However, work in _different_ streams is not synchronized. This is how we can achieve proper concurrency among all the parts of the application that can be executed asynchronously.  In our example, specifically, we can use different streams to allow computation and data transfer to be executed concurrently.
 
-<img src="Images/async-copy.png" alt="Different Streams" width=900>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_2_03/async-copy.png" alt="Different Streams" width=900>
 
 On the language level, a CUDA stream is represented by a specific type:
 
@@ -3319,7 +3319,7 @@ To do this, you are expected to:
 - put compute and copy operations in separate CUDA streams
 - synchronize the streams to follow the pattern from the diagram below
 
-<img src="Images/async-copy.png" alt="Compute/Copy Overlap" width=900>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_2_03/async-copy.png" alt="Compute/Copy Overlap" width=900>
 
 
 
