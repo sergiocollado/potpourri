@@ -3366,7 +3366,7 @@ To understand why, we need to step back and look at how memory operates.
 
 Operating systems do not provide direct access to physical memory. Instead, programs use virtual memory, which is mapped to physical memory. Virtual memory is organized into pages, enabling the operating system to manage them flexibly, such as swapping pages to disk when physical memory runs low.
 
-<img src="Images/swap.png" alt="Swap" width=800>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_2_04/swap.png" alt="Swap" width=800>
 
 So any given page can be in physical memory, on disk, or in some other place, and the operating system keeps track of that.
 When the page can be relocated to disk, it's called *pageable*. 
@@ -3379,7 +3379,7 @@ What does this have to do with CUDA?
 GPU can only copy data from physical memory. 
 This means that when copying data between host and device, memory has to be pinned.
 
-<img src="Images/pinned-staging.png" alt="GPU Access" width=500>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_2_04/pinned-staging.png" alt="GPU Access" width=500>
 
 But this cannot be right. 
 We just copied data between 
@@ -3388,7 +3388,7 @@ How did that work?
 Under the covers, when moving memory from host to device the CUDA Runtime utilizes a staging buffer in pinned memory.
 When you copy data from host to device, the CUDA Runtime first copies data to the staging buffer, and then copies it to device.
 
-<img src="Images/read-from-pageable.png" alt="Read from Pageable" width=500>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_2_04/read-from-pageable.png" alt="Read from Pageable" width=500>
 
 This should explain why our copy wasn't overlapped with compute.
 It was actually synchronous, because under the covers the data was copied to a staging buffer. 
