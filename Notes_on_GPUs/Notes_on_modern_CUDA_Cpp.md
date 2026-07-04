@@ -7,6 +7,12 @@
  - https://youtu.be/Sdjn9FOkhnA?si=2THRbeRqxkhNaO2Y
  - https://github.com/Bugitoy/Cuda-Accelerated-Maxwell-Equation-Simulator/tree/main
 
+
+videos: 
+ - https://youtu.be/Sdjn9FOkhnA
+ - https://youtu.be/pyW9St8uM8w
+ - https://youtu.be/kTWoGCSugB4
+
 # CUDA Made Easy: Accelerating Applications with Parallel Algorithms
 
 To make your first steps in GPU programming as easy as possible, in this lab you'll learn how to leverage powerful parallel algorithms that make GPU acceleration of your code as easy as changing a few lines of code. While doing so, you’ll learn fundamental concepts such as execution space and memory space, parallelism, heterogeneous computing, and kernel fusion. These concepts will serve as aWhy GPU Programming?
