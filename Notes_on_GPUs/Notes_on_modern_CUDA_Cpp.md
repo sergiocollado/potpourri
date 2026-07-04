@@ -3,6 +3,7 @@
  - https://enccs.github.io/gpu-programming/
  - https://learn.nvidia.com/my-learning
  - https://developer.nvidia.com/blog/even-easier-introduction-cuda/
+ - https://nvidia.github.io/cccl/unstable/cpp.html#cccl-cpp-libraries
 
 # CUDA Made Easy: Accelerating Applications with Parallel Algorithms
 
@@ -4999,7 +5000,7 @@ To answer this question, let's revisit the algorithm types we’ve seen so far:
    - From the user’s perspective, they often look similar to sequential algorithms.
    - Under the hood, they often rely on cooperative algorithms to perform the actual parallel work.
 
-<img src="Images/parallel-vs-cooperative.png" alt="Cooperative vs Parallel" width=400>
+<img src="[Images/parallel-vs-cooperative.png" alt="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_05/parallel-vs-cooperative.png" width=400>
 
 ## CUB Cooperative Algorithms
 
@@ -5040,7 +5041,7 @@ int block_sum = cub::BlockReduce<int, 4>(storage).Sum(threadIdx.x);
 
 Although the following diagram is only a conceptual model, it illustrate what’s happening under the hood in a cooperative algorithm such as block-level reduction:
 
-<img src="Images/coop-reduce.png" alt="Cooperative Reduction" width=600>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_05/coop-reduce.png" alt="Cooperative Reduction" width=600>
 
 The code starts by copying algorithm input that likely comes from registers into shared memory.
 Then, the cooperative algorithm has to synchronize the thread block to make sure all stores were completed.
