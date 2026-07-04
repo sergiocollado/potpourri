@@ -5238,36 +5238,3 @@ Open this section only after you’ve made a serious attempt at solving the prob
   ```
 
 </details>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```c++
-
-```
-compile and run with:
-```bash
-
-```
-
-
-
-
-
-
-
-
-
-
