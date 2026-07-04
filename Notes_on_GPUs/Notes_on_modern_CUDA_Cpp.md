@@ -2772,6 +2772,565 @@ This change should result in a significant speedup, as the CPU can now write dat
 <img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_2_02/sync-cub-vs-thrust.png" alt="Expected Speedup" width=800>
 
 
+### Exercise: Compute-IO Overlap
+
+Usage of `cub::DeviceTransform` for your reference:
+
+```c++
+cub::DeviceTransform::Transform(input_iterator, output_iterator, num_items, op);
+```
+
+In the code below, replace `thrust::tabulate` with `cub::DeviceTransform` and use `cudaDeviceSynchronize` appropriately:
+
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_2_02/overlap.png" alt="Compute/IO Overlap" width=800>
+
+
+<details>
+    <summary>Original code in case you need to refer to it</summary>
+
+```c++
+%%writefile Sources/compute-io-overlap.cu
+#include "dli.h"
+
+void simulate(int width,
+              int height,
+              const thrust::device_vector<float> &in,
+                    thrust::device_vector<float> &out)
+{
+  cuda::std::mdspan temp_in(thrust::raw_pointer_cast(in.data()), height, width);
+  thrust::tabulate(out.begin(), out.end(), [=] __device__(int id) {
+    return dli::compute(id, temp_in);
+  });
+}
+
+int main()
+{
+  int height = 2048;
+  int width  = 8192;
+
+  thrust::device_vector<float> d_prev = dli::init(height, width);
+  thrust::device_vector<float> d_next(height * width);
+  thrust::host_vector<float> h_prev(height * width);
+
+  const int compute_steps = 500;
+  const int write_steps = 3;
+  for (int write_step = 0; write_step < write_steps; write_step++)
+  {
+    auto step_begin = std::chrono::high_resolution_clock::now();
+    thrust::copy(d_prev.begin(), d_prev.end(), h_prev.begin());
+
+    for (int compute_step = 0; compute_step < compute_steps; compute_step++)
+    {
+      simulate(width, height, d_prev, d_next);
+      d_prev.swap(d_next);
+    }
+
+    auto write_begin = std::chrono::high_resolution_clock::now();
+    dli::store(write_step, height, width, h_prev);
+    auto write_end = std::chrono::high_resolution_clock::now();
+    auto write_seconds = std::chrono::duration<double>(write_end - write_begin).count();
+
+    auto step_end = std::chrono::high_resolution_clock::now();
+    auto step_seconds = std::chrono::duration<double>(step_end - step_begin).count();
+    std::printf("compute + write %d in %g s\n", write_step, step_seconds);
+    std::printf("          write %d in %g s\n", write_step, write_seconds);
+  }
+}
+```
+    
+</details>
+
+```c++
+%%writefile Sources/compute-io-overlap.cu
+#include "dli.h"
+
+void simulate(int width,
+              int height,
+              const thrust::device_vector<float> &in,
+                    thrust::device_vector<float> &out)
+{
+  cuda::std::mdspan temp_in(thrust::raw_pointer_cast(in.data()), height, width);
+  thrust::tabulate(out.begin(), out.end(), [=] __device__(int id) {
+    return dli::compute(id, temp_in);
+  });
+}
+
+int main()
+{
+  int height = 2048;
+  int width  = 8192;
+
+  thrust::device_vector<float> d_prev = dli::init(height, width);
+  thrust::device_vector<float> d_next(height * width);
+  thrust::host_vector<float> h_prev(height * width);
+
+  const int compute_steps = 500;
+  const int write_steps = 3;
+  for (int write_step = 0; write_step < write_steps; write_step++)
+  {
+    auto step_begin = std::chrono::high_resolution_clock::now();
+    thrust::copy(d_prev.begin(), d_prev.end(), h_prev.begin());
+
+    for (int compute_step = 0; compute_step < compute_steps; compute_step++)
+    {
+      simulate(width, height, d_prev, d_next);
+      d_prev.swap(d_next);
+    }
+
+    auto write_begin = std::chrono::high_resolution_clock::now();
+    dli::store(write_step, height, width, h_prev);
+    auto write_end = std::chrono::high_resolution_clock::now();
+    auto write_seconds = std::chrono::duration<double>(write_end - write_begin).count();
+
+    auto step_end = std::chrono::high_resolution_clock::now();
+    auto step_seconds = std::chrono::duration<double>(step_end - step_begin).count();
+    std::printf("compute + write %d in %g s\n", write_step, step_seconds);
+    std::printf("          write %d in %g s\n", write_step, write_seconds);
+  }
+}
+```
+compile and run with:
+```bash
+!nvcc --extended-lambda -o /tmp/a.out Sources/compute-io-overlap.cu # build executable
+!/tmp/a.out # run executable
+```
+
+If you’re unsure how to proceed, consider expanding this section for guidance. Use the hint only after giving the problem a genuine attempt.
+
+<details>
+  <summary>Hints</summary>
+  
+  - `cub::DeviceTransform::Transform` accepts the following parameters (in order):
+    - input iterator  (Think about what we learned earlier using counting iterators)
+    - output iterator
+    - number of elements
+    - unary function
+  - You should synchronize the device in a place that allows in-flight transformations to overlap writing data to the file system.  It should be somewhere in the `main` function.
+</details>
+
+Open this section only after you’ve made a serious attempt at solving the problem. Once you’ve completed your solution, compare it with the reference provided here to evaluate your approach and identify any potential improvements.
+
+<details>
+  <summary>Solution</summary>
+
+  Key points:
+
+  - Synchronizing the device after the write step allows us to overlap computation with I/O
+
+  Solution:
+  ```c++
+  void simulate(int width, int height, const thrust::device_vector<float> &in,
+                thrust::device_vector<float> &out) {
+    cuda::std::mdspan temp_in(thrust::raw_pointer_cast(in.data()), height, width);
+    cub::DeviceTransform::Transform(
+        thrust::make_counting_iterator(0), out.begin(), width * height,
+        [=] __host__ __device__(int id) { return dli::compute(id, temp_in); });
+  }
+
+  // ... 
+
+  for (int write_step = 0; write_step < write_steps; write_step++) {
+    thrust::copy(d_prev.begin(), d_prev.end(), h_prev.begin());
+
+    for (int compute_step = 0; compute_step < compute_steps; compute_step++) {
+      simulate(width, height, d_prev, d_next);
+      d_prev.swap(d_next);
+    }
+
+    dli::store(write_step, height, width, h_prev);
+    cudaDeviceSynchronize();
+  }
+  ```
+
+### Exercise: Profile Your Code with Nsight Systems
+
+In this exercise, you will learn how to profile your code with Nsight Systems. 
+Nsight Systems is a system-wide performance analysis tool, designed to visualize CPU and GPU activities. The short video 
+
+<div style="background-color: #e7f3fe; border-left: 6px solid #2196F3; padding: 10px; margin: 10px 0;">
+  <strong>NOTE:</strong> There are some systems that are unable to display the Nsight Streamer due to firewalls or bandwidth limitations and its use of the WebRTC protocol. If this is your situation, you can still review the solution and images provided to see the profiling results.  To improve your bandwidth, you might try closing other applications and browser tabs on your computer or on your network.
+</div>
+
+To run Nsight Systems, you can use the command-line interface provided by `nsys`:
+run with:
+```bash
+!nvcc --extended-lambda -o /tmp/a.out Solutions/compute-io-overlap.cu # build executable
+!nsys profile --force-overwrite true -o ../nsight-reports/compute-io-overlap /tmp/a.out # run and profile executable
+```
+The code above stores the output in a file called `compute-io-overlap` in the `nsight-reports` directory.
+
+### Exercise: Use NVTX
+
+In this exercise, you will learn how to ease the analysis of your application by using NVTX to annotate your code.
+
+```c++
+%%writefile Sources/nvtx.cu
+#include "dli.h"
+
+void simulate(int width, int height, const thrust::device_vector<float> &in,
+              thrust::device_vector<float> &out) 
+{
+  cuda::std::mdspan temp_in(thrust::raw_pointer_cast(in.data()), height, width);
+  cub::DeviceTransform::Transform(
+      thrust::make_counting_iterator(0), out.begin(), width * height,
+      [=] __host__ __device__(int id) { return dli::compute(id, temp_in); });
+}
+
+int main() 
+{
+  int height = 2048;
+  int width = 8192;
+
+  thrust::device_vector<float> d_prev = dli::init(height, width);
+  thrust::device_vector<float> d_next(height * width);
+  thrust::host_vector<float> h_prev(height * width);
+
+  const int compute_steps = 750;
+  const int write_steps = 3;
+  for (int write_step = 0; write_step < write_steps; write_step++) 
+  {
+    nvtx3::scoped_range r{std::string("write step ") + std::to_string(write_step)};
+
+    {
+        // 1. Annotate the "copy" step using nvtx range
+        thrust::copy(d_prev.begin(), d_prev.end(), h_prev.begin());
+    }
+
+    {
+        // 2. Annotate the "compute" step using nvtx range
+        for (int compute_step = 0; compute_step < compute_steps; compute_step++) 
+        {
+        simulate(width, height, d_prev, d_next);
+        d_prev.swap(d_next);
+        }
+    }
+
+    {
+        // 3. Annotate the "write" step using nvtx range
+        dli::store(write_step, height, width, h_prev);
+    }
+
+    {
+      // 4. Annotate the "wait" step using nvtx range
+      cudaDeviceSynchronize();
+    }
+  }
+}
+```
+compile and run with:
+```bash
+!nvcc --extended-lambda -o /tmp/a.out Sources/nvtx.cu # build executable
+!nsys profile --force-overwrite true -o ../nsight-reports/nvtx /tmp/a.out # run and profile executable
+```
+
+The code above stores the output in a file called `nvtx` in `nsight-reports` directory.
+
+If you just completed the Nsight exercise, your UI interface should still be open.  If not, review the steps provided in the [Nsight exercise](02.02.03-Exercise-Nsight.ipynb).
+
+Open the new `nvtx` report and navigate to see the timeline of your application.
+Identify:
+- when GPU compute is launched
+- when CPU writes data on disk
+- when CPU waits for GPU
+- when data is transferred between CPU and GPU
+
+If you’re unsure how to proceed, consider expanding this section for guidance. Use the hint only after giving the problem a genuine attempt.
+
+<details>
+  <summary>Hints</summary>
+  
+  - `nvtx3::scoped_range r{"name"}` creates a range called `name`
+  - you can find NVTX ranges in the "NVTX" timeline row of Nsight Systems
+</details>
+
+Open this section only after you’ve made a serious attempt at solving the problem. Once you’ve completed your solution, compare it with the reference provided here to evaluate your approach and identify any potential improvements.
+
+<details>
+  <summary>Solution</summary>
+
+  You can annotate scopes as follows:
+  ```c++
+  {
+    nvtx3::scoped_range r{"copy"};
+    thrust::copy(d_prev.begin(), d_prev.end(), h_prev.begin());
+  }
+
+  {
+    nvtx3::scoped_range r{"compute"};
+    for (int compute_step = 0; compute_step < compute_steps; compute_step++) {
+      simulate(width, height, d_prev, d_next);
+      d_prev.swap(d_next);
+    }
+  }
+
+  {
+    nvtx3::scoped_range r{"write"};
+    dli::store(write_step, height, width, h_prev);
+  }
+
+  {
+    nvtx3::scoped_range r{"wait"};
+    cudaDeviceSynchronize();
+  }
+  ```
+
+## Streams
+
+So far, you’ve learned how to use asynchronous APIs to overlap computation (on the GPU) and I/O (on the CPU). 
+Here’s what our simulator code looks like when we overlap compute and I/O:
+
+```c++
+void simulate(int width, int height, const thrust::device_vector<float> &in,
+              thrust::device_vector<float> &out)
+{
+  cuda::std::mdspan temp_in(thrust::raw_pointer_cast(in.data()), height, width);
+  cub::DeviceTransform::Transform(
+    thrust::make_counting_iterator(0), out.begin(), width * height,
+    [=] __host__ __device__(int id) { return dli::compute(id, temp_in); });
+}
+
+int main() 
+{
+  int height = 2048;
+  int width = 8192;
+
+  thrust::device_vector<float> d_prev = dli::init(height, width);
+  thrust::device_vector<float> d_next(height * width);
+  thrust::host_vector<float> h_prev(height * width);
+
+  for (int write_step = 0; write_step < 3; write_step++) 
+  {
+    thrust::copy(d_prev.begin(), d_prev.end(), h_prev.begin());
+
+    for (int compute_step = 0; compute_step < 750; compute_step++) 
+    {
+      simulate(width, height, d_prev, d_next);
+      d_prev.swap(d_next);
+    }
+
+    dli::store(write_step, height, width, h_prev);
+
+    cudaDeviceSynchronize(); 
+  }
+}
+```
+
+This code is already fast, but there are still further optimizations we can make. <br>
+Right now, the simulator:
+1. Synchronously copies data from GPU to CPU memory.
+2. Overlaps computation and I/O to some extent.
+3. Waits for the copy to finish before proceeding with the computation.
+
+To improve performance even more, we can also overlap the data copy with the GPU computation, just as we did with the disk I/O.
+
+
+
+### Copying Memory Asynchronously
+
+To achieve this, we need an asynchronous version of `thrust::copy`. 
+Because Thrust itself doesn’t have direct “magical” powers to copy between the CPU and GPU, it relies on the CUDA Runtime API.
+The CUDA Runtime API provides asynchronous memory copy functions such as `cudaMemcpyAsync`, which has the following interface:
+
+```c++
+cudaError_t cudaMemcpyAsync(
+  void*           dst,  // destination pointer
+  const void*     src,  // source pointer
+  size_t        count,  // number of bytes to copy
+  cudaMemcpyKind kind   // direction of copy
+);
+```
+
+Unlike Thrust, `cudaMemcpyAsync` works on raw pointers and operates in terms of bytes rather than elements.
+This means that we need to calculate the size of the data we want to copy in bytes.
+Besides that, `cudaMemcpyAsync` also requires an explicit copy direction, which can be one of the following:
+
+- `cudaMemcpyHostToDevice`: instructs `cudaMemcpyAsync` to copy data from CPU to GPU
+- `cudaMemcpyDeviceToHost`: instructs `cudaMemcpyAsync` to copy data from GPU to CPU
+- `cudaMemcpyDeviceToDevice`: instructs `cudaMemcpyAsync` to copy data from GPU to GPU
+
+You might have also noticed that `cudaMemcpyAsync` returns a `cudaError_t`.
+What kind of error can it be?
+Well, it can actually be any error from previous asynchronous operations.
+
+<img src="Images/async-errors.png" alt="Async Errors" width=600>
+
+In the diagram above, we have two asynchronous operations: `A` and `B` followed by a `cudaMemcpyAsync`.
+Since both `A` and `B` are computed asynchronously, `A` can start executing after `B` was launched.
+This means that if `A` fails, the error can be caught by `cudaMemcpyAsync`.
+
+Unfortunately, if we just use `cudaMemcpyAsync` in our code, we won't get any performance improvement.
+To figure out why, let's take a look at the following diagram:
+
+<img src="Images/async-copy-same-stream.png" alt="Same Stream" width=900>
+
+
+The problem is that all asynchronous operations are ordered on the GPU.
+Just as when we launched multiple asynchronous CUB calls, we expected the next invocation to start after the previous one finished, but the same thing happened with `cudaMemcpyAsync`.
+Subsequent CUB computations wait for `cudaMemcpyAsync` to finish, even though the copy operation is asynchronous.
+
+## CUDA Stream
+
+This is an appropriate time to introduce a new concept called a _CUDA stream_.  You can think of a CUDA stream as an in-order work queue of things (commands, functions, etc.) that will be executed on the GPU.  In all the code we've been writing, we've been executing our GPU work in a stream - we just didn't know it.  If the programmer doesn't specify a stream (which we haven't up to this point), then the work is issued to something called the _default CUDA stream_.  
+
+Very importantly, the work issued to a specific CUDA stream is executed synchronously and in-order with respect to that stream.  This makes sense intuitively as a typical GPU programming flow is to do something like the following:
+
+1. Copy data from host to device
+2. Compute on the device
+3. Copy data from device to host
+
+For example, one would not want the compute in step 2 to begin before all the data from step 1 is copied to the device.  So again, work in the _same_ stream is executed synchronously with respect to that stream.  However, work in _different_ streams is not synchronized. This is how we can achieve proper concurrency among all the parts of the application that can be executed asynchronously.  In our example, specifically, we can use different streams to allow computation and data transfer to be executed concurrently.
+
+<img src="Images/async-copy.png" alt="Different Streams" width=900>
+
+On the language level, a CUDA stream is represented by a specific type:
+
+```c++
+cudaStream_t copy_stream, compute_stream;
+```
+
+To construct a stream, we use the following function:
+
+```c++
+cudaStreamCreate(&compute_stream);
+cudaStreamCreate(&copy_stream);
+```
+
+We can also synchronize the CPU with a given stream, instead of synchronizing with the entire GPU using `cudaDeviceSynchronize`:
+
+```c++
+cudaStreamSynchronize(compute_stream);
+cudaStreamSynchronize(copy_stream);
+```
+
+This is a recommended way to synchronize CPU with GPU, as it allows for more fine-grained control over the synchronization.
+
+Finally, you can destroy a stream using the following function:
+
+```c++
+cudaStreamDestroy(compute_stream);
+cudaStreamDestroy(copy_stream);
+```
+
+`cudaMemcpyAsync` actually has an additional parameter that allows you to specify a stream in which the copy operation should be executed:
+
+```c++
+cudaError_t 
+cudaMemcpyAsync(
+  void*           dst, 
+  const void*     src, 
+  size_t        count, 
+  cudaMemcpyKind kind,
+  cudaStream_t stream = 0 // <- 
+);
+
+CUB also allows you to specify which stream to use.
+
+```c++
+cudaError_t 
+cub::DeviceTransform::Transform(
+  IteratorIn 	  input, 
+  IteratorOut  output,
+  int       num_items,
+  TransformOp 	   	op, 
+  cudaStream_t stream = 0 // <-
+);
+```
+
+It's very common for accelerated libraries to provide an optional stream parameter.
+The idea is that you as a user of these libraries will likely want to overlap their operations with data transfers, CPU computations, or even other library calls.
+
+Returning to our simulator, if we just use `cudaMemcpyAsync` and `cub::DeviceTransform::Transform` with different streams, we'll end up with a data race.
+If you take a look at each iteration, you'll notice how the second iteration step overwrites `d_prev` while it's being copied to the CPU.
+
+```c++
+cudaMemcpyAsync(
+  thrust::raw_pointer_cast(h_prev.data()),
+  thrust::raw_pointer_cast(d_prev.data()), // reads d_prev
+  height * width * sizeof(float),
+  cudaMemcpyDeviceToHost,
+  copy_stream);
+
+simulate(width, height, d_prev, d_next, compute_stream); // reads d_prev, writes d_next
+simulate(width, height, d_next, d_prev, compute_stream); // reads d_next, writes d_prev
+```
+
+We can fix this with another level of indirection.
+We can allocate a staging buffer on the GPU, copy the data from `d_prev` to the staging buffer synchronously, and then copy the data from the staging buffer to the CPU.
+
+```c++
+thrust::copy(d_prev.begin(), d_prev.end(), d_buffer.begin()); // reads d_prev synchronously
+
+cudaMemcpyAsync(
+  thrust::raw_pointer_cast(h_prev.data()),
+  thrust::raw_pointer_cast(d_buffer.data()), // reads d_buffer asynchronously
+  height * width * sizeof(float),
+  cudaMemcpyDeviceToHost,
+  copy_stream);
+
+simulate(width, height, d_prev, d_next, compute_stream); // reads d_prev, writes d_next
+simulate(width, height, d_next, d_prev, compute_stream); // reads d_next, writes d_prev
+```
+
+But doesn't this defeat the purpose of overlapping computation and IO?
+We just made the copy synchronous again!
+To answer this question, let's return to our high-level overview of bandwidth provided by different subsystems:
+
+<img src="Images/cpu-vs-gpu-memory-pci.png" alt="PCIe" width=900>
+
+Here you can see how the bandwidth of CPU-GPU interconnect is much lower than the bandwidth of GPU memory.
+This means that copying data from GPU to GPU should be significantly faster than copying data from GPU to CPU.
+So this change can still lead to a performance improvement, at the small expense of having a small temporary buffer in memory.
+
+### Exercise: Async Copy and Streams
+
+Usage of streams:
+
+```c++
+cudaStream_t stream;
+
+// create a stream
+cudaStreamCreate(&stream); 
+
+// make CPU wait for all operations in the stream to complete
+cudaStreamSynchronize(stream); 
+
+// destroy the stream
+cudaStreamDestroy(stream);
+```
+
+Usage of `cub::DeviceTransform`:
+
+```c++
+cub::DeviceTransform::Transform(input_iterator, output_iterator, num_items, op, stream);
+```
+
+Usage of `cudaMemcpyAsync`:
+
+```c++
+cudaMemcpyAsync(dst, src, num_bytes, cudaMemcpyDeviceToHost, stream);
+```
+
+For this exercise, we'll attempt to make transfers between the host and device asynchronous.
+To do this, you are expected to:
+
+- replace `thrust::copy` with `cudaMemcpyAsync`
+- put compute and copy operations in separate CUDA streams
+- synchronize the streams to follow the pattern from the diagram below
+
+<img src="Images/async-copy.png" alt="Compute/Copy Overlap" width=900>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
