@@ -5,6 +5,7 @@
  - https://developer.nvidia.com/blog/even-easier-introduction-cuda/
  - https://nvidia.github.io/cccl/unstable/cpp.html#cccl-cpp-libraries
  - https://youtu.be/Sdjn9FOkhnA?si=2THRbeRqxkhNaO2Y
+ - https://github.com/Bugitoy/Cuda-Accelerated-Maxwell-Equation-Simulator/tree/main
 
 # CUDA Made Easy: Accelerating Applications with Parallel Algorithms
 
