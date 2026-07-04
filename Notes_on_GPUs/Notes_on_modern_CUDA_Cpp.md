@@ -4217,7 +4217,7 @@ We recently fixed a bug caused by our thread hierarchy, which might prompt the q
 A histogram helps visualize the distribution of temperatures by grouping values into "bins".
 In this example, each bin covers a 10-degree range, so the first bin represents temperatures in `[0, 10)`, the second in `[10, 20)`, and so on.
 
-<img src="Images/histogram.png" alt="Histogram" width=800>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_02/histogram.png" alt="Histogram" width=800>
 
 Given a cell’s temperature, how do we determine the bin it belongs to? We can simply use integer division:
 
@@ -4276,7 +4276,7 @@ both read the same initial value and overwrite one another’s updates,
 causing the bin to increment only once instead of twice. 
 Multiplied by millions of cells, this leads to a nearly empty histogram.
 
-<img src="Images/race.png" alt="Data Race" width=1000>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_02/race.png" alt="Data Race" width=1000>
 
 To fix this, we need to make the read, modify, and write steps a single, indivisible operation. 
 CUDA provides atomic operations that handle concurrency safely, ensuring we don’t lose any increments in our histogram.
@@ -4337,13 +4337,12 @@ ref.fetch_add(1);
 This call performs an indivisible read-modify-write operation: it reads the current value of `count[0]`, adds one, and writes the result back atomically.
 You can think of atomics as writing an instruction rather than a direct value. 
 
-<img src="Images/atomic.png" alt="Atomics" width=800>
-
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_02/atomic.png" alt="Atomics" width=800>
 
 The "?" is replaced by the current value of `count[0]`, incremented by one, and stored in a single step. 
 It doesn’t matter how many threads do this concurrently - the result remains correct.
 
----
+
 
 
 
