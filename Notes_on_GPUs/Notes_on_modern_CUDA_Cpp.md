@@ -3567,17 +3567,308 @@ In addition, this lab will cover utilities provided by the CUDA ecosystem to fac
 ![CUDA_Kernels](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_02/implementing_new_algo_with_CUDA_kernels.png)
 
 
+## CUDA kernels
+
+In the previous section, we learned how to use asynchrony to improve the performance of a heterogeneous program by overlapping computation with I/O. 
+We switched from a synchronous Thrust algorithm to the asynchronous CUB interface, which allowed the computational part of our program to look like this:
 
 
+```c++
+%%writefile Sources/cub.cu
+#include "dli.h"
+
+void simulate(dli::temperature_grid_f temp_in, float *temp_out, cudaStream_t stream)
+{
+  auto cell_ids = thrust::make_counting_iterator(0);
+  cub::DeviceTransform::Transform(
+    cell_ids, temp_out, temp_in.size(), 
+    [temp_in] __host__ __device__ (int cell_id) { 
+      return dli::compute(cell_id, temp_in); 
+    }, stream);
+}
+```
+compile and run with:
+```bash
+!nvcc --extended-lambda -o /tmp/a.out Sources/cub.cu # build executable
+!/tmp/a.out # run executable
+```
+
+### Launching a CUDA Kernel with `__global__`
+
+However, sometimes the algorithm you need is not available in existing accelerated libraries. 
+What can you do when you cannot simply extend these existing algorithms (as we did in the first section) to fit your unique use case? At this point, it helps to understand the “magic” behind these accelerated libraries—specifically, how to launch a function on the GPU from the CPU.
+
+So far, we have only used the `__host__` and `__device__` function specifiers, where host functions run on the CPU and device functions run on the GPU. 
+To launch a function on the GPU from the CPU, we need a different specifier. 
+That is where `__global__` comes in.
+
+<img src="Images/global.png" alt="Global" width=800>
+
+A function annotated with `__global__` is called a *CUDA kernel*. 
+It is launched from the CPU but runs on the GPU. 
+To launch a kernel, we use the specialized “triple chevrons” syntax:
+
+```c++
+kernel<<<1, 1, 0, stream>>>(...);
+```
+The first two numbers in the triple chevrons will be explained in more detail soon, but for now, note that CUDA kernels are asynchronous. 
+In fact, CUB achieves its asynchrony by launching multiple CUDA kernels.  Because kernels themselves are asynchronous, CUB can provide asynchronous functionality.
+
+Let’s try to reimplement the functionality of `cub::DeviceTransform` directly as a CUDA kernel.  We'll start with the code below which runs the algorithm with a single thread.
 
 
+```c++
+%%writefile Sources/simple-kernel.cu
+#include "dli.h"
+
+__global__ void single_thread_kernel(dli::temperature_grid_f in, float *out)
+{
+  for (int id = 0; id < in.size(); id++) 
+  {
+    out[id] = dli::compute(id, in);
+  }
+}
+
+void simulate(dli::temperature_grid_f temp_in, float *temp_out, cudaStream_t stream)
+{
+  single_thread_kernel<<<1, 1, 0, stream>>>(temp_in, temp_out);
+}
+```
+compile and run with:
+```bash
+!nvcc --extended-lambda -o /tmp/a.out Sources/simple-kernel.cu # build executable
+!/tmp/a.out # run executable
+```
+
+### Parallelizing
+
+Notice that we specify the CUDA Stream (`stream`) in the triple chevrons `<<<1, 1, 0, stream>>>`. 
+However, as you might guess, this kernel is significantly slower than the CUB version because it processes the loop in a serial fashion. 
+As we've learned already, the GPU does not automatically parallelize serial code.
+
+<img src="Images/serial-kernel.png" alt="Serial" width=600>
+
+We want to avoid serialization whenever possible. 
+To parallelize this kernel, we need to launch more threads. 
+The second parameter in the triple chevrons `kernel<<<1, NUMBER-OF-THREADS, 0, stream>>>` represents the number of threads. 
+By increasing this number, we can launch more threads on the GPU. 
+Of course, we also need to ensure that each thread processes a different subset of the data.
+
+CUDA provides the built-in variable `threadIdx.x`, the value of which is used inside a kernel and stores the index of the current thread within a thread block, starting from `0`. 
+If we launch more threads, we can use `threadIdx.x` to split the work across them:
+
+```c++
+const int number_of_threads = 2;
+
+__global__ void block_kernel(dli::temperature_grid_f in, float *out)
+{
+  int thread_index = threadIdx.x;
+
+  for (int id = thread_index; id < in.size(); id += number_of_threads) 
+  {
+    out[id] = dli::compute(id, in);
+  }
+}
+```
+
+In this example, two threads run with indices `threadIdx.x = 0` and `threadIdx.x = 1`. 
+Each thread starts processing from its own index and increments by `number_of_threads` to avoid overlapping.
+
+<img src="Images/threadIdx.png" alt="Thread Index" width=800>
+
+This change will evenly distribute work between threads, which should result in a speedup.
+Let's take a look if this is the case.  When you run the next two cells you should observe a speedup over the previous iteration of the code.
 
 
+```c++
+%%writefile Sources/block-kernel.cu
+#include "dli.h"
+
+const int number_of_threads = 2;
+
+__global__ void block_kernel(dli::temperature_grid_f in, float *out)
+{
+  int thread_index = threadIdx.x;
+
+  for (int id = thread_index; id < in.size(); id += number_of_threads) 
+  {
+    out[id] = dli::compute(id, in);
+  }
+}
+
+void simulate(dli::temperature_grid_f temp_in, float *temp_out, cudaStream_t stream)
+{
+  block_kernel<<<1, number_of_threads, 0, stream>>>(temp_in, temp_out);
+}
+```
+compile and run with:
+```bash
+!nvcc --extended-lambda -o /tmp/a.out Sources/block-kernel.cu # build executable
+!/tmp/a.out # run executable
+```
 
 
+### Adding More Threads
+While this provides some speedup, it may still be far from the performance of the CUB implementation. 
+Increasing the number of threads further should help.  Run the next two cells and observe how performance changes when the number of threads is increased.
 
 
+```c++
+%%writefile Sources/block-256-kernel.cu
+#include "dli.h"
 
+const int number_of_threads = 256;
+
+__global__ void block_kernel(dli::temperature_grid_f in, float *out)
+{
+  int thread_index = threadIdx.x;
+
+  for (int id = thread_index; id < in.size(); id += number_of_threads) 
+  {
+    out[id] = dli::compute(id, in);
+  }
+}
+
+void simulate(dli::temperature_grid_f temp_in, float *temp_out, cudaStream_t stream)
+{
+  block_kernel<<<1, number_of_threads, 0, stream>>>(temp_in, temp_out);
+}
+```
+compile and run with:
+```bash
+!nvcc --extended-lambda -o /tmp/a.out Sources/block-256-kernel.cu # build executable
+!/tmp/a.out # run executable
+```
+
+This works well, but if you try to go too high (for example, `number_of_threads = 2048`), you might see an error regarding invalid configuration.  Run the following two cells to observe this error.
+
+
+```c++
+%%writefile Sources/failed-block-kernel.cu
+#include "dli.h"
+
+const int number_of_threads = 2048;
+
+__global__ void block_kernel(dli::temperature_grid_f in, float *out)
+{
+  int thread_index = threadIdx.x;
+
+  for (int id = thread_index; id < in.size(); id += number_of_threads) 
+  {
+    out[id] = dli::compute(id, in);
+  }
+}
+
+void simulate(dli::temperature_grid_f temp_in, float *temp_out, cudaStream_t stream)
+{
+  block_kernel<<<1, number_of_threads, 0, stream>>>(temp_in, temp_out);
+}
+```
+compile and run with:
+```bash
+!nvcc --extended-lambda -o /tmp/a.out Sources/failed-block-kernel.cu # build executable
+!/tmp/a.out # run executable
+```
+
+This error happens because there is a limit on the number of threads in a single block... 
+So, what is a thread block?
+
+Threads in a CUDA kernel are organized into a hierarchical structure.
+This structure consists of equally-sized blocks of threads. 
+All thread blocks together form a grid.
+
+The second parameter of the triple chevron specifies the number of threads in a block, and this number can't exceed 1024.  (There's nothing magic about 1024, it's simply a limit enforced by NVIDIA based on HW resources.)
+To launch more than 1024 threads, we need to launch more blocks.
+The first parameter in the triple chevrons `kernel<<<NUMBER-OF-BLOCKS, NUMBER-OF-THREADS, 0, stream>>>` specifies the number of blocks. 
+
+<img src="Images/grid.png" alt="Grid" width=800>
+
+The thread indexing we saw earlier is local to a block, so `threadIdx.x` will always be in the range `[0, NUMBER-OF-THREADS)`.  
+To uniquely identify each thread across blocks, we need to combine both the block index and the thread index.
+To do that, we can combine the `blockIdx.x` variable, which stores the index of the current block, with `blockDim.x`, which stores the number of threads in each block:
+
+```c++
+int thread_index = blockDim.x * blockIdx.x + threadIdx.x;
+```
+
+For more details on these built-in variables see the [CUDA Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/#thread-hierarchy).
+
+Here are a few examples of how `thread_index` is calculted for a few selected threads in different thread blocks.
+
+<img src="Images/thread-in-grid.png" alt="Thread in Grid" width=800>
+
+
+Note that `blockDim.x` is a constant and is the same for every thread, while `blockIdx.x` and `threadIdx.x` vary depending on which thread and which block are running.
+
+Besides that, we'll also have to update the stride calculation in the loop. 
+To do this, we'll need to compute the total number of threads in the grid which we can do using another built-in variable called `gridDim.x`.
+This variable stores the number of blocks in the grid, so the total number of threads in the grid can be computed as:
+
+```c++
+int number_of_threads = blockDim.x * gridDim.x;
+```
+
+Choosing how many threads go in each block is often independent of problem size. 
+A common rule of thumb is to use a multiple of 32 (a warp size), with 256 being a reasonable starting choice. 
+The number of blocks, by contrast, is usually derived from the problem size so that all elements can be covered.
+
+If you attempt to do something like this:
+
+```c++
+int problem_size = 6;
+int block_size = 4;
+int grid_size = 6 / 4; // results in 1 block, but we need 2
+```
+
+you would not launch enough blocks because of the integer division. To fix this, you can use a helper function that performs a ceiling division:
+
+```c++
+int ceil_div(int a, int b) 
+{
+  return (a + b - 1) / b;
+}
+```
+
+This ensures enough blocks are launched to cover every element in the data. Putting it all together, we can write:
+
+```c++
+%%writefile Sources/grid-kernel.cu
+#include "dli.h"
+
+__global__ void grid_kernel(dli::temperature_grid_f in, float *out)
+{
+  int thread_index = blockDim.x * blockIdx.x + threadIdx.x;
+  int number_of_threads = blockDim.x * gridDim.x;
+
+  for (int id = thread_index; id < in.size(); id += number_of_threads) 
+  {
+    out[id] = dli::compute(id, in);
+  }
+}
+
+int ceil_div(int a, int b) 
+{
+  return (a + b - 1) / b;
+}
+
+void simulate(dli::temperature_grid_f temp_in, float *temp_out, cudaStream_t stream)
+{
+  int block_size = 1024;
+  int grid_size = ceil_div(temp_in.size(), block_size);
+
+  grid_kernel<<<grid_size, block_size, 0, stream>>>(temp_in, temp_out);
+}
+```
+compile and run with:
+```bash
+!nvcc --extended-lambda -o /tmp/a.out Sources/grid-kernel.cu # build executable
+!/tmp/a.out # run executable 
+```
+
+You should observe a significant speedup of this code compared to versions earlier in this notebook.  This makes sense intuitively as with each now kernel we are launching more threads.  We'd expect launching more threads to result in a faster execution time.
+
+With this approach, our kernel more effectively utilizes the GPU. 
+While it may still not be as fast as the CUB implementation,which uses additional optimizations beyond our current scope, understanding how to write and launch CUDA kernels directly is crucial for creating high-performance custom algorithms.
 
 
 
