@@ -2546,10 +2546,230 @@ By encapsulating custom logic, you can reuse Thrust’s highly optimized buildin
 
 
 
+# Asynchrony and CUDA Streams
+
+The concept of parallelism is not sufficient for accelerating your applications. To fully utilize GPUs, this lab will teach you another fundamental concept: asynchrony. In this lab, you'll learn how and when to leverage asynchrony. You’ll use NVIDIA Nsight Systems to distinguish synchronous and asynchronous algorithms and identify performance bottlenecks.
 
 
+## Asynchrony
+
+In the previous sections, we learned about:
+- Execution spaces (where code runs: CPU vs. GPU)
+- Memory spaces (where data is stored: host vs. device)
+- Parallel algorithms (how to run operations in parallel using Thrust)
+
+By combining these concepts, we improved our simulator. Here’s what the updated simulator code looks like:
+
+```c++
+void simulate(int height, int width, 
+              thrust::device_vector<float> &in, 
+              thrust::device_vector<float> &out) 
+{
+  cuda::std::mdspan temp_in(thrust::raw_pointer_cast(in.data()), height, width);
+  thrust::tabulate(
+    thrust::device, out.begin(), out.end(), 
+    [=] __host__ __device__(int id) { /* ... */ }
+  );
+}
+
+for (int write_step = 0; write_step < 3; write_step++) 
+{
+  thrust::copy(d_prev.begin(), d_prev.end(), h_prev.begin());
+  dli::store(write_step, height, width, h_prev);
+
+  for (int compute_step = 0; compute_step < 3; compute_step++) {
+    simulate(height, width, d_prev, d_next);
+    d_prev.swap(d_next);
+  }
+}
+```
+
+In this loop we do the following:
+ - Copy data from the device (GPU) to the host (CPU).
+ - Write the host data to disk.
+ - Compute the next state on the GPU.
+ - This process can be visualized as follows:
+
+<img src="Images/sync.png" alt="Sync" width=800>
 
 
+### Overlapping
+We see that Thrust launches work on the GPU for each simulation step (thrust::tabulate). However, it then waits for the GPU to finish before returning control to the CPU. Because Thrust calls are synchronous, the CPU remains idle whenever the GPU is working. Writing efficient heterogeneous code means utilizing all available resources, including the CPU. In many real-world applications, we can keep the CPU busy at the same time the GPU is computing. This is called overlapping. Instead of waiting idly, the CPU could do something useful, like write data while the GPU is crunching numbers.
+
+Here’s a simple way to visualize that concept:
+
+<img src="Images/overlap.png" alt="Compute/IO Overlap" width=800>
+
+While the GPU is computing the next simulation step, the CPU can be writing out the previous results to disk.
+
+This overlap uses both CPU and GPU resources efficiently, reducing the total runtime.
+Unfortunately, Thrust’s interface doesn’t provide a direct way to separate launching GPU work from waiting for its completion.
+Under the hood, Thrust calls another library called [CUB (CUDA UnBound)](https://nvidia.github.io/cccl/cub/) to implement its GPU algorithms.  If you look at the software stack, you'll see CUB us underneath Thrust.  CUB is also a library in it's own right.
+
+### CUB
+
+If we want finer control to use the CPU while GPU kernels are still running, we need more flexible tools. That’s where direct libraries like CUB come into play.
+
+Let's take a closer look at CUB:
+
+
+```c++
+%%writefile Sources/cub-perf.cu
+#include "dli.h"
+
+float simulate(int width,
+               int height,
+               const thrust::device_vector<float> &in,
+                     thrust::device_vector<float> &out,
+               bool use_cub) 
+{
+  cuda::std::mdspan temp_in(thrust::raw_pointer_cast(in.data()), height, width);
+  auto compute = [=] __host__ __device__(int id) {
+    const int column = id % width;
+    const int row    = id / width;
+
+    // loop over all points in domain (except boundary)
+    if (row > 0 && column > 0 && row < height - 1 && column < width - 1)
+    {
+      // evaluate derivatives
+      float d2tdx2 = temp_in(row, column - 1) - 2 * temp_in(row, column) + temp_in(row, column + 1);
+      float d2tdy2 = temp_in(row - 1, column) - 2 * temp_in(row, column) + temp_in(row + 1, column);
+
+      // update temperatures
+      return temp_in(row, column) + 0.2f * (d2tdx2 + d2tdy2);
+    }
+    else
+    {
+      return temp_in(row, column);
+    }
+  };
+
+  auto begin = std::chrono::high_resolution_clock::now();
+
+  if (use_cub) 
+  {
+    auto cell_ids = thrust::make_counting_iterator(0);
+    cub::DeviceTransform::Transform(cell_ids, out.begin(), width * height, compute);
+  }
+  else 
+  {
+    thrust::tabulate(thrust::device, out.begin(), out.end(), compute);
+  }
+  auto end = std::chrono::high_resolution_clock::now();
+  return std::chrono::duration<float>(end - begin).count();
+}
+
+int main()
+{
+  std::cout << "size, thrust, cub\n";
+  for (int size = 1024; size <= 16384; size *= 2)
+  {
+    int width = size;
+    int height = size;
+    thrust::device_vector<float> current_temp(height * width, 15.0f);
+    thrust::device_vector<float> next_temp(height * width);
+
+    std::cout << size << ", "
+              << simulate(width, height, current_temp, next_temp, false) << ", "
+              << simulate(width, height, current_temp, next_temp, true) << "\n";
+  }
+}
+```
+
+compile and run with:
+```bash
+!nvcc --extended-lambda -o /tmp/a.out Sources/cub-perf.cu # build executable
+!/tmp/a.out # run executable
+```
+
+When you run the example cell, you might see some unexpected performance results:
+ - When using Thrust, the runtime increases as the number of cells increases. This makes sense because the GPU is doing more work.
+ - When using CUB, the runtime seems almost constant, regardless of how many cells you use.
+
+Why does this happen?
+
+Thrust is synchronous, meaning it waits for the GPU to finish all work before giving control back to the CPU. Naturally, as we scale the workload, the GPU takes longer, so you see longer total run times.
+CUB, on the other hand, is asynchronous. It launches the GPU kernels and then immediately returns control to the CPU. That means your CPU timer stops quickly, and it looks like the GPU work is instantaneous, even though the GPU may still be processing in the background.
+In other words, CUB’s asynchronous behavior explains why the measured runtime doesn’t grow as expected with the problem size. The GPU is still doing the work, but the CPU measurements aren’t accounting for its actual duration.
+
+This answers the question of how Thrust launches work on the GPU, but what causes Thrust to wait? Thrust uses a function from the CUDA Runtime, cudaDeviceSynchronize(), to wait for the GPU to finish. If we insert this function when using CUB, we should see the same behavior:
+
+```c++
+%%writefile Sources/cub-perf-sync.cu
+#include "dli.h"
+
+float simulate(int width,
+               int height,
+               const thrust::device_vector<float> &in,
+                     thrust::device_vector<float> &out,
+               bool use_cub) 
+{
+  cuda::std::mdspan temp_in(thrust::raw_pointer_cast(in.data()), height, width);
+  auto compute = [=] __host__ __device__(int id) {
+    const int column = id % width;
+    const int row    = id / width;
+
+    // loop over all points in domain (except boundary)
+    if (row > 0 && column > 0 && row < height - 1 && column < width - 1)
+    {
+      // evaluate derivatives
+      float d2tdx2 = temp_in(row, column - 1) - 2 * temp_in(row, column) + temp_in(row, column + 1);
+      float d2tdy2 = temp_in(row - 1, column) - 2 * temp_in(row, column) + temp_in(row + 1, column);
+
+      // update temperatures
+      return temp_in(row, column) + 0.2f * (d2tdx2 + d2tdy2);
+    }
+    else
+    {
+      return temp_in(row, column);
+    }
+  };
+
+  auto begin = std::chrono::high_resolution_clock::now();
+
+  if (use_cub) 
+  {
+    auto cell_ids = thrust::make_counting_iterator(0);
+    cub::DeviceTransform::Transform(cell_ids, out.begin(), width * height, compute);
+    cudaDeviceSynchronize();
+  }
+  else 
+  {
+    thrust::tabulate(thrust::device, out.begin(), out.end(), compute);
+  }
+  auto end = std::chrono::high_resolution_clock::now();
+  return std::chrono::duration<float>(end - begin).count();
+}
+
+int main()
+{
+  std::cout << "size, thrust, cub\n";
+  for (int size = 1024; size <= 16384; size *= 2)
+  {
+    int width = size;
+    int height = size;
+    thrust::device_vector<float> current_temp(height * width, 15.0f);
+    thrust::device_vector<float> next_temp(height * width);
+
+    std::cout << size << ", "
+              << simulate(width, height, current_temp, next_temp, false) << ", "
+              << simulate(width, height, current_temp, next_temp, true) << "\n";
+  }
+}
+```
+compile and run with:
+```bash
+!nvcc --extended-lambda -o /tmp/a.out Sources/cub-perf-sync.cu # build executable
+!/tmp/a.out # run executable
+```
+The code above is similar to the previous example, but with the addition of `cudaDeviceSynchronize()` after the calls to CUB.
+`cudaDeviceSynchronize()` is a CUDA Runtime function that causes the CPU to wait until the GPU has finished all work.
+With `cudaDeviceSynchronize()`, you can see that it takes the same time for both Thrust and CUB to complete the work.
+
+We can now use CUB and `cudaDeviceSynchronize()` to control overlap computation and I/O.
+This change should result in a significant speedup, as the CPU can now write data to disk while the GPU is computing the next simulation step:
+
+<img src="Images/sync-cub-vs-thrust.png" alt="Expected Speedup" width=800>
 
 
 
@@ -2559,6 +2779,7 @@ By encapsulating custom logic, you can reuse Thrust’s highly optimized buildin
 
 ```
 compile and run with:
-```
+```bash
 
 ```
+
