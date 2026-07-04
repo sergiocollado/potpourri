@@ -3403,11 +3403,158 @@ To allocate pinned memory, it's sufficient to use another container from Thrust:
 thrust::universal_host_pinned_vector<float> pinned_memory(size);
 ```
 
+### Exercise: Async Copy and Pinned Memory
 
+For this exercise, we'll attempt to fix our program to make the copy actually asynchronous.
+To do this, you are expected to:
 
+- Use `thrust::universal_host_pinned_vector` to allocate pinned memory for the host buffer
+- Profile the program to see if the copy becomes asynchronous
 
+<details>
+<summary>Copy of the original code if you need to refer to it.</summary>
 
+```c++
+%%writefile Sources/copy-overlap.cu
+#include "dli.h"
 
+int main() 
+{
+  int height = 2048;
+  int width = 8192;
+
+  cudaStream_t compute_stream;
+  cudaStreamCreate(&compute_stream);
+
+  cudaStream_t copy_stream;
+  cudaStreamCreate(&copy_stream);
+
+  thrust::device_vector<float> d_prev = dli::init(height, width);
+  thrust::device_vector<float> d_next(height * width);
+  thrust::device_vector<float> d_buffer(height * width);
+
+  // 1. Change code below to allocate host vector in pinned memory
+  thrust::host_vector<float> h_prev(height * width);
+
+  const int compute_steps = 750;
+  const int write_steps = 3;
+  for (int write_step = 0; write_step < write_steps; write_step++) 
+  {
+    cudaMemcpy(thrust::raw_pointer_cast(d_buffer.data()),
+               thrust::raw_pointer_cast(d_prev.data()),
+               height * width * sizeof(float), cudaMemcpyDeviceToDevice);
+    cudaMemcpyAsync(thrust::raw_pointer_cast(h_prev.data()),
+                    thrust::raw_pointer_cast(d_buffer.data()),
+                    height * width * sizeof(float), cudaMemcpyDeviceToHost,
+                    copy_stream);
+
+    for (int compute_step = 0; compute_step < compute_steps; compute_step++) 
+    {
+      dli::simulate(width, height, d_prev, d_next, compute_stream);
+      d_prev.swap(d_next);
+    }
+
+    cudaStreamSynchronize(copy_stream);
+    dli::store(write_step, height, width, h_prev);
+
+    cudaStreamSynchronize(compute_stream);
+  }
+
+  cudaStreamDestroy(compute_stream);
+  cudaStreamDestroy(copy_stream);
+}
+```
+    
+</details>
+
+```c++
+%%writefile Sources/copy-overlap.cu
+#include "dli.h"
+
+int main() 
+{
+  int height = 2048;
+  int width = 8192;
+
+  cudaStream_t compute_stream;
+  cudaStreamCreate(&compute_stream);
+
+  cudaStream_t copy_stream;
+  cudaStreamCreate(&copy_stream);
+
+  thrust::device_vector<float> d_prev = dli::init(height, width);
+  thrust::device_vector<float> d_next(height * width);
+  thrust::device_vector<float> d_buffer(height * width);
+
+  // 1. Change code below to allocate host vector in pinned memory
+  thrust::host_vector<float> h_prev(height * width);
+
+  const int compute_steps = 750;
+  const int write_steps = 3;
+  for (int write_step = 0; write_step < write_steps; write_step++) 
+  {
+    cudaMemcpy(thrust::raw_pointer_cast(d_buffer.data()),
+               thrust::raw_pointer_cast(d_prev.data()),
+               height * width * sizeof(float), cudaMemcpyDeviceToDevice);
+    cudaMemcpyAsync(thrust::raw_pointer_cast(h_prev.data()),
+                    thrust::raw_pointer_cast(d_buffer.data()),
+                    height * width * sizeof(float), cudaMemcpyDeviceToHost,
+                    copy_stream);
+
+    for (int compute_step = 0; compute_step < compute_steps; compute_step++) 
+    {
+      dli::simulate(width, height, d_prev, d_next, compute_stream);
+      d_prev.swap(d_next);
+    }
+
+    cudaStreamSynchronize(copy_stream);
+    dli::store(write_step, height, width, h_prev);
+
+    cudaStreamSynchronize(compute_stream);
+  }
+
+  cudaStreamDestroy(compute_stream);
+  cudaStreamDestroy(copy_stream);
+}
+```
+compile and run with:
+```bash
+!nvcc --extended-lambda -o /tmp/a.out Sources/copy-overlap.cu # build executable
+!nsys profile --force-overwrite true -o ../nsight-reports/pinned /tmp/a.out # run and profile executable
+``` 
+
+If you’re unsure how to proceed, consider expanding this section for guidance. Use the hint only after giving the problem a genuine attempt.
+
+Hints
+You can allocate pinned memory with thrust::universal_host_pinned_vector
+
+Open this section only after you’ve made a serious attempt at solving the problem. Once you’ve completed your solution, compare it with the reference provided here to evaluate your approach and identify any potential improvements.
+
+<details>
+  <summary>Solution</summary>
+
+  Key points:
+
+  - Use `thrust::universal_host_pinned_vector` to allocate pinned memory for the host buffer
+
+  Solution:
+  ```c++
+  thrust::universal_host_pinned_vector<float> h_prev(height * width);
+
+  const int compute_steps = 750;
+  const int write_steps = 3;
+  for (int write_step = 0; write_step < write_steps; write_step++) {
+    cudaMemcpy(thrust::raw_pointer_cast(d_buffer.data()),
+               thrust::raw_pointer_cast(d_prev.data()),
+               height * width * sizeof(float), cudaMemcpyDeviceToDevice);
+    cudaMemcpyAsync(thrust::raw_pointer_cast(h_prev.data()),
+                    thrust::raw_pointer_cast(d_buffer.data()),
+                    height * width * sizeof(float), cudaMemcpyDeviceToHost,
+                    copy_stream);
+    // ...
+  }
+  ```
+</details>
 
 
 
