@@ -3602,7 +3602,7 @@ So far, we have only used the `__host__` and `__device__` function specifiers, w
 To launch a function on the GPU from the CPU, we need a different specifier. 
 That is where `__global__` comes in.
 
-<img src="Images/global.png" alt="Global" width=800>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_02/global.png" alt="Global" width=800>
 
 A function annotated with `__global__` is called a *CUDA kernel*. 
 It is launched from the CPU but runs on the GPU. 
@@ -3646,7 +3646,7 @@ Notice that we specify the CUDA Stream (`stream`) in the triple chevrons `<<<1, 
 However, as you might guess, this kernel is significantly slower than the CUB version because it processes the loop in a serial fashion. 
 As we've learned already, the GPU does not automatically parallelize serial code.
 
-<img src="Images/serial-kernel.png" alt="Serial" width=600>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_02/serial-kernel.png" alt="Serial" width=600>
 
 We want to avoid serialization whenever possible. 
 To parallelize this kernel, we need to launch more threads. 
@@ -3674,7 +3674,7 @@ __global__ void block_kernel(dli::temperature_grid_f in, float *out)
 In this example, two threads run with indices `threadIdx.x = 0` and `threadIdx.x = 1`. 
 Each thread starts processing from its own index and increments by `number_of_threads` to avoid overlapping.
 
-<img src="Images/threadIdx.png" alt="Thread Index" width=800>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_02/threadIdx.png" alt="Thread Index" width=800>
 
 This change will evenly distribute work between threads, which should result in a speedup.
 Let's take a look if this is the case.  When you run the next two cells you should observe a speedup over the previous iteration of the code.
@@ -3781,7 +3781,7 @@ The second parameter of the triple chevron specifies the number of threads in a 
 To launch more than 1024 threads, we need to launch more blocks.
 The first parameter in the triple chevrons `kernel<<<NUMBER-OF-BLOCKS, NUMBER-OF-THREADS, 0, stream>>>` specifies the number of blocks. 
 
-<img src="Images/grid.png" alt="Grid" width=800>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_02/grid.png" alt="Grid" width=800>
 
 The thread indexing we saw earlier is local to a block, so `threadIdx.x` will always be in the range `[0, NUMBER-OF-THREADS)`.  
 To uniquely identify each thread across blocks, we need to combine both the block index and the thread index.
@@ -3795,7 +3795,7 @@ For more details on these built-in variables see the [CUDA Programming Guide](ht
 
 Here are a few examples of how `thread_index` is calculted for a few selected threads in different thread blocks.
 
-<img src="Images/thread-in-grid.png" alt="Thread in Grid" width=800>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_02/thread-in-grid.png" alt="Thread in Grid" width=800>
 
 
 Note that `blockDim.x` is a constant and is the same for every thread, while `blockIdx.x` and `threadIdx.x` vary depending on which thread and which block are running.
