@@ -2941,7 +2941,8 @@ Open this section only after you’ve made a serious attempt at solving the prob
     cudaDeviceSynchronize();
   }
   ```
-
+</details>
+ 
 ### Exercise: Profile Your Code with Nsight Systems
 
 In this exercise, you will learn how to profile your code with Nsight Systems. 
@@ -3073,6 +3074,7 @@ Open this section only after you’ve made a serious attempt at solving the prob
     cudaDeviceSynchronize();
   }
   ```
+</details>
 
 ## Streams
 
