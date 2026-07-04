@@ -3556,6 +3556,30 @@ Open this section only after you’ve made a serious attempt at solving the prob
   ```
 </details>
 
+# Implementing New Algorithms with CUDA Kernels
+
+Previous labs equipped you with a necessary understanding of how using standard parallel algorithms can provide both convenient and speed-of-light GPU acceleration. 
+However, sometimes your unique use cases are not covered by accelerated libraries. 
+In this lab, you’ll learn the CUDA SIMT (Single Instruction Multiple Threads) programming model to program the GPU directly using CUDA kernels. 
+In addition, this lab will cover utilities provided by the CUDA ecosystem to facilitate development of custom CUDA kernels.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
