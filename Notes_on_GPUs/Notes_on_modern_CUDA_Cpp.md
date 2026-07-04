@@ -3322,10 +3322,86 @@ To do this, you are expected to:
 <img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_2_03/async-copy.png" alt="Compute/Copy Overlap" width=900>
 
 
+## Pinned memory
+
+Let’s take another look at our current simulator state:
+
+```c++
+cudaStream_t compute_stream;
+cudaStreamCreate(&compute_stream);
+
+cudaStream_t copy_stream;
+cudaStreamCreate(&copy_stream);
+
+for (int write_step = 0; write_step < write_steps; write_step++) 
+{
+  thrust::copy(d_prev.begin(), d_prev.end(), d_buffer.begin());
+  cudaMemcpyAsync(thrust::raw_pointer_cast(h_prev.data()),
+                  thrust::raw_pointer_cast(d_buffer.data()),
+                  height * width * sizeof(float), cudaMemcpyDeviceToHost,
+                  copy_stream);
+
+  for (int compute_step = 0; compute_step < compute_steps; compute_step++) 
+  {
+    simulate(width, height, d_prev, d_next, compute_stream);
+    d_prev.swap(d_next);
+  }
+
+  cudaStreamSynchronize(copy_stream);
+  dli::store(write_step, height, width, h_prev);
+
+  cudaStreamSynchronize(compute_stream);
+}
+
+cudaStreamDestroy(compute_stream);
+cudaStreamDestroy(copy_stream);
+```
+
+We use two CUDA streams to overlap the expensive device-to-host copy (`copy_stream`) with ongoing computations (`compute_stream`). 
+However, if you profile this code (for instance, using Nsight Systems), you will see that the copy and compute still run sequentially. 
+This indicates we’re missing a key concept about how the hardware works. 
+To understand why, we need to step back and look at how memory operates.
+
+### Swap Memory
+
+Operating systems do not provide direct access to physical memory. Instead, programs use virtual memory, which is mapped to physical memory. Virtual memory is organized into pages, enabling the operating system to manage them flexibly, such as swapping pages to disk when physical memory runs low.
+
+<img src="Images/swap.png" alt="Swap" width=800>
+
+So any given page can be in physical memory, on disk, or in some other place, and the operating system keeps track of that.
+When the page can be relocated to disk, it's called *pageable*. 
+But memory can also be page-locked, or "pinned" to physical memory.
 
 
+### GPU Access
 
+What does this have to do with CUDA?
+GPU can only copy data from physical memory. 
+This means that when copying data between host and device, memory has to be pinned.
 
+<img src="Images/pinned-staging.png" alt="GPU Access" width=500>
+
+But this cannot be right. 
+We just copied data between 
+host and device without doing anything special like pinning memory.
+How did that work?
+Under the covers, when moving memory from host to device the CUDA Runtime utilizes a staging buffer in pinned memory.
+When you copy data from host to device, the CUDA Runtime first copies data to the staging buffer, and then copies it to device.
+
+<img src="Images/read-from-pageable.png" alt="Read from Pageable" width=500>
+
+This should explain why our copy wasn't overlapped with compute.
+It was actually synchronous, because under the covers the data was copied to a staging buffer. 
+Unbeknownst to us at the time, the code first copied a chunk of data into pinned staging buffer, waited till the copy is done, and then proceeded to copy the next chunk of data that fit into the staging buffer.
+
+The good news is that we can pin memory ourselves via an explicit function call.
+In this case, there'll be no need to stream data through staging buffer, enabling asynchrony.
+
+To allocate pinned memory, it's sufficient to use another container from Thrust:
+
+```c++
+thrust::universal_host_pinned_vector<float> pinned_memory(size);
+```
 
 
 
