@@ -3564,7 +3564,7 @@ In this lab, you’ll learn the CUDA SIMT (Single Instruction Multiple Threads) 
 In addition, this lab will cover utilities provided by the CUDA ecosystem to facilitate development of custom CUDA kernels.
 
 
-
+![CUDA_Kernels](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_02/implementing_new_algo_with_CUDA_kernels.png)
 
 
 
