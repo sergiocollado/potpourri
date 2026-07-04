@@ -4604,6 +4604,156 @@ Besides that, only threads of a single block are issuing atomics to the same blo
 This means that we can leverage the block scope to improve performance.
 
 
+### Exercise: Fix Data Race
+
+You can use `__syncthreads()` to synchronize threads within a block:
+
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_04/sync.png" alt="Sync" width=600>
+
+Fix the data race using thread-block synchronization.
+Optionally, switch to `cuda::atomic_ref` to reduce the scope of communication:
+
+Fix the data race using thread-block synchronization.
+Optionally, switch to `cuda::atomic_ref` to reduce the scope of communication:
+
+<details>
+<summary>Original code if you need to refer back to it.</summary>
+
+```c++
+%%writefile Sources/sync.cu
+#include "dli.cuh"
+
+constexpr float bin_width = 10;
+
+// 1. Use `__syncthreads()` to synchronize threads within a block and avoid data race
+__global__ void histogram_kernel(
+  cuda::std::span<float> temperatures, 
+  cuda::std::span<int> block_histograms, 
+  cuda::std::span<int> histogram) 
+{
+  cuda::std::span<int> block_histogram = 
+    block_histograms.subspan(blockIdx.x * histogram.size(), 
+                             histogram.size());
+
+  int cell = blockIdx.x * blockDim.x + threadIdx.x;
+  int bin = static_cast<int>(temperatures[cell] / bin_width);
+
+  cuda::std::atomic_ref<int> block_ref(block_histogram[bin]);
+  block_ref.fetch_add(1);
+
+  if (threadIdx.x < histogram.size()) {
+    // 2. Reduce scope of atomic operation using `cuda::atomic_ref`
+    cuda::std::atomic_ref<int> ref(histogram[threadIdx.x]);
+    ref.fetch_add(block_histogram[threadIdx.x]);
+  }
+}
+
+
+void histogram(
+  cuda::std::span<float> temperatures, 
+  cuda::std::span<int> block_histograms, 
+  cuda::std::span<int> histogram,
+  cudaStream_t stream) 
+{
+  int block_size = 256;
+  int grid_size = cuda::ceil_div(temperatures.size(), block_size);
+  histogram_kernel<<<grid_size, block_size, 0, stream>>>(
+    temperatures, block_histograms, histogram);
+}
+```
+
+</details>
+
+```c++
+%%writefile Sources/sync.cu
+#include "dli.cuh"
+
+constexpr float bin_width = 10;
+
+// 1. Use `__syncthreads()` to synchronize threads within a block and avoid data race
+__global__ void histogram_kernel(
+  cuda::std::span<float> temperatures, 
+  cuda::std::span<int> block_histograms, 
+  cuda::std::span<int> histogram) 
+{
+  cuda::std::span<int> block_histogram = 
+    block_histograms.subspan(blockIdx.x * histogram.size(), 
+                             histogram.size());
+
+  int cell = blockIdx.x * blockDim.x + threadIdx.x;
+  int bin = static_cast<int>(temperatures[cell] / bin_width);
+
+  cuda::std::atomic_ref<int> block_ref(block_histogram[bin]);
+  block_ref.fetch_add(1);
+
+  if (threadIdx.x < histogram.size()) {
+    // 2. Reduce scope of atomic operation using `cuda::atomic_ref`
+    cuda::std::atomic_ref<int> ref(histogram[threadIdx.x]);
+    ref.fetch_add(block_histogram[threadIdx.x]);
+  }
+}
+
+
+void histogram(
+  cuda::std::span<float> temperatures, 
+  cuda::std::span<int> block_histograms, 
+  cuda::std::span<int> histogram,
+  cudaStream_t stream) 
+{
+  int block_size = 256;
+  int grid_size = cuda::ceil_div(temperatures.size(), block_size);
+  histogram_kernel<<<grid_size, block_size, 0, stream>>>(
+    temperatures, block_histograms, histogram);
+}
+```
+compile and run with:
+```bash
+import Sources.dli
+Sources.dli.run("Sources/sync.cu")
+```
+
+If you’re unsure how to proceed, consider expanding this section for guidance. Use the hint only after giving the problem a genuine attempt.
+
+<details>
+  <summary>Hints</summary>
+  
+  - You can synchronize threads within a thread block using `__syncthreads()`
+  - You need to synchronize after all threads have incorporated their changes to the block histogram
+  - `cuda::atomic_ref` has exactly the same interface as `cuda::std::atomic_ref` with a difference of accepting thread scope as a second template parameter
+</details>
+
+Open this section only after you’ve made a serious attempt at solving the problem. Once you’ve completed your solution, compare it with the reference provided here to evaluate your approach and identify any potential improvements.
+
+<details>
+  <summary>Solution</summary>
+
+  Key points:
+
+  - Synchronize before reading the block histogram
+
+  Solution:
+  ```c++
+  cuda::std::span<int> block_histogram =
+    block_histograms.subspan(blockIdx.x * histogram.size(), histogram.size());
+
+  int cell = blockIdx.x * blockDim.x + threadIdx.x;
+  int bin = static_cast<int>(temperatures[cell] / bin_width);
+
+  cuda::atomic_ref<int, cuda::thread_scope_block> 
+    block_ref(block_histogram[bin]);
+  block_ref.fetch_add(1);
+  __syncthreads();
+
+  if (threadIdx.x < histogram.size()) 
+  {
+    cuda::atomic_ref<int, cuda::thread_scope_device> 
+      ref(histogram[threadIdx.x]);
+    ref.fetch_add(block_histogram[threadIdx.x]);
+  }
+  ```
+
+</details>
+
 
 
 
