@@ -4343,6 +4343,269 @@ The "?" is replaced by the current value of `count[0]`, incremented by one, and 
 It doesn’t matter how many threads do this concurrently - the result remains correct.
 
 
+### Exercise: Fix Histogram
+
+The code below has a data race in it.
+Multiple threads concurrently increment the same element of the histogram array.
+Use `cuda::std::atomic_ref` to fix this bug. 
+
+Interface of `cuda::std::atomic_ref` is equivalent to `std::atomic_ref`:
+
+```c++
+__global__ void kernel(int *count)
+{
+  // Wrap data in atomic_ref
+  cuda::std::atomic_ref<int> ref(count[0]);
+
+  // Atomically increment the underlying value
+  ref.fetch_add(1);
+}
+```
+
+<details>
+<summary>Original code in case you need to refer to it.</summary>
+
+```c++
+%%writefile Sources/histogram.cu
+#include "dli.cuh"
+
+constexpr float bin_width = 10;
+
+__global__ void histogram_kernel(cuda::std::span<float> temperatures, 
+                                 cuda::std::span<int> histogram)
+{
+  int cell = blockIdx.x * blockDim.x + threadIdx.x;
+  if (cell < temperatures.size()) {
+    int bin = static_cast<int>(temperatures[cell] / bin_width);
+
+    // fix data race in incrementing histogram bins by using `cuda::std::atomic_ref`
+    int old_count = histogram[bin];
+    int new_count = old_count + 1;
+    histogram[bin] = new_count;
+  }
+}
+
+void histogram(cuda::std::span<float> temperatures, 
+               cuda::std::span<int> histogram,
+               cudaStream_t stream)
+{
+  int block_size = 256;
+  int grid_size = cuda::ceil_div(temperatures.size(), block_size);
+  histogram_kernel<<<grid_size, block_size, 0, stream>>>(
+    temperatures, histogram);
+}
+```
+    
+</details>
+
+
+```c++
+%%writefile Sources/histogram.cu
+#include "dli.cuh"
+
+constexpr float bin_width = 10;
+
+__global__ void histogram_kernel(cuda::std::span<float> temperatures, 
+                                 cuda::std::span<int> histogram)
+{
+  int cell = blockIdx.x * blockDim.x + threadIdx.x;
+  if (cell < temperatures.size()) {
+    int bin = static_cast<int>(temperatures[cell] / bin_width);
+
+    // fix data race in incrementing histogram bins by using `cuda::std::atomic_ref`
+    int old_count = histogram[bin];
+    int new_count = old_count + 1;
+    histogram[bin] = new_count;
+  }
+}
+
+void histogram(cuda::std::span<float> temperatures, 
+               cuda::std::span<int> histogram,
+               cudaStream_t stream)
+{
+  int block_size = 256;
+  int grid_size = cuda::ceil_div(temperatures.size(), block_size);
+  histogram_kernel<<<grid_size, block_size, 0, stream>>>(
+    temperatures, histogram);
+}
+```
+compile and run with:
+```bash
+import Sources.dli
+Sources.dli.run("Sources/histogram.cu")
+```
+
+If you’re unsure how to proceed, consider expanding this section for guidance. Use the hint only after giving the problem a genuine attempt.
+
+<details>
+  <summary>Hints</summary>
+  
+  - `cuda::std::atomic_ref` wraps a reference and applies atomic operations to the underlying object
+  - You can increment a variable atomically using `ref.fetch_add(1)`
+</details>
+
+Open this section only after you’ve made a serious attempt at solving the problem. Once you’ve completed your solution, compare it with the reference provided here to evaluate your approach and identify any potential improvements.
+
+<details>
+  <summary>Solution</summary>
+
+  Key points:
+
+  - Wrap selected bin in `cuda::std::atomic_ref<int>` for atomic operations
+  - Use `fetch_add` to increment the bin value atomically
+
+  Solution:
+  ```c++
+  __global__ void histogram_kernel(cuda::std::span<float> temperatures,
+                                   cuda::std::span<int> histogram) 
+  {
+    int cell = blockIdx.x * blockDim.x + threadIdx.x;
+    int bin = static_cast<int>(temperatures[cell] / 10);
+
+    cuda::std::atomic_ref<int> ref(histogram[bin]);
+    ref.fetch_add(1);
+  }
+  ```
+</details>
+
+## Synchronization
+
+
+### Memory Contention
+
+With the fix from the previous exercise, our histogram kernel finally produces correct results, but performance remains suboptimal. 
+Why? Because using a single shared histogram forces millions of atomic operations on the same memory location. 
+This causes significant contention and implicit serialization.
+
+<img src="Images/contention.png" alt="Contention" width=500>
+
+In the worst case, all threads map their data to a single bin. 
+With around 16 thousand blocks and 256 threads each, that’s roughly 4 million atomic operations contending for the same location.  So while we have launched a few million threads, the atomic operation serializes the write to the `histogram` span, and in effect our parallel code now runs partly in serial.  
+
+
+## Private Histogram
+To reduce this overhead, we can introduce a "private" histogram for each thread block. 
+Each block would accumulate its own local copy of histogram, then merge it into the global histogram after all local updates are complete.
+
+<img src="Images/private.png" alt="Private" width=800>
+
+Now, in the worst case, up to 256 atomic operations occur within a block’s private histogram, plus about 16k merges (one per block). 
+That’s 256 + 16k total atomic operations, a big improvement over 4 million.
+
+Let’s see how to implement this optimization:
+
+```c++
+%%writefile Sources/bug.cu
+#include "dli.cuh"
+
+constexpr float bin_width = 10;
+
+__global__ void histogram_kernel(
+  cuda::std::span<float> temperatures, 
+  cuda::std::span<int> block_histograms, 
+  cuda::std::span<int> histogram) 
+{
+  cuda::std::span<int> block_histogram = 
+    block_histograms.subspan(blockIdx.x * histogram.size(), histogram.size());
+
+  int cell = blockIdx.x * blockDim.x + threadIdx.x;
+  int bin = static_cast<int>(temperatures[cell] / bin_width);
+
+  cuda::std::atomic_ref<int> block_ref(block_histogram[bin]);
+  block_ref.fetch_add(1);
+
+  if (threadIdx.x < 10) {
+    cuda::std::atomic_ref<int> ref(histogram[threadIdx.x]);
+    ref.fetch_add(block_histogram[threadIdx.x]);
+  }
+}
+
+void histogram(
+  cuda::std::span<float> temperatures, 
+  cuda::std::span<int> block_histograms, 
+  cuda::std::span<int> histogram,
+  cudaStream_t stream) 
+{
+  int block_size = 256;
+  int grid_size = cuda::ceil_div(temperatures.size(), block_size);
+  histogram_kernel<<<grid_size, block_size, 0, stream>>>(
+    temperatures, block_histograms, histogram);
+}
+```
+
+Our updated kernel now accepts an additional argument for storing per-block histograms. 
+Its size is the number of bins times the number of thread blocks. 
+Within the kernel, we use `subspan` to focus on the portion of this buffer corresponding to the current block’s histogram.
+However, if you run the code below, you’ll see that the result is still incorrect.
+
+
+compile and run with:
+```bash
+import Sources.dli
+Sources.dli.run("Sources/bug.cu")
+```
+
+### Data Race
+
+The following code contains a data race:
+
+```cpp
+cuda::std::atomic_ref<int> block_ref(block_histogram[bin]);
+block_ref.fetch_add(1);
+
+if (threadIdx.x < 10) {
+  cuda::std::atomic_ref<int> ref(histogram[threadIdx.x]);
+  ref.fetch_add(block_histogram[threadIdx.x]);
+}
+```
+
+We assumed all threads in the same thread block would finish updating the block histogram before any threads started reading from it, but CUDA threads can progress independently, even within the same thread block.  To state it more clearly, there is no guarantee that threads in the same thread block are synchonized with each other.  Some threads maybe be finished executing the entire kernel before other threads even start.  This is a very important concept to internalize as you write parallel algorithms and CUDA kernels.
+
+<img src="Images/data-race-read-1.png" alt="Expected" width=800>
+
+
+As a result, some threads may read the histogram before it’s fully updated.
+Here, we assumed that all threads in the block finished upating block histogram before other threads start reading it.
+
+<img src="Images/data-race-read-2.png" alt="Possible" width=800>
+
+To fix this issue, we must force all threads to complete their updates before allowing any thread to read the block histogram. 
+CUDA provides `__syncthreads()` function for this exact purpose.  The `__syncthreads()` function is a barrier which all threads in the thread block *must* reach before any thread is permitted to proceed to the next part of the code.
+
+<img src="Images/sync.png" alt="Synchronization" width=800>
+
+### Add Synchronization
+
+In the next exercise, you'll fix the issue by adding synchronization in the appropriate place.
+Besides the correctness issue, we have some performance inefficiencies in the current implementation.
+To figure out what's wrong, let's return to what's available in the `cuda::` namespace.
+We've seen `cuda::std::atomic_ref` already, but there's also `cuda::atomic_ref` type.
+These two types share the same interface except for one important difference.
+`cuda::atomic_ref` has one extra template parameter, representing a thread scope.
+
+```c++
+cuda::std::atomic_ref<int> ref(/* ... */);
+cuda::atomic_ref<int, thread_scope> ref(/* ... */);
+```
+
+Thread scope represents the set of threads that can synchronize using a given atomic. 
+Thread scope can be system, device, or block.
+
+For instance, all threads of a given system are related to each other thread by `cuda::thread_scope_system`. 
+This means that a thread from any GPU (in a multi-GPU system) can synchronize with any other GPU thread, or any CPU thread. 
+The `cuda::std::atomic_ref` is actually the same thing as `cuda::atomic_ref<int, cuda::thread_scope_system>`.
+
+In addition to the system scope, there are also device and block scopes.
+The device scope allows threads from the same device to synchronize with each other.
+The block scope allows threads from the same block to synchronize with each other.
+
+Since our histogram kernel is limited to a single GPU, we don't need to use the system scope.
+Besides that, only threads of a single block are issuing atomics to the same block histogram.
+This means that we can leverage the block scope to improve performance.
+
+
+
+
 
 
 
@@ -4365,4 +4628,13 @@ compile and run with:
 ```bash
 
 ```
+
+
+
+
+
+
+
+
+
 
