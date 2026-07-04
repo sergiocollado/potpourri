@@ -4144,10 +4144,70 @@ Open this section only after you’ve made a serious attempt at solving the prob
   ```
 </details>
 
+### Dev Tools
+
+Let's start with the simplest CUDA kernel.  Observe the error messages that occur when executing the following cell.  Notice that we are building the executable and then running it with `compute-sanitizer`.
+
+```bash
+!nvcc --extended-lambda -g -G -o /tmp/a.out Solutions/row-symmetry-check.cu # build executable
+!/tmp/a.out # run executable
+!compute-sanitizer /tmp/a.out # run sanitizer
+```
+
+There are a lot of error messages printed, and the instructive errors are at the very top.  Note one of the errors printed `Invalid __global__ read of size 4 bytes at symmetry_check_kernel`.  This tells you exactly where to look to find the memory access error.
 
 
+```
+Invalid __global__ read of size 4 bytes
+=========     at symmetry_check_kernel(cuda::std::__4::mdspan<float, cuda::std::__4::extents<int, (unsigned long)18446744073709551615, (unsigned long)18446744073709551615>, cuda::std::__4::layout_right, cuda::std::__4::default_accessor<float>>, int)+0x2490 in /home/jbentz/dli/c-ac-01-v2/task1/task/03.02-Kernels/Solutions/row-symmetry-check.cu:6
+=========     by thread (928,0,0) in block (4,0,0)
+=========     Address 0x709388060 is out of bounds
+=========     and is 97 bytes after the nearest allocation at 0x708000000 of size 20480000 bytes
+```
+
+The code below fixes the error.  Note the use of the `if (column < temp.extent(1))` statement, which guards the execution of the thread.  Each thread checks whether its `column` is less than the size of the array, `temp`.  If it is less, it executes the symmetry check, but if it is NOT, then it just returns.  This type of simple fix is very common in CUDA kernel programming to ensure that threads don't access out-of-bounds memory.
+
+Execute the next two cells and verify that `compute-sanitizer` does not report any further errors.
 
 
+```c++
+%%writefile Sources/row-symmetry-check-fixed.cu
+#include "dli.h"
+
+__global__ void symmetry_check_kernel(dli::temperature_grid_f temp, int row)
+{
+  int column = blockIdx.x * blockDim.x + threadIdx.x;
+
+  if (column < temp.extent(1))
+  {
+    if (abs(temp(row, column) - temp(temp.extent(0) - 1 - row, column)) > 0.1)
+    {
+        printf("Error: asymmetry in %d / %d\n", column, temp.extent(1));
+    }
+  }
+}
+
+void symmetry_check(dli::temperature_grid_f temp_in, cudaStream_t stream)
+{
+  int width      = temp_in.extent(1);
+  int block_size = 1024;
+  int grid_size  = cuda::ceil_div(width, block_size);
+
+  int target_row = 0;
+  symmetry_check_kernel<<<grid_size, block_size, 0, stream>>>(temp_in, target_row);
+}
+
+void simulate(dli::temperature_grid_f temp_in, float *temp_out, cudaStream_t stream)
+{
+  symmetry_check(temp_in, stream);
+  dli::simulate(temp_in, temp_out, stream);
+}
+```
+compile and run with:
+```bash
+!nvcc --extended-lambda -o /tmp/a.out Sources/row-symmetry-check-fixed.cu # build executable
+!compute-sanitizer /tmp/a.out # run sanitizer
+```
 
 
 
