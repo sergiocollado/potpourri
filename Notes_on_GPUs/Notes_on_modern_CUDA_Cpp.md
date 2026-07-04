@@ -3897,7 +3897,7 @@ compile and run with:
 
 Change the code below the image to launch a kernel with a single thread that checks if the input array is symmetric.  If the code does NOT obtain the correct answer, an error message will be printed.
 
-<img src="Images/symmetry.png" alt="Symmetry Check" width=600>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_02/symmetry.png" alt="Symmetry Check" width=600>
 
 <details>
 <summary>Original code if you need to refer back.</summary>
@@ -4033,7 +4033,7 @@ int num_blocks = cuda::ceil_div(N, threads_per_block);
 This ensures you launch enough threads to cover all N elements in the problem.
 Using this information, modify the code below to launch a grid of threads, checking for symmetry of a given row:
 
-<img src="Images/row-symmetry.png" alt="Symmetry Check" width=600>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_02/row-symmetry.png" alt="Symmetry Check" width=600>
 
 Assign each thread to a unique column index.  An error will be printed if your code does not obtain the correct answer.
 
