@@ -1,9 +1,10 @@
-# Notes on modern CUDA C++
+# Notes on getting started with accelerated computing in modern CUDA C++
 
  - https://enccs.github.io/gpu-programming/
  - https://learn.nvidia.com/my-learning
  - https://developer.nvidia.com/blog/even-easier-introduction-cuda/
  - https://nvidia.github.io/cccl/unstable/cpp.html#cccl-cpp-libraries
+ - https://youtu.be/Sdjn9FOkhnA?si=2THRbeRqxkhNaO2Y
 
 # CUDA Made Easy: Accelerating Applications with Parallel Algorithms
 
