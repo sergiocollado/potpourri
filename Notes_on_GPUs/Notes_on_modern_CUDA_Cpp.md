@@ -3870,6 +3870,158 @@ You should observe a significant speedup of this code compared to versions earli
 With this approach, our kernel more effectively utilizes the GPU. 
 While it may still not be as fast as the CUB implementation,which uses additional optimizations beyond our current scope, understanding how to write and launch CUDA kernels directly is crucial for creating high-performance custom algorithms.
 
+### Exercise: Row Symmetry
+
+Threads are grouped into blocks, 
+and each thread in a block has a unique ID `threadIdx.x` ranging from `0` to `blockDim.x - 1`. 
+Blocks themselves are indexed by `blockIdx.x` within a grid, which ranges from `0` to `gridDim.x - 1`.
+
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_02/grid.png" alt="Grid" width=900>
+
+The global (grid-level) thread index is:
+
+```c++
+int thread_index = blockIdx.x * blockDim.x + threadIdx.x;
+```
+
+And the total number of threads in the entire grid is:
+
+```c++
+int num_threads = gridDim.x * blockDim.x;
+```
+
+Given a problem size `N` and thread block size, we can compute the number of blocks we need in a grid as:
+For a problem of size `N`, if block size is `threads_per_block` threads, you can compute the number of blocks as:
+
+```c++
+int threads_per_block = 256;
+int num_blocks = cuda::ceil_div(N, threads_per_block);
+```
+
+This ensures you launch enough threads to cover all N elements in the problem.
+Using this information, modify the code below to launch a grid of threads, checking for symmetry of a given row:
+
+<img src="Images/row-symmetry.png" alt="Symmetry Check" width=600>
+
+Assign each thread to a unique column index.  An error will be printed if your code does not obtain the correct answer.
+
+<details>
+<summary>Original code if you need to refer back</summary>
+
+```c++
+%%writefile Sources/row-symmetry-check.cu
+#include "dli.cuh"
+
+__global__ void symmetry_check_kernel(dli::temperature_grid_f temp, int row)
+{
+  // 1. change the line below so that each thread in a grid 
+  //    checks exactly one column
+  int column = 0;
+
+  if (abs(temp(row, column) - temp(temp.extent(0) - 1 - row, column)) > 0.1)
+  {
+    printf("Error: asymmetry in %d / %d\n", column, temp.extent(1));
+  }
+}
+
+void symmetry_check(dli::temperature_grid_f temp, cudaStream_t stream)
+{
+  int width      = temp.extent(1);
+  // 2. launch sufficient number of threads to assign one thread per column
+
+  int target_row = 0;
+  symmetry_check_kernel<<<1, 1, 0, stream>>>(temp, target_row);
+}
+```
+    
+</details>
+
+
+```c++
+%%writefile Sources/row-symmetry-check.cu
+#include "dli.cuh"
+
+__global__ void symmetry_check_kernel(dli::temperature_grid_f temp, int row)
+{
+  // 1. change the line below so that each thread in a grid 
+  //    checks exactly one column
+  int column = 0;
+
+  if (abs(temp(row, column) - temp(temp.extent(0) - 1 - row, column)) > 0.1)
+  {
+    printf("Error: asymmetry in %d / %d\n", column, temp.extent(1));
+  }
+}
+
+void symmetry_check(dli::temperature_grid_f temp, cudaStream_t stream)
+{
+  int width      = temp.extent(1);
+  // 2. launch sufficient number of threads to assign one thread per column
+
+  int target_row = 0;
+  symmetry_check_kernel<<<1, 1, 0, stream>>>(temp, target_row);
+}
+```
+compile and run with:
+```bash
+!nvcc --extended-lambda -g -G -o /tmp/a.out Sources/row-symmetry-check.cu # build executable
+!/tmp/a.out # run executable
+```
+
+If you’re unsure how to proceed, consider expanding this section for guidance. Use the hint only after giving the problem a genuine attempt.
+
+<details>
+  <summary>Hints</summary>
+  
+  - Modify the `int column = 0` line such that every thread checks a different column
+  - Modify the triple chevron to launch a grid of threads
+</details>
+
+
+Open this section only after you’ve made a serious attempt at solving the problem. Once you’ve completed your solution, compare it with the reference provided here to evaluate your approach and identify any potential improvements.
+
+<details>
+  <summary>Solution</summary>
+
+  Key points:
+
+  - Launch a grid of threads
+  - Use thread index as column index
+
+  Solution:
+  ```c++
+  __global__ void symmetry_check_kernel(dli::temperature_grid_f temp, int row)
+  {
+    int column = blockIdx.x * blockDim.x + threadIdx.x;
+
+    if (abs(temp(row, column) - temp(temp.extent(0) - 1 - row, column)) > 0.1)
+    {
+      printf("Error: asymmetry in %d / %d\n", column, temp.extent(1));
+    }
+  }
+
+  void symmetry_check(dli::temperature_grid_f temp, cudaStream_t stream)
+  {
+    int width      = temp.extent(1);
+    int block_size = 1024;
+    int grid_size  = cuda::ceil_div(width, block_size);
+
+    int target_row = 0;
+    symmetry_check_kernel<<<grid_size, block_size, 0, stream>>>(temp, target_row);
+  }
+  ```
+</details>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
