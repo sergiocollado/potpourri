@@ -4766,7 +4766,7 @@ This approach not only consumes unnecessary bandwidth but also increases the ove
 
 ## Cache Memory
 
-<img src="Images/L2.png" alt="L2" width=900>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_05/L2.png" alt="L2" width=900>
 
 As shown in the figure above, there’s a much closer memory resource: each Streaming Multiprocessor (SM) has its own L1 cache. 
 Ideally, we want to store each block’s histogram right there in L1. 
@@ -4816,7 +4816,7 @@ __syncthreads();
 The `__syncthreads()` call ensures that all threads have finished writing to the shared array before any thread reads from it. 
 Afterwards, the first thread prints out the contents of the shared memory:
 
-<img src="Images/simply-shared.png" alt="Shared Memory" width=600>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_3_05/simply-shared.png" alt="Shared Memory" width=600>
 
 As you can see, each thread successfully stored its index in the shared array, and the first thread can read back those values.
 
