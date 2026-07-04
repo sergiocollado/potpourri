@@ -3154,7 +3154,7 @@ You might have also noticed that `cudaMemcpyAsync` returns a `cudaError_t`.
 What kind of error can it be?
 Well, it can actually be any error from previous asynchronous operations.
 
-<img src="Images/async-errors.png" alt="Async Errors" width=600>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_2_03/async-errors.png" alt="Async Errors" width=600>
 
 In the diagram above, we have two asynchronous operations: `A` and `B` followed by a `cudaMemcpyAsync`.
 Since both `A` and `B` are computed asynchronously, `A` can start executing after `B` was launched.
@@ -3163,7 +3163,7 @@ This means that if `A` fails, the error can be caught by `cudaMemcpyAsync`.
 Unfortunately, if we just use `cudaMemcpyAsync` in our code, we won't get any performance improvement.
 To figure out why, let's take a look at the following diagram:
 
-<img src="Images/async-copy-same-stream.png" alt="Same Stream" width=900>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_2_03/async-copy-same-stream.png" alt="Same Stream" width=900>
 
 
 The problem is that all asynchronous operations are ordered on the GPU.
@@ -3277,7 +3277,7 @@ But doesn't this defeat the purpose of overlapping computation and IO?
 We just made the copy synchronous again!
 To answer this question, let's return to our high-level overview of bandwidth provided by different subsystems:
 
-<img src="Images/cpu-vs-gpu-memory-pci.png" alt="PCIe" width=900>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_2_03/cpu-vs-gpu-memory-pci.png" alt="PCIe" width=900>
 
 Here you can see how the bandwidth of CPU-GPU interconnect is much lower than the bandwidth of GPU memory.
 This means that copying data from GPU to GPU should be significantly faster than copying data from GPU to CPU.
