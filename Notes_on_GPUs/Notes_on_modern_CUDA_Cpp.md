@@ -4755,6 +4755,70 @@ Open this section only after you’ve made a serious attempt at solving the prob
 </details>
 
 
+## Shared Memory
+
+
+With our previous optimizations, the kernel now performs significantly better. 
+However, some inefficiencies remain. 
+Currently, each block’s histogram is stored in global GPU memory, even though it’s never used outside the kernel. 
+This approach not only consumes unnecessary bandwidth but also increases the overall memory footprint.
+
+
+## Cache Memory
+
+<img src="Images/L2.png" alt="L2" width=900>
+
+As shown in the figure above, there’s a much closer memory resource: each Streaming Multiprocessor (SM) has its own L1 cache. 
+Ideally, we want to store each block’s histogram right there in L1. 
+Fortunately, CUDA makes this possible through software-controlled shared memory. 
+By allocating the block histogram in shared memory, we can take full advantage of the SM’s L1 cache and reduce unnecessary memory traffic.
+
+
+```c++
+%%writefile Sources/simple-shmem.cu
+#include <cstdio>
+
+__global__ void kernel()
+{
+  __shared__ int shared[4];
+  shared[threadIdx.x] = threadIdx.x;
+  __syncthreads();
+
+  if (threadIdx.x == 0)
+  {
+    for (int i = 0; i < 4; i++) {
+      std::printf("shared[%d] = %d\n", i, shared[i]);
+    }
+  }
+}
+
+int main() {
+  kernel<<<1, 4>>>();
+  cudaDeviceSynchronize();
+  return 0;
+}
+```
+compile and run with:
+```bash
+!nvcc -o /tmp/a.out Sources/simple-shmem.cu && /tmp/a.out
+```
+
+To allocate shared memory, simply annotate a variable with the `__shared__` keyword.
+This puts the variable into shared memory that coresides with the L1 cache.
+Since shared memory isn't automatically initialized, 
+we begin our kernel by having each thread write its own index into a corresponding shared memory location:
+
+```c++
+shared[threadIdx.x] = threadIdx.x;
+__syncthreads();
+```
+
+The `__syncthreads()` call ensures that all threads have finished writing to the shared array before any thread reads from it. 
+Afterwards, the first thread prints out the contents of the shared memory:
+
+<img src="Images/simply-shared.png" alt="Shared Memory" width=600>
+
+As you can see, each thread successfully stored its index in the shared array, and the first thread can read back those values.
 
 
 
