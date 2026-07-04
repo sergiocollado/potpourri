@@ -2590,7 +2590,7 @@ In this loop we do the following:
  - Compute the next state on the GPU.
  - This process can be visualized as follows:
 
-<img src="Images/sync.png" alt="Sync" width=800>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_2_02/sync.png" alt="Sync" width=800>
 
 
 ### Overlapping
