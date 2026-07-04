@@ -2598,7 +2598,7 @@ We see that Thrust launches work on the GPU for each simulation step (thrust::ta
 
 Here’s a simple way to visualize that concept:
 
-<img src="Images/overlap.png" alt="Compute/IO Overlap" width=800>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_2_02/overlap.png" alt="Compute/IO Overlap" width=800>
 
 While the GPU is computing the next simulation step, the CPU can be writing out the previous results to disk.
 
@@ -2769,7 +2769,7 @@ With `cudaDeviceSynchronize()`, you can see that it takes the same time for both
 We can now use CUB and `cudaDeviceSynchronize()` to control overlap computation and I/O.
 This change should result in a significant speedup, as the CPU can now write data to disk while the GPU is computing the next simulation step:
 
-<img src="Images/sync-cub-vs-thrust.png" alt="Expected Speedup" width=800>
+<img src="https://github.com/sergiocollado/potpourri/blob/master/Notes_on_GPUs/images/cuda_2_02/sync-cub-vs-thrust.png" alt="Expected Speedup" width=800>
 
 
 
