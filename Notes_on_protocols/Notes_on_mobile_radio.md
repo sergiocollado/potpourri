@@ -90,7 +90,6 @@ These waves, because they carry ​information from one point to another, ​are
 
 ![noise_1](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/noise_1.PNG)
 
-
 ​Let's now learn a little bit about two of ​the most basic impediments that affect ​a wireless signal and transit noise and interference. ​When information is sent ​over any wireless channel in a typical wireless system, ​noise and possibly interference may be introduced.
 
 ​Now, both noise and interference are a form of ​unwanted signals or unwanted energy ​but there is a crucial difference between the two. **​Noise** is unwanted energy ​that is not deliberate in nature, ​in that the wireless noise ​or the electromagnetic noise so to speak ​is always present in ​most devices and most communication links. ​In fact, some of the noise can be one ​generated within the communication device itself, ​also known as thermal noise. ​An easier way to understand ​this electronic or thermal noise is to ​compare that with ambient noise ​that is always present around us. ​Even if you are sitting quietly in a room there ​is always some form of ambient noise that's reaching you. 
@@ -153,7 +152,6 @@ While higher frequencies are incredible for speed, they suffer from a major weak
 ## Two Ways of Sharing the Spectrum: FDD (frequency division duplexing) & TDD (time division duplexing)
 
 ![FDD_vs_TDD](http://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/FDD_vs_TDD.png)
-
 
 There are to two distinct variants ​of wireless communication called FDD and TDD, ​which respectively stand for ​frequency division duplexing and time division duplexing. ​At its heart, they are simply ​two ways to share the limited and expensive spectrum. ​But in this particular context, ​they aren't necessarily the way to share ​the spectrum among other users on the phone. ​Rather, they are other ways to share spectrum ​between the cell tower or ​the base station and the rest of the phones.
 
