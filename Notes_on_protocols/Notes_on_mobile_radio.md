@@ -120,24 +120,22 @@ On the other hand, **interference** is also ​unwanted form of energy but unlik
 
 Higher frequencies carry more information because they have more cycles per second and vastly more available bandwidth.
 To understand why, it helps to look at the math and physics behind data transmission.
-## 1. The Physics: More Waves, More Changes
+
+### 1. The Physics: More Waves, More Changes
 Information is sent by modifying a wave's properties, such as changing its height (amplitude) or timing (phase). Each modification creates a data packet or "symbol."
 
-* 
-* Low Frequencies (Slow): An AM radio wave at $1 \text{ MHz}$ vibrates 1 million times per second. You can only change the wave a limited number of times before it becomes a chaotic mess.
-* High Frequencies (Fast): A 5G millimeter-wave at $30 \text{ GHz}$ vibrates 30 billion times per second. Because the cycles pass by so rapidly, you can modify the wave much more frequently, pack symbols tightly together, and send vastly more data in the exact same second.
-* 
+ - Low Frequencies (Slow): An AM radio wave at $1 \text{ MHz}$ vibrates 1 million times per second. You can only change the wave a limited number of times before it becomes a chaotic mess.
+ - High Frequencies (Fast): A 5G millimeter-wave at $30 \text{ GHz}$ vibrates 30 billion times per second. Because the cycles pass by so rapidly, you can modify the wave much more frequently, pack symbols tightly together, and send vastly more data in the exact same second.
+  
 
 ### 2. The Math: 
 Data capacity depends directly on bandwidth, which is the size of the frequency range you are using (the top frequency minus the bottom frequency). This is governed by Shannon's Theorem.
 Higher up in the spectrum, the blocks of available frequencies are exponentially larger:
 
-* 
-* The Low-Frequency Highway: If you operate between $1 \text{ MHz}$ and $10 \text{ MHz}$, your total available bandwidth is only $9 \text{ MHz}$. This space is crowded and fits very little data.
-* The High-Frequency Highway: If you operate between $60 \text{ GHz}$ and $70 \text{ GHz}$, your available bandwidth is $10 \text{ GHz}$ ($10,000 \text{ MHz}$). This single block is over 1,000 times larger than the entire low-frequency band.
-* 
-
-## Real-World Comparison
+ - The Low-Frequency Highway: If you operate between $1 \text{ MHz}$ and $10 \text{ MHz}$, your total available bandwidth is only $9 \text{ MHz}$. This space is crowded and fits very little data.
+ - The High-Frequency Highway: If you operate between $60 \text{ GHz}$ and $70 \text{ GHz}$, your available bandwidth is $10 \text{ GHz}$ ($10,000 \text{ MHz}$). This single block is over 1,000 times larger than the entire low-frequency band.
+  
+### Real-World Comparison
 
 | Spectrum Band | Typical Frequency | Max Real-World Speed | Best Suited For |
 |---|---|---|---|
@@ -149,23 +147,8 @@ Higher up in the spectrum, the blocks of available frequencies are exponentially
 ### The Ultimate Trade-Off: Distance vs. Data
 While higher frequencies are incredible for speed, they suffer from a major weakness: poor range.
 
-* 
-* Short wavelengths (high frequencies) easily get absorbed or blocked by walls, trees, rain, and even oxygen molecules.
-* Long wavelengths (low frequencies) can easily pass through buildings and travel for miles, which is why your car radio works in a tunnel but ultra-fast 5G drops out when you walk behind a brick wall.
-* 
-
-If you are designing a system, let me know:
-
-* 
-* What distance does the signal need to travel?
-* Are there physical obstacles like walls or bad weather?
-* What type of data are you trying to send (e.g., simple sensor text, or heavy video streams)?
-* 
-
-
-
-
-
+ - Short wavelengths (high frequencies) easily get absorbed or blocked by walls, trees, rain, and even oxygen molecules.
+ - Long wavelengths (low frequencies) can easily pass through buildings and travel for miles, which is why your car radio works in a tunnel but ultra-fast 5G drops out when you walk behind a brick wall.
 
 ## Two Ways of Sharing the Spectrum: FDD (frequency division duplexing) & TDD (time division duplexing)
 
