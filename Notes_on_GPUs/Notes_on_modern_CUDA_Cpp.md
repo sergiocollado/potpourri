@@ -6,6 +6,11 @@
  - https://nvidia.github.io/cccl/unstable/cpp.html#cccl-cpp-libraries
  - https://youtu.be/Sdjn9FOkhnA?si=2THRbeRqxkhNaO2Y
  - https://github.com/Bugitoy/Cuda-Accelerated-Maxwell-Equation-Simulator/tree/main
+ - https://github.com/tpn/pdfs/blob/master/CUDA%20C%20Programming%20Guide%20v8.0%20-%20Design%20Guide%20-%20September%2C%202016%20(PG-02829-001_v8.0).pdf
+ - https://github.com/tpn/pdfs/blob/master/CUDA%20C%20Programming%20Guide%20v12.1%20(Feb%2028%202023).pdf
+ - https://github.com/tpn/pdfs/blob/master/CUDA%20Streams%20-%20Best%20Practices%20and%20Common%20Pitfalls%20-%20Slides%20(2012).pdf
+ - https://github.com/tpn/pdfs/blob/master/CUDA%20C%20Programming%20Guide%20v8.0%20-%20Design%20Guide%20-%20September%2C%202016%20(PG-02829-001_v8.0).pdf
+ - https://github.com/tpn/pdfs/blob/master/CUDA%20Training%20Series%20-%20All%20(2020-2021).pdf
 
 
 videos: 
