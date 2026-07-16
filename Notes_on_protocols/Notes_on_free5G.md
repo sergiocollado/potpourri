@@ -310,6 +310,9 @@ The N4 interface links the SMF and the UPF. This interface is central to CUPS, a
 
 As the diagram shows, all communication over the N4 interface is managed by the PFCP (Packet Forwarding Control Protocol). The SMF uses PFCP to install, modify, and remove rules on the UPF for each data session.
 
+reference: Packet Forwarding Control Protocol: https://devopedia.org/packet-forwarding-control-protocol
+standard: https://www.etsi.org/deliver/etsi_ts/129200_129299/129244/19.05.00_60/ts_129244v190500p.pdf
+
 ![n4 interface](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/free5g_n4_interface.png)
 
 ### N3
