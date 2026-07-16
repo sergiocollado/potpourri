@@ -313,6 +313,7 @@ As the diagram shows, all communication over the N4 interface is managed by the 
 References:
  - Packet Forwarding Control Protocol overview: https://devopedia.org/packet-forwarding-control-protocol
  - Standard TS 129 244: https://www.etsi.org/deliver/etsi_ts/129200_129299/129244/19.05.00_60/ts_129244v190500p.pdf
+ - PFCP in free5G: https://free5gc.org/blog/20260204/20260204/
 
 ![n4 interface](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/free5g_n4_interface.png)
 
