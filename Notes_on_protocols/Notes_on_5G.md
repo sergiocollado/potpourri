@@ -136,7 +136,9 @@ There are new use case not presetn in previous mobile generations:
 - Rel-16
 - Rel-15
 
-## 5g basic principles of the architecture  
+## 5G basic principles of the architecture  
+
+![5G principles](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_protocols/Images_mobile_communication/5G-principles.PNG)
 
  A diagram of the simplified 5g architecure is: 
 
