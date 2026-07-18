@@ -1181,6 +1181,11 @@ java -jar openapi-generator-cli.jar generate \
 --additional-properties=packageName=api,withGoCodegenComment=true,enumClassPrefix=true
 ```
 
+Using the command line for Rust:
+```
+openapi-generator-cli generate -i ./5G_APIs/TS29502_Nsmf_PDUSession.yaml -g rust -o ./rust_server_test --additional-properties=packageName=api,enumClassPrefix=true
+```
+
 Common Options Explained
 
 The OpenAPI Generator supports several options that control how code is produced. The most common ones used in free5GC development are explained below:
