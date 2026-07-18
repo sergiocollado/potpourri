@@ -1218,7 +1218,7 @@ Structured Go types that represent the messages exchanged between network functi
  - Response structures
  - Common data types used across different APIs
 
-The following example shows one of these generated models as it appears in the NRF specification.
+The following example shows one of these generated models as it appears in the NRF specification. Ref: https://github.com/free5gc/openapi/blob/main/models/model_nrf_access_token_access_token_req.go
 
 ```go
 // Generated model example from NRF specification
