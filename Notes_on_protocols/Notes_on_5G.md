@@ -1016,7 +1016,7 @@ Note: The APIs at reference points M1 and M5 are exposed by the 5GMS AF.
 #### Event Exposure
 * [Data Collection AF (R5, R6)](https://jdegre.github.io/loader.html?yaml=TS26512_EventExposure.yaml)
 
-# 3GPP SA5 models and MnS OpenAPI definitions
+### 3GPP SA5 models and MnS OpenAPI definitions
 
 #### Network Resource Models (NRM)
 * [Generic NRM (TS 28.623)](https://jdegre.github.io/loader.html?yaml=TS28623_GenericNrm.yaml)
