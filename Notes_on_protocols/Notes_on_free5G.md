@@ -202,7 +202,7 @@ Key Responsibilities:
  - Instructs UPF and NG-RAN to perform redundant transmission over N3/N9 interfaces.
  - Determines the PDU session data path based on the SM Policy provided by PCF.
 
-Refernce: SMF in free5G: https://free5gc.org/doc/Smf/design/
+Reference: SMF in free5G: https://free5gc.org/doc/Smf/design/
 
 ### Unified Data Management (UDM)
 
