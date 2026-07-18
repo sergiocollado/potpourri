@@ -555,7 +555,7 @@ This blueprint is a machine-readable file that precisely defines every aspect of
 
 references:
  - https://www.3gpp.org/technologies/openapis-for-the-service-based-architecture
- - Here are the oficial files: https://forge.3gpp.org/rep/all/5G_APIs
+ - Here are the oficial files: https://forge.3gpp.org/rep/all/5G_APIs , download it with `git clone https://forge.3gpp.org/rep/all/5G_APIs.git` 
  - https://devopedia.org/5g-core-restful-apis
 
 #### API endpoints
