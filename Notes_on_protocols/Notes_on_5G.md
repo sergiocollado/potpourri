@@ -554,9 +554,9 @@ The 3GPP organization publishes official OpenAPI specification files that define
 This blueprint is a machine-readable file that precisely defines every aspect of an NF's interface, leaving no room for ambiguity.
 
 references:
-https://www.3gpp.org/technologies/openapis-for-the-service-based-architecture
-https://forge.3gpp.org/rep/all/5G_APIs
-https://devopedia.org/5g-core-restful-apis
+ - https://www.3gpp.org/technologies/openapis-for-the-service-based-architecture
+ - Here are the oficial files: https://forge.3gpp.org/rep/all/5G_APIs
+ - https://devopedia.org/5g-core-restful-apis
 
 #### API endpoints
 The exact URL paths that each network function must expose for its services.
