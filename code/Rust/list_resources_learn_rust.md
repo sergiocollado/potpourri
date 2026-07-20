@@ -7,6 +7,7 @@
 - https://doc.rust-lang.org/reference/
 - https://doc.rust-lang.org/nomicon/
 - https://www.sheshbabu.com/posts/rust-module-system/
+- webframework: https://www.rustfinity.com/blog/axum-rust-tutorial
 
 
 ### log crates: tracing
