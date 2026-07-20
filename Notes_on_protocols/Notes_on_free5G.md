@@ -784,25 +784,25 @@ https://github.com/free5gc/nrf/blob/0067e052aced23822cc4d32d65d61d0521ab141b/cmd
 
 Contains code accessible only to the NRF itself and cannot be imported by other network functions. This is crucial for preventing other parts of the system from depending on implementation details that might change: 
 
- - context – This is the state management center of the NF. It holds all the runtime data and state, such as the profiles of other NFs that have successfully registered.
- - logger – This package contains the logging setup specific to the NRF. It ensures that log messages are formatted and output consistently.
- - SBI – This stands for Service-Based Interface, the heart of the NF's external communication capabilities. This is where the 3GPP-specified RESTful APIs are implemented. Developers will spend most of their time here when tracing API requests or modifying endpoint behavior.
- - util – A collection of utility or helper functions used throughout the NRF's internal packages. This avoids code duplication for common tasks.
+ - **context** – This is the state management center of the NF. It holds all the runtime data and state, such as the profiles of other NFs that have successfully registered.
+ - **logger** – This package contains the logging setup specific to the NRF. It ensures that log messages are formatted and output consistently.
+ - **SBI** – This stands for Service-Based Interface, the heart of the NF's external communication capabilities. This is where the 3GPP-specified RESTful APIs are implemented. Developers will spend most of their time here when tracing API requests or modifying endpoint behavior.
+ - **util** – A collection of utility or helper functions used throughout the NRF's internal packages. This avoids code duplication for common tasks.
 
 #### pkg
 
 In contrast to internal, pkg contains public code that is designed to be shared and imported by other components or NFs.
 
- - app - Contains the main application logic that orchestrates the different components of the NRF. It's responsible for tying together the server, services, and context.
- - factory - This directory uses the 'factory' design pattern to create and initialize objects based on configuration. Its main role is to read the NRF's configuration file (e.g., nrfcfg.yaml) and construct the initial state and settings for the NF.
- - service - Contains the high-level service implementation and business logic for the NRF. It defines the core functionalities, such as handling service registration and discovery requests.
+ - **app** - Contains the main application logic that orchestrates the different components of the NRF. It's responsible for tying together the server, services, and context.
+ - **factory** - This directory uses the 'factory' design pattern to create and initialize objects based on configuration. Its main role is to read the NRF's configuration file (e.g., nrfcfg.yaml) and construct the initial state and settings for the NF.
+ - **service** - Contains the high-level service implementation and business logic for the NRF. It defines the core functionalities, such as handling service registration and discovery requests.
 
 #### go module files
 
 These files are standard for managing dependencies in a Go project.
 
- - go.mod - This file explicitly defines the NRF's module path and lists all its dependencies, such as the external libraries it needs to function, like the Gin web framework.
- - go.sum - This is a lock file that contains the cryptographic checksums of each direct and indirect dependency. It ensures build integrity by guaranteeing that you are always using the exact same version of the libraries.
+ - **go.mod** - This file explicitly defines the NRF's module path and lists all its dependencies, such as the external libraries it needs to function, like the Gin web framework.
+ - **go.sum** - This is a lock file that contains the cryptographic checksums of each direct and indirect dependency. It ensures build integrity by guaranteeing that you are always using the exact same version of the libraries.
 
 
 Together, these directories and files form the foundation of an NF, providing a clear separation of responsibilities while supporting standardized communication in the 5G Core.
