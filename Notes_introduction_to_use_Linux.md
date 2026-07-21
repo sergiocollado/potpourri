@@ -154,12 +154,14 @@ cat /proc/cpuinfo
 ```
 
 
-if you want to know if a given command is insatalled, or where is installed, the 'which' command is used. It will report where a given command is installed. 
+if you want to know if a given command is installed, or where is installed, the 'which' command is used. It will report where a given command is installed. 
 
 ```bash
 > which which
 > /usr/bin/which
-``` 
+```
+
+Other commands to find if a command is installed are: `whereis` and `command -v`.
 
 This at least tells us that the command is there and finds itself : )
 
@@ -173,42 +175,33 @@ If you want to be sure that a module is or isn't insalled you can use the follow
 Actually the no-response, means that the command is not present in the system.
 
 
-REFERENCES:
-
->> Of course the master reference will be: https://linux.die.net/man/  </br>
->> And certanly our battle-horse the HOWTOs: https://linux.die.net/HOWTO/HOWTO-INDEX/ </br>
->> at Linux Documentation Project: https://github.com/tLDP/LDP/tree/master/LDP </br>
->> For the linux kernel: https://www.kernel.org/ </br>
->> and for github:https://git.kernel.org/cgit/ </br>
->> also check: https://github.com/google/ktsan </br>
->> check the HOWTOs: http://tldp.org/en/Traffic-Control-HOWTO/
->> also: http://www.linux-tutorial.info/modules.php?name=MContent&pageid=224
->> the linux device drivers book 3rd edition, is at: https://lwn.net/Kernel/LDD3/ 
->> Embedded linux website: http://www.elinux.org/
->> Buildroot manual: https://buildroot.org/downloads/manual/manual.html
->> https://www.linux.com/ <br>
->> https://www.linux.com/tutorials <br>
->> to made an USB live LINUX, check: http://www.linuxliveusb.com/en/features <br>
->> https://linuxgazette.net/archives.html <br>
-GNU ARM embedded toolchain:  https://launchpad.net/gcc-arm-embedded <br>
-https://linuxgazette.net/archives.html <br>
-kernel parameters: https://www.mjmwired.net/kernel/Documentation/kernel-parameters.txt <br>
-
-secure programming: https://dwheeler.com/secure-programs/Secure-Programs-HOWTO.pdf
-
-C library for embedded systems:  https://sourceware.org/newlib/
-
-other c library: https://musl.libc.org/
-
-binutils:  http://www.gnu.org/software/binutils/
-
-GNU ARM TOOLCHAIN: https://developer.arm.com/open-source/gnu-toolchain/gnu-rm
-
-developers: https://launchpad.net/~gcc-arm-embedded-developers
-
-gcc: http://gcc.gnu.org/
-
-journal: http://www.linuxjournal.com
+References:
+ - Of course the master reference will be: https://linux.die.net/man/ 
+ - And certanly our battle-horse the HOWTOs: https://linux.die.net/HOWTO/HOWTO-INDEX/
+ - at Linux Documentation Project: https://github.com/tLDP/LDP/tree/master/LDP
+ -  For the linux kernel: https://www.kernel.org/ 
+ - and for github:https://git.kernel.org/cgit/
+ - also check: https://github.com/google/ktsan
+ - check the HOWTOs: http://tldp.org/en/Traffic-Control-HOWTO/
+ -  also: http://www.linux-tutorial.info/modules.php?name=MContent&pageid=224
+ - the linux device drivers book 3rd edition, is at: https://lwn.net/Kernel/LDD3/ 
+ - Embedded linux website: http://www.elinux.org/
+ - Buildroot manual: https://buildroot.org/downloads/manual/manual.html
+ - https://www.linux.com/ <br>
+ - https://www.linux.com/tutorials <br>
+ - to made an USB live LINUX, check: http://www.linuxliveusb.com/en/features <br>
+ - https://linuxgazette.net/archives.html 
+ - GNU ARM embedded toolchain:  https://launchpad.net/gcc-arm-embedded
+ - https://linuxgazette.net/archives.html 
+ - kernel parameters: https://www.mjmwired.net/kernel/Documentation/kernel-parameters.txt
+ - secure programming: https://dwheeler.com/secure-programs/Secure-Programs-HOWTO.pdf
+ - C library for embedded systems:  https://sourceware.org/newlib/
+ - Other c library: https://musl.libc.org/
+ - binutils:  http://www.gnu.org/software/binutils/
+ - GNU ARM TOOLCHAIN: https://developer.arm.com/open-source/gnu-toolchain/gnu-rm
+ - developers: https://launchpad.net/~gcc-arm-embedded-developers
+ - gcc: http://gcc.gnu.org/
+ - journal: http://www.linuxjournal.com
 
 ## Starting with a Linux System.
 
