@@ -9,6 +9,7 @@ References:
  - https://github.com/pocc/pre-commit-hooks
  - https://gist.github.com/JulianKnodt/fee4da06b9ca860e65e7132bf91590fa
  - https://github.com/barisione/clang-format-hooks/tree/master
+ - https://github.com/codeocelot/git-diff-lint/blob/master/git-diff-lint
 
 ## Introduction to Git hooks
 
