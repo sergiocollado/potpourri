@@ -5,6 +5,10 @@ References:
  - https://git-scm.com/docs/githooks
  - https://learn.microsoft.com/en-us/azure/devops/service-hooks/events
  - https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies
+ - https://github.com/andrewseidl/githook-clang-format
+ - https://github.com/pocc/pre-commit-hooks
+ - https://gist.github.com/JulianKnodt/fee4da06b9ca860e65e7132bf91590fa
+ - https://github.com/barisione/clang-format-hooks/tree/master
 
 ## Introduction to Git hooks
 
