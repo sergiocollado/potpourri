@@ -210,7 +210,11 @@ The SMS is send from the UE to the AMF, and from there to the SMSF (Short Messag
 The SMS controls the UPF with a specific protocol PFCP (Packet Forwarding Control Protocol). SMF or UPF can start dynamically in the network, so each one needs to know the characteristics of each other, so this is the assciatioon procedure between SMF and UPF. The goal of the protocol is the stablishment or modifications of PDU sessions. ​To do this, a set of messages will be defined to ​set or modify the rules for a PDU session. Also there may be counters in ​the UPF on how many packets meet a certain criterion. ​When there is an event in ​the user plane related to ​a counter threshold being exceeded, ​for example, the UPF can send a report to the SMF. 
 
  - reference: 3GPP TS 29.244 : Interface between the Control Plane and the User Plane nodes
+ - reference: https://www.etsi.org/deliver/etsi_ts/129200_129299/129244/17.07.01_60/ts_129244v170701p.pdf
  - reference: https://devopedia.org/packet-forwarding-control-protocol
+ - reference: https://nickvsnetworking.com/cups-control-and-user-plane-separation-in-lte-nr-with-pfcp-sx-n4/
+ - reference: https://github.com/wmnsk/go-pfcp/tree/main
+ - reference: https://github.com/xandlom/rs-pfcp
 
 PFCP runs on top of UDP. ​UDP does not ensure reliability. To allow reliable control, ​PFCP includes an acknowledgment and ​retransmission of messages by ​PFCP when messages are lost. ​
 
