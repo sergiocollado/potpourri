@@ -149,7 +149,9 @@ add the overlay into the configuration. (the actual line can be slightly differe
 ```
 sudo sh -c "echo my_overlay.dtbo >> /boot/config.txt" # or just open the config.txt file and add the overlay
 ```
-or the raspbery 4 used, only is needed to add the line: "dtoverlay=i2c-sensor,mpu6050".
+or the raspbery 4 used, only is needed to add the line: "dtoverlay=i2c-sensor,mpu6050". Please, remember that for using it, you have to activate also the i2c, so in the `/boot/firmware/confit.txt` file (or the correct file in your system), update the i2c configuration to: `dtparam=i2c_arm=on`. 
+
+If you are not generating the dtc, you can apply the mpu6050 overaly in the `/boot/firmware/config.txt` file, adding: `dtoverlay=i2c-sensor,mpu6050,addr=0x69` the `address` is only if you want to definen the addres, if it is not defined by default is `0x68` 
 
 reboot the rpi `sudo reboot`. 
 
@@ -168,8 +170,9 @@ $ sudo i2cdetect -y 1
 50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 60: -- -- -- -- -- -- -- -- UU -- -- -- -- -- -- -- 
 70: -- -- -- -- -- -- -- --
-// note that the addes is colum 8, row 60, that is address: 0x68                  
+// note that the addes is colum 8, row 60, that is address: 0x68 - that is the address where the sensor is.                  
 ```
+
 
 Access IIO data: You can now access the IIO data from your device using the IIO driver, which is typically done through the /sys/bus/iio/devices directory or through a library like libiio
 
