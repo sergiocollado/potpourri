@@ -153,6 +153,26 @@ or the raspbery 4 used, only is needed to add the line: "dtoverlay=i2c-sensor,mp
 
 If you are not generating the dtc, you can apply the mpu6050 overaly in the `/boot/firmware/config.txt` file, adding: `dtoverlay=i2c-sensor,mpu6050,addr=0x69` the `address` is only if you want to definen the addres, if it is not defined by default is `0x68` 
 
+so for example: 
+
+```
+# File /boot/firmware/config.txt
+# For more options and information see
+# http://rptl.io/confitxt
+# Some settings may impact device functionality . See link below for details
+
+# Unconmment some or all of these to enable the optional hardware interfaces
+dtparam=i2c-arm=on
+#dtparam=i2s=on
+#dtparam=spi=on
+
+# Enable mpu6050
+dtoverlay=i2c-sensor,mpu6050,addr=0x68
+
+#Aditional overlays and parameters are documented
+# /boot/firmware/overlays/README
+```
+
 reboot the rpi `sudo reboot`. 
 
 Verify the overlay: After rebooting, you can verify that the overlay was applied by checking the device tree: `dtc -I fs /sys/firmware/devicetree/base`
