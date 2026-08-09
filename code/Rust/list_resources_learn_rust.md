@@ -8,6 +8,8 @@
 - https://doc.rust-lang.org/nomicon/
 - https://www.sheshbabu.com/posts/rust-module-system/
 - webframework: https://www.rustfinity.com/blog/axum-rust-tutorial
+- https://github.com/rustfinity/rustfinity
+- https://rust-exercises.com/
 
 
 ### log crates: tracing
