@@ -137,6 +137,8 @@ Check if the overlay file exists, it should be in `/boot/overlays`, you can sear
 
 If the overaly doesn't exist you can create it: create a new `.dts` file with the description of the hardware you want to apply to the base device tree. 
 
+The mpu6050 overlay is defined here: https://github.com/raspberrypi/linux/blob/rpi-5.18.y/arch/arm/boot/dts/overlays/mpu6050-overlay.dts .. check the branch/version you need.
+
 If the overlay file exist you can dinamically create the dts. If you don't have it already installed, install the dtc compiler with  `sudo apt-get install device-tree-compiler` 
 
 Use the `dtc` compiler to compile the overlay source file into a device tree overlay (`.dtbo`) file: 
