@@ -104,6 +104,12 @@ The system used is:
 - $ cat /sys/firmware/devicetree/base/model: Raspberry Pi 4 Model B Rev 1.4
 ```
 
+also check with: 
+
+```
+cat /etc/os-release
+```
+
 The connection of the device shoud be (reference: https://pinout.xyz/pinout/ground):
 
 ```
@@ -156,7 +162,8 @@ If you are not generating the dtc, you can apply the mpu6050 overaly in the `/bo
 so for example: 
 
 ```
-# File /boot/firmware/config.txt
+# @ File /boot/firmware/configg.txt
+
 # For more options and information see
 # http://rptl.io/confitxt
 # Some settings may impact device functionality . See link below for details
