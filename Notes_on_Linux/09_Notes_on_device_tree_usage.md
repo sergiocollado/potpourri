@@ -269,7 +269,7 @@ You may need to load the relevant kernel module (e.g., inv_mpu6050.ko). <br>
 By following these steps, you can interact with the MPU6050 device file and read its sensor data within the Linux kernel environment. 
 
 
-To grant non-root user access to `/sys/bus/iio/devices`, you have to create a custom udev rule: `sudo vim /boot/firmware/config.txt`
+To grant non-root user access to `/sys/bus/iio/devices`, you have to create a custom udev rule: `sudo vim /etc/udev/rules.d/99-iio.rules`
 
 Add the following lines to assign IIO devices to an iio group and make them group-writable:
 ```
