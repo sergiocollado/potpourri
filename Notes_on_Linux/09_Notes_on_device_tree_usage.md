@@ -268,6 +268,29 @@ Refer to the specific MPU6050 driver documentation for details on the exact conf
 You may need to load the relevant kernel module (e.g., inv_mpu6050.ko). <br>
 By following these steps, you can interact with the MPU6050 device file and read its sensor data within the Linux kernel environment. 
 
+
+To grant non-root user access to `/sys/bus/iio/devices`, you have to create a custom udev rule: `sudo vim /boot/firmware/config.txt`
+
+Add the following lines to assign IIO devices to an iio group and make them group-writable:
+```
+SUBSYSTEM=="iio", KERNEL=="iio:device[0-9]*", GROUP="iio", MODE="0664"
+SUBSYSTEM=="iio", ACTION=="add", PROGRAM="/bin/sh -c 'chgrp -R iio /sys%p; chmod -R g+w /sys%p'"
+```
+
+Create the iio group if it does not already exist: `sudo groupadd -f iio`
+
+Add your user (replace pi with your actual username) to the iio group: `sudo usermod -aG iio pi`
+
+Reload the udev rules and trigger them:
+
+```
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+
+Log out and log back in (or reboot your Raspberry Pi) for the group membership change to take full effect.
+
+
 ## Device tree structure 
 
 ## Device tree syntax
