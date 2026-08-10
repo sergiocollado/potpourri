@@ -291,6 +291,49 @@ sudo udevadm trigger
 
 Log out and log back in (or reboot your Raspberry Pi) for the group membership change to take full effect.
 
+... Or you can just `chmod` the files and then you can read/write them.
+
+Go to the device `ls /sys/bus/iio/devices/`
+
+Move into the device directory `cd /sys/bus/iio/devices/iio:device0/`
+
+Read accelerometer values (X, Y, Z)
+```
+cat in_accel_x_raw
+cat in_accel_y_raw
+cat in_accel_z_raw
+```
+Read gyroscope values (X, Y, Z)
+```
+cat in_anglvel_x_raw
+cat in_anglvel_y_raw
+cat in_anglvel_z_raw
+```
+
+Read the temperature sensor
+```
+cat in_temp_raw
+```
+
+You can check with the command: ` watch cat in_accel_[x,y,z]_raw` ... it should be printing different values as you move the sensor around.
+
+... then you may want to calibrate the sensor. 
+
+To convert these raw integers into physical values (like m/s² or degrees per second), multiply the raw value by its corresponding scale file: `cat in_accel_scale`.
+
+To see what scale configurations your kernel driver supports, check the corresponding `_scale_available` attribute files (if exposed by your specific driver version)
+
+ - Read accelerometer options: `cat /sys/bus/iio/devices/iio:device0/in_accel_scale_available`
+ - Read gyroscope options: `cat /sys/bus/iio/devices/iio:device0/in_anglvel_scale_available`
+
+You can define the scale like: `echo 0.000598 > /sys/bus/iio/devices/iio:device0/in_accel_scale`
+
+references:
+ - https://www.youtube.com/watch?v=5xLHZEl0h10
+ - https://forum.arduino.cc/t/mpu-6050-calculating-yaw-pitch-and-roll/1360842
+ - Self Test Routine (calibration method) -- check the self test routine (calibration method)
+
+
 
 ## Device tree structure 
 
