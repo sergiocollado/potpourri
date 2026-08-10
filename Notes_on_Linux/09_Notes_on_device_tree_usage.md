@@ -8,6 +8,7 @@ references:
  - Javier Carrasco Cruz:  - https://hackerbikepacker.com/device-driver-development-with-rpi-setup
  - Javier Carrasco Cruz: https://hackerbikepacker.com/device-driver-development-with-rpi-device-tree
  - Javier Carrasco Cruz: device tree bindings: https://hackerbikepacker.com/dt-bindings
+ - https://www.linkedin.com/pulse/exploring-challenges-linux-iio-from-developers-perspective-james-john-4qm9f
  - https://docs.kernel.org/devicetree/index.html
  - https://docs.kernel.org/devicetree/usage-model.html
  - https://www.raspberrypi.com/documentation/computers/configuration.html#device-trees-overlays-and-parameters
