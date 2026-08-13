@@ -331,7 +331,7 @@ You can define the scale like: `echo 0.000598 > /sys/bus/iio/devices/iio:device0
 references:
  - https://www.youtube.com/watch?v=5xLHZEl0h10
  - https://forum.arduino.cc/t/mpu-6050-calculating-yaw-pitch-and-roll/1360842
- - Self Test Routine (calibration method) -- check the self test routine (calibration method)
+ - https://github.com/anasvag575/MPU6050_driver/blob/master/Driver_code/mpu6050.c <- Self Test Routine (calibration method) -- check the self test routine (calibration method)
 
 ### Error: Device or resource busy
 
