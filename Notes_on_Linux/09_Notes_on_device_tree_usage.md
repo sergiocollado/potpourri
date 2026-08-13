@@ -333,6 +333,21 @@ references:
  - https://forum.arduino.cc/t/mpu-6050-calculating-yaw-pitch-and-roll/1360842
  - Self Test Routine (calibration method) -- check the self test routine (calibration method)
 
+### Error: Device or resource busy
+
+In Linux Industrial I/O (IIO), a "Device or resource busy" (EBUSY) error typically occurs when you attempt to read a sysfs attribute (like `in_voltageX_raw`) while the device is actively running in continuous buffer/streaming mode, or when another process/daemon already has an open handle to the character device node (`/dev/iio:deviceX`)
+
+#### Common Causes and Solutions
+
+**The cause**: Trying to use a standard cat command on a raw sysfs file (e.g., `cat /sys/bus/iio/devices/iio:device0/in_voltage0_raw`) while the ADC or sensor is already configured and running inside a capture buffer.
+
+**The fix**: If the device's buffer is enabled, you must read data via the character device interface (`/dev/iio:deviceX`) rather than individual `_raw+  sysfs files, or stop the buffer first
+
+#### Active Buffer Capture LockoutThe Cause:
+
+An application (such as `iio-capture` or a custom user-space daemon using `libiio`) opened a buffer stream and did not cleanly close or disable it. The kernel keeps the resource locked.
+
+**The fix**: Explicitly disable the buffer via sysfs to release the lock: `echo 0 > /sys/bus/iio/devices/iio:deviceX/buffer/enable`
 
 
 ## Device tree structure 
