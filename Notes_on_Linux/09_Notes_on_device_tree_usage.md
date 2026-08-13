@@ -349,6 +349,17 @@ An application (such as `iio-capture` or a custom user-space daemon using `libii
 
 **The fix**: Explicitly disable the buffer via sysfs to release the lock: `echo 0 > /sys/bus/iio/devices/iio:deviceX/buffer/enable`
 
+So:
+ - one-shot reads (buffer enable = 0) -> read from: `/sys/bus/iio/devices/iio:device0`
+ - automatic reads (buffer enable = 1) -> read from `/dev/iio:device0`
+
+The iio subsystem provides two ways to program the ADC and read the values:
+ - One-shot conversions performed by reading the files in /sys/bus/iio/devices/iio\:device0/
+ - Continuous conversions of a single channel at a time using the /dev/iio:device0 character device file
+ - reference: https://community.nxp.com/t5/i-MX-Processors/Re-how-to-read-info-from-iio-device-iio-device0/td-p/269079?profile.language=en
+ - libiio: https://analogdevicesinc.github.io/libiio/main/theory.html
+
+
 
 ## Device tree structure 
 
