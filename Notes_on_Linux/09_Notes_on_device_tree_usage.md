@@ -297,7 +297,8 @@ Go to the device `ls /sys/bus/iio/devices/`
 
 Move into the device directory `cd /sys/bus/iio/devices/iio:device0/`
 
-Read accelerometer values (X, Y, Z)
+Read accelerometer values (X, Y, Z) : `cat cat in_accel_[x,y,z]_raw`:
+
 ```
 cat in_accel_x_raw
 cat in_accel_y_raw
@@ -359,7 +360,26 @@ The iio subsystem provides two ways to program the ADC and read the values:
  - reference: https://community.nxp.com/t5/i-MX-Processors/Re-how-to-read-info-from-iio-device-iio-device0/td-p/269079?profile.language=en
  - libiio: https://analogdevicesinc.github.io/libiio/main/theory.html
 
+### Id est: 
 
+To read a sensor from `/dev/iio:device0`, use one-shot `sysfs` files for single values or configure the character device buffer for continuous data streams.
+
+#### Reading **Single Values (One-Shot)**
+
+ - For basic reads without data streams, look in the matching `sysfs` folder instead of the device file:Find the folder: `/sys/bus/iio/devices/iio:device0/` 
+ - Read a channel file (for example, `cat /sys/bus/iio/devices/iio:device0/in_temp_input`).
+ - Multiply the raw number by the matching scale file value to get real units. 
+
+#### Reading Continuous Data Streams (Buffers)
+ - To stream raw data from `/dev/iio:device0`, set up the buffer and triggers first: Enable scan elements: `echo 1 > /sys/bus/iio/devices/iio:device0/scan_elements/in_voltage0_en`
+ - Set buffer length: `echo 128 > /sys/bus/iio/devices/iio:device0/buffer/length`
+ - Turn on the buffer: `echo 1 > /sys/bus/iio/devices/iio:device0/buffer/enable`
+ - Read the binary stream using a tool like hexdump or a custom program: `hexdump -e '"%04x\n"' /dev/iio:device0`.
+
+references:
+  - https://stackoverflow.com/questions/36791837/reading-iio-device-data-from-user-space
+  - https://forums.raspberrypi.com/viewtopic.php?t=113988
+  - https://community.nxp.com/t5/i-MX-Processors/Re-how-to-read-info-from-iio-device-iio-device0/td-p/269079
 
 ## Device tree structure 
 
