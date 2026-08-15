@@ -381,6 +381,324 @@ references:
   - https://forums.raspberrypi.com/viewtopic.php?t=113988
   - https://community.nxp.com/t5/i-MX-Processors/Re-how-to-read-info-from-iio-device-iio-device0/td-p/269079
 
+### Programing the sensor
+
+ Now you can program the sensor, reading the regitster or by means of i2c communication or with libiio. 
+
+ For example:
+  - https://openest.io/non-classe-en/activate-raspberry-pi-4-i2c-bus/
+  - https://openest.io/non-classe-en/mpu6050-accelerometer-on-raspberry-pi/
+
+ The example program  (remember you will have to defiene the correct values in the configuration registries) : 
+
+```c 
+/*
+ * This file is an MPU6050 demonstration.
+ * https://openest.io/en/2020/01/21/mpu6050-accelerometer-on-raspberry-pi/
+ * Copyright (c) 2020 Julien Grossholtz - https://openest.io.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version 3.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include <linux/i2c-dev.h>
+#include <sys/ioctl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdint.h>
+
+#define MPU6050_I2C_ADDR 0x68
+
+#define REG_ACCEL_ZOUT_H 0x3F
+#define REG_ACCEL_ZOUT_L 0x40
+#define REG_PWR_MGMT_1 0x6B
+#define REG_ACCEL_CONFIG 0x1C
+#define REG_SMPRT_DIV 0x19
+#define REG_CONFIG 0x1A
+#define REG_FIFO_EN 0x23
+#define REG_USER_CTRL 0x6A
+#define REG_FIFO_COUNT_L 0x72
+#define REG_FIFO_COUNT_H 0x73
+#define REG_FIFO 0x74
+#define REG_WHO_AM_I 0x75
+
+int file = -1;
+
+// Please note, this is not the recommanded way to write data
+// to i2c devices from user space.
+void i2c_write(__u8 reg_address, __u8 val) {
+	char buf[2];
+	if(file < 0) {
+		printf("Error, i2c bus is not available\n");
+		exit(1);
+	}
+
+	buf[0] = reg_address;
+	buf[1] = val;
+
+	if (write(file, buf, 2) != 2) {
+		printf("Error, unable to write to i2c device\n");
+		exit(1);
+	}
+
+}
+
+// Please note, this is not thre recommanded way to read data
+// from i2c devices from user space.
+char i2c_read(uint8_t reg_address) {
+	char buf[1];
+	if(file < 0) {
+		printf("Error, i2c bus is not available\n");
+		exit(1);
+	}
+
+	buf[0] = reg_address;
+
+	if (write(file, buf, 1) != 1) {
+		printf("Error, unable to write to i2c device\n");
+		exit(1);
+	}
+
+
+	if (read(file, buf, 1) != 1) {
+		printf("Error, unable to read from i2c device\n");
+		exit(1);
+	}
+
+	return buf[0];
+
+}
+
+uint16_t merge_bytes( uint8_t LSB, uint8_t MSB) {
+	return  (uint16_t) ((( LSB & 0xFF) << 8) | MSB);
+}
+
+// 16 bits data on the MPU6050 are in two registers,
+// encoded in two complement. So we convert those to int16_t
+int16_t two_complement_to_int( uint8_t LSB, uint8_t MSB) {
+	int16_t signed_int = 0;
+	uint16_t word;
+
+	word = merge_bytes(LSB, MSB);
+
+	if((word & 0x8000) == 0x8000) { // negative number
+		signed_int = (int16_t) -(~word);
+	} else {
+		signed_int = (int16_t) (word & 0x7fff);
+	}
+
+	return signed_int;
+}
+
+int main(int argc, char *argv[]) {
+	int adapter_nr = 1; /* probably dynamically determined */
+	char bus_filename[250];
+	char accel_x_h,accel_x_l,accel_y_h,accel_y_l,accel_z_h,accel_z_l,temp_h,temp_l;
+	uint16_t fifo_len = 0;
+	int16_t x_accel = 0;
+	int16_t y_accel = 0;
+	int16_t z_accel = 0;
+	int16_t temp = 0;
+	float x_accel_g, y_accel_g, z_accel_g, temp_f;
+
+	snprintf(bus_filename, 250, "/dev/i2c-1", adapter_nr);
+	file = open(bus_filename, O_RDWR);
+	if (file < 0) {
+		/* ERROR HANDLING; you can check errno to see what went wrong */
+		exit(1);
+	}
+
+
+	if (ioctl(file, I2C_SLAVE, MPU6050_I2C_ADDR) < 0) {
+		/* ERROR HANDLING; you can check errno to see what went wrong */
+		exit(1);
+	}
+
+	i2c_write(REG_PWR_MGMT_1, 0x01);
+	i2c_write(REG_ACCEL_CONFIG, 0x00);
+	i2c_write(REG_SMPRT_DIV, 0x07);
+	i2c_write(REG_CONFIG, 0x00);
+	i2c_write(REG_FIFO_EN, 0x88);
+	i2c_write(REG_USER_CTRL, 0x44);
+
+	while(fifo_len != 1024) {
+		accel_x_h = i2c_read(REG_FIFO_COUNT_L);
+		accel_x_l = i2c_read(REG_FIFO_COUNT_H);
+		fifo_len = merge_bytes(accel_x_h,accel_x_l);
+
+		if(fifo_len == 1024) {
+			printf("fifo overflow !\n");
+			i2c_write(REG_USER_CTRL, 0x44);
+			continue;
+		}
+
+		if(fifo_len >= 8) {
+			accel_x_h = i2c_read(REG_FIFO);
+			accel_x_l = i2c_read(REG_FIFO);
+			accel_y_h = i2c_read(REG_FIFO);
+			accel_y_l = i2c_read(REG_FIFO);
+			accel_z_h = i2c_read(REG_FIFO);
+			accel_z_l = i2c_read(REG_FIFO);
+			temp_h = i2c_read(REG_FIFO);
+			temp_l= i2c_read(REG_FIFO);
+
+			x_accel= two_complement_to_int(accel_x_h,accel_x_l);
+			x_accel_g = ((float) x_accel)/16384;
+
+			y_accel= two_complement_to_int(accel_y_h,accel_y_l);
+			y_accel_g = ((float) y_accel)/16384;
+
+			z_accel= two_complement_to_int(accel_z_h,accel_z_l);
+			z_accel_g = ((float) z_accel)/16384;
+
+			temp = two_complement_to_int(temp_h, temp_l);
+			temp_f = (float)temp/340 + 36.53; // calculated as described in the MPU60%) register map document
+
+			printf("x_accel %.3fg	y_accel %.3fg	z_accel %.3fg	temp=%.1fc         \r", x_accel_g, y_accel_g, z_accel_g, temp_f);
+		} else {
+			usleep(10000);
+		}
+
+	}
+
+	return 0;
+}
+```
+
+Other way: 
+
+You will need to install the tools `sudo apt-get install i2c-tools libi2c-dev` : 
+
+```c
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
+#include <linux/i2c-dev.h>
+#include <i2c/smbus.h> // Requires libi2c-dev package
+
+int main() {
+    int file;
+    char filename[20];
+    int adapter_nr = 1; // Corresponds to /dev/i2c-1
+    int addr = 0x48;    // Target I2C slave device address
+
+    // 1. Open the i2c-dev bus file descriptor
+    snprintf(filename, sizeof(filename), "/dev/i2c-%d", adapter_nr);
+    file = open(filename, O_RDWR);
+    if (file < 0) {
+        perror("Failed to open the I2C bus");
+        return 1;
+    }
+
+    // 2. Configure the file descriptor with the target slave address
+    if (ioctl(file, I2C_SLAVE, addr) < 0) {
+        perror("Failed to acquire bus access and/or talk to slave");
+        close(file);
+        return 1;
+    }
+
+    // 3. Recommended way: Use SMBus functions to read data safely
+    __s32 res = i2c_smbus_read_byte_data(file, 0x00); // Read from register 0x00
+    if (res < 0) {
+        perror("Read failed");
+    } else {
+        printf("Data read: 0x%02X\n", res);
+    }
+
+    close(file);
+    return 0;
+}
+
+```
+
+reference: accessing i2c from user-space: https://emlogic.no/2025/06/accessing-i2c-devices-from-userspace-in-linux/
+
+Other example: 
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
+#include <linux/i2c-dev.h>
+
+#define I2C_DEVICE      "/dev/i2c-0"
+#define I2C_ADDR        0x53    // Device address
+#define REG_POWER_CTL   0x2D    // Power control register
+#define REG_DATA_START  0x32    // Data register start
+
+int main(void) {
+    int file;
+    uint8_t buf[2];
+    uint8_t data[6];
+    int16_t x, y, z;
+
+    // Open I2C device
+    if ((file = open(I2C_DEVICE, O_RDWR)) < 0) {
+        perror("Failed to open the i2c bus");
+        exit(EXIT_FAILURE);
+    }
+
+    // Specify the address of the I2C Device to communicate with
+    if (ioctl(file, I2C_SLAVE, I2C_ADDR) < 0) {
+        perror("Failed to acquire bus access and/or talk to device");
+        close(file);
+        exit(EXIT_FAILURE);
+    }
+
+    // Wake up the device: write 0x08 to POWER_CTL register
+    buf[0] = REG_POWER_CTL;
+    buf[1] = 0x08;
+    if (write(file, buf, 2) != 2) {
+        perror("Failed to write to the power control register");
+        close(file);
+        exit(EXIT_FAILURE);
+    }
+
+    printf("Reading 6 bytes from register 0x%02X...\n", REG_DATA_START);
+    // Set register pointer to data start
+    buf[0] = REG_DATA_START;
+    if (write(file, buf, 1) != 1) {
+        perror("Failed to set data register pointer");
+        break;
+    }
+
+    // Read 6 bytes of data (X, Y, Z)
+    if (read(file, data, 6) != 6) {
+        perror("Failed to read data from device");
+        break;
+    }
+
+    // Convert little-endian bytes to signed 16-bit values
+    x = (int16_t)((data[1] << 8) | data[0]);
+    y = (int16_t)((data[3] << 8) | data[2]);
+    z = (int16_t)((data[5] << 8) | data[4]);
+    // Print the raw values
+    printf("X: %6d, Y: %6d, Z: %6d\n", x, y, z);
+    close(file);
+    return 0;
+}
+```
+
+The recommended way to read I2C devices from user space in Linux is by interacting with the standard i2c-dev character device interface (located at `/dev/i2c-X`).While writing a dedicated kernel driver is ideal for production systems, i2c-dev is the official, universal standard for user-space development.  Read/write directly to `/dev/i2c-1` using `open()` + `write()` libc functions, so you write directly to `/dev/i2c-1` as if it were a normal file.
+
+
 ## Device tree structure 
 
 ## Device tree syntax
