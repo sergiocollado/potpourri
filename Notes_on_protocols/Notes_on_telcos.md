@@ -27,6 +27,7 @@
  - diameter protocol course introduction: https://www.youtube.com/playlist?list=PLO7rrzYzv_zgVnNQPP_F95AN0nrLtSeGx
  - 5g data session end to end deep dive: https://medium.com/@anand.hv123/5g-data-session-an-end-to-end-call-flow-deep-dive-ac896df596e6
  - https://theobjective.com/espana/2026-02-12/marruecos-pegasus-movil-sanchez-viaje-marlaska-ceuta/
+ - https://thehackernews.com/2026/07/researchers-report-84-flaws-in-4g-and.html
 
 Interesting repos:
 
