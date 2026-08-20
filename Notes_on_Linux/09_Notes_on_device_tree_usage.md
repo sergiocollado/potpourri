@@ -103,6 +103,8 @@ references:
  - https://emlogic.no/2025/06/accessing-i2c-devices-from-userspace-in-linux/
  - Guide to interfacing a Gyro and Accelerometer with a Raspberry Pi: https://ozzmaker.com/berryimu/
  - i2c userspace development: https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c#userspace-development
+ - sample i2c mpu6050 example: https://github.com/fdcavalcanti/driver-mpu6050
+ - 
 
 The system used is:
 ```
@@ -177,15 +179,16 @@ so for example:
 # Some settings may impact device functionality . See link below for details
 
 # Unconmment some or all of these to enable the optional hardware interfaces
-dtparam=i2c-arm=on
+dtparam=i2c-arm=on    # <-- UNCOMMENT THIS!!! 
 #dtparam=i2s=on
 #dtparam=spi=on
 
 # Enable mpu6050
-dtoverlay=i2c-sensor,mpu6050,addr=0x68
+dtoverlay=i2c-sensor,mpu6050,addr=0x68   # <-- DEFINE THIS!!!
 
 #Aditional overlays and parameters are documented
 # /boot/firmware/overlays/README
+   ...
 ```
 
 reboot the rpi `sudo reboot`. 
@@ -397,7 +400,9 @@ references:
   - https://openest.io/non-classe-en/activate-raspberry-pi-4-i2c-bus/
   - https://openest.io/non-classe-en/mpu6050-accelerometer-on-raspberry-pi/
 
- The example program  (remember you will have to defiene the correct values in the configuration registries) : 
+Reference to read the i2c sensor from user-space in the documentation: https://www.kernel.org/doc/Documentation/i2c/dev-interface
+
+ The example program (remember you will have to defiene the correct values in the configuration registries) : 
 
 ```c 
 /*
@@ -633,7 +638,9 @@ int main() {
 
 ```
 
-reference: accessing i2c from user-space: https://emlogic.no/2025/06/accessing-i2c-devices-from-userspace-in-linux/
+reference:
+ - accessing i2c devices from user-space: https://www.kernel.org/doc/Documentation/i2c/dev-interface
+ - accessing i2c from user-space: https://emlogic.no/2025/06/accessing-i2c-devices-from-userspace-in-linux/
 
 Other example: 
 
@@ -704,7 +711,7 @@ int main(void) {
 }
 ```
 
-The recommended way to read I2C devices from user space in Linux is by interacting with the standard i2c-dev character device interface (located at `/dev/i2c-X`).While writing a dedicated kernel driver is ideal for production systems, i2c-dev is the official, universal standard for user-space development.  Read/write directly to `/dev/i2c-1` using `open()` + `write()` libc functions, so you write directly to `/dev/i2c-1` as if it were a normal file.
+??? The recommended way to read I2C devices from user space in Linux is by interacting with the standard i2c-dev character device interface (located at `/dev/i2c-X`). While writing a dedicated kernel driver is ideal for production systems, i2c-dev is the official, universal standard for user-space development. Read/write directly to `/dev/i2c-1` using `open()` + `write()` libc functions, so you write directly to `/dev/i2c-1` as if it were a normal file.
 
 
 ## Device tree structure 
