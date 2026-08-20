@@ -38,6 +38,7 @@ references:
  - https://bootlin.com/blog/enabling-new-hardware-on-raspberry-pi-with-device-tree-overlays/
  - i2c drivers: https://dev.to/tonyhe8688/developing-i2c-drivers-on-embedded-linux-a-hands-on-guide-5be5
 
+
 > Many moons ago "board files," were used, each of which described a single type of computer. Kernels are typically built around a single board file and could not boot on any other type of system. Board files sort of worked when there were relatively small numbers of embedded system types to deal with. Now Linux-based embedded systems are everywhere, architectures which have typically depended on board files (ARM, in > particular) were finding their way into more types of systems, and the whole scheme looked poised to collapse under its own weight.
 >
 > The hoped-for solution to this problem went by the term "device trees"; in essence, a device tree is a textual description of a specific system's hardware configuration. The device tree is passed to the kernel at boot time; the kernel then reads through it to learn about what kind of system it is actually running on. Device trees will abstract the differences between systems into boot-time data and allow generic kernels to run on a much wider variety of hardware.
@@ -98,6 +99,9 @@ references:
  - homemade MPU-6050 Linux Device Driver: https://github.com/fdcavalcanti/driver-mpu6050/tree/main
  - Use the MPU6050 accelerometer on Raspberry-Pi with i2c commands: https://openest.io/non-classe-en/mpu6050-accelerometer-on-raspberry-pi/
  - https://wiki.stmicroelectronics.cn/stm32mpu/index.php?title=How_to_use_the_IIO_user_space_interface&oldid=77686
+ - https://www.kernel.org/doc/Documentation/i2c/dev-interface
+ - https://emlogic.no/2025/06/accessing-i2c-devices-from-userspace-in-linux/
+ - Guide to interfacing a Gyro and Accelerometer with a Raspberry Pi: https://ozzmaker.com/berryimu/
 
 The system used is:
 ```
