@@ -252,7 +252,7 @@ the script `kernel-chktaint`:  https://git.kernel.org/pub/scm/linux/kernel/git/t
 #include <linux/kernel.h>       /* Needed for KERN_INFO */
 #include <linux/init.h>         /* Needed for the macros __init __exit */
   
-MODULE_LICENSE("GPL")
+MODULE_LICENSE("GPL")  // nowadays SPDX identifiers are used: https://lwn.net/Articles/739183/
 
 static int __init test_hello_init(void)
 {
