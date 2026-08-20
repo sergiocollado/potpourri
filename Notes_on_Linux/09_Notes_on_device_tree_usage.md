@@ -102,6 +102,7 @@ references:
  - https://www.kernel.org/doc/Documentation/i2c/dev-interface
  - https://emlogic.no/2025/06/accessing-i2c-devices-from-userspace-in-linux/
  - Guide to interfacing a Gyro and Accelerometer with a Raspberry Pi: https://ozzmaker.com/berryimu/
+ - i2c userspace development: https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c#userspace-development
 
 The system used is:
 ```
