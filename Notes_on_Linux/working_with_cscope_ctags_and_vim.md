@@ -98,13 +98,20 @@ $sudo apt-get install exuberant-ctags
 ```sh
 $ctags -R
 ```
+or 
+```sh
+$ctags -R *
+```
+
 or
 ```sh
 $ctags -L cscope.files
 ```
 
 **Navigate keyword in Vim**
-<C-]>
+
+ - Use `Ctrl + ]` to jump to the tag underneath the cursor
+ - Use `Ctrl + t` to jump back in the tag stack
 
 **What VIM looks like after some plugins installed**
 ![](https://user-images.githubusercontent.com/28182184/204247679-d46541ed-3379-4c2b-b81b-3b49a9143c1f.png)
