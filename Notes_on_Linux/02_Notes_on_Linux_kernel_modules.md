@@ -293,7 +293,7 @@ cat Makefile
 obj-m := hello.o
 ```
  
-obj-m : stands for module. 
+`obj-m` : stands for module. 
   
 ```bash
 make -C /lib/modules/'uname -r'/build/ M={PWD} modules
@@ -342,13 +342,15 @@ The default vaues for both are found in the top-level Makefile and the values of
   
 ARCH: architecture targetes as the kernel knows it.
   
-CROSS_COMPILE: set this to the prefix of your toolchain (including the trailing dash "-")
+`CROSS_COMPILE`: set this to the prefix of your toolchain (including the trailing dash "-")
 So if the toolchain is invoked as say x86_64-pc-linux-gnu-gcc, just remove the trailing gcc and that is what should be used: `x86_64-pc-linux-gnu-`.
   
 example:
 ```bash
 $ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..../output/build/linux-X.Y:Z m=${PWD} modules  
 ```
+
+if you want to make a module 
 
  ### Overview of compiling kernel modules
   
@@ -483,6 +485,24 @@ all:
 clean:
    make -C /lib/modules/`uname -r`/build M=${PWD} clean
 ```
+
+to create a makefile that is able to cross-compile (for example if you are building a module for as raspberry pi), use: 
+
+```
+// reference: https://github.com/rrmhearts/linux-driver-examples/blob/master/i2c/Makefile
+obj-m += i2c_accel.o
+
+KDIR := ~/kernel
+PWD := $(shell pwd)
+CROSS=arm-eabi-
+
+i2c_accel:
+	make -C $(KDIR) M=$(PWD) ARCH=arm CROSS_COMPILE=$(CROSS) modules
+
+clean:
+	make -C $(KDIR) M=$(PWD) clean
+```
+
 
 ### What happens when we do `insmod` in a module
   
