@@ -205,7 +205,10 @@ $ sudo i2cdetect -y 1
 50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 60: -- -- -- -- -- -- -- -- UU -- -- -- -- -- -- -- 
 70: -- -- -- -- -- -- -- --
-// note that the addes is colum 8, row 60, that is address: 0x68 - that is the address where the sensor is.                  
+
+// note that the addes is colum 8, row 60, that is address: 0x68 - that is the address where the sensor is.
+
+// In the output, UU denotes a device which is used by a kernel driver, and you are not recommended to interfere with it.               
 ```
 
 
