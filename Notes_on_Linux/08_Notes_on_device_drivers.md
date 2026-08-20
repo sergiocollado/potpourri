@@ -641,7 +641,6 @@ I2C protocol refresher:
  - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/i2c/smbus-protocol.rst (SMbus = System Management bus a subsed of I2C definded by Intel).
 
 
-
 References: 
  - https://hackerbikepacker.com/i2c-on-linux
  - https://www.kernel.org/doc/html/v4.14/driver-api/i2c.html
@@ -667,12 +666,10 @@ References:
  - https://embarcados.com.br/device-driver-i2c-para-linux-embarcado/
  - Embedded Linux (PART-10)-I2C Device Driver on BeaglBone Black| I2C Client Driver: https://youtu.be/lYoFy9p8UAw
  - https://dev.to/tonyhe8688/developing-i2c-drivers-on-embedded-linux-a-hands-on-guide-5be5
- - Linux I2C Subsystem Basics : LDD with Raspberry Pi #15
+ - Linux I2C Subsystem Basics : LDD with Raspberry Pi #15: https://www.youtube.com/watch?v=r5IYB4xjk2o
+ - Linux BMP180 I2C Driver Development : LDD with Raspberry Pi #16: https://www.youtube.com/watch?v=PO8QOPt3g10
  - Tutorial: Access the I²C bus on GNU/Linux with C: https://www.youtube.com/watch?v=-1PHQYRbAm8
- - Linux BMP180 I2C Driver Development : LDD with Raspberry Pi #16k: https://www.youtube.com/watch?v=PO8QOPt3g10
  - I2C Device Driver Basics- https://embeddedpathashala.com/i2c-device-driver-basics/
-
-
 
 
 ### Concepts 
