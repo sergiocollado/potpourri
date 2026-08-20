@@ -97,14 +97,19 @@ references:
  - https://www.electronicwings.com/raspberry-pi/mpu6050-accelerometergyroscope-interfacing-with-raspberry-pi
  - Understanding I2C Communication in Linux: A Beginner's Guide with Sample Code for Raspberry Pi : https://www.linkedin.com/pulse/understanding-i2c-communication-linux-beginners-guide-soheil-nazari/
  - linux kernel mpu6050 device driver: https://github.com/torvalds/linux/tree/master/drivers/iio/imu/inv_mpu6050
- - homemade MPU-6050 Linux Device Driver: https://github.com/fdcavalcanti/driver-mpu6050/tree/main
+ - MPU-6050 Linux Device Driver: https://github.com/fdcavalcanti/driver-mpu6050/tree/main
+ - MPU6050 driver code: https://github.com/anasvag575/MPU6050_driver/tree/master/Driver_code
  - Use the MPU6050 accelerometer on Raspberry-Pi with i2c commands: https://openest.io/non-classe-en/mpu6050-accelerometer-on-raspberry-pi/
  - https://wiki.stmicroelectronics.cn/stm32mpu/index.php?title=How_to_use_the_IIO_user_space_interface&oldid=77686
  - https://www.kernel.org/doc/Documentation/i2c/dev-interface
  - https://emlogic.no/2025/06/accessing-i2c-devices-from-userspace-in-linux/
  - Guide to interfacing a Gyro and Accelerometer with a Raspberry Pi: https://ozzmaker.com/berryimu/
- - i2c userspace development: https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c#userspace-development
- - sample i2c mpu6050 example: https://github.com/fdcavalcanti/driver-mpu6050
+ - i2c userspace development: https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c#userspace-developmentf
+
+linux drivers code: 
+ - MPU-6050 Linux Device Driver: https://github.com/fdcavalcanti/driver-mpu6050/tree/main
+ - MPU6050 driver code: https://github.com/anasvag575/MPU6050_driver/tree/master/Driver_code
+ - linux kernel mpu6050 device driver: https://github.com/torvalds/linux/tree/master/drivers/iio/imu/inv_mpu6050
 
 The system used is:
 ```
