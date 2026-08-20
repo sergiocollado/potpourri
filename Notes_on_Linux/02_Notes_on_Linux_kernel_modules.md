@@ -248,6 +248,7 @@ the script `kernel-chktaint`:  https://git.kernel.org/pub/scm/linux/kernel/git/t
 ### HelloWorldModule.c
   
 ```C
+// SPDX-License-Identifier: XXX
 #include <linux/module.h>       /* Needed by all modules */
 #include <linux/kernel.h>       /* Needed for KERN_INFO */
 #include <linux/init.h>         /* Needed for the macros __init __exit */
@@ -792,6 +793,7 @@ The purpose of defining `__inittest` function is to check during compile time, t
   
   Example: 
   ```C
+  // SPDX-License-Identifier: <XXX> - reference: https://lwn.net/Articles/739183/
   #include <linux/kernel.h>
   #include <linux/module.h>
   
@@ -879,6 +881,7 @@ The purpose of defining `__inittest` function is to check during compile time, t
   and example: 
   
   ```C
+  // SPDX-License-Identifier: <XXX> - reference: https://lwn.net/Articles/739183/
   #include <linux/kernel.h>
   #include <linux/module.h>
   #include <linux/moduleparam.h>
@@ -939,6 +942,7 @@ The difference between System.map and /proc/kallsyms
 Example of exporting a function:
   
 ```C
+// SPDX-License-Identifier: <XXX> - reference: https://lwn.net/Articles/739183/
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/jiffies.h>
@@ -988,6 +992,7 @@ To check if it was exported, use: `cat /proc/kallsyms | grep <exported_symbol>`
    2. A second module which uses the exported function 
   
  ```C
+// SPDX-License-Identifier: <XXX> - reference: https://lwn.net/Articles/739183/
 #include <linux/module.h>       /* Needed by all modules */
 #include <linux/kernel.h>       /* Needed for KERN_INFO */
 #include <linux/init.h>         /* Needed for the macros __init __exit */  
@@ -1018,6 +1023,7 @@ module_exit(module1_exit);
 ```
 
 ```C
+// SPDX-License-Identifier: <XXX> - reference: https://lwn.net/Articles/739183/
 #include <linux/module.h>       /* Needed by all modules */
 #include <linux/kernel.h>       /* Needed for KERN_INFO */
 #include <linux/init.h>         /* Needed for the macros __init __exit */  
@@ -1173,6 +1179,7 @@ Calling `dup_stack()` will cause a stack trace to be printed at that point.
 So a sample module:
   
 ```C
+// SPDX-License-Identifier: <XXX> - reference: https://lwn.net/Articles/739183/
 #include <linux/module.h>
 #include <linux/kernel.h>
   
@@ -1256,6 +1263,7 @@ An example to force an Oops
   
   
 ```C
+// SPDX-License-Identifier: <XXX>
 #include <linux/module.h>
 #include <linux/kernel.h>
 MODULE_LICENSE("GPL");
@@ -1312,6 +1320,7 @@ clean:
   
   
 ```C
+// SPDX-License-Identifier: <XXX>
 #include <linux/module.h>
 #include <linux/kernel.h>
 MODULE_LICENSE("GPL");
@@ -1360,6 +1369,7 @@ module_exit(test_hello_exit);
   You can retrieve those statuses using the command 'ps -el'
   
   ```C
+  // SPDX-License-Identifier: <XXX>
   #include <linux/kernel.h>
   #include <linux/module.h>
   #include <linux/sched/signal.h>
@@ -1416,6 +1426,7 @@ module_exit(test_hello_exit);
   The kernel provides an easy way to do this, by means of the macro `current`, which alwiays returns a pointer to the current executing process task_struct.  This macro has to be implemented for each architecture. Some architectures store this in a register while other store them in the botom of the kerel stack of processes. 
   
  ```C
+ // SPDX-License-Identifier: <XXX>
  #include <linux/module.h>
  #include <linux/init.h>
  #include <linux.sched.h>
@@ -1518,6 +1529,7 @@ Regions appear in the list in ascending order by memory addresses.
  Example for retrieving a process memory map:
  
   ```C
+ // SPDX-License-Identifier: <XXX>
  #include <linux/init.h>
  #include <linux/module.h>
  #include <linux/moduleparam.h>
@@ -1654,6 +1666,7 @@ To use kernel threads use the API at <linux/kthread.h>
  #### kthread module examples:
   
  ```C
+ // SPDX-License-Identifier: <XXX>
  #include <linux/init.h>
  #include <linux/module.h>
  #include <linux/kdev_t>
@@ -2031,7 +2044,7 @@ can be checked at `/proc/sys/kernel/printk`
   
   Every program that wants to display a window, sends a message via PIC (Programmable Interrupt Controller) to the X server and says how it (the X server) should draw the window.
   
-   Tis message passing is implemented in a shared library, son from the application writer point of view, it is just a call to a function that displays the window.
+  This message passing is implemented in a shared library, son from the application writer point of view, it is just a call to a function that displays the window.
   
    Xterm is one of the many graphical applications (Konsole and gnome-terminal are the other well-known programs that emulates a terminal.
   
