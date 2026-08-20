@@ -582,7 +582,7 @@ Upon module exit, use: `platform_driver_unregister()`.
 
 ## I2C Device drivers
 
-
+ - The source code for the I2C drivers is here: https://github.com/torvalds/linux/tree/master/drivers/i2c 
    
 ### I2C Overview & Fundamentals
 
@@ -843,7 +843,7 @@ Below is an image of the I2C subsystem for reference. This image is most helpful
 
 ### Define an i2c_driver
 
-1- Define an allocate a private data struct ( that contains `struct i2c_adapter`)
+1- Define and allocate a private data struct ( that contains `struct i2c_adapter`)
 
 2- Fill algorithm struct: 
  - `.master_xfer()` - function to transform transfer
