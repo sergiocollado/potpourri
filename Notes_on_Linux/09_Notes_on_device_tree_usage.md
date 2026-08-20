@@ -110,6 +110,7 @@ linux drivers code:
  - MPU-6050 Linux Device Driver: https://github.com/fdcavalcanti/driver-mpu6050/tree/main
  - MPU6050 driver code: https://github.com/anasvag575/MPU6050_driver/tree/master/Driver_code
  - linux kernel mpu6050 device driver: https://github.com/torvalds/linux/tree/master/drivers/iio/imu/inv_mpu6050
+ - i2c drivers examples: https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c
 
 The system used is:
 ```
