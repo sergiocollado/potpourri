@@ -632,6 +632,14 @@ I2C protocol refresher:
  - basics of i2c in linux:https://youtu.be/g9-wgdesvwA
  - Tutorial: Access the I²C bus on GNU/Linux with C: https://www.youtube.com/watch?v=-1PHQYRbAm8
  - Linux I2C in the 21st Century : https://www.youtube.com/watch?v=E1ok8xxYdko
+ - https://hackerbikepacker.com/i2c-on-linux
+ - Understanding I2C: https://youtu.be/CAvawEcxoPU
+ - https://www.ti.com/lit/an/sbaa565/sbaa565.pdf?ts=1745316874300
+ - https://www.circuitbasics.com/basics-of-the-i2c-communication-protocol/
+ - understanding i2c: https://youtu.be/CAvawEcxoPU
+ - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/i2c/i2c-protocol.rst
+ - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/i2c/smbus-protocol.rst (SMbus = System Management bus a subsed of I2C definded by Intel).
+
 
 
 References: 
@@ -639,8 +647,10 @@ References:
  - https://www.kernel.org/doc/html/v4.14/driver-api/i2c.html
  - https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c
  - kernel-programming-device-model-i2c.pdf : https://bootlin.com/pub/conferences/2018/elc/opdenacker-kernel-programming-device-model-i2c/kernel-programming-device-model-i2c.pdf
+ - https://developer.toradex.com/linux-bsp/application-development/peripheral-access/i2c-linux/
  - Basics of I2C on Linux - Luca Ceresoli, Bootlin : https://youtu.be/g9-wgdesvwA
  - Tutorial: Introduction to I2C and SPI: Both In-kernel and In-userspace - Michael Welling : https://youtu.be/c10wAKWpjts
+ - Guide to interfacing a Gyro and Accelerometer with a Raspberry Pi: https://ozzmaker.com/berryimu/
  - https://www.eevblog.com/forum/microcontrollers/i2c-sensor-integration-in-linux/
  - https://github.com/torvalds/linux/blob/master/drivers/hwmon/lm75.c
  - https://github.com/torvalds/linux/blob/master/drivers/gpio/gpio-pca9570.c
@@ -651,6 +661,7 @@ References:
  - https://www.linkedin.com/pulse/understanding-i2c-communication-linux-beginners-guide-soheil-nazari/
  - Let's code a Linux Driver - 22: Device Tree driver for an I2C Device: https://youtu.be/GQ1XwFWA2Nw
  - Let's code a Linux Driver - 36: I2C Device Driver without Device Tree: https://youtu.be/pESMpoQnfDU?list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa
+ - Tutorial: Access the I2C Bus on any Desktop PC (The SMBus): https://www.youtube.com/watch?v=3BXkVnz8vNo
  - Guide to interfacing a Gyro and Accelerometer with a Raspberry Pi: https://ozzmaker.com/berryimu/
  - https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-device-tree-na-raspberry-pi-zero-w/
  - https://embarcados.com.br/device-driver-i2c-para-linux-embarcado/
@@ -658,18 +669,10 @@ References:
  - https://dev.to/tonyhe8688/developing-i2c-drivers-on-embedded-linux-a-hands-on-guide-5be5
  - Linux I2C Subsystem Basics : LDD with Raspberry Pi #15
  - Tutorial: Access the I²C bus on GNU/Linux with C: https://www.youtube.com/watch?v=-1PHQYRbAm8
+ - Linux BMP180 I2C Driver Development : LDD with Raspberry Pi #16k: https://www.youtube.com/watch?v=PO8QOPt3g10
+ - I2C Device Driver Basics- https://embeddedpathashala.com/i2c-device-driver-basics/
 
-### Fundamentals of I2C
 
- References:
-  - https://hackerbikepacker.com/i2c-on-linux
-  - Understanding I2C: https://youtu.be/CAvawEcxoPU
-  - https://www.ti.com/lit/an/sbaa565/sbaa565.pdf?ts=1745316874300
-  - https://www.circuitbasics.com/basics-of-the-i2c-communication-protocol/
-  - understanding i2c: https://youtu.be/CAvawEcxoPU
-  - https://learn.sparkfun.com/tutorials/i2c/all
-  - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/i2c/i2c-protocol.rst
-  - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/i2c/smbus-protocol.rst (SMbus = System Management bus a subsed of I2C definded by Intel).
 
 
 ### Concepts 
@@ -1054,12 +1057,15 @@ int sfe4001_init(struct efx_nic *efx)
 ```
 
 4. Probe I2C bus for devices
-This method allows i2c-core to probe for devices after their drivers are loaded. If one is found, an I2C device will be initiated.
-The driver must implement the "detect()" method which identifies a supported device by reading arbitrary registers. 
+
+This method allows i2c-core to probe for devices after their drivers are loaded. __**If one is found, an I2C device will be initiated**__.
+The driver must implement the `detect()` method which identifies a supported device by reading arbitrary registers. 
 This method will only probe buses that are likely to have supported devices and *agree* to be probed.
 
 5. Lastly, you can instantiate a device from user space through sysfs
+
 This is only if you cannot modify the kernel. You need to know the name of the I2C device and the address.
+
 **Example**
 
 ```C
