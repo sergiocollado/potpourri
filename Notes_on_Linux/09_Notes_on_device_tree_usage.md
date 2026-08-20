@@ -732,8 +732,7 @@ int main(void) {
 
 This page walks through how to write a device tree for a new machine.  It is intended to provide an overview of device tree concepts and how they are used to describe a machine.
 
-For a full technical description of device tree data format, refer to the
-https://elinux.org/images/c/cf/Power_ePAPR_APPROVED_v1.1.pdf ePAPR v1.1 specification. The ePAPR specification covers a lot more detail than the basic topics covered on this page, please refer to it for more advanced usage that isn't covered by this page.
+For a full technical description of device tree data format, refer to the: https://elinux.org/images/c/cf/Power_ePAPR_APPROVED_v1.1.pdf ePAPR v1.1 specification. The ePAPR specification covers a lot more detail than the basic topics covered on this page, please refer to it for more advanced usage that isn't covered by this page.
 
 ## Device tree sources and compilers
 
