@@ -170,7 +170,7 @@ If you are not generating the dtc, you can apply the mpu6050 overaly in the `/bo
 so for example: 
 
 ```
-# @ File /boot/firmware/configg.txt
+# @ File /boot/firmware/config.txt
 
 # For more options and information see
 # http://rptl.io/confitxt
