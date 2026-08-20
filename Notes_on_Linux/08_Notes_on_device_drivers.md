@@ -102,10 +102,12 @@ Registering a device implies to add the device to the device's list of the corre
 
 ### Device declaration
 
-The device declaration is not really part of the LDM. Nowadays there are two methods
+The device declaration is not really part of the LDM. Nowadays there are two methods: Device Tree and ACPI.
  - From the **Device Tree (Open Firmware)**: https://www.kernel.org/doc/html/latest/devicetree/index.html
  - From the **Advanced Confgiration and Power Interface ACPI** : https://www.kernel.org/doc/html/latest/driver-api/acpi/index.html
     - Garrett: Why ACPI? https://lwn.net/Articles/949625/ -> https://mjg59.dreamwidth.org/68350.html
+    - How Linux Figures Out What Hardware You Have - ACPI tables: https://dev.to/moonlitpath1/how-linux-figures-out-what-hardware-you-have-291o
+  - **ACPI vs. Device Tree**: The Linux Approach to Hardware Description : https://www.linkedin.com/pulse/acpi-vs-device-tree-linux-approach-hardware-tushar-vyavahare-cbxac
 
 ### Device driver
 
