@@ -214,7 +214,7 @@ $ sudo i2cdetect -y 1
 
 Access IIO data: You can now access the IIO data from your device using the IIO driver, which is typically done through the /sys/bus/iio/devices directory or through a library like libiio
 
-Watch out: The mpu6050 device tree overlay is not a standard inclusion in the Raspberry Pi 3 (Pi 3) kernel, unlike later models. This means you'll need to manually configure and load the overlay if you wish to use an MPU6050 sensor with your Pi 3. The Pi 3 lacks a dedicated MPU6050 overlay for ease of use, but it can still be used with additional setup. 
+Watch out: The mpu6050 device tree overlay is not a standard inclusion in the Raspberry Pi 3 (Pi 3) kernel, unlike later models. This means you'll need to manually configure and load the overlay if you wish to use an MPU6050 sensor with your Pi 3. The Pi 3 lacks a dedicated MPU6050 overlay for ease of use, but it can still be used with additional setup. Reference: https://forums.raspberrypi.com/viewtopic.php?t=230766
 
 To read data from an MPU6050 device file within the Linux kernel, you'll generally interact with the device using the iio (Industrial Input/Output) framework and the files found in /sys/bus/iio/devices/. Specifically, you'll need to configure the scan elements and triggers associated with the MPU6050 to enable data capture. 
 
