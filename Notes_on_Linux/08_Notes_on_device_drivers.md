@@ -105,6 +105,7 @@ Registering a device implies to add the device to the device's list of the corre
 The device declaration is not really part of the LDM. Nowadays there are two methods
  - From the **Device Tree (Open Firmware)**: https://www.kernel.org/doc/html/latest/devicetree/index.html
  - From the **Advanced Confgiration and Power Interface ACPI** : https://www.kernel.org/doc/html/latest/driver-api/acpi/index.html
+    - Garrett: Why ACPI? https://lwn.net/Articles/949625/ -> https://mjg59.dreamwidth.org/68350.html
 
 ### Device driver
 
