@@ -332,12 +332,14 @@ The `M=` argument causes the Makefile to move back into your module source direc
 The kernel Makefile will read the local makefile to findout what to build, this is indicated by writing: obj-m +=HelloWorldModule.o
 
 ### Cross compiling kernel modules
+
+Reference: https://dev.to/samar_lass_27db28cecec23c/cross-compiling-linux-kernel-module-a-hands-on-guide-b7d
     
 It is possible to emulate other architectures with QUEMU, and make developments for those other architectures, for that we need to cross compile.
   
 There are two variables that the kernel uses to select the target architecture: 
-  - ARCH
-  - CROSS_COMPILE
+  - `ARCH`
+  - `CROSS_COMPILE`
   
 The default vaues for both are found in the top-level Makefile and the values of both may be overridden on the command line.
   
@@ -351,7 +353,24 @@ example:
 $ make ARCH=arm CROSS_COMPILE=arm-buildroot-linux-uclibgnueabi- -C /home/..../..../output/build/linux-X.Y:Z m=${PWD} modules  
 ```
 
-if you want to make a module 
+For reference, to create a makefile to cross-compile a module use: 
+
+to create a makefile that is able to cross-compile (for example if you are building a module for as raspberry pi), use: 
+
+```
+// reference: https://github.com/rrmhearts/linux-driver-examples/blob/master/i2c/Makefile
+obj-m += i2c_accel.o
+
+KDIR := ~/kernel
+PWD := $(shell pwd)
+CROSS=arm-eabi-
+
+i2c_accel:
+	make -C $(KDIR) M=$(PWD) ARCH=arm CROSS_COMPILE=$(CROSS) modules
+
+clean:
+	make -C $(KDIR) M=$(PWD) clean
+```
 
  ### Overview of compiling kernel modules
   
