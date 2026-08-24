@@ -71,7 +71,11 @@ MEO features:
  - Inter-constellation management and interference
  - Single beams vs Multi beams, inter-beam freuquency reuse and interference.
  - Terminals, sendind data quit QoS in UL (upload)
- - Mobility of nodes and terminals
+ - Mobility of nodes and terminals (everything is moving, not only UE but also infraestrucutre(satellites and Earth rotation)), fast moving UE (aircrafts and drones), millons differen UEs, thousands of satellites with no natural hierarchy, physical node locations are not the same as logical topological locations, One UE to many satellite/ground BS connection, large cell radious (500 Km))
+    - New logic triggers for handovers, new types of handovers (terrestial BS - NTN BS)
+    - New Radio Resource Management (RRM) mechanism
+    - New IP networking scenarios (multi-hop packet forwarding, scalable addressing and routing)
+    - New changes for 5G NR protocols due to delay variations.
  - Regulatory and security aspects
  
  ### Spectrum for NTN 
