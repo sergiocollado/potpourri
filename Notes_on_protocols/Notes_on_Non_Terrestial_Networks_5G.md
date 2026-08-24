@@ -1,20 +1,14 @@
 # Notes on 5G NTN (Non Terrestial Networks)
 
-NTN - Non-terrestial networks refeers to satellite and ai space networks with play a complementing role in
-5G terrestial networks
+NTN - Non-terrestial networks refers to satellite and space networks which play a complementing role in 5G terrestial networks
 
-The standards for cellular and satellite interconnection, started in 3gpp release 14, and the 
-first standard was sstated in relase 16. Nevertheless there were companies doing their onw
+The standards for cellular and satellite interconnection, started in 3gpp release 14, and the  first standard was stated in relase 16. Nevertheless there were companies doing their onw
 communication ssytems without attending to the standards (SpaceX) 
 
-3GPP Release 16 served as the foundational feasibility study and architectural definition
- phase for 5G Non-Terrestrial Networks (NTN), documented under 3GPP TR 38.821 (https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3525)
- It established how satellite (GEO, LEO, MEO) and aerial platforms integrate into
- 5G core and radio access networks before normative specifications were finalized 
- in Release 17
+3GPP Release 16 served as the foundational feasibility study and architectural definition phase for 5G Non-Terrestrial Networks (NTN), documented under 3GPP TR 38.821 (https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3525)
+It established how satellite (GEO, LEO, MEO) and aerial platforms integrate into 5G core and radio access networks before normative specifications were finalized in Release 17
 
-Reference: https://www.rohde-schwarz.com/es/soluciones/satellite-testing/landingpages/white-paper-5g-ntn-takes-flight-technical-overview-of-5g-non-terrestrial-networks_255919.html?gad_source=1&gad_campaignid=23607395486&gbraid=0AAAAABxLmW1F7rXQVG2Ey_6e0Z0y5kT-m&gclid=CjwKCAjw7p_UBhBlEiwAhpIs7xNOiHOBRg3-p_i-zKqGcOIsuf8eOFscZc5JgVWbCwJRNLde6ThWkhoCTUsQAvD_BwE
-
+Reference: https://www.rohde-schwarz.com/es/soluciones/satellite-testing/landingpages/white-paper-5g-ntn-takes-flight-technical-overview-of-5g-non-terrestrial-networks_255919.html
 
 ## GEO, MEO and LEO
 
@@ -69,14 +63,14 @@ MEO features:
 
  -Mainly LOs(line of sight) scenarios
  - Larger propagatiion delays
- - extreme doppler shifts
+ - extreme doppler shifts (use larger subcarriers spacing, precompensation by ephemeries knowledge, OTFS delays doppler channels)
  - additional attenuations
  - Earth movements
  - Inter-satellite links and networking
  - Elevation angle and elliptical beam coverage
  - Inter-constellation management and interference
  - Terminals, sendind data quit QoS in UL (upload)
- - Mobilit of nodes and terminals
+ - MobilitY of nodes and terminals
  - Regulatory and security aspects
  
  ### Spectrum for NTN 
