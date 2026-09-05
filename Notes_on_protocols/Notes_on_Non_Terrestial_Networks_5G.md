@@ -77,6 +77,28 @@ MEO features:
     - New changes for 5G NR protocols due to delay variations.
  - Regulatory and security aspects
  - Inter-satellite links and networking
+   
+## Inter-communication links
+
+Main challenges: 
+- It only works with direct line of sight transmission.
+- Power supply constrains - the satelites are not connected to a power grid, only have solar panels
+- High data rate requierements: specially LEO satellites need to suppor of QoS
+- Pointing accuracy, basically accuracy of link transmission in the satellites... everything is on the move
+- Enviromental factors
+  	- extreme temperatures
+  	- radiatons
+  	- vacuumm conditions
+  	- space debris 
+- Long distace... sinal delay, there is a signal delay between the communication between two steliteies
+- Network realiability: fault tolerace systems and diversity and reducnacy need to be implemented.
+- Global coverage support: msision critical communications
+- Deployment and mainenace: station-keeping, orbital adjustements ...
+
+ Key features: Why do we nedd inter-commuincation links?
+  - Globacl coverage, specilally for LEO
+  - Diversity and reudncancy
+  - resource allocation tasks
  
  ### Spectrum for NTN 
  
