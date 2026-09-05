@@ -96,9 +96,19 @@ Main challenges:
 - Deployment and mainenace: station-keeping, orbital adjustements ...
 
  Key features: Why do we nedd inter-commuincation links?
-  - Globacl coverage, specilally for LEO
+  - Global coverage, specilally for LEO
   - Diversity and reudncancy
   - resource allocation tasks
+
+there are different types
+ - inter-plane links
+    - used for cross-plane communication
+    - crucial for sharing precise timing info, updates, movements corrections
+ - intra-plane lings
+    - coordination wit the same plane
+    - navigation, control data for specific orbital plane
+    - enable satellites to work together efficiently to provide continous and accurate coverage.
+
  
  ### Spectrum for NTN 
  
