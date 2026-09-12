@@ -1,6 +1,7 @@
 # Notes on 5G NTN (Non Terrestial Networks)
 
-reference: satellite communication: https://youtu.be/ZyUfNT00Vx8?si=lu0A9ObnOxTZ0XHj
+- satellties course: https://www.youtube.com/watch?v=yWMUvJ2c5aI&list=PLYC6dhRNvUls
+- satellite communication: https://youtu.be/ZyUfNT00Vx8?si=lu0A9ObnOxTZ0XHj
 
 NTN - Non-terrestial networks refers to satellite and space networks which play a complementing role in 5G terrestial networks
 
