@@ -112,6 +112,10 @@ linux drivers code:
  - linux kernel mpu6050 device driver: https://github.com/torvalds/linux/tree/master/drivers/iio/imu/inv_mpu6050
  - i2c drivers examples: https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c
 
+MPU6059 documentation: 
+ - https://github.com/anasvag575/MPU6050_driver/blob/master/Doc/MPU60x0%20Register%20Map.pdf
+ - https://github.com/anasvag575/MPU6050_driver/blob/master/Doc/User%20Manual%20MPU60x0.pdf
+   
 The system used is:
 ```
 - $ uname -r: 6.12.25+rpt-rpi-v8
