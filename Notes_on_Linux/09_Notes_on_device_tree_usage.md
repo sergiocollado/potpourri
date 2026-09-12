@@ -111,6 +111,7 @@ linux drivers code:
  - MPU6050 driver code: https://github.com/anasvag575/MPU6050_driver/tree/master/Driver_code (for a Nucleo board!) 
  - linux kernel mpu6050 device driver: https://github.com/torvalds/linux/tree/master/drivers/iio/imu/inv_mpu6050
  - i2c drivers examples: https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c
+ - https://github.com/jrowberg/i2cdevlib/tree/master/LinuxI2CDev/MPU6050
 
 MPU6059 documentation: 
  - https://github.com/anasvag575/MPU6050_driver/blob/master/Doc/MPU60x0%20Register%20Map.pdf
