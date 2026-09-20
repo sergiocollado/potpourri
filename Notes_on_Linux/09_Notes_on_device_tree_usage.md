@@ -445,11 +445,44 @@ references:
   - https://openest.io/non-classe-en/activate-raspberry-pi-4-i2c-bus/
   - https://openest.io/non-classe-en/mpu6050-accelerometer-on-raspberry-pi/
 
-Reference to read the i2c sensor from user-space in the documentation: https://www.kernel.org/doc/Documentation/i2c/dev-interface
 
- The example program (remember you will have to defiene the correct values in the configuration registries) : 
+
+### Reading the sensor from user-space
+
+To be able to use this, the system needs to DON'T have the sensor defined in its device tree: 
+
+In case the driver-device is not defined in the  `/boot/firmware/config.txt` file, then the i2c device will appear as: 
+
+```
+$ i2cdetect -y 1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:                         -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- -- -- -- -- -- -- 68 -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- --
+```
+
+If you list the i2c devices you will get: 
+
+```
+$ i2cdetect -l
+i2c-1   i2c             bcm2835 (i2c@7e804000)                  I2C adapter
+i2c-2   i2c             bcm2835 (i2c@7e805000)                  I2C adapter
+```
+
+Reference to read the i2c sensor from user-space in the documentation: 
+ - https://www.kernel.org/doc/html/latest/i2c/dev-interface.html
+ - https://www.kernel.org/doc/Documentation/i2c/dev-interface
+
+The example program (remember you will have to defiene the correct values in the configuration registries) : 
 
 ```c 
+// https://openest.io/non-classe-en/mpu6050-accelerometer-on-raspberry-pi/
+
 /*
  * This file is an MPU6050 demonstration.
  * https://openest.io/en/2020/01/21/mpu6050-accelerometer-on-raspberry-pi/
@@ -468,15 +501,16 @@ Reference to read the i2c sensor from user-space in the documentation: https://w
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <linux/i2c-dev.h>
-#include <sys/ioctl.h>
+#include <linux/i2c-dev.h> // I2C_SLAVE
+#include <sys/ioctl.h> // ioctl()
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <fcntl.h>
+#include <fcntl.h> // open(), O_RDONLY
 #include <stdlib.h>
 #include <stdio.h>
-#include <unistd.h>
-#include <stdint.h>
+#include <unistd.h>  // read(), write(), usleep()
+#include <stdint.h>  // uint8_t, uint16_t, uint32_t, uint64_t
+#include <errno.h>
 
 #define MPU6050_I2C_ADDR 0x68
 
@@ -540,7 +574,7 @@ char i2c_read(uint8_t reg_address) {
 
 }
 
-uint16_t merge_bytes( uint8_t LSB, uint8_t MSB) {
+uint16_t merge_bytes_int( uint8_t LSB, uint8_t MSB) {
 	return  (uint16_t) ((( LSB & 0xFF) << 8) | MSB);
 }
 
@@ -562,6 +596,7 @@ int16_t two_complement_to_int( uint8_t LSB, uint8_t MSB) {
 }
 
 int main(int argc, char *argv[]) {
+	printf("Starting the program to read the MPU6050\n");
 	int adapter_nr = 1; /* probably dynamically determined */
 	char bus_filename[250];
 	char accel_x_h,accel_x_l,accel_y_h,accel_y_l,accel_z_h,accel_z_l,temp_h,temp_l;
@@ -576,12 +611,15 @@ int main(int argc, char *argv[]) {
 	file = open(bus_filename, O_RDWR);
 	if (file < 0) {
 		/* ERROR HANDLING; you can check errno to see what went wrong */
+		printf("Error opening the file of the MPU6050\n");
 		exit(1);
 	}
 
-
+    errno = 0;
 	if (ioctl(file, I2C_SLAVE, MPU6050_I2C_ADDR) < 0) {
 		/* ERROR HANDLING; you can check errno to see what went wrong */
+		printf("Error configuring the MPU6050; errono: %d\n", errno);
+		close(file);
 		exit(1);
 	}
 
@@ -596,6 +634,7 @@ int main(int argc, char *argv[]) {
 		accel_x_h = i2c_read(REG_FIFO_COUNT_L);
 		accel_x_l = i2c_read(REG_FIFO_COUNT_H);
 		fifo_len = merge_bytes(accel_x_h,accel_x_l);
+		printf("fifo length: %d\n", fifo_len);
 
 		if(fifo_len == 1024) {
 			printf("fifo overflow !\n");
@@ -625,7 +664,7 @@ int main(int argc, char *argv[]) {
 			temp = two_complement_to_int(temp_h, temp_l);
 			temp_f = (float)temp/340 + 36.53; // calculated as described in the MPU60%) register map document
 
-			printf("x_accel %.3fg	y_accel %.3fg	z_accel %.3fg	temp=%.1fc         \r", x_accel_g, y_accel_g, z_accel_g, temp_f);
+			printf("fifo_len: %5d\t x_accel %.3fg	y_accel %.3fg	z_accel %.3fg	temp=%.1fc \r", tifo_len, x_accel_g, y_accel_g, z_accel_g, temp_f);
 		} else {
 			usleep(10000);
 		}
