@@ -236,6 +236,8 @@ i2c-2   i2c             bcm2835 (i2c@7e805000)                  I2C adapter
 i2c-11  i2c             i2c-1-mux (chan_id 0)                   I2C adapter
 ```
 
+--- 
+
 In case the driver-device is not defined in the  `/boot/firmware/config.txt` file, then the i2c device will appear as: 
 
 ```
@@ -259,8 +261,32 @@ i2c-1   i2c             bcm2835 (i2c@7e804000)                  I2C adapter
 i2c-2   i2c             bcm2835 (i2c@7e805000)                  I2C adapter
 ```
 
+If we check into the `/dev` directory, no dev is associated to `iio`: 
 
-Access IIO data: You can now access the IIO data from your device using the IIO driver, which is typically done through the /sys/bus/iio/devices directory or through a library like libiio
+```
+ $ ls
+autofs         dma_heap   hidraw1  loop1         media0     null   ram12  ram7    stdout  tty7       vchiq   vcs6   vcsa7     vcsu7    video18    zram0
+block          dri        hwrng    loop2         media1     port   ram13  ram8    tty     tty8       vcio    vcs7   vcsm-cma  vhci     video20
+btrfs-control  fd         i2c-1    loop3         media2     ppp    ram14  ram9    tty0    tty9       vc-mem  vcsa   vcsu      video10  video21
+bus            full       i2c-2    loop4         mem        ptmx   ram15  random  tty1    ttyprintk  vcs     vcsa1  vcsu1     video11  video22
+cec0           fuse       initctl  loop5         mmcblk0    pts    ram2   rfkill  tty10   uhid       vcs1    vcsa2  vcsu2     video12  video23
+char           gpiochip0  input    loop6         mmcblk0p1  ram0   ram3   shm     tty11   uinput     vcs2    vcsa3  vcsu3     video13  video31
+console        gpiochip4  kmsg     loop7         mmcblk0p2  ram1   ram4   snd     tty12   urandom    vcs3    vcsa4  vcsu4     video14  watchdog
+cuse           gpiomem    log      loop-control  mqueue     ram10  ram5   stderr  tty13   usb        vcs4    vcsa5  vcsu5     video15  watchdog0
+disk           hidraw0    loop0    mapper        net        ram11  ram6   stdin   tty14   v4l        vcs5    vcsa6  vcsu6     video16  zero
+```
+
+also, there is not `iio` folder in the `/sys` directory: 
+
+```
+/sys/bus $ ls
+amba  clockevents  container  event_source  genpd  hid  iscsi_flashnode  media     mmc       nvmem         platform  sdio    serial-base  spi  vchiq-bus
+cec   clocksource  cpu        gadget        gpio   i2c  mdio_bus         mipi-dsi  mmc_rpmb  nvmem-layout  scsi      serial  snd_seq      usb  workqueue
+```
+--- 
+
+
+Access IIO data: You can now access the IIO data from your device using the IIO driver, which is typically done through the `/sys/bus/iio/devices` directory or through a library like `libiio`
 
 Watch out: The mpu6050 device tree overlay is not a standard inclusion in the Raspberry Pi 3 (Pi 3) kernel, unlike later models. This means you'll need to manually configure and load the overlay if you wish to use an MPU6050 sensor with your Pi 3. The Pi 3 lacks a dedicated MPU6050 overlay for ease of use, but it can still be used with additional setup. Reference: https://forums.raspberrypi.com/viewtopic.php?t=230766
 
