@@ -236,9 +236,11 @@ i2c-2   i2c             bcm2835 (i2c@7e805000)                  I2C adapter
 i2c-11  i2c             i2c-1-mux (chan_id 0)                   I2C adapter
 ```
 
+<hr> 
 --- 
+**NOTE**: Notice the difference if the sensor is not defined in the device tree (by means of the definition in `/boot/firmware/config.txt`)
 
-In case the driver-device is not defined in the  `/boot/firmware/config.txt` file, then the i2c device will appear as: 
+In case the driver-device is not defined in the `/boot/firmware/config.txt` file, then the i2c device will appear as: 
 
 ```
 $ i2cdetect -y 1
@@ -284,6 +286,7 @@ amba  clockevents  container  event_source  genpd  hid  iscsi_flashnode  media  
 cec   clocksource  cpu        gadget        gpio   i2c  mdio_bus         mipi-dsi  mmc_rpmb  nvmem-layout  scsi      serial  snd_seq      usb  workqueue
 ```
 --- 
+<hr>
 
 
 Access IIO data: You can now access the IIO data from your device using the IIO driver, which is typically done through the `/sys/bus/iio/devices` directory or through a library like `libiio`
