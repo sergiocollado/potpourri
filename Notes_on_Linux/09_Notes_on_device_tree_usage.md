@@ -358,7 +358,7 @@ references:
  - https://forum.arduino.cc/t/mpu-6050-calculating-yaw-pitch-and-roll/1360842
  - https://github.com/anasvag575/MPU6050_driver/blob/master/Driver_code/mpu6050.c <- Self Test Routine (calibration method) -- check the self test routine (calibration method)
 
-### Error: Device or resource busy
+### Error: Device or resource busy (errno = 16)
 
 In Linux Industrial I/O (IIO), a "Device or resource busy" (EBUSY) error typically occurs when you attempt to read a sysfs attribute (like `in_voltageX_raw`) while the device is actively running in continuous buffer/streaming mode, or when another process/daemon already has an open handle to the character device node (`/dev/iio:deviceX`)
 
