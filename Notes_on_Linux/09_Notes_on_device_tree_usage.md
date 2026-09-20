@@ -227,8 +227,16 @@ $ sudo i2cdetect -y 1
 // In the output, UU denotes a device which is used by a kernel driver, and you are not recommended to interfere with it.               
 ```
 
-In case the driver is not defind in the  `/boot/firmware/config.txt` file, then the i2c device will appear as: 
+If you list the i2c devices you will get: 
 
+```
+sergio@rpihole:/dev $ i2cdetect -l
+i2c-1   i2c             bcm2835 (i2c@7e804000)                  I2C adapter
+i2c-2   i2c             bcm2835 (i2c@7e805000)                  I2C adapter
+i2c-11  i2c             i2c-1-mux (chan_id 0)                   I2C adapter
+```
+
+In case the driver-device is not defined in the  `/boot/firmware/config.txt` file, then the i2c device will appear as: 
 
 ```
 $ i2cdetect -y 1
