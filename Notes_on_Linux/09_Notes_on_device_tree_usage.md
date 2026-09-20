@@ -237,7 +237,9 @@ i2c-11  i2c             i2c-1-mux (chan_id 0)                   I2C adapter
 ```
 
 <hr> 
+
 --- 
+
 **NOTE**: Notice the difference if the sensor is not defined in the device tree (by means of the definition in `/boot/firmware/config.txt`)
 
 In case the driver-device is not defined in the `/boot/firmware/config.txt` file, then the i2c device will appear as: 
