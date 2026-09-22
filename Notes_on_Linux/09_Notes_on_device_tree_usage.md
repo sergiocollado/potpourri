@@ -112,6 +112,7 @@ linux drivers code:
  - linux kernel mpu6050 device driver: https://github.com/torvalds/linux/tree/master/drivers/iio/imu/inv_mpu6050
  - i2c drivers examples: https://github.com/rrmhearts/linux-driver-examples/tree/master/i2c
  - https://github.com/jrowberg/i2cdevlib/tree/master/LinuxI2CDev/MPU6050
+ - https://github.com/chetansunaskar/MPU6050_LINUX_DEVICE_DRIVER/tree/main
 
 MPU6059 documentation: 
  - https://mjwhite8119.github.io/Robots/mpu6050
