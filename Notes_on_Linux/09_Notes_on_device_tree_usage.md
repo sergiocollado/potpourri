@@ -514,13 +514,8 @@ Reference to read the i2c sensor from user-space in the documentation:
 The example program (remember you will have to defiene the correct values in the configuration registries) : 
 
 ```c 
-// https://openest.io/non-classe-en/mpu6050-accelerometer-on-raspberry-pi/
-
+// reference: https://openest.io/non-classe-en/mpu6050-accelerometer-on-raspberry-pi/
 /*
- * This file is an MPU6050 demonstration.
- * https://openest.io/en/2020/01/21/mpu6050-accelerometer-on-raspberry-pi/
- * Copyright (c) 2020 Julien Grossholtz - https://openest.io.
- *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, version 3.
@@ -565,146 +560,151 @@ int file = -1;
 // Please note, this is not the recommanded way to write data
 // to i2c devices from user space.
 void i2c_write(__u8 reg_address, __u8 val) {
-	char buf[2];
-	if(file < 0) {
-		printf("Error, i2c bus is not available\n");
-		exit(1);
-	}
+        char buf[2];
+        if(file < 0) {
+                printf("Error, i2c bus is not available\n");
+                exit(1);
+        }
 
-	buf[0] = reg_address;
-	buf[1] = val;
+        buf[0] = reg_address;
+        buf[1] = val;
 
-	if (write(file, buf, 2) != 2) {
-		printf("Error, unable to write to i2c device\n");
-		exit(1);
-	}
+        if (write(file, buf, 2) != 2) {
+                printf("Error, unable to write to i2c device\n");
+                exit(1);
+        }
 
 }
 
 // Please note, this is not thre recommanded way to read data
 // from i2c devices from user space.
 char i2c_read(uint8_t reg_address) {
-	char buf[1];
-	if(file < 0) {
-		printf("Error, i2c bus is not available\n");
-		exit(1);
-	}
+        char buf[1];
+        if(file < 0) {
+                printf("Error, i2c bus is not available\n");
+                exit(1);
+        }
 
-	buf[0] = reg_address;
+        buf[0] = reg_address;
 
-	if (write(file, buf, 1) != 1) {
-		printf("Error, unable to write to i2c device\n");
-		exit(1);
-	}
+        if (write(file, buf, 1) != 1) {
+                printf("Error, unable to write to i2c device\n");
+                exit(1);
+        }
 
 
-	if (read(file, buf, 1) != 1) {
-		printf("Error, unable to read from i2c device\n");
-		exit(1);
-	}
+        if (read(file, buf, 1) != 1) {
+                printf("Error, unable to read from i2c device\n");
+                exit(1);
+        }
 
-	return buf[0];
+        return buf[0];
 
 }
 
 uint16_t merge_bytes_int( uint8_t LSB, uint8_t MSB) {
-	return  (uint16_t) ((( LSB & 0xFF) << 8) | MSB);
+        return  (uint16_t) ((( LSB & 0xFF) << 8) | MSB);
 }
 
 // 16 bits data on the MPU6050 are in two registers,
 // encoded in two complement. So we convert those to int16_t
 int16_t two_complement_to_int( uint8_t LSB, uint8_t MSB) {
-	int16_t signed_int = 0;
-	uint16_t word;
+        int16_t signed_int = 0;
+        uint16_t word;
 
-	word = merge_bytes(LSB, MSB);
+        word = merge_bytes_int(LSB, MSB);
 
-	if((word & 0x8000) == 0x8000) { // negative number
-		signed_int = (int16_t) -(~word);
-	} else {
-		signed_int = (int16_t) (word & 0x7fff);
-	}
+        if((word & 0x8000) == 0x8000) { // negative number
+                signed_int = (int16_t) -(~word);
+        } else {
+                signed_int = (int16_t) (word & 0x7fff);
+        }
 
-	return signed_int;
+        return signed_int;
 }
 
 int main(int argc, char *argv[]) {
-	printf("Starting the program to read the MPU6050\n");
-	int adapter_nr = 1; /* probably dynamically determined */
-	char bus_filename[250];
-	char accel_x_h,accel_x_l,accel_y_h,accel_y_l,accel_z_h,accel_z_l,temp_h,temp_l;
-	uint16_t fifo_len = 0;
-	int16_t x_accel = 0;
-	int16_t y_accel = 0;
-	int16_t z_accel = 0;
-	int16_t temp = 0;
-	float x_accel_g, y_accel_g, z_accel_g, temp_f;
+        printf("Starting the program to read the MPU6050\n");
+        int adapter_nr = 1; /* probably dynamically determined */
+        char bus_filename[250];
+        char accel_x_h,accel_x_l,accel_y_h,accel_y_l,accel_z_h,accel_z_l,temp_h,temp_l;
+        uint16_t fifo_len = 0;
+        int16_t x_accel = 0;
+        int16_t y_accel = 0;
+        int16_t z_accel = 0;
+        int16_t temp = 0;
+        float x_accel_g, y_accel_g, z_accel_g, temp_f;
 
-	snprintf(bus_filename, 250, "/dev/i2c-1", adapter_nr);
-	file = open(bus_filename, O_RDWR);
-	if (file < 0) {
-		/* ERROR HANDLING; you can check errno to see what went wrong */
-		printf("Error opening the file of the MPU6050\n");
-		exit(1);
-	}
+        snprintf(bus_filename, 250, "/dev/i2c-1", adapter_nr);
+        file = open(bus_filename, O_RDWR);
+        if (file < 0) {
+                /* ERROR HANDLING; you can check errno to see what went wrong */
+                printf("Error opening the file of the MPU6050\n");
+                exit(1);
+        }
 
     errno = 0;
-	if (ioctl(file, I2C_SLAVE, MPU6050_I2C_ADDR) < 0) {
-		/* ERROR HANDLING; you can check errno to see what went wrong */
-		printf("Error configuring the MPU6050; errono: %d\n", errno);
-		close(file);
-		exit(1);
-	}
+        if (ioctl(file, I2C_SLAVE, MPU6050_I2C_ADDR) < 0) {
+                /* ERROR HANDLING; you can check errno to see what went wrong */
+                printf("Error configuring the MPU6050; errono: %d\n", errno);
+                close(file);
+                exit(1);
+        }
 
-	i2c_write(REG_PWR_MGMT_1, 0x01);
-	i2c_write(REG_ACCEL_CONFIG, 0x00);
-	i2c_write(REG_SMPRT_DIV, 0x07);
-	i2c_write(REG_CONFIG, 0x00);
-	i2c_write(REG_FIFO_EN, 0x88);
-	i2c_write(REG_USER_CTRL, 0x44);
+        i2c_write(REG_PWR_MGMT_1, 0x01);
+        i2c_write(REG_ACCEL_CONFIG, 0x00);
+        i2c_write(REG_SMPRT_DIV, 0x07);
+        i2c_write(REG_CONFIG, 0x00);
+        i2c_write(REG_FIFO_EN, 0x88);
+        i2c_write(REG_USER_CTRL, 0x44);
 
-	while(fifo_len != 1024) {
-		accel_x_h = i2c_read(REG_FIFO_COUNT_L);
-		accel_x_l = i2c_read(REG_FIFO_COUNT_H);
-		fifo_len = merge_bytes(accel_x_h,accel_x_l);
-		printf("fifo length: %d\n", fifo_len);
+        //while(fifo_len != 1024) {
+        while(fifo_len < 1024+1) {
+                accel_x_h = i2c_read(REG_FIFO_COUNT_L);
+                accel_x_l = i2c_read(REG_FIFO_COUNT_H);
+                fifo_len = merge_bytes_int(accel_x_h,accel_x_l);
+                //printf("fifo length: %d\n", fifo_len);
 
-		if(fifo_len == 1024) {
-			printf("fifo overflow !\n");
-			i2c_write(REG_USER_CTRL, 0x44);
-			continue;
-		}
+                //if(fifo_len == 1024) {
+                if(fifo_len == 1024) {
+                        printf("fifo overflow !\n");
+                        i2c_write(REG_USER_CTRL, 0x44); // reset fifo
+                        continue;
+                }
 
-		if(fifo_len >= 8) {
-			accel_x_h = i2c_read(REG_FIFO);
-			accel_x_l = i2c_read(REG_FIFO);
-			accel_y_h = i2c_read(REG_FIFO);
-			accel_y_l = i2c_read(REG_FIFO);
-			accel_z_h = i2c_read(REG_FIFO);
-			accel_z_l = i2c_read(REG_FIFO);
-			temp_h = i2c_read(REG_FIFO);
-			temp_l= i2c_read(REG_FIFO);
+                if(fifo_len >= 8) {
+                        accel_x_h = i2c_read(REG_FIFO);
+                        accel_x_l = i2c_read(REG_FIFO);
+                        accel_y_h = i2c_read(REG_FIFO);
+                        accel_y_l = i2c_read(REG_FIFO);
+                        accel_z_h = i2c_read(REG_FIFO);
+                        accel_z_l = i2c_read(REG_FIFO);
+                        temp_h = i2c_read(REG_FIFO);
+                        temp_l= i2c_read(REG_FIFO);
 
-			x_accel= two_complement_to_int(accel_x_h,accel_x_l);
-			x_accel_g = ((float) x_accel)/16384;
+                        x_accel= two_complement_to_int(accel_x_h,accel_x_l);
+                        x_accel_g = ((float) x_accel)/16384;
 
-			y_accel= two_complement_to_int(accel_y_h,accel_y_l);
-			y_accel_g = ((float) y_accel)/16384;
+                        y_accel= two_complement_to_int(accel_y_h,accel_y_l);
+                        y_accel_g = ((float) y_accel)/16384;
 
-			z_accel= two_complement_to_int(accel_z_h,accel_z_l);
-			z_accel_g = ((float) z_accel)/16384;
+                        z_accel= two_complement_to_int(accel_z_h,accel_z_l);
+                        z_accel_g = ((float) z_accel)/16384;
 
-			temp = two_complement_to_int(temp_h, temp_l);
-			temp_f = (float)temp/340 + 36.53; // calculated as described in the MPU60%) register map document
+                        temp = two_complement_to_int(temp_h, temp_l);
+                        temp_f = (float)temp/340 + 36.53; // calculated as described in the MPU60%) register map document
 
-			printf("fifo_len: %5d\t x_accel %.3fg	y_accel %.3fg	z_accel %.3fg	temp=%.1fc \r", tifo_len, x_accel_g, y_accel_g, z_accel_g, temp_f);
-		} else {
-			usleep(10000);
-		}
+                        printf("fifo_len: %5d\t x_accel %.3fg   y_accel %.3fg   z_accel %.3fg   temp=%.1fc \r", fifo_len, x_accel_g, y_accel_g, z_accel_g, temp_f);
+                } else {
+                        usleep(10000);
+                }
 
-	}
+                usleep(700000);
+                fflush(stdout);
+                i2c_write(REG_USER_CTRL, 0x44); // reset fifo
+        }
 
-	return 0;
+        return 0;
 }
 ```
 
@@ -829,6 +829,21 @@ int main(void) {
 ```
 
 ??? The recommended way to read I2C devices from user space in Linux is by interacting with the standard i2c-dev character device interface (located at `/dev/i2c-X`). While writing a dedicated kernel driver is ideal for production systems, i2c-dev is the official, universal standard for user-space development. Read/write directly to `/dev/i2c-1` using `open()` + `write()` libc functions, so you write directly to `/dev/i2c-1` as if it were a normal file.
+
+### Using libiio
+
+The Industrial I/O (IIO) subsystem in Linux provides two completely different ways to read sensor data depending on your performance needs.
+
+#### 1. The Attribute Method (No Buffer Needed)
+The code in the previous example uses standard Linux sysfs attributes (iio_channel_attr_read_longlong).
+• How it works: Every time your code calls this function, the operating system directly queries the sensor driver, reads a single data point, and hands it back to your program as a string conversion.
+• Best for: Low-speed applications (under ~100 Hz) such as reading environmental sensors (temperature, pressure, gas levels, or battery voltages).
+• Pros: Extremely simple code; no buffer setup or cleanup required.
+
+#### 2. The Buffer Method (Required for High-Speed Streams)
+You must create a reading buffer if you are capturing high-speed continuous data stream packets (like audio, RF, or fast 3-axis accelerometer profiles).
+• How it works: The hardware or driver pushes data continuously into a kernel-level Ring Buffer. Your C program then pulls chunks of data out of this buffer using an iio_buffer struct.
+• Best for: High-speed data (over 100 Hz up to MHz) like accelerometers, gyroscopes, IMUs, and ADCs.
 
 
 ## Device tree structure 
