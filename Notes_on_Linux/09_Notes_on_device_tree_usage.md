@@ -849,6 +849,30 @@ You must create a reading buffer if you are capturing high-speed continuous data
 ### Example with libiio Attribute method
 
 ```C
+
+// Install libiio: https://analogdevicesinc.github.io/libiio/main/install/#linux
+// $ sudo apt-get update
+// $ sudo apt-get install libiio0 libiio-utils
+// to use it in c/cc++ applications also install the developer package
+// $ sudo apt-get install libiio-dev
+
+/*
+When you install libiio on a Raspberry Pi Zero 2 W (running Raspberry Pi OS), the files go to standard Linux system directories depending on how you install them.
+APT Package Installation (sudo apt install libiio-dev / libiio0)
+If you install via the package manager, the files are placed in standard system paths:
+• C Shared Libraries (.so files): /usr/lib/arm-linux-gnueabihf/ (or /lib/arm-linux-gnueabihf/)
+• Header Files (.h files): /usr/include/
+• Binaries/Utilities (iio_info, etc.): /usr/bin/
+• Config/Pkg-config files: /usr/lib/arm-linux-gnueabihf/pkgconfig/
+*/
+
+// compile with: gcc my_libiio.c -o progiio -liio
+
+// reference libiio: https://analogdevicesinc.github.io/libiio/main/
+// reference iio kernel subsystem: https://www.kernel.org/doc/html/latest/driver-api/iio/index.html
+// libiio examples: https://docs.kernel.org/iio/iio_tools.html
+// local backend: https://wiki.analog.com/resources/tools-software/linux-software/libiio_internals#the_local_backend
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
