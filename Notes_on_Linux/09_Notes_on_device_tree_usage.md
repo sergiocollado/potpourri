@@ -836,15 +836,15 @@ int main(void) {
 The Industrial I/O (IIO) subsystem in Linux provides two completely different ways to read sensor data depending on your performance needs.
 
 #### 1. The Attribute Method (No Buffer Needed)
-The code in the previous example uses standard Linux sysfs attributes (iio_channel_attr_read_longlong).
-• How it works: Every time your code calls this function, the operating system directly queries the sensor driver, reads a single data point, and hands it back to your program as a string conversion.
-• Best for: Low-speed applications (under ~100 Hz) such as reading environmental sensors (temperature, pressure, gas levels, or battery voltages).
-• Pros: Extremely simple code; no buffer setup or cleanup required.
+The code uses standard Linux sysfs attributes (iio_channel_attr_read_longlong).
+ - How it works: Every time your code calls this function, the operating system directly queries the sensor driver, reads a single data point, and hands it back to your program as a string conversion.
+ - Best for: Low-speed applications (under ~100 Hz) such as reading environmental sensors (temperature, pressure, gas levels, or battery voltages).
+ - Pros: Extremely simple code; no buffer setup or cleanup required.
 
 #### 2. The Buffer Method (Required for High-Speed Streams)
 You must create a reading buffer if you are capturing high-speed continuous data stream packets (like audio, RF, or fast 3-axis accelerometer profiles).
-• How it works: The hardware or driver pushes data continuously into a kernel-level Ring Buffer. Your C program then pulls chunks of data out of this buffer using an iio_buffer struct.
-• Best for: High-speed data (over 100 Hz up to MHz) like accelerometers, gyroscopes, IMUs, and ADCs.
+ - How it works: The hardware or driver pushes data continuously into a kernel-level Ring Buffer. Your C program then pulls chunks of data out of this buffer using an iio_buffer struct.
+ - Best for: High-speed data (over 100 Hz up to MHz) like accelerometers, gyroscopes, IMUs, and ADCs.
 
 ### Example with libiio Attribute method
 
