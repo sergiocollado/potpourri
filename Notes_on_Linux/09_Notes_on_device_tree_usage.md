@@ -846,6 +846,95 @@ You must create a reading buffer if you are capturing high-speed continuous data
 • How it works: The hardware or driver pushes data continuously into a kernel-level Ring Buffer. Your C program then pulls chunks of data out of this buffer using an iio_buffer struct.
 • Best for: High-speed data (over 100 Hz up to MHz) like accelerometers, gyroscopes, IMUs, and ADCs.
 
+### Example with libiio Attribute method
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <signal.h>
+#include <stdbool.h>
+#include <iio.h>
+
+static bool keep_running = true;
+
+void signal_handler(int sig) {
+    keep_running = false;
+}
+
+int main(void) {
+    struct iio_context *ctx = NULL;
+    struct iio_device *dev = NULL;
+    struct iio_channel *ax = NULL, *ay = NULL, *az = NULL;
+    
+    double ax_scale = 1.0, ay_scale = 1.0, az_scale = 1.0;
+    char scale_str[64];
+
+    signal(SIGINT, signal_handler);
+
+    // 1. Create context and find your explicit mpu6050 device
+    ctx = iio_create_default_context();
+    if (!ctx) {
+        fprintf(stderr, "Error: Failed to create IIO context.\n");
+        return -1;
+    }
+
+    dev = iio_context_find_device(ctx, "mpu6050");
+    if (!dev) {
+        fprintf(stderr, "Error: MPU6050 hardware instance not found.\n");
+        iio_context_destroy(ctx);
+        return -1;
+    }
+
+    // 2. Identify the Axis Channels
+    ax = iio_device_find_channel(dev, "accel_x", false);
+    ay = iio_device_find_channel(dev, "accel_y", false);
+    az = iio_device_find_channel(dev, "accel_z", false);
+
+    if (!ax || !ay || !az) {
+        fprintf(stderr, "Error: Could not locate accelerometer channels.\n");
+        iio_context_destroy(ctx);
+        return -1;
+    }
+
+    // 3. Read Scale Factors directly from your hardware
+    if (iio_channel_attr_read(ax, "scale", scale_str, sizeof(scale_str)) > 0) ax_scale = strtod(scale_str, NULL);
+    if (iio_channel_attr_read(ay, "scale", scale_str, sizeof(scale_str)) > 0) ay_scale = strtod(scale_str, NULL);
+    if (iio_channel_attr_read(az, "scale", scale_str, sizeof(scale_str)) > 0) az_scale = strtod(scale_str, NULL);
+
+    printf("Single-Shot Polling Active (No Interrupt Wire Required). Press Ctrl+C to exit.\n");
+
+    // 4. Polling Loop
+    while (keep_running) {
+        long long raw_x = 0, raw_y = 0, raw_z = 0;
+
+        // Directly read raw attributes
+        int r_x = iio_channel_attr_read_longlong(ax, "raw", &raw_x);
+        int r_y = iio_channel_attr_read_longlong(ay, "raw", &raw_y);
+        int r_z = iio_channel_attr_read_longlong(az, "raw", &raw_z);
+
+        if (r_x >= 0 && r_y >= 0 && r_z >= 0) {
+            // Apply scale rules to find physical values (m/s²)
+            double phys_x = (double)raw_x * ax_scale;
+            double phys_y = (double)raw_y * ay_scale;
+            double phys_z = (double)raw_z * az_scale;
+
+            printf("Accel (m/s²) -> X: %8.4f | Y: %8.4f | Z: %8.4f\n", phys_x, phys_y, phys_z);
+        } else {
+            fprintf(stderr, "Failed to read sensor attributes.\n");
+        }
+
+        // Sleep for 20000 microseconds (20ms) to loop at roughly 50 Hz
+        usleep(20000); 
+    }
+
+    printf("\nExiting cleanly...\n");
+    iio_context_destroy(ctx);
+    return 0;
+}
+
+```
 
 ## Device tree structure 
 
