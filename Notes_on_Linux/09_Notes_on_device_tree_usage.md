@@ -116,6 +116,7 @@ linux drivers code:
 
 MPU6059 documentation: 
  - https://mjwhite8119.github.io/Robots/mpu6050
+ - https://www.invensense.tdk.com/en-us/search-result?query=PS-MPU-6000A-00%20%E2%80%93%20MPU-6000%20and%20MPU-6050%20Datasheet
  - https://github.com/anasvag575/MPU6050_driver/blob/master/Doc/MPU60x0%20Register%20Map.pdf
  - https://github.com/anasvag575/MPU6050_driver/blob/master/Doc/User%20Manual%20MPU60x0.pdf
  - https://github.com/Destinysj/Self_Balancing_Bot/blob/master/MPU-6050-Register-Map.pdf
