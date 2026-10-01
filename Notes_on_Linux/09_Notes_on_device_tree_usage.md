@@ -8,6 +8,7 @@ references:
  - Javier Carrasco Cruz:  - https://hackerbikepacker.com/device-driver-development-with-rpi-setup
  - Javier Carrasco Cruz: https://hackerbikepacker.com/device-driver-development-with-rpi-device-tree
  - Javier Carrasco Cruz: device tree bindings: https://hackerbikepacker.com/dt-bindings
+ - Mastering Device Trees: A Guide to Hardware Integration in Linux: https://medium.com/@hasancansert/mastering-device-trees-a-guide-to-hardware-integration-in-linux-3e1516a75e04
  - https://www.linkedin.com/pulse/exploring-challenges-linux-iio-from-developers-perspective-james-john-4qm9f
  - https://docs.kernel.org/devicetree/index.html
  - https://docs.kernel.org/devicetree/usage-model.html
@@ -37,6 +38,7 @@ references:
  - https://www.electronicsfaq.com/2020/07/enabling-industrial-io-driver-on.html
  - https://bootlin.com/blog/enabling-new-hardware-on-raspberry-pi-with-device-tree-overlays/
  - i2c drivers: https://dev.to/tonyhe8688/developing-i2c-drivers-on-embedded-linux-a-hands-on-guide-5be5
+ - Using an SPI OLED Display with the Linux Kernel: https://stefan-gloor.ch/linux-oled
 
 
 > Many moons ago "board files," were used, each of which described a single type of computer. Kernels are typically built around a single board file and could not boot on any other type of system. Board files sort of worked when there were relatively small numbers of embedded system types to deal with. Now Linux-based embedded systems are everywhere, architectures which have typically depended on board files (ARM, in > particular) were finding their way into more types of systems, and the whole scheme looked poised to collapse under its own weight.
