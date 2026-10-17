@@ -3,6 +3,10 @@
 references:
  - how mpu6050 works: https://lastminuteengineers.com/mpu6050-accel-gyro-arduino-tutorial/
  - Help with reading mpu6050 configured with device tree and overlays: https://forums.raspberrypi.com/viewtopic.php?p=2314647&hilit=mpu6050#p2314647
+     - https://docs.kernel.org/iio/iio_devbuf.html
+     - https://docs.kernel.org/admin-guide/abi-testing-files.html#abi-file-testing-sysfs-bus-iio
+     - https://stackoverflow.com/questions/36791837/reading-iio-device-data-from-user-space
+     - https://stackoverflow.com/questions/43134050/no-output-from-iio-character-device-output-iio-buffer/43369725#43369725
  - https://bootlin.com/blog/the-backbone-of-a-linux-industrial-i-o-driver/
  - datasheet: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
  - binding: https://www.kernel.org/doc/Documentation/devicetree/bindings/iio/imu/invensense%2Cmpu6050.yaml
