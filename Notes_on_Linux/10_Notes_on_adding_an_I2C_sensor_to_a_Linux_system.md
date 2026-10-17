@@ -11,6 +11,7 @@ references:
  - datasheet: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
  - binding: https://www.kernel.org/doc/Documentation/devicetree/bindings/iio/imu/invensense%2Cmpu6050.yaml
  - linux kernel device: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/iio/imu/inv_mpu6050?h=v6.15-rc6
+ - https://github.com/OpenChannelSSD/linux/blob/master/Documentation/devicetree/bindings/iio/imu/inv_mpu6050.txt
  - rpi pinouot cheatsheet: https://pinout.xyz/
  - https://embarcados.com.br/utilizando-o-mpu-6050-com-device-driver-e-device-tree-na-raspberry-pi-zero-w/#Os-Melhores-Treinamentos-sobre-Sistemas-embarcados-e-IoT
  - https://hubtronics.in/learn/mastering-device-tree-overlays-rpi
