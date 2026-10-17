@@ -866,12 +866,15 @@ int main(void) {
             double phys_z = (double)raw_z * az_scale;
 
             printf("Accel (m/s²) -> X: %8.4f | Y: %8.4f | Z: %8.4f\n", phys_x, phys_y, phys_z);
+            fflush(stdout);
         } else {
             fprintf(stderr, "Failed to read sensor attributes.\n");
         }
 
         // Sleep for 20000 microseconds (20ms) to loop at roughly 50 Hz
-        usleep(20000); 
+        // usleep(20000);
+        // use 10 Hz for easiest visualization
+        usleep(100000);
     }
 
     printf("\nExiting cleanly...\n");
