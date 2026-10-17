@@ -403,7 +403,9 @@ references:
 
 ### Reading the sensor from user-space
 
-To be able to use this, the system needs to DON'T have the sensor defined in its device tree: 
+To be able to use this, the system needs to DON'T have the sensor defined in its device tree.
+
+You will need to install the tools `sudo apt-get install i2c-tools libi2c-dev`, so you can use the i2c bus from the user-space.
 
 In case the driver-device is not defined in the  `/boot/firmware/config.txt` file, then the i2c device will appear as: 
 
@@ -631,7 +633,6 @@ int main(int argc, char *argv[]) {
 
 Other way: 
 
-You will need to install the tools `sudo apt-get install i2c-tools libi2c-dev` : 
 
 ```c
 #include <stdio.h>
