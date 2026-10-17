@@ -230,6 +230,8 @@ in_accel_matrix          in_accel_y_calibbias      in_anglvel_scale_available  i
 in_accel_mount_matrix    in_accel_y_raw            in_anglvel_x_calibbias      in_gyro_matrix          power           uevent
 ```
 
+The different files are explained here: https://docs.kernel.org/iio/iio_devbuf.html
+
 To read the values of the mpu6050 a step-by-step guide:
 
 references: 
