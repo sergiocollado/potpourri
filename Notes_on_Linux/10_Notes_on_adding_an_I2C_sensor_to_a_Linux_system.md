@@ -1692,4 +1692,152 @@ Standard Linux threads are scheduled dynamically, meaning the OS can pause your 
 
 Printing text to a terminal using printf and ANSI escape codes is incredibly slow. A single printf statement can block your execution for several milliseconds. In a production balancing loop, you must never print data inside the real-time loop. Instead, run your control calculations immediately, and copy data to a separate low-priority thread or a shared memory layout if visualization is needed.
 
+## Sampe RT code draft
 
+```c
+// Compiles with: gcc lowlatency_mpu.c -o lowlatency_mpu -O3 -Wall -lm
+// RUN WITH: sudo ./lowlatency_mpu (Required for Real-Time SCHED_FIFO scheduling)
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdint.h>
+#include <signal.h>
+#include <errno.h>
+#include <time.h>
+#include <stdbool.h>   
+#include <sys/stat.h>
+#include <string.h>
+#include <math.h>
+#include <poll.h>       
+#include <sched.h>      // Required for Real-Time POSIX scheduling priority
+#include <sys/mman.h>   // Required for mlockall to prevent memory paging latency
+
+#define IIO_DEVICE_DIR     "/sys/bus/iio/devices/iio:device0/"
+#define IIO_DEV_PATH       "/dev/iio:device0"
+#define MAX_BUFFER_SIZE    32
+#define RAD_TO_DEG         (180.0 / 3.14159265358979323846)
+
+volatile bool keep_running = true;        
+int fd = -1;
+
+void sigint_handler(int sig) {
+    keep_running = false;
+}
+
+// Optimized system writer
+int write_sysfs(const char *relative_path, const char *value) {
+    char full_path[256];
+    snprintf(full_path, sizeof(full_path), "%s%s", IIO_DEVICE_DIR, relative_path);
+    FILE *fp = fopen(full_path, "w");
+    if (!fp) return -1;
+    fprintf(fp, "%s", value);
+    fclose(fp);
+    return 0;
+}
+
+int initialize_low_latency_iio() {
+    write_sysfs("buffer/enable", "0");
+    
+    // 1. Boost sampling frequency to 200 Hz (5ms sample period) for tight loop response
+    if (write_sysfs("sampling_frequency", "200") < 0) {
+        write_sysfs("trigger/sampling_frequency", "200");
+    }
+
+    // 2. CRITICAL: Set watermark to 1. Wake up the instant a single sample lands.
+    write_sysfs("buffer/watermark", "1");
+
+    write_sysfs("scan_elements/in_accel_x_en", "1");
+    write_sysfs("scan_elements/in_accel_y_en", "1");
+    write_sysfs("scan_elements/in_accel_z_en", "1");
+    write_sysfs("scan_elements/in_anglvel_x_en", "1");
+    write_sysfs("scan_elements/in_anglvel_y_en", "1");
+    write_sysfs("scan_elements/in_anglvel_z_en", "1");
+    write_sysfs("scan_elements/in_timestamp_en", "1");
+    write_sysfs("buffer/length", "512"); // Smaller buffer allocation depth for faster flush
+
+    if (write_sysfs("buffer/enable", "1") < 0) return -1;
+    return 0;
+}
+
+int main() {
+    uint8_t rx_raw[MAX_BUFFER_SIZE];
+    struct pollfd pfd;
+    struct sched_param sp;
+
+    signal(SIGINT, sigint_handler);
+
+    // ========================================================================
+    // REAL-TIME SYSTEM OPTIMIZATION
+    // ========================================================================
+    // A. Lock memory pages into RAM to prevent disk paging spikes (Page Faults)
+    if (mlockall(MCL_CURRENT | MCL_FUTURE) == -1) {
+        perror("Warning: Failed to lock memory pages into RAM");
+    }
+
+    // B. Set Real-Time FIFO scheduling policy
+    memset(&sp, 0, sizeof(sp));
+    sp.sched_priority = 80; // High real-time execution priority
+    if (sched_setscheduler(0, SCHED_FIFO, &sp) == -1) {
+        perror("Fatal: Failed to set SCHED_FIFO scheduling. Did you run with 'sudo'?");
+        return EXIT_FAILURE;
+    }
+
+    if (initialize_low_latency_iio() < 0) return EXIT_FAILURE;
+
+    fd = open(IIO_DEV_PATH, O_RDONLY);
+    if (fd < 0) return EXIT_FAILURE;
+
+    pfd.fd = fd;
+    pfd.events = POLLIN;
+
+    printf("Real-time low-latency loop active. Processing at 200Hz...\n");
+
+    while (keep_running) {
+        // High efficiency sleep - unblocks instantaneously upon hardware interrupt
+        int ret = poll(&pfd, 1, 100); 
+        if (ret <= 0) continue;
+
+        if (pfd.revents & POLLIN) {
+            ssize_t bytes_read = read(fd, rx_raw, MAX_BUFFER_SIZE);
+            if (bytes_read < 16) continue;
+
+            // Extract Raw Values
+            int16_t raw_ax = (int16_t)((rx_raw[0] << 8) | rx_raw[1]);
+            int16_t raw_ay = (int16_t)((rx_raw[2] << 8) | rx_raw[3]);
+            int16_t raw_az = (int16_t)((rx_raw[4] << 8) | rx_raw[5]);
+
+            // Calculate current physical angles instantly (Sub-microsecond math)
+            double ax = (double)raw_ax;
+            double ay = (double)raw_ay;
+            double az = (double)raw_az;
+            double pitch = atan2(-ax, sqrt(ay * ay + az * az)) * RAD_TO_DEG;
+            double roll  = atan2(ay, az) * RAD_TO_DEG;
+
+            // ================================================================
+            // PLACE YOUR CRITICAL MOTOR CONTROL LOOP LOGIC HERE
+            // ================================================================
+            // Example:
+            // double error = target_angle - pitch;
+            // double motor_output = calculate_pid(error);
+            // write_to_motor_pwm(motor_output);
+            // ================================================================
+            
+            // STRICTLY FORBIDDEN FOR LOW LATENCY: 
+            // printf("Pitch: %f\n", pitch); // DO NOT do this here!
+            
+            // Debug workaround: print only once every 100 loops (approx twice per second)
+            static uint64_t debug_counter = 0;
+            if (++debug_counter % 100 == 0) {
+                printf("[REALTIME MONITOR] Pitch: %6.2f° | Roll: %6.2f° (Running Jitter-Free)\n", pitch, roll);
+            }
+        }
+    }
+
+    close(fd);
+    write_sysfs("buffer/enable", "0");
+    return EXIT_SUCCESS;
+}
+
+```
