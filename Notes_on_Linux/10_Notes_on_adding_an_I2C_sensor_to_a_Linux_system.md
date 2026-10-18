@@ -896,7 +896,11 @@ int main(void) {
 
 Next is a sample program without libiio. 
 
-Take into account, you need the interruptions of the mpu6050 enabled. 
+Take into account, you need the interruptions of the mpu6050 enabled. to check its interrupts: 
+
+```shell
+watch -n 1 "cat /proc/interrupts | grep -i mpu"
+```
 
 Also the commands, for the comfiguration of the mpu6050: 
 
