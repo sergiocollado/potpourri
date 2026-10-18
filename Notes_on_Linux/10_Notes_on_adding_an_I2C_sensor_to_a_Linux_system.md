@@ -1368,6 +1368,9 @@ int initialize_iio_sensors() {
     // Watermark 1 gives immediate wakeups for real-time sample processing
     write_sysfs("buffer/watermark", "1");
 
+	// sampling frequency 50 Hz
+    write_sysfs("sampling_frequency", "50")
+
     write_sysfs("scan_elements/in_accel_x_en", "1");
     write_sysfs("scan_elements/in_accel_y_en", "1");
     write_sysfs("scan_elements/in_accel_z_en", "1");
