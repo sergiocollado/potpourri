@@ -10,6 +10,7 @@ references:
  - https://bootlin.com/blog/the-backbone-of-a-linux-industrial-i-o-driver/
  - datasheet: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
  - binding: https://www.kernel.org/doc/Documentation/devicetree/bindings/iio/imu/invensense%2Cmpu6050.yaml
+ - how to instanciate i2c devices: https://www.kernel.org/doc/html/latest/i2c/instantiating-devices.html#how-to-instantiate-i2c-devices
  - linux kernel device: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/iio/imu/inv_mpu6050?h=v6.15-rc6
  - https://github.com/OpenChannelSSD/linux/blob/master/Documentation/devicetree/bindings/iio/imu/inv_mpu6050.txt
  - rpi pinouot cheatsheet: https://pinout.xyz/
