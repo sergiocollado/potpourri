@@ -949,9 +949,9 @@ Although this configuration can be done also in the program.
 
 At this point after the previous configuration you should be able to read the sensor data, for example with: `cat /dev/iio:device0 | hexdump -v`. 
 
-
-The program: 
-
+<details>
+  <summary>ANTIPATTERN!!! -> The program with timers </summary>
+  
 ```c
 // compiles with: gcc readmpu.c -o readmpu -O -Wall -lm
 // -lm is for #include <math.h>
@@ -1263,6 +1263,7 @@ int main() {
     return EXIT_SUCCESS;
 }
 ```
+</details>
 
 If instead of timers we favor a program running with epoll, then: 
 
