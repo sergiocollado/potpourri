@@ -898,12 +898,29 @@ Next is a sample program without libiio.
 
 Take into account, you need the interruptions of the mpu6050 enabled. 
 
-Also the commands: 
+Also the commands, for the comfiguration of the mpu6050: 
+
+```shell
+cd /sys/bus/iio/devices/iio:device0
+sudo sh -c 'echo "mpu6050-dev0" > trigger/current_trigger'
+sudo sh -c 'echo 1 > scan_elements/in_accel_x_en'
+sudo sh -c 'echo 1 > scan_elements/in_accel_y_en'
+sudo sh -c 'echo 1 > scan_elements/in_accel_z_en'
+sudo sh -c 'echo 1 > scan_elements/in_anglvel_x_en'
+sudo sh -c 'echo 1 > scan_elements/in_anglvel_y_en'
+sudo sh -c 'echo 1 > scan_elements/in_anglvel_z_en'
+sudo sh -c 'echo 100 > buffer/length'
+
+// enable the last one
+sudo sh -c 'echo 1 > buffer/enable'
+```
+
+Although this configuration can be done also in the program. 
 
 
 The program: 
 
-```
+```c
 // compiles with: gcc readmpu.c -o readmpu -O -Wall -lm
 // -lm is for #include <math.h>
 #include <stdio.h>
