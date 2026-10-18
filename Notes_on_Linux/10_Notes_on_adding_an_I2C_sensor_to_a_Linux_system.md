@@ -71,7 +71,7 @@ pin39 ground   | GND
 pin34 ground   | AD0 (so the address is 0x68)
 ```
 
-The MPU6050 depends on I2C so enable it in the rpi by the GUI or editing the configuration files.
+The MPU6050 depends on I2C so enable it in the rpi by the GUI or editing the configuration files. You can also enable the i2c interface with `sudo raspi-config`.
 
 Check the version of linux kernel used by the system with the command `uname -r`.
 
