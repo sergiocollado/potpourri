@@ -356,6 +356,30 @@ references:
  - https://forum.arduino.cc/t/mpu-6050-calculating-yaw-pitch-and-roll/1360842
  - https://github.com/anasvag575/MPU6050_driver/blob/master/Driver_code/mpu6050.c <- Self Test Routine (calibration method) -- check the self test routine (calibration method)
 
+### Some comments about the configuration options in the MPU6050:
+
+When handling real-time data from an IMU like the InvenSense MPU6050, configuring its internal memory pipeline correctly prevents data corruption and loop desynchronization. [1] (https://www.fpaynter.com/2019/10/mpu6050-fifo-buffer-management-study/), [2] (https://stackoverflow.com/questions/60419390/mpu-6050-correctly-reading-data-from-the-fifo-register)
+The Buffer Length, Watermark, and Timestamp parameters function within the MPU6050 architecture as follows:
+
+#### Buffer Length (FIFO Size)
+
+The MPU6050 contains a hardware FIFO (First In, First Out) buffer with a fixed size of 1024 bytes (1 KB). [1] (https://medium.com/@rocheinside/mpu6050-freezes-here-is-the-solution-acaf6fbd8727), [2] (https://stackoverflow.com/questions/60419390/mpu-6050-correctly-reading-data-from-the-fifo-register)
+• The Configuration: You cannot change the maximum capacity of this buffer, but you configure what gets pushed into it using the FIFO_EN (Register 0x23). You can turn on/off tracking for the Accelerometer, Gyroscope axes, or Temperature sensor. [1] (https://forums.raspberrypi.com/viewtopic.php?t=230697), [2] (https://medium.com/@rocheinside/mpu6050-freezes-here-is-the-solution-acaf6fbd8727), [3] (https://stackoverflow.com/questions/60419390/mpu-6050-correctly-reading-data-from-the-fifo-register)
+• The Catch: If you enable Accelerometer (6 bytes) and Gyroscope (6 bytes), every single data packet is 14 bytes long (including a 2-byte temperature packet). At 50Hz, the buffer fills up fast. If your program halts or encounters a delay (e.g., executing a slow print function), the FIFO will experience an Overflow. Once it hits 1024 bytes, it overflows, data shifts, and your calculations become corrupt. You must continuously monitor the FIFO byte count via registers 0x72 and 0x73. [1] (https://github.com/ElectronicCats/mpu6050/issues/16), [2] (https://forums.raspberrypi.com/viewtopic.php?t=230697), [3] (https://github.com/jrowberg/i2cdevlib/issues/153), [4] (https://www.fpaynter.com/2019/10/mpu6050-fifo-buffer-management-study/)
+
+#### Watermark
+
+A "Watermark" is a configurable threshold inside a FIFO buffer that triggers a hardware interrupt pin (INT) when the data reaches a specific fill level. [1] (https://community.bosch-sensortec.com/knowledge-base-pg631enp/post/bmi160-fifo-advanced-usage-n7HOuG4Le1uKOSU), [2] (https://github.com/orgs/micropython/discussions/15512)
+• The MPU6050 Reality: The raw MPU6050 does not have a traditional configurable byte-level watermark register in its standard register map. Instead, it relies on a binary DATA_RDY_INT (Data Ready Interrupt) or a FIFO_OFLOW_INT (FIFO Overflow Interrupt). [1] (https://github.com/jrowberg/i2cdevlib/issues/153)
+• The Workaround (DMP): To get watermark-style functionality, you must activate the MPU6050's internal DMP (Digital Motion Processor) co-processor. When loading the proprietary firmware into the DMP, it can be programmed to trigger a hardware interrupt precisely when a single complete packet size (e.g., 42 bytes for quaternions) is ready in the buffer, serving as a functional watermark. [1] (https://forum.arduino.cc/t/finally-mpu6050-fifo-dmp-quaternion-code-for-arduino-made-easy/598424), [2] (https://mjwhite8119.github.io/Robots/mpu6050)
+
+### Timestamping
+
+Accurate integration in your Complementary Filter (\(\text{Gyro}_{\text{speed}} \times \Delta t\)) requires an exact measurement of time (Δ t).
+• The MPU6050 Reality: The base MPU6050 silicon does not feature a built-in hardware timestamping engine or real-time clock (RTC). It cannot tag packets with a global clock value natively.
+• The Solution: Timestamping must be handled on your host processor (e.g., STM32, Arduino, or Raspberry Pi). When the MPU6050's physical INT pin toggles to signify that a data frame has finished rendering, your host microcontroller captures the system time immediately using a hardware timer interrupt or functions like micros() or clock_gettime(). [1] (https://openest.io/non-classe-en/mpu6050-accelerometer-on-raspberry-pi/), [2] (https://community.bosch-sensortec.com/knowledge-base-pg631enp/post/bmi160-fifo-advanced-usage-n7HOuG4Le1uKOSU), [3] (https://toptechboy.com/improving-accuracy-of-mpu6050-data-using-a-complimentary-filter/)
+
+
 ### Error: Device or resource busy (errno = 16)
 
 In Linux Industrial I/O (IIO), a "Device or resource busy" (EBUSY) error typically occurs when you attempt to read a sysfs attribute (like `in_voltageX_raw`) while the device is actively running in continuous buffer/streaming mode, or when another process/daemon already has an open handle to the character device node (`/dev/iio:deviceX`)
@@ -410,7 +434,6 @@ references:
  For example:
   - https://openest.io/non-classe-en/activate-raspberry-pi-4-i2c-bus/
   - https://openest.io/non-classe-en/mpu6050-accelerometer-on-raspberry-pi/
-
 
 
 ### Reading the sensor from user-space
@@ -949,7 +972,8 @@ Although this configuration can be done also in the program.
 
 At this point after the previous configuration you should be able to read the sensor data, for example with: `cat /dev/iio:device0 | hexdump -v`. 
 
-a Program running with epoll, then: 
+
+A program running with epoll, then: 
 
 ```C
 // compiles with: gcc readmpu.c -o readmpu -O -Wall -lm
