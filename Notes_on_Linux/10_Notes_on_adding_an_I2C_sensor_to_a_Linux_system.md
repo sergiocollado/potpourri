@@ -904,6 +904,8 @@ Also the commands:
 The program: 
 
 ```
+// compiles with: gcc readmpu.c -o readmpu -O -Wall -lm
+// -lm is for #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
