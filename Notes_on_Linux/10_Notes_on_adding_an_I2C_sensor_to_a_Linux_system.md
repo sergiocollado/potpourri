@@ -1882,6 +1882,43 @@ Every single frame (50 times a second), the program relies almost entirely on th
 While a Kalman Filter provides exceptional precision, it requires heavy matrix multiplication calculations, statistics configurations, and consumes significant CPU processing cycles.
 The Complementary Filter requires only one line of basic algebra, runs instantly within micro-seconds, and delivers roughly 95% of the accuracy of a Kalman filter with almost zero processor overhead, making it ideal for microcontrollers and single-board computers like the Raspberry Pi.
 
+### The equation
+
+Here is how the one-line Complementary Filter equation looks 
+
+```
+// Complementary Filter equation applied to Pitch or Roll
+angle = 0.98 * (angle + gyro_speed * dt) + 0.02 * accel_angle;
+```
+
+Breaking down the elements of this single line:
+
+• angle (Left Side): This is your final, highly accurate, drift-free orientation angle that gets updated every loop cycle.
+• 0.98 * (angle + gyro_speed * dt) (The High-Pass Part): The program takes the previous angle value and adds the gyroscope rotation step (gyro_speed * dt). It gives this estimate a 98% weight. This keeps the calculations incredibly fast and completely immune to sudden bumps or vibrations.
+• + 0.02 * accel_angle (The Low-Pass Part): The program takes the absolute angle calculated by the accelerometer gravity vectors and gives it a tiny 2% weight. This acts as an anchor—it gently nudges the gyro estimate back to reality, erasing any accumulated sensor drift.
+
+#### Implementation
+
+```
+// 1. Declare persistent variables outside the tracking loop
+double comp_roll = 0.0;
+double comp_pitch = 0.0;
+double alpha = 0.98; // The filter weight coefficient
+
+// ... inside your loop after calculating raw values and timescales:
+
+// 2. Calculate the raw angles from the accelerometer vectors
+double accel_roll  = atan2(ay, az) * RAD_TO_DEG;
+double accel_pitch = atan2(-ax, sqrt(ay * ay + az * az)) * RAD_TO_DEG;
+
+// 3. Convert Gyro velocities from rad/s to Degrees per Second
+double gx_dps = raw_gx * gyro_scale * RAD_TO_DEG;
+double gy_dps = raw_gy * gyro_scale * RAD_TO_DEG;
+
+// 4. THE COMPLEMENTARY FILTER (The One-Liners!)
+comp_roll  = alpha * (comp_roll  + gx_dps * dt_s) + (1.0 - alpha) * accel_roll;
+comp_pitch = alpha * (comp_pitch + gy_dps * dt_s) + (1.0 - alpha) * accel_pitch;
+```
 
 
 
