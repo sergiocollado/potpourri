@@ -1841,3 +1841,47 @@ int main() {
 }
 
 ```
+
+
+## Improving the measurements
+
+A Complementary Filter is a simple and highly effective algorithm used to calculate precise tilt angles (Pitch and Roll) by merging data from two different sensors: the Accelerometer and the Gyroscope.
+It gives you the "best of both worlds" by using the strengths of each sensor to cancel out the weaknesses of the other.
+
+### The Core Problem (Why we need it)
+
+To understand the filter, you must first look at how the individual sensors misbehave over time:
+• The Gyroscope is great in the Short-Term, but terrible in the Long-Term.
+	• Strength: It measures rotational speed incredibly fast and is completely immune to linear vibrations or bumping.
+	• Weakness: Because you must add up (integrate) the speeds over time to get an angle, tiny micro-noises add up continuously. This causes the calculated angle to slowly drift away from reality over time, even if the sensor is sitting perfectly still. This is called Gyro Drift.
+	
+• The Accelerometer is great in the Long-Term, but terrible in the Short-Term.
+	• Strength: It senses gravity, giving it an absolute reference for "down." It never drifts. If it says you are tilted at 10 degrees, you are at 10 degrees.
+	• Weakness: It calculates tilt by measuring forces. If your robot bumps into a wall, vibrates, or accelerates forward, those temporary linear forces mess up the gravity vector. This introduces massive, spikey short-term errors called Centrifugal/Vibrational Noise.
+
+### The Solution (How they complement each other)
+
+The Complementary Filter acts as a dual traffic controller. It passes the gyroscope data through a High-Pass Filter (allowing only fast changes through and cutting off long-term drift) and passes the accelerometer data through a Low-Pass Filter (smoothing out sharp, sudden vibrations while keeping the steady long-term angle baseline).
+Mathematically, the equation looks like this:
+
+\(\text{Angle}_{\text{new}}=\alpha \times \left(\text{Angle}_{\text{old}}+\text{Gyro}_{\text{speed}}\times \Delta t\right)+(1-\alpha )\times \text{Accel}_{\text{angle}}\)
+
+• Where Δ t is the time difference between your samples (e.g., 0.020 seconds for your 50Hz clock).
+• Where α (Alpha) is the filter coefficient, typically chosen between 0.95 and 0.98.
+
+Breaking down a 98% / 2% split (α = 0.98):
+
+If Alpha is set to 0.98, the formula evaluates to:
+
+\(\text{Angle}=\underbrace{0.98\times (\text{Gyro\ Route})}_{\text{Trust\ the\ Gyro\ for\ 98\%\ of\ the\ movement}}+\underbrace{0.02\times (\text{Accel\ Route})}_{\text{Gently\ nudge\ it\ by\ 2\%\ toward\ the\ Accel\ vector}}\)
+
+Every single frame (50 times a second), the program relies almost entirely on the fast, vibration-proof gyroscope to track the immediate angle change. However, it pulls 2% of the value from the steady accelerometer. This tiny 2% correction acts as an anchor—it is not strong enough to let rapid vibrations ruin your data, but it is persistent enough to completely cancel out the gyro's accumulation drift over time.
+
+### Comments on other filters (e.g., Kalman Filter)
+
+While a Kalman Filter provides exceptional precision, it requires heavy matrix multiplication calculations, statistics configurations, and consumes significant CPU processing cycles.
+The Complementary Filter requires only one line of basic algebra, runs instantly within micro-seconds, and delivers roughly 95% of the accuracy of a Kalman filter with almost zero processor overhead, making it ideal for microcontrollers and single-board computers like the Raspberry Pi.
+
+
+
+
