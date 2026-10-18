@@ -1070,6 +1070,20 @@ int initialize_iio_sensors() {
     return 0;
 }
 
+/*=========================================================================
+ * DYNAMIC PACKET SIZE DETECTION
+ * =========================================================================
+ * The Linux IIO subsystem does not guarantee a fixed struct size. The total
+ * bytes per frame changes depending on enabled channels and how the specific 
+ * kernel architecture applies padding alignment (e.g., matching CPU cache lines). 
+ * 
+ * Instead of hardcoding a size (like 12 or 20 bytes), we perform a non-blocking 
+ * read of a single data sample block at startup to see its exact length. This:
+ *   1. Prevents byte-shifting (keeps Axis data from bleeding into wrong variables).
+ *   2. Ensures driver portability across different kernel versions (e.g. 32-byte alignment).
+ *   3. Automatically adjusts if you change enabled channels in initialize_iio_sensors().
+ * =========================================================================
+ */
 ssize_t detect_packet_size(int device_fd) {
     uint8_t rx_raw[MAX_BUFFER_SIZE];
     ssize_t size = 0;
