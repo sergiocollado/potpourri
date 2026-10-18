@@ -339,7 +339,8 @@ cat in_temp_raw
 
 You can check with the command: ` watch cat in_accel_[x,y,z]_raw` ... it should be printing different values as you move the sensor around.
 
-... then you may want to calibrate the sensor. 
+
+... then you may want to calibrate the sensor...
 
 To convert these raw integers into physical values (like m/s² or degrees per second), multiply the raw value by its corresponding scale file: `cat in_accel_scale`.
 
@@ -945,6 +946,8 @@ echo 1 > buffer/enable
 ```
 
 Although this configuration can be done also in the program. 
+
+At this point after the previous configuration you should be able to read the sensor data, for example with: `cat /dev/iio:device0 | hexdump -v`. 
 
 
 The program: 
