@@ -902,17 +902,23 @@ Also the commands, for the comfiguration of the mpu6050:
 
 ```shell
 cd /sys/bus/iio/devices/iio:device0
-sudo sh -c 'echo "mpu6050-dev0" > trigger/current_trigger'
-sudo sh -c 'echo 1 > scan_elements/in_accel_x_en'
-sudo sh -c 'echo 1 > scan_elements/in_accel_y_en'
-sudo sh -c 'echo 1 > scan_elements/in_accel_z_en'
-sudo sh -c 'echo 1 > scan_elements/in_anglvel_x_en'
-sudo sh -c 'echo 1 > scan_elements/in_anglvel_y_en'
-sudo sh -c 'echo 1 > scan_elements/in_anglvel_z_en'
-sudo sh -c 'echo 100 > buffer/length'
 
-// enable the last one
-sudo sh -c 'echo 1 > buffer/enable'
+# Set the trigger to use the MPU6050's hardware interrupt pin
+echo "mpu6050-dev0" > trigger/current_trigger
+
+# Enable all acceleration channels
+echo 1 > scan_elements/in_accel_x_en
+echo 1 > scan_elements/in_accel_y_en
+echo 1 > scan_elements/in_accel_z_en
+
+# Enable all gyroscope channels
+echo 1 > scan_elements/in_anglvel_x_en
+echo 1 > scan_elements/in_anglvel_y_en
+echo 1 > scan_elements/in_anglvel_z_en
+
+# Enable the buffer
+echo 100 > buffer/length
+echo 1 > buffer/enable
 ```
 
 Although this configuration can be done also in the program. 
