@@ -949,6 +949,305 @@ Although this configuration can be done also in the program.
 
 At this point after the previous configuration you should be able to read the sensor data, for example with: `cat /dev/iio:device0 | hexdump -v`. 
 
+a Program running with epoll, then: 
+
+```C
+// compiles with: gcc readmpu.c -o readmpu -O -Wall -lm
+// -lm is for #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdint.h>
+#include <signal.h>
+#include <errno.h>
+#include <time.h>
+#include <stdbool.h>   
+#include <sys/stat.h>
+#include <string.h>
+#include <math.h>
+#include <poll.h>       // Polling system structure
+#include <inttypes.h>   // For correct uint64_t formatting macros
+
+#define IIO_DEVICE_DIR     "/sys/bus/iio/devices/iio:device0/"
+#define IIO_DEV_PATH       "/dev/iio:device0"
+#define SCALE_ACCEL_PATH   IIO_DEVICE_DIR "in_accel_scale"
+#define SCALE_GYRO_PATH    IIO_DEVICE_DIR "in_anglvel_scale"
+#define DEVICE_NAME_PATH   IIO_DEVICE_DIR "name"
+
+#define MAX_BUFFER_SIZE 32
+
+// Math constant multipliers
+#define RAD_TO_DEG (180.0 / 3.14159265358979323846)
+
+// Global runtime variables
+volatile bool keep_running = true;        
+int fd = -1;
+ssize_t expected_packet_size = 0;
+double accel_scale = 1.0, gyro_scale = 1.0;
+uint64_t loop_counter = 0;
+
+void sigint_handler(int sig) {
+    keep_running = false;
+}
+
+int write_sysfs(const char *relative_path, const char *value) {
+    char full_path[256];
+    snprintf(full_path, sizeof(full_path), "%s%s", IIO_DEVICE_DIR, relative_path);
+    
+    FILE *fp = fopen(full_path, "w");
+    if (!fp) {
+        fprintf(stderr, "Error: Failed to write to sysfs file: %s (Are you running with 'sudo'?)\n", full_path);
+        return -1;
+    }
+    fprintf(fp, "%s", value);
+    fclose(fp);
+    return 0;
+}
+
+int verify_iio_dir_exists() {
+    struct stat s;
+    if (stat(IIO_DEVICE_DIR, &s) != 0) {
+        if (errno == ENOENT) {
+            fprintf(stderr, "Error: IIO directory '%s' does not exist.\n", IIO_DEVICE_DIR);
+        } else {
+            perror("Error calling stat() on IIO directory");
+        }
+        return 0;
+    }
+    return S_ISDIR(s.st_mode);
+}
+
+int verify_device_name() {
+    char name_buffer[64];
+    FILE *fp = fopen(DEVICE_NAME_PATH, "r");
+    
+    if (!fp) {
+        perror("Error opening device name verification node");
+        return 0;
+    }
+
+    if (fgets(name_buffer, sizeof(name_buffer), fp) == NULL) {
+        fprintf(stderr, "Error: Could not read contents from %s\n", DEVICE_NAME_PATH);
+        fclose(fp);
+        return 0;
+    }
+    fclose(fp);
+
+    name_buffer[strcspn(name_buffer, "\r\n")] = '\0';
+
+    if (strncmp(name_buffer, "mpu6050", 7) != 0) {
+        fprintf(stderr, "Error: Device mismatch! Expected 'mpu6050' but found '%s'\n", name_buffer);
+        return 0;
+    }
+
+    fprintf(stderr, "Device identity verified: %s\n", name_buffer);
+    return 1;
+}
+
+int initialize_iio_sensors() {
+    if (!verify_iio_dir_exists()) return -1;
+    if (!verify_device_name()) return -1;
+
+    fprintf(stderr, "Initializing MPU6050 subsystem parameters...\n");
+    write_sysfs("buffer/enable", "0");
+    
+    // Watermark 1 gives immediate wakeups for real-time sample processing
+    write_sysfs("buffer/watermark", "1");
+
+	// sampling frequency 50 Hz
+    write_sysfs("sampling_frequency", "50")
+
+    write_sysfs("scan_elements/in_accel_x_en", "1");
+    write_sysfs("scan_elements/in_accel_y_en", "1");
+    write_sysfs("scan_elements/in_accel_z_en", "1");
+    write_sysfs("scan_elements/in_anglvel_x_en", "1");
+    write_sysfs("scan_elements/in_anglvel_y_en", "1");
+    write_sysfs("scan_elements/in_anglvel_z_en", "1");
+    write_sysfs("scan_elements/in_timestamp_en", "1");
+    write_sysfs("buffer/length", "2048");
+
+    if (write_sysfs("buffer/enable", "1") < 0) return -1;
+
+    fprintf(stderr, "Subsystem configuration applied successfully.\n\n");
+    return 0;
+}
+
+double get_sysfs_scale(const char *path) {
+    FILE *fp = fopen(path, "r");
+    if (!fp) return 1.0;
+    double scale = 1.0;
+    if (fscanf(fp, "%lf", &scale) != 1) scale = 1.0;
+    fclose(fp);
+    return scale;
+}
+
+int main() {
+    uint8_t rx_raw[MAX_BUFFER_SIZE];
+    uint8_t latest_raw[MAX_BUFFER_SIZE];
+    struct pollfd pfd;
+
+    // Time Tracking Context Variables
+    uint64_t initial_timestamp = 0;
+    bool is_first_timestamp = true;
+    uint64_t last_sensor_ts = 0;
+    
+    // Frequency variables
+    double sensor_freq = 0.0;
+    double ui_freq = 0.0;
+    
+    struct timespec last_ui_time, current_ui_time;
+    clock_gettime(CLOCK_MONOTONIC, &last_ui_time);
+
+    setvbuf(stdout, NULL, _IOLBF, 0);
+    signal(SIGINT, sigint_handler);
+
+    if (initialize_iio_sensors() < 0) return EXIT_FAILURE;
+
+    accel_scale = get_sysfs_scale(SCALE_ACCEL_PATH);
+    gyro_scale = get_sysfs_scale(SCALE_GYRO_PATH);
+    fprintf(stderr, "Loaded Scales -> Accel: %f, Gyro: %f\n", accel_scale, gyro_scale);
+
+    fd = open(IIO_DEV_PATH, O_RDONLY);
+    if (fd < 0) {
+        perror("Error opening IIO stream");
+        return EXIT_FAILURE;
+    }
+
+    pfd.fd = fd;
+    pfd.events = POLLIN;
+
+    printf("Press Ctrl+C to end the program\r\n\n");
+    printf("\033[2J\033[H\033[?25l");
+    printf("=============================================================================================================\n");
+    printf("                                  MPU6050 ORIENTATION TILT INSTRUMENT DASHBOARD                              \n");
+    printf("=============================================================================================================\n");
+    
+    printf("\033[s"); 
+
+    while (keep_running) {
+        int ret = poll(&pfd, 1, 1000);
+        
+        if (ret < 0) {
+            if (errno == EINTR) continue; 
+            perror("Poll system error");
+            break;
+        }
+        
+        if (ret == 0) {
+            printf("\033[u  [SYSTEM STATUS]  Waiting for sensor hardware interrupts...\n");
+            continue;
+        }
+
+        if (pfd.revents & POLLIN) {
+            ssize_t bytes_read = read(fd, rx_raw, MAX_BUFFER_SIZE);
+            
+            if (bytes_read >= 16) {
+                for (int i = 0; i < bytes_read; i++) {
+                    latest_raw[i] = rx_raw[i];
+                }
+                expected_packet_size = bytes_read;
+                loop_counter++;
+
+                // 1. Extract 16-bit Big-Endian sensor channels
+                int16_t raw_ax = (int16_t)((latest_raw[0] << 8) | latest_raw[1]);
+                int16_t raw_ay = (int16_t)((latest_raw[2] << 8) | latest_raw[3]);
+                int16_t raw_az = (int16_t)((latest_raw[4] << 8) | latest_raw[5]);
+                int16_t raw_gx = (int16_t)((latest_raw[6] << 8) | latest_raw[7]);
+                int16_t raw_gy = (int16_t)((latest_raw[8] << 8) | latest_raw[9]);
+                int16_t raw_gz = (int16_t)((latest_raw[10] << 8) | latest_raw[11]);
+
+                // 2. Extract 64-bit kernel timestamp based on architectural alignment
+                uint64_t ts_raw = 0;
+                if (expected_packet_size == 20) {
+                    memcpy(&ts_raw, &latest_raw[12], sizeof(uint64_t));
+                } else if (expected_packet_size >= 24) {
+                    memcpy(&ts_raw, &latest_raw[16], sizeof(uint64_t));
+                } else {
+                    memcpy(&ts_raw, &latest_raw[expected_packet_size - 8], sizeof(uint64_t));
+                }
+
+                // Initialize reference baseline clock at program start
+                if (is_first_timestamp) {
+                    initial_timestamp = ts_raw;
+                    last_sensor_ts = ts_raw;
+                    is_first_timestamp = false;
+                }
+
+                // Compute relative time elapsed from start (in seconds)
+                double relative_secs = (double)(ts_raw - initial_timestamp) / 1000000000.0;
+
+                // A. Compute Sensor Sampling Frequency (from hardware timestamp delta)
+                if (ts_raw > last_sensor_ts) {
+                    uint64_t ts_delta = ts_raw - last_sensor_ts;
+                    sensor_freq = 1000000000.0 / (double)ts_delta;
+                }
+                last_sensor_ts = ts_raw;
+
+                // B. Compute Console UI Loop Refresh Frequency
+                clock_gettime(CLOCK_MONOTONIC, &current_ui_time);
+                double ui_delta_sec = (current_ui_time.tv_sec - last_ui_time.tv_sec) + 
+                                      (current_ui_time.tv_nsec - last_ui_time.tv_nsec) / 1e9;
+                if (ui_delta_sec > 0.0) {
+                    ui_freq = 1.0 / ui_delta_sec;
+                }
+                last_ui_time = current_ui_time;
+
+                // Process engineering unit variants
+                double ax = raw_ax * accel_scale;
+                double ay = raw_ay * accel_scale;
+                double az = raw_az * accel_scale;
+                double gx = raw_gx * gyro_scale;
+                double gy = raw_gy * gyro_scale;
+                double gz = raw_gz * gyro_scale;
+
+                double pitch = atan2(-ax, sqrt(ay*ay + az*az)) * RAD_TO_DEG;
+                double roll  = atan2(ay, az) * RAD_TO_DEG;
+
+                // Render expanded layout metrics
+                printf("\033[u"); 
+                printf("  [SYSTEM STATUS]  Loops Sampled: %-10" PRIu64 " | Frame Bytes: %-2zd\n", loop_counter, expected_packet_size);
+                printf("  [KERNEL TIME]    Timestamp (ns): %-20" PRIu64 " | Elapsed Secs: %10.4f s\n", ts_raw, relative_secs);
+                printf("  [DIAGNOSTICS]    Sensor Freq: %7.2f Hz         | Console UI Freq: %7.2f Hz\n", sensor_freq, ui_freq);
+                printf("-------------------------------------------------------------------------------------------------------------\n");
+                printf("  ACCELEROMETER (m/s²)                 GYROSCOPE (rad/s)                    CALCULATED TILT ANGLE            \n");
+                printf("  X-Axis: %7.3f                        X-Axis: %7.4f                        Pitch Angle: %7.2f°             \n", ax, gx, pitch);
+                printf("  Y-Axis: %7.3f                        Y-Axis: %7.4f                        Roll Angle:  %7.2f°             \n", ay, gy, roll);
+                printf("  Z-Axis: %7.3f                        Z-Axis: %7.4f                                                         \n", az, gz);
+                printf("=============================================================================================================\n");
+			}
+		}
+	}
+
+printf("\033[?25h\n\nStopping instrumentation framework...\n");
+close(fd);
+write_sysfs("buffer/enable", "0");
+return EXIT_SUCCESS;
+}
+```
+
+The epoll (or standard poll) option is by far the better and more professional choice for reading sensor data.
+In embedded Linux and systems programming, using a timer to read a streaming device buffer like an IIO sensor is considered an anti-pattern.
+Here is a direct comparison of why hardware-driven polling beats software timers:
+
+Feature	epoll / poll (Hardware-Driven)	POSIX Timer / Loop Sleep (Software-Driven)
+Accuracy	Perfect. Wakes up precisely when the sensor hardware finishes a measurement.	Poor. Software clocks always drift, causing missed samples or duplicates.
+CPU Usage	Very Low. Your thread sleeps completely until the hardware wakes it up.	Higher. Constant timer interrupts and thread switching even if data isn't ready.
+Data Integrity	No Duplicates. You read data exactly once per hardware sample.	High Risk. If your timer ticks faster than the sensor, you read duplicate data.
+Latency	Minimal. The moment data enters the kernel, your program is unblocked.	Variable. You can wait up to the length of your timer period to get the data.
+
+
+
+## The Deep Technical Reason: System Clock vs. Sensor Crystal
+
+Every physical chip (like the MPU6050) has its own internal clock oscillator. Your Linux computer (like a Raspberry Pi) also has its own CPU clock. These two clocks are never perfectly synced.
+• If you use a 50Hz Timer: Your software wakes up exactly every 20ms. However, if the MPU6050 is running slightly fast (e.g., 50.1Hz), it creates data every 19.96ms. Over time, the sensor buffer will slowly overflow because you aren't reading fast enough. If the sensor runs slightly slow (49.9Hz), your timer will eventually wake up before a new sample is ready, causing your code to read a duplicate stale value or crash into an empty buffer state.
+• If you use epoll: Your code matches the heartbeat of the sensor itself. When the MPU6050 finishes a calculation, it fires a physical interrupt line to the Linux CPU. The Linux kernel reads it immediately and unblocks your epoll() loop. Your software adapts perfectly, even if the sensor frequency slightly drifts due to room temperature changes.
+
+When would you use a timer?
+
+The only time a timer option is acceptable is if you are dealing with a primitive sensor that lacks an internal data buffer (FIFO) or a data-ready interrupt pin, and you are forced to manual-poll it by sending I2C read requests at regular intervals. For a modern device like the MPU6050, epoll is the standard.
+
 <details>
   <summary>ANTIPATTERN!!! -> The program with timers </summary>
   
@@ -1264,304 +1563,5 @@ int main() {
 }
 ```
 </details>
-
-If instead of timers we favor a program running with epoll, then: 
-
-```C
-// compiles with: gcc readmpu.c -o readmpu -O -Wall -lm
-// -lm is for #include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdint.h>
-#include <signal.h>
-#include <errno.h>
-#include <time.h>
-#include <stdbool.h>   
-#include <sys/stat.h>
-#include <string.h>
-#include <math.h>
-#include <poll.h>       // Polling system structure
-#include <inttypes.h>   // For correct uint64_t formatting macros
-
-#define IIO_DEVICE_DIR     "/sys/bus/iio/devices/iio:device0/"
-#define IIO_DEV_PATH       "/dev/iio:device0"
-#define SCALE_ACCEL_PATH   IIO_DEVICE_DIR "in_accel_scale"
-#define SCALE_GYRO_PATH    IIO_DEVICE_DIR "in_anglvel_scale"
-#define DEVICE_NAME_PATH   IIO_DEVICE_DIR "name"
-
-#define MAX_BUFFER_SIZE 32
-
-// Math constant multipliers
-#define RAD_TO_DEG (180.0 / 3.14159265358979323846)
-
-// Global runtime variables
-volatile bool keep_running = true;        
-int fd = -1;
-ssize_t expected_packet_size = 0;
-double accel_scale = 1.0, gyro_scale = 1.0;
-uint64_t loop_counter = 0;
-
-void sigint_handler(int sig) {
-    keep_running = false;
-}
-
-int write_sysfs(const char *relative_path, const char *value) {
-    char full_path[256];
-    snprintf(full_path, sizeof(full_path), "%s%s", IIO_DEVICE_DIR, relative_path);
-    
-    FILE *fp = fopen(full_path, "w");
-    if (!fp) {
-        fprintf(stderr, "Error: Failed to write to sysfs file: %s (Are you running with 'sudo'?)\n", full_path);
-        return -1;
-    }
-    fprintf(fp, "%s", value);
-    fclose(fp);
-    return 0;
-}
-
-int verify_iio_dir_exists() {
-    struct stat s;
-    if (stat(IIO_DEVICE_DIR, &s) != 0) {
-        if (errno == ENOENT) {
-            fprintf(stderr, "Error: IIO directory '%s' does not exist.\n", IIO_DEVICE_DIR);
-        } else {
-            perror("Error calling stat() on IIO directory");
-        }
-        return 0;
-    }
-    return S_ISDIR(s.st_mode);
-}
-
-int verify_device_name() {
-    char name_buffer[64];
-    FILE *fp = fopen(DEVICE_NAME_PATH, "r");
-    
-    if (!fp) {
-        perror("Error opening device name verification node");
-        return 0;
-    }
-
-    if (fgets(name_buffer, sizeof(name_buffer), fp) == NULL) {
-        fprintf(stderr, "Error: Could not read contents from %s\n", DEVICE_NAME_PATH);
-        fclose(fp);
-        return 0;
-    }
-    fclose(fp);
-
-    name_buffer[strcspn(name_buffer, "\r\n")] = '\0';
-
-    if (strncmp(name_buffer, "mpu6050", 7) != 0) {
-        fprintf(stderr, "Error: Device mismatch! Expected 'mpu6050' but found '%s'\n", name_buffer);
-        return 0;
-    }
-
-    fprintf(stderr, "Device identity verified: %s\n", name_buffer);
-    return 1;
-}
-
-int initialize_iio_sensors() {
-    if (!verify_iio_dir_exists()) return -1;
-    if (!verify_device_name()) return -1;
-
-    fprintf(stderr, "Initializing MPU6050 subsystem parameters...\n");
-    write_sysfs("buffer/enable", "0");
-    
-    // Watermark 1 gives immediate wakeups for real-time sample processing
-    write_sysfs("buffer/watermark", "1");
-
-	// sampling frequency 50 Hz
-    write_sysfs("sampling_frequency", "50")
-
-    write_sysfs("scan_elements/in_accel_x_en", "1");
-    write_sysfs("scan_elements/in_accel_y_en", "1");
-    write_sysfs("scan_elements/in_accel_z_en", "1");
-    write_sysfs("scan_elements/in_anglvel_x_en", "1");
-    write_sysfs("scan_elements/in_anglvel_y_en", "1");
-    write_sysfs("scan_elements/in_anglvel_z_en", "1");
-    write_sysfs("scan_elements/in_timestamp_en", "1");
-    write_sysfs("buffer/length", "2048");
-
-    if (write_sysfs("buffer/enable", "1") < 0) return -1;
-
-    fprintf(stderr, "Subsystem configuration applied successfully.\n\n");
-    return 0;
-}
-
-double get_sysfs_scale(const char *path) {
-    FILE *fp = fopen(path, "r");
-    if (!fp) return 1.0;
-    double scale = 1.0;
-    if (fscanf(fp, "%lf", &scale) != 1) scale = 1.0;
-    fclose(fp);
-    return scale;
-}
-
-int main() {
-    uint8_t rx_raw[MAX_BUFFER_SIZE];
-    uint8_t latest_raw[MAX_BUFFER_SIZE];
-    struct pollfd pfd;
-
-    // Time Tracking Context Variables
-    uint64_t initial_timestamp = 0;
-    bool is_first_timestamp = true;
-    uint64_t last_sensor_ts = 0;
-    
-    // Frequency variables
-    double sensor_freq = 0.0;
-    double ui_freq = 0.0;
-    
-    struct timespec last_ui_time, current_ui_time;
-    clock_gettime(CLOCK_MONOTONIC, &last_ui_time);
-
-    setvbuf(stdout, NULL, _IOLBF, 0);
-    signal(SIGINT, sigint_handler);
-
-    if (initialize_iio_sensors() < 0) return EXIT_FAILURE;
-
-    accel_scale = get_sysfs_scale(SCALE_ACCEL_PATH);
-    gyro_scale = get_sysfs_scale(SCALE_GYRO_PATH);
-    fprintf(stderr, "Loaded Scales -> Accel: %f, Gyro: %f\n", accel_scale, gyro_scale);
-
-    fd = open(IIO_DEV_PATH, O_RDONLY);
-    if (fd < 0) {
-        perror("Error opening IIO stream");
-        return EXIT_FAILURE;
-    }
-
-    pfd.fd = fd;
-    pfd.events = POLLIN;
-
-    printf("Press Ctrl+C to end the program\r\n\n");
-    printf("\033[2J\033[H\033[?25l");
-    printf("=============================================================================================================\n");
-    printf("                                  MPU6050 ORIENTATION TILT INSTRUMENT DASHBOARD                              \n");
-    printf("=============================================================================================================\n");
-    
-    printf("\033[s"); 
-
-    while (keep_running) {
-        int ret = poll(&pfd, 1, 1000);
-        
-        if (ret < 0) {
-            if (errno == EINTR) continue; 
-            perror("Poll system error");
-            break;
-        }
-        
-        if (ret == 0) {
-            printf("\033[u  [SYSTEM STATUS]  Waiting for sensor hardware interrupts...\n");
-            continue;
-        }
-
-        if (pfd.revents & POLLIN) {
-            ssize_t bytes_read = read(fd, rx_raw, MAX_BUFFER_SIZE);
-            
-            if (bytes_read >= 16) {
-                for (int i = 0; i < bytes_read; i++) {
-                    latest_raw[i] = rx_raw[i];
-                }
-                expected_packet_size = bytes_read;
-                loop_counter++;
-
-                // 1. Extract 16-bit Big-Endian sensor channels
-                int16_t raw_ax = (int16_t)((latest_raw[0] << 8) | latest_raw[1]);
-                int16_t raw_ay = (int16_t)((latest_raw[2] << 8) | latest_raw[3]);
-                int16_t raw_az = (int16_t)((latest_raw[4] << 8) | latest_raw[5]);
-                int16_t raw_gx = (int16_t)((latest_raw[6] << 8) | latest_raw[7]);
-                int16_t raw_gy = (int16_t)((latest_raw[8] << 8) | latest_raw[9]);
-                int16_t raw_gz = (int16_t)((latest_raw[10] << 8) | latest_raw[11]);
-
-                // 2. Extract 64-bit kernel timestamp based on architectural alignment
-                uint64_t ts_raw = 0;
-                if (expected_packet_size == 20) {
-                    memcpy(&ts_raw, &latest_raw[12], sizeof(uint64_t));
-                } else if (expected_packet_size >= 24) {
-                    memcpy(&ts_raw, &latest_raw[16], sizeof(uint64_t));
-                } else {
-                    memcpy(&ts_raw, &latest_raw[expected_packet_size - 8], sizeof(uint64_t));
-                }
-
-                // Initialize reference baseline clock at program start
-                if (is_first_timestamp) {
-                    initial_timestamp = ts_raw;
-                    last_sensor_ts = ts_raw;
-                    is_first_timestamp = false;
-                }
-
-                // Compute relative time elapsed from start (in seconds)
-                double relative_secs = (double)(ts_raw - initial_timestamp) / 1000000000.0;
-
-                // A. Compute Sensor Sampling Frequency (from hardware timestamp delta)
-                if (ts_raw > last_sensor_ts) {
-                    uint64_t ts_delta = ts_raw - last_sensor_ts;
-                    sensor_freq = 1000000000.0 / (double)ts_delta;
-                }
-                last_sensor_ts = ts_raw;
-
-                // B. Compute Console UI Loop Refresh Frequency
-                clock_gettime(CLOCK_MONOTONIC, &current_ui_time);
-                double ui_delta_sec = (current_ui_time.tv_sec - last_ui_time.tv_sec) + 
-                                      (current_ui_time.tv_nsec - last_ui_time.tv_nsec) / 1e9;
-                if (ui_delta_sec > 0.0) {
-                    ui_freq = 1.0 / ui_delta_sec;
-                }
-                last_ui_time = current_ui_time;
-
-                // Process engineering unit variants
-                double ax = raw_ax * accel_scale;
-                double ay = raw_ay * accel_scale;
-                double az = raw_az * accel_scale;
-                double gx = raw_gx * gyro_scale;
-                double gy = raw_gy * gyro_scale;
-                double gz = raw_gz * gyro_scale;
-
-                double pitch = atan2(-ax, sqrt(ay*ay + az*az)) * RAD_TO_DEG;
-                double roll  = atan2(ay, az) * RAD_TO_DEG;
-
-                // Render expanded layout metrics
-                printf("\033[u"); 
-                printf("  [SYSTEM STATUS]  Loops Sampled: %-10" PRIu64 " | Frame Bytes: %-2zd\n", loop_counter, expected_packet_size);
-                printf("  [KERNEL TIME]    Timestamp (ns): %-20" PRIu64 " | Elapsed Secs: %10.4f s\n", ts_raw, relative_secs);
-                printf("  [DIAGNOSTICS]    Sensor Freq: %7.2f Hz         | Console UI Freq: %7.2f Hz\n", sensor_freq, ui_freq);
-                printf("-------------------------------------------------------------------------------------------------------------\n");
-                printf("  ACCELEROMETER (m/s²)                 GYROSCOPE (rad/s)                    CALCULATED TILT ANGLE            \n");
-                printf("  X-Axis: %7.3f                        X-Axis: %7.4f                        Pitch Angle: %7.2f°             \n", ax, gx, pitch);
-                printf("  Y-Axis: %7.3f                        Y-Axis: %7.4f                        Roll Angle:  %7.2f°             \n", ay, gy, roll);
-                printf("  Z-Axis: %7.3f                        Z-Axis: %7.4f                                                         \n", az, gz);
-                printf("=============================================================================================================\n");
-			}
-		}
-	}
-
-printf("\033[?25h\n\nStopping instrumentation framework...\n");
-close(fd);
-write_sysfs("buffer/enable", "0");
-return EXIT_SUCCESS;
-}
-```
-
-The epoll (or standard poll) option is by far the better and more professional choice for reading sensor data.
-In embedded Linux and systems programming, using a timer to read a streaming device buffer like an IIO sensor is considered an anti-pattern.
-Here is a direct comparison of why hardware-driven polling beats software timers:
-
-Feature	epoll / poll (Hardware-Driven)	POSIX Timer / Loop Sleep (Software-Driven)
-Accuracy	Perfect. Wakes up precisely when the sensor hardware finishes a measurement.	Poor. Software clocks always drift, causing missed samples or duplicates.
-CPU Usage	Very Low. Your thread sleeps completely until the hardware wakes it up.	Higher. Constant timer interrupts and thread switching even if data isn't ready.
-Data Integrity	No Duplicates. You read data exactly once per hardware sample.	High Risk. If your timer ticks faster than the sensor, you read duplicate data.
-Latency	Minimal. The moment data enters the kernel, your program is unblocked.	Variable. You can wait up to the length of your timer period to get the data.
-
-
-## The Deep Technical Reason: System Clock vs. Sensor Crystal
-
-Every physical chip (like the MPU6050) has its own internal clock oscillator. Your Linux computer (like a Raspberry Pi) also has its own CPU clock. These two clocks are never perfectly synced.
-• If you use a 50Hz Timer: Your software wakes up exactly every 20ms. However, if the MPU6050 is running slightly fast (e.g., 50.1Hz), it creates data every 19.96ms. Over time, the sensor buffer will slowly overflow because you aren't reading fast enough. If the sensor runs slightly slow (49.9Hz), your timer will eventually wake up before a new sample is ready, causing your code to read a duplicate stale value or crash into an empty buffer state.
-• If you use epoll: Your code matches the heartbeat of the sensor itself. When the MPU6050 finishes a calculation, it fires a physical interrupt line to the Linux CPU. The Linux kernel reads it immediately and unblocks your epoll() loop. Your software adapts perfectly, even if the sensor frequency slightly drifts due to room temperature changes.
-
-When would you use a timer?
-
-The only time a timer option is acceptable is if you are dealing with a primitive sensor that lacks an internal data buffer (FIFO) or a data-ready interrupt pin, and you are forced to manual-poll it by sending I2C read requests at regular intervals. For a modern device like the MPU6050, epoll is the standard.
-.
 
 
