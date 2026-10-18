@@ -76,6 +76,10 @@ pin34 ground   | AD0 (so the address is 0x68)
 pin7 GPIO4     | INT
 ```
 
+The default interrupt pin is defind por gpio4: 
+ - https://github.com/raspberrypi/linux/blob/rpi-4.14.y/arch/arm/boot/dts/overlays/mpu6050-overlay.dts
+ - https://forums.raspberrypi.com/viewtopic.php?t=230766
+
 The MPU6050 depends on I2C so enable it in the rpi by the GUI or editing the configuration files. You can also enable the i2c interface with `sudo raspi-config`.
 
 Check the version of linux kernel used by the system with the command `uname -r`.
