@@ -902,6 +902,21 @@ Take into account, you need the interruptions of the mpu6050 enabled. to check i
 watch -n 1 "cat /proc/interrupts | grep -i mpu"
 ```
 
+for example: 
+
+```shell
+cat /proc/interrupts | grep -i mpu                                                                                                                                   rpihole: Sun Oct 18 01:37:09 2026
+
+199:      47405      47346      46968      47312  pinctrl-bcm2835   4 Edge      inv_mpu
+200:          0          0          0     189031  mpu6050-dev0     Edge      mpu6050_consumer0
+```
+
+• Line 199 (inv_mpu): This is the low-level hardware interrupt linked to physical GPIO 4 (pinctrl-bcm2835 4 Edge). The counts across all four CPU cores (47405, 47346, etc.) show that the physical INT pin on your MPU6050 is firing rapidly, and the Pi's GPIO controller is successfully catching every single pulse.
+
+• Line 200 (mpu6050_consumer0): This is a threaded software interrupt managed by the Linux Industrial I/O (IIO) subsystem. It has registered a staggering 189,031 events on the 4th CPU core. This proves that the Linux driver is waking up a specific software worker thread every time the hardware interrupt fires to pull data from the MPU6050.
+
+
+
 Also the commands, for the comfiguration of the mpu6050: 
 
 ```shell
