@@ -72,7 +72,7 @@ pin3 i2c1 sda  | SDA
 pin5 i2c1 scl  | SCL
 pin39 ground   | GND
 pin34 ground   | AD0 (so the address is 0x68)
-pin18 GPIO24   | INT
+pin7 GPIO4     | INT
 ```
 
 The MPU6050 depends on I2C so enable it in the rpi by the GUI or editing the configuration files. You can also enable the i2c interface with `sudo raspi-config`.
