@@ -890,3 +890,310 @@ int main(void) {
 }
 
 ```
+
+
+## Program without libiio
+
+Next is a sample program without libiio. 
+
+Take into account, you need the interruptions of the mpu6050 enabled. 
+
+Also the commands: 
+
+
+The program: 
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdint.h>
+#include <signal.h>
+#include <errno.h>
+#include <time.h>
+#include <stdbool.h>   
+#include <sys/stat.h>
+#include <string.h>
+#include <math.h>
+
+#define IIO_DEVICE_DIR     "/sys/bus/iio/devices/iio:device0/"
+#define IIO_DEV_PATH       "/dev/iio:device0"
+#define SCALE_ACCEL_PATH   IIO_DEVICE_DIR "in_accel_scale"
+#define SCALE_GYRO_PATH    IIO_DEVICE_DIR "in_anglvel_scale"
+#define DEVICE_NAME_PATH   IIO_DEVICE_DIR "name"
+
+#define MAX_BUFFER_SIZE 32
+
+// Math constant multipliers
+#define RAD_TO_DEG (180.0 / 3.14159265358979323846)
+
+// Global runtime variables
+volatile bool keep_running = true;        
+volatile bool timer_triggered = false;    
+int fd = -1;
+ssize_t expected_packet_size = 0;
+double accel_scale = 1.0, gyro_scale = 1.0;
+uint64_t loop_counter = 0;
+struct timespec start_time, current_time;
+
+void sigint_handler(int sig) {
+    keep_running = false;
+}
+
+void timer_handler(int sig, siginfo_t *si, void *uc) {
+    timer_triggered = true;
+}
+
+int write_sysfs(const char *relative_path, const char *value) {
+    char full_path[256];
+    snprintf(full_path, sizeof(full_path), "%s%s", IIO_DEVICE_DIR, relative_path);
+    
+    FILE *fp = fopen(full_path, "w");
+    if (!fp) {
+        fprintf(stderr, "Error: Failed to write to sysfs file: %s (Are you running with 'sudo'?)\n", full_path);
+        return -1;
+    }
+    fprintf(fp, "%s", value);
+    fclose(fp);
+    return 0;
+}
+
+int verify_iio_dir_exists() {
+    struct stat s;
+    if (stat(IIO_DEVICE_DIR, &s) != 0) {
+        if (errno == ENOENT) {
+            fprintf(stderr, "Error: IIO directory '%s' does not exist.\n", IIO_DEVICE_DIR);
+        } else {
+            perror("Error calling stat() on IIO directory");
+        }
+        return 0;
+    }
+    return S_ISDIR(s.st_mode);
+}
+
+int verify_device_name() {
+    char name_buffer[64];
+    FILE *fp = fopen(DEVICE_NAME_PATH, "r");
+    
+    if (!fp) {
+        perror("Error opening device name verification node");
+        return 0;
+    }
+
+    if (fgets(name_buffer, sizeof(name_buffer), fp) == NULL) {
+        fprintf(stderr, "Error: Could not read contents from %s\n", DEVICE_NAME_PATH);
+        fclose(fp);
+        return 0;
+    }
+    fclose(fp);
+
+    name_buffer[strcspn(name_buffer, "\r\n")] = '\0';
+
+    if (strncmp(name_buffer, "mpu6050", 7) != 0) {
+        fprintf(stderr, "Error: Device mismatch! Expected 'mpu6050' but found '%s'\n", name_buffer);
+        return 0;
+    }
+
+    fprintf(stderr, "Device identity verified: %s\n", name_buffer);
+    return 1;
+}
+
+int initialize_iio_sensors() {
+    if (!verify_iio_dir_exists()) return -1;
+    if (!verify_device_name()) return -1;
+
+    fprintf(stderr, "Initializing MPU6050 subsystem parameters...\n");
+    if (write_sysfs("buffer/enable", "0") < 0) return -1;
+    if (write_sysfs("trigger/current_trigger", "mpu6050-dev0") < 0) return -1;
+
+    write_sysfs("scan_elements/in_accel_x_en", "1");
+    write_sysfs("scan_elements/in_accel_y_en", "1");
+    write_sysfs("scan_elements/in_accel_z_en", "1");
+    write_sysfs("scan_elements/in_anglvel_x_en", "1");
+    write_sysfs("scan_elements/in_anglvel_y_en", "1");
+    write_sysfs("scan_elements/in_anglvel_z_en", "1");
+    write_sysfs("scan_elements/in_timestamp_en", "1");
+    write_sysfs("buffer/length", "2048");
+
+    if (write_sysfs("buffer/enable", "1") < 0) return -1;
+
+    fprintf(stderr, "Subsystem configuration applied successfully.\n\n");
+    return 0;
+}
+
+ssize_t detect_packet_size(int device_fd) {
+    uint8_t rx_raw[MAX_BUFFER_SIZE];
+    ssize_t size = 0;
+    int attempts = 0;
+
+    fprintf(stderr, "Detecting packet size... ");
+    while (size <= 0 && attempts < 100) {
+        size = read(device_fd, rx_raw, MAX_BUFFER_SIZE);
+        if (size < 0 && errno != EAGAIN) {
+            perror("Fatal error during channel detection");
+            return -1;
+        }
+        usleep(5000);
+        attempts++;
+    }
+    
+    if (size <= 0) {
+        size = 32;
+        fprintf(stderr, "Size: default to %zd bytes\n", size);
+    } else {
+        fprintf(stderr, "Size: %zd bytes\n", size);
+    }
+    return size;
+}
+
+double get_sysfs_scale(const char *path) {
+    FILE *fp = fopen(path, "r");
+    if (!fp) return 1.0;
+    double scale = 1.0;
+    if (fscanf(fp, "%lf", &scale) != 1) scale = 1.0;
+    fclose(fp);
+    return scale;
+}
+
+int main() {
+    uint8_t rx_raw[MAX_BUFFER_SIZE];
+    uint8_t latest_raw[MAX_BUFFER_SIZE];
+    timer_t timerid;
+    struct sigevent sev;
+    struct itimerspec its;
+    struct sigaction sa;
+
+    setvbuf(stdout, NULL, _IOLBF, 0);
+
+    signal(SIGINT, sigint_handler);
+
+    sa.sa_flags = SA_SIGINFO;
+    sa.sa_sigaction = timer_handler;
+    sigemptyset(&sa.sa_mask);
+    if (sigaction(SIGALRM, &sa, NULL) == -1) {
+        perror("Fatal: Failed to register timer action context");
+        return EXIT_FAILURE;
+    }
+
+    if (initialize_iio_sensors() < 0) return EXIT_FAILURE;
+
+    accel_scale = get_sysfs_scale(SCALE_ACCEL_PATH);
+    gyro_scale = get_sysfs_scale(SCALE_GYRO_PATH);
+    fprintf(stderr, "Loaded Scales -> Accel: %f, Gyro: %f\n", accel_scale, gyro_scale);
+
+    fd = open(IIO_DEV_PATH, O_RDONLY | O_NONBLOCK);
+    if (fd < 0) {
+        perror("Error opening IIO stream");
+        return EXIT_FAILURE;
+    }
+
+    expected_packet_size = detect_packet_size(fd);
+    if (expected_packet_size < 0) {
+        close(fd);
+        return EXIT_FAILURE;
+    }
+
+    // Clear display and hide blinking layout cursor
+	print("Press Ctrl+C to end the program\r\n\n");
+    printf("\033[2J\033[H\033[?25l");
+    printf("=============================================================================================================\n");
+    printf("                                  MPU6050 ORIENTATION TILT INSTRUMENT DASHBOARD                              \n");
+    printf("=============================================================================================================\n");
+    
+    printf("\033[s"); // Save static layout coordinate position
+
+    sev.sigev_notify = SIGEV_SIGNAL;
+    sev.sigev_signo = SIGALRM;
+    sev.sigev_value.sival_ptr = &timerid;
+    if (timer_create(CLOCK_MONOTONIC, &sev, &timerid) == -1) {
+        perror("Fatal: Failed to build hardware interval timer object");
+        close(fd);
+        return EXIT_FAILURE;
+    }
+
+    its.it_value.tv_sec = 0;
+    its.it_value.tv_nsec = 20000000;    
+    its.it_interval.tv_sec = 0;
+    its.it_interval.tv_nsec = 20000000; 
+    
+    clock_gettime(CLOCK_MONOTONIC, &start_time);
+    
+    if (timer_settime(timerid, 0, &its, NULL) == -1) {
+        perror("Fatal: Failed to arm periodic timer queue parameters");
+        close(fd);
+        return EXIT_FAILURE;
+    }
+
+    while (keep_running) {
+        pause();
+
+        if (timer_triggered && keep_running) {
+            timer_triggered = false; 
+            ssize_t bytes_read;
+            bool fresh_data_found = false;
+
+            while ((bytes_read = read(fd, rx_raw, expected_packet_size)) == expected_packet_size) {
+                for (int i = 0; i < expected_packet_size; i++) {
+                    latest_raw[i] = rx_raw[i];
+                }
+                fresh_data_found = true;
+            }
+
+            if (bytes_read < 0 && errno != EAGAIN) {
+                if (errno == EINTR) continue; 
+                perror("Fatal error reading hardware stream");
+                break;
+            }
+
+            if (fresh_data_found) {
+                loop_counter++;
+
+                clock_gettime(CLOCK_MONOTONIC, &current_time);
+                double elapsed_ms = (current_time.tv_sec - start_time.tv_sec) * 1000.0 + 
+                                    (current_time.tv_nsec - start_time.tv_nsec) / 1000000.0;
+
+                int16_t raw_ax = (int16_t)((latest_raw[0] << 8) | latest_raw[1]);
+                int16_t raw_ay = (int16_t)((latest_raw[2] << 8) | latest_raw[3]);
+                int16_t raw_az = (int16_t)((latest_raw[4] << 8) | latest_raw[5]);
+                int16_t raw_gx = (int16_t)((latest_raw[6] << 8) | latest_raw[7]);
+                int16_t raw_gy = (int16_t)((latest_raw[8] << 8) | latest_raw[9]);
+                int16_t raw_gz = (int16_t)((latest_raw[10] << 8) | latest_raw[11]);
+
+                // Apply scales to acquire real physical values
+                double ax = raw_ax * accel_scale;
+                double ay = raw_ay * accel_scale;
+                double az = raw_az * accel_scale;
+
+                // MATHEMATICAL ORIENTATION CONVERSION: Compute Pitch and Roll in Degrees
+                double roll  = atan2(ay, az) * RAD_TO_DEG;
+                double pitch = atan2(-ax, sqrt(ay * ay + az * az)) * RAD_TO_DEG;
+
+                // ANSI Code: Return cursor to template base row
+                printf("\033[u");
+                printf("  Sequence Frame: #%06llu   |   Telemetry Run Time: %.2f ms\n", (unsigned long long)loop_counter, elapsed_ms);
+                printf("-------------------------------------------------------------------------------------------------------------\n");
+                printf("  ACCELEROMETER (m/s²)  =>  X: %6.2f   Y: %6.2f   Z: %6.2f\n", ax, ay, az);
+                printf("  GYROSCOPE (rad/s)     =>  X: %6.2f   Y: %6.2f   Z: %6.2f\n", 
+                       raw_gx * gyro_scale, raw_gy * gyro_scale, raw_gz * gyro_scale);
+                printf("-------------------------------------------------------------------------------------------------------------\n");
+                // New orientation block section
+                printf("  ORIENTATION CALCULATED ROTATIONS (Degrees):\n");
+                printf("    ► ROLL  (Rotation around X-axis): %7.2f°\n", roll);
+                printf("    ► PITCH (Rotation around Y-axis): %7.2f°\n", pitch);
+                printf("-------------------------------------------------------------------------------------------------------------\n");
+            }
+        }
+    }
+
+    // Cleanup routines
+    timer_delete(timerid);
+    if(fd > 0) close(fd);
+    write_sysfs("buffer/enable", "0");
+	// ANSI Code: Show the terminal cursor back upon exit
+    printf("\033[?25h\n");
+    fprintf(stderr, "\nClosing data stream cleanly. Goodbye!\n");
+    return EXIT_SUCCESS;
+}
+```
+
