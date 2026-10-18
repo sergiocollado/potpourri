@@ -1143,7 +1143,7 @@ int main() {
     }
 
     // Clear display and hide blinking layout cursor
-	print("Press Ctrl+C to end the program\r\n\n");
+	printf("Press Ctrl+C to end the program\r\n\n");
     printf("\033[2J\033[H\033[?25l");
     printf("=============================================================================================================\n");
     printf("                                  MPU6050 ORIENTATION TILT INSTRUMENT DASHBOARD                              \n");
