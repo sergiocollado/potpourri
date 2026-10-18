@@ -1890,8 +1890,9 @@ int main() {
 
 ```
 
-
 ## Improving the measurements
+
+Reference: https://toptechboy.com/improving-accuracy-of-mpu6050-data-using-a-complimentary-filter/
 
 A Complementary Filter is a simple and highly effective algorithm used to calculate precise tilt angles (Pitch and Roll) by merging data from two different sensors: the Accelerometer and the Gyroscope.
 It gives you the "best of both worlds" by using the strengths of each sensor to cancel out the weaknesses of the other.
