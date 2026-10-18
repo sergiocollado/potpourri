@@ -955,6 +955,8 @@ The program:
 ```c
 // compiles with: gcc readmpu.c -o readmpu -O -Wall -lm
 // -lm is for #include <math.h>
+// THIS EXAMPLE IS NOT THE BEST OPTION, SEE AFTER THE SNIPPET
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -1538,4 +1540,27 @@ write_sysfs("buffer/enable", "0");
 return EXIT_SUCCESS;
 }
 ```
+
+The epoll (or standard poll) option is by far the better and more professional choice for reading sensor data.
+In embedded Linux and systems programming, using a timer to read a streaming device buffer like an IIO sensor is considered an anti-pattern.
+Here is a direct comparison of why hardware-driven polling beats software timers:
+
+Feature	epoll / poll (Hardware-Driven)	POSIX Timer / Loop Sleep (Software-Driven)
+Accuracy	Perfect. Wakes up precisely when the sensor hardware finishes a measurement.	Poor. Software clocks always drift, causing missed samples or duplicates.
+CPU Usage	Very Low. Your thread sleeps completely until the hardware wakes it up.	Higher. Constant timer interrupts and thread switching even if data isn't ready.
+Data Integrity	No Duplicates. You read data exactly once per hardware sample.	High Risk. If your timer ticks faster than the sensor, you read duplicate data.
+Latency	Minimal. The moment data enters the kernel, your program is unblocked.	Variable. You can wait up to the length of your timer period to get the data.
+
+
+## The Deep Technical Reason: System Clock vs. Sensor Crystal
+
+Every physical chip (like the MPU6050) has its own internal clock oscillator. Your Linux computer (like a Raspberry Pi) also has its own CPU clock. These two clocks are never perfectly synced.
+• If you use a 50Hz Timer: Your software wakes up exactly every 20ms. However, if the MPU6050 is running slightly fast (e.g., 50.1Hz), it creates data every 19.96ms. Over time, the sensor buffer will slowly overflow because you aren't reading fast enough. If the sensor runs slightly slow (49.9Hz), your timer will eventually wake up before a new sample is ready, causing your code to read a duplicate stale value or crash into an empty buffer state.
+• If you use epoll: Your code matches the heartbeat of the sensor itself. When the MPU6050 finishes a calculation, it fires a physical interrupt line to the Linux CPU. The Linux kernel reads it immediately and unblocks your epoll() loop. Your software adapts perfectly, even if the sensor frequency slightly drifts due to room temperature changes.
+
+When would you use a timer?
+
+The only time a timer option is acceptable is if you are dealing with a primitive sensor that lacks an internal data buffer (FIFO) or a data-ready interrupt pin, and you are forced to manual-poll it by sending I2C read requests at regular intervals. For a modern device like the MPU6050, epoll is the standard.
+.
+
 
