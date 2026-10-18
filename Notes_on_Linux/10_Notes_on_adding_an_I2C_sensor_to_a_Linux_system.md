@@ -1,4 +1,7 @@
-# Example of usage RPi with MPU6050
+# Example of usage RPi with MPU6050  
+
+
+![mpu6050 image](https://github.com/sergiocollado/potpourri/blob/master/Notes_on_Linux/images/mpu6050.jpg)
 
 references:
  - how mpu6050 works: https://lastminuteengineers.com/mpu6050-accel-gyro-arduino-tutorial/
