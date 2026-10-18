@@ -1565,3 +1565,131 @@ int main() {
 </details>
 
 
+
+## Option 1: The Hardware-Driven Polling Option (epoll / poll)
+
+Verdict: The industry standard. This architecture treats the sensor as the master pacemaker of the application thread.
+
+```c
+// ============================================================================
+// ARCHITECTURE 1: HARDWARE-DRIVEN EVENT LOOP (epoll / poll)
+// ============================================================================
+// HOW IT WORKS: 
+// The sensor hardware completes a calculation -> fires a physical interrupt 
+// pin -> Linux Kernel collects the bytes into the IIO FIFO ring buffer -> 
+// Kernel unblocks the sleeping poll() system call.
+// ============================================================================
+
+while (keep_running) {
+    // 1. Thread enters an efficient, low-power sleep state inside the kernel.
+    //    It consumes 0% CPU while waiting. The 1000ms timeout is a safety fallback.
+    int ret = poll(&pfd, 1, 1000);
+    
+    if (ret < 0) {
+        if (errno == EINTR) continue; // Handle OS signals cleanly (Ctrl+C)
+        perror("Poll error");
+        break;
+    }
+    
+    if (ret == 0) {
+        // PRO: Detects hardware failure immediately if the sensor stops ticking
+        printf("Hardware Alert: Sensor has stopped sending data interrupts!\n");
+        continue;
+    }
+
+    // 2. Kernel confirms the IIO file descriptor has readable data packets available
+    if (pfd.revents & POLLIN) {
+        // PRO: The read() call is guaranteed to succeed and return fresh data.
+        // There is no guessing game; data is pulled exactly once per hardware sample.
+        ssize_t bytes_read = read(fd, rx_raw, MAX_BUFFER_SIZE);
+        
+        if (bytes_read >= 16) {
+            // Process sensor data instantly at the exact moment of creation.
+            // Latency is at the absolute theoretical minimum (sub-millisecond).
+            loop_counter++;
+            
+            // CONSOLE UI LIMITATION WORKAROUND:
+            // Since this runs at 50Hz, rendering a console terminal 50 times/sec 
+            // can cause text flicker on some SSH windows. 
+            render_dashboard(); 
+        }
+    }
+}
+```
+
+
+## Option 2: The Software-Driven Timer Option (timer_create / usleep)
+
+Verdict: An embedded anti-pattern. This architecture treats the Linux operating system system clock as the pacemaker, ignoring the physical sensor's timeline.
+
+```C
+// ============================================================================
+// ARCHITECTURE 2: SOFTWARE-DRIVEN FIXED TIMER (POSIX Timers / pause() Loops)
+// ============================================================================
+// HOW IT WORKS:
+// A Linux kernel software clock ticks independently every 20ms (50Hz) and sends
+// a SIGALRM signal to force the application thread awake, regardless of what 
+// the sensor hardware is currently doing.
+// ============================================================================
+
+while (keep_running) {
+    // 1. Thread pauses, waiting specifically for a software signal to hit.
+    pause(); 
+
+    // 2. The signal handler wakes up the thread and sets this flag to true
+    if (timer_triggered && keep_running) {
+        timer_triggered = false; 
+        ssize_t bytes_read;
+        bool fresh_data_found = false;
+
+        // CRITICAL CON: Clock Drift & Timing Misalignments
+        // Linux system time and the sensor's quartz crystal are NOT synchronized.
+        // Case A: Sensor clock is 50.1Hz, Software Timer is exactly 50.0Hz.
+        //        Data is generated faster than it's read. The IIO ring buffer 
+        //        slowly fills up, causing a creeping accumulation of latency.
+        // Case B: Sensor clock is 49.9Hz, Software Timer is exactly 50.0Hz.
+        //        The timer wakes up early. read() returns -1 with EAGAIN because 
+        //        the sensor hasn't finished yet. You waste a whole loop cycle.
+
+        // 3. To survive Clock Drift, you are forced to dump the buffer in a loop
+        while ((bytes_read = read(fd, rx_raw, MAX_BUFFER_SIZE)) > 0) {
+            // CON: If multiple samples piled up, you are reading old/stale 
+            // historical measurements rather than what is happening right now.
+            for (int i = 0; i < bytes_read; i++) latest_raw[i] = rx_raw[i];
+            fresh_data_found = true;
+        }
+
+        if (fresh_data_found) {
+            loop_counter++;
+            
+            // CON: Jitter introduces mathematical noise. 
+            // If Linux schedules a background task, your software timer could be 
+            // delayed by 5ms. The time delta (dt) between loop updates fluctuates wildly, 
+            // completely corrupting your Gyroscope integration calculus integrals.
+            render_dashboard();
+        }
+    }
+}
+```
+
+Summing up the differences: 
+ - Use Option 1 (poll) because it guarantees that your code runs in strict lockstep harmony with the physical sensor. It is immune to clock drift, uses less CPU, and gives the most stable time delta for angle tracking algorithms.
+ - Avoid Option 2 (Timer) unless you are dealing with primitive legacy hardware that has no hardware interrupt pins, forcing you to manual-poll the registers manually.
+Are you planning to process this sensor data for a real-time automation application (like a robotics control loop), or are you just displaying it on a diagnostic screen? I can show you how to add a decimation filter to Option 1 so it samples at 50Hz but only updates the screen at 10Hz to eliminate text flickering.
+
+
+## Pointers for a low-latency sensor mesurements
+
+#### Step 1: Maximize Sensor Speed & Bypass Watermarks
+
+To minimize latency, you need data instantly. You must configure the MPU6050 to its maximum stable sampling rate (typically 200 Hz or higher on Linux triggers) and keep the IIO watermark strictly at 1. This forces the kernel to release the packet the exact microsecond it arrives on the I2C bus.
+
+#### Step 2: Elevate Thread to Real-Time Priority (SCHED_FIFO)
+
+Standard Linux threads are scheduled dynamically, meaning the OS can pause your balancing loop to handle background tasks. You must change your thread policy to SCHED_FIFO (First-In, First-Out Real-Time scheduling) and assign it a high priority (e.g., 80). This guarantees your control loop will immediately pre-empt almost any other process on the CPU.
+
+#### Step 3: Strip Out the Console UI Render Block
+
+Printing text to a terminal using printf and ANSI escape codes is incredibly slow. A single printf statement can block your execution for several milliseconds. In a production balancing loop, you must never print data inside the real-time loop. Instead, run your control calculations immediately, and copy data to a separate low-priority thread or a shared memory layout if visualization is needed.
+
+
