@@ -1916,8 +1916,8 @@ double gx_dps = raw_gx * gyro_scale * RAD_TO_DEG;
 double gy_dps = raw_gy * gyro_scale * RAD_TO_DEG;
 
 // 4. THE COMPLEMENTARY FILTER (The One-Liners!)
-comp_roll  = alpha * (comp_roll  + gx_dps * dt_s) + (1.0 - alpha) * accel_roll;
-comp_pitch = alpha * (comp_pitch + gy_dps * dt_s) + (1.0 - alpha) * accel_pitch;
+comp_roll  = alpha * (comp_roll  + gx_dps * dt_s * RAD_TO_DEG) + (1.0 - alpha) * accel_roll;
+comp_pitch = alpha * (comp_pitch + gy_dps * dt_s * RAD_TO_DEG) + (1.0 - alpha) * accel_pitch;
 ```
 
 
