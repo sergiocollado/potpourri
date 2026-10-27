@@ -87,6 +87,39 @@ One application of online charging is credit control, in which delivery of subsc
 
 A single subscriber may use multiple services accessible by the mobile service provider network as part of a subscriber session. For example, during a single network access session of a subscriber session, a subscriber may use several Hypertext Transfer Protocol (HTTP) services. In some cases, the multiple services of the network access session may be subject to different cost and therefore require differential rating. To improve scalability for such scenarios, the mobile network gateway is able to consolidate different services that are subject to the same cost and rating type into a rating group, which is associated with a charging key. A subscriber session can include one or more rating groups each associated with one or more services for which the mobile network gateway applies credit control, i.e., associating packets to a rating group charging key for the services and applying online or offline charging, as appropriate. Aside from rating however, other attributes and actions of a multi-service subscriber session, such as quality of service (QoS), event triggers, and credit control failure handling, are common to all the services carried within the session bearer and are applied at the bearer level
 
+
+## Does your voice travel through internet? 
+
+The short answer is yes, your voice is transmitted using internet technology (data packets), but it does not travel over the open, public internet.
+
+In 4G and 5G networks, standard mobile phone calls use technologies called VoLTE (Voice over LTE) and VoNR (Voice over New Radio). These technologies convert your voice into digital IP (Internet Protocol) packets, exactly like the data used to load a webpage or stream a video.
+
+However, once these packets hit the mobile antenna (cell tower), they are routed through a highly controlled environment:
+
+The Carrier's Private IP Network: Instead of sending your voice out into the public internet, the cell tower routes it into the mobile operator's core network. This uses an architecture called the IP Multimedia Subsystem (IMS). It is essentially a private, enclosed internet run by the phone companies.
+
+Quality of Service (QoS): The main reason carriers do not use the public internet for standard calls is quality control. The public internet treats all data equally, which can cause lag, jitter, or dropped packets. On their private IMS networks, carriers assign the highest priority to voice packets to ensure calls are clear, uninterrupted, and have no noticeable delay.
+
+Interconnecting Networks: If you call someone on a different mobile network or a landline, the IP packets are handed off directly from your carrier's private network to the other carrier's private network through dedicated, secure gateways, still avoiding the public internet.
+
+The Exception: Internet Calling Apps <br>
+If you make a voice or video call using an app like WhatsApp, FaceTime, Skype, or Messenger, the routing is entirely different. These apps (known as Over-The-Top or OTT services) treat your voice simply as regular app data. Once this data hits the cell tower, the carrier hands it off directly to the public internet, where it travels to the app's servers and then to the recipient
+
+### What standards are used? 
+
+The transmission of voice over 4G and 5G networks is governed by two main industry bodies: 3GPP (which defines the core technical architecture) and the GSMA (which defines how carriers and device manufacturers should implement those architectures to ensure everything works together).
+
+Here are the primary standards used:
+ - 1. 3GPP Technical Specifications (The Core Architecture)
+    - 3GPP TS 23.228: This is the foundational standard for the IP Multimedia Subsystem (IMS). It defines the core architecture and procedures that allow IP networks to handle real-time multimedia services like voice and video. Both VoLTE (4G) and VoNR (5G) rely on this IMS framework.
+    - 3GPP TS 23.501: This is the overarching technical specification for the 5G System Architecture. It defines how the 5G Core network operates, including the Quality of Service (QoS) mechanisms required to prioritize voice packets over standard data in 5G networks.
+    - 3GPP TS 24.229: This details the specific call control protocols (using SIP and SDP) within the IMS environment.
+ - 2. 2. GSMA Interoperability Profiles (The Implementation Rules)While 3GPP provides the vast toolkit of technical possibilities, the GSMA publishes "Profiles" that dictate exactly which tools from that kit must be used so that a Samsung phone on Verizon can talk seamlessly to an iPhone on Vodafone.
+    - GSMA IR.92 (IMS Profile for Voice and SMS): This is the crucial, mandatory standard for VoLTE. It specifies exactly how 4G voice calls and SMS over IP should be implemented across devices and networks.         - GSMA IR.95 / NG.114: This is the equivalent profile for VoNR (5G voice). It defines the specific requirements for routing voice and SMS directly over the standalone 5G Core network.
+    - GSMA IR.94: This standard covers the implementation of conversational video calls over these same IMS networks.
+
+ Essentially, 3GPP (TS 23.228 and TS 23.501) builds the secure, private "IP highway" for voice, and the GSMA (IR.92 and IR.95) writes the "rules of the road" so that all phones and carriers use it exactly the same way.
+
 # Notes on 5G
 
 references:
