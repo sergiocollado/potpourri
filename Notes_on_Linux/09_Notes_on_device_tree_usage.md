@@ -8,6 +8,7 @@ references:
  - Javier Carrasco Cruz:  - https://hackerbikepacker.com/device-driver-development-with-rpi-setup
  - Javier Carrasco Cruz: https://hackerbikepacker.com/device-driver-development-with-rpi-device-tree
  - Javier Carrasco Cruz: device tree bindings: https://hackerbikepacker.com/dt-bindings
+ - https://hackaday.com/2026/11/10/devicetree-for-hackers-intro/
  - Mastering Device Trees: A Guide to Hardware Integration in Linux: https://medium.com/@hasancansert/mastering-device-trees-a-guide-to-hardware-integration-in-linux-3e1516a75e04
  - https://www.linkedin.com/pulse/exploring-challenges-linux-iio-from-developers-perspective-james-john-4qm9f
  - https://docs.kernel.org/devicetree/index.html
