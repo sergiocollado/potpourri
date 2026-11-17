@@ -405,15 +405,15 @@ Because inodes do not store filenames, Linux separates a file's name from its me
 
 #### Why Inodes Matter
 
-• Inode exhaustion. Filesystems like `ext4` allocate a fixed number of inodes when formatted. If you create millions of tiny files (such as cache files, logs, or emails), you can run out of inodes even when you still have gigabytes of free disk space. When inode usage hits 100%, the system cannot create any new files. [1] (https://linuxize.com/post/what-is-an-inode-in-linux/), [2] (https://medium.com/@sharathkumarlokesh/disk-space-inodes-and-mounts-why-linux-systems-suddenly-break-3876ecb0468e)
-• Moving vs. copying. Moving or renaming a file within the same filesystem simply updates the directory entry while keeping the exact same inode number. Copying a file creates a brand-new inode with its own data blocks. [1] (https://docs.rackspace.com/docs/what-are-inodes-in-linux)
+ - Inode exhaustion. Filesystems like `ext4` allocate a fixed number of inodes when formatted. If you create millions of tiny files (such as cache files, logs, or emails), you can run out of inodes even when you still have gigabytes of free disk space. When inode usage hits 100%, the system cannot create any new files.
+ - Moving vs. copying. Moving or renaming a file within the same filesystem simply updates the directory entry while keeping the exact same inode number. Copying a file creates a brand-new inode with its own data blocks.
 
 #### Useful Linux Commands
 
 You can inspect inodes directly from the terminal using standard tools from the Linuxize Inode Guide and Rackspace Documentation:
-• View a file's inode number. Run `ls -i filename` to see the inode number listed next to the filename.
-• Inspect full inode metadata. Run stat filename to display all details stored inside the file's inode, including size, permissions, links, and timestamps.
-• Check available system inodes. Run `df -i` (or `df -ih` for human-readable numbers) to see total, used, and free inodes across your mounted filesystems.
+ - `ls -i filename`: view a file's inode number. Run `ls -i filename` to see the inode number listed next to the filename.
+ - `stat`: inspect full inode metadata. Run `stat` filename to display all details stored inside the file's inode, including size, permissions, links, and timestamps.
+ - `df -ih`: check available system inodes. Run `df -i` (or `df -ih` for human-readable numbers) to see total, used, and free inodes across your mounted filesystems.
 
 References:
  - [1] (https://www.redhat.com/en/blog/inodes-linux-filesystem),
