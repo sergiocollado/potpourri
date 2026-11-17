@@ -375,6 +375,53 @@ the `file` utility can be used to get more information about the data type of a 
 
 **REMARK!** in linux extensions don't define the utility or type of a file.
 
+
+### Inodes
+
+An inode (short for **index node**) is a data structure in a Unix-style or Linux filesystem that stores metadata about a file or directory. Every file and folder on a filesystem is assigned a unique inode number that the kernel uses to locate and manage it on the storage drive. 
+
+References:
+ - [1] (https://www.redhat.com/en/blog/inodes-linux-filesystem),
+ - [2] (https://en.wikipedia.org/wiki/Inode)
+ - [3] (https://docs.rackspace.com/docs/what-are-inodes-in-linux)
+ - [4] (https://medium.com/@priyanka_singh_/inodes-in-a-nutshell-what-every-engineer-should-know-b18c2ab88308)
+ - https://share.google/aimode/CBmshe9KaphnFArQW
+
+#### What an Inode Stores
+
+An inode holds almost everything the operating system needs to know about a file, except for the file's actual data and its filename>
+	• **File type**. Identifies whether the object is a regular file, directory, symbolic link, or device.
+	• **Permissions and ownership**. Stores the access rights (read, write, execute), User ID (UID), and Group ID (GID).
+	• **File size**. Tracks the total size of the file in bytes.
+	• **Timestamps**. Records when the file was last accessed (atime), modified (mtime), and when its metadata last changed (ctime).
+	• **Hard link count**. Tracks how many filenames point to this specific inode.
+	• **Data block pointers**. Lists the exact physical locations (blocks) on the disk where the file's actual content is stored. 
+
+#### How Filenames and Directories Work
+
+Because inodes do not store filenames, Linux separates a file's name from its metadata.
+• Directories are lookup tables. A directory is essentially a special file that maps human-readable filenames to their corresponding inode numbers.
+• Opening a file. When you open `/home/user/notes.txt`, the kernel reads the directory to find the inode number for `notes.txt`, looks up that inode in the filesystem's inode table, and follows the block pointers to read the data.
+
+#### Why Inodes Matter
+
+• Inode exhaustion. Filesystems like `ext4` allocate a fixed number of inodes when formatted. If you create millions of tiny files (such as cache files, logs, or emails), you can run out of inodes even when you still have gigabytes of free disk space. When inode usage hits 100%, the system cannot create any new files. [1] (https://linuxize.com/post/what-is-an-inode-in-linux/), [2] (https://medium.com/@sharathkumarlokesh/disk-space-inodes-and-mounts-why-linux-systems-suddenly-break-3876ecb0468e)
+• Moving vs. copying. Moving or renaming a file within the same filesystem simply updates the directory entry while keeping the exact same inode number. Copying a file creates a brand-new inode with its own data blocks. [1] (https://docs.rackspace.com/docs/what-are-inodes-in-linux)
+
+#### Useful Linux Commands
+
+You can inspect inodes directly from the terminal using standard tools from the Linuxize Inode Guide and Rackspace Documentation:
+• View a file's inode number. Run `ls -i filename` to see the inode number listed next to the filename.
+• Inspect full inode metadata. Run stat filename to display all details stored inside the file's inode, including size, permissions, links, and timestamps.
+• Check available system inodes. Run `df -i` (or `df -ih` for human-readable numbers) to see total, used, and free inodes across your mounted filesystems.
+
+References:
+ - [1] (https://www.redhat.com/en/blog/inodes-linux-filesystem),
+ - [2] (https://en.wikipedia.org/wiki/Inode)
+ - [3] (https://docs.rackspace.com/docs/what-are-inodes-in-linux)
+ - [4] (https://medium.com/@priyanka_singh_/inodes-in-a-nutshell-what-every-engineer-should-know-b18c2ab88308)
+
+
 ### Hardlinks and softlinks
 
 - reference: https://www.redhat.com/en/blog/linking-linux-explained#:~:text=A%20hard%20link%20always%20points,information%20on%20a%20storage%20device.
@@ -406,6 +453,7 @@ More information: https://www.gnu.org/software/coreutils/ln.
  - Create a hard link to a file:
    ln /path/to/file path/to/hardlink
 ```
+
 
 ### Files permissions
 
