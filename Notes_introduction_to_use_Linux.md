@@ -302,7 +302,8 @@ special directory names:
 - **less**: prints a screen from a text file. Less has more options that the **more** command, following the saying: *less is more*
 - **grep**: **g**lobally search a **r**egular **e**xpression and **p**rint. search text through files and match patterns. [https://linux.die.net/man/1/grep]
 - **find**: search for files in a directory hierarchy, to find the location of files.  https://linux.die.net/man/1/find
-- **locate**: find files by name, based on updatedb.  https://linux.die.net/man/1/locate
+- **locate**: find files by name, based on `updatedb`.  https://linux.die.net/man/1/locate
+- **which**: find files in the PATH. 
 - **diff** and **sdiff**: identify differences between files. usually use: **diff -Nur**
 - **md5**: computes the md5 hash of a file.
 - **shasum**: compute the SHA-1 of a file.
