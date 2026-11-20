@@ -3,6 +3,7 @@
 - satellites course: https://www.youtube.com/watch?v=yWMUvJ2c5aI&list=PLYC6dhRNvUls
 - satellites reference: https://www.nasa.gov/wp-content/uploads/2026/05/soa-2026.pdf?emrc=12c9ca
 - satellite communication: https://youtu.be/ZyUfNT00Vx8?si=lu0A9ObnOxTZ0XHj
+- https://cronicaglobal.elespanol.com/business/20261120/open-cosmos-primera-conexion-directa-satelite-europa/1003742813710_0.html
 
 NTN - Non-terrestial networks refers to satellite and space networks which play a complementing role in 5G terrestial networks
 
